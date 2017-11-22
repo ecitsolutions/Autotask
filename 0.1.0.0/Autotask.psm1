@@ -1,10 +1,5 @@
 <#
-        # Kort beskrivelse av modulen.
-           "Modul for � kople seg til og utf�re operasjoner p� Autotask sitt web-API."
-        # Lang beskrivelse av modulen.
-           
-        # Dato for opprettelse av modulen.
-           09/04/2017 16:01:56
+        Description
 #>
 [CmdletBinding()]
 $PublicFunction  = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue ) # Public functions can be called by user after module import
@@ -14,7 +9,6 @@ $PublicFunction  = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorActio
 foreach ($Import in @($PublicFunction + $PrivateFunction))
 {
     Write-Verbose "Importing $Import"
-    if ($Import.Name -like "*test*") { continue }
     try
     {
         . $Import.fullname
