@@ -42,5 +42,3 @@
     $ErrorActionPreference = $PreviousPreference
     
 }
-
-Connect-AutotaskWebAPI
