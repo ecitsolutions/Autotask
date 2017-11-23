@@ -14,10 +14,7 @@
         $User = $Credential.UserName
         If ($User.Substring(0,1) -ne '\')
         {
-            $UserName = '\' + $Credential.UserName
-            $Pass = $Credential.Password
-            $Credential = New-Object System.Management.Automation.PSCredential($UserName,$Pass)
-        
+            $Credential = New-Object System.Management.Automation.PSCredential("\$($Credential.UserName)",$($Credential.Password))
         }
     
         # Start with a GetZoneInfo()
@@ -34,11 +31,13 @@
     $Uri = $ZoneInfo.URL -replace 'atws.asmx','atws.wsdl'
     
     # Make sure a failure to create this object truly fails the script
-    $PreviousPreference = $ErrorActionPreference
-    $ErrorActionPreference = 'STOP'
-    $global:atws = New-WebServiceProxy -URI $Uri  -Credential $credential -Namespace 'Autotask' -Class 'AutotaskAPI'
+    #$PreviousPreference = $ErrorActionPreference
+    #$ErrorActionPreference = 'STOP'
+    $global:atws = New-WebServiceProxy -URI $Uri  -Credential $credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
     
     # Return the user to his preference
-    $ErrorActionPreference = $PreviousPreference
+    #$ErrorActionPreference = $PreviousPreference
     
 }
+$Credential = Get-Credential
+$usern = "\$($Credential.UserName)"
