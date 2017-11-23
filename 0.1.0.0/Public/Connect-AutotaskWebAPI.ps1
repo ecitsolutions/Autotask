@@ -11,8 +11,7 @@
     { 
         # Make sure Windows does not try to add a domain to username
         # Prefix username with a backslash if nobody has added one yet
-        $User = $Credential.UserName
-        If ($User.Substring(0,1) -ne '\')
+        If ($($Credential.UserName).Substring(0,1) -ne '\')
         {
             $Credential = New-Object System.Management.Automation.PSCredential("\$($Credential.UserName)",$($Credential.Password))
         }
@@ -39,5 +38,3 @@
     #$ErrorActionPreference = $PreviousPreference
     
 }
-$Credential = Get-Credential
-$usern = "\$($Credential.UserName)"
