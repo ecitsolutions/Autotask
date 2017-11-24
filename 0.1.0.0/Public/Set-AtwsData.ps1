@@ -14,9 +14,9 @@ Function Set-AtwsData
       .DESCRIPTION
       This function updates one or more Autotask entities with new or modified properties
       .INPUTS
-      Autot
+      Autotask.Entity[]. One or more Autotask entities to update
       .OUTPUTS
-      Autotask.Entity[]. One or more Autotask entities to update.
+      Autotask.Entity[]. The updated entities are re-downloaded from the API.
       .EXAMPLE
       Set-AtwsData -Entity $Entity
       Passes all Autotask entities in $Entity to the Autotask webservices API
@@ -24,6 +24,8 @@ Function Set-AtwsData
       NAME: Set-AtwsData
       .LINK
       Get-AtwsData
+      New-AtwsData
+      Remove-AtwsData
   #>
  
   [cmdletbinding()]
@@ -33,6 +35,7 @@ Function Set-AtwsData
         Mandatory = $True,
         ValueFromPipeline = $True
     )]
+    [ValidateNotNullOrEmpty()]
     [Autotask.Entity[]]
     $Entity
   )

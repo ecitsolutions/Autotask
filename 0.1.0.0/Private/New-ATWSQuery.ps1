@@ -41,7 +41,7 @@ function New-ATWSQuery
     '-ge' =  'GreaterThanorEquals'
     '-le' = 'LessThanOrEquals'
     '-beginswith' = 'BeginsWith'
-    '-endwith' = 'EndsWith'
+    '-endswith' = 'EndsWith'
     '-contains' = 'Contains'
     '-isnotnull' = 'IsNotNull'
     '-isnull' = 'IsNull'

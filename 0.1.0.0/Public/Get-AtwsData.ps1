@@ -9,20 +9,34 @@ Function Get-AtwsData
 {
   <#
       .SYNOPSIS
-      This function updates one or more Autotask entities with new or modified properties.
+      This function queries the Autotask Web API for entities matching a specified type and filter.
       .DESCRIPTION
-      This function updates one or more Autotask entities with new or modified properties
+      This function queries the Autotask Web API for entities matching a specified type and filter.
+      Valid operators: 
+        -and, -or
+
+      Valid comparison operators:
+        -eq, -ne, -lt, -le, -gt, -ge, -isnull, -isnotnull, -isthisday
+
+      Valid text comparison operators:
+        -contains, -like, -notlike, -beginswith, -endswith, -soundslike
+         
+      Special operators to nest conditions: 
+       -begin, -end
+
       .INPUTS
-      Autot
+      Nothing.
       .OUTPUTS
-      Autotask.Entity[]. One or more Autotask entities to update.
+      Autotask.Entity[]. One or more Autotask entities returned from Autotask Web API.
       .EXAMPLE
-      Set-AtwsData -Entity $Entity
-      Passes all Autotask entities in $Entity to the Autotask webservices API
+      Get-AtwsData -Entity Ticket -Filter {id -gt 0}
+      Gets all tickets with an id greater than 0 from Autotask Web API
       .NOTES
-      NAME: Set-AtwsData
+      NAME: Get-AtwsData
       .LINK
-      Get-AtwsData
+      Set-AtwsData
+      New-AtwsData
+      Remove-AtwsData
   #>
   
   [cmdletbinding()]
