@@ -36,6 +36,7 @@ Function Remove-AtwsData
   (
     [Parameter(Mandatory = $True,
     ValueFromPipeline = $True)]
+    [ValidateNotNullOrEmpty()]
     [Autotask.Entity[]]
     $Entity
   )

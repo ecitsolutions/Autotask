@@ -35,6 +35,7 @@ Function Set-AtwsData
         Mandatory = $True,
         ValueFromPipeline = $True
     )]
+    [ValidateNotNullOrEmpty()]
     [Autotask.Entity[]]
     $Entity
   )
