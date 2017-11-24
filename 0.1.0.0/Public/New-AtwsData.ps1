@@ -8,16 +8,17 @@
 
 Function New-AtwsData 
 {
-    [cmdletbinding()]
-    param
-    (
-        [Parameter(
-          Mandatory = $True,
-          Position = 0
-        )]
-        $Entity
-    )
-    
-   New-Object -TypeName Autotask.$Entity
+  [cmdletbinding()]
+  param
+  (
+    [Parameter(
+        Mandatory = $True,
+        Position = 0
+    )]
+    $Entity
+  )
+   
+  Write-Verbose ('{0}: Creating a new object of type Autotask.{1}' -F $MyInvocation.MyCommand.Name, $Entity) 
+  New-Object -TypeName Autotask.$Entity
 
 }

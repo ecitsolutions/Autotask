@@ -24,6 +24,8 @@ Function Set-AtwsData
       NAME: Set-AtwsData
       .LINK
       Get-AtwsData
+      New-AtwsData
+      Remove-AtwsData
   #>
  
   [cmdletbinding()]
