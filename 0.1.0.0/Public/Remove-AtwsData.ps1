@@ -8,7 +8,7 @@
 
 Function Remove-AtwsData 
 {
-    <#
+  <#
       .SYNOPSIS
       This function updates one or more Autotask entities with new or modified properties.
       .DESCRIPTION
@@ -28,24 +28,32 @@ Function Remove-AtwsData
       Set-AtwsData
   #>
  
-    [cmdletbinding()]
-    param
-    (
-        [Parameter(Mandatory = $True)]
-        [Autotask.Entity[]]
-        $Entity
-    )
+  [cmdletbinding(
+      SupportsShouldProcess = $True,
+      ConfirmImpact = 'High'
+  )]
+  param
+  (
+    [Parameter(Mandatory = $True,
+    ValueFromPipeline = $True)]
+    [Autotask.Entity[]]
+    $Entity
+  )
     
-    
-    
+  Begin
+  { 
     If (-not($global:atws.Url))
     {
-        
-        Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
+      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
     }
-    
-
-    #$Result = $atws.delete($Entity)
+  }
+  
+  Process
+  {   
+    If ($PSCmdlet.ShouldProcess('Deleting Autotask {0}(s) with id(s) {1}' -F $Entity.GetType().Name, $($Entity.id -join ', ')))
+    {
+      $Result = $atws.delete($Entity)
+    }
     
     
     If ($Result.Errors.Count -eq 0)
@@ -56,9 +64,14 @@ Function Remove-AtwsData
     {
       Foreach ($AtwsError in $Result.Errors)
       {
-        Write-Error $AtwsError.Message
+        Write-Error -Message $AtwsError.Message
       }
     }
-
+  }
+  
+  End
+  {
+  
+  }
 }
 
