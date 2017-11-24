@@ -8,7 +8,7 @@
 
 Function Set-AtwsData 
 {
-    <#
+  <#
       .SYNOPSIS
       This function updates one or more Autotask entities with new or modified properties.
       .DESCRIPTION
@@ -26,23 +26,30 @@ Function Set-AtwsData
       Get-AtwsData
   #>
  
-    [cmdletbinding()]
-    param
-    (
-        [Parameter(Mandatory = $True)]
-        [Autotask.Entity[]]
-        $Entity
-    )
+  [cmdletbinding()]
+  param
+  (
+    [Parameter(
+        Mandatory = $True,
+        ValueFromPipeline = $True
+    )]
+    [Autotask.Entity[]]
+    $Entity
+  )
     
     
-    
+  Begin
+  { 
     If (-not($global:atws.Url))
     {
         
-        Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
+      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
     }
-    
-
+  }
+  
+  Process
+  { 
+    Write-Verbose ('{0}: Updating Autotask {1} with id {2}' -F $MyInvocation.MyCommand.Name, $Entity[0].GetType().Name, $($Entity.id -join ', '))
     $Result = $atws.update($Entity)
     
     
@@ -57,6 +64,10 @@ Function Set-AtwsData
         Write-Error $AtwsError.Message
       }
     }
-
+  }
+  End 
+  {
+    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
+  }
 }
 
