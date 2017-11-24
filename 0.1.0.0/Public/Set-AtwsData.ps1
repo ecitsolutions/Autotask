@@ -54,7 +54,7 @@ Function Set-AtwsData
     {
       Foreach ($AtwsError in $Result.Errors)
       {
-        Write-Error $AtwsError
+        Write-Error $AtwsError.Message
       }
     }
 
