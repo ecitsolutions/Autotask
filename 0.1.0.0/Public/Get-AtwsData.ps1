@@ -1,14 +1,56 @@
-﻿Function Get-AtwsData 
+﻿<#
+
+    .COPYRIGHT
+    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/officecenter/OCH-Public/blob/master/LICENSE for license information.
+
+#>
+
+Function Get-AtwsData 
 {
+     <#
+      .SYNOPSIS
+      This function updates one or more Autotask entities with new or modified properties.
+      .DESCRIPTION
+      This function updates one or more Autotask entities with new or modified properties
+      .INPUTS
+      Autot
+      .OUTPUTS
+      Autotask.Entity[]. One or more Autotask entities to update.
+      .EXAMPLE
+      Set-AtwsData -Entity $Entity
+      Passes all Autotask entities in $Entity to the Autotask webservices API
+      .NOTES
+      NAME: Set-AtwsData
+      .LINK
+      Get-AtwsData
+  #>
+  
     [cmdletbinding()]
     param
     (
-        [Parameter(Mandatory = $True)]
+        [Parameter(
+          Mandatory = $True,
+          Position = 0
+        )]
         [String]
-        $QueryXmlasText
+        $Entity,
+          
+        [Parameter(
+          Mandatory = $True,
+          ValueFromRemainingArguments = $true,
+          Position = 1
+        )]
+        [String[]]
+        $Filter
     )
     
-    [xml]$QueryXml = $QueryXmlasText
+    If ($Filter.Count -eq 1 -and $Filter -match ' ')
+    {
+      $Filter = $Filter.Split(' ')
+    }
+    [Array]$Query = @($Entity) + $Filter
+    [xml]$QueryXml = New-AtwsQuery @Query
     
     If (-not($global:atws.Url))
     {
