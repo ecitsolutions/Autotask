@@ -1,5 +1,4 @@
 ﻿<#
-
     .COPYRIGHT
     Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/officecenter/OCH-Public/blob/master/LICENSE for license information.
