@@ -24,16 +24,16 @@ function New-ATWSQuery
   {
     Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
   }
-  # List of allowed operators in QueryXML
-  $Operators = @{
+  # List of allowed operator in QueryXML
+  $Operator = @{
     '-and' = 'and'
     '-or' = 'or'
     '-begin' = 'begin'
     '-end' = 'end'
   }
 
-  # List of all allowed conditions in QueryXML
-  $Conditions = @{
+  # List of all allowed condition in QueryXML
+  $ConditionOperator = @{
     '-eq' = 'Equals'
     '-ne' = 'NotEqual'
     '-gt' = 'GreaterThan'
@@ -65,7 +65,7 @@ function New-ATWSQuery
   $entityxml.InnerText = $QueryText[0]
 
   # Create an XML element for the query tag.
-  # It will contain all conditions.
+  # It will contain all condition.
   $Query = $xml.CreateElement('query')
   $null = $queryxml.AppendChild($Query)
 
@@ -78,9 +78,9 @@ function New-ATWSQuery
   {
     Switch ($QueryText[$i])
     {
-      # Check for operators
+      # Check for operator
       {
-        $Operators.Keys -contains $_
+        $Operator.Keys -contains $_
       }
       {
         # Element is an operator. Add a condition tag with
@@ -114,18 +114,18 @@ function New-ATWSQuery
       }
       # Check for a condition
       {
-        $Conditions.Keys -contains $_
+        $ConditionOperator.Keys -contains $_
       } 
       {
         # Element is a condition. Add an expression tag with
         # attribute 'op' set to the value of element
         $Expression = $xml.CreateElement('expression')
-        $Expression.SetAttribute('op', $Conditions[$_])
+        $Expression.SetAttribute('op', $ConditionOperator[$_])
 
         # Append condition to current $Node
         $null = $Node.AppendChild($Expression)
 
-        # Not all conditions need a value. 
+        # Not all condition need a value. 
         If ($NoValueNeeded -notcontains $_)
         {
           # Increase pointer and add next element as 
