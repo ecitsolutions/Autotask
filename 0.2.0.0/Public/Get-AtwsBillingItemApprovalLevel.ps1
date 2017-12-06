@@ -68,7 +68,70 @@ Function Get-AtwsBillingItemApprovalLevel
         )]
          [Int]
          $ApprovalLevel
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TimeEntryID','ApprovalResourceID','ApprovalDateTime','ApprovalLevel')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TimeEntryID','ApprovalResourceID','ApprovalDateTime','ApprovalLevel')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TimeEntryID','ApprovalResourceID','ApprovalDateTime','ApprovalLevel')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TimeEntryID','ApprovalResourceID','ApprovalDateTime','ApprovalLevel')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TimeEntryID','ApprovalResourceID','ApprovalDateTime','ApprovalLevel')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $EndsWith
     )
 
 

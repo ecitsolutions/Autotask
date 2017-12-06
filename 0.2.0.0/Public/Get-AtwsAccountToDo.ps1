@@ -150,7 +150,70 @@ Function Get-AtwsAccountToDo
         )]
          [datetime]
          $LastModifiedDate
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','ContactID','OpportunityID','TicketID','ContractID','AssignedToResourceID','StartDateTime','EndDateTime','ActivityDescription','CompletedDate','CreateDateTime','CreatorResourceID','LastModifiedDate')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','ContactID','OpportunityID','TicketID','ContractID','AssignedToResourceID','StartDateTime','EndDateTime','ActivityDescription','CompletedDate','CreateDateTime','CreatorResourceID','LastModifiedDate')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','ContactID','OpportunityID','TicketID','ContractID','AssignedToResourceID','StartDateTime','EndDateTime','ActivityDescription','CompletedDate','CreateDateTime','CreatorResourceID','LastModifiedDate')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','ContactID','OpportunityID','TicketID','ContractID','AssignedToResourceID','StartDateTime','EndDateTime','ActivityDescription','CompletedDate','CreateDateTime','CreatorResourceID','LastModifiedDate')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','ContactID','OpportunityID','TicketID','ContractID','AssignedToResourceID','StartDateTime','EndDateTime','ActivityDescription','CompletedDate','CreateDateTime','CreatorResourceID','LastModifiedDate')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ActivityDescription')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ActivityDescription')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ActivityDescription')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ActivityDescription')]
+        [String[]]
+        $EndsWith
     )
 
 

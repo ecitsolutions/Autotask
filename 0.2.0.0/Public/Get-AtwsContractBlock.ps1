@@ -130,7 +130,70 @@ Function Get-AtwsContractBlock
 
         [String]
          $PaymentType
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','Hours','HourlyRate','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','Hours','HourlyRate','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','Hours','HourlyRate','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','Hours','HourlyRate','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','Hours','HourlyRate','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('IsPaid','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('IsPaid','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('IsPaid','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('IsPaid','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $EndsWith
     )
 
 

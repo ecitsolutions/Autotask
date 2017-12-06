@@ -126,7 +126,70 @@ Function Get-AtwsAccountNote
         )]
          [datetime]
          $StartDateTime
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountID','AssignedResourceID','CompletedDateTime','ContactID','EndDateTime','id','LastModifiedDate','Name','Note','OpportunityID','StartDateTime')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountID','AssignedResourceID','CompletedDateTime','ContactID','EndDateTime','id','LastModifiedDate','Name','Note','OpportunityID','StartDateTime')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountID','AssignedResourceID','CompletedDateTime','ContactID','EndDateTime','id','LastModifiedDate','Name','Note','OpportunityID','StartDateTime')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountID','AssignedResourceID','CompletedDateTime','ContactID','EndDateTime','id','LastModifiedDate','Name','Note','OpportunityID','StartDateTime')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountID','AssignedResourceID','CompletedDateTime','ContactID','EndDateTime','id','LastModifiedDate','Name','Note','OpportunityID','StartDateTime')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Note')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Note')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Note')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Note')]
+        [String[]]
+        $EndsWith
     )
 
 

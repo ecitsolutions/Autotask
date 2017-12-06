@@ -416,7 +416,70 @@ Function Get-AtwsAccount
         )]
          [Int]
          $CurrencyID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountName','Address1','Address2','City','State','PostalCode','Country','Phone','AlternatePhone1','AlternatePhone2','Fax','WebAddress','OwnerResourceID','ParentAccountID','AccountNumber','CreateDate','LastActivityDate','Active','TaskFireActive','ClientPortalActive','TaxRegionID','TaxExempt','TaxID','AdditionalAddressInformation','CountryID','BillToAttention','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToZipCode','BillToCountryID','BillToAdditionalAddressInformation','InvoiceNonContractItemsToParentAccount','QuoteTemplateID','QuoteEmailMessageID','InvoiceTemplateID','InvoiceEmailMessageID','CurrencyID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountName','Address1','Address2','City','State','PostalCode','Country','Phone','AlternatePhone1','AlternatePhone2','Fax','WebAddress','OwnerResourceID','ParentAccountID','AccountNumber','CreateDate','LastActivityDate','Active','TaskFireActive','ClientPortalActive','TaxRegionID','TaxExempt','TaxID','AdditionalAddressInformation','CountryID','BillToAttention','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToZipCode','BillToCountryID','BillToAdditionalAddressInformation','InvoiceNonContractItemsToParentAccount','QuoteTemplateID','QuoteEmailMessageID','InvoiceTemplateID','InvoiceEmailMessageID','CurrencyID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountName','Address1','Address2','City','State','PostalCode','Country','Phone','AlternatePhone1','AlternatePhone2','Fax','WebAddress','OwnerResourceID','ParentAccountID','AccountNumber','CreateDate','LastActivityDate','Active','TaskFireActive','ClientPortalActive','TaxRegionID','TaxExempt','TaxID','AdditionalAddressInformation','CountryID','BillToAttention','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToZipCode','BillToCountryID','BillToAdditionalAddressInformation','InvoiceNonContractItemsToParentAccount','QuoteTemplateID','QuoteEmailMessageID','InvoiceTemplateID','InvoiceEmailMessageID','CurrencyID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountName','Address1','Address2','City','State','PostalCode','Country','Phone','AlternatePhone1','AlternatePhone2','Fax','WebAddress','OwnerResourceID','ParentAccountID','AccountNumber','CreateDate','LastActivityDate','Active','TaskFireActive','ClientPortalActive','TaxRegionID','TaxExempt','TaxID','AdditionalAddressInformation','CountryID','BillToAttention','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToZipCode','BillToCountryID','BillToAdditionalAddressInformation','InvoiceNonContractItemsToParentAccount','QuoteTemplateID','QuoteEmailMessageID','InvoiceTemplateID','InvoiceEmailMessageID','CurrencyID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountName','Address1','Address2','City','State','PostalCode','Country','Phone','AlternatePhone1','AlternatePhone2','Fax','WebAddress','OwnerResourceID','ParentAccountID','AccountNumber','CreateDate','LastActivityDate','Active','TaskFireActive','ClientPortalActive','TaxRegionID','TaxExempt','TaxID','AdditionalAddressInformation','CountryID','BillToAttention','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToZipCode','BillToCountryID','BillToAdditionalAddressInformation','InvoiceNonContractItemsToParentAccount','QuoteTemplateID','QuoteEmailMessageID','InvoiceTemplateID','InvoiceEmailMessageID','CurrencyID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountName','Address1','Address2','City','State','PostalCode','Country','Phone','AlternatePhone1','AlternatePhone2','Fax','WebAddress','AccountNumber','TaxID','AdditionalAddressInformation','BillToAttention','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToZipCode','BillToAdditionalAddressInformation')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountName','Address1','Address2','City','State','PostalCode','Country','Phone','AlternatePhone1','AlternatePhone2','Fax','WebAddress','AccountNumber','TaxID','AdditionalAddressInformation','BillToAttention','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToZipCode','BillToAdditionalAddressInformation')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountName','Address1','Address2','City','State','PostalCode','Country','Phone','AlternatePhone1','AlternatePhone2','Fax','WebAddress','AccountNumber','TaxID','AdditionalAddressInformation','BillToAttention','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToZipCode','BillToAdditionalAddressInformation')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountName','Address1','Address2','City','State','PostalCode','Country','Phone','AlternatePhone1','AlternatePhone2','Fax','WebAddress','AccountNumber','TaxID','AdditionalAddressInformation','BillToAttention','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToZipCode','BillToAdditionalAddressInformation')]
+        [String[]]
+        $EndsWith
     )
 
 

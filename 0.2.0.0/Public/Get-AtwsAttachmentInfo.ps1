@@ -130,7 +130,70 @@ Function Get-AtwsAttachmentInfo
         )]
          [long]
          $OpportunityID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ParentID','Title','FullPath','AttachDate','AttachedByContactID','AttachedByResourceID','ContentType','OpportunityID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ParentID','Title','FullPath','AttachDate','AttachedByContactID','AttachedByResourceID','ContentType','OpportunityID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ParentID','Title','FullPath','AttachDate','AttachedByContactID','AttachedByResourceID','ContentType','OpportunityID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ParentID','Title','FullPath','AttachDate','AttachedByContactID','AttachedByResourceID','ContentType','OpportunityID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ParentID','Title','FullPath','AttachDate','AttachedByContactID','AttachedByResourceID','ContentType','OpportunityID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Type','Title','FullPath','ContentType')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Type','Title','FullPath','ContentType')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Type','Title','FullPath','ContentType')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Type','Title','FullPath','ContentType')]
+        [String[]]
+        $EndsWith
     )
 
 

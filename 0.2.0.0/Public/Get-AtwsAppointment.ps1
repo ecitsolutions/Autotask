@@ -100,7 +100,70 @@ Function Get-AtwsAppointment
         )]
          [datetime]
          $UpdateDateTime
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ResourceID','Title','StartDateTime','EndDateTime','Description','CreatorResourceID','CreateDateTime','UpdateDateTime')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ResourceID','Title','StartDateTime','EndDateTime','Description','CreatorResourceID','CreateDateTime','UpdateDateTime')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ResourceID','Title','StartDateTime','EndDateTime','Description','CreatorResourceID','CreateDateTime','UpdateDateTime')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ResourceID','Title','StartDateTime','EndDateTime','Description','CreatorResourceID','CreateDateTime','UpdateDateTime')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ResourceID','Title','StartDateTime','EndDateTime','Description','CreatorResourceID','CreateDateTime','UpdateDateTime')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Title','Description')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Title','Description')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Title','Description')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Title','Description')]
+        [String[]]
+        $EndsWith
     )
 
 

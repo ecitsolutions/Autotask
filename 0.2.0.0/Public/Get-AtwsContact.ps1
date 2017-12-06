@@ -326,7 +326,70 @@ Function Get-AtwsContact
         )]
          [boolean]
          $PrimaryContact
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','FirstName','LastName','MiddleInitial','Title','AddressLine','AddressLine1','City','State','ZipCode','Country','EMailAddress','EMailAddress2','EMailAddress3','Notification','Phone','Extension','AlternatePhone','MobilePhone','FaxNumber','Note','LastActivityDate','RoomNumber','Active','CreateDate','LastModifiedDate','AdditionalAddressInformation','ExternalID','CountryID','BulkEmailOptOutTime','FacebookUrl','TwitterUrl','LinkedInUrl','PrimaryContact')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','FirstName','LastName','MiddleInitial','Title','AddressLine','AddressLine1','City','State','ZipCode','Country','EMailAddress','EMailAddress2','EMailAddress3','Notification','Phone','Extension','AlternatePhone','MobilePhone','FaxNumber','Note','LastActivityDate','RoomNumber','Active','CreateDate','LastModifiedDate','AdditionalAddressInformation','ExternalID','CountryID','BulkEmailOptOutTime','FacebookUrl','TwitterUrl','LinkedInUrl','PrimaryContact')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','FirstName','LastName','MiddleInitial','Title','AddressLine','AddressLine1','City','State','ZipCode','Country','EMailAddress','EMailAddress2','EMailAddress3','Notification','Phone','Extension','AlternatePhone','MobilePhone','FaxNumber','Note','LastActivityDate','RoomNumber','Active','CreateDate','LastModifiedDate','AdditionalAddressInformation','ExternalID','CountryID','BulkEmailOptOutTime','FacebookUrl','TwitterUrl','LinkedInUrl','PrimaryContact')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','FirstName','LastName','MiddleInitial','Title','AddressLine','AddressLine1','City','State','ZipCode','Country','EMailAddress','EMailAddress2','EMailAddress3','Notification','Phone','Extension','AlternatePhone','MobilePhone','FaxNumber','Note','LastActivityDate','RoomNumber','Active','CreateDate','LastModifiedDate','AdditionalAddressInformation','ExternalID','CountryID','BulkEmailOptOutTime','FacebookUrl','TwitterUrl','LinkedInUrl','PrimaryContact')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','FirstName','LastName','MiddleInitial','Title','AddressLine','AddressLine1','City','State','ZipCode','Country','EMailAddress','EMailAddress2','EMailAddress3','Notification','Phone','Extension','AlternatePhone','MobilePhone','FaxNumber','Note','LastActivityDate','RoomNumber','Active','CreateDate','LastModifiedDate','AdditionalAddressInformation','ExternalID','CountryID','BulkEmailOptOutTime','FacebookUrl','TwitterUrl','LinkedInUrl','PrimaryContact')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('FirstName','LastName','MiddleInitial','Title','AddressLine','AddressLine1','City','State','ZipCode','Country','EMailAddress','EMailAddress2','EMailAddress3','Phone','Extension','AlternatePhone','MobilePhone','FaxNumber','Note','RoomNumber','AdditionalAddressInformation','ExternalID','FacebookUrl','TwitterUrl','LinkedInUrl')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('FirstName','LastName','MiddleInitial','Title','AddressLine','AddressLine1','City','State','ZipCode','Country','EMailAddress','EMailAddress2','EMailAddress3','Phone','Extension','AlternatePhone','MobilePhone','FaxNumber','Note','RoomNumber','AdditionalAddressInformation','ExternalID','FacebookUrl','TwitterUrl','LinkedInUrl')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('FirstName','LastName','MiddleInitial','Title','AddressLine','AddressLine1','City','State','ZipCode','Country','EMailAddress','EMailAddress2','EMailAddress3','Phone','Extension','AlternatePhone','MobilePhone','FaxNumber','Note','RoomNumber','AdditionalAddressInformation','ExternalID','FacebookUrl','TwitterUrl','LinkedInUrl')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('FirstName','LastName','MiddleInitial','Title','AddressLine','AddressLine1','City','State','ZipCode','Country','EMailAddress','EMailAddress2','EMailAddress3','Phone','Extension','AlternatePhone','MobilePhone','FaxNumber','Note','RoomNumber','AdditionalAddressInformation','ExternalID','FacebookUrl','TwitterUrl','LinkedInUrl')]
+        [String[]]
+        $EndsWith
     )
 
 

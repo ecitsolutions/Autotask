@@ -360,7 +360,70 @@ Function Get-AtwsBillingItem
         )]
          [Int]
          $AccountManagerWhenApprovedID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ItemName','Description','Quantity','Rate','TotalAmount','OurCost','ItemDate','ApprovedTime','InvoiceID','ItemApproverID','AccountID','TicketID','TaskID','ProjectID','AllocationCodeID','RoleID','TimeEntryID','ContractID','WebServiceDate','NonBillable','TaxDollars','PurchaseOrderNumber','ExtendedPrice','ExpenseItemID','ContractCostID','ProjectCostID','TicketCostID','LineItemID','MilestoneID','ServiceID','ServiceBundleID','VendorID','InstalledProductID','InternalCurrencyExtendedPrice','InternalCurrencyRate','InternalCurrencyTaxDollars','InternalCurrencyTotalAmount','AccountManagerWhenApprovedID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ItemName','Description','Quantity','Rate','TotalAmount','OurCost','ItemDate','ApprovedTime','InvoiceID','ItemApproverID','AccountID','TicketID','TaskID','ProjectID','AllocationCodeID','RoleID','TimeEntryID','ContractID','WebServiceDate','NonBillable','TaxDollars','PurchaseOrderNumber','ExtendedPrice','ExpenseItemID','ContractCostID','ProjectCostID','TicketCostID','LineItemID','MilestoneID','ServiceID','ServiceBundleID','VendorID','InstalledProductID','InternalCurrencyExtendedPrice','InternalCurrencyRate','InternalCurrencyTaxDollars','InternalCurrencyTotalAmount','AccountManagerWhenApprovedID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ItemName','Description','Quantity','Rate','TotalAmount','OurCost','ItemDate','ApprovedTime','InvoiceID','ItemApproverID','AccountID','TicketID','TaskID','ProjectID','AllocationCodeID','RoleID','TimeEntryID','ContractID','WebServiceDate','NonBillable','TaxDollars','PurchaseOrderNumber','ExtendedPrice','ExpenseItemID','ContractCostID','ProjectCostID','TicketCostID','LineItemID','MilestoneID','ServiceID','ServiceBundleID','VendorID','InstalledProductID','InternalCurrencyExtendedPrice','InternalCurrencyRate','InternalCurrencyTaxDollars','InternalCurrencyTotalAmount','AccountManagerWhenApprovedID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ItemName','Description','Quantity','Rate','TotalAmount','OurCost','ItemDate','ApprovedTime','InvoiceID','ItemApproverID','AccountID','TicketID','TaskID','ProjectID','AllocationCodeID','RoleID','TimeEntryID','ContractID','WebServiceDate','NonBillable','TaxDollars','PurchaseOrderNumber','ExtendedPrice','ExpenseItemID','ContractCostID','ProjectCostID','TicketCostID','LineItemID','MilestoneID','ServiceID','ServiceBundleID','VendorID','InstalledProductID','InternalCurrencyExtendedPrice','InternalCurrencyRate','InternalCurrencyTaxDollars','InternalCurrencyTotalAmount','AccountManagerWhenApprovedID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ItemName','Description','Quantity','Rate','TotalAmount','OurCost','ItemDate','ApprovedTime','InvoiceID','ItemApproverID','AccountID','TicketID','TaskID','ProjectID','AllocationCodeID','RoleID','TimeEntryID','ContractID','WebServiceDate','NonBillable','TaxDollars','PurchaseOrderNumber','ExtendedPrice','ExpenseItemID','ContractCostID','ProjectCostID','TicketCostID','LineItemID','MilestoneID','ServiceID','ServiceBundleID','VendorID','InstalledProductID','InternalCurrencyExtendedPrice','InternalCurrencyRate','InternalCurrencyTaxDollars','InternalCurrencyTotalAmount','AccountManagerWhenApprovedID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ItemName','Description','PurchaseOrderNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ItemName','Description','PurchaseOrderNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ItemName','Description','PurchaseOrderNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ItemName','Description','PurchaseOrderNumber')]
+        [String[]]
+        $EndsWith
     )
 
 

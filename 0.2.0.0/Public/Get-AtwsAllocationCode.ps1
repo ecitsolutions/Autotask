@@ -156,7 +156,70 @@ Function Get-AtwsAllocationCode
         )]
          [boolean]
          $IsExcludedFromNewContracts
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Department','Name','ExternalNumber','Description','Active','UnitCost','UnitPrice','TaxCategoryID','MarkupRate','IsExcludedFromNewContracts')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Department','Name','ExternalNumber','Description','Active','UnitCost','UnitPrice','TaxCategoryID','MarkupRate','IsExcludedFromNewContracts')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Department','Name','ExternalNumber','Description','Active','UnitCost','UnitPrice','TaxCategoryID','MarkupRate','IsExcludedFromNewContracts')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Department','Name','ExternalNumber','Description','Active','UnitCost','UnitPrice','TaxCategoryID','MarkupRate','IsExcludedFromNewContracts')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Department','Name','ExternalNumber','Description','Active','UnitCost','UnitPrice','TaxCategoryID','MarkupRate','IsExcludedFromNewContracts')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','ExternalNumber','Description')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','ExternalNumber','Description')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','ExternalNumber','Description')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','ExternalNumber','Description')]
+        [String[]]
+        $EndsWith
     )
 
 
