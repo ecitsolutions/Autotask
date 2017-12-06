@@ -2,12 +2,12 @@
 <package >
 <metadata>
     <id>Autotask</id>
-        <version>0.1.0.0</version>
+        <version>0.2.0.0</version>
         <authors>Kristoffer Ryeng</authors>
         <owners>Office Center</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>"Modul for å kople seg til og utføre operasjoner på Autotask sitt web-API."</description>
-        <releaseNotes>"Modul for å kople seg til og utføre operasjoner på Autotask sitt web-API."</releaseNotes>
+        <description>"Modul for Ã¥ kople seg til og utfÃ¸re operasjoner pÃ¥ Autotask sitt web-API."</description>
+        <releaseNotes>"Modul for Ã¥ kople seg til og utfÃ¸re operasjoner pÃ¥ Autotask sitt web-API."</releaseNotes>
         <copyright>Copyright 2017 Office Center </copyright>
         <tags>OCH automatisering</tags>
     </metadata>
