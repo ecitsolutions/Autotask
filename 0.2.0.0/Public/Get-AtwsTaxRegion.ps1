@@ -52,7 +52,70 @@ Function Get-AtwsTaxRegion
         )]
          [boolean]
          $Active
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Active')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Active')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Active')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Active')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Active')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name')]
+        [String[]]
+        $EndsWith
     )
 
 

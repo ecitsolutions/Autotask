@@ -84,7 +84,70 @@ Function Get-AtwsTicketChangeRequestApproval
         )]
          [boolean]
          $IsApproved
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TicketID','ResourceID','ContactID','ApproveRejectDateTime','ApproveRejectNote','IsApproved')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TicketID','ResourceID','ContactID','ApproveRejectDateTime','ApproveRejectNote','IsApproved')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TicketID','ResourceID','ContactID','ApproveRejectDateTime','ApproveRejectNote','IsApproved')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TicketID','ResourceID','ContactID','ApproveRejectDateTime','ApproveRejectNote','IsApproved')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TicketID','ResourceID','ContactID','ApproveRejectDateTime','ApproveRejectNote','IsApproved')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ApproveRejectNote')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ApproveRejectNote')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ApproveRejectNote')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ApproveRejectNote')]
+        [String[]]
+        $EndsWith
     )
 
 

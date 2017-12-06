@@ -508,7 +508,70 @@ Function Get-AtwsTicket
         )]
          [Int]
          $ProjectID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountID','AllocationCodeID','AssignedResourceID','AssignedResourceRoleID','CompletedDate','ContactID','ContractID','CreateDate','CreatorResourceID','Description','DueDateTime','EstimatedHours','ExternalID','id','InstalledProductID','LastActivityDate','TicketNumber','Title','FirstResponseDateTime','ResolutionPlanDateTime','ResolvedDateTime','FirstResponseDueDateTime','ResolutionPlanDueDateTime','ResolvedDueDateTime','ServiceLevelAgreementHasBeenMet','Resolution','PurchaseOrderNumber','ProblemTicketId','OpportunityId','ChangeInfoField1','ChangeInfoField2','ChangeInfoField3','ChangeInfoField4','ChangeInfoField5','LastCustomerNotificationDateTime','LastCustomerVisibleActivityDateTime','ContractServiceID','ContractServiceBundleID','MonitorID','AEMAlertID','HoursToBeScheduled','FirstResponseInitiatingResourceID','FirstResponseAssignedResourceID','ProjectID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountID','AllocationCodeID','AssignedResourceID','AssignedResourceRoleID','CompletedDate','ContactID','ContractID','CreateDate','CreatorResourceID','Description','DueDateTime','EstimatedHours','ExternalID','id','InstalledProductID','LastActivityDate','TicketNumber','Title','FirstResponseDateTime','ResolutionPlanDateTime','ResolvedDateTime','FirstResponseDueDateTime','ResolutionPlanDueDateTime','ResolvedDueDateTime','ServiceLevelAgreementHasBeenMet','Resolution','PurchaseOrderNumber','ProblemTicketId','OpportunityId','ChangeInfoField1','ChangeInfoField2','ChangeInfoField3','ChangeInfoField4','ChangeInfoField5','LastCustomerNotificationDateTime','LastCustomerVisibleActivityDateTime','ContractServiceID','ContractServiceBundleID','MonitorID','AEMAlertID','HoursToBeScheduled','FirstResponseInitiatingResourceID','FirstResponseAssignedResourceID','ProjectID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountID','AllocationCodeID','AssignedResourceID','AssignedResourceRoleID','CompletedDate','ContactID','ContractID','CreateDate','CreatorResourceID','Description','DueDateTime','EstimatedHours','ExternalID','id','InstalledProductID','LastActivityDate','TicketNumber','Title','FirstResponseDateTime','ResolutionPlanDateTime','ResolvedDateTime','FirstResponseDueDateTime','ResolutionPlanDueDateTime','ResolvedDueDateTime','ServiceLevelAgreementHasBeenMet','Resolution','PurchaseOrderNumber','ProblemTicketId','OpportunityId','ChangeInfoField1','ChangeInfoField2','ChangeInfoField3','ChangeInfoField4','ChangeInfoField5','LastCustomerNotificationDateTime','LastCustomerVisibleActivityDateTime','ContractServiceID','ContractServiceBundleID','MonitorID','AEMAlertID','HoursToBeScheduled','FirstResponseInitiatingResourceID','FirstResponseAssignedResourceID','ProjectID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountID','AllocationCodeID','AssignedResourceID','AssignedResourceRoleID','CompletedDate','ContactID','ContractID','CreateDate','CreatorResourceID','Description','DueDateTime','EstimatedHours','ExternalID','id','InstalledProductID','LastActivityDate','TicketNumber','Title','FirstResponseDateTime','ResolutionPlanDateTime','ResolvedDateTime','FirstResponseDueDateTime','ResolutionPlanDueDateTime','ResolvedDueDateTime','ServiceLevelAgreementHasBeenMet','Resolution','PurchaseOrderNumber','ProblemTicketId','OpportunityId','ChangeInfoField1','ChangeInfoField2','ChangeInfoField3','ChangeInfoField4','ChangeInfoField5','LastCustomerNotificationDateTime','LastCustomerVisibleActivityDateTime','ContractServiceID','ContractServiceBundleID','MonitorID','AEMAlertID','HoursToBeScheduled','FirstResponseInitiatingResourceID','FirstResponseAssignedResourceID','ProjectID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AccountID','AllocationCodeID','AssignedResourceID','AssignedResourceRoleID','CompletedDate','ContactID','ContractID','CreateDate','CreatorResourceID','Description','DueDateTime','EstimatedHours','ExternalID','id','InstalledProductID','LastActivityDate','TicketNumber','Title','FirstResponseDateTime','ResolutionPlanDateTime','ResolvedDateTime','FirstResponseDueDateTime','ResolutionPlanDueDateTime','ResolvedDueDateTime','ServiceLevelAgreementHasBeenMet','Resolution','PurchaseOrderNumber','ProblemTicketId','OpportunityId','ChangeInfoField1','ChangeInfoField2','ChangeInfoField3','ChangeInfoField4','ChangeInfoField5','LastCustomerNotificationDateTime','LastCustomerVisibleActivityDateTime','ContractServiceID','ContractServiceBundleID','MonitorID','AEMAlertID','HoursToBeScheduled','FirstResponseInitiatingResourceID','FirstResponseAssignedResourceID','ProjectID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','TicketNumber','Title','Resolution','PurchaseOrderNumber','ChangeInfoField1','ChangeInfoField2','ChangeInfoField3','ChangeInfoField4','ChangeInfoField5','AEMAlertID')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','TicketNumber','Title','Resolution','PurchaseOrderNumber','ChangeInfoField1','ChangeInfoField2','ChangeInfoField3','ChangeInfoField4','ChangeInfoField5','AEMAlertID')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','TicketNumber','Title','Resolution','PurchaseOrderNumber','ChangeInfoField1','ChangeInfoField2','ChangeInfoField3','ChangeInfoField4','ChangeInfoField5','AEMAlertID')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','TicketNumber','Title','Resolution','PurchaseOrderNumber','ChangeInfoField1','ChangeInfoField2','ChangeInfoField3','ChangeInfoField4','ChangeInfoField5','AEMAlertID')]
+        [String[]]
+        $EndsWith
     )
 
 

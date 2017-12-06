@@ -52,7 +52,70 @@ Function Get-AtwsTicketAdditionalContact
         )]
          [Int]
          $ContactID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TicketID','ContactID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TicketID','ContactID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TicketID','ContactID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TicketID','ContactID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TicketID','ContactID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $EndsWith
     )
 
 

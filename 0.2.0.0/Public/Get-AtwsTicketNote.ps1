@@ -96,7 +96,70 @@ Function Get-AtwsTicketNote
         )]
          [string]
          $Title
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreatorResourceID','Description','id','LastActivityDate','TicketID','Title')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreatorResourceID','Description','id','LastActivityDate','TicketID','Title')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreatorResourceID','Description','id','LastActivityDate','TicketID','Title')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreatorResourceID','Description','id','LastActivityDate','TicketID','Title')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreatorResourceID','Description','id','LastActivityDate','TicketID','Title')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','Title')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','Title')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','Title')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','Title')]
+        [String[]]
+        $EndsWith
     )
 
 
