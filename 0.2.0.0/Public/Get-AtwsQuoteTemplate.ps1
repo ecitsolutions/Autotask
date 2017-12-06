@@ -196,7 +196,70 @@ Function Get-AtwsQuoteTemplate
         )]
          [string]
          $CurrencyNegativeFormat
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Active','CalculateTaxSeparately','CreateDate','CreatedBy','Description','DisplayTaxCategorySuperscripts','LastActivityBy','LastActivityDate','Name','ShowEachTaxInGroup','ShowGridHeader','ShowTaxCategory','ShowVerticalGridLines','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Active','CalculateTaxSeparately','CreateDate','CreatedBy','Description','DisplayTaxCategorySuperscripts','LastActivityBy','LastActivityDate','Name','ShowEachTaxInGroup','ShowGridHeader','ShowTaxCategory','ShowVerticalGridLines','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Active','CalculateTaxSeparately','CreateDate','CreatedBy','Description','DisplayTaxCategorySuperscripts','LastActivityBy','LastActivityDate','Name','ShowEachTaxInGroup','ShowGridHeader','ShowTaxCategory','ShowVerticalGridLines','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Active','CalculateTaxSeparately','CreateDate','CreatedBy','Description','DisplayTaxCategorySuperscripts','LastActivityBy','LastActivityDate','Name','ShowEachTaxInGroup','ShowGridHeader','ShowTaxCategory','ShowVerticalGridLines','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Active','CalculateTaxSeparately','CreateDate','CreatedBy','Description','DisplayTaxCategorySuperscripts','LastActivityBy','LastActivityDate','Name','ShowEachTaxInGroup','ShowGridHeader','ShowTaxCategory','ShowVerticalGridLines','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','Name','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','Name','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','Name','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','Name','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $EndsWith
     )
 
 

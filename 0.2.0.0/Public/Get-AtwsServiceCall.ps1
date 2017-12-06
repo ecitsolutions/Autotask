@@ -142,7 +142,70 @@ Function Get-AtwsServiceCall
         )]
          [double]
          $CancelationNoticeHours
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','StartDateTime','EndDateTime','Description','Complete','CreatorResourceID','CreateDateTime','LastModifiedDateTime','Duration','CanceledByResource','CanceledDateTime','CancelationNoticeHours')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','StartDateTime','EndDateTime','Description','Complete','CreatorResourceID','CreateDateTime','LastModifiedDateTime','Duration','CanceledByResource','CanceledDateTime','CancelationNoticeHours')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','StartDateTime','EndDateTime','Description','Complete','CreatorResourceID','CreateDateTime','LastModifiedDateTime','Duration','CanceledByResource','CanceledDateTime','CancelationNoticeHours')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','StartDateTime','EndDateTime','Description','Complete','CreatorResourceID','CreateDateTime','LastModifiedDateTime','Duration','CanceledByResource','CanceledDateTime','CancelationNoticeHours')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','StartDateTime','EndDateTime','Description','Complete','CreatorResourceID','CreateDateTime','LastModifiedDateTime','Duration','CanceledByResource','CanceledDateTime','CancelationNoticeHours')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description')]
+        [String[]]
+        $EndsWith
     )
 
 

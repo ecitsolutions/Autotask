@@ -230,7 +230,70 @@ Function Get-AtwsSalesOrder
         )]
          [Int]
          $ShipToCountryID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','Title','Contact','OwnerResourceID','SalesOrderDate','PromisedDueDate','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToPostalCode','BillToCountry','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','ShipToCountry','OpportunityID','AdditionalBillToAddressInformation','AdditionalShipToAddressInformation','BillToCountryID','ShipToCountryID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','Title','Contact','OwnerResourceID','SalesOrderDate','PromisedDueDate','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToPostalCode','BillToCountry','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','ShipToCountry','OpportunityID','AdditionalBillToAddressInformation','AdditionalShipToAddressInformation','BillToCountryID','ShipToCountryID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','Title','Contact','OwnerResourceID','SalesOrderDate','PromisedDueDate','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToPostalCode','BillToCountry','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','ShipToCountry','OpportunityID','AdditionalBillToAddressInformation','AdditionalShipToAddressInformation','BillToCountryID','ShipToCountryID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','Title','Contact','OwnerResourceID','SalesOrderDate','PromisedDueDate','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToPostalCode','BillToCountry','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','ShipToCountry','OpportunityID','AdditionalBillToAddressInformation','AdditionalShipToAddressInformation','BillToCountryID','ShipToCountryID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','Title','Contact','OwnerResourceID','SalesOrderDate','PromisedDueDate','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToPostalCode','BillToCountry','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','ShipToCountry','OpportunityID','AdditionalBillToAddressInformation','AdditionalShipToAddressInformation','BillToCountryID','ShipToCountryID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Title','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToPostalCode','BillToCountry','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','ShipToCountry','AdditionalBillToAddressInformation','AdditionalShipToAddressInformation')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Title','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToPostalCode','BillToCountry','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','ShipToCountry','AdditionalBillToAddressInformation','AdditionalShipToAddressInformation')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Title','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToPostalCode','BillToCountry','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','ShipToCountry','AdditionalBillToAddressInformation','AdditionalShipToAddressInformation')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Title','BillToAddress1','BillToAddress2','BillToCity','BillToState','BillToPostalCode','BillToCountry','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','ShipToCountry','AdditionalBillToAddressInformation','AdditionalShipToAddressInformation')]
+        [String[]]
+        $EndsWith
     )
 
 

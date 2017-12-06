@@ -310,7 +310,70 @@ Function Get-AtwsResource
         )]
          [datetime]
          $HireDate
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Active','Email','Email2','Email3','FirstName','HomePhone','id','Initials','LastName','MiddleName','MobilePhone','OfficeExtension','OfficePhone','Title','UserName','AccountingReferenceID','InternalCost','HireDate')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Active','Email','Email2','Email3','FirstName','HomePhone','id','Initials','LastName','MiddleName','MobilePhone','OfficeExtension','OfficePhone','Title','UserName','AccountingReferenceID','InternalCost','HireDate')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Active','Email','Email2','Email3','FirstName','HomePhone','id','Initials','LastName','MiddleName','MobilePhone','OfficeExtension','OfficePhone','Title','UserName','AccountingReferenceID','InternalCost','HireDate')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Active','Email','Email2','Email3','FirstName','HomePhone','id','Initials','LastName','MiddleName','MobilePhone','OfficeExtension','OfficePhone','Title','UserName','AccountingReferenceID','InternalCost','HireDate')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Active','Email','Email2','Email3','FirstName','HomePhone','id','Initials','LastName','MiddleName','MobilePhone','OfficeExtension','OfficePhone','Title','UserName','AccountingReferenceID','InternalCost','HireDate')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Email','Email2','Email3','EmailTypeCode','EmailTypeCode2','EmailTypeCode3','FirstName','Gender','HomePhone','Initials','LastName','MiddleName','MobilePhone','OfficeExtension','OfficePhone','ResourceType','Suffix','Title','TravelAvailabilityPct','UserName','DateFormat','TimeFormat','NumberFormat','AccountingReferenceID')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Email','Email2','Email3','EmailTypeCode','EmailTypeCode2','EmailTypeCode3','FirstName','Gender','HomePhone','Initials','LastName','MiddleName','MobilePhone','OfficeExtension','OfficePhone','ResourceType','Suffix','Title','TravelAvailabilityPct','UserName','DateFormat','TimeFormat','NumberFormat','AccountingReferenceID')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Email','Email2','Email3','EmailTypeCode','EmailTypeCode2','EmailTypeCode3','FirstName','Gender','HomePhone','Initials','LastName','MiddleName','MobilePhone','OfficeExtension','OfficePhone','ResourceType','Suffix','Title','TravelAvailabilityPct','UserName','DateFormat','TimeFormat','NumberFormat','AccountingReferenceID')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Email','Email2','Email3','EmailTypeCode','EmailTypeCode2','EmailTypeCode3','FirstName','Gender','HomePhone','Initials','LastName','MiddleName','MobilePhone','OfficeExtension','OfficePhone','ResourceType','Suffix','Title','TravelAvailabilityPct','UserName','DateFormat','TimeFormat','NumberFormat','AccountingReferenceID')]
+        [String[]]
+        $EndsWith
     )
 
 

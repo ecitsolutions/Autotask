@@ -108,7 +108,70 @@ Function Get-AtwsRole
         )]
          [boolean]
          $IsExcludedFromNewContracts
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','SystemRole','HourlyFactor','HourlyRate','RoleType','QuoteItemDefaultTaxCategoryId','Active','IsExcludedFromNewContracts')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','SystemRole','HourlyFactor','HourlyRate','RoleType','QuoteItemDefaultTaxCategoryId','Active','IsExcludedFromNewContracts')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','SystemRole','HourlyFactor','HourlyRate','RoleType','QuoteItemDefaultTaxCategoryId','Active','IsExcludedFromNewContracts')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','SystemRole','HourlyFactor','HourlyRate','RoleType','QuoteItemDefaultTaxCategoryId','Active','IsExcludedFromNewContracts')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','SystemRole','HourlyFactor','HourlyRate','RoleType','QuoteItemDefaultTaxCategoryId','Active','IsExcludedFromNewContracts')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description')]
+        [String[]]
+        $EndsWith
     )
 
 

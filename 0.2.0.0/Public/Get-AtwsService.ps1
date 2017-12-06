@@ -160,7 +160,70 @@ Function Get-AtwsService
         )]
          [double]
          $MarkupRate
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','UnitPrice','AllocationCodeID','IsActive','CreatorResourceID','UpdateResourceID','CreateDate','LastModifiedDate','VendorAccountID','UnitCost','InvoiceDescription','MarkupRate')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','UnitPrice','AllocationCodeID','IsActive','CreatorResourceID','UpdateResourceID','CreateDate','LastModifiedDate','VendorAccountID','UnitCost','InvoiceDescription','MarkupRate')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','UnitPrice','AllocationCodeID','IsActive','CreatorResourceID','UpdateResourceID','CreateDate','LastModifiedDate','VendorAccountID','UnitCost','InvoiceDescription','MarkupRate')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','UnitPrice','AllocationCodeID','IsActive','CreatorResourceID','UpdateResourceID','CreateDate','LastModifiedDate','VendorAccountID','UnitCost','InvoiceDescription','MarkupRate')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','UnitPrice','AllocationCodeID','IsActive','CreatorResourceID','UpdateResourceID','CreateDate','LastModifiedDate','VendorAccountID','UnitCost','InvoiceDescription','MarkupRate')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','PeriodType','InvoiceDescription')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','PeriodType','InvoiceDescription')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','PeriodType','InvoiceDescription')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','PeriodType','InvoiceDescription')]
+        [String[]]
+        $EndsWith
     )
 
 

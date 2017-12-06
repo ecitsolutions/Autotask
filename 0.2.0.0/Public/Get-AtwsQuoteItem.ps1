@@ -248,7 +248,70 @@ Function Get-AtwsQuoteItem
         )]
          [double]
          $InternalCurrencyLineDiscount
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('QuoteID','id','ProductID','CostID','LaborID','ExpenseID','ShippingID','ServiceID','ServiceBundleID','Name','UnitPrice','UnitCost','Quantity','UnitDiscount','PercentageDiscount','IsTaxable','IsOptional','Description','LineDiscount','TaxCategoryID','TotalEffectiveTax','MarkupRate','InternalCurrencyUnitPrice','InternalCurrencyUnitDiscount','InternalCurrencyLineDiscount')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('QuoteID','id','ProductID','CostID','LaborID','ExpenseID','ShippingID','ServiceID','ServiceBundleID','Name','UnitPrice','UnitCost','Quantity','UnitDiscount','PercentageDiscount','IsTaxable','IsOptional','Description','LineDiscount','TaxCategoryID','TotalEffectiveTax','MarkupRate','InternalCurrencyUnitPrice','InternalCurrencyUnitDiscount','InternalCurrencyLineDiscount')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('QuoteID','id','ProductID','CostID','LaborID','ExpenseID','ShippingID','ServiceID','ServiceBundleID','Name','UnitPrice','UnitCost','Quantity','UnitDiscount','PercentageDiscount','IsTaxable','IsOptional','Description','LineDiscount','TaxCategoryID','TotalEffectiveTax','MarkupRate','InternalCurrencyUnitPrice','InternalCurrencyUnitDiscount','InternalCurrencyLineDiscount')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('QuoteID','id','ProductID','CostID','LaborID','ExpenseID','ShippingID','ServiceID','ServiceBundleID','Name','UnitPrice','UnitCost','Quantity','UnitDiscount','PercentageDiscount','IsTaxable','IsOptional','Description','LineDiscount','TaxCategoryID','TotalEffectiveTax','MarkupRate','InternalCurrencyUnitPrice','InternalCurrencyUnitDiscount','InternalCurrencyLineDiscount')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('QuoteID','id','ProductID','CostID','LaborID','ExpenseID','ShippingID','ServiceID','ServiceBundleID','Name','UnitPrice','UnitCost','Quantity','UnitDiscount','PercentageDiscount','IsTaxable','IsOptional','Description','LineDiscount','TaxCategoryID','TotalEffectiveTax','MarkupRate','InternalCurrencyUnitPrice','InternalCurrencyUnitDiscount','InternalCurrencyLineDiscount')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','PeriodType','Description')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','PeriodType','Description')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','PeriodType','Description')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','PeriodType','Description')]
+        [String[]]
+        $EndsWith
     )
 
 
