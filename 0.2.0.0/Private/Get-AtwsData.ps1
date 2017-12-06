@@ -41,7 +41,7 @@ Function Get-AtwsData
   
   [cmdletbinding(
     SupportsShouldProcess = $True,
-    ConfirmImpact = 'High'
+    ConfirmImpact = 'Low'
   )]
   param
   (

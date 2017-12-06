@@ -30,7 +30,7 @@ Function Set-AtwsData
  
   [cmdletbinding(
     SupportsShouldProcess = $True,
-    ConfirmImpact = 'High'
+    ConfirmImpact = 'Medium'
   )]
   param
   (

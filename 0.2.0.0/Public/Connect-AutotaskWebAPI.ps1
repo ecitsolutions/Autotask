@@ -35,6 +35,9 @@ Function Connect-AutotaskWebAPI
   (
     [pscredential]
     $Credential = $(Get-Credential -Message 'Autotask Web Services API login'),
+
+    [Switch]
+    $NoFunctionImport = $False,
         
     [Switch]
     $Silent = $false
@@ -84,8 +87,13 @@ Function Connect-AutotaskWebAPI
     
     Write-Verbose ('{0}: Running query Get-AtwsData -Entity Account -Filter {{id -eq 0}}' -F $MyInvocation.MyCommand.Name)
     
-    Get-AtwsData -Entity Account -Filter {id -eq 0}
+    $Result = Get-AtwsData -Entity Account -Filter {id -eq 0}
     
+    If (($Result) -and -not ($NoFunctionImport))
+    {
+      Import-AtwsCmdLet
+    }
+
   }
   
   End
