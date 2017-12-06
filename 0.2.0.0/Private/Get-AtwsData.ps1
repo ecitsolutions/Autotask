@@ -99,9 +99,9 @@ Function Get-AtwsData
     $expression.InnerText = 0
     $field.InnerText = 'id'
     [void]$field.AppendChild($expression)
-      
-    # Insert looping construct into query
-    [void]$QueryXml.queryxml.query.AppendChild($field)
+    
+    $FirstPass = $True
+    
       
     Do 
     {
@@ -119,6 +119,11 @@ Function Get-AtwsData
       $result += $lastquery.EntityResults
       $UpperBound = $lastquery.EntityResults[$lastquery.EntityResults.GetUpperBound(0)].id
       $expression.InnerText = $UpperBound
+      If ($FirstPass)
+      {
+        # Insert looping construct into query
+        [void]$QueryXml.queryxml.query.AppendChild($field)
+      }
     }
     Until ($lastquery.EntityResults.Count -lt 500)
       
