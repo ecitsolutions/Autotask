@@ -208,7 +208,70 @@ Function Get-AtwsProduct
         )]
          [string]
          $InternalProductID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','SKU','Link','ExternalProductID','UnitCost','UnitPrice','MSRP','DefaultVendorID','VendorProductNumber','ManufacturerName','ManufacturerProductName','Active','ProductAllocationCodeID','Serialized','CostAllocationCodeID','DoesNotRequireProcurement','MarkupRate','InternalProductID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','SKU','Link','ExternalProductID','UnitCost','UnitPrice','MSRP','DefaultVendorID','VendorProductNumber','ManufacturerName','ManufacturerProductName','Active','ProductAllocationCodeID','Serialized','CostAllocationCodeID','DoesNotRequireProcurement','MarkupRate','InternalProductID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','SKU','Link','ExternalProductID','UnitCost','UnitPrice','MSRP','DefaultVendorID','VendorProductNumber','ManufacturerName','ManufacturerProductName','Active','ProductAllocationCodeID','Serialized','CostAllocationCodeID','DoesNotRequireProcurement','MarkupRate','InternalProductID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','SKU','Link','ExternalProductID','UnitCost','UnitPrice','MSRP','DefaultVendorID','VendorProductNumber','ManufacturerName','ManufacturerProductName','Active','ProductAllocationCodeID','Serialized','CostAllocationCodeID','DoesNotRequireProcurement','MarkupRate','InternalProductID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','SKU','Link','ExternalProductID','UnitCost','UnitPrice','MSRP','DefaultVendorID','VendorProductNumber','ManufacturerName','ManufacturerProductName','Active','ProductAllocationCodeID','Serialized','CostAllocationCodeID','DoesNotRequireProcurement','MarkupRate','InternalProductID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','SKU','Link','ExternalProductID','VendorProductNumber','ManufacturerName','ManufacturerProductName','PeriodType','InternalProductID')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','SKU','Link','ExternalProductID','VendorProductNumber','ManufacturerName','ManufacturerProductName','PeriodType','InternalProductID')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','SKU','Link','ExternalProductID','VendorProductNumber','ManufacturerName','ManufacturerProductName','PeriodType','InternalProductID')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','SKU','Link','ExternalProductID','VendorProductNumber','ManufacturerName','ManufacturerProductName','PeriodType','InternalProductID')]
+        [String[]]
+        $EndsWith
     )
 
 

@@ -324,7 +324,70 @@ Function Get-AtwsProject
         )]
          [string]
          $PurchaseOrderNumber
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProjectName','AccountID','ExtPNumber','ProjectNumber','Description','CreateDateTime','CreatorResourceID','StartDateTime','EndDateTime','Duration','ActualHours','ActualBilledHours','EstimatedTime','LaborEstimatedRevenue','LaborEstimatedCosts','LaborEstimatedMarginPercentage','ProjectCostsRevenue','ProjectCostsBudget','ProjectCostEstimatedMarginPercentage','ChangeOrdersRevenue','SGDA','OriginalEstimatedRevenue','EstimatedSalesCost','ContractID','ProjectLeadResourceID','CompanyOwnerResourceID','CompletedPercentage','CompletedDateTime','StatusDetail','StatusDateTime','PurchaseOrderNumber')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProjectName','AccountID','ExtPNumber','ProjectNumber','Description','CreateDateTime','CreatorResourceID','StartDateTime','EndDateTime','Duration','ActualHours','ActualBilledHours','EstimatedTime','LaborEstimatedRevenue','LaborEstimatedCosts','LaborEstimatedMarginPercentage','ProjectCostsRevenue','ProjectCostsBudget','ProjectCostEstimatedMarginPercentage','ChangeOrdersRevenue','SGDA','OriginalEstimatedRevenue','EstimatedSalesCost','ContractID','ProjectLeadResourceID','CompanyOwnerResourceID','CompletedPercentage','CompletedDateTime','StatusDetail','StatusDateTime','PurchaseOrderNumber')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProjectName','AccountID','ExtPNumber','ProjectNumber','Description','CreateDateTime','CreatorResourceID','StartDateTime','EndDateTime','Duration','ActualHours','ActualBilledHours','EstimatedTime','LaborEstimatedRevenue','LaborEstimatedCosts','LaborEstimatedMarginPercentage','ProjectCostsRevenue','ProjectCostsBudget','ProjectCostEstimatedMarginPercentage','ChangeOrdersRevenue','SGDA','OriginalEstimatedRevenue','EstimatedSalesCost','ContractID','ProjectLeadResourceID','CompanyOwnerResourceID','CompletedPercentage','CompletedDateTime','StatusDetail','StatusDateTime','PurchaseOrderNumber')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProjectName','AccountID','ExtPNumber','ProjectNumber','Description','CreateDateTime','CreatorResourceID','StartDateTime','EndDateTime','Duration','ActualHours','ActualBilledHours','EstimatedTime','LaborEstimatedRevenue','LaborEstimatedCosts','LaborEstimatedMarginPercentage','ProjectCostsRevenue','ProjectCostsBudget','ProjectCostEstimatedMarginPercentage','ChangeOrdersRevenue','SGDA','OriginalEstimatedRevenue','EstimatedSalesCost','ContractID','ProjectLeadResourceID','CompanyOwnerResourceID','CompletedPercentage','CompletedDateTime','StatusDetail','StatusDateTime','PurchaseOrderNumber')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProjectName','AccountID','ExtPNumber','ProjectNumber','Description','CreateDateTime','CreatorResourceID','StartDateTime','EndDateTime','Duration','ActualHours','ActualBilledHours','EstimatedTime','LaborEstimatedRevenue','LaborEstimatedCosts','LaborEstimatedMarginPercentage','ProjectCostsRevenue','ProjectCostsBudget','ProjectCostEstimatedMarginPercentage','ChangeOrdersRevenue','SGDA','OriginalEstimatedRevenue','EstimatedSalesCost','ContractID','ProjectLeadResourceID','CompanyOwnerResourceID','CompletedPercentage','CompletedDateTime','StatusDetail','StatusDateTime','PurchaseOrderNumber')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ProjectName','ExtPNumber','ProjectNumber','Description','StatusDetail','PurchaseOrderNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ProjectName','ExtPNumber','ProjectNumber','Description','StatusDetail','PurchaseOrderNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ProjectName','ExtPNumber','ProjectNumber','Description','StatusDetail','PurchaseOrderNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ProjectName','ExtPNumber','ProjectNumber','Description','StatusDetail','PurchaseOrderNumber')]
+        [String[]]
+        $EndsWith
     )
 
 

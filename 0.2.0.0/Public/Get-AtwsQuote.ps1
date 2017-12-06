@@ -260,7 +260,70 @@ Function Get-AtwsQuote
         )]
          [Int]
          $QuoteNumber
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('OpportunityID','id','Name','eQuoteActive','EffectiveDate','ExpirationDate','CreateDate','CreatorResourceID','ContactID','ProposalProjectID','BillToLocationID','ShipToLocationID','SoldToLocationID','ExternalQuoteNumber','PurchaseOrderNumber','Comment','Description','AccountID','PrimaryQuote','LastActivityDate','LastModifiedBy','QuoteTemplateID','QuoteNumber')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('OpportunityID','id','Name','eQuoteActive','EffectiveDate','ExpirationDate','CreateDate','CreatorResourceID','ContactID','ProposalProjectID','BillToLocationID','ShipToLocationID','SoldToLocationID','ExternalQuoteNumber','PurchaseOrderNumber','Comment','Description','AccountID','PrimaryQuote','LastActivityDate','LastModifiedBy','QuoteTemplateID','QuoteNumber')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('OpportunityID','id','Name','eQuoteActive','EffectiveDate','ExpirationDate','CreateDate','CreatorResourceID','ContactID','ProposalProjectID','BillToLocationID','ShipToLocationID','SoldToLocationID','ExternalQuoteNumber','PurchaseOrderNumber','Comment','Description','AccountID','PrimaryQuote','LastActivityDate','LastModifiedBy','QuoteTemplateID','QuoteNumber')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('OpportunityID','id','Name','eQuoteActive','EffectiveDate','ExpirationDate','CreateDate','CreatorResourceID','ContactID','ProposalProjectID','BillToLocationID','ShipToLocationID','SoldToLocationID','ExternalQuoteNumber','PurchaseOrderNumber','Comment','Description','AccountID','PrimaryQuote','LastActivityDate','LastModifiedBy','QuoteTemplateID','QuoteNumber')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('OpportunityID','id','Name','eQuoteActive','EffectiveDate','ExpirationDate','CreateDate','CreatorResourceID','ContactID','ProposalProjectID','BillToLocationID','ShipToLocationID','SoldToLocationID','ExternalQuoteNumber','PurchaseOrderNumber','Comment','Description','AccountID','PrimaryQuote','LastActivityDate','LastModifiedBy','QuoteTemplateID','QuoteNumber')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','ExternalQuoteNumber','PurchaseOrderNumber','Comment','Description')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','ExternalQuoteNumber','PurchaseOrderNumber','Comment','Description')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','ExternalQuoteNumber','PurchaseOrderNumber','Comment','Description')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','ExternalQuoteNumber','PurchaseOrderNumber','Comment','Description')]
+        [String[]]
+        $EndsWith
     )
 
 

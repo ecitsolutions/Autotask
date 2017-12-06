@@ -84,7 +84,70 @@ Function Get-AtwsProductVendor
         )]
          [boolean]
          $IsDefault
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','VendorID','VendorCost','VendorPartNumber','Active','IsDefault')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','VendorID','VendorCost','VendorPartNumber','Active','IsDefault')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','VendorID','VendorCost','VendorPartNumber','Active','IsDefault')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','VendorID','VendorCost','VendorPartNumber','Active','IsDefault')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','VendorID','VendorCost','VendorPartNumber','Active','IsDefault')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('VendorPartNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('VendorPartNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('VendorPartNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('VendorPartNumber')]
+        [String[]]
+        $EndsWith
     )
 
 

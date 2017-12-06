@@ -92,7 +92,70 @@ Function Get-AtwsPurchaseOrderReceive
         )]
          [string]
          $SerialNumber
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','PurchaseOrderItemID','QuantityPreviouslyReceived','QuantityNowReceiving','ReceiveDate','QuantityBackOrdered','ReceivedByResourceID','SerialNumber')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','PurchaseOrderItemID','QuantityPreviouslyReceived','QuantityNowReceiving','ReceiveDate','QuantityBackOrdered','ReceivedByResourceID','SerialNumber')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','PurchaseOrderItemID','QuantityPreviouslyReceived','QuantityNowReceiving','ReceiveDate','QuantityBackOrdered','ReceivedByResourceID','SerialNumber')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','PurchaseOrderItemID','QuantityPreviouslyReceived','QuantityNowReceiving','ReceiveDate','QuantityBackOrdered','ReceivedByResourceID','SerialNumber')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','PurchaseOrderItemID','QuantityPreviouslyReceived','QuantityNowReceiving','ReceiveDate','QuantityBackOrdered','ReceivedByResourceID','SerialNumber')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('SerialNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('SerialNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('SerialNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('SerialNumber')]
+        [String[]]
+        $EndsWith
     )
 
 

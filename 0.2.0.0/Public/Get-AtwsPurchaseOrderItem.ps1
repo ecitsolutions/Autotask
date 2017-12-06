@@ -132,7 +132,70 @@ Function Get-AtwsPurchaseOrderItem
         )]
          [long]
          $TicketID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','OrderID','ProductID','InventoryLocationID','Quantity','Memo','UnitCost','SalesOrderID','EstimatedArrivalDate','CostID','ContractID','ProjectID','TicketID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','OrderID','ProductID','InventoryLocationID','Quantity','Memo','UnitCost','SalesOrderID','EstimatedArrivalDate','CostID','ContractID','ProjectID','TicketID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','OrderID','ProductID','InventoryLocationID','Quantity','Memo','UnitCost','SalesOrderID','EstimatedArrivalDate','CostID','ContractID','ProjectID','TicketID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','OrderID','ProductID','InventoryLocationID','Quantity','Memo','UnitCost','SalesOrderID','EstimatedArrivalDate','CostID','ContractID','ProjectID','TicketID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','OrderID','ProductID','InventoryLocationID','Quantity','Memo','UnitCost','SalesOrderID','EstimatedArrivalDate','CostID','ContractID','ProjectID','TicketID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Memo')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Memo')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Memo')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Memo')]
+        [String[]]
+        $EndsWith
     )
 
 

@@ -260,7 +260,70 @@ Function Get-AtwsPurchaseOrder
 
         [String]
          $UseItemDescriptionsFrom
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','VendorID','CreatorResourceID','CreateDateTime','SubmitDateTime','CancelDateTime','ShipToName','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','GeneralMemo','Phone','Fax','VendorInvoiceNumber','ExternalPONumber','PurchaseForAccountID','ShippingType','ShippingDate','Freight','ShowTaxCategory','ShowEachTaxInGroup','LatestEstimatedArrivalDate')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','VendorID','CreatorResourceID','CreateDateTime','SubmitDateTime','CancelDateTime','ShipToName','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','GeneralMemo','Phone','Fax','VendorInvoiceNumber','ExternalPONumber','PurchaseForAccountID','ShippingType','ShippingDate','Freight','ShowTaxCategory','ShowEachTaxInGroup','LatestEstimatedArrivalDate')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','VendorID','CreatorResourceID','CreateDateTime','SubmitDateTime','CancelDateTime','ShipToName','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','GeneralMemo','Phone','Fax','VendorInvoiceNumber','ExternalPONumber','PurchaseForAccountID','ShippingType','ShippingDate','Freight','ShowTaxCategory','ShowEachTaxInGroup','LatestEstimatedArrivalDate')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','VendorID','CreatorResourceID','CreateDateTime','SubmitDateTime','CancelDateTime','ShipToName','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','GeneralMemo','Phone','Fax','VendorInvoiceNumber','ExternalPONumber','PurchaseForAccountID','ShippingType','ShippingDate','Freight','ShowTaxCategory','ShowEachTaxInGroup','LatestEstimatedArrivalDate')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','VendorID','CreatorResourceID','CreateDateTime','SubmitDateTime','CancelDateTime','ShipToName','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','GeneralMemo','Phone','Fax','VendorInvoiceNumber','ExternalPONumber','PurchaseForAccountID','ShippingType','ShippingDate','Freight','ShowTaxCategory','ShowEachTaxInGroup','LatestEstimatedArrivalDate')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ShipToName','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','GeneralMemo','Phone','Fax','VendorInvoiceNumber','ExternalPONumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ShipToName','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','GeneralMemo','Phone','Fax','VendorInvoiceNumber','ExternalPONumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ShipToName','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','GeneralMemo','Phone','Fax','VendorInvoiceNumber','ExternalPONumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ShipToName','ShipToAddress1','ShipToAddress2','ShipToCity','ShipToState','ShipToPostalCode','GeneralMemo','Phone','Fax','VendorInvoiceNumber','ExternalPONumber')]
+        [String[]]
+        $EndsWith
     )
 
 

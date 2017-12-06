@@ -248,7 +248,70 @@ Function Get-AtwsProjectCost
         )]
          [double]
          $InternalCurrencyUnitPrice
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProjectID','ProductID','AllocationCodeID','Name','Description','DatePurchased','PurchaseOrderNumber','InternalPurchaseOrderNumber','UnitQuantity','UnitCost','UnitPrice','ExtendedCost','EstimatedCost','BillableAmount','BillableToAccount','Billed','StatusLastModifiedBy','StatusLastModifiedDate','CreateDate','CreatorResourceID','ContractServiceID','ContractServiceBundleID','InternalCurrencyBillableAmount','InternalCurrencyUnitPrice')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProjectID','ProductID','AllocationCodeID','Name','Description','DatePurchased','PurchaseOrderNumber','InternalPurchaseOrderNumber','UnitQuantity','UnitCost','UnitPrice','ExtendedCost','EstimatedCost','BillableAmount','BillableToAccount','Billed','StatusLastModifiedBy','StatusLastModifiedDate','CreateDate','CreatorResourceID','ContractServiceID','ContractServiceBundleID','InternalCurrencyBillableAmount','InternalCurrencyUnitPrice')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProjectID','ProductID','AllocationCodeID','Name','Description','DatePurchased','PurchaseOrderNumber','InternalPurchaseOrderNumber','UnitQuantity','UnitCost','UnitPrice','ExtendedCost','EstimatedCost','BillableAmount','BillableToAccount','Billed','StatusLastModifiedBy','StatusLastModifiedDate','CreateDate','CreatorResourceID','ContractServiceID','ContractServiceBundleID','InternalCurrencyBillableAmount','InternalCurrencyUnitPrice')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProjectID','ProductID','AllocationCodeID','Name','Description','DatePurchased','PurchaseOrderNumber','InternalPurchaseOrderNumber','UnitQuantity','UnitCost','UnitPrice','ExtendedCost','EstimatedCost','BillableAmount','BillableToAccount','Billed','StatusLastModifiedBy','StatusLastModifiedDate','CreateDate','CreatorResourceID','ContractServiceID','ContractServiceBundleID','InternalCurrencyBillableAmount','InternalCurrencyUnitPrice')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProjectID','ProductID','AllocationCodeID','Name','Description','DatePurchased','PurchaseOrderNumber','InternalPurchaseOrderNumber','UnitQuantity','UnitCost','UnitPrice','ExtendedCost','EstimatedCost','BillableAmount','BillableToAccount','Billed','StatusLastModifiedBy','StatusLastModifiedDate','CreateDate','CreatorResourceID','ContractServiceID','ContractServiceBundleID','InternalCurrencyBillableAmount','InternalCurrencyUnitPrice')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','PurchaseOrderNumber','InternalPurchaseOrderNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','PurchaseOrderNumber','InternalPurchaseOrderNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','PurchaseOrderNumber','InternalPurchaseOrderNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','PurchaseOrderNumber','InternalPurchaseOrderNumber')]
+        [String[]]
+        $EndsWith
     )
 
 
