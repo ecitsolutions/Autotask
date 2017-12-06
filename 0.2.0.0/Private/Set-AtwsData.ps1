@@ -28,7 +28,10 @@ Function Set-AtwsData
       Remove-AtwsData
   #>
  
-  [cmdletbinding()]
+  [cmdletbinding(
+    SupportsShouldProcess = $True,
+    ConfirmImpact = 'High'
+  )]
   param
   (
     [Parameter(
@@ -53,8 +56,16 @@ Function Set-AtwsData
   Process
   { 
     Write-Verbose ('{0}: Updating Autotask {1} with id {2}' -F $MyInvocation.MyCommand.Name, $Entity[0].GetType().Name, $($Entity.id -join ', '))
-    $Result = $atws.update($Entity)
-    
+
+
+    $Caption = 'Set-Atws{0}' -F $Entity[0].GetType().Name
+    $VerboseDescrition = '{0}: About to modify {1} {2}(s). This action cannot be undone.' -F $Caption, $Entity.Count, $Entity[0].GetType().name
+    $VerboseWarning = '{0}: About to modify {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
+
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
+    { 
+      $Result = $atws.update($Entity)
+    }
     
     If ($Result.Errors.Count -eq 0)
     {

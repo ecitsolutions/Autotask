@@ -39,7 +39,10 @@ Function Get-AtwsData
       Remove-AtwsData
   #>
   
-  [cmdletbinding()]
+  [cmdletbinding(
+    SupportsShouldProcess = $True,
+    ConfirmImpact = 'High'
+  )]
   param
   (
     [Parameter(
@@ -78,44 +81,49 @@ Function Get-AtwsData
   Write-Verbose ('{0}: Converting query string into QueryXml. String as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
   [xml]$QueryXml = New-AtwsQuery @Query
     
-
-    
-  $result = @()
+  $Caption = 'Get-Atws{0}' -F $Entity
+  $VerboseDescrition = '{0}: About to run a query for Autotask.{1} using Filter {{{2}}}' -F $Caption, $Entity, ($Filter -join ' ')
+  $VerboseWarning = '{0}: About to run a query for Autotask.{1} using Filter {{{2}}}. Do you want to continue?' -F $Caption, $Entity, ($Filter -join ' ')
   
-  Write-Verbose ('{0}: Adding looping construct to query to handle more than 500 results.' -F $MyInvocation.MyCommand.Name)
-  
-  # Native XML is rather tedious...
-  $field = $QueryXml.CreateElement('field')
-  $expression = $QueryXml.CreateElement('expression')
-  $expression.SetAttribute('op','greaterthan')
-  $expression.InnerText = 0
-  $field.InnerText = 'id'
-  [void]$field.AppendChild($expression)
-    
-  # Insert looping construct into query
-  [void]$QueryXml.queryxml.query.AppendChild($field)
-    
-  Do 
-  {
-    Write-Verbose ('{0}: Passing QueryXML to Autotask API' -F $MyInvocation.MyCommand.Name)
-    $lastquery = $atws.query($QueryXml.InnerXml)
 
-    If ($lastquery.Errors.Count -gt 0)
+  If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
+  { 
+    $result = @()
+    
+    Write-Verbose ('{0}: Adding looping construct to query to handle more than 500 results.' -F $MyInvocation.MyCommand.Name)
+    
+    # Native XML is rather tedious...
+    $field = $QueryXml.CreateElement('field')
+    $expression = $QueryXml.CreateElement('expression')
+    $expression.SetAttribute('op','greaterthan')
+    $expression.InnerText = 0
+    $field.InnerText = 'id'
+    [void]$field.AppendChild($expression)
+      
+    # Insert looping construct into query
+    [void]$QueryXml.queryxml.query.AppendChild($field)
+      
+    Do 
     {
-      Foreach ($AtwsError in $lastquery.Errors)
+      Write-Verbose ('{0}: Passing QueryXML to Autotask API' -F $MyInvocation.MyCommand.Name)
+      $lastquery = $atws.query($QueryXml.InnerXml)
+
+      If ($lastquery.Errors.Count -gt 0)
       {
-        Write-Error $AtwsError.Message
+        Foreach ($AtwsError in $lastquery.Errors)
+        {
+          Write-Error $AtwsError.Message
+        }
+        Return
       }
-      Return
+      $result += $lastquery.EntityResults
+      $UpperBound = $lastquery.EntityResults[$lastquery.EntityResults.GetUpperBound(0)].id
+      $expression.InnerText = $UpperBound
     }
-    $result += $lastquery.EntityResults
-    $UpperBound = $lastquery.EntityResults[$lastquery.EntityResults.GetUpperBound(0)].id
-    $expression.InnerText = $UpperBound
+    Until ($lastquery.EntityResults.Count -lt 500)
+      
+    $result
   }
-  Until ($lastquery.EntityResults.Count -lt 500)
-    
-  $result
-  
   Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
   
 }

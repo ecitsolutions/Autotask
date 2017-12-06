@@ -51,8 +51,12 @@ Function Remove-AtwsData
   
   Process
   {   
-    If ($PSCmdlet.ShouldProcess('Deleting Autotask {0}(s) with id(s) {1}' -F $Entity.GetType().Name, $($Entity.id -join ', ')))
-    {
+    $Caption = 'Remove-Atws{0}' -F $Entity[0].GetType().Name
+    $VerboseDescrition = '{0}: About to remove {1} {2}(s). This action cannot be undone.' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
+    $VerboseWarning = '{0}: About to remove {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
+
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
+    { 
       $Result = $atws.delete($Entity)
     }
     

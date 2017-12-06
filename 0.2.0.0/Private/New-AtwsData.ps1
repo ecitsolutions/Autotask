@@ -8,7 +8,10 @@
 
 Function New-AtwsData 
 {
-  [cmdletbinding()]
+  [cmdletbinding(
+    SupportsShouldProcess = $True,
+    ConfirmImpact = 'High'
+  )]
   param
   (
     [Parameter(
@@ -31,7 +34,15 @@ Function New-AtwsData
   Process
   { 
     Write-Verbose ('{0}: Creating a new object of type Autotask.{1}' -F $MyInvocation.MyCommand.Name, $Entity) 
-    $Result = $Atws.Create($Entity)
+
+    $Caption = 'New-Atws{0}' -F $Entity.GetType().Name    
+    $VerboseDescrition = '{0}: About to create an Autotask.{1}. This action cannot be undone (but the object can usually be deleted).' -F $Caption, $Entity.GetType().Name
+    $VerboseWarning = '{0}: About to create an Autotask.{1}. This action cannot be undone (but the object can usually be deleted). Do you want to continue?' -F $Caption, $Entity.GetType().Name
+
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
+    { 
+      $Result = $Atws.Create($Entity)
+    }
 
     If ($Result.Errors.Count -eq 0)
     {
