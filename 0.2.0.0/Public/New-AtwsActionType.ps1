@@ -13,9 +13,13 @@ Function New-AtwsActionType
       This function creates a new ActionType through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ActionType through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ActionType]. This function outputs the Autotask.ActionType that was created by the API.
       .EXAMPLE
-      New-AtwsActionType [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsActionType
+      New-AtwsActionType  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsActionType
       .NOTES
       NAME: New-AtwsActionType
   #>

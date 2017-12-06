@@ -13,9 +13,13 @@ Function Remove-AtwsAppointment
       This function deletes a Appointment through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a Appointment through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Appointment[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.Appointment that was passed to the function.
       .EXAMPLE
-      Remove-AtwsAppointment [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsAppointment
+      Remove-AtwsAppointment  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsAppointment
       .NOTES
       NAME: Remove-AtwsAppointment
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsAppointment
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Appointment]

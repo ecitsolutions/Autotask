@@ -13,9 +13,13 @@ Function New-AtwsContractExclusionAllocationCode
       This function creates a new ContractExclusionAllocationCode through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractExclusionAllocationCode through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractExclusionAllocationCode]. This function outputs the Autotask.ContractExclusionAllocationCode that was created by the API.
       .EXAMPLE
-      New-AtwsContractExclusionAllocationCode [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractExclusionAllocationCode
+      New-AtwsContractExclusionAllocationCode  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractExclusionAllocationCode
       .NOTES
       NAME: New-AtwsContractExclusionAllocationCode
   #>

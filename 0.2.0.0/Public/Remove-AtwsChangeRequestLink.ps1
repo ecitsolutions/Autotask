@@ -13,9 +13,13 @@ Function Remove-AtwsChangeRequestLink
       This function deletes a ChangeRequestLink through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a ChangeRequestLink through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ChangeRequestLink[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.ChangeRequestLink that was passed to the function.
       .EXAMPLE
-      Remove-AtwsChangeRequestLink [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsChangeRequestLink
+      Remove-AtwsChangeRequestLink  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsChangeRequestLink
       .NOTES
       NAME: Remove-AtwsChangeRequestLink
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsChangeRequestLink
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ChangeRequestLink]

@@ -13,9 +13,13 @@ Function Update-AtwsInventoryItemSerialNumber
       This function updates a InventoryItemSerialNumber through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a InventoryItemSerialNumber through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.InventoryItemSerialNumber[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.InventoryItemSerialNumber[]]. This function returns the updated Autotask.InventoryItemSerialNumber that was returned by the API.
       .EXAMPLE
-      Update-AtwsInventoryItemSerialNumber [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsInventoryItemSerialNumber
+      Update-AtwsInventoryItemSerialNumber  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsInventoryItemSerialNumber
       .NOTES
       NAME: Update-AtwsInventoryItemSerialNumber
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsInventoryItemSerialNumber
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.InventoryItemSerialNumber]

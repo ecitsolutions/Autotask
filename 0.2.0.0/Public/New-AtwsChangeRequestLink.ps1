@@ -13,9 +13,13 @@ Function New-AtwsChangeRequestLink
       This function creates a new ChangeRequestLink through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ChangeRequestLink through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ChangeRequestLink]. This function outputs the Autotask.ChangeRequestLink that was created by the API.
       .EXAMPLE
-      New-AtwsChangeRequestLink [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsChangeRequestLink
+      New-AtwsChangeRequestLink  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsChangeRequestLink
       .NOTES
       NAME: New-AtwsChangeRequestLink
   #>

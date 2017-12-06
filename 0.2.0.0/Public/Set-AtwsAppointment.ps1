@@ -10,12 +10,16 @@ Function Set-AtwsAppointment
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Appointment through the Autotask Web Services API.
+      This function sets parameters on the Appointment specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Appointment through the Autotask Web Services API.
+      This function sets parameters on the Appointment specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Appointment]. This function returns the updated Autotask.Appointment that was returned by the API.
       .EXAMPLE
-      Set-AtwsAppointment [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsAppointment
+      Set-AtwsAppointment  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsAppointment
       .NOTES
       NAME: Set-AtwsAppointment
   #>

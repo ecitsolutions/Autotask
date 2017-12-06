@@ -10,12 +10,16 @@ Function Set-AtwsAccount
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Account through the Autotask Web Services API.
+      This function sets parameters on the Account specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Account through the Autotask Web Services API.
+      This function sets parameters on the Account specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Account]. This function returns the updated Autotask.Account that was returned by the API.
       .EXAMPLE
-      Set-AtwsAccount [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsAccount
+      Set-AtwsAccount  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsAccount
       .NOTES
       NAME: Set-AtwsAccount
   #>

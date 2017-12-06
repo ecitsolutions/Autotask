@@ -13,9 +13,13 @@ Function Update-AtwsInventoryItem
       This function updates a InventoryItem through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a InventoryItem through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.InventoryItem[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.InventoryItem[]]. This function returns the updated Autotask.InventoryItem that was returned by the API.
       .EXAMPLE
-      Update-AtwsInventoryItem [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsInventoryItem
+      Update-AtwsInventoryItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsInventoryItem
       .NOTES
       NAME: Update-AtwsInventoryItem
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsInventoryItem
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.InventoryItem]

@@ -13,9 +13,13 @@ Function New-AtwsInstalledProductTypeUdfAssociation
       This function creates a new InstalledProductTypeUdfAssociation through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new InstalledProductTypeUdfAssociation through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.InstalledProductTypeUdfAssociation]. This function outputs the Autotask.InstalledProductTypeUdfAssociation that was created by the API.
       .EXAMPLE
-      New-AtwsInstalledProductTypeUdfAssociation [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsInstalledProductTypeUdfAssociation
+      New-AtwsInstalledProductTypeUdfAssociation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsInstalledProductTypeUdfAssociation
       .NOTES
       NAME: New-AtwsInstalledProductTypeUdfAssociation
   #>

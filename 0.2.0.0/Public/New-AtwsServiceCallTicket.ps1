@@ -13,9 +13,13 @@ Function New-AtwsServiceCallTicket
       This function creates a new ServiceCallTicket through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ServiceCallTicket through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ServiceCallTicket]. This function outputs the Autotask.ServiceCallTicket that was created by the API.
       .EXAMPLE
-      New-AtwsServiceCallTicket [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsServiceCallTicket
+      New-AtwsServiceCallTicket  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsServiceCallTicket
       .NOTES
       NAME: New-AtwsServiceCallTicket
   #>

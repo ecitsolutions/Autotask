@@ -13,9 +13,13 @@ Function Update-AtwsQuoteLocation
       This function updates a QuoteLocation through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a QuoteLocation through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.QuoteLocation[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.QuoteLocation[]]. This function returns the updated Autotask.QuoteLocation that was returned by the API.
       .EXAMPLE
-      Update-AtwsQuoteLocation [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsQuoteLocation
+      Update-AtwsQuoteLocation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsQuoteLocation
       .NOTES
       NAME: Update-AtwsQuoteLocation
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsQuoteLocation
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.QuoteLocation]

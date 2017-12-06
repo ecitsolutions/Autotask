@@ -13,9 +13,13 @@ Function Update-AtwsContact
       This function updates a Contact through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Contact through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Contact[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Contact[]]. This function returns the updated Autotask.Contact that was returned by the API.
       .EXAMPLE
-      Update-AtwsContact [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsContact
+      Update-AtwsContact  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsContact
       .NOTES
       NAME: Update-AtwsContact
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsContact
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Contact]

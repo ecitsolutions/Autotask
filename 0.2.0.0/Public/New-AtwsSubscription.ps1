@@ -13,9 +13,13 @@ Function New-AtwsSubscription
       This function creates a new Subscription through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Subscription through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Subscription]. This function outputs the Autotask.Subscription that was created by the API.
       .EXAMPLE
-      New-AtwsSubscription [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsSubscription
+      New-AtwsSubscription  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsSubscription
       .NOTES
       NAME: New-AtwsSubscription
   #>

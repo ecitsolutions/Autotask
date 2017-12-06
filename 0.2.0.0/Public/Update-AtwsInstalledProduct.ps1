@@ -13,9 +13,13 @@ Function Update-AtwsInstalledProduct
       This function updates a InstalledProduct through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a InstalledProduct through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.InstalledProduct[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.InstalledProduct[]]. This function returns the updated Autotask.InstalledProduct that was returned by the API.
       .EXAMPLE
-      Update-AtwsInstalledProduct [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsInstalledProduct
+      Update-AtwsInstalledProduct  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsInstalledProduct
       .NOTES
       NAME: Update-AtwsInstalledProduct
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsInstalledProduct
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.InstalledProduct]

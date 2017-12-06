@@ -13,9 +13,13 @@ Function New-AtwsContractServiceAdjustment
       This function creates a new ContractServiceAdjustment through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractServiceAdjustment through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractServiceAdjustment]. This function outputs the Autotask.ContractServiceAdjustment that was created by the API.
       .EXAMPLE
-      New-AtwsContractServiceAdjustment [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractServiceAdjustment
+      New-AtwsContractServiceAdjustment  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractServiceAdjustment
       .NOTES
       NAME: New-AtwsContractServiceAdjustment
   #>

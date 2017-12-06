@@ -13,9 +13,13 @@ Function New-AtwsContractRoleCost
       This function creates a new ContractRoleCost through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractRoleCost through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractRoleCost]. This function outputs the Autotask.ContractRoleCost that was created by the API.
       .EXAMPLE
-      New-AtwsContractRoleCost [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractRoleCost
+      New-AtwsContractRoleCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractRoleCost
       .NOTES
       NAME: New-AtwsContractRoleCost
   #>

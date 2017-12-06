@@ -13,9 +13,13 @@ Function Update-AtwsOpportunity
       This function updates a Opportunity through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Opportunity through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Opportunity[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Opportunity[]]. This function returns the updated Autotask.Opportunity that was returned by the API.
       .EXAMPLE
-      Update-AtwsOpportunity [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsOpportunity
+      Update-AtwsOpportunity  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsOpportunity
       .NOTES
       NAME: Update-AtwsOpportunity
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsOpportunity
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Opportunity]

@@ -13,9 +13,13 @@ Function Update-AtwsAccountAlert
       This function updates a AccountAlert through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a AccountAlert through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.AccountAlert[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.AccountAlert[]]. This function returns the updated Autotask.AccountAlert that was returned by the API.
       .EXAMPLE
-      Update-AtwsAccountAlert [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsAccountAlert
+      Update-AtwsAccountAlert  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsAccountAlert
       .NOTES
       NAME: Update-AtwsAccountAlert
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsAccountAlert
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.AccountAlert]

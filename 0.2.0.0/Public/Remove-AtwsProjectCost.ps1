@@ -13,9 +13,13 @@ Function Remove-AtwsProjectCost
       This function deletes a ProjectCost through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a ProjectCost through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ProjectCost[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.ProjectCost that was passed to the function.
       .EXAMPLE
-      Remove-AtwsProjectCost [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsProjectCost
+      Remove-AtwsProjectCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsProjectCost
       .NOTES
       NAME: Remove-AtwsProjectCost
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsProjectCost
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ProjectCost]

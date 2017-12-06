@@ -10,12 +10,16 @@ Function Set-AtwsPriceListService
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific PriceListService through the Autotask Web Services API.
+      This function sets parameters on the PriceListService specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific PriceListService through the Autotask Web Services API.
+      This function sets parameters on the PriceListService specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.PriceListService]. This function returns the updated Autotask.PriceListService that was returned by the API.
       .EXAMPLE
-      Set-AtwsPriceListService [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsPriceListService
+      Set-AtwsPriceListService  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsPriceListService
       .NOTES
       NAME: Set-AtwsPriceListService
   #>

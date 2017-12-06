@@ -13,9 +13,13 @@ Function New-AtwsInventoryLocation
       This function creates a new InventoryLocation through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new InventoryLocation through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.InventoryLocation]. This function outputs the Autotask.InventoryLocation that was created by the API.
       .EXAMPLE
-      New-AtwsInventoryLocation [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsInventoryLocation
+      New-AtwsInventoryLocation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsInventoryLocation
       .NOTES
       NAME: New-AtwsInventoryLocation
   #>

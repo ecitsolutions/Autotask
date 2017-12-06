@@ -13,9 +13,13 @@ Function New-AtwsQuote
       This function creates a new Quote through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Quote through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Quote]. This function outputs the Autotask.Quote that was created by the API.
       .EXAMPLE
-      New-AtwsQuote [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsQuote
+      New-AtwsQuote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsQuote
       .NOTES
       NAME: New-AtwsQuote
   #>

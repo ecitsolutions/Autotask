@@ -13,9 +13,13 @@ Function Update-AtwsPriceListProduct
       This function updates a PriceListProduct through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a PriceListProduct through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.PriceListProduct[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.PriceListProduct[]]. This function returns the updated Autotask.PriceListProduct that was returned by the API.
       .EXAMPLE
-      Update-AtwsPriceListProduct [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsPriceListProduct
+      Update-AtwsPriceListProduct  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsPriceListProduct
       .NOTES
       NAME: Update-AtwsPriceListProduct
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsPriceListProduct
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.PriceListProduct]

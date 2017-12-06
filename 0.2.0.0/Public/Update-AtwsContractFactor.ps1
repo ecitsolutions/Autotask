@@ -13,9 +13,13 @@ Function Update-AtwsContractFactor
       This function updates a ContractFactor through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ContractFactor through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ContractFactor[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ContractFactor[]]. This function returns the updated Autotask.ContractFactor that was returned by the API.
       .EXAMPLE
-      Update-AtwsContractFactor [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsContractFactor
+      Update-AtwsContractFactor  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsContractFactor
       .NOTES
       NAME: Update-AtwsContractFactor
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsContractFactor
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ContractFactor]

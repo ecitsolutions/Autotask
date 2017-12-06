@@ -10,12 +10,16 @@ Function Set-AtwsInventoryLocation
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific InventoryLocation through the Autotask Web Services API.
+      This function sets parameters on the InventoryLocation specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific InventoryLocation through the Autotask Web Services API.
+      This function sets parameters on the InventoryLocation specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.InventoryLocation]. This function returns the updated Autotask.InventoryLocation that was returned by the API.
       .EXAMPLE
-      Set-AtwsInventoryLocation [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsInventoryLocation
+      Set-AtwsInventoryLocation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsInventoryLocation
       .NOTES
       NAME: Set-AtwsInventoryLocation
   #>

@@ -10,12 +10,16 @@ Function Set-AtwsTimeEntry
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific TimeEntry through the Autotask Web Services API.
+      This function sets parameters on the TimeEntry specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific TimeEntry through the Autotask Web Services API.
+      This function sets parameters on the TimeEntry specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.TimeEntry]. This function returns the updated Autotask.TimeEntry that was returned by the API.
       .EXAMPLE
-      Set-AtwsTimeEntry [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsTimeEntry
+      Set-AtwsTimeEntry  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsTimeEntry
       .NOTES
       NAME: Set-AtwsTimeEntry
   #>

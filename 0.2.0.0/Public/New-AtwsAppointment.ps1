@@ -13,9 +13,13 @@ Function New-AtwsAppointment
       This function creates a new Appointment through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Appointment through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Appointment]. This function outputs the Autotask.Appointment that was created by the API.
       .EXAMPLE
-      New-AtwsAppointment [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsAppointment
+      New-AtwsAppointment  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsAppointment
       .NOTES
       NAME: New-AtwsAppointment
   #>

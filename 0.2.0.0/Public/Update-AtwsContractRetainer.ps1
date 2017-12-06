@@ -13,9 +13,13 @@ Function Update-AtwsContractRetainer
       This function updates a ContractRetainer through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ContractRetainer through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ContractRetainer[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ContractRetainer[]]. This function returns the updated Autotask.ContractRetainer that was returned by the API.
       .EXAMPLE
-      Update-AtwsContractRetainer [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsContractRetainer
+      Update-AtwsContractRetainer  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsContractRetainer
       .NOTES
       NAME: Update-AtwsContractRetainer
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsContractRetainer
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ContractRetainer]

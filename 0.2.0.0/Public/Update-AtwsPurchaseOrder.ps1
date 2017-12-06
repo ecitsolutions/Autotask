@@ -13,9 +13,13 @@ Function Update-AtwsPurchaseOrder
       This function updates a PurchaseOrder through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a PurchaseOrder through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.PurchaseOrder[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.PurchaseOrder[]]. This function returns the updated Autotask.PurchaseOrder that was returned by the API.
       .EXAMPLE
-      Update-AtwsPurchaseOrder [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsPurchaseOrder
+      Update-AtwsPurchaseOrder  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsPurchaseOrder
       .NOTES
       NAME: Update-AtwsPurchaseOrder
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsPurchaseOrder
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.PurchaseOrder]

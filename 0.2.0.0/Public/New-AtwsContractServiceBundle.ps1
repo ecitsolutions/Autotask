@@ -13,9 +13,13 @@ Function New-AtwsContractServiceBundle
       This function creates a new ContractServiceBundle through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractServiceBundle through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractServiceBundle]. This function outputs the Autotask.ContractServiceBundle that was created by the API.
       .EXAMPLE
-      New-AtwsContractServiceBundle [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractServiceBundle
+      New-AtwsContractServiceBundle  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractServiceBundle
       .NOTES
       NAME: New-AtwsContractServiceBundle
   #>

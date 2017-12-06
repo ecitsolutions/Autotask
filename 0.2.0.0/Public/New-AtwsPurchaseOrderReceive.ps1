@@ -13,9 +13,13 @@ Function New-AtwsPurchaseOrderReceive
       This function creates a new PurchaseOrderReceive through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new PurchaseOrderReceive through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.PurchaseOrderReceive]. This function outputs the Autotask.PurchaseOrderReceive that was created by the API.
       .EXAMPLE
-      New-AtwsPurchaseOrderReceive [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsPurchaseOrderReceive
+      New-AtwsPurchaseOrderReceive  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsPurchaseOrderReceive
       .NOTES
       NAME: New-AtwsPurchaseOrderReceive
   #>

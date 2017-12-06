@@ -10,12 +10,16 @@ Function Set-AtwsProjectCost
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ProjectCost through the Autotask Web Services API.
+      This function sets parameters on the ProjectCost specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ProjectCost through the Autotask Web Services API.
+      This function sets parameters on the ProjectCost specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ProjectCost]. This function returns the updated Autotask.ProjectCost that was returned by the API.
       .EXAMPLE
-      Set-AtwsProjectCost [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsProjectCost
+      Set-AtwsProjectCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsProjectCost
       .NOTES
       NAME: Set-AtwsProjectCost
   #>

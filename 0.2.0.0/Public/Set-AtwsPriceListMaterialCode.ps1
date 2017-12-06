@@ -10,12 +10,16 @@ Function Set-AtwsPriceListMaterialCode
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific PriceListMaterialCode through the Autotask Web Services API.
+      This function sets parameters on the PriceListMaterialCode specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific PriceListMaterialCode through the Autotask Web Services API.
+      This function sets parameters on the PriceListMaterialCode specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.PriceListMaterialCode]. This function returns the updated Autotask.PriceListMaterialCode that was returned by the API.
       .EXAMPLE
-      Set-AtwsPriceListMaterialCode [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsPriceListMaterialCode
+      Set-AtwsPriceListMaterialCode  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsPriceListMaterialCode
       .NOTES
       NAME: Set-AtwsPriceListMaterialCode
   #>

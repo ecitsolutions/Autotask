@@ -13,9 +13,13 @@ Function New-AtwsProject
       This function creates a new Project through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Project through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Project]. This function outputs the Autotask.Project that was created by the API.
       .EXAMPLE
-      New-AtwsProject [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsProject
+      New-AtwsProject  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsProject
       .NOTES
       NAME: New-AtwsProject
   #>

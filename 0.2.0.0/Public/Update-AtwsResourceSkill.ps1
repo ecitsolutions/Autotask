@@ -13,9 +13,13 @@ Function Update-AtwsResourceSkill
       This function updates a ResourceSkill through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ResourceSkill through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ResourceSkill[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ResourceSkill[]]. This function returns the updated Autotask.ResourceSkill that was returned by the API.
       .EXAMPLE
-      Update-AtwsResourceSkill [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsResourceSkill
+      Update-AtwsResourceSkill  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsResourceSkill
       .NOTES
       NAME: Update-AtwsResourceSkill
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsResourceSkill
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ResourceSkill]

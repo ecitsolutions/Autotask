@@ -13,9 +13,13 @@ Function New-AtwsClientPortalUser
       This function creates a new ClientPortalUser through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ClientPortalUser through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ClientPortalUser]. This function outputs the Autotask.ClientPortalUser that was created by the API.
       .EXAMPLE
-      New-AtwsClientPortalUser [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsClientPortalUser
+      New-AtwsClientPortalUser  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsClientPortalUser
       .NOTES
       NAME: New-AtwsClientPortalUser
   #>

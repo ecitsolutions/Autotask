@@ -13,9 +13,13 @@ Function New-AtwsPhase
       This function creates a new Phase through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Phase through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Phase]. This function outputs the Autotask.Phase that was created by the API.
       .EXAMPLE
-      New-AtwsPhase [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsPhase
+      New-AtwsPhase  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsPhase
       .NOTES
       NAME: New-AtwsPhase
   #>

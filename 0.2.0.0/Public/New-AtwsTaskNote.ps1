@@ -13,9 +13,13 @@ Function New-AtwsTaskNote
       This function creates a new TaskNote through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TaskNote through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TaskNote]. This function outputs the Autotask.TaskNote that was created by the API.
       .EXAMPLE
-      New-AtwsTaskNote [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTaskNote
+      New-AtwsTaskNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTaskNote
       .NOTES
       NAME: New-AtwsTaskNote
   #>

@@ -13,9 +13,13 @@ Function Update-AtwsProduct
       This function updates a Product through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Product through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Product[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Product[]]. This function returns the updated Autotask.Product that was returned by the API.
       .EXAMPLE
-      Update-AtwsProduct [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsProduct
+      Update-AtwsProduct  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsProduct
       .NOTES
       NAME: Update-AtwsProduct
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsProduct
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Product]

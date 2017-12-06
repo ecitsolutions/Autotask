@@ -13,9 +13,13 @@ Function New-AtwsContractCost
       This function creates a new ContractCost through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractCost through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractCost]. This function outputs the Autotask.ContractCost that was created by the API.
       .EXAMPLE
-      New-AtwsContractCost [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractCost
+      New-AtwsContractCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractCost
       .NOTES
       NAME: New-AtwsContractCost
   #>

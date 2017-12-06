@@ -13,9 +13,13 @@ Function New-AtwsTicket
       This function creates a new Ticket through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Ticket through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Ticket]. This function outputs the Autotask.Ticket that was created by the API.
       .EXAMPLE
-      New-AtwsTicket [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTicket
+      New-AtwsTicket  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTicket
       .NOTES
       NAME: New-AtwsTicket
   #>

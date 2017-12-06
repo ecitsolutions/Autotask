@@ -13,9 +13,13 @@ Function Update-AtwsTask
       This function updates a Task through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Task through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Task[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Task[]]. This function returns the updated Autotask.Task that was returned by the API.
       .EXAMPLE
-      Update-AtwsTask [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsTask
+      Update-AtwsTask  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsTask
       .NOTES
       NAME: Update-AtwsTask
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsTask
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Task]

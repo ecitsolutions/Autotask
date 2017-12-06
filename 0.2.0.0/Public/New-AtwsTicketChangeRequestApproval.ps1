@@ -13,9 +13,13 @@ Function New-AtwsTicketChangeRequestApproval
       This function creates a new TicketChangeRequestApproval through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TicketChangeRequestApproval through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TicketChangeRequestApproval]. This function outputs the Autotask.TicketChangeRequestApproval that was created by the API.
       .EXAMPLE
-      New-AtwsTicketChangeRequestApproval [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTicketChangeRequestApproval
+      New-AtwsTicketChangeRequestApproval  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTicketChangeRequestApproval
       .NOTES
       NAME: New-AtwsTicketChangeRequestApproval
   #>

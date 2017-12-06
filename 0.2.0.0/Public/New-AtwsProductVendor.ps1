@@ -13,9 +13,13 @@ Function New-AtwsProductVendor
       This function creates a new ProductVendor through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ProductVendor through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ProductVendor]. This function outputs the Autotask.ProductVendor that was created by the API.
       .EXAMPLE
-      New-AtwsProductVendor [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsProductVendor
+      New-AtwsProductVendor  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsProductVendor
       .NOTES
       NAME: New-AtwsProductVendor
   #>

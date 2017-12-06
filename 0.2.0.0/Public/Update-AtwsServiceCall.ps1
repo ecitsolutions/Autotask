@@ -13,9 +13,13 @@ Function Update-AtwsServiceCall
       This function updates a ServiceCall through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ServiceCall through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ServiceCall[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ServiceCall[]]. This function returns the updated Autotask.ServiceCall that was returned by the API.
       .EXAMPLE
-      Update-AtwsServiceCall [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsServiceCall
+      Update-AtwsServiceCall  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsServiceCall
       .NOTES
       NAME: Update-AtwsServiceCall
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsServiceCall
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ServiceCall]

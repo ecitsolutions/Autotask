@@ -13,9 +13,13 @@ Function New-AtwsAccountToDo
       This function creates a new AccountToDo through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new AccountToDo through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.AccountToDo]. This function outputs the Autotask.AccountToDo that was created by the API.
       .EXAMPLE
-      New-AtwsAccountToDo [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsAccountToDo
+      New-AtwsAccountToDo  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsAccountToDo
       .NOTES
       NAME: New-AtwsAccountToDo
   #>

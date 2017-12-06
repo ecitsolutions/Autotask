@@ -13,9 +13,13 @@ Function Update-AtwsTicket
       This function updates a Ticket through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Ticket through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Ticket[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Ticket[]]. This function returns the updated Autotask.Ticket that was returned by the API.
       .EXAMPLE
-      Update-AtwsTicket [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsTicket
+      Update-AtwsTicket  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsTicket
       .NOTES
       NAME: Update-AtwsTicket
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsTicket
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Ticket]

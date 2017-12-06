@@ -10,12 +10,16 @@ Function Set-AtwsWorkTypeModifier
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific WorkTypeModifier through the Autotask Web Services API.
+      This function sets parameters on the WorkTypeModifier specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific WorkTypeModifier through the Autotask Web Services API.
+      This function sets parameters on the WorkTypeModifier specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.WorkTypeModifier]. This function returns the updated Autotask.WorkTypeModifier that was returned by the API.
       .EXAMPLE
-      Set-AtwsWorkTypeModifier [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsWorkTypeModifier
+      Set-AtwsWorkTypeModifier  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsWorkTypeModifier
       .NOTES
       NAME: Set-AtwsWorkTypeModifier
   #>

@@ -13,9 +13,13 @@ Function New-AtwsInventoryTransfer
       This function creates a new InventoryTransfer through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new InventoryTransfer through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.InventoryTransfer]. This function outputs the Autotask.InventoryTransfer that was created by the API.
       .EXAMPLE
-      New-AtwsInventoryTransfer [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsInventoryTransfer
+      New-AtwsInventoryTransfer  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsInventoryTransfer
       .NOTES
       NAME: New-AtwsInventoryTransfer
   #>

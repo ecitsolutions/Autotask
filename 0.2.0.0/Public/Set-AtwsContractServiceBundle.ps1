@@ -10,12 +10,16 @@ Function Set-AtwsContractServiceBundle
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ContractServiceBundle through the Autotask Web Services API.
+      This function sets parameters on the ContractServiceBundle specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ContractServiceBundle through the Autotask Web Services API.
+      This function sets parameters on the ContractServiceBundle specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ContractServiceBundle]. This function returns the updated Autotask.ContractServiceBundle that was returned by the API.
       .EXAMPLE
-      Set-AtwsContractServiceBundle [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsContractServiceBundle
+      Set-AtwsContractServiceBundle  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsContractServiceBundle
       .NOTES
       NAME: Set-AtwsContractServiceBundle
   #>

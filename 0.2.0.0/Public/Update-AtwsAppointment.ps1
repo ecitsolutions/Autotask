@@ -13,9 +13,13 @@ Function Update-AtwsAppointment
       This function updates a Appointment through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Appointment through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Appointment[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Appointment[]]. This function returns the updated Autotask.Appointment that was returned by the API.
       .EXAMPLE
-      Update-AtwsAppointment [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsAppointment
+      Update-AtwsAppointment  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsAppointment
       .NOTES
       NAME: Update-AtwsAppointment
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsAppointment
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Appointment]

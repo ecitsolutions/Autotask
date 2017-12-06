@@ -13,9 +13,13 @@ Function New-AtwsQuoteItem
       This function creates a new QuoteItem through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new QuoteItem through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.QuoteItem]. This function outputs the Autotask.QuoteItem that was created by the API.
       .EXAMPLE
-      New-AtwsQuoteItem [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsQuoteItem
+      New-AtwsQuoteItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsQuoteItem
       .NOTES
       NAME: New-AtwsQuoteItem
   #>

@@ -10,12 +10,16 @@ Function Set-AtwsTaxCategory
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific TaxCategory through the Autotask Web Services API.
+      This function sets parameters on the TaxCategory specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific TaxCategory through the Autotask Web Services API.
+      This function sets parameters on the TaxCategory specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.TaxCategory]. This function returns the updated Autotask.TaxCategory that was returned by the API.
       .EXAMPLE
-      Set-AtwsTaxCategory [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsTaxCategory
+      Set-AtwsTaxCategory  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsTaxCategory
       .NOTES
       NAME: Set-AtwsTaxCategory
   #>

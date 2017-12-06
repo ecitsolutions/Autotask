@@ -10,12 +10,16 @@ Function Set-AtwsInstalledProduct
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific InstalledProduct through the Autotask Web Services API.
+      This function sets parameters on the InstalledProduct specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific InstalledProduct through the Autotask Web Services API.
+      This function sets parameters on the InstalledProduct specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.InstalledProduct]. This function returns the updated Autotask.InstalledProduct that was returned by the API.
       .EXAMPLE
-      Set-AtwsInstalledProduct [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsInstalledProduct
+      Set-AtwsInstalledProduct  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsInstalledProduct
       .NOTES
       NAME: Set-AtwsInstalledProduct
   #>

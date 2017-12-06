@@ -13,9 +13,13 @@ Function New-AtwsServiceBundleService
       This function creates a new ServiceBundleService through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ServiceBundleService through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ServiceBundleService]. This function outputs the Autotask.ServiceBundleService that was created by the API.
       .EXAMPLE
-      New-AtwsServiceBundleService [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsServiceBundleService
+      New-AtwsServiceBundleService  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsServiceBundleService
       .NOTES
       NAME: New-AtwsServiceBundleService
   #>

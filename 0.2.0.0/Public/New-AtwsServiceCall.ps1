@@ -13,9 +13,13 @@ Function New-AtwsServiceCall
       This function creates a new ServiceCall through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ServiceCall through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ServiceCall]. This function outputs the Autotask.ServiceCall that was created by the API.
       .EXAMPLE
-      New-AtwsServiceCall [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsServiceCall
+      New-AtwsServiceCall  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsServiceCall
       .NOTES
       NAME: New-AtwsServiceCall
   #>

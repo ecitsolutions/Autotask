@@ -13,9 +13,13 @@ Function New-AtwsTask
       This function creates a new Task through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Task through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Task]. This function outputs the Autotask.Task that was created by the API.
       .EXAMPLE
-      New-AtwsTask [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTask
+      New-AtwsTask  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTask
       .NOTES
       NAME: New-AtwsTask
   #>

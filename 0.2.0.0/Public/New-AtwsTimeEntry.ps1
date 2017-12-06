@@ -13,9 +13,13 @@ Function New-AtwsTimeEntry
       This function creates a new TimeEntry through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TimeEntry through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TimeEntry]. This function outputs the Autotask.TimeEntry that was created by the API.
       .EXAMPLE
-      New-AtwsTimeEntry [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTimeEntry
+      New-AtwsTimeEntry  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTimeEntry
       .NOTES
       NAME: New-AtwsTimeEntry
   #>

@@ -13,9 +13,13 @@ Function Update-AtwsPhase
       This function updates a Phase through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Phase through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Phase[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Phase[]]. This function returns the updated Autotask.Phase that was returned by the API.
       .EXAMPLE
-      Update-AtwsPhase [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsPhase
+      Update-AtwsPhase  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsPhase
       .NOTES
       NAME: Update-AtwsPhase
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsPhase
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Phase]

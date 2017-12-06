@@ -13,9 +13,13 @@ Function New-AtwsProjectCost
       This function creates a new ProjectCost through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ProjectCost through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ProjectCost]. This function outputs the Autotask.ProjectCost that was created by the API.
       .EXAMPLE
-      New-AtwsProjectCost [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsProjectCost
+      New-AtwsProjectCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsProjectCost
       .NOTES
       NAME: New-AtwsProjectCost
   #>

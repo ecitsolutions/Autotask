@@ -13,9 +13,13 @@ Function Update-AtwsBillingItem
       This function updates a BillingItem through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a BillingItem through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.BillingItem[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.BillingItem[]]. This function returns the updated Autotask.BillingItem that was returned by the API.
       .EXAMPLE
-      Update-AtwsBillingItem [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsBillingItem
+      Update-AtwsBillingItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsBillingItem
       .NOTES
       NAME: Update-AtwsBillingItem
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsBillingItem
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.BillingItem]

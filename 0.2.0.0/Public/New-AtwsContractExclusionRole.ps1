@@ -13,9 +13,13 @@ Function New-AtwsContractExclusionRole
       This function creates a new ContractExclusionRole through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractExclusionRole through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractExclusionRole]. This function outputs the Autotask.ContractExclusionRole that was created by the API.
       .EXAMPLE
-      New-AtwsContractExclusionRole [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractExclusionRole
+      New-AtwsContractExclusionRole  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractExclusionRole
       .NOTES
       NAME: New-AtwsContractExclusionRole
   #>

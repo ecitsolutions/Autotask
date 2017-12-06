@@ -10,12 +10,16 @@ Function Set-AtwsCurrency
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Currency through the Autotask Web Services API.
+      This function sets parameters on the Currency specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Currency through the Autotask Web Services API.
+      This function sets parameters on the Currency specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Currency]. This function returns the updated Autotask.Currency that was returned by the API.
       .EXAMPLE
-      Set-AtwsCurrency [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsCurrency
+      Set-AtwsCurrency  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsCurrency
       .NOTES
       NAME: Set-AtwsCurrency
   #>

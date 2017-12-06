@@ -13,9 +13,13 @@ Function Update-AtwsTimeEntry
       This function updates a TimeEntry through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a TimeEntry through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TimeEntry[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.TimeEntry[]]. This function returns the updated Autotask.TimeEntry that was returned by the API.
       .EXAMPLE
-      Update-AtwsTimeEntry [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsTimeEntry
+      Update-AtwsTimeEntry  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsTimeEntry
       .NOTES
       NAME: Update-AtwsTimeEntry
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsTimeEntry
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TimeEntry]

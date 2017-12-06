@@ -13,9 +13,13 @@ Function New-AtwsAccountTeam
       This function creates a new AccountTeam through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new AccountTeam through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.AccountTeam]. This function outputs the Autotask.AccountTeam that was created by the API.
       .EXAMPLE
-      New-AtwsAccountTeam [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsAccountTeam
+      New-AtwsAccountTeam  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsAccountTeam
       .NOTES
       NAME: New-AtwsAccountTeam
   #>

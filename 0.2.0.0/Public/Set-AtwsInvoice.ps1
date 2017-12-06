@@ -10,12 +10,16 @@ Function Set-AtwsInvoice
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Invoice through the Autotask Web Services API.
+      This function sets parameters on the Invoice specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Invoice through the Autotask Web Services API.
+      This function sets parameters on the Invoice specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Invoice]. This function returns the updated Autotask.Invoice that was returned by the API.
       .EXAMPLE
-      Set-AtwsInvoice [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsInvoice
+      Set-AtwsInvoice  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsInvoice
       .NOTES
       NAME: Set-AtwsInvoice
   #>

@@ -10,12 +10,16 @@ Function Set-AtwsPurchaseOrder
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific PurchaseOrder through the Autotask Web Services API.
+      This function sets parameters on the PurchaseOrder specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific PurchaseOrder through the Autotask Web Services API.
+      This function sets parameters on the PurchaseOrder specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.PurchaseOrder]. This function returns the updated Autotask.PurchaseOrder that was returned by the API.
       .EXAMPLE
-      Set-AtwsPurchaseOrder [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsPurchaseOrder
+      Set-AtwsPurchaseOrder  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsPurchaseOrder
       .NOTES
       NAME: Set-AtwsPurchaseOrder
   #>

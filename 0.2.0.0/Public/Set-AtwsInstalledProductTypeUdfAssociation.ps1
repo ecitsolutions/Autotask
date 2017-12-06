@@ -10,12 +10,16 @@ Function Set-AtwsInstalledProductTypeUdfAssociation
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific InstalledProductTypeUdfAssociation through the Autotask Web Services API.
+      This function sets parameters on the InstalledProductTypeUdfAssociation specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific InstalledProductTypeUdfAssociation through the Autotask Web Services API.
+      This function sets parameters on the InstalledProductTypeUdfAssociation specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.InstalledProductTypeUdfAssociation]. This function returns the updated Autotask.InstalledProductTypeUdfAssociation that was returned by the API.
       .EXAMPLE
-      Set-AtwsInstalledProductTypeUdfAssociation [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsInstalledProductTypeUdfAssociation
+      Set-AtwsInstalledProductTypeUdfAssociation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsInstalledProductTypeUdfAssociation
       .NOTES
       NAME: Set-AtwsInstalledProductTypeUdfAssociation
   #>

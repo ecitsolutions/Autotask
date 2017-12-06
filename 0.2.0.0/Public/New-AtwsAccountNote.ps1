@@ -13,9 +13,13 @@ Function New-AtwsAccountNote
       This function creates a new AccountNote through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new AccountNote through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.AccountNote]. This function outputs the Autotask.AccountNote that was created by the API.
       .EXAMPLE
-      New-AtwsAccountNote [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsAccountNote
+      New-AtwsAccountNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsAccountNote
       .NOTES
       NAME: New-AtwsAccountNote
   #>

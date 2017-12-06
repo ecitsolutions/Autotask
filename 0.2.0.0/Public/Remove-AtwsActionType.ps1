@@ -13,9 +13,13 @@ Function Remove-AtwsActionType
       This function deletes a ActionType through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a ActionType through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ActionType[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.ActionType that was passed to the function.
       .EXAMPLE
-      Remove-AtwsActionType [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsActionType
+      Remove-AtwsActionType  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsActionType
       .NOTES
       NAME: Remove-AtwsActionType
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsActionType
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ActionType]

@@ -13,9 +13,13 @@ Function Remove-AtwsTaskSecondaryResource
       This function deletes a TaskSecondaryResource through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a TaskSecondaryResource through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TaskSecondaryResource[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.TaskSecondaryResource that was passed to the function.
       .EXAMPLE
-      Remove-AtwsTaskSecondaryResource [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsTaskSecondaryResource
+      Remove-AtwsTaskSecondaryResource  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsTaskSecondaryResource
       .NOTES
       NAME: Remove-AtwsTaskSecondaryResource
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsTaskSecondaryResource
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TaskSecondaryResource]

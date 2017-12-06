@@ -10,12 +10,16 @@ Function Set-AtwsTask
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Task through the Autotask Web Services API.
+      This function sets parameters on the Task specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Task through the Autotask Web Services API.
+      This function sets parameters on the Task specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Task]. This function returns the updated Autotask.Task that was returned by the API.
       .EXAMPLE
-      Set-AtwsTask [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsTask
+      Set-AtwsTask  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsTask
       .NOTES
       NAME: Set-AtwsTask
   #>

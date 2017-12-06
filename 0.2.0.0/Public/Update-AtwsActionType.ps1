@@ -13,9 +13,13 @@ Function Update-AtwsActionType
       This function updates a ActionType through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ActionType through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ActionType[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ActionType[]]. This function returns the updated Autotask.ActionType that was returned by the API.
       .EXAMPLE
-      Update-AtwsActionType [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsActionType
+      Update-AtwsActionType  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsActionType
       .NOTES
       NAME: Update-AtwsActionType
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsActionType
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ActionType]

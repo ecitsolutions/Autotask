@@ -10,12 +10,16 @@ Function Set-AtwsPriceListRole
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific PriceListRole through the Autotask Web Services API.
+      This function sets parameters on the PriceListRole specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific PriceListRole through the Autotask Web Services API.
+      This function sets parameters on the PriceListRole specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.PriceListRole]. This function returns the updated Autotask.PriceListRole that was returned by the API.
       .EXAMPLE
-      Set-AtwsPriceListRole [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsPriceListRole
+      Set-AtwsPriceListRole  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsPriceListRole
       .NOTES
       NAME: Set-AtwsPriceListRole
   #>

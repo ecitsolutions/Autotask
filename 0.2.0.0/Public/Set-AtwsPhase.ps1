@@ -10,12 +10,16 @@ Function Set-AtwsPhase
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Phase through the Autotask Web Services API.
+      This function sets parameters on the Phase specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Phase through the Autotask Web Services API.
+      This function sets parameters on the Phase specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Phase]. This function returns the updated Autotask.Phase that was returned by the API.
       .EXAMPLE
-      Set-AtwsPhase [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsPhase
+      Set-AtwsPhase  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsPhase
       .NOTES
       NAME: Set-AtwsPhase
   #>

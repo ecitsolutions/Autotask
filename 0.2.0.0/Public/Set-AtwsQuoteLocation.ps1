@@ -10,12 +10,16 @@ Function Set-AtwsQuoteLocation
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific QuoteLocation through the Autotask Web Services API.
+      This function sets parameters on the QuoteLocation specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific QuoteLocation through the Autotask Web Services API.
+      This function sets parameters on the QuoteLocation specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.QuoteLocation]. This function returns the updated Autotask.QuoteLocation that was returned by the API.
       .EXAMPLE
-      Set-AtwsQuoteLocation [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsQuoteLocation
+      Set-AtwsQuoteLocation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsQuoteLocation
       .NOTES
       NAME: Set-AtwsQuoteLocation
   #>

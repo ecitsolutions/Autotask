@@ -13,9 +13,13 @@ Function Remove-AtwsServiceBundleService
       This function deletes a ServiceBundleService through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a ServiceBundleService through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ServiceBundleService[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.ServiceBundleService that was passed to the function.
       .EXAMPLE
-      Remove-AtwsServiceBundleService [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsServiceBundleService
+      Remove-AtwsServiceBundleService  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsServiceBundleService
       .NOTES
       NAME: Remove-AtwsServiceBundleService
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsServiceBundleService
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ServiceBundleService]

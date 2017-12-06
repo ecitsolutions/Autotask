@@ -13,9 +13,13 @@ Function Update-AtwsProject
       This function updates a Project through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Project through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Project[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Project[]]. This function returns the updated Autotask.Project that was returned by the API.
       .EXAMPLE
-      Update-AtwsProject [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsProject
+      Update-AtwsProject  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsProject
       .NOTES
       NAME: Update-AtwsProject
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsProject
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Project]

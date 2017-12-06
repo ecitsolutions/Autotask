@@ -10,12 +10,16 @@ Function Set-AtwsClientPortalUser
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ClientPortalUser through the Autotask Web Services API.
+      This function sets parameters on the ClientPortalUser specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ClientPortalUser through the Autotask Web Services API.
+      This function sets parameters on the ClientPortalUser specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ClientPortalUser]. This function returns the updated Autotask.ClientPortalUser that was returned by the API.
       .EXAMPLE
-      Set-AtwsClientPortalUser [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsClientPortalUser
+      Set-AtwsClientPortalUser  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsClientPortalUser
       .NOTES
       NAME: Set-AtwsClientPortalUser
   #>

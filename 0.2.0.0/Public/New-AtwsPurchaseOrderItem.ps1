@@ -13,9 +13,13 @@ Function New-AtwsPurchaseOrderItem
       This function creates a new PurchaseOrderItem through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new PurchaseOrderItem through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.PurchaseOrderItem]. This function outputs the Autotask.PurchaseOrderItem that was created by the API.
       .EXAMPLE
-      New-AtwsPurchaseOrderItem [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsPurchaseOrderItem
+      New-AtwsPurchaseOrderItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsPurchaseOrderItem
       .NOTES
       NAME: New-AtwsPurchaseOrderItem
   #>

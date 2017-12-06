@@ -13,9 +13,13 @@ Function New-AtwsContractMilestone
       This function creates a new ContractMilestone through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractMilestone through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractMilestone]. This function outputs the Autotask.ContractMilestone that was created by the API.
       .EXAMPLE
-      New-AtwsContractMilestone [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractMilestone
+      New-AtwsContractMilestone  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractMilestone
       .NOTES
       NAME: New-AtwsContractMilestone
   #>

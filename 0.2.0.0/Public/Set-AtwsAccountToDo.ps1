@@ -10,12 +10,16 @@ Function Set-AtwsAccountToDo
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific AccountToDo through the Autotask Web Services API.
+      This function sets parameters on the AccountToDo specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific AccountToDo through the Autotask Web Services API.
+      This function sets parameters on the AccountToDo specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.AccountToDo]. This function returns the updated Autotask.AccountToDo that was returned by the API.
       .EXAMPLE
-      Set-AtwsAccountToDo [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsAccountToDo
+      Set-AtwsAccountToDo  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsAccountToDo
       .NOTES
       NAME: Set-AtwsAccountToDo
   #>

@@ -13,9 +13,13 @@ Function New-AtwsContractServiceBundleAdjustment
       This function creates a new ContractServiceBundleAdjustment through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractServiceBundleAdjustment through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractServiceBundleAdjustment]. This function outputs the Autotask.ContractServiceBundleAdjustment that was created by the API.
       .EXAMPLE
-      New-AtwsContractServiceBundleAdjustment [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractServiceBundleAdjustment
+      New-AtwsContractServiceBundleAdjustment  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractServiceBundleAdjustment
       .NOTES
       NAME: New-AtwsContractServiceBundleAdjustment
   #>

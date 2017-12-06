@@ -13,9 +13,13 @@ Function Update-AtwsCurrency
       This function updates a Currency through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Currency through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Currency[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Currency[]]. This function returns the updated Autotask.Currency that was returned by the API.
       .EXAMPLE
-      Update-AtwsCurrency [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsCurrency
+      Update-AtwsCurrency  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsCurrency
       .NOTES
       NAME: Update-AtwsCurrency
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsCurrency
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Currency]

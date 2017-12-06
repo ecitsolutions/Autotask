@@ -13,9 +13,13 @@ Function Update-AtwsContractBlock
       This function updates a ContractBlock through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ContractBlock through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ContractBlock[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ContractBlock[]]. This function returns the updated Autotask.ContractBlock that was returned by the API.
       .EXAMPLE
-      Update-AtwsContractBlock [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsContractBlock
+      Update-AtwsContractBlock  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsContractBlock
       .NOTES
       NAME: Update-AtwsContractBlock
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsContractBlock
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ContractBlock]

@@ -13,9 +13,13 @@ Function Update-AtwsPriceListMaterialCode
       This function updates a PriceListMaterialCode through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a PriceListMaterialCode through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.PriceListMaterialCode[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.PriceListMaterialCode[]]. This function returns the updated Autotask.PriceListMaterialCode that was returned by the API.
       .EXAMPLE
-      Update-AtwsPriceListMaterialCode [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsPriceListMaterialCode
+      Update-AtwsPriceListMaterialCode  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsPriceListMaterialCode
       .NOTES
       NAME: Update-AtwsPriceListMaterialCode
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsPriceListMaterialCode
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.PriceListMaterialCode]

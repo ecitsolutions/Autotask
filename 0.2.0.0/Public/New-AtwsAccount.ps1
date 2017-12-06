@@ -13,9 +13,13 @@ Function New-AtwsAccount
       This function creates a new Account through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Account through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Account]. This function outputs the Autotask.Account that was created by the API.
       .EXAMPLE
-      New-AtwsAccount [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsAccount
+      New-AtwsAccount  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsAccount
       .NOTES
       NAME: New-AtwsAccount
   #>

@@ -13,9 +13,13 @@ Function Update-AtwsUserDefinedFieldDefinition
       This function updates a UserDefinedFieldDefinition through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a UserDefinedFieldDefinition through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.UserDefinedFieldDefinition[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.UserDefinedFieldDefinition[]]. This function returns the updated Autotask.UserDefinedFieldDefinition that was returned by the API.
       .EXAMPLE
-      Update-AtwsUserDefinedFieldDefinition [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsUserDefinedFieldDefinition
+      Update-AtwsUserDefinedFieldDefinition  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsUserDefinedFieldDefinition
       .NOTES
       NAME: Update-AtwsUserDefinedFieldDefinition
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsUserDefinedFieldDefinition
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.UserDefinedFieldDefinition]

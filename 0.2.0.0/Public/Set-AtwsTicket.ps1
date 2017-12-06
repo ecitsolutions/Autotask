@@ -10,12 +10,16 @@ Function Set-AtwsTicket
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Ticket through the Autotask Web Services API.
+      This function sets parameters on the Ticket specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Ticket through the Autotask Web Services API.
+      This function sets parameters on the Ticket specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Ticket]. This function returns the updated Autotask.Ticket that was returned by the API.
       .EXAMPLE
-      Set-AtwsTicket [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsTicket
+      Set-AtwsTicket  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsTicket
       .NOTES
       NAME: Set-AtwsTicket
   #>

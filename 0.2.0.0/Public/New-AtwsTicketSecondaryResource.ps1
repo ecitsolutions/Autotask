@@ -13,9 +13,13 @@ Function New-AtwsTicketSecondaryResource
       This function creates a new TicketSecondaryResource through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TicketSecondaryResource through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TicketSecondaryResource]. This function outputs the Autotask.TicketSecondaryResource that was created by the API.
       .EXAMPLE
-      New-AtwsTicketSecondaryResource [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTicketSecondaryResource
+      New-AtwsTicketSecondaryResource  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTicketSecondaryResource
       .NOTES
       NAME: New-AtwsTicketSecondaryResource
   #>

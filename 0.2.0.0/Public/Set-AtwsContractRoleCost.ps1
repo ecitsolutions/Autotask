@@ -10,12 +10,16 @@ Function Set-AtwsContractRoleCost
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ContractRoleCost through the Autotask Web Services API.
+      This function sets parameters on the ContractRoleCost specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ContractRoleCost through the Autotask Web Services API.
+      This function sets parameters on the ContractRoleCost specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ContractRoleCost]. This function returns the updated Autotask.ContractRoleCost that was returned by the API.
       .EXAMPLE
-      Set-AtwsContractRoleCost [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsContractRoleCost
+      Set-AtwsContractRoleCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsContractRoleCost
       .NOTES
       NAME: Set-AtwsContractRoleCost
   #>

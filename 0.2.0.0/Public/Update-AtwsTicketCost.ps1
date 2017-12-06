@@ -13,9 +13,13 @@ Function Update-AtwsTicketCost
       This function updates a TicketCost through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a TicketCost through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TicketCost[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.TicketCost[]]. This function returns the updated Autotask.TicketCost that was returned by the API.
       .EXAMPLE
-      Update-AtwsTicketCost [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsTicketCost
+      Update-AtwsTicketCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsTicketCost
       .NOTES
       NAME: Update-AtwsTicketCost
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsTicketCost
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TicketCost]

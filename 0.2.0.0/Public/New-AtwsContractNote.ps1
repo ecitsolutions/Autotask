@@ -13,9 +13,13 @@ Function New-AtwsContractNote
       This function creates a new ContractNote through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractNote through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractNote]. This function outputs the Autotask.ContractNote that was created by the API.
       .EXAMPLE
-      New-AtwsContractNote [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractNote
+      New-AtwsContractNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractNote
       .NOTES
       NAME: New-AtwsContractNote
   #>

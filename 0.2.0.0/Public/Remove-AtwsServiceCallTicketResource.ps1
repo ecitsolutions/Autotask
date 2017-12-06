@@ -13,9 +13,13 @@ Function Remove-AtwsServiceCallTicketResource
       This function deletes a ServiceCallTicketResource through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a ServiceCallTicketResource through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ServiceCallTicketResource[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.ServiceCallTicketResource that was passed to the function.
       .EXAMPLE
-      Remove-AtwsServiceCallTicketResource [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsServiceCallTicketResource
+      Remove-AtwsServiceCallTicketResource  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsServiceCallTicketResource
       .NOTES
       NAME: Remove-AtwsServiceCallTicketResource
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsServiceCallTicketResource
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ServiceCallTicketResource]

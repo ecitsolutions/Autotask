@@ -13,9 +13,13 @@ Function New-AtwsBillingItemApprovalLevel
       This function creates a new BillingItemApprovalLevel through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new BillingItemApprovalLevel through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.BillingItemApprovalLevel]. This function outputs the Autotask.BillingItemApprovalLevel that was created by the API.
       .EXAMPLE
-      New-AtwsBillingItemApprovalLevel [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsBillingItemApprovalLevel
+      New-AtwsBillingItemApprovalLevel  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsBillingItemApprovalLevel
       .NOTES
       NAME: New-AtwsBillingItemApprovalLevel
   #>

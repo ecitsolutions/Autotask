@@ -13,9 +13,13 @@ Function New-AtwsTicketNote
       This function creates a new TicketNote through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TicketNote through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TicketNote]. This function outputs the Autotask.TicketNote that was created by the API.
       .EXAMPLE
-      New-AtwsTicketNote [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTicketNote
+      New-AtwsTicketNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTicketNote
       .NOTES
       NAME: New-AtwsTicketNote
   #>

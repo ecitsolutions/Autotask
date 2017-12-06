@@ -13,9 +13,13 @@ Function New-AtwsContractRetainer
       This function creates a new ContractRetainer through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractRetainer through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractRetainer]. This function outputs the Autotask.ContractRetainer that was created by the API.
       .EXAMPLE
-      New-AtwsContractRetainer [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractRetainer
+      New-AtwsContractRetainer  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractRetainer
       .NOTES
       NAME: New-AtwsContractRetainer
   #>

@@ -13,9 +13,13 @@ Function Update-AtwsProductVendor
       This function updates a ProductVendor through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ProductVendor through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ProductVendor[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ProductVendor[]]. This function returns the updated Autotask.ProductVendor that was returned by the API.
       .EXAMPLE
-      Update-AtwsProductVendor [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsProductVendor
+      Update-AtwsProductVendor  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsProductVendor
       .NOTES
       NAME: Update-AtwsProductVendor
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsProductVendor
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ProductVendor]

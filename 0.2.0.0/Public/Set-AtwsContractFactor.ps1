@@ -10,12 +10,16 @@ Function Set-AtwsContractFactor
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ContractFactor through the Autotask Web Services API.
+      This function sets parameters on the ContractFactor specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ContractFactor through the Autotask Web Services API.
+      This function sets parameters on the ContractFactor specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ContractFactor]. This function returns the updated Autotask.ContractFactor that was returned by the API.
       .EXAMPLE
-      Set-AtwsContractFactor [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsContractFactor
+      Set-AtwsContractFactor  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsContractFactor
       .NOTES
       NAME: Set-AtwsContractFactor
   #>

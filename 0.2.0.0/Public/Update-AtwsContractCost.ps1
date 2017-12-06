@@ -13,9 +13,13 @@ Function Update-AtwsContractCost
       This function updates a ContractCost through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ContractCost through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ContractCost[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ContractCost[]]. This function returns the updated Autotask.ContractCost that was returned by the API.
       .EXAMPLE
-      Update-AtwsContractCost [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsContractCost
+      Update-AtwsContractCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsContractCost
       .NOTES
       NAME: Update-AtwsContractCost
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsContractCost
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ContractCost]

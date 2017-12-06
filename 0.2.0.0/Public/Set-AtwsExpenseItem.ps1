@@ -10,12 +10,16 @@ Function Set-AtwsExpenseItem
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ExpenseItem through the Autotask Web Services API.
+      This function sets parameters on the ExpenseItem specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ExpenseItem through the Autotask Web Services API.
+      This function sets parameters on the ExpenseItem specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ExpenseItem]. This function returns the updated Autotask.ExpenseItem that was returned by the API.
       .EXAMPLE
-      Set-AtwsExpenseItem [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsExpenseItem
+      Set-AtwsExpenseItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsExpenseItem
       .NOTES
       NAME: Set-AtwsExpenseItem
   #>

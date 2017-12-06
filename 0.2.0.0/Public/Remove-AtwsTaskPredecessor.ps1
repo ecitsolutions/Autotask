@@ -13,9 +13,13 @@ Function Remove-AtwsTaskPredecessor
       This function deletes a TaskPredecessor through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a TaskPredecessor through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TaskPredecessor[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.TaskPredecessor that was passed to the function.
       .EXAMPLE
-      Remove-AtwsTaskPredecessor [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsTaskPredecessor
+      Remove-AtwsTaskPredecessor  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsTaskPredecessor
       .NOTES
       NAME: Remove-AtwsTaskPredecessor
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsTaskPredecessor
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TaskPredecessor]

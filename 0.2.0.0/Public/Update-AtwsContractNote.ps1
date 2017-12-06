@@ -13,9 +13,13 @@ Function Update-AtwsContractNote
       This function updates a ContractNote through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ContractNote through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ContractNote[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ContractNote[]]. This function returns the updated Autotask.ContractNote that was returned by the API.
       .EXAMPLE
-      Update-AtwsContractNote [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsContractNote
+      Update-AtwsContractNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsContractNote
       .NOTES
       NAME: Update-AtwsContractNote
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsContractNote
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ContractNote]

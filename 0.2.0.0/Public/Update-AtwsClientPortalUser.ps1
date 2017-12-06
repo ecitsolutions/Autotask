@@ -13,9 +13,13 @@ Function Update-AtwsClientPortalUser
       This function updates a ClientPortalUser through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ClientPortalUser through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ClientPortalUser[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ClientPortalUser[]]. This function returns the updated Autotask.ClientPortalUser that was returned by the API.
       .EXAMPLE
-      Update-AtwsClientPortalUser [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsClientPortalUser
+      Update-AtwsClientPortalUser  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsClientPortalUser
       .NOTES
       NAME: Update-AtwsClientPortalUser
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsClientPortalUser
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ClientPortalUser]

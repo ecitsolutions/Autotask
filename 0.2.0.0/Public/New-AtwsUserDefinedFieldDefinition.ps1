@@ -13,9 +13,13 @@ Function New-AtwsUserDefinedFieldDefinition
       This function creates a new UserDefinedFieldDefinition through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new UserDefinedFieldDefinition through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.UserDefinedFieldDefinition]. This function outputs the Autotask.UserDefinedFieldDefinition that was created by the API.
       .EXAMPLE
-      New-AtwsUserDefinedFieldDefinition [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsUserDefinedFieldDefinition
+      New-AtwsUserDefinedFieldDefinition  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsUserDefinedFieldDefinition
       .NOTES
       NAME: New-AtwsUserDefinedFieldDefinition
   #>

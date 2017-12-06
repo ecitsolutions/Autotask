@@ -13,9 +13,13 @@ Function New-AtwsContractTicketPurchase
       This function creates a new ContractTicketPurchase through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractTicketPurchase through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractTicketPurchase]. This function outputs the Autotask.ContractTicketPurchase that was created by the API.
       .EXAMPLE
-      New-AtwsContractTicketPurchase [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractTicketPurchase
+      New-AtwsContractTicketPurchase  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractTicketPurchase
       .NOTES
       NAME: New-AtwsContractTicketPurchase
   #>

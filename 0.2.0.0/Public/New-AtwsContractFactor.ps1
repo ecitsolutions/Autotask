@@ -13,9 +13,13 @@ Function New-AtwsContractFactor
       This function creates a new ContractFactor through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractFactor through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractFactor]. This function outputs the Autotask.ContractFactor that was created by the API.
       .EXAMPLE
-      New-AtwsContractFactor [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractFactor
+      New-AtwsContractFactor  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractFactor
       .NOTES
       NAME: New-AtwsContractFactor
   #>

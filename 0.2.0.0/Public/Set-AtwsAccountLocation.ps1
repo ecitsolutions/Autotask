@@ -10,12 +10,16 @@ Function Set-AtwsAccountLocation
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific AccountLocation through the Autotask Web Services API.
+      This function sets parameters on the AccountLocation specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific AccountLocation through the Autotask Web Services API.
+      This function sets parameters on the AccountLocation specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.AccountLocation]. This function returns the updated Autotask.AccountLocation that was returned by the API.
       .EXAMPLE
-      Set-AtwsAccountLocation [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsAccountLocation
+      Set-AtwsAccountLocation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsAccountLocation
       .NOTES
       NAME: Set-AtwsAccountLocation
   #>

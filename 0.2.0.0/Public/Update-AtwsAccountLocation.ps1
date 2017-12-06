@@ -13,9 +13,13 @@ Function Update-AtwsAccountLocation
       This function updates a AccountLocation through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a AccountLocation through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.AccountLocation[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.AccountLocation[]]. This function returns the updated Autotask.AccountLocation that was returned by the API.
       .EXAMPLE
-      Update-AtwsAccountLocation [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsAccountLocation
+      Update-AtwsAccountLocation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsAccountLocation
       .NOTES
       NAME: Update-AtwsAccountLocation
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsAccountLocation
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.AccountLocation]

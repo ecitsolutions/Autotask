@@ -13,9 +13,13 @@ Function Update-AtwsTaxCategory
       This function updates a TaxCategory through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a TaxCategory through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TaxCategory[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.TaxCategory[]]. This function returns the updated Autotask.TaxCategory that was returned by the API.
       .EXAMPLE
-      Update-AtwsTaxCategory [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsTaxCategory
+      Update-AtwsTaxCategory  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsTaxCategory
       .NOTES
       NAME: Update-AtwsTaxCategory
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsTaxCategory
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TaxCategory]

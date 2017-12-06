@@ -10,12 +10,16 @@ Function Set-AtwsCountry
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Country through the Autotask Web Services API.
+      This function sets parameters on the Country specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Country through the Autotask Web Services API.
+      This function sets parameters on the Country specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Country]. This function returns the updated Autotask.Country that was returned by the API.
       .EXAMPLE
-      Set-AtwsCountry [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsCountry
+      Set-AtwsCountry  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsCountry
       .NOTES
       NAME: Set-AtwsCountry
   #>

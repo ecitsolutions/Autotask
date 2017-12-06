@@ -13,9 +13,13 @@ Function New-AtwsTicketAdditionalContact
       This function creates a new TicketAdditionalContact through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TicketAdditionalContact through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TicketAdditionalContact]. This function outputs the Autotask.TicketAdditionalContact that was created by the API.
       .EXAMPLE
-      New-AtwsTicketAdditionalContact [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTicketAdditionalContact
+      New-AtwsTicketAdditionalContact  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTicketAdditionalContact
       .NOTES
       NAME: New-AtwsTicketAdditionalContact
   #>

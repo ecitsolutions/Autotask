@@ -13,9 +13,13 @@ Function Update-AtwsServiceBundle
       This function updates a ServiceBundle through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ServiceBundle through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ServiceBundle[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ServiceBundle[]]. This function returns the updated Autotask.ServiceBundle that was returned by the API.
       .EXAMPLE
-      Update-AtwsServiceBundle [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsServiceBundle
+      Update-AtwsServiceBundle  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsServiceBundle
       .NOTES
       NAME: Update-AtwsServiceBundle
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsServiceBundle
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ServiceBundle]

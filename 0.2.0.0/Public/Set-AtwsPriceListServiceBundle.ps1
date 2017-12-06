@@ -10,12 +10,16 @@ Function Set-AtwsPriceListServiceBundle
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific PriceListServiceBundle through the Autotask Web Services API.
+      This function sets parameters on the PriceListServiceBundle specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific PriceListServiceBundle through the Autotask Web Services API.
+      This function sets parameters on the PriceListServiceBundle specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.PriceListServiceBundle]. This function returns the updated Autotask.PriceListServiceBundle that was returned by the API.
       .EXAMPLE
-      Set-AtwsPriceListServiceBundle [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsPriceListServiceBundle
+      Set-AtwsPriceListServiceBundle  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsPriceListServiceBundle
       .NOTES
       NAME: Set-AtwsPriceListServiceBundle
   #>

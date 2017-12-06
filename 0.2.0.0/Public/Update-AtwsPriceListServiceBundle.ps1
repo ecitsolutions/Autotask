@@ -13,9 +13,13 @@ Function Update-AtwsPriceListServiceBundle
       This function updates a PriceListServiceBundle through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a PriceListServiceBundle through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.PriceListServiceBundle[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.PriceListServiceBundle[]]. This function returns the updated Autotask.PriceListServiceBundle that was returned by the API.
       .EXAMPLE
-      Update-AtwsPriceListServiceBundle [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsPriceListServiceBundle
+      Update-AtwsPriceListServiceBundle  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsPriceListServiceBundle
       .NOTES
       NAME: Update-AtwsPriceListServiceBundle
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsPriceListServiceBundle
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.PriceListServiceBundle]

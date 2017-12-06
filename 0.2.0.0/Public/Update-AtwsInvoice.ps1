@@ -13,9 +13,13 @@ Function Update-AtwsInvoice
       This function updates a Invoice through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Invoice through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Invoice[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Invoice[]]. This function returns the updated Autotask.Invoice that was returned by the API.
       .EXAMPLE
-      Update-AtwsInvoice [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsInvoice
+      Update-AtwsInvoice  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsInvoice
       .NOTES
       NAME: Update-AtwsInvoice
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsInvoice
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Invoice]

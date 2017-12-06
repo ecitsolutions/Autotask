@@ -10,12 +10,16 @@ Function Set-AtwsSalesOrder
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific SalesOrder through the Autotask Web Services API.
+      This function sets parameters on the SalesOrder specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific SalesOrder through the Autotask Web Services API.
+      This function sets parameters on the SalesOrder specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.SalesOrder]. This function returns the updated Autotask.SalesOrder that was returned by the API.
       .EXAMPLE
-      Set-AtwsSalesOrder [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsSalesOrder
+      Set-AtwsSalesOrder  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsSalesOrder
       .NOTES
       NAME: Set-AtwsSalesOrder
   #>

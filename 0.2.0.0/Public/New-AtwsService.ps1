@@ -13,9 +13,13 @@ Function New-AtwsService
       This function creates a new Service through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Service through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Service]. This function outputs the Autotask.Service that was created by the API.
       .EXAMPLE
-      New-AtwsService [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsService
+      New-AtwsService  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsService
       .NOTES
       NAME: New-AtwsService
   #>

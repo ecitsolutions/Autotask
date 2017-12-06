@@ -10,12 +10,16 @@ Function Set-AtwsServiceBundle
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ServiceBundle through the Autotask Web Services API.
+      This function sets parameters on the ServiceBundle specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ServiceBundle through the Autotask Web Services API.
+      This function sets parameters on the ServiceBundle specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ServiceBundle]. This function returns the updated Autotask.ServiceBundle that was returned by the API.
       .EXAMPLE
-      Set-AtwsServiceBundle [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsServiceBundle
+      Set-AtwsServiceBundle  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsServiceBundle
       .NOTES
       NAME: Set-AtwsServiceBundle
   #>

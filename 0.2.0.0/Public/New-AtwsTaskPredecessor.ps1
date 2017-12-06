@@ -13,9 +13,13 @@ Function New-AtwsTaskPredecessor
       This function creates a new TaskPredecessor through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TaskPredecessor through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TaskPredecessor]. This function outputs the Autotask.TaskPredecessor that was created by the API.
       .EXAMPLE
-      New-AtwsTaskPredecessor [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTaskPredecessor
+      New-AtwsTaskPredecessor  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTaskPredecessor
       .NOTES
       NAME: New-AtwsTaskPredecessor
   #>

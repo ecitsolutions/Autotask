@@ -13,9 +13,13 @@ Function New-AtwsQuoteLocation
       This function creates a new QuoteLocation through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new QuoteLocation through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.QuoteLocation]. This function outputs the Autotask.QuoteLocation that was created by the API.
       .EXAMPLE
-      New-AtwsQuoteLocation [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsQuoteLocation
+      New-AtwsQuoteLocation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsQuoteLocation
       .NOTES
       NAME: New-AtwsQuoteLocation
   #>

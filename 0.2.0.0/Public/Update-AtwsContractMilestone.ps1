@@ -13,9 +13,13 @@ Function Update-AtwsContractMilestone
       This function updates a ContractMilestone through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ContractMilestone through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ContractMilestone[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ContractMilestone[]]. This function returns the updated Autotask.ContractMilestone that was returned by the API.
       .EXAMPLE
-      Update-AtwsContractMilestone [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsContractMilestone
+      Update-AtwsContractMilestone  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsContractMilestone
       .NOTES
       NAME: Update-AtwsContractMilestone
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsContractMilestone
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ContractMilestone]

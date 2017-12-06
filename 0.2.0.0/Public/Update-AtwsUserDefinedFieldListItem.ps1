@@ -13,9 +13,13 @@ Function Update-AtwsUserDefinedFieldListItem
       This function updates a UserDefinedFieldListItem through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a UserDefinedFieldListItem through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.UserDefinedFieldListItem[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.UserDefinedFieldListItem[]]. This function returns the updated Autotask.UserDefinedFieldListItem that was returned by the API.
       .EXAMPLE
-      Update-AtwsUserDefinedFieldListItem [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsUserDefinedFieldListItem
+      Update-AtwsUserDefinedFieldListItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsUserDefinedFieldListItem
       .NOTES
       NAME: Update-AtwsUserDefinedFieldListItem
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsUserDefinedFieldListItem
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.UserDefinedFieldListItem]

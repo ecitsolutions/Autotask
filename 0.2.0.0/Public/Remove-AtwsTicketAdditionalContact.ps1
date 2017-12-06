@@ -13,9 +13,13 @@ Function Remove-AtwsTicketAdditionalContact
       This function deletes a TicketAdditionalContact through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a TicketAdditionalContact through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TicketAdditionalContact[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.TicketAdditionalContact that was passed to the function.
       .EXAMPLE
-      Remove-AtwsTicketAdditionalContact [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsTicketAdditionalContact
+      Remove-AtwsTicketAdditionalContact  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsTicketAdditionalContact
       .NOTES
       NAME: Remove-AtwsTicketAdditionalContact
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsTicketAdditionalContact
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TicketAdditionalContact]

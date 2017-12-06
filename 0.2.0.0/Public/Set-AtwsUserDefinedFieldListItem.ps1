@@ -10,12 +10,16 @@ Function Set-AtwsUserDefinedFieldListItem
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific UserDefinedFieldListItem through the Autotask Web Services API.
+      This function sets parameters on the UserDefinedFieldListItem specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific UserDefinedFieldListItem through the Autotask Web Services API.
+      This function sets parameters on the UserDefinedFieldListItem specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.UserDefinedFieldListItem]. This function returns the updated Autotask.UserDefinedFieldListItem that was returned by the API.
       .EXAMPLE
-      Set-AtwsUserDefinedFieldListItem [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsUserDefinedFieldListItem
+      Set-AtwsUserDefinedFieldListItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsUserDefinedFieldListItem
       .NOTES
       NAME: Set-AtwsUserDefinedFieldListItem
   #>

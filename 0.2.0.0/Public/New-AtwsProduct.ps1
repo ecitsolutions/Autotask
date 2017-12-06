@@ -13,9 +13,13 @@ Function New-AtwsProduct
       This function creates a new Product through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Product through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Product]. This function outputs the Autotask.Product that was created by the API.
       .EXAMPLE
-      New-AtwsProduct [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsProduct
+      New-AtwsProduct  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsProduct
       .NOTES
       NAME: New-AtwsProduct
   #>

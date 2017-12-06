@@ -13,9 +13,13 @@ Function New-AtwsServiceCallTaskResource
       This function creates a new ServiceCallTaskResource through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ServiceCallTaskResource through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ServiceCallTaskResource]. This function outputs the Autotask.ServiceCallTaskResource that was created by the API.
       .EXAMPLE
-      New-AtwsServiceCallTaskResource [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsServiceCallTaskResource
+      New-AtwsServiceCallTaskResource  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsServiceCallTaskResource
       .NOTES
       NAME: New-AtwsServiceCallTaskResource
   #>

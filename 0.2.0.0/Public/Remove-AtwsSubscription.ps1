@@ -13,9 +13,13 @@ Function Remove-AtwsSubscription
       This function deletes a Subscription through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a Subscription through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Subscription[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.Subscription that was passed to the function.
       .EXAMPLE
-      Remove-AtwsSubscription [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsSubscription
+      Remove-AtwsSubscription  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsSubscription
       .NOTES
       NAME: Remove-AtwsSubscription
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsSubscription
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Subscription]

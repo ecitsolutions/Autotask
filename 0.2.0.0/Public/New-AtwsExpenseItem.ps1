@@ -13,9 +13,13 @@ Function New-AtwsExpenseItem
       This function creates a new ExpenseItem through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ExpenseItem through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ExpenseItem]. This function outputs the Autotask.ExpenseItem that was created by the API.
       .EXAMPLE
-      New-AtwsExpenseItem [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsExpenseItem
+      New-AtwsExpenseItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsExpenseItem
       .NOTES
       NAME: New-AtwsExpenseItem
   #>

@@ -13,9 +13,13 @@ Function Update-AtwsCountry
       This function updates a Country through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Country through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Country[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Country[]]. This function returns the updated Autotask.Country that was returned by the API.
       .EXAMPLE
-      Update-AtwsCountry [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsCountry
+      Update-AtwsCountry  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsCountry
       .NOTES
       NAME: Update-AtwsCountry
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsCountry
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Country]

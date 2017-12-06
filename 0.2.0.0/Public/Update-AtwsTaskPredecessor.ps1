@@ -13,9 +13,13 @@ Function Update-AtwsTaskPredecessor
       This function updates a TaskPredecessor through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a TaskPredecessor through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TaskPredecessor[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.TaskPredecessor[]]. This function returns the updated Autotask.TaskPredecessor that was returned by the API.
       .EXAMPLE
-      Update-AtwsTaskPredecessor [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsTaskPredecessor
+      Update-AtwsTaskPredecessor  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsTaskPredecessor
       .NOTES
       NAME: Update-AtwsTaskPredecessor
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsTaskPredecessor
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TaskPredecessor]

@@ -13,9 +13,13 @@ Function Remove-AtwsContractCost
       This function deletes a ContractCost through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a ContractCost through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ContractCost[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.ContractCost that was passed to the function.
       .EXAMPLE
-      Remove-AtwsContractCost [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsContractCost
+      Remove-AtwsContractCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsContractCost
       .NOTES
       NAME: Remove-AtwsContractCost
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsContractCost
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ContractCost]

@@ -13,9 +13,13 @@ Function New-AtwsAccountAlert
       This function creates a new AccountAlert through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new AccountAlert through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.AccountAlert]. This function outputs the Autotask.AccountAlert that was created by the API.
       .EXAMPLE
-      New-AtwsAccountAlert [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsAccountAlert
+      New-AtwsAccountAlert  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsAccountAlert
       .NOTES
       NAME: New-AtwsAccountAlert
   #>

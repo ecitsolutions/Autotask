@@ -10,12 +10,16 @@ Function Set-AtwsTaskNote
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific TaskNote through the Autotask Web Services API.
+      This function sets parameters on the TaskNote specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific TaskNote through the Autotask Web Services API.
+      This function sets parameters on the TaskNote specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.TaskNote]. This function returns the updated Autotask.TaskNote that was returned by the API.
       .EXAMPLE
-      Set-AtwsTaskNote [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsTaskNote
+      Set-AtwsTaskNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsTaskNote
       .NOTES
       NAME: Set-AtwsTaskNote
   #>

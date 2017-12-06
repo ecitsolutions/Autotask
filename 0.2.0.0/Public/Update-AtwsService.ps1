@@ -13,9 +13,13 @@ Function Update-AtwsService
       This function updates a Service through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a Service through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.Service[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.Service[]]. This function returns the updated Autotask.Service that was returned by the API.
       .EXAMPLE
-      Update-AtwsService [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsService
+      Update-AtwsService  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsService
       .NOTES
       NAME: Update-AtwsService
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsService
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.Service]

@@ -10,12 +10,16 @@ Function Set-AtwsContractRate
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ContractRate through the Autotask Web Services API.
+      This function sets parameters on the ContractRate specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ContractRate through the Autotask Web Services API.
+      This function sets parameters on the ContractRate specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ContractRate]. This function returns the updated Autotask.ContractRate that was returned by the API.
       .EXAMPLE
-      Set-AtwsContractRate [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsContractRate
+      Set-AtwsContractRate  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsContractRate
       .NOTES
       NAME: Set-AtwsContractRate
   #>

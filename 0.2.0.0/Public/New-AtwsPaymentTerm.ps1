@@ -13,9 +13,13 @@ Function New-AtwsPaymentTerm
       This function creates a new PaymentTerm through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new PaymentTerm through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.PaymentTerm]. This function outputs the Autotask.PaymentTerm that was created by the API.
       .EXAMPLE
-      New-AtwsPaymentTerm [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsPaymentTerm
+      New-AtwsPaymentTerm  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsPaymentTerm
       .NOTES
       NAME: New-AtwsPaymentTerm
   #>

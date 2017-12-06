@@ -13,9 +13,13 @@ Function Remove-AtwsInstalledProductTypeUdfAssociation
       This function deletes a InstalledProductTypeUdfAssociation through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a InstalledProductTypeUdfAssociation through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.InstalledProductTypeUdfAssociation[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.InstalledProductTypeUdfAssociation that was passed to the function.
       .EXAMPLE
-      Remove-AtwsInstalledProductTypeUdfAssociation [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsInstalledProductTypeUdfAssociation
+      Remove-AtwsInstalledProductTypeUdfAssociation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsInstalledProductTypeUdfAssociation
       .NOTES
       NAME: Remove-AtwsInstalledProductTypeUdfAssociation
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsInstalledProductTypeUdfAssociation
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.InstalledProductTypeUdfAssociation]

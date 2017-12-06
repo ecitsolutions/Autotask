@@ -13,9 +13,13 @@ Function Update-AtwsProjectCost
       This function updates a ProjectCost through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ProjectCost through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ProjectCost[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ProjectCost[]]. This function returns the updated Autotask.ProjectCost that was returned by the API.
       .EXAMPLE
-      Update-AtwsProjectCost [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsProjectCost
+      Update-AtwsProjectCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsProjectCost
       .NOTES
       NAME: Update-AtwsProjectCost
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsProjectCost
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ProjectCost]

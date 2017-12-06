@@ -13,9 +13,13 @@ Function Update-AtwsTaskNote
       This function updates a TaskNote through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a TaskNote through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TaskNote[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.TaskNote[]]. This function returns the updated Autotask.TaskNote that was returned by the API.
       .EXAMPLE
-      Update-AtwsTaskNote [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsTaskNote
+      Update-AtwsTaskNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsTaskNote
       .NOTES
       NAME: Update-AtwsTaskNote
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsTaskNote
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TaskNote]

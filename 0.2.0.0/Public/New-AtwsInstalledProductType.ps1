@@ -13,9 +13,13 @@ Function New-AtwsInstalledProductType
       This function creates a new InstalledProductType through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new InstalledProductType through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.InstalledProductType]. This function outputs the Autotask.InstalledProductType that was created by the API.
       .EXAMPLE
-      New-AtwsInstalledProductType [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsInstalledProductType
+      New-AtwsInstalledProductType  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsInstalledProductType
       .NOTES
       NAME: New-AtwsInstalledProductType
   #>

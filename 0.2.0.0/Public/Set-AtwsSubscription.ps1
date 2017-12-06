@@ -10,12 +10,16 @@ Function Set-AtwsSubscription
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Subscription through the Autotask Web Services API.
+      This function sets parameters on the Subscription specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Subscription through the Autotask Web Services API.
+      This function sets parameters on the Subscription specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Subscription]. This function returns the updated Autotask.Subscription that was returned by the API.
       .EXAMPLE
-      Set-AtwsSubscription [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsSubscription
+      Set-AtwsSubscription  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsSubscription
       .NOTES
       NAME: Set-AtwsSubscription
   #>

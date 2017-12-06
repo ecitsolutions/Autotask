@@ -10,12 +10,16 @@ Function Set-AtwsResourceSkill
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ResourceSkill through the Autotask Web Services API.
+      This function sets parameters on the ResourceSkill specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ResourceSkill through the Autotask Web Services API.
+      This function sets parameters on the ResourceSkill specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ResourceSkill]. This function returns the updated Autotask.ResourceSkill that was returned by the API.
       .EXAMPLE
-      Set-AtwsResourceSkill [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsResourceSkill
+      Set-AtwsResourceSkill  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsResourceSkill
       .NOTES
       NAME: Set-AtwsResourceSkill
   #>

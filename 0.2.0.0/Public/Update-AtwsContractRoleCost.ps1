@@ -13,9 +13,13 @@ Function Update-AtwsContractRoleCost
       This function updates a ContractRoleCost through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ContractRoleCost through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ContractRoleCost[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ContractRoleCost[]]. This function returns the updated Autotask.ContractRoleCost that was returned by the API.
       .EXAMPLE
-      Update-AtwsContractRoleCost [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsContractRoleCost
+      Update-AtwsContractRoleCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsContractRoleCost
       .NOTES
       NAME: Update-AtwsContractRoleCost
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsContractRoleCost
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ContractRoleCost]

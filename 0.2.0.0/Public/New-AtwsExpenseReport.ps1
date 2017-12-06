@@ -13,9 +13,13 @@ Function New-AtwsExpenseReport
       This function creates a new ExpenseReport through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ExpenseReport through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ExpenseReport]. This function outputs the Autotask.ExpenseReport that was created by the API.
       .EXAMPLE
-      New-AtwsExpenseReport [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsExpenseReport
+      New-AtwsExpenseReport  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsExpenseReport
       .NOTES
       NAME: New-AtwsExpenseReport
   #>

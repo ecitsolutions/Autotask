@@ -13,9 +13,13 @@ Function New-AtwsTax
       This function creates a new Tax through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Tax through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Tax]. This function outputs the Autotask.Tax that was created by the API.
       .EXAMPLE
-      New-AtwsTax [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTax
+      New-AtwsTax  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTax
       .NOTES
       NAME: New-AtwsTax
   #>

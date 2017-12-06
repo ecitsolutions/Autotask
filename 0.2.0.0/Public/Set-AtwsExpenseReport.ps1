@@ -10,12 +10,16 @@ Function Set-AtwsExpenseReport
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ExpenseReport through the Autotask Web Services API.
+      This function sets parameters on the ExpenseReport specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ExpenseReport through the Autotask Web Services API.
+      This function sets parameters on the ExpenseReport specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ExpenseReport]. This function returns the updated Autotask.ExpenseReport that was returned by the API.
       .EXAMPLE
-      Set-AtwsExpenseReport [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsExpenseReport
+      Set-AtwsExpenseReport  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsExpenseReport
       .NOTES
       NAME: Set-AtwsExpenseReport
   #>

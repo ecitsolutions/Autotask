@@ -13,9 +13,13 @@ Function New-AtwsContact
       This function creates a new Contact through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Contact through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Contact]. This function outputs the Autotask.Contact that was created by the API.
       .EXAMPLE
-      New-AtwsContact [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContact
+      New-AtwsContact  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContact
       .NOTES
       NAME: New-AtwsContact
   #>

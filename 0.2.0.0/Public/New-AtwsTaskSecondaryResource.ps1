@@ -13,9 +13,13 @@ Function New-AtwsTaskSecondaryResource
       This function creates a new TaskSecondaryResource through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TaskSecondaryResource through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TaskSecondaryResource]. This function outputs the Autotask.TaskSecondaryResource that was created by the API.
       .EXAMPLE
-      New-AtwsTaskSecondaryResource [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTaskSecondaryResource
+      New-AtwsTaskSecondaryResource  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTaskSecondaryResource
       .NOTES
       NAME: New-AtwsTaskSecondaryResource
   #>

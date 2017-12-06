@@ -13,9 +13,13 @@ Function Update-AtwsAccountNote
       This function updates a AccountNote through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a AccountNote through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.AccountNote[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.AccountNote[]]. This function returns the updated Autotask.AccountNote that was returned by the API.
       .EXAMPLE
-      Update-AtwsAccountNote [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsAccountNote
+      Update-AtwsAccountNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsAccountNote
       .NOTES
       NAME: Update-AtwsAccountNote
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsAccountNote
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.AccountNote]

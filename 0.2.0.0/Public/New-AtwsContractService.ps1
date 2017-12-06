@@ -13,9 +13,13 @@ Function New-AtwsContractService
       This function creates a new ContractService through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractService through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractService]. This function outputs the Autotask.ContractService that was created by the API.
       .EXAMPLE
-      New-AtwsContractService [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractService
+      New-AtwsContractService  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractService
       .NOTES
       NAME: New-AtwsContractService
   #>

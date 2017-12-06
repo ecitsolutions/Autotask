@@ -13,9 +13,13 @@ Function Update-AtwsTaxRegion
       This function updates a TaxRegion through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a TaxRegion through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TaxRegion[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.TaxRegion[]]. This function returns the updated Autotask.TaxRegion that was returned by the API.
       .EXAMPLE
-      Update-AtwsTaxRegion [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsTaxRegion
+      Update-AtwsTaxRegion  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsTaxRegion
       .NOTES
       NAME: Update-AtwsTaxRegion
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsTaxRegion
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TaxRegion]

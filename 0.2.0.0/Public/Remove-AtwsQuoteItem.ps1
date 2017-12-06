@@ -13,9 +13,13 @@ Function Remove-AtwsQuoteItem
       This function deletes a QuoteItem through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a QuoteItem through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.QuoteItem[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.QuoteItem that was passed to the function.
       .EXAMPLE
-      Remove-AtwsQuoteItem [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsQuoteItem
+      Remove-AtwsQuoteItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsQuoteItem
       .NOTES
       NAME: Remove-AtwsQuoteItem
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsQuoteItem
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.QuoteItem]

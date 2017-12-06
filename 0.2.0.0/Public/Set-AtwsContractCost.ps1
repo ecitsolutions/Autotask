@@ -10,12 +10,16 @@ Function Set-AtwsContractCost
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ContractCost through the Autotask Web Services API.
+      This function sets parameters on the ContractCost specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ContractCost through the Autotask Web Services API.
+      This function sets parameters on the ContractCost specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ContractCost]. This function returns the updated Autotask.ContractCost that was returned by the API.
       .EXAMPLE
-      Set-AtwsContractCost [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsContractCost
+      Set-AtwsContractCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsContractCost
       .NOTES
       NAME: Set-AtwsContractCost
   #>

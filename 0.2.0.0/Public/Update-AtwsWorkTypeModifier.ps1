@@ -13,9 +13,13 @@ Function Update-AtwsWorkTypeModifier
       This function updates a WorkTypeModifier through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a WorkTypeModifier through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.WorkTypeModifier[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.WorkTypeModifier[]]. This function returns the updated Autotask.WorkTypeModifier that was returned by the API.
       .EXAMPLE
-      Update-AtwsWorkTypeModifier [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsWorkTypeModifier
+      Update-AtwsWorkTypeModifier  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsWorkTypeModifier
       .NOTES
       NAME: Update-AtwsWorkTypeModifier
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsWorkTypeModifier
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.WorkTypeModifier]

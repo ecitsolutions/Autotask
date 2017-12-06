@@ -10,12 +10,16 @@ Function Set-AtwsInventoryItem
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific InventoryItem through the Autotask Web Services API.
+      This function sets parameters on the InventoryItem specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific InventoryItem through the Autotask Web Services API.
+      This function sets parameters on the InventoryItem specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.InventoryItem]. This function returns the updated Autotask.InventoryItem that was returned by the API.
       .EXAMPLE
-      Set-AtwsInventoryItem [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsInventoryItem
+      Set-AtwsInventoryItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsInventoryItem
       .NOTES
       NAME: Set-AtwsInventoryItem
   #>

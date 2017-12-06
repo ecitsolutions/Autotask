@@ -10,12 +10,16 @@ Function Set-AtwsTicketCost
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific TicketCost through the Autotask Web Services API.
+      This function sets parameters on the TicketCost specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific TicketCost through the Autotask Web Services API.
+      This function sets parameters on the TicketCost specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.TicketCost]. This function returns the updated Autotask.TicketCost that was returned by the API.
       .EXAMPLE
-      Set-AtwsTicketCost [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsTicketCost
+      Set-AtwsTicketCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsTicketCost
       .NOTES
       NAME: Set-AtwsTicketCost
   #>

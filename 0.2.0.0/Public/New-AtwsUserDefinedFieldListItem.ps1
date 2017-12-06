@@ -13,9 +13,13 @@ Function New-AtwsUserDefinedFieldListItem
       This function creates a new UserDefinedFieldListItem through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new UserDefinedFieldListItem through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.UserDefinedFieldListItem]. This function outputs the Autotask.UserDefinedFieldListItem that was created by the API.
       .EXAMPLE
-      New-AtwsUserDefinedFieldListItem [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsUserDefinedFieldListItem
+      New-AtwsUserDefinedFieldListItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsUserDefinedFieldListItem
       .NOTES
       NAME: New-AtwsUserDefinedFieldListItem
   #>

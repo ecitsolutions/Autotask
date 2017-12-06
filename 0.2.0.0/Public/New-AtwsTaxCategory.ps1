@@ -13,9 +13,13 @@ Function New-AtwsTaxCategory
       This function creates a new TaxCategory through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TaxCategory through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TaxCategory]. This function outputs the Autotask.TaxCategory that was created by the API.
       .EXAMPLE
-      New-AtwsTaxCategory [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTaxCategory
+      New-AtwsTaxCategory  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTaxCategory
       .NOTES
       NAME: New-AtwsTaxCategory
   #>

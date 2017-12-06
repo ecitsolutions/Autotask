@@ -13,9 +13,13 @@ Function Update-AtwsSalesOrder
       This function updates a SalesOrder through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a SalesOrder through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.SalesOrder[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.SalesOrder[]]. This function returns the updated Autotask.SalesOrder that was returned by the API.
       .EXAMPLE
-      Update-AtwsSalesOrder [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsSalesOrder
+      Update-AtwsSalesOrder  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsSalesOrder
       .NOTES
       NAME: Update-AtwsSalesOrder
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsSalesOrder
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.SalesOrder]

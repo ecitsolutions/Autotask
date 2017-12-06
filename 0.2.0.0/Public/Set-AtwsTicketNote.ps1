@@ -10,12 +10,16 @@ Function Set-AtwsTicketNote
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific TicketNote through the Autotask Web Services API.
+      This function sets parameters on the TicketNote specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific TicketNote through the Autotask Web Services API.
+      This function sets parameters on the TicketNote specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.TicketNote]. This function returns the updated Autotask.TicketNote that was returned by the API.
       .EXAMPLE
-      Set-AtwsTicketNote [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsTicketNote
+      Set-AtwsTicketNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsTicketNote
       .NOTES
       NAME: Set-AtwsTicketNote
   #>

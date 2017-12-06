@@ -13,9 +13,13 @@ Function Update-AtwsProjectNote
       This function updates a ProjectNote through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ProjectNote through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ProjectNote[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ProjectNote[]]. This function returns the updated Autotask.ProjectNote that was returned by the API.
       .EXAMPLE
-      Update-AtwsProjectNote [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsProjectNote
+      Update-AtwsProjectNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsProjectNote
       .NOTES
       NAME: Update-AtwsProjectNote
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsProjectNote
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ProjectNote]

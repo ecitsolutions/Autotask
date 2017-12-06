@@ -13,9 +13,13 @@ Function New-AtwsTicketCost
       This function creates a new TicketCost through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TicketCost through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TicketCost]. This function outputs the Autotask.TicketCost that was created by the API.
       .EXAMPLE
-      New-AtwsTicketCost [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTicketCost
+      New-AtwsTicketCost  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTicketCost
       .NOTES
       NAME: New-AtwsTicketCost
   #>

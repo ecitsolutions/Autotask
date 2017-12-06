@@ -13,9 +13,13 @@ Function Update-AtwsInventoryLocation
       This function updates a InventoryLocation through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a InventoryLocation through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.InventoryLocation[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.InventoryLocation[]]. This function returns the updated Autotask.InventoryLocation that was returned by the API.
       .EXAMPLE
-      Update-AtwsInventoryLocation [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsInventoryLocation
+      Update-AtwsInventoryLocation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsInventoryLocation
       .NOTES
       NAME: Update-AtwsInventoryLocation
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsInventoryLocation
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.InventoryLocation]

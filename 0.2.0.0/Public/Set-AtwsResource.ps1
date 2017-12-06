@@ -10,12 +10,16 @@ Function Set-AtwsResource
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Resource through the Autotask Web Services API.
+      This function sets parameters on the Resource specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Resource through the Autotask Web Services API.
+      This function sets parameters on the Resource specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Resource]. This function returns the updated Autotask.Resource that was returned by the API.
       .EXAMPLE
-      Set-AtwsResource [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsResource
+      Set-AtwsResource  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsResource
       .NOTES
       NAME: Set-AtwsResource
   #>

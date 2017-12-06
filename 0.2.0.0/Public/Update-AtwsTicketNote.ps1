@@ -13,9 +13,13 @@ Function Update-AtwsTicketNote
       This function updates a TicketNote through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a TicketNote through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TicketNote[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.TicketNote[]]. This function returns the updated Autotask.TicketNote that was returned by the API.
       .EXAMPLE
-      Update-AtwsTicketNote [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsTicketNote
+      Update-AtwsTicketNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsTicketNote
       .NOTES
       NAME: Update-AtwsTicketNote
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsTicketNote
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TicketNote]

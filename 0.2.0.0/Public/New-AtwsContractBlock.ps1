@@ -13,9 +13,13 @@ Function New-AtwsContractBlock
       This function creates a new ContractBlock through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractBlock through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractBlock]. This function outputs the Autotask.ContractBlock that was created by the API.
       .EXAMPLE
-      New-AtwsContractBlock [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractBlock
+      New-AtwsContractBlock  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractBlock
       .NOTES
       NAME: New-AtwsContractBlock
   #>

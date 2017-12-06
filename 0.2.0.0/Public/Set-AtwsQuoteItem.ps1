@@ -10,12 +10,16 @@ Function Set-AtwsQuoteItem
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific QuoteItem through the Autotask Web Services API.
+      This function sets parameters on the QuoteItem specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific QuoteItem through the Autotask Web Services API.
+      This function sets parameters on the QuoteItem specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.QuoteItem]. This function returns the updated Autotask.QuoteItem that was returned by the API.
       .EXAMPLE
-      Set-AtwsQuoteItem [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsQuoteItem
+      Set-AtwsQuoteItem  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsQuoteItem
       .NOTES
       NAME: Set-AtwsQuoteItem
   #>

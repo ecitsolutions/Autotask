@@ -13,9 +13,13 @@ Function Remove-AtwsAccountToDo
       This function deletes a AccountToDo through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a AccountToDo through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.AccountToDo[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.AccountToDo that was passed to the function.
       .EXAMPLE
-      Remove-AtwsAccountToDo [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsAccountToDo
+      Remove-AtwsAccountToDo  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsAccountToDo
       .NOTES
       NAME: Remove-AtwsAccountToDo
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsAccountToDo
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.AccountToDo]

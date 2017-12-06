@@ -13,9 +13,13 @@ Function Remove-AtwsTicketChangeRequestApproval
       This function deletes a TicketChangeRequestApproval through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a TicketChangeRequestApproval through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TicketChangeRequestApproval[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.TicketChangeRequestApproval that was passed to the function.
       .EXAMPLE
-      Remove-AtwsTicketChangeRequestApproval [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsTicketChangeRequestApproval
+      Remove-AtwsTicketChangeRequestApproval  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsTicketChangeRequestApproval
       .NOTES
       NAME: Remove-AtwsTicketChangeRequestApproval
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsTicketChangeRequestApproval
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TicketChangeRequestApproval]

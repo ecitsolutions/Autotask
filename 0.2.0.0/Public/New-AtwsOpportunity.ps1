@@ -13,9 +13,13 @@ Function New-AtwsOpportunity
       This function creates a new Opportunity through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new Opportunity through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.Opportunity]. This function outputs the Autotask.Opportunity that was created by the API.
       .EXAMPLE
-      New-AtwsOpportunity [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsOpportunity
+      New-AtwsOpportunity  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsOpportunity
       .NOTES
       NAME: New-AtwsOpportunity
   #>

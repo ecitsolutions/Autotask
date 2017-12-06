@@ -13,9 +13,13 @@ Function Update-AtwsExpenseReport
       This function updates a ExpenseReport through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ExpenseReport through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ExpenseReport[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ExpenseReport[]]. This function returns the updated Autotask.ExpenseReport that was returned by the API.
       .EXAMPLE
-      Update-AtwsExpenseReport [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsExpenseReport
+      Update-AtwsExpenseReport  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsExpenseReport
       .NOTES
       NAME: Update-AtwsExpenseReport
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsExpenseReport
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ExpenseReport]

@@ -10,12 +10,16 @@ Function Set-AtwsPriceListWorkTypeModifier
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific PriceListWorkTypeModifier through the Autotask Web Services API.
+      This function sets parameters on the PriceListWorkTypeModifier specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific PriceListWorkTypeModifier through the Autotask Web Services API.
+      This function sets parameters on the PriceListWorkTypeModifier specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.PriceListWorkTypeModifier]. This function returns the updated Autotask.PriceListWorkTypeModifier that was returned by the API.
       .EXAMPLE
-      Set-AtwsPriceListWorkTypeModifier [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsPriceListWorkTypeModifier
+      Set-AtwsPriceListWorkTypeModifier  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsPriceListWorkTypeModifier
       .NOTES
       NAME: Set-AtwsPriceListWorkTypeModifier
   #>

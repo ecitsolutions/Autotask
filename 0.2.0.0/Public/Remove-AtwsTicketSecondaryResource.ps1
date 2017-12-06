@@ -13,9 +13,13 @@ Function Remove-AtwsTicketSecondaryResource
       This function deletes a TicketSecondaryResource through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a TicketSecondaryResource through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.TicketSecondaryResource[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.TicketSecondaryResource that was passed to the function.
       .EXAMPLE
-      Remove-AtwsTicketSecondaryResource [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsTicketSecondaryResource
+      Remove-AtwsTicketSecondaryResource  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsTicketSecondaryResource
       .NOTES
       NAME: Remove-AtwsTicketSecondaryResource
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsTicketSecondaryResource
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.TicketSecondaryResource]

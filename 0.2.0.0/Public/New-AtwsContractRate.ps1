@@ -13,9 +13,13 @@ Function New-AtwsContractRate
       This function creates a new ContractRate through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new ContractRate through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.ContractRate]. This function outputs the Autotask.ContractRate that was created by the API.
       .EXAMPLE
-      New-AtwsContractRate [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsContractRate
+      New-AtwsContractRate  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsContractRate
       .NOTES
       NAME: New-AtwsContractRate
   #>

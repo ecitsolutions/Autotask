@@ -10,12 +10,16 @@ Function Set-AtwsContractRetainer
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ContractRetainer through the Autotask Web Services API.
+      This function sets parameters on the ContractRetainer specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ContractRetainer through the Autotask Web Services API.
+      This function sets parameters on the ContractRetainer specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ContractRetainer]. This function returns the updated Autotask.ContractRetainer that was returned by the API.
       .EXAMPLE
-      Set-AtwsContractRetainer [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsContractRetainer
+      Set-AtwsContractRetainer  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsContractRetainer
       .NOTES
       NAME: Set-AtwsContractRetainer
   #>

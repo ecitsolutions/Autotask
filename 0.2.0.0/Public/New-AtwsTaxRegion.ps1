@@ -13,9 +13,13 @@ Function New-AtwsTaxRegion
       This function creates a new TaxRegion through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new TaxRegion through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.TaxRegion]. This function outputs the Autotask.TaxRegion that was created by the API.
       .EXAMPLE
-      New-AtwsTaxRegion [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsTaxRegion
+      New-AtwsTaxRegion  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsTaxRegion
       .NOTES
       NAME: New-AtwsTaxRegion
   #>

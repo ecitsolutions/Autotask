@@ -13,9 +13,13 @@ Function Remove-AtwsContractExclusionAllocationCode
       This function deletes a ContractExclusionAllocationCode through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a ContractExclusionAllocationCode through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ContractExclusionAllocationCode[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.ContractExclusionAllocationCode that was passed to the function.
       .EXAMPLE
-      Remove-AtwsContractExclusionAllocationCode [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsContractExclusionAllocationCode
+      Remove-AtwsContractExclusionAllocationCode  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsContractExclusionAllocationCode
       .NOTES
       NAME: Remove-AtwsContractExclusionAllocationCode
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsContractExclusionAllocationCode
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ContractExclusionAllocationCode]

@@ -13,9 +13,13 @@ Function Update-AtwsInstalledProductTypeUdfAssociation
       This function updates a InstalledProductTypeUdfAssociation through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a InstalledProductTypeUdfAssociation through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.InstalledProductTypeUdfAssociation[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.InstalledProductTypeUdfAssociation[]]. This function returns the updated Autotask.InstalledProductTypeUdfAssociation that was returned by the API.
       .EXAMPLE
-      Update-AtwsInstalledProductTypeUdfAssociation [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsInstalledProductTypeUdfAssociation
+      Update-AtwsInstalledProductTypeUdfAssociation  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsInstalledProductTypeUdfAssociation
       .NOTES
       NAME: Update-AtwsInstalledProductTypeUdfAssociation
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsInstalledProductTypeUdfAssociation
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.InstalledProductTypeUdfAssociation]

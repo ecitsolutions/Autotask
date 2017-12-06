@@ -13,9 +13,13 @@ Function Update-AtwsAccountToDo
       This function updates a AccountToDo through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a AccountToDo through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.AccountToDo[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.AccountToDo[]]. This function returns the updated Autotask.AccountToDo that was returned by the API.
       .EXAMPLE
-      Update-AtwsAccountToDo [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsAccountToDo
+      Update-AtwsAccountToDo  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsAccountToDo
       .NOTES
       NAME: Update-AtwsAccountToDo
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsAccountToDo
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.AccountToDo]

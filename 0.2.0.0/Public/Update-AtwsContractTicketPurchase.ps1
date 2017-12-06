@@ -13,9 +13,13 @@ Function Update-AtwsContractTicketPurchase
       This function updates a ContractTicketPurchase through the Autotask Web Services API.
       .DESCRIPTION
       This function updates a ContractTicketPurchase through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ContractTicketPurchase[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      [Autototask.ContractTicketPurchase[]]. This function returns the updated Autotask.ContractTicketPurchase that was returned by the API.
       .EXAMPLE
-      Update-AtwsContractTicketPurchase [-ParameterName] [Parameter value]
-      Use Get-Help Update-AtwsContractTicketPurchase
+      Update-AtwsContractTicketPurchase  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Update-AtwsContractTicketPurchase
       .NOTES
       NAME: Update-AtwsContractTicketPurchase
   #>
@@ -24,7 +28,8 @@ Function Update-AtwsContractTicketPurchase
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ContractTicketPurchase]

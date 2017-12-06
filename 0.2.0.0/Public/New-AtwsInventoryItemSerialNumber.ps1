@@ -13,9 +13,13 @@ Function New-AtwsInventoryItemSerialNumber
       This function creates a new InventoryItemSerialNumber through the Autotask Web Services API.
       .DESCRIPTION
       This function creates a new InventoryItemSerialNumber through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autotask.InventoryItemSerialNumber]. This function outputs the Autotask.InventoryItemSerialNumber that was created by the API.
       .EXAMPLE
-      New-AtwsInventoryItemSerialNumber [-ParameterName] [Parameter value]
-      Use Get-Help New-AtwsInventoryItemSerialNumber
+      New-AtwsInventoryItemSerialNumber  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help New-AtwsInventoryItemSerialNumber
       .NOTES
       NAME: New-AtwsInventoryItemSerialNumber
   #>

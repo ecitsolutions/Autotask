@@ -10,12 +10,16 @@ Function Set-AtwsProject
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific Project through the Autotask Web Services API.
+      This function sets parameters on the Project specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific Project through the Autotask Web Services API.
+      This function sets parameters on the Project specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.Project]. This function returns the updated Autotask.Project that was returned by the API.
       .EXAMPLE
-      Set-AtwsProject [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsProject
+      Set-AtwsProject  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsProject
       .NOTES
       NAME: Set-AtwsProject
   #>

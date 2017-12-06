@@ -10,12 +10,16 @@ Function Set-AtwsAccountNote
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific AccountNote through the Autotask Web Services API.
+      This function sets parameters on the AccountNote specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific AccountNote through the Autotask Web Services API.
+      This function sets parameters on the AccountNote specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.AccountNote]. This function returns the updated Autotask.AccountNote that was returned by the API.
       .EXAMPLE
-      Set-AtwsAccountNote [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsAccountNote
+      Set-AtwsAccountNote  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsAccountNote
       .NOTES
       NAME: Set-AtwsAccountNote
   #>

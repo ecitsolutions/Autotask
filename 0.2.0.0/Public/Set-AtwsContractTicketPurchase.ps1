@@ -10,12 +10,16 @@ Function Set-AtwsContractTicketPurchase
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific ContractTicketPurchase through the Autotask Web Services API.
+      This function sets parameters on the ContractTicketPurchase specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific ContractTicketPurchase through the Autotask Web Services API.
+      This function sets parameters on the ContractTicketPurchase specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.ContractTicketPurchase]. This function returns the updated Autotask.ContractTicketPurchase that was returned by the API.
       .EXAMPLE
-      Set-AtwsContractTicketPurchase [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsContractTicketPurchase
+      Set-AtwsContractTicketPurchase  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsContractTicketPurchase
       .NOTES
       NAME: Set-AtwsContractTicketPurchase
   #>

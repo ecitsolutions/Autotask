@@ -10,12 +10,16 @@ Function Set-AtwsPaymentTerm
 {
   <#
       .SYNOPSIS
-      This function sets parameters on a specific PaymentTerm through the Autotask Web Services API.
+      This function sets parameters on the PaymentTerm specified by the -id parameter through the Autotask Web Services API.
       .DESCRIPTION
-      This function sets parameters on a specific PaymentTerm through the Autotask Web Services API.
+      This function sets parameters on the PaymentTerm specified by the -id parameter through the Autotask Web Services API.
+      .INPUTS
+      Nothing. This function only takes parameters.
+      .OUTPUTS
+      [Autototask.PaymentTerm]. This function returns the updated Autotask.PaymentTerm that was returned by the API.
       .EXAMPLE
-      Set-AtwsPaymentTerm [-ParameterName] [Parameter value]
-      Use Get-Help Set-AtwsPaymentTerm
+      Set-AtwsPaymentTerm  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Set-AtwsPaymentTerm
       .NOTES
       NAME: Set-AtwsPaymentTerm
   #>

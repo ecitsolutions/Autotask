@@ -13,9 +13,13 @@ Function Remove-AtwsServiceCall
       This function deletes a ServiceCall through the Autotask Web Services API.
       .DESCRIPTION
       This function deletes a ServiceCall through the Autotask Web Services API.
+      .INPUTS
+      [Autotask.ServiceCall[]]. This function takes objects as input. Pipeline is supported.
+      .OUTPUTS
+      Nothing. This fuction just deletes the Autotask.ServiceCall that was passed to the function.
       .EXAMPLE
-      Remove-AtwsServiceCall [-ParameterName] [Parameter value]
-      Use Get-Help Remove-AtwsServiceCall
+      Remove-AtwsServiceCall  [-ParameterName] [Parameter value]
+      For parameters, use Get-Help Remove-AtwsServiceCall
       .NOTES
       NAME: Remove-AtwsServiceCall
   #>
@@ -24,7 +28,8 @@ Function Remove-AtwsServiceCall
     (
                 [Parameter(
           Mandatory = $True,
-          ParameterSetName = 'Input_Object'
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = $True
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.ServiceCall]
