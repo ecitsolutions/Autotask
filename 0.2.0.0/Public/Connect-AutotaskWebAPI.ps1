@@ -91,7 +91,10 @@ Function Connect-AutotaskWebAPI
   End
   {
     Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    Return $global:atws
+    If (-not ($Silent))
+    {
+      Return $global:atws
+    }
   }
     
     
