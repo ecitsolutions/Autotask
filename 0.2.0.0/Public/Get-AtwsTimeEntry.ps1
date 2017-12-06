@@ -254,7 +254,70 @@ Function Get-AtwsTimeEntry
         )]
          [long]
          $ContractServiceBundleID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TaskID','TicketID','InternalAllocationCodeID','DateWorked','StartDateTime','EndDateTime','HoursWorked','HoursToBill','OffsetHours','SummaryNotes','InternalNotes','RoleID','CreateDateTime','ResourceID','CreatorUserID','LastModifiedUserID','LastModifiedDateTime','AllocationCodeID','ContractID','ShowOnInvoice','NonBillable','BillingApprovalLevelMostRecent','BillingApprovalResourceID','BillingApprovalDateTime','ContractServiceID','ContractServiceBundleID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TaskID','TicketID','InternalAllocationCodeID','DateWorked','StartDateTime','EndDateTime','HoursWorked','HoursToBill','OffsetHours','SummaryNotes','InternalNotes','RoleID','CreateDateTime','ResourceID','CreatorUserID','LastModifiedUserID','LastModifiedDateTime','AllocationCodeID','ContractID','ShowOnInvoice','NonBillable','BillingApprovalLevelMostRecent','BillingApprovalResourceID','BillingApprovalDateTime','ContractServiceID','ContractServiceBundleID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TaskID','TicketID','InternalAllocationCodeID','DateWorked','StartDateTime','EndDateTime','HoursWorked','HoursToBill','OffsetHours','SummaryNotes','InternalNotes','RoleID','CreateDateTime','ResourceID','CreatorUserID','LastModifiedUserID','LastModifiedDateTime','AllocationCodeID','ContractID','ShowOnInvoice','NonBillable','BillingApprovalLevelMostRecent','BillingApprovalResourceID','BillingApprovalDateTime','ContractServiceID','ContractServiceBundleID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TaskID','TicketID','InternalAllocationCodeID','DateWorked','StartDateTime','EndDateTime','HoursWorked','HoursToBill','OffsetHours','SummaryNotes','InternalNotes','RoleID','CreateDateTime','ResourceID','CreatorUserID','LastModifiedUserID','LastModifiedDateTime','AllocationCodeID','ContractID','ShowOnInvoice','NonBillable','BillingApprovalLevelMostRecent','BillingApprovalResourceID','BillingApprovalDateTime','ContractServiceID','ContractServiceBundleID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','TaskID','TicketID','InternalAllocationCodeID','DateWorked','StartDateTime','EndDateTime','HoursWorked','HoursToBill','OffsetHours','SummaryNotes','InternalNotes','RoleID','CreateDateTime','ResourceID','CreatorUserID','LastModifiedUserID','LastModifiedDateTime','AllocationCodeID','ContractID','ShowOnInvoice','NonBillable','BillingApprovalLevelMostRecent','BillingApprovalResourceID','BillingApprovalDateTime','ContractServiceID','ContractServiceBundleID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('SummaryNotes','InternalNotes')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('SummaryNotes','InternalNotes')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('SummaryNotes','InternalNotes')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('SummaryNotes','InternalNotes')]
+        [String[]]
+        $EndsWith
     )
 
 

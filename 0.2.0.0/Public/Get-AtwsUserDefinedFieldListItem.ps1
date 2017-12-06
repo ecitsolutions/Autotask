@@ -68,7 +68,70 @@ Function Get-AtwsUserDefinedFieldListItem
         )]
          [datetime]
          $CreateDate
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','UdfFieldId','ValueForExport','ValueForDisplay','CreateDate')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','UdfFieldId','ValueForExport','ValueForDisplay','CreateDate')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','UdfFieldId','ValueForExport','ValueForDisplay','CreateDate')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','UdfFieldId','ValueForExport','ValueForDisplay','CreateDate')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','UdfFieldId','ValueForExport','ValueForDisplay','CreateDate')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ValueForExport','ValueForDisplay')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ValueForExport','ValueForDisplay')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ValueForExport','ValueForDisplay')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ValueForExport','ValueForDisplay')]
+        [String[]]
+        $EndsWith
     )
 
 

@@ -178,7 +178,70 @@ Function Get-AtwsUserDefinedFieldDefinition
         )]
          [boolean]
          $IsEncrypted
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','DefaultValue','IsFieldMapping','IsProtected','IsRequired','IsActive','CreateDate','MergeVariableName','CrmToProjectUdfId','SortOrder','NumberOfDecimalPlaces','IsVisibleToClientPortal','IsEncrypted')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','DefaultValue','IsFieldMapping','IsProtected','IsRequired','IsActive','CreateDate','MergeVariableName','CrmToProjectUdfId','SortOrder','NumberOfDecimalPlaces','IsVisibleToClientPortal','IsEncrypted')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','DefaultValue','IsFieldMapping','IsProtected','IsRequired','IsActive','CreateDate','MergeVariableName','CrmToProjectUdfId','SortOrder','NumberOfDecimalPlaces','IsVisibleToClientPortal','IsEncrypted')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','DefaultValue','IsFieldMapping','IsProtected','IsRequired','IsActive','CreateDate','MergeVariableName','CrmToProjectUdfId','SortOrder','NumberOfDecimalPlaces','IsVisibleToClientPortal','IsEncrypted')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','DefaultValue','IsFieldMapping','IsProtected','IsRequired','IsActive','CreateDate','MergeVariableName','CrmToProjectUdfId','SortOrder','NumberOfDecimalPlaces','IsVisibleToClientPortal','IsEncrypted')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','DefaultValue','MergeVariableName')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','DefaultValue','MergeVariableName')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','DefaultValue','MergeVariableName')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','DefaultValue','MergeVariableName')]
+        [String[]]
+        $EndsWith
     )
 
 
