@@ -50,10 +50,18 @@ Function Import-AtwsCmdLet
       {
         $Verbs += 'Update'
       }
-    
+      Write-Verbose ('{0}: Getting FieldInfo() for Entity [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $Entity.Name)
+      $FieldInfo = $Atws.GetFieldInfo($Entity.Name)
+      Foreach ($Field in $FieldInfo)
+      {
+        Add-Member -InputObject $Field -MemberType NoteProperty -Name 'ParameterSet' -Value 'By_parameters'
+        Add-Member -InputObject $Field -MemberType NoteProperty -Name 'Mandatory' -Value $Field.IsRequired
+      }
       Foreach ($Verb in $Verbs)
       {
         $FunctionName = '{0}-{1}{2}' -F $Verb, $Prefix, $Entity.Name
+
+        Write-Verbose ('{0}: Creating Function {1}' -F $MyInvocation.MyCommand.Name, $FunctionName)
       
         # Start function and get parameter definition 
         Switch ($Verb) {
@@ -139,7 +147,7 @@ Function $FunctionName
 	  [CmdLetBinding(DefaultParameterSetName='$DefaultParameterSetName')]
     Param
     (
-        $(Get-AtwsParameterDefinition -Entity $Entity -Verb $Verb -FieldInfo $Atws.GetFieldInfo($Entity.Name))
+        $(Get-AtwsParameterDefinition -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo)
     )
 
 
@@ -217,39 +225,18 @@ Function $FunctionName
       {
         'Get' 
         { 
-          $Fields = $FieldInfo |
-          Where-Object -FilterScript {
-            $_.IsQueryable
-          } |
-          ForEach-Object -Process {
-            Add-Member -InputObject $_ -MemberType NoteProperty -Name 'ParameterSet' -Value 'By_parameters'
-            Add-Member -InputObject $_ -MemberType NoteProperty -Name 'Mandatory' -Value $False
+          $Fields = $FieldInfo.Where({$_.IsQueryable})| ForEach-Object -Process {
+            $_.Mandatory = $False
             $_
           }
         }
         'Set' 
         { 
-          $Fields = $FieldInfo|
-          Where-Object -FilterScript {
-            -not ($_.IsReadOnly)
-          } |
-          ForEach-Object -Process {
-            Add-Member -InputObject $_ -MemberType NoteProperty -Name 'ParameterSet' -Value 'By_parameters'
-            Add-Member -InputObject $_ -MemberType NoteProperty -Name 'Mandatory' -Value $_.IsRequired
-            $_
-          }
+          $Fields = $FieldInfo.Where({-Not $_.IsReadOnly})
         }
         'New' 
         { 
-          $Fields = $FieldInfo |
-          Where-Object -FilterScript {
-            -not ($_.IsReadOnly)
-          } |
-          ForEach-Object -Process {
-            Add-Member -InputObject $_ -MemberType NoteProperty -Name 'ParameterSet' -Value 'By_parameters' 
-            Add-Member -InputObject $_ -MemberType NoteProperty -Name 'Mandatory' -Value $_.IsRequired
-            $_
-          }
+          $Fields = $FieldInfo.Where({-Not $_.IsReadOnly})
         }
         default 
         {
@@ -590,12 +577,8 @@ Function $FunctionName
               Set-Content -Path $FilePath -Value $Function.Value -Force -Encoding UTF8
             }
           }
-        
-          Write-Verbose -Message ('{0}: Invoking code function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
-          #$FunctionScriptBlock = [ScriptBlock]::Create($($Function.Value))
-          #$FunctionScriptBlock.Invoke()
-          
-          $Global:ModuleFunctions += $Function.Value
+                 
+          $ModuleFunctions += $Function.Value
         }
       }
     }
