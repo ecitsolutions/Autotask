@@ -6,7 +6,7 @@ See https://github.com/officecenter/OCH-Public/blob/master/LICENSE for license i
 
 #>
 
-Function Global:Remove-AtwsTaskPredecessor
+Function Remove-AtwsTaskPredecessor
 {
   <#
       .SYNOPSIS

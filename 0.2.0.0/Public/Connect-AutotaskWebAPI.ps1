@@ -8,7 +8,7 @@
 
 Function Connect-AutotaskWebAPI
 {
-   <#
+  <#
       .SYNOPSIS
       This function connects to the Autotask Web Services API.
       .DESCRIPTION
@@ -30,40 +30,69 @@ Function Connect-AutotaskWebAPI
       New-AtwsQuery
   #>
 	
-    [cmdletbinding()]
-    Param
-    (
-        [pscredential]
-        $Credential = $(Get-Credential -Message 'Autotask Web Services API login'),
+  [cmdletbinding()]
+  Param
+  (
+    [pscredential]
+    $Credential = $(Get-Credential -Message 'Autotask Web Services API login'),
         
-        [Switch]
-        $Silent = $false
-    )
+    [Switch]
+    $Silent = $false
+  )
     
-    Do
-    { 
-        # Make sure Windows does not try to add a domain to username
-        # Prefix username with a backslash if nobody has added one yet
-        If ($($Credential.UserName).Substring(0,1) -ne '\')
-        {
-            $Credential = New-Object System.Management.Automation.PSCredential("\$($Credential.UserName)",$($Credential.Password))
-        }
+  Begin
+  { 
+    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    $DefaultUri = 'https://webservices.Autotask.net/atservices/1.5/atws.wsdl'
+  }
+  
+  Process
+  { 
+       
     
-        # Start with a GetZoneInfo()
-        $RootService = New-WebServiceProxy -URI https://webservices.Autotask.net/atservices/1.5/atws.wsdl 
-        $ZoneInfo = $RootService.getZoneInfo($Credential.UserName)
-        If ($ZoneInfo.ErrorCode -ne 0)
-        {
-            Write-Error ('Invalid username "{0}". Try again.' -f $User)
-            $Credential = $(Get-Credential -Message 'Autotask Web Services API login')
-        }
+    # Make sure Windows does not try to add a domain to username
+    # Prefix username with a backslash if nobody has added one yet
+    If ($($Credential.UserName).Substring(0,1) -ne '\')
+    {
+      $Credential = New-Object System.Management.Automation.PSCredential("\$($Credential.UserName)",$($Credential.Password))
     }
-    Until ($ZoneInfo.ErrorCode -eq 0 -or $Silent)
+    
+    Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $Credential.UserName, $DefaultUri)
+
+    $RootService = New-WebServiceProxy -URI $DefaultUri
+    $ZoneInfo = $RootService.getZoneInfo($Credential.UserName)
+    If ($ZoneInfo.ErrorCode -ne 0)
+    {
+      Write-Error ('Invalid username "{0}". Try again.' -f $User)
+      Return
+    }
+    
+    Write-Verbose ('{0}: Customer tenant ID: {1}, Web URL: {2}, SOAP endpoint: {3}' -F $MyInvocation.MyCommand.Name, $ZoneInfo.CI, $ZoneInfo.WebUrl, $ZoneInfo.Url)
     
     $Uri = $ZoneInfo.URL -replace 'atws.asmx','atws.wsdl'
     
     # Make sure a failure to create this object truly fails the script
+    Write-Verbose ('{0}: Creating New-WebServiceProxy against URI: {1}' -F $MyInvocation.MyCommand.Name, $Uri)
     $global:atws = New-WebServiceProxy -URI $Uri  -Credential $credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
     
+    If ($atws.Credentials.SecurePassword.Length -lt $Credential.Password.Length)
+    {
+      Write-Verbose ('{0}: Setting credential object of New-WebServiceProxy (when did this become necessary??)' -F $MyInvocation.MyCommand.Name)
+      $atws.Credentials = $Credential
+    }
+ 
+    
+    Write-Verbose ('{0}: Running query Get-AtwsData -Entity Account -Filter {{id -eq 0}}' -F $MyInvocation.MyCommand.Name)
+    
+    Get-AtwsData -Entity Account -Filter {id -eq 0}
+    
+  }
+  
+  End
+  {
+    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
     Return $global:atws
+  }
+    
+    
 }

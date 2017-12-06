@@ -6,7 +6,7 @@ See https://github.com/officecenter/OCH-Public/blob/master/LICENSE for license i
 
 #>
 
-Function Global:Update-AtwsAccountAlert
+Function Update-AtwsAccountAlert
 {
   <#
       .SYNOPSIS
