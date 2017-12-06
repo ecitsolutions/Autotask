@@ -242,7 +242,70 @@ Function Get-AtwsTask
         )]
          [string]
          $Title
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AllocationCodeID','AssignedResourceID','AssignedResourceRoleID','CanClientPortalUserCompleteTask','CompletedDateTime','CreateDateTime','CreatorResourceID','Description','EndDateTime','EstimatedHours','ExternalID','HoursToBeScheduled','id','IsVisibleInClientPortal','LastActivityDateTime','PhaseID','Priority','ProjectID','PurchaseOrderNumber','StartDateTime','TaskIsBillable','TaskNumber','Title')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AllocationCodeID','AssignedResourceID','AssignedResourceRoleID','CanClientPortalUserCompleteTask','CompletedDateTime','CreateDateTime','CreatorResourceID','Description','EndDateTime','EstimatedHours','ExternalID','HoursToBeScheduled','id','IsVisibleInClientPortal','LastActivityDateTime','PhaseID','Priority','ProjectID','PurchaseOrderNumber','StartDateTime','TaskIsBillable','TaskNumber','Title')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AllocationCodeID','AssignedResourceID','AssignedResourceRoleID','CanClientPortalUserCompleteTask','CompletedDateTime','CreateDateTime','CreatorResourceID','Description','EndDateTime','EstimatedHours','ExternalID','HoursToBeScheduled','id','IsVisibleInClientPortal','LastActivityDateTime','PhaseID','Priority','ProjectID','PurchaseOrderNumber','StartDateTime','TaskIsBillable','TaskNumber','Title')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AllocationCodeID','AssignedResourceID','AssignedResourceRoleID','CanClientPortalUserCompleteTask','CompletedDateTime','CreateDateTime','CreatorResourceID','Description','EndDateTime','EstimatedHours','ExternalID','HoursToBeScheduled','id','IsVisibleInClientPortal','LastActivityDateTime','PhaseID','Priority','ProjectID','PurchaseOrderNumber','StartDateTime','TaskIsBillable','TaskNumber','Title')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('AllocationCodeID','AssignedResourceID','AssignedResourceRoleID','CanClientPortalUserCompleteTask','CompletedDateTime','CreateDateTime','CreatorResourceID','Description','EndDateTime','EstimatedHours','ExternalID','HoursToBeScheduled','id','IsVisibleInClientPortal','LastActivityDateTime','PhaseID','Priority','ProjectID','PurchaseOrderNumber','StartDateTime','TaskIsBillable','TaskNumber','Title')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','PurchaseOrderNumber','TaskNumber','Title')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','PurchaseOrderNumber','TaskNumber','Title')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','PurchaseOrderNumber','TaskNumber','Title')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','PurchaseOrderNumber','TaskNumber','Title')]
+        [String[]]
+        $EndsWith
     )
 
 

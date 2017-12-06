@@ -136,7 +136,70 @@ Function Get-AtwsSubscription
         )]
          [Int]
          $VendorID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','MaterialCodeID','Description','SubscriptionName','ExpirationDate','EffectiveDate','TotalCost','TotalPrice','InstalledProductID','PurchaseOrderNumber','VendorID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','MaterialCodeID','Description','SubscriptionName','ExpirationDate','EffectiveDate','TotalCost','TotalPrice','InstalledProductID','PurchaseOrderNumber','VendorID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','MaterialCodeID','Description','SubscriptionName','ExpirationDate','EffectiveDate','TotalCost','TotalPrice','InstalledProductID','PurchaseOrderNumber','VendorID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','MaterialCodeID','Description','SubscriptionName','ExpirationDate','EffectiveDate','TotalCost','TotalPrice','InstalledProductID','PurchaseOrderNumber','VendorID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','MaterialCodeID','Description','SubscriptionName','ExpirationDate','EffectiveDate','TotalCost','TotalPrice','InstalledProductID','PurchaseOrderNumber','VendorID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','SubscriptionName','PurchaseOrderNumber','PeriodType')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','SubscriptionName','PurchaseOrderNumber','PeriodType')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','SubscriptionName','PurchaseOrderNumber','PeriodType')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','SubscriptionName','PurchaseOrderNumber','PeriodType')]
+        [String[]]
+        $EndsWith
     )
 
 

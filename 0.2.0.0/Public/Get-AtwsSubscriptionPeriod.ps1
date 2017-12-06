@@ -84,7 +84,70 @@ Function Get-AtwsSubscriptionPeriod
         )]
          [string]
          $PurchaseOrderNumber
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','PeriodDate','PostedDate','SubscriptionID','PeriodPrice','PeriodCost','PurchaseOrderNumber')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','PeriodDate','PostedDate','SubscriptionID','PeriodPrice','PeriodCost','PurchaseOrderNumber')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','PeriodDate','PostedDate','SubscriptionID','PeriodPrice','PeriodCost','PurchaseOrderNumber')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','PeriodDate','PostedDate','SubscriptionID','PeriodPrice','PeriodCost','PurchaseOrderNumber')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','PeriodDate','PostedDate','SubscriptionID','PeriodPrice','PeriodCost','PurchaseOrderNumber')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('PurchaseOrderNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('PurchaseOrderNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('PurchaseOrderNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('PurchaseOrderNumber')]
+        [String[]]
+        $EndsWith
     )
 
 
