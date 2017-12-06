@@ -108,7 +108,70 @@ Function Get-AtwsContractService
         )]
          [string]
          $InternalDescription
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','ServiceID','UnitPrice','AdjustedPrice','InvoiceDescription','QuoteItemID','InternalCurrencyUnitPrice','InternalCurrencyAdjustedPrice','InternalDescription')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','ServiceID','UnitPrice','AdjustedPrice','InvoiceDescription','QuoteItemID','InternalCurrencyUnitPrice','InternalCurrencyAdjustedPrice','InternalDescription')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','ServiceID','UnitPrice','AdjustedPrice','InvoiceDescription','QuoteItemID','InternalCurrencyUnitPrice','InternalCurrencyAdjustedPrice','InternalDescription')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','ServiceID','UnitPrice','AdjustedPrice','InvoiceDescription','QuoteItemID','InternalCurrencyUnitPrice','InternalCurrencyAdjustedPrice','InternalDescription')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','ServiceID','UnitPrice','AdjustedPrice','InvoiceDescription','QuoteItemID','InternalCurrencyUnitPrice','InternalCurrencyAdjustedPrice','InternalDescription')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceDescription','InternalDescription')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceDescription','InternalDescription')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceDescription','InternalDescription')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceDescription','InternalDescription')]
+        [String[]]
+        $EndsWith
     )
 
 

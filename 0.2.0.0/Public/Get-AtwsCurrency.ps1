@@ -118,7 +118,70 @@ Function Get-AtwsCurrency
         )]
          [string]
          $CurrencyNegativeFormat
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','ExchangeRate','LastModifiedDateTime','UpdateResourceId','IsInternalCurrency','Active','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','ExchangeRate','LastModifiedDateTime','UpdateResourceId','IsInternalCurrency','Active','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','ExchangeRate','LastModifiedDateTime','UpdateResourceId','IsInternalCurrency','Active','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','ExchangeRate','LastModifiedDateTime','UpdateResourceId','IsInternalCurrency','Active','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Description','ExchangeRate','LastModifiedDateTime','UpdateResourceId','IsInternalCurrency','Active','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Description','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $EndsWith
     )
 
 

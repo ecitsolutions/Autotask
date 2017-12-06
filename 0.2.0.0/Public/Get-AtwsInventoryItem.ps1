@@ -124,7 +124,70 @@ Function Get-AtwsInventoryItem
         )]
          [Int]
          $Picked
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','InventoryLocationID','QuantityOnHand','QuantityMinimum','QuantityMaximum','ReferenceNumber','Bin','OnOrder','BackOrder','Reserved','Picked')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','InventoryLocationID','QuantityOnHand','QuantityMinimum','QuantityMaximum','ReferenceNumber','Bin','OnOrder','BackOrder','Reserved','Picked')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','InventoryLocationID','QuantityOnHand','QuantityMinimum','QuantityMaximum','ReferenceNumber','Bin','OnOrder','BackOrder','Reserved','Picked')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','InventoryLocationID','QuantityOnHand','QuantityMinimum','QuantityMaximum','ReferenceNumber','Bin','OnOrder','BackOrder','Reserved','Picked')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','InventoryLocationID','QuantityOnHand','QuantityMinimum','QuantityMaximum','ReferenceNumber','Bin','OnOrder','BackOrder','Reserved','Picked')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ReferenceNumber','Bin')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ReferenceNumber','Bin')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ReferenceNumber','Bin')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('ReferenceNumber','Bin')]
+        [String[]]
+        $EndsWith
     )
 
 

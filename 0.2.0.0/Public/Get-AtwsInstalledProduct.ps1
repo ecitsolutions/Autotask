@@ -280,7 +280,70 @@ Function Get-AtwsInstalledProduct
 
         [String]
          $ServiceLevelAgreementID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreateDate','AccountID','Active','DailyCost','HourlyCost','id','InstallDate','MonthlyCost','Notes','NumberOfUsers','PerUseCost','ProductID','ReferenceNumber','ReferenceTitle','SerialNumber','SetupFee','WarrantyExpirationDate','ContractID','ServiceID','ServiceBundleID','Location','ContactID','VendorID','InstalledByID','InstalledByContactID','ParentInstalledProductID','LastModifiedTime','ContractServiceID','ContractServiceBundleID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreateDate','AccountID','Active','DailyCost','HourlyCost','id','InstallDate','MonthlyCost','Notes','NumberOfUsers','PerUseCost','ProductID','ReferenceNumber','ReferenceTitle','SerialNumber','SetupFee','WarrantyExpirationDate','ContractID','ServiceID','ServiceBundleID','Location','ContactID','VendorID','InstalledByID','InstalledByContactID','ParentInstalledProductID','LastModifiedTime','ContractServiceID','ContractServiceBundleID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreateDate','AccountID','Active','DailyCost','HourlyCost','id','InstallDate','MonthlyCost','Notes','NumberOfUsers','PerUseCost','ProductID','ReferenceNumber','ReferenceTitle','SerialNumber','SetupFee','WarrantyExpirationDate','ContractID','ServiceID','ServiceBundleID','Location','ContactID','VendorID','InstalledByID','InstalledByContactID','ParentInstalledProductID','LastModifiedTime','ContractServiceID','ContractServiceBundleID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreateDate','AccountID','Active','DailyCost','HourlyCost','id','InstallDate','MonthlyCost','Notes','NumberOfUsers','PerUseCost','ProductID','ReferenceNumber','ReferenceTitle','SerialNumber','SetupFee','WarrantyExpirationDate','ContractID','ServiceID','ServiceBundleID','Location','ContactID','VendorID','InstalledByID','InstalledByContactID','ParentInstalledProductID','LastModifiedTime','ContractServiceID','ContractServiceBundleID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreateDate','AccountID','Active','DailyCost','HourlyCost','id','InstallDate','MonthlyCost','Notes','NumberOfUsers','PerUseCost','ProductID','ReferenceNumber','ReferenceTitle','SerialNumber','SetupFee','WarrantyExpirationDate','ContractID','ServiceID','ServiceBundleID','Location','ContactID','VendorID','InstalledByID','InstalledByContactID','ParentInstalledProductID','LastModifiedTime','ContractServiceID','ContractServiceBundleID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Notes','ReferenceNumber','ReferenceTitle','SerialNumber','Location')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Notes','ReferenceNumber','ReferenceTitle','SerialNumber','Location')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Notes','ReferenceNumber','ReferenceTitle','SerialNumber','Location')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Notes','ReferenceNumber','ReferenceTitle','SerialNumber','Location')]
+        [String[]]
+        $EndsWith
     )
 
 

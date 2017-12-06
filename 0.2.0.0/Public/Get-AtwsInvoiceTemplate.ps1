@@ -250,7 +250,70 @@ Function Get-AtwsInvoiceTemplate
         )]
          [string]
          $CurrencyNegativeFormat
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','DisplayTaxCategory','DisplayTaxCategorySuperscripts','DisplaySeparateLineItemForEachTax','ItemizeServicesAndBundles','DisplayZeroAmountRecurringServicesAndBundles','DisplayRecurringServiceContractLabor','DisplayFixedPriceContractLabor','RateCostExpression','CoveredByRecurringServiceFixedPricePerTicketContractLabel','CoveredByBlockRetainerContractLabel','NonBillableLaborLabel','PaymentTerms','Name','ShowGridHeader','ShowVerticalGridLines','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','DisplayTaxCategory','DisplayTaxCategorySuperscripts','DisplaySeparateLineItemForEachTax','ItemizeServicesAndBundles','DisplayZeroAmountRecurringServicesAndBundles','DisplayRecurringServiceContractLabor','DisplayFixedPriceContractLabor','RateCostExpression','CoveredByRecurringServiceFixedPricePerTicketContractLabel','CoveredByBlockRetainerContractLabel','NonBillableLaborLabel','PaymentTerms','Name','ShowGridHeader','ShowVerticalGridLines','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','DisplayTaxCategory','DisplayTaxCategorySuperscripts','DisplaySeparateLineItemForEachTax','ItemizeServicesAndBundles','DisplayZeroAmountRecurringServicesAndBundles','DisplayRecurringServiceContractLabor','DisplayFixedPriceContractLabor','RateCostExpression','CoveredByRecurringServiceFixedPricePerTicketContractLabel','CoveredByBlockRetainerContractLabel','NonBillableLaborLabel','PaymentTerms','Name','ShowGridHeader','ShowVerticalGridLines','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','DisplayTaxCategory','DisplayTaxCategorySuperscripts','DisplaySeparateLineItemForEachTax','ItemizeServicesAndBundles','DisplayZeroAmountRecurringServicesAndBundles','DisplayRecurringServiceContractLabor','DisplayFixedPriceContractLabor','RateCostExpression','CoveredByRecurringServiceFixedPricePerTicketContractLabel','CoveredByBlockRetainerContractLabel','NonBillableLaborLabel','PaymentTerms','Name','ShowGridHeader','ShowVerticalGridLines','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','DisplayTaxCategory','DisplayTaxCategorySuperscripts','DisplaySeparateLineItemForEachTax','ItemizeServicesAndBundles','DisplayZeroAmountRecurringServicesAndBundles','DisplayRecurringServiceContractLabor','DisplayFixedPriceContractLabor','RateCostExpression','CoveredByRecurringServiceFixedPricePerTicketContractLabel','CoveredByBlockRetainerContractLabel','NonBillableLaborLabel','PaymentTerms','Name','ShowGridHeader','ShowVerticalGridLines','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('RateCostExpression','CoveredByRecurringServiceFixedPricePerTicketContractLabel','CoveredByBlockRetainerContractLabel','NonBillableLaborLabel','Name','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('RateCostExpression','CoveredByRecurringServiceFixedPricePerTicketContractLabel','CoveredByBlockRetainerContractLabel','NonBillableLaborLabel','Name','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('RateCostExpression','CoveredByRecurringServiceFixedPricePerTicketContractLabel','CoveredByBlockRetainerContractLabel','NonBillableLaborLabel','Name','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('RateCostExpression','CoveredByRecurringServiceFixedPricePerTicketContractLabel','CoveredByBlockRetainerContractLabel','NonBillableLaborLabel','Name','CurrencyPositiveFormat','CurrencyNegativeFormat')]
+        [String[]]
+        $EndsWith
     )
 
 

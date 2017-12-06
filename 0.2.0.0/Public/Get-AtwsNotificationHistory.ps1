@@ -188,7 +188,70 @@ Function Get-AtwsNotificationHistory
         )]
          [long]
          $TimeEntryID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','NotificationSentTime','TemplateName','IsDeleted','IsActive','IsTemplateJob','InitiatingResourceID','InitiatingContactID','RecipientEmailAddress','RecipientDisplayName','AccountID','QuoteID','OpportunityID','ProjectID','TaskID','TicketID','TimeEntryID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','NotificationSentTime','TemplateName','IsDeleted','IsActive','IsTemplateJob','InitiatingResourceID','InitiatingContactID','RecipientEmailAddress','RecipientDisplayName','AccountID','QuoteID','OpportunityID','ProjectID','TaskID','TicketID','TimeEntryID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','NotificationSentTime','TemplateName','IsDeleted','IsActive','IsTemplateJob','InitiatingResourceID','InitiatingContactID','RecipientEmailAddress','RecipientDisplayName','AccountID','QuoteID','OpportunityID','ProjectID','TaskID','TicketID','TimeEntryID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','NotificationSentTime','TemplateName','IsDeleted','IsActive','IsTemplateJob','InitiatingResourceID','InitiatingContactID','RecipientEmailAddress','RecipientDisplayName','AccountID','QuoteID','OpportunityID','ProjectID','TaskID','TicketID','TimeEntryID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','NotificationSentTime','TemplateName','IsDeleted','IsActive','IsTemplateJob','InitiatingResourceID','InitiatingContactID','RecipientEmailAddress','RecipientDisplayName','AccountID','QuoteID','OpportunityID','ProjectID','TaskID','TicketID','TimeEntryID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('TemplateName','EntityTitle','EntityNumber','RecipientEmailAddress','RecipientDisplayName')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('TemplateName','EntityTitle','EntityNumber','RecipientEmailAddress','RecipientDisplayName')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('TemplateName','EntityTitle','EntityNumber','RecipientEmailAddress','RecipientDisplayName')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('TemplateName','EntityTitle','EntityNumber','RecipientEmailAddress','RecipientDisplayName')]
+        [String[]]
+        $EndsWith
     )
 
 

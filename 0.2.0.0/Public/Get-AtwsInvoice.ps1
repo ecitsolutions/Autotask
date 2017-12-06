@@ -198,7 +198,70 @@ Function Get-AtwsInvoice
         )]
          [Int]
          $InvoiceEditorTemplateID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','CreatorResourceID','InvoiceDateTime','CreateDateTime','InvoiceNumber','Comments','InvoiceTotal','TotalTaxValue','FromDate','ToDate','OrderNumber','WebServiceDate','IsVoided','VoidedDate','VoidedByResourceID','PaidDate','TaxRegionName','BatchID','InvoiceEditorTemplateID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','CreatorResourceID','InvoiceDateTime','CreateDateTime','InvoiceNumber','Comments','InvoiceTotal','TotalTaxValue','FromDate','ToDate','OrderNumber','WebServiceDate','IsVoided','VoidedDate','VoidedByResourceID','PaidDate','TaxRegionName','BatchID','InvoiceEditorTemplateID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','CreatorResourceID','InvoiceDateTime','CreateDateTime','InvoiceNumber','Comments','InvoiceTotal','TotalTaxValue','FromDate','ToDate','OrderNumber','WebServiceDate','IsVoided','VoidedDate','VoidedByResourceID','PaidDate','TaxRegionName','BatchID','InvoiceEditorTemplateID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','CreatorResourceID','InvoiceDateTime','CreateDateTime','InvoiceNumber','Comments','InvoiceTotal','TotalTaxValue','FromDate','ToDate','OrderNumber','WebServiceDate','IsVoided','VoidedDate','VoidedByResourceID','PaidDate','TaxRegionName','BatchID','InvoiceEditorTemplateID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','CreatorResourceID','InvoiceDateTime','CreateDateTime','InvoiceNumber','Comments','InvoiceTotal','TotalTaxValue','FromDate','ToDate','OrderNumber','WebServiceDate','IsVoided','VoidedDate','VoidedByResourceID','PaidDate','TaxRegionName','BatchID','InvoiceEditorTemplateID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','Comments','OrderNumber','TaxRegionName')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','Comments','OrderNumber','TaxRegionName')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','Comments','OrderNumber','TaxRegionName')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','Comments','OrderNumber','TaxRegionName')]
+        [String[]]
+        $EndsWith
     )
 
 

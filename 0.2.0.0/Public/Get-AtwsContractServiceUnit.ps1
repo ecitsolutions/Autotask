@@ -124,7 +124,70 @@ Function Get-AtwsContractServiceUnit
         )]
          [float]
          $InternalCurrencyPrice
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','ServiceID','StartDate','EndDate','Units','Price','ApproveAndPostDate','Cost','VendorAccountID','ContractServiceID','InternalCurrencyPrice')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','ServiceID','StartDate','EndDate','Units','Price','ApproveAndPostDate','Cost','VendorAccountID','ContractServiceID','InternalCurrencyPrice')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','ServiceID','StartDate','EndDate','Units','Price','ApproveAndPostDate','Cost','VendorAccountID','ContractServiceID','InternalCurrencyPrice')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','ServiceID','StartDate','EndDate','Units','Price','ApproveAndPostDate','Cost','VendorAccountID','ContractServiceID','InternalCurrencyPrice')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','ServiceID','StartDate','EndDate','Units','Price','ApproveAndPostDate','Cost','VendorAccountID','ContractServiceID','InternalCurrencyPrice')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('')]
+        [String[]]
+        $EndsWith
     )
 
 

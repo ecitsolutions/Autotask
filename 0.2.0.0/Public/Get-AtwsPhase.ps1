@@ -140,7 +140,70 @@ Function Get-AtwsPhase
         )]
          [string]
          $Title
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreateDate','CreatorResourceID','Description','DueDate','EstimatedHours','ExternalID','id','LastActivityDateTime','ParentPhaseID','PhaseNumber','ProjectID','Scheduled','StartDate','Title')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreateDate','CreatorResourceID','Description','DueDate','EstimatedHours','ExternalID','id','LastActivityDateTime','ParentPhaseID','PhaseNumber','ProjectID','Scheduled','StartDate','Title')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreateDate','CreatorResourceID','Description','DueDate','EstimatedHours','ExternalID','id','LastActivityDateTime','ParentPhaseID','PhaseNumber','ProjectID','Scheduled','StartDate','Title')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreateDate','CreatorResourceID','Description','DueDate','EstimatedHours','ExternalID','id','LastActivityDateTime','ParentPhaseID','PhaseNumber','ProjectID','Scheduled','StartDate','Title')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CreateDate','CreatorResourceID','Description','DueDate','EstimatedHours','ExternalID','id','LastActivityDateTime','ParentPhaseID','PhaseNumber','ProjectID','Scheduled','StartDate','Title')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','PhaseNumber','Title')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','PhaseNumber','Title')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','PhaseNumber','Title')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','ExternalID','PhaseNumber','Title')]
+        [String[]]
+        $EndsWith
     )
 
 

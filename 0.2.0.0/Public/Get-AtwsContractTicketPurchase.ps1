@@ -130,7 +130,70 @@ Function Get-AtwsContractTicketPurchase
 
         [String]
          $Status
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','TicketsPurchased','PerTicketRate','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','TicketsPurchased','PerTicketRate','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','TicketsPurchased','PerTicketRate','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','TicketsPurchased','PerTicketRate','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','TicketsPurchased','PerTicketRate','InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $EndsWith
     )
 
 

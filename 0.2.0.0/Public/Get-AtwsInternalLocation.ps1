@@ -126,7 +126,70 @@ Function Get-AtwsInternalLocation
         )]
          [boolean]
          $IsDefault
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Address1','Address2','City','State','PostalCode','Country','AdditionalAddressInfo','TimeZone','IsDefault')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Address1','Address2','City','State','PostalCode','Country','AdditionalAddressInfo','TimeZone','IsDefault')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Address1','Address2','City','State','PostalCode','Country','AdditionalAddressInfo','TimeZone','IsDefault')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Address1','Address2','City','State','PostalCode','Country','AdditionalAddressInfo','TimeZone','IsDefault')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','Address1','Address2','City','State','PostalCode','Country','AdditionalAddressInfo','TimeZone','IsDefault')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Address1','Address2','City','State','PostalCode','Country','AdditionalAddressInfo','TimeZone')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Address1','Address2','City','State','PostalCode','Country','AdditionalAddressInfo','TimeZone')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Address1','Address2','City','State','PostalCode','Country','AdditionalAddressInfo','TimeZone')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','Address1','Address2','City','State','PostalCode','Country','AdditionalAddressInfo','TimeZone')]
+        [String[]]
+        $EndsWith
     )
 
 

@@ -126,7 +126,70 @@ Function Get-AtwsExpenseReport
         )]
          [datetime]
          $ApprovedDate
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','SubmitDate','SubmitterID','ApproverID','WeekEnding','ExpenseTotal','CashAdvanceAmount','RejectionReason','QuickBooksReferenceNumber','ApprovedDate')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','SubmitDate','SubmitterID','ApproverID','WeekEnding','ExpenseTotal','CashAdvanceAmount','RejectionReason','QuickBooksReferenceNumber','ApprovedDate')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','SubmitDate','SubmitterID','ApproverID','WeekEnding','ExpenseTotal','CashAdvanceAmount','RejectionReason','QuickBooksReferenceNumber','ApprovedDate')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','SubmitDate','SubmitterID','ApproverID','WeekEnding','ExpenseTotal','CashAdvanceAmount','RejectionReason','QuickBooksReferenceNumber','ApprovedDate')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','Name','SubmitDate','SubmitterID','ApproverID','WeekEnding','ExpenseTotal','CashAdvanceAmount','RejectionReason','QuickBooksReferenceNumber','ApprovedDate')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','RejectionReason','QuickBooksReferenceNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','RejectionReason','QuickBooksReferenceNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','RejectionReason','QuickBooksReferenceNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Name','RejectionReason','QuickBooksReferenceNumber')]
+        [String[]]
+        $EndsWith
     )
 
 

@@ -102,7 +102,70 @@ Function Get-AtwsCountry
         )]
          [Int]
          $InvoiceTemplateID
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','CountryCode','Name','DisplayName','Active','IsDefaultCountry','QuoteTemplateID','InvoiceTemplateID')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','CountryCode','Name','DisplayName','Active','IsDefaultCountry','QuoteTemplateID','InvoiceTemplateID')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','CountryCode','Name','DisplayName','Active','IsDefaultCountry','QuoteTemplateID','InvoiceTemplateID')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','CountryCode','Name','DisplayName','Active','IsDefaultCountry','QuoteTemplateID','InvoiceTemplateID')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','CountryCode','Name','DisplayName','Active','IsDefaultCountry','QuoteTemplateID','InvoiceTemplateID')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CountryCode','Name','DisplayName')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CountryCode','Name','DisplayName')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CountryCode','Name','DisplayName')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('CountryCode','Name','DisplayName')]
+        [String[]]
+        $EndsWith
     )
 
 

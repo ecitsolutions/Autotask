@@ -130,7 +130,70 @@ Function Get-AtwsContractRetainer
         )]
          [double]
          $InternalCurrencyAmount
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','Amount','InvoiceNumber','PaymentNumber','InternalCurrencyAmount')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','Amount','InvoiceNumber','PaymentNumber','InternalCurrencyAmount')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','Amount','InvoiceNumber','PaymentNumber','InternalCurrencyAmount')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','Amount','InvoiceNumber','PaymentNumber','InternalCurrencyAmount')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ContractID','DatePurchased','StartDate','EndDate','Amount','InvoiceNumber','PaymentNumber','InternalCurrencyAmount')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('InvoiceNumber','PaymentNumber')]
+        [String[]]
+        $EndsWith
     )
 
 

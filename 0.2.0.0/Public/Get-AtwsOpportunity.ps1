@@ -472,7 +472,70 @@ Function Get-AtwsOpportunity
         )]
          [decimal]
          $YearlyRevenue
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','AdvancedField1','AdvancedField2','AdvancedField3','AdvancedField4','AdvancedField5','Amount','Barriers','ContactID','Cost','CreateDate','HelpNeeded','Market','NextStep','OwnerResourceID','ProductID','ProjectedCloseDate','ProjectedLiveDate','PromotionName','ThroughDate','Title','ClosedDate','AssessmentScore','TechnicalAssessmentScore','RelationshipAssessmentScore','WinReasonDetail','LossReasonDetail','LastActivity','DateStamp','Probability','RevenueSpread','UseQuoteTotals','TotalAmountMonths','SalesProcessPercentComplete','SalesOrderID','OnetimeCost','OnetimeRevenue','MonthlyCost','MonthlyRevenue','QuarterlyCost','QuarterlyRevenue','SemiannualCost','SemiannualRevenue','YearlyCost','YearlyRevenue')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','AdvancedField1','AdvancedField2','AdvancedField3','AdvancedField4','AdvancedField5','Amount','Barriers','ContactID','Cost','CreateDate','HelpNeeded','Market','NextStep','OwnerResourceID','ProductID','ProjectedCloseDate','ProjectedLiveDate','PromotionName','ThroughDate','Title','ClosedDate','AssessmentScore','TechnicalAssessmentScore','RelationshipAssessmentScore','WinReasonDetail','LossReasonDetail','LastActivity','DateStamp','Probability','RevenueSpread','UseQuoteTotals','TotalAmountMonths','SalesProcessPercentComplete','SalesOrderID','OnetimeCost','OnetimeRevenue','MonthlyCost','MonthlyRevenue','QuarterlyCost','QuarterlyRevenue','SemiannualCost','SemiannualRevenue','YearlyCost','YearlyRevenue')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','AdvancedField1','AdvancedField2','AdvancedField3','AdvancedField4','AdvancedField5','Amount','Barriers','ContactID','Cost','CreateDate','HelpNeeded','Market','NextStep','OwnerResourceID','ProductID','ProjectedCloseDate','ProjectedLiveDate','PromotionName','ThroughDate','Title','ClosedDate','AssessmentScore','TechnicalAssessmentScore','RelationshipAssessmentScore','WinReasonDetail','LossReasonDetail','LastActivity','DateStamp','Probability','RevenueSpread','UseQuoteTotals','TotalAmountMonths','SalesProcessPercentComplete','SalesOrderID','OnetimeCost','OnetimeRevenue','MonthlyCost','MonthlyRevenue','QuarterlyCost','QuarterlyRevenue','SemiannualCost','SemiannualRevenue','YearlyCost','YearlyRevenue')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','AdvancedField1','AdvancedField2','AdvancedField3','AdvancedField4','AdvancedField5','Amount','Barriers','ContactID','Cost','CreateDate','HelpNeeded','Market','NextStep','OwnerResourceID','ProductID','ProjectedCloseDate','ProjectedLiveDate','PromotionName','ThroughDate','Title','ClosedDate','AssessmentScore','TechnicalAssessmentScore','RelationshipAssessmentScore','WinReasonDetail','LossReasonDetail','LastActivity','DateStamp','Probability','RevenueSpread','UseQuoteTotals','TotalAmountMonths','SalesProcessPercentComplete','SalesOrderID','OnetimeCost','OnetimeRevenue','MonthlyCost','MonthlyRevenue','QuarterlyCost','QuarterlyRevenue','SemiannualCost','SemiannualRevenue','YearlyCost','YearlyRevenue')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','AccountID','AdvancedField1','AdvancedField2','AdvancedField3','AdvancedField4','AdvancedField5','Amount','Barriers','ContactID','Cost','CreateDate','HelpNeeded','Market','NextStep','OwnerResourceID','ProductID','ProjectedCloseDate','ProjectedLiveDate','PromotionName','ThroughDate','Title','ClosedDate','AssessmentScore','TechnicalAssessmentScore','RelationshipAssessmentScore','WinReasonDetail','LossReasonDetail','LastActivity','DateStamp','Probability','RevenueSpread','UseQuoteTotals','TotalAmountMonths','SalesProcessPercentComplete','SalesOrderID','OnetimeCost','OnetimeRevenue','MonthlyCost','MonthlyRevenue','QuarterlyCost','QuarterlyRevenue','SemiannualCost','SemiannualRevenue','YearlyCost','YearlyRevenue')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Barriers','HelpNeeded','Market','NextStep','PromotionName','RevenueSpreadUnit','Title','WinReasonDetail','LossReasonDetail')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Barriers','HelpNeeded','Market','NextStep','PromotionName','RevenueSpreadUnit','Title','WinReasonDetail','LossReasonDetail')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Barriers','HelpNeeded','Market','NextStep','PromotionName','RevenueSpreadUnit','Title','WinReasonDetail','LossReasonDetail')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Barriers','HelpNeeded','Market','NextStep','PromotionName','RevenueSpreadUnit','Title','WinReasonDetail','LossReasonDetail')]
+        [String[]]
+        $EndsWith
     )
 
 

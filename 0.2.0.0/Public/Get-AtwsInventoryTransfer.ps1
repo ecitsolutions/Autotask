@@ -108,7 +108,70 @@ Function Get-AtwsInventoryTransfer
         )]
          [string]
          $UpdateNote
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','FromLocationID','ToLocationID','QuantityTransferred','TransferByResourceID','TransferDate','Notes','SerialNumber','UpdateNote')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','FromLocationID','ToLocationID','QuantityTransferred','TransferByResourceID','TransferDate','Notes','SerialNumber','UpdateNote')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','FromLocationID','ToLocationID','QuantityTransferred','TransferByResourceID','TransferDate','Notes','SerialNumber','UpdateNote')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','FromLocationID','ToLocationID','QuantityTransferred','TransferByResourceID','TransferDate','Notes','SerialNumber','UpdateNote')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ProductID','FromLocationID','ToLocationID','QuantityTransferred','TransferByResourceID','TransferDate','Notes','SerialNumber','UpdateNote')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Notes','SerialNumber','UpdateNote')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Notes','SerialNumber','UpdateNote')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Notes','SerialNumber','UpdateNote')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Notes','SerialNumber','UpdateNote')]
+        [String[]]
+        $EndsWith
     )
 
 

@@ -218,7 +218,70 @@ Function Get-AtwsExpenseItem
         )]
          [double]
          $ReceiptAmount
+ ,        
 
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ExpenseReportID','Description','ExpenseDate','ExpenseAmount','HaveReceipt','BillableToAccount','AccountID','ProjectID','TaskID','TicketID','EntertainmentLocation','Miles','Origin','Destination','PurchaseOrderNumber','OdometerStart','OdometerEnd','ExpenseCurrencyID','ReceiptAmount')]
+        [String[]]
+        $NotEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ExpenseReportID','Description','ExpenseDate','ExpenseAmount','HaveReceipt','BillableToAccount','AccountID','ProjectID','TaskID','TicketID','EntertainmentLocation','Miles','Origin','Destination','PurchaseOrderNumber','OdometerStart','OdometerEnd','ExpenseCurrencyID','ReceiptAmount')]
+        [String[]]
+        $GreaterThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ExpenseReportID','Description','ExpenseDate','ExpenseAmount','HaveReceipt','BillableToAccount','AccountID','ProjectID','TaskID','TicketID','EntertainmentLocation','Miles','Origin','Destination','PurchaseOrderNumber','OdometerStart','OdometerEnd','ExpenseCurrencyID','ReceiptAmount')]
+        [String[]]
+        $GreaterThanOrEqual ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ExpenseReportID','Description','ExpenseDate','ExpenseAmount','HaveReceipt','BillableToAccount','AccountID','ProjectID','TaskID','TicketID','EntertainmentLocation','Miles','Origin','Destination','PurchaseOrderNumber','OdometerStart','OdometerEnd','ExpenseCurrencyID','ReceiptAmount')]
+        [String[]]
+        $LessThan ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('id','ExpenseReportID','Description','ExpenseDate','ExpenseAmount','HaveReceipt','BillableToAccount','AccountID','ProjectID','TaskID','TicketID','EntertainmentLocation','Miles','Origin','Destination','PurchaseOrderNumber','OdometerStart','OdometerEnd','ExpenseCurrencyID','ReceiptAmount')]
+        [String[]]
+        $LessThanOrEquals ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','EntertainmentLocation','Origin','Destination','PurchaseOrderNumber')]
+        [String[]]
+        $Like ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','EntertainmentLocation','Origin','Destination','PurchaseOrderNumber')]
+        [String[]]
+        $NotLike ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','EntertainmentLocation','Origin','Destination','PurchaseOrderNumber')]
+        [String[]]
+        $BeginsWith ,        
+
+        [Parameter(
+          ParameterSetName = 'By_Parameter'
+        )]
+        [ValidateSet('Description','EntertainmentLocation','Origin','Destination','PurchaseOrderNumber')]
+        [String[]]
+        $EndsWith
     )
 
 
