@@ -589,7 +589,7 @@ Function $FunctionName
     
     $FunctionScriptBlock = [ScriptBlock]::Create($($ModuleFunctions))
         
-    New-Module -Name AtwsCmdLet -ScriptBlock $FunctionScriptBlock  | Import-Module
+    New-Module -Name AtwsCmdLet -ScriptBlock $FunctionScriptBlock  | Import-Module -Global
     
   }
 }
