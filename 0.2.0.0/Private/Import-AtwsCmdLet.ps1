@@ -447,10 +447,24 @@ Function $FunctionName
             @"
   `n
     `$InputObject =  Get-AtwsData -Entity $($Entity.Name) -Filter {id -eq `$Id}
-
+    `$Fields = `$Atws.GetFieldInfo('$($Entity.Name)')
+    
     Foreach (`$Parameter in `$PSBoundParameters.GetEnumerator())
     {
-        `$InputObject.`$(`$Parameter.Key) = `$Parameter.Value
+      `$Field = `$Fields | Where-Object {`$_.Name -eq `$Parameter.Key}
+      If (`$Field)
+      { 
+          If (`$Field.IsPickList)
+          {
+            `$PickListValue = `$Field.PickListValues | Where-Object {`$_.Label -eq `$Parameter.Value}
+            `$Value = `$PickListValue.Value
+          }
+          Else
+          {
+            `$Value = `$Parameter.Value
+          }  
+          `$InputObject.`$(`$Parameter.Key) = `$Value
+      }
     }
         
     
@@ -472,10 +486,24 @@ Function $FunctionName
   `n
     `$InputObject = New-Object Autotask.$($Entity.Name)
 
+    `$Fields = `$Atws.GetFieldInfo('$($Entity.Name)')
+    
     Foreach (`$Parameter in `$PSBoundParameters.GetEnumerator())
     {
-        `$InputObject.`$(`$Parameter.Key) = `$Parameter.Value
-    }
+      `$Field = `$Fields | Where-Object {`$_.Name -eq `$Parameter.Key}
+      If (`$Field)
+      { 
+          If (`$Field.IsPickList)
+          {
+            `$PickListValue = `$Field.PickListValues | Where-Object {`$_.Label -eq `$Parameter.Value}
+            `$Value = `$PickListValue.Value
+          }
+          Else
+          {
+            `$Value = `$Parameter.Value
+          }  
+          `$InputObject.`$(`$Parameter.Key) = `$Value
+      }
 
     New-AtwsData -Entity `$InputObject
 
