@@ -236,7 +236,7 @@ Function $FunctionName
         }
         'New' 
         { 
-          $Fields = $FieldInfo.Where({-Not $_.IsReadOnly})
+          $Fields = $FieldInfo.Where({-Not $_.IsReadOnly -and $_.Name -ne 'Id'})
         }
         default 
         {
