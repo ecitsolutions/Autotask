@@ -37,7 +37,7 @@ Function Remove-AtwsData
     [Parameter(Mandatory = $True,
     ValueFromPipeline = $True)]
     [ValidateNotNullOrEmpty()]
-    [Autotask.Entity[]]
+    [PSObject[]]
     $Entity
   )
     
@@ -47,6 +47,8 @@ Function Remove-AtwsData
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
     }
+    Write-Verbose ('{0}: Start of Function' -F $MyInvocation.MyCommand.Name)
+    
   }
   
   Process
@@ -55,28 +57,26 @@ Function Remove-AtwsData
     $VerboseDescrition = '{0}: About to remove {1} {2}(s). This action cannot be undone.' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
     $VerboseWarning = '{0}: About to remove {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
 
+    Write-Verbose ('{0}: Running ShouldProcess with WhatifPreference {1} and ConfirmPreference {2}' -F $MyInvocation.MyCommand.Name, $WhatIfPreference, $ConfirmPreference)
     If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
     { 
+      Write-Verbose ('{0}: Deleting {1} [Autotask.{2}] object(s) with Id {3}' -F $MyInvocation.MyCommand.Name, $Entity.Count, $Entity[0].GetType().Name, ($Entity.Id -join ','))        
+      
       $Result = $atws.delete($Entity)
-    }
-    
-    
-    If ($Result.Errors.Count -eq 0)
-    {
-      Return $Result
-    }
-    Else
-    {
-      Foreach ($AtwsError in $Result.Errors)
+      
+      If ($Result.Errors.Count -gt 0)
       {
-        Write-Error -Message $AtwsError.Message
-      }
+        Foreach ($AtwsError in $LastResult.Errors)
+        {
+          Write-Error -Message $AtwsError.Message
+        }
+      }    
     }
   }
   
   End
   {
-  
+    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)    
   }
 }
 

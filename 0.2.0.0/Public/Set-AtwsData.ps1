@@ -39,7 +39,7 @@ Function Set-AtwsData
         ValueFromPipeline = $True
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.Entity[]]
+    [PSObject[]]
     $Entity
   )
     

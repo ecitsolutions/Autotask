@@ -195,7 +195,7 @@ Function $FunctionName
         `$Filter
 "@ 
       }    
-      ElseIf ($Verb -in 'Set', 'New')
+      ElseIf ($Verb -eq 'Set')
       {
         @"
         [Parameter(
@@ -207,7 +207,20 @@ Function $FunctionName
         `$Id
 "@ 
       }
-      ElseIf ($Verb -in 'Update', 'Remove')
+      ElseIf ($Verb -in 'Update','New')
+      {
+        @"
+        [Parameter(
+          Mandatory = `$True,
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = `$True
+        )]
+        [ValidateNotNullOrEmpty()]
+        [Autotask.$($Entity.Name)[]]
+        `$InputObject
+"@
+      }
+      ElseIf ($Verb -eq 'Remove')
       {
         @"
         [Parameter(
@@ -217,7 +230,15 @@ Function $FunctionName
         )]
         [ValidateNotNullOrEmpty()]
         [Autotask.$($Entity.Name)]
-        `$InputObject
+        `$InputObject,
+
+        [Parameter(
+          Mandatory = `$True,
+          ParameterSetName = 'By_parameters'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [Int[]]
+        `$Id        
 "@
       }
     
@@ -236,7 +257,7 @@ Function $FunctionName
         }
         'New' 
         { 
-          $Fields = $FieldInfo.Where({-Not $_.IsReadOnly -and $_.Name -ne 'Id'})
+          $Fields = $FieldInfo.Where({$_.Name -ne 'Id'})
         }
         default 
         {
@@ -367,6 +388,11 @@ Function $FunctionName
   `n
   Begin
   { 
+    If (`$Verbose)
+    {
+      # Make sure the -Verbose parameter is inherited
+      `$VerbosePreference = 'Continue'
+    }
     If (-not(`$global:atws.Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
@@ -466,7 +492,7 @@ Function $FunctionName
           `$InputObject.`$(`$Parameter.Key) = `$Value
       }
     }
-        
+
     
     Set-AtwsData -Entity `$InputObject
 "@
@@ -484,7 +510,19 @@ Function $FunctionName
           {
             @"
   `n
-    `$InputObject = New-Object Autotask.$($Entity.Name)
+    If (`$InputObject)
+    {
+      Write-Verbose ('{0}: Duplicate Object mode: Setting ID property to zero' -F `$MyInvocation.MyCommand.Name)  
+      Foreach (`$Object in `$InputObject) 
+      { 
+        `$Object.Id = 0
+      }   
+    }
+    Else
+    {
+       Write-Verbose ('{0}: Creating empty [Autotask.$($Entity.Name)] object' -F `$MyInvocation.MyCommand.Name) 
+      `$InputObject = New-Object Autotask.$($Entity.Name)      
+    }
 
     `$Fields = `$Atws.GetFieldInfo('$($Entity.Name)')
     
@@ -502,9 +540,12 @@ Function $FunctionName
           {
             `$Value = `$Parameter.Value
           }  
-          `$InputObject.`$(`$Parameter.Key) = `$Value
+          Foreach (`$Object in `$InputObject) 
+          { 
+            `$Object.`$(`$Parameter.Key) = `$Value
+          }
       }
-
+    }
     New-AtwsData -Entity `$InputObject
 
 "@
@@ -514,8 +555,15 @@ Function $FunctionName
           {
             @"
   `n
-
-    Remove-AtwsData -Entity `$InputObject
+    If (`$Id.Count -gt 0)
+    {
+      `$Filter = 'id -eq {0}' -F (`$Id -join ' -or id -eq ')
+      `$InputObject = Get-AtwsData -Entity $($Entity.Name) -Filter `$Filter
+    }
+    If (`$InputObject)
+    { 
+      Remove-AtwsData -Entity `$Object 
+    }
 
 "@
           }

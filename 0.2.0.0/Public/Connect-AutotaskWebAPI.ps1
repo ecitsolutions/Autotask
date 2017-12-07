@@ -38,6 +38,9 @@ Function Connect-AutotaskWebAPI
 
     [Switch]
     $NoFunctionImport = $False,
+
+    [Switch]
+    $ExportToDisk = $False,
         
     [Switch]
     $Silent = $false
@@ -91,7 +94,7 @@ Function Connect-AutotaskWebAPI
     
     If (($Result) -and -not ($NoFunctionImport))
     {
-      Import-AtwsCmdLet
+      Import-AtwsCmdLet -ExportToDisk:$ExportToDisk
     }
 
   }
