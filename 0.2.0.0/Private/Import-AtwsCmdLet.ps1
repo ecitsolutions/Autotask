@@ -615,7 +615,7 @@ Function $FunctionName
   {
 
     $Activity = 'Importing Autotask Powershell CmdLets'
-    $Global:ModuleFunctions = @()
+    $ModuleFunctions = @()
     Foreach ($Entity in $Entities)
     { 
       Write-Verbose -Message ('{0}: Creating functions for Entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
