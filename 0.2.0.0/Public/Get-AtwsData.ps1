@@ -123,6 +123,7 @@ Function Get-AtwsData
       {
         # Insert looping construct into query
         [void]$QueryXml.queryxml.query.AppendChild($field)
+        $FirstPass = $False        
       }
     }
     Until ($lastquery.EntityResults.Count -lt 500)
