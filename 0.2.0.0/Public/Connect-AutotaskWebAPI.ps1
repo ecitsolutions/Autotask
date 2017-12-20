@@ -38,6 +38,9 @@ Function Connect-AutotaskWebAPI
 
     [Switch]
     $NoFunctionImport = $False,
+    
+    [String]
+    $Prefix = 'Atws',
 
     [Switch]
     $ExportToDisk = $False,
@@ -94,7 +97,7 @@ Function Connect-AutotaskWebAPI
     
     If (($Result) -and -not ($NoFunctionImport))
     {
-      Import-AtwsCmdLet -ExportToDisk:$ExportToDisk
+      Import-AtwsCmdLet -ExportToDisk:$ExportToDisk -Prefix $Prefix
     }
 
   }

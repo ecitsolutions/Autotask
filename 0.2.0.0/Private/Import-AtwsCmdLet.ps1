@@ -8,7 +8,10 @@ Function Import-AtwsCmdLet
   Param
   (
     [Switch]
-    $ExportToDisk
+    $ExportToDisk,
+    
+    [String]
+    $Prefix = 'Atws'
   )
   
   Begin
@@ -621,7 +624,7 @@ Function $FunctionName
       Write-Verbose -Message ('{0}: Creating functions for Entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
       
       
-      $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity
+      $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -Prefix $Prefix
      
       
       # Calculating progress percentage and displaying it
@@ -663,9 +666,10 @@ Function $FunctionName
   {
     Write-Verbose -Message ('{0}: Importing Autotask Dynamic Module' -F $MyInvocation.MyCommand.Name)
     
+    $ModuleName = 'AutotaskCI{0}' -F $($atws.getZoneInfo($atws.Credentials.UserName).CI)
     $FunctionScriptBlock = [ScriptBlock]::Create($($ModuleFunctions))
         
-    New-Module -Name AtwsCmdLet -ScriptBlock $FunctionScriptBlock  | Import-Module -Global
+    New-Module -Name $ModuleName -ScriptBlock $FunctionScriptBlock  | Import-Module -Global
     
   }
 }
