@@ -60,6 +60,7 @@ Function Import-AtwsCmdLet
         Add-Member -InputObject $Field -MemberType NoteProperty -Name 'ParameterSet' -Value 'By_parameters'
         Add-Member -InputObject $Field -MemberType NoteProperty -Name 'Mandatory' -Value $Field.IsRequired
       }
+
       Foreach ($Verb in $Verbs)
       {
         $FunctionName = '{0}-{1}{2}' -F $Verb, $Prefix, $Entity.Name
@@ -71,10 +72,11 @@ Function Import-AtwsCmdLet
           'New' 
           {
             $Synopsis = 'This function creates a new {0} through the Autotask Web Services API.' -F $Entity.Name
-            $Description = $Synopsis
+            $RequiredParameters = $FieldInfo.Where({$_.IsRequired -and $_.Name -ne 'id'}).Name
+            $Description = "To create a new {0} you need the following required fields:`n -{1}" -F $Entity.Name, $($RequiredParameters.Name -join "`n -")
             $Inputs = 'Nothing. This function only takes parameters.'
             $Outputs = '[Autotask.{0}]. This function outputs the Autotask.{1} that was created by the API.' -F $Entity.Name, $Entity.Name
-            $Examples = '{0}  [-ParameterName] [Parameter value]' -F $FunctionName          
+            $Examples = "{0} -{1}" -F $FunctionName, $($RequiredParameters.Name -join ' [Value] -')
             $DefaultParameterSetName = 'By_parameters'
           }
           'Remove' 
@@ -106,7 +108,7 @@ Function Import-AtwsCmdLet
             $Synopsis = 'This function sets parameters on the {0} specified by the -id parameter through the Autotask Web Services API.' -F $Entity.Name
             $Description = $Synopsis
             $Inputs = 'Nothing. This function only takes parameters.'
-            $Outputs = '[Autototask.{0}]. This function returns the updated Autotask.{1} that was returned by the API.' -F $Entity.Name, $Entity.Name
+            $Outputs = '[Autotask.{0}]. This function returns the updated Autotask.{1} that was returned by the API.' -F $Entity.Name, $Entity.Name
             $Examples = '{0}  [-ParameterName] [Parameter value]' -F $FunctionName          
             $DefaultParameterSetName = 'By_parameters'
           }
@@ -115,8 +117,14 @@ Function Import-AtwsCmdLet
             $Synopsis = 'This function updates a {0} through the Autotask Web Services API.' -F $Entity.Name
             $Description = $Synopsis
             $Inputs = '[Autotask.{0}[]]. This function takes objects as input. Pipeline is supported.' -F $Entity.Name
-            $Outputs = '[Autototask.{0}[]]. This function returns the updated Autotask.{1} that was returned by the API.' -F $Entity.Name, $Entity.Name
-            $Examples = '{0}  [-ParameterName] [Parameter value]' -F $FunctionName          
+            $Outputs = '[Autotask.{0}[]]. This function returns the updated Autotask.{1} that was returned by the API.' -F $Entity.Name, $Entity.Name
+            $Examples = @"
+            `n
+            {0} -InputObject `${1}`n
+            Updates an [Autotask.{2}] from the variable passed as `${3}.
+            `${4} | {5}`n
+            Updates the [Autotask.{6}] object passed through the pipeline.`n
+"@          -F $FunctionName, $Entity.Name, $Entity.Name, $Entity.Name, $Entity.Name, $FunctionName, $Entity.Name
             $DefaultParameterSetName = 'Input_Object'
           }
         }
