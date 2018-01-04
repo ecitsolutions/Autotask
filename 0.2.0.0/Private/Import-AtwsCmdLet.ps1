@@ -73,10 +73,10 @@ Function Import-AtwsCmdLet
           {
             $Synopsis = 'This function creates a new {0} through the Autotask Web Services API.' -F $Entity.Name
             $RequiredParameters = $FieldInfo.Where({$_.IsRequired -and $_.Name -ne 'id'}).Name
-            $Description = "To create a new {0} you need the following required fields:`n -{1}" -F $Entity.Name, $($RequiredParameters.Name -join "`n -")
+            $Description = "To create a new {0} you need the following required fields:`n -{1}" -F $Entity.Name, $($RequiredParameters -join "`n -")
             $Inputs = 'Nothing. This function only takes parameters.'
             $Outputs = '[Autotask.{0}]. This function outputs the Autotask.{1} that was created by the API.' -F $Entity.Name, $Entity.Name
-            $Examples = "{0} -{1}" -F $FunctionName, $($RequiredParameters.Name -join ' [Value] -')
+            $Examples = "{0} -{1} [Value]" -F $FunctionName, $($RequiredParameters -join ' [Value] -')
             $DefaultParameterSetName = 'By_parameters'
           }
           'Remove' 
@@ -342,9 +342,7 @@ Function $FunctionName
       # Make modifying operators possible
       If ($Verb -eq 'Get')
       {
-        $Labels = $Fields | Where-Object -FilterScript {
-          -not ($_.IsPickList)
-        }
+        $Labels = $Fields 
         Foreach ($Operator in 'NotEquals', 'GreaterThan', 'GreaterThanOrEqual', 'LessThan', 'LessThanOrEquals')
         {
           @"
