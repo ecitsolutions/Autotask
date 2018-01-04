@@ -211,10 +211,10 @@ Function $FunctionName
         @"
         [Parameter(
           Mandatory = `$true,
-          ValueFromRemainingArguments = `$true,
+          ValueFromPipeLineByPropertyName = `$true,
           ParameterSetName = 'By_parameters')]
         [ValidateNotNullOrEmpty()]
-        [Int]
+        [Int[]]
         `$Id
 "@ 
       }
@@ -310,28 +310,32 @@ Function $FunctionName
           }
           @"
         [ValidateSet({0})]`n
-        [String]`n
+        [String
 "@      -f ($Labels -join ',')
         } 
         ElseIf ($Field.Type -eq 'Integer')
         {
           @"
-        [Int]`n
+        [Int
 "@
         }
         ElseIf ($Field.Type -eq 'short')
         {
           @"
-        [Int16]`n
+        [Int16
 "@
         }
         Else
         {
           @"
-        [{0}]`n
-"@      -f $Field.Type
+        [{0}
+"@      -f $Field.Type      
         }
-        
+        # Array permitted if GET, else single value
+        If ($Verb -eq 'Get')
+        {"[]]`n"}
+        Else
+        {"]`n"}
         # Parametername
         @"
         `${0}`n
@@ -435,18 +439,28 @@ Function $FunctionName
             `$Field = `$Fields | Where-Object {`$_.Name -eq `$Parameter.Key}
             If (`$Field)
             { 
+              If (`$Parameter.Value.Count -gt 1)
+              {
+                `$Filter += '-begin'
+              }
+              Foreach (`$ParameterValue in `$Parameter.Value)
+              {   
+                `$Operator = '-or'
                 If (`$Field.IsPickList)
                 {
-                  `$PickListValue = `$Field.PickListValues | Where-Object {`$_.Label -eq `$Parameter.Value}
+                  `$PickListValue = `$Field.PickListValues | Where-Object {`$_.Label -eq `$ParameterValue}
                   `$Value = `$PickListValue.Value
                 }
                 Else
                 {
-                  `$Value = `$Parameter.Value
+                  `$Value = `$ParameterValue
                 }
                 `$Filter += `$Parameter.Key
                 If (`$Parameter.Key -in `$NotEquals)
-                { `$Filter += '-ne'}
+                { 
+                  `$Filter += '-ne'
+                  `$Operator = '-and'
+                }
                 ElseIf (`$Parameter.Key -in `$GreaterThan)
                 { `$Filter += '-gt'}
                 ElseIf (`$Parameter.Key -in `$GreaterThanOrEqual)
@@ -456,9 +470,15 @@ Function $FunctionName
                 ElseIf (`$Parameter.Key -in `$LessThanOrEquals)
                 { `$Filter += '-le'}
                 ElseIf (`$Parameter.Key -in `$Like)
-                { `$Filter += '-like'}
+                { 
+                  `$Filter += '-like'
+                  `$Value = `$Value -replace '*','%'
+                }
                 ElseIf (`$Parameter.Key -in `$NotLike)
-                { `$Filter += '-notlike'}
+                { 
+                  `$Filter += '-notlike'
+                  `$Value = `$Value -replace '*','%'
+                }
                 ElseIf (`$Parameter.Key -in `$BeginsWith)
                 { `$Filter += '-beginswith'}
                 ElseIf (`$Parameter.Key -in `$EndsWith)
@@ -468,6 +488,16 @@ Function $FunctionName
                 Else
                 { `$Filter += '-eq'}
                 `$Filter += `$Value
+                If (`$Parameter.Value.Count -gt 1 -and `$ParameterValue -ne `$Parameter.Value[-1])
+                {
+                  `$Filter += `$Operator
+                }
+                ElseIf (`$Parameter.Value.Count -gt 1)
+                {
+                  `$Filter += '-end'
+                }
+              }
+            
             }
         }
         
@@ -481,7 +511,8 @@ Function $FunctionName
           {
             @"
   `n
-    `$InputObject =  Get-AtwsData -Entity $($Entity.Name) -Filter {id -eq `$Id}
+    `$Filter = '{{id -eq {0}}}' -F `$(`$Id -join ' -or id -eq ')
+    `$InputObject =  Get-AtwsData -Entity $($Entity.Name) -Filter `$Filter
     `$Fields = `$Atws.GetFieldInfo('$($Entity.Name)')
     
     Foreach (`$Parameter in `$PSBoundParameters.GetEnumerator())
@@ -504,7 +535,7 @@ Function $FunctionName
 
     
     Set-AtwsData -Entity `$InputObject
-"@
+"@ 
           }        
           'Update'
           {
