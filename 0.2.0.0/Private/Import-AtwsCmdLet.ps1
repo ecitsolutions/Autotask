@@ -49,10 +49,7 @@ Function Import-AtwsCmdLet
       {
         $Verbs += 'Set'
       }
-      If ($Entity.CanUpdate) 
-      {
-        $Verbs += 'Update'
-      }
+
       Write-Verbose ('{0}: Getting FieldInfo() for Entity [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $Entity.Name)
       $FieldInfo = $Atws.GetFieldInfo($Entity.Name)
       Foreach ($Field in $FieldInfo)
@@ -91,41 +88,21 @@ Function Import-AtwsCmdLet
           'Get' 
           {
             $Synopsis = 'This function get one or more {0} through the Autotask Web Services API.' -F $Entity.Name
-            $Description = 'This function creates a query based on any parameters you give and returns any resulting 
-              objects from the Autotask Web Services Api. By default the function returns any objects with properties 
-              that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator
-              by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on. 
-            Use Get-help {0} for all possible operators.' -F $FunctionName
+            $Description = "This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.`n`nPossible operators for all parameters are:`n -NotEquals`n -GreaterThan`n -GreaterThanOrEqual`n -LessThan`n -LessThanOrEquals `n`nAdditional operators for [String] parameters are:`n -Like (supports * or % as wildcards)`n -NotLike`n -BeginsWith`n -EndsWith`n -Contains" 
             $Inputs = 'Nothing. This function only takes parameters.'
             $Outputs = '[Autotask.{0}[]]. This function outputs the Autotask.{1} that was returned by the API.' -F $Entity.Name, $Entity.Name
-            $Examples = '{0}  -Parameter1 [Parameter1 value] -Parameter2 [Parameter2 Value] -GreaterThan Parameter2
-              Returns all objects where a property by name of "Parameter1" is equal to [Parameter1 value] and where a property
-            by name of "Parameter2" is greater than [Parameter2 Value].' -F $FunctionName
+            $Examples = "{0}  -Parameter1 [Parameter1 value] -Parameter2 [Parameter2 Value] -GreaterThan Parameter2`nReturns all objects where a property by name of ""Parameter1"" is equal to [Parameter1 value] and where a property by name of ""Parameter2"" is greater than [Parameter2 Value]." -F $FunctionName
             $DefaultParameterSetName = 'Filter'
           }
           'Set' 
           {
-            $Synopsis = 'This function sets parameters on the {0} specified by the -id parameter through the Autotask Web Services API.' -F $Entity.Name
-            $Description = $Synopsis
-            $Inputs = 'Nothing. This function only takes parameters.'
-            $Outputs = '[Autotask.{0}]. This function returns the updated Autotask.{1} that was returned by the API.' -F $Entity.Name, $Entity.Name
-            $Examples = '{0}  [-ParameterName] [Parameter value]' -F $FunctionName          
-            $DefaultParameterSetName = 'By_parameters'
-          }
-          'Update' 
-          {
-            $Synopsis = 'This function updates a {0} through the Autotask Web Services API.' -F $Entity.Name
-            $Description = $Synopsis
+            $Synopsis = 'This function sets parameters on the {0} specified by the -InputObject parameter through the Autotask Web Services API.' -F $Entity.Name
+            $Description = 'This function one or more objects of type [Autotask.{0}] as input. You can pipe the objects to the function or pass them using the -InputObject parameter. You specify the property you want to set and the value you want to set it to using parameters. The function modifies all objects and updates the online
+            data through the Autotask Web Services API.' -F $Entity.Name
             $Inputs = '[Autotask.{0}[]]. This function takes objects as input. Pipeline is supported.' -F $Entity.Name
-            $Outputs = '[Autotask.{0}[]]. This function returns the updated Autotask.{1} that was returned by the API.' -F $Entity.Name, $Entity.Name
-            $Examples = @"
-            `n
-            {0} -InputObject `${1}`n
-            Updates an [Autotask.{2}] from the variable passed as `${3}.
-            `${4} | {5}`n
-            Updates the [Autotask.{6}] object passed through the pipeline.`n
-"@          -F $FunctionName, $Entity.Name, $Entity.Name, $Entity.Name, $Entity.Name, $FunctionName, $Entity.Name
-            $DefaultParameterSetName = 'Input_Object'
+            $Outputs = 'Nothing or [Autotask.{0}]. This function optionally returns the updated objects if you use the -PassThru parameter.' -F $Entity.Name, $Entity.Name
+            $Examples = '{0}  [-ParameterName] [Parameter value]' -F $FunctionName          
+            $DefaultParameterSetName = 'InputObject'
           }
         }
       
@@ -184,7 +161,7 @@ Function $FunctionName
         $Entity,
         
         [Parameter(Mandatory)]
-        [ValidateSet('Get', 'Set', 'New', 'Remove','Update')]
+        [ValidateSet('Get', 'Set', 'New', 'Remove')]
         [String]
         $Verb,
         
@@ -208,17 +185,25 @@ Function $FunctionName
       }    
       ElseIf ($Verb -eq 'Set')
       {
-        @"
+        @"              
         [Parameter(
-          Mandatory = `$true,
-          ValueFromPipeLineByPropertyName = `$true,
-          ParameterSetName = 'By_parameters')]
+          Mandatory = `$True,
+          ParameterSetName = 'Input_Object',
+          ValueFromPipeline = `$True
+        )]
         [ValidateNotNullOrEmpty()]
-        [Int[]]
-        `$Id
+        [Autotask.$($Entity.Name)[]]
+        `$InputObject,
+
+        [Parameter(
+          Mandatory = `$False,
+          ParameterSetName = 'Input_Object'
+        )]
+        [Switch]
+        `$PassThru
 "@ 
       }
-      ElseIf ($Verb -in 'Update','New')
+      ElseIf ($Verb -in 'New')
       {
         @"
         [Parameter(
@@ -257,14 +242,16 @@ Function $FunctionName
       {
         'Get' 
         { 
-          $Fields = $FieldInfo.Where({$_.IsQueryable})| ForEach-Object -Process {
+          $Fields = $FieldInfo.Where({$_.IsQueryable}) | ForEach-Object -Process {
             $_.Mandatory = $False
             $_
           }
         }
         'Set' 
         { 
-          $Fields = $FieldInfo.Where({-Not $_.IsReadOnly})
+          $Fields = $FieldInfo.Where({-Not $_.IsReadOnly}) | ForEach-Object -Process {
+            $_.ParameterSet = 'Input_Object'
+          }
         }
         'New' 
         { 
@@ -388,7 +375,7 @@ Function $FunctionName
         $Entity,
         
         [Parameter(Mandatory)]
-        [ValidateSet('Get', 'Set', 'New', 'Remove','Update')]
+        [ValidateSet('Get', 'Set', 'New', 'Remove')]
         [String]
         $Verb
         
@@ -511,40 +498,41 @@ Function $FunctionName
           {
             @"
   `n
-    `$Filter = '{{id -eq {0}}}' -F `$(`$Id -join ' -or id -eq ')
-    `$InputObject =  Get-AtwsData -Entity $($Entity.Name) -Filter `$Filter
-    `$Fields = `$Atws.GetFieldInfo('$($Entity.Name)')
-    
-    Foreach (`$Parameter in `$PSBoundParameters.GetEnumerator())
+    Begin
     {
-      `$Field = `$Fields | Where-Object {`$_.Name -eq `$Parameter.Key}
-      If (`$Field)
-      { 
-          If (`$Field.IsPickList)
-          {
-            `$PickListValue = `$Field.PickListValues | Where-Object {`$_.Label -eq `$Parameter.Value}
-            `$Value = `$PickListValue.Value
-          }
-          Else
-          {
-            `$Value = `$Parameter.Value
-          }  
-          `$InputObject.`$(`$Parameter.Key) = `$Value
+      `$Fields = `$Atws.GetFieldInfo('$($Entity.Name)')
+    }
+    
+    Process
+    {
+      Foreach (`$Parameter in `$PSBoundParameters.GetEnumerator())
+      {
+        `$Field = `$Fields | Where-Object {`$_.Name -eq `$Parameter.Key}
+        If (`$Field)
+        { 
+            If (`$Field.IsPickList)
+            {
+              `$PickListValue = `$Field.PickListValues | Where-Object {`$_.Label -eq `$Parameter.Value}
+              `$Value = `$PickListValue.Value
+            }
+            Else
+            {
+              `$Value = `$Parameter.Value
+            }  
+            `$InputObject.`$(`$Parameter.Key) = `$Value
+        }
       }
     }
-
-    
-    Set-AtwsData -Entity `$InputObject
+    End
+    {    
+      `$ModifiedObjects = Set-AtwsData -Entity `$InputObject
+      If (`$PassThru.IsPresent)
+      {
+        Return `$ModifiedObjects
+      }
+    }
 "@ 
           }        
-          'Update'
-          {
-            @"
-  `n
-    
-    Set-AtwsData -Entity `$InputObject
-"@
-          }
 
           'New'
           {
@@ -653,8 +641,8 @@ Function $FunctionName
   
   Process
   {
-
-    $Activity = 'Importing Autotask Powershell CmdLets'
+    $ModuleName = 'AutotaskCI{0}' -F $($atws.getZoneInfo($atws.Credentials.UserName).CI)    
+    $Activity = 'Importing Autotask Powershell CmdLets as module {0}' -F $ModuleName
     $ModuleFunctions = @()
     Foreach ($Entity in $Entities)
     { 
@@ -665,9 +653,11 @@ Function $FunctionName
      
       
       # Calculating progress percentage and displaying it
-      $PercentComplete = $Entities.IndexOf($Entity) / $Entities.Count * 100
-      $Status = 'Importing {0}' -F $Entity.Name
-      Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete
+      $Index = $Entities.IndexOf($Entity) +1
+      $PercentComplete = $Index / $Entities.Count * 100
+      $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
+      $CurrentOperation = 'Importing {0}' -F $Entity.Name
+      Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
       
       $Caption = 'Import-AtwsCmdLet'
       $VerboseDescrition = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
@@ -703,7 +693,6 @@ Function $FunctionName
   {
     Write-Verbose -Message ('{0}: Importing Autotask Dynamic Module' -F $MyInvocation.MyCommand.Name)
     
-    $ModuleName = 'AutotaskCI{0}' -F $($atws.getZoneInfo($atws.Credentials.UserName).CI)
     $FunctionScriptBlock = [ScriptBlock]::Create($($ModuleFunctions))
         
     New-Module -Name $ModuleName -ScriptBlock $FunctionScriptBlock  | Import-Module -Global
