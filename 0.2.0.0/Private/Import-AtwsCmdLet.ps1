@@ -641,8 +641,8 @@ Function $FunctionName
   
   Process
   {
-
-    $Activity = 'Importing Autotask Powershell CmdLets'
+    $ModuleName = 'AutotaskCI{0}' -F $($atws.getZoneInfo($atws.Credentials.UserName).CI)    
+    $Activity = 'Importing Autotask Powershell CmdLets as module {0}' -F $ModuleName
     $ModuleFunctions = @()
     Foreach ($Entity in $Entities)
     { 
@@ -655,8 +655,8 @@ Function $FunctionName
       # Calculating progress percentage and displaying it
       $Index = $Entities.IndexOf($Entity) +1
       $PercentComplete = $Index / $Entities.Count * 100
-      $CurrentOperation = 'Entity {0}/{1}' -F $Index, $Entities.Count
-      $Status = 'Importing {0}' -F $Entity.Name
+      $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
+      $CurrentOperation = 'Importing {0}' -F $Entity.Name
       Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
       
       $Caption = 'Import-AtwsCmdLet'
@@ -693,7 +693,6 @@ Function $FunctionName
   {
     Write-Verbose -Message ('{0}: Importing Autotask Dynamic Module' -F $MyInvocation.MyCommand.Name)
     
-    $ModuleName = 'AutotaskCI{0}' -F $($atws.getZoneInfo($atws.Credentials.UserName).CI)
     $FunctionScriptBlock = [ScriptBlock]::Create($($ModuleFunctions))
         
     New-Module -Name $ModuleName -ScriptBlock $FunctionScriptBlock  | Import-Module -Global
