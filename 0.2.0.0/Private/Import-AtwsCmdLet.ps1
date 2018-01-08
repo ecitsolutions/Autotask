@@ -16,6 +16,7 @@ Function Import-AtwsCmdLet
   
   Begin
   { 
+
     Function Get-AtwsFunctionDefinition
     {
       [CmdLetBinding()]
@@ -138,9 +139,9 @@ Function $FunctionName
         $(Get-AtwsParameterDefinition -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo)
     )
 
-
-
-        $(Get-AtwsFunctionLogic -Verb $Verb -Entity $Entity)
+       $FunctionDefinition = '{0}-AutotaskDefinition' -F $Verb
+       (Get-Command $FunctionDefinition).Definition -replace '#EntityName',${Entity.Name}
+      
 
 
         
@@ -169,75 +170,84 @@ Function $FunctionName
         [Autotask.Field[]]
         $FieldInfo
       )
-    
-
-      If ($Verb -eq 'Get')
+    Begin
+    {
+      Function Get-Parameter
       {
-        @"
-        [Parameter(
-          Mandatory = `$true,
-          ValueFromRemainingArguments = `$true,
-          ParameterSetName = 'Filter')]
-        [ValidateNotNullOrEmpty()]
-        [String[]]
-        `$Filter
-"@ 
+        [CmdLetBinding()]
+        Param
+        (
+          [Switch]$Mandatory,
+
+          [Alias('Remaining')]
+          [Switch]$ValueFromRemainingArguments,
+
+          [Alias('SetName')]
+          [String]$ParameterSetName,
+
+          [Alias('Pipeline')]
+          [Switch]$ValueFromPipeline,
+
+          [Alias('NotNull')]
+          [Switch]$ValidateNotNullOrEmpty,
+
+          [String[]]$ValidateSet,
+
+          [Parameter(Mandatory = $True)]
+          [String]$Type,
+
+          [Switch]$Array,
+
+          [Parameter(Mandatory = $True)]
+          [String]$Name,
+
+          [Switch]$First
+          
+        )
+
+        If ($First.IsPresent)                       {$Text = "`t[Parameter(`n"}
+        Else                                        {$Text = ",`n`n`t[Parameter(`n"}
+        
+        If ($Mandatory.IsPresent)                   { $Text += "`t`tMandatory = `$true`n"  }
+        If ($ValueFromRemainingArguments.IsPresent) { $Text += "`t`tValueFromRemainingArguments = `$true`n" } 
+        If ($ParameterSetName)                      { $Text += "`t`tParameterSetName = '$ParameterSetName'`n" }
+        If ($ValueFromPipeline.IsPresent)           { $Text += "`t`tValueFromPipeline = `$true`n" }
+        $Text += "`t)]`n"
+        If ($ValidateNotNullOrEmpty.IsPresent)      { $Text += "`t[ValidateNotNullOrEmpty()]`n" }
+        If ($ValidateSet.Count -gt 0)               { $Text += "`t[ValidateSet($($ValidateSet -join ','))]`n" }
+
+        $Text += "`t[$Type"
+        If ($Array.IsPresent)                       {$Text += "[]"}
+        $Text += "]`n`t`$$Name"
+        
+        Return $Text
+      }
+    }
+
+    Process
+    { 
+    $TypeName = 'Autotask.{0}' -F $Entity.Name
+      
+    If ($Verb -eq 'Get')
+      {
+        Get-Parameter -Name 'Filter' -SetName 'Filter' -Type 'String'-Mandatory -Remaining -NotNull  -Array -First
       }    
       ElseIf ($Verb -eq 'Set')
       {
-        @"              
-        [Parameter(
-          Mandatory = `$True,
-          ParameterSetName = 'Input_Object',
-          ValueFromPipeline = `$True
-        )]
-        [ValidateNotNullOrEmpty()]
-        [Autotask.$($Entity.Name)[]]
-        `$InputObject,
-
-        [Parameter(
-          Mandatory = `$False,
-          ParameterSetName = 'Input_Object'
-        )]
-        [Switch]
-        `$PassThru
-"@ 
+        Get-Parameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -First
+        Get-Parameter -Name 'PassThru' -SetName 'Input_Object' -Type 'Switch'
       }
       ElseIf ($Verb -in 'New')
       {
-        @"
-        [Parameter(
-          Mandatory = `$True,
-          ParameterSetName = 'Input_Object',
-          ValueFromPipeline = `$True
-        )]
-        [ValidateNotNullOrEmpty()]
-        [Autotask.$($Entity.Name)[]]
-        `$InputObject
-"@
+        Get-Parameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -First
       }
       ElseIf ($Verb -eq 'Remove')
       {
-        @"
-        [Parameter(
-          Mandatory = `$True,
-          ParameterSetName = 'Input_Object',
-          ValueFromPipeline = `$True
-        )]
-        [ValidateNotNullOrEmpty()]
-        [Autotask.$($Entity.Name)]
-        `$InputObject,
-
-        [Parameter(
-          Mandatory = `$True,
-          ParameterSetName = 'By_parameters'
-        )]
-        [ValidateNotNullOrEmpty()]
-        [Int[]]
-        `$Id        
-"@
+        Get-Parameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -First   
+        Get-Parameter -Name 'Id' -SetName 'By_parameters' -Type $TypeName -Mandatory  -NotNull -Array
       }
     
+
       Switch ($Verb)
       {
         'Get' 
@@ -267,23 +277,17 @@ Function $FunctionName
 
       Foreach ($Field in $Fields )
       {
-        @"
-,`n
-        [Parameter(
-          Mandatory = `$$($Field.Mandatory),
-          ParameterSetName = '$($Field.ParameterSet)'
-        )]`n
-"@
-        # ValidateSet for picklists
-        If ($Field.IsRequired -and $Verb -in @('New', 'Set'))
+        $Type = Switch ($Field.Type) 
         {
-          @"
-        [ValidateNotNullOrEmpty()]`n
-"@
+          'Integer' {'Int'}
+          'Short'   {'Int16'}
+          default   {$Field.Type}
         }
+
         # ValidateSet for picklists and Fieldtype
         If ($Field.IsPickList -and $Field.PicklistValues.Count -gt 0)
         {
+          $Type = 'String'
           $Labels = Foreach ($Label in $Field.PickListValues.Label)
           {
             If ($Label -match "['’]")
@@ -295,328 +299,42 @@ Function $FunctionName
               "'{0}'" -F $Label
             }
           }
-          @"
-        [ValidateSet({0})]`n
-        [String
-"@      -f ($Labels -join ',')
-        } 
-        ElseIf ($Field.Type -eq 'Integer')
-        {
-          @"
-        [Int
-"@
         }
-        ElseIf ($Field.Type -eq 'short')
-        {
-          @"
-        [Int16
-"@
+
+        $ParameterOptions = @{
+          Mandatory = $Field.Mandatory
+          ParameterSetName = $Field.ParameterSet
+          ValidateNotNullOrEmpty = $(($Field.IsRequired -and $Verb -in @('New', 'Set')))
+          ValidateSet = $Labels
+          Array = $(($Verb -eq 'Get'))
+          Name = $Field.Name 
         }
-        Else
-        {
-          @"
-        [{0}
-"@      -f $Field.Type      
-        }
-        # Array permitted if GET, else single value
-        If ($Verb -eq 'Get')
-        {"[]]`n"}
-        Else
-        {"]`n"}
-        # Parametername
-        @"
-        `${0}`n
-"@       -f $Field.Name 
+
+        Get-Parameter @ParameterOptions
+
       }
     
     
       # Make modifying operators possible
       If ($Verb -eq 'Get')
       {
+        # These operators work for all fields
         $Labels = $Fields 
         Foreach ($Operator in 'NotEquals', 'GreaterThan', 'GreaterThanOrEqual', 'LessThan', 'LessThanOrEquals')
         {
-          @"
-,        `n
-        [Parameter(
-          ParameterSetName = 'By_parameters'
-        )]
-        [ValidateSet('{0}')]
-        [String[]]
-        `$$Operator
-"@     -F ($Labels.Name -join "','")
+          Get-Parameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
         }
 
-        $Labels = $Fields | Where-Object -FilterScript {
-          $_.Type -eq 'string'
-        }
+        # These operators only work for strings
+        $Labels = $Fields | Where-Object {$_.Type -eq 'string'}
         Foreach ($Operator in 'Like', 'NotLike', 'BeginsWith', 'EndsWith', 'Contains')
         {
-          @"
-,        `n
-        [Parameter(
-          ParameterSetName = 'By_parameters'
-        )]
-        [ValidateSet('{0}')]
-        [String[]]
-        `$$Operator
-"@     -F ($Labels.Name -join "','")
+          Get-Parameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
+
         }
       }
     }
-
-    Function Get-AtwsFunctionLogic
-    {
-      [CmdLetBinding()]
-      Param
-      (
-        [Parameter(Mandatory = $True)]
-        [Autotask.EntityInfo]
-        $Entity,
-        
-        [Parameter(Mandatory)]
-        [ValidateSet('Get', 'Set', 'New', 'Remove')]
-        [String]
-        $Verb
-        
-      )
-      # Common
-      Begin
-      { 
-  
-        @"
-  `n
-  Begin
-  { 
-    If (`$Verbose)
-    {
-      # Make sure the -Verbose parameter is inherited
-      `$VerbosePreference = 'Continue'
-    }
-    If (-not(`$global:atws.Url))
-    {
-      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
-    }
-    Write-Verbose ('{0}: Begin of function' -F `$MyInvocation.MyCommand.Name)
-
   }
-"@
-      }
-  
-      Process
-      {
-        @"
-  `n
-  Process
-  {
-"@
-    
-        Switch ($Verb)
-        {
-          'Get' 
-          {
-            @"
-    `n
-    If (-not(`$Filter))
-    {
-        `$Fields = `$Atws.GetFieldInfo('$($Entity.Name)')
-        
-        Foreach (`$Parameter in `$PSBoundParameters.GetEnumerator())
-        {
-            `$Field = `$Fields | Where-Object {`$_.Name -eq `$Parameter.Key}
-            If (`$Field)
-            { 
-              If (`$Parameter.Value.Count -gt 1)
-              {
-                `$Filter += '-begin'
-              }
-              Foreach (`$ParameterValue in `$Parameter.Value)
-              {   
-                `$Operator = '-or'
-                If (`$Field.IsPickList)
-                {
-                  `$PickListValue = `$Field.PickListValues | Where-Object {`$_.Label -eq `$ParameterValue}
-                  `$Value = `$PickListValue.Value
-                }
-                Else
-                {
-                  `$Value = `$ParameterValue
-                }
-                `$Filter += `$Parameter.Key
-                If (`$Parameter.Key -in `$NotEquals)
-                { 
-                  `$Filter += '-ne'
-                  `$Operator = '-and'
-                }
-                ElseIf (`$Parameter.Key -in `$GreaterThan)
-                { `$Filter += '-gt'}
-                ElseIf (`$Parameter.Key -in `$GreaterThanOrEqual)
-                { `$Filter += '-ge'}
-                ElseIf (`$Parameter.Key -in `$LessThan)
-                { `$Filter += '-lt'}
-                ElseIf (`$Parameter.Key -in `$LessThanOrEquals)
-                { `$Filter += '-le'}
-                ElseIf (`$Parameter.Key -in `$Like)
-                { 
-                  `$Filter += '-like'
-                  `$Value = `$Value -replace '*','%'
-                }
-                ElseIf (`$Parameter.Key -in `$NotLike)
-                { 
-                  `$Filter += '-notlike'
-                  `$Value = `$Value -replace '*','%'
-                }
-                ElseIf (`$Parameter.Key -in `$BeginsWith)
-                { `$Filter += '-beginswith'}
-                ElseIf (`$Parameter.Key -in `$EndsWith)
-                { `$Filter += '-endswith'}
-                ElseIf (`$Parameter.Key -in `$Contains)
-                { `$Filter += '-contains'}
-                Else
-                { `$Filter += '-eq'}
-                `$Filter += `$Value
-                If (`$Parameter.Value.Count -gt 1 -and `$ParameterValue -ne `$Parameter.Value[-1])
-                {
-                  `$Filter += `$Operator
-                }
-                ElseIf (`$Parameter.Value.Count -gt 1)
-                {
-                  `$Filter += '-end'
-                }
-              }
-            
-            }
-        }
-        
-    } #'NotEquals','GreaterThan','GreaterThanOrEqual','LessThan','LessThanOrEquals','Like','NotLike','BeginsWith','EndsWith
-
-    Get-AtwsData -Entity $($Entity.Name) -Filter `$Filter
-"@
-          }
-
-          'Set'
-          {
-            @"
-  `n
-    Begin
-    {
-      `$Fields = `$Atws.GetFieldInfo('$($Entity.Name)')
-    }
-    
-    Process
-    {
-      Foreach (`$Parameter in `$PSBoundParameters.GetEnumerator())
-      {
-        `$Field = `$Fields | Where-Object {`$_.Name -eq `$Parameter.Key}
-        If (`$Field)
-        { 
-            If (`$Field.IsPickList)
-            {
-              `$PickListValue = `$Field.PickListValues | Where-Object {`$_.Label -eq `$Parameter.Value}
-              `$Value = `$PickListValue.Value
-            }
-            Else
-            {
-              `$Value = `$Parameter.Value
-            }  
-            `$InputObject.`$(`$Parameter.Key) = `$Value
-        }
-      }
-    }
-    End
-    {    
-      `$ModifiedObjects = Set-AtwsData -Entity `$InputObject
-      If (`$PassThru.IsPresent)
-      {
-        Return `$ModifiedObjects
-      }
-    }
-"@ 
-          }        
-
-          'New'
-          {
-            @"
-  `n
-    If (`$InputObject)
-    {
-      Write-Verbose ('{0}: Duplicate Object mode: Setting ID property to zero' -F `$MyInvocation.MyCommand.Name)  
-      Foreach (`$Object in `$InputObject) 
-      { 
-        `$Object.Id = 0
-      }   
-    }
-    Else
-    {
-       Write-Verbose ('{0}: Creating empty [Autotask.$($Entity.Name)] object' -F `$MyInvocation.MyCommand.Name) 
-      `$InputObject = New-Object Autotask.$($Entity.Name)      
-    }
-
-    `$Fields = `$Atws.GetFieldInfo('$($Entity.Name)')
-    
-    Foreach (`$Parameter in `$PSBoundParameters.GetEnumerator())
-    {
-      `$Field = `$Fields | Where-Object {`$_.Name -eq `$Parameter.Key}
-      If (`$Field)
-      { 
-          If (`$Field.IsPickList)
-          {
-            `$PickListValue = `$Field.PickListValues | Where-Object {`$_.Label -eq `$Parameter.Value}
-            `$Value = `$PickListValue.Value
-          }
-          Else
-          {
-            `$Value = `$Parameter.Value
-          }  
-          Foreach (`$Object in `$InputObject) 
-          { 
-            `$Object.`$(`$Parameter.Key) = `$Value
-          }
-      }
-    }
-    New-AtwsData -Entity `$InputObject
-
-"@
-          }
-
-          'Remove'
-          {
-            @"
-  `n
-    If (`$Id.Count -gt 0)
-    {
-      `$Filter = 'id -eq {0}' -F (`$Id -join ' -or id -eq ')
-      `$InputObject = Get-AtwsData -Entity $($Entity.Name) -Filter `$Filter
-    }
-    If (`$InputObject)
-    { 
-      Remove-AtwsData -Entity `$Object 
-    }
-
-"@
-          }
-
-        }
-        @"
-}
-"@
-      }
-      End
-      { 
-        @"
-  `n
-  End
-  {
-    Write-Verbose ('{0}: End of function' -F `$MyInvocation.MyCommand.Name)
-
-  }
-"@
-      }
-    }
-
-
-
-
 
     If (-not($global:atws.Url))
     {
