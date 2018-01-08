@@ -139,8 +139,8 @@ Function $FunctionName
         $(Get-AtwsParameterDefinition -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo)
     )
 
-       $FunctionDefinition = '{0}-AutotaskDefinition' -F $Verb
-       (Get-Command $FunctionDefinition).Definition -replace '#EntityName',${Entity.Name}
+       $($AutotaskFunctionDefinition = '{0}-AutotaskDefinition' -F $Verb)
+       $((Get-Command $AutotaskFunctionDefinition).Definition -replace '#EntityName',$($Entity.Name))
       
 
 
@@ -204,21 +204,50 @@ Function $FunctionName
           [Switch]$First
           
         )
-
-        If ($First.IsPresent)                       {$Text = "`t[Parameter(`n"}
-        Else                                        {$Text = ",`n`n`t[Parameter(`n"}
+        # Start with a comma if not the first parameter
+        If ($First.IsPresent)                       {$Text = ""}
+        Else                                        {$Text = ",`n`n"}
         
-        If ($Mandatory.IsPresent)                   { $Text += "`t`tMandatory = `$true`n"  }
-        If ($ValueFromRemainingArguments.IsPresent) { $Text += "`t`tValueFromRemainingArguments = `$true`n" } 
-        If ($ParameterSetName)                      { $Text += "`t`tParameterSetName = '$ParameterSetName'`n" }
-        If ($ValueFromPipeline.IsPresent)           { $Text += "`t`tValueFromPipeline = `$true`n" }
-        $Text += "`t)]`n"
-        If ($ValidateNotNullOrEmpty.IsPresent)      { $Text += "`t[ValidateNotNullOrEmpty()]`n" }
-        If ($ValidateSet.Count -gt 0)               { $Text += "`t[ValidateSet($($ValidateSet -join ','))]`n" }
+        # Make an array of properties that goes inside the Parameter clause
+        $ParamProperties = @()
+        If ($Mandatory.IsPresent)                   { $ParamProperties += "      Mandatory = `$true`n"  }
+        If ($ValueFromRemainingArguments.IsPresent) { $ParamProperties += "      ValueFromRemainingArguments = `$true`n" } 
+        If ($ParameterSetName)                      { $ParamProperties += "      ParameterSetName = '$ParameterSetName'`n" }
+        If ($ValueFromPipeline.IsPresent)           { $ParamProperties += "      ValueFromPipeline = `$true`n" }
 
-        $Text += "`t[$Type"
-        If ($Array.IsPresent)                       {$Text += "[]"}
-        $Text += "]`n`t`$$Name"
+        # Create the [Parameter()] clause
+        If ($ParamProperties.Count -gt 0)
+        {
+          $Text += "   [Parameter(`n"
+          $Text += $ParamProperties -join ",`n"
+          $Text += "`n   )]`n"
+        }
+
+        # Add validate not null if present
+        If ($ValidateNotNullOrEmpty.IsPresent)      { $Text += "   [ValidateNotNullOrEmpty()]`n" }
+        
+        # Add Validateset if present
+        If ($ValidateSet.Count -gt 0)               
+        { 
+          # Fix quote characters for labels
+          $Labels = Foreach ($Label in  $ValidateSet)
+          {
+            If ($Label -match "['’]")
+            {
+              '"{0}"' -F $Label
+            }
+            Else
+            {
+              "'{0}'" -F $Label
+            }
+          }          
+          $Text += "   [ValidateSet($($Labels -join ', '))]`n" 
+        }
+
+        # Add the correct variable type for the parameter
+        $Text += "   [$Type"
+        If ($Array.IsPresent) {$Text += "[]"}
+        $Text += "]`n`   `$$Name"
         
         Return $Text
       }
@@ -226,11 +255,11 @@ Function $FunctionName
 
     Process
     { 
-    $TypeName = 'Autotask.{0}' -F $Entity.Name
+      $TypeName = 'Autotask.{0}' -F $Entity.Name
       
-    If ($Verb -eq 'Get')
+      If ($Verb -eq 'Get')
       {
-        Get-Parameter -Name 'Filter' -SetName 'Filter' -Type 'String'-Mandatory -Remaining -NotNull  -Array -First
+        Get-Parameter -Name 'Filter' -SetName 'Filter' -Type 'String' -Mandatory -Remaining -NotNull  -Array -First
       }    
       ElseIf ($Verb -eq 'Set')
       {
@@ -284,30 +313,20 @@ Function $FunctionName
           default   {$Field.Type}
         }
 
-        # ValidateSet for picklists and Fieldtype
+        # Fieldtype for picklists
         If ($Field.IsPickList -and $Field.PicklistValues.Count -gt 0)
         {
-          $Type = 'String'
-          $Labels = Foreach ($Label in $Field.PickListValues.Label)
-          {
-            If ($Label -match "['’]")
-            {
-              '"{0}"' -F $Label
-            }
-            Else
-            {
-              "'{0}'" -F $Label
-            }
-          }
+          $Type = 'String'          
         }
 
         $ParameterOptions = @{
           Mandatory = $Field.Mandatory
           ParameterSetName = $Field.ParameterSet
           ValidateNotNullOrEmpty = $(($Field.IsRequired -and $Verb -in @('New', 'Set')))
-          ValidateSet = $Labels
+          ValidateSet = $Field.PickListValues.Label
           Array = $(($Verb -eq 'Get'))
-          Name = $Field.Name 
+          Name = $Field.Name
+          Type = $Type
         }
 
         Get-Parameter @ParameterOptions
@@ -318,15 +337,15 @@ Function $FunctionName
       # Make modifying operators possible
       If ($Verb -eq 'Get')
       {
-        # These operators work for all fields
-        $Labels = $Fields 
+        # These operators work for all fields (add quote characters here)
+        $Labels = $Fields | ForEach-Object {$_ = "'{0}'" -F $_}
         Foreach ($Operator in 'NotEquals', 'GreaterThan', 'GreaterThanOrEqual', 'LessThan', 'LessThanOrEquals')
         {
           Get-Parameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
         }
 
-        # These operators only work for strings
-        $Labels = $Fields | Where-Object {$_.Type -eq 'string'}
+        # These operators only work for strings (add quote characters here)
+        $Labels = $Fields | Where-Object {$_.Type -eq 'string'} | ForEach-Object {$_ = "'{0}'" -F $_}
         Foreach ($Operator in 'Like', 'NotLike', 'BeginsWith', 'EndsWith', 'Contains')
         {
           Get-Parameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
@@ -390,7 +409,7 @@ Function $FunctionName
           {
             Write-Verbose -Message ('{0}: Writing file for function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
                         
-            $FilePath = '{0}\{1}.ps1' -F $PSScriptRoot, $Function.Key
+            $FilePath = '{0}\Debug\{1}.ps1' -F $PSScriptRoot, $Function.Key
           
             $Caption = 'Import-AtwsCmdLet'
             $VerboseDescrition = '{0}: Overwriting {1}' -F $Caption, $FilePath

@@ -1,4 +1,4 @@
-﻿Function Get-AutotaskDefinition
+﻿Function Remove-AutotaskDefinition
 { 
   Begin
   { 
