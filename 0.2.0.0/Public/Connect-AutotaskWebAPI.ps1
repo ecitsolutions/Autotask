@@ -33,6 +33,7 @@ Function Connect-AutotaskWebAPI
   [cmdletbinding()]
   Param
   (
+    [ValidateNotNullOrEmpty()]    
     [pscredential]
     $Credential = $(Get-Credential -Message 'Autotask Web Services API login'),
 
@@ -52,7 +53,13 @@ Function Connect-AutotaskWebAPI
   Begin
   { 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    
     $DefaultUri = 'https://webservices.Autotask.net/atservices/1.5/atws.wsdl'
+    
+    If (-not($global:AtwsConnection))
+    {
+      $global:AtwsConnection = @{}
+    }
   }
   
   Process
@@ -61,15 +68,16 @@ Function Connect-AutotaskWebAPI
     
     # Make sure Windows does not try to add a domain to username
     # Prefix username with a backslash if nobody has added one yet
-    If ($($Credential.UserName).Substring(0,1) -ne '\')
+    # And make sure we stick to the local scope - important when debugging...
+    If ($($local:Credential.UserName).Substring(0,1) -ne '\')
     {
-      $Credential = New-Object System.Management.Automation.PSCredential("\$($Credential.UserName)",$($Credential.Password))
+      $local:Credential = New-Object System.Management.Automation.PSCredential("\$($local:Credential.UserName)",$($local:Credential.Password))
     }
     
-    Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $Credential.UserName, $DefaultUri)
+    Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $local:Credential.UserName, $DefaultUri)
 
     $RootService = New-WebServiceProxy -URI $DefaultUri
-    $ZoneInfo = $RootService.getZoneInfo($Credential.UserName)
+    $ZoneInfo = $RootService.getZoneInfo($local:Credential.UserName)
     If ($ZoneInfo.ErrorCode -ne 0)
     {
       Write-Error ('Invalid username "{0}". Try again.' -f $User)
@@ -78,28 +86,77 @@ Function Connect-AutotaskWebAPI
     
     Write-Verbose ('{0}: Customer tenant ID: {1}, Web URL: {2}, SOAP endpoint: {3}' -F $MyInvocation.MyCommand.Name, $ZoneInfo.CI, $ZoneInfo.WebUrl, $ZoneInfo.Url)
     
+    $ModuleName = '{0}CI{1}' -F $Prefix, $ZoneInfo.CI    
+    
+    Write-Verbose ('{0}: Checking cached connections for Connection {1}' -F $MyInvocation.MyCommand.Name, $Prefix)
+    
+    If ($global:AtwsConnection.ContainsKey($Prefix))
+    {
+      Write-Verbose ('{0}: Cached connection {1} found. Checking credentials' -F $MyInvocation.MyCommand.Name, $Prefix)
+      $SameUser = (('\{0}' -F $global:AtwsConnection[$Prefix].Credentials.Username) -eq $local:Credential.Username)
+      $ModuleLoaded = Get-Module -Name $ModuleName
+      If ($SameUser -and ($global:AtwsConnection[$Prefix].Credentials.Password -ne $local:Credential.GetNetworkCredential().Password))
+      {
+        Write-Verbose ('{0}: Password for connection {1} updated. Re-authenticating.' -F $MyInvocation.MyCommand.Name, $Prefix)
+        $global:AtwsConnection.Remove($Prefix)
+      }
+      ElseIf($SameUser -and -not $NoFunctionImport -and -not ($ModuleLoaded))
+      {
+        Write-Verbose ('{0}: Credentials for connection {1} validated, but no dynamic module loaded. Loading module.' -F $MyInvocation.MyCommand.Name, $Prefix)  
+      }
+      ElseIf($SameUser)
+      {
+        Write-Verbose ('{0}: Credentials for connection {1} cached. Using cached connection.' -F $MyInvocation.MyCommand.Name, $Prefix)  
+        Return
+      }
+      Else
+      {
+        Write-Verbose ('{0}: New credentials for connection {1} speficied. Creating new connection.' -F $MyInvocation.MyCommand.Name, $Prefix)  
+        $global:AtwsConnection.Remove($Prefix)
+      }
+
+          
+    }
+    
     $Uri = $ZoneInfo.URL -replace 'atws.asmx','atws.wsdl'
     
     # Make sure a failure to create this object truly fails the script
     Write-Verbose ('{0}: Creating New-WebServiceProxy against URI: {1}' -F $MyInvocation.MyCommand.Name, $Uri)
-    $global:atws = New-WebServiceProxy -URI $Uri  -Credential $credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
-    
-    If ($atws.Credentials.SecurePassword.Length -lt $Credential.Password.Length)
+    Try
     {
-      Write-Verbose ('{0}: Setting credential object of New-WebServiceProxy (when did this become necessary??)' -F $MyInvocation.MyCommand.Name)
-      $atws.Credentials = $Credential
+      # Create a new webservice proxy or die trying...
+      $WebServiceProxy = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
     }
- 
-    
+    Catch
+    {
+      Throw [ApplicationException] 'Could not connect to Autotask WebAPI. Verify your credentials. If you are sure you have the rights - maybe you typed your password wrong?'    
+    }
+    <#
+        If ($WebServiceProxy.Credentials.SecurePassword.Length -lt $local:Credential.Password.Length)
+        {
+        Write-Verbose ('{0}: Setting credential object of New-WebServiceProxy (when did this become necessary??)' -F $MyInvocation.MyCommand.Name)
+        $WebServiceProxy.Credentials = $local:Credential
+        }
+    #>
     Write-Verbose ('{0}: Running query Get-AtwsData -Entity Account -Filter {{id -eq 0}}' -F $MyInvocation.MyCommand.Name)
     
-    $Result = Get-AtwsData -Entity Account -Filter {id -eq 0}
+    $global:AtwsConnection[$Prefix] = $WebServiceProxy
+        
+    $Result = Get-AtwsData -Connection $Prefix -Entity Account -Filter {id -eq 0}
     
-    If (($Result) -and -not ($NoFunctionImport))
+    If ($Result)
     {
-      Import-AtwsCmdLet -ExportToDisk:$ExportToDisk -Prefix $Prefix
+      If (-not $NoFunctionImport.IsPresent)
+      {
+                      
+        Import-AtwsCmdLet -ModuleName $ModuleName -ExportToDisk:$ExportToDisk -Prefix $Prefix
+      }
     }
-
+    Else
+    {
+      $global:AtwsConnection.Remove($Prefix)
+      Throw [ApplicationException] 'Could not complete a query to Autotask WebAPI. Verify your credentials. You seem to have been logged in, but do you have the necessary rights?'    
+    }
   }
   
   End

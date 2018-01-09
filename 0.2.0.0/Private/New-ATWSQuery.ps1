@@ -20,10 +20,7 @@ function New-ATWSQuery
 
   )
     
-  If (-not($global:atws.Url))
-  {
-    Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
-  }
+
   # List of allowed operator in QueryXML
   $Operator = @{
     '-and' = 'and'

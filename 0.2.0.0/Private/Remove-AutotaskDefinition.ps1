@@ -3,16 +3,14 @@
   Begin
   { 
     $EntityName = '#EntityName'
+    $Prefix = '#Prefix' 
     
     If ($Verbose)
     {
       # Make sure the -Verbose parameter is inherited
       $VerbosePreference = 'Continue'
     }
-    If (-not($global:atws.Url))
-    {
-      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
-    }
+
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
   }
@@ -27,7 +25,7 @@
 
     If ($InputObject)
     { 
-      Remove-AtwsData -Entity $InputObject 
+      Remove-AtwsData -Entity $InputObject -Connection $Prefix
     }
   }
 

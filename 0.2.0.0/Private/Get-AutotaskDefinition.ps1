@@ -3,16 +3,14 @@
   Begin
   { 
     $EntityName = '#EntityName'
+    $Prefix = '#Prefix'
 
     If ($Verbose)
     {
       # Make sure the -Verbose parameter is inherited
       $VerbosePreference = 'Continue'
     }
-    If (-not($global:atws.Url))
-    {
-      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
-    }
+
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
   }
@@ -21,7 +19,7 @@
   {
     If (-not($Filter))
     {
-      $Fields = $Atws.GetFieldInfo($EntityName)
+      $Fields = Get-AtwsFieldInfo -Entity $EntityName -Connection $Prefix
         
       Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
       {
@@ -61,12 +59,12 @@
             ElseIf ($Parameter.Key -in $Like)
             { 
               $Filter += '-like'
-              $Value = $Value -replace '*','%'
+              $Value = $Value -replace '\*','%'
             }
             ElseIf ($Parameter.Key -in $NotLike)
             { 
               $Filter += '-notlike'
-              $Value = $Value -replace '*','%'
+              $Value = $Value -replace '\*','%'
             }
             ElseIf ($Parameter.Key -in $BeginsWith)
             { $Filter += '-beginswith'}
@@ -92,7 +90,7 @@
         
     } #'NotEquals','GreaterThan','GreaterThanOrEqual','LessThan','LessThanOrEquals','Like','NotLike','BeginsWith','EndsWith
 
-    Get-AtwsData -Entity $EntityName -Filter $Filter
+    Get-AtwsData -Entity $EntityName -Filter $Filter -Connection $Prefix
   }
 
   End

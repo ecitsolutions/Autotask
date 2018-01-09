@@ -6,49 +6,48 @@
 
 #>
 
-Function Set-AtwsData 
+Function Get-AtwsFieldInfo
 {
   <#
       .SYNOPSIS
-      This function updates one or more Autotask entities with new or modified properties.
+      This function connects to the Autotask Web Services API.
       .DESCRIPTION
-      This function updates one or more Autotask entities with new or modified properties
+      The function takes a credential object and uses it to authenticate and connect to the Autotask
+      Web Services API
       .INPUTS
-      Autotask.Entity[]. One or more Autotask entities to update
+      A PSCredential object. Required. It will prompt for credentials if the object is not provided.
       .OUTPUTS
-      Autotask.Entity[]. The updated entities are re-downloaded from the API.
+      A webserviceproxy object is created.
       .EXAMPLE
-      Set-AtwsData -Entity $Entity
-      Passes all Autotask entities in $Entity to the Autotask webservices API
+      Connect-AutotaskWebAPI
+      Prompts for a username and password and authenticates to Autotask
+      .EXAMPLE
+      Connect-AutotaskWebAPI
       .NOTES
-      NAME: Set-AtwsData
+      NAME: Connect-AutotaskWebAPI
       .LINK
       Get-AtwsData
-      New-AtwsData
-      Remove-AtwsData
+      New-AtwsQuery
   #>
- 
-  [cmdletbinding(
-    SupportsShouldProcess = $True,
-    ConfirmImpact = 'Medium'
-  )]
-  param
+	
+  [cmdletbinding()]
+  Param
   (
     [Parameter(
         Mandatory = $True,
-        ValueFromPipeline = $True
+        Position = 0
     )]
-    [ValidateNotNullOrEmpty()]
-    [PSObject[]]
+    [String]
     $Entity,
-    
+
     [String]
     $Connection = 'Atws'
   )
     
-    
   Begin
   { 
+    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        
     If (-not($global:AtwsConnection[$Connection].Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
@@ -57,37 +56,37 @@ Function Set-AtwsData
     {
       $Atws = $global:AtwsConnection[$Connection]
     }
+    
   }
   
   Process
   { 
-    Write-Verbose ('{0}: Updating Autotask {1} with id {2}' -F $MyInvocation.MyCommand.Name, $Entity[0].GetType().Name, $($Entity.id -join ', '))
-
-
     $Caption = 'Set-Atws{0}' -F $Entity[0].GetType().Name
     $VerboseDescrition = '{0}: About to modify {1} {2}(s). This action cannot be undone.' -F $Caption, $Entity.Count, $Entity[0].GetType().name
     $VerboseWarning = '{0}: About to modify {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
 
     If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
     { 
-      $Result = $atws.update($Entity)
+      $Result = $atws.GetFieldInfo($Entity)
     }
     
-    If ($Result.Errors.Count -eq 0)
-    {
-      Return $Result
-    }
-    Else
+    If ($Result.Errors.Count -gt 0)
     {
       Foreach ($AtwsError in $Result.Errors)
       {
         Write-Error $AtwsError.Message
       }
+      Return
     }
-  }
-  End 
-  {
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
-  }
-}
 
+  }
+  
+  End
+  {
+    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+
+    Return $Result
+  }
+    
+    
+}

@@ -3,16 +3,14 @@
   Begin
   { 
     $EntityName = '#EntityName'
-    
+    $Prefix = '#Prefix'
+        
     If ($Verbose)
     {
       # Make sure the -Verbose parameter is inherited
       $VerbosePreference = 'Continue'
     }
-    If (-not($global:atws.Url))
-    {
-      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
-    }
+
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
   }
@@ -33,7 +31,7 @@
       $InputObject = New-Object Autotask.$EntityName    
     }
 
-    $Fields = $Atws.GetFieldInfo($EntityName)
+    $Fields = Get-AtwsFieldInfo -Entity $EntityName -Connection $Prefix
     
     Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
     {
@@ -56,7 +54,7 @@
         }
       }
     }
-    New-AtwsData -Entity $InputObject
+    New-AtwsData -Entity $InputObject -Connection $Prefix
   }
 
   End

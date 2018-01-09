@@ -38,14 +38,21 @@ Function Remove-AtwsData
     ValueFromPipeline = $True)]
     [ValidateNotNullOrEmpty()]
     [PSObject[]]
-    $Entity
+    $Entity,
+    
+    [String]
+    $Connection = 'Atws'
   )
     
   Begin
   { 
-    If (-not($global:atws.Url))
+    If (-not($global:AtwsConnection[$Connection].Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
+    }
+    Else
+    {
+      $Atws = $global:AtwsConnection[$Connection]
     }
     Write-Verbose ('{0}: Start of Function' -F $MyInvocation.MyCommand.Name)
     
