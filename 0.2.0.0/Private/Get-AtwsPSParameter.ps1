@@ -9,7 +9,7 @@
     [Switch]$ValueFromRemainingArguments,
 
     [Alias('SetName')]
-    [String]$ParameterSetName,
+    [String[]]$ParameterSetName,
 
     [Alias('Pipeline')]
     [Switch]$ValueFromPipeline,
@@ -18,6 +18,9 @@
     [Switch]$ValidateNotNullOrEmpty,
 
     [String[]]$ValidateSet,
+
+    [Alias('Length')]
+    [int]$ValidateLength,
 
     [Parameter(Mandatory = $True)]
     [String]$Type,
@@ -29,37 +32,45 @@
           
   )
    
-  # Make an array of properties that goes inside the Parameter clause
-  $ParamProperties = @()
-  If ($Mandatory.IsPresent)                   
-  {
-    $ParamProperties += "      Mandatory = `$true"  
-  }
-  If ($ValueFromRemainingArguments.IsPresent) 
-  {
-    $ParamProperties += "      ValueFromRemainingArguments = `$true" 
-  } 
-  If ($ParameterSetName)                      
-  {
-    $ParamProperties += "      ParameterSetName = '$ParameterSetName'" 
-  }
-  If ($ValueFromPipeline.IsPresent)           
-  {
-    $ParamProperties += "      ValueFromPipeline = `$true" 
-  }
+  Foreach ($SetName in $ParameterSetName)
+  { 
+    # Make an array of properties that goes inside the Parameter clause
+    $ParamProperties = @()
+    If ($Mandatory.IsPresent)                   
+    {
+      $ParamProperties += "      Mandatory = `$true"  
+    }
+    If ($ValueFromRemainingArguments.IsPresent) 
+    {
+      $ParamProperties += "      ValueFromRemainingArguments = `$true" 
+    } 
+    If ($ParameterSetName)                      
+    {
+      $ParamProperties += "      ParameterSetName = '$SetName'" 
+    }
+    If ($ValueFromPipeline.IsPresent)           
+    {
+      $ParamProperties += "      ValueFromPipeline = `$true" 
+    }
 
-  # Create the [Parameter()] clause
-  If ($ParamProperties.Count -gt 0)
-  {
-    $Text += "    [Parameter(`n"
-    $Text += $ParamProperties -join ",`n"
-    $Text += "`n    )]`n"
+    # Create the [Parameter()] clause
+    If ($ParamProperties.Count -gt 0)
+    {
+      $Text += "    [Parameter(`n"
+      $Text += $ParamProperties -join ",`n"
+      $Text += "`n    )]`n"
+    }
   }
-
   # Add validate not null if present
   If ($ValidateNotNullOrEmpty.IsPresent)      
   {
     $Text += "    [ValidateNotNullOrEmpty()]`n" 
+  }
+
+  # Add validate length if present
+  If ($ValidateLength -gt 0)      
+  {
+    $Text += "    [ValidateLength(1,$ValidateLength)]`n" 
   }
         
   # Add Validateset if present

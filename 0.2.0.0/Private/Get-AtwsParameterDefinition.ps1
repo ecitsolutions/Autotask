@@ -28,6 +28,8 @@
     If ($Verb -eq 'Get')
     {
       Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'String' -Mandatory -Remaining -NotNull  -Array 
+      $ReferenceFields = $FieldInfo.Where({$_.IsReference}).Name
+      Get-AtwsPSParameter -Name 'ReferenceEntity' -SetName 'Filter','By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields
     }    
     ElseIf ($Verb -eq 'Set')
     {
@@ -107,6 +109,7 @@
         Mandatory              = $Field.Mandatory
         ParameterSetName       = $Field.ParameterSet
         ValidateNotNullOrEmpty = $(($Field.IsRequired -and $Verb -in @('New', 'Set')))
+        ValidateLength         = $Field.Length
         ValidateSet            = $Field.PickListValues.Label
         Array                  = $(($Verb -eq 'Get'))
         Name                   = $Field.Name
