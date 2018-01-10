@@ -3,6 +3,14 @@
   [CmdLetBinding()]
   Param
   (
+    [Parameter(Mandatory = $True)]
+    [String]$Name,
+
+    [String[]]$Alias,
+    
+    [Parameter(Mandatory = $True)]
+    [String]$Type,
+    
     [Switch]$Mandatory,
 
     [Alias('Remaining')]
@@ -22,13 +30,11 @@
     [Alias('Length')]
     [int]$ValidateLength,
 
-    [Parameter(Mandatory = $True)]
-    [String]$Type,
 
-    [Switch]$Array,
 
-    [Parameter(Mandatory = $True)]
-    [String]$Name
+    [Switch]$Array
+
+
           
   )
    
@@ -60,6 +66,11 @@
       $Text += $ParamProperties -join ",`n"
       $Text += "`n    )]`n"
     }
+  }
+  # Add any aliases
+  If ($Alias.Count -gt 0)
+  {
+    $Text += "    [Alias('{0}')]`n" -F $($Alias -join "','")
   }
   # Add validate not null if present
   If ($ValidateNotNullOrEmpty.IsPresent)      
