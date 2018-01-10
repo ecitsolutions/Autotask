@@ -93,7 +93,7 @@
     $Result = Get-AtwsData -Entity $EntityName -Filter $Filter -Connection $Prefix
     if ( ($Result) -and ($ReferenceEntity))
     {
-      $Field = $FieldInfo.Where({$_.Name -eq $ReferenceEntity})
+      $Field = $Fields.Where({$_.Name -eq $ReferenceEntity})
       $Filter = 'id -eq {0}' -F $($Result.$ReferenceEntity -join ' -or id -eq ')
       $ReferenceResult = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter -Connection $Prefix
       If ($ReferenceResult)
