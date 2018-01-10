@@ -42,7 +42,6 @@ Function Connect-AutotaskWebAPI
       NAME: Connect-AutotaskWebAPI
       .LINK
       Get-AtwsData
-      New-AtwsQuery
   #>
 	
   [cmdletbinding()]
@@ -53,14 +52,11 @@ Function Connect-AutotaskWebAPI
     $Credential = $(Get-Credential -Message 'Autotask Web Services API login'),
 
     [Switch]
-    $NoFunctionImport = $False,
+    $NoDynamicModule = $False,
     
     [String]
     $Prefix = 'Atws',
 
-    [Switch]
-    $ExportToDisk = $False,
-        
     [Switch]
     $Silent = $false
   )
@@ -75,6 +71,9 @@ Function Connect-AutotaskWebAPI
     {
       $global:AtwsConnection = @{}
     }
+
+    # Setting Modulename here, we need to check if it is already loaded
+    $ModuleName = 'Autotask.{0}' -F $Prefix  
   }
   
   Process
@@ -100,8 +99,6 @@ Function Connect-AutotaskWebAPI
     }
     
     Write-Verbose ('{0}: Customer tenant ID: {1}, Web URL: {2}, SOAP endpoint: {3}' -F $MyInvocation.MyCommand.Name, $ZoneInfo.CI, $ZoneInfo.WebUrl, $ZoneInfo.Url)
-    
-    $ModuleName = '{0}CI{1}' -F $Prefix, $ZoneInfo.CI    
     
     Write-Verbose ('{0}: Checking cached connections for Connection {1}' -F $MyInvocation.MyCommand.Name, $Prefix)
     
@@ -161,10 +158,10 @@ Function Connect-AutotaskWebAPI
     
     If ($Result)
     {
-      If (-not $NoFunctionImport.IsPresent)
+      If (-not $NoDynamicModule.IsPresent)
       {
                       
-        Import-AtwsCmdLet -ModuleName $ModuleName -ExportToDisk:$ExportToDisk -Prefix $Prefix
+        Import-AtwsCmdLet -ModuleName $ModuleName -Prefix $Prefix
       }
     }
     Else
