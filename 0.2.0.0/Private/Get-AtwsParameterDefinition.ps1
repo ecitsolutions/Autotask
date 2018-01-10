@@ -29,7 +29,7 @@
     {
       Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'String' -Mandatory -Remaining -NotNull  -Array 
       $ReferenceFields = $FieldInfo.Where({$_.IsReference}).Name
-      Get-AtwsPSParameter -Name 'ReferenceEntity' -SetName 'Filter','By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields
+      Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter','By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields
     }    
     ElseIf ($Verb -eq 'Set')
     {
