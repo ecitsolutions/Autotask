@@ -42,7 +42,6 @@ Function Connect-AutotaskWebAPI
       NAME: Connect-AutotaskWebAPI
       .LINK
       Get-AtwsData
-      New-AtwsQuery
   #>
 	
   [cmdletbinding()]
