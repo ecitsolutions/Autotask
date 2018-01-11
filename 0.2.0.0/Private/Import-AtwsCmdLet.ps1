@@ -12,7 +12,7 @@ Function Import-AtwsCmdLet
     $ModuleName,
     
     [Switch]
-    $ExportToDisk,
+    $NoDiskCache,
     
     [String]
     $Prefix = 'Atws'
@@ -50,46 +50,70 @@ Function Import-AtwsCmdLet
   {
     $Activity = 'Importing Autotask Powershell CmdLets as module {0}' -F $ModuleName
     $ModuleFunctions = @()
-    Foreach ($Entity in $Entities)
+    $CacheInfo = Get-AtwsCacheInfo -Prefix $Prefix 
+    If ($CacheInfo.CacheDirty -or $NoDiskCache.IsPresent)
     { 
-      Write-Verbose -Message ('{0}: Creating functions for Entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
-      
-      
-      $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -Prefix $Prefix
-         
-      # Calculating progress percentage and displaying it
-      $Index = $Entities.IndexOf($Entity) +1
-      $PercentComplete = $Index / $Entities.Count * 100
-      $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
-      $CurrentOperation = 'Importing {0}' -F $Entity.Name
-      Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
-      
-      $VerboseDescrition = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
-      $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
-
-      If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
+      Write-Verbose -Message ('{0}: Generating new functions (CacheDirty: {1}, NoDiskCache: {2}) ' -F $MyInvocation.MyCommand.Name,$CacheInfo.CacheDirty.ToString(), $NoDiskCache.IsPresent.ToString())
+            
+      Foreach ($Entity in $Entities)
       { 
-        Foreach ($Function in $FunctionDefinition.GetEnumerator())
-        {
-  
-          If ($ExportToDisk)
-          {
-            Write-Verbose -Message ('{0}: Writing file for function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
-                        
-            $FilePath = '{0}\Debug\{1}.ps1' -F $PSScriptRoot, $Function.Key
-          
-            $VerboseDescrition = '{0}: Overwriting {1}' -F $Caption, $FilePath
-            $VerboseWarning = '{0}: About to overwrite {1}. Do you want to continue?' -F $Caption, $FilePath
+        Write-Verbose -Message ('{0}: Creating functions for Entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
+      
+      
+        $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -Prefix $Prefix
+         
+        # Calculating progress percentage and displaying it
+        $Index = $Entities.IndexOf($Entity) +1
+        $PercentComplete = $Index / $Entities.Count * 100
+        $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
+        $CurrentOperation = 'Importing {0}' -F $Entity.Name
+        Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
+      
+        $VerboseDescrition = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
+        $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
 
-            If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
+        If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
+        { 
+          Foreach ($Function in $FunctionDefinition.GetEnumerator())
+          {
+  
+            If (-Not $NoDiskCache.IsPresent)
             {
-              Set-Content -Path $FilePath -Value $Function.Value -Force -Encoding UTF8
+              Write-Verbose -Message ('{0}: Writing file for function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
+                        
+              $FilePath = '{0}\{1}.ps1' -F $CacheInfo.CacheDir, $Function.Key
+          
+              $VerboseDescrition = '{0}: Overwriting {1}' -F $Caption, $FilePath
+              $VerboseWarning = '{0}: About to overwrite {1}. Do you want to continue?' -F $Caption, $FilePath
+
+              If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
+              {
+                Set-Content -Path $FilePath -Value $Function.Value -Force -Encoding UTF8
+              }
             }
-          }
                  
-          $ModuleFunctions += $Function.Value
+            $ModuleFunctions += $Function.Value
+          }
+          
         }
         
+        Write-Verbose -Message ('{0}: Writing Moduleversion info to  {1}' -F $MyInvocation.MyCommand.Name, $CacheInfo.CachePath)
+                
+        $ModuleVersionInfo = New-Object -TypeName PSObject -Property @{
+          APIversion = $AtwsConnection[$Prefix].GetWsdlVersion()
+          ModuleVersion = $ModuleAutotask.Version.ToString()
+        }
+                    
+        Export-Clixml -InputObject $ModuleVersionInfo -Path $CacheInfo.CachePath -Encoding UTF8
+      }
+    }
+    Else
+    {
+      Write-Verbose -Message ('{0}: Reading function definitions from {1}' -F $MyInvocation.MyCommand.Name, $CacheInfo.CachePath)
+      $CacheFiles = '{0}\*.ps1' -F $CacheInfo.CacheDir
+      Foreach ($File in Get-ChildItem -Path $CacheFiles)
+      { 
+        $ModuleFunctions += Get-Content -Path $File.FullName -Encoding UTF8 -Raw
       }
     }
     
