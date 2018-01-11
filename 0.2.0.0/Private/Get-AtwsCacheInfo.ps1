@@ -32,7 +32,7 @@
     Write-Verbose -Message ('{0}: Machine cache location is {1}. Loaded module version is {2} and API version is {3}.' -F $MyInvocation.MyCommand.Name, $CentralCache, $ModuleVersionInfo.ModuleVersion, $ModuleVersionInfo.APIversion)    
     
     $PersonalModules = '{0}\WindowsPowershell\Modules' -f $([environment]::GetFolderPath('MyDocuments'))
-    $PersonalCache = '{0}\{1}\Autotask.{2}+{3}' -F $PersonalModules, $ModuleAutotask.Name, $Prefix, $ModuleVersionFileName
+    $PersonalCache = '{0}\{1}\Autotask.{2}\{3}' -F $PersonalModules, $ModuleAutotask.Name, $Prefix, $ModuleVersionFileName
     
     Write-Verbose -Message ('{0}: Personal cache location is {1}. Loaded module version is {2} and API version is {3}.' -F $MyInvocation.MyCommand.Name, $CentralCache, $ModuleVersionInfo.ModuleVersion, $ModuleVersionInfo.APIversion)   
     

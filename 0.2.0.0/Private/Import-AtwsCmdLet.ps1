@@ -44,24 +44,30 @@ Function Import-AtwsCmdLet
       $Entities = @()
     }
     
+    # A hashtable to keep track of fieldinfo pr entity. Keep it in the script and called functions
+    $Script:FieldTable = @{}
+    
+    # An array to contain text that will be converted to a scriptblock
+    $ModuleFunctions = @()
+    
+    $CacheInfo = Get-AtwsCacheInfo -Prefix $Prefix 
   } 
   
   Process
   {
-    $Activity = 'Importing Autotask Powershell CmdLets as module {0}' -F $ModuleName
-    $ModuleFunctions = @()
-    $CacheInfo = Get-AtwsCacheInfo -Prefix $Prefix 
+
     If ($CacheInfo.CacheDirty -or $NoDiskCache.IsPresent)
     { 
       Write-Verbose -Message ('{0}: Generating new functions (CacheDirty: {1}, NoDiskCache: {2}) ' -F $MyInvocation.MyCommand.Name,$CacheInfo.CacheDirty.ToString(), $NoDiskCache.IsPresent.ToString())
-            
+      
+      $Activity = 'Downloading detailed information about all Autotask entity types'
+              
       Foreach ($Entity in $Entities)
       { 
-        Write-Verbose -Message ('{0}: Creating functions for Entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
-      
-      
-        $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -Prefix $Prefix
-         
+        Write-Verbose -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
+        
+        $FieldTable[$Entity.Name] = $atws.GetFieldInfo($Entity.Name)        
+              
         # Calculating progress percentage and displaying it
         $Index = $Entities.IndexOf($Entity) +1
         $PercentComplete = $Index / $Entities.Count * 100
@@ -71,7 +77,27 @@ Function Import-AtwsCmdLet
       
         $VerboseDescrition = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
         $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
-
+      }
+      
+      $Activity = 'Creating and importing functions for all Autotask entities.'
+            
+      Foreach ($Entity in $Entities)
+      {
+        Write-Verbose -Message ('{0}: Creating functions for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
+      
+        # Calculating progress percentage and displaying it
+        $Index = $Entities.IndexOf($Entity) +1
+        $PercentComplete = $Index / $Entities.Count * 100
+        $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
+        $CurrentOperation = 'Importing {0}' -F $Entity.Name
+        
+        Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
+      
+        $VerboseDescrition = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
+        $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
+        
+        $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -Prefix $Prefix -FieldInfo $FieldTable[$Entity.Name]
+        
         If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
         { 
           Foreach ($Function in $FunctionDefinition.GetEnumerator())
@@ -96,16 +122,18 @@ Function Import-AtwsCmdLet
           }
           
         }
-        
-        Write-Verbose -Message ('{0}: Writing Moduleversion info to  {1}' -F $MyInvocation.MyCommand.Name, $CacheInfo.CachePath)
+      }        
+      
                 
-        $ModuleVersionInfo = New-Object -TypeName PSObject -Property @{
-          APIversion = $AtwsConnection[$Prefix].GetWsdlVersion()
-          ModuleVersion = $ModuleAutotask.Version.ToString()
-        }
-                    
-        Export-Clixml -InputObject $ModuleVersionInfo -Path $CacheInfo.CachePath -Encoding UTF8
+      Write-Verbose -Message ('{0}: Writing Moduleversion info to  {1}' -F $MyInvocation.MyCommand.Name, $CacheInfo.CachePath)
+                
+      $ModuleVersionInfo = New-Object -TypeName PSObject -Property @{
+        APIversion = $AtwsConnection[$Prefix].GetWsdlVersion()
+        ModuleVersion = $ModuleAutotask.Version.ToString()
       }
+                    
+      Export-Clixml -InputObject $ModuleVersionInfo -Path $CacheInfo.CachePath -Encoding UTF8
+
     }
     Else
     {

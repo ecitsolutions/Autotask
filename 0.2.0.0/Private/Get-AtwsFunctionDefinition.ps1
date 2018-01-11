@@ -7,6 +7,10 @@
     [Autotask.EntityInfo]
     $Entity,
     
+    [Parameter(Mandatory = $True)]
+    [Autotask.Field[]]
+    $FieldInfo,
+    
     [String]
     $Prefix = 'Atws'
   )
@@ -37,10 +41,6 @@
       $Verbs += 'Set'
     }
 
-    Write-Verbose ('{0}: Getting FieldInfo() for Entity [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $Entity.Name)
-  
-    $FieldInfo = Get-AtwsFieldInfo -Entity $Entity.Name -Connection $Prefix
-  
     # Add Default PSParameter info to Fields
     Foreach ($Field in $FieldInfo)
     {

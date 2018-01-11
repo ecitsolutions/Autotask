@@ -25,8 +25,29 @@
     Write-Verbose ('{0}: Creating help text for {1}, verb "{0}"' -F $MyInvocation.MyCommand.Name, $Entity.Name, $Verb)
     $RequiredParameters = $FieldInfo.Where({$_.IsRequired -and $_.Name -ne 'id'}).Name
     $PickListParameters = $FieldInfo.Where({$_.IsPickList}).Name
-    # Make sure Examples is an array
+    $IncomingEntities = ($FieldTable.GetEnumerator() | Where-Object {$_.Value.ReferenceEntityType -eq $Entity.Name}).Key
+    
+    # Get other valid verbs
+    $Verbs = @()
+    If ($Entity.CanCreate -and $Verb -ne 'New') 
+    {
+      $Verbs += 'New'
+    }
+    If ($Entity.CanDelete -and $Verb -ne 'Remove') 
+    {
+      $Verbs += 'Remove'
+    }
+    If ($Entity.CanQuery -and $Verb -ne 'Get')  
+    {
+      $Verbs += 'Get'
+    }
+    If ($Entity.CanUpdate -and $Verb -ne 'Set') 
+    {
+      $Verbs += 'Set'
+    }
+    # Make sure Examples and links are arrays
     $Examples = @()
+    $Links = @()
   }
       
   Process
@@ -37,13 +58,15 @@
       'New' 
       {
         $Synopsis = 'This function creates a new {0} through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.' -F $Entity.Name
-        $Description = "The function supports all properties of an [Autotask.{0}] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.`n`nTo create a new {0} you need the following required fields:`n -{1}" -F $Entity.Name, $($RequiredParameters -join "`n -")
+        $RequiredParameterString = $RequiredParameters -join "`n -"
+        $Description = "The function supports all properties of an [Autotask.{0}] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.`n`nIf you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the {0} with Id number 0 you could write '{2} -Id 0' or you could write '{2} -Filter {{Id -eq 0}}.`n`n'{2} -Id 0,4' could be written as '{2} -Filter {{id -eq 0 -or id -eq 4}}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. `n`nTo create a new {0} you need the following required fields:`n -{1}" -F $Entity.Name, $RequiredParameterString, $FunctionName
         $Inputs = 'Nothing. This function only takes parameters.'
         $Outputs = '[Autotask.{0}]. This function outputs the Autotask.{0} that was created by the API.' -F $Entity.Name
         $Examples += "`$Result = {0} -{1} [Value]`nCreates a new [Autotask.{2}] through the Web Services API and returns the new object." -F $FunctionName, $($RequiredParameters -join ' [Value] -'), $Entity.Name
         $Examples += "`$Result = {0} -Id 124 | {1} `nCopies [Autotask.{2}] by Id 124 to a new object through the Web Services API and returns the new object." -F  $($FunctionName -replace '^New','Get'),$FunctionName, $Entity.Name
         $Examples += "{0} -Id 124 | {1} | {3} -ParameterName <Parameter Value>`nCopies [Autotask.{2}] by Id 124 to a new object through the Web Services API, passes the new object to the {3} to modify the object." -F  $($FunctionName -replace '^New','Get'),$FunctionName, $Entity.Name, $($FunctionName -replace '^New','Set')
         $Examples += "`$Result = {0} -Id 124 | {1} | {3} -ParameterName <Parameter Value> -Passthru`nCopies [Autotask.{2}] by Id 124 to a new object through the Web Services API, passes the new object to the {3} to modify the object and returns the new object." -F  $($FunctionName -replace '^New','Get'),$FunctionName, $Entity.Name, $($FunctionName -replace '^New','Set')
+
       }
       'Remove' 
       {
@@ -57,11 +80,11 @@
       {
         $Synopsis = 'This function get one or more {0} through the Autotask Web Services API.' -F $Entity.Name
         $Description = "This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.`n`nPossible operators for all parameters are:`n -NotEquals`n -GreaterThan`n -GreaterThanOrEqual`n -LessThan`n -LessThanOrEquals `n`nAdditional operators for [String] parameters are:`n -Like (supports * or % as wildcards)`n -NotLike`n -BeginsWith`n -EndsWith`n -Contains`n`nProperties with picklists are:`n{0}" -F ($(
-          Foreach ($PickList in $PickListParameters)
-          {
-            $PickListValues = $FieldInfo.Where({$_.Name -eq $PickList}).PickListValues | Select-Object Value, Label | ForEach-Object {'{0} - {1}' -F $_.Value, $_.Label}
-            "`n{0}`n {1}" -F $PickList, $($PickListValues -join "`n ")
-          } 
+            Foreach ($PickList in $PickListParameters)
+            {
+              $PickListValues = $FieldInfo.Where({$_.Name -eq $PickList}).PickListValues | Select-Object Value, Label | ForEach-Object {'{0} - {1}' -F $_.Value, $_.Label}
+              "`n{0}`n {1}" -F $PickList, $($PickListValues -join "`n ")
+            } 
         ) -join "`n")
        
         $Inputs = 'Nothing. This function only takes parameters.'
@@ -95,6 +118,11 @@
         $Examples += "`$Result = {1} -Id 0,4,8 | {0} -ParameterName <Parameter value> -PassThru`nGets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects." -F $FunctionName, $($FunctionName -replace '^S','G')   
       }
     }
+    # Add links to related functions
+    Foreach ($Word in $Verbs)
+    { 
+      $Links += ($FunctionName -replace "^$Verb",$Word)
+    }
   }
   
   End
@@ -106,6 +134,15 @@
 $Synopsis
 .DESCRIPTION
 $Description
+
+Entities that have fields that refer to the base entity of this CmdLet:
+
+$(
+  Foreach ($Name in $IncomingEntities)
+  { 
+  "$Name`n"
+  }
+)
 .INPUTS
 $Inputs
 .OUTPUTS
@@ -118,10 +155,14 @@ $Example`n
 "@
   }
 )
-.NOTES
-For examples, use Get-Help -Examples $FunctionName
-
-NAME: $FunctionName
+$(
+  Foreach ($Link in $Links)
+  { @"
+.LINK
+$Link`n
+"@
+  }
+)
 #>`n
 "@
   }
