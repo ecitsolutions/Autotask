@@ -80,7 +80,9 @@
 
     }
     
-
+    # Add Name alias for EntityName parameters
+    $Alias = ''
+    $EntityNameParameter = '{0}Name' -f $Entity.Name
     Foreach ($Field in $Fields )
     {
       $Type = Switch ($Field.Type) 
@@ -104,6 +106,12 @@
       {
         $Type = 'String'
       }
+      
+      
+      If ($Field.Name -eq $EntityNameParameter)
+      {
+        $Alias = 'Name'
+      }
 
       $ParameterOptions = @{
         Mandatory              = $Field.Mandatory
@@ -113,6 +121,7 @@
         ValidateSet            = $Field.PickListValues.Label
         Array                  = $(($Verb -eq 'Get'))
         Name                   = $Field.Name
+        Alias                  = $Alias
         Type                   = $Type
       }
 
