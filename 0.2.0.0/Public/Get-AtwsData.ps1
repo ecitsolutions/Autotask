@@ -79,15 +79,11 @@ Function Get-AtwsData
   {
   
     Write-Verbose ('{0}: Checking parameters' -F $MyInvocation.MyCommand.Name)
-    # First, make sure it is a single string and replace parenthesis with our special operator
-    $Filter = $Filter -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '  
-    
-    # Removing double possible spaces we may have introduced
-    Do {$Filter = $Filter -replace '  ',' '}
-    While ($Filter -match '  ')
-
-    # Split back in to array
-    $Filter = $Filter.Split(' ')
+    If ($Filter.Count -eq 1 -and $Filter -match ' ')
+    {
+      Write-Verbose ('{0}: Filter passed as space delimited string. Splitting.' -F $MyInvocation.MyCommand.Name)
+      $Filter = $Filter.Split(' ')
+    }
     
     Write-Verbose ('{0}: Filter passed as space delimited string. Splitting.' -F $MyInvocation.MyCommand.Name)
  
