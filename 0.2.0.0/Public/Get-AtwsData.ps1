@@ -78,16 +78,6 @@ Function Get-AtwsData
   Process
   {
   
-    Write-Verbose ('{0}: Checking parameters' -F $MyInvocation.MyCommand.Name)
-    If ($Filter.Count -eq 1 -and $Filter -match ' ')
-    {
-      Write-Verbose ('{0}: Filter passed as space delimited string. Splitting.' -F $MyInvocation.MyCommand.Name)
-      $Filter = $Filter.Split(' ')
-    }
-    
-    Write-Verbose ('{0}: Filter passed as space delimited string. Splitting.' -F $MyInvocation.MyCommand.Name)
- 
-  
     Write-Verbose ('{0}: Mashing parameters into an array of strings.' -F $MyInvocation.MyCommand.Name)
     
     [Array]$Query = @($Entity) + $Filter
