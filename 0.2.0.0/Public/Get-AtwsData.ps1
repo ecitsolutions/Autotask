@@ -80,6 +80,39 @@ Function Get-AtwsData
   
     Write-Verbose ('{0}: Mashing parameters into an array of strings.' -F $MyInvocation.MyCommand.Name)
     
+    # First, make sure it is a single string and replace parenthesis with our special operator
+    $Filter = $Filter -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '  
+    
+    # Removing double possible spaces we may have introduced
+    Do {$Filter = $Filter -replace '  ',' '}
+    While ($Filter -match '  ')
+
+    # Split back in to array, respecting quotes
+    $Words = $Filter.Split(' ')
+    $Filter = @()
+    $Temp = @()
+    Foreach ($Word in $Words)
+    {
+      If ($Temp.Count -eq 0 -and $Word -match '^[\"\'']')
+      {
+        $Temp += $Word.TrimStart('"''')
+      }
+      ElseIf ($Temp.Count -gt 0 -and $Word -match "[\'\""]$")
+      {
+        $Temp += $Word.TrimEnd("'""")
+        $Filter += $Temp -join ' '
+        $Temp = @()
+      }
+      ElseIf ($Temp.Count -gt 0)
+      {
+        $Temp += $Word
+      }
+      Else
+      {
+        $Filter += $Word
+      }
+    }
+    # Squash into a flat array with entity first
     [Array]$Query = @($Entity) + $Filter
   
     Write-Verbose ('{0}: Converting query string into QueryXml. String as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
