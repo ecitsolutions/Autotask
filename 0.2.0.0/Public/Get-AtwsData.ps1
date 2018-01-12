@@ -80,36 +80,40 @@ Function Get-AtwsData
   
     Write-Verbose ('{0}: Mashing parameters into an array of strings.' -F $MyInvocation.MyCommand.Name)
     
-    # First, make sure it is a single string and replace parenthesis with our special operator
-    $Filter = $Filter -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '  
+    # $Filter should not be a flat string. If it is - fix it!
+    If ($Filter.Count -eq 1 -and $Filter -match ' ' )
+    { 
+      # First, make sure it is a single string and replace parenthesis with our special operator
+      $Filter = $Filter -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '  
     
-    # Removing double possible spaces we may have introduced
-    Do {$Filter = $Filter -replace '  ',' '}
-    While ($Filter -match '  ')
+      # Removing double possible spaces we may have introduced
+      Do {$Filter = $Filter -replace '  ',' '}
+      While ($Filter -match '  ')
 
-    # Split back in to array, respecting quotes
-    $Words = $Filter.Split(' ')
-    $Filter = @()
-    $Temp = @()
-    Foreach ($Word in $Words)
-    {
-      If ($Temp.Count -eq 0 -and $Word -match '^[\"\'']')
+      # Split back in to array, respecting quotes
+      $Words = $Filter.Split(' ')
+      $Filter = @()
+      $Temp = @()
+      Foreach ($Word in $Words)
       {
-        $Temp += $Word.TrimStart('"''')
-      }
-      ElseIf ($Temp.Count -gt 0 -and $Word -match "[\'\""]$")
-      {
-        $Temp += $Word.TrimEnd("'""")
-        $Filter += $Temp -join ' '
-        $Temp = @()
-      }
-      ElseIf ($Temp.Count -gt 0)
-      {
-        $Temp += $Word
-      }
-      Else
-      {
-        $Filter += $Word
+        If ($Temp.Count -eq 0 -and $Word -match '^[\"\'']')
+        {
+          $Temp += $Word.TrimStart('"''')
+        }
+        ElseIf ($Temp.Count -gt 0 -and $Word -match "[\'\""]$")
+        {
+          $Temp += $Word.TrimEnd("'""")
+          $Filter += $Temp -join ' '
+          $Temp = @()
+        }
+        ElseIf ($Temp.Count -gt 0)
+        {
+          $Temp += $Word
+        }
+        Else
+        {
+          $Filter += $Word
+        }
       }
     }
     # Squash into a flat array with entity first
