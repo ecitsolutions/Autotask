@@ -81,7 +81,6 @@
     }
     
     # Add Name alias for EntityName parameters
-    $Alias = ''
     $EntityNameParameter = '{0}Name' -f $Entity.Name
     Foreach ($Field in $Fields )
     {
@@ -107,10 +106,10 @@
         $Type = 'String'
       }
       
-      
+      $Alias = @() 
       If ($Field.Name -eq $EntityNameParameter)
       {
-        $Alias = 'Name'
+        $Alias += 'Name'
       }
 
       $ParameterOptions = @{

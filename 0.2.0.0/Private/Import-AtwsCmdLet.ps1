@@ -72,7 +72,7 @@ Function Import-AtwsCmdLet
         $Index = $Entities.IndexOf($Entity) +1
         $PercentComplete = $Index / $Entities.Count * 100
         $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
-        $CurrentOperation = 'Importing {0}' -F $Entity.Name
+        $CurrentOperation = "GetFieldInfo('{0}')" -F $Entity.Name
         Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
       
         $VerboseDescrition = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
