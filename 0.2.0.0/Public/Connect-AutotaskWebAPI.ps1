@@ -75,6 +75,12 @@ Function Connect-AutotaskWebAPI
       $global:AtwsConnection = @{}
     }
 
+    # Unless warning level is specified explicitly - Show warnings!
+    If (-not ($WarningAction))
+    {
+      $Global:WarningPreference = 'Continue'
+    }
+
     # Setting Modulename here, we need to check if it is already loaded
     $ModuleName = 'Autotask.{0}' -F $Prefix  
   }

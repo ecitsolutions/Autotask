@@ -39,7 +39,7 @@ Function New-AtwsData
   }
     
   Process { 
-    Write-Verbose -Message ('{0}: Creating a new object of type Autotask.{1}' -F $MyInvocation.MyCommand.Name, $Entity) 
+    Write-Verbose -Message ('{0}: Creating a new object of type Autotask.{1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
 
     $Caption = 'New-Atws{0}' -F $Entity.GetType().Name    
     $VerboseDescription = '{0}: About to create an Autotask.{1}. This action cannot be undone (but the object can usually be deleted).' -F $Caption, $Entity.GetType().Name
@@ -57,9 +57,19 @@ Function New-AtwsData
           $j = $Entity.count - 1
         } 
         Write-Verbose -Message ('{0}: Creating chunk from index {1} to index {2}' -F $MyInvocation.MyCommand.Name, $i, $j)        
+        
         $Result = $Atws.Create($Entity[$i .. $j])
+        
+        
         If ($Result.Errors.Count -eq 0) 
         {
+          $Duplicates = $Result.EntityReturnInfoResults | Where-Object {$_.DuplicateStatus.Found -and -not $_.DuplicateStauts.Ignored}
+           
+          Foreach ($Duplicate in $Duplicates)
+          {
+            Write-Warning ('{0}: Duplicate found for Object Id {1} on {2}' -F $MyInvocation.MyCommand.Name, $Duplicate.EntityId, $Duplicate.DuplicateStatus.MatchInfo)
+          }
+          
           $EndResult += $Result.EntityResults
         }
         Else 

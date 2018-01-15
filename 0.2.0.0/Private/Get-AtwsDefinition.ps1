@@ -91,10 +91,23 @@
     } #'NotEquals','GreaterThan','GreaterThanOrEqual','LessThan','LessThanOrEquals','Like','NotLike','BeginsWith','EndsWith
 
     $Result = Get-AtwsData -Entity $EntityName -Filter $Filter -Connection $Prefix
+
+    Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+    
     if ( ($Result) -and ($GetReferenceEntityById))
     {
+      Write-Verbose ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
+      
       $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
-      $Filter = 'id -eq {0}' -F $($Result.$GetReferenceEntityById -join ' -or id -eq ')
+      $ResultValues = $Result | Where-Object {$_.$GetReferenceEntityById -ne $null}
+      If ($ResultValues.Count -lt $Result.Count)
+      {
+        Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+          $ResultValues.Count,
+          $EntityName,
+          $GetReferenceEntityById) -WarningAction Continue
+      }
+      $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
       $ReferenceResult = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter -Connection $Prefix
       If ($ReferenceResult)
       {
