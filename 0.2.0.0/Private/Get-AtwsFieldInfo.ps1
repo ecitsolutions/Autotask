@@ -30,7 +30,10 @@ Function Get-AtwsFieldInfo
       New-AtwsQuery
   #>
 	
-  [cmdletbinding()]
+  [cmdletbinding(
+    SupportsShouldProcess = $True,
+    ConfirmImpact = 'Low'
+  )]
   Param
   (
     [Parameter(
