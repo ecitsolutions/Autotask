@@ -1,4 +1,4 @@
-﻿Function New-AutotaskDefinition
+﻿Function New-AtwsDefinition
 { 
   Begin
   { 

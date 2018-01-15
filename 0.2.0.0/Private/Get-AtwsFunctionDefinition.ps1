@@ -68,7 +68,7 @@
         HelpText = Get-AtwsHelpText -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo -FunctionName $FunctionName
         DefaultParameterSetName = $DefaultParameterSetName 
         Parameters = Get-AtwsParameterDefinition -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo
-        Definition = (Get-Command ('{0}-AutotaskDefinition' -F $Verb)).Definition -replace '#EntityName',$($Entity.Name) -replace '#Prefix',$Prefix
+        Definition = (Get-Command ('{0}-AtwsDefinition' -F $Verb)).Definition -replace '#EntityName',$($Entity.Name) -replace '#Prefix',$Prefix
       }
     
       $FunctionDefinition[$FunctionName] = Convert-AtwsFunctionToText -AtwsFunction $AtwsFunction

@@ -1,4 +1,4 @@
-﻿Function Remove-AutotaskDefinition
+﻿Function Remove-AtwsDefinition
 { 
   Begin
   { 
