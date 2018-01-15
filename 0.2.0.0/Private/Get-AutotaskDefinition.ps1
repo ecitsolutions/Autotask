@@ -17,7 +17,7 @@
 
   Process
   {
-    If (-not($Filter))
+    If (-not ($Filter))
     {
       $Fields = Get-AtwsFieldInfo -Entity $EntityName -Connection $Prefix
         
@@ -91,10 +91,10 @@
     } #'NotEquals','GreaterThan','GreaterThanOrEqual','LessThan','LessThanOrEquals','Like','NotLike','BeginsWith','EndsWith
 
     $Result = Get-AtwsData -Entity $EntityName -Filter $Filter -Connection $Prefix
-    if ( ($Result) -and ($ReferenceEntity))
+    if ( ($Result) -and ($GetReferenceEntityById))
     {
-      $Field = $Fields.Where({$_.Name -eq $ReferenceEntity})
-      $Filter = 'id -eq {0}' -F $($Result.$ReferenceEntity -join ' -or id -eq ')
+      $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
+      $Filter = 'id -eq {0}' -F $($Result.$GetReferenceEntityById -join ' -or id -eq ')
       $ReferenceResult = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter -Connection $Prefix
       If ($ReferenceResult)
       {

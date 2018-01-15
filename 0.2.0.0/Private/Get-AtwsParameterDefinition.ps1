@@ -29,7 +29,8 @@
     {
       Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'String' -Mandatory -Remaining -NotNull  -Array 
       $ReferenceFields = $FieldInfo.Where({$_.IsReference}).Name
-      Get-AtwsPSParameter -Name 'ReferenceEntity' -SetName 'Filter','By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields
+      Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter','By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields
+      # Return child objects
     }    
     ElseIf ($Verb -eq 'Set')
     {
@@ -80,7 +81,8 @@
 
     }
     
-
+    # Add Name alias for EntityName parameters
+    $EntityNameParameter = '{0}Name' -f $Entity.Name
     Foreach ($Field in $Fields )
     {
       $Type = Switch ($Field.Type) 
@@ -104,15 +106,22 @@
       {
         $Type = 'String'
       }
+      
+      $Alias = @() 
+      If ($Field.Name -eq $EntityNameParameter)
+      {
+        $Alias += 'Name'
+      }
 
       $ParameterOptions = @{
         Mandatory              = $Field.Mandatory
         ParameterSetName       = $Field.ParameterSet
-        ValidateNotNullOrEmpty = $(($Field.IsRequired -and $Verb -in @('New', 'Set')))
+        ValidateNotNullOrEmpty = $True
         ValidateLength         = $Field.Length
         ValidateSet            = $Field.PickListValues.Label
         Array                  = $(($Verb -eq 'Get'))
         Name                   = $Field.Name
+        Alias                  = $Alias
         Type                   = $Type
       }
 

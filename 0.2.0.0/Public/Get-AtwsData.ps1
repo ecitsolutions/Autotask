@@ -78,15 +78,45 @@ Function Get-AtwsData
   Process
   {
   
-    Write-Verbose ('{0}: Checking parameters' -F $MyInvocation.MyCommand.Name)
-    If ($Filter.Count -eq 1 -and $Filter -match ' ')
-    {
-      Write-Verbose ('{0}: Filter passed as space delimited string. Splitting.' -F $MyInvocation.MyCommand.Name)
-      $Filter = $Filter.Split(' ')
-    }
-  
     Write-Verbose ('{0}: Mashing parameters into an array of strings.' -F $MyInvocation.MyCommand.Name)
     
+    # $Filter should not be a flat string. If it is - fix it!
+    If ($Filter.Count -eq 1 -and $Filter -match ' ' )
+    { 
+      # First, make sure it is a single string and replace parenthesis with our special operator
+      $Filter = $Filter -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '  
+    
+      # Removing double possible spaces we may have introduced
+      Do {$Filter = $Filter -replace '  ',' '}
+      While ($Filter -match '  ')
+
+      # Split back in to array, respecting quotes
+      $Words = $Filter.Split(' ')
+      $Filter = @()
+      $Temp = @()
+      Foreach ($Word in $Words)
+      {
+        If ($Temp.Count -eq 0 -and $Word -match '^[\"\'']')
+        {
+          $Temp += $Word.TrimStart('"''')
+        }
+        ElseIf ($Temp.Count -gt 0 -and $Word -match "[\'\""]$")
+        {
+          $Temp += $Word.TrimEnd("'""")
+          $Filter += $Temp -join ' '
+          $Temp = @()
+        }
+        ElseIf ($Temp.Count -gt 0)
+        {
+          $Temp += $Word
+        }
+        Else
+        {
+          $Filter += $Word
+        }
+      }
+    }
+    # Squash into a flat array with entity first
     [Array]$Query = @($Entity) + $Filter
   
     Write-Verbose ('{0}: Converting query string into QueryXml. String as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
