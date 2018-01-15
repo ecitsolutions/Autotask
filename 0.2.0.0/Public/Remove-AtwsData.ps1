@@ -73,7 +73,7 @@ Function Remove-AtwsData
       
       If ($Result.Errors.Count -gt 0)
       {
-        Foreach ($AtwsError in $LastResult.Errors)
+        Foreach ($AtwsError in $Result.Errors)
         {
           Write-Error -Message $AtwsError.Message
         }
