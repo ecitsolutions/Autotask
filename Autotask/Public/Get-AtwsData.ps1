@@ -117,8 +117,31 @@ Function Get-AtwsData
         }
       }
     }
+    Write-Verbose ('{0}: Checking query for variables that have survived as string' -F $MyInvocation.MyCommand.Name)
+    $NewFilter = @()
+    Foreach ($Word in $Filter)
+    {
+      $Value = $Word
+      If ($Word -match '^\$')
+      {
+        Try
+        { 
+          $Value = Get-Variable -Name $Word.TrimStart('\$') -ValueOnly -ErrorAction Stop
+        }
+        Catch
+        {
+          $Value = Invoke-Expression $Word -ErrorAction SilentlyContinue 
+          If (-not($Value))
+          {
+            $Value = $Word
+          }
+        }
+      }
+      $NewFilter += $Value
+    }
+    
     # Squash into a flat array with entity first
-    [Array]$Query = @($Entity) + $Filter
+    [Array]$Query = @($Entity) + $NewFilter
   
     Write-Verbose ('{0}: Converting query string into QueryXml. String as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
     [xml]$QueryXml = ConvertTo-QueryXML @Query
