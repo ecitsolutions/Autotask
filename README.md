@@ -1,5 +1,11 @@
 # Autotask
 
+# Summary
+
+This module consists of 2 parts: A normal script module and a nested, dynamic module that is created when you authenticate to the Autotask Web Services API. The base module queries the API for detailed information about all available Autotask entities and creates functions that let you write PowerShell scripts in PowerShell ISE or Visual Studio Code with full IntelliSense support. Dynamic functions are cached to disk and updated whenever the base module or the API version changes.
+
+## An Autotask Web Services Powershell module
+
 This is our first public release of an internal module we have developed. We use [Autotask][1], a SaaS software suite for ITSPs and MSPs. Autotask has a well documented SOAP API that we use quite extensively for automation. The [API Documentation is available online][2].
 
 While working with the API we noted that a detailed definition of all entities and fields of entities is available programatically through the API. In this module we use this information to generate a dynamic PowerShell module with **intellisense** support in both ISE and Visual Studio Code. We also generate inline, comment based help to make working with the API in PowerShell as easy as possible.
