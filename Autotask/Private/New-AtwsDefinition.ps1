@@ -73,7 +73,7 @@
         }
       }
     }
-    $Result = New-AtwsData -Entity $InputObject -Connection $Prefix
+    $Result = New-AtwsData -Entity $ProcessObject -Connection $Prefix
   }
 
   End
