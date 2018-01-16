@@ -10,7 +10,8 @@ The module is generated dynamically, directly from the API information. All func
 
 Use Get-Help *functionname* a lot. You will find information such as required parameters, any entities that the current entity have connections to, other entities that have connections to your current entity and a lot more. Possible values for *picklists* are included both in the help text and in **intellisense** autocomplete.
 
-# Disclaimer and Warning
+## Disclaimer and Warning
+
 **Be careful!** This module exposes all the Autotask Web Services API entities and methods as PowerShell functions. This makes it very easy to make a lot of changes very quickly. **But there is no undo!** If you use this module to destroy or delete anything in your Autotask tenant you did not intend to - you are entirely on your own! This module is provided "as is", without warranty of any kind, express or implied. In **no event** shall the authors or copyright holders be liable for any claim, damages or other liability ([see the license][3]). If this is not acceptable to you - do not use it!
 
 [1]: https://www.autotask.com
