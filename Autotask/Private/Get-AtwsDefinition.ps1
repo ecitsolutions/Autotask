@@ -99,7 +99,7 @@
       Write-Verbose ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
       
       $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
-      $ResultValues = $Result | Where-Object {$_.$GetReferenceEntityById -ne $null}
+      $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
       If ($ResultValues.Count -lt $Result.Count)
       {
         Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
