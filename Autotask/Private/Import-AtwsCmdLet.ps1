@@ -128,8 +128,8 @@ Function Import-AtwsCmdLet
       Write-Verbose -Message ('{0}: Writing Moduleversion info to  {1}' -F $MyInvocation.MyCommand.Name, $CacheInfo.CachePath)
                 
       $ModuleVersionInfo = New-Object -TypeName PSObject -Property @{
-        APIversion = $AtwsConnection[$Prefix].GetWsdlVersion()
-        ModuleVersion = $ModuleAutotask.Version.ToString()
+        APIversion = $CacheInfo.APIversion
+        ModuleVersion = $CacheInfo.ModuleVersion
       }
                     
       Export-Clixml -InputObject $ModuleVersionInfo -Path $CacheInfo.CachePath -Encoding UTF8

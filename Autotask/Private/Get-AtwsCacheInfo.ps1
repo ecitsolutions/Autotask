@@ -137,6 +137,8 @@
       CachePath = $CachePath
       CacheDir = $CacheDir
       CacheDirty = $CacheDirty
+      ModuleVersion = $ModuleAutotask.Version.ToString()
+      APIversion = $AtwsConnection[$Prefix].GetWsdlVersion()      
     }
 
     Return $CacheInfo
