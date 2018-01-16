@@ -3,12 +3,12 @@
 <metadata>
     <id>Autotask</id>
         <version>0.2.0.0</version>
-        <authors>Kristoffer Ryeng</authors>
-        <owners>Office Center</owners>
+        <authors>Hugo Klemmestad, Kristoffer Ryeng</authors>
+        <owners>klemmestad, kristofferoch</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>"Modul for å kople seg til og utføre operasjoner på Autotask sitt web-API."</description>
-        <releaseNotes>"Modul for å kople seg til og utføre operasjoner på Autotask sitt web-API."</releaseNotes>
+        <description>PowerShell module for connecting to and interacting with the Autotask Web Services API</description>
+        <releaseNotes>PowerShell module for connecting to and interacting with the Autotask Web Services API. Initial release.</releaseNotes>
         <copyright>Copyright 2017 Office Center </copyright>
-        <tags>OCH automatisering</tags>
+        <tags>OCH automatisering, Autotask, Dynamic Module, SOAP</tags>
     </metadata>
 </package>
