@@ -65,7 +65,7 @@ $DueTo = '2018-01-19'
 $Tickets = Get-AtwsTicket -Filter "DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo"
 ```
 
-This is important, because whenever you add a new option in Autotask that results in a changed picklist
+
 
 
 
