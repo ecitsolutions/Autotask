@@ -41,6 +41,10 @@ Any *Get* function also support multiple parameters. When you use more than one 
 
 When a property is a *picklist*, such as *ContractType* is for the **Contract** entity, a *Get* function works with the picklist *labels*, not the picklist index. When your dynamic Autotask module is generated, any picklist values are downloaded and included in the function definitions as *ValidateSet*. We consider this a useful behavior, as labels (in this case 'Recurring Service', 'Time & Materials', 'Block Hours' etc) are much easier to remember than their numeric values.
 
+### Query by reference
+
+Most Autotask entities reference other entities. Consider a *contract*. A contract is connected to an account by *AccountID*, 
+
 ### Modifying Query by parameters with operators
 
 ```powershell
@@ -60,12 +64,14 @@ When you pass more than one value to a parameter and then use -NotEquals, the qu
 Query by parameter is useful and quite readable. But if you need to write more advanced queries parameters cannot help you. Consider this query:
 
 ```powershell
-$DueFrom = '2018-01-16'
-$DueTo = '2018-01-19'
-$Tickets = Get-AtwsTicket -Filter "DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo"
+$DueFrom = Get-Date
+$DueTo = $DueFrom.AddDays(3)
+$Tickets = Get-AtwsTicket -Filter {DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo}
+$OtherTickets = Get-AtwsTicket -Filter {Status -eq New -or (DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo)}
 ```
+We have tried to make the *Filter* syntax as familiar as possible for PowerShell users. As every query needs to be translated to QueryXML and posted to the Autotask API we have had to make some adaptions, but every operator supported by the API at time of writing is supported. With Filter you should be able to make any query you can't specify by using parameters.
 
-
+See the [Autotask Web API documentation][2], section about *QueryXML* for å complete list of possible operators in a query.
 
 
 
