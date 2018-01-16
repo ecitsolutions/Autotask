@@ -43,7 +43,14 @@ When a property is a *picklist*, such as *ContractType* is for the **Contract** 
 
 ### Query by reference
 
-Most Autotask entities reference other entities. Consider a *contract*. A contract is connected to an account by *AccountID*, 
+Most Autotask entities reference other entities. Consider a *contract*. A contract is connected to an account by *AccountID*. If you want to know the name of the account you would have to get the contract first and the account second. Enter *-GetEntityByReferenceId*:
+```powershell
+$Contract = Get-AtwsContract -Name 'A Contract Name' -ContractType 'Recurring Service'
+$Account = Get-AtwsAccount -Id $Contract.AccountId
+# Or you can do
+$Account = Get-AtwsContract -Name 'A Contract Name' -ContractType 'Recurring Service' -GetEntityByReferenceId AccountId
+```
+We added this feature out of our own frustration. Working with entity objects that consist mostly of meaningless, uniqe ID values is difficult on the command line. Being able to quickly get at the connected objects can save a bit of time.
 
 ### Modifying Query by parameters with operators
 
