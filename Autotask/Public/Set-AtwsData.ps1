@@ -32,6 +32,7 @@ Function Set-AtwsData
     SupportsShouldProcess = $True,
     ConfirmImpact = 'Medium'
   )]
+  [OutputType([PSObject[]])]
   param
   (
     [Parameter(

@@ -6,9 +6,9 @@
 
 #>
 
-function New-ATWSQuery 
+function ConvertTo-QueryXML 
 {
-  [CmdletBinding()]
+  [cmdletbinding()]
   param(
     [switch]$UDF,
         

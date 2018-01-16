@@ -43,6 +43,7 @@ Function Get-AtwsData
       SupportsShouldProcess = $True,
       ConfirmImpact = 'Low'
   )]
+  [OutputType([PSObject[]])]
   param
   (
     [Parameter(
@@ -120,7 +121,7 @@ Function Get-AtwsData
     [Array]$Query = @($Entity) + $Filter
   
     Write-Verbose ('{0}: Converting query string into QueryXml. String as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
-    [xml]$QueryXml = New-AtwsQuery @Query
+    [xml]$QueryXml = ConvertTo-QueryXML @Query
     
     $Caption = 'Get-Atws{0}' -F $Entity
     $VerboseDescrition = '{0}: About to run a query for Autotask.{1} using Filter {{{2}}}' -F $Caption, $Entity, ($Filter -join ' ')

@@ -1,6 +1,7 @@
 ﻿Function Get-AtwsFunctionDefinition
 {
   [CmdLetBinding()]
+  [OutputType([PSObject[]])]
   Param
   (
     [Parameter(Mandatory = $True)]

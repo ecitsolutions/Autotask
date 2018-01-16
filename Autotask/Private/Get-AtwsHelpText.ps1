@@ -1,6 +1,7 @@
 ﻿Function Get-AtwsHelpText
 {
   [CmdLetBinding()]
+  [OutputType([String])]
   Param
   (   
     [Parameter(Mandatory)]

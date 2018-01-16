@@ -1,6 +1,7 @@
 ﻿Function Get-AtwsPSParameter
 {
   [CmdLetBinding()]
+  [OutputType([String])]
   Param
   (
     [Parameter(Mandatory = $True)]
