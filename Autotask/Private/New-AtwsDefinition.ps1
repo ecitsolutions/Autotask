@@ -67,7 +67,7 @@
           $Value = $Parameter.Value
         } 
 
-        Foreach ($Object in $InputObject) 
+        Foreach ($Object in $ProcessObject) 
         { 
           $Object.$($Parameter.Key) = $Value
         }
