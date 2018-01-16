@@ -1,6 +1,6 @@
 # Autotask
 
-This is our first public release of an internal module we have developed. We use [Autotask][1], a SaaS software suite for ITSPs and MSPs. Autotask has a well documented SOAP API that we use quite extensively for automation. The [API Documentation is availble online][2]. 
+This is our first public release of an internal module we have developed. We use [Autotask][1], a SaaS software suite for ITSPs and MSPs. Autotask has a well documented SOAP API that we use quite extensively for automation. The [API Documentation is available online][2].
 
 While working with the API we noted that a detailed definition of all entities and fields of entities is available programatically through the API. In this module we use this information to generate a dynamic PowerShell module with **intellisense** support in both ISE and Visual Studio Code. We also generate inline, comment based help to make working with the API in PowerShell as easy as possible.
 
