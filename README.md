@@ -43,7 +43,7 @@ This starts the process that creates a dynamic PowerShell module, tailor made fo
 * [How to create *New* entities through the API][5]
 * [How to make changes to entities][6]
 * [How to delete entities][7]
-* [Prefixed and multiple connections][8]
+* [Prefixes and multiple connections][8]
 
 ## Disclaimer and Warning
 
