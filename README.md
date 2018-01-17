@@ -16,12 +16,34 @@ The module is generated dynamically, directly from the API information. All func
 
 Use Get-Help *functionname* a lot. You will find information such as required parameters, any entities that the current entity have connections to, other entities that have connections to your current entity and a lot more. Possible values for *picklists* are included both in the help text and in **IntelliSense** autocomplete.
 
+## Getting started
+
+The easiest way to get started with the Autotask module is to install it from Powershell Gallery. In WMF5 you can just start a PowerShell prompt with admin privileges and run:
+
+```powershell
+Install-Module Autotask
+```
+
+The module is not signed, so you have to set executionpolicy to *RemoteSigned* to use it. To load the dynamic module you have to connect to Autotask with a valid username and password:
+
+```powerShell
+Import-Module Autotask
+
+# Enter your username and password to Autotask
+$Credential = Get-Credential
+
+Connect-AutotaskWebAPI -Credential $Credential -Verbose
+```
+
+This starts the process that creates a dynamic PowerShell module, tailor made for you particular Autotask instance.
+
 ## Documentation
 
 * [How to *Get* data from the API][4]
 * [How to create *New* entities through the API][5]
 * [How to make changes to entities][6]
 * [How to delete entities][7]
+* [Prefixed and multiple connections][8]
 
 ## Disclaimer and Warning
 
@@ -34,3 +56,4 @@ Use Get-Help *functionname* a lot. You will find information such as required pa
 [5]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20create%20new%20entities.md
 [6]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20make%20changes%20to%20entities.md
 [7]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20delete%20entities.md
+[8]: https://github.com/officecenter/Autotask/blob/master/Docs/Prefixes%20and%20multiple%20connections.md
