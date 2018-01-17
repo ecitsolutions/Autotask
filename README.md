@@ -19,6 +19,7 @@ Use Get-Help *functionname* a lot. You will find information such as required pa
 ## Documentation
 
 [How to *Get* data from the API][4]
+
 [How to create *New* entities through the API][5]
 
 ## Disclaimer and Warning
