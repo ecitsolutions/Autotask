@@ -18,7 +18,7 @@ Use Get-Help *functionname* a lot. You will find information such as required pa
 
 ## Documentation
 
-[How to *Get* data from the API](.\Docs\How to Query.md)
+[How to *Get* data from the API][4]
 
 ## Disclaimer and Warning
 
@@ -27,3 +27,4 @@ Use Get-Help *functionname* a lot. You will find information such as required pa
 [1]: https://www.autotask.com
 [2]: https://ww4.autotask.net/help/Content/LinkedDOCUMENTS/WSAPI/T_WebServicesAPIv1_5.pdf
 [3]: https://github.com/officecenter/Autotask/blob/master/LICENSE.md
+[4]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20Query.md
