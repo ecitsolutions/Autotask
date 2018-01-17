@@ -1,6 +1,6 @@
 # Autotask
 
-# Summary
+## Summary
 
 This module consists of 2 parts: A normal script module and a nested, dynamic module that is created when you authenticate to the Autotask Web Services API. The base module queries the API for detailed information about all available Autotask entities and creates functions that let you write PowerShell scripts in PowerShell ISE or Visual Studio Code with full IntelliSense support. Dynamic functions are cached to disk and updated whenever the base module or the API version changes.
 
