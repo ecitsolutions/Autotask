@@ -18,7 +18,7 @@ Use Get-Help *functionname* a lot. You will find information such as required pa
 
 ## Documentation
 
-[How to *Get* data from the API](Docs\How to Query.md)
+[How to *Get* data from the API](.\Docs\How to Query.md)
 
 ## Disclaimer and Warning
 
