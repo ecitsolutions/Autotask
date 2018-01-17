@@ -18,9 +18,9 @@ Use Get-Help *functionname* a lot. You will find information such as required pa
 
 ## Documentation
 
-[How to *Get* data from the API][4]
-
-[How to create *New* entities through the API][5]
+* [How to *Get* data from the API][4]
+* [How to create *New* entities through the API][5]
+* [How to make changes to entities][6]
 
 ## Disclaimer and Warning
 
@@ -31,3 +31,4 @@ Use Get-Help *functionname* a lot. You will find information such as required pa
 [3]: https://github.com/officecenter/Autotask/blob/master/LICENSE.md
 [4]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20Query.md
 [5]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20create%20new%20entities.md
+[6]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20make%20changes%20to%20entities.md
