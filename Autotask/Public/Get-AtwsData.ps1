@@ -122,19 +122,35 @@ Function Get-AtwsData
     Foreach ($Word in $Filter)
     {
       $Value = $Word
-      If ($Word -match '^\$')
+      # Is it a variable name?
+      If ($Word -match '^\$\{?(\w+:)?(\w+)\}?(\.\w[\.\w]+)?$')
       {
-        Try
-        { 
-          $Value = Get-Variable -Name $Word.TrimStart('\$') -ValueOnly -ErrorAction Stop
-        }
-        Catch
+        # If present, first group is SCOPE. In the context of this function, scope must be Global or Script.
+        # If you used scope 'local' when you called this function, then the scope HERE is script.
+        $Scope = $Matches[1]
+        If (-not ($Scope) -or $Scope -ne 'global')
         {
-          $Value = Invoke-Expression $Word -ErrorAction SilentlyContinue 
-          If (-not($Value))
-          {
-            $Value = $Word
-          }
+          $Scope = 'Script'
+        }
+        
+        # The variable name MUST be present
+        $VariableName = $Matches[2]
+
+        # A property tail CAN be present
+        $PropertyTail = $Matches[3]
+        
+        # Check that the variable exists
+        $Variable = Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction SilentlyContinue 
+        If ($Variable)
+        {
+          # Scoped variable name
+          $Expression = '${{{0}:{1}}}{2}' -F $Scope, $VariableName, $PropertyTail
+          
+          Write-Verbose ('{0}: Substituting {1} for its value' -F $MyInvocation.MyCommand.Name, $Word)
+
+          # Invoke-Expression is considered risky from an SQL injection kind of perspective. But by only
+          # permitting a .dot separated string of [a-zA-Z0-9_] we are PROBABLY safe...
+          $Value = Invoke-Expression -Command $Expression
         }
       }
       $NewFilter += $Value

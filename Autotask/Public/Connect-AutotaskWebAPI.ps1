@@ -54,11 +54,16 @@ Function Connect-AutotaskWebAPI
     [Switch]
     $NoDynamicModule = $False,
     
+    [ValidatePattern('[a-zA-Z0-9]')]
+    [ValidateLength(1,8)]
     [String]
     $Prefix = 'Atws',
 
     [Switch]
     $NoDiskCache,
+
+    [Switch]
+    $RefreshCache,
 
     [Switch]
     $Silent = $false
@@ -170,7 +175,7 @@ Function Connect-AutotaskWebAPI
       If (-not $NoDynamicModule.IsPresent)
       {
                       
-        Import-AtwsCmdLet -ModuleName $ModuleName -Prefix $Prefix -NoDiskCache:$NoDiskCache.IsPresent
+        Import-AtwsCmdLet -ModuleName $ModuleName -Prefix $Prefix -NoDiskCache:$NoDiskCache.IsPresent -RefreshCache:$RefreshCache.IsPresent
       }
     }
     Else

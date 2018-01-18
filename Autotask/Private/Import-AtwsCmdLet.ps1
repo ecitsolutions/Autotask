@@ -14,6 +14,9 @@ Function Import-AtwsCmdLet
     [Switch]
     $NoDiskCache,
     
+    [Switch]
+    $RefreshCache,
+    
     [String]
     $Prefix = 'Atws'
   )
@@ -56,7 +59,7 @@ Function Import-AtwsCmdLet
   Process
   {
 
-    If ($CacheInfo.CacheDirty -or $NoDiskCache.IsPresent)
+    If ($CacheInfo.CacheDirty -or $NoDiskCache.IsPresent -or $RefreshCache.IsPresent)
     { 
       Write-Verbose -Message ('{0}: Generating new functions (CacheDirty: {1}, NoDiskCache: {2}) ' -F $MyInvocation.MyCommand.Name,$CacheInfo.CacheDirty.ToString(), $NoDiskCache.IsPresent.ToString())
       

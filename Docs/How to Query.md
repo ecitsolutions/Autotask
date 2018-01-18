@@ -54,6 +54,9 @@ $DueTo = $DueFrom.AddDays(3)
 $Tickets = Get-AtwsTicket -Filter {DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo}
 $OtherTickets = Get-AtwsTicket -Filter {Status -eq New -or (DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo)}
 ```
+
+d
+
 We have tried to make the *Filter* syntax as familiar as possible for PowerShell users. As every query needs to be translated to QueryXML and posted to the Autotask API we have had to make some adaptions, but every operator supported by the API at time of writing is supported. With Filter you should be able to make any query you can't specify by using parameters.
 
 See the [Autotask Web API documentation][1], section about *QueryXML* for å complete list of possible operators in a query.
