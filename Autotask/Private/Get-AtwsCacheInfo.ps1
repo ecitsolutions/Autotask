@@ -17,6 +17,7 @@
     $ModuleVersionInfo = New-Object -TypeName PSObject -Property @{
       APIversion = $AtwsConnection[$Prefix].GetWsdlVersion()
       ModuleVersion = $ModuleAutotask.Version.ToString()
+      CI = ($AtwsConnection[$Prefix].getZoneInfo($AtwsConnection[$Prefix].Credentials.UserName)).CI
     }
     If ($ModuleAutotask.ModuleBase -like "$Env:ProgramFiles*")
     { 
@@ -48,7 +49,9 @@
       
       $CurrentVersionInfo = Import-Clixml -Path $PersonalCache
       $CachePath = $PersonalCache 
-      If ($CurrentVersionInfo.APIversion -eq $ModuleVersionInfo.APIversion -and $CurrentVersionInfo.ModuleVersion -eq $ModuleVersionInfo.ModuleVersion)
+      If ($CurrentVersionInfo.APIversion -eq $ModuleVersionInfo.APIversion `
+      -and $CurrentVersionInfo.ModuleVersion -eq $ModuleVersionInfo.ModuleVersion`
+      -and $CurrentVersionInfo.CI -eq $ModuleVersionInfo.CI)
       {
         Write-Verbose -Message ('{0}: Personal cache is clean. Loading from personal cache.' -F $MyInvocation.MyCommand.Name)
                 
@@ -75,7 +78,9 @@
         $CentralPathWritable = $False
       }
 
-      If ($CurrentVersionInfo.APIversion -eq $ModuleVersionInfo.APIversion -and $CurrentVersionInfo.ModuleVersion -eq $ModuleVersionInfo.ModuleVersion)
+      If ($CurrentVersionInfo.APIversion -eq $ModuleVersionInfo.APIversion `
+        -and $CurrentVersionInfo.ModuleVersion -eq $ModuleVersionInfo.ModuleVersion`
+        -and $CurrentVersionInfo.CI -eq $ModuleVersionInfo.CI)
       {
         Write-Verbose -Message ('{0}: Central cache is clean. Loading from central cache.' -F $MyInvocation.MyCommand.Name)
                 

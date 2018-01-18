@@ -39,6 +39,7 @@ This starts the process that creates a dynamic PowerShell module, tailor made fo
 
 ## Documentation
 
+* [How to refresh or ignore cached functions][9]
 * [How to *Get* data from the API][4]
 * [How to create *New* entities through the API][5]
 * [How to make changes to entities][6]
@@ -57,3 +58,4 @@ This starts the process that creates a dynamic PowerShell module, tailor made fo
 [6]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20make%20changes%20to%20entities.md
 [7]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20delete%20entities.md
 [8]: https://github.com/officecenter/Autotask/blob/master/Docs/Prefixes%20and%20multiple%20connections.md
+[9]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20refresh%20cache.md
