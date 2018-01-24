@@ -66,6 +66,9 @@ Function Get-AtwsData
   )
   Begin
   { 
+    # Lookup Verbose, WhatIf and other preferences from calling context
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
+    
     If (-not($global:AtwsConnection[$Connection].Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
@@ -140,7 +143,16 @@ Function Get-AtwsData
         $PropertyTail = $Matches[3]
         
         # Check that the variable exists
-        $Variable = Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction SilentlyContinue 
+        $Variable = Try
+        { Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction Stop }
+        Catch
+        {
+          # If variable scope is Global, but not explicitly mentioned as such, the above line will fail
+          # If scope Script failed, then try Global 
+          $Scope = 'Global'
+          Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction SilentlyContinue
+        }
+
         If ($Variable)
         {
           # Scoped variable name
@@ -151,6 +163,10 @@ Function Get-AtwsData
           # Invoke-Expression is considered risky from an SQL injection kind of perspective. But by only
           # permitting a .dot separated string of [a-zA-Z0-9_] we are PROBABLY safe...
           $Value = Invoke-Expression -Command $Expression
+          
+          # Normalize dates. Important to avoid QueryXML problems
+          If ($Value.GetType().Name -eq 'DateTime')
+          {[String]$Value = Get-Date $Value -Format s}
         }
       }
       $NewFilter += $Value

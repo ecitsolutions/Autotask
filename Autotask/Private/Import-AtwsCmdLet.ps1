@@ -134,6 +134,7 @@ Function Import-AtwsCmdLet
       $ModuleVersionInfo = New-Object -TypeName PSObject -Property @{
         APIversion = $CacheInfo.APIversion
         ModuleVersion = $CacheInfo.ModuleVersion
+        CI = $CacheInfo.CI
       }
                     
       Export-Clixml -InputObject $ModuleVersionInfo -Path $CacheInfo.CachePath -Encoding UTF8
@@ -151,7 +152,8 @@ Function Import-AtwsCmdLet
     
     Write-Verbose -Message ('{0}: Including private functions in dynamic mocule' -F $MyInvocation.MyCommand.Name)   
     $PrivateFunctions = @(
-      'Get-AtwsFieldInfo'
+      'Get-AtwsFieldInfo',
+      'Get-CallerPreference'
     ) 
     Foreach ($FunctionName in $PrivateFunctions)
     {

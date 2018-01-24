@@ -5,11 +5,8 @@
     $EntityName = '#EntityName'
     $Prefix = '#Prefix'
 
-    If ($Verbose)
-    {
-      # Make sure the -Verbose parameter is inherited
-      $VerbosePreference = 'Continue'
-    }
+    # Lookup Verbose, WhatIf and other preferences from calling context
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
@@ -19,6 +16,8 @@
   {
     If (-not ($Filter))
     {
+      Write-Verbose ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
+      
       $Fields = Get-AtwsFieldInfo -Entity $EntityName -Connection $Prefix
         
       Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
@@ -88,9 +87,13 @@
         }
       }
         
-    } #'NotEquals','GreaterThan','GreaterThanOrEqual','LessThan','LessThanOrEquals','Like','NotLike','BeginsWith','EndsWith
+    }
+    Else
+    {
+      Write-Verbose ('{0}: Passing -Filter raw to Get function' -F $MyInvocation.MyCommand.Name, $Result.Count)
+    } 
 
-    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter -Connection $Prefix -Verbose:$Verbose.IsPresent  -WhatIf:$WhatIf.IsPresent
+    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter -Connection $Prefix 
 
     Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
@@ -108,7 +111,7 @@
           $GetReferenceEntityById) -WarningAction Continue
       }
       $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
-      $ReferenceResult = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter -Connection $Prefix -Verbose:$Verbose.IsPresent  -WhatIf:$WhatIf.IsPresent
+      $ReferenceResult = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter -Connection $Prefix 
       If ($ReferenceResult)
       {
         $Result = $ReferenceResult

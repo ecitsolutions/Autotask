@@ -5,11 +5,8 @@
     $EntityName = '#EntityName'
     $Prefix = '#Prefix'
         
-    If ($Verbose)
-    {
-      # Make sure the -Verbose parameter is inherited
-      $VerbosePreference = 'Continue'
-    }
+    # Lookup Verbose, WhatIf and other preferences from calling context
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
@@ -40,8 +37,7 @@
       }
     }
    
-    $ModifiedObjects = Set-AtwsData -Entity $InputObject -Connection $Prefix -Verbose:$Verbose.IsPresent -WhatIf:$WhatIf.IsPresent
-
+    $ModifiedObjects = Set-AtwsData -Entity $InputObject -Connection $Prefix
 
   }
 

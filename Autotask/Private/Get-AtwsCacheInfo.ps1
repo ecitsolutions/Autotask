@@ -142,8 +142,9 @@
       CachePath = $CachePath
       CacheDir = $CacheDir
       CacheDirty = $CacheDirty
-      ModuleVersion = $ModuleAutotask.Version.ToString()
-      APIversion = $AtwsConnection[$Prefix].GetWsdlVersion()      
+      ModuleVersion = $ModuleVersionInfo.ModuleVersion
+      APIversion = $ModuleVersionInfo.APIversion 
+      CI = $ModuleVersionInfo.CI
     }
 
     Return $CacheInfo
