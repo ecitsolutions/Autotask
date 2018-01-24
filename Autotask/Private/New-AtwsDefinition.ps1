@@ -73,7 +73,7 @@
         }
       }
     }
-    $Result = New-AtwsData -Entity $ProcessObject -Connection $Prefix
+    $Result = New-AtwsData -Entity $ProcessObject -Connection $Prefix -Verbose:$Verbose.IsPresent  -WhatIf:$WhatIf.IsPresent
   }
 
   End

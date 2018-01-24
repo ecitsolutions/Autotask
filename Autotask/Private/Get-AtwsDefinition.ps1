@@ -90,7 +90,7 @@
         
     } #'NotEquals','GreaterThan','GreaterThanOrEqual','LessThan','LessThanOrEquals','Like','NotLike','BeginsWith','EndsWith
 
-    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter -Connection $Prefix
+    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter -Connection $Prefix -Verbose:$Verbose.IsPresent  -WhatIf:$WhatIf.IsPresent
 
     Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
@@ -108,7 +108,7 @@
           $GetReferenceEntityById) -WarningAction Continue
       }
       $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
-      $ReferenceResult = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter -Connection $Prefix
+      $ReferenceResult = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter -Connection $Prefix -Verbose:$Verbose.IsPresent  -WhatIf:$WhatIf.IsPresent
       If ($ReferenceResult)
       {
         $Result = $ReferenceResult

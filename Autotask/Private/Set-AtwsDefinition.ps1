@@ -40,7 +40,7 @@
       }
     }
    
-    $ModifiedObjects = Set-AtwsData -Entity $InputObject -Connection $Prefix
+    $ModifiedObjects = Set-AtwsData -Entity $InputObject -Connection $Prefix -Verbose:$Verbose.IsPresent -WhatIf:$WhatIf.IsPresent
 
 
   }

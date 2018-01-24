@@ -33,7 +33,7 @@ Function Import-AtwsCmdLet
     }
     
     Write-Verbose -Message ('{0}: Calling  API.EntityInfo() to get list over available entities.' -F $MyInvocation.MyCommand.Name)
-
+    
     $Caption = $MyInvocation.MyCommand.Name
     $VerboseDescrition = '{0}: Calling API.EntityInfo()' -F $Caption
     $VerboseWarning = '{0}: About to call API.EntityInfo(). Do you want to continue?' -F $Caption
@@ -64,6 +64,7 @@ Function Import-AtwsCmdLet
       Write-Verbose -Message ('{0}: Generating new functions (CacheDirty: {1}, NoDiskCache: {2}) ' -F $MyInvocation.MyCommand.Name,$CacheInfo.CacheDirty.ToString(), $NoDiskCache.IsPresent.ToString())
       
       $Activity = 'Downloading detailed information about all Autotask entity types'
+      $ParentId = 1
               
       Foreach ($Entity in $Entities)
       { 
@@ -76,7 +77,7 @@ Function Import-AtwsCmdLet
         $PercentComplete = $Index / $Entities.Count * 100
         $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
         $CurrentOperation = "GetFieldInfo('{0}')" -F $Entity.Name
-        Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
+        Write-Progress -ParentId $ParentId -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
       
         $VerboseDescrition = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
         $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
@@ -94,7 +95,7 @@ Function Import-AtwsCmdLet
         $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
         $CurrentOperation = 'Importing {0}' -F $Entity.Name
         
-        Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
+        Write-Progress -ParentId $ParentId -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
       
         $VerboseDescrition = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
         $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
@@ -164,6 +165,9 @@ Function Import-AtwsCmdLet
     $FunctionScriptBlock = [ScriptBlock]::Create($($ModuleFunctions))
         
     New-Module -Name $ModuleName -ScriptBlock $FunctionScriptBlock  | Import-Module -Global 
+    
+    Write-Progress -ParentId $ParentId -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation -Completed
+        
     
   }
 }

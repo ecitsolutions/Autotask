@@ -25,7 +25,7 @@
 
     If ($InputObject)
     { 
-      Remove-AtwsData -Entity $InputObject -Connection $Prefix
+      Remove-AtwsData -Entity $InputObject -Connection $Prefix -Verbose:$Verbose.IsPresent -WhatIf:$WhatIf.IsPresent
     }
   }
 
