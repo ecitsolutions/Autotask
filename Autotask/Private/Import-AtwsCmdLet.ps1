@@ -166,10 +166,7 @@ Function Import-AtwsCmdLet
     
     $FunctionScriptBlock = [ScriptBlock]::Create($($ModuleFunctions))
         
-    New-Module -Name $ModuleName -ScriptBlock $FunctionScriptBlock  | Import-Module -Global 
-    
-    Write-Progress -ParentId $ParentId -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation -Completed
-        
+    New-Module -Name $ModuleName -ScriptBlock $FunctionScriptBlock  | Import-Module -Global         
     
   }
 }
