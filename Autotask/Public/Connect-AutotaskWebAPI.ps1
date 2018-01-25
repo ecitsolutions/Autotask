@@ -184,7 +184,7 @@ Function Connect-AutotaskWebAPI
     {
       If (-not $NoDynamicModule.IsPresent)
       {
-        Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connection OK' -PercentComplete 80 -CurrentOperation 'Generating dynamic module'
+        Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connection OK' -PercentComplete 80 -CurrentOperation 'Importing dynamic module'
                 
         Import-AtwsCmdLet -ModuleName $ModuleName -Prefix $Prefix -NoDiskCache:$NoDiskCache.IsPresent -RefreshCache:$RefreshCache.IsPresent
       }

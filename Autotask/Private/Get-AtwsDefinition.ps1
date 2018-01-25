@@ -14,7 +14,9 @@
 
   Process
   {
-    If (-not ($Filter))
+    If ($PSCmdlet.ParameterSetName -eq 'Get_all')
+    { $Filter = @('id','-ge',0)}
+    ElseIf (-not ($Filter))
     {
       Write-Verbose ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
