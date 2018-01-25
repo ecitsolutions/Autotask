@@ -11,7 +11,7 @@
     [Parameter(Mandatory = $True)]
     [Autotask.Field[]]
     $FieldInfo,
-    
+        
     [String]
     $Prefix = 'Atws'
   )

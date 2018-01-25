@@ -61,17 +61,30 @@ Function Import-AtwsCmdLet
 
     If ($CacheInfo.CacheDirty -or $NoDiskCache.IsPresent -or $RefreshCache.IsPresent)
     { 
-      Write-Verbose -Message ('{0}: Generating new functions (CacheDirty: {1}, NoDiskCache: {2}) ' -F $MyInvocation.MyCommand.Name,$CacheInfo.CacheDirty.ToString(), $NoDiskCache.IsPresent.ToString())
+      Write-Verbose -Message ('{0}: Generating new functions (CacheDirty: {1}, NoDiskCache: {2}, RefreshCache: {3}) ' -F $MyInvocation.MyCommand.Name,$CacheInfo.CacheDirty.ToString(), $NoDiskCache.IsPresent.ToString(), $RefreshCache.IsPresent.ToString())
       
       $Activity = 'Downloading detailed information about all Autotask entity types'
       $ParentId = 1
-              
+      
+      
+
       Foreach ($Entity in $Entities)
       { 
         Write-Verbose -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
         
-        $FieldTable[$Entity.Name] = $atws.GetFieldInfo($Entity.Name)        
-              
+        $FieldTable[$Entity.Name] = Get-AtwsFieldInfo -Entity $Entity.Name
+        If ($Entity.HasUserDefinedFields)
+        {
+          # Prepare an UDF field definition
+          $UDF = New-Object Autotask.Field
+          $UDF.IsQueryable = $True
+          $UDF.Label = 'UserDefinedField'
+          $UDF.Name = 'UserDefinedField'
+          $UDF.Type = 'Autotask.UserDefinedField'
+          # Add UDF to field list
+          $FieldTable[$Entity.Name] += $UDF
+        }
+
         # Calculating progress percentage and displaying it
         $Index = $Entities.IndexOf($Entity) +1
         $PercentComplete = $Index / $Entities.Count * 100
@@ -99,8 +112,8 @@ Function Import-AtwsCmdLet
       
         $VerboseDescrition = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
         $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
-        
-        $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -Prefix $Prefix -FieldInfo $FieldTable[$Entity.Name]
+       
+        $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -Prefix $Prefix -FieldInfo $FieldTable[$Entity.Name] 
         
         If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
         { 

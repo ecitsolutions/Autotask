@@ -9,11 +9,13 @@
 function ConvertTo-QueryXML 
 {
   [cmdletbinding()]
-  param(
-    [switch]$UDF,
-        
-    [Parameter(Mandatory = $true,ValueFromRemainingArguments = $true)]
-    [String[]]$QueryText,
+  param(    
+    [Parameter(
+      Mandatory = $true,
+      ValueFromRemainingArguments = $true
+    )]
+    [String[]]
+    $QueryText,
         
     [Switch]
     $QueryStringOnly = $false
@@ -49,7 +51,9 @@ function ConvertTo-QueryXML
   }
 
   $NoValueNeeded = @('-isnotnull', '-isnull', '-isthisday')
-    
+  
+  $UDF = $false
+
   # Create an XML document object. Only used to create XML elements.
   $xml = New-Object -TypeName XML
     
@@ -105,6 +109,12 @@ function ConvertTo-QueryXML
         $Node = $Node.ParentNode
         Break
       }
+      # Next value is an UDF name
+      '-udf'
+      {
+        $UDF = $true
+        Break
+      }
       # Check for a condition
       {$ConditionOperator.Keys -contains $_} 
       {
@@ -143,16 +153,13 @@ function ConvertTo-QueryXML
         # and add it to current Node
         $Field = $xml.CreateElement('field')
         $Field.InnerText = $QueryText[$i]
-        $null = $Node.AppendChild($Field)
 
-        # If UDF is set we must add an attribute to the field
-        # tag. But only once!
         If ($UDF)
         {
-          $Field.SetAttribute('udf', 'true')
-          # Only the first field can be UDF
-          $UDF = $false
+          $Field.SetAttribute('udf','true')
+          $UDF = $False
         }
+        $null = $Node.AppendChild($Field)
 
         # The field tag is now the current Node
         $Node = $Field

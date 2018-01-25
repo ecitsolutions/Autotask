@@ -2,7 +2,7 @@
 
     .COPYRIGHT
     Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/OCH-Public/blob/master/LICENSE for license information.
+    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 
@@ -10,24 +10,16 @@ Function Get-AtwsFieldInfo
 {
   <#
       .SYNOPSIS
-      This function connects to the Autotask Web Services API.
+      This function gets valid fields for an Autotask Entity
       .DESCRIPTION
-      The function takes a credential object and uses it to authenticate and connect to the Autotask
-      Web Services API
+      This function gets valid fields for an Autotask Entity
       .INPUTS
-      A PSCredential object. Required. It will prompt for credentials if the object is not provided.
+      None.
       .OUTPUTS
-      A webserviceproxy object is created.
+      [Autotask.Field[]]
       .EXAMPLE
-      Connect-AutotaskWebAPI
-      Prompts for a username and password and authenticates to Autotask
-      .EXAMPLE
-      Connect-AutotaskWebAPI
-      .NOTES
-      NAME: Connect-AutotaskWebAPI
-      .LINK
-      Get-AtwsData
-      New-AtwsQuery
+      Get-AtwsFieldInfo -Entity Account
+      Gets all valid built-in fields and user defined fields for the Account entity.
   #>
 	
   [cmdletbinding(
@@ -65,12 +57,25 @@ Function Get-AtwsFieldInfo
   Process
   { 
     $Caption = 'Set-Atws{0}' -F $Entity[0].GetType().Name
-    $VerboseDescrition = '{0}: About to modify {1} {2}(s). This action cannot be undone.' -F $Caption, $Entity.Count, $Entity[0].GetType().name
-    $VerboseWarning = '{0}: About to modify {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
+    $VerboseDescrition = '{0}: About to get built-in fields and userdefined fields for {1}s' -F $Caption, $Entity[0].GetType().name
+    $VerboseWarning = '{0}: About to get built-in fields and userdefined fields for {1}s. Do you want to continue?' -F $Caption, $Entity[0].GetType().Name
 
     If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
     { 
       $Result = $atws.GetFieldInfo($Entity)
+      <#
+      If ($Result.Count -gt 0)
+      { 
+        $UDFResult = $atws.GetUDFInfo($Entity)
+        If ($UDFResult.Count -gt 0)
+        {
+          Foreach ($UDF in $UDFResult)
+          {
+            $UDF.Name = 'UDF_{0}' -F ([URI]::EscapeDataString($UDF.Name) -replace '%','_')
+          }
+          $Result += $UDFResult
+        }
+      }#>
     }
     
     If ($Result.Errors.Count -gt 0)

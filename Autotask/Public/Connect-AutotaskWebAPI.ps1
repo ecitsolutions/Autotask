@@ -125,7 +125,7 @@ Function Connect-AutotaskWebAPI
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Datacenter located' -PercentComplete 20 -CurrentOperation 'Checking for cached connections'
         
     
-    If ($global:AtwsConnection.ContainsKey($Prefix))
+    If ($global:AtwsConnection.ContainsKey($Prefix) -and -not $RefreshCache.IsPresent)
     {
       Write-Verbose ('{0}: Cached connection {1} found. Checking credentials' -F $MyInvocation.MyCommand.Name, $Prefix)
       $SameUser = (('\{0}' -F $global:AtwsConnection[$Prefix].Credentials.Username) -eq $local:Credential.Username)

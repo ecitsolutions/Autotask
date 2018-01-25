@@ -21,11 +21,11 @@
       Write-Verbose ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
       $Fields = Get-AtwsFieldInfo -Entity $EntityName -Connection $Prefix
-        
+ 
       Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
       {
         $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-        If ($Field)
+        If ($Field -or $Parameter.Key -eq 'UserDefinedField')
         { 
           If ($Parameter.Value.Count -gt 1)
           {
@@ -34,16 +34,23 @@
           Foreach ($ParameterValue in $Parameter.Value)
           {   
             $Operator = '-or'
+            $ParameterName = $Parameter.Key
             If ($Field.IsPickList)
             {
               $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $ParameterValue}
               $Value = $PickListValue.Value
             }
+            ElseIf ($ParameterName -eq 'UserDefinedField')
+            {
+              $Filter += '-udf'              
+              $ParameterName = $ParameterValue.Name
+              $Value = $ParameterValue.Value
+            }
             Else
             {
               $Value = $ParameterValue
             }
-            $Filter += $Parameter.Key
+            $Filter += $ParameterName
             If ($Parameter.Key -in $NotEquals)
             { 
               $Filter += '-ne'
