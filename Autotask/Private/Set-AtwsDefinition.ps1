@@ -19,7 +19,7 @@
     Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
     {
       $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-      If ($Field)
+      If ($Field -or $Parameter.Key -eq 'UserDefinedFields')
       { 
         If ($Field.IsPickList)
         {
