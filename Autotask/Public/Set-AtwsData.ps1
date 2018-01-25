@@ -50,6 +50,9 @@ Function Set-AtwsData
     
   Begin
   { 
+    # Lookup Verbose, WhatIf and other preferences from calling context
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
+    
     If (-not($global:AtwsConnection[$Connection].Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'

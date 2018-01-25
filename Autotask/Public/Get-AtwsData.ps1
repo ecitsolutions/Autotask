@@ -66,6 +66,9 @@ Function Get-AtwsData
   )
   Begin
   { 
+    # Lookup Verbose, WhatIf and other preferences from calling context
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
+    
     If (-not($global:AtwsConnection[$Connection].Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
@@ -122,19 +125,48 @@ Function Get-AtwsData
     Foreach ($Word in $Filter)
     {
       $Value = $Word
-      If ($Word -match '^\$')
+      # Is it a variable name?
+      If ($Word -match '^\$\{?(\w+:)?(\w+)\}?(\.\w[\.\w]+)?$')
       {
-        Try
-        { 
-          $Value = Get-Variable -Name $Word.TrimStart('\$') -ValueOnly -ErrorAction Stop
+        # If present, first group is SCOPE. In the context of this function, scope must be Global or Script.
+        # If you used scope 'local' when you called this function, then the scope HERE is script.
+        $Scope = $Matches[1]
+        If (-not ($Scope) -or $Scope -ne 'global')
+        {
+          $Scope = 'Script'
         }
+        
+        # The variable name MUST be present
+        $VariableName = $Matches[2]
+
+        # A property tail CAN be present
+        $PropertyTail = $Matches[3]
+        
+        # Check that the variable exists
+        $Variable = Try
+        { Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction Stop }
         Catch
         {
-          $Value = Invoke-Expression $Word -ErrorAction SilentlyContinue 
-          If (-not($Value))
-          {
-            $Value = $Word
-          }
+          # If variable scope is Global, but not explicitly mentioned as such, the above line will fail
+          # If scope Script failed, then try Global 
+          $Scope = 'Global'
+          Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction SilentlyContinue
+        }
+
+        If ($Variable)
+        {
+          # Scoped variable name
+          $Expression = '${{{0}:{1}}}{2}' -F $Scope, $VariableName, $PropertyTail
+          
+          Write-Verbose ('{0}: Substituting {1} for its value' -F $MyInvocation.MyCommand.Name, $Word)
+
+          # Invoke-Expression is considered risky from an SQL injection kind of perspective. But by only
+          # permitting a .dot separated string of [a-zA-Z0-9_] we are PROBABLY safe...
+          $Value = Invoke-Expression -Command $Expression
+          
+          # Normalize dates. Important to avoid QueryXML problems
+          If ($Value.GetType().Name -eq 'DateTime')
+          {[String]$Value = Get-Date $Value -Format s}
         }
       }
       $NewFilter += $Value

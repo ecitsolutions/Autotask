@@ -24,27 +24,27 @@ function ConvertTo-QueryXML
   # List of allowed operator in QueryXML
   $Operator = @{
     '-and' = 'and'
-    '-or' = 'or'
+    '-or'  = 'or'
     '-begin' = 'begin'
     '-end' = 'end'
   }
 
   # List of all allowed condition in QueryXML
   $ConditionOperator = @{
-    '-eq' = 'Equals'
-    '-ne' = 'NotEqual'
-    '-gt' = 'GreaterThan'
-    '-lt' =  'LessThan'
-    '-ge' =  'GreaterThanorEquals'
-    '-le' = 'LessThanOrEquals'
+    '-eq'       = 'Equals'
+    '-ne'       = 'NotEqual'
+    '-gt'       = 'GreaterThan'
+    '-lt'       = 'LessThan'
+    '-ge'       = 'GreaterThanorEquals'
+    '-le'       = 'LessThanOrEquals'
     '-beginswith' = 'BeginsWith'
     '-endswith' = 'EndsWith'
     '-contains' = 'Contains'
     '-isnotnull' = 'IsNotNull'
-    '-isnull' = 'IsNull'
+    '-isnull'   = 'IsNull'
     '-isthisday' = 'IsThisDay'
-    '-like' = 'Like'
-    '-notlike' = 'NotLike'
+    '-like'     = 'Like'
+    '-notlike'  = 'NotLike'
     '-soundslike' = 'SoundsLike'
   }
 
@@ -76,9 +76,7 @@ function ConvertTo-QueryXML
     Switch ($QueryText[$i])
     {
       # Check for operator
-      {
-        $Operator.Keys -contains $_
-      }
+      {$Operator.Keys -contains $_}
       {
         # Element is an operator. Add a condition tag with
         # attribute 'operator' set to the value of element
@@ -91,9 +89,7 @@ function ConvertTo-QueryXML
           $Condition = $xml.CreateElement('condition')
         }
         If ('-or', '-and' -contains $_)
-        {
-          $Condition.SetAttribute('operator', $Operator[$_])
-        }
+        {$Condition.SetAttribute('operator', $Operator[$_])}
                    
         # Append condition to current $Node
         $null = $Node.AppendChild($Condition)
@@ -110,9 +106,7 @@ function ConvertTo-QueryXML
         Break
       }
       # Check for a condition
-      {
-        $ConditionOperator.Keys -contains $_
-      } 
+      {$ConditionOperator.Keys -contains $_} 
       {
         # Element is a condition. Add an expression tag with
         # attribute 'op' set to the value of element
@@ -138,9 +132,7 @@ function ConvertTo-QueryXML
         # If the parentnode is a conditiontag we need
         # to go one more step up
         If ($Node.Name -eq 'condition')
-        {
-          $Node = $Node.ParentNode
-        }
+        {$Node = $Node.ParentNode}
         Break
       }
       # Everything that aren't an operator or a condition is treated
@@ -170,5 +162,4 @@ function ConvertTo-QueryXML
     
 
   Return $($queryxml.OuterXml)
-
 }
