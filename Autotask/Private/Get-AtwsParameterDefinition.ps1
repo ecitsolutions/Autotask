@@ -30,16 +30,22 @@
       Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'String' -Mandatory -Remaining -NotNull  -Array 
       $ReferenceFields = $FieldInfo.Where({$_.IsReference}).Name
       Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter','By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields
-      Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'Switch'      
+      Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'Switch'  
+      If ($Entity.HasUserDefinedFields)    
+      {Get-AtwsPSParameter -Name 'UserDefinedField' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull }
     }    
     ElseIf ($Verb -eq 'Set')
     {
       Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array 
       Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object' -Type 'Switch'
+      If ($Entity.HasUserDefinedFields)    
+      {Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'Input_Object' -Type 'Autotask.UserDefinedField' -Array }
     }
     ElseIf ($Verb -in 'New')
     {
       Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull
+      If ($Entity.HasUserDefinedFields)    
+      {Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Array }
     }
     ElseIf ($Verb -eq 'Remove')
     {

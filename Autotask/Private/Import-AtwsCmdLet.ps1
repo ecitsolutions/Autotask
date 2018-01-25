@@ -73,17 +73,6 @@ Function Import-AtwsCmdLet
         Write-Verbose -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
         
         $FieldTable[$Entity.Name] = Get-AtwsFieldInfo -Entity $Entity.Name
-        If ($Entity.HasUserDefinedFields)
-        {
-          # Prepare an UDF field definition
-          $UDF = New-Object Autotask.Field
-          $UDF.IsQueryable = $True
-          $UDF.Label = 'UserDefinedField'
-          $UDF.Name = 'UserDefinedField'
-          $UDF.Type = 'Autotask.UserDefinedField'
-          # Add UDF to field list
-          $FieldTable[$Entity.Name] += $UDF
-        }
 
         # Calculating progress percentage and displaying it
         $Index = $Entities.IndexOf($Entity) +1
