@@ -22,22 +22,24 @@ When a property is a *picklist*, such as *ContractType* is for the **Contract** 
 ## Query by reference
 
 Most Autotask entities reference other entities. Consider a *contract*. A contract is connected to an account by *AccountID*. If you want to know the name of the account you would have to get the contract first and the account second. Enter *-GetEntityByReferenceId*:
+
 ```powershell
 $Contract = Get-AtwsContract -Name 'A Contract Name' -ContractType 'Recurring Service'
 $Account = Get-AtwsAccount -Id $Contract.AccountId
 # Or you can do
 $Account = Get-AtwsContract -Name 'A Contract Name' -ContractType 'Recurring Service' -GetEntityByReferenceId AccountId
 ```
+
 We added this feature out of our own frustration. Working with entity objects that consist mostly of meaningless, uniqe ID values is difficult on the command line. Being able to quickly get at the connected objects can save a bit of time.
 
 ## Modifying Query by parameters with operators
 
 ```powershell
-Get-AtwsAccount -AccountName 'Company name 1' -NotEquals AccountName 
-Get-AtwsAccount -AccountName 'Company name 1', 'Company name 2' -NotEquals AccountName 
-Get-AtwsAccount -AccountName *Company* -Like AccountName 
-Get-AtwsAccount -AccountName *Company* -NotLike AccountName 
-Get-AtwsAccount -AccountName Company -BeginsWith AccountName 
+Get-AtwsAccount -AccountName 'Company name 1' -NotEquals AccountName
+Get-AtwsAccount -AccountName 'Company name 1', 'Company name 2' -NotEquals AccountName
+Get-AtwsAccount -AccountName *Company* -Like AccountName
+Get-AtwsAccount -AccountName *Company* -NotLike AccountName
+Get-AtwsAccount -AccountName Company -BeginsWith AccountName
 ```
 
 Sometimes you do not want exact matches. Any *Get* function has several operator parameters you can use to modify the matching behavior of any parameter. The operator parameters takes the name of any parameter you wish to modify the behavior of. In the first example *Get-AtwsAccount* will return any account wich accountname is NOT EQUAL to 'Company name 1'.
@@ -54,10 +56,9 @@ $DueTo = $DueFrom.AddDays(3)
 $Tickets = Get-AtwsTicket -Filter {DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo}
 $OtherTickets = Get-AtwsTicket -Filter {Status -eq New -or (DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo)}
 ```
+
 We have tried to make the *Filter* syntax as familiar as possible for PowerShell users. As every query needs to be translated to QueryXML and posted to the Autotask API we have had to make some adaptions, but every operator supported by the API at time of writing is supported. With Filter you should be able to make any query you can't specify by using parameters.
 
 See the [Autotask Web API documentation][1], section about *QueryXML* for å complete list of possible operators in a query.
-
-
 
 [1]: https://ww4.autotask.net/help/Content/LinkedDOCUMENTS/WSAPI/T_WebServicesAPIv1_5.pdf
