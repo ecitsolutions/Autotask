@@ -56,7 +56,17 @@
       { 
         If ($Field.IsPickList)
         {
-          $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $Parameter.Value}
+          If($Field.PickListParentValueField)
+          {
+            $ParentField = $Fields.Where{$_.Name -eq $Field.PickListParentValueField}
+            $ParentLabel = $PSBoundParameters.$($ParentField.Name)
+            $ParentValue = $ParentField.PickListValues | Where-Object {$_.Label -eq $ParentLabel}
+            $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $Parameter.Value -and $_.ParentValue -eq $ParentValue.Value}                
+          }
+          Else 
+          { 
+            $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $Parameter.Value}
+          }
           $Value = $PickListValue.Value
         }
         Else

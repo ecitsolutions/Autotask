@@ -37,7 +37,17 @@
             $ParameterName = $Parameter.Key
             If ($Field.IsPickList)
             {
-              $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $ParameterValue}
+              If($Field.PickListParentValueField)
+              {
+                $ParentField = $Fields.Where{$_.Name -eq $Field.PickListParentValueField}
+                $ParentLabel = $PSBoundParameters.$($ParentField.Name)
+                $ParentValue = $ParentField.PickListValues | Where-Object {$_.Label -eq $ParentLabel}
+                $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $ParameterValue -and $_.ParentValue -eq $ParentValue.Value}                
+              }
+              Else 
+              { 
+                $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $ParameterValue}
+              }
               $Value = $PickListValue.Value
             }
             ElseIf ($ParameterName -eq 'UserDefinedField')
