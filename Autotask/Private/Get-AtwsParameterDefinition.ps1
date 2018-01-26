@@ -124,7 +124,7 @@
         ParameterSetName       = $Field.ParameterSet
         ValidateNotNullOrEmpty = $True
         ValidateLength         = $Field.Length
-        ValidateSet            = $Field.PickListValues.Label
+        ValidateSet            = $Field.PickListValues.Label | Select-Object -Unique
         Array                  = $(($Verb -eq 'Get'))
         Name                   = $Field.Name
         Alias                  = $Alias
