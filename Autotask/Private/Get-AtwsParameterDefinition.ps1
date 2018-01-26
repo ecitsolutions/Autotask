@@ -25,33 +25,43 @@
   { 
     $TypeName = 'Autotask.{0}' -F $Entity.Name
       
-    If ($Verb -eq 'Get')
-    {
-      Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'String' -Mandatory -Remaining -NotNull  -Array 
-      $ReferenceFields = $FieldInfo.Where({$_.IsReference}).Name
-      Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter','By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields
-      Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'Switch'  
-      If ($Entity.HasUserDefinedFields)    
-      {Get-AtwsPSParameter -Name 'UserDefinedField' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull }
-    }    
-    ElseIf ($Verb -eq 'Set')
-    {
-      Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array 
-      Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object' -Type 'Switch'
-      If ($Entity.HasUserDefinedFields)    
-      {Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'Input_Object' -Type 'Autotask.UserDefinedField' -Array }
-    }
-    ElseIf ($Verb -in 'New')
-    {
-      Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull
-      If ($Entity.HasUserDefinedFields)    
-      {Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Array }
-    }
-    ElseIf ($Verb -eq 'Remove')
-    {
-      Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array
-      Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $TypeName -Mandatory  -NotNull -Array
-    }
+        If ($Verb -eq 'Get') {
+            $Comment = 'A filter that limits the number of objects that is returned from the API'
+            Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'String' -Mandatory -Remaining -NotNull  -Array -Comment $Comment
+            $ReferenceFields = $FieldInfo.Where( {$_.IsReference}).Name
+            $Comment = 'Follow this external ID and return any external objects'            
+            Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter', 'By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields -Comment $Comment
+            $Comment = 'Return all objects in one query'    
+            Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'Switch' -Comment $Comment
+            If ($Entity.HasUserDefinedFields) {
+                $Comment = 'A single user defined field can be used pr query'
+                Get-AtwsPSParameter -Name 'UserDefinedField' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Comment $Comment
+            }
+        }    
+        ElseIf ($Verb -eq 'Set') {
+            $Comment = 'An object that will be modified by any parameters and updated in Autotask'
+            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
+            $Comment = 'Return any updated objects through the pipeline'
+            Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object' -Type 'Switch' -Comment $Comment
+            If ($Entity.HasUserDefinedFields) {
+                $Comment = 'User defined fields already setup i Autotask'
+                Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'Input_Object' -Type 'Autotask.UserDefinedField' -Array -Comment $Comment
+              }
+        }
+        ElseIf ($Verb -in 'New') {
+            $Comment = 'An array of objects to create'          
+            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Comment $Comment
+            If ($Entity.HasUserDefinedFields) {
+                $Comment = 'User defined fields already setup i Autotask'
+                Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Array -Comment $Comment
+            }
+        }
+        ElseIf ($Verb -eq 'Remove') {
+            $Comment = 'Any objects that should be deleted'          
+            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
+            $Comment = 'The unique id of an object to delete'
+            Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $TypeName -Mandatory  -NotNull -Array -Comment $Comment
+        }
     
 
     Switch ($Verb)
@@ -129,6 +139,7 @@
         Name                   = $Field.Name
         Alias                  = $Alias
         Type                   = $Type
+        Comment                = $Field.Label
       }
 
       Get-AtwsPSParameter @ParameterOptions
