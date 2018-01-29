@@ -39,7 +39,7 @@
     )
   
     If ($Comment)
-    { [String]$Text = '# {0}' -F $Comment }
+    { [String]$Text = "# {0}`n" -F $Comment }
     Else
     { [String]$Text = '' }
     
