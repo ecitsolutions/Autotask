@@ -132,7 +132,7 @@
       $ParameterOptions = @{
         Mandatory              = $Field.Mandatory
         ParameterSetName       = $Field.ParameterSet
-        #ValidateNotNullOrEmpty = $True
+        ValidateNotNullOrEmpty = $Field.IsRequired
         ValidateLength         = $Field.Length
         ValidateSet            = $Field.PickListValues.Label | Select-Object -Unique
         Array                  = $(($Verb -eq 'Get'))
