@@ -61,7 +61,13 @@
               $Value = $ParameterValue
             }
             $Filter += $ParameterName
-            If ($Parameter.Key -in $NotEquals)
+            If ($null -eq $Value -and $Parameter.Key -in $NotEquals) {
+              $Value = '-isnotnull'
+            }
+            ElseIf ($null -eq $Value) {
+              $Value = '-isnull'
+            }
+            ElseIf ($Parameter.Key -in $NotEquals)
             { 
               $Filter += '-ne'
               $Operator = '-and'
