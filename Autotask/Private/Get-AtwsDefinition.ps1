@@ -15,60 +15,43 @@
   Process
   {
     If ($PSCmdlet.ParameterSetName -eq 'Get_all')
-    { $Filter = @('id','-ge',0)}
-    ElseIf (-not ($Filter))
-    {
+    { $Filter = @('id', '-ge', 0)}
+    ElseIf (-not ($Filter)) {
       Write-Verbose ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
       $Fields = Get-AtwsFieldInfo -Entity $EntityName -Connection $Prefix
  
-      Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
-      {
+      Foreach ($Parameter in $PSBoundParameters.GetEnumerator()) {
         $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-        If ($Field -or $Parameter.Key -eq 'UserDefinedField')
-        { 
-          If ($Parameter.Value.Count -gt 1)
-          {
+        If ($Field -or $Parameter.Key -eq 'UserDefinedField') { 
+          If ($Parameter.Value.Count -gt 1) {
             $Filter += '-begin'
           }
-          Foreach ($ParameterValue in $Parameter.Value)
-          {   
+          Foreach ($ParameterValue in $Parameter.Value) {   
             $Operator = '-or'
             $ParameterName = $Parameter.Key
-            If ($Field.IsPickList)
-            {
-              If($Field.PickListParentValueField)
-              {
+            If ($Field.IsPickList) {
+              If ($Field.PickListParentValueField) {
                 $ParentField = $Fields.Where{$_.Name -eq $Field.PickListParentValueField}
                 $ParentLabel = $PSBoundParameters.$($ParentField.Name)
                 $ParentValue = $ParentField.PickListValues | Where-Object {$_.Label -eq $ParentLabel}
                 $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $ParameterValue -and $_.ParentValue -eq $ParentValue.Value}                
               }
-              Else 
-              { 
+              Else { 
                 $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $ParameterValue}
               }
               $Value = $PickListValue.Value
             }
-            ElseIf ($ParameterName -eq 'UserDefinedField')
-            {
+            ElseIf ($ParameterName -eq 'UserDefinedField') {
               $Filter += '-udf'              
               $ParameterName = $ParameterValue.Name
               $Value = $ParameterValue.Value
             }
-            Else
-            {
+            Else {
               $Value = $ParameterValue
             }
             $Filter += $ParameterName
-            If ($null -eq $Value -and $Parameter.Key -in $NotEquals) {
-              $Value = '-isnotnull'
-            }
-            ElseIf ($null -eq $Value) {
-              $Value = '-isnull'
-            }
-            ElseIf ($Parameter.Key -in $NotEquals)
-            { 
+            If ($Parameter.Key -in $NotEquals) { 
               $Filter += '-ne'
               $Operator = '-and'
             }
@@ -80,15 +63,13 @@
             { $Filter += '-lt'}
             ElseIf ($Parameter.Key -in $LessThanOrEquals)
             { $Filter += '-le'}
-            ElseIf ($Parameter.Key -in $Like)
-            { 
+            ElseIf ($Parameter.Key -in $Like) { 
               $Filter += '-like'
-              $Value = $Value -replace '\*','%'
+              $Value = $Value -replace '\*', '%'
             }
-            ElseIf ($Parameter.Key -in $NotLike)
-            { 
+            ElseIf ($Parameter.Key -in $NotLike) { 
               $Filter += '-notlike'
-              $Value = $Value -replace '\*','%'
+              $Value = $Value -replace '\*', '%'
             }
             ElseIf ($Parameter.Key -in $BeginsWith)
             { $Filter += '-beginswith'}
@@ -99,22 +80,46 @@
             Else
             { $Filter += '-eq'}
             $Filter += $Value
-            If ($Parameter.Value.Count -gt 1 -and $ParameterValue -ne $Parameter.Value[-1])
-            {
+            If ($Parameter.Value.Count -gt 1 -and $ParameterValue -ne $Parameter.Value[-1]) {
               $Filter += $Operator
             }
-            ElseIf ($Parameter.Value.Count -gt 1)
-            {
+            ElseIf ($Parameter.Value.Count -gt 1) {
               $Filter += '-end'
             }
+            
           }
             
         }
       }
-        
+      If ($IsNull.Count -gt 0) {
+        If ($Filter.Count -gt 0) {
+          $Filter += '-and'
+        }
+        Foreach ($PropertyName in $IsNull) {
+          $Filter += $PropertyName
+          $Filter += '-isnull'
+        }
+      }
+      If ($IsNotNull.Count -gt 0) {
+        If ($Filter.Count -gt 0) {
+          $Filter += '-and'
+        }
+        Foreach ($PropertyName in $IsNotNull) {
+          $Filter += $PropertyName
+          $Filter += '-isnotnull'
+        }
+      }  
+      If ($IsThisDay.Count -gt 0) {
+        If ($Filter.Count -gt 0) {
+          $Filter += '-and'
+        }
+        Foreach ($PropertyName in $IsThisDay) {
+          $Filter += $PropertyName
+          $Filter += '-isthisday'
+        }
+      } 
     }
-    Else
-    {
+    Else {
       Write-Verbose ('{0}: Passing -Filter raw to Get function' -F $MyInvocation.MyCommand.Name, $Result.Count)
     } 
 
