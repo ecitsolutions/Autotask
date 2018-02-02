@@ -149,25 +149,24 @@
     # Make modifying operators possible
     If ($Verb -eq 'Get') {
       # These operators work for all fields (add quote characters here)
-      $Labels = $Fields | ForEach-Object { $_ = "'{0}'" -F $_ }
       Foreach ($Operator in 'NotEquals', 'IsNull', 'IsNotNull') {
-        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
+        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Fields.Name
       }
 
       # These operators work for all fields except boolean (add quote characters here)
-      $Labels = $Fields | Where-Object { $_.Type -ne 'boolean' } | ForEach-Object { $_ = "'{0}'" -F $_}
+      $Labels = $Fields | Where-Object { $_.Type -ne 'boolean' }
       Foreach ($Operator in 'GreaterThan', 'GreaterThanOrEquals', 'LessThan', 'LessThanOrEquals') {
         Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
       }
 
       # These operators only work for strings (add quote characters here)
-      $Labels = $Fields | Where-Object { $_.Type -eq 'string' } | ForEach-Object { $_ = "'{0}'" -F $_}
+      $Labels = $Fields | Where-Object { $_.Type -eq 'string' }
       Foreach ($Operator in 'Like', 'NotLike', 'BeginsWith', 'EndsWith', 'Contains') {
         Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
       }
       
       # This operator only work for datetime (add quote characters here)
-      $Labels = $Fields | Where-Object { $_.Type -eq 'datetime' } | ForEach-Object { $_ = "'{0}'" -F $_}
+      $Labels = $Fields | Where-Object { $_.Type -eq 'datetime' }
       Foreach ($Operator in 'IsThisDay') {
         Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
       }
