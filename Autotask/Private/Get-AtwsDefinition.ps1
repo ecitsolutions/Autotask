@@ -77,6 +77,8 @@
             { $Filter += '-endswith'}
             ElseIf ($Parameter.Key -in $Contains)
             { $Filter += '-contains'}
+            ElseIf ($Parameter.Key -in $IsThisDay)
+            { $Filter += '-isthisday'}
             Else
             { $Filter += '-eq'}
             $Filter += $Value
@@ -91,6 +93,7 @@
             
         }
       }
+      # IsNull and IsNotNull are special. They are the only operators that does not require a value to work
       If ($IsNull.Count -gt 0) {
         If ($Filter.Count -gt 0) {
           $Filter += '-and'
@@ -109,15 +112,6 @@
           $Filter += '-isnotnull'
         }
       }  
-      If ($IsThisDay.Count -gt 0) {
-        If ($Filter.Count -gt 0) {
-          $Filter += '-and'
-        }
-        Foreach ($PropertyName in $IsThisDay) {
-          $Filter += $PropertyName
-          $Filter += '-isthisday'
-        }
-      } 
     }
     Else {
       Write-Verbose ('{0}: Passing -Filter raw to Get function' -F $MyInvocation.MyCommand.Name, $Result.Count)

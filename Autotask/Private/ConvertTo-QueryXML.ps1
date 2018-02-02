@@ -50,7 +50,7 @@ function ConvertTo-QueryXML
     '-soundslike' = 'SoundsLike'
   }
 
-  $NoValueNeeded = @('-isnotnull', '-isnull', '-isthisday')
+  $NoValueNeeded = @('-isnotnull', '-isnull')
   
   $UDF = $false
 

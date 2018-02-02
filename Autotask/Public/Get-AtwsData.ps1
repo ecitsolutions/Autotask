@@ -177,6 +177,8 @@ Function Get-AtwsData
   
     Write-Verbose ('{0}: Converting query string into QueryXml. String as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
     [xml]$QueryXml = ConvertTo-QueryXML @Query
+
+    Write-Verbose ('{0}: QueryXml looks like: {1}' -F $MyInvocation.MyCommand.Name, $QueryXml.InnerXml.ToString())
     
     $Caption = 'Get-Atws{0}' -F $Entity
     $VerboseDescrition = '{0}: About to run a query for Autotask.{1} using Filter {{{2}}}' -F $Caption, $Entity, ($Filter -join ' ')
