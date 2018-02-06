@@ -162,7 +162,7 @@ Function Import-AtwsCmdLet
       $ModuleFunctions += (Get-Command $FunctionName).ScriptBlock.Ast.Extent.Text
     }
     # Our special function
-    $ModuleFunctions += ("Function Get-{0}Queue`n{{`n{1}`n}}`n" -F $Prefix, $((Get-Command Get-AtwsQueue).Definition))
+    $ModuleFunctions += ("Function Get-{0}Queue`n{{`n{1}`n}}`n" -F $Prefix, $((Get-Command Get-AtwsQueue).Definition -replace '#Prefix', $Prefix))
   }
   End
   {

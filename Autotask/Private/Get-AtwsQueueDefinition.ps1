@@ -151,7 +151,7 @@ Function Get-AtwsQueue
   )
  
   Begin { 
-    $Prefix = 'Atws'
+    $Prefix = '#Prefix'
 
     # Lookup Verbose, WhatIf and other preferences from calling context
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
@@ -162,7 +162,7 @@ Function Get-AtwsQueue
 
   Process {
     If ($PSCmdlet.ParameterSetName -eq 'Get_all')
-    { $Filter = @('$id', '-ge', 0)}
+    { $Filter = @('$_.id', '-ge', 0)}
     ElseIf (-not ($Filter)) 
     {
       Write-Verbose -Message ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
