@@ -158,10 +158,11 @@ Function Import-AtwsCmdLet
       'Get-AtwsFieldInfo',
       'Get-CallerPreference'
     ) 
-    Foreach ($FunctionName in $PrivateFunctions)
-    {
+    Foreach ($FunctionName in $PrivateFunctions) {
       $ModuleFunctions += (Get-Command $FunctionName).ScriptBlock.Ast.Extent.Text
     }
+    # Our special function
+    $ModuleFunctions += ("Function Get-{0}Queue`n{{`n{1}`n}}`n" -F $Prefix, $((Get-Command Get-AtwsQueue).Definition))
   }
   End
   {

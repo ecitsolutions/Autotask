@@ -57,7 +57,7 @@
             }
             ElseIf ($Parameter.Key -in $GreaterThan)
             { $Filter += '-gt'}
-            ElseIf ($Parameter.Key -in $GreaterThanOrEqual)
+            ElseIf ($Parameter.Key -in $GreaterThanOrEquals)
             { $Filter += '-ge'}
             ElseIf ($Parameter.Key -in $LessThan)
             { $Filter += '-lt'}
