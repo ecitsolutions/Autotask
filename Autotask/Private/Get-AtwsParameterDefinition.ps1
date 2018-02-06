@@ -118,10 +118,14 @@
       }
 
       # Fieldtype for picklists
-      If ($Field.IsPickList -and $Field.PicklistValues.Count -gt 0)
-      {
-        $Type = 'String'
+      If ($Field.IsPickList -and $Field.PicklistValues.Count -gt 0) {
+          $Type = 'String'
+          $ValidateLength = 0
       }
+      Else {
+          $ValidateLength = $Field.Length
+      }
+
       
       $Alias = @() 
       If ($Field.Name -eq $EntityNameParameter)
@@ -133,7 +137,7 @@
         Mandatory              = $Field.Mandatory
         ParameterSetName       = $Field.ParameterSet
         ValidateNotNullOrEmpty = $Field.IsRequired
-        ValidateLength         = $Field.Length
+        ValidateLength         = $ValidateLength
         ValidateSet            = $Field.PickListValues.Label | Select-Object -Unique
         Array                  = $(($Verb -eq 'Get'))
         Name                   = $Field.Name
