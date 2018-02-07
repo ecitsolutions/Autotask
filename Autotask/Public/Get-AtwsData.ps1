@@ -1,6 +1,6 @@
-﻿<#
+<#
     .COPYRIGHT
-    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
+    Copyright (c) Office Center H�nefoss AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
@@ -88,14 +88,14 @@ Function Get-AtwsData
     If ($Filter.Count -eq 1 -and $Filter -match ' ' )
     { 
       # First, make sure it is a single string and replace parenthesis with our special operator
-      $Filter = $Filter -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '  
+      $Filter = $Filter -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '
     
       # Removing double possible spaces we may have introduced
       Do {$Filter = $Filter -replace '  ',' '}
       While ($Filter -match '  ')
 
       # Split back in to array, respecting quotes
-      $Words = $Filter.Split(' ')
+      $Words = $Filter.Trim().Split(' ')
       $Filter = @()
       $Temp = @()
       Foreach ($Word in $Words)
