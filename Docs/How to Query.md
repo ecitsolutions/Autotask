@@ -54,6 +54,8 @@ Query by parameter is useful and quite readable. But if you need to write more a
 $DueFrom = Get-Date
 $DueTo = $DueFrom.AddDays(3)
 $Tickets = Get-AtwsTicket -Filter {DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo}
+
+# Please note that picklist values are not expanded in custom filters, see Status in this query
 $OtherTickets = Get-AtwsTicket -Filter {Status -eq 1 -and (DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo)}
 ```
 
