@@ -54,7 +54,7 @@ Query by parameter is useful and quite readable. But if you need to write more a
 $DueFrom = Get-Date
 $DueTo = $DueFrom.AddDays(3)
 $Tickets = Get-AtwsTicket -Filter {DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo}
-$OtherTickets = Get-AtwsTicket -Filter {Status -eq New -or (DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo)}
+$OtherTickets = Get-AtwsTicket -Filter {Status -eq 1 -and (DueDateTime -gt $DueFrom -and DueDateTime -lt $DueTo)}
 ```
 
 We have tried to make the *Filter* syntax as familiar as possible for PowerShell users. As every query needs to be translated to QueryXML and posted to the Autotask API we have had to make some adaptions, but every operator supported by the API at time of writing is supported. With Filter you should be able to make any query you can't specify by using parameters.
