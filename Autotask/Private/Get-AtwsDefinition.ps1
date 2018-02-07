@@ -114,7 +114,7 @@
       }  
     }
     Else {
-      Write-Verbose ('{0}: Passing -Filter raw to Get function' -F $MyInvocation.MyCommand.Name, $Result.Count)
+      Write-Verbose ('{0}: Passing -Filter raw to Get function' -F $MyInvocation.MyCommand.Name)
     } 
 
     $Result = Get-AtwsData -Entity $EntityName -Filter $Filter -Connection $Prefix 
