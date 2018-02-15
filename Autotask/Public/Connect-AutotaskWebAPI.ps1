@@ -175,16 +175,16 @@ Function Connect-AutotaskWebAPI {
         Import-AtwsCmdLet -ModuleName $ModuleName -Prefix $Prefix -NoDiskCache:$NoDiskCache.IsPresent -RefreshCache:$RefreshCache.IsPresent
       }
       # Check date and time formats and warn if the are different. This will affect how dates as text will be converted to datetime objects
-      If ($CurrentUser.DateFormat -ne $CultureInfo.ShortDatePattern -and $CurrentUser.TimeFormat -ne $CultureInfo.ShortTimePattern) {
+      If ($Result.DateFormat -ne $CultureInfo.ShortDatePattern -and $Result.TimeFormat -ne $CultureInfo.ShortTimePattern) {
         Write-host 'WARNING: DATE and TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date and time entries wrong. Consider running the following command:' -ForegroundColor Red
         Write-Host ('Get-AtwsResource -Username {0} | Set-AtwsResource -DateFormat "{1}" -TimeFormat "{2}"' -F $username, $CultureInfo.ShortDatePattern, $CultureInfo.ShortTimePattern) -ForegroundColor DarkYellow
       }
-      ElseIf ($CurrentUser.DateFormat -ne $CultureInfo.ShortDatePattern) {
+      ElseIf ($Result.DateFormat -ne $CultureInfo.ShortDatePattern) {
         Write-host 'WARNING: DATE format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date entries wrong. Consider running the following command:' -ForegroundColor Red
         Write-Host ('Get-AtwsResource -Username {0} | Set-AtwsResource -DateFormat "{1}"' -F $username, $CultureInfo.ShortDatePattern) -ForegroundColor DarkYellow
       }
 
-      ElseIf ($CurrentUser.TimeFormat -ne $CultureInfo.ShortTimePattern) {
+      ElseIf ($Result.TimeFormat -ne $CultureInfo.ShortTimePattern) {
         Write-host 'WARNING: TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your time entries wrong. Consider running the following command:' -ForegroundColor Red
         Write-Host ('Get-AtwsResource -Username {0} | Set-AtwsResource -TimeFormat "{1}"' -F $username, $CultureInfo.ShortTimePattern) -ForegroundColor DarkYellow
       }
