@@ -6,8 +6,7 @@
 
 #>
 
-Function Connect-AutotaskWebAPI
-{
+Function Connect-AutotaskWebAPI {
   <#
       .SYNOPSIS
       This function connects to the Autotask Web Services API, authenticates a user and creates a 
@@ -55,7 +54,7 @@ Function Connect-AutotaskWebAPI
     $NoDynamicModule = $False,
     
     [ValidatePattern('[a-zA-Z0-9]')]
-    [ValidateLength(1,8)]
+    [ValidateLength(1, 8)]
     [String]
     $Prefix = 'Atws',
 
@@ -69,20 +68,17 @@ Function Connect-AutotaskWebAPI
     $Silent = $false
   )
     
-  Begin
-  { 
+  Begin { 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
     $DefaultUri = 'https://webservices.Autotask.net/atservices/1.5/atws.wsdl'
     
-    If (-not($global:AtwsConnection))
-    {
+    If (-not($global:AtwsConnection)) {
       $global:AtwsConnection = @{}
     }
 
     # Unless warning level is specified explicitly - Show warnings!
-    If (-not ($WarningAction))
-    {
+    If (-not ($WarningAction)) {
       $Global:WarningPreference = 'Continue'
     }
 
@@ -90,8 +86,7 @@ Function Connect-AutotaskWebAPI
     $ModuleName = 'Autotask.{0}' -F $Prefix  
   }
   
-  Process
-  { 
+  Process { 
     # Preparing for a progressbar
     $ProgressActivity = 'Connecting to Autotask Web Services API'
     $ProgressID = 1
@@ -99,9 +94,8 @@ Function Connect-AutotaskWebAPI
     # Make sure Windows does not try to add a domain to username
     # Prefix username with a backslash if nobody has added one yet
     # And make sure we stick to the local scope - important when debugging...
-    If ($($local:Credential.UserName).Substring(0,1) -ne '\')
-    {
-      $local:Credential = New-Object System.Management.Automation.PSCredential("\$($local:Credential.UserName)",$($local:Credential.Password))
+    If ($($local:Credential.UserName).Substring(0, 1) -ne '\') {
+      $local:Credential = New-Object System.Management.Automation.PSCredential("\$($local:Credential.UserName)", $($local:Credential.Password))
     }
     
     Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $local:Credential.UserName, $DefaultUri)
@@ -110,8 +104,7 @@ Function Connect-AutotaskWebAPI
         
     $RootService = New-WebServiceProxy -URI $DefaultUri
     $ZoneInfo = $RootService.getZoneInfo($local:Credential.UserName)
-    If ($ZoneInfo.ErrorCode -ne 0)
-    {
+    If ($ZoneInfo.ErrorCode -ne 0) {
       Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Creating connection' -PercentComplete 100 -CurrentOperation 'Operation failed' 
             
       Write-Error ('Invalid username "{0}". Try again.' -f $local:Credential.UserName)
@@ -125,30 +118,25 @@ Function Connect-AutotaskWebAPI
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Datacenter located' -PercentComplete 20 -CurrentOperation 'Checking for cached connections'
         
     
-    If ($global:AtwsConnection.ContainsKey($Prefix) -and -not $RefreshCache.IsPresent)
-    {
+    If ($global:AtwsConnection.ContainsKey($Prefix) -and -not $RefreshCache.IsPresent) {
       Write-Verbose ('{0}: Cached connection {1} found. Checking credentials' -F $MyInvocation.MyCommand.Name, $Prefix)
       $SameUser = (('\{0}' -F $global:AtwsConnection[$Prefix].Credentials.Username) -eq $local:Credential.Username)
       $ModuleLoaded = Get-Module -Name $ModuleName
-      If ($SameUser -and ($global:AtwsConnection[$Prefix].Credentials.Password -ne $local:Credential.GetNetworkCredential().Password))
-      {
+      If ($SameUser -and ($global:AtwsConnection[$Prefix].Credentials.Password -ne $local:Credential.GetNetworkCredential().Password)) {
         Write-Verbose ('{0}: Password for connection {1} updated. Re-authenticating.' -F $MyInvocation.MyCommand.Name, $Prefix)
         $global:AtwsConnection.Remove($Prefix)
       }
-      ElseIf($SameUser -and -not $NoDynamicModule -and -not ($ModuleLoaded))
-      {
+      ElseIf ($SameUser -and -not $NoDynamicModule -and -not ($ModuleLoaded)) {
         Write-Verbose ('{0}: Credentials for connection {1} validated, but no dynamic module loaded. Loading module.' -F $MyInvocation.MyCommand.Name, $Prefix)  
       }
-      ElseIf($SameUser)
-      {
+      ElseIf ($SameUser) {
         Write-Verbose ('{0}: Credentials for connection {1} cached. Using cached connection.' -F $MyInvocation.MyCommand.Name, $Prefix)  
         
         Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Cached connection found' -PercentComplete 100 -CurrentOperation 'Using cached connection'
                 
         Return
       }
-      Else
-      {
+      Else {
         Write-Verbose ('{0}: New credentials for connection {1} speficied. Creating new connection.' -F $MyInvocation.MyCommand.Name, $Prefix)  
         $global:AtwsConnection.Remove($Prefix)
       }
@@ -158,17 +146,15 @@ Function Connect-AutotaskWebAPI
     
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'No re-usable, cached connection' -PercentComplete 40 -CurrentOperation 'Authenticating to web service'
         
-    $Uri = $ZoneInfo.URL -replace 'atws.asmx','atws.wsdl'
+    $Uri = $ZoneInfo.URL -replace 'atws.asmx', 'atws.wsdl'
     
     # Make sure a failure to create this object truly fails the script
     Write-Verbose ('{0}: Creating New-WebServiceProxy against URI: {1}' -F $MyInvocation.MyCommand.Name, $Uri)
-    Try
-    {
+    Try {
       # Create a new webservice proxy or die trying...
       $WebServiceProxy = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
     }
-    Catch
-    {
+    Catch {
       Throw [ApplicationException] 'Could not connect to Autotask WebAPI. Verify your credentials. If you are sure you have the rights - maybe you typed your password wrong?'    
     }
 
@@ -177,27 +163,39 @@ Function Connect-AutotaskWebAPI
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection'
        
     $global:AtwsConnection[$Prefix] = $WebServiceProxy
-        
-    $Result = Get-AtwsData -Connection $Prefix -Entity Account -Filter {id -eq 0}
     
-    If ($Result)
-    {
-      If (-not $NoDynamicModule.IsPresent)
-      {
+    # Get username part of credential
+    $UserName = $Credential.UserName.Split('@')[0]
+    $Result = Get-AtwsData -Connection $Prefix -Entity Resource -Filter {username -eq $UserName}
+    
+    If ($Result) {
+      If (-not $NoDynamicModule.IsPresent) {
         Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connection OK' -PercentComplete 80 -CurrentOperation 'Importing dynamic module'
                 
         Import-AtwsCmdLet -ModuleName $ModuleName -Prefix $Prefix -NoDiskCache:$NoDiskCache.IsPresent -RefreshCache:$RefreshCache.IsPresent
       }
+      # Check date and time formats and warn if the are different. This will affect how dates as text will be converted to datetime objects
+      If ($CurrentUser.DateFormat -ne $CultureInfo.ShortDatePattern -and $CurrentUser.TimeFormat -ne $CultureInfo.ShortTimePattern) {
+        Write-host 'WARNING: DATE and TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date and time entries wrong. Consider running the following command:' -ForegroundColor Red
+        Write-Host ('Get-AtwsResource -Username {0} | Set-AtwsResource -DateFormat "{1}" -TimeFormat "{2}"' -F $username, $CultureInfo.ShortDatePattern, $CultureInfo.ShortTimePattern) -ForegroundColor DarkYellow
+      }
+      ElseIf ($CurrentUser.DateFormat -ne $CultureInfo.ShortDatePattern) {
+        Write-host 'WARNING: DATE format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date entries wrong. Consider running the following command:' -ForegroundColor Red
+        Write-Host ('Get-AtwsResource -Username {0} | Set-AtwsResource -DateFormat "{1}"' -F $username, $CultureInfo.ShortDatePattern) -ForegroundColor DarkYellow
+      }
+
+      ElseIf ($CurrentUser.TimeFormat -ne $CultureInfo.ShortTimePattern) {
+        Write-host 'WARNING: TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your time entries wrong. Consider running the following command:' -ForegroundColor Red
+        Write-Host ('Get-AtwsResource -Username {0} | Set-AtwsResource -TimeFormat "{1}"' -F $username, $CultureInfo.ShortTimePattern) -ForegroundColor DarkYellow
+      }
     }
-    Else
-    {
+    Else {
       $global:AtwsConnection.Remove($Prefix)
       Throw [ApplicationException] 'Could not complete a query to Autotask WebAPI. Verify your credentials. You seem to have been logged in, but do you have the necessary rights?'    
     }
   }
   
-  End
-  {
+  End {
     Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done' 
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done'  -Completed 
