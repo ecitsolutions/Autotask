@@ -29,7 +29,7 @@
         $NewObject = New-Object Autotask.$EntityName
         
         # Copy every non readonly property
-        Foreach ($Field in $Fields.Name)
+        Foreach ($Field in $Fields.Where({$_.Name -ne 'id'}).Name)
         {
           $NewObject.$Field = $Object.$Field
         }
