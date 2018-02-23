@@ -158,7 +158,7 @@ Function Connect-AutotaskWebAPI {
       Throw [ApplicationException] 'Could not connect to Autotask WebAPI. Verify your credentials. If you are sure you have the rights - maybe you typed your password wrong?'    
     }
 
-    Write-Verbose ('{0}: Running query Get-AtwsData -Entity Account -Filter {{id -eq 0}}' -F $MyInvocation.MyCommand.Name)
+    Write-Verbose ('{0}: Running query Get-AtwsData -Entity Resource -Filter "username -eq $UserName"' -F $MyInvocation.MyCommand.Name)
     
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection'
        
@@ -166,7 +166,7 @@ Function Connect-AutotaskWebAPI {
     
     # Get username part of credential
     $UserName = $Credential.UserName.Split('@')[0].Trim('\')
-    $Result = Get-AtwsData -Connection $Prefix -Entity Resource -Filter {username -eq $UserName}
+    $Result = Get-AtwsData -Connection $Prefix -Entity Resource -Filter "username -eq $UserName"
     
     If ($Result) {
       If (-not $NoDynamicModule.IsPresent) {
