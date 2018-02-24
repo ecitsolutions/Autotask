@@ -175,6 +175,9 @@ Function Connect-AutotaskWebAPI {
         Import-AtwsCmdLet -ModuleName $ModuleName -Prefix $Prefix -NoDiskCache:$NoDiskCache.IsPresent -RefreshCache:$RefreshCache.IsPresent
       }
       # Check date and time formats and warn if the are different. This will affect how dates as text will be converted to datetime objects
+      
+      $CultureInfo = ([CultureInfo]::CurrentCulture).DateTimeFormat
+
       If ($Result.DateFormat -ne $CultureInfo.ShortDatePattern -and $Result.TimeFormat -ne $CultureInfo.ShortTimePattern) {
         Write-host 'WARNING: DATE and TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date and time entries wrong.' -ForegroundColor Red
         Write-Host ('Log on to Autotask and edit resource {0}. Change Date format to "{1}" and Time format to "{2}"' -F $username, $CultureInfo.ShortDatePattern, $CultureInfo.ShortTimePattern) -ForegroundColor DarkYellow

@@ -128,12 +128,12 @@ Function Get-AtwsData
       # Is it a variable name?
       If ($Word -match '^\$\{?(\w+:)?(\w+)\}?(\.\w[\.\w]+)?$')
       {
-        # If present, first group is SCOPE. In the context of this function, scope must be Global or Script.
-        # If you used scope 'local' when you called this function, then the scope HERE is script.
+        # If present, first group is SCOPE. In the context of this function, scope must be Global, Script or
+        # parent (1). If you used scope 'local' when you called this function, then the scope HERE is parent.
         $Scope = $Matches[1]
-        If (-not ($Scope) -or $Scope -ne 'global')
+        If (-not ($Scope) -or $Scope -eq 'local')
         {
-          $Scope = 'Script'
+          $Scope = 1 # Parent
         }
         
         # The variable name MUST be present
@@ -153,16 +153,19 @@ Function Get-AtwsData
           Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction SilentlyContinue
         }
 
-        If ($Variable)
-        {
-          # Scoped variable name
-          $Expression = '${{{0}:{1}}}{2}' -F $Scope, $VariableName, $PropertyTail
-          
+        If ($Variable) {
           Write-Verbose ('{0}: Substituting {1} for its value' -F $MyInvocation.MyCommand.Name, $Word)
-
-          # Invoke-Expression is considered risky from an SQL injection kind of perspective. But by only
-          # permitting a .dot separated string of [a-zA-Z0-9_] we are PROBABLY safe...
-          $Value = Invoke-Expression -Command $Expression
+          If ($PropertyTail) {
+            # Add properties back 
+            $Expression = '$Variable{0}' -F $PropertyTail
+  
+            # Invoke-Expression is considered risky from an SQL injection kind of perspective. But by only
+            # permitting a .dot separated string of [a-zA-Z0-9_] we are PROBABLY safe...
+            $Value = Invoke-Expression -Command $Expression
+          }
+          Else {
+            $Value = $Variable
+          }
           
           # Normalize dates. Important to avoid QueryXML problems
           If ($Value.GetType().Name -eq 'DateTime')
