@@ -158,7 +158,7 @@ Function Connect-AutotaskWebAPI {
       Throw [ApplicationException] 'Could not connect to Autotask WebAPI. Verify your credentials. If you are sure you have the rights - maybe you typed your password wrong?'    
     }
 
-    Write-Verbose ('{0}: Running query Get-AtwsData -Entity Account -Filter {{id -eq 0}}' -F $MyInvocation.MyCommand.Name)
+    Write-Verbose ('{0}: Running query Get-AtwsData -Entity Resource -Filter {{username -eq $UserName}}' -F $MyInvocation.MyCommand.Name)
     
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection'
        
@@ -175,7 +175,7 @@ Function Connect-AutotaskWebAPI {
         Import-AtwsCmdLet -ModuleName $ModuleName -Prefix $Prefix -NoDiskCache:$NoDiskCache.IsPresent -RefreshCache:$RefreshCache.IsPresent
       }
       # Check date and time formats and warn if the are different. This will affect how dates as text will be converted to datetime objects
-      
+
       $CultureInfo = ([CultureInfo]::CurrentCulture).DateTimeFormat
 
       If ($Result.DateFormat -ne $CultureInfo.ShortDatePattern -and $Result.TimeFormat -ne $CultureInfo.ShortTimePattern) {
