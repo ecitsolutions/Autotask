@@ -141,6 +141,27 @@
         $Result = $ReferenceResult
       }
     }
+    ElseIf ( ($Result) -and ($AddPickListLabel))
+    {
+      Foreach ($Field in $Fields.Where{$_.IsPickList})
+      {
+        $FieldName = '{0}Label' -F $Field.Name
+        Foreach ($Item in $Result)
+        {
+          $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+                    
+          $Exists = Get-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName
+          If (-not ($Exists))
+          {
+            Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value
+          }
+          Else
+          {
+            $Item.$FieldName = $Value
+          }
+        }
+      }
+    }
   }
 
   End

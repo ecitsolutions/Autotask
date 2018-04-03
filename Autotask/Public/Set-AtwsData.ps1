@@ -79,7 +79,7 @@ Function Set-AtwsData
     
     If ($Result.Errors.Count -eq 0)
     {
-      Return $Result
+      Return $Result.EntityResults
     }
     Else
     {

@@ -33,6 +33,8 @@
             Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter', 'By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields -Comment $Comment
             $Comment = 'Return all objects in one query'    
             Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'Switch' -Comment $Comment
+            $Comment = 'Add descriptions for all picklist attributes with values'
+            Get-AtwsPSParameter -Name 'AddPickListLabel' -SetName 'Filter','Get_All','By_parameters' -Type 'Switch' -Comment $Comment
             If ($Entity.HasUserDefinedFields) {
                 $Comment = 'A single user defined field can be used pr query'
                 Get-AtwsPSParameter -Name 'UserDefinedField' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Comment $Comment
