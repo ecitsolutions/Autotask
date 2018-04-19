@@ -158,6 +158,13 @@ Function Connect-AutotaskWebAPI {
       Throw [ApplicationException] 'Could not connect to Autotask WebAPI. Verify your credentials. If you are sure you have the rights - maybe you typed your password wrong?'    
     }
 
+    Write-Verbose ('{0}: Testing Credential object of WebServiceProxy against a .NET bug that will reuse earlier connection attempts.' -F $MyInvocation.MyCommand.Name)
+
+    If ($WebServiceProxy.Credentials.Password -ne $local:Credential.GetNetworkCredential().Password) {
+      Write-Verbose ('{0}: Overwriting WebServiceProxy password "manually".' -F $MyInvocation.MyCommand.Name)
+      $WebServiceProxy.Credentials = $local:Credential
+    }
+    
     Write-Verbose ('{0}: Running query Get-AtwsData -Entity Resource -Filter "username -eq $UserName"' -F $MyInvocation.MyCommand.Name)
     
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection'
