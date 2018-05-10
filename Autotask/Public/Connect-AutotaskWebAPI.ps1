@@ -158,6 +158,8 @@ Function Connect-AutotaskWebAPI {
       }
       # Create a new webservice proxy or die trying...
       $WebServiceProxy = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
+      # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
+      $WebServiceProxy.PreAuthenticate = $True
     }
     Catch {
       Throw [ApplicationException] 'Could not connect to Autotask WebAPI. Verify your credentials. If you are sure you have the rights - maybe you typed your password wrong?'    
