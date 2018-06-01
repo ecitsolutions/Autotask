@@ -48,7 +48,7 @@ Get-AtwsAccount -AccountName *Company* -NotLike AccountName
 Get-AtwsAccount -AccountName Company -BeginsWith AccountName
 ```
 
-**Note:** See separate document [Null values](Null Values.md) for using null values in queries.
+**Note:** See separate document [Null values](./Null%20values.md) for using null values in queries.
 
 Sometimes you do not want exact matches. Any *Get* function has several operator parameters you can use to modify the matching behavior of any parameter. The operator parameters takes the name of any parameter you wish to modify the behavior of. In the first example *Get-AtwsAccount* will return any account wich accountname is NOT EQUAL to 'Company name 1'.
 
