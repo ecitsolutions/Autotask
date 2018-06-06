@@ -121,6 +121,24 @@
 
     Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
+    # Expand UDFs by default
+    Foreach ($Item in $Result)
+    {
+      # Any userdefined fields?
+      If ($Item.UserDefinedFields.Count -gt 0)
+      { 
+        # Expand User defined fields for easy filtering of collections and readability
+        Foreach ($UDF in $Item.UserDefinedFields)
+        {
+          # Make names you HAVE TO escape...
+          $UDFName = '#{0}' -F $UDF.Name
+          Add-Member -InputObject $Item -MemberType NoteProperty -Name $UDFName -Value $UDF.Value
+        }
+            
+      }
+    }
+    
+    # Should we return an indirect object?
     if ( ($Result) -and ($GetReferenceEntityById))
     {
       Write-Verbose ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
@@ -132,7 +150,7 @@
         Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
           $ResultValues.Count,
           $EntityName,
-          $GetReferenceEntityById) -WarningAction Continue
+        $GetReferenceEntityById) -WarningAction Continue
       }
       $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
       $ReferenceResult = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter -Connection $Prefix 
@@ -141,6 +159,7 @@
         $Result = $ReferenceResult
       }
     }
+    # Do the user want labels along with index values for Picklists?
     ElseIf ( ($Result) -and ($AddPickListLabel))
     {
       Foreach ($Field in $Fields.Where{$_.IsPickList})
@@ -159,6 +178,7 @@
           {
             $Item.$FieldName = $Value
           }
+          
         }
       }
     }
