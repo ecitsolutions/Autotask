@@ -9,7 +9,16 @@
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        
+    # Set up TimeZone offset handling
+    If (-not($script:ESToffset))
+    {
+      $Now = Get-Date
+      $ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
+      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($Now.ToUniversalTime(), $ESTzone)
 
+      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
+    }
   }
 
   Process
@@ -25,6 +34,11 @@
         {
           $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $Parameter.Value}
           $Value = $PickListValue.Value
+        }
+        ElseIf ($Field.Type -eq 'datetime')
+        {
+          # Yes, you really have to ADD the difference
+          $Value = $Parameter.Value.AddHours($script:ESToffset)
         }
         Else
         {
