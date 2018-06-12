@@ -47,6 +47,10 @@
               $ParameterName = $ParameterValue.Name
               $Value = $ParameterValue.Value
             }
+            ElseIf ($ParameterValue.GetType().Name -eq 'DateTime')  {
+              # XML supports sortable datetime format. This way dates should always be read correct by the API.
+              $Value = Get-Date $ParameterValue -Format s
+            }            
             Else {
               $Value = $ParameterValue
             }
