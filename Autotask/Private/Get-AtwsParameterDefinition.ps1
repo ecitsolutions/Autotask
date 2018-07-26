@@ -52,7 +52,7 @@
         }
         ElseIf ($Verb -in 'New') {
             $Comment = 'An array of objects to create'          
-            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Comment $Comment
+            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
             If ($Entity.HasUserDefinedFields) {
                 $Comment = 'User defined fields already setup i Autotask'
                 Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Array -Comment $Comment
