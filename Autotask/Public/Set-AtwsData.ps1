@@ -29,8 +29,8 @@ Function Set-AtwsData
   #>
  
   [cmdletbinding(
-    SupportsShouldProcess = $True,
-    ConfirmImpact = 'Medium'
+      SupportsShouldProcess = $True,
+      ConfirmImpact = 'Medium'
   )]
   [OutputType([PSObject[]])]
   param
@@ -61,6 +61,9 @@ Function Set-AtwsData
     {
       $Atws = $global:AtwsConnection[$Connection]
     }
+    
+    $EndResult = @()
+        
   }
   
   Process
@@ -74,24 +77,38 @@ Function Set-AtwsData
 
     If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
     { 
-      $Result = $atws.update($Entity)
-    }
-    
-    If ($Result.Errors.Count -eq 0)
-    {
-      Return $Result.EntityResults
-    }
-    Else
-    {
-      Foreach ($AtwsError in $Result.Errors)
+      # update() function can take up to 200 objects at a time
+      For ($i = 0; $i -lt $Entity.count; $i += 200) 
       {
-        Write-Error $AtwsError.Message
+        $j = $i + 199
+        If ($j -gt ($Entity.count - 1)) 
+        {
+          $j = $Entity.count - 1
+        } 
+        Write-Verbose -Message ('{0}: Creating chunk from index {1} to index {2}' -F $MyInvocation.MyCommand.Name, $i, $j)        
+        
+        $Result = $atws.update($Entity[$i .. $j])
+      }
+    
+    
+      If ($Result.Errors.Count -eq 0)
+      {
+        $EndResult += $Result.EntityResults
+      }
+      Else
+      {
+        Foreach ($AtwsError in $Result.Errors)
+        {
+          Write-Error $AtwsError.Message
+        }
       }
     }
   }
   End 
   {
     Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
+    Return $EndResult  
+        
   }
 }
 
