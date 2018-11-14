@@ -70,6 +70,53 @@
     
     If ($PassThru.IsPresent)
     {
+      # Datetimeparameters
+      $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime'}).Name
+    
+      # Expand UDFs by default
+      Foreach ($Item in $ModifiedObjects)
+      {
+        # Any userdefined fields?
+        If ($Item.UserDefinedFields.Count -gt 0)
+        { 
+          # Expand User defined fields for easy filtering of collections and readability
+          Foreach ($UDF in $Item.UserDefinedFields)
+          {
+            # Make names you HAVE TO escape...
+            $UDFName = '#{0}' -F $UDF.Name
+            Add-Member -InputObject $Item -MemberType NoteProperty -Name $UDFName -Value $UDF.Value
+          }  
+        }
+      
+        # Adjust TimeZone on all DateTime properties
+        Foreach ($DateTimeParam in $DateTimeParams) {
+      
+          # Get the datetime value
+          $ParameterValue = $Item.$DateTimeParam
+                
+          # Skip if parameter is empty
+          If (-not ($ParameterValue)) {
+            Continue
+          }
+        
+          # If all TIME parameters are zero, then this is a DATE and should not be touched
+          If ($ParameterValue.Hour -ne 0 -or 
+              $ParameterValue.Minute -ne 0 -or
+              $ParameterValue.Second -ne 0 -or
+              $ParameterValue.Millisecond -ne 0) {
+
+              # This is DATETIME 
+              # We need to adjust the timezone difference 
+
+              # Yes, you really have to ADD the difference
+              $ParameterValue = $ParameterValue.AddHours($script:ESToffset)
+            
+              # Store the value back to the object (not the API!)
+              $Item.$DateTimeParam = $ParameterValue
+          }
+        }
+      }
+      
       Return $ModifiedObjects
     }
   }
