@@ -12,7 +12,7 @@
 RootModule = 'Autotask.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.2.2.1'
+ModuleVersion = '0.2.2.2'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
