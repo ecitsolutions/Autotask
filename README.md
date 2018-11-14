@@ -7,6 +7,7 @@
 - Datetime properties on returned objects are changed to local time for easier coding. No need to handle timezone offsets manually anymore,
 - When updating objects the API has a limit of 200 objects per API call. The module now handles this correctly.
 - You can now specify object to modify by passing their -Id to SET functions instead of -InputObject
+- Expand UserDefinedFields by default in SET functions when using -PassThru
 
 ## Version 0.2.2.1
 
