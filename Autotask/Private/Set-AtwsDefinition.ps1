@@ -19,6 +19,15 @@
 
       $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
     }
+    
+    # Collect fresh copies of InputObject if passed any IDs
+    If ($Id.Count -gt 0 -and $Id.Count -le 200) {
+      $Filter = 'Id -eq {0}' -F ($Id -join ' -or Id -eq ')
+      $InputObject = Get-AtwsData -Entity $EntityName -Filter $Filter
+    }
+    ElseIf ($Id.Count -gt 200) {
+      Throw [ApplicationException] 'Too many objects, the module can process a maximum of 200 objects when using the Id parameter.'
+    }
   }
 
   Process
