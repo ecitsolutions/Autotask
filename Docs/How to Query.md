@@ -7,12 +7,14 @@ Get-AtwsAccount -Name 'Company name 1', 'Company Name 2'
 Get-AtwsTicket -TicketNumber 'T20180116.0140'
 Get-AtwsContact -FirstName Hugo -LastName Klemmestad
 Get-AtwsContract -ContractType 'Recurring Service'
+Get-AtwsInstalledProduct -UserDefinedField @{name='udf_name'; value='udf_value'}
 
 # Equivalent -Filter expressions
 Get-AtwsAccount -Filter {AccountName -eq 'Company name 1' -or AccountName -eq 'Company Name 2'}
 Get-AtwsTicket -Filter {TicketNumber -eq 'T20180116.0140'}
 Get-AtwsContact -Filter {FirstName -eq Hugo -and LastName -eq Klemmestad}
 Get-AtwsContract -Filter {ContractType -eq 7}
+Get-AtwsInstalledProduct -Filter {-udf 'udf_name' -eq 'udf_value'}
 ```
 
 ## Query by parameters
