@@ -9,7 +9,16 @@
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        
+    # Set up TimeZone offset handling
+    If (-not($script:ESToffset))
+    {
+      $Now = Get-Date
+      $ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
+      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($Now.ToUniversalTime(), $ESTzone)
 
+      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
+    }
   }
 
   Process
@@ -49,7 +58,23 @@
             }
             ElseIf ($ParameterValue.GetType().Name -eq 'DateTime')  {
               # XML supports sortable datetime format. This way dates should always be read correct by the API.
-              $Value = Get-Date $ParameterValue -Format s
+ 
+              If ($ParameterValue.Hour -eq 0 -and $ParameterValue.Minute -eq 0 -and $ParameterValue.Second -eq 0 -and $ParameterValue.Millisecond -eq 0) {
+                
+                # For dates, use Timezone EST
+                $OffsetSpan = $ESTzone.BaseUtcOffset
+              }
+              Else { 
+                # Else use local time
+                $OffsetSpan = (Get-TimeZone).BaseUtcOffset
+              }
+              
+              # Create the correct text string                           
+              $Offset = '{0:00}:{1:00}' -F $OffsetSpan.Hours, $OffsetSpan.Minutes
+              If ($OffsetSpan.Hours -ge 0) {
+                $Offset = '+{0}' -F $Offset
+              }
+              $Value = '{0}{1}' -F $(Get-Date $ParameterValue -Format s), $Offset
             }            
             Else {
               $Value = $ParameterValue
@@ -125,6 +150,9 @@
 
     Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
+    # Datetimeparameters
+    $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime'}).Name
+    
     # Expand UDFs by default
     Foreach ($Item in $Result)
     {
@@ -137,8 +165,35 @@
           # Make names you HAVE TO escape...
           $UDFName = '#{0}' -F $UDF.Name
           Add-Member -InputObject $Item -MemberType NoteProperty -Name $UDFName -Value $UDF.Value
+        }  
+      }
+      
+      # Adjust TimeZone on all DateTime properties
+      Foreach ($DateTimeParam in $DateTimeParams) {
+      
+        # Get the datetime value
+        $ParameterValue = $Item.$DateTimeParam
+                
+        # Skip if parameter is empty
+        If (-not ($ParameterValue)) {
+          Continue
         }
+        
+        # If all TIME parameters are zero, then this is a DATE and should not be touched
+        If ($ParameterValue.Hour -ne 0 -or 
+            $ParameterValue.Minute -ne 0 -or
+            $ParameterValue.Second -ne 0 -or
+            $ParameterValue.Millisecond -ne 0) {
+
+            # This is DATETIME 
+            # We need to adjust the timezone difference 
+
+            # Yes, you really have to ADD the difference
+            $ParameterValue = $ParameterValue.AddHours($script:ESToffset)
             
+            # Store the value back to the object (not the API!)
+            $Item.$DateTimeParam = $ParameterValue
+        }
       }
     }
     

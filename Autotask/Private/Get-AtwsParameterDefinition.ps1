@@ -43,11 +43,13 @@
         ElseIf ($Verb -eq 'Set') {
             $Comment = 'An object that will be modified by any parameters and updated in Autotask'
             Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
+            $Comment = 'The object.ids of objects that should be modified by any parameters and updated in Autotask'
+            Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type 'Int' -Mandatory -NotNull -Array -Comment $Comment
             $Comment = 'Return any updated objects through the pipeline'
-            Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object' -Type 'Switch' -Comment $Comment
+            Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object','By_parameters' -Type 'Switch' -Comment $Comment
             If ($Entity.HasUserDefinedFields) {
                 $Comment = 'User defined fields already setup i Autotask'
-                Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'Input_Object' -Type 'Autotask.UserDefinedField' -Array -Comment $Comment
+                Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'Input_Object','By_parameters' -Type 'Autotask.UserDefinedField' -Array -Comment $Comment
               }
         }
         ElseIf ($Verb -in 'New') {
@@ -82,7 +84,7 @@
         $Fields = $FieldInfo.Where({
             -Not $_.IsReadOnly
         }) | ForEach-Object -Process {
-          $_.ParameterSet = 'Input_Object'
+          $_.ParameterSet = 'Input_Object','By_parameters'
           $_
         }
       }

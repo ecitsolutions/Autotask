@@ -1,5 +1,14 @@
 # Release notes
 
+## Version 0.2.2.2
+
+- IMPORTANT: TLS 1.2 is now the default for all API calls
+- Datetime parameter in GET functions are explicitly cast to Sortable Datetime format including UTC offset to ensure local time is interpreted correctly by the API.
+- Datetime properties on returned objects are changed to local time for easier coding. No need to handle timezone offsets manually anymore,
+- When updating objects the API has a limit of 200 objects per API call. The module now handles this correctly.
+- You can now specify object to modify by passing their -Id to SET functions instead of -InputObject
+- Expand UserDefinedFields by default in SET functions when using -PassThru
+
 ## Version 0.2.2.1
 
 - Fixed WebServiceProxy unauthenticated first call issue. Any API call now touches the API endpoint only once (previously the API was touched once unauthenticated and when that failed .Net automatically tried again with authentication and the call succeeded)

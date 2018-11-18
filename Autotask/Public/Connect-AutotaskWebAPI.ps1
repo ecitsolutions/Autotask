@@ -84,6 +84,13 @@ Function Connect-AutotaskWebAPI {
 
     # Setting Modulename here, we need to check if it is already loaded
     $ModuleName = 'Autotask.{0}' -F $Prefix  
+
+    # Load support for TLS 1.2 if the Service Point Manager haven't loaded it yet
+    # This is now a REQUIREMENT to talk to the API endpoints
+    $Protocol = [System.Net.ServicePointManager]::SecurityProtocol
+    If ($Protocol.ToString() -notlike '*Tls12*') { 
+        [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
+    }
   }
   
   Process { 
@@ -151,11 +158,6 @@ Function Connect-AutotaskWebAPI {
     # Make sure a failure to create this object truly fails the script
     Write-Verbose ('{0}: Creating New-WebServiceProxy against URI: {1}' -F $MyInvocation.MyCommand.Name, $Uri)
     Try {
-      # Load support for TLS 1.2 if the Service Point Manager haven't loaded it yet
-      $Protocol = [System.Net.ServicePointManager]::SecurityProtocol
-      If ($Protocol.ToString() -notlike '*Tls12*') { 
-        [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
-      }
       # Create a new webservice proxy or die trying...
       $WebServiceProxy = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
       # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
