@@ -16,6 +16,7 @@ Get-AtwsContact -Filter {FirstName -eq Hugo -and LastName -eq Klemmestad}
 Get-AtwsContract -Filter {ContractType -eq 7}
 Get-AtwsInstalledProduct -Filter {-udf 'udf_name' -eq 'udf_value'}
 ```
+**Note:** See separate document [User Defined Fields](./User%20Defined%20Fields.md) for using UDFs in queries.
 
 ## Query by parameters
 

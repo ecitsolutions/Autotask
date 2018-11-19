@@ -76,4 +76,3 @@ To filter on more than one UDF you may use one for the query and then use a stan
 $ConfigurationItems = Get-AtwsInstalledProduct -UserDefinedField @{name='Klikkpris sort/hvitt (øre)';value=0} | 
   Where-Object {[int]$_.'#Tellerverk sort/hvitt' -gt 0}
 ```
-
