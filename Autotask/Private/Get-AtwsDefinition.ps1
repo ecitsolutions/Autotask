@@ -10,15 +10,18 @@
 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
-    # Set up TimeZone offset handling
-    If (-not($script:ESToffset))
-    {
+   # Set up TimeZone offset handling
+    If (-not($script:ESTzone)) {
+      $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
+    }
+    
+    If (-not($script:ESToffset)) {
       $Now = Get-Date
-      $ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
       $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($Now.ToUniversalTime(), $ESTzone)
 
       $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
     }
+  }
   }
 
   Process
