@@ -35,7 +35,7 @@ You can only specify a single UDF in a query. This is an API limitation. We do n
 Get-AtwsInstalledProduct -UserDefinedField @{name='udf_name'; value='udf_value'}
 
 # Using an UDF object
-$Udf = New-Object [Autotask.UserDefinedField]
+$Udf = New-Object Autotask.UserDefinedField
 $Udf.name = 'udf_name'
 $Udf.value = 'udf_value'
 Get-AtwsInstalledProduct -UserDefinedField $Udf
