@@ -1,5 +1,9 @@
 # Release notes
 
+## Version 0.2.2.3
+
+- BUGFIX: Timezone setup in GET functions didn't persist an important value. Fixed.
+
 ## Version 0.2.2.2
 
 - IMPORTANT: TLS 1.2 is now the default for all API calls
