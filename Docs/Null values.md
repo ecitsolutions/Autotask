@@ -1,6 +1,10 @@
 # Null values
 
-Null values and PowerShell parameters can be a pain. PowerShell functions do not accept a null value to any parameter, built-in or custom. The issue: Get all tickets that have NOT been assigned to anyone yet. It would be tempting to try:
+Null values and PowerShell parameters can be a pain. PowerShell functions do not accept a null value to any parameter, built-in or custom. This is a problem both for **Get** and **Set** scenarios.
+
+## Null values in Queries
+
+The issue: Get all tickets that have NOT been assigned to anyone yet. It would be tempting to try:
 
 ```powershell
 Get-AtwsTicket -AssignedResourceId $null
@@ -15,7 +19,7 @@ Get-AtwsTicket -IsNotNull AssignedResourceId
 
 We have added all parameters that support the operators IsNull and IsNotNull to the ValidateSet attribute.
 
-## A more advanced example
+### A more advanced example
 
 [AlexHeylin](https://github.com/AlexHeylin) made us aware of how difficult it was to figure out how to handle null values in queries and shared this example query with us. It gets unassigned tickets in his "1st line support" queue that have not been updated in two hours (set on line 2):
 
@@ -56,3 +60,20 @@ Get-AtwsTicket -Filter {Status -ne 1 -and Status -ne 8}
 ```
 
 That inverts the operator and combines the values with a logical a logical AND.
+
+## Null values and updates - or how to clear a field
+
+Sometimes you need to clear a field that previously had a value. Again, the intuitive way to do this would have been: 
+
+```powershell
+Get-AtwsTicket -AssignedResourceId $ResourceId | Set-AtwsTicket -AssignedResourceId $Null
+```
+
+This, of course, will not work. PowerShell does not accept $Null as a parameter value. But you can do this was a work-around:
+
+```powershell
+Get-AtwsTicket -AssignedResourceId $ResourceId | 
+  Foreach-Object {$_.AssignedResourceId = $Null} | Set-AtwsTicket
+```
+
+Loop through your collection of objects with a For-Each loop and clear the field explicitly. Then you can pipe it to a **Set** function and have it update the objects in Autotask, too.
