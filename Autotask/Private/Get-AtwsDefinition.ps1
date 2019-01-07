@@ -1,5 +1,5 @@
 ﻿Function Get-AtwsDefinition
-{ 
+{
   Begin
   { 
     $EntityName = '#EntityName'
@@ -22,7 +22,7 @@
       $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
     }
   }
-  }
+
 
   Process
   {
