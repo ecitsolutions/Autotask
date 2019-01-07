@@ -155,11 +155,14 @@ Function Import-AtwsCmdLet
     
     Write-Verbose -Message ('{0}: Including private functions in dynamic mocule' -F $MyInvocation.MyCommand.Name)   
     $PrivateFunctions = @(
+      'Get-CallerPreference',
+      'ConvertTo-PSObject',
       'Get-AtwsFieldInfo',
-      'Get-CallerPreference'
+      'Get-AtwsInvoiceInfo'
     ) 
     Foreach ($FunctionName in $PrivateFunctions) {
-      $ModuleFunctions += (Get-Command $FunctionName).ScriptBlock.Ast.Extent.Text
+      $NewFunctionName = $FunctionName -replace 'Atws', $Prefix
+      $ModuleFunctions += (Get-Command $FunctionName).ScriptBlock.Ast.Extent.Text -replace '#Prefix', $Prefix -replace $FunctionName,$NewFunctionName
     }
 
   }
