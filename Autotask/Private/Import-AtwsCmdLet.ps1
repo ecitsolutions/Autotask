@@ -161,8 +161,15 @@ Function Import-AtwsCmdLet
       'Get-AtwsInvoiceInfo'
     ) 
     Foreach ($FunctionName in $PrivateFunctions) {
+    
+      # Prepare a new function name with current prefix
       $NewFunctionName = $FunctionName -replace 'Atws', $Prefix
-      $ModuleFunctions += (Get-Command $FunctionName).ScriptBlock.Ast.Extent.Text -replace '#Prefix', $Prefix -replace $FunctionName,$NewFunctionName
+      
+      # Select the sourcefile of the private function to include
+      $FunctionFile = $PrivateFunction.Where({$_.BaseName -eq $FunctionName})
+      
+      # Read the source file, replace #Prefix and functionname and include in dynamic module
+      $ModuleFunctions += (Get-Content $FunctionFile.FullName) -replace '#Prefix', $Prefix -replace $FunctionName,$NewFunctionName
     }
 
   }
@@ -170,8 +177,12 @@ Function Import-AtwsCmdLet
   {
     Write-Verbose -Message ('{0}: Importing Autotask Dynamic Module' -F $MyInvocation.MyCommand.Name)
     
+    # Have PowerShell convert all of our dynamically generated code to a scriptblock
+    # (no error checks! Well, you probably notice if something goes wrong...)
     $FunctionScriptBlock = [ScriptBlock]::Create($($ModuleFunctions))
         
+    # Simply import the scriptblock as a module. Simple as that. I cannot decide if this is 
+    # awesome or scary as h...!
     New-Module -Name $ModuleName -ScriptBlock $FunctionScriptBlock  | Import-Module -Global         
     
   }
