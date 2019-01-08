@@ -51,9 +51,10 @@ Function Get-AtwsInvoiceInfo {
   )
   
   Begin {
-  
+    # We replace #Prefix with the dynamic module prefix when this function is imported
     $Prefix = '#Prefix'
     
+    # Input was by object. Extract invoice ids into an array and proceed 
     If ($PSCmdlet.ParameterSetName -eq 'Input_Object') {
       $InvoiceId = $InputObject.id
     }
@@ -61,11 +62,32 @@ Function Get-AtwsInvoiceInfo {
   }
 
   Process {
-  
+    # Empty container to return with results
     $Result = @()
   
+    # Get detailed invoice info through special API call. Have to call
+    # API once for each invoice. Second parameter says we want the result
+    # as XML. Actually we don't, but the alternative (HTML) is worse.
+    
+    Write-Verbose ('{0}: Asking for details on Invoice IDs {1}' -F $MyInvocation.MyCommand.Name, ($InvoiceId -join ', '))
+       
     ForEach ($Id in $InvoiceId) {
-      [Xml]$InvoiceInfo = $AtwsConnection[$Prefix].GetInvoiceMarkup($Id,'XML')
+           
+      # The API call. Make sure to query the correct WebServiceProxy object
+      # specified by the $Prefix name. If the Id does not exist we get a
+      # SOAP exception for some inexplicable reason
+      Try { 
+        [Xml]$InvoiceInfo = $AtwsConnection[$Prefix].GetInvoiceMarkup($Id, 'XML')
+      }
+      Catch {
+        Write-Warning ('{0}: FAILED on Invoice ID {1}. No data returned.' -F $MyInvocation.MyCommand.Name, $Id)
+              
+        # Try the next ID
+        Continue
+      }
+      
+      Write-Verbose ('{0}: Converting Invoice ID {1} to a PSObject' -F $MyInvocation.MyCommand.Name, $Id)
+           
       $Result += $InvoiceInfo.invoice_batch_generic | ConvertTo-PSObject
     }
   }
