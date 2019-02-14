@@ -50,6 +50,7 @@ Function Connect-AutotaskWebAPI {
     [pscredential]
     $Credential = $(Get-Credential -Message 'Autotask Web Services API login'),
     
+    [Parameter(Mandatory = $true)]
     [String]
     $ApiTrackingIdentifier,
 
@@ -74,14 +75,7 @@ Function Connect-AutotaskWebAPI {
   Begin { 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    # API version 1.6 REQUIRES an API tracking identifier. If you provide it we connect to 1.6
-    If ($ApiTrackingIdentifier) {
-      $APIversion = '1.6'
-    } Else {
-      $APIversion = '1.6'
-    }
-    
-    $DefaultUri = 'https://webservices.Autotask.net/atservices/{0}/atws.wsdl' -F $APIversion
+    $DefaultUri = 'https://webservices.Autotask.net/atservices/1.6/atws.wsdl'
     
     If (-not($global:AtwsConnection)) {
       $global:AtwsConnection = @{}
@@ -173,18 +167,17 @@ Function Connect-AutotaskWebAPI {
       # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
       $WebServiceProxy.PreAuthenticate = $True
       
-      # Add API Integrations Value if API version is 1.6
-      If ($APIversion = '1.6') {
+      # Add API Integrations Value 
       
-        # A dedicated object type has been created to store integration values
-        $AutotaskIntegrationsValue = New-Object Autotask.AutotaskIntegrations
+      # A dedicated object type has been created to store integration values
+      $AutotaskIntegrationsValue = New-Object Autotask.AutotaskIntegrations
 
-        # Set the integrationcode property to the API tracking identifier provided by the user
-        $AutotaskIntegrationsValue.IntegrationCode = $ApiTrackingIdentifier
+      # Set the integrationcode property to the API tracking identifier provided by the user
+      $AutotaskIntegrationsValue.IntegrationCode = $ApiTrackingIdentifier
 
-        # Add the integrations value to the Web Service Proxy
-        $WebServiceProxy.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
-      }
+      # Add the integrations value to the Web Service Proxy
+      $WebServiceProxy.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
+      
     }
     Catch {
       Throw [ApplicationException] 'Could not connect to Autotask WebAPI. Verify your credentials. If you are sure you have the rights - maybe you typed your password wrong?'    
