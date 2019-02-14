@@ -167,7 +167,7 @@ Function Connect-AutotaskWebAPI {
       # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
       $WebServiceProxy.PreAuthenticate = $True
       
-      # Add API Integrations Value 
+      # Add API Integrations Value if API version is 1.6
       
       # A dedicated object type has been created to store integration values
       $AutotaskIntegrationsValue = New-Object Autotask.AutotaskIntegrations
@@ -177,7 +177,7 @@ Function Connect-AutotaskWebAPI {
 
       # Add the integrations value to the Web Service Proxy
       $WebServiceProxy.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
-      
+
     }
     Catch {
       Throw [ApplicationException] 'Could not connect to Autotask WebAPI. Verify your credentials. If you are sure you have the rights - maybe you typed your password wrong?'    
