@@ -49,6 +49,9 @@ Function Connect-AutotaskWebAPI {
     [ValidateNotNullOrEmpty()]    
     [pscredential]
     $Credential = $(Get-Credential -Message 'Autotask Web Services API login'),
+    
+    [String]
+    $ApiTrackingIdentifier,
 
     [Switch]
     $NoDynamicModule = $False,
@@ -71,7 +74,14 @@ Function Connect-AutotaskWebAPI {
   Begin { 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    $DefaultUri = 'https://webservices.Autotask.net/atservices/1.5/atws.wsdl'
+    # API version 1.6 REQUIRES an API tracking identifier. If you provide it we connect to 1.6
+    If ($ApiTrackingIdentifier) {
+      $APIversion = '1.6'
+    } Else {
+      $APIversion = '1.6'
+    }
+    
+    $DefaultUri = 'https://webservices.Autotask.net/atservices/{0}/atws.wsdl' -F $APIversion
     
     If (-not($global:AtwsConnection)) {
       $global:AtwsConnection = @{}
@@ -162,6 +172,19 @@ Function Connect-AutotaskWebAPI {
       $WebServiceProxy = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
       # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
       $WebServiceProxy.PreAuthenticate = $True
+      
+      # Add API Integrations Value if API version is 1.6
+      If ($APIversion = '1.6') {
+      
+        # A dedicated object type has been created to store integration values
+        $AutotaskIntegrationsValue = New-Object Autotask.AutotaskIntegrations
+
+        # Set the integrationcode property to the API tracking identifier provided by the user
+        $AutotaskIntegrationsValue.IntegrationCode = $ApiTrackingIdentifier
+
+        # Add the integrations value to the Web Service Proxy
+        $WebServiceProxy.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
+      }
     }
     Catch {
       Throw [ApplicationException] 'Could not connect to Autotask WebAPI. Verify your credentials. If you are sure you have the rights - maybe you typed your password wrong?'    
@@ -169,6 +192,8 @@ Function Connect-AutotaskWebAPI {
 
     Write-Verbose ('{0}: Testing Credential object of WebServiceProxy against a .NET bug that will reuse earlier connection attempts.' -F $MyInvocation.MyCommand.Name)
 
+    # This is a bug that sometimes crop up if you have made a connection attempt using wrong or misspelled passwords.
+    # Make sure the right (newest) password is used when calling the Web Service Proxy.
     If ($WebServiceProxy.Credentials.Password -ne $local:Credential.GetNetworkCredential().Password) {
       Write-Verbose ('{0}: Overwriting WebServiceProxy password "manually".' -F $MyInvocation.MyCommand.Name)
       $WebServiceProxy.Credentials = $local:Credential
