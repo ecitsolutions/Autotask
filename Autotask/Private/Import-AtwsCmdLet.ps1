@@ -153,23 +153,25 @@ Function Import-AtwsCmdLet
       }
     }
     
-    Write-Verbose -Message ('{0}: Including private functions in dynamic mocule' -F $MyInvocation.MyCommand.Name)   
+    Write-Verbose -Message ('{0}: Including private functions in dynamic module' -F $MyInvocation.MyCommand.Name)   
+    
     $PrivateFunctions = @(
+      'Get-AtwsInvoiceInfo',
       'Get-CallerPreference',
       'ConvertTo-PSObject',
-      'Get-AtwsFieldInfo',
-      'Get-AtwsInvoiceInfo'
+      'Get-AtwsFieldInfo'
     ) 
+
     Foreach ($FunctionName in $PrivateFunctions) {
     
       # Prepare a new function name with current prefix
-      $NewFunctionName = $FunctionName -replace 'Atws', $Prefix
+      $NewFunctionName = $FunctionName -replace '-Atws', "-$Prefix"
       
-      # Select the sourcefile of the private function to include
-      $FunctionFile = $PrivateFunction.Where({$_.BaseName -eq $FunctionName})
-      
-      # Read the source file, replace #Prefix and functionname and include in dynamic module
-      $ModuleFunctions += (Get-Content $FunctionFile.FullName) -replace '#Prefix', $Prefix -replace $FunctionName,$NewFunctionName
+      # Get Command info
+      $Command = Get-Command -Name $FunctionName -Module Autotask
+
+      # 
+      $ModuleFunctions += $Command.ScriptBlock.Ast -replace '#Prefix', $Prefix -replace $FunctionName,$NewFunctionName
     }
 
   }
