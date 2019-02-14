@@ -12,13 +12,13 @@
 RootModule = 'Autotask.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.2.2.4'
+ModuleVersion = '1.6.0.01'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
-GUID = 'abd8b426-797b-4702-b66d-5f871d0701dc'
+  GUID            = 'e454ae96-434f-4b50-9182-ac9f7c05299b'
 
 # Author of this module
 Author = 'Hugo Klemmestad','Kristoffer Ryeng'
