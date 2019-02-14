@@ -57,31 +57,12 @@ Function Get-AtwsFieldInfo {
       $Atws = $global:AtwsConnection[$Connection]
     }
     
-    # Has cache been loaded?
     If (-not($script:FieldInfoCache)) {
+      $script:FieldInfoCache = @{}
+    }
 
-      # Do we even have a cache?
-      $CacheInfo = Get-AtwsCacheInfo -Prefix $Prefix
-
-      # The file and path will have been created by Get-AtwsCacheInfo, so now 
-      # we can read it.
-      $Script:Cache = Import-Clixml -Path $CacheInfo.CachePath
-
-      # If either the module version or API version has changed the cache is dirty
-      # and must be recreated. And if this is the first time we read the cache
-      # for this connection prefix it is empty
-      If ($CacheInfo.CacheDirty -or -not ($Cache.FieldInfoCache)) {
-        
-        
-        $script:FieldInfoCache = @{}
-        $Entities = $Atws.getEntityInfo()
-        Foreach ($Entity in $Entities) {
-          FieldInfoCache[$Entity.Name] = New-Object -TypeName PSObject -Property @{
-            EntityInfo    = $Entity
-            RetrievalTime = Get-Date
-          }
-        }
-      }
+    If (-not($script:FieldInfoCache.ContainsKey($Connection))) {
+      $script:FieldInfoCache[$Connection] = @{}
     }
     
     $CacheExpiry = (Get-Date).AddMinutes(-15)
@@ -89,7 +70,7 @@ Function Get-AtwsFieldInfo {
   
   Process { 
     
-    If (-not $script:FieldInfoCache.ContainsKey($Entity) -or $script:FieldInfoCache[$Entity].RetrievalTime -lt $CacheExpiry) { 
+    If (-not $script:FieldInfoCache[$Connection].ContainsKey($Entity) -or $script:FieldInfoCache[$Connection][$Entity].RetrievalTime -lt $CacheExpiry) { 
       $Caption = 'Set-Atws{0}' -F $Entity
       $VerboseDescrition = '{0}: About to get built-in fields and userdefined fields for {1}s' -F $Caption, $Entity
       $VerboseWarning = '{0}: About to get built-in fields and userdefined fields for {1}s. Do you want to continue?' -F $Caption, $Entity
@@ -108,7 +89,7 @@ Function Get-AtwsFieldInfo {
       
       # No errors
       Write-Verbose ('{0}: Save or update cache for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity)
-      $script:FieldInfoCache[$Entity] = New-Object -TypeName PSObject -Property @{
+      $script:FieldInfoCache[$Connection][$Entity] = New-Object -TypeName PSObject -Property @{
         RetrievalTime = Get-Date
         FieldInfo     = $Result  
       }
@@ -117,7 +98,7 @@ Function Get-AtwsFieldInfo {
   
     Else {
       Write-Verbose ('{0}: Returning fieldinfo for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)      
-      $Result = $script:FieldInfoCache[$Entity].FieldInfo
+      $Result = $script:FieldInfoCache[$Connection][$Entity].FieldInfo
     }
   }  
   End {

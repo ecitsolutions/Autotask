@@ -9,7 +9,7 @@
   )
   Begin 
   { 
-    $TextFrame = "{0}`nFunction {1}`n{{`n{2}`n  [CmdLetBinding(DefaultParameterSetName='{3}', ConfirmImpact='{4}')]`n  Param`n  (`n{5}`n  )`n{6}`n}}"
+    $TextFrame = "{0}`nFunction {1}`n{{`n{2}`n  [CmdLetBinding(DefaultParameterSetName='{3}')]`n  Param`n  (`n{4}`n  )`n{5}`n}}"
   }
   
   Process
@@ -19,7 +19,6 @@
       $AtwsFunction.FunctionName,
       $AtwsFunction.HelpText,
       $AtwsFunction.DefaultParameterSetName,
-      $AtwsFunction.ConfirmImpact,
       $($AtwsFunction.Parameters -join ",`n`n"),
       $AtwsFunction.Definition
   }
