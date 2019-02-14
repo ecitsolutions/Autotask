@@ -1,5 +1,9 @@
 # Release notes Autotask API version v1.5
 
+## Version 0.2.2.4
+
+- New function Get-AtwsInvoiceInfo. Downloads detailed invoice information based on Autotask InvoiceId.
+
 ## Version 0.2.2.3
 
 - BUGFIX: Timezone setup in GET functions didn't persist an important value. Fixed.
