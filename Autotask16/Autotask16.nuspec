@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
 <metadata>
-    <id>Autotask</id>
+    <id>Autotask16</id>
         <version>1.6.0.01</version>
         <authors>Hugo Klemmestad, Kristoffer Ryeng</authors>
         <owners>klemmestad, kristofferoch</owners>

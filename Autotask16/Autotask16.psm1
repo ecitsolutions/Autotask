@@ -20,3 +20,10 @@ foreach ($Import in @($PublicFunction + $PrivateFunction))
 }
 
 Export-ModuleMember -Function $PublicFunction.Basename
+
+# Import functions based on disk cache
+If (-not ($Prefix)) {
+  Write-Output 'Can we access prefix from Import-module?'
+  $Prefix = 'Atws'
+}
+Import-AtwsCmdLet -Prefix $Prefix 

@@ -12,7 +12,7 @@
   {
     Write-Verbose -Message ('{0}: Trying to determine correct location for dynamic module cache.' -F $MyInvocation.MyCommand.Name)    
     
-    $ModuleAutotask = Get-Module -Name Autotask
+    $ModuleAutotask = (Get-Command -Name $MyInvocation.MyCommand.Name).ModuleName
     $ModuleVersionFileName = 'ModuleVersionInfo.xml'
     $ModuleVersionInfo = New-Object -TypeName PSObject -Property @{
       APIversion = $AtwsConnection[$Prefix].GetWsdlVersion()
