@@ -79,7 +79,7 @@ Function Connect-AutotaskWebAPI {
       $APIversion = '1.6'
     }
     Else {
-      $APIversion = '1.6'
+      $APIversion = '1.5'
     }
 
     $DefaultUri = 'https://webservices.Autotask.net/atservices/{0}/atws.wsdl' -F $APIversion
