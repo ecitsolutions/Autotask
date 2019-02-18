@@ -2,6 +2,7 @@
 
 ## Version 0.2.2.4
 
+- Support for API version 1.6. Parameter ApiTrackingID added to Connect-AutotaskWebAPI.
 - New function Get-AtwsInvoiceInfo. Downloads detailed invoice information based on Autotask InvoiceId.
 
 ## Version 0.2.2.3
