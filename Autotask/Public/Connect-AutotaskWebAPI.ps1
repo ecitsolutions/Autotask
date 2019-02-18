@@ -49,11 +49,10 @@ Function Connect-AutotaskWebAPI {
     [ValidateNotNullOrEmpty()]    
     [pscredential]
     $Credential = $(Get-Credential -Message 'Autotask Web Services API login'),
-    
-    [Parameter(Mandatory = $true)]
+
     [String]
     $ApiTrackingIdentifier,
-
+    
     [Switch]
     $NoDynamicModule = $False,
     
@@ -75,7 +74,15 @@ Function Connect-AutotaskWebAPI {
   Begin { 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    $DefaultUri = 'https://webservices.Autotask.net/atservices/1.6/atws.wsdl'
+    # API version 1.6 REQUIRES an API tracking identifier. If you provide it we connect to 1.6
+    If ($ApiTrackingIdentifier) {
+      $APIversion = '1.6'
+    }
+    Else {
+      $APIversion = '1.6'
+    }
+
+    $DefaultUri = 'https://webservices.Autotask.net/atservices/{0}/atws.wsdl' -F $APIversion
     
     If (-not($global:AtwsConnection)) {
       $global:AtwsConnection = @{}
@@ -93,7 +100,7 @@ Function Connect-AutotaskWebAPI {
     # This is now a REQUIREMENT to talk to the API endpoints
     $Protocol = [System.Net.ServicePointManager]::SecurityProtocol
     If ($Protocol.ToString() -notlike '*Tls12*') { 
-        [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
+      [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
     }
   }
   
@@ -166,7 +173,7 @@ Function Connect-AutotaskWebAPI {
       $WebServiceProxy = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
       # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
       $WebServiceProxy.PreAuthenticate = $True
-      
+
       # Add API Integrations Value 
       
       # A dedicated object type has been created to store integration values
@@ -177,7 +184,7 @@ Function Connect-AutotaskWebAPI {
 
       # Add the integrations value to the Web Service Proxy
       $WebServiceProxy.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
-      
+     
     }
     Catch {
       Throw [ApplicationException] 'Could not connect to Autotask WebAPI. Verify your credentials. If you are sure you have the rights - maybe you typed your password wrong?'    
