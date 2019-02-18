@@ -45,8 +45,8 @@
     # Add Default PSParameter info to Fields
     Foreach ($Field in $FieldInfo)
     {
-      Add-Member -InputObject $Field -MemberType NoteProperty -Name 'ParameterSet' -Value 'By_parameters'
-      Add-Member -InputObject $Field -MemberType NoteProperty -Name 'Mandatory' -Value $Field.IsRequired
+      Add-Member -InputObject $Field -MemberType NoteProperty -Name 'ParameterSet' -Value 'By_parameters' -Force
+      Add-Member -InputObject $Field -MemberType NoteProperty -Name 'Mandatory' -Value $Field.IsRequired -Force
     }
 
     Foreach ($Verb in $Verbs)
