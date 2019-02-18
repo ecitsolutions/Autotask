@@ -6,8 +6,7 @@
 
 #>
 
-Function Remove-AtwsData 
-{
+Function Remove-Data {
   <#
       .SYNOPSIS
       This function updates one or more Autotask entities with new or modified properties.
@@ -29,63 +28,50 @@ Function Remove-AtwsData
   #>
  
   [cmdletbinding(
-      SupportsShouldProcess = $True,
-      ConfirmImpact = 'High'
+    SupportsShouldProcess = $True,
+    ConfirmImpact = 'High'
   )]
   param
   (
     [Parameter(Mandatory = $True,
-    ValueFromPipeline = $True)]
+      ValueFromPipeline = $True)]
     [ValidateNotNullOrEmpty()]
     [PSObject[]]
-    $Entity,
-    
-    [String]
-    $Connection = 'Atws'
+    $Entity
   )
     
-  Begin
-  { 
+  Begin { 
     # Lookup Verbose, WhatIf and other preferences from calling context
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
     
-    If (-not($global:AtwsConnection[$Connection].Url))
-    {
+    If (-not($Script:Atws.Url)) {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
     }
-    Else
-    {
-      $Atws = $global:AtwsConnection[$Connection]
-    }
+    
     Write-Verbose ('{0}: Start of Function' -F $MyInvocation.MyCommand.Name)
     
   }
   
-  Process
-  {   
+  Process {   
     $Caption = 'Remove-Atws{0}' -F $Entity[0].GetType().Name
     $VerboseDescrition = '{0}: About to remove {1} {2}(s). This action cannot be undone.' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
     $VerboseWarning = '{0}: About to remove {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
 
     Write-Verbose ('{0}: Running ShouldProcess with WhatifPreference {1} and ConfirmPreference {2}' -F $MyInvocation.MyCommand.Name, $WhatIfPreference, $ConfirmPreference)
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
-    { 
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
       Write-Verbose ('{0}: Deleting {1} [Autotask.{2}] object(s) with Id {3}' -F $MyInvocation.MyCommand.Name, $Entity.Count, $Entity[0].GetType().Name, ($Entity.Id -join ','))        
       
       $Result = $atws.delete($Entity)
       
-      If ($Result.Errors.Count -gt 0)
-      {
-        Foreach ($AtwsError in $Result.Errors)
-        {
+      If ($Result.Errors.Count -gt 0) {
+        Foreach ($AtwsError in $Result.Errors) {
           Write-Error -Message $AtwsError.Message
         }
       }    
     }
   }
   
-  End
-  {
+  End {
     Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)    
   }
 }

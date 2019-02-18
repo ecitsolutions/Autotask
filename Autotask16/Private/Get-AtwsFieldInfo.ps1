@@ -39,42 +39,21 @@ Function Get-AtwsFieldInfo {
         ParameterSetName = 'by_Entity'
     )]
     [String]
-    $Entity,
-    
-    [Parameter(
-        ParameterSetName = 'get_All'
-    )]
-    [Parameter(
-        ParameterSetName = 'by_Entity'
-    )]
-    [String]
-    $Connection = 'Atws'
+    $Entity
   )
     
   Begin { 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    # This will be replaced when this function is imported in the dynamic module
-    $Prefix = '#Prefix'
-
-    # This looks stupid in the static text file, but if the line above has been changed dynamically,
-    # then this makes a lot of sense.
-    If ($Prefix -ne '#Prefix') {
-      $Connection = $Prefix
-    }
-    
-    If (-not($global:AtwsConnection[$Connection].Url)) {
+    If (-not($Script:Atws.Url)) {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
     }
-    Else {
-      $Atws = $global:AtwsConnection[$Connection]
-    }
-    
+        
     # Has cache been loaded?
     If (-not($script:FieldInfoCache)) {
 
       # Do we even have a cache?
-      $CacheInfo = Get-AtwsCacheInfo -Prefix $Connection
+      $CacheInfo = Get-AtwsCacheInfo
 
       # The file and path will have been created by Get-AtwsCacheInfo, so now 
       # we can read it.

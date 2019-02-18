@@ -2,11 +2,7 @@
 {
   [CmdLetBinding()]
   
-  Param
-  (
-    [String]
-    $Prefix = 'Atws'
-  )
+  Param()
 
   Begin
   {

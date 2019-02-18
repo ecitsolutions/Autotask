@@ -6,7 +6,7 @@
 
 #>
 
-Function Connect-AutotaskWebAPI {
+Function Connect-WebAPI {
   <#
       .SYNOPSIS
       This function connects to the Autotask Web Services API, authenticates a user and creates a 
@@ -52,12 +52,7 @@ Function Connect-AutotaskWebAPI {
     
     [Parameter(Mandatory = $true)]
     [String]
-    $ApiTrackingIdentifier,
-    
-    [ValidatePattern('[a-zA-Z0-9]')]
-    [ValidateLength(1, 8)]
-    [String]
-    $Prefix = 'Atws',
+    $ApiTrackingIdentifier
 
     [Switch]
     $NoDiskCache,
@@ -71,11 +66,7 @@ Function Connect-AutotaskWebAPI {
     
     $DefaultUri = 'https://webservices.Autotask.net/atservices/1.6/atws.wsdl'
     
-    If (-not($script:AtwsConnection)) {
-      $script:AtwsConnection = @{}
-    }
-
-    # Unless warning level is specified explicitly - Show warnings!
+      # Unless warning level is specified explicitly - Show warnings!
     If (-not ($WarningAction)) {
       $Global:WarningPreference = 'Continue'
     }
@@ -129,19 +120,19 @@ Function Connect-AutotaskWebAPI {
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Datacenter located' -PercentComplete 20 -CurrentOperation 'Checking for cached connections'
         
     # If we already have a connection and noone has asked to refresh the cache
-    If ($script:AtwsConnection.ContainsKey($Prefix) -and -not $RefreshCache.IsPresent) {
+    If (($script:Atws) -and -not $RefreshCache.IsPresent) {
       
       # Maybe the user is trying to connect with a different set of credentials?
       Write-Verbose ('{0}: Cached connection {1} found. Checking credentials' -F $MyInvocation.MyCommand.Name, $Prefix)
       
       # Make a boolean of the username test. We are reusing this test in multiple IF conditions
-      $SameUser = (('\{0}' -F $script:AtwsConnection[$Prefix].Credentials.Username) -eq $local:Credential.Username)
+      $SameUser = (('\{0}' -F $script:Atws.Credentials.Username) -eq $local:Credential.Username)
       
       # Trying to connect using a different password. Remove the connection object and try again. 
       # Unfortunately this is a bit hit or miss due to .NET caching outside of PowerShell
-      If ($SameUser -and ($script:AtwsConnection[$Prefix].Credentials.Password -ne $local:Credential.GetNetworkCredential().Password)) {
+      If ($SameUser -and ($script:Atws.Credentials.Password -ne $local:Credential.GetNetworkCredential().Password)) {
         Write-Verbose ('{0}: Password for connection {1} updated. Re-authenticating.' -F $MyInvocation.MyCommand.Name, $Prefix)
-        $script:AtwsConnection.Remove($Prefix)
+        Remove-Variable -Name Atws -Scope Script
       }
       # The credentials are the same. Skip authentication and reuse the existing webproxy object. Dunno why
       # this function is run again, but we should assume there is a valid reason.
@@ -154,13 +145,13 @@ Function Connect-AutotaskWebAPI {
       # remove the existing connection and create a new one, authentication with the new credentials.
       Else {
         Write-Verbose ('{0}: New credentials for connection {1} speficied. Creating new connection.' -F $MyInvocation.MyCommand.Name, $Prefix)  
-        $script:AtwsConnection.Remove($Prefix)
+        Remove-Variable -Name Atws -Scope Script
       }
 
           
     }
     
-    If (-not $script:AtwsConnection.ContainsKey($Prefix) ) { 
+    If (-not ($script:Atws)) { 
       # If we get here we need to create a new connection. Either this is the first time the user connects in this PowerShell
       # session or the credentials have been changed.
       Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'No re-usable, cached connection' -PercentComplete 40 -CurrentOperation 'Authenticating to web service'
@@ -173,9 +164,9 @@ Function Connect-AutotaskWebAPI {
       Write-Verbose ('{0}: Creating New-WebServiceProxy against URI: {1}' -F $MyInvocation.MyCommand.Name, $Uri)
       Try {
         # Create a new webservice proxy or die trying...
-        $WebServiceProxy = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
+        $script:Atws = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
         # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
-        $WebServiceProxy.PreAuthenticate = $True
+        $script:Atws.PreAuthenticate = $True
       
         # Add API Integrations Value if API version is 1.6
       
@@ -186,7 +177,7 @@ Function Connect-AutotaskWebAPI {
         $AutotaskIntegrationsValue.IntegrationCode = $ApiTrackingIdentifier
 
         # Add the integrations value to the Web Service Proxy
-        $WebServiceProxy.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
+        $script:Atws.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
 
       }
       Catch {
@@ -197,17 +188,15 @@ Function Connect-AutotaskWebAPI {
 
     # This is a bug that sometimes crop up if you have made a connection attempt using wrong or misspelled passwords.
     # Make sure the right (newest) password is used when calling the Web Service Proxy.
-    If ($WebServiceProxy.Credentials.Password -ne $local:Credential.GetNetworkCredential().Password) {
+    If ($script:Atws.Credentials.Password -ne $local:Credential.GetNetworkCredential().Password) {
       Write-Verbose ('{0}: Overwriting WebServiceProxy password "manually".' -F $MyInvocation.MyCommand.Name)
-      $WebServiceProxy.Credentials = $local:Credential
+      $script:Atws.Credentials = $local:Credential
     }
     
     Write-Verbose ('{0}: Running query Get-AtwsData -Entity Resource -Filter "username -eq $UserName"' -F $MyInvocation.MyCommand.Name)
     
     Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection'
        
-    $script:AtwsConnection[$Prefix] = $WebServiceProxy
-    
     # Get username part of credential
     $UserName = $Credential.UserName.Split('@')[0].Trim('\')
     $Result = Get-AtwsData -Connection $Prefix -Entity Resource -Filter "username -eq $UserName"
@@ -219,7 +208,7 @@ Function Connect-AutotaskWebAPI {
         
       Write-Verbose ('{0}: Calling Import-AtwsCmdLet with Prefix {1}' -F $MyInvocation.MyCommand.Name, $Prefix)
                     
-      Import-AtwsCmdLet -Prefix $Prefix -NoDiskCache:$NoDiskCache.IsPresent -RefreshCache:$RefreshCache.IsPresent -Verbose:$Verbose.IsPresent
+      Import-AtwsCmdLet -NoDiskCache:$NoDiskCache.IsPresent -RefreshCache:$RefreshCache.IsPresent -Verbose:$Verbose.IsPresent
       
       
       # Check date and time formats and warn if the are different. This will affect how dates as text will be converted to datetime objects
@@ -241,7 +230,7 @@ Function Connect-AutotaskWebAPI {
       }
     }
     Else {
-      $script:AtwsConnection.Remove($Prefix)
+      Remove-Variable -Name Atws -Scope Script
       Throw [ApplicationException] 'Could not complete a query to Autotask WebAPI. Verify your credentials. You seem to have been logged in, but do you have the necessary rights?'    
     }
   }

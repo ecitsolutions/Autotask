@@ -69,8 +69,8 @@ PowerShellVersion = '3.0'
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()
 
-# Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Connect-AutotaskWebAPI', 'Get-AtwsData', 'New-AtwsData', 'Set-AtwsData', 'Remove-AtwsData'
+# Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export. Functions are prefixed with DefaultCommandPrefix on export. Override with -Prefix
+FunctionsToExport = 'Connect-WebAPI', 'Get-Data', 'New-Data', 'Set-Data', 'Remove-Data', 'Get-InvoiceInfo'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
@@ -118,7 +118,7 @@ PrivateData = @{
 # HelpInfoURI = ''
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
-# DefaultCommandPrefix = ''
+DefaultCommandPrefix = 'Atws'
 
 }
 

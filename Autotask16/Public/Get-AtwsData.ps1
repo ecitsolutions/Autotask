@@ -5,7 +5,7 @@
 
 #>
 
-Function Get-AtwsData 
+Function Get-Data 
 {
   <#
       .SYNOPSIS
@@ -59,24 +59,18 @@ Function Get-AtwsData
         Position = 1
     )]
     [String[]]
-    $Filter,
-    
-    [String]
-    $Connection = 'Atws'
+    $Filter
   )
   Begin
   { 
     # Lookup Verbose, WhatIf and other preferences from calling context
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
     
-    If (-not($global:AtwsConnection[$Connection].Url))
+    If (-not($Script:Atws.Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
     }
-    Else
-    {
-      $Atws = $global:AtwsConnection[$Connection]
-    }
+    
   }
   
   Process

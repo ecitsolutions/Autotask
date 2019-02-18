@@ -11,21 +11,18 @@ Function Import-AtwsCmdLet
     $NoDiskCache,
     
     [Switch]
-    $RefreshCache,
-    
-    [String]
-    $Prefix = 'Atws'
+    $RefreshCache
   )
   
   Begin
   { 
-    If (-not($Script:AtwsConnection))
+    If (-not($Script:Atws))
     {
       # We should only reach this part when the module is imported. At this point we do NOT have
       # any connections, so we have to rely on the disk cache.
       
       # This will initialize the cache if it is empty
-      $CacheInfo = Get-AtwsCacheInfo -Prefix $Prefix
+      $CacheInfo = Get-AtwsCacheInfo
 
       # The file and path will have been created by Get-AtwsCacheInfo, so now 
       # we can read it.
@@ -83,7 +80,7 @@ Function Import-AtwsCmdLet
       $VerboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
       $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
        
-      $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -Prefix $Prefix -FieldInfo $CacheEntry.Value.FieldInfo
+      $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -FieldInfo $CacheEntry.Value.FieldInfo
         
       If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
       

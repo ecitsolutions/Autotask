@@ -6,7 +6,7 @@
 
 #>
 
-Function Set-AtwsData 
+Function Set-Data 
 {
   <#
       .SYNOPSIS
@@ -41,10 +41,7 @@ Function Set-AtwsData
     )]
     [ValidateNotNullOrEmpty()]
     [PSObject[]]
-    $Entity,
-    
-    [String]
-    $Connection = 'Atws'
+    $Entity
   )
     
     
@@ -53,13 +50,9 @@ Function Set-AtwsData
     # Lookup Verbose, WhatIf and other preferences from calling context
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
     
-    If (-not($global:AtwsConnection[$Connection].Url))
+    If (-not($Script:Atws.Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
-    }
-    Else
-    {
-      $Atws = $global:AtwsConnection[$Connection]
     }
     
     $EndResult = @()

@@ -3,7 +3,6 @@
   Begin
   { 
     $EntityName = '#EntityName'
-    $Prefix = '#Prefix'
 
     # Lookup Verbose, WhatIf and other preferences from calling context
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
@@ -149,7 +148,7 @@
       Write-Verbose ('{0}: Passing -Filter raw to Get function' -F $MyInvocation.MyCommand.Name)
     } 
 
-    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter -Connection $Prefix 
+    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
 
     Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     

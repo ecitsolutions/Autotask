@@ -3,7 +3,6 @@
   Begin
   { 
     $EntityName = '#EntityName'
-    $Prefix = '#Prefix'
         
     # Lookup Verbose, WhatIf and other preferences from calling context
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
@@ -95,7 +94,7 @@
         }
       }
     }
-    $Result = New-AtwsData -Entity $ProcessObject -Connection $Prefix
+    $Result = New-AtwsData -Entity $ProcessObject
   }
 
   End

@@ -6,7 +6,7 @@
 
 #>
 
-Function Get-AtwsInvoiceInfo {
+Function Get-InvoiceInfo {
   <#
       .SYNOPSIS
       This function collects information about a specific Autotask invoice object and returns a generic
@@ -51,8 +51,6 @@ Function Get-AtwsInvoiceInfo {
   )
   
   Begin {
-    # We replace #Prefix with the dynamic module prefix when this function is imported
-    $Prefix = '#Prefix'
     
     # Input was by object. Extract invoice ids into an array and proceed 
     If ($PSCmdlet.ParameterSetName -eq 'Input_Object') {
@@ -77,7 +75,7 @@ Function Get-AtwsInvoiceInfo {
       # specified by the $Prefix name. If the Id does not exist we get a
       # SOAP exception for some inexplicable reason
       Try { 
-        [Xml]$InvoiceInfo = $AtwsConnection[$Prefix].GetInvoiceMarkup($Id, 'XML')
+        [Xml]$InvoiceInfo = $Script:Atws.GetInvoiceMarkup($Id, 'XML')
       }
       Catch {
         Write-Warning ('{0}: FAILED on Invoice ID {1}. No data returned.' -F $MyInvocation.MyCommand.Name, $Id)
