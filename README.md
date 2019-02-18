@@ -5,6 +5,8 @@
 - Support for API version 1.6. Parameter ApiTrackingID added to Connect-AutotaskWebAPI.
 - New function Get-AtwsInvoiceInfo. Downloads detailed invoice information based on Autotask InvoiceId.
 
+Note: Connecting to API version 1.6 requires a personal API tracking ID code. You can create one on the security tab on the automation user resource that you use to connect to the API. **Warning**: Be aware that from the moment you create an API tracking ID on an automation user, the tracking code is *required*, regardless with API version you try to connect to.
+
 ## Version 0.2.2.3
 
 - BUGFIX: Timezone setup in GET functions didn't persist an important value. Fixed.
