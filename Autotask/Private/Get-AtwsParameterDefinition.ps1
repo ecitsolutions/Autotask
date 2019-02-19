@@ -107,6 +107,10 @@
     {
       $Type = Switch ($Field.Type) 
       {
+        'long' 
+        {
+          'Int64'
+        }
         'Integer' 
         {
           'Int'
