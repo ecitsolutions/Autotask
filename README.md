@@ -1,5 +1,9 @@
 # Release notes
 
+## Version 0.2.2.5
+
+- BUGFIX: Parameter ID was typed as Integer when the correct type is Int64. Fixed.
+
 ## Version 0.2.2.4
 
 - Support for API version 1.6. Parameter ApiTrackingID added to Connect-AutotaskWebAPI.
