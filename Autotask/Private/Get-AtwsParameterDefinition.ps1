@@ -26,45 +26,47 @@
     $TypeName = 'Autotask.{0}' -F $Entity.Name
       
         If ($Verb -eq 'Get') {
-            $Comment = 'A filter that limits the number of objects that is returned from the API'
-            Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'String' -Mandatory -Remaining -NotNull  -Array -Comment $Comment
-            $ReferenceFields = $FieldInfo.Where( {$_.IsReference}).Name
-            $Comment = 'Follow this external ID and return any external objects'            
-            Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter', 'By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields -Comment $Comment
-            $Comment = 'Return all objects in one query'    
-            Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'Switch' -Comment $Comment
-            $Comment = 'Add descriptions for all picklist attributes with values'
-            Get-AtwsPSParameter -Name 'AddPickListLabel' -SetName 'Filter','Get_All','By_parameters' -Type 'Switch' -Comment $Comment
-            If ($Entity.HasUserDefinedFields) {
-                $Comment = 'A single user defined field can be used pr query'
-                Get-AtwsPSParameter -Name 'UserDefinedField' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Comment $Comment
-            }
+          $Comment = 'A filter that limits the number of objects that is returned from the API'
+          Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'String' -Mandatory -Remaining -NotNull  -Array -Comment $Comment
+          $ReferenceFields = $FieldInfo.Where( {$_.IsReference}).Name
+          $Comment = 'Follow this external ID and return any external objects'            
+          Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter', 'By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields -Comment $Comment
+          $Comment = 'Return all objects in one query'    
+          Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'Switch' -Comment $Comment
+          $Comment = 'Add descriptions for all picklist attributes with values'
+          Get-AtwsPSParameter -Name 'AddPickListLabel' -SetName 'Filter','Get_All','By_parameters' -Type 'Switch' -Comment $Comment
+          If ($Entity.HasUserDefinedFields) {
+            $Comment = 'A single user defined field can be used pr query'
+            Get-AtwsPSParameter -Name 'UserDefinedField' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Comment $Comment
+          }
         }    
         ElseIf ($Verb -eq 'Set') {
-            $Comment = 'An object that will be modified by any parameters and updated in Autotask'
-            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
-            $Comment = 'The object.ids of objects that should be modified by any parameters and updated in Autotask'
-            Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type 'Int' -Mandatory -NotNull -Array -Comment $Comment
-            $Comment = 'Return any updated objects through the pipeline'
-            Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object','By_parameters' -Type 'Switch' -Comment $Comment
-            If ($Entity.HasUserDefinedFields) {
-                $Comment = 'User defined fields already setup i Autotask'
-                Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'Input_Object','By_parameters' -Type 'Autotask.UserDefinedField' -Array -Comment $Comment
-              }
+          $Comment = 'An object that will be modified by any parameters and updated in Autotask'
+          Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
+          $Comment = 'The object.ids of objects that should be modified by any parameters and updated in Autotask'
+          $Field = $FieldInfo.Where({$_.Name -eq 'Id'})
+          Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $Field.Type -Mandatory -NotNull -Array -Comment $Comment
+          $Comment = 'Return any updated objects through the pipeline'
+          Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object','By_parameters' -Type 'Switch' -Comment $Comment
+          If ($Entity.HasUserDefinedFields) {
+            $Comment = 'User defined fields already setup i Autotask'
+            Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'Input_Object','By_parameters' -Type 'Autotask.UserDefinedField' -Array -Comment $Comment
+          }
         }
         ElseIf ($Verb -in 'New') {
-            $Comment = 'An array of objects to create'          
-            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
-            If ($Entity.HasUserDefinedFields) {
-                $Comment = 'User defined fields already setup i Autotask'
-                Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Array -Comment $Comment
-            }
+          $Comment = 'An array of objects to create'          
+          Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
+          If ($Entity.HasUserDefinedFields) {
+            $Comment = 'User defined fields already setup i Autotask'
+            Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Array -Comment $Comment
+          }
         }
         ElseIf ($Verb -eq 'Remove') {
-            $Comment = 'Any objects that should be deleted'          
-            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
-            $Comment = 'The unique id of an object to delete'
-            Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $TypeName -Mandatory  -NotNull -Array -Comment $Comment
+          $Comment = 'Any objects that should be deleted'          
+          Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
+          $Comment = 'The unique id of an object to delete'
+          $Field = $FieldInfo.Where({$_.Name -eq 'Id'})
+          Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $Field.Type -Mandatory  -NotNull -Array -Comment $Comment
         }
     
 
@@ -107,10 +109,6 @@
     {
       $Type = Switch ($Field.Type) 
       {
-        'long' 
-        {
-          'Int64'
-        }
         'Integer' 
         {
           'Int'
