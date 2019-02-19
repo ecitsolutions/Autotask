@@ -2,7 +2,7 @@
 
 ## Version 0.2.2.5
 
-- BUGFIX: Parameter ID was typed as Integer when the correct type is Int64. Fixed.
+- BUGFIX: Parameter ID was typed as Integer when the correct type is Int64. Fixed. Thank you, Harry P.!
 
 ## Version 0.2.2.4
 
