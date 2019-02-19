@@ -41,30 +41,32 @@
             }
         }    
         ElseIf ($Verb -eq 'Set') {
-            $Comment = 'An object that will be modified by any parameters and updated in Autotask'
-            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
-            $Comment = 'The object.ids of objects that should be modified by any parameters and updated in Autotask'
-            Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type 'Int' -Mandatory -NotNull -Array -Comment $Comment
-            $Comment = 'Return any updated objects through the pipeline'
-            Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object','By_parameters' -Type 'Switch' -Comment $Comment
-            If ($Entity.HasUserDefinedFields) {
-                $Comment = 'User defined fields already setup i Autotask'
-                Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'Input_Object','By_parameters' -Type 'Autotask.UserDefinedField' -Array -Comment $Comment
-              }
+          $Comment = 'An object that will be modified by any parameters and updated in Autotask'
+          Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
+          $Comment = 'The object.ids of objects that should be modified by any parameters and updated in Autotask'
+          $Field = $FieldInfo.Where({$_.Name -eq 'Id'})
+          Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $Field.Type -Mandatory -NotNull -Array -Comment $Comment
+          $Comment = 'Return any updated objects through the pipeline'
+          Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object','By_parameters' -Type 'Switch' -Comment $Comment
+          If ($Entity.HasUserDefinedFields) {
+            $Comment = 'User defined fields already setup i Autotask'
+            Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'Input_Object','By_parameters' -Type 'Autotask.UserDefinedField' -Array -Comment $Comment
+          }
         }
         ElseIf ($Verb -in 'New') {
-            $Comment = 'An array of objects to create'          
-            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
-            If ($Entity.HasUserDefinedFields) {
-                $Comment = 'User defined fields already setup i Autotask'
-                Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Array -Comment $Comment
-            }
+          $Comment = 'An array of objects to create'          
+          Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
+          If ($Entity.HasUserDefinedFields) {
+            $Comment = 'User defined fields already setup i Autotask'
+            Get-AtwsPSParameter -Name 'UserDefinedFields' -Alias 'UDF' -SetName 'By_parameters' -Type 'Autotask.UserDefinedField' -NotNull -Array -Comment $Comment
+          }
         }
         ElseIf ($Verb -eq 'Remove') {
-            $Comment = 'Any objects that should be deleted'          
-            Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
-            $Comment = 'The unique id of an object to delete'
-            Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $TypeName -Mandatory  -NotNull -Array -Comment $Comment
+          $Comment = 'Any objects that should be deleted'          
+          Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
+          $Comment = 'The unique id of an object to delete'
+          $Field = $FieldInfo.Where({$_.Name -eq 'Id'})
+          Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $Field.Type -Mandatory  -NotNull -Array -Comment $Comment
         }
     
 
