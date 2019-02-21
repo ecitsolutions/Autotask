@@ -1,7 +1,10 @@
 <#
         Description
 #>
+
 [CmdletBinding()]
+Param()
+
 $PublicFunction  = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue ) # Public functions can be called by user after module import
 $PrivateFunction = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue ) # Not in use # Private functions can only be called internally in other functions in the module 
 # $Templates = @( Get-ChildItem -Path $PSScriptRoot\Templates\* -ErrorAction SilentlyContinue ) # Not in use 
@@ -26,4 +29,10 @@ If (-not ($Prefix)) {
   Write-Output 'Can we access prefix from Import-module?'
   $Prefix = 'Atws'
 }
-Import-AtwsCmdLet -Prefix $Prefix 
+Else
+{
+  Write-Output "Prefix is '$Prefix'"
+}
+
+# Load functions from cache
+Import-AtwsCmdLet

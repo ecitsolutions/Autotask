@@ -10,10 +10,7 @@
     
     [Parameter(Mandatory = $True)]
     [Autotask.Field[]]
-    $FieldInfo,
-        
-    [String]
-    $Prefix = 'Atws'
+    $FieldInfo
   )
    
   Begin
@@ -51,7 +48,7 @@
 
     Foreach ($Verb in $Verbs)
     {
-      $FunctionName = '{0}-{1}{2}' -F $Verb, $Prefix, $Entity.Name
+      $FunctionName = '{0}-{1}' -F $Verb, $Entity.Name
 
       Write-Verbose ('{0}: Creating Function {1}' -F $MyInvocation.MyCommand.Name, $FunctionName)
     
@@ -69,7 +66,7 @@
         HelpText = Get-AtwsHelpText -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo -FunctionName $FunctionName
         DefaultParameterSetName = $DefaultParameterSetName 
         Parameters = Get-AtwsParameterDefinition -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo
-        Definition = (Get-Command ('{0}-AtwsDefinition' -F $Verb)).Definition -replace '#EntityName',$($Entity.Name) -replace '#Prefix',$Prefix
+        Definition = (Get-Command ('{0}-AtwsDefinition' -F $Verb)).Definition -replace '#EntityName',$($Entity.Name)
       }
     
       $FunctionDefinition[$FunctionName] = Convert-AtwsFunctionToText -AtwsFunction $AtwsFunction

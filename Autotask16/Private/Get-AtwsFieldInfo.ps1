@@ -43,33 +43,41 @@ Function Get-AtwsFieldInfo {
   )
     
   Begin { 
+  
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    If (-not($Script:Atws.Url)) {
-      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
-    }
-        
     # Has cache been loaded?
-    If (-not($script:FieldInfoCache)) {
+    If (-not($script:Cache)) {
+      # Load it.
+      $CachePath = Import-AtwsDiskCache
+    }
+    
+    # If we have a connection we can update the cache.If not, serve data just from cache.
+    If ($Script:Atws) {
+    
+   
+      # If the current connection is for a new Autotask tenant, copy the blank 
+      # cache from the included pre-cache
+      If (-not ($Script:Cache.ContainsKey($Script:Atws.CI))) {
+        # Clone the hashtable. We do NOT want a referenced copy!
+        $Script:Cache[$Script:Atws.CI] = $Script:Cache['00'].Clone()
+      }
+      
+      # Initialize the short-hand variable reference for the fieldInfocache
+      $Script:FieldInfoCache = $Script:Cache[$Script:Atws.CI].FieldInfoCache
 
-      # Do we even have a cache?
-      $CacheInfo = Get-AtwsCacheInfo
-
-      # The file and path will have been created by Get-AtwsCacheInfo, so now 
-      # we can read it.
-      $Script:Cache = Import-Clixml -Path $CacheInfo.CachePath
-
-      # If either the module version or API version has changed the cache is dirty
-      # and must be recreated. And if this is the first time we read the cache
-      # for this connection prefix it is empty
-      If ($CacheInfo.CacheDirty -or -not ($Cache.FieldInfoCache)) {
-        
-        $Activity = 'Initializing diskcache'
+      # If the API version has been changed at the Autotask we unfortunately have to load all
+      # entities from scratch
+      $CurrentApiVersion = $Script:Atws.GetWsdlVersion()
+      If (-not ($Script:Cache[$Script:Atws.CI].ApiVersion -eq $CurrentApiVersion)) {
+              
+        $Activity = 'New API version {0} has been published, old version is {1}. recreating diskcache.' -F $CurrentApiVersion, $Script:Cache[$Script:Atws.CI].ApiVersion
         
         $script:FieldInfoCache = @{}
         $Entities = $Atws.getEntityInfo()
         
         Foreach ($Object in $Entities) { 
+    
           Write-Verbose -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $Object.Name) 
 
           # Calculating progress percentage and displaying it
@@ -77,6 +85,7 @@ Function Get-AtwsFieldInfo {
           $PercentComplete = $Index / $Entities.Count * 100
           $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
           $CurrentOperation = "GetFieldInfo('{0}')" -F $Object.Name
+      
           Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
           
           $Caption = $MyInvocation.MyCommand.Name
@@ -107,54 +116,77 @@ Function Get-AtwsFieldInfo {
         }
         
         # Add cache to $Cache object and save to disk
-        Add-Member -InputObject $Script:Cache -MemberType NoteProperty -Name FieldInfoCache -Value $FieldInfoCache -Force
+        $Script:Cache[$Script:Atws.CI].FieldInfoCache = $FieldInfoCache 
         
         $Caption = $MyInvocation.MyCommand.Name
-        $VerboseDescrition = '{0}: Saving updated cache info to {1}' -F $Caption, $CacheInfo.CachePath
-        $VerboseWarning = '{0}: About to save updated cache info to {1}. Do you want to continue?' -F $Caption, $CacheInfo.CachePath
+        $VerboseDescrition = '{0}: Saving updated cache info to {1}' -F $Caption, $CachePath
+        $VerboseWarning = '{0}: About to save updated cache info to {1}. Do you want to continue?' -F $Caption, $CachePath
           
         If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-          $Script:Cache.ModuleVersion = 
-          $Script:Cache | Export-Clixml -Path $CacheInfo.CachePath -Force
-          $CacheInfo.CacheDirty = $False
+            
+          $Script:Cache | Export-Clixml -Path $CachePath -Force
+    
         }
         
       } 
-      # We just loaded the cache from disk
+      # We just loaded the cache from disk and the version was up to date
       Else {
         
-        Write-Verbose -Message ('{0}: Loading detailed Fieldinfo from diskcache {1}' -F $MyInvocation.MyCommand.Name, $CacheInfo.CachePath) 
+        Write-Verbose -Message ('{0}: Loaded detailed Fieldinfo from diskcache {1}' -F $MyInvocation.MyCommand.Name, $CachePath) 
               
-        $Script:FieldInfoCache = $Script:Cache.FieldInfoCache
       }
     }
-    
+    # We do not have any connection to Autotas, yet. We have to use the cache without picklists
+    Else {
+      Write-Verbose -Message ('{0}: Connection not available, using default entitylist from {1}' -F $MyInvocation.MyCommand.Name, $CachePath) 
+      $Script:FieldInfoCache = $Script:Cache['00'].FieldInfoCache
+            
+    }
     $CacheExpiry = (Get-Date).AddMinutes(-15)
   }
   
   Process { 
     
     If ($All.IsPresent) {
+
+    # If we have a connection we can update the cache.If not, serve data just from cache.
+      If ($Script:Atws) {
     
-      # At this point we have a cache, but we do not know if it is fresh. We only need to check
-      # entities with picklists
-      Foreach ($CacheEntry in $script:FieldInfoCache.GetEnumerator().Where{$_.Value.HasPicklist}) {
+        # At this point we have a cache, but we do not know if it is fresh. We only need to check
+        # entities with picklists
+      
+        $Activity = 'All entities has been requested. Updating picklists.'
+      
+        $Entities = $script:FieldInfoCache.GetEnumerator().Where{$_.Value.HasPicklist}
+      
+        Foreach ($Object in $Entities) {
+      
+          Write-Verbose -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $Object.Key) 
+
+          # Calculating progress percentage and displaying it
+          $Index = $Entities.IndexOf($Object) + 1
+          $PercentComplete = $Index / $Entities.Count * 100
+          $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
+          $CurrentOperation = "GetFieldInfo('{0}')" -F $Object.Key
+      
+          Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
         
-        # Is the Cache too old? I.E. older than 15 minutes?
-        If($CacheEntry.RetrievalTime -lt $CacheExpiry) {
+          # Is the Cache too old? I.E. older than 15 minutes?
+          If($CacheEntry.RetrievalTime -lt $CacheExpiry) {
           
-          # Force a refresh by calling this function
-          $null = Get-AtwsFieldInfo -Entity $CacheEntry.Key
-        }
+            # Force a refresh by calling this function
+            $null = Get-AtwsFieldInfo -Entity $CacheEntry.Key
+          }
         
+        }
       }
       
-      # When the loop is done the cache should be fresh
+      # Return the current FieldInfoCache
       $Result = $script:FieldInfoCache
       
     }
-    ElseIf (-not $script:FieldInfoCache.ContainsKey($Entity) -or $script:FieldInfoCache[$Entity].RetrievalTime -lt $CacheExpiry) { 
-      $Caption = 'Set-Atws{0}' -F $Entity
+    ElseIf (($Script:Atws) -and $script:FieldInfoCache[$Entity].RetrievalTime -lt $CacheExpiry) { 
+      $Caption = $MyInvocation.MyCommand.Name
       $VerboseDescrition = '{0}: About to get built-in fields for {1}s' -F $Caption, $Entity
       $VerboseWarning = '{0}: About to get built-in fields for {1}s. Do you want to continue?' -F $Caption, $Entity
 

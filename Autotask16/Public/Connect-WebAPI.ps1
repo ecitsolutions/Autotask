@@ -52,7 +52,7 @@ Function Connect-WebAPI {
     
     [Parameter(Mandatory = $true)]
     [String]
-    $ApiTrackingIdentifier
+    $ApiTrackingIdentifier,
 
     [Switch]
     $NoDiskCache,
@@ -199,17 +199,20 @@ Function Connect-WebAPI {
        
     # Get username part of credential
     $UserName = $Credential.UserName.Split('@')[0].Trim('\')
-    $Result = Get-AtwsData -Connection $Prefix -Entity Resource -Filter "username -eq $UserName"
+    $Result = Get-AtwsData -Entity Resource -Filter "username -eq $UserName"
     
     If ($Result) {
     
       # The connection has been verified. Use it to dynamically create functions for all entities
       Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connection OK' -PercentComplete 80 -CurrentOperation 'Importing dynamic module'
         
-      Write-Verbose ('{0}: Calling Import-AtwsCmdLet with Prefix {1}' -F $MyInvocation.MyCommand.Name, $Prefix)
+      Write-Verbose ('{0}: Calling Import-AtwsCmdLet' -F $MyInvocation.MyCommand.Name)
                     
-      Import-AtwsCmdLet -NoDiskCache:$NoDiskCache.IsPresent -RefreshCache:$RefreshCache.IsPresent -Verbose:$Verbose.IsPresent
+      Import-AtwsCmdLet -RefreshCache:$RefreshCache.IsPresent
       
+      # Make sure the current FieldInfoCache is from the current connection
+      # All of that is handled in the FieldInfo function. We do not need the result.
+      $null = Get-AtwsFieldInfo -All
       
       # Check date and time formats and warn if the are different. This will affect how dates as text will be converted to datetime objects
 

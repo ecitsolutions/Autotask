@@ -26,7 +26,7 @@
     Write-Verbose ('{0}: Creating help text for {1}, verb "{0}"' -F $MyInvocation.MyCommand.Name, $Entity.Name, $Verb)
     $RequiredParameters = $FieldInfo.Where({$_.IsRequired -and $_.Name -ne 'id'}).Name
     $PickListParameters = $FieldInfo.Where({$_.IsPickList}).Name
-    $IncomingEntities = ($FieldTable.GetEnumerator() | Where-Object {$_.Value.ReferenceEntityType -eq $Entity.Name}).Key
+    $IncomingEntities = ($Script:FieldInfoCache.GetEnumerator() | Where-Object {$_.Value.FieldInfo.ReferenceEntityType -eq $Entity.Name}).Key
     
     # Get other valid verbs
     $Verbs = @()
