@@ -6,7 +6,7 @@
 
 #>
 
-Function Remove-Data {
+Function Remove-AtwsData {
   <#
       .SYNOPSIS
       This function updates one or more Autotask entities with new or modified properties.
@@ -41,11 +41,10 @@ Function Remove-Data {
   )
     
   Begin { 
-    # Lookup Verbose, WhatIf and other preferences from calling context
-    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
-    
+ 
+    # Check if we are connected before trying anything
     If (-not($Script:Atws.Url)) {
-      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
+      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }
     
     Write-Verbose ('{0}: Start of Function' -F $MyInvocation.MyCommand.Name)

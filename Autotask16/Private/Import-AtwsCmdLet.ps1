@@ -13,10 +13,8 @@ Function Import-AtwsCmdLet
   
   Begin
   { 
-    # Lookup Verbose, WhatIf and other preferences from calling context
-    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
-        
-    Write-Verbose -Message ('{0}: Calling  API.EntityInfo() to get list over available entities.' -F $MyInvocation.MyCommand.Name)
+           
+    Write-Verbose -Message ('{0}: Loading a list over available entities.' -F $MyInvocation.MyCommand.Name)
     
     $Caption = $MyInvocation.MyCommand.Name
     $VerboseDescription = '{0}: Calling API.EntityInfo()' -F $Caption
@@ -24,13 +22,12 @@ Function Import-AtwsCmdLet
 
     If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption))
     {
-      $Entities = Get-AtwsFieldInfo -All
+      $Entities = Get-FieldInfo -All
     }
     Else
     {
       $Entities = @{}
     }
-
 
   } 
   
@@ -63,19 +60,16 @@ Function Import-AtwsCmdLet
         
       If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
       
-        # Have PowerShell convert our dynamically generated code to a scriptblock
-        # (no error checks! Well, you probably notice if something goes wrong...)
-        Foreach ($Function in $FunctionDefinition.GetEnumerator()) {              
+         Foreach ($Function in $FunctionDefinition.GetEnumerator()) {
           . ([ScriptBlock]::Create($Function.Value))
-          Export-ModuleMember -Function $Function.Name
+          Export-ModuleMember -Function $Function.Key
         }
-          
       }
     }        
 
   }
   End
   {
-    Write-Verbose -Message ('{0}: Imported dynamic functions' -F $MyInvocation.MyCommand.Name)
+    Write-Verbose -Message ('{0}: Imported {1} dynamic functions' -F $MyInvocation.MyCommand.Name, $Index)
   }
 }

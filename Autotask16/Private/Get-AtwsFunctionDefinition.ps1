@@ -39,12 +39,7 @@
       $Verbs += 'Set'
     }
 
-    # Add Default PSParameter info to Fields
-    Foreach ($Field in $FieldInfo)
-    {
-      Add-Member -InputObject $Field -MemberType NoteProperty -Name 'ParameterSet' -Value 'By_parameters'
-      Add-Member -InputObject $Field -MemberType NoteProperty -Name 'Mandatory' -Value $Field.IsRequired
-    }
+    
 
     Foreach ($Verb in $Verbs)
     {
@@ -52,12 +47,20 @@
 
       Write-Verbose ('{0}: Creating Function {1}' -F $MyInvocation.MyCommand.Name, $FunctionName)
     
+      $ConfirmImpact = Switch ($Verb)
+      {
+        'New'    {'Medium'}
+        'Remove' {'Low'}
+        'Get'    {'None'}
+        'Set'    {'Medium'}
+      }
+      
       $DefaultParameterSetName = Switch ($Verb)
       {
-        'New'    {'By_parameters' }
+        'New'    {'By_parameters'}
         'Remove' {'Input_Object'}
         'Get'    {'Filter'}
-        'Set'    {'InputObject' }
+        'Set'    {'InputObject'}
       }
      
       $AtwsFunction = New-Object -TypeName PSObject -Property @{
@@ -65,6 +68,7 @@
         Copyright = Get-Copyright
         HelpText = Get-AtwsHelpText -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo -FunctionName $FunctionName
         DefaultParameterSetName = $DefaultParameterSetName 
+        ConfirmImpact = $ConfirmImpact
         Parameters = Get-AtwsParameterDefinition -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo
         Definition = (Get-Command ('{0}-AtwsDefinition' -F $Verb)).Definition -replace '#EntityName',$($Entity.Name)
       }

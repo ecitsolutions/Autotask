@@ -4,9 +4,6 @@
   { 
     $EntityName = '#EntityName'
         
-    # Lookup Verbose, WhatIf and other preferences from calling context
-    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
-
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
     # Set up TimeZone offset handling
@@ -31,7 +28,7 @@
 
   Process
   {
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName -Connection $Prefix
+    $Fields = Get-FieldInfo -Entity $EntityName
 
     Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
     {

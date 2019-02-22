@@ -3,10 +3,7 @@
   Begin
   { 
     $EntityName = '#EntityName'
-        
-    # Lookup Verbose, WhatIf and other preferences from calling context
-    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
-    
+           
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     $ProcessObject = @()
     
@@ -24,7 +21,7 @@
 
   Process
   {
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName -Connection $Prefix
+    $Fields = Get-FieldInfo -Entity $EntityName
     
     If ($InputObject)
     {

@@ -5,7 +5,7 @@
 
 #>
 
-Function Get-Data 
+Function Get-AtwsData 
 {
   <#
       .SYNOPSIS
@@ -63,12 +63,10 @@ Function Get-Data
   )
   Begin
   { 
-    # Lookup Verbose, WhatIf and other preferences from calling context
-    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
-    
+   
     If (-not($Script:Atws.Url))
     {
-      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Run Connect-AutotaskWebAPI first.'
+      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }
     
   }

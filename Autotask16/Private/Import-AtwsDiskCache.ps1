@@ -11,7 +11,7 @@
     # Get the current module name
     $MyModule = (Get-Command -Name $MyInvocation.MyCommand.Name).Module
     
-    $CacheFile = 'FieldInfoCache.xml'
+    $CacheFile = 'AutotaskFieldInfoCache.xml'
     
     $ModuleBase = Split-Path $MyModule.ModuleBase -Parent
     
@@ -28,6 +28,7 @@
   
   Process
   {
+  
     If (-not (Test-Path $PersonalCache))
     {
       Write-Verbose -Message ('{0}: There is no personal cache. Creating from central location.' -F $MyInvocation.MyCommand.Name)
@@ -58,6 +59,6 @@
   
   End
   {
-    Return $PersonalCache
+    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)    
   }
 }
