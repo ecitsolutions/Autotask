@@ -8,12 +8,26 @@ Function Import-AtwsCmdLet
   Param
   (
     [Switch]
-    $RefreshCache
+    $RefreshCache,
+    
+    [Int]
+    $ProgressParentId
   )
   
   Begin
   { 
-           
+    # Prepare parameters for @splatting
+    $ProgressId = 2
+    $ProgressParameters = @{
+      Activity = 'Creating and importing functions for all Autotask entities.'
+      Id = $ProgressId
+    }
+    
+    # Add parentid if supplied
+    If ($ProgressParentId) {
+      $ProgressParameters['ParentId'] = $ProgressParentId
+    }
+          
     Write-Verbose -Message ('{0}: Loading a list over available entities.' -F $MyInvocation.MyCommand.Name)
     
     $Caption = $MyInvocation.MyCommand.Name
@@ -22,7 +36,14 @@ Function Import-AtwsCmdLet
 
     If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption))
     {
-      $Entities = Get-FieldInfo -All
+      If ($ProgressParentId) 
+      { 
+        $Entities = Get-FieldInfo -All -ProgressParentId $ProgressParentId
+      }
+      Else
+      {
+        $Entities = Get-FieldInfo -All
+      }
     }
     Else
     {
@@ -33,11 +54,10 @@ Function Import-AtwsCmdLet
   
   Process
   {
-  
-    $Activity = 'Creating and importing functions for all Autotask entities.'
             
     # Prepare Index for progressbar
     $Index = 0
+    
     Foreach ($CacheEntry in $Entities.GetEnumerator()) {
       # EntityInfo()
       $Entity = $CacheEntry.Value.EntityInfo
@@ -47,10 +67,13 @@ Function Import-AtwsCmdLet
       # Calculating progress percentage and displaying it
       $Index++
       $PercentComplete = $Index / $Entities.Count * 100
-      $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
-      $CurrentOperation = 'Importing {0}' -F $Entity.Name
-        
-      Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
+      
+      # Add parameters for @splatting
+      $ProgressParameters['PercentComplete'] = $PercentComplete
+      $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
+      $ProgressParameters['CurrentOperation'] = 'Importing {0}' -F $Entity.Name
+      
+      Write-Progress @ProgressParameters
       
        
       $VerboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name

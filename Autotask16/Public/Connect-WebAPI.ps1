@@ -6,7 +6,7 @@
 
 #>
 
-Function Connect-AtwsWebAPI {
+Function Connect-WebAPI {
   <#
       .SYNOPSIS
       This function connects to the Autotask Web Services API, authenticates a user and creates a 
@@ -33,12 +33,12 @@ Function Connect-AtwsWebAPI {
       .OUTPUTS
       A webserviceproxy object is created.
       .EXAMPLE
-      Connect-AutotaskWebAPI
+      Connect-AtwsWebAPI
       Prompts for a username and password and authenticates to Autotask
       .EXAMPLE
-      Connect-AutotaskWebAPI
+      Connect-AtwsWebAPI
       .NOTES
-      NAME: Connect-AutotaskWebAPI
+      NAME: Connect-AtwsWebAPI
       .LINK
       Get-AtwsData
   #>
@@ -53,7 +53,10 @@ Function Connect-AtwsWebAPI {
     
     [Parameter(Mandatory = $true)]
     [String]
-    $ApiTrackingIdentifier
+    $ApiTrackingIdentifier,
+
+    [Int]
+    $ProgressParentId
   )
     
   Begin { 
@@ -61,7 +64,7 @@ Function Connect-AtwsWebAPI {
     
     $DefaultUri = 'https://webservices.Autotask.net/atservices/1.6/atws.wsdl'
     
-      # Unless warning level is specified explicitly - Show warnings!
+    # Unless warning level is specified explicitly - Show warnings!
     If (-not ($WarningAction)) {
       $Global:WarningPreference = 'Continue'
     }
@@ -70,15 +73,24 @@ Function Connect-AtwsWebAPI {
     # This is now a REQUIREMENT to talk to the API endpoints
     $Protocol = [System.Net.ServicePointManager]::SecurityProtocol
     If ($Protocol.ToString() -notlike '*Tls12*') { 
-        [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
+      [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
     }
   }
   
   Process { 
-    # Preparing for a progressbar
-    $ProgressActivity = 'Connecting to Autotask Web Services API'
-    $ProgressID = 1
-       
+    ## Preparing for a progressbar
+    # Prepare parameters for @splatting
+    $ProgressParameters = @{
+      Activity = 'Creating and importing functions for all Autotask entities.'
+      Id = 4
+    }
+
+    # Add parentid if supplied
+    If ($ProgressParentId) {
+      $ProgressParameters['ParentId'] = $ProgressParentId
+    }
+    
+    
     # Make sure Windows does not try to add a domain to username
     # Prefix username with a backslash if nobody has added one yet
     # And make sure we stick to the local scope - important when debugging...
@@ -88,7 +100,7 @@ Function Connect-AtwsWebAPI {
     
     # Post progress info to console
     Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $local:Credential.UserName, $DefaultUri)
-    Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter'
+    Write-Progress -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
     
     # First make an unauthenticated call to the DefaultURI to determine correct
     # web services endpoint for the user we are going to authenticate as
@@ -99,7 +111,7 @@ Function Connect-AtwsWebAPI {
     
     # If we get an error the username is almost certainly misspelled or nonexistant
     If ($ZoneInfo.ErrorCode -ne 0) {
-      Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Creating connection' -PercentComplete 100 -CurrentOperation 'Operation failed' 
+      Write-Progress -Status 'Creating connection' -PercentComplete 100 -CurrentOperation 'Operation failed' @ProgressParameters
             
       Throw [ApplicationException] ('Invalid username "{0}". Try again.' -f $local:Credential.UserName)
       
@@ -109,7 +121,7 @@ Function Connect-AtwsWebAPI {
     Write-Verbose ('{0}: Customer tenant ID: {1}, Web URL: {2}, SOAP endpoint: {3}' -F $MyInvocation.MyCommand.Name, $ZoneInfo.CI, $ZoneInfo.WebUrl, $ZoneInfo.Url)
     
     # Post progress to console
-    Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Datacenter located' -PercentComplete 30 -CurrentOperation 'Authenticating to web service'
+    Write-Progress -Status 'Datacenter located' -PercentComplete 30 -CurrentOperation 'Authenticating to web service' @ProgressParameters
           
     # Pick the correct web services endpoint for the current username
     # and change it to point at the WSDL definitoin
@@ -144,7 +156,7 @@ Function Connect-AtwsWebAPI {
    
     Write-Verbose ('{0}: Running query Get-AtwsData -Entity Resource -Filter "username -eq $UserName"' -F $MyInvocation.MyCommand.Name)
     
-    Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection'
+    Write-Progress -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection' @ProgressParameters
        
     # Get username part of credential
     $UserName = $Credential.UserName.Split('@')[0].Trim('\')
@@ -153,7 +165,7 @@ Function Connect-AtwsWebAPI {
     If ($Result) {
     
       # The connection has been verified. Use it to dynamically create functions for all entities
-      Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Connection OK' -PercentComplete 90 -CurrentOperation 'Importing dynamic module'
+      Write-Progress -Status 'Connection OK' -PercentComplete 90 -CurrentOperation 'Importing dynamic module' @ProgressParameters
         
  
       # Check date and time formats and warn if the are different. This will affect how dates as text will be converted to datetime objects
@@ -182,8 +194,8 @@ Function Connect-AtwsWebAPI {
   
   End {
     Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done' 
-    Write-Progress -Id $ProgressID -Activity $ProgressActivity -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done'  -Completed 
+    Write-Progress -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done' @ProgressParameters
+    Write-Progress -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done'  -Completed @ProgressParameters
        
   }
     

@@ -39,7 +39,10 @@ Function Get-FieldInfo {
         ParameterSetName = 'by_Entity'
     )]
     [String]
-    $Entity
+    $Entity,
+    
+    [Int]
+    $ProgressParentId
   )
     
   Begin { 
@@ -86,9 +89,18 @@ Function Get-FieldInfo {
       # entities from scratch
       $CurrentApiVersion = $Script:Atws.GetWsdlVersion()
       If (-not ($Script:Cache[$Script:Atws.CI].ApiVersion -eq $CurrentApiVersion)) {
-              
-        $Activity = 'New API version {0} has been published, old version is {1}. recreating diskcache.' -F $CurrentApiVersion, $Script:Cache[$Script:Atws.CI].ApiVersion
         
+        # Prepare parameters for @splatting
+        $ProgressParameters = @{
+          Activity = ('New API version {0} has been published, old version is {1}. recreating diskcache.' -F $CurrentApiVersion, $Script:Cache[$Script:Atws.CI].ApiVersion)
+          Id = 9
+        }
+
+        # Add parentid if supplied
+        If ($ProgressParentId) {
+          $ProgressParameters['ParentId'] = $ProgressParentId
+        }
+                 
         $script:FieldInfoCache = @{}
         $Entities = $Script:Atws.getEntityInfo()
         
@@ -102,7 +114,7 @@ Function Get-FieldInfo {
           $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
           $CurrentOperation = "GetFieldInfo('{0}')" -F $Object.Name
       
-          Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
+          Write-Progress -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation @ProgressParameters
           
           $Caption = $MyInvocation.MyCommand.Name
           $VerboseDescrition = '{0}: Retreiving detailed field information about entity {1}' -F $Caption, $Object.Name
@@ -142,7 +154,16 @@ Function Get-FieldInfo {
       # entities with picklists
       Else { 
 
-        $Activity = 'All entities has been requested. Updating picklists.'
+        # Prepare parameters for @splatting
+        $ProgressParameters = @{
+          Activity = 'All entities has been requested. Updating picklists.'
+          Id = 9
+        }
+
+        # Add parentid if supplied
+        If ($ProgressParentId) {
+          $ProgressParameters['ParentId'] = $ProgressParentId
+        }
       
         $Entities = $script:FieldInfoCache.GetEnumerator().Where{$_.Value.HasPicklist}
       
@@ -156,7 +177,7 @@ Function Get-FieldInfo {
           $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
           $CurrentOperation = "GetFieldInfo('{0}')" -F $Object.Key
       
-          Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
+          Write-Progress -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation @ProgressParameters
         
           # Is the Cache too old? I.E. older than 15 minutes?
           If($Object.RetrievalTime -lt $CacheExpiry) {
@@ -212,6 +233,8 @@ Function Get-FieldInfo {
     If ($CacheDirty) { 
       Export-AtwsDiskCache
     }
+    
+       
     Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
             
     Return $Result
