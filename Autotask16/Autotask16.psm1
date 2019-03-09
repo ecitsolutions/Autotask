@@ -37,7 +37,7 @@ $ProgressId = 1
 $Activity = 'Loading module'
 
 
-Write-Progress -Activity $Activity -Id $ProgressId -Status 'Importing scripts' -PercentComplete 5 -CurrentOperation 'Sourcing files'
+Write-Progress -Activity $Activity -Id $ProgressId -Status 'Importing scripts' -PercentComplete 10 -CurrentOperation 'Sourcing files'
 
 # Get all function files as file objects
 # Private functions can only be called internally in other functions in the module 
@@ -60,21 +60,21 @@ foreach ($Import in @($PrivateFunction + $PublicFunction))
   }
 }
 
-Write-Progress -Activity $Activity -Id $ProgressId -Status 'Importing scripts' -PercentComplete 10 -CurrentOperation 'Importing static functions'
+Write-Progress -Activity $Activity -Id $ProgressId -Status 'Importing scripts' -PercentComplete 30 -CurrentOperation 'Importing static functions'
 
 
 # Explicitly export public functions
 Export-ModuleMember -Function $PublicFunction.Basename
 
-Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 20 -CurrentOperation 'Connecting to API'
+Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 50 -CurrentOperation 'Connecting to API'
 
 # Connect to the API using required, additional parameters, using internal function name
-. Connect-WebApi -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier -ProgressParentId $ProgressId
+. Connect-WebApi -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
 
-Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 50 -CurrentOperation 'Generating code'
+Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 80 -CurrentOperation 'Generating code'
 
 # Generate all functions and source them. The function exports them in-line, thats why we need to source it.
-. Import-AtwsCmdLet -ProgressParentId $ProgressId
+. Import-AtwsCmdLet
 
 Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 100 -CurrentOperation 'Generating code'
 

@@ -53,10 +53,7 @@ Function Connect-WebAPI {
     
     [Parameter(Mandatory = $true)]
     [String]
-    $ApiTrackingIdentifier,
-
-    [Int]
-    $ProgressParentId
+    $ApiTrackingIdentifier
   )
     
   Begin { 
@@ -84,12 +81,6 @@ Function Connect-WebAPI {
       Activity = 'Creating and importing functions for all Autotask entities.'
       Id = 4
     }
-
-    # Add parentid if supplied
-    If ($ProgressParentId) {
-      $ProgressParameters['ParentId'] = $ProgressParentId
-    }
-    
     
     # Make sure Windows does not try to add a domain to username
     # Prefix username with a backslash if nobody has added one yet
@@ -195,7 +186,6 @@ Function Connect-WebAPI {
   End {
     Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
     Write-Progress -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done' @ProgressParameters
-    Write-Progress -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done'  -Completed @ProgressParameters
        
   }
     

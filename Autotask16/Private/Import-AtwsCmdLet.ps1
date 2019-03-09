@@ -5,29 +5,17 @@ Function Import-AtwsCmdLet
       SupportsShouldProcess = $True,
       ConfirmImpact = 'Medium'
   )]
-  Param
-  (
-    [Switch]
-    $RefreshCache,
-    
-    [Int]
-    $ProgressParentId
-  )
+  Param()
   
   Begin
   { 
     # Prepare parameters for @splatting
     $ProgressId = 2
     $ProgressParameters = @{
-      Activity = 'Creating and importing functions for all Autotask entities.'
+      Activity = 'Creating and importing functions for all Autotask entities with picklists.'
       Id = $ProgressId
     }
-    
-    # Add parentid if supplied
-    If ($ProgressParentId) {
-      $ProgressParameters['ParentId'] = $ProgressParentId
-    }
-          
+                
     Write-Verbose -Message ('{0}: Loading a list over available entities.' -F $MyInvocation.MyCommand.Name)
     
     $Caption = $MyInvocation.MyCommand.Name
@@ -36,14 +24,7 @@ Function Import-AtwsCmdLet
 
     If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption))
     {
-      If ($ProgressParentId) 
-      { 
-        $Entities = Get-FieldInfo -All -ProgressParentId $ProgressParentId
-      }
-      Else
-      {
-        $Entities = Get-FieldInfo -All
-      }
+      $Entities = Get-FieldInfo -Dynamic
     }
     Else
     {
