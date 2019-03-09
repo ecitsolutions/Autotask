@@ -107,9 +107,24 @@
             { $Filter += '-contains'}
             ElseIf ($Parameter.Key -in $IsThisDay)
             { $Filter += '-isthisday'}
+            ElseIf ($Parameter.Key -in $IsNull -and $Parameter.Key -eq 'UserDefinedField')
+            {
+              $Filter += '-IsNull'
+              $IsNull = $IsNull.Where({$_ -ne 'UserDefinedField'})
+            }
+            ElseIf ($Parameter.Key -in $IsNotNull -and $Parameter.Key -eq 'UserDefinedField')
+            {
+              $Filter += '-IsNotNull'
+              $IsNotNull = $IsNotNull.Where({$_ -ne 'UserDefinedField'})
+            }
             Else
             { $Filter += '-eq'}
-            $Filter += $Value
+            
+            # Add Value to expression, unless this is a UserDefinedfield AND UserDefinedField has been
+            # specified for -IsNull or -IsNotNull
+            If ($Filter[-1] -notin @('-IsNull','-IsNotNull'))
+            {$Filter += $Value}
+
             If ($Parameter.Value.Count -gt 1 -and $ParameterValue -ne $Parameter.Value[-1]) {
               $Filter += $Operator
             }

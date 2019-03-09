@@ -165,26 +165,31 @@
     # Make modifying operators possible
     If ($Verb -eq 'Get') {
       # These operators work for all fields (add quote characters here)
+      $Labels = $Fields | Select-Object -ExpandProperty Name
+      If ($Entity.HasUserDefinedFields) {$Labels += 'UserDefinedField'}
       Foreach ($Operator in 'NotEquals', 'IsNull', 'IsNotNull') {
-        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Fields.Name
+        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels
       }
 
       # These operators work for all fields except boolean (add quote characters here)
-      $Labels = $Fields | Where-Object { $_.Type -ne 'boolean' }
+      $Labels = $Fields | Where-Object { $_.Type -ne 'boolean' } | Select-Object -ExpandProperty Name
+      If ($Entity.HasUserDefinedFields) {$Labels += 'UserDefinedField'}
       Foreach ($Operator in 'GreaterThan', 'GreaterThanOrEquals', 'LessThan', 'LessThanOrEquals') {
-        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
+        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels
       }
 
       # These operators only work for strings (add quote characters here)
-      $Labels = $Fields | Where-Object { $_.Type -eq 'string' }
+      $Labels = $Fields | Where-Object { $_.Type -eq 'string' } | Select-Object -ExpandProperty Name
+      If ($Entity.HasUserDefinedFields) {$Labels += 'UserDefinedField'}
       Foreach ($Operator in 'Like', 'NotLike', 'BeginsWith', 'EndsWith', 'Contains') {
-        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
+        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels
       }
       
       # This operator only work for datetime (add quote characters here)
-      $Labels = $Fields | Where-Object { $_.Type -eq 'datetime' }
+      $Labels = $Fields | Where-Object { $_.Type -eq 'datetime' } | Select-Object -ExpandProperty Name
+      If ($Entity.HasUserDefinedFields) {$Labels += 'UserDefinedField'}
       Foreach ($Operator in 'IsThisDay') {
-        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels.Name
+        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'String' -Array -ValidateSet $Labels
       }
     }
   }
