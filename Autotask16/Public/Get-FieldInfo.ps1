@@ -188,9 +188,10 @@ Function Get-FieldInfo {
       Foreach ($Object in $Script:FieldInfoCache.GetEnumerator())
       {
         $IsReferencing = $Object.Value.FieldInfo.Where({$_.ReferenceEntityType -eq $Entity})
-        If($IsReferencing)
+        # Include the fieldname. Or we will never be able to make this work
+        Foreach($Ref in $IsReferencing)
         {
-          $Result += $Object.Name
+          $Result += '{0}:{1}' -F $Object.Name, $Ref.Name
         }
       }
     }
