@@ -5,15 +5,14 @@
 [CmdletBinding()]
 Param(
   [Parameter(
-      Mandatory = $true,
+      Mandatory = $True,
       Position = 0
   )]
-  [ValidateNotNullOrEmpty()]    
-  [pscredential]
+ [pscredential]
   $Credential,
     
   [Parameter(
-      Mandatory = $true,
+      Mandatory = $True,
       Position = 1  
   )]
   [String]
@@ -62,14 +61,14 @@ foreach ($Import in @($PrivateFunction + $PublicFunction))
 
 Write-Progress -Activity $Activity -Id $ProgressId -Status 'Importing scripts' -PercentComplete 30 -CurrentOperation 'Importing static functions'
 
-
 # Explicitly export public functions
 Export-ModuleMember -Function $PublicFunction.Basename
-
+  
+  
 Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 50 -CurrentOperation 'Connecting to API'
-
+  
 # Connect to the API using required, additional parameters, using internal function name
-. Connect-WebApi -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
+. Connect-AtwsWebServices -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
 
 Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 80 -CurrentOperation 'Generating code'
 

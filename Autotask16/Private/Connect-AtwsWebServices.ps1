@@ -6,7 +6,7 @@
 
 #>
 
-Function Connect-WebAPI {
+Function Connect-AtwsWebServices {
   <#
       .SYNOPSIS
       This function connects to the Autotask Web Services API, authenticates a user and creates a 
@@ -44,6 +44,7 @@ Function Connect-WebAPI {
   #>
 	
   [cmdletbinding()]
+  [Alias('Connect-AutotaskWebAPI')]
   Param
   (
     [Parameter(Mandatory = $true)]
