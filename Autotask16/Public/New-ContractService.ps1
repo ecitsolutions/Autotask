@@ -25,8 +25,8 @@ To create a new ContractService you need the following required fields:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-InstalledProduct
- ContractServiceAdjustment
+ContractServiceAdjustment
+ InstalledProduct
  TicketCost
  ContractServiceUnit
  ProjectCost

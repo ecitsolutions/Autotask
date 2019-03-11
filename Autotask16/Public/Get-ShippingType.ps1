@@ -89,6 +89,19 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     [String]
     $GetReferenceEntityById,
 
+# Return entities of selected type that are referencing to this entity.
+    [Parameter(
+      ParameterSetName = 'Filter'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Alias('External')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateSet('PurchaseOrder:ShippingType', 'QuoteItem:ShippingID')]
+    [String]
+    $GetExternalEntityByThisEntityId,
+
 # Return all objects in one query
     [Parameter(
       ParameterSetName = 'Get_all'
@@ -96,7 +109,7 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     [Switch]
     $All,
 
-# Add descriptions for all picklist attributes with values
+# Do not add descriptions for all picklist attributes with values
     [Parameter(
       ParameterSetName = 'Filter'
     )]
@@ -107,7 +120,7 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
       ParameterSetName = 'By_parameters'
     )]
     [Switch]
-    $AddPickListLabel,
+    $NoPickListLabel,
 
 # shipping_type_id
     [Parameter(
@@ -244,7 +257,7 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
-   # Set up TimeZone offset handling
+    # Set up TimeZone offset handling
     If (-not($script:ESTzone)) {
       $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
     }
@@ -345,9 +358,24 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
             { $Filter += '-contains'}
             ElseIf ($Parameter.Key -in $IsThisDay)
             { $Filter += '-isthisday'}
+            ElseIf ($Parameter.Key -in $IsNull -and $Parameter.Key -eq 'UserDefinedField')
+            {
+              $Filter += '-IsNull'
+              $IsNull = $IsNull.Where({$_ -ne 'UserDefinedField'})
+            }
+            ElseIf ($Parameter.Key -in $IsNotNull -and $Parameter.Key -eq 'UserDefinedField')
+            {
+              $Filter += '-IsNotNull'
+              $IsNotNull = $IsNotNull.Where({$_ -ne 'UserDefinedField'})
+            }
             Else
             { $Filter += '-eq'}
-            $Filter += $Value
+            
+            # Add Value to expression, unless this is a UserDefinedfield AND UserDefinedField has been
+            # specified for -IsNull or -IsNotNull
+            If ($Filter[-1] -notin @('-IsNull','-IsNotNull'))
+            {$Filter += $Value}
+
             If ($Parameter.Value.Count -gt 1 -and $ParameterValue -ne $Parameter.Value[-1]) {
               $Filter += $Operator
             }
@@ -449,14 +477,17 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
         $GetReferenceEntityById) -WarningAction Continue
       }
       $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
-      $ReferenceResult = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter -Connection $Prefix 
-      If ($ReferenceResult)
-      {
-        $Result = $ReferenceResult
-      }
+      $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
     }
+    ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
+    {
+      Write-Verbose ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+      $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
+      $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
+      $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
+     }
     # Do the user want labels along with index values for Picklists?
-    ElseIf ( ($Result) -and ($AddPickListLabel))
+    ElseIf ( ($Result) -and -not ($NoPickListLabel))
     {
       Foreach ($Field in $Fields.Where{$_.IsPickList})
       {
@@ -464,16 +495,7 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
         Foreach ($Item in $Result)
         {
           $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
-                    
-          $Exists = Get-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName
-          If (-not ($Exists))
-          {
-            Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value
-          }
-          Else
-          {
-            $Item.$FieldName = $Value
-          }
+          Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
           
         }
       }

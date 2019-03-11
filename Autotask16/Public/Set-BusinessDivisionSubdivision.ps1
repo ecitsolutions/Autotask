@@ -17,12 +17,10 @@ This function one or more objects of type [Autotask.BusinessDivisionSubdivision]
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-SalesOrder
- Project
+Project
  Opportunity
- Contract
  TicketCategoryFieldDefaults
- BusinessDivisionSubdivisionResource
+ Contract
  Subscription
  BillingItem
  ContractMilestone
@@ -30,9 +28,11 @@ SalesOrder
  ContractServiceUnit
  ProjectCost
  Ticket
+ BusinessDivisionSubdivisionResource
  ContractCost
  ExpenseReport
  ContractServiceBundleUnit
+ SalesOrder
 
 .INPUTS
 [Autotask.BusinessDivisionSubdivision[]]. This function takes one or more objects as input. Pipeline is supported.

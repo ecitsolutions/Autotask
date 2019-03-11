@@ -17,9 +17,9 @@ This function one or more objects of type [Autotask.InventoryLocation] as input.
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-InventoryItem
+InventoryTransfer
+ InventoryItem
  PurchaseOrderItem
- InventoryTransfer
 
 .INPUTS
 [Autotask.InventoryLocation[]]. This function takes one or more objects as input. Pipeline is supported.

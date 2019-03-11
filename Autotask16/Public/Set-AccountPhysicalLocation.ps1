@@ -17,10 +17,10 @@ This function one or more objects of type [Autotask.AccountPhysicalLocation] as 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-InstalledProduct
- Contact
+Contact
  Account
  ServiceCall
+ InstalledProduct
  Ticket
 
 .INPUTS

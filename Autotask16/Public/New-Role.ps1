@@ -28,21 +28,21 @@ To create a new Role you need the following required fields:
 Entities that have fields that refer to the base entity of this CmdLet:
 
 ContractFactor
+ ContractRate
  ResourceServiceDeskRole
+ ResourceRoleQueue
  PriceListRole
  TaskSecondaryResource
  ResourceRole
  BillingItem
  TicketSecondaryResource
  Ticket
- ContractExclusionRole
- Resource
  QuoteItem
  TimeEntry
- ResourceRoleQueue
- ContractRoleCost
+ Resource
  Task
- ContractRate
+ ContractRoleCost
+ ContractExclusionRole
  ResourceRoleDepartment
 
 .INPUTS

@@ -17,8 +17,8 @@ This function deletes a HolidaySet through the Autotask Web Services API.
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-BusinessLocation
- Holiday
+Holiday
+ BusinessLocation
 
 .INPUTS
 [Autotask.HolidaySet[]]. This function takes objects as input. Pipeline is supported.
