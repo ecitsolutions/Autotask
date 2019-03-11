@@ -54,7 +54,23 @@
     Else {
       Throw [System.Exception] "Coult not create a cache file."
     }
-
+    
+    If ($Script:Atws)
+    {
+      
+      # If the API version has been changed at the Autotask end we unfortunately have to reload all
+      # entities from scratch
+      $CurrentApiVersion = $Script:Atws.GetWsdlVersion()
+      If (-not ($Script:Cache[$Script:Atws.CI].ApiVersion -eq $CurrentApiVersion)) {
+        
+        # Call the import-everything function
+        Import-AtwsAPIVersionToCache
+        
+        # Write-Warning to inform user that an update of static functions is due
+        Write-Warning ('{0}: API version has been updated. You need to run Update-AtwsStaticFunctions with writepermissions to the module directory or update the module.' -F $MyInvocation.MyCommand.Name) 
+        
+      }
+    }
   }
   
   End
