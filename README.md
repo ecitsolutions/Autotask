@@ -1,7 +1,40 @@
+# Basics
+
+Install the module from PowerShell Gallery (the published module version may lag a few days behind this code tree):
+
+```powershell
+# Download and install the module
+Install-Module Autotask
+
+# Connect to the Autotask Web Services API and load the module
+# The first time you connect a disk cache will be created
+$Credential = Get-Credential
+$ApiKey = "<the API identifier from your resource in Autotask>"
+Import-Module Autotask -Variable $Credential, $ApiKey 
+
+# Lots of entities has picklists that are unique to your tenant
+# When a picklist has been changed you will want to refresh the disk cache
+
+Import-Module Autotask -Variable $Credential, $ApiKey, 'Account'
+
+# Refresh more than 1 entity
+Import-Module Autotask -Variable $Credential, $ApiKey, 'Account', 'Contact'
+
+# Use wildcards
+Import-Module Autotask -Variable $Credential, $ApiKey, 'Acc*'
+
+# Refresh all entities with picklists
+Import-Module Autotask -Variable $Credential, $ApiKey, 'Acc*'
+
+# Refresh EVERYTHING 
+Update-AtwsDiskCache
+```
+
 # Release notes
 
 ## Version 1.6.1.1 - New Cache Model
 
+- IMPORTANT: Module structure and load method has changed. Pass Credentials to Import-Module using -Variable: Import-Module Autotask -Variable $Credentials, $ApiKey (Connect-AutotaskWebAPI is still there as a wrapper for backwards compatibility).
 - FEATURE: New cache model. The module caches entity info to disk, not functions.
 - FEATURE: SPEED! Module load time has improved a LOT! Not all entities change all the time. Entities that does not have any picklist parameters are pre-built and included in the module to speed up module load time.
 - FEATURE: You can use -IsNull and wildcards with UserDefinedFields (Finally!)

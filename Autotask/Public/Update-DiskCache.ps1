@@ -1,4 +1,4 @@
-﻿Function Update-AtwsDiskCache {
+﻿Function Update-DiskCache {
   <#
       .SYNOPSIS
       This function reads all entities with detailed fieldinfo and writes everything to disk.
