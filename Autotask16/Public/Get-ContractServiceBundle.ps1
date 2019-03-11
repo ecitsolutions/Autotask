@@ -38,8 +38,8 @@ InstalledProduct
  TicketCost
  ContractServiceBundleAdjustment
  ProjectCost
- ContractCost
  Ticket
+ ContractCost
  TimeEntry
  ContractServiceBundleUnit
 
@@ -108,7 +108,7 @@ Set-ContractServiceBundle
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProduct:ContractServiceBundleID', 'TicketCost:ContractServiceBundleID', 'ContractServiceBundleAdjustment:ContractServiceBundleID', 'ProjectCost:ContractServiceBundleID', 'ContractCost:ContractServiceBundleID', 'Ticket:ContractServiceBundleID', 'TimeEntry:ContractServiceBundleID', 'ContractServiceBundleUnit:ContractServiceBundleID')]
+    [ValidateSet('InstalledProduct:ContractServiceBundleID', 'TicketCost:ContractServiceBundleID', 'ContractServiceBundleAdjustment:ContractServiceBundleID', 'ProjectCost:ContractServiceBundleID', 'Ticket:ContractServiceBundleID', 'ContractCost:ContractServiceBundleID', 'TimeEntry:ContractServiceBundleID', 'ContractServiceBundleUnit:ContractServiceBundleID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

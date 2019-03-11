@@ -34,10 +34,10 @@ Properties with picklists are:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-Contact
+InstalledProduct
+ Contact
  Account
  ServiceCall
- InstalledProduct
  Ticket
 
 .INPUTS
@@ -107,7 +107,7 @@ Set-AccountPhysicalLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Contact:AccountPhysicalLocationID', 'Account:BillToAccountPhysicalLocationID', 'ServiceCall:AccountPhysicalLocationID', 'InstalledProduct:AccountPhysicalLocationID', 'Ticket:AccountPhysicalLocationID')]
+    [ValidateSet('InstalledProduct:AccountPhysicalLocationID', 'Contact:AccountPhysicalLocationID', 'Account:BillToAccountPhysicalLocationID', 'ServiceCall:AccountPhysicalLocationID', 'Ticket:AccountPhysicalLocationID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

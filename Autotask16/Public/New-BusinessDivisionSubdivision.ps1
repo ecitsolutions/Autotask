@@ -28,18 +28,18 @@ Entities that have fields that refer to the base entity of this CmdLet:
 SalesOrder
  Project
  Opportunity
- TicketCategoryFieldDefaults
  Contract
+ TicketCategoryFieldDefaults
+ BusinessDivisionSubdivisionResource
  Subscription
  BillingItem
  ContractMilestone
  TicketCost
  ContractServiceUnit
  ProjectCost
- BusinessDivisionSubdivisionResource
+ Ticket
  ContractCost
  ExpenseReport
- Ticket
  ContractServiceBundleUnit
 
 .INPUTS

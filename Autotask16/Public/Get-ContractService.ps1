@@ -34,13 +34,13 @@ Properties with picklists are:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-ContractServiceAdjustment
- InstalledProduct
+InstalledProduct
+ ContractServiceAdjustment
  TicketCost
  ContractServiceUnit
  ProjectCost
- ContractCost
  Ticket
+ ContractCost
  TimeEntry
 
 .INPUTS
@@ -108,7 +108,7 @@ Set-ContractService
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractServiceAdjustment:ContractServiceID', 'InstalledProduct:ContractServiceID', 'TicketCost:ContractServiceID', 'ContractServiceUnit:ContractServiceID', 'ProjectCost:ContractServiceID', 'ContractCost:ContractServiceID', 'Ticket:ContractServiceID', 'TimeEntry:ContractServiceID')]
+    [ValidateSet('InstalledProduct:ContractServiceID', 'ContractServiceAdjustment:ContractServiceID', 'TicketCost:ContractServiceID', 'ContractServiceUnit:ContractServiceID', 'ProjectCost:ContractServiceID', 'Ticket:ContractServiceID', 'ContractCost:ContractServiceID', 'TimeEntry:ContractServiceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

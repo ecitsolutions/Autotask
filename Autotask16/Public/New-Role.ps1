@@ -34,14 +34,14 @@ ContractFactor
  ResourceRole
  BillingItem
  TicketSecondaryResource
- Resource
  Ticket
+ ContractExclusionRole
+ Resource
  QuoteItem
  TimeEntry
  ResourceRoleQueue
  ContractRoleCost
  Task
- ContractExclusionRole
  ContractRate
  ResourceRoleDepartment
 

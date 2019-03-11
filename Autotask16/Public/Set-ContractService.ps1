@@ -17,13 +17,13 @@ This function one or more objects of type [Autotask.ContractService] as input. Y
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-ContractServiceAdjustment
- InstalledProduct
+InstalledProduct
+ ContractServiceAdjustment
  TicketCost
  ContractServiceUnit
  ProjectCost
- ContractCost
  Ticket
+ ContractCost
  TimeEntry
 
 .INPUTS

@@ -25,10 +25,10 @@ To create a new AccountPhysicalLocation you need the following required fields:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-Contact
+InstalledProduct
+ Contact
  Account
  ServiceCall
- InstalledProduct
  Ticket
 
 .INPUTS

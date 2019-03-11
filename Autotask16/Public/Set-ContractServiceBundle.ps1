@@ -21,8 +21,8 @@ InstalledProduct
  TicketCost
  ContractServiceBundleAdjustment
  ProjectCost
- ContractCost
  Ticket
+ ContractCost
  TimeEntry
  ContractServiceBundleUnit
 
