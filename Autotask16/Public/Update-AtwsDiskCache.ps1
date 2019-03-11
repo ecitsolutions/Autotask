@@ -121,7 +121,7 @@
           
       If ($Object.Value.EntityInfo.HasUserDefinedFields)
       {
-        $Object.UserDefinedFields = $Null
+        $Object.Value.UDFInfo = $Null
       }
     }
         
