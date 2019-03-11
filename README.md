@@ -24,7 +24,7 @@ Import-Module Autotask -Variable $Credential, $ApiKey, 'Account', 'Contact'
 Import-Module Autotask -Variable $Credential, $ApiKey, 'Acc*'
 
 # Refresh all entities with picklists
-Import-Module Autotask -Variable $Credential, $ApiKey, 'Acc*'
+Import-Module Autotask -Variable $Credential, $ApiKey, '*'
 
 # Refresh EVERYTHING 
 Update-AtwsDiskCache
