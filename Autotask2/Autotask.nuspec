@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+<metadata>
+    <id>Autotask</id>
+        <version>0.2.2.4</version>
+        <authors>Hugo Klemmestad, Kristoffer Ryeng</authors>
+        <owners>klemmestad, kristofferoch</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>PowerShell module for connecting to and interacting with the Autotask Web Services API</description>
+        <releaseNotes>PowerShell module for connecting to and interacting with the Autotask Web Services API. Initial release.</releaseNotes>
+        <copyright>Copyright 2017 Office Center </copyright>
+        <tags>OCH automatisering, Autotask, Dynamic Module, SOAP</tags>
+    </metadata>
+</package>
