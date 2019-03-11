@@ -16,7 +16,7 @@ Param(
   [String]
   $ApiTrackingIdentifier = $Global:AtwsApiTrackingIdentifier,
 
-    [Parameter(
+  [Parameter(
       Position = 2,
       ValueFromRemainingArguments = $True
   )]
@@ -86,10 +86,6 @@ If ($Credential)
     Foreach ($String in $EntityName)
     {
       $EntitiesToProcess += $Entities.GetEnumerator().Where({$_.Key -like $String})
-      Foreach ($EntityToProcess in $EntitiesToProcess)
-      {
-        $null = Get-FieldInfo -Entity $EntityToProcess.Key -UpdateCache
-      }
     }
     # Prepare Index for progressbar
     $Index = 0
@@ -123,6 +119,10 @@ Else
   # Not connected; only export connect wrapper
   Export-ModuleMember -Function 'Connect-WebAPI'
 }
+
+# Backwards compatibility since we are now using built-in module prefix support
+Set-Alias -Scope Global -Name 'Connect-AutotaskWebAPI' -Value 'Connect-AtwsWebAPI'
+
 
 # Restore Previous preference
 If ($OldPreference -ne $VerbosePreference) {
