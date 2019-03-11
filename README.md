@@ -7,6 +7,8 @@
 - FEATURE: You can use -IsNull and wildcards with UserDefinedFields (Finally!)
 - FEATURE: Is is now a single module. You pass your credentials directly to Import-Module to load everything in one go. Old behavior with Connect-AutotaskWebAPI is supported for backwards compatibility using aliases.
 - FEATURE: The module now uses built-in prefix support in Import-Module. Import the module multiple times using different credentials and prefixes for complex, cross-tenant work (requires using -Force with Import-Module).
+- FEATURE: Get entities that are referring TO any entity. Get AccountLocation by querying for the right Account(s).
+- FEATURE: PickList labels are added to any entity by default.
 - Changed version number scheme to follow API version number.
 - Minor bugfixes.
 
