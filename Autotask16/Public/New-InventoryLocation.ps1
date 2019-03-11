@@ -25,9 +25,9 @@ To create a new InventoryLocation you need the following required fields:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-InventoryTransfer
- InventoryItem
+InventoryItem
  PurchaseOrderItem
+ InventoryTransfer
 
 .INPUTS
 Nothing. This function only takes parameters.

@@ -39,8 +39,8 @@ ContractServiceAdjustment
  TicketCost
  ContractServiceUnit
  ProjectCost
- Ticket
  ContractCost
+ Ticket
  TimeEntry
 
 .INPUTS
@@ -108,7 +108,7 @@ Set-ContractService
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractServiceAdjustment:ContractServiceID', 'InstalledProduct:ContractServiceID', 'TicketCost:ContractServiceID', 'ContractServiceUnit:ContractServiceID', 'ProjectCost:ContractServiceID', 'Ticket:ContractServiceID', 'ContractCost:ContractServiceID', 'TimeEntry:ContractServiceID')]
+    [ValidateSet('ContractServiceAdjustment:ContractServiceID', 'InstalledProduct:ContractServiceID', 'TicketCost:ContractServiceID', 'ContractServiceUnit:ContractServiceID', 'ProjectCost:ContractServiceID', 'ContractCost:ContractServiceID', 'Ticket:ContractServiceID', 'TimeEntry:ContractServiceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

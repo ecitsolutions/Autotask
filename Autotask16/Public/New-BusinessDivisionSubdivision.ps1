@@ -25,7 +25,8 @@ To create a new BusinessDivisionSubdivision you need the following required fiel
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-Project
+SalesOrder
+ Project
  Opportunity
  TicketCategoryFieldDefaults
  Contract
@@ -35,12 +36,11 @@ Project
  TicketCost
  ContractServiceUnit
  ProjectCost
- Ticket
  BusinessDivisionSubdivisionResource
  ContractCost
  ExpenseReport
+ Ticket
  ContractServiceBundleUnit
- SalesOrder
 
 .INPUTS
 Nothing. This function only takes parameters.

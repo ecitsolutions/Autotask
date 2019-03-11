@@ -18,21 +18,21 @@ This function one or more objects of type [Autotask.Role] as input. You can pipe
 Entities that have fields that refer to the base entity of this CmdLet:
 
 ContractFactor
- ContractRate
  ResourceServiceDeskRole
- ResourceRoleQueue
  PriceListRole
  TaskSecondaryResource
  ResourceRole
  BillingItem
  TicketSecondaryResource
+ Resource
  Ticket
  QuoteItem
  TimeEntry
- Resource
- Task
+ ResourceRoleQueue
  ContractRoleCost
+ Task
  ContractExclusionRole
+ ContractRate
  ResourceRoleDepartment
 
 .INPUTS

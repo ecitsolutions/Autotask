@@ -5,13 +5,13 @@ Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code fro
 See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
-Function Get-InventoryLocation
+Function Get-AccountLocation
 {
 
 
 <#
 .SYNOPSIS
-This function get one or more InventoryLocation through the Autotask Web Services API.
+This function get one or more AccountLocation through the Autotask Web Services API.
 .DESCRIPTION
 This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.
 
@@ -34,37 +34,32 @@ Properties with picklists are:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-InventoryItem
- PurchaseOrderItem
- InventoryTransfer
 
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.InventoryLocation[]]. This function outputs the Autotask.InventoryLocation that was returned by the API.
+[Autotask.AccountLocation[]]. This function outputs the Autotask.AccountLocation that was returned by the API.
 .EXAMPLE
-Get-InventoryLocation -Id 0
+Get-AccountLocation -Id 0
 Returns the object with Id 0, if any.
  .EXAMPLE
-Get-InventoryLocation -InventoryLocationName SomeName
-Returns the object with InventoryLocationName 'SomeName', if any.
+Get-AccountLocation -AccountLocationName SomeName
+Returns the object with AccountLocationName 'SomeName', if any.
  .EXAMPLE
-Get-InventoryLocation -InventoryLocationName 'Some Name'
-Returns the object with InventoryLocationName 'Some Name', if any.
+Get-AccountLocation -AccountLocationName 'Some Name'
+Returns the object with AccountLocationName 'Some Name', if any.
  .EXAMPLE
-Get-InventoryLocation -InventoryLocationName 'Some Name' -NotEquals InventoryLocationName
-Returns any objects with a InventoryLocationName that is NOT equal to 'Some Name', if any.
+Get-AccountLocation -AccountLocationName 'Some Name' -NotEquals AccountLocationName
+Returns any objects with a AccountLocationName that is NOT equal to 'Some Name', if any.
  .EXAMPLE
-Get-InventoryLocation -InventoryLocationName SomeName* -Like InventoryLocationName
-Returns any object with a InventoryLocationName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AccountLocation -AccountLocationName SomeName* -Like AccountLocationName
+Returns any object with a AccountLocationName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-InventoryLocation -InventoryLocationName SomeName* -NotLike InventoryLocationName
-Returns any object with a InventoryLocationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AccountLocation -AccountLocationName SomeName* -NotLike AccountLocationName
+Returns any object with a AccountLocationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
 .LINK
-New-InventoryLocation
- .LINK
-Set-InventoryLocation
+Set-AccountLocation
 
 #>
 
@@ -90,7 +85,7 @@ Set-InventoryLocation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ResourceID')]
+    [ValidateSet('AccountID')]
     [String]
     $GetReferenceEntityById,
 
@@ -103,7 +98,6 @@ Set-InventoryLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InventoryItem:InventoryLocationID', 'PurchaseOrderItem:InventoryLocationID', 'InventoryTransfer:FromLocationID', 'InventoryTransfer:ToLocationID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -127,7 +121,16 @@ Set-InventoryLocation
     [Switch]
     $NoPickListLabel,
 
-# LocationID
+# A single user defined field can be used pr query
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [ValidateNotNullOrEmpty()]
+    [Autotask.UserDefinedField]
+    $UserDefinedField,
+
+# Client ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
@@ -135,131 +138,117 @@ Set-InventoryLocation
     [long[]]
     $id,
 
-# Location Name
+# Client Name
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,50)]
+    [ValidateLength(1,100)]
     [string[]]
     $LocationName,
 
-# Active
+# AccountID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [boolean[]]
-    $Active,
-
-# IsDefault
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [boolean[]]
-    $IsDefault,
-
-# Resource ID
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
     [Int[]]
-    $ResourceID,
+    $AccountID,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [String[]]
     $NotEquals,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [String[]]
     $IsNull,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [String[]]
     $IsNotNull,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [String[]]
     $GreaterThan,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [String[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [String[]]
     $LessThan,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [String[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('LocationNameUserDefinedField')]
     [String[]]
     $Like,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('LocationNameUserDefinedField')]
     [String[]]
     $NotLike,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('LocationNameUserDefinedField')]
     [String[]]
     $BeginsWith,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('LocationNameUserDefinedField')]
     [String[]]
     $EndsWith,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('LocationNameUserDefinedField')]
     [String[]]
     $Contains,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [ValidateSet('UserDefinedField')]
     [String[]]
     $IsThisDay
   )
 
   Begin
   { 
-    $EntityName = 'InventoryLocation'
+    $EntityName = 'AccountLocation'
 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         

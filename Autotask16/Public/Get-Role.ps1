@@ -35,21 +35,21 @@ Properties with picklists are:
 Entities that have fields that refer to the base entity of this CmdLet:
 
 ContractFactor
- ContractRate
  ResourceServiceDeskRole
- ResourceRoleQueue
  PriceListRole
  TaskSecondaryResource
  ResourceRole
  BillingItem
  TicketSecondaryResource
+ Resource
  Ticket
  QuoteItem
  TimeEntry
- Resource
- Task
+ ResourceRoleQueue
  ContractRoleCost
+ Task
  ContractExclusionRole
+ ContractRate
  ResourceRoleDepartment
 
 .INPUTS
@@ -117,7 +117,7 @@ Set-Role
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractFactor:RoleID', 'ContractRate:RoleID', 'ResourceServiceDeskRole:RoleID', 'ResourceRoleQueue:RoleID', 'PriceListRole:RoleID', 'TaskSecondaryResource:RoleID', 'ResourceRole:RoleID', 'BillingItem:RoleID', 'TicketSecondaryResource:RoleID', 'Ticket:AssignedResourceRoleID', 'QuoteItem:LaborID', 'TimeEntry:RoleID', 'Resource:DefaultServiceDeskRoleID', 'Task:AssignedResourceRoleID', 'ContractRoleCost:RoleID', 'ContractExclusionRole:RoleID', 'ResourceRoleDepartment:RoleID')]
+    [ValidateSet('ContractFactor:RoleID', 'ResourceServiceDeskRole:RoleID', 'PriceListRole:RoleID', 'TaskSecondaryResource:RoleID', 'ResourceRole:RoleID', 'BillingItem:RoleID', 'TicketSecondaryResource:RoleID', 'Resource:DefaultServiceDeskRoleID', 'Ticket:AssignedResourceRoleID', 'QuoteItem:LaborID', 'TimeEntry:RoleID', 'ResourceRoleQueue:RoleID', 'ContractRoleCost:RoleID', 'Task:AssignedResourceRoleID', 'ContractExclusionRole:RoleID', 'ContractRate:RoleID', 'ResourceRoleDepartment:RoleID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

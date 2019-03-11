@@ -17,8 +17,8 @@ This function one or more objects of type [Autotask.HolidaySet] as input. You ca
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-Holiday
- BusinessLocation
+BusinessLocation
+ Holiday
 
 .INPUTS
 [Autotask.HolidaySet[]]. This function takes one or more objects as input. Pipeline is supported.

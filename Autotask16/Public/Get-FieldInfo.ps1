@@ -293,11 +293,11 @@ Function Get-FieldInfo {
         }
         'get_Static'
         {
-          $script:FieldInfoCache.GetEnumerator() | Where-Object {-not $_.Value.HasPickList -and -not $_.Value.EntityInfo.HasUserDefinedFields}
+          $script:FieldInfoCache.GetEnumerator() | Where-Object {-not $_.Value.HasPickList}
         }
         'get_Dynamic'
         {
-          $script:FieldInfoCache.GetEnumerator() | Where-Object {$_.Value.HasPickList -or $_.Value.EntityInfo.HasUserDefinedFields}
+          $script:FieldInfoCache.GetEnumerator() | Where-Object {$_.Value.HasPickList}
         }
       } 
     }

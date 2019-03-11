@@ -24,8 +24,8 @@ To create a new HolidaySet you need the following required fields:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-Holiday
- BusinessLocation
+BusinessLocation
+ Holiday
 
 .INPUTS
 Nothing. This function only takes parameters.

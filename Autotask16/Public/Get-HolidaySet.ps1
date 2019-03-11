@@ -34,8 +34,8 @@ Properties with picklists are:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-Holiday
- BusinessLocation
+BusinessLocation
+ Holiday
 
 .INPUTS
 Nothing. This function only takes parameters.
@@ -103,7 +103,7 @@ Set-HolidaySet
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Holiday:HolidaySetID', 'BusinessLocation:HolidaySetID')]
+    [ValidateSet('BusinessLocation:HolidaySetID', 'Holiday:HolidaySetID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

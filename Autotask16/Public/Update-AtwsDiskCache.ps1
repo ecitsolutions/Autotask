@@ -114,12 +114,12 @@
     # Clean Instance specific info from Base
     Foreach ($Object in $Base.GetEnumerator().Where({$_.Value.HasPickList -or $_.Value.EntityInfo.HasUserDefinedFields}))
     {
-      Foreach ($PickList in $Object.FieldInfo.Where({$_.IsPickList}))
+      Foreach ($PickList in $Object.Value.FieldInfo.Where({$_.IsPickList}))
       {
         $PickList.PicklistValues = $Null
       }
           
-      If ($Object.EntityInfo.HasUserDefinedFields)
+      If ($Object.Value.EntityInfo.HasUserDefinedFields)
       {
         $Object.UserDefinedFields = $Null
       }

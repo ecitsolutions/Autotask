@@ -30,8 +30,8 @@ ContractServiceAdjustment
  TicketCost
  ContractServiceUnit
  ProjectCost
- Ticket
  ContractCost
+ Ticket
  TimeEntry
 
 .INPUTS
