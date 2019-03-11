@@ -5,18 +5,23 @@
 [CmdletBinding()]
 Param(
   [Parameter(
-      Mandatory = $True,
       Position = 0
   )]
- [pscredential]
-  $Credential,
+  [pscredential]
+  $Credential = $Global:AtwsCredential,
     
   [Parameter(
-      Mandatory = $True,
       Position = 1  
   )]
   [String]
-  $ApiTrackingIdentifier
+  $ApiTrackingIdentifier = $Global:AtwsApiTrackingIdentifier,
+
+    [Parameter(
+      Position = 2,
+      ValueFromRemainingArguments = $True
+  )]
+  [String[]]
+  $EntityName
 )
 
 # Special consideration for -Verbose, as there is no $PSCmdLet context to check if Import-Module was called using -Verbose
@@ -31,12 +36,6 @@ If ($ParentCommand -like '*-Verbose*') {
   $VerbosePreference = 'Continue'
 }
 
-# Prepare parameters for @splatting
-$ProgressId = 1
-$Activity = 'Loading module'
-
-
-Write-Progress -Activity $Activity -Id $ProgressId -Status 'Importing scripts' -PercentComplete 10 -CurrentOperation 'Sourcing files'
 
 # Get all function files as file objects
 # Private functions can only be called internally in other functions in the module 
@@ -59,25 +58,71 @@ foreach ($Import in @($PrivateFunction + $PublicFunction))
   }
 }
 
-Write-Progress -Activity $Activity -Id $ProgressId -Status 'Importing scripts' -PercentComplete 30 -CurrentOperation 'Importing static functions'
-
-# Explicitly export public functions
-Export-ModuleMember -Function $PublicFunction.Basename
+If ($Credential)
+{
+  # Remove Global variables (if used) for security
+  If (Get-Variable -Name AtwsCredential -Scope Global -ErrorAction SilentlyContinue)
+  {
+    Remove-Variable -Name AtwsCredential -Scope Global
+  }
+  If (Get-Variable -Name AtwsApiTrackingIdentifier -Scope Global -ErrorAction SilentlyContinue)
+  {
+    Remove-Variable -Name AtwsApiTrackingIdentifier -Scope Global
+  }
+  
+  # Explicitly export public functions
+  Export-ModuleMember -Function $PublicFunction.Basename
+   
+  # Connect to the API using required, additional parameters, using internal function name
+  . Connect-AtwsWebServices -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
   
   
-Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 50 -CurrentOperation 'Connecting to API'
+  # Refresh any entities the caller has ordered'
+  # We only consider entities that are dynamic
+  If ($EntityName)
+  { 
+    $Entities = Get-FieldInfo -Dynamic
+    $EntitiesToProcess = @()
+    Foreach ($String in $EntityName)
+    {
+      $EntitiesToProcess += $Entities.GetEnumerator().Where({$_.Key -like $String})
+      Foreach ($EntityToProcess in $EntitiesToProcess)
+      {
+        $null = Get-FieldInfo -Entity $EntityToProcess.Key -UpdateCache
+      }
+    }
+    # Prepare Index for progressbar
+    $Index = 0
+    $ProgressParameters = @{
+      Activity = 'Updating diskcache for requested entities.'
+      Id = 10
+    }
+    Foreach ($EntityToProcess in $EntitiesToProcess)
+    {
+      $Index++
+      $PercentComplete = $Index / $EntitiesToProcess.Count * 100
+      
+      # Add parameters for @splatting
+      $ProgressParameters['PercentComplete'] = $PercentComplete
+      $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $EntitiesToProcess.Count, $PercentComplete
+      $ProgressParameters['CurrentOperation'] = 'Getting fieldinfo for {0}' -F $EntityToProcess.Name
+      
+      Write-Progress @ProgressParameters
+      
+      $null = Get-FieldInfo -Entity $EntityToProcess.Key -UpdateCache
+    }
+  }
   
-# Connect to the API using required, additional parameters, using internal function name
-. Connect-AtwsWebServices -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
+  
+  # Generate all functions and source them. The function exports them in-line, thats why we need to source it.
+  . Import-AtwsCmdLet
 
-Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 80 -CurrentOperation 'Generating code'
-
-# Generate all functions and source them. The function exports them in-line, thats why we need to source it.
-. Import-AtwsCmdLet
-
-Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 100 -CurrentOperation 'Generating code'
-
-Write-Progress -Activity $Activity -Id $ProgressId -Status 'Dynamic Functions' -PercentComplete 100 -CurrentOperation 'Generating code' -completed
+}
+Else
+{
+  # Not connected; only export connect wrapper
+  Export-ModuleMember -Function 'Connect-WebAPI'
+}
 
 # Restore Previous preference
 If ($OldPreference -ne $VerbosePreference) {
