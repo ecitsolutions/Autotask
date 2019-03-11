@@ -64,7 +64,7 @@
       If (-not ($Script:Cache[$Script:Atws.CI].ApiVersion -eq $CurrentApiVersion)) {
         
         # Call the import-everything function
-        Import-AtwsAPIVersionToCache
+        Update-AtwsDiskCache
         
         # Write-Warning to inform user that an update of static functions is due
         Write-Warning ('{0}: API version has been updated. You need to run Update-AtwsStaticFunctions with writepermissions to the module directory or update the module.' -F $MyInvocation.MyCommand.Name) 
