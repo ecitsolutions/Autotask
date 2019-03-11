@@ -1,5 +1,15 @@
 # Release notes
 
+## Version 1.6.1.1 - New Cache Model
+
+- FEATURE: New cache model. The module caches entity info to disk, not functions.
+- FEATURE: SPEED! Module load time has improved a LOT! Not all entities change all the time. Entities that does not have any picklist parameters are pre-built and included in the module to speed up module load time.
+- FEATURE: You can use -IsNull and wildcards with UserDefinedFields (Finally!)
+- FEATURE: Is is now a single module. You pass your credentials directly to Import-Module to load everything in one go. Old behavior with Connect-AutotaskWebAPI is supported for backwards compatibility using aliases.
+- FEATURE: The module now uses built-in prefix support in Import-Module. Import the module multiple times using different credentials and prefixes for complex, cross-tenant work (requires using -Force with Import-Module).
+- Changed version number scheme to follow API version number.
+- Minor bugfixes.
+
 ## Version 0.2.2.5
 
 - BUGFIX: Parameter ID was typed as Integer when the correct type is Int64. Fixed. Thank you, Harry P.!
