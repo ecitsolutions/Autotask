@@ -1,8 +1,15 @@
-# Release notes Autotask API version v1.5
+# Release notes
+
+## Version 0.2.2.5
+
+- BUGFIX: Parameter ID was typed as Integer when the correct type is Int64. Fixed. Thank you, Harry P.!
 
 ## Version 0.2.2.4
 
+- Support for API version 1.6. Parameter ApiTrackingID added to Connect-AutotaskWebAPI.
 - New function Get-AtwsInvoiceInfo. Downloads detailed invoice information based on Autotask InvoiceId.
+
+Note: Connecting to API version 1.6 requires a personal API tracking ID code. You can create one on the security tab on the automation user resource that you use to connect to the API. **Warning**: Be aware that from the moment you create an API tracking ID on an automation user, the tracking code is *required*, regardless with API version you try to connect to.
 
 ## Version 0.2.2.3
 

@@ -49,6 +49,9 @@ Function Connect-AutotaskWebAPI {
     [ValidateNotNullOrEmpty()]    
     [pscredential]
     $Credential = $(Get-Credential -Message 'Autotask Web Services API login'),
+
+    [String]
+    $ApiTrackingIdentifier,
     
     [Switch]
     $NoDynamicModule = $False,
@@ -71,7 +74,15 @@ Function Connect-AutotaskWebAPI {
   Begin { 
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    $DefaultUri = 'https://webservices.Autotask.net/atservices/1.5/atws.wsdl'
+    # API version 1.6 REQUIRES an API tracking identifier. If you provide it we connect to 1.6
+    If ($ApiTrackingIdentifier) {
+      $APIversion = '1.6'
+    }
+    Else {
+      $APIversion = '1.5'
+    }
+
+    $DefaultUri = 'https://webservices.Autotask.net/atservices/{0}/atws.wsdl' -F $APIversion
     
     If (-not($global:AtwsConnection)) {
       $global:AtwsConnection = @{}
@@ -89,7 +100,7 @@ Function Connect-AutotaskWebAPI {
     # This is now a REQUIREMENT to talk to the API endpoints
     $Protocol = [System.Net.ServicePointManager]::SecurityProtocol
     If ($Protocol.ToString() -notlike '*Tls12*') { 
-        [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
+      [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
     }
   }
   
@@ -162,6 +173,17 @@ Function Connect-AutotaskWebAPI {
       $WebServiceProxy = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
       # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
       $WebServiceProxy.PreAuthenticate = $True
+
+      # Add API Integrations Value 
+      
+      # A dedicated object type has been created to store integration values
+      $AutotaskIntegrationsValue = New-Object Autotask.AutotaskIntegrations
+
+      # Set the integrationcode property to the API tracking identifier provided by the user
+      $AutotaskIntegrationsValue.IntegrationCode = $ApiTrackingIdentifier
+
+      # Add the integrations value to the Web Service Proxy
+      $WebServiceProxy.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
      
     }
     Catch {
@@ -198,17 +220,17 @@ Function Connect-AutotaskWebAPI {
       $CultureInfo = ([CultureInfo]::CurrentCulture).DateTimeFormat
 
       If ($Result.DateFormat -ne $CultureInfo.ShortDatePattern -and $Result.TimeFormat -ne $CultureInfo.ShortTimePattern) {
-        Write-host 'WARNING: DATE and TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date and time entries wrong.' -ForegroundColor DarkYellow
-        Write-Host ('Log on to Autotask and edit resource {0}. Change Date format to "{1}" and Time format to "{2}"' -F $username, $CultureInfo.ShortDatePattern, $CultureInfo.ShortTimePattern) -ForegroundColor DarkYellow
+        Write-Verbose 'WARNING: DATE and TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date and time entries wrong.'
+        Write-Verbose ('Log on to Autotask and edit resource {0}. Change Date format to "{1}" and Time format to "{2}"' -F $username, $CultureInfo.ShortDatePattern, $CultureInfo.ShortTimePattern)
       }
       ElseIf ($Result.DateFormat -ne $CultureInfo.ShortDatePattern) {
-        Write-host 'WARNING: DATE format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date entries wrong.' -ForegroundColor DarkYellow
-        Write-Host ('Log on to Autotask and edit resource {0}. Change Date format to "{1}"' -F $username, $CultureInfo.ShortDatePattern) -ForegroundColor DarkYellow
+        Write-Verbose 'WARNING: DATE format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date entries wrong.'
+        Write-Verbose ('Log on to Autotask and edit resource {0}. Change Date format to "{1}"' -F $username, $CultureInfo.ShortDatePattern)
       }
 
       ElseIf ($Result.TimeFormat -ne $CultureInfo.ShortTimePattern) {
-        Write-host 'WARNING: TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your time entries wrong.' -ForegroundColor DarkYellow
-        Write-Host ('Log on to Autotask and edit resource {0}. Change Time format to "{1}"' -F $username, $CultureInfo.ShortTimePattern) -ForegroundColor DarkYellow
+        Write-Verbose 'WARNING: TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your time entries wrong.'
+        Write-Verbose ('Log on to Autotask and edit resource {0}. Change Time format to "{1}"' -F $username, $CultureInfo.ShortTimePattern)
       }
     }
     Else {
