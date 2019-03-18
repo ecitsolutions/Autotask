@@ -109,7 +109,7 @@
     }
     
     # Clone current fieldinfo cache to new object
-    $Base = $FieldInfoCache.Clone()
+    $Base = Copy-PSObject -InputObject $FieldInfoCache
         
     # Clean Instance specific info from Base
     Foreach ($Object in $Base.GetEnumerator().Where({$_.Value.HasPickList -or $_.Value.EntityInfo.HasUserDefinedFields}))

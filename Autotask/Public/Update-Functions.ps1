@@ -1,0 +1,145 @@
+﻿
+Function Update-Functions {
+  [CmdLetBinding(
+      SupportsShouldProcess = $True,
+      ConfirmImpact = 'Medium'
+  )]
+  Param(
+    [ValidateSet('Dynamic','Static')]
+    [String]
+    $FunctionSet = 'Static'
+  )
+  
+  Begin { 
+    # Prepare parameters for @splatting
+    $ProgressId = 6
+    $ProgressParameters = @{
+      Activity = 'Creating and importing functions for all static Autotask entities (no picklists).'
+      Id       = $ProgressId
+    }
+                
+    Write-Verbose -Message ('{0}: Making sure cache is loaded.' -F $MyInvocation.MyCommand.Name)
+    
+    If (-not ($Script:Cache)) {
+      Import-AtwsScriptCache
+    }
+   
+  } 
+  
+  Process {
+           
+    # Prepare parameters for @splatting
+    $ParentProgressParameters = @{
+      Activity = 'Going through cache entries.'
+      Id       = 6
+    }
+      
+    # Prepare Index for progressbar
+    $ParentIndex = 0
+    
+    Foreach ($Tenant in $Script:Cache.GetEnumerator()) { 
+      
+      # Calculating progress percentage and displaying it
+      $ParentIndex++
+      $PercentComplete = $ParentIndex / $Script:Cache.Count * 100
+      
+      # Add parameters for @splatting
+      $ParentProgressParameters['PercentComplete'] = $PercentComplete
+      $ParentProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $ParentIndex, $Script:Cache.Count, $PercentComplete
+      $ParentProgressParameters['CurrentOperation'] = 'Importing {0}' -F $Entity.Key
+      
+      Write-Progress @ParentProgressParameters
+        
+        
+      If ($Tenant.Key -eq '00') {
+        $RootPath = $MyInvocation.MyCommand.Module.ModuleBase
+      }
+      ElseIf ($FunctionSet -eq 'Dynamic') {
+        $RootPath = '{0}\WindowsPowershell\Cache\{1}' -f $([environment]::GetFolderPath('MyDocuments')), $Tenant.Key
+        
+        # Create Rootpath directory if it doesn't exist
+        If (-not (Test-Path "$RootPath\Dynamic")) {
+          $Null = New-Item -Path "$RootPath\Dynamic" -ItemType Directory -Force
+          
+        }
+      }
+      Else {
+        # Do not create static functions pr tenant
+        Continue
+      }
+      
+      $Entities = Switch ($FunctionSet) {
+        'Static' {
+          $Tenant.Value.FieldInfoCache.GetEnumerator() | Where-Object {-not $_.Value.HasPickList}
+        }
+        'Dynamic' {
+          $Tenant.Value.FieldInfoCache.GetEnumerator() | Where-Object {$_.Value.HasPickList}
+        }
+      }
+      
+      # Prepare parameters for @splatting
+      $ProgressParameters = @{
+        Activity = 'Creating and importing functions for all static Autotask entities (no picklists).'
+        Id       = 10
+        ParentId = 6
+      }
+      
+      # Prepare Index for progressbar
+      $Index = 0
+    
+      Foreach ($CacheEntry in $Entities) {
+        # EntityInfo()
+        $Entity = $CacheEntry.Value.EntityInfo
+      
+        Write-Verbose -Message ('{0}: Creating functions for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
+      
+        # Calculating progress percentage and displaying it
+        $Index++
+        $PercentComplete = $Index / $Entities.Count * 100
+      
+        # Add parameters for @splatting
+        $ProgressParameters['PercentComplete'] = $PercentComplete
+        $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
+        $ProgressParameters['CurrentOperation'] = 'Importing {0}' -F $Entity.Name
+      
+        Write-Progress @ProgressParameters
+      
+       
+        $VerboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
+        $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
+       
+        $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -FieldInfo $CacheEntry.Value.FieldInfo
+        
+        If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
+          Foreach ($Function in $FunctionDefinition.GetEnumerator()) {
+  
+            Write-Verbose -Message ('{0}: Writing file for function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
+                        
+            $FilePath = '{0}\{1}\{2}.ps1' -F $RootPath, $FunctionSet, $Function.Key
+          
+            $VerboseDescrition = '{0}: Overwriting {1}' -F $Caption, $FilePath
+            $VerboseWarning = '{0}: About to overwrite {1}. Do you want to continue?' -F $Caption, $FilePath
+
+            If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) {
+              Set-Content -Path $FilePath -Value $Function.Value -Force -Encoding UTF8
+            }
+         
+          }
+          
+        }
+      } 
+    }       
+
+  }
+  End {
+    # Save updated base info for connection to new tenants.
+    $BaseEntityInfo = @{}
+    $BaseEntityInfo['00'] = $script:Cache['00']
+        
+    $BaseEntityInfoPath = '{0}\AutotaskFieldInfoCache.xml' -F $MyInvocation.MyCommand.Module.ModuleBase
+    $BaseEntityInfo | Export-Clixml -Path $BaseEntityInfoPath -Force
+    
+    Write-Verbose -Message ('{0}: Imported {1} dynamic functions' -F $MyInvocation.MyCommand.Name, $Index)
+        
+  }
+}

@@ -46,8 +46,14 @@ $PrivateFunction = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorActi
 # Public functions will be exported with Prefix prepended to the Noun of the function name
 $PublicFunction = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue ) 
 
+# Static functions will be exported with Prefix prepended to the Noun of the function name
+$StaticFunction = @( Get-ChildItem -Path $PSScriptRoot\Static\*.ps1 -ErrorAction SilentlyContinue ) 
+
+# Static functions will be exported with Prefix prepended to the Noun of the function name
+$DynamicFunction = @( Get-ChildItem -Path $PSScriptRoot\Dynamic\*.ps1 -ErrorAction SilentlyContinue ) 
+
 # Loop through all script files and source them
-foreach ($Import in @($PrivateFunction + $PublicFunction))
+foreach ($Import in @($PrivateFunction))
 {
   Write-Verbose "Importing $Import"
   try
@@ -72,55 +78,39 @@ If ($Credential)
     Remove-Variable -Name AtwsApiTrackingIdentifier -Scope Global
   }
   
-  # Explicitly export public functions
-  Export-ModuleMember -Function $PublicFunction.Basename
-   
+  
   # Connect to the API using required, additional parameters, using internal function name
   . Connect-AtwsWebServices -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
   
-  
-  # Refresh any entities the caller has ordered'
-  # We only consider entities that are dynamic
-  If ($EntityName)
-  { 
-    $Entities = Get-FieldInfo -Dynamic
-    $EntitiesToProcess = @()
-    Foreach ($String in $EntityName)
-    {
-      $EntitiesToProcess += $Entities.GetEnumerator().Where({$_.Key -like $String})
-    }
-    # Prepare Index for progressbar
-    $Index = 0
-    $ProgressParameters = @{
-      Activity = 'Updating diskcache for requested entities.'
-      Id = 10
-    }
-    Foreach ($EntityToProcess in $EntitiesToProcess)
-    {
-      $Index++
-      $PercentComplete = $Index / $EntitiesToProcess.Count * 100
-      
-      # Add parameters for @splatting
-      $ProgressParameters['PercentComplete'] = $PercentComplete
-      $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $EntitiesToProcess.Count, $PercentComplete
-      $ProgressParameters['CurrentOperation'] = 'Getting fieldinfo for {0}' -F $EntityToProcess.Name
-      
-      Write-Progress @ProgressParameters
-      
-      $null = Get-FieldInfo -Entity $EntityToProcess.Key -UpdateCache
-    }
+  $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
+  If (Test-Path $DynamicCache) {
+    $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*.ps1 -ErrorAction SilentlyContinue )     
   }
-  
-  
-  # Generate all functions and source them. The function exports them in-line, thats why we need to source it.
-  . Import-AtwsCmdLet
+}
 
-}
-Else
+# Loop through all script files and source them
+foreach ($Import in @($PublicFunction + $StaticFunction + $DynamicFunction))
 {
-  # Not connected; only export connect wrapper
-  Export-ModuleMember -Function 'Connect-WebAPI'
+  Write-Verbose "Importing $Import"
+  try
+  {
+    . $Import.fullname
+  }
+  catch
+  {
+    throw "Could not import function $($Import.fullname): $_"
+  }
 }
+
+# Explicitly export public functions
+Export-ModuleMember -Function $PublicFunction.Basename
+
+# Explicitly export static functions
+Export-ModuleMember -Function $StaticFunction.Basename
+
+# Explicitly export dynamic functions
+Export-ModuleMember -Function $DynamicFunction.Basename
+
 
 # Backwards compatibility since we are now using built-in module prefix support
 Set-Alias -Scope Global -Name 'Connect-AutotaskWebAPI' -Value 'Connect-AtwsWebAPI'
