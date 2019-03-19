@@ -9,6 +9,6 @@
     <description>This module connects to the Autotask web services API. It downloads information about entities and fields and generates Powershell functions with parameter validation to support Intellisense script editing. To download first all entities and then detailed information about all fields and selection lists is quite time consuming. To speed up module load time and get to coding faster the module caches both script functions and the field info cache to disk.</description>
     <releaseNotes>https://github.com/officecenter/Autotask</releaseNotes>
     <copyright>Copyright 2017 Office Center </copyright>
-    <tags>OCH automatisering, Autotask, Dynamic Module, SOAP</tags>
+    <tags>Autotask, Dynamic Module, SOAP</tags>
   </metadata>
 </package>

@@ -2,7 +2,7 @@
 Function Update-Functions {
   [CmdLetBinding(
       SupportsShouldProcess = $True,
-      ConfirmImpact = 'Medium'
+      ConfirmImpact = 'High'
   )]
   Param(
     [ValidateSet('Dynamic','Static')]
@@ -84,33 +84,39 @@ Function Update-Functions {
         ParentId = 6
       }
       
-      # Prepare Index for progressbar
-      $Index = 0
+      
+      $Caption = $MyInvocation.MyCommand.Name
+      $VerboseDescription = '{0}: Creating and overwriting {1} functions for {2} entities' -F $Caption, $FunctionSet, $Entities.count
+      $VerboseWarning = '{0}: About to create and oiverwrite {1} functions for {2} entities. Do you want to continue?' -F $Caption, $FunctionSet, $Entities.count
+       
+      If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
+        # Prepare Index for progressbar
+        $Index = 0
     
-      Foreach ($CacheEntry in $Entities) {
-        # EntityInfo()
-        $Entity = $CacheEntry.Value.EntityInfo
+        Foreach ($CacheEntry in $Entities) {
+          # EntityInfo()
+          $Entity = $CacheEntry.Value.EntityInfo
       
-        Write-Verbose -Message ('{0}: Creating functions for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
+          Write-Verbose -Message ('{0}: Creating functions for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
       
-        # Calculating progress percentage and displaying it
-        $Index++
-        $PercentComplete = $Index / $Entities.Count * 100
+          # Calculating progress percentage and displaying it
+          $Index++
+          $PercentComplete = $Index / $Entities.Count * 100
       
-        # Add parameters for @splatting
-        $ProgressParameters['PercentComplete'] = $PercentComplete
-        $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
-        $ProgressParameters['CurrentOperation'] = 'Importing {0}' -F $Entity.Name
+          # Add parameters for @splatting
+          $ProgressParameters['PercentComplete'] = $PercentComplete
+          $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
+          $ProgressParameters['CurrentOperation'] = 'Importing {0}' -F $Entity.Name
       
-        Write-Progress @ProgressParameters
+          Write-Progress @ProgressParameters
       
+          $Caption = $MyInvocation.MyCommand.Name
+          $VerboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
+          $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
        
-        $VerboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
-        $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
-       
-        $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -FieldInfo $CacheEntry.Value.FieldInfo
+          $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -FieldInfo $CacheEntry.Value.FieldInfo
         
-        If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
+        
           Foreach ($Function in $FunctionDefinition.GetEnumerator()) {
   
             Write-Verbose -Message ('{0}: Writing file for function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
@@ -123,23 +129,25 @@ Function Update-Functions {
             If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) {
               Set-Content -Path $FilePath -Value $Function.Value -Force -Encoding UTF8
             }
-         
-          }
-          
-        }
-      } 
-    }       
-
-  }
+          } # Foreach $Function
+        } # Foreach $Cacheentry
+      } # Shouldprocess
+    } # Foreach $TenantS
+  } # Process
   End {
-    # Save updated base info for connection to new tenants.
-    $BaseEntityInfo = @{}
-    $BaseEntityInfo['00'] = $script:Cache['00']
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: Overwriting existing module info cache with updated data.' -F $Caption
+    $VerboseWarning = '{0}: About to overwrite existing module info cache with updated data. This cannot be undone. Do you want to continue?' -F $Caption
+          
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      # Save updated base info for connection to new tenants.
+      $BaseEntityInfo = @{}
+      $BaseEntityInfo['00'] = $script:Cache['00']
         
-    $BaseEntityInfoPath = '{0}\AutotaskFieldInfoCache.xml' -F $MyInvocation.MyCommand.Module.ModuleBase
-    $BaseEntityInfo | Export-Clixml -Path $BaseEntityInfoPath -Force
+      $BaseEntityInfoPath = '{0}\AutotaskFieldInfoCache.xml' -F $MyInvocation.MyCommand.Module.ModuleBase
+      $BaseEntityInfo | Export-Clixml -Path $BaseEntityInfoPath -Force
     
-    Write-Verbose -Message ('{0}: Imported {1} dynamic functions' -F $MyInvocation.MyCommand.Name, $Index)
-        
+      Write-Verbose -Message ('{0}: Updated central module fieldinfocache.' -F $MyInvocation.MyCommand.Name)
+    }
   }
 }

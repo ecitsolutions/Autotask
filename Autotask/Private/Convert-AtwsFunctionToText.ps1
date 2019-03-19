@@ -9,12 +9,14 @@
   )
   Begin 
   { 
-    $TextFrame = "{0}`nFunction {1}`n{{`n{2}`n  [CmdLetBinding(DefaultParameterSetName='{3}', ConfirmImpact='{4}')]`n  Param`n  (`n{5}`n  )`n{6}`n}}"
+    $RequiredVersion = $MyInvocation.MyCommand.Module.PowerShellVersion
+    $TextFrame = "#Requires -Version {0}`n{1}`nFunction {2}`n{{`n{3}`n  [CmdLetBinding(DefaultParameterSetName='{4}', ConfirmImpact='{5}')]`n  Param`n  (`n{6}`n  )`n{7}`n}}"
   }
   
   Process
   {
     $FunctionText = $TextFrame -F
+      $RequiredVersion,
       $AtwsFunction.Copyright,
       $AtwsFunction.FunctionName,
       $AtwsFunction.HelpText,

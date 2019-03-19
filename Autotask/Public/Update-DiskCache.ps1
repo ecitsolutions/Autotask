@@ -15,7 +15,7 @@
 	
   [cmdletbinding(
       SupportsShouldProcess = $True,
-      ConfirmImpact = 'Low'
+      ConfirmImpact = 'High'
   )]
   Param
   (
@@ -46,27 +46,29 @@
       Activity = ('New API version {0} has been published, old version is {1}. recreating diskcache.' -F $CurrentApiVersion, $Script:Cache[$Script:Atws.CI].ApiVersion)
       Id = 9
     }
-                 
-    $script:FieldInfoCache = @{}
+    
     $Entities = $Script:Atws.getEntityInfo()
         
-    Foreach ($Object in $Entities) { 
-    
-      Write-Verbose -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $Object.Name) 
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: Retreiving detailed field information about {1} entities. This will take a while. Go grab some coffee.' -F $Caption, $Entities.count
+    $VerboseWarning = '{0}: About to post {1} SOAP queries to Autotask Web API for detailed field info for {1} entities. This will take a while. Do you want to continue?' -F $Caption, $Entities.count
+          
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+                 
+      $script:FieldInfoCache = @{}
 
-      # Calculating progress percentage and displaying it
-      $Index = $Entities.IndexOf($Object) + 1
-      $PercentComplete = $Index / $Entities.Count * 100
-      $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
-      $CurrentOperation = "GetFieldInfo('{0}')" -F $Object.Name
+      Foreach ($Object in $Entities) { 
+    
+        Write-Verbose -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $Object.Name) 
+
+        # Calculating progress percentage and displaying it
+        $Index = $Entities.IndexOf($Object) + 1
+        $PercentComplete = $Index / $Entities.Count * 100
+        $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
+        $CurrentOperation = "GetFieldInfo('{0}')" -F $Object.Name
       
-      Write-Progress -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation @ProgressParameters
-          
-      $Caption = $MyInvocation.MyCommand.Name
-      $VerboseDescrition = '{0}: Retreiving detailed field information about entity {1}' -F $Caption, $Object.Name
-      $VerboseWarning = '{0}: About to post a SOAP query to Autotask Web API for detailed field info for entity {1}. Do you want to continue?' -F $Caption, $Object.Name
-          
-      If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+        Write-Progress -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation @ProgressParameters
+ 
         # Retrieving FieldInfo for current Entity
         $FieldInfo = $Script:Atws.GetFieldInfo($Object.Name)
             
@@ -93,46 +95,52 @@
         Add-Member -InputObject $CacheEntry -MemberType NoteProperty -Name FieldInfo -Value $FieldInfo -Force
             
         $Script:FieldInfoCache[$Object.Name] = $CacheEntry
+
       }
-    }
         
-    # Add cache to $Cache object and save to disk
-    $Script:Cache[$Script:Atws.CI] = New-Object -TypeName PSObject -Property @{
-      ApiVersion = $CurrentApiVersion
-    }
-    # Use Add-member to store complete object, not its typename
-    Add-Member -InputObject $Script:Cache[$Script:Atws.CI] -MemberType NoteProperty -Name FieldInfoCache -Value $FieldInfoCache 
+      # Add cache to $Cache object and save to disk
+      $Script:Cache[$Script:Atws.CI] = New-Object -TypeName PSObject -Property @{
+        ApiVersion = $CurrentApiVersion
+      }
+      # Use Add-member to store complete object, not its typename
+      Add-Member -InputObject $Script:Cache[$Script:Atws.CI] -MemberType NoteProperty -Name FieldInfoCache -Value $FieldInfoCache 
     
-    # Add new base reference
-    $Script:Cache['00'] =New-Object -TypeName PSObject -Property @{
-      ApiVersion = $CurrentApiVersion
-    }
+      # Add new base reference
+      $Script:Cache['00'] =New-Object -TypeName PSObject -Property @{
+        ApiVersion = $CurrentApiVersion
+      }
     
-    # Clone current fieldinfo cache to new object
-    $Base = Copy-PSObject -InputObject $FieldInfoCache
+      # Clone current fieldinfo cache to new object
+      $Base = Copy-PSObject -InputObject $FieldInfoCache
         
-    # Clean Instance specific info from Base
-    Foreach ($Object in $Base.GetEnumerator().Where({$_.Value.HasPickList -or $_.Value.EntityInfo.HasUserDefinedFields}))
-    {
-      Foreach ($PickList in $Object.Value.FieldInfo.Where({$_.IsPickList}))
+      # Clean Instance specific info from Base
+      Foreach ($Object in $Base.GetEnumerator().Where({$_.Value.HasPickList -or $_.Value.EntityInfo.HasUserDefinedFields}))
       {
-        $PickList.PicklistValues = $Null
-      }
+        Foreach ($PickList in $Object.Value.FieldInfo.Where({$_.IsPickList}))
+        {
+          $PickList.PicklistValues = $Null
+        }
           
-      If ($Object.Value.EntityInfo.HasUserDefinedFields)
-      {
-        $Object.Value.UDFInfo = $Null
+        If ($Object.Value.EntityInfo.HasUserDefinedFields)
+        {
+          $Object.Value.UDFInfo = $Null
+        }
       }
-    }
         
-    # Use Add-member to store complete object, not its typename
-    Add-Member -InputObject $Script:Cache['00'] -MemberType NoteProperty -Name FieldInfoCache -Value $Base 
-      
+      # Use Add-member to store complete object, not its typename
+      Add-Member -InputObject $Script:Cache['00'] -MemberType NoteProperty -Name FieldInfoCache -Value $Base 
+    }
   }
   
   End 
   { 
-    # Write updated cache to disk
-    Export-AtwsDiskCache
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: Overwriting existing disk cache with updated data.' -F $Caption
+    $VerboseWarning = '{0}: About to overwrite existing disk cache with updated data. This cannot be undone. Do you want to continue?' -F $Caption
+          
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      # Write updated cache to disk
+      Export-AtwsDiskCache
+    }
   }
 }

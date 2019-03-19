@@ -35,7 +35,15 @@ Function Connect-WebAPI {
     
     [Parameter(Mandatory = $true)]
     [String]
-    $ApiTrackingIdentifier
+    $ApiTrackingIdentifier,
+    
+    [ValidatePattern('[a-zA-Z0-9]')]
+    [ValidateLength(1, 8)]
+    [String]
+    $Prefix = 'Atws',
+
+    [Switch]
+    $RefreshCache
   )
     
   Begin { 
@@ -62,7 +70,15 @@ Function Connect-WebAPI {
       # Retry loading the module from its base directory
       $Module = Get-Module -Name $ModuleName
       $ModulePath = $Module.ModuleBase
-      Import-Module $ModulePath -Global -Force -Variable $Global:AtwsCredential, $Global:AtwsApiTrackingIdentifier
+      
+      # If user tries refreshcache
+      If ($RefreshCache.IsPresent) {
+        Import-Module $ModulePath -Global -Prefix $Prefix -Force -Variable $Global:AtwsCredential, $Global:AtwsApiTrackingIdentifier, '*'
+      }
+      Else
+      {
+        Import-Module $ModulePath -Global -Prefix $Prefix -Force -Variable $Global:AtwsCredential, $Global:AtwsApiTrackingIdentifier
+      }
     }
   }
   
