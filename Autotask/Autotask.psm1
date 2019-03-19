@@ -53,7 +53,7 @@ $StaticFunction = @( Get-ChildItem -Path $PSScriptRoot\Static\*.ps1 -ErrorAction
 $DynamicFunction = @( Get-ChildItem -Path $PSScriptRoot\Dynamic\*.ps1 -ErrorAction SilentlyContinue ) 
 
 # Loop through all script files and source them
-foreach ($Import in @($PrivateFunction))
+foreach ($Import in @($PrivateFunction + $PublicFunction))
 {
   Write-Verbose "Importing $Import"
   try
@@ -86,10 +86,46 @@ If ($Credential)
   If (Test-Path $DynamicCache) {
     $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*.ps1 -ErrorAction SilentlyContinue )     
   }
+  
+  # Refresh any entities the caller has ordered'
+  # We only consider entities that are dynamic
+  If ($EntityName)
+  { 
+    $Entities = Get-FieldInfo -Dynamic
+    $EntitiesToProcess = @()
+    Foreach ($String in $EntityName)
+    {
+      $EntitiesToProcess += $Entities.GetEnumerator().Where({$_.Key -like $String})
+    }
+    # Prepare Index for progressbar
+    $Index = 0
+    $ProgressParameters = @{
+      Activity = 'Updating diskcache for requested entities.'
+      Id = 10
+    }
+    Foreach ($EntityToProcess in $EntitiesToProcess)
+    {
+      $Index++
+      $PercentComplete = $Index / $EntitiesToProcess.Count * 100
+      
+      # Add parameters for @splatting
+      $ProgressParameters['PercentComplete'] = $PercentComplete
+      $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $EntitiesToProcess.Count, $PercentComplete
+      $ProgressParameters['CurrentOperation'] = 'Getting fieldinfo for {0}' -F $EntityToProcess.Name
+      
+      Write-Progress @ProgressParameters
+      
+      $null = Get-FieldInfo -Entity $EntityToProcess.Key -UpdateCache
+    }
+    
+    # Recreate functions that have been updated
+    Import-AtwsCmdLet -Entities $EntitiesToProcess
+    
+  }
 }
 
 # Loop through all script files and source them
-foreach ($Import in @($PublicFunction + $StaticFunction + $DynamicFunction))
+foreach ($Import in @($StaticFunction + $DynamicFunction))
 {
   Write-Verbose "Importing $Import"
   try

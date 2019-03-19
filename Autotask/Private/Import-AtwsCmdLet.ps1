@@ -5,7 +5,10 @@ Function Import-AtwsCmdLet
       SupportsShouldProcess = $True,
       ConfirmImpact = 'Medium'
   )]
-  Param()
+  Param(
+    [PSObject[]]
+    $Entities = $(Get-FieldInfo -Dynamic)
+  )
   
   Begin
   { 
@@ -16,21 +19,10 @@ Function Import-AtwsCmdLet
       Id = $ProgressId
     }
                 
-    Write-Verbose -Message ('{0}: Loading a list over available entities.' -F $MyInvocation.MyCommand.Name)
+    Write-Verbose -Message ('{0}: Start of functions.' -F $MyInvocation.MyCommand.Name)
     
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescription = '{0}: Calling API.EntityInfo()' -F $Caption
-    $VerboseWarning = '{0}: About to call API.EntityInfo(). Do you want to continue?' -F $Caption
-
-    If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption))
-    {
-      $Entities = Get-FieldInfo -Dynamic
-    }
-    Else
-    {
-      $Entities = @{}
-    }
-
+    $RootPath = '{0}\WindowsPowershell\Cache\{1}' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
+    
   } 
   
   Process
@@ -56,7 +48,7 @@ Function Import-AtwsCmdLet
       
       Write-Progress @ProgressParameters
       
-       
+      $Caption = $MyInvocation.MyCommand.Name
       $VerboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
       $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
        
@@ -64,9 +56,18 @@ Function Import-AtwsCmdLet
         
       If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
       
-         Foreach ($Function in $FunctionDefinition.GetEnumerator()) {
+        Foreach ($Function in $FunctionDefinition.GetEnumerator()) {
+          # Set path to powershell script file in user cache
+          $FilePath = '{0}\Dynamic\{1}.ps1' -F $RootPath, $Function.Key
+          
+          # IMport the updated function
           . ([ScriptBlock]::Create($Function.Value))
+          
+          # Export the module member
           Export-ModuleMember -Function $Function.Key
+          
+          # Write the function to disk for faster load later
+          Set-Content -Path $FilePath -Value $Function.Value -Force -Encoding UTF8           
         }
       }
     }        
