@@ -100,23 +100,7 @@ Function Get-FieldInfo {
       # Load it.
       Import-AtwsDiskCache
     }
-    
-    # If the current connection is for a new Autotask tenant, copy the blank 
-    # cache from the included pre-cache
-    If (-not ($Script:Cache.ContainsKey($Script:Atws.CI))) {
-      # Create a cache object to store API version along with the cache
-      $Script:Cache[$Script:Atws.CI] = New-Object -TypeName PSObject -Property @{
-        ApiVersion = $Script:Cache['00'].ApiVersion
-      }
-      # Use Add-Member on the Hashtable, or the propertyvalue will be set to typename only
-      # Clone the hashtable. We do NOT want a referenced copy!
-      Add-Member -InputObject $Script:Cache[$Script:Atws.CI] -MemberType NoteProperty -Name FieldInfoCache -Value $Script:Cache['00'].FieldInfoCache.Clone()
-
-    }
-      
-    # Initialize the short-hand variable reference for the fieldInfocache
-    $Script:FieldInfoCache = $Script:Cache[$Script:Atws.CI].FieldInfoCache
-
+         
     Write-Verbose -Message ('{0}: Loaded detailed Fieldinfo from diskcache' -F $MyInvocation.MyCommand.Name) 
 
     $CacheExpiry = (Get-Date).AddMinutes(-15)

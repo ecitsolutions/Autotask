@@ -56,6 +56,19 @@
     }
     
     If ($Script:Atws) {
+      # If the current connection is for a new Autotask tenant, copy the blank 
+      # cache from the included pre-cache
+      If (-not ($Script:Cache.ContainsKey($Script:Atws.CI))) {
+        # Create a cache object to store API version along with the cache
+        $Script:Cache[$Script:Atws.CI] = New-Object -TypeName PSObject -Property @{
+          ApiVersion = $Script:Cache['00'].ApiVersion
+        }
+        # Use Add-Member on the Hashtable, or the propertyvalue will be set to typename only
+        # Copy the hashtable to a new object. We do NOT want a referenced copy!
+        $NewHashTable = Copy-PSObject -InputObject $Script:Cache['00'].FieldInfoCache
+        Add-Member -InputObject $Script:Cache[$Script:Atws.CI] -MemberType NoteProperty -Name FieldInfoCache -Value $NewHashTable
+      }
+
       # Initialize the $Script:FieldInfoCache shorthand 
       $Script:FieldInfoCache = $Script:Cache[$Script:Atws.CI].FieldInfoCache
 
