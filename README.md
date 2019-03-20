@@ -10,7 +10,7 @@ Install-Module Autotask
 # The first time you connect a disk cache will be created
 $Credential = Get-Credential
 $ApiKey = "<the API identifier from your resource in Autotask>"
-Import-Module Autotask -Variable $Credential, $ApiKey 
+Import-Module Autotask -Variable $Credential, $ApiKey
 
 # Lots of entities has picklists that are unique to your tenant
 # When a picklist has been changed you will want to refresh the disk cache
@@ -26,8 +26,18 @@ Import-Module Autotask -Variable $Credential, $ApiKey, 'Acc*'
 # Refresh all entities with picklists
 Import-Module Autotask -Variable $Credential, $ApiKey, '*'
 
-# Refresh EVERYTHING 
+## Refresh EVERYTHING in the cache and script functions on disk
+# Will download all entities and detailed field info for all entities
 Update-AtwsDiskCache
+
+# Will recreate all .ps1 scripts for any entity with a picklist
+Update-AtwsFunctions -Dynamic
+
+# Will try to recreate all .ps1 scripts for any entity that does not
+# have a picklist. This is only necessary if a new API version has
+# been released and you want the new entities before we can release
+# a new module version. Requires write access to the module directory
+Update-AtwsFunctions -Static
 ```
 
 # Release notes
@@ -37,11 +47,13 @@ Update-AtwsDiskCache
 - IMPORTANT: Module structure and load method has changed. Pass Credentials to Import-Module using -Variable: Import-Module Autotask -Variable $Credentials, $ApiKey (Connect-AutotaskWebAPI is still there as a wrapper for backwards compatibility).
 - FEATURE: New cache model. The module caches entity info to disk, not functions.
 - FEATURE: SPEED! Module load time has improved a LOT! Not all entities change all the time. Entities that does not have any picklist parameters are pre-built and included in the module to speed up module load time.
+- NOTE! On first load a complete cache of any entity containing picklists have to be downloaded from your tenant and saved to disk.
 - FEATURE: You can use -IsNull and wildcards with UserDefinedFields (Finally!)
 - FEATURE: Is is now a single module. You pass your credentials directly to Import-Module to load everything in one go. Old behavior with Connect-AutotaskWebAPI is supported for backwards compatibility using aliases.
 - FEATURE: The module now uses built-in prefix support in Import-Module. Import the module multiple times using different credentials and prefixes for complex, cross-tenant work (requires using -Force with Import-Module).
 - FEATURE: Get entities that are referring TO any entity. Get AccountLocation by querying for the right Account(s).
 - FEATURE: PickList labels are added to any entity by default.
+- FEATURE: Reload the module with a different prefix and different credentials to code against two different tenants simultanously.
 - Changed version number scheme to follow API version number.
 - Minor bugfixes.
 
