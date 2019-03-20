@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -184,7 +185,7 @@ Set-Ticket
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TicketChangeRequestApproval:TicketID', 'ServiceCallTicket:TicketID', 'BillingItem:TicketID', 'TicketCost:TicketID', 'TicketChecklistItem:TicketID', 'TicketAdditionalInstalledProduct:TicketID', 'TicketSecondaryResource:TicketID', 'Ticket:ProblemTicketId', 'TicketAdditionalContact:TicketID', 'ServiceLevelAgreementResults:TicketID', 'ExpenseItem:TicketID', 'TicketNote:TicketID', 'AccountToDo:TicketID', 'TicketHistory:TicketID', 'ChangeRequestLink:ChangeRequestTicketID', 'ChangeRequestLink:ProblemOrIncidentTicketID', 'TimeEntry:TicketID', 'PurchaseOrderItem:TicketID', 'SurveyResults:TicketID', 'NotificationHistory:TicketID')]
+    [ValidateSet('BillingItem:TicketID', 'TicketCost:TicketID', 'TicketChecklistItem:TicketID', 'TicketAdditionalInstalledProduct:TicketID', 'TicketSecondaryResource:TicketID', 'TicketAdditionalContact:TicketID', 'ExpenseItem:TicketID', 'TicketNote:TicketID', 'ServiceCallTicket:TicketID', 'TicketChangeRequestApproval:TicketID', 'TicketHistory:TicketID', 'Ticket:ProblemTicketId', 'ChangeRequestLink:ChangeRequestTicketID', 'ChangeRequestLink:ProblemOrIncidentTicketID', 'TimeEntry:TicketID', 'PurchaseOrderItem:TicketID', 'SurveyResults:TicketID', 'AccountToDo:TicketID', 'ServiceLevelAgreementResults:TicketID', 'NotificationHistory:TicketID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

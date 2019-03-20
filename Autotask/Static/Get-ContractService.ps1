@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -108,7 +109,7 @@ Set-ContractService
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractServiceAdjustment:ContractServiceID', 'InstalledProduct:ContractServiceID', 'TicketCost:ContractServiceID', 'ContractServiceUnit:ContractServiceID', 'ProjectCost:ContractServiceID', 'Ticket:ContractServiceID', 'ContractCost:ContractServiceID', 'TimeEntry:ContractServiceID')]
+    [ValidateSet('ContractServiceAdjustment:ContractServiceID', 'InstalledProduct:ContractServiceID', 'TicketCost:ContractServiceID', 'ContractServiceUnit:ContractServiceID', 'ProjectCost:ContractServiceID', 'ContractCost:ContractServiceID', 'Ticket:ContractServiceID', 'TimeEntry:ContractServiceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

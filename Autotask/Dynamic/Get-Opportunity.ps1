@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -146,7 +147,7 @@ Set-Opportunity
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:OpportunityID', 'Contract:OpportunityID', 'AttachmentInfo:OpportunityID', 'Ticket:OpportunityId', 'AccountNote:OpportunityID', 'Quote:OpportunityID', 'AccountToDo:OpportunityID', 'NotificationHistory:OpportunityID')]
+    [ValidateSet('SalesOrder:OpportunityID', 'Contract:OpportunityID', 'AttachmentInfo:OpportunityID', 'AccountNote:OpportunityID', 'Quote:OpportunityID', 'Ticket:OpportunityId', 'AccountToDo:OpportunityID', 'NotificationHistory:OpportunityID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

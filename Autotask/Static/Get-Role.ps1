@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -117,7 +118,7 @@ Set-Role
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractFactor:RoleID', 'ContractRate:RoleID', 'ResourceServiceDeskRole:RoleID', 'ResourceRoleQueue:RoleID', 'PriceListRole:RoleID', 'TaskSecondaryResource:RoleID', 'ResourceRole:RoleID', 'BillingItem:RoleID', 'TicketSecondaryResource:RoleID', 'Ticket:AssignedResourceRoleID', 'QuoteItem:LaborID', 'TimeEntry:RoleID', 'Resource:DefaultServiceDeskRoleID', 'Task:AssignedResourceRoleID', 'ContractRoleCost:RoleID', 'ContractExclusionRole:RoleID', 'ResourceRoleDepartment:RoleID')]
+    [ValidateSet('ContractFactor:RoleID', 'ContractRate:RoleID', 'ResourceServiceDeskRole:RoleID', 'PriceListRole:RoleID', 'TaskSecondaryResource:RoleID', 'ResourceRole:RoleID', 'BillingItem:RoleID', 'TicketSecondaryResource:RoleID', 'Resource:DefaultServiceDeskRoleID', 'Ticket:AssignedResourceRoleID', 'QuoteItem:LaborID', 'TimeEntry:RoleID', 'ResourceRoleQueue:RoleID', 'ContractRoleCost:RoleID', 'Task:AssignedResourceRoleID', 'ContractExclusionRole:RoleID', 'ResourceRoleDepartment:RoleID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

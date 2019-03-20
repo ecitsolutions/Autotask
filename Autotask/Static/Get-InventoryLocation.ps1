@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -103,7 +104,7 @@ Set-InventoryLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InventoryTransfer:FromLocationID', 'InventoryTransfer:ToLocationID', 'InventoryItem:InventoryLocationID', 'PurchaseOrderItem:InventoryLocationID')]
+    [ValidateSet('InventoryItem:InventoryLocationID', 'PurchaseOrderItem:InventoryLocationID', 'InventoryTransfer:FromLocationID', 'InventoryTransfer:ToLocationID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -128,7 +129,7 @@ Set-Service
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProduct:ServiceID', 'PriceListService:ServiceID', 'ContractServiceAdjustment:ServiceID', 'ContractService:ServiceID', 'ServiceBundleService:ServiceID', 'BillingItem:ServiceID', 'ContractServiceUnit:ServiceID', 'QuoteItem:ServiceID')]
+    [ValidateSet('PriceListService:ServiceID', 'ContractServiceAdjustment:ServiceID', 'ContractService:ServiceID', 'BillingItem:ServiceID', 'InstalledProduct:ServiceID', 'ContractServiceUnit:ServiceID', 'ServiceBundleService:ServiceID', 'QuoteItem:ServiceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

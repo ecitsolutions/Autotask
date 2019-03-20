@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -131,7 +132,7 @@ Set-Product
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProduct:ProductID', 'Opportunity:ProductID', 'PriceListProduct:ProductID', 'TicketCost:ProductID', 'InventoryItem:ProductID', 'ProjectCost:ProductID', 'ProductVendor:ProductID', 'ContractCost:ProductID', 'QuoteItem:ProductID', 'PurchaseOrderItem:ProductID', 'InventoryTransfer:ProductID')]
+    [ValidateSet('Opportunity:ProductID', 'PriceListProduct:ProductID', 'InstalledProduct:ProductID', 'TicketCost:ProductID', 'InventoryItem:ProductID', 'ProjectCost:ProductID', 'ProductVendor:ProductID', 'ContractCost:ProductID', 'QuoteItem:ProductID', 'PurchaseOrderItem:ProductID', 'InventoryTransfer:ProductID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

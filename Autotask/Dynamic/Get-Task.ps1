@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -143,7 +144,7 @@ Set-Task
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TaskNote:TaskID', 'TaskPredecessor:PredecessorTaskID', 'TaskPredecessor:SuccessorTaskID', 'TaskSecondaryResource:TaskID', 'BillingItem:TaskID', 'ExpenseItem:TaskID', 'ServiceCallTask:TaskID', 'TimeEntry:TaskID', 'NotificationHistory:TaskID')]
+    [ValidateSet('TaskNote:TaskID', 'TaskPredecessor:PredecessorTaskID', 'TaskPredecessor:SuccessorTaskID', 'TaskSecondaryResource:TaskID', 'BillingItem:TaskID', 'ServiceCallTask:TaskID', 'ExpenseItem:TaskID', 'TimeEntry:TaskID', 'NotificationHistory:TaskID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

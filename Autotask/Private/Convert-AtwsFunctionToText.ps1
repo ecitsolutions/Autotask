@@ -9,7 +9,7 @@
   )
   Begin 
   { 
-    $RequiredVersion = $MyInvocation.MyCommand.Module.PowerShellVersion
+    $RequiredVersion = '4.0'
     $TextFrame = "#Requires -Version {0}`n{1}`nFunction {2}`n{{`n{3}`n  [CmdLetBinding(DefaultParameterSetName='{4}', ConfirmImpact='{5}')]`n  Param`n  (`n{6}`n  )`n{7}`n}}"
   }
   

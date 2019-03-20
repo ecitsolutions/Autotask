@@ -21,7 +21,7 @@ Function Update-Functions {
     Write-Verbose -Message ('{0}: Making sure cache is loaded.' -F $MyInvocation.MyCommand.Name)
     
     If (-not ($Script:Cache)) {
-      Import-AtwsScriptCache
+      Import-AtwsDiskCache
     }
    
   } 

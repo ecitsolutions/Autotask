@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -136,7 +137,7 @@ Set-Project
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem:ProjectID', 'ProjectCost:ProjectID', 'Ticket:ProjectID', 'Phase:ProjectID', 'ExpenseItem:ProjectID', 'Quote:ProposalProjectID', 'ProjectNote:ProjectID', 'PurchaseOrderItem:ProjectID', 'Task:ProjectID', 'NotificationHistory:ProjectID')]
+    [ValidateSet('BillingItem:ProjectID', 'ProjectCost:ProjectID', 'Phase:ProjectID', 'ExpenseItem:ProjectID', 'Quote:ProposalProjectID', 'ProjectNote:ProjectID', 'Ticket:ProjectID', 'PurchaseOrderItem:ProjectID', 'Task:ProjectID', 'NotificationHistory:ProjectID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

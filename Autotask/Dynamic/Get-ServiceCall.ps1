@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -121,7 +122,7 @@ Set-ServiceCall
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceCallTicket:ServiceCallID', 'ServiceCallTask:ServiceCallID')]
+    [ValidateSet('ServiceCallTask:ServiceCallID', 'ServiceCallTicket:ServiceCallID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

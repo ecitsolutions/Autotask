@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -179,7 +180,7 @@ Set-InstalledProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProduct:ParentInstalledProductID', 'Subscription:InstalledProductID', 'BillingItem:InstalledProductID', 'TicketAdditionalInstalledProduct:InstalledProductID', 'Ticket:InstalledProductID')]
+    [ValidateSet('Subscription:InstalledProductID', 'BillingItem:InstalledProductID', 'InstalledProduct:ParentInstalledProductID', 'TicketAdditionalInstalledProduct:InstalledProductID', 'Ticket:InstalledProductID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

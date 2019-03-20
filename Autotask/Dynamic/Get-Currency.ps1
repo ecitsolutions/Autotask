@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -124,7 +125,7 @@ Set-Currency
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('PriceListService:CurrencyID', 'Account:CurrencyID', 'PriceListProduct:CurrencyID', 'PriceListRole:CurrencyID', 'PriceListWorkTypeModifier:CurrencyID', 'ExpenseItem:ExpenseCurrencyID', 'PriceListServiceBundle:CurrencyID', 'PriceListMaterialCode:CurrencyID', 'ExpenseReport:ReimbursementCurrencyID')]
+    [ValidateSet('PriceListService:CurrencyID', 'Account:CurrencyID', 'PriceListProduct:CurrencyID', 'PriceListRole:CurrencyID', 'PriceListWorkTypeModifier:CurrencyID', 'PriceListServiceBundle:CurrencyID', 'ExpenseItem:ExpenseCurrencyID', 'PriceListMaterialCode:CurrencyID', 'ExpenseReport:ReimbursementCurrencyID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

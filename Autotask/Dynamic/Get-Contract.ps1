@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -160,7 +161,7 @@ Set-Contract
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProduct:ContractID', 'Project:ContractID', 'ContractFactor:ContractID', 'ContractServiceAdjustment:ContractID', 'Contract:ExclusionContractID', 'ContractExclusionAllocationCode:ContractID', 'ContractService:ContractID', 'ContractRetainer:ContractID', 'ContractNote:ContractID', 'BillingItem:ContractID', 'ContractMilestone:ContractID', 'ContractServiceUnit:ContractID', 'ContractServiceBundleAdjustment:ContractID', 'ContractTicketPurchase:ContractID', 'Ticket:ContractID', 'ContractExclusionRole:ContractID', 'ContractCost:ContractID', 'AccountToDo:ContractID', 'TimeEntry:ContractID', 'PurchaseOrderItem:ContractID', 'ContractBlock:ContractID', 'ContractRoleCost:ContractID', 'ContractServiceBundle:ContractID', 'ContractServiceBundleUnit:ContractID', 'ContractRate:ContractID')]
+    [ValidateSet('Project:ContractID', 'ContractFactor:ContractID', 'ContractServiceAdjustment:ContractID', 'ContractRate:ContractID', 'Contract:ExclusionContractID', 'ContractExclusionAllocationCode:ContractID', 'ContractService:ContractID', 'ContractRetainer:ContractID', 'ContractNote:ContractID', 'BillingItem:ContractID', 'ContractMilestone:ContractID', 'InstalledProduct:ContractID', 'ContractServiceUnit:ContractID', 'ContractServiceBundleAdjustment:ContractID', 'ContractTicketPurchase:ContractID', 'ContractCost:ContractID', 'Ticket:ContractID', 'TimeEntry:ContractID', 'PurchaseOrderItem:ContractID', 'ContractBlock:ContractID', 'AccountToDo:ContractID', 'ContractRoleCost:ContractID', 'ContractServiceBundle:ContractID', 'ContractServiceBundleUnit:ContractID', 'ContractExclusionRole:ContractID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -135,7 +136,7 @@ Set-Contact
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:Contact', 'InstalledProduct:ContactID', 'InstalledProduct:InstalledByContactID', 'TicketChangeRequestApproval:ContactID', 'Opportunity:ContactID', 'Contract:ContactID', 'AttachmentInfo:AttachedByContactID', 'ContactGroupContact:ContactID', 'Ticket:ContactID', 'TicketAdditionalContact:ContactID', 'ClientPortalUser:ContactID', 'AccountNote:ContactID', 'Quote:ContactID', 'AccountToDo:ContactID', 'SurveyResults:ContactID', 'NotificationHistory:InitiatingContactID')]
+    [ValidateSet('SalesOrder:Contact', 'Opportunity:ContactID', 'Contract:ContactID', 'AttachmentInfo:AttachedByContactID', 'InstalledProduct:ContactID', 'InstalledProduct:InstalledByContactID', 'ContactGroupContact:ContactID', 'TicketAdditionalContact:ContactID', 'TicketChangeRequestApproval:ContactID', 'ClientPortalUser:ContactID', 'AccountNote:ContactID', 'Quote:ContactID', 'Ticket:ContactID', 'SurveyResults:ContactID', 'AccountToDo:ContactID', 'NotificationHistory:InitiatingContactID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

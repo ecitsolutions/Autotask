@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -130,7 +131,7 @@ Set-ServiceBundle
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProduct:ServiceBundleID', 'ServiceBundleService:ServiceBundleID', 'BillingItem:ServiceBundleID', 'ContractServiceBundleAdjustment:ServiceBundleID', 'PriceListServiceBundle:ServiceBundleID', 'QuoteItem:ServiceBundleID', 'ContractServiceBundle:ServiceBundleID', 'ContractServiceBundleUnit:ServiceBundleID')]
+    [ValidateSet('BillingItem:ServiceBundleID', 'InstalledProduct:ServiceBundleID', 'PriceListServiceBundle:ServiceBundleID', 'ContractServiceBundleAdjustment:ServiceBundleID', 'ServiceBundleService:ServiceBundleID', 'QuoteItem:ServiceBundleID', 'ContractServiceBundle:ServiceBundleID', 'ContractServiceBundleUnit:ServiceBundleID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

@@ -1,4 +1,5 @@
-﻿<#
+﻿#Requires -Version 4.0
+<#
 
 .COPYRIGHT
 Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
@@ -116,7 +117,7 @@ Set-BusinessDivisionSubdivision
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Project:BusinessDivisionSubdivisionID', 'Opportunity:BusinessDivisionSubdivisionID', 'TicketCategoryFieldDefaults:BusinessDivisionSubdivisionID', 'Contract:BusinessDivisionSubdivisionID', 'Subscription:BusinessDivisionSubdivisionID', 'BillingItem:BusinessDivisionSubdivisionID', 'ContractMilestone:BusinessDivisionSubdivisionID', 'TicketCost:BusinessDivisionSubdivisionID', 'ContractServiceUnit:BusinessDivisionSubdivisionID', 'ProjectCost:BusinessDivisionSubdivisionID', 'Ticket:BusinessDivisionSubdivisionID', 'BusinessDivisionSubdivisionResource:BusinessDivisionSubdivisionID', 'ContractCost:BusinessDivisionSubdivisionID', 'ExpenseReport:BusinessDivisionSubdivisionID', 'ContractServiceBundleUnit:BusinessDivisionSubdivisionID', 'SalesOrder:BusinessDivisionSubdivisionID')]
+    [ValidateSet('SalesOrder:BusinessDivisionSubdivisionID', 'Project:BusinessDivisionSubdivisionID', 'Opportunity:BusinessDivisionSubdivisionID', 'TicketCategoryFieldDefaults:BusinessDivisionSubdivisionID', 'Contract:BusinessDivisionSubdivisionID', 'Subscription:BusinessDivisionSubdivisionID', 'BillingItem:BusinessDivisionSubdivisionID', 'ContractMilestone:BusinessDivisionSubdivisionID', 'TicketCost:BusinessDivisionSubdivisionID', 'ContractServiceUnit:BusinessDivisionSubdivisionID', 'ProjectCost:BusinessDivisionSubdivisionID', 'BusinessDivisionSubdivisionResource:BusinessDivisionSubdivisionID', 'ContractCost:BusinessDivisionSubdivisionID', 'ExpenseReport:BusinessDivisionSubdivisionID', 'Ticket:BusinessDivisionSubdivisionID', 'ContractServiceBundleUnit:BusinessDivisionSubdivisionID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
