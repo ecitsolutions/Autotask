@@ -101,7 +101,7 @@ Function Get-FieldInfo {
       Import-AtwsDiskCache
     }
          
-    Write-Verbose -Message ('{0}: Loaded detailed Fieldinfo from diskcache' -F $MyInvocation.MyCommand.Name) 
+   
 
     $CacheExpiry = (Get-Date).AddMinutes(-15)
   }
@@ -120,7 +120,9 @@ Function Get-FieldInfo {
         $Entity
       )
       Begin 
-      {}
+      {
+        $CacheDirty = $False
+      }
 
       Process
       {
@@ -146,6 +148,8 @@ Function Get-FieldInfo {
           # No errors
           Write-Verbose ('{0}: Save or update FieldInfo cache for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity)
           $script:FieldInfoCache[$Entity].FieldInfo = $Result
+          
+          $CacheDirty = $True
           
           Write-Warning ('Entity {0} has been modified in Autotask! Re-import module with -Force to refresh.' -F $Entity)
  
@@ -175,6 +179,8 @@ Function Get-FieldInfo {
             Write-Verbose ('{0}: Save or update UDF cache for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity)
             $script:FieldInfoCache[$Entity].UDFInfo = $UDF
           
+            $CacheDirty = $True
+          
             Write-Warning ('Entity {0} has been modified in Autotask! Re-import module with -Force to refresh.' -F $Entity)
  
           }
@@ -183,7 +189,9 @@ Function Get-FieldInfo {
       }
 
       End
-      {}
+      {
+        Return $CacheDirty
+      }
     }
 
 
@@ -192,10 +200,9 @@ Function Get-FieldInfo {
     {
       If (($script:FieldInfoCache[$Entity].HasPicklist -or $script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields) -and ($script:FieldInfoCache[$Entity].RetrievalTime -lt $CacheExpiry -or $UpdateCache.IsPresent)) { 
         
-        Update-AtwsEntity -Entity $Entity
-
-        # Mark chache as dirty == dump to disk
-        $CacheDirty = $True
+        $CacheDirty = Update-AtwsEntity -Entity $Entity
+        
+        Write-Verbose -Message ('{0}: Loaded detailed Fieldinfo for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity) 
       }
       Else {
         # Prepare an empty result set. If none of the conditions below are true, then the user tried to get
@@ -260,8 +267,7 @@ Function Get-FieldInfo {
           If($Object.Value.RetrievalTime -lt $CacheExpiry) {
           
             # Force a refresh by calling this function
-            Update-AtwsEntity -Entity $Object.Key
-            $CacheDirty = $True
+            $CacheDirty = Update-AtwsEntity -Entity $Entity
           }
         }
       }
