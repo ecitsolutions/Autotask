@@ -204,23 +204,21 @@ Function Get-FieldInfo {
         
         Write-Verbose -Message ('{0}: Loaded detailed Fieldinfo for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity) 
       }
-      Else {
-        # Prepare an empty result set. If none of the conditions below are true, then the user tried to get
-        # UDFs from an entity that does not support them. The result will be empty.
-        $Result = @()  
+      
+      # Prepare an empty result set. If none of the conditions below are true, then the user tried to get
+      # UDFs from an entity that does not support them. The result will be empty.
+      $Result = @()  
         
-        # If the user asked for UDFs and the entity supports UDFs, return the info. 
-        If ($UserDefinedFields.IsPresent -and $script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields)
-        {
-          Write-Verbose ('{0}: Returning fieldinfo for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
-          $Result = $script:FieldInfoCache[$Entity].UDFInfo
-        }
-        # If the user askt for fieldinfo (default), return fieldinfo
-        ElseIf ($PSCmdlet.ParameterSetName -eq 'by_Entity')
-        { 
-          Write-Verbose ('{0}: Returning fieldinfo for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
-          $Result = $script:FieldInfoCache[$Entity].FieldInfo
-        }
+      # If the user asked for UDFs and the entity supports UDFs, return the info. 
+      If ($UserDefinedFields.IsPresent -and $script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields)
+      {
+        Write-Verbose ('{0}: Returning fieldinfo for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
+        $Result = $script:FieldInfoCache[$Entity].UDFInfo
+      }
+      ElseIf (-not ($UserDefinedFields.IsPresent))
+      { 
+        Write-Verbose ('{0}: Returning fieldinfo for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
+        $Result = $script:FieldInfoCache[$Entity].FieldInfo
       }
     }
     # ReferencingEntity
