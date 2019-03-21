@@ -23,7 +23,7 @@ Param(
       ValueFromRemainingArguments = $True
   )]
   [String[]]
-  $EntityName
+  $EntityName = $Global:AtwsRefreshCachePattern
 )
 
 # Special consideration for -Verbose, as there is no $PSCmdLet context to check if Import-Module was called using -Verbose
@@ -86,6 +86,10 @@ If ($Credential)
   If (Test-Path $DynamicCache) {
     $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*.ps1 -ErrorAction SilentlyContinue )     
   }
+  Else {
+    # No personal dynamic cache. Refresh  ALL dynamic entities.
+    $EntityName = '*'
+  }
   
   # Refresh any entities the caller has ordered'
   # We only consider entities that are dynamic
@@ -93,6 +97,7 @@ If ($Credential)
   { 
     $Entities = Get-FieldInfo -Dynamic
     $EntitiesToProcess = @()
+    
     Foreach ($String in $EntityName)
     {
       $EntitiesToProcess += $Entities.GetEnumerator().Where({$_.Key -like $String})
