@@ -13,9 +13,7 @@
     
     $CacheFile = 'AutotaskFieldInfoCache.xml'
     
-    $ModuleBase = Split-Path $MyModule.ModuleBase -Parent
-    
-    $CentralCache = '{0}\{1}\{2}' -F $ModuleBase, $MyModule.Name, $CacheFile
+    $CentralCache = '{0}\Private\{1}' -F $MyModule.ModuleBase, $CacheFile
 
     Write-Verbose -Message ('{0}: Module cache location is {1}' -F $MyInvocation.MyCommand.Name, $CentralCache)    
     
