@@ -6,12 +6,32 @@ Function Update-Manifest {
   )]
   Param(
     [Switch]
-    $UpdateVersion
+    $UpdateVersion,
+    
+    [Switch]
+    $Beta
   )
   
   Begin { 
     # Get info from current module
     $ModuleInfo = $MyInvocation.MyCommand.Module
+    
+    If ($Beta.IsPresent) {
+      $ModuleName = '{0}Beta' -F $ModuleInfo.Name
+      $GUID = 'ff62b403-3520-4b98-a12b-343bb6b79255'
+      
+      # Path to RootModule
+      $PSMName = '{0}\{1}.psm1' -F $ModuleInfo.ModuleBase, $ModuleInfo.Name
+      $PSMDest = '{0}\{1}.psm1' -F $ModuleInfo.ModuleBase, $ModuleName
+      
+      # Update Beta rootmodule
+      $Null = Copy-Item -Path $PSMName -Destination $PSMDest -Force
+    }
+    Else {
+      $ModuleName = $ModuleInfo.Name
+      $GUID = 'abd8b426-797b-4702-b66d-5f871d0701dc'
+    }
+    
     
     # Create the parameter hashtable 
     $ManifestParams = @{}
@@ -29,14 +49,15 @@ Function Update-Manifest {
     
     # Read the nuspec
     $Nuspec = New-Object -TypeName XML
-    $NuspecPath = '{0}\Autotask.nuspec' -F $ModuleInfo.ModuleBase
-    $Nuspec.Load($NuspecPath)
+    $NuspecSourcePath = '{0}\{1}.nuspec' -F $ModuleInfo.ModuleBase, $ModuleInfo.Name
+    $NuspecPath = '{0}\{1}.nuspec' -F $ModuleInfo.ModuleBase, $ModuleName
+    $Nuspec.Load($NuspecSourcePath)
   } 
   
   Process {
     
     # Overwrite parameters that need new values
-    $ManifestParams['Path'] = '{0}\Autotask.psd1' -F $ModuleInfo.ModuleBase
+    $ManifestParams['Path'] = '{0}\{1}.psd1' -F $ModuleInfo.ModuleBase, $ModuleName
     
     If ($UpdateVersion.IsPresent) { 
     
@@ -60,7 +81,13 @@ Function Update-Manifest {
       # Use existing version if no update has been requested
       $Moduleversion = $ModuleInfo.Version
     }
+    
+    # Explicitly set important parameters
+    $ManifestParams['RootModule'] = '{0}.psm1' -F $ModuleName
     $ManifestParams['Moduleversion'] = $Moduleversion
+    
+    # Make sure the GUID matches module manifest (Beta or Release)
+    $ManifestParams['GUID'] = $GUID
     
     # Information to export
     $Functions = @()
@@ -83,10 +110,12 @@ Function Update-Manifest {
     $ManifestParams['DefaultCommandPrefix'] = 'Atws'
     
     # Update nuspec
+    $Nuspec.DocumentElement.metadata.id = $ModuleName
     $Nuspec.DocumentElement.metadata.version = $ManifestParams['Moduleversion'].ToString()
     $Nuspec.DocumentElement.metadata.description = $ManifestParams['Description']
     $Nuspec.DocumentElement.metadata.authors = $ManifestParams['Author']
     $Nuspec.DocumentElement.metadata.tags = $ManifestParams['Tags'] -join ', '
+    $Nuspec.DocumentElement.metadata.releasenotes = $ManifestParams['ReleaseNotes']
   }
   End {
     $Caption = $MyInvocation.MyCommand.Name
