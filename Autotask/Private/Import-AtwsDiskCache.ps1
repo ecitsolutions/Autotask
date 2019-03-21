@@ -66,12 +66,7 @@
         # Copy the hashtable to a new object. We do NOT want a referenced copy!
         $NewHashTable = Copy-PSObject -InputObject $Script:Cache['00'].FieldInfoCache
         Add-Member -InputObject $Script:Cache[$Script:Atws.CI] -MemberType NoteProperty -Name FieldInfoCache -Value $NewHashTable
-        
-        # Refresh all dynamic entities
-        $DynamicEntities = Get-FieldInfo -Dynamic
-        
-        # Refresh dynamic functions
-        . Import-AtwsCmdLet -Entities $DynamicEntities
+
       }
 
       # Initialize the $Script:FieldInfoCache shorthand 
