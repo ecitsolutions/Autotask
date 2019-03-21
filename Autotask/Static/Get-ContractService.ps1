@@ -109,7 +109,7 @@ Set-ContractService
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractServiceAdjustment:ContractServiceID', 'InstalledProduct:ContractServiceID', 'TicketCost:ContractServiceID', 'ContractServiceUnit:ContractServiceID', 'ProjectCost:ContractServiceID', 'ContractCost:ContractServiceID', 'Ticket:ContractServiceID', 'TimeEntry:ContractServiceID')]
+    [ValidateSet('InstalledProduct:ContractServiceID', 'ContractServiceAdjustment:ContractServiceID', 'TicketCost:ContractServiceID', 'ContractServiceUnit:ContractServiceID', 'ProjectCost:ContractServiceID', 'Ticket:ContractServiceID', 'ContractCost:ContractServiceID', 'TimeEntry:ContractServiceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

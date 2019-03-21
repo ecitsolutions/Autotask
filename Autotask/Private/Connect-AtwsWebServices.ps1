@@ -159,7 +159,10 @@ Function Connect-AtwsWebServices {
       # The connection has been verified. Use it to dynamically create functions for all entities
       Write-Progress -Status 'Connection OK' -PercentComplete 90 -CurrentOperation 'Importing dynamic module' @ProgressParameters
         
- 
+      Write-Verbose ('{0}: Loading disk cache' -F $MyInvocation.MyCommand.Name)
+      
+      Import-AtwsDiskCache
+      
       # Check date and time formats and warn if the are different. This will affect how dates as text will be converted to datetime objects
 
       $CultureInfo = ([CultureInfo]::CurrentCulture).DateTimeFormat

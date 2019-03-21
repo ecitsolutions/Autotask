@@ -185,7 +185,7 @@ Set-Ticket
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem:TicketID', 'TicketCost:TicketID', 'TicketChecklistItem:TicketID', 'TicketAdditionalInstalledProduct:TicketID', 'TicketSecondaryResource:TicketID', 'TicketAdditionalContact:TicketID', 'ExpenseItem:TicketID', 'TicketNote:TicketID', 'ServiceCallTicket:TicketID', 'TicketChangeRequestApproval:TicketID', 'TicketHistory:TicketID', 'Ticket:ProblemTicketId', 'ChangeRequestLink:ChangeRequestTicketID', 'ChangeRequestLink:ProblemOrIncidentTicketID', 'TimeEntry:TicketID', 'PurchaseOrderItem:TicketID', 'SurveyResults:TicketID', 'AccountToDo:TicketID', 'ServiceLevelAgreementResults:TicketID', 'NotificationHistory:TicketID')]
+    [ValidateSet('TicketChangeRequestApproval:TicketID', 'ServiceCallTicket:TicketID', 'BillingItem:TicketID', 'TicketCost:TicketID', 'TicketChecklistItem:TicketID', 'TicketAdditionalInstalledProduct:TicketID', 'TicketSecondaryResource:TicketID', 'Ticket:ProblemTicketId', 'TicketAdditionalContact:TicketID', 'ServiceLevelAgreementResults:TicketID', 'ExpenseItem:TicketID', 'TicketNote:TicketID', 'AccountToDo:TicketID', 'TicketHistory:TicketID', 'ChangeRequestLink:ChangeRequestTicketID', 'ChangeRequestLink:ProblemOrIncidentTicketID', 'TimeEntry:TicketID', 'PurchaseOrderItem:TicketID', 'SurveyResults:TicketID', 'NotificationHistory:TicketID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

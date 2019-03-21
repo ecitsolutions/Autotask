@@ -129,7 +129,7 @@ Set-Service
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('PriceListService:ServiceID', 'ContractServiceAdjustment:ServiceID', 'ContractService:ServiceID', 'BillingItem:ServiceID', 'InstalledProduct:ServiceID', 'ContractServiceUnit:ServiceID', 'ServiceBundleService:ServiceID', 'QuoteItem:ServiceID')]
+    [ValidateSet('InstalledProduct:ServiceID', 'PriceListService:ServiceID', 'ContractServiceAdjustment:ServiceID', 'ContractService:ServiceID', 'ServiceBundleService:ServiceID', 'BillingItem:ServiceID', 'ContractServiceUnit:ServiceID', 'QuoteItem:ServiceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

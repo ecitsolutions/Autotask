@@ -22,6 +22,7 @@
     $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
     $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
     
+    $UpdateCache = $False
     
     Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
   }
@@ -75,7 +76,7 @@
       # If the API version has been changed at the Autotask end we unfortunately have to reload all
       # entities from scratch
       $CurrentApiVersion = $Script:Atws.GetWsdlVersion()
-      If (-not ($Script:Cache[$Script:Atws.CI].ApiVersion -eq $CurrentApiVersion)) {
+      If (-not ($Script:Cache[$Script:Atws.CI].ApiVersion -eq $CurrentApiVersion) -or $UpdateCache) {
         
         # Call the import-everything function
         Update-DiskCache

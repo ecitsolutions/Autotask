@@ -140,7 +140,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Service:AllocationCodeID', 'TicketCategoryFieldDefaults:WorkTypeID', 'ContractExclusionAllocationCode:AllocationCodeID', 'ShippingType:AllocationCodeID', 'Subscription:MaterialCodeID', 'ServiceBundle:AllocationCodeID', 'BillingItem:AllocationCodeID', 'ContractMilestone:AllocationCodeID', 'TicketCost:AllocationCodeID', 'ProjectCost:AllocationCodeID', 'Product:ProductAllocationCodeID', 'Product:CostAllocationCodeID', 'ContractCost:AllocationCodeID', 'PriceListMaterialCode:AllocationCodeID', 'Ticket:AllocationCodeID', 'QuoteItem:CostID', 'QuoteItem:ExpenseID', 'TimeEntry:InternalAllocationCodeID', 'TimeEntry:AllocationCodeID', 'Task:AllocationCodeID')]
+    [ValidateSet('Service:AllocationCodeID', 'Product:ProductAllocationCodeID', 'Product:CostAllocationCodeID', 'ContractExclusionAllocationCode:AllocationCodeID', 'TicketCategoryFieldDefaults:WorkTypeID', 'ShippingType:AllocationCodeID', 'Subscription:MaterialCodeID', 'ServiceBundle:AllocationCodeID', 'BillingItem:AllocationCodeID', 'ContractMilestone:AllocationCodeID', 'TicketCost:AllocationCodeID', 'ProjectCost:AllocationCodeID', 'Ticket:AllocationCodeID', 'ContractCost:AllocationCodeID', 'PriceListMaterialCode:AllocationCodeID', 'QuoteItem:CostID', 'QuoteItem:ExpenseID', 'TimeEntry:InternalAllocationCodeID', 'TimeEntry:AllocationCodeID', 'Task:AllocationCodeID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

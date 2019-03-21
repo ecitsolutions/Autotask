@@ -107,7 +107,12 @@ Function Update-Manifest {
     $ManifestParams['PrivateData'] = @{}
 
     # Default prefix is always Atws
-    $ManifestParams['DefaultCommandPrefix'] = 'Atws'
+    If ($Beta.IsPresent) {
+      $ManifestParams['DefaultCommandPrefix'] = 'AtwsBeta'
+    }
+    Else { 
+      $ManifestParams['DefaultCommandPrefix'] = 'Atws'
+    }
     
     # Update nuspec
     $Nuspec.DocumentElement.metadata.id = $ModuleName

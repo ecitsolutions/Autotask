@@ -121,6 +121,8 @@ Function Get-FieldInfo {
       )
       Begin 
       {
+        Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+            
         $CacheDirty = $False
       }
 
@@ -131,6 +133,9 @@ Function Get-FieldInfo {
         $VerboseWarning = '{0}: About to get built-in fields for {1}s. Do you want to continue?' -F $Caption, $Entity
 
         If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+        
+          Write-Verbose -Message ("{0}: Calling .GetFieldInfo('{1}')" -F $MyInvocation.MyCommand.Name, $Entity) 
+          
           $Result = $Script:atws.GetFieldInfo($Entity)
                  
           If ($Result.Errors.Count -gt 0) {
@@ -173,7 +178,12 @@ Function Get-FieldInfo {
           
           }
           
-          If (Compare-PSObject -ReferenceObject $script:FieldInfoCache[$Entity].UDFInfo -DifferenceObject $UDF) { 
+          # UDF info will be empty the first time around
+          If (-not ($script:FieldInfoCache[$Entity].UDFInfo)) {
+            $script:FieldInfoCache[$Entity].UDFInfo = $UDF
+            $CacheDirty = $True
+          }
+          ElseIf (Compare-PSObject -ReferenceObject $script:FieldInfoCache[$Entity].UDFInfo -DifferenceObject $UDF) { 
      
             # No errors
             Write-Verbose ('{0}: Save or update UDF cache for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity)

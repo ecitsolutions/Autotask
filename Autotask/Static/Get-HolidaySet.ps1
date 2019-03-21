@@ -104,7 +104,7 @@ Set-HolidaySet
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Holiday:HolidaySetID', 'BusinessLocation:HolidaySetID')]
+    [ValidateSet('BusinessLocation:HolidaySetID', 'Holiday:HolidaySetID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

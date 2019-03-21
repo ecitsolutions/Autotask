@@ -56,29 +56,25 @@ Function Connect-WebAPI {
     # Store parameters to global variables. Force-reloading the module destroys this scope.
     $Global:AtwsCredential = $Credential
     $Global:AtwsApiTrackingIdentifier = $ApiTrackingIdentifier
+    If ($RefreshCache.IsPresent) {
+      $Global:AtwsRefreshCachePattern = '*'
+    }
   }
   
   Process { 
     Try 
     { 
       # First try to re-import the module by name
-      Import-Module -Name $ModuleName -Global -Force -Variable $Global:Credential, $Global:ApiTrackingIdentifier -ErrorAction Stop
+      Import-Module -Name $ModuleName -Global -Prefix $Prefix -Force -Verbose
     }
     Catch 
     {
       # If import by name fails the module has most likely been loaded directly from disk (path)
       # Retry loading the module from its base directory
-      $Module = Get-Module -Name $ModuleName
-      $ModulePath = $Module.ModuleBase
+      $ModulePath = $MyInvocation.MyCommand.Module.ModuleBase
       
-      # If user tries refreshcache
-      If ($RefreshCache.IsPresent) {
-        Import-Module $ModulePath -Global -Prefix $Prefix -Force -Variable $Global:AtwsCredential, $Global:AtwsApiTrackingIdentifier, '*'
-      }
-      Else
-      {
-        Import-Module $ModulePath -Global -Prefix $Prefix -Force -Variable $Global:AtwsCredential, $Global:AtwsApiTrackingIdentifier
-      }
+      Import-Module -Name $ModulePath -Global -Prefix $Prefix -Force 
+
     }
   }
   

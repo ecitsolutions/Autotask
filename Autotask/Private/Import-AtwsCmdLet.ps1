@@ -23,6 +23,10 @@ Function Import-AtwsCmdLet
     
     $RootPath = '{0}\WindowsPowershell\Cache\{1}' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
     
+    If (-not (Test-Path "$RootPath\Dynamic")) {
+      $Null = New-Item -Path "$RootPath\Dynamic" -ItemType Directory -Force
+    }
+    
   } 
   
   Process
