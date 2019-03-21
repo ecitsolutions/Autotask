@@ -65,7 +65,7 @@ Function Connect-WebAPI {
     Try 
     { 
       # First try to re-import the module by name
-      Import-Module -Name $ModuleName -Global -Prefix $Prefix -Force -Verbose
+      Import-Module -Name $ModuleName -Global -Prefix $Prefix -Force -Erroraction Stop
     }
     Catch 
     {
