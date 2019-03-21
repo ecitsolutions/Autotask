@@ -108,7 +108,7 @@ Function Update-Manifest {
 
     # Default prefix is always Atws
     If ($Beta.IsPresent) {
-      $ManifestParams['DefaultCommandPrefix'] = 'AtwsBeta'
+      $ManifestParams['DefaultCommandPrefix'] = 'Beta'
     }
     Else { 
       $ManifestParams['DefaultCommandPrefix'] = 'Atws'
