@@ -23,7 +23,7 @@ Param(
       ValueFromRemainingArguments = $True
   )]
   [String[]]
-  $EntityName
+  $EntityName = $Global:AtwsRefreshCachePattern
 )
 
 # Special consideration for -Verbose, as there is no $PSCmdLet context to check if Import-Module was called using -Verbose
@@ -77,7 +77,10 @@ If ($Credential)
   {
     Remove-Variable -Name AtwsApiTrackingIdentifier -Scope Global
   }
-  
+  If (Get-Variable -Name AtwsRefreshCachePattern -Scope Global -ErrorAction SilentlyContinue)
+  {
+    Remove-Variable -Name AtwsRefreshCachePattern -Scope Global
+  }
   
   # Connect to the API using required, additional parameters, using internal function name
   . Connect-AtwsWebServices -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
@@ -86,6 +89,10 @@ If ($Credential)
   If (Test-Path $DynamicCache) {
     $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*.ps1 -ErrorAction SilentlyContinue )     
   }
+  Else {
+    # No personal dynamic cache. Refresh  ALL dynamic entities.
+    $EntityName = '*'
+  }
   
   # Refresh any entities the caller has ordered'
   # We only consider entities that are dynamic
@@ -93,6 +100,7 @@ If ($Credential)
   { 
     $Entities = Get-FieldInfo -Dynamic
     $EntitiesToProcess = @()
+    
     Foreach ($String in $EntityName)
     {
       $EntitiesToProcess += $Entities.GetEnumerator().Where({$_.Key -like $String})

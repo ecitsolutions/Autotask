@@ -77,7 +77,10 @@ If ($Credential)
   {
     Remove-Variable -Name AtwsApiTrackingIdentifier -Scope Global
   }
-  
+  If (Get-Variable -Name AtwsRefreshCachePattern -Scope Global -ErrorAction SilentlyContinue)
+  {
+    Remove-Variable -Name AtwsRefreshCachePattern -Scope Global
+  }
   
   # Connect to the API using required, additional parameters, using internal function name
   . Connect-AtwsWebServices -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
