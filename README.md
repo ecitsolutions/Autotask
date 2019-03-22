@@ -10,34 +10,28 @@ Install-Module Autotask
 # The first time you connect a disk cache will be created
 $Credential = Get-Credential
 $ApiKey = "<the API identifier from your resource in Autotask>"
-Import-Module Autotask -Variable $Credential, $ApiKey
+Import-Module Autotask -ArgumentList $Credential, $ApiKey
 
 # Lots of entities has picklists that are unique to your tenant
 # When a picklist has been changed you will want to refresh the disk cache
 
-Import-Module Autotask -Variable $Credential, $ApiKey, 'Account'
+Import-Module Autotask -ArgumentList $Credential, $ApiKey, 'Account'
 
 # Refresh more than 1 entity
-Import-Module Autotask -Variable $Credential, $ApiKey, 'Account', 'Contact'
+Import-Module Autotask -ArgumentList $Credential, $ApiKey, 'Account', 'Contact'
 
 # Use wildcards
-Import-Module Autotask -Variable $Credential, $ApiKey, 'Acc*'
+Import-Module Autotask -ArgumentList $Credential, $ApiKey, 'Acc*'
 
 # Refresh all entities with picklists
-Import-Module Autotask -Variable $Credential, $ApiKey, '*'
+Import-Module Autotask -ArgumentList $Credential, $ApiKey, '*'
 
 ## Refresh EVERYTHING in the cache and script functions on disk
 # Will download all entities and detailed field info for all entities
 Update-AtwsDiskCache
 
 # Will recreate all .ps1 scripts for any entity with a picklist
-Update-AtwsFunctions -Dynamic
-
-# Will try to recreate all .ps1 scripts for any entity that does not
-# have a picklist. This is only necessary if a new API version has
-# been released and you want the new entities before we can release
-# a new module version. Requires write access to the module directory
-Update-AtwsFunctions -Static
+Update-AtwsFunctions -FunctionSet Dynamic
 ```
 
 # Release notes
