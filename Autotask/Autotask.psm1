@@ -66,7 +66,8 @@ foreach ($Import in @($PrivateFunction + $PublicFunction))
   }
 }
 
-If ($Credential)
+# If they tried to pass any variables
+If (($Credential) -or ($ApiTrackingIdentifier))
 {
   # Remove Global variables (if used) for security
   If (Get-Variable -Name AtwsCredential -Scope Global -ErrorAction SilentlyContinue)
@@ -130,6 +131,9 @@ If ($Credential)
     Import-AtwsCmdLet -Entities $EntitiesToProcess
     
   }
+}
+Else {
+ Write-Warning 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI (default prefix is Atws) to connect.'
 }
 
 # Loop through all script files and source them
