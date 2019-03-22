@@ -36,7 +36,7 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
-## Version 1.6.1.1 - New Cache Model
+## Version 1.6.1.4 - New Cache Model
 
 - IMPORTANT: Module structure and load method has changed. Pass Credentials to Import-Module using -Variable: Import-Module Autotask -Variable $Credentials, $ApiKey (Connect-AutotaskWebAPI is still there as a wrapper for backwards compatibility).
 - FEATURE: New cache model. The module caches entity info to disk, not functions.
