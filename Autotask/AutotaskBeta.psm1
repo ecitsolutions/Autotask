@@ -95,6 +95,16 @@ If (($Credential) -or ($ApiTrackingIdentifier))
     $EntityName = '*'
   }
   
+  # Verify that picklists are available in disk cache
+  # Status is always a picklist
+  # if there is none, refresh ALL entities with picklists
+  
+  $FieldList = Get-FieldInfo -Entity Ticket
+  $Status = $FieldList.Where{$_.Name -eq 'Status'}
+  If ($Status.PickListValues.Count -lt 1) {
+    $EntityName = '*'
+  }
+  
   # Refresh any entities the caller has ordered'
   # We only consider entities that are dynamic
   If ($EntityName)
@@ -133,7 +143,7 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   }
 }
 Else {
- Write-Warning 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI (default prefix is Atws) to connect.'
+  Write-Warning 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI (default prefix is Atws) to connect.'
 }
 
 # Loop through all script files and source them
