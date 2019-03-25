@@ -145,7 +145,8 @@ Function Get-AtwsData
           Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction SilentlyContinue
         }
 
-        If ($Variable) {
+        # Test if the variable "Variable" has been set
+        If (Test-Path Variable:Variable) {
           Write-Verbose ('{0}: Substituting {1} for its value' -F $MyInvocation.MyCommand.Name, $Word)
           If ($PropertyTail) {
             # Add properties back 

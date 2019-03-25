@@ -148,7 +148,7 @@ Function Get-FieldInfo {
       
         # No errors
         # Test if value has changed
-        If (Compare-PSObject -ReferenceObject $script:FieldInfoCache[$Entity].FieldInfo -DifferenceObject $Result) { 
+        If (-not (Compare-PSObject -ReferenceObject $script:FieldInfoCache[$Entity].FieldInfo -DifferenceObject $Result)) { 
      
           # No errors
           Write-Verbose ('{0}: Save or update FieldInfo cache for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity)
@@ -156,8 +156,10 @@ Function Get-FieldInfo {
           
           $CacheDirty = $True
           
-          Write-Warning ('Entity {0} has been modified in Autotask! Re-import module with -Force to refresh.' -F $Entity)
- 
+          # If not called during module load, give this warning
+          If ($MyInvocation.Mycommand.Noun -ne 'FieldInfo') { 
+            Write-Warning ('Entity {0} has been modified in Autotask! Re-import module with -Force to refresh.' -F $Entity)
+          }
         }
         
         If ($script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields)
@@ -183,15 +185,17 @@ Function Get-FieldInfo {
             $script:FieldInfoCache[$Entity].UDFInfo = $UDF
             $CacheDirty = $True
           }
-          ElseIf (Compare-PSObject -ReferenceObject $script:FieldInfoCache[$Entity].UDFInfo -DifferenceObject $UDF) { 
+          ElseIf (-not(Compare-PSObject -ReferenceObject $script:FieldInfoCache[$Entity].UDFInfo -DifferenceObject $UDF)) { 
      
             # No errors
             Write-Verbose ('{0}: Save or update UDF cache for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity)
             $script:FieldInfoCache[$Entity].UDFInfo = $UDF
           
             $CacheDirty = $True
-          
-            Write-Warning ('Entity {0} has been modified in Autotask! Re-import module with -Force to refresh.' -F $Entity)
+            # If not called during module load, give this warning
+            If ($MyInvocation.Mycommand.Noun -ne 'FieldInfo') { 
+              Write-Warning ('Entity {0} has been modified in Autotask! Re-import module with -Force to refresh.' -F $Entity)
+            }
  
           }
         }
