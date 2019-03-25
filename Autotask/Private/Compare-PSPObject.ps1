@@ -6,7 +6,7 @@
         Mandatory = $True,
         Position = 0
     )]
-    [PSObject]
+    [PSObject[]]
     $ReferenceObject,
     
     [Parameter(
@@ -14,7 +14,7 @@
         ValueFromPipeLine = $True,
         Position = 1
     )]
-    [PSObject]
+    [PSObject[]]
     $DifferenceObject
   )
   
@@ -26,30 +26,43 @@
     $Binary = New-Object System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
     $Algorithm = [Security.Cryptography.HashAlgorithm]::Create("MD5")
     
-    $Identical = $False
+    $Identical = $True
   }
   
   Process 
   { 
-    # Serialize data using BinaryFormatter
-    $Binary.Serialize($ReferenceStream, $ReferenceObject)
+    <#
+        # Serialize data using BinaryFormatter
+        $Binary.Serialize($ReferenceStream, $ReferenceObject)
     
-    # Reset Stream position
-    $ReferenceStream.Position = 0
+        # Reset Stream position
+        $ReferenceStream.Position = 0
     
-    $ReferenceHash = -join ($Algorithm.ComputeHash($ReferenceStream) | ForEach-Object -Process {"{0:x2}" -f $_}) 
+        $ReferenceHash = -join ($Algorithm.ComputeHash($ReferenceStream) | ForEach-Object -Process {"{0:x2}" -f $_}) 
     
-    # Serialize data using BinaryFormatter
-    $Binary.Serialize($DifferenceStream, $DifferenceObject)
+        # Serialize data using BinaryFormatter
+        $Binary.Serialize($DifferenceStream, $DifferenceObject)
       
-    # Reset Stream position
-    $DifferenceStream.Position = 0
+        # Reset Stream position
+        $DifferenceStream.Position = 0
       
-    $DifferenceHash = -join ($Algorithm.ComputeHash($DifferenceStream) | ForEach-Object -Process {"{0:x2}" -f $_}) 
+        $DifferenceHash = -join ($Algorithm.ComputeHash($DifferenceStream) | ForEach-Object -Process {"{0:x2}" -f $_}) 
       
-    If ($ReferenceHash -ne $DifferenceHash) {
-      $Identical = $False
+        If ($ReferenceHash -ne $DifferenceHash) {
+        $Identical = $False
+        }
+    #>
+    $PropertyList = $ReferenceObject[0] | Get-Member -MemberType Property, NoteProperty | ForEach-Object Name
+
+    Foreach ($Object in $ReferenceObject) {
+      $Index = $ReferenceObject.IndexOf($Object)
+      $Difference = Compare-Object -ReferenceObject $Object -DifferenceObject $DifferenceObject[$Index] -Property $PropertyList
+      If ($Difference) {
+        $Identical = $False
+        Break
+      }
     }
+    
   }
   
   End {
