@@ -36,6 +36,14 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.1.6 - Bugfix release
+
+- BUGFIX: Compare-PSObject rewritten, too strict comparison when trying to use computehash. Using nested Compare-Object now, seems to work well enough.
+- BUGFIX: Inverted test-logic for comparing downloaded fieldinfo to cached info.
+- BUGFIX: Get-AtwsData: When testing for the existance of a variable, any variable with value 0 (zero) would be presumed to not exist. Fixed.
+- Improved module loading to verify that downloaded cache is OK. Needed to fix error caused by earlier bug, but a useful test to do at that time.
+- Get-AtwsFieldInfo warns about entity changes only if called in use, no warning during module load.
+
 ## Version 1.6.1.5 - New Cache Model
 
 - IMPORTANT: Module structure and load method has changed. Pass Credentials to Import-Module using -Variable: Import-Module Autotask -Variable $Credentials, $ApiKey (Connect-AutotaskWebAPI is still there as a wrapper for backwards compatibility).
