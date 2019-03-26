@@ -63,7 +63,11 @@ Function Get-AtwsData
   )
   Begin
   { 
-   
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+       
     If (-not($Script:Atws.Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
@@ -74,7 +78,7 @@ Function Get-AtwsData
   Process
   {
   
-    Write-Verbose ('{0}: Mashing parameters into an array of strings.' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: Mashing parameters into an array of strings.' -F $MyInvocation.MyCommand.Name)
     
     # $Filter should not be a flat string. If it is - fix it!
     If ($Filter.Count -eq 1 -and $Filter -match ' ' )
@@ -112,7 +116,7 @@ Function Get-AtwsData
         }
       }
     }
-    Write-Verbose ('{0}: Checking query for variables that have survived as string' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: Checking query for variables that have survived as string' -F $MyInvocation.MyCommand.Name)
     $NewFilter = @()
     Foreach ($Word in $Filter)
     {
@@ -120,13 +124,9 @@ Function Get-AtwsData
       # Is it a variable name?
       If ($Word -match '^\$\{?(\w+:)?(\w+)\}?(\.\w[\.\w]+)?$')
       {
-        # If present, first group is SCOPE. In the context of this function, scope must be Global, Script or
-        # parent (1). If you used scope 'local' when you called this function, then the scope HERE is parent.
-        $Scope = $Matches[1]
-        If (-not ($Scope) -or $Scope -eq 'local')
-        {
-          $Scope = 1 # Parent
-        }
+        # If present, first group is SCOPE. In the context of this function, scope is always Global, i.e. 3
+        # so any value her is just ignored
+
         
         # The variable name MUST be present
         $VariableName = $Matches[2]
@@ -136,18 +136,16 @@ Function Get-AtwsData
         
         # Check that the variable exists
         $Variable = Try
-        { Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction Stop }
+        { Get-Variable -Name $VariableName -Scope 3 -ValueOnly -ErrorAction Stop }
         Catch
         {
-          # If variable scope is Global, but not explicitly mentioned as such, the above line will fail
-          # If scope Script failed, then try Global 
-          $Scope = 'Global'
-          Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction SilentlyContinue
+          Write-Error ('{0}: Could not find any variable called ${1}. Is it misspelled or has it not been set yet?')
+          Throw $_
         }
 
         # Test if the variable "Variable" has been set
         If (Test-Path Variable:Variable) {
-          Write-Verbose ('{0}: Substituting {1} for its value' -F $MyInvocation.MyCommand.Name, $Word)
+          Write-Debug ('{0}: Substituting {1} for its value' -F $MyInvocation.MyCommand.Name, $Word)
           If ($PropertyTail) {
             # Add properties back 
             $Expression = '$Variable{0}' -F $PropertyTail
@@ -162,7 +160,7 @@ Function Get-AtwsData
           
           # Normalize dates. Important to avoid QueryXML problems
           If ($Value.GetType().Name -eq 'DateTime')
-          {[String]$Value = Get-Date $Value -Format s}
+          {[String]$Value = ConvertTo-AtwsDate -ParameterName $NewFilter[-2] -DateTime $Value}
         }
       }
       $NewFilter += $Value
@@ -171,10 +169,10 @@ Function Get-AtwsData
     # Squash into a flat array with entity first
     [Array]$Query = @($Entity) + $NewFilter
   
-    Write-Verbose ('{0}: Converting query string into QueryXml. String as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
+    Write-Debug ('{0}: Converting query string into QueryXml. String as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
     [xml]$QueryXml = ConvertTo-QueryXML @Query
 
-    Write-Verbose ('{0}: QueryXml looks like: {1}' -F $MyInvocation.MyCommand.Name, $QueryXml.InnerXml.ToString())
+    Write-Debug ('{0}: QueryXml looks like: {1}' -F $MyInvocation.MyCommand.Name, $QueryXml.InnerXml.ToString())
     
     $Caption = 'Get-Atws{0}' -F $Entity
     $VerboseDescrition = '{0}: About to run a query for Autotask.{1} using Filter {{{2}}}' -F $Caption, $Entity, ($Filter -join ' ')
@@ -185,7 +183,7 @@ Function Get-AtwsData
     { 
       $result = @()
     
-      Write-Verbose ('{0}: Adding looping construct to query to handle more than 500 results.' -F $MyInvocation.MyCommand.Name)
+      Write-Debug ('{0}: Adding looping construct to query to handle more than 500 results.' -F $MyInvocation.MyCommand.Name)
     
       # Native XML is rather tedious...
       $field = $QueryXml.CreateElement('field')
@@ -229,7 +227,7 @@ Function Get-AtwsData
   
   End
   { 
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
     Return $result
   }
   

@@ -97,7 +97,11 @@ Get-TicketSecondaryResource
   { 
     $EntityName = 'TicketSecondaryResource'
            
-    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    
     $ProcessObject = @()
     
     # Set up TimeZone offset handling
@@ -144,7 +148,7 @@ Get-TicketSecondaryResource
     }
     Else
     {
-      Write-Verbose ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $EntityName) 
+      Write-Debug ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $EntityName) 
       $ProcessObject += New-Object Autotask.$EntityName    
     }
     
@@ -170,8 +174,12 @@ Get-TicketSecondaryResource
         }
         ElseIf ($Field.Type -eq 'datetime')
         {
-          # Yes, you really have to ADD the difference
-          $Value = $Parameter.Value.AddHours($script:ESToffset)
+          $TimePresent = $Parameter.Value.Hour -gt 0 -or $Parameter.Value.Minute -gt 0 -or $Parameter.Value.Second -gt 0 -or $Parameter.Value.Millisecond -gt 0 
+          
+          If ($Field.Name -like "*DateTime" -or $TimePresent) { 
+            # Yes, you really have to ADD the difference
+            $Value = $Parameter.Value.AddHours($script:ESToffset)
+          }        
         }
         Else
         {
@@ -189,7 +197,7 @@ Get-TicketSecondaryResource
 
   End
   {
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
 
     If ($PSCmdLet.ParameterSetName -eq 'Input_Object')
     {
@@ -198,7 +206,7 @@ Get-TicketSecondaryResource
       {
         If ($InputObject.Id -contains $Object.Id)
         {
-          Write-Verbose ('{0}: Autotask detected new object as duplicate of {1} with Id {2} and tried to update object, not create a new copy. ' -F $MyInvocation.MyCommand.Name, $EntityName, $Object.Id)
+          Write-Warning ('{0}: Autotask detected new object as duplicate of {1} with Id {2} and tried to update object, not create a new copy. ' -F $MyInvocation.MyCommand.Name, $EntityName, $Object.Id)
         }
       }
     }

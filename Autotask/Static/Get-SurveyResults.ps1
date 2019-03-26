@@ -289,8 +289,11 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
   Begin
   { 
     $EntityName = 'SurveyResults'
-
-    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
     # Set up TimeZone offset handling
     If (-not($script:ESTzone)) {
@@ -311,7 +314,7 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     If ($PSCmdlet.ParameterSetName -eq 'Get_all')
     { $Filter = @('id', '-ge', 0)}
     ElseIf (-not ($Filter)) {
-      Write-Verbose ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
+      Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
       $Fields = Get-FieldInfo -Entity $EntityName
  
@@ -342,24 +345,7 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
               $Value = $ParameterValue.Value
             }
             ElseIf ($ParameterValue.GetType().Name -eq 'DateTime')  {
-              # XML supports sortable datetime format. This way dates should always be read correct by the API.
- 
-              If ($ParameterValue.Hour -eq 0 -and $ParameterValue.Minute -eq 0 -and $ParameterValue.Second -eq 0 -and $ParameterValue.Millisecond -eq 0) {
-                
-                # For dates, use Timezone EST
-                $OffsetSpan = $ESTzone.BaseUtcOffset
-              }
-              Else { 
-                # Else use local time
-                $OffsetSpan = (Get-TimeZone).BaseUtcOffset
-              }
-              
-              # Create the correct text string                           
-              $Offset = '{0:00}:{1:00}' -F $OffsetSpan.Hours, $OffsetSpan.Minutes
-              If ($OffsetSpan.Hours -ge 0) {
-                $Offset = '+{0}' -F $Offset
-              }
-              $Value = '{0}{1}' -F $(Get-Date $ParameterValue -Format s), $Offset
+              $Value = ConvertTo-AtwsDate -ParameterName $ParameterName -DateTime $ParameterValue
             }            
             Else {
               $Value = $ParameterValue
@@ -443,7 +429,7 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
       }  
     }
     Else {
-      Write-Verbose ('{0}: Passing -Filter raw to Get function' -F $MyInvocation.MyCommand.Name)
+      Write-Debug ('{0}: Passing -Filter raw to Get function' -F $MyInvocation.MyCommand.Name)
     } 
 
     $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
@@ -479,20 +465,19 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
           Continue
         }
         
-        # If all TIME parameters are zero, then this is a DATE and should not be touched
-        If ($ParameterValue.Hour -ne 0 -or 
-            $ParameterValue.Minute -ne 0 -or
-            $ParameterValue.Second -ne 0 -or
-            $ParameterValue.Millisecond -ne 0) {
+        $TimePresent = $ParameterValue.Hour -gt 0 -or $ParameterValue.Minute -gt 0 -or $ParameterValue.Second -gt 0 -or $ParameterValue.Millisecond -gt 0 
+                
+        # If this is a DATE it should not be touched
+        If ($DateTimeParam -like "*DateTime" -or $TimePresent) {
 
-            # This is DATETIME 
-            # We need to adjust the timezone difference 
+          # This is DATETIME 
+          # We need to adjust the timezone difference 
 
-            # Yes, you really have to ADD the difference
-            $ParameterValue = $ParameterValue.AddHours($script:ESToffset)
+          # Yes, you really have to ADD the difference
+          $ParameterValue = $ParameterValue.AddHours($script:ESToffset)
             
-            # Store the value back to the object (not the API!)
-            $Item.$DateTimeParam = $ParameterValue
+          # Store the value back to the object (not the API!)
+          $Item.$DateTimeParam = $ParameterValue
         }
       }
     }
@@ -500,7 +485,7 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     # Should we return an indirect object?
     if ( ($Result) -and ($GetReferenceEntityById))
     {
-      Write-Verbose ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
+      Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
       
       $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
       $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
@@ -516,7 +501,7 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     }
     ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
     {
-      Write-Verbose ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+      Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
       $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
       $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
       $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
@@ -539,7 +524,7 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
 
   End
   {
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
     If ($Result)
     {
       Return $Result

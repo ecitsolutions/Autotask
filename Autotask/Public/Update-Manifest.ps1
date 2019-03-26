@@ -13,6 +13,16 @@ Function Update-Manifest {
   )
   
   Begin { 
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+       
+    If (-not($Script:Atws.Url))
+    {
+      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+    }
+    
     # Get info from current module
     $ModuleInfo = $MyInvocation.MyCommand.Module
     
@@ -134,5 +144,8 @@ Function Update-Manifest {
       # Save the nuspec
       $Nuspec.Save($NuspecPath)
     }
+    
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        
   }
 }

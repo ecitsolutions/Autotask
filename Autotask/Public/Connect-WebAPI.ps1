@@ -47,6 +47,10 @@ Function Connect-WebAPI {
   )
     
   Begin { 
+    
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
     Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
     # The module is already loaded. It has to be, or this function would not be in

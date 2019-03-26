@@ -64,7 +64,10 @@ Set-HolidaySet
   { 
     $EntityName = 'HolidaySet'
     
-    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
   }
 
@@ -84,7 +87,7 @@ Set-HolidaySet
 
   End
   {
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
   }
 
 

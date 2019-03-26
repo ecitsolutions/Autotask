@@ -87,8 +87,11 @@ Function Get-FieldInfo {
   )
     
   Begin { 
-  
-    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
     # Check if we are connected before trying anything
     If (-not($Script:Atws)) {
@@ -204,11 +207,13 @@ Function Get-FieldInfo {
     # By ENTITY
     If ($PSCmdlet.ParameterSetName -eq 'by_Entity')
     {
+      Write-Verbose -Message ('{0}: Looking up detailed Fieldinfo for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity) 
+            
       If (($script:FieldInfoCache[$Entity].HasPicklist -or $script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields) -and ($script:FieldInfoCache[$Entity].RetrievalTime -lt $CacheExpiry -or $UpdateCache.IsPresent)) { 
         
         $CacheDirty = Update-AtwsEntity -Entity $Entity
         
-        Write-Verbose -Message ('{0}: Loaded detailed Fieldinfo for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity) 
+        Write-Debug -Message ('{0}: Entity {1} has picklists and/or userdefined fields; cache was outdated or -UpdateCache was present.' -F $MyInvocation.MyCommand.Name, $Entity) 
       }
       
       # Prepare an empty result set. If none of the conditions below are true, then the user tried to get
@@ -218,12 +223,12 @@ Function Get-FieldInfo {
       # If the user asked for UDFs and the entity supports UDFs, return the info. 
       If ($UserDefinedFields.IsPresent -and $script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields)
       {
-        Write-Verbose ('{0}: Returning fieldinfo for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
+        Write-Debug ('{0}: Returning UDF info for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
         $Result = $script:FieldInfoCache[$Entity].UDFInfo
       }
       ElseIf (-not ($UserDefinedFields.IsPresent))
       { 
-        Write-Verbose ('{0}: Returning fieldinfo for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
+        Write-Debug ('{0}: Returning fieldinfo for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
         $Result = $script:FieldInfoCache[$Entity].FieldInfo
       }
     }
@@ -257,7 +262,7 @@ Function Get-FieldInfo {
       
         Foreach ($Object in $Entities) {
       
-          Write-Verbose -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $Object.Key) 
+          Write-Debug -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $Object.Key) 
 
           # Calculating progress percentage and displaying it
           $Index = $Entities.IndexOf($Object) + 1
@@ -306,7 +311,7 @@ Function Get-FieldInfo {
     }
     
        
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
             
     Return $Result
   }

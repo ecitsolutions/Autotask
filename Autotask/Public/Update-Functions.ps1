@@ -11,6 +11,16 @@ Function Update-Functions {
   )
   
   Begin { 
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    
+    If (-not($Script:Atws.Url))
+    {
+      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+    }
+    
     # Prepare parameters for @splatting
     $ProgressId = 6
     $ProgressParameters = @{
@@ -79,7 +89,7 @@ Function Update-Functions {
       
       # Prepare parameters for @splatting
       $ProgressParameters = @{
-        Activity = 'Creating and importing functions for all static Autotask entities (no picklists).'
+        Activity = 'Creating and importing functions for all {0} Autotask entities.' -F $FunctionSet
         Id       = 10
         ParentId = 6
       }
@@ -92,12 +102,14 @@ Function Update-Functions {
       If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
         # Prepare Index for progressbar
         $Index = 0
-    
+        
+        Write-Verbose -Message ('{0}: Creating functions for {1} entities.' -F $MyInvocation.MyCommand.Name, $Entities.count) 
+            
         Foreach ($CacheEntry in $Entities) {
           # EntityInfo()
           $Entity = $CacheEntry.Value.EntityInfo
       
-          Write-Verbose -Message ('{0}: Creating functions for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
+          Write-Debug -Message ('{0}: Creating functions for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
       
           # Calculating progress percentage and displaying it
           $Index++
@@ -119,7 +131,7 @@ Function Update-Functions {
         
           Foreach ($Function in $FunctionDefinition.GetEnumerator()) {
   
-            Write-Verbose -Message ('{0}: Writing file for function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
+            Write-Debug -Message ('{0}: Writing file for function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
                         
             $FilePath = '{0}\{1}\{2}.ps1' -F $RootPath, $FunctionSet, $Function.Key
           
@@ -149,5 +161,8 @@ Function Update-Functions {
     
       Write-Verbose -Message ('{0}: Updated central module fieldinfocache.' -F $MyInvocation.MyCommand.Name)
     }
+    
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        
   }
 }

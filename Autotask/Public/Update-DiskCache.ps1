@@ -23,7 +23,10 @@
   
   Begin
   {
-    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
     # Check if we are connected before trying anything
     If (-not($Script:Atws)) {

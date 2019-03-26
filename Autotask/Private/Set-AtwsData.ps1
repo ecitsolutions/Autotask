@@ -47,7 +47,11 @@ Function Set-AtwsData
     
   Begin
   { 
-
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    
     If (-not($Script:Atws.Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
@@ -76,7 +80,7 @@ Function Set-AtwsData
         {
           $j = $Entity.count - 1
         } 
-        Write-Verbose -Message ('{0}: Creating chunk from index {1} to index {2}' -F $MyInvocation.MyCommand.Name, $i, $j)        
+        Write-Debug -Message ('{0}: Creating chunk from index {1} to index {2}' -F $MyInvocation.MyCommand.Name, $i, $j)        
         
         $Result = $atws.update($Entity[$i .. $j])
       }
@@ -97,7 +101,7 @@ Function Set-AtwsData
   }
   End 
   {
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
     Return $EndResult  
         
   }

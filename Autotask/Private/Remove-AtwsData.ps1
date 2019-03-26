@@ -28,8 +28,8 @@ Function Remove-AtwsData {
   #>
  
   [cmdletbinding(
-    SupportsShouldProcess = $True,
-    ConfirmImpact = 'High'
+      SupportsShouldProcess = $True,
+      ConfirmImpact = 'High'
   )]
   param
   (
@@ -41,14 +41,16 @@ Function Remove-AtwsData {
   )
     
   Begin { 
- 
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Verbose ('{0}: Start of Function' -F $MyInvocation.MyCommand.Name)
+
     # Check if we are connected before trying anything
     If (-not($Script:Atws.Url)) {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }
-    
-    Write-Verbose ('{0}: Start of Function' -F $MyInvocation.MyCommand.Name)
-    
+
   }
   
   Process {   

@@ -25,7 +25,11 @@ Function New-AtwsData
    
   Begin 
   { 
- 
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+     
     If (-not($Script:Atws.Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
@@ -41,7 +45,7 @@ Function New-AtwsData
     $VerboseDescription = '{0}: About to create an Autotask.{1}. This action cannot be undone (but the object can usually be deleted).' -F $Caption, $Entity.GetType().Name
     $VerboseWarning = '{0}: About to create an Autotask.{1}. This action cannot be undone (but the object can usually be deleted). Do you want to continue?' -F $Caption, $Entity.GetType().Name
     
-    Write-Verbose -Message ('{0}: Running ShouldProcess with WhatifPreference {1} and ConfirmPreference {2}' -F $MyInvocation.MyCommand.Name, $WhatIfPreference, $ConfirmPreference)    
+    Write-Verbose -Debug ('{0}: Running ShouldProcess with WhatifPreference {1} and ConfirmPreference {2}' -F $MyInvocation.MyCommand.Name, $WhatIfPreference, $ConfirmPreference)    
     If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) 
     { 
       # create() function can take up to 200 objects at a time
@@ -52,7 +56,7 @@ Function New-AtwsData
         {
           $j = $Entity.count - 1
         } 
-        Write-Verbose -Message ('{0}: Creating chunk from index {1} to index {2}' -F $MyInvocation.MyCommand.Name, $i, $j)        
+        Write-Debug -Message ('{0}: Creating chunk from index {1} to index {2}' -F $MyInvocation.MyCommand.Name, $i, $j)        
         
         $Result = $Atws.Create($Entity[$i .. $j])
         
@@ -79,7 +83,7 @@ Function New-AtwsData
     }
   }
   End {
-    Write-Verbose -Message ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
+    Write-Debug -Message ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
     Return $EndResult  
   }
 }

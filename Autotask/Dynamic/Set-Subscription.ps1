@@ -221,8 +221,11 @@ Get-Subscription
   Begin
   { 
     $EntityName = 'Subscription'
-        
-    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
     # Set up TimeZone offset handling
     If (-not($script:ESToffset))
@@ -260,8 +263,12 @@ Get-Subscription
         }
         ElseIf ($Field.Type -eq 'datetime')
         {
-          # Yes, you really have to ADD the difference
-          $Value = $Parameter.Value.AddHours($script:ESToffset)
+          $TimePresent = $Parameter.Value.Hour -gt 0 -or $Parameter.Value.Minute -gt 0 -or $Parameter.Value.Second -gt 0 -or $Parameter.Value.Millisecond -gt 0 
+          
+          If ($Field.Name -like "*DateTime" -or $TimePresent) { 
+            # Yes, you really have to ADD the difference
+            $Value = $Parameter.Value.AddHours($script:ESToffset)
+          }
         }
         Else
         {
@@ -280,7 +287,7 @@ Get-Subscription
 
   End
   {
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
     
     If ($PassThru.IsPresent)
     {
@@ -312,12 +319,11 @@ Get-Subscription
           If (-not ($ParameterValue)) {
             Continue
           }
-        
-          # If all TIME parameters are zero, then this is a DATE and should not be touched
-          If ($ParameterValue.Hour -ne 0 -or 
-              $ParameterValue.Minute -ne 0 -or
-              $ParameterValue.Second -ne 0 -or
-              $ParameterValue.Millisecond -ne 0) {
+          
+          $TimePresent = $ParameterValue.Hour -gt 0 -or $ParameterValue.Minute -gt 0 -or $ParameterValue.Second -gt 0 -or $ParameterValue.Millisecond -gt 0 
+          
+          # If this is a DATE it should not be touched
+          If ($DateTimeParam -like "*DateTime" -or $TimePresent) {
 
               # This is DATETIME 
               # We need to adjust the timezone difference 

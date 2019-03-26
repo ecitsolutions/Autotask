@@ -9,8 +9,8 @@
 
 Function Uninstall-OldModuleVersion {
   [CmdLetBinding(
-    SupportsShouldProcess = $True,
-    ConfirmImpact = 'Medium'
+      SupportsShouldProcess = $True,
+      ConfirmImpact = 'Medium'
   )]
   Param(
     [Alias('Name')]
@@ -19,7 +19,10 @@ Function Uninstall-OldModuleVersion {
   )
 
   Begin {
-    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
     $Latest = Get-InstalledModule -Name $ModuleName
     $AllVersions = Get-InstalledModule -Name $ModuleName -AllVersions
@@ -58,6 +61,6 @@ Function Uninstall-OldModuleVersion {
   }
 
   End {
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
   }
 }

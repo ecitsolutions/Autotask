@@ -53,6 +53,14 @@ Function Get-InvoiceInfo {
   
   Begin {
     
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    If (-not($Script:Atws.Url))
+    {
+      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+    }    
+    
     # Input was by object. Extract invoice ids into an array and proceed 
     If ($PSCmdlet.ParameterSetName -eq 'Input_Object') {
       $InvoiceId = $InputObject.id
