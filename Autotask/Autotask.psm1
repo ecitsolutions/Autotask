@@ -140,6 +140,8 @@ If (($Credential) -or ($ApiTrackingIdentifier))
     # Recreate functions that have been updated
     Import-AtwsCmdLet -Entities $EntitiesToProcess
     
+    # Re-read Dynamic functions
+    $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*.ps1 -ErrorAction SilentlyContinue ) 
   }
 }
 Else {
