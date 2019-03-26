@@ -73,6 +73,7 @@ Function Get-AtwsData
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }
     
+    $Result = @()
   }
   
   Process
@@ -139,8 +140,9 @@ Function Get-AtwsData
         { Get-Variable -Name $VariableName -Scope 3 -ValueOnly -ErrorAction Stop }
         Catch
         {
-          Write-Error ('{0}: Could not find any variable called ${1}. Is it misspelled or has it not been set yet?')
-          Throw $_
+          Write-Error ('{0}: Could not find any variable called ${1}. Is it misspelled or has it not been set yet?' -f $MyInvocation.MyCommand.Name, $VariableName)
+          # Force stop of calling script, because this will completely break the query
+          Return
         }
 
         # Test if the variable "Variable" has been set
@@ -157,10 +159,16 @@ Function Get-AtwsData
           Else {
             $Value = $Variable
           }
-          
-          # Normalize dates. Important to avoid QueryXML problems
-          If ($Value.GetType().Name -eq 'DateTime')
-          {[String]$Value = ConvertTo-AtwsDate -ParameterName $NewFilter[-2] -DateTime $Value}
+          If ($Value -eq $Null) {
+            Write-Error ('{0}: Could not find any variable called {1}. Is it misspelled or has it not been set yet?' -F $MyInvocation.MyCommand.Name, $Expression)
+            # Force stop of calling script, because this will completely break the query
+            Return
+          }
+          Else { 
+            # Normalize dates. Important to avoid QueryXML problems
+            If ($Value.GetType().Name -eq 'DateTime')
+            {[String]$Value = ConvertTo-AtwsDate -ParameterName $NewFilter[-2] -DateTime $Value}
+          }
         }
       }
       $NewFilter += $Value
@@ -181,7 +189,6 @@ Function Get-AtwsData
 
     If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
     { 
-      $result = @()
     
       Write-Debug ('{0}: Adding looping construct to query to handle more than 500 results.' -F $MyInvocation.MyCommand.Name)
     
