@@ -88,7 +88,7 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   
   $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
   If (Test-Path $DynamicCache) {
-    $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*.ps1 -ErrorAction SilentlyContinue )     
+    $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )     
   }
   Else {
     # No personal dynamic cache. Refresh  ALL dynamic entities.
@@ -99,7 +99,7 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   # Status is always a picklist
   # if there is none, refresh ALL entities with picklists
   
-  $FieldList = Get-FieldInfo -Entity Ticket
+  $FieldList = Get-AtwsFieldInfo -Entity Ticket
   $Status = $FieldList.Where{$_.Name -eq 'Status'}
   If ($Status.PickListValues.Count -lt 1) {
     $EntityName = '*'
@@ -109,7 +109,7 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   # We only consider entities that are dynamic
   If ($EntityName)
   { 
-    $Entities = Get-FieldInfo -Dynamic
+    $Entities = Get-AtwsFieldInfo -Dynamic
     $EntitiesToProcess = @()
     
     Foreach ($String in $EntityName)
@@ -134,14 +134,14 @@ If (($Credential) -or ($ApiTrackingIdentifier))
       
       Write-Progress @ProgressParameters
       
-      $null = Get-FieldInfo -Entity $EntityToProcess.Key -UpdateCache
+      $null = Get-AtwsFieldInfo -Entity $EntityToProcess.Key -UpdateCache
     }
     
     # Recreate functions that have been updated
     Import-AtwsCmdLet -Entities $EntitiesToProcess
     
     # Re-read Dynamic functions
-    $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*.ps1 -ErrorAction SilentlyContinue ) 
+    $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue ) 
   }
 }
 Else {

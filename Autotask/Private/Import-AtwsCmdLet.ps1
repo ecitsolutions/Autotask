@@ -7,7 +7,7 @@ Function Import-AtwsCmdLet
   )]
   Param(
     [PSObject[]]
-    $Entities = $(Get-FieldInfo -Dynamic)
+    $Entities = $(Get-AtwsFieldInfo -Dynamic)
   )
   
   Begin

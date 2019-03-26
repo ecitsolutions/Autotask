@@ -42,7 +42,7 @@
       $Comment = 'Follow this external ID and return any external objects'            
       Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter', 'By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields -Comment $Comment
       # -GetExternalEntityByThisEntityId, -External
-      $IncomingReferenceEntities = Get-FieldInfo -Entity $Entity.Name -ReferencingEntity
+      $IncomingReferenceEntities = Get-AtwsFieldInfo -Entity $Entity.Name -ReferencingEntity
       $Comment = 'Return entities of selected type that are referencing to this entity.'
       Get-AtwsPSParameter -Name 'GetExternalEntityByThisEntityId' -Alias 'External' -SetName 'Filter', 'By_parameters' -Type 'String' -NotNull -ValidateSet $IncomingReferenceEntities -Comment $Comment
       # -All

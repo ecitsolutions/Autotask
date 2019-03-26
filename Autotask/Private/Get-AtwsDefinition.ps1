@@ -30,7 +30,7 @@
     ElseIf (-not ($Filter)) {
       Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
-      $Fields = Get-FieldInfo -Entity $EntityName
+      $Fields = Get-AtwsFieldInfo -Entity $EntityName
  
       Foreach ($Parameter in $PSBoundParameters.GetEnumerator()) {
         $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}

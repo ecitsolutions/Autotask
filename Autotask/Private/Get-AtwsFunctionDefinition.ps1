@@ -43,7 +43,7 @@
 
     Foreach ($Verb in $Verbs)
     {
-      $FunctionName = '{0}-{1}' -F $Verb, $Entity.Name
+      $FunctionName = '{0}-Atws{1}' -F $Verb, $Entity.Name
 
       Write-Verbose ('{0}: Creating Function {1}' -F $MyInvocation.MyCommand.Name, $FunctionName)
     

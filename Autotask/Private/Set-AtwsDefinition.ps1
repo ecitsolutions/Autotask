@@ -31,7 +31,7 @@
 
   Process
   {
-    $Fields = Get-FieldInfo -Entity $EntityName
+    $Fields = Get-AtwsFieldInfo -Entity $EntityName
 
     Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
     {
