@@ -89,6 +89,12 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
   If (Test-Path $DynamicCache) {
     $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )
+    
+    If ($DynamicFunction.Count -lt 1) {
+      # No personal dynamic cache. Refresh  ALL dynamic entities.
+      $EntityName = '*' 
+    }
+    
     $OldFunctions = @(Get-ChildItem -Path $DynamicCache\*.ps1 -Exclude *Atws* -ErrorAction SilentlyContinue)
     If ($OldFunctions.Count -gt 0) {
       $Null = Remove-Item -Path $OldFunctions.fullname -Force -ErrorAction SilentlyContinue
@@ -149,7 +155,7 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   }
 }
 Else {
-  Write-Warning 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI (default prefix is Atws) to connect.'
+  Write-Warning 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI to connect.'
 }
 
 # Loop through all script files and source them
