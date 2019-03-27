@@ -6,7 +6,7 @@
 
 #>
 
-Function ConvertTo-PSObject {
+Function ConvertFrom-XML {
   <#
       .SYNOPSIS
       This function converts an array of XML elements to a custom psobject for easier parsing and coding.
@@ -104,7 +104,7 @@ Function ConvertTo-PSObject {
           # For properties that are XML elements; recurse
           'System.Xml.XmlElement*' {
             # A bit of recursive magic here...
-            $Value = $Element.$PropertyName | ConvertTo-PSObject
+            $Value = $Element.$PropertyName | ConvertFrom-XML
             Add-Member -InputObject $Object -MemberType NoteProperty -Name $PropertyName -Value $Value                              
           }
               
@@ -112,7 +112,7 @@ Function ConvertTo-PSObject {
           'System.Object*' {
             $Value = @()
             Foreach ($Item in $Element.$PropertyName) 
-            {$Value += $Item | ConvertTo-PSObject}
+            {$Value += $Item | ConvertFrom-XML}
             Add-Member -InputObject $Object -MemberType NoteProperty -Name $PropertyName -Value $Value                              
           }
               
