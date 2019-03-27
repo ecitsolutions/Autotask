@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.1.8 - Bugfix release
+
+- BUGFIX: Did not detect missing dynamic functions (functions related to entities with picklists) during initial module import. Work-around was to connect using -RefreshCache or speficy a wildcard to Import-Module -ArgumentList (see above). This should be fixed now.
+
 ## Version 1.6.1.6 - Bugfix release
 
 - BUGFIX: Compare-PSObject rewritten, too strict comparison when trying to use computehash. Using nested Compare-Object now, seems to work well enough.
