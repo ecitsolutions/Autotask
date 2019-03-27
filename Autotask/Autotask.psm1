@@ -149,7 +149,7 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   }
 }
 Else {
-  Write-Warning 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI (default prefix is Atws) to connect.'
+  Write-Warning 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI to connect.'
 }
 
 # Loop through all script files and source them
