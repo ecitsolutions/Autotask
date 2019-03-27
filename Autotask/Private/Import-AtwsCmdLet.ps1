@@ -18,8 +18,11 @@ Function Import-AtwsCmdLet
       Activity = 'Creating and importing functions for all Autotask entities with picklists.'
       Id = $ProgressId
     }
-                
-    Write-Verbose -Message ('{0}: Start of functions.' -F $MyInvocation.MyCommand.Name)
+    
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}  
+              
+    Write-Debug -Message ('{0}: Start of functions.' -F $MyInvocation.MyCommand.Name)
     
     $RootPath = '{0}\WindowsPowershell\Cache\{1}' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
     
@@ -35,11 +38,13 @@ Function Import-AtwsCmdLet
     # Prepare Index for progressbar
     $Index = 0
     
+    Write-Verbose -Message ('{0}: Creating functions for {1} entities' -F $MyInvocation.MyCommand.Name, $Entities.count) 
+        
     Foreach ($CacheEntry in $Entities.GetEnumerator()) {
       # EntityInfo()
       $Entity = $CacheEntry.Value.EntityInfo
       
-      Write-Verbose -Message ('{0}: Creating functions for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
+      Write-Debug -Message ('{0}: Creating functions for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
       
       # Calculating progress percentage and displaying it
       $Index++
@@ -79,6 +84,6 @@ Function Import-AtwsCmdLet
   }
   End
   {
-    Write-Verbose -Message ('{0}: Imported {1} dynamic functions' -F $MyInvocation.MyCommand.Name, $Index)
+    Write-Debug -Message ('{0}: Imported {1} dynamic functions' -F $MyInvocation.MyCommand.Name, $Index)
   }
 }
