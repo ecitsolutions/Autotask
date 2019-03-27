@@ -108,7 +108,14 @@ Function Update-AtwsManifest {
     # Information to export
     $Functions = @()
     $Moduleinfo.ExportedFunctions.Keys | ForEach-Object {$Functions += $_ }#-replace $ModuleInfo.Prefix, '')}
-    $ManifestParams['FunctionsToExport'] = $Functions
+    If ($Beta.IsPresent) {
+      # Make sure the beta version does not clobber the release version through 
+      # automatic module import
+      $ManifestParams['FunctionsToExport'] = '*'
+    }
+    Else { 
+      $ManifestParams['FunctionsToExport'] = $Functions
+    }
     $ManifestParams['CmdletsToExport'] = @()
     $ManifestParams['VariablesToExport'] = @()
     $ManifestParams['AliasesToExport'] = @()
@@ -122,15 +129,11 @@ Function Update-AtwsManifest {
     # Recreate PrivateData
     $ManifestParams['PrivateData'] = @{}
 
-    <#
-        # Default prefix is always Atws
-        If ($Beta.IsPresent) {
-        $ManifestParams['DefaultCommandPrefix'] = 'Beta'
-        }
-        Else { 
-        $ManifestParams['DefaultCommandPrefix'] = 'Atws'
-        }
-    #>
+    # There shoult not be any default prefix anymore
+    If ($ManifestParams.Keys -contains 'DefaultCommandPrefix') {
+      $ManifestParams.Remove('DefaultCommandPrefix')
+    }
+ 
     
     # Update nuspec
     $Nuspec.DocumentElement.metadata.id = $ModuleName
