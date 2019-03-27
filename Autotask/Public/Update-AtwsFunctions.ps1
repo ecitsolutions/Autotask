@@ -162,7 +162,7 @@ Function Update-AtwsFunctions {
       $BaseEntityInfo = @{}
       $BaseEntityInfo['00'] = $script:Cache['00']
         
-      $BaseEntityInfoPath = '{0}\AutotaskFieldInfoCache.xml' -F $MyInvocation.MyCommand.Module.ModuleBase
+      $BaseEntityInfoPath = '{0}\Private\AutotaskFieldInfoCache.xml' -F $MyInvocation.MyCommand.Module.ModuleBase
       $BaseEntityInfo | Export-Clixml -Path $BaseEntityInfoPath -Force
     
       Write-Verbose -Message ('{0}: Updated central module fieldinfocache.' -F $MyInvocation.MyCommand.Name)
