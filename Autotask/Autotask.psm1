@@ -88,7 +88,11 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   
   $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
   If (Test-Path $DynamicCache) {
-    $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )     
+    $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )
+    $OldFunctions = @(Get-ChildItem -Path $DynamicCache\*.ps1 -Exclude *Atws* -ErrorAction SilentlyContinue)
+    If ($OldFunctions.Count -gt 0) {
+      $Null = Remove-Item -Path $OldFunctions.fullname -Force -ErrorAction SilentlyContinue
+    }
   }
   Else {
     # No personal dynamic cache. Refresh  ALL dynamic entities.
@@ -172,7 +176,7 @@ Export-ModuleMember -Function $StaticFunction.Basename
 Export-ModuleMember -Function $DynamicFunction.Basename
 
 
-# Backwards compatibility since we are now using built-in module prefix support
+# Backwards compatibility since we are now trying to use consistent naming
 Set-Alias -Scope Global -Name 'Connect-AutotaskWebAPI' -Value 'Connect-AtwsWebAPI'
 
 
