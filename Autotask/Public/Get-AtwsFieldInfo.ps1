@@ -304,7 +304,7 @@ Function Get-AtwsFieldInfo {
   End {
     If ($CacheDirty) { 
       # If not called during module load, give this warning
-      If ($MyInvocation.Mycommand.Noun -ne 'FieldInfo') { 
+      If ($PSCmdLet.MyInvocation.ScriptName -notlike '*.psm1') { 
         Write-Warning ('One or more entities has been modified in Autotask! Re-import module with -Force to refresh.')
       }
       Export-AtwsDiskCache
