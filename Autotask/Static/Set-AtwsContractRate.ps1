@@ -46,7 +46,7 @@ Get-AtwsContractRate
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='InputObject', ConfirmImpact='Medium')]
+  [CmdLetBinding(DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
   Param
   (
 # An object that will be modified by any parameters and updated in Autotask
@@ -166,6 +166,15 @@ Get-AtwsContractRate
     }
    
     $ModifiedObjects = Set-AtwsData -Entity $InputObject
+    
+    # The API documentation explicitly states that you can only use the objects returned 
+    # by the .create() function to get the new objects ID.
+    # so to return objects with accurately represents what has been created we have to 
+    # get them again by id
+    
+    $NewObjectFilter = 'id -eq {0}' -F ($ModifiedObjects.Id -join ' -or id -eq ')
+    
+    $ModifiedObjects = Get-AtwsData -Entity $EntityName -Filter $NewObjectFilter
 
   }
 

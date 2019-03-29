@@ -271,124 +271,114 @@ Set-AtwsPurchaseApproval
   Process
   {
     If ($PSCmdlet.ParameterSetName -eq 'Get_all')
-    { $Filter = @('id', '-ge', 0)}
+    { 
+      $Filter = @('id', '-ge', 0)
+    }
     ElseIf (-not ($Filter)) {
+    
       Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
-      $Fields = Get-AtwsFieldInfo -Entity $EntityName
- 
-      Foreach ($Parameter in $PSBoundParameters.GetEnumerator()) {
-        $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-        If ($Field -or $Parameter.Key -eq 'UserDefinedField') { 
-          If ($Parameter.Value.Count -gt 1) {
-            $Filter += '-begin'
-          }
-          Foreach ($ParameterValue in $Parameter.Value) {   
-            $Operator = '-or'
-            $ParameterName = $Parameter.Key
-            If ($Field.IsPickList) {
-              If ($Field.PickListParentValueField) {
-                $ParentField = $Fields.Where{$_.Name -eq $Field.PickListParentValueField}
-                $ParentLabel = $PSBoundParameters.$($ParentField.Name)
-                $ParentValue = $ParentField.PickListValues | Where-Object {$_.Label -eq $ParentLabel}
-                $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $ParameterValue -and $_.ParentValue -eq $ParentValue.Value}                
-              }
-              Else { 
-                $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $ParameterValue}
-              }
-              $Value = $PickListValue.Value
-            }
-            ElseIf ($ParameterName -eq 'UserDefinedField') {
-              $Filter += '-udf'              
-              $ParameterName = $ParameterValue.Name
-              $Value = $ParameterValue.Value
-            }
-            ElseIf ($ParameterValue.GetType().Name -eq 'DateTime')  {
-              $Value = ConvertTo-AtwsDate -ParameterName $ParameterName -DateTime $ParameterValue
-            }            
-            Else {
-              $Value = $ParameterValue
-            }
-            $Filter += $ParameterName
-            If ($Parameter.Key -in $NotEquals) { 
-              $Filter += '-ne'
-              $Operator = '-and'
-            }
-            ElseIf ($Parameter.Key -in $GreaterThan)
-            { $Filter += '-gt'}
-            ElseIf ($Parameter.Key -in $GreaterThanOrEquals)
-            { $Filter += '-ge'}
-            ElseIf ($Parameter.Key -in $LessThan)
-            { $Filter += '-lt'}
-            ElseIf ($Parameter.Key -in $LessThanOrEquals)
-            { $Filter += '-le'}
-            ElseIf ($Parameter.Key -in $Like) { 
-              $Filter += '-like'
-              $Value = $Value -replace '\*', '%'
-            }
-            ElseIf ($Parameter.Key -in $NotLike) { 
-              $Filter += '-notlike'
-              $Value = $Value -replace '\*', '%'
-            }
-            ElseIf ($Parameter.Key -in $BeginsWith)
-            { $Filter += '-beginswith'}
-            ElseIf ($Parameter.Key -in $EndsWith)
-            { $Filter += '-endswith'}
-            ElseIf ($Parameter.Key -in $Contains)
-            { $Filter += '-contains'}
-            ElseIf ($Parameter.Key -in $IsThisDay)
-            { $Filter += '-isthisday'}
-            ElseIf ($Parameter.Key -in $IsNull -and $Parameter.Key -eq 'UserDefinedField')
-            {
-              $Filter += '-IsNull'
-              $IsNull = $IsNull.Where({$_ -ne 'UserDefinedField'})
-            }
-            ElseIf ($Parameter.Key -in $IsNotNull -and $Parameter.Key -eq 'UserDefinedField')
-            {
-              $Filter += '-IsNotNull'
-              $IsNotNull = $IsNotNull.Where({$_ -ne 'UserDefinedField'})
-            }
-            Else
-            { $Filter += '-eq'}
-            
-            # Add Value to expression, unless this is a UserDefinedfield AND UserDefinedField has been
-            # specified for -IsNull or -IsNotNull
-            If ($Filter[-1] -notin @('-IsNull','-IsNotNull'))
-            {$Filter += $Value}
-
-            If ($Parameter.Value.Count -gt 1 -and $ParameterValue -ne $Parameter.Value[-1]) {
-              $Filter += $Operator
-            }
-            ElseIf ($Parameter.Value.Count -gt 1) {
-              $Filter += '-end'
-            }
-            
-          }
-            
-        }
-      }
-      # IsNull and IsNotNull are special. They are the only operators that does not require a value to work
-      If ($IsNull.Count -gt 0) {
-        If ($Filter.Count -gt 0) {
-          $Filter += '-and'
-        }
-        Foreach ($PropertyName in $IsNull) {
-          $Filter += $PropertyName
-          $Filter += '-isnull'
-        }
-      }
-      If ($IsNotNull.Count -gt 0) {
-        If ($Filter.Count -gt 0) {
-          $Filter += '-and'
-        }
-        Foreach ($PropertyName in $IsNotNull) {
-          $Filter += $PropertyName
-          $Filter += '-isnotnull'
-        }
-      }  
+      # Convert named parameters to a filter definition that can be parsed to QueryXML
+      $Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $EntityName
     }
     Else {
-      Write-Debug ('{0}: Passing -Filter raw to Get function' -F $MyInvocation.MyCommand.Name)
+      
+      Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
+              
+      # $Filter is usually passed as a flat string. Convert it to an array.
+      If ($Filter.Count -eq 1 -and $Filter -match ' ' )
+      { 
+        # First, make sure it is a single string and replace parenthesis with our special operator
+        $Filter = $Filter -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '
+    
+        # Removing double possible spaces we may have introduced
+        Do {$Filter = $Filter -replace '  ',' '}
+        While ($Filter -match '  ')
+
+        # Split back in to array, respecting quotes
+        $Words = $Filter.Trim().Split(' ')
+        [String[]]$Filter = @()
+        $Temp = @()
+        Foreach ($Word in $Words)
+        {
+          If ($Temp.Count -eq 0 -and $Word -match '^[\"\'']')
+          {
+            $Temp += $Word.TrimStart('"''')
+          }
+          ElseIf ($Temp.Count -gt 0 -and $Word -match "[\'\""]$")
+          {
+            $Temp += $Word.TrimEnd("'""")
+            $Filter += $Temp -join ' '
+            $Temp = @()
+          }
+          ElseIf ($Temp.Count -gt 0)
+          {
+            $Temp += $Word
+          }
+          Else
+          {
+            $Filter += $Word
+          }
+        }
+      }
+      
+      Write-Debug ('{0}: Checking query for variables that have survived as string' -F $MyInvocation.MyCommand.Name)
+      
+      $NewFilter = @()
+      Foreach ($Word in $Filter)
+      {
+        $Value = $Word
+        # Is it a variable name?
+        If ($Word -match '^\$\{?(\w+:)?(\w+)\}?(\.\w[\.\w]+)?$')
+        {
+          # If present, first group is SCOPE. In the context of this function, the only possible scope
+          # is Global; Script = the module, local is internal to this function.
+          $Scope = 'Global' # or numbered scope 2
+        
+          # The variable name MUST be present
+          $VariableName = $Matches[2]
+
+          # A property tail CAN be present
+          $PropertyTail = $Matches[3]
+        
+          # Check that the variable exists
+          $Variable = Try
+          { Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction Stop }
+          Catch
+          {
+            Write-Error ('{0}: Could not find any variable called ${1}. Is it misspelled or has it not been set yet?' -f $MyInvocation.MyCommand.Name, $VariableName)
+            # Force stop of calling script, because this will completely break the query
+            Return
+          }
+
+          # Test if the variable "Variable" has been set
+          If (Test-Path Variable:Variable) {
+            Write-Debug ('{0}: Substituting {1} for its value' -F $MyInvocation.MyCommand.Name, $Word)
+            If ($PropertyTail) {
+              # Add properties back 
+              $Expression = '$Variable{0}' -F $PropertyTail
+  
+              # Invoke-Expression is considered risky from an SQL injection kind of perspective. But by only
+              # permitting a .dot separated string of [a-zA-Z0-9_] we are PROBABLY safe...
+              $Value = Invoke-Expression -Command $Expression
+            }
+            Else {
+              $Value = $Variable
+            }
+            If ($Value -eq $Null) {
+              Write-Error ('{0}: Could not find any variable called {1}. Is it misspelled or has it not been set yet?' -F $MyInvocation.MyCommand.Name, $Expression)
+              # Force stop of calling script, because this will completely break the query
+              Return
+            }
+            Else { 
+              # Normalize dates. Important to avoid QueryXML problems
+              If ($Value.GetType().Name -eq 'DateTime')
+              {[String]$Value = ConvertTo-AtwsDate -ParameterName $NewFilter[-2] -DateTime $Value}
+            }
+          }
+        }
+        $NewFilter += $Value
+      }
     } 
 
     $Result = Get-AtwsData -Entity $EntityName -Filter $Filter

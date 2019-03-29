@@ -58,7 +58,7 @@ Set-AtwsQuote
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Medium')]
+  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -346,7 +346,11 @@ Set-AtwsQuote
         $NewObject = New-Object Autotask.$EntityName
         
         # Copy every non readonly property
-        Foreach ($Field in $Fields.Where({$_.Name -ne 'id'}).Name)
+        $FieldNames = $Fields.Where({$_.Name -ne 'id'}).Name
+        If ($PSBoundParameters.ContainsKey('UserDefinedFields')) {
+          $FieldNames += 'UserDefinedFields'
+        }
+        Foreach ($Field in $FieldNames)
         {
           $NewObject.$Field = $Object.$Field
         }
@@ -407,6 +411,15 @@ Set-AtwsQuote
       }
     }
     $Result = New-AtwsData -Entity $ProcessObject
+    
+    # The API documentation explicitly states that you can only use the objects returned 
+    # by the .create() function to get the new objects ID.
+    # so to return objects with accurately represents what has been created we have to 
+    # get them again by id
+    
+    $NewObjectFilter = 'id -eq {0}' -F ($Result.Id -join ' -or id -eq ')
+    
+    $Result = Get-AtwsData -Entity $EntityName -Filter $NewObjectFilter
   }
 
   End
