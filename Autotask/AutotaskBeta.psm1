@@ -108,51 +108,51 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   # Verify that picklists are available in disk cache
   # Status is always a picklist
   # if there is none, refresh ALL entities with picklists
+  # Also, refresh ALL if nothing has been selected
   
   $FieldList = Get-AtwsFieldInfo -Entity Ticket
   $Status = $FieldList.Where{$_.Name -eq 'Status'}
-  If ($Status.PickListValues.Count -lt 1) {
+  If ($Status.PickListValues.Count -lt 1 -or -not ($EntityName)) {
     $EntityName = '*'
   }
   
   # Refresh any entities the caller has ordered'
   # We only consider entities that are dynamic
-  If ($EntityName)
-  { 
-    $Entities = Get-AtwsFieldInfo -Dynamic
-    $EntitiesToProcess = @()
+ 
+  $Entities = Get-AtwsFieldInfo -Dynamic
+  $EntitiesToProcess = @()
     
-    Foreach ($String in $EntityName)
-    {
-      $EntitiesToProcess += $Entities.GetEnumerator().Where({$_.Key -like $String})
-    }
-    # Prepare Index for progressbar
-    $Index = 0
-    $ProgressParameters = @{
-      Activity = 'Updating diskcache for requested entities.'
-      Id = 10
-    }
-    Foreach ($EntityToProcess in $EntitiesToProcess)
-    {
-      $Index++
-      $PercentComplete = $Index / $EntitiesToProcess.Count * 100
-      
-      # Add parameters for @splatting
-      $ProgressParameters['PercentComplete'] = $PercentComplete
-      $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $EntitiesToProcess.Count, $PercentComplete
-      $ProgressParameters['CurrentOperation'] = 'Getting fieldinfo for {0}' -F $EntityToProcess.Name
-      
-      Write-Progress @ProgressParameters
-      
-      $null = Get-AtwsFieldInfo -Entity $EntityToProcess.Key -UpdateCache
-    }
-    
-    # Recreate functions that have been updated
-    Import-AtwsCmdLet -Entities $EntitiesToProcess
-    
-    # Re-read Dynamic functions
-    $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue ) 
+  Foreach ($String in $EntityName)
+  {
+    $EntitiesToProcess += $Entities.GetEnumerator().Where({$_.Key -like $String})
   }
+  # Prepare Index for progressbar
+  $Index = 0
+  $ProgressParameters = @{
+    Activity = 'Updating diskcache for requested entities.'
+    Id = 10
+  }
+  Foreach ($EntityToProcess in $EntitiesToProcess)
+  {
+    $Index++
+    $PercentComplete = $Index / $EntitiesToProcess.Count * 100
+      
+    # Add parameters for @splatting
+    $ProgressParameters['PercentComplete'] = $PercentComplete
+    $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $EntitiesToProcess.Count, $PercentComplete
+    $ProgressParameters['CurrentOperation'] = 'Getting fieldinfo for {0}' -F $EntityToProcess.Name
+      
+    Write-Progress @ProgressParameters
+      
+    $null = Get-AtwsFieldInfo -Entity $EntityToProcess.Key -UpdateCache
+  }
+    
+  # Recreate functions that have been updated
+  Import-AtwsCmdLet -Entities $EntitiesToProcess
+    
+  # Re-read Dynamic functions
+  $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue ) 
+
 }
 Else {
   Write-Warning 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI to connect.'
