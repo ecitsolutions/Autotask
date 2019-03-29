@@ -51,7 +51,6 @@ Get-AtwsProductVendor
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -80,7 +79,6 @@ Get-AtwsProductVendor
 
 # Vendor Account ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -114,7 +112,6 @@ Get-AtwsProductVendor
 
 # Is Active
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -127,7 +124,6 @@ Get-AtwsProductVendor
 
 # Is Default
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

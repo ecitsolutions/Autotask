@@ -117,7 +117,7 @@ Set-AtwsBusinessDivisionSubdivision
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Project:BusinessDivisionSubdivisionID', 'Opportunity:BusinessDivisionSubdivisionID', 'TicketCategoryFieldDefaults:BusinessDivisionSubdivisionID', 'Contract:BusinessDivisionSubdivisionID', 'BusinessDivisionSubdivisionResource:BusinessDivisionSubdivisionID', 'Subscription:BusinessDivisionSubdivisionID', 'BillingItem:BusinessDivisionSubdivisionID', 'ContractMilestone:BusinessDivisionSubdivisionID', 'TicketCost:BusinessDivisionSubdivisionID', 'ContractServiceUnit:BusinessDivisionSubdivisionID', 'ProjectCost:BusinessDivisionSubdivisionID', 'ContractCost:BusinessDivisionSubdivisionID', 'ExpenseReport:BusinessDivisionSubdivisionID', 'Ticket:BusinessDivisionSubdivisionID', 'ContractServiceBundleUnit:BusinessDivisionSubdivisionID', 'SalesOrder:BusinessDivisionSubdivisionID')]
+    [ValidateSet('SalesOrder:BusinessDivisionSubdivisionID', 'Project:BusinessDivisionSubdivisionID', 'Opportunity:BusinessDivisionSubdivisionID', 'TicketCategoryFieldDefaults:BusinessDivisionSubdivisionID', 'Contract:BusinessDivisionSubdivisionID', 'Subscription:BusinessDivisionSubdivisionID', 'BillingItem:BusinessDivisionSubdivisionID', 'ContractMilestone:BusinessDivisionSubdivisionID', 'TicketCost:BusinessDivisionSubdivisionID', 'ContractServiceUnit:BusinessDivisionSubdivisionID', 'ProjectCost:BusinessDivisionSubdivisionID', 'Ticket:BusinessDivisionSubdivisionID', 'BusinessDivisionSubdivisionResource:BusinessDivisionSubdivisionID', 'ContractCost:BusinessDivisionSubdivisionID', 'ExpenseReport:BusinessDivisionSubdivisionID', 'ContractServiceBundleUnit:BusinessDivisionSubdivisionID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

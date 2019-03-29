@@ -52,7 +52,6 @@ Get-AtwsPurchaseOrder
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -81,7 +80,6 @@ Get-AtwsPurchaseOrder
 
 # Order Status ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -94,7 +92,6 @@ Get-AtwsPurchaseOrder
 
 # Addressee Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -108,7 +105,6 @@ Get-AtwsPurchaseOrder
 
 # Address Line 1
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -133,7 +129,6 @@ Get-AtwsPurchaseOrder
 
 # City
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -147,7 +142,6 @@ Get-AtwsPurchaseOrder
 
 # State
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -161,7 +155,6 @@ Get-AtwsPurchaseOrder
 
 # Postal Code
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

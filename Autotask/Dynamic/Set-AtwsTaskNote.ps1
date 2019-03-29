@@ -51,7 +51,6 @@ Get-AtwsTaskNote
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -80,7 +79,6 @@ Get-AtwsTaskNote
 
 # Description
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -94,7 +92,6 @@ Get-AtwsTaskNote
 
 # Note Type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -107,7 +104,6 @@ Get-AtwsTaskNote
 
 # Publish
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -120,7 +116,6 @@ Get-AtwsTaskNote
 
 # Task
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -133,7 +128,6 @@ Get-AtwsTaskNote
 
 # Title
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

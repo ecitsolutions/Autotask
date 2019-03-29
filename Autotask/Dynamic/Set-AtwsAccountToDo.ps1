@@ -53,7 +53,6 @@ Get-AtwsAccountToDo
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -82,7 +81,6 @@ Get-AtwsAccountToDo
 
 # Client
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -135,7 +133,6 @@ Get-AtwsAccountToDo
 
 # Assigned To Resource
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -148,7 +145,6 @@ Get-AtwsAccountToDo
 
 # Start Date Time
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -161,7 +157,6 @@ Get-AtwsAccountToDo
 
 # End Date Time
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -174,7 +169,6 @@ Get-AtwsAccountToDo
 
 # Action Type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

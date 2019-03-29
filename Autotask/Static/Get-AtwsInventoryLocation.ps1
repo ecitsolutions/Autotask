@@ -104,7 +104,7 @@ Set-AtwsInventoryLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InventoryTransfer:FromLocationID', 'InventoryTransfer:ToLocationID', 'InventoryItem:InventoryLocationID', 'PurchaseOrderItem:InventoryLocationID')]
+    [ValidateSet('InventoryItem:InventoryLocationID', 'PurchaseOrderItem:InventoryLocationID', 'InventoryTransfer:FromLocationID', 'InventoryTransfer:ToLocationID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

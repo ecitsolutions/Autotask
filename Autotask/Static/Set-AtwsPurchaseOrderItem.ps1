@@ -52,7 +52,6 @@ Get-AtwsPurchaseOrderItem
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -81,7 +80,6 @@ Get-AtwsPurchaseOrderItem
 
 # Product ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -94,7 +92,6 @@ Get-AtwsPurchaseOrderItem
 
 # Inventory Location ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -107,7 +104,6 @@ Get-AtwsPurchaseOrderItem
 
 # Quantity Ordered
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -131,7 +127,6 @@ Get-AtwsPurchaseOrderItem
 
 # Product Unit Cost
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

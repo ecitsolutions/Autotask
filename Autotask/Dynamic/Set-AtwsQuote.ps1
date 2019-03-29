@@ -53,7 +53,6 @@ Get-AtwsQuote
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -82,7 +81,6 @@ Get-AtwsQuote
 
 # quote_name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -106,7 +104,6 @@ Get-AtwsQuote
 
 # effective_date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -119,7 +116,6 @@ Get-AtwsQuote
 
 # expiration_date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -162,7 +158,6 @@ Get-AtwsQuote
 
 # bill_to_location_id
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -175,7 +170,6 @@ Get-AtwsQuote
 
 # ship_to_location_id
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -188,7 +182,6 @@ Get-AtwsQuote
 
 # sold_to_location_id
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

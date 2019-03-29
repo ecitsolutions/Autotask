@@ -59,7 +59,6 @@ Get-AtwsTask
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -210,7 +209,6 @@ Get-AtwsTask
 
 # Project
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -254,7 +252,6 @@ Get-AtwsTask
 
 # Task Status
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -277,7 +274,6 @@ Get-AtwsTask
 
 # Task Type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -290,7 +286,6 @@ Get-AtwsTask
 
 # Task Title
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

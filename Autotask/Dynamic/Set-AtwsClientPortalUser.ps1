@@ -51,7 +51,6 @@ Get-AtwsClientPortalUser
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -80,7 +79,6 @@ Get-AtwsClientPortalUser
 
 # Security Level
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -93,7 +91,6 @@ Get-AtwsClientPortalUser
 
 # Date Format
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -106,7 +103,6 @@ Get-AtwsClientPortalUser
 
 # Time Format
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -119,7 +115,6 @@ Get-AtwsClientPortalUser
 
 # Number Format
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -132,7 +127,6 @@ Get-AtwsClientPortalUser
 
 # User Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -157,7 +151,6 @@ Get-AtwsClientPortalUser
 
 # Client Portal Active
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

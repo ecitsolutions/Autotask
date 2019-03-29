@@ -61,7 +61,6 @@ Get-AtwsServiceBundle
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -90,7 +89,6 @@ Get-AtwsServiceBundle
 
 # service_bundle_name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -145,7 +143,6 @@ Get-AtwsServiceBundle
 
 # allocation_code_id
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

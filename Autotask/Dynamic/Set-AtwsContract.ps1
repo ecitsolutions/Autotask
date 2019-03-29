@@ -76,7 +76,6 @@ Get-AtwsContract
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -157,7 +156,6 @@ Get-AtwsContract
 
 # Contract Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -204,7 +202,6 @@ Get-AtwsContract
 
 # End Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -257,7 +254,6 @@ Get-AtwsContract
 
 # Start Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -270,7 +266,6 @@ Get-AtwsContract
 
 # Status
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -314,7 +309,6 @@ Get-AtwsContract
 
 # Time Reporting Requires Start and Stop Times
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

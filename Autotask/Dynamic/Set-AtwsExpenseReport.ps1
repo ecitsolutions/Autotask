@@ -52,7 +52,6 @@ Get-AtwsExpenseReport
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -81,7 +80,6 @@ Get-AtwsExpenseReport
 
 # Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -105,7 +103,6 @@ Get-AtwsExpenseReport
 
 # Submitter ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -118,7 +115,6 @@ Get-AtwsExpenseReport
 
 # Period Ending
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

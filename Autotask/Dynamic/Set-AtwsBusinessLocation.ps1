@@ -52,7 +52,6 @@ Get-AtwsBusinessLocation
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -81,7 +80,6 @@ Get-AtwsBusinessLocation
 
 # Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -211,7 +209,6 @@ Get-AtwsBusinessLocation
 
 # Date Format
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -225,7 +222,6 @@ Get-AtwsBusinessLocation
 
 # Time Format
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -239,7 +235,6 @@ Get-AtwsBusinessLocation
 
 # Number Format
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -253,7 +248,6 @@ Get-AtwsBusinessLocation
 
 # Time Zone ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

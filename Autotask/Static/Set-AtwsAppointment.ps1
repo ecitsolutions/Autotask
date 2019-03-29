@@ -53,7 +53,6 @@ Get-AtwsAppointment
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -82,7 +81,6 @@ Get-AtwsAppointment
 
 # Resource
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -95,7 +93,6 @@ Get-AtwsAppointment
 
 # Appointment Title
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -109,7 +106,6 @@ Get-AtwsAppointment
 
 # Start Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -122,7 +118,6 @@ Get-AtwsAppointment
 
 # End Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

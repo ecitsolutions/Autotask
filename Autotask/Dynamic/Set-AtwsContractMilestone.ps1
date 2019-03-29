@@ -52,7 +52,6 @@ Get-AtwsContractMilestone
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -81,7 +80,6 @@ Get-AtwsContractMilestone
 
 # Status
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -94,7 +92,6 @@ Get-AtwsContractMilestone
 
 # Date Due
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -107,7 +104,6 @@ Get-AtwsContractMilestone
 
 # Amount
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -120,7 +116,6 @@ Get-AtwsContractMilestone
 
 # Title
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -145,7 +140,6 @@ Get-AtwsContractMilestone
 
 # Is This Initial Payment
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

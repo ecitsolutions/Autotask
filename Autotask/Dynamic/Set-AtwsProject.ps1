@@ -61,7 +61,6 @@ Get-AtwsProject
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -90,7 +89,6 @@ Get-AtwsProject
 
 # Project Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -105,7 +103,6 @@ Get-AtwsProject
 
 # Type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -150,7 +147,6 @@ Get-AtwsProject
 
 # Start Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -163,7 +159,6 @@ Get-AtwsProject
 
 # End Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -246,7 +241,6 @@ Get-AtwsProject
 
 # Status
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

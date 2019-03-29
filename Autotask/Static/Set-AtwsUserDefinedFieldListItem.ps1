@@ -51,7 +51,6 @@ Get-AtwsUserDefinedFieldListItem
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -80,7 +79,6 @@ Get-AtwsUserDefinedFieldListItem
 
 # User Defined Field Definition
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -93,7 +91,6 @@ Get-AtwsUserDefinedFieldListItem
 
 # Value For Export
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -107,7 +104,6 @@ Get-AtwsUserDefinedFieldListItem
 
 # Value For Display
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

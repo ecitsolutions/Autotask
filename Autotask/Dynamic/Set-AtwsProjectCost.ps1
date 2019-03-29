@@ -54,7 +54,6 @@ Get-AtwsProjectCost
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -83,7 +82,6 @@ Get-AtwsProjectCost
 
 # Project
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -116,7 +114,6 @@ Get-AtwsProjectCost
 
 # Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -141,7 +138,6 @@ Get-AtwsProjectCost
 
 # Date Purchased
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -154,7 +150,6 @@ Get-AtwsProjectCost
 
 # Cost Type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -189,7 +184,6 @@ Get-AtwsProjectCost
 
 # Unit Quantity
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

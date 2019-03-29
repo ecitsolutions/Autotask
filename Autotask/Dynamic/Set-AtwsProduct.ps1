@@ -62,7 +62,6 @@ Get-AtwsProduct
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -91,7 +90,6 @@ Get-AtwsProduct
 
 # Product Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -232,7 +230,6 @@ Get-AtwsProduct
 
 # Active
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -256,7 +253,6 @@ Get-AtwsProduct
 
 # Allocation Code ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -269,7 +265,6 @@ Get-AtwsProduct
 
 # Is Serialized
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

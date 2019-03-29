@@ -46,8 +46,9 @@
     Foreach ($SetName in $ParameterSetName) { 
         # Make an array of properties that goes inside the Parameter clause
         $ParamProperties = @()
-    
-        If ($Mandatory.IsPresent) {
+        
+        # Hardcoded filter against requiring parameters for 'Input_Object'
+        If ($Mandatory.IsPresent -and $SetName -ne 'Input_Object') {
             $ParamProperties += "      Mandatory = `$true"  
         }
         If ($ValueFromRemainingArguments.IsPresent) {

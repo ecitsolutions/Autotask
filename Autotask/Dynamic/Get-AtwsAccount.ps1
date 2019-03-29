@@ -163,7 +163,7 @@ Set-AtwsAccount
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Project:AccountID', 'Invoice:AccountID', 'Service:VendorAccountID', 'Contact:AccountID', 'Account:ParentAccountID', 'AccountTeam:AccountID', 'Opportunity:AccountID', 'Contract:AccountID', 'ServiceCall:AccountID', 'Subscription:VendorID', 'BillingItem:AccountID', 'BillingItem:VendorID', 'SurveyResults:AccountID', 'InstalledProduct:AccountID', 'InstalledProduct:VendorID', 'ContractServiceUnit:VendorAccountID', 'PurchaseOrder:VendorID', 'PurchaseOrder:PurchaseForAccountID', 'ProductVendor:VendorID', 'Product:DefaultVendorID', 'ExpenseItem:AccountID', 'AccountAlert:AccountID', 'AccountNote:AccountID', 'AccountPhysicalLocation:AccountID', 'Quote:AccountID', 'AccountToDo:AccountID', 'Ticket:AccountID', 'AccountLocation:AccountID', 'SalesOrder:AccountID', 'NotificationHistory:AccountID')]
+    [ValidateSet('SalesOrder:AccountID', 'Project:AccountID', 'Invoice:AccountID', 'Service:VendorAccountID', 'Contact:AccountID', 'Account:ParentAccountID', 'AccountTeam:AccountID', 'NotificationHistory:AccountID', 'Opportunity:AccountID', 'Contract:AccountID', 'ServiceCall:AccountID', 'Subscription:VendorID', 'BillingItem:AccountID', 'BillingItem:VendorID', 'InstalledProduct:AccountID', 'InstalledProduct:VendorID', 'ContractServiceUnit:VendorAccountID', 'PurchaseOrder:VendorID', 'PurchaseOrder:PurchaseForAccountID', 'ProductVendor:VendorID', 'Product:DefaultVendorID', 'Ticket:AccountID', 'ExpenseItem:AccountID', 'AccountAlert:AccountID', 'AccountNote:AccountID', 'AccountPhysicalLocation:AccountID', 'Quote:AccountID', 'SurveyResults:AccountID', 'AccountToDo:AccountID', 'AccountLocation:AccountID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

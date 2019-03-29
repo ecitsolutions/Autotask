@@ -51,7 +51,6 @@ Get-AtwsResourceRoleDepartment
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -80,7 +79,6 @@ Get-AtwsResourceRoleDepartment
 
 # Department ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -93,7 +91,6 @@ Get-AtwsResourceRoleDepartment
 
 # Role ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -106,7 +103,6 @@ Get-AtwsResourceRoleDepartment
 
 # Active
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -119,7 +115,6 @@ Get-AtwsResourceRoleDepartment
 
 # Default
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -132,7 +127,6 @@ Get-AtwsResourceRoleDepartment
 
 # Department Lead
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

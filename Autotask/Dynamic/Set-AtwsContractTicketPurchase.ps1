@@ -51,7 +51,6 @@ Get-AtwsContractTicketPurchase
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -80,7 +79,6 @@ Get-AtwsContractTicketPurchase
 
 # Contract ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -93,7 +91,6 @@ Get-AtwsContractTicketPurchase
 
 # Paid
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -106,7 +103,6 @@ Get-AtwsContractTicketPurchase
 
 # DatePurchased
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -119,7 +115,6 @@ Get-AtwsContractTicketPurchase
 
 # Start Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -132,7 +127,6 @@ Get-AtwsContractTicketPurchase
 
 # End Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -145,7 +139,6 @@ Get-AtwsContractTicketPurchase
 
 # Tickets Purchased
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -158,7 +151,6 @@ Get-AtwsContractTicketPurchase
 
 # Rate
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

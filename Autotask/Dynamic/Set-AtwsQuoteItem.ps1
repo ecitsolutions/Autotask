@@ -57,7 +57,6 @@ Get-AtwsQuoteItem
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -86,7 +85,6 @@ Get-AtwsQuoteItem
 
 # parent_type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -200,7 +198,6 @@ Get-AtwsQuoteItem
 
 # quantity
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -213,7 +210,6 @@ Get-AtwsQuoteItem
 
 # discount_dollars
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -226,7 +222,6 @@ Get-AtwsQuoteItem
 
 # discount_percent
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -249,7 +244,6 @@ Get-AtwsQuoteItem
 
 # optional
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -284,7 +278,6 @@ Get-AtwsQuoteItem
 
 # line_discount_dollars
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

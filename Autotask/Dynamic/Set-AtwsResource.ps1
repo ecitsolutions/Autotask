@@ -100,7 +100,6 @@ Get-AtwsResource
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -129,7 +128,6 @@ Get-AtwsResource
 
 # Status
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -142,7 +140,6 @@ Get-AtwsResource
 
 # Email
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -178,7 +175,6 @@ Get-AtwsResource
 
 # Email Type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -214,7 +210,6 @@ Get-AtwsResource
 
 # First Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -271,7 +266,6 @@ Get-AtwsResource
 
 # Last Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -329,7 +323,6 @@ Get-AtwsResource
 
 # Resource Type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -376,7 +369,6 @@ Get-AtwsResource
 
 # UserName
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -411,7 +403,6 @@ Get-AtwsResource
 
 # Payroll Type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -424,7 +415,6 @@ Get-AtwsResource
 
 # Number Format
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

@@ -51,7 +51,6 @@ Get-AtwsContractBlock
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -80,7 +79,6 @@ Get-AtwsContractBlock
 
 # Contract ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -103,7 +101,6 @@ Get-AtwsContractBlock
 
 # DatePurchased
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -116,7 +113,6 @@ Get-AtwsContractBlock
 
 # StartDate
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -129,7 +125,6 @@ Get-AtwsContractBlock
 
 # EndDate
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -142,7 +137,6 @@ Get-AtwsContractBlock
 
 # Hours
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -155,7 +149,6 @@ Get-AtwsContractBlock
 
 # Rate
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

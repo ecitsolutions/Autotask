@@ -51,7 +51,6 @@ Get-AtwsAccountNote
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -80,7 +79,6 @@ Get-AtwsAccountNote
 
 # Client
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -93,7 +91,6 @@ Get-AtwsAccountNote
 
 # TypeValue
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -106,7 +103,6 @@ Get-AtwsAccountNote
 
 # Assigned Resource
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -129,7 +125,6 @@ Get-AtwsAccountNote
 
 # EndDate
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -174,7 +169,6 @@ Get-AtwsAccountNote
 
 # StartDate
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

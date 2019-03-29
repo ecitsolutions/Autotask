@@ -121,7 +121,7 @@ Set-AtwsTimeEntry
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItemApprovalLevel:TimeEntryID', 'BillingItem:TimeEntryID', 'NotificationHistory:TimeEntryID')]
+    [ValidateSet('BillingItemApprovalLevel:TimeEntryID', 'NotificationHistory:TimeEntryID', 'BillingItem:TimeEntryID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

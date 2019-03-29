@@ -78,7 +78,6 @@ Get-AtwsAccount
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -118,7 +117,6 @@ Get-AtwsAccount
 
 # Client Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -199,7 +197,6 @@ Get-AtwsAccount
 
 # Phone
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -257,7 +254,6 @@ Get-AtwsAccount
 
 # Client Type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -280,7 +276,6 @@ Get-AtwsAccount
 
 # Client Owner
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

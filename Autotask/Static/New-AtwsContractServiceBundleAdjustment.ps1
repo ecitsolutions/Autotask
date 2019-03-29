@@ -51,7 +51,6 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
   (
 # An array of objects to create
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]

@@ -42,7 +42,6 @@ Set-AtwsServiceCall
   (
 # Any objects that should be deleted
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]

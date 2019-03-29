@@ -68,7 +68,6 @@ Get-AtwsRole
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -97,7 +96,6 @@ Get-AtwsRole
 
 # Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -122,7 +120,6 @@ Get-AtwsRole
 
 # Hourly Factor
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -135,7 +132,6 @@ Get-AtwsRole
 
 # Hourly Rate
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -158,7 +154,6 @@ Get-AtwsRole
 
 # Active
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

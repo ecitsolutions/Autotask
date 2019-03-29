@@ -59,7 +59,6 @@ Get-AtwsOpportunity
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -88,7 +87,6 @@ Get-AtwsOpportunity
 
 # AccountObjectID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -151,7 +149,6 @@ Get-AtwsOpportunity
 
 # Amount
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -185,7 +182,6 @@ Get-AtwsOpportunity
 
 # Cost
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -198,7 +194,6 @@ Get-AtwsOpportunity
 
 # CreateDate
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -254,7 +249,6 @@ Get-AtwsOpportunity
 
 # CreatorObjectID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -277,7 +271,6 @@ Get-AtwsOpportunity
 
 # ProjClose
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -322,7 +315,6 @@ Get-AtwsOpportunity
 
 # StageObjectID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -335,7 +327,6 @@ Get-AtwsOpportunity
 
 # Status
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -358,7 +349,6 @@ Get-AtwsOpportunity
 
 # Description
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -444,7 +434,6 @@ Get-AtwsOpportunity
 
 # Probability
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -467,7 +456,6 @@ Get-AtwsOpportunity
 
 # Use Quote Totals
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

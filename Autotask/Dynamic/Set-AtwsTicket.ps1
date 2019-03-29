@@ -70,7 +70,6 @@ Get-AtwsTicket
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -110,7 +109,6 @@ Get-AtwsTicket
 
 # Client
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -184,7 +182,6 @@ Get-AtwsTicket
 
 # Ticket End Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -238,7 +235,6 @@ Get-AtwsTicket
 
 # Ticket Priority
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -271,7 +267,6 @@ Get-AtwsTicket
 
 # Ticket Status
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -294,7 +289,6 @@ Get-AtwsTicket
 
 # Ticket Title
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

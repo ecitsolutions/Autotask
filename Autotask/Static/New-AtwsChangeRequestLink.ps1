@@ -56,7 +56,6 @@ Get-AtwsChangeRequestLink
   (
 # An array of objects to create
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]

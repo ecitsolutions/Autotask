@@ -53,7 +53,6 @@ Get-AtwsActionType
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -82,7 +81,6 @@ Get-AtwsActionType
 
 # Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -96,7 +94,6 @@ Get-AtwsActionType
 
 # View
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -109,7 +106,6 @@ Get-AtwsActionType
 
 # Active
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

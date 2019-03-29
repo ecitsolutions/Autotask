@@ -50,7 +50,6 @@ Get-AtwsTicketCategory
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -79,7 +78,6 @@ Get-AtwsTicketCategory
 
 # Name
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -104,7 +102,6 @@ Get-AtwsTicketCategory
 
 # Active
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -117,7 +114,6 @@ Get-AtwsTicketCategory
 
 # Display Color RGB
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

@@ -52,7 +52,6 @@ Get-AtwsExpenseItem
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
@@ -81,7 +80,6 @@ Get-AtwsExpenseItem
 
 # Expense Report ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -94,7 +92,6 @@ Get-AtwsExpenseItem
 
 # Description
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -108,7 +105,6 @@ Get-AtwsExpenseItem
 
 # Expense Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -121,7 +117,6 @@ Get-AtwsExpenseItem
 
 # Expense Category
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -154,7 +149,6 @@ Get-AtwsExpenseItem
 
 # Payment Type
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -167,7 +161,6 @@ Get-AtwsExpenseItem
 
 # Have Receipt
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
@@ -180,7 +173,6 @@ Get-AtwsExpenseItem
 
 # Billable To Account
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(

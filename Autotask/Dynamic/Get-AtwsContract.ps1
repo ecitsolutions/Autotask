@@ -161,7 +161,7 @@ Set-AtwsContract
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Project:ContractID', 'ContractFactor:ContractID', 'ContractRate:ContractID', 'Contract:ExclusionContractID', 'ContractExclusionAllocationCode:ContractID', 'ContractService:ContractID', 'ContractRetainer:ContractID', 'ContractNote:ContractID', 'BillingItem:ContractID', 'ContractMilestone:ContractID', 'InstalledProduct:ContractID', 'ContractServiceUnit:ContractID', 'ContractServiceBundleAdjustment:ContractID', 'ContractExclusionRole:ContractID', 'ContractTicketPurchase:ContractID', 'ContractCost:ContractID', 'ContractServiceAdjustment:ContractID', 'AccountToDo:ContractID', 'Ticket:ContractID', 'TimeEntry:ContractID', 'PurchaseOrderItem:ContractID', 'ContractBlock:ContractID', 'ContractRoleCost:ContractID', 'ContractServiceBundle:ContractID', 'ContractServiceBundleUnit:ContractID')]
+    [ValidateSet('Project:ContractID', 'ContractFactor:ContractID', 'Contract:ExclusionContractID', 'ContractExclusionAllocationCode:ContractID', 'ContractService:ContractID', 'ContractRetainer:ContractID', 'ContractNote:ContractID', 'BillingItem:ContractID', 'ContractMilestone:ContractID', 'InstalledProduct:ContractID', 'ContractServiceUnit:ContractID', 'ContractServiceBundleAdjustment:ContractID', 'Ticket:ContractID', 'ContractTicketPurchase:ContractID', 'ContractCost:ContractID', 'ContractServiceAdjustment:ContractID', 'ContractBlock:ContractID', 'TimeEntry:ContractID', 'PurchaseOrderItem:ContractID', 'AccountToDo:ContractID', 'ContractRoleCost:ContractID', 'ContractServiceBundle:ContractID', 'ContractServiceBundleUnit:ContractID', 'ContractExclusionRole:ContractID', 'ContractRate:ContractID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
