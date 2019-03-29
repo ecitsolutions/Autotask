@@ -87,8 +87,7 @@ Get-AtwsAccount
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -123,6 +122,9 @@ Get-AtwsAccount
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,100)]
@@ -136,6 +138,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,128)]
     [string]
     $Address1,
@@ -146,6 +151,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,128)]
     [string]
@@ -158,6 +166,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,30)]
     [string]
     $City,
@@ -168,6 +179,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,40)]
     [string]
@@ -180,6 +194,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,10)]
     [string]
     $PostalCode,
@@ -190,6 +207,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,100)]
     [string]
@@ -203,6 +223,9 @@ Get-AtwsAccount
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,25)]
     [string]
@@ -215,6 +238,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,25)]
     [string]
     $AlternatePhone1,
@@ -225,6 +251,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,25)]
     [string]
@@ -237,6 +266,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,25)]
     [string]
     $Fax,
@@ -247,6 +279,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,255)]
     [string]
@@ -260,6 +295,9 @@ Get-AtwsAccount
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int16]
     $AccountType,
@@ -270,6 +308,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $KeyAccountIcon,
@@ -282,6 +323,9 @@ Get-AtwsAccount
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $OwnerResourceID,
@@ -293,6 +337,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $TerritoryID,
 
@@ -302,6 +349,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $MarketSegmentID,
@@ -313,6 +363,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $CompetitorID,
 
@@ -323,6 +376,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ParentAccountID,
 
@@ -332,6 +388,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,10)]
     [string]
@@ -344,6 +403,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,10)]
     [string]
     $StockMarket,
@@ -354,6 +416,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,32)]
     [string]
@@ -366,6 +431,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $AssetValue,
 
@@ -375,6 +443,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -387,6 +458,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $Active,
 
@@ -396,6 +470,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $TaxRegionID,
@@ -407,6 +484,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $TaxExempt,
 
@@ -416,6 +496,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -428,6 +511,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,100)]
     [string]
     $AdditionalAddressInformation,
@@ -439,6 +525,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $CountryID,
 
@@ -448,6 +537,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -460,6 +552,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $InvoiceMethod,
 
@@ -469,6 +564,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $InvoiceNonContractItemsToParentAccount,
@@ -480,6 +578,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $QuoteTemplateID,
 
@@ -489,6 +590,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $QuoteEmailMessageID,
@@ -500,6 +604,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $InvoiceTemplateID,
 
@@ -509,6 +616,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $InvoiceEmailMessageID,
@@ -520,6 +630,9 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $CurrencyID,
 
@@ -529,6 +642,9 @@ Get-AtwsAccount
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $BillToAccountPhysicalLocationID

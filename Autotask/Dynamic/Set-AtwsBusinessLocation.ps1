@@ -61,8 +61,7 @@ Get-AtwsBusinessLocation
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -86,6 +85,9 @@ Get-AtwsBusinessLocation
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,100)]
     [string]
@@ -98,6 +100,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,100)]
     [string]
     $Address1,
@@ -108,6 +113,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,100)]
     [string]
@@ -120,6 +128,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,50)]
     [string]
     $City,
@@ -130,6 +141,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,25)]
     [string]
@@ -142,6 +156,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,20)]
     [string]
     $PostalCode,
@@ -152,6 +169,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,100)]
     [string]
@@ -164,6 +184,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $CountryID,
 
@@ -173,6 +196,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $HolidaySetID,
@@ -184,6 +210,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $NoHoursOnHolidays,
 
@@ -193,6 +222,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $Default,
@@ -204,6 +236,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $FirstDayOfWeek,
 
@@ -214,6 +249,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,50)]
@@ -228,6 +266,9 @@ Get-AtwsBusinessLocation
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,50)]
     [string]
@@ -240,6 +281,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,50)]
@@ -254,6 +298,9 @@ Get-AtwsBusinessLocation
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $TimeZoneID,
@@ -265,6 +312,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $SundayBusinessHoursStartTime,
 
@@ -274,6 +324,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $SundayBusinessHoursEndTime,
@@ -285,6 +338,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $SundayExtendedHoursStartTime,
 
@@ -294,6 +350,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $SundayExtendedHoursEndTime,
@@ -305,6 +364,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $MondayBusinessHoursStartTime,
 
@@ -314,6 +376,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $MondayBusinessHoursEndTime,
@@ -325,6 +390,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $MondayExtendedHoursStartTime,
 
@@ -334,6 +402,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $MondayExtendedHoursEndTime,
@@ -345,6 +416,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $TuesdayBusinessHoursStartTime,
 
@@ -354,6 +428,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $TuesdayBusinessHoursEndTime,
@@ -365,6 +442,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $TuesdayExtendedHoursStartTime,
 
@@ -374,6 +454,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $TuesdayExtendedHoursEndTime,
@@ -385,6 +468,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $WednesdayBusinessHoursStartTime,
 
@@ -394,6 +480,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $WednesdayBusinessHoursEndTime,
@@ -405,6 +494,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $WednesdayExtendedHoursStartTime,
 
@@ -414,6 +506,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $WednesdayExtendedHoursEndTime,
@@ -425,6 +520,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $ThursdayBusinessHoursStartTime,
 
@@ -434,6 +532,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $ThursdayBusinessHoursEndTime,
@@ -445,6 +546,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $ThursdayExtendedHoursStartTime,
 
@@ -454,6 +558,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $ThursdayExtendedHoursEndTime,
@@ -465,6 +572,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $FridayBusinessHoursStartTime,
 
@@ -474,6 +584,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $FridayBusinessHoursEndTime,
@@ -485,6 +598,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $FridayExtendedHoursStartTime,
 
@@ -494,6 +610,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $FridayExtendedHoursEndTime,
@@ -505,6 +624,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $SaturdayBusinessHoursStartTime,
 
@@ -514,6 +636,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $SaturdayBusinessHoursEndTime,
@@ -525,6 +650,9 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $SaturdayExtendedHoursStartTime,
 
@@ -534,6 +662,9 @@ Get-AtwsBusinessLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $SaturdayExtendedHoursEndTime

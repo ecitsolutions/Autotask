@@ -60,8 +60,7 @@ Get-AtwsProjectNote
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -85,6 +84,9 @@ Get-AtwsProjectNote
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,32000)]
     [string]
@@ -98,6 +100,9 @@ Get-AtwsProjectNote
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $NoteType,
@@ -109,6 +114,9 @@ Get-AtwsProjectNote
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
@@ -122,6 +130,9 @@ Get-AtwsProjectNote
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $ProjectID,
@@ -133,6 +144,9 @@ Get-AtwsProjectNote
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,250)]
@@ -146,6 +160,9 @@ Get-AtwsProjectNote
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [boolean]

@@ -61,8 +61,7 @@ Get-AtwsUserDefinedFieldDefinition
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -86,6 +85,9 @@ Get-AtwsUserDefinedFieldDefinition
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,45)]
     [string]
@@ -97,6 +99,9 @@ Get-AtwsUserDefinedFieldDefinition
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,128)]
     [string]
@@ -110,6 +115,9 @@ Get-AtwsUserDefinedFieldDefinition
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $UdfType,
@@ -122,6 +130,9 @@ Get-AtwsUserDefinedFieldDefinition
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $DataType,
@@ -132,6 +143,9 @@ Get-AtwsUserDefinedFieldDefinition
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,1024)]
     [string]
@@ -144,6 +158,9 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $IsProtected,
 
@@ -153,6 +170,9 @@ Get-AtwsUserDefinedFieldDefinition
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $IsRequired,
@@ -164,6 +184,9 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $IsActive,
 
@@ -173,6 +196,9 @@ Get-AtwsUserDefinedFieldDefinition
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,100)]
     [string]
@@ -185,6 +211,9 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [long]
     $CrmToProjectUdfId,
 
@@ -194,6 +223,9 @@ Get-AtwsUserDefinedFieldDefinition
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $DisplayFormat,
@@ -205,6 +237,9 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $SortOrder,
 
@@ -214,6 +249,9 @@ Get-AtwsUserDefinedFieldDefinition
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $NumberOfDecimalPlaces,
@@ -225,6 +263,9 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $IsVisibleToClientPortal,
 
@@ -234,6 +275,9 @@ Get-AtwsUserDefinedFieldDefinition
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $IsEncrypted

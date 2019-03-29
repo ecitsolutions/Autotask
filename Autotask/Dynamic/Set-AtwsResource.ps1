@@ -109,8 +109,7 @@ Get-AtwsResource
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -134,6 +133,9 @@ Get-AtwsResource
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [boolean]
     $Active,
@@ -145,6 +147,9 @@ Get-AtwsResource
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,254)]
@@ -158,6 +163,9 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,254)]
     [string]
     $Email2,
@@ -168,6 +176,9 @@ Get-AtwsResource
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,254)]
     [string]
@@ -181,6 +192,9 @@ Get-AtwsResource
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,20)]
     [string]
@@ -193,6 +207,9 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,20)]
     [string]
     $EmailTypeCode2,
@@ -203,6 +220,9 @@ Get-AtwsResource
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,20)]
     [string]
@@ -216,6 +236,9 @@ Get-AtwsResource
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,50)]
     [string]
@@ -228,6 +251,9 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,1)]
     [string]
     $Gender,
@@ -239,6 +265,9 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $Greeting,
 
@@ -248,6 +277,9 @@ Get-AtwsResource
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,25)]
     [string]
@@ -259,6 +291,9 @@ Get-AtwsResource
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,32)]
     [string]
@@ -272,6 +307,9 @@ Get-AtwsResource
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,50)]
     [string]
@@ -284,6 +322,9 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,50)]
     [string]
     $MiddleName,
@@ -294,6 +335,9 @@ Get-AtwsResource
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,25)]
     [string]
@@ -306,6 +350,9 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,10)]
     [string]
     $OfficeExtension,
@@ -316,6 +363,9 @@ Get-AtwsResource
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,25)]
     [string]
@@ -329,6 +379,9 @@ Get-AtwsResource
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,15)]
     [string]
@@ -341,6 +394,9 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,10)]
     [string]
     $Suffix,
@@ -352,6 +408,9 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,50)]
     [string]
     $Title,
@@ -362,6 +421,9 @@ Get-AtwsResource
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,15)]
     [string]
@@ -375,6 +437,9 @@ Get-AtwsResource
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,32)]
     [string]
@@ -387,6 +452,9 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [long]
     $DefaultServiceDeskRoleID,
 
@@ -396,6 +464,9 @@ Get-AtwsResource
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,64)]
     [string]
@@ -409,6 +480,9 @@ Get-AtwsResource
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $PayrollType,
@@ -421,6 +495,9 @@ Get-AtwsResource
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,20)]
     [string]
@@ -432,6 +509,9 @@ Get-AtwsResource
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,100)]
     [string]

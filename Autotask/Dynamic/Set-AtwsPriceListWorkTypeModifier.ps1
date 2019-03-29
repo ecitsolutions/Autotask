@@ -58,8 +58,7 @@ Get-AtwsPriceListWorkTypeModifier
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -82,6 +81,9 @@ Get-AtwsPriceListWorkTypeModifier
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ModifierType,
 
@@ -91,6 +93,9 @@ Get-AtwsPriceListWorkTypeModifier
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [decimal]
     $ModifierValue,
@@ -102,6 +107,9 @@ Get-AtwsPriceListWorkTypeModifier
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [boolean]

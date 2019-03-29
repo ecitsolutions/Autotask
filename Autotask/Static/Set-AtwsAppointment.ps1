@@ -62,8 +62,7 @@ Get-AtwsAppointment
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -87,6 +86,9 @@ Get-AtwsAppointment
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $ResourceID,
@@ -98,6 +100,9 @@ Get-AtwsAppointment
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,256)]
@@ -112,6 +117,9 @@ Get-AtwsAppointment
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $StartDateTime,
@@ -124,6 +132,9 @@ Get-AtwsAppointment
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $EndDateTime,
@@ -134,6 +145,9 @@ Get-AtwsAppointment
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,8000)]
     [string]

@@ -61,8 +61,7 @@ Get-AtwsExpenseItem
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -86,6 +85,9 @@ Get-AtwsExpenseItem
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $ExpenseReportID,
@@ -97,6 +99,9 @@ Get-AtwsExpenseItem
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,128)]
@@ -111,6 +116,9 @@ Get-AtwsExpenseItem
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $ExpenseDate,
@@ -123,6 +131,9 @@ Get-AtwsExpenseItem
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $ExpenseCategory,
@@ -134,6 +145,9 @@ Get-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $WorkType,
 
@@ -143,6 +157,9 @@ Get-AtwsExpenseItem
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $ExpenseAmount,
@@ -154,6 +171,9 @@ Get-AtwsExpenseItem
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
@@ -167,6 +187,9 @@ Get-AtwsExpenseItem
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [boolean]
     $HaveReceipt,
@@ -179,6 +202,9 @@ Get-AtwsExpenseItem
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [boolean]
     $BillableToAccount,
@@ -190,6 +216,9 @@ Get-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $AccountID,
 
@@ -199,6 +228,9 @@ Get-AtwsExpenseItem
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ProjectID,
@@ -210,6 +242,9 @@ Get-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $TaskID,
 
@@ -220,6 +255,9 @@ Get-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $TicketID,
 
@@ -229,6 +267,9 @@ Get-AtwsExpenseItem
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,128)]
     [string]
@@ -241,6 +282,9 @@ Get-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $Miles,
 
@@ -250,6 +294,9 @@ Get-AtwsExpenseItem
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,128)]
     [string]
@@ -262,6 +309,9 @@ Get-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,128)]
     [string]
     $Destination,
@@ -272,6 +322,9 @@ Get-AtwsExpenseItem
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -284,6 +337,9 @@ Get-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $OdometerStart,
 
@@ -293,6 +349,9 @@ Get-AtwsExpenseItem
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $OdometerEnd,
@@ -304,6 +363,9 @@ Get-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ExpenseCurrencyID,
 
@@ -313,6 +375,9 @@ Get-AtwsExpenseItem
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $ReceiptAmount,
@@ -324,6 +389,9 @@ Get-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $ReimbursementAmount,
 
@@ -333,6 +401,9 @@ Get-AtwsExpenseItem
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $ReimbursementCurrencyReimbursementAmount

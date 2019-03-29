@@ -62,8 +62,7 @@ Get-AtwsQuote
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -87,6 +86,9 @@ Get-AtwsQuote
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,100)]
     [string]
@@ -99,6 +101,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $eQuoteActive,
 
@@ -109,6 +114,9 @@ Get-AtwsQuote
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
@@ -122,6 +130,9 @@ Get-AtwsQuote
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $ExpirationDate,
@@ -133,6 +144,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ContactID,
 
@@ -142,6 +156,9 @@ Get-AtwsQuote
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $TaxGroup,
@@ -153,6 +170,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ProposalProjectID,
 
@@ -163,6 +183,9 @@ Get-AtwsQuote
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
@@ -176,6 +199,9 @@ Get-AtwsQuote
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $ShipToLocationID,
@@ -188,6 +214,9 @@ Get-AtwsQuote
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $SoldToLocationID,
@@ -199,6 +228,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ShippingType,
 
@@ -208,6 +240,9 @@ Get-AtwsQuote
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $PaymentType,
@@ -219,6 +254,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $PaymentTerm,
 
@@ -228,6 +266,9 @@ Get-AtwsQuote
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -240,6 +281,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,50)]
     [string]
     $PurchaseOrderNumber,
@@ -250,6 +294,9 @@ Get-AtwsQuote
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,1000)]
     [string]
@@ -262,6 +309,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,2000)]
     [string]
     $Description,
@@ -273,6 +323,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $AccountID,
 
@@ -282,6 +335,9 @@ Get-AtwsQuote
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $CalculateTaxSeparately,
@@ -293,6 +349,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $GroupByProductCategory,
 
@@ -302,6 +361,9 @@ Get-AtwsQuote
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $ShowEachTaxInGroup,
@@ -313,6 +375,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $ShowTaxCategory,
 
@@ -322,6 +387,9 @@ Get-AtwsQuote
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $PrimaryQuote,
@@ -333,6 +401,9 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $QuoteTemplateID,
 
@@ -342,6 +413,9 @@ Get-AtwsQuote
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $GroupByID

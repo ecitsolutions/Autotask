@@ -60,8 +60,7 @@ Get-AtwsTax
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -85,6 +84,9 @@ Get-AtwsTax
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,100)]
@@ -99,6 +101,9 @@ Get-AtwsTax
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [double]
     $TaxRate,
@@ -109,6 +114,9 @@ Get-AtwsTax
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $IsCompounded

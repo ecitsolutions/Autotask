@@ -62,8 +62,7 @@ Get-AtwsHoliday
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -87,6 +86,9 @@ Get-AtwsHoliday
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,100)]
@@ -101,6 +103,9 @@ Get-AtwsHoliday
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $HolidayDate,
@@ -112,6 +117,9 @@ Get-AtwsHoliday
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int]

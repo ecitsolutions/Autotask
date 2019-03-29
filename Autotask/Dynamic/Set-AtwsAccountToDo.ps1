@@ -62,8 +62,7 @@ Get-AtwsAccountToDo
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -87,6 +86,9 @@ Get-AtwsAccountToDo
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [long]
     $AccountID,
@@ -98,6 +100,9 @@ Get-AtwsAccountToDo
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [long]
     $ContactID,
 
@@ -107,6 +112,9 @@ Get-AtwsAccountToDo
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [long]
     $OpportunityID,
@@ -118,6 +126,9 @@ Get-AtwsAccountToDo
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [long]
     $TicketID,
 
@@ -127,6 +138,9 @@ Get-AtwsAccountToDo
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [long]
     $ContractID,
@@ -138,6 +152,9 @@ Get-AtwsAccountToDo
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [long]
@@ -151,6 +168,9 @@ Get-AtwsAccountToDo
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $StartDateTime,
@@ -162,6 +182,9 @@ Get-AtwsAccountToDo
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
@@ -175,6 +198,9 @@ Get-AtwsAccountToDo
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $ActionType,
@@ -186,6 +212,9 @@ Get-AtwsAccountToDo
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,32000)]
     [string]
     $ActivityDescription,
@@ -196,6 +225,9 @@ Get-AtwsAccountToDo
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $CompletedDate

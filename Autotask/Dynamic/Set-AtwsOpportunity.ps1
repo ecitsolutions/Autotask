@@ -68,8 +68,7 @@ Get-AtwsOpportunity
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -93,6 +92,9 @@ Get-AtwsOpportunity
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $AccountID,
@@ -104,6 +106,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [decimal]
     $AdvancedField1,
 
@@ -113,6 +118,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [decimal]
     $AdvancedField2,
@@ -124,6 +132,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [decimal]
     $AdvancedField3,
 
@@ -134,6 +145,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [decimal]
     $AdvancedField4,
 
@@ -143,6 +157,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [decimal]
     $AdvancedField5,
@@ -155,6 +172,9 @@ Get-AtwsOpportunity
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [decimal]
     $Amount,
@@ -165,6 +185,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,500)]
     [string]
@@ -177,6 +200,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ContactID,
 
@@ -187,6 +213,9 @@ Get-AtwsOpportunity
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [decimal]
@@ -200,6 +229,9 @@ Get-AtwsOpportunity
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $CreateDate,
@@ -210,6 +242,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,500)]
     [string]
@@ -222,6 +257,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $LeadReferral,
 
@@ -231,6 +269,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,500)]
     [string]
@@ -242,6 +283,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,500)]
     [string]
@@ -255,6 +299,9 @@ Get-AtwsOpportunity
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $OwnerResourceID,
@@ -265,6 +312,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ProductID,
@@ -277,6 +327,9 @@ Get-AtwsOpportunity
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $ProjectedCloseDate,
@@ -288,6 +341,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $ProjectedLiveDate,
 
@@ -297,6 +353,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -308,6 +367,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,6)]
     [string]
@@ -321,6 +383,9 @@ Get-AtwsOpportunity
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $Stage,
@@ -333,6 +398,9 @@ Get-AtwsOpportunity
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $Status,
@@ -344,6 +412,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $ThroughDate,
 
@@ -354,6 +425,9 @@ Get-AtwsOpportunity
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,128)]
@@ -367,6 +441,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $Rating,
 
@@ -376,6 +453,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $ClosedDate,
@@ -387,6 +467,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $PrimaryCompetitor,
 
@@ -396,6 +479,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $WinReason,
@@ -407,6 +493,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $LossReason,
 
@@ -416,6 +505,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,500)]
     [string]
@@ -427,6 +519,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,500)]
     [string]
@@ -440,6 +535,9 @@ Get-AtwsOpportunity
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $Probability,
@@ -450,6 +548,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $RevenueSpread,
@@ -462,6 +563,9 @@ Get-AtwsOpportunity
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [boolean]
     $UseQuoteTotals,
@@ -473,6 +577,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $TotalAmountMonths,
 
@@ -482,6 +589,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [decimal]
     $OnetimeCost,
@@ -493,6 +603,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [decimal]
     $OnetimeRevenue,
 
@@ -502,6 +615,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [decimal]
     $MonthlyCost,
@@ -513,6 +629,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [decimal]
     $MonthlyRevenue,
 
@@ -522,6 +641,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [decimal]
     $QuarterlyCost,
@@ -533,6 +655,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [decimal]
     $QuarterlyRevenue,
 
@@ -542,6 +667,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [decimal]
     $SemiannualCost,
@@ -553,6 +681,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [decimal]
     $SemiannualRevenue,
 
@@ -562,6 +693,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [decimal]
     $YearlyCost,
@@ -573,6 +707,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [decimal]
     $YearlyRevenue,
 
@@ -582,6 +719,9 @@ Get-AtwsOpportunity
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $BusinessDivisionSubdivisionID

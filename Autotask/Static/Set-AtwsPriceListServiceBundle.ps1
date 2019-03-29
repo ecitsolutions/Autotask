@@ -58,8 +58,7 @@ Get-AtwsPriceListServiceBundle
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -83,6 +82,9 @@ Get-AtwsPriceListServiceBundle
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [boolean]
     $UsesInternalCurrencyPrice,
@@ -93,6 +95,9 @@ Get-AtwsPriceListServiceBundle
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [decimal]
     $UnitPrice

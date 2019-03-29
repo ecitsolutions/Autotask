@@ -68,8 +68,7 @@ Get-AtwsContractServiceBundle
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -92,6 +91,9 @@ Get-AtwsContractServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $UnitPrice,
 
@@ -101,6 +103,9 @@ Get-AtwsContractServiceBundle
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $AdjustedPrice,
@@ -112,6 +117,9 @@ Get-AtwsContractServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,1000)]
     [string]
     $InvoiceDescription,
@@ -122,6 +130,9 @@ Get-AtwsContractServiceBundle
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,100)]
     [string]

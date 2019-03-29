@@ -70,8 +70,7 @@ Get-AtwsProject
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -95,6 +94,9 @@ Get-AtwsProject
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,100)]
@@ -109,6 +111,9 @@ Get-AtwsProject
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $Type,
@@ -120,6 +125,9 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ExtProjectType,
 
@@ -129,6 +137,9 @@ Get-AtwsProject
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -140,6 +151,9 @@ Get-AtwsProject
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,2000)]
     [string]
@@ -153,6 +167,9 @@ Get-AtwsProject
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $StartDateTime,
@@ -165,6 +182,9 @@ Get-AtwsProject
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $EndDateTime,
@@ -176,6 +196,9 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [float]
     $LaborEstimatedRevenue,
 
@@ -185,6 +208,9 @@ Get-AtwsProject
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [float]
     $LaborEstimatedCosts,
@@ -196,6 +222,9 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [float]
     $ProjectCostsRevenue,
 
@@ -205,6 +234,9 @@ Get-AtwsProject
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [float]
     $ProjectCostsBudget,
@@ -216,6 +248,9 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [float]
     $SGDA,
 
@@ -226,6 +261,9 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [float]
     $OriginalEstimatedRevenue,
 
@@ -235,6 +273,9 @@ Get-AtwsProject
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [float]
     $EstimatedSalesCost,
@@ -247,6 +288,9 @@ Get-AtwsProject
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $Status,
@@ -258,6 +302,9 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ContractID,
 
@@ -267,6 +314,9 @@ Get-AtwsProject
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ProjectLeadResourceID,
@@ -278,6 +328,9 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $CompletedDateTime,
 
@@ -287,6 +340,9 @@ Get-AtwsProject
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,2000)]
     [string]
@@ -299,6 +355,9 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $StatusDateTime,
 
@@ -308,6 +367,9 @@ Get-AtwsProject
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $Department,
@@ -319,6 +381,9 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $LineOfBusiness,
 
@@ -328,6 +393,9 @@ Get-AtwsProject
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -339,6 +407,9 @@ Get-AtwsProject
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $BusinessDivisionSubdivisionID

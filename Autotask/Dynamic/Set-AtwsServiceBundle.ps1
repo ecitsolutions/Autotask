@@ -70,8 +70,7 @@ Get-AtwsServiceBundle
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -95,6 +94,9 @@ Get-AtwsServiceBundle
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,100)]
     [string]
@@ -107,6 +109,9 @@ Get-AtwsServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,200)]
     [string]
     $Description,
@@ -118,6 +123,9 @@ Get-AtwsServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $UnitPrice,
 
@@ -128,6 +136,9 @@ Get-AtwsServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $UnitDiscount,
 
@@ -137,6 +148,9 @@ Get-AtwsServiceBundle
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $PercentageDiscount,
@@ -149,6 +163,9 @@ Get-AtwsServiceBundle
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $AllocationCodeID,
@@ -160,6 +177,9 @@ Get-AtwsServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $IsActive,
 
@@ -169,6 +189,9 @@ Get-AtwsServiceBundle
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,1000)]
     [string]
@@ -180,6 +203,9 @@ Get-AtwsServiceBundle
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [long]
     $ServiceLevelAgreementID

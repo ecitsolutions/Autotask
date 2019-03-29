@@ -65,8 +65,7 @@ Get-AtwsInstalledProduct
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -101,6 +100,9 @@ Get-AtwsInstalledProduct
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [boolean]
     $Active,
@@ -112,6 +114,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $DailyCost,
 
@@ -121,6 +126,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $HourlyCost,
@@ -133,6 +141,9 @@ Get-AtwsInstalledProduct
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $InstallDate,
@@ -144,6 +155,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $MonthlyCost,
 
@@ -153,6 +167,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,5000)]
     [string]
@@ -165,6 +182,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $NumberOfUsers,
 
@@ -174,6 +194,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $PerUseCost,
@@ -186,6 +209,9 @@ Get-AtwsInstalledProduct
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $ProductID,
@@ -196,6 +222,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -208,6 +237,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,200)]
     [string]
     $ReferenceTitle,
@@ -218,6 +250,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,100)]
     [string]
@@ -230,6 +265,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $SetupFee,
 
@@ -239,6 +277,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $WarrantyExpirationDate,
@@ -250,6 +291,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ContractID,
 
@@ -259,6 +303,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ServiceID,
@@ -270,6 +317,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ServiceBundleID,
 
@@ -280,6 +330,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $Type,
 
@@ -289,6 +342,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,100)]
     [string]
@@ -301,6 +357,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ContactID,
 
@@ -310,6 +369,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $VendorID,
@@ -321,6 +383,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ParentInstalledProductID,
 
@@ -330,6 +395,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ContractServiceID,
@@ -341,6 +409,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ContractServiceBundleID,
 
@@ -351,6 +422,9 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ServiceLevelAgreementID,
 
@@ -360,6 +434,9 @@ Get-AtwsInstalledProduct
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $AccountPhysicalLocationID

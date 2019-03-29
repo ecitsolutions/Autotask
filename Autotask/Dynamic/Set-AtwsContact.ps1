@@ -75,8 +75,7 @@ Get-AtwsContact
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -111,6 +110,9 @@ Get-AtwsContact
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,50)]
     [string]
@@ -124,6 +126,9 @@ Get-AtwsContact
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,50)]
     [string]
@@ -136,6 +141,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,2)]
     [string]
     $MiddleInitial,
@@ -146,6 +154,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -158,6 +169,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,128)]
     [string]
     $AddressLine,
@@ -168,6 +182,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,128)]
     [string]
@@ -180,6 +197,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,32)]
     [string]
     $City,
@@ -190,6 +210,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,40)]
     [string]
@@ -202,6 +225,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,16)]
     [string]
     $ZipCode,
@@ -212,6 +238,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,100)]
     [string]
@@ -224,6 +253,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,254)]
     [string]
     $EMailAddress,
@@ -234,6 +266,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,254)]
     [string]
@@ -246,6 +281,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,254)]
     [string]
     $EMailAddress3,
@@ -257,6 +295,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $Notification,
 
@@ -266,6 +307,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,25)]
     [string]
@@ -278,6 +322,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,10)]
     [string]
     $Extension,
@@ -288,6 +335,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,32)]
     [string]
@@ -300,6 +350,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,25)]
     [string]
     $MobilePhone,
@@ -310,6 +363,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,25)]
     [string]
@@ -322,6 +378,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,50)]
     [string]
     $Note,
@@ -332,6 +391,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -345,6 +407,9 @@ Get-AtwsContact
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $Active,
@@ -355,6 +420,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,100)]
     [string]
@@ -367,6 +435,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,50)]
     [string]
     $ExternalID,
@@ -378,6 +449,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $CountryID,
 
@@ -387,6 +461,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $BulkEmailOptOut,
@@ -398,6 +475,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $NamePrefix,
 
@@ -408,6 +488,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $NameSuffix,
 
@@ -417,6 +500,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,200)]
     [string]
@@ -429,6 +515,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,200)]
     [string]
     $TwitterUrl,
@@ -439,6 +528,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,200)]
     [string]
@@ -451,6 +543,9 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $PrimaryContact,
 
@@ -460,6 +555,9 @@ Get-AtwsContact
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $AccountPhysicalLocationID

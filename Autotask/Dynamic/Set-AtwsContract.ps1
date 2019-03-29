@@ -85,8 +85,7 @@ Get-AtwsContract
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -120,6 +119,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $BillingPreference,
 
@@ -130,6 +132,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $Compliance,
 
@@ -139,6 +144,9 @@ Get-AtwsContract
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,250)]
     [string]
@@ -151,6 +159,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ContractCategory,
 
@@ -161,6 +172,9 @@ Get-AtwsContract
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
@@ -175,6 +189,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,50)]
     [string]
     $ContractNumber,
@@ -186,6 +203,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $IsDefaultContract,
 
@@ -195,6 +215,9 @@ Get-AtwsContract
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,2000)]
     [string]
@@ -208,6 +231,9 @@ Get-AtwsContract
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $EndDate,
@@ -219,6 +245,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $EstimatedCost,
 
@@ -228,6 +257,9 @@ Get-AtwsContract
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $EstimatedHours,
@@ -239,6 +271,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $EstimatedRevenue,
 
@@ -248,6 +283,9 @@ Get-AtwsContract
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $OverageBillingRate,
@@ -259,6 +297,9 @@ Get-AtwsContract
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
@@ -272,6 +313,9 @@ Get-AtwsContract
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $Status,
@@ -283,6 +327,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ServiceLevelAgreementID,
 
@@ -293,6 +340,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $SetupFee,
 
@@ -302,6 +352,9 @@ Get-AtwsContract
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -315,6 +368,9 @@ Get-AtwsContract
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $TimeReportingRequiresStartAndStopTimes,
@@ -326,6 +382,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $OpportunityID,
 
@@ -335,6 +394,9 @@ Get-AtwsContract
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [long]
     $RenewedContractID,
@@ -346,6 +408,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [long]
     $SetupFeeAllocationCodeID,
 
@@ -356,6 +421,9 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ContactID,
 
@@ -365,6 +433,9 @@ Get-AtwsContract
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $BusinessDivisionSubdivisionID

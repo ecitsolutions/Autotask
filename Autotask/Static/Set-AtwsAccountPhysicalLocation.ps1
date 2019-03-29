@@ -67,8 +67,7 @@ Get-AtwsAccountPhysicalLocation
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -92,6 +91,9 @@ Get-AtwsAccountPhysicalLocation
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,100)]
     [string]
@@ -104,6 +106,9 @@ Get-AtwsAccountPhysicalLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,500)]
     [string]
     $Description,
@@ -114,6 +119,9 @@ Get-AtwsAccountPhysicalLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,128)]
     [string]
@@ -126,6 +134,9 @@ Get-AtwsAccountPhysicalLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,128)]
     [string]
     $Address2,
@@ -136,6 +147,9 @@ Get-AtwsAccountPhysicalLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -148,6 +162,9 @@ Get-AtwsAccountPhysicalLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,25)]
     [string]
     $State,
@@ -158,6 +175,9 @@ Get-AtwsAccountPhysicalLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,20)]
     [string]
@@ -170,6 +190,9 @@ Get-AtwsAccountPhysicalLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $CountryID,
 
@@ -179,6 +202,9 @@ Get-AtwsAccountPhysicalLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,25)]
     [string]
@@ -191,6 +217,9 @@ Get-AtwsAccountPhysicalLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,25)]
     [string]
     $AlternatePhone1,
@@ -201,6 +230,9 @@ Get-AtwsAccountPhysicalLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,25)]
     [string]
@@ -213,6 +245,9 @@ Get-AtwsAccountPhysicalLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,25)]
     [string]
     $Fax,
@@ -224,6 +259,9 @@ Get-AtwsAccountPhysicalLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [decimal]
     $RoundtripDistance,
 
@@ -234,6 +272,9 @@ Get-AtwsAccountPhysicalLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $Active,
 
@@ -243,6 +284,9 @@ Get-AtwsAccountPhysicalLocation
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $Primary

@@ -79,8 +79,7 @@ Get-AtwsTicket
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -115,6 +114,9 @@ Get-AtwsTicket
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $AccountID,
@@ -126,6 +128,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $AllocationCodeID,
 
@@ -135,6 +140,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $AssignedResourceID,
@@ -146,6 +154,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $AssignedResourceRoleID,
 
@@ -155,6 +166,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ContactID,
@@ -166,6 +180,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ContractID,
 
@@ -175,6 +192,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,8000)]
     [string]
@@ -188,6 +208,9 @@ Get-AtwsTicket
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $DueDateTime,
@@ -199,6 +222,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $EstimatedHours,
 
@@ -208,6 +234,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -220,6 +249,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $InstalledProductID,
 
@@ -229,6 +261,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $IssueType,
@@ -241,6 +276,9 @@ Get-AtwsTicket
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $Priority,
@@ -252,6 +290,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $QueueID,
 
@@ -261,6 +302,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $Source,
@@ -273,6 +317,9 @@ Get-AtwsTicket
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $Status,
@@ -284,6 +331,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $SubIssueType,
 
@@ -294,6 +344,9 @@ Get-AtwsTicket
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,255)]
@@ -307,6 +360,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ServiceLevelAgreementID,
 
@@ -316,6 +372,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,32000)]
     [string]
@@ -328,6 +387,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,50)]
     [string]
     $PurchaseOrderNumber,
@@ -339,6 +401,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $TicketType,
 
@@ -348,6 +413,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ProblemTicketId,
@@ -359,6 +427,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $OpportunityId,
 
@@ -368,6 +439,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ChangeApprovalBoard,
@@ -379,6 +453,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ChangeApprovalType,
 
@@ -389,6 +466,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $ChangeApprovalStatus,
 
@@ -398,6 +478,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,8000)]
     [string]
@@ -410,6 +493,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,8000)]
     [string]
     $ChangeInfoField2,
@@ -420,6 +506,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,8000)]
     [string]
@@ -432,6 +521,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,8000)]
     [string]
     $ChangeInfoField4,
@@ -442,6 +534,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,8000)]
     [string]
@@ -454,6 +549,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [long]
     $ContractServiceID,
 
@@ -463,6 +561,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [long]
     $ContractServiceBundleID,
@@ -474,6 +575,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $MonitorTypeID,
 
@@ -483,6 +587,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $MonitorID,
@@ -494,6 +601,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $TicketCategory,
 
@@ -503,6 +613,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ProjectID,
@@ -514,6 +627,9 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $BusinessDivisionSubdivisionID,
 
@@ -523,6 +639,9 @@ Get-AtwsTicket
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $AccountPhysicalLocationID

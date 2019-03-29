@@ -63,8 +63,7 @@ Get-AtwsTimeEntry
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -87,6 +86,9 @@ Get-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $TaskID,
 
@@ -97,6 +99,9 @@ Get-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $TicketID,
 
@@ -106,6 +111,9 @@ Get-AtwsTimeEntry
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $InternalAllocationCodeID,
@@ -118,6 +126,9 @@ Get-AtwsTimeEntry
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [datetime]
     $DateWorked,
@@ -129,6 +140,9 @@ Get-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $StartDateTime,
 
@@ -138,6 +152,9 @@ Get-AtwsTimeEntry
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $EndDateTime,
@@ -149,6 +166,9 @@ Get-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $HoursWorked,
 
@@ -159,6 +179,9 @@ Get-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [double]
     $OffsetHours,
 
@@ -168,6 +191,9 @@ Get-AtwsTimeEntry
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,8000)]
     [string]
@@ -180,6 +206,9 @@ Get-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,8000)]
     [string]
     $InternalNotes,
@@ -190,6 +219,9 @@ Get-AtwsTimeEntry
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $RoleID,
@@ -202,6 +234,9 @@ Get-AtwsTimeEntry
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $ResourceID,
@@ -213,6 +248,9 @@ Get-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $AllocationCodeID,
 
@@ -222,6 +260,9 @@ Get-AtwsTimeEntry
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ContractID,
@@ -233,6 +274,9 @@ Get-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $ShowOnInvoice,
 
@@ -242,6 +286,9 @@ Get-AtwsTimeEntry
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [boolean]
     $NonBillable,
@@ -253,6 +300,9 @@ Get-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $BillingApprovalResourceID,
 
@@ -262,6 +312,9 @@ Get-AtwsTimeEntry
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [datetime]
     $BillingApprovalDateTime,
@@ -273,6 +326,9 @@ Get-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [long]
     $ContractServiceID,
 
@@ -282,6 +338,9 @@ Get-AtwsTimeEntry
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [long]
     $ContractServiceBundleID

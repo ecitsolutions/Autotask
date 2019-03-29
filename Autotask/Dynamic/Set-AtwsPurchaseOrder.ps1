@@ -61,8 +61,7 @@ Get-AtwsPurchaseOrder
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [Int[]]
@@ -86,6 +85,9 @@ Get-AtwsPurchaseOrder
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [Int]
     $Status,
@@ -97,6 +99,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,100)]
@@ -111,6 +116,9 @@ Get-AtwsPurchaseOrder
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,128)]
     [string]
@@ -123,6 +131,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,128)]
     [string]
     $ShipToAddress2,
@@ -134,6 +145,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,30)]
@@ -148,6 +162,9 @@ Get-AtwsPurchaseOrder
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,25)]
     [string]
@@ -161,6 +178,9 @@ Get-AtwsPurchaseOrder
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(1,10)]
     [string]
@@ -173,6 +193,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,4000)]
     [string]
     $GeneralMemo,
@@ -183,6 +206,9 @@ Get-AtwsPurchaseOrder
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,25)]
     [string]
@@ -195,6 +221,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,25)]
     [string]
     $Fax,
@@ -205,6 +234,9 @@ Get-AtwsPurchaseOrder
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [ValidateLength(1,50)]
     [string]
@@ -217,6 +249,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [ValidateLength(1,50)]
     [string]
     $ExternalPONumber,
@@ -228,6 +263,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $PurchaseForAccountID,
 
@@ -237,6 +275,9 @@ Get-AtwsPurchaseOrder
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $ShippingType,
@@ -248,6 +289,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [datetime]
     $ShippingDate,
 
@@ -257,6 +301,9 @@ Get-AtwsPurchaseOrder
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [double]
     $Freight,
@@ -268,6 +315,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [Int]
     $TaxGroup,
 
@@ -277,6 +327,9 @@ Get-AtwsPurchaseOrder
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $PaymentTerm,
@@ -288,6 +341,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $ShowTaxCategory,
 
@@ -298,6 +354,9 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
     [boolean]
     $ShowEachTaxInGroup,
 
@@ -307,6 +366,9 @@ Get-AtwsPurchaseOrder
     )]
     [Parameter(
       ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
     )]
     [Int]
     $UseItemDescriptionsFrom
