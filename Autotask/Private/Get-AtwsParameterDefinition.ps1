@@ -63,7 +63,7 @@
       Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
       # -Id
       $Comment = 'The object.ids of objects that should be modified by any parameters and updated in Autotask'
-      Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type 'Int' -Mandatory -NotNull -Array -Comment $Comment
+      Get-AtwsPSParameter -Name 'Id' -SetName 'By_Id' -Type 'Int' -Mandatory -NotNull -Array -Comment $Comment
       # -PassThru
       $Comment = 'Return any updated objects through the pipeline'
       Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object','By_parameters' -Type 'Switch' -Comment $Comment
@@ -109,7 +109,7 @@
         $Fields = $FieldInfo.Where({
             -Not $_.IsReadOnly
         }) | ForEach-Object -Process {
-          $ParameterSet[$_.Name] = @('Input_Object','By_parameters')
+          $ParameterSet[$_.Name] = @('Input_Object','By_parameters', 'By_Id')
           $_
         }
       }

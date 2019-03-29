@@ -48,7 +48,7 @@
         $ParamProperties = @()
         
         # Hardcoded filter against requiring parameters for 'Input_Object'
-        If ($Mandatory.IsPresent -and $SetName -ne 'Input_Object') {
+        If ($Mandatory.IsPresent -and $SetName -in 'By_parameters','Filter') {
             $ParamProperties += "      Mandatory = `$true"  
         }
         If ($ValueFromRemainingArguments.IsPresent) {
