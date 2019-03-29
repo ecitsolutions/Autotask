@@ -49,10 +49,10 @@
     
       $ConfirmImpact = Switch ($Verb)
       {
-        'New'    {'Medium'}
+        'New'    {'Low'}
         'Remove' {'Low'}
         'Get'    {'None'}
-        'Set'    {'Medium'}
+        'Set'    {'Low'}
       }
       
       $DefaultParameterSetName = Switch ($Verb)

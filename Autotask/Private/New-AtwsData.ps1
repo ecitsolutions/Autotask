@@ -83,6 +83,7 @@ Function New-AtwsData
     }
   }
   End {
+   
     Write-Debug -Message ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
     Return $EndResult  
   }
