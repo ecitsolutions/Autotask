@@ -58,7 +58,6 @@ Function Set-AtwsData
     }
     
     $EndResult = @()
-        
   }
   
   Process
@@ -76,25 +75,60 @@ Function Set-AtwsData
       For ($i = 0; $i -lt $Entity.count; $i += 200) 
       {
         $j = $i + 199
-        If ($j -gt ($Entity.count - 1)) 
+        If ($j -ge $Entity.count) 
         {
           $j = $Entity.count - 1
         } 
         Write-Debug -Message ('{0}: Creating chunk from index {1} to index {2}' -F $MyInvocation.MyCommand.Name, $i, $j)        
         
-        $Result = $atws.update($Entity[$i .. $j])
-      }
+        [Collections.ArrayList]$WorkingSet = $Entity[$i .. $j]
+        
+        # First try
+        $Result = $atws.update($WorkingSet)
+        
+        # If we have errors, try to exclude objects errors
+        If ($Result.Errors.Count -gt 0) {
+          $Errors = @()
+          For ($t = 0; $t -lt $Result.Errors.Count; $t += 2) {
+            # First line is the error message
+            $Message = $Result.Errors[$t].Message
+            
+            # Next line includes the element index, first element = 1
+            $Null = $Result.Errors[$t + 1].Message -match '\[(\d+)\]'
+            [int]$Index = $Matches[1]
+            
+            # Powershell arrays has first element = 0
+            $Index--
+            
+            # Get the element
+            $Element = $WorkingSet[$Index]
+            
+            # Remove Element from Workingset
+            $Errors += $Element
+            
+            # Notify caller of skipped element
+            Write-Warning ('Element with index {0} of type {1} with Id {2} was skipped because {3}' -F $Entity.IndexOf($Element), $Element.GetType().Name, $Element.id, $Message)
+            
+          }
+
+          Foreach ($Element in $Errors) {
+            $WorkingSet.Remove($Element)
+          }
+          
+          # Try updating a second time
+          $Result = $atws.update($WorkingSet)
+        }
     
-    
-      If ($Result.Errors.Count -eq 0)
-      {
-        $EndResult += $Result.EntityResults
-      }
-      Else
-      {
-        Foreach ($AtwsError in $Result.Errors)
+        # We have tried Twice! Still errors?
+        If ($Result.Errors.Count -eq 0)
         {
-          Write-Error $AtwsError.Message
+          $EndResult += $Result.EntityResults
+        }
+        Else
+        {
+          
+          Write-Error ($Result.Errors.Message -join "`n")
+          Break
         }
       }
     }
@@ -102,6 +136,7 @@ Function Set-AtwsData
   End 
   {
     Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
+    
     Return $EndResult  
         
   }
