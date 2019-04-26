@@ -45,7 +45,7 @@ Function New-AtwsData
     $VerboseDescription = '{0}: About to create an Autotask.{1}. This action cannot be undone (but the object can usually be deleted).' -F $Caption, $Entity.GetType().Name
     $VerboseWarning = '{0}: About to create an Autotask.{1}. This action cannot be undone (but the object can usually be deleted). Do you want to continue?' -F $Caption, $Entity.GetType().Name
     
-    Write-Verbose -Debug ('{0}: Running ShouldProcess with WhatifPreference {1} and ConfirmPreference {2}' -F $MyInvocation.MyCommand.Name, $WhatIfPreference, $ConfirmPreference)    
+    Write-Debug -Message ('{0}: Running ShouldProcess with WhatifPreference {1} and ConfirmPreference {2}' -F $MyInvocation.MyCommand.Name, $WhatIfPreference, $ConfirmPreference)    
     If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) 
     { 
       # create() function can take up to 200 objects at a time
