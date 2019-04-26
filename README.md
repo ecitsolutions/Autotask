@@ -36,6 +36,12 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.2.1 - New API version
+
+- UPDATE: Static functions have been updated with any changes for API version 1.6.2
+- BUGFIX: Fixed Write-Verbose/Write-Debug typo in New-AtwsData. Thanks @cody-chapman!
+- UPDATE: If Set-AtwsData is passed multiple entities to update and you get an error, Set-AtwsData will try to tell you wich entity caused a problem
+
 ## Version 1.6.1.8 - Bugfix release
 
 - BUGFIX: Did not detect missing dynamic functions (functions related to entities with picklists) during initial module import. Work-around was to connect using -RefreshCache or speficy a wildcard to Import-Module -ArgumentList (see above). This should be fixed now.
