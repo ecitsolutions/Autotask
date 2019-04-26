@@ -57,6 +57,8 @@ Gets multiple instances by Id, modifies them all, updates Autotask and returns t
 .LINK
 New-AtwsContact
  .LINK
+Remove-AtwsContact
+ .LINK
 Get-AtwsContact
 
 #>

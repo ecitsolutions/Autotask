@@ -62,6 +62,8 @@ $Result = Get-AtwsContact -Id 124 | New-AtwsContact | Set-AtwsContact -Parameter
 Copies [Autotask.Contact] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContact to modify the object and returns the new object.
 
 .LINK
+Remove-AtwsContact
+ .LINK
 Get-AtwsContact
  .LINK
 Set-AtwsContact

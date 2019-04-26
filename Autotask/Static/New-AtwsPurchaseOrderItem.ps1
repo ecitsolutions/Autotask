@@ -22,7 +22,6 @@ If you need very complicated queries you can write a filter directly and pass it
 
 To create a new PurchaseOrderItem you need the following required fields:
  -OrderID
- -ProductID
  -InventoryLocationID
  -Quantity
  -UnitCost
@@ -36,7 +35,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.PurchaseOrderItem]. This function outputs the Autotask.PurchaseOrderItem that was created by the API.
 .EXAMPLE
-$Result = New-AtwsPurchaseOrderItem -OrderID [Value] -ProductID [Value] -InventoryLocationID [Value] -Quantity [Value] -UnitCost [Value]
+$Result = New-AtwsPurchaseOrderItem -OrderID [Value] -InventoryLocationID [Value] -Quantity [Value] -UnitCost [Value]
 Creates a new [Autotask.PurchaseOrderItem] through the Web Services API and returns the new object.
  .EXAMPLE
 $Result = Get-AtwsPurchaseOrderItem -Id 124 | New-AtwsPurchaseOrderItem 
@@ -78,10 +77,8 @@ Set-AtwsPurchaseOrderItem
 
 # Product ID
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Int]
     $ProductID,
 
@@ -160,7 +157,14 @@ Set-AtwsPurchaseOrderItem
       ParameterSetName = 'By_parameters'
     )]
     [long]
-    $TicketID
+    $TicketID,
+
+# Internal Currency Product Unit Cost
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyUnitCost
   )
  
   Begin

@@ -82,6 +82,8 @@ An example of a more complex query. This command returns any TimeEntrys with Id 
 .LINK
 New-AtwsTimeEntry
  .LINK
+Remove-AtwsTimeEntry
+ .LINK
 Set-AtwsTimeEntry
 
 #>

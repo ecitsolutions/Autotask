@@ -37,6 +37,7 @@ Entities that have fields that refer to the base entity of this CmdLet:
 
 BillingItem
  ContractExclusionRole
+ ContractExclusionSetExcludedRole
  ContractFactor
  ContractRate
  ContractRoleCost
@@ -118,7 +119,7 @@ Set-AtwsRole
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractFactor:RoleID', 'ResourceServiceDeskRole:RoleID', 'PriceListRole:RoleID', 'ContractExclusionRole:RoleID', 'TaskSecondaryResource:RoleID', 'ResourceRole:RoleID', 'BillingItem:RoleID', 'ResourceRoleDepartment:RoleID', 'TicketSecondaryResource:RoleID', 'Ticket:AssignedResourceRoleID', 'QuoteItem:LaborID', 'TimeEntry:RoleID', 'Resource:DefaultServiceDeskRoleID', 'ResourceRoleQueue:RoleID', 'ContractRoleCost:RoleID', 'Task:AssignedResourceRoleID', 'ContractRate:RoleID')]
+    [ValidateSet('ContractFactor:RoleID', 'Ticket:AssignedResourceRoleID', 'ResourceServiceDeskRole:RoleID', 'PriceListRole:RoleID', 'TaskSecondaryResource:RoleID', 'ResourceRole:RoleID', 'BillingItem:RoleID', 'ContractExclusionRole:RoleID', 'Resource:DefaultServiceDeskRoleID', 'TicketSecondaryResource:RoleID', 'ContractExclusionSetExcludedRole:ExcludedRoleID', 'QuoteItem:LaborID', 'TimeEntry:RoleID', 'ResourceRoleQueue:RoleID', 'ContractRoleCost:RoleID', 'Task:AssignedResourceRoleID', 'ContractRate:RoleID', 'ResourceRoleDepartment:RoleID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

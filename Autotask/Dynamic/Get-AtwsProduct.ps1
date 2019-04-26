@@ -132,7 +132,7 @@ Set-AtwsProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Opportunity:ProductID', 'PriceListProduct:ProductID', 'InstalledProduct:ProductID', 'TicketCost:ProductID', 'InventoryTransfer:ProductID', 'ProjectCost:ProductID', 'ProductVendor:ProductID', 'QuoteItem:ProductID', 'ContractCost:ProductID', 'InventoryItem:ProductID', 'PurchaseOrderItem:ProductID')]
+    [ValidateSet('InstalledProduct:ProductID', 'TicketCost:ProductID', 'ProjectCost:ProductID', 'ProductVendor:ProductID', 'PriceListProduct:ProductID', 'ContractCost:ProductID', 'QuoteItem:ProductID', 'PurchaseOrderItem:ProductID', 'Opportunity:ProductID', 'InventoryItem:ProductID', 'InventoryTransfer:ProductID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

@@ -129,7 +129,7 @@ Set-AtwsService
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractService:ServiceID', 'BillingItem:ServiceID', 'InstalledProduct:ServiceID', 'ContractServiceUnit:ServiceID', 'QuoteItem:ServiceID', 'ContractServiceAdjustment:ServiceID', 'PriceListService:ServiceID', 'ServiceBundleService:ServiceID')]
+    [ValidateSet('InstalledProduct:ServiceID', 'PriceListService:ServiceID', 'ContractServiceAdjustment:ServiceID', 'ContractService:ServiceID', 'ServiceBundleService:ServiceID', 'BillingItem:ServiceID', 'ContractServiceUnit:ServiceID', 'QuoteItem:ServiceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -166,7 +166,7 @@ Set-AtwsService
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(1,150)]
     [string[]]
     $Name,
 

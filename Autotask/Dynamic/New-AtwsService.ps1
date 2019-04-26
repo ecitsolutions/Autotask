@@ -79,7 +79,7 @@ Set-AtwsService
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(1,150)]
     [string]
     $Name,
 

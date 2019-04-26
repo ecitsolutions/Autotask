@@ -48,6 +48,8 @@ $Result = Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry | Set-AtwsTimeEntry -Par
 Copies [Autotask.TimeEntry] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTimeEntry to modify the object and returns the new object.
 
 .LINK
+Remove-AtwsTimeEntry
+ .LINK
 Get-AtwsTimeEntry
  .LINK
 Set-AtwsTimeEntry

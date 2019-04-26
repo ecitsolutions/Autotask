@@ -82,13 +82,11 @@ Get-AtwsPurchaseOrderItem
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
     [Int]
     $ProductID,
 
@@ -149,7 +147,20 @@ Get-AtwsPurchaseOrderItem
     )]
     [ValidateNotNullOrEmpty()]
     [double]
-    $UnitCost
+    $UnitCost,
+
+# Cost ID
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [Int]
+    $CostID
   )
  
   Begin

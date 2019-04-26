@@ -45,6 +45,8 @@ Gets multiple instances by Id, modifies them all, updates Autotask and returns t
 .LINK
 New-AtwsTimeEntry
  .LINK
+Remove-AtwsTimeEntry
+ .LINK
 Get-AtwsTimeEntry
 
 #>

@@ -331,7 +331,28 @@ Set-AtwsContract
       ParameterSetName = 'By_parameters'
     )]
     [Int]
-    $BusinessDivisionSubdivisionID
+    $BusinessDivisionSubdivisionID,
+
+# Bill To Client ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Int]
+    $BillToAccountID,
+
+# Bill To Client Contact ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Int]
+    $BillToAccountContactID,
+
+# Contract Exclusion Set ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Int]
+    $ContractExclusionSetID
   )
  
   Begin

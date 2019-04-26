@@ -49,6 +49,7 @@ Entities that have fields that refer to the base entity of this CmdLet:
 BillingItem
  ContractCost
  ContractExclusionAllocationCode
+ ContractExclusionSetExcludedWorkType
  ContractMilestone
  PriceListMaterialCode
  Product
@@ -140,7 +141,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Service:AllocationCodeID', 'TicketCategoryFieldDefaults:WorkTypeID', 'ContractExclusionAllocationCode:AllocationCodeID', 'ShippingType:AllocationCodeID', 'Subscription:MaterialCodeID', 'BillingItem:AllocationCodeID', 'ContractMilestone:AllocationCodeID', 'TicketCost:AllocationCodeID', 'ProjectCost:AllocationCodeID', 'Product:ProductAllocationCodeID', 'Product:CostAllocationCodeID', 'Ticket:AllocationCodeID', 'QuoteItem:CostID', 'QuoteItem:ExpenseID', 'ContractCost:AllocationCodeID', 'PriceListMaterialCode:AllocationCodeID', 'TimeEntry:InternalAllocationCodeID', 'TimeEntry:AllocationCodeID', 'Task:AllocationCodeID', 'ServiceBundle:AllocationCodeID')]
+    [ValidateSet('Service:AllocationCodeID', 'Ticket:AllocationCodeID', 'Product:ProductAllocationCodeID', 'Product:CostAllocationCodeID', 'ContractExclusionAllocationCode:AllocationCodeID', 'TicketCategoryFieldDefaults:WorkTypeID', 'Subscription:MaterialCodeID', 'ServiceBundle:AllocationCodeID', 'BillingItem:AllocationCodeID', 'ContractMilestone:AllocationCodeID', 'TicketCost:AllocationCodeID', 'ProjectCost:AllocationCodeID', 'ContractExclusionSetExcludedWorkType:ExcludedWorkTypeID', 'ContractCost:AllocationCodeID', 'PriceListMaterialCode:AllocationCodeID', 'ShippingType:AllocationCodeID', 'QuoteItem:CostID', 'QuoteItem:ExpenseID', 'TimeEntry:InternalAllocationCodeID', 'TimeEntry:AllocationCodeID', 'Task:AllocationCodeID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

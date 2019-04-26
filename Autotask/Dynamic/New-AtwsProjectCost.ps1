@@ -270,7 +270,15 @@ Set-AtwsProjectCost
       ParameterSetName = 'By_parameters'
     )]
     [Int]
-    $BusinessDivisionSubdivisionID
+    $BusinessDivisionSubdivisionID,
+
+# Notes
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [ValidateLength(1,2000)]
+    [string]
+    $Notes
   )
  
   Begin

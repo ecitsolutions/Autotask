@@ -98,7 +98,7 @@ Get-AtwsServiceBundle
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(1,150)]
     [string]
     $Name,
 

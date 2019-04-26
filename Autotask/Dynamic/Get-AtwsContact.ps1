@@ -97,6 +97,8 @@ An example of a more complex query. This command returns any Contacts with Id GR
 .LINK
 New-AtwsContact
  .LINK
+Remove-AtwsContact
+ .LINK
 Set-AtwsContact
 
 #>
@@ -136,7 +138,7 @@ Set-AtwsContact
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('NotificationHistory:InitiatingContactID', 'Opportunity:ContactID', 'Contract:ContactID', 'AttachmentInfo:AttachedByContactID', 'InstalledProduct:ContactID', 'InstalledProduct:InstalledByContactID', 'ContactGroupContact:ContactID', 'Ticket:ContactID', 'TicketAdditionalContact:ContactID', 'TicketChangeRequestApproval:ContactID', 'ClientPortalUser:ContactID', 'AccountNote:ContactID', 'Quote:ContactID', 'SurveyResults:ContactID', 'AccountToDo:ContactID', 'SalesOrder:Contact')]
+    [ValidateSet('SalesOrder:Contact', 'InstalledProduct:ContactID', 'InstalledProduct:InstalledByContactID', 'TicketChangeRequestApproval:ContactID', 'Ticket:ContactID', 'Contract:ContactID', 'Contract:BillToAccountContactID', 'AttachmentInfo:AttachedByContactID', 'NotificationHistory:InitiatingContactID', 'ContactGroupContact:ContactID', 'AccountNote:ContactID', 'TicketAdditionalContact:ContactID', 'ClientPortalUser:ContactID', 'Quote:ContactID', 'AccountToDo:ContactID', 'Opportunity:ContactID', 'SurveyResults:ContactID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

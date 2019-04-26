@@ -30,6 +30,7 @@ Entities that have fields that refer to the base entity of this CmdLet:
 
 BillingItem
  ContractExclusionRole
+ ContractExclusionSetExcludedRole
  ContractFactor
  ContractRate
  ContractRoleCost

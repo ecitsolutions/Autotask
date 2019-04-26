@@ -146,7 +146,6 @@ Set-AtwsPurchaseOrderItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Int[]]
     $ProductID,
 
@@ -224,52 +223,59 @@ Set-AtwsPurchaseOrderItem
     [long[]]
     $TicketID,
 
+# Internal Currency Product Unit Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID')]
+    [double[]]
+    $InternalCurrencyUnitCost,
+
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
     [String[]]
     $NotEquals,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID')]
+    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
     [String[]]
     $IsNull,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID')]
+    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
     [String[]]
     $IsNotNull,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID')]
+    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
     [String[]]
     $GreaterThan,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID')]
+    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
     [String[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID')]
+    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
     [String[]]
     $LessThan,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID')]
+    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
     [String[]]
     $LessThanOrEquals,
 

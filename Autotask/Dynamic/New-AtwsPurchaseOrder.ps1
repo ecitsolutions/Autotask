@@ -281,7 +281,14 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [Int]
-    $UseItemDescriptionsFrom
+    $UseItemDescriptionsFrom,
+
+# Internal Currency Freight Cost
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyFreight
   )
  
   Begin

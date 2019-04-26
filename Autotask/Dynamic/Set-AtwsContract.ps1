@@ -438,7 +438,46 @@ Get-AtwsContract
       ParameterSetName = 'By_Id'
     )]
     [Int]
-    $BusinessDivisionSubdivisionID
+    $BusinessDivisionSubdivisionID,
+
+# Bill To Client ID
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [Int]
+    $BillToAccountID,
+
+# Bill To Client Contact ID
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [Int]
+    $BillToAccountContactID,
+
+# Contract Exclusion Set ID
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [Int]
+    $ContractExclusionSetID
   )
  
   Begin

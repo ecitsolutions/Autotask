@@ -286,7 +286,21 @@ Get-AtwsContractCost
       ParameterSetName = 'By_Id'
     )]
     [long]
-    $ContractServiceBundleID
+    $ContractServiceBundleID,
+
+# Notes
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [ValidateLength(1,2000)]
+    [string]
+    $Notes
   )
  
   Begin
