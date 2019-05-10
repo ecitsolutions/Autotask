@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.2.2 - Bugfix
+
+- BUGFIX: Set- and New- functions did not update DATE values correctly when using parameters
+
 ## Version 1.6.2.1 - New API version
 
 - UPDATE: Static functions have been updated with any changes for API version 1.6.2
