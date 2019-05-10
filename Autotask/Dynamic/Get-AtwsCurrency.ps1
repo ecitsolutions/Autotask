@@ -125,7 +125,7 @@ Set-AtwsCurrency
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('PriceListService:CurrencyID', 'Account:CurrencyID', 'PriceListRole:CurrencyID', 'PriceListWorkTypeModifier:CurrencyID', 'PriceListProduct:CurrencyID', 'ExpenseItem:ExpenseCurrencyID', 'PriceListMaterialCode:CurrencyID', 'PriceListServiceBundle:CurrencyID', 'ExpenseReport:ReimbursementCurrencyID')]
+    [ValidateSet('Account:CurrencyID', 'PriceListProduct:CurrencyID', 'PriceListRole:CurrencyID', 'PriceListWorkTypeModifier:CurrencyID', 'PriceListService:CurrencyID', 'ExpenseItem:ExpenseCurrencyID', 'PriceListMaterialCode:CurrencyID', 'ExpenseReport:ReimbursementCurrencyID', 'PriceListServiceBundle:CurrencyID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

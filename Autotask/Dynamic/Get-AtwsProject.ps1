@@ -137,7 +137,7 @@ Set-AtwsProject
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Ticket:ProjectID', 'NotificationHistory:ProjectID', 'BillingItem:ProjectID', 'ProjectCost:ProjectID', 'Phase:ProjectID', 'ExpenseItem:ProjectID', 'Quote:ProposalProjectID', 'ProjectNote:ProjectID', 'PurchaseOrderItem:ProjectID', 'Task:ProjectID')]
+    [ValidateSet('BillingItem:ProjectID', 'ProjectCost:ProjectID', 'ProjectNote:ProjectID', 'Phase:ProjectID', 'ExpenseItem:ProjectID', 'Quote:ProposalProjectID', 'Ticket:ProjectID', 'PurchaseOrderItem:ProjectID', 'Task:ProjectID', 'NotificationHistory:ProjectID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

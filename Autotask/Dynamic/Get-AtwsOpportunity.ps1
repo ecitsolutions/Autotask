@@ -147,7 +147,7 @@ Set-AtwsOpportunity
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:OpportunityID', 'Ticket:OpportunityId', 'Contract:OpportunityID', 'AttachmentInfo:OpportunityID', 'NotificationHistory:OpportunityID', 'AccountNote:OpportunityID', 'Quote:OpportunityID', 'AccountToDo:OpportunityID')]
+    [ValidateSet('Contract:OpportunityID', 'AttachmentInfo:OpportunityID', 'AccountNote:OpportunityID', 'Quote:OpportunityID', 'AccountToDo:OpportunityID', 'Ticket:OpportunityId', 'SalesOrder:OpportunityID', 'NotificationHistory:OpportunityID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

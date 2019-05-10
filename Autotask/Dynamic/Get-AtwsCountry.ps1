@@ -121,7 +121,7 @@ Set-AtwsCountry
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:BillToCountryID', 'SalesOrder:ShipToCountryID', 'Contact:CountryID', 'Account:CountryID', 'Account:BillToCountryID', 'AccountPhysicalLocation:CountryID', 'BusinessLocation:CountryID')]
+    [ValidateSet('Contact:CountryID', 'Account:CountryID', 'Account:BillToCountryID', 'AccountPhysicalLocation:CountryID', 'SalesOrder:BillToCountryID', 'SalesOrder:ShipToCountryID', 'BusinessLocation:CountryID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

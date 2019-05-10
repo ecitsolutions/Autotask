@@ -108,7 +108,7 @@ Set-AtwsAccountPhysicalLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProduct:AccountPhysicalLocationID', 'Contact:AccountPhysicalLocationID', 'Account:BillToAccountPhysicalLocationID', 'Ticket:AccountPhysicalLocationID', 'ServiceCall:AccountPhysicalLocationID')]
+    [ValidateSet('Contact:AccountPhysicalLocationID', 'Account:BillToAccountPhysicalLocationID', 'ServiceCall:AccountPhysicalLocationID', 'InstalledProduct:AccountPhysicalLocationID', 'Ticket:AccountPhysicalLocationID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

@@ -122,7 +122,7 @@ Set-AtwsServiceCall
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceCallTicket:ServiceCallID', 'ServiceCallTask:ServiceCallID')]
+    [ValidateSet('ServiceCallTask:ServiceCallID', 'ServiceCallTicket:ServiceCallID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

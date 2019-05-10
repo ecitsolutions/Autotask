@@ -176,10 +176,15 @@ Set-AtwsBusinessDivision
         {
           $TimePresent = $Parameter.Value.Hour -gt 0 -or $Parameter.Value.Minute -gt 0 -or $Parameter.Value.Second -gt 0 -or $Parameter.Value.Millisecond -gt 0 
           
-          If ($Field.Name -like "*DateTime" -or $TimePresent) { 
+          If ($Field.Name -like "*DateTime" -or $TimePresent) 
+          { 
             # Yes, you really have to ADD the difference
             $Value = $Parameter.Value.AddHours($script:ESToffset)
-          }        
+          }  
+          Else 
+          {
+            $Value = $Parameter.Value
+          }      
         }
         Else
         {

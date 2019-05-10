@@ -104,7 +104,7 @@ Set-AtwsHolidaySet
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BusinessLocation:HolidaySetID', 'Holiday:HolidaySetID')]
+    [ValidateSet('Holiday:HolidaySetID', 'BusinessLocation:HolidaySetID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

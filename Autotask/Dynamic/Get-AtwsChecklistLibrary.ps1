@@ -121,7 +121,7 @@ Set-AtwsChecklistLibrary
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TicketChecklistLibrary:ChecklistLibraryID', 'ChecklistLibraryChecklistItem:ChecklistLibraryID')]
+    [ValidateSet('ChecklistLibraryChecklistItem:ChecklistLibraryID', 'TicketChecklistLibrary:ChecklistLibraryID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
