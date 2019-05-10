@@ -109,16 +109,10 @@ Function Update-AtwsDiskCache {
       }
         
       # Add cache to $Cache object and save to disk
-      $Script:Cache[$Script:Atws.CI] = New-Object -TypeName PSObject -Property @{
+      $Script:Cache = New-Object -TypeName PSObject -Property @{
         ApiVersion = $CurrentApiVersion
       }
       # Use Add-member to store complete object, not its typename
-      Add-Member -InputObject $Script:Cache[$Script:Atws.CI] -MemberType NoteProperty -Name FieldInfoCache -Value $FieldInfoCache 
-    
-      # Add new base reference
-      $Script:Cache['00'] =New-Object -TypeName PSObject -Property @{
-        ApiVersion = $CurrentApiVersion
-      }
     
       # Clone current fieldinfo cache to new object
       $Base = Copy-PSObject -InputObject $FieldInfoCache
@@ -138,7 +132,8 @@ Function Update-AtwsDiskCache {
       }
         
       # Use Add-member to store complete object, not its typename
-      Add-Member -InputObject $Script:Cache['00'] -MemberType NoteProperty -Name FieldInfoCache -Value $Base 
+      Add-Member -InputObject $Script:Cache -MemberType NoteProperty -Name FieldInfoCache -Value $Base 
+            
     }
   }
   

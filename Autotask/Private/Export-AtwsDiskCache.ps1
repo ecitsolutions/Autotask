@@ -11,36 +11,25 @@
       Return
     }
      
+    # Get the current module name
+    $MyModule = (Get-Command -Name $MyInvocation.MyCommand.Name).Module
+    
     $CacheFile = 'AutotaskFieldInfoCache.xml'
-    $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
-    $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
+    
+    $CentralCache = '{0}\Private\{1}' -F $MyModule.ModuleBase, $CacheFile
 
-    Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
   }
   
   Process
   {
-    # This REALLY should be there, but better safe than sorry
-    # Create Personalcache directory if it doesn't exist
-    If (-not (Test-Path $PersonalCacheDir)) {
-      
-      $Caption = $MyInvocation.MyCommand.Name
-      $VerboseDescrition = '{0}: Creating a new personal cache dir {1}' -F $Caption, $PersonalCacheDir
-      $VerboseWarning = '{0}: About to create a new personal cache dir {1}. Do you want to continue?' -F $Caption, $PersonalCacheDir
-          
-      If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-        New-Item -Path $PersonalCacheDir -ItemType Directory
-      }
-    
-    }
                
     $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: Saving updated cache info to {1}' -F $Caption, $PersonalCache
-    $VerboseWarning = '{0}: About to save updated cache info to {1}. Do you want to continue?' -F $Caption, $PersonalCache
+    $VerboseDescrition = '{0}: Saving updated cache info to {1}' -F $Caption, $CentralCache
+    $VerboseWarning = '{0}: About to save updated cache info to {1}. Do you want to continue?' -F $Caption, $CentralCache
           
     If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
             
-      $Script:Cache | Export-Clixml -Path $PersonalCache -Force
+      $Script:Cache | Export-Clixml -Path $CentralCache -Encoding UTF8 -Force
     
     }
   }

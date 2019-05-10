@@ -23,13 +23,7 @@ Function Import-AtwsCmdLet
     If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}  
               
     Write-Debug -Message ('{0}: Start of functions.' -F $MyInvocation.MyCommand.Name)
-    
-    $RootPath = '{0}\WindowsPowershell\Cache\{1}' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
-    
-    If (-not (Test-Path "$RootPath\Dynamic")) {
-      $Null = New-Item -Path "$RootPath\Dynamic" -ItemType Directory -Force
-    }
-    
+       
   } 
   
   Process
@@ -66,17 +60,10 @@ Function Import-AtwsCmdLet
       If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
       
         Foreach ($Function in $FunctionDefinition.GetEnumerator()) {
-          # Set path to powershell script file in user cache
-          $FilePath = '{0}\Dynamic\{1}.ps1' -F $RootPath, $Function.Key
-          
-          # IMport the updated function
+       
+          # Import the updated function and overwrite definition loaded from disk
           . ([ScriptBlock]::Create($Function.Value))
           
-          # Export the module member
-          Export-ModuleMember -Function $Function.Key
-          
-          # Write the function to disk for faster load later
-          Set-Content -Path $FilePath -Value $Function.Value -Force -Encoding UTF8           
         }
       }
     }        

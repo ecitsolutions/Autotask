@@ -125,8 +125,7 @@ Function Get-AtwsFieldInfo {
       Begin 
       {
         Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-            
-        $CacheDirty = $False
+
       }
 
       Process
@@ -157,8 +156,6 @@ Function Get-AtwsFieldInfo {
           Write-Verbose ('{0}: Save or update FieldInfo cache for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity)
           $script:FieldInfoCache[$Entity].FieldInfo = $Result
           
-          $CacheDirty = $True
-          
         }
         
         If ($script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields)
@@ -182,15 +179,12 @@ Function Get-AtwsFieldInfo {
           # UDF info will be empty the first time around
           If (-not ($script:FieldInfoCache[$Entity].UDFInfo)) {
             $script:FieldInfoCache[$Entity].UDFInfo = $UDF
-            $CacheDirty = $True
           }
           ElseIf (-not(Compare-PSObject -ReferenceObject $script:FieldInfoCache[$Entity].UDFInfo -DifferenceObject $UDF)) { 
      
             # No errors
             Write-Verbose ('{0}: Save or update UDF cache for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity)
             $script:FieldInfoCache[$Entity].UDFInfo = $UDF
-          
-            $CacheDirty = $True
       
           }
         }
@@ -199,7 +193,7 @@ Function Get-AtwsFieldInfo {
 
       End
       {
-        Return $CacheDirty
+        
       }
     }
 
@@ -211,7 +205,7 @@ Function Get-AtwsFieldInfo {
             
       If (($script:FieldInfoCache[$Entity].HasPicklist -or $script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields) -and ($script:FieldInfoCache[$Entity].RetrievalTime -lt $CacheExpiry -or $UpdateCache.IsPresent)) { 
         
-        $CacheDirty = Update-AtwsEntity -Entity $Entity
+        Update-AtwsEntity -Entity $Entity
         
         Write-Debug -Message ('{0}: Entity {1} has picklists and/or userdefined fields; cache was outdated or -UpdateCache was present.' -F $MyInvocation.MyCommand.Name, $Entity) 
       }
@@ -276,7 +270,7 @@ Function Get-AtwsFieldInfo {
           If($Object.Value.RetrievalTime -lt $CacheExpiry) {
           
             # Force a refresh by calling this function
-            $CacheDirty = Update-AtwsEntity -Entity $Entity
+            Update-AtwsEntity -Entity $Entity
           }
         }
       }
@@ -302,15 +296,7 @@ Function Get-AtwsFieldInfo {
     }
   }  
   End {
-    If ($CacheDirty) { 
-      # If not called during module load, give this warning
-      If ($PSCmdLet.MyInvocation.ScriptName -notlike '*.psm1') { 
-        Write-Warning ('One or more entities has been modified in Autotask! Re-import module with -Force to refresh.')
-      }
-      Export-AtwsDiskCache
-    }
-    
-       
+
     Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
             
     Return $Result

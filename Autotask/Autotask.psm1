@@ -53,7 +53,7 @@ $StaticFunction = @( Get-ChildItem -Path $PSScriptRoot\Static\*.ps1 -ErrorAction
 $DynamicFunction = @( Get-ChildItem -Path $PSScriptRoot\Dynamic\*.ps1 -ErrorAction SilentlyContinue ) 
 
 # Loop through all script files and source them
-foreach ($Import in @($PrivateFunction + $PublicFunction))
+foreach ($Import in @($PrivateFunction + $PublicFunction + $StaticFunction ))
 {
   Write-Verbose "Importing $Import"
   try
@@ -86,36 +86,6 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   # Connect to the API using required, additional parameters, using internal function name
   . Connect-AtwsWebServices -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
   
-  $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
-  If (Test-Path $DynamicCache) {
-    $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )
-    
-    If ($DynamicFunction.Count -lt 1) {
-      # No personal dynamic cache. Refresh  ALL dynamic entities.
-      $EntityName = '*' 
-    }
-    
-    $OldFunctions = @(Get-ChildItem -Path $DynamicCache\*.ps1 -Exclude *Atws* -ErrorAction SilentlyContinue)
-    If ($OldFunctions.Count -gt 0) {
-      $Null = Remove-Item -Path $OldFunctions.fullname -Force -ErrorAction SilentlyContinue
-    }
-  }
-  Else {
-    # No personal dynamic cache. Refresh  ALL dynamic entities.
-    $EntityName = '*'
-  }
-  
-  # Verify that picklists are available in disk cache
-  # Status is always a picklist
-  # if there is none, refresh ALL entities with picklists
-  # Also, refresh ALL if nothing has been selected
-  
-  $FieldList = Get-AtwsFieldInfo -Entity Ticket
-  $Status = $FieldList.Where{$_.Name -eq 'Status'}
-  If ($Status.PickListValues.Count -lt 1 -or -not ($EntityName)) {
-    $EntityName = '*'
-  }
-  
   # Refresh any entities the caller has ordered'
   # We only consider entities that are dynamic
  
@@ -129,7 +99,7 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   # Prepare Index for progressbar
   $Index = 0
   $ProgressParameters = @{
-    Activity = 'Updating diskcache for requested entities.'
+    Activity = 'Updating ramcache for requested entities.'
     Id = 10
   }
   Foreach ($EntityToProcess in $EntitiesToProcess)
@@ -144,33 +114,16 @@ If (($Credential) -or ($ApiTrackingIdentifier))
       
     Write-Progress @ProgressParameters
       
-    $null = Get-AtwsFieldInfo -Entity $EntityToProcess.Key -UpdateCache
+    $EntityToProcess.Value.FieldInfo = Get-AtwsFieldInfo -Entity $EntityToProcess.Key -UpdateCache
   }
     
   # Recreate functions that have been updated
-  Import-AtwsCmdLet -Entities $EntitiesToProcess
-    
-  # Re-read Dynamic functions
-  $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue ) 
-
+  . Import-AtwsCmdLet -Entities $EntitiesToProcess
 }
 Else {
   Write-Warning 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI to connect.'
 }
 
-# Loop through all script files and source them
-foreach ($Import in @($StaticFunction + $DynamicFunction))
-{
-  Write-Verbose "Importing $Import"
-  try
-  {
-    . $Import.fullname
-  }
-  catch
-  {
-    throw "Could not import function $($Import.fullname): $_"
-  }
-}
 
 # Explicitly export public functions
 Export-ModuleMember -Function $PublicFunction.Basename
