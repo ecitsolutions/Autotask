@@ -53,7 +53,7 @@ Function Update-AtwsDiskCache {
   { 
     # Prepare parameters for @splatting
     $ProgressParameters = @{
-      Activity = ('New API version {0} has been published, old version is {1}. recreating diskcache.' -F $CurrentApiVersion, $Script:Cache[$Script:Atws.CI].ApiVersion)
+      Activity = ('API version {0}. Downloading detailed information about all entities and all fields. Recreating diskcache.' -F $CurrentApiVersion)
       Id = 9
     }
     
