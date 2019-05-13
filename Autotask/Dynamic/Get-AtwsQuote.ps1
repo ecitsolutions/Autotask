@@ -132,7 +132,7 @@ Set-AtwsQuote
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('QuoteItem:QuoteID', 'NotificationHistory:QuoteID')]
+    [ValidateSet('NotificationHistory:QuoteID', 'QuoteItem:QuoteID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

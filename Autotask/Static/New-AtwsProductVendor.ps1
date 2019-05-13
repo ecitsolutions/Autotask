@@ -231,10 +231,14 @@ Set-AtwsProductVendor
     # by the .create() function to get the new objects ID.
     # so to return objects with accurately represents what has been created we have to 
     # get them again by id
+    # But not all objects support queries, for instance service adjustments
+    $EntityInfo = Get-AtwsFieldInfo -Entity $EntityName -EntityInfo
     
-    $NewObjectFilter = 'id -eq {0}' -F ($Result.Id -join ' -or id -eq ')
-    
-    $Result = Get-AtwsData -Entity $EntityName -Filter $NewObjectFilter
+    If ($EntityInfo.CanQuery)
+    { 
+      $NewObjectFilter = 'id -eq {0}' -F ($Result.Id -join ' -or id -eq ')
+      $Result = Get-AtwsData -Entity $EntityName -Filter $NewObjectFilter
+    }
   }
 
   End

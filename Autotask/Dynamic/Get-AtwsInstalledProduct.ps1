@@ -180,7 +180,7 @@ Set-AtwsInstalledProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Subscription:InstalledProductID', 'BillingItem:InstalledProductID', 'InstalledProduct:ParentInstalledProductID', 'TicketAdditionalInstalledProduct:InstalledProductID', 'Ticket:InstalledProductID')]
+    [ValidateSet('Subscription:InstalledProductID', 'BillingItem:InstalledProductID', 'Ticket:InstalledProductID', 'InstalledProduct:ParentInstalledProductID', 'TicketAdditionalInstalledProduct:InstalledProductID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

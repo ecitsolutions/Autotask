@@ -59,6 +59,12 @@ Function Get-AtwsFieldInfo {
     [Alias('UDF')]
     [Switch]
     $UserDefinedFields, 
+    
+    [Parameter(
+        ParameterSetName = 'by_Entity'
+    )]
+    [Switch]
+    $EntityInfo, 
        
     [Parameter(
         Mandatory = $True,
@@ -225,6 +231,11 @@ Function Get-AtwsFieldInfo {
       {
         Write-Debug ('{0}: Returning UDF info for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
         $Result = $script:FieldInfoCache[$Entity].UDFInfo
+      }
+      ElseIf ($EntityInfo.IsPresent)
+      {
+        Write-Debug ('{0}: Returning EntityInfo info for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
+        $Result = $script:FieldInfoCache[$Entity].EntityInfo
       }
       ElseIf (-not ($UserDefinedFields.IsPresent))
       { 

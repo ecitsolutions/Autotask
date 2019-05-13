@@ -119,7 +119,7 @@ Set-AtwsRole
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractFactor:RoleID', 'ContractRate:RoleID', 'ResourceServiceDeskRole:RoleID', 'ResourceRoleQueue:RoleID', 'PriceListRole:RoleID', 'TaskSecondaryResource:RoleID', 'ResourceRole:RoleID', 'BillingItem:RoleID', 'ResourceRoleDepartment:RoleID', 'QuoteItem:LaborID', 'TicketSecondaryResource:RoleID', 'ContractExclusionSetExcludedRole:ExcludedRoleID', 'Resource:DefaultServiceDeskRoleID', 'Ticket:AssignedResourceRoleID', 'TimeEntry:RoleID', 'Task:AssignedResourceRoleID', 'ContractRoleCost:RoleID', 'ContractExclusionRole:RoleID')]
+    [ValidateSet('ContractFactor:RoleID', 'ResourceServiceDeskRole:RoleID', 'PriceListRole:RoleID', 'TaskSecondaryResource:RoleID', 'ResourceRole:RoleID', 'BillingItem:RoleID', 'Ticket:AssignedResourceRoleID', 'ResourceRoleDepartment:RoleID', 'TicketSecondaryResource:RoleID', 'ContractExclusionSetExcludedRole:ExcludedRoleID', 'Resource:DefaultServiceDeskRoleID', 'QuoteItem:LaborID', 'TimeEntry:RoleID', 'ResourceRoleQueue:RoleID', 'ContractRoleCost:RoleID', 'Task:AssignedResourceRoleID', 'ContractExclusionRole:RoleID', 'ContractRate:RoleID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

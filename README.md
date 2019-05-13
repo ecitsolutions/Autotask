@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.2.3 - Bugfix
+
+- BUGFIX: The API documentation explicitly states that you can only use the objects returned by the .create() function to get the new objects ID. You cannot trust the returned objects to reflect the actual objects in the Autotask database. To work around this any 'New-' function will get all resulting objects by Id to make sure the returned objects are up to date. But not all objects support queries. Now 'New-' functions will only try to 'Get-' if the entity supports .query()
+
 ## Version 1.6.2.2 - Bugfix
 
 - BUGFIX: Set- and New- functions did not update DATE values correctly when using parameters
