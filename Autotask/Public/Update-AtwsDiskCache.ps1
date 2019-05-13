@@ -22,7 +22,7 @@ Function Update-AtwsDiskCache {
 	
   [cmdletbinding(
       SupportsShouldProcess = $True,
-      ConfirmImpact = 'High'
+      ConfirmImpact = 'Medium'
   )]
   Param
   (
