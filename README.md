@@ -36,11 +36,15 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
-## Version 1.6.2.3 - Bugfix
+## Version 1.6.2.4 - Run without a personal disk cache (Azure Automation)
+
+- FEATURE: Connect with Connect-AtwsWebApi -Credentials $Credentials -ApiTrackingIdentifier $ApiKey -NoDiskCache to run without either creating or reading from the personal disk cache. This is geared towards making the module compatible with Azure Automation. When you run without a disk cache you do not get Intellisense autocomplete, nor parameter validation for picklists. Picklist labels are still converted to their index values at run-time so any script you have already written should run unmodified.
+
+## Version 1.6.2.3 - Bugfix release
 
 - BUGFIX: The API documentation explicitly states that you can only use the objects returned by the .create() function to get the new objects ID. You cannot trust the returned objects to reflect the actual objects in the Autotask database. To work around this any 'New-' function will get all resulting objects by Id to make sure the returned objects are up to date. But not all objects support queries. Now 'New-' functions will only try to 'Get-' if the entity supports .query()
 
-## Version 1.6.2.2 - Bugfix
+## Version 1.6.2.2 - Bugfix release
 
 - BUGFIX: Set- and New- functions did not update DATE values correctly when using parameters
 
