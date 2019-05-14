@@ -104,7 +104,7 @@ Get-AtwsTaskNote
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $NoteType,
 
 # Publish
@@ -119,7 +119,7 @@ Get-AtwsTaskNote
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Publish,
 
 # Task

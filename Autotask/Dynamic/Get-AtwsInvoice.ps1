@@ -237,7 +237,7 @@ Set-AtwsInvoice
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $PaymentTerm,
 
 # Web Service Use Date

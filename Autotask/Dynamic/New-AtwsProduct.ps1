@@ -114,7 +114,7 @@ Set-AtwsProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $ProductCategory,
 
 # External ID
@@ -190,8 +190,7 @@ Set-AtwsProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,10)]
-    [string]
+    [String]
     $PeriodType,
 
 # Allocation Code ID

@@ -149,7 +149,7 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [String[]]
     $AdditionalInvoiceFieldID,
 
 # Batch ID

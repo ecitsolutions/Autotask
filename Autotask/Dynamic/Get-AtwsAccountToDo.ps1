@@ -216,7 +216,7 @@ Set-AtwsAccountToDo
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $ActionType,
 
 # Description

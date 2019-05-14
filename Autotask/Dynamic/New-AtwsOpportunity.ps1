@@ -178,7 +178,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $LeadReferral,
 
 # Market
@@ -241,8 +241,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,6)]
-    [string]
+    [String]
     $RevenueSpreadUnit,
 
 # StageObjectID
@@ -251,7 +250,7 @@ Set-AtwsOpportunity
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Stage,
 
 # Status
@@ -260,7 +259,7 @@ Set-AtwsOpportunity
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # ThroughDate
@@ -284,7 +283,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $Rating,
 
 # Closed Date
@@ -319,21 +318,21 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $PrimaryCompetitor,
 
 # Win Reason
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $WinReason,
 
 # Loss Reason
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $LossReason,
 
 # Win Reason Detail

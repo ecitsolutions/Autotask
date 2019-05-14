@@ -103,7 +103,7 @@ Set-AtwsProject
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Type,
 
 # Ext Project Type
@@ -280,7 +280,7 @@ Set-AtwsProject
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Contract
@@ -337,14 +337,14 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $Department,
 
 # Line Of Business
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $LineOfBusiness,
 
 # purchase_order_number

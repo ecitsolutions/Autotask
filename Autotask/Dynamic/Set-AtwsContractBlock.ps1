@@ -101,7 +101,7 @@ Get-AtwsContractBlock
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $Status,
 
 # DatePurchased
@@ -217,7 +217,7 @@ Get-AtwsContractBlock
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $PaymentType
   )
  

@@ -129,7 +129,7 @@ Set-AtwsService
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractServiceAdjustment:ServiceID', 'ContractService:ServiceID', 'BillingItem:ServiceID', 'PriceListService:ServiceID', 'InstalledProduct:ServiceID', 'ContractServiceUnit:ServiceID', 'ServiceBundleService:ServiceID', 'QuoteItem:ServiceID')]
+    [ValidateSet('ContractServiceAdjustment:ServiceID', 'ContractService:ServiceID', 'BillingItem:ServiceID', 'PriceListService:ServiceID', 'InstalledProduct:ServiceID', 'ContractServiceUnit:ServiceID', 'QuoteItem:ServiceID', 'ServiceBundleService:ServiceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -191,8 +191,7 @@ Set-AtwsService
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,1)]
-    [string[]]
+    [String[]]
     $PeriodType,
 
 # allocation_code_id
@@ -264,7 +263,7 @@ Set-AtwsService
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [String[]]
     $ServiceLevelAgreementID,
 
 # Markup Rate

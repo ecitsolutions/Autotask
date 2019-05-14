@@ -160,7 +160,7 @@ An example of a more complex query. This command returns any Skills with Id GREA
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [String[]]
     $CategoryID,
 
 # Description

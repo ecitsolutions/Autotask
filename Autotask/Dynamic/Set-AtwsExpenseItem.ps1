@@ -135,7 +135,7 @@ Get-AtwsExpenseItem
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $ExpenseCategory,
 
 # Work Type
@@ -148,7 +148,7 @@ Get-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $WorkType,
 
 # Expense Amount
@@ -176,7 +176,7 @@ Get-AtwsExpenseItem
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $PaymentType,
 
 # Have Receipt

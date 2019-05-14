@@ -82,14 +82,14 @@ Set-AtwsContractRetainer
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Paid
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $IsPaid,
 
 # Date Purchased
@@ -148,7 +148,7 @@ Set-AtwsContractRetainer
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $paymentID,
 
 # Amount Approved

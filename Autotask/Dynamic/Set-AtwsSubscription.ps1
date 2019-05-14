@@ -181,8 +181,7 @@ Get-AtwsSubscription
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,1)]
-    [string]
+    [String]
     $PeriodType,
 
 # Type
@@ -197,7 +196,7 @@ Get-AtwsSubscription
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Period Cost

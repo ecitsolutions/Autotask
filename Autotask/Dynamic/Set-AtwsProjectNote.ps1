@@ -104,7 +104,7 @@ Get-AtwsProjectNote
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $NoteType,
 
 # Publish
@@ -119,7 +119,7 @@ Get-AtwsProjectNote
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Publish,
 
 # Project

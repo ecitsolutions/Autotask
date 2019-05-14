@@ -106,8 +106,7 @@ Set-AtwsService
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,1)]
-    [string]
+    [String]
     $PeriodType,
 
 # allocation_code_id
@@ -180,7 +179,7 @@ Set-AtwsService
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long]
+    [String]
     $ServiceLevelAgreementID,
 
 # Markup Rate

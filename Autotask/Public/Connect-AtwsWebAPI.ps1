@@ -25,25 +25,59 @@ Function Connect-AtwsWebAPI {
       NAME: Connect-AtwsWebAPI
   #>
 	
-  [cmdletbinding()]
+  [cmdletbinding(
+      SupportsShouldProcess = $True,
+      ConfirmImpact = 'Low',
+      DefaultParameterSetName = 'Default'
+  )]
   Param
   (
-    [Parameter(Mandatory = $true)]
+    [Parameter(
+        Mandatory = $true,
+        ParameterSetName = 'Default'
+    )]
+    [Parameter(
+        Mandatory = $true,
+        ParameterSetName = 'NoDiskCache'
+    )]
     [ValidateNotNullOrEmpty()]    
     [pscredential]
     $Credential,
     
-    [Parameter(Mandatory = $true)]
+    [Parameter(
+        Mandatory = $true,
+        ParameterSetName = 'Default'
+    )]
+    [Parameter(
+        Mandatory = $true,
+        ParameterSetName = 'NoDiskCache'
+    )]
     [String]
     $ApiTrackingIdentifier,
     
+    [Parameter(
+        ParameterSetName = 'Default'
+    )]
+    [Parameter(
+        ParameterSetName = 'NoDiskCache'
+    )]
     [ValidatePattern('[a-zA-Z0-9]')]
     [ValidateLength(1, 8)]
     [String]
-    $Prefix = 'Atws',
+    $Prefix,
 
+    [Parameter(
+        ParameterSetName = 'Default'
+    )]
     [Switch]
-    $RefreshCache
+    $RefreshCache,
+
+    
+    [Parameter(
+        ParameterSetName = 'NoDiskCache'
+    )]
+    [Switch]
+    $NoDiskCache
   )
     
   Begin { 
@@ -63,13 +97,21 @@ Function Connect-AtwsWebAPI {
     If ($RefreshCache.IsPresent) {
       $Global:AtwsRefreshCachePattern = '*'
     }
+    If ($NoDiskCache.IsPresent) {
+      $Global:AtwsNoDiskCache = $True
+    }
+    Else 
+    {
+      $Global:AtwsNoDiskCache = $False
+    }
+    
   }
   
   Process { 
     Try 
     { 
       # First try to re-import the module by name
-      Import-Module -Name $ModuleName -Global -Prefix $Prefix -Force -Erroraction Stop
+      Import-Module -Name $ModuleName -Global -Prefix $Prefix -Force -Erroraction Stop -Debug:$Debug.IsPresent -Verbose:$Verbose.IsPresent
     }
     Catch 
     {
@@ -77,7 +119,7 @@ Function Connect-AtwsWebAPI {
       # Retry loading the module from its base directory
       $ModulePath = $MyInvocation.MyCommand.Module.ModuleBase
       
-      Import-Module -Name $ModulePath -Global -Prefix $Prefix -Force 
+      Import-Module -Name $ModulePath -Global -Prefix $Prefix -Force -Debug:$Debug.IsPresent -Verbose:$Verbose.IsPresent
 
     }
   }
@@ -86,4 +128,4 @@ Function Connect-AtwsWebAPI {
     Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
   }
  
-}
+  }

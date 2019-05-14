@@ -155,7 +155,7 @@ Set-AtwsBillingItem
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $Type,
 
 # Sub Type
@@ -163,7 +163,7 @@ Set-AtwsBillingItem
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $SubType,
 
 # ItemName

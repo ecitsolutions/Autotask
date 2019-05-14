@@ -27,33 +27,42 @@
   
   Process
   {
-  
-    If (-not (Test-Path $PersonalCache))
-    {
-      Write-Verbose -Message ('{0}: There is no personal cache. Creating from central location.' -F $MyInvocation.MyCommand.Name)
+    # Do not check for existence of personal cache if asked to load module without it
+    If ($Script:UseDiskCache)
+    { 
+      If (-not (Test-Path $PersonalCache))
+      {
+        Write-Verbose -Message ('{0}: There is no personal cache. Creating from central location.' -F $MyInvocation.MyCommand.Name)
       
-      # Create Personalcache directory if it doesn't exist
-      If (-not (Test-Path $PersonalCacheDir)) {
-        New-Item -Path $PersonalCacheDir -ItemType Directory
-      }
+        # Create Personalcache directory if it doesn't exist
+        If (-not (Test-Path $PersonalCacheDir)) {
+          New-Item -Path $PersonalCacheDir -ItemType Directory
+        }
       
-      # Copy the cache
-      Copy-Item -Path $CentralCache -Destination $PersonalCache -Force
+        # Copy the cache
+        Copy-Item -Path $CentralCache -Destination $PersonalCache -Force
            
-    }
+      }
     
-    # This should work now!
-    If (Test-Path $PersonalCache)
-    {
-      Write-Verbose -Message ('{0}: Reading cache from disk.' -F $MyInvocation.MyCommand.Name)
+      # This should work now!
+      If (Test-Path $PersonalCache)
+      {
+        Write-Verbose -Message ('{0}: Reading cache from disk.' -F $MyInvocation.MyCommand.Name)
       
-      $Script:Cache = Import-Clixml -Path $PersonalCache
+        $Script:Cache = Import-Clixml -Path $PersonalCache
   
+      }
+      Else {
+        Throw [System.Exception] "Coult not create a cache file."
+      }
     }
-    Else {
-      Throw [System.Exception] "Coult not create a cache file."
+    Else
+    {
+      # Initialize memory only cache from module directory
+      $Script:Cache = Import-Clixml -Path $CentralCache      
     }
     
+    # We must be connected to know the customer identity number
     If ($Script:Atws) {
       # If the current connection is for a new Autotask tenant, copy the blank 
       # cache from the included pre-cache
@@ -61,6 +70,7 @@
         # Create a cache object to store API version along with the cache
         $Script:Cache[$Script:Atws.CI] = New-Object -TypeName PSObject -Property @{
           ApiVersion = $Script:Cache['00'].ApiVersion
+          ModuleVersion = [Version]$My.ModuleVersion
         }
         # Use Add-Member on the Hashtable, or the propertyvalue will be set to typename only
         # Copy the hashtable to a new object. We do NOT want a referenced copy!
@@ -75,13 +85,15 @@
       # If the API version has been changed at the Autotask end we unfortunately have to reload all
       # entities from scratch
       $CurrentApiVersion = $Script:Atws.GetWsdlVersion()
-      If (-not ($Script:Cache[$Script:Atws.CI].ApiVersion -eq $CurrentApiVersion) -or $UpdateCache) {
+      If ($Script:Cache[$Script:Atws.CI].ApiVersion -ne $CurrentApiVersion -or [Version]$My.ModuleVersion -ne $Script:Cache[$Script:Atws.CI].ModuleVersion -or $UpdateCache) {
+        
+        # Write-Warning to inform user that an update of static functions is due
+        If ($Script:Cache[$Script:Atws.CI].ApiVersion -ne $CurrentApiVersion) { 
+          Write-Warning ('{0}: API version has been updated. You need to run "Update-AtwsFunctions -FunctionSet static" with writepermissions to the module directory or update the module.' -F $MyInvocation.MyCommand.Name) 
+        }
         
         # Call the import-everything function
         Update-AtwsDiskCache
-        
-        # Write-Warning to inform user that an update of static functions is due
-        Write-Warning ('{0}: API version has been updated. You need to run "Update-AtwsFunctions -FunctionSet static" with writepermissions to the module directory or update the module.' -F $MyInvocation.MyCommand.Name) 
         
       }
     }

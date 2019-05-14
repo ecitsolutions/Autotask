@@ -107,7 +107,7 @@ Set-AtwsTicketChecklistItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $KnowledgebaseArticleID,
 
 # Position

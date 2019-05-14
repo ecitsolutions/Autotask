@@ -266,7 +266,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $IssueType,
 
 # Ticket Priority
@@ -281,7 +281,7 @@ Get-AtwsTicket
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Priority,
 
 # Ticket Department Name OR Ticket Queue Name
@@ -294,7 +294,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $QueueID,
 
 # Ticket Source
@@ -307,7 +307,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $Source,
 
 # Ticket Status
@@ -322,7 +322,7 @@ Get-AtwsTicket
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Ticket Subissue Type
@@ -335,7 +335,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $SubIssueType,
 
 # Ticket Title
@@ -364,7 +364,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $ServiceLevelAgreementID,
 
 # Resolution
@@ -405,7 +405,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $TicketType,
 
 # Problem Ticket ID
@@ -444,7 +444,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $ChangeApprovalBoard,
 
 # Change Approval Type
@@ -457,7 +457,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $ChangeApprovalType,
 
 # Change Approval Status
@@ -470,7 +470,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $ChangeApprovalStatus,
 
 # Change Info Field 1
@@ -579,7 +579,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $MonitorTypeID,
 
 # Monitor ID
@@ -605,7 +605,7 @@ Get-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $TicketCategory,
 
 # Project ID

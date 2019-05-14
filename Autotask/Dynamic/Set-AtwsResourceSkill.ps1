@@ -86,7 +86,7 @@ Get-AtwsResourceSkill
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [long]
+    [String]
     $SkillLevel,
 
 # Skill Description

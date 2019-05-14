@@ -119,8 +119,7 @@ Set-AtwsServiceBundle
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,1)]
-    [string]
+    [String]
     $PeriodType,
 
 # allocation_code_id
@@ -179,7 +178,7 @@ Set-AtwsServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long]
+    [String]
     $ServiceLevelAgreementID,
 
 # Unit Cost

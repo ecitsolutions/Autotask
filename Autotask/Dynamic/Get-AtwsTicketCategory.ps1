@@ -178,7 +178,7 @@ Set-AtwsTicketCategory
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $DisplayColorRGB,
 
 # Global Default

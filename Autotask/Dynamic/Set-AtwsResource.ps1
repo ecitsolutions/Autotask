@@ -196,8 +196,7 @@ Get-AtwsResource
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,20)]
-    [string]
+    [String]
     $EmailTypeCode,
 
 # Add Email 1 Type
@@ -210,8 +209,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,20)]
-    [string]
+    [String]
     $EmailTypeCode2,
 
 # Add Email 2 Type
@@ -224,8 +222,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,20)]
-    [string]
+    [String]
     $EmailTypeCode3,
 
 # First Name
@@ -254,8 +251,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,1)]
-    [string]
+    [String]
     $Gender,
 
 # Greeting
@@ -268,7 +264,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $Greeting,
 
 # Home Phone
@@ -383,8 +379,7 @@ Get-AtwsResource
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,15)]
-    [string]
+    [String]
     $ResourceType,
 
 # Suffix
@@ -397,8 +392,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,10)]
-    [string]
+    [String]
     $Suffix,
 
 # Title
@@ -425,8 +419,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,15)]
-    [string]
+    [String]
     $TravelAvailabilityPct,
 
 # UserName
@@ -484,7 +477,7 @@ Get-AtwsResource
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $PayrollType,
 
 # Number Format
@@ -499,8 +492,7 @@ Get-AtwsResource
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,20)]
-    [string]
+    [String]
     $NumberFormat,
 
 # Accounting Reference ID

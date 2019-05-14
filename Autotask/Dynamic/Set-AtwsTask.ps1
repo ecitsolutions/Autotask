@@ -146,7 +146,7 @@ Get-AtwsTask
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $DepartmentID,
 
 # Task Description
@@ -309,7 +309,7 @@ Get-AtwsTask
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Priority Label
@@ -322,7 +322,7 @@ Get-AtwsTask
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $PriorityLabel,
 
 # Task Type
@@ -337,7 +337,7 @@ Get-AtwsTask
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $TaskType,
 
 # Task Title

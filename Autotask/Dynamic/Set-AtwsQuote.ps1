@@ -160,7 +160,7 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $TaxGroup,
 
 # project_id
@@ -231,7 +231,7 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $ShippingType,
 
 # payment_type_id
@@ -244,7 +244,7 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $PaymentType,
 
 # payment_term_id
@@ -257,7 +257,7 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $PaymentTerm,
 
 # external_quote_number
@@ -417,7 +417,7 @@ Get-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $GroupByID
   )
  

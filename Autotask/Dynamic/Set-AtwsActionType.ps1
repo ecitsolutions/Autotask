@@ -106,7 +106,7 @@ Get-AtwsActionType
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $View,
 
 # Active

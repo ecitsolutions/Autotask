@@ -333,7 +333,7 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $Type,
 
 # Location
@@ -425,7 +425,7 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $ServiceLevelAgreementID,
 
 # Account Physical Location

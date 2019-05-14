@@ -132,7 +132,7 @@ Set-AtwsQuote
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('NotificationHistory:QuoteID', 'QuoteItem:QuoteID')]
+    [ValidateSet('QuoteItem:QuoteID', 'NotificationHistory:QuoteID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -229,7 +229,7 @@ Set-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $TaxGroup,
 
 # project_id
@@ -267,21 +267,21 @@ Set-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $ShippingType,
 
 # payment_type_id
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $PaymentType,
 
 # payment_term_id
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $PaymentTerm,
 
 # external_quote_number
@@ -355,7 +355,7 @@ Set-AtwsQuote
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $GroupByID,
 
 # Quote Number

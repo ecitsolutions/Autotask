@@ -132,7 +132,7 @@ Set-AtwsProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('PriceListProduct:ProductID', 'InstalledProduct:ProductID', 'TicketCost:ProductID', 'ProjectCost:ProductID', 'ProductVendor:ProductID', 'ContractCost:ProductID', 'InventoryItem:ProductID', 'QuoteItem:ProductID', 'PurchaseOrderItem:ProductID', 'Opportunity:ProductID', 'InventoryTransfer:ProductID')]
+    [ValidateSet('InventoryItem:ProductID', 'PriceListProduct:ProductID', 'InstalledProduct:ProductID', 'TicketCost:ProductID', 'InventoryTransfer:ProductID', 'ProjectCost:ProductID', 'ProductVendor:ProductID', 'Opportunity:ProductID', 'QuoteItem:ProductID', 'ContractCost:ProductID', 'PurchaseOrderItem:ProductID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -201,7 +201,7 @@ Set-AtwsProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $ProductCategory,
 
 # External ID
@@ -276,8 +276,7 @@ Set-AtwsProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,10)]
-    [string[]]
+    [String[]]
     $PeriodType,
 
 # Allocation Code ID

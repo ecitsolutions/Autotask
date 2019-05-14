@@ -193,7 +193,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $DateFormat,
 
 # Description
@@ -238,21 +238,21 @@ An example of a more complex query. This command returns any QuoteTemplates with
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $NumberFormat,
 
 # Page Layout
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $PageLayout,
 
 # Page Number Format
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $PageNumberFormat,
 
 # Show Each Tax In Group

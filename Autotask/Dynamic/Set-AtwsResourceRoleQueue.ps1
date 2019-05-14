@@ -88,7 +88,7 @@ Get-AtwsResourceRoleQueue
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $QueueID
   )
  

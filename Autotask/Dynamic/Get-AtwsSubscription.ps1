@@ -233,8 +233,7 @@ Set-AtwsSubscription
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,1)]
-    [string[]]
+    [String[]]
     $PeriodType,
 
 # Type
@@ -242,7 +241,7 @@ Set-AtwsSubscription
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $Status,
 
 # Vendor ID

@@ -208,7 +208,7 @@ Set-AtwsContractCost
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $CostType,
 
 # Purchase Order Number
@@ -281,7 +281,7 @@ Set-AtwsContractCost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [String[]]
     $Status,
 
 # Last Modified By

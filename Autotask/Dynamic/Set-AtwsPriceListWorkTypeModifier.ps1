@@ -84,7 +84,7 @@ Get-AtwsPriceListWorkTypeModifier
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $ModifierType,
 
 # Value

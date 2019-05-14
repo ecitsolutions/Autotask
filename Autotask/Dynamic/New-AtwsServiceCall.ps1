@@ -142,7 +142,7 @@ Set-AtwsServiceCall
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $Status,
 
 # Canceled By

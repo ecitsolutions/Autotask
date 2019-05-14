@@ -173,7 +173,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $Status,
 
 # Creator Resource ID
@@ -329,14 +329,14 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $TaxGroup,
 
 # Payment Term ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $PaymentTerm,
 
 # Show Tax Category
@@ -364,7 +364,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $UseItemDescriptionsFrom,
 
 # Internal Currency Freight Cost

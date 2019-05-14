@@ -88,7 +88,7 @@ Get-AtwsSalesOrder
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Contact ID

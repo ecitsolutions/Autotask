@@ -349,14 +349,14 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $NamePrefix,
 
 # Name Suffix
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $NameSuffix,
 
 # Facebook URL

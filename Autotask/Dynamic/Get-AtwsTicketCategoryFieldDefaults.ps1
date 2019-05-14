@@ -192,7 +192,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $IssueTypeID,
 
 # Purchase Order Number
@@ -207,7 +207,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $QueueID,
 
 # Resolution
@@ -222,21 +222,21 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $ServiceLevelAgreementID,
 
 # Source ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $SourceID,
 
 # Sub-Issue Type ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $SubIssueTypeID,
 
 # Ticket Category ID
@@ -251,7 +251,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $TicketTypeID,
 
 # Title
@@ -273,14 +273,14 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $Status,
 
 # Priority
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $Priority,
 
     [Parameter(

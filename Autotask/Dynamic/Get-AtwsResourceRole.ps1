@@ -164,7 +164,7 @@ An example of a more complex query. This command returns any ResourceRoles with 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [String[]]
     $QueueID,
 
 # Role

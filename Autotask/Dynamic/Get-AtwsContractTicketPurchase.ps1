@@ -168,7 +168,7 @@ Set-AtwsContractTicketPurchase
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [boolean[]]
+    [String[]]
     $IsPaid,
 
 # DatePurchased
@@ -231,14 +231,14 @@ Set-AtwsContractTicketPurchase
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $PaymentType,
 
 # Status
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $Status,
 
     [Parameter(

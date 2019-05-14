@@ -180,7 +180,7 @@ Set-AtwsProjectNote
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $NoteType,
 
 # Publish
@@ -188,7 +188,7 @@ Set-AtwsProjectNote
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $Publish,
 
 # Project

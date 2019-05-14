@@ -123,7 +123,7 @@ Set-AtwsTimeEntry
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItemApprovalLevel:TimeEntryID', 'NotificationHistory:TimeEntryID', 'BillingItem:TimeEntryID')]
+    [ValidateSet('BillingItemApprovalLevel:TimeEntryID', 'BillingItem:TimeEntryID', 'NotificationHistory:TimeEntryID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -180,7 +180,7 @@ Set-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $Type,
 
 # Date

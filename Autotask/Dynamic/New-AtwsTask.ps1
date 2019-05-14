@@ -126,7 +126,7 @@ Set-AtwsTask
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $DepartmentID,
 
 # Task Description
@@ -231,14 +231,14 @@ Set-AtwsTask
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Priority Label
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $PriorityLabel,
 
 # Task Billable
@@ -262,7 +262,7 @@ Set-AtwsTask
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $TaskType,
 
 # Task Title
@@ -279,7 +279,7 @@ Set-AtwsTask
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $CreatorType,
 
 # Task Completed By
@@ -293,14 +293,14 @@ Set-AtwsTask
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $CompletedByType,
 
 # Last Activity Person Type
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $LastActivityPersonType,
 
 # Last Activity By

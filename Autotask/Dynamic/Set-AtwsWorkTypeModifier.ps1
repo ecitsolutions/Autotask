@@ -87,7 +87,7 @@ Get-AtwsWorkTypeModifier
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $ModifierType,
 
 # Value

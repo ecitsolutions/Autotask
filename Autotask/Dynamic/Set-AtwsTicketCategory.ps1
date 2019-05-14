@@ -132,7 +132,7 @@ Get-AtwsTicketCategory
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $DisplayColorRGB
   )
  

@@ -207,7 +207,7 @@ Get-AtwsServiceBundle
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [long]
+    [String]
     $ServiceLevelAgreementID
   )
  

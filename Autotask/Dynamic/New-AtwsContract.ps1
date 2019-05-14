@@ -115,7 +115,7 @@ Set-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $BillingPreference,
 
 # Contract Compilance
@@ -137,7 +137,7 @@ Set-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $ContractCategory,
 
 # Contract Name
@@ -163,8 +163,7 @@ Set-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,1)]
-    [string]
+    [String]
     $ContractPeriodType,
 
 # Contract Type
@@ -173,7 +172,7 @@ Set-AtwsContract
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $ContractType,
 
 # Default Contract
@@ -243,14 +242,14 @@ Set-AtwsContract
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Service Level Agreement ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $ServiceLevelAgreementID,
 
 # Contract Setup Fee
@@ -274,7 +273,7 @@ Set-AtwsContract
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $TimeReportingRequiresStartAndStopTimes,
 
 # opportunity_id

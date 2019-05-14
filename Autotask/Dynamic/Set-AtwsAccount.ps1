@@ -299,7 +299,7 @@ Get-AtwsAccount
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int16]
+    [String]
     $AccountType,
 
 # Key Account Icon
@@ -312,7 +312,7 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $KeyAccountIcon,
 
 # Client Owner
@@ -340,7 +340,7 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $TerritoryID,
 
 # Market Segment
@@ -353,7 +353,7 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $MarketSegmentID,
 
 # Competitor
@@ -366,7 +366,7 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $CompetitorID,
 
 # Parent Client
@@ -555,7 +555,7 @@ Get-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $InvoiceMethod,
 
 # Invoice non contract items to Parent Client

@@ -239,7 +239,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $FirstDayOfWeek,
 
 # Date Format
@@ -254,8 +254,7 @@ Get-AtwsBusinessLocation
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,50)]
-    [string]
+    [String]
     $DateFormat,
 
 # Time Format
@@ -270,8 +269,7 @@ Get-AtwsBusinessLocation
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,50)]
-    [string]
+    [String]
     $TimeFormat,
 
 # Number Format
@@ -286,8 +284,7 @@ Get-AtwsBusinessLocation
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,50)]
-    [string]
+    [String]
     $NumberFormat,
 
 # Time Zone ID
@@ -302,7 +299,7 @@ Get-AtwsBusinessLocation
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $TimeZoneID,
 
 # SundayBusinessHoursStartTime

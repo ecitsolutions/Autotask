@@ -171,7 +171,7 @@ Set-AtwsChecklistLibraryChecklistItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $KnowledgebaseArticleID,
 
 # Position

@@ -103,7 +103,7 @@ Get-AtwsAccountNote
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $ActionType,
 
 # Assigned Resource

@@ -137,7 +137,7 @@ Set-AtwsProject
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('NotificationHistory:ProjectID', 'BillingItem:ProjectID', 'Ticket:ProjectID', 'ProjectCost:ProjectID', 'Phase:ProjectID', 'ExpenseItem:ProjectID', 'Quote:ProposalProjectID', 'ProjectNote:ProjectID', 'PurchaseOrderItem:ProjectID', 'Task:ProjectID')]
+    [ValidateSet('BillingItem:ProjectID', 'ProjectCost:ProjectID', 'ProjectNote:ProjectID', 'Phase:ProjectID', 'ExpenseItem:ProjectID', 'Quote:ProposalProjectID', 'Ticket:ProjectID', 'PurchaseOrderItem:ProjectID', 'Task:ProjectID', 'NotificationHistory:ProjectID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -192,7 +192,7 @@ Set-AtwsProject
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $Type,
 
 # Ext Project Number
@@ -352,7 +352,7 @@ Set-AtwsProject
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $Status,
 
 # Contract
@@ -409,14 +409,14 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $Department,
 
 # Line Of Business
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $LineOfBusiness,
 
 # purchase_order_number

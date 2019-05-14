@@ -122,7 +122,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $BillingPreference,
 
 # Contract Compilance
@@ -162,7 +162,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $ContractCategory,
 
 # Contract Name
@@ -317,7 +317,7 @@ Get-AtwsContract
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Service Level Agreement ID
@@ -330,7 +330,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $ServiceLevelAgreementID,
 
 # Contract Setup Fee
@@ -372,7 +372,7 @@ Get-AtwsContract
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $TimeReportingRequiresStartAndStopTimes,
 
 # opportunity_id

@@ -141,7 +141,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Service:AllocationCodeID', 'TicketCategoryFieldDefaults:WorkTypeID', 'ContractExclusionAllocationCode:AllocationCodeID', 'ShippingType:AllocationCodeID', 'Subscription:MaterialCodeID', 'ServiceBundle:AllocationCodeID', 'BillingItem:AllocationCodeID', 'Ticket:AllocationCodeID', 'ContractMilestone:AllocationCodeID', 'TicketCost:AllocationCodeID', 'ProjectCost:AllocationCodeID', 'Product:ProductAllocationCodeID', 'Product:CostAllocationCodeID', 'ContractExclusionSetExcludedWorkType:ExcludedWorkTypeID', 'ContractCost:AllocationCodeID', 'PriceListMaterialCode:AllocationCodeID', 'QuoteItem:CostID', 'QuoteItem:ExpenseID', 'TimeEntry:InternalAllocationCodeID', 'TimeEntry:AllocationCodeID', 'Task:AllocationCodeID')]
+    [ValidateSet('Service:AllocationCodeID', 'TicketCategoryFieldDefaults:WorkTypeID', 'ContractExclusionAllocationCode:AllocationCodeID', 'ShippingType:AllocationCodeID', 'Subscription:MaterialCodeID', 'ServiceBundle:AllocationCodeID', 'BillingItem:AllocationCodeID', 'ContractMilestone:AllocationCodeID', 'TicketCost:AllocationCodeID', 'ProjectCost:AllocationCodeID', 'Product:ProductAllocationCodeID', 'Product:CostAllocationCodeID', 'ContractExclusionSetExcludedWorkType:ExcludedWorkTypeID', 'QuoteItem:CostID', 'QuoteItem:ExpenseID', 'ContractCost:AllocationCodeID', 'PriceListMaterialCode:AllocationCodeID', 'Ticket:AllocationCodeID', 'TimeEntry:InternalAllocationCodeID', 'TimeEntry:AllocationCodeID', 'Task:AllocationCodeID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -177,7 +177,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $GeneralLedgerCode,
 
 # Department ID
@@ -207,14 +207,14 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $Type,
 
 # Use Type
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $UseType,
 
 # Description
@@ -253,7 +253,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $AllocationCodeType,
 
 # Tax Category ID

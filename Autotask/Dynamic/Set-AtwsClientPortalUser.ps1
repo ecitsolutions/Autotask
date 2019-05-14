@@ -88,7 +88,7 @@ Get-AtwsClientPortalUser
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $SecurityLevel,
 
 # Date Format
@@ -103,7 +103,7 @@ Get-AtwsClientPortalUser
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $DateFormat,
 
 # Time Format
@@ -118,7 +118,7 @@ Get-AtwsClientPortalUser
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $TimeFormat,
 
 # Number Format
@@ -133,7 +133,7 @@ Get-AtwsClientPortalUser
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $NumberFormat,
 
 # User Name

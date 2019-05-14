@@ -122,7 +122,7 @@ Get-AtwsChecklistLibrary
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $EntityType,
 
 # Active

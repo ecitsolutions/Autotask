@@ -208,14 +208,14 @@ Set-AtwsAccount
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int16]
+    [String]
     $AccountType,
 
 # Key Account Icon
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $KeyAccountIcon,
 
 # Client Owner
@@ -231,21 +231,21 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $TerritoryID,
 
 # Market Segment
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $MarketSegmentID,
 
 # Competitor
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $CompetitorID,
 
 # Parent Client
@@ -370,7 +370,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $BillToAddressToUse,
 
 # Bill To Attention
@@ -440,7 +440,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $InvoiceMethod,
 
 # Invoice non contract items to Parent Client

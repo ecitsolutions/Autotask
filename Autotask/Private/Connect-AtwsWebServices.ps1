@@ -54,7 +54,10 @@ Function Connect-AtwsWebServices {
     
     [Parameter(Mandatory = $true)]
     [String]
-    $ApiTrackingIdentifier
+    $ApiTrackingIdentifier,
+    
+    [Switch]
+    $NoDiskCache
   )
     
   Begin { 
@@ -72,6 +75,15 @@ Function Connect-AtwsWebServices {
     $Protocol = [System.Net.ServicePointManager]::SecurityProtocol
     If ($Protocol.ToString() -notlike '*Tls12*') { 
       [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
+    }
+    
+    If ($NoDiskCache.IsPresent)
+    {
+      $Script:UseDiskCache = $False
+    }
+    Else 
+    {
+      $Script:UseDiskCache = $True    
     }
   }
   

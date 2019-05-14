@@ -141,8 +141,7 @@ Get-AtwsService
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,1)]
-    [string]
+    [String]
     $PeriodType,
 
 # allocation_code_id
@@ -223,7 +222,7 @@ Get-AtwsService
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [long]
+    [String]
     $ServiceLevelAgreementID
   )
  

@@ -89,7 +89,7 @@ Set-AtwsQuoteItem
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Type,
 
 # product_id
@@ -210,8 +210,7 @@ Set-AtwsQuoteItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
-    [string]
+    [String]
     $PeriodType,
 
 # quote_item_description

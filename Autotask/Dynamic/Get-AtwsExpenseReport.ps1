@@ -164,7 +164,7 @@ Set-AtwsExpenseReport
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $Status,
 
 # Submit Date

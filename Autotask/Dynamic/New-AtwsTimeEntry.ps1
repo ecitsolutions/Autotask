@@ -93,7 +93,7 @@ Set-AtwsTimeEntry
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $Type,
 
 # Date

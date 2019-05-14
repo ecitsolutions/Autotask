@@ -221,7 +221,7 @@ An example of a more complex query. This command returns any InternalLocations w
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [String[]]
     $HolidaySetId,
 
 # Is Default

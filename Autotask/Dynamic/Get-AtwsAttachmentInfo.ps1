@@ -163,7 +163,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $ParentType,
 
 # Type
@@ -171,8 +171,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,30)]
-    [string[]]
+    [String[]]
     $Type,
 
 # Title
@@ -219,7 +218,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $Publish,
 
 # Content Type

@@ -115,7 +115,7 @@ Get-AtwsProject
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Type,
 
 # Ext Project Type
@@ -292,7 +292,7 @@ Get-AtwsProject
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Contract
@@ -371,7 +371,7 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $Department,
 
 # Line Of Business
@@ -384,7 +384,7 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $LineOfBusiness,
 
 # purchase_order_number

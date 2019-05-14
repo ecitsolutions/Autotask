@@ -103,7 +103,7 @@ Set-AtwsExpenseItem
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $ExpenseCategory,
 
 # GL Code
@@ -118,7 +118,7 @@ Set-AtwsExpenseItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $WorkType,
 
 # Expense Amount
@@ -134,7 +134,7 @@ Set-AtwsExpenseItem
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $PaymentType,
 
 # Reimbursable

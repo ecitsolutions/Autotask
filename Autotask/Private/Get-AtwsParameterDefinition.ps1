@@ -147,7 +147,7 @@
       }
 
       # Fieldtype for picklists
-      If ($Field.IsPickList -and $Field.PicklistValues.Count -gt 0) {
+      If ($Field.IsPickList) {
           $Type = 'String'
           $ValidateLength = 0
       }

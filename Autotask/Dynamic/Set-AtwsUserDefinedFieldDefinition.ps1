@@ -119,7 +119,7 @@ Get-AtwsUserDefinedFieldDefinition
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $UdfType,
 
 # Data Type
@@ -134,7 +134,7 @@ Get-AtwsUserDefinedFieldDefinition
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $DataType,
 
 # Default Value
@@ -227,7 +227,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $DisplayFormat,
 
 # Sort Order

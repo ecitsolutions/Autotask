@@ -125,7 +125,7 @@ Set-AtwsTicketCost
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $CostType,
 
 # Purchase Order Number
@@ -199,7 +199,7 @@ Set-AtwsTicketCost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long]
+    [String]
     $Status,
 
 # Last Modified By

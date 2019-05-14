@@ -89,7 +89,7 @@ Get-AtwsPurchaseOrder
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Addressee Name
@@ -318,7 +318,7 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $TaxGroup,
 
 # Payment Term ID
@@ -331,7 +331,7 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $PaymentTerm,
 
 # Show Tax Category
@@ -370,7 +370,7 @@ Get-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $UseItemDescriptionsFrom
   )
  

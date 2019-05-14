@@ -92,7 +92,7 @@ Set-AtwsChecklistLibrary
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $EntityType,
 
 # Active

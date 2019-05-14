@@ -199,7 +199,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $GroupBy,
 
 # Itemize Items In Each Group
@@ -207,7 +207,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $ItemizeItemsInEachGroup,
 
 # Sort By
@@ -215,7 +215,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $SortBy,
 
 # Itemize Services And Bundles
@@ -287,7 +287,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $PageLayout,
 
 # Payment Terms
@@ -303,7 +303,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $PageNumberFormat,
 
 # Date Format
@@ -311,7 +311,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $DateFormat,
 
 # Number Format
@@ -319,7 +319,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $NumberFormat,
 
 # Time Format
@@ -327,7 +327,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $TimeFormat,
 
 # Name

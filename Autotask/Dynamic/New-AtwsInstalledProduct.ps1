@@ -227,7 +227,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $Type,
 
 # Location
@@ -298,7 +298,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $ServiceLevelAgreementID,
 
 # Account Physical Location
@@ -327,21 +327,21 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditArchitectureID,
 
 # RMM Device Audit Display Adaptor ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditDisplayAdaptorID,
 
 # RMM Device Audit Domain ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditDomainID,
 
 # RMM Device Audit External IP Address
@@ -380,7 +380,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditManufacturerID,
 
 # RMM Device Audit Memory Bytes
@@ -394,14 +394,14 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditModelID,
 
 # RMM Device Audit Motherboard ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditMotherboardID,
 
 # RMM Device Audit Operating System
@@ -416,14 +416,14 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditProcessorID,
 
 # RMM Device Audit Service Pack ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditServicePackID,
 
 # RMM Device Audit Storage Bytes
@@ -437,7 +437,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditDeviceTypeID,
 
 # RMM Device Audit SNMP Location
@@ -468,7 +468,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditMobileNetworkOperatorID,
 
 # RMM Device Audit Mobile Number
@@ -580,21 +580,21 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $DattoOSVersionID,
 
 # Datto ZFS Version ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $DattoZFSVersionID,
 
 # Datto Kernel Version ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $DattoKernelVersionID,
 
 # Datto NIC Speed Kilobits Per Second
@@ -657,28 +657,28 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditAntivirusStatusID,
 
 # RMM Device Audit Backup Status ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditBackupStatusID,
 
 # RMM Device Audit Patch Status ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditPatchStatusID,
 
 # RMM Device Audit Software Status ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $RMMDeviceAuditSoftwareStatusID,
 
 # Last Activity Person ID
@@ -692,7 +692,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $LastActivityPersonType
   )
  

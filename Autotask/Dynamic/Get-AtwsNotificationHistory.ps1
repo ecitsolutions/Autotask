@@ -170,23 +170,21 @@ An example of a more complex query. This command returns any NotificationHistory
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $NotificationHistoryTypeID,
 
 # Entity Title
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,2000)]
-    [string[]]
+    [String[]]
     $EntityTitle,
 
 # Entity Number
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
-    [string[]]
+    [String[]]
     $EntityNumber,
 
 # Is Template Deleted

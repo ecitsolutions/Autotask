@@ -480,7 +480,7 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $NamePrefix,
 
 # Name Suffix
@@ -493,7 +493,7 @@ Get-AtwsContact
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $NameSuffix,
 
 # Facebook URL

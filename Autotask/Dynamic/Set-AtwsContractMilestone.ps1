@@ -89,7 +89,7 @@ Get-AtwsContractMilestone
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Date Due

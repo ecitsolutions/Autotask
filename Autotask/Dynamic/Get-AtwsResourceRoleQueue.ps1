@@ -162,7 +162,7 @@ Set-AtwsResourceRoleQueue
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $QueueID,
 
     [Parameter(

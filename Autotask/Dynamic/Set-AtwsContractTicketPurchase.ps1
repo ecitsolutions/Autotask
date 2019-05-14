@@ -103,7 +103,7 @@ Get-AtwsContractTicketPurchase
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [boolean]
+    [String]
     $IsPaid,
 
 # DatePurchased
@@ -219,7 +219,7 @@ Get-AtwsContractTicketPurchase
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $PaymentType,
 
 # Status
@@ -232,7 +232,7 @@ Get-AtwsContractTicketPurchase
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [String]
     $Status
   )
  

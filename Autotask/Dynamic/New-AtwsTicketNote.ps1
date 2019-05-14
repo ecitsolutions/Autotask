@@ -96,7 +96,7 @@ Set-AtwsTicketNote
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $NoteType,
 
 # Publish
@@ -105,7 +105,7 @@ Set-AtwsTicketNote
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Publish,
 
 # Ticket

@@ -20,12 +20,11 @@ Function Update-AtwsManifest {
   
   Begin { 
     # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
     Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
        
-    If (-not($Script:Atws.Url))
-    {
+    If (-not($Script:Atws.Url)) {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }
     
@@ -50,7 +49,7 @@ Function Update-AtwsManifest {
     
     
     # Create the parameter hashtable 
-    $ManifestParams = @{}
+    $ManifestParams = @{ }
     
     # Get valid parameters
     $Command = Get-Command -Name New-ModuleManifest
@@ -106,16 +105,19 @@ Function Update-AtwsManifest {
     $ManifestParams['GUID'] = $GUID
     
     # Information to export
-    $Functions = @()
-    $Moduleinfo.ExportedFunctions.Keys | ForEach-Object {$Functions += $_ }#-replace $ModuleInfo.Prefix, '')}
-    If ($Beta.IsPresent) {
-      # Make sure the beta version does not clobber the release version through 
-      # automatic module import
-      $ManifestParams['FunctionsToExport'] = '*'
-    }
-    Else { 
-      $ManifestParams['FunctionsToExport'] = $Functions
-    }
+    <# 
+        $Functions = @()
+        $Moduleinfo.ExportedFunctions.Keys | ForEach-Object { $Functions += $_ }#-replace $ModuleInfo.Prefix, '')}
+        If ($Beta.IsPresent) {
+        # Make sure the beta version does not clobber the release version through 
+        # automatic module import
+        $ManifestParams['FunctionsToExport'] = '*'
+        }
+        Else { 
+        $ManifestParams['FunctionsToExport'] = $Functions
+        }
+    #>
+    $ManifestParams['FunctionsToExport'] = '*'
     $ManifestParams['CmdletsToExport'] = @()
     $ManifestParams['VariablesToExport'] = @()
     $ManifestParams['AliasesToExport'] = @()
@@ -127,7 +129,7 @@ Function Update-AtwsManifest {
     $ManifestParams['Tags'] = $ModuleInfo.PrivateData.PSData.Tags
             
     # Recreate PrivateData
-    $ManifestParams['PrivateData'] = @{}
+    $ManifestParams['PrivateData'] = @{ }
 
     # There shoult not be any default prefix anymore
     If ($ManifestParams.Keys -contains 'DefaultCommandPrefix') {

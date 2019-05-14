@@ -150,8 +150,7 @@ Set-AtwsPurchaseApproval
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,8)]
-    [string[]]
+    [String[]]
     $CostType,
 
     [Parameter(

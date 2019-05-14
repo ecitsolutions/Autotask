@@ -163,7 +163,7 @@ Set-AtwsAccount
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:AccountID', 'Project:AccountID', 'Invoice:AccountID', 'Service:VendorAccountID', 'Contact:AccountID', 'Account:ParentAccountID', 'AccountTeam:AccountID', 'NotificationHistory:AccountID', 'Contract:AccountID', 'Contract:BillToAccountID', 'ServiceCall:AccountID', 'Subscription:VendorID', 'BillingItem:AccountID', 'BillingItem:VendorID', 'Ticket:AccountID', 'InstalledProduct:AccountID', 'InstalledProduct:VendorID', 'ContractServiceUnit:VendorAccountID', 'AccountPhysicalLocation:AccountID', 'PurchaseOrder:VendorID', 'PurchaseOrder:PurchaseForAccountID', 'ProductVendor:VendorID', 'Product:DefaultVendorID', 'ExpenseItem:AccountID', 'AccountAlert:AccountID', 'AccountNote:AccountID', 'Quote:AccountID', 'Opportunity:AccountID', 'SurveyResults:AccountID', 'AccountToDo:AccountID', 'AccountLocation:AccountID')]
+    [ValidateSet('Project:AccountID', 'Invoice:AccountID', 'Service:VendorAccountID', 'Contact:AccountID', 'Account:ParentAccountID', 'AccountTeam:AccountID', 'Contract:AccountID', 'Contract:BillToAccountID', 'ServiceCall:AccountID', 'Subscription:VendorID', 'BillingItem:AccountID', 'BillingItem:VendorID', 'SurveyResults:AccountID', 'InstalledProduct:AccountID', 'InstalledProduct:VendorID', 'ContractServiceUnit:VendorAccountID', 'AccountPhysicalLocation:AccountID', 'PurchaseOrder:VendorID', 'PurchaseOrder:PurchaseForAccountID', 'ProductVendor:VendorID', 'Product:DefaultVendorID', 'Opportunity:AccountID', 'ExpenseItem:AccountID', 'AccountAlert:AccountID', 'AccountNote:AccountID', 'Quote:AccountID', 'AccountToDo:AccountID', 'Ticket:AccountID', 'AccountLocation:AccountID', 'SalesOrder:AccountID', 'NotificationHistory:AccountID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -308,14 +308,14 @@ Set-AtwsAccount
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int16[]]
+    [String[]]
     $AccountType,
 
 # Key Account Icon
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $KeyAccountIcon,
 
 # Client Owner
@@ -330,21 +330,21 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $TerritoryID,
 
 # Market Segment
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $MarketSegmentID,
 
 # Competitor
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $CompetitorID,
 
 # Parent Client
@@ -438,7 +438,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $BillToAddressToUse,
 
 # Bill To Attention
@@ -508,7 +508,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $InvoiceMethod,
 
 # Invoice non contract items to Parent Client

@@ -162,7 +162,7 @@ Set-AtwsAccountAlert
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $AlertTypeID,
 
 # Alert Text

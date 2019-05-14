@@ -133,7 +133,7 @@ Get-AtwsCountry
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [long]
+    [String]
     $AddressFormatID,
 
 # Quote Template ID

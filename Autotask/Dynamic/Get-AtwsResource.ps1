@@ -209,7 +209,7 @@ Set-AtwsResource
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:OwnerResourceID', 'Project:CreatorResourceID', 'Project:ProjectLeadResourceID', 'Project:CompanyOwnerResourceID', 'Project:LastActivityResourceID', 'Invoice:CreatorResourceID', 'Invoice:VoidedByResourceID', 'Service:CreatorResourceID', 'Service:UpdateResourceID', 'BillingItemApprovalLevel:ApprovalResourceID', 'Account:OwnerResourceID', 'AccountTeam:ResourceID', 'NotificationHistory:InitiatingResourceID', 'TaskNote:CreatorResourceID', 'TaskNote:ImpersonatorCreatorResourceID', 'TaskNote:ImpersonatorUpdaterResourceID', 'AttachmentInfo:AttachedByResourceID', 'ResourceServiceDeskRole:ResourceID', 'PurchaseOrderReceive:ReceivedByResourceID', 'ContractNote:CreatorResourceID', 'ContractNote:ImpersonatorCreatorResourceID', 'ContractNote:ImpersonatorUpdaterResourceID', 'TaskSecondaryResource:ResourceID', 'QuoteTemplate:CreatedBy', 'QuoteTemplate:LastActivityBy', 'ResourceRole:ResourceID', 'ServiceBundle:CreatorResourceID', 'ServiceBundle:UpdateResourceID', 'BillingItem:ItemApproverID', 'BillingItem:AccountManagerWhenApprovedID', 'Ticket:AssignedResourceID', 'Ticket:CreatorResourceID', 'Ticket:CompletedByResourceID', 'Ticket:LastActivityResourceID', 'ContractMilestone:CreatorResourceID', 'InstalledProduct:InstalledByID', 'InstalledProduct:LastActivityPersonID', 'TicketCost:CreatorResourceID', 'PurchaseOrder:CreatorResourceID', 'Appointment:ResourceID', 'Appointment:CreatorResourceID', 'ResourceRoleDepartment:ResourceID', 'ProjectCost:CreatorResourceID', 'TicketChecklistItem:CompletedByResourceID', 'Currency:UpdateResourceId', 'TicketSecondaryResource:ResourceID', 'BusinessDivisionSubdivisionResource:ResourceID', 'ServiceLevelAgreementResults:FirstResponseInitiatingResourceID', 'ServiceLevelAgreementResults:FirstResponseResourceID', 'ServiceLevelAgreementResults:ResolutionPlanResourceID', 'ServiceLevelAgreementResults:ResolutionResourceID', 'ServiceCallTaskResource:ResourceID', 'Phase:CreatorResourceID', 'ContractCost:CreatorResourceID', 'TicketNote:CreatorResourceID', 'TicketNote:ImpersonatorCreatorResourceID', 'TicketNote:ImpersonatorUpdaterResourceID', 'TicketChangeRequestApproval:ResourceID', 'AccountNote:AssignedResourceID', 'AccountNote:ImpersonatorCreatorResourceID', 'AccountNote:ImpersonatorUpdaterResourceID', 'ServiceCallTicketResource:ResourceID', 'ExpenseReport:SubmitterID', 'ExpenseReport:ApproverID', 'Quote:CreatorResourceID', 'Quote:LastModifiedBy', 'TicketHistory:ResourceID', 'ProjectNote:CreatorResourceID', 'ProjectNote:ImpersonatorCreatorResourceID', 'ProjectNote:ImpersonatorUpdaterResourceID', 'TimeEntry:ResourceID', 'TimeEntry:BillingApprovalResourceID', 'TimeEntry:ImpersonatorCreatorResourceID', 'TimeEntry:ImpersonatorUpdaterResourceID', 'Opportunity:OwnerResourceID', 'ResourceSkill:ResourceID', 'ResourceRoleQueue:ResourceID', 'AccountToDo:AssignedToResourceID', 'AccountToDo:CreatorResourceID', 'ContractRoleCost:ResourceID', 'Task:AssignedResourceID', 'Task:CreatorResourceID', 'Task:CompletedByResourceID', 'Task:LastActivityResourceID', 'InventoryTransfer:TransferByResourceID', 'InventoryLocation:ResourceID')]
+    [ValidateSet('Project:CreatorResourceID', 'Project:ProjectLeadResourceID', 'Project:CompanyOwnerResourceID', 'Project:LastActivityResourceID', 'Invoice:CreatorResourceID', 'Invoice:VoidedByResourceID', 'PurchaseOrderReceive:ReceivedByResourceID', 'Service:CreatorResourceID', 'Service:UpdateResourceID', 'BillingItemApprovalLevel:ApprovalResourceID', 'Account:OwnerResourceID', 'AccountTeam:ResourceID', 'TaskNote:CreatorResourceID', 'TaskNote:ImpersonatorCreatorResourceID', 'TaskNote:ImpersonatorUpdaterResourceID', 'AttachmentInfo:AttachedByResourceID', 'ResourceServiceDeskRole:ResourceID', 'ResourceRoleQueue:ResourceID', 'ContractNote:CreatorResourceID', 'ContractNote:ImpersonatorCreatorResourceID', 'ContractNote:ImpersonatorUpdaterResourceID', 'TaskSecondaryResource:ResourceID', 'ResourceRole:ResourceID', 'ServiceBundle:CreatorResourceID', 'ServiceBundle:UpdateResourceID', 'BillingItem:ItemApproverID', 'BillingItem:AccountManagerWhenApprovedID', 'ContractMilestone:CreatorResourceID', 'InstalledProduct:InstalledByID', 'InstalledProduct:LastActivityPersonID', 'TicketCost:CreatorResourceID', 'InventoryTransfer:TransferByResourceID', 'ResourceRoleDepartment:ResourceID', 'PurchaseOrder:CreatorResourceID', 'Appointment:ResourceID', 'Appointment:CreatorResourceID', 'ServiceCallTaskResource:ResourceID', 'ProjectCost:CreatorResourceID', 'TicketChecklistItem:CompletedByResourceID', 'Currency:UpdateResourceId', 'Opportunity:OwnerResourceID', 'ProjectNote:CreatorResourceID', 'ProjectNote:ImpersonatorCreatorResourceID', 'ProjectNote:ImpersonatorUpdaterResourceID', 'BusinessDivisionSubdivisionResource:ResourceID', 'Phase:CreatorResourceID', 'ContractCost:CreatorResourceID', 'TicketSecondaryResource:ResourceID', 'TicketNote:CreatorResourceID', 'TicketNote:ImpersonatorCreatorResourceID', 'TicketNote:ImpersonatorUpdaterResourceID', 'TicketChangeRequestApproval:ResourceID', 'AccountNote:AssignedResourceID', 'AccountNote:ImpersonatorCreatorResourceID', 'AccountNote:ImpersonatorUpdaterResourceID', 'ServiceCallTicketResource:ResourceID', 'ExpenseReport:SubmitterID', 'ExpenseReport:ApproverID', 'Quote:CreatorResourceID', 'Quote:LastModifiedBy', 'AccountToDo:AssignedToResourceID', 'AccountToDo:CreatorResourceID', 'TicketHistory:ResourceID', 'Ticket:AssignedResourceID', 'Ticket:CreatorResourceID', 'Ticket:CompletedByResourceID', 'Ticket:LastActivityResourceID', 'QuoteTemplate:CreatedBy', 'QuoteTemplate:LastActivityBy', 'TimeEntry:ResourceID', 'TimeEntry:BillingApprovalResourceID', 'TimeEntry:ImpersonatorCreatorResourceID', 'TimeEntry:ImpersonatorUpdaterResourceID', 'ResourceSkill:ResourceID', 'Task:AssignedResourceID', 'Task:CreatorResourceID', 'Task:CompletedByResourceID', 'Task:LastActivityResourceID', 'InventoryLocation:ResourceID', 'ContractRoleCost:ResourceID', 'ServiceLevelAgreementResults:FirstResponseInitiatingResourceID', 'ServiceLevelAgreementResults:FirstResponseResourceID', 'ServiceLevelAgreementResults:ResolutionPlanResourceID', 'ServiceLevelAgreementResults:ResolutionResourceID', 'SalesOrder:OwnerResourceID', 'NotificationHistory:InitiatingResourceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -271,24 +271,21 @@ Set-AtwsResource
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,20)]
-    [string[]]
+    [String[]]
     $EmailTypeCode,
 
 # Add Email 1 Type
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,20)]
-    [string[]]
+    [String[]]
     $EmailTypeCode2,
 
 # Add Email 2 Type
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,20)]
-    [string[]]
+    [String[]]
     $EmailTypeCode3,
 
 # First Name
@@ -304,15 +301,14 @@ Set-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,1)]
-    [string[]]
+    [String[]]
     $Gender,
 
 # Greeting
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [String[]]
     $Greeting,
 
 # Home Phone
@@ -353,7 +349,7 @@ Set-AtwsResource
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $LocationID,
 
 # Middle Initial
@@ -393,16 +389,14 @@ Set-AtwsResource
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,15)]
-    [string[]]
+    [String[]]
     $ResourceType,
 
 # Suffix
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,10)]
-    [string[]]
+    [String[]]
     $Suffix,
 
 # Title
@@ -417,8 +411,7 @@ Set-AtwsResource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,15)]
-    [string[]]
+    [String[]]
     $TravelAvailabilityPct,
 
 # UserName
@@ -435,23 +428,21 @@ Set-AtwsResource
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $UserType,
 
 # Date Format
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,20)]
-    [string[]]
+    [String[]]
     $DateFormat,
 
 # Time Format
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,20)]
-    [string[]]
+    [String[]]
     $TimeFormat,
 
 # Payroll Type
@@ -459,7 +450,7 @@ Set-AtwsResource
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $PayrollType,
 
 # Number Format
@@ -467,8 +458,7 @@ Set-AtwsResource
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,20)]
-    [string[]]
+    [String[]]
     $NumberFormat,
 
 # Accounting Reference ID
@@ -506,7 +496,7 @@ Set-AtwsResource
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [String[]]
     $LicenseType,
 
     [Parameter(

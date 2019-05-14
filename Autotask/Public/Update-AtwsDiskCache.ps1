@@ -47,13 +47,17 @@ Function Update-AtwsDiskCache {
     }
     # Load current API version from API
     $CurrentApiVersion = $Script:Atws.GetWsdlVersion()
+    $CurrentModuleVersion = $My.ModuleVersion
+    $CacheApiVersion = $script:Cache[$Script:Atws.CI].ApiVersion.ToString()
+    $CacheModuleVersion = $script:Cache[$Script:Atws.CI].ModuleVersion.ToString()
   }
 
   Process 
   { 
     # Prepare parameters for @splatting
+    $Activity = 'Online API version {0}, Cache API version {1}. Current Module version {2}, cache module version {3}. Recreating diskcache.'
     $ProgressParameters = @{
-      Activity = ('API version {0}. Downloading detailed information about all entities and all fields. Recreating diskcache.' -F $CurrentApiVersion)
+      Activity = ( $Activity -F $CurrentApiVersion, $CacheApiVersion, $CurrentModuleVersion, $CacheModuleVersion)
       Id = 9
     }
     
@@ -111,6 +115,7 @@ Function Update-AtwsDiskCache {
       # Add cache to $Cache object and save to disk
       $Script:Cache[$Script:Atws.CI] = New-Object -TypeName PSObject -Property @{
         ApiVersion = $CurrentApiVersion
+        ModuleVersion = [Version]$My.ModuleVersion
       }
       # Use Add-member to store complete object, not its typename
       Add-Member -InputObject $Script:Cache[$Script:Atws.CI] -MemberType NoteProperty -Name FieldInfoCache -Value $FieldInfoCache 
@@ -118,6 +123,7 @@ Function Update-AtwsDiskCache {
       # Add new base reference
       $Script:Cache['00'] =New-Object -TypeName PSObject -Property @{
         ApiVersion = $CurrentApiVersion
+        ModuleVersion = [Version]$My.ModuleVersion
       }
     
       # Clone current fieldinfo cache to new object

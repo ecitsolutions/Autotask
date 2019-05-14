@@ -203,7 +203,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $IssueType,
 
 # Ticket Last Activity Date
@@ -219,21 +219,21 @@ Set-AtwsTicket
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Priority,
 
 # Ticket Department Name OR Ticket Queue Name
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $QueueID,
 
 # Ticket Source
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $Source,
 
 # Ticket Status
@@ -242,14 +242,14 @@ Set-AtwsTicket
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $Status,
 
 # Ticket Subissue Type
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $SubIssueType,
 
 # Ticket Number
@@ -316,7 +316,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $ServiceLevelAgreementID,
 
 # Has Met SLA
@@ -346,7 +346,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $TicketType,
 
 # Problem Ticket ID
@@ -367,21 +367,21 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $ChangeApprovalBoard,
 
 # Change Approval Type
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $ChangeApprovalType,
 
 # Change Approval Status
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $ChangeApprovalStatus,
 
 # Change Info Field 1
@@ -456,7 +456,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $MonitorTypeID,
 
 # Monitor ID
@@ -485,7 +485,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $TicketCategory,
 
 # First Response Initiating Resource
@@ -520,7 +520,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $CreatorType,
 
 # Ticket Completed By
@@ -541,7 +541,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $LastActivityPersonType,
 
 # Last Edited Resource ID
@@ -562,14 +562,14 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $CurrentServiceThermometerRating,
 
 # Previous Service Thermometer Rating
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $PreviousServiceThermometerRating,
 
 # Service Thermometer Temperature

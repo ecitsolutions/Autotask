@@ -80,15 +80,14 @@ Set-AtwsContractBlock
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $Status,
 
 # Paid
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,10)]
-    [string]
+    [String]
     $IsPaid,
 
 # DatePurchased
@@ -156,7 +155,7 @@ Set-AtwsContractBlock
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int]
+    [String]
     $PaymentType,
 
 # Hours Approved

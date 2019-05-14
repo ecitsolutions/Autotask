@@ -177,7 +177,7 @@ Get-AtwsProjectCost
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [String]
     $CostType,
 
 # Purchase Order Number
