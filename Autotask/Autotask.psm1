@@ -142,18 +142,22 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   { 
     # Connect to the API using required, additional parameters, using internal function name
     . Connect-AtwsWebServices -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
-    
+
+  
     $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
     If (Test-Path $DynamicCache) {
-          
+      $FunctionCount = $DynamicFunction.Count
       $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )
       Write-Debug ('{0}: Personal disk cache: Found {1} script files in {2}' -F $MyInvocation.MyCommand.Name, $DynamicFunction.Count, $DynamicCache)
             
     
-      If ($DynamicFunction.Count -lt 1) {
-        Write-Debug ('{0}: Personal disk cache: No script files found in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $DynamicCache)
-              
-        # No personal dynamic cache. Refresh  ALL dynamic entities.
+      If ($DynamicFunction.Count -ne $FunctionCount) {
+        Write-Debug ('{0}: Personal disk cache: Wrong number of script files in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $DynamicCache)
+        
+        # Clear out old cache, it will be recreated
+        $Null = Remove-Item -Path $DynamicFunction.fullname -Force -ErrorAction SilentlyContinue
+        
+        # Refresh  ALL dynamic entities.
         $EntityName = '*' 
       }
     
@@ -175,7 +179,6 @@ If (($Credential) -or ($ApiTrackingIdentifier))
    
     # Refresh any entities the caller has ordered
     # We only consider entities that are dynamic
- 
     $Entities = Get-AtwsFieldInfo -Dynamic
     $EntitiesToProcess = @()
     
@@ -195,7 +198,7 @@ If (($Credential) -or ($ApiTrackingIdentifier))
     }
     
     # Make sure we only check each possible entity once
-    $EntitiesToProcess = $EntitiesToProcess | Select-Object -Unique
+    $EntitiesToProcess = $EntitiesToProcess | Sort-Object -Property Name -Unique
     
     Write-Debug ('{0}: {1} entities have been selected for refresh' -F $MyInvocation.MyCommand.Name, $EntitiesToProcess.Count)
         

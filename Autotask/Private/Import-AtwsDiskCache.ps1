@@ -55,6 +55,30 @@
       Else {
         Throw [System.Exception] "Coult not create a cache file."
       }
+      
+      # Nested testing to make sure the structure is OK
+      $CacheOK = $False
+      If ($Script:Cache -is [Hashtable]) {
+        If ($Script:Cache.ContainsKey('00')) {
+          If ($Script:Cache['00'] -is [PSCustomObject]) {
+            If ([bool]($Script:Cache['00'].PSobject.Properties.name -match "FieldInfoCache")) {
+              If ($Script:Cache['00'].FieldInfoCache.Count -gt 0) {
+                $CacheOK = $True
+              }
+            }
+          }
+        }
+      }
+      
+      If (-not $CacheOK) {
+        Write-Warning ('{0}: Personal disk cache is broken! Deleting cache and trying again!' -F $MyInvocation.MyCommand.Name)
+        $Null = Remove-Item -Path $PersonalCache -Force -ErrorAction SilentlyContinue
+        
+        Import-AtwsDiskCache
+        
+        # Do not process rest of script
+        Return
+      }
     }
     Else
     {
