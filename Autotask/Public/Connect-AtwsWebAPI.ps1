@@ -105,21 +105,62 @@ Function Connect-AtwsWebAPI {
       $Global:AtwsNoDiskCache = $False
     }
     
+    $ImportParams = @{
+      Global = $True
+      Version = $MyInvocation.MyCommand.Module.Version
+      Force = $True
+      ErrorAction = 'Stop'
+    }
+    
+    If ($Prefix) {
+      $ImportParams['Prefix'] = $Prefix    
+    }
+
+
+
   }
   
   Process { 
     Try 
     { 
       # First try to re-import the module by name
-      Import-Module -Name $ModuleName -Global -Prefix $Prefix -Force -Erroraction Stop -Debug:$Debug.IsPresent -Verbose:$Verbose.IsPresent
+      
+      # Unfortunately -Debug and -Verbose is not inherited into the module load, so we have to do a bit of awkward checking
+      If ($DebugPreference -eq 'Continue' -and $VerbosePreference -eq 'Continue') {
+        Import-Module -Name $ModuleName @ImportParams -Debug -Verbose
+      }
+      ElseIf ($DebugPreference -eq 'Continue' -and $VerbosePreference -ne 'Continue') {
+        $ImportParams['Verbose'] = $False 
+        Import-Module -Name $ModuleName @ImportParams -Debug 
+      }
+      ElseIf ($DebugPreference -ne 'Continue' -and $VerbosePreference -eq 'Continue') {
+        Import-Module -Name $ModuleName @ImportParams -Verbose 
+      }
+      Else {
+        Import-Module -Name $ModuleName @ImportParams 
+      }
     }
     Catch 
     {
       # If import by name fails the module has most likely been loaded directly from disk (path)
       # Retry loading the module from its base directory
       $ModulePath = $MyInvocation.MyCommand.Module.ModuleBase
+      $ImportParams['ErrorAction'] = 'Continue'
       
-      Import-Module -Name $ModulePath -Global -Prefix $Prefix -Force -Debug:$Debug.IsPresent -Verbose:$Verbose.IsPresent
+      # Unfortunately -Debug and -Verbose is not inherited into the module load, so we have to do a bit of awkward checking
+      If ($DebugPreference -eq 'Continue' -and $VerbosePreference -eq 'Continue') {
+        Import-Module -Name $ModulePath @ImportParams -Debug -Verbose
+      }
+      ElseIf ($DebugPreference -eq 'Continue' -and $VerbosePreference -ne 'Continue') {
+        $ImportParams['Verbose'] = $False 
+        Import-Module -Name $ModulePath @ImportParams -Debug 
+      }
+      ElseIf ($DebugPreference -ne 'Continue' -and $VerbosePreference -eq 'Continue') {
+        Import-Module -Name $ModulePath @ImportParams -Verbose 
+      }
+      Else {
+        Import-Module -Name $ModulePath @ImportParams 
+      }
 
     }
   }
