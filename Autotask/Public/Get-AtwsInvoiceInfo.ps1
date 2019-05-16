@@ -48,7 +48,10 @@ Function Get-AtwsInvoiceInfo {
         ParameterSetName = 'By_parameters'
     )]
     [String[]]
-    $InvoiceId
+    $InvoiceId,
+    
+    [Switch]
+    $XML
   )
   
   Begin {
@@ -95,7 +98,12 @@ Function Get-AtwsInvoiceInfo {
       
       Write-Verbose ('{0}: Converting Invoice ID {1} to a PSObject' -F $MyInvocation.MyCommand.Name, $Id)
            
-      $Result += $InvoiceInfo.invoice_batch_generic | ConvertTo-PSObject
+      If ($XML.IsPresent) { 
+        $Result += $InvoiceInfo.invoice_batch_generic
+      }
+      Else { 
+        $Result += $InvoiceInfo.invoice_batch_generic | ConvertFrom-XML
+      }
     }
   }
 

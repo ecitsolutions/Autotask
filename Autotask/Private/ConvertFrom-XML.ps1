@@ -19,11 +19,11 @@ Function ConvertFrom-XML {
       .OUTPUTS
       [System.Object[]]
       .EXAMPLE
-      $Element | ConvertTo-PSObject
+      $Element | ConvertFrom-XML
       Converts variable $Element with must contain 1 or more Xml.XmlElements to custom PSobjects with the
       same content.
       .NOTES
-      NAME: ConvertTo-PSObject
+      NAME: ConvertFrom-XML
       
   #>
   [cmdletbinding()]
@@ -75,14 +75,15 @@ Function ConvertFrom-XML {
           # try to recognise other value types
           'string*' {
             # Test if it is a date first
-            Try {
-              # If it isn't a date we'll get an exception
+            If ($Element.$PropertyName -match '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))')
+            {
+              # Convert to a Datetime object
               [DateTime]$DateTime = $Element.$PropertyName
                   
-              # If we are here, then we have a date.
+              # Add timezone difference
               $Value = $DateTime.AddHours($script:ESToffset)
             }
-            Catch {
+            Else {
               # This isn't a date. We'll use a regex to avoid turning integers into doubles
               Switch -regex ($Element.$PropertyName) { 
                 '^\d+\.\d{4}$' { 
