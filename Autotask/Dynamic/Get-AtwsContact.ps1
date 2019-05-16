@@ -138,7 +138,7 @@ Set-AtwsContact
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Contract:ContactID', 'Contract:BillToAccountContactID', 'AttachmentInfo:AttachedByContactID', 'SurveyResults:ContactID', 'InstalledProduct:ContactID', 'InstalledProduct:InstalledByContactID', 'ContactGroupContact:ContactID', 'Opportunity:ContactID', 'TicketAdditionalContact:ContactID', 'TicketChangeRequestApproval:ContactID', 'ClientPortalUser:ContactID', 'AccountNote:ContactID', 'Quote:ContactID', 'AccountToDo:ContactID', 'Ticket:ContactID', 'SalesOrder:Contact', 'NotificationHistory:InitiatingContactID')]
+    [ValidateSet('SalesOrder:Contact', 'InstalledProduct:ContactID', 'InstalledProduct:InstalledByContactID', 'TicketChangeRequestApproval:ContactID', 'Ticket:ContactID', 'Contract:ContactID', 'Contract:BillToAccountContactID', 'AttachmentInfo:AttachedByContactID', 'NotificationHistory:InitiatingContactID', 'ContactGroupContact:ContactID', 'AccountNote:ContactID', 'TicketAdditionalContact:ContactID', 'ClientPortalUser:ContactID', 'Quote:ContactID', 'AccountToDo:ContactID', 'Opportunity:ContactID', 'SurveyResults:ContactID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

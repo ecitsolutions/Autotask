@@ -144,7 +144,7 @@ Set-AtwsTask
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TaskNote:TaskID', 'TaskSecondaryResource:TaskID', 'BillingItem:TaskID', 'ServiceCallTask:TaskID', 'ExpenseItem:TaskID', 'TaskPredecessor:PredecessorTaskID', 'TaskPredecessor:SuccessorTaskID', 'TimeEntry:TaskID', 'NotificationHistory:TaskID')]
+    [ValidateSet('TaskNote:TaskID', 'NotificationHistory:TaskID', 'TaskPredecessor:PredecessorTaskID', 'TaskPredecessor:SuccessorTaskID', 'TaskSecondaryResource:TaskID', 'BillingItem:TaskID', 'ExpenseItem:TaskID', 'ServiceCallTask:TaskID', 'TimeEntry:TaskID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
