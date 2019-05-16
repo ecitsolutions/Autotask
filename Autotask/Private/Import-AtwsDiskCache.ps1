@@ -82,15 +82,19 @@
     }
     Else
     {
+      Write-Verbose -Message ('{0}: Running with -NoDiskCache. Initializing memory-only cache with data supplied with module ({1}).' -F $MyInvocation.MyCommand.Name, $CentralCache)
+            
       # Initialize memory only cache from module directory
       $Script:Cache = Import-Clixml -Path $CentralCache      
     }
     
     # We must be connected to know the customer identity number
-    If ($Script:Atws) {
+    If ($Script:Atws -and $Script:UseDiskCache) {
       # If the current connection is for a new Autotask tenant, copy the blank 
       # cache from the included pre-cache
       If (-not ($Script:Cache.ContainsKey($Script:Atws.CI))) {
+        Write-Debug -Message ('{0}: Cache does not contain information about Autotask tenant {1}. Initializing.' -F $MyInvocation.MyCommand.Name,$Script:Atws.CI )
+                
         # Create a cache object to store API version along with the cache
         $Script:Cache[$Script:Atws.CI] = New-Object -TypeName PSObject -Property @{
           ApiVersion = $Script:Cache['00'].ApiVersion
@@ -105,7 +109,8 @@
 
       # Initialize the $Script:FieldInfoCache shorthand 
       $Script:FieldInfoCache = $Script:Cache[$Script:Atws.CI].FieldInfoCache
-
+      
+      
       # If the API version has been changed at the Autotask end we unfortunately have to reload all
       # entities from scratch
       $CurrentApiVersion = $Script:Atws.GetWsdlVersion()
@@ -120,8 +125,11 @@
         Update-AtwsDiskCache
         
       }
+      
     }
     Else {
+      Write-Debug -Message ('{0}: No connection to Autotask or running with -NoDiskCache. Loading using module supplied data for Get-AtwsFieldInfo.' -F $MyInvocation.MyCommand.Name )
+          
       # Initialize the $Script:FieldInfoCache shorthand for base entity info
       $Script:FieldInfoCache = $Script:Cache['00'].FieldInfoCache
     }

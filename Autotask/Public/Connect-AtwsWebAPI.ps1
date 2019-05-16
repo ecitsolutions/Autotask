@@ -100,10 +100,7 @@ Function Connect-AtwsWebAPI {
     If ($NoDiskCache.IsPresent) {
       $Global:AtwsNoDiskCache = $True
     }
-    Else 
-    {
-      $Global:AtwsNoDiskCache = $False
-    }
+    
     
     $ImportParams = @{
       Global = $True
