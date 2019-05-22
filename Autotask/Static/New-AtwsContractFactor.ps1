@@ -1,4 +1,5 @@
 ﻿#Requires -Version 4.0
+#Version 1.6.2.8
 <#
 
 .COPYRIGHT
@@ -102,17 +103,6 @@ Set-AtwsContractFactor
     Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
     $ProcessObject = @()
-    
-    # Set up TimeZone offset handling
-    If (-not($script:ESToffset))
-    {
-      $Now = Get-Date
-      $ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($Now.ToUniversalTime(), $ESTzone)
-
-      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
-    }
-
   }
 
   Process
@@ -175,20 +165,6 @@ Set-AtwsContractFactor
           }
           $Value = $PickListValue.Value
         }
-        ElseIf ($Field.Type -eq 'datetime')
-        {
-          $TimePresent = $Parameter.Value.Hour -gt 0 -or $Parameter.Value.Minute -gt 0 -or $Parameter.Value.Second -gt 0 -or $Parameter.Value.Millisecond -gt 0 
-          
-          If ($Field.Name -like "*DateTime" -or $TimePresent) 
-          { 
-            # Yes, you really have to ADD the difference
-            $Value = $Parameter.Value.AddHours($script:ESToffset)
-          }  
-          Else 
-          {
-            $Value = $Parameter.Value
-          }      
-        }
         Else
         {
           $Value = $Parameter.Value
@@ -199,41 +175,15 @@ Set-AtwsContractFactor
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }
+    }    
+
     $Result = New-AtwsData -Entity $ProcessObject
-    
-    # The API documentation explicitly states that you can only use the objects returned 
-    # by the .create() function to get the new objects ID.
-    # so to return objects with accurately represents what has been created we have to 
-    # get them again by id
-    # But not all objects support queries, for instance service adjustments
-    $EntityInfo = Get-AtwsFieldInfo -Entity $EntityName -EntityInfo
-    
-    If ($EntityInfo.CanQuery)
-    { 
-      $NewObjectFilter = 'id -eq {0}' -F ($Result.Id -join ' -or id -eq ')
-      $Result = Get-AtwsData -Entity $EntityName -Filter $NewObjectFilter
-    }
   }
 
   End
   {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-
-    If ($PSCmdLet.ParameterSetName -eq 'Input_Object')
-    {
-      # Verify copy mode
-      Foreach ($Object in $Result)
-      {
-        If ($InputObject.Id -contains $Object.Id)
-        {
-          Write-Warning ('{0}: Autotask detected new object as duplicate of {1} with Id {2} and tried to update object, not create a new copy. ' -F $MyInvocation.MyCommand.Name, $EntityName, $Object.Id)
-        }
-      }
-    }
-
+    Write-Debug ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $Result.count, $EntityName)
     Return $Result
   }
-
 
 }

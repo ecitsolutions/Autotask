@@ -1,4 +1,5 @@
 ﻿#Requires -Version 4.0
+#Version 1.6.2.8
 <#
 
 .COPYRIGHT
@@ -243,13 +244,14 @@ Get-AtwsAccountToDo
     Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
     # Set up TimeZone offset handling
-    If (-not($script:ESToffset))
+    If (-not($script:LocalToEST))
     {
       $Now = Get-Date
       $ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
       $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($Now.ToUniversalTime(), $ESTzone)
 
-      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
+      # Time difference in hours from localtime to API time
+      $script:LocalToEST = (New-TimeSpan -Start $Now -End $ESTtime).TotalHours
     }
     
     # Collect fresh copies of InputObject if passed any IDs
@@ -265,7 +267,8 @@ Get-AtwsAccountToDo
   Process
   {
     $Fields = Get-AtwsFieldInfo -Entity $EntityName
-
+    
+    # Loop through parameters and update any inputobjects with the given parameter values    
     Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
     {
       $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
@@ -275,20 +278,6 @@ Get-AtwsAccountToDo
         {
           $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $Parameter.Value}
           $Value = $PickListValue.Value
-        }
-        ElseIf ($Field.Type -eq 'datetime')
-        {
-          $TimePresent = $Parameter.Value.Hour -gt 0 -or $Parameter.Value.Minute -gt 0 -or $Parameter.Value.Second -gt 0 -or $Parameter.Value.Millisecond -gt 0 
-          
-          If ($Field.Name -like "*DateTime" -or $TimePresent) 
-          { 
-            # Yes, you really have to ADD the difference
-            $Value = $Parameter.Value.AddHours($script:ESToffset)
-          }  
-          Else 
-          {
-            $Value = $Parameter.Value
-          }   
         }
         Else
         {
@@ -300,78 +289,53 @@ Get-AtwsAccountToDo
         }
       }
     }
+    
+    # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
+    # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
+    $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
    
+    # Adjust TimeZone on all DateTime properties
+    Foreach ($Object in $InputObject) 
+    { 
+      Foreach ($DateTimeParam in $DateTimeParams) {
+      
+        # Get the datetime value
+        $Value = $Object.$DateTimeParam
+                
+        # Skip if parameter is empty
+        If (-not ($Value)) {
+          Continue
+        }
+        # Convert the datetime back to CEST
+        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
+      }
+    }
+    
     $ModifiedObjects = Set-AtwsData -Entity $InputObject
     
-    # The API documentation explicitly states that you can only use the objects returned 
-    # by the .create() function to get the new objects ID.
-    # so to return objects with accurately represents what has been created we have to 
-    # get them again by id
-    # But not all objects support queries, for instance service adjustments
-    $EntityInfo = Get-AtwsFieldInfo -Entity $EntityName -EntityInfo
-    
-    If ($EntityInfo.CanQuery)
+    # Revert changes back on any inputobject
+    Foreach ($Object in $InputObject) 
     { 
-      $NewObjectFilter = 'id -eq {0}' -F ($Result.Id -join ' -or id -eq ')
-      $Result = Get-AtwsData -Entity $EntityName -Filter $NewObjectFilter
+      Foreach ($DateTimeParam in $DateTimeParams) {
+      
+        # Get the datetime value
+        $Value = $Object.$DateTimeParam
+                
+        # Skip if parameter is empty
+        If (-not ($Value)) {
+          Continue
+        }
+        # Revert the datetime back from CEST
+        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
+      }
     }
+    
   }
 
   End
   {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    
-    If ($PassThru.IsPresent)
-    {
-      # Datetimeparameters
-      $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime'}).Name
-    
-      # Expand UDFs by default
-      Foreach ($Item in $ModifiedObjects)
-      {
-        # Any userdefined fields?
-        If ($Item.UserDefinedFields.Count -gt 0)
-        { 
-          # Expand User defined fields for easy filtering of collections and readability
-          Foreach ($UDF in $Item.UserDefinedFields)
-          {
-            # Make names you HAVE TO escape...
-            $UDFName = '#{0}' -F $UDF.Name
-            Add-Member -InputObject $Item -MemberType NoteProperty -Name $UDFName -Value $UDF.Value
-          }  
-        }
-      
-        # Adjust TimeZone on all DateTime properties
-        Foreach ($DateTimeParam in $DateTimeParams) {
-      
-          # Get the datetime value
-          $ParameterValue = $Item.$DateTimeParam
-                
-          # Skip if parameter is empty
-          If (-not ($ParameterValue)) {
-            Continue
-          }
-          
-          $TimePresent = $ParameterValue.Hour -gt 0 -or $ParameterValue.Minute -gt 0 -or $ParameterValue.Second -gt 0 -or $ParameterValue.Millisecond -gt 0 
-          
-          # If this is a DATE it should not be touched
-          If ($DateTimeParam -like "*DateTime" -or $TimePresent) {
-
-              # This is DATETIME 
-              # We need to adjust the timezone difference 
-
-              # Yes, you really have to ADD the difference
-              $ParameterValue = $ParameterValue.AddHours($script:ESToffset)
-            
-              # Store the value back to the object (not the API!)
-              $Item.$DateTimeParam = $ParameterValue
-          }
-        }
-      }
-      
-      Return $ModifiedObjects
-    }
+    Write-Debug ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $ModifiedObjects.count, $EntityName)
+    Return $ModifiedObjects
   }
-
 
 }
