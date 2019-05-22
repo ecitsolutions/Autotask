@@ -145,7 +145,13 @@ Function Get-AtwsFieldInfo {
         
           Write-Verbose -Message ("{0}: Calling .GetFieldInfo('{1}')" -F $MyInvocation.MyCommand.Name, $Entity) 
           
-          $Result = $Script:atws.GetFieldInfo($Entity)
+          Try { 
+            $Result = $Script:atws.GetFieldInfo($Entity)
+          }
+          Catch{
+            Throw $_
+            Return
+          }
                  
           If ($Result.Errors.Count -gt 0) {
             Foreach ($AtwsError in $Result.Errors) {
