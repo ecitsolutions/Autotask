@@ -10,13 +10,15 @@
   Begin 
   { 
     $RequiredVersion = '4.0'
-    $TextFrame = "#Requires -Version {0}`n{1}`nFunction {2}`n{{`n{3}`n  [CmdLetBinding(DefaultParameterSetName='{4}', ConfirmImpact='{5}')]`n  Param`n  (`n{6}`n  )`n{7}`n}}"
+    $ModuleVersion = $MyInvocation.MyCommand.Module.Version
+    $TextFrame = "#Requires -Version {0}`n#Version {1}`n{2}`nFunction {3}`n{{`n{4}`n  [CmdLetBinding(DefaultParameterSetName='{5}', ConfirmImpact='{6}')]`n  Param`n  (`n{7}`n  )`n{8}`n}}"
   }
   
   Process
   {
     $FunctionText = $TextFrame -F
       $RequiredVersion,
+      $ModuleVersion,
       $AtwsFunction.Copyright,
       $AtwsFunction.FunctionName,
       $AtwsFunction.HelpText,
