@@ -58,7 +58,7 @@ Function Set-AtwsData {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }
     
-    $EndResult = @()
+
     $ErrorCount = 0
   }
   
@@ -132,7 +132,20 @@ Function Set-AtwsData {
     
         # We have tried multiple times! Still errors?
         If ($Result.Errors.Count -eq 0) {
-          $EndResult += $Result.EntityResults
+          # The API documentation explicitly states that you can only use the objects returned 
+          # by the .create() function to get the new objects ID.
+          # so to return objects with accurately represents what has been created we have to 
+          # get them again by id
+          # But not all objects support queries, for instance service adjustments
+          
+          $EntityInfo = Get-AtwsFieldInfo -Entity $Result.EntityResultType -EntityInfo
+          
+          If ($Result.EntityResults.Count -gt 0 -and $EntityInfo.CanQuery)
+          {
+            $NewObjectFilter = 'id -eq {0}' -F ($Result.EntityResults.Id -join ' -or id -eq ')
+                        
+            $EndResult += Get-AtwsData -Entity $Result.EntityResultType -Filter $NewObjectFilter
+          }
         }
         Else {
           
@@ -143,10 +156,15 @@ Function Set-AtwsData {
     }
   }
   End {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
-    
-    Return $EndResult  
-        
+    If ($EndResult.count -gt 0) { 
+      
+      Write-Debug ('{0}: End of function, returning {1} updated {2}(s)' -F $MyInvocation.MyCommand.Name, $Result.count, $Result[0].GetType().Name) 
+      Return $EndResult 
+    }
+    Else
+    {
+      Write-Debug ('{0}: End of function, no objects to return.' -F $MyInvocation.MyCommand.Name, $Result.count) 
+    } 
   }
 }
 

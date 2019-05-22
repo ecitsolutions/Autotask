@@ -58,11 +58,15 @@ Function New-AtwsData
         } 
         Write-Debug -Message ('{0}: Creating chunk from index {1} to index {2}' -F $MyInvocation.MyCommand.Name, $i, $j)        
         
+        # the .Create() method takes datetime in local time and correctly 
+        # translates to CEST without our assistance. .Update() is not as nice...
+        
         $Result = $Atws.Create($Entity[$i .. $j])
         
         
         If ($Result.Errors.Count -eq 0) 
         {
+          # Check for duplicates
           $Duplicates = $Result.EntityReturnInfoResults | Where-Object {$_.DuplicateStatus.Found -and -not $_.DuplicateStauts.Ignored}
            
           Foreach ($Duplicate in $Duplicates)
@@ -70,7 +74,20 @@ Function New-AtwsData
             Write-Warning ('{0}: Duplicate found for Object Id {1} on {2}' -F $MyInvocation.MyCommand.Name, $Duplicate.EntityId, $Duplicate.DuplicateStatus.MatchInfo)
           }
           
-          $EndResult += $Result.EntityResults
+          # The API documentation explicitly states that you can only use the objects returned 
+          # by the .create() function to get the new objects ID.
+          # so to return objects with accurately represents what has been created we have to 
+          # get them again by id
+          # But not all objects support queries, for instance service adjustments
+          
+          $EntityInfo = Get-AtwsFieldInfo -Entity $Result.EntityResultType -EntityInfo
+          
+          If ($Result.EntityResults.Count -gt 0 -and $EntityInfo.CanQuery)
+          {
+            $NewObjectFilter = 'id -eq {0}' -F ($Result.EntityResults.Id -join ' -or id -eq ')
+                        
+            $EndResult += Get-AtwsData -Entity $Result.Entityresulttype -Filter $NewObjectFilter
+          }
         }
         Else 
         {

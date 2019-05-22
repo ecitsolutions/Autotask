@@ -47,29 +47,28 @@ Function ConvertTo-AtwsDate {
   )
 
   Begin {
-    # Is the clock set?
-    $TimePresent = $DateTime.Hour -gt 0 -or $DateTime.Minute -gt 0 -or $DateTime.Second -gt 0 -or $DateTime.Millisecond -gt 0 
+    Write-Debug ('{0}: Input Value: {1}' -F $MyInvocation.MyCommand.Name, $DateTime)
   }
 
   Process {
-    If ($ParameterName -like "*DateTime" -or $TimePresent) {
-      # Use local time for DateTime
-      $OffsetSpan = (Get-TimeZone).BaseUtcOffset
+    
+    # Use local time for DateTime
+    $OffsetSpan = (Get-TimeZone).BaseUtcOffset
       
-      # Create the correct text string                           
-      $Offset = '{0:00}:{1:00}' -F $OffsetSpan.Hours, $OffsetSpan.Minutes
-      If ($OffsetSpan.Hours -ge 0) {
-        $Offset = '+{0}' -F $Offset
-      }
-      $Value = '{0}{1}' -F $(Get-Date $DateTime -Format s), $Offset
+    # Create the correct text string                           
+    $Offset = '{0:00}:{1:00}' -F $OffsetSpan.Hours, $OffsetSpan.Minutes
+    If ($OffsetSpan.Hours -ge 0) {
+      $Offset = '+{0}' -F $Offset
     }
-    Else { 
-      # Get the date, not the full datetime object, format yyyy-mm-dd
-      $Value = Get-Date $DateTime.Date -UFormat "%Y-%m-%d"
-    }
+    $Value = '{0}{1}' -F $(Get-Date $DateTime -Format s), $Offset
+    
+    Write-Verbose ('{0}: Converting datetime to {1}' -F $MyInvocation.MyCommand.Name, $Value)
+        
   }
 
   End {
+    Write-Debug ('{0}: Output value: {1}' -F $MyInvocation.MyCommand.Name, $Value)
+      
     Return $Value
   }
 }

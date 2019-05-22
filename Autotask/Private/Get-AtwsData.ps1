@@ -74,6 +74,18 @@ Function Get-AtwsData
     }
     
     $Result = @()
+    
+    # Set up TimeZone offset handling
+    If (-not($script:ESTzone)) {
+      $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
+    }
+    
+    If (-not($script:ESToffset)) {
+      $Now = Get-Date
+      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($Now.ToUniversalTime(), $ESTzone)
+
+      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
+    }
   }
   
   Process
@@ -229,6 +241,44 @@ Function Get-AtwsData
       Until ($lastquery.EntityResults.Count -lt 500)
       
       
+    }
+    
+    # Datetimeparameters
+    $Fields = Get-AtwsFieldInfo -Entity $Entity
+    $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime'}).Name
+    
+    # Expand UDFs by default
+    # Normalize dates (convert to local time). EVery datetime field ever returned
+    # By the API is in CEST.
+    Foreach ($Item in $Result)
+    {
+      # Any userdefined fields?
+      If ($Item.UserDefinedFields.Count -gt 0)
+      { 
+        # Expand User defined fields for easy filtering of collections and readability
+        Foreach ($UDF in $Item.UserDefinedFields)
+        {
+          # Make names you HAVE TO escape...
+          $UDFName = '#{0}' -F $UDF.Name
+          Add-Member -InputObject $Item -MemberType NoteProperty -Name $UDFName -Value $UDF.Value -Force
+        }  
+      }
+      
+      # Adjust TimeZone on all DateTime properties
+      # Dates RETURNED by the API are always in CEST. Add timezone difference
+      # to get local time
+      Foreach ($DateTimeParam in $DateTimeParams) {
+      
+        # Get the datetime value
+        $Value = $Item.$DateTimeParam
+                
+        # Skip if parameter is empty
+        If (-not ($Value)) {
+          Continue
+        }
+        # Yes, you really have to ADD the difference
+        $Item.$DateTimeParam  = $Value.AddHours($script:ESToffset)
+      }
     }
   }
   

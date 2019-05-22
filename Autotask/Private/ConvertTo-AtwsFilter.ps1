@@ -100,7 +100,22 @@ Function ConvertTo-AtwsFilter {
             $Value = $ParameterValue.Value
           }
           ElseIf ($ParameterValue.GetType().Name -eq 'DateTime')  {
-            $Value = ConvertTo-AtwsDate -ParameterName $ParameterName -DateTime $ParameterValue
+            If ($ParameterValue -eq $ParameterValue.Date -and 
+              $Parameter.Key -notin $GreaterThan -and 
+              $Parameter.Key -notin $GreaterThanOrEquals -and 
+              $Parameter.Key -notin $LessThan -and 
+            $Parameter.Key -notin $LessThanOrEquals) 
+            {
+              # User is searching for a date, not a specific datetime
+              $Filter += $ParameterName
+              $Filter += '-ge'
+              $Filter += ConvertTo-AtwsDate -ParameterName $ParameterName -DateTime $ParameterValue
+              $LessThanOrEquals += $ParameterName
+              $Value = ConvertTo-AtwsDate -ParameterName $ParameterName -DateTime $ParameterValue.AddDays(1)
+            }
+            Else { 
+              $Value = ConvertTo-AtwsDate -ParameterName $ParameterName -DateTime $ParameterValue
+            }
           }            
           Else {
             $Value = $ParameterValue
