@@ -40,7 +40,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 - UPDATE: All datetime fields should be handled more efficiently now. It was a bit of a mess, because the API supposedly only works in CEST. But the .Create() method takes values in local time and converts everything correctly through the API. The .Query() method will likewise accept values in local time for queries, as long as you include timezone info in the formatting of datetime values. But always, *always*, any objects *returned* by the API will have all its datetime fields in CEST.
 - UPDATE: Improved and simplifyed the code that return accurate objects directly from the API when you do New- or Set-. Moved a bit of complexity away from the entity wrappers (Get-, Set-, New- and Remove-Atws*Entity*) into the core Get-, Set-, New- and Remove-AtwsData functions.
+- UPDATE: Search for any item from a given date with a single parameter. When you pass a date (2019-05-22 00:00:00) as a value, the search filter get automatically expanded to -ge 2019-05-22 00:00:00 -and -le 2019-05-23 00:00:00. In manual filters (-Filter {CreateDate -eq 2019-05-22 00:00:00}) are still used exactly as typed.
+- BUGFIX: Personal disk cache is now version checked to make sure you always have correct code when loading from cache.
 - BUGFIX: Force object type array for any labels when auto-generating parameters for functions.
+- BUGFIX: Force arrays when parsing labels for ValidateSet() for functions. Entities with a single string field AND UserDefinedFields could not use -Like or -NotLike modifiers.
 
 ## Version 1.6.2.4 - Run without a personal disk cache (Azure Automation)
 
