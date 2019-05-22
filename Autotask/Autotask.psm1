@@ -131,7 +131,8 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   If (Get-Variable -Name AtwsNoDiskCache -Scope Global -ErrorAction SilentlyContinue)
   {
     Write-Debug ('{0}: Force No disk cache detected. All functions are loaded from the scripts supplied by the module.' -F $MyInvocation.MyCommand.Name)
-    
+    Write-Verbose ('{0}: Force No disk cache detected. All functions are loaded from the scripts supplied by the module.' -F $MyInvocation.MyCommand.Name)
+        
     # Remove Global Object, credentials are now stored in a variable internal to the module
     Remove-Variable -Name AtwsNoDiskCache -Scope Global
   
@@ -150,9 +151,10 @@ If (($Credential) -or ($ApiTrackingIdentifier))
       $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )
       Write-Debug ('{0}: Personal disk cache: Found {1} script files in {2}' -F $MyInvocation.MyCommand.Name, $DynamicFunction.Count, $DynamicCache)
             
-    
-      If ($DynamicFunction.Count -ne $FunctionCount) {
-        Write-Debug ('{0}: Personal disk cache: Wrong number of script files in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $DynamicCache)
+      $VersionString = "#Version {0}" -F $My.ModuleVersion
+      $ScriptVersion = Select-String -Pattern $VersionString -Path $DynamicFunction.FullName
+      If ($ScriptVersion.Count -ne $FunctionCount) {
+        Write-Debug ('{0}: Personal disk cache: Wrong number of script files or scripts are not the right version in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $DynamicCache)
         
         # Clear out old cache, it will be recreated
         $Null = Remove-Item -Path $DynamicFunction.fullname -Force -ErrorAction SilentlyContinue

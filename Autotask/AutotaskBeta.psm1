@@ -131,7 +131,8 @@ If (($Credential) -or ($ApiTrackingIdentifier))
   If (Get-Variable -Name AtwsNoDiskCache -Scope Global -ErrorAction SilentlyContinue)
   {
     Write-Debug ('{0}: Force No disk cache detected. All functions are loaded from the scripts supplied by the module.' -F $MyInvocation.MyCommand.Name)
-    
+    Write-Verbose ('{0}: Force No disk cache detected. All functions are loaded from the scripts supplied by the module.' -F $MyInvocation.MyCommand.Name)
+        
     # Remove Global Object, credentials are now stored in a variable internal to the module
     Remove-Variable -Name AtwsNoDiskCache -Scope Global
   
