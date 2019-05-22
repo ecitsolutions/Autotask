@@ -36,6 +36,12 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.2.8 - Date improvements
+
+- UPDATE: All datetime fields should be handled more efficiently now. It was a bit of a mess, because the API supposedly only works in CEST. But the .Create() method takes values in local time and converts everything correctly through the API. The .Query() method will likewise accept values in local time for queries, as long as you include timezone info in the formatting of datetime values. But always, *always*, any objects *returned* by the API will have all its datetime fields in CEST.
+- UPDATE: Improved and simplifyed the code that return accurate objects directly from the API when you do New- or Set-. Moved a bit of complexity away from the entity wrappers (Get-, Set-, New- and Remove-Atws*Entity*) into the core Get-, Set-, New- and Remove-AtwsData functions.
+- BUGFIX: Force object type array for any labels when auto-generating parameters for functions.
+
 ## Version 1.6.2.4 - Run without a personal disk cache (Azure Automation)
 
 - FEATURE: Connect with Connect-AtwsWebApi -Credentials $Credentials -ApiTrackingIdentifier $ApiKey -NoDiskCache to run without either creating or reading from the personal disk cache. This is geared towards making the module compatible with Azure Automation. When you run without a disk cache you do not get Intellisense autocomplete, nor parameter validation for picklists. Picklist labels are still converted to their index values at run-time so any script you have already written should run unmodified.
