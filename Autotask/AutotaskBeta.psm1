@@ -126,6 +126,17 @@ If (($Credential) -or ($ApiTrackingIdentifier))
     # Remove Global Object
     
     Remove-Variable -Name AtwsRefreshCachePattern -Scope Global
+  }  
+  
+  If (Get-Variable -Name AtwsUsePicklistLabels -Scope Global -ErrorAction SilentlyContinue)
+  {
+    Write-Debug ('{0}: Converting picklistvalues to their labels are turned ON' -F $MyInvocation.MyCommand.Name)
+    
+    $Script:UsePickListLabels = $True
+    
+    # Remove Global Object
+    
+    Remove-Variable -Name AtwsUsePicklistLabels -Scope Global
   }
   
   If (Get-Variable -Name AtwsNoDiskCache -Scope Global -ErrorAction SilentlyContinue)
