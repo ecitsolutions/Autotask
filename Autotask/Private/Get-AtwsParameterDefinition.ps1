@@ -37,12 +37,12 @@
       # -Filter
       $Comment = 'A filter that limits the number of objects that is returned from the API'
       Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'String' -Mandatory -Remaining -NotNull  -Array -Comment $Comment
-      $ReferenceFields = $FieldInfo.Where( {$_.IsReference}).Name
+      $ReferenceFields = $FieldInfo.Where( {$_.IsReference}).Name | Sort-Object
       # -GetReferenceEntityById, -GetRef
       $Comment = 'Follow this external ID and return any external objects'            
       Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter', 'By_parameters' -Type 'String' -NotNull -ValidateSet $ReferenceFields -Comment $Comment
       # -GetExternalEntityByThisEntityId, -External
-      $IncomingReferenceEntities = Get-AtwsFieldInfo -Entity $Entity.Name -ReferencingEntity
+      $IncomingReferenceEntities = Get-AtwsFieldInfo -Entity $Entity.Name -ReferencingEntity | Sort-Object
       $Comment = 'Return entities of selected type that are referencing to this entity.'
       Get-AtwsPSParameter -Name 'GetExternalEntityByThisEntityId' -Alias 'External' -SetName 'Filter', 'By_parameters' -Type 'String' -NotNull -ValidateSet $IncomingReferenceEntities -Comment $Comment
       # -All
@@ -169,7 +169,7 @@
         ParameterSetName       = $ParameterSet[$Field.Name]
         ValidateNotNullOrEmpty = $Field.IsRequired
         ValidateLength         = $ValidateLength
-        ValidateSet            = $Field.PickListValues.Label | Select-Object -Unique
+        ValidateSet            = $Field.PickListValues.Label | Sort-Object -Unique
         Array                  = $(($Verb -eq 'Get'))
         Name                   = $Field.Name
         Alias                  = $Alias
