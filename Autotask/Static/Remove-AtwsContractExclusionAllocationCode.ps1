@@ -52,7 +52,7 @@ Get-AtwsContractExclusionAllocationCode
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ContractExclusionAllocationCode[]]
+    [long[]]
     $Id
   )
  

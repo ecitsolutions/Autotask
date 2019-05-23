@@ -52,7 +52,7 @@ Get-AtwsTicketChangeRequestApproval
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TicketChangeRequestApproval[]]
+    [integer[]]
     $Id
   )
  

@@ -69,7 +69,7 @@ Set-AtwsContact
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.Contact[]]
+    [long[]]
     $Id
   )
  

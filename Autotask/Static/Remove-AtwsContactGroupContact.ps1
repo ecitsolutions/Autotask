@@ -52,7 +52,7 @@ Get-AtwsContactGroupContact
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ContactGroupContact[]]
+    [long[]]
     $Id
   )
  

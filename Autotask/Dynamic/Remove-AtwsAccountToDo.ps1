@@ -54,7 +54,7 @@ Set-AtwsAccountToDo
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.AccountToDo[]]
+    [long[]]
     $Id
   )
  

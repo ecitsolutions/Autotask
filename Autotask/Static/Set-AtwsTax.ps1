@@ -64,7 +64,7 @@ Get-AtwsTax
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [integer[]]
     $Id,
 
 # Return any updated objects through the pipeline

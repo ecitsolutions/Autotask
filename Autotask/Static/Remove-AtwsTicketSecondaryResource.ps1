@@ -52,7 +52,7 @@ Get-AtwsTicketSecondaryResource
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TicketSecondaryResource[]]
+    [long[]]
     $Id
   )
  

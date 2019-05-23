@@ -62,8 +62,9 @@
       $Comment = 'An object that will be modified by any parameters and updated in Autotask'
       Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
       # -Id
+      $Field = $FieldInfo.Where( {$_.Name -eq 'Id'})
       $Comment = 'The object.ids of objects that should be modified by any parameters and updated in Autotask'
-      Get-AtwsPSParameter -Name 'Id' -SetName 'By_Id' -Type 'Int' -Mandatory -NotNull -Array -Comment $Comment
+      Get-AtwsPSParameter -Name 'Id' -SetName 'By_Id' -Type $Field.Type -Mandatory -NotNull -Array -Comment $Comment
       # -PassThru
       $Comment = 'Return any updated objects through the pipeline'
       Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object','By_parameters' -Type 'Switch' -Comment $Comment
@@ -88,8 +89,9 @@
       $Comment = 'Any objects that should be deleted'          
       Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
       # -Id
+      $Field = $FieldInfo.Where( {$_.Name -eq 'Id'})
       $Comment = 'The unique id of an object to delete'
-      Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $TypeName -Mandatory  -NotNull -Array -Comment $Comment
+      Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $Field.Type -Mandatory  -NotNull -Array -Comment $Comment
     }
     
 

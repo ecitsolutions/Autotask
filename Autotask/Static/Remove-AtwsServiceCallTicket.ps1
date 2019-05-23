@@ -53,7 +53,7 @@ Get-AtwsServiceCallTicket
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ServiceCallTicket[]]
+    [long[]]
     $Id
   )
  

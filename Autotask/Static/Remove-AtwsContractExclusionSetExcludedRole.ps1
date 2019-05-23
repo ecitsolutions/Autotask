@@ -52,7 +52,7 @@ Get-AtwsContractExclusionSetExcludedRole
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ContractExclusionSetExcludedRole[]]
+    [long[]]
     $Id
   )
  

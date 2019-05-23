@@ -54,7 +54,7 @@ Set-AtwsActionType
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ActionType[]]
+    [long[]]
     $Id
   )
  

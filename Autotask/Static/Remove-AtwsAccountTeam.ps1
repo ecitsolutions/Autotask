@@ -52,7 +52,7 @@ Get-AtwsAccountTeam
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.AccountTeam[]]
+    [long[]]
     $Id
   )
  

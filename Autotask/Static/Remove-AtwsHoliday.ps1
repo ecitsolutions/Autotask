@@ -54,7 +54,7 @@ Set-AtwsHoliday
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.Holiday[]]
+    [long[]]
     $Id
   )
  

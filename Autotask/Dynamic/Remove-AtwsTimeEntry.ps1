@@ -57,7 +57,7 @@ Set-AtwsTimeEntry
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TimeEntry[]]
+    [long[]]
     $Id
   )
  

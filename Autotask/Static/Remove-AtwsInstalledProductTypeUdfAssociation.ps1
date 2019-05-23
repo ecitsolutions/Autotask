@@ -54,7 +54,7 @@ Set-AtwsInstalledProductTypeUdfAssociation
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.InstalledProductTypeUdfAssociation[]]
+    [long[]]
     $Id
   )
  

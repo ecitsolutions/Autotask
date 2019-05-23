@@ -52,7 +52,7 @@ Get-AtwsServiceCallTaskResource
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ServiceCallTaskResource[]]
+    [long[]]
     $Id
   )
  

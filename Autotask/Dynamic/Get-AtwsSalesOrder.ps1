@@ -119,7 +119,7 @@ Set-AtwsSalesOrder
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Opportunity:SalesOrderID', 'PurchaseOrderItem:SalesOrderID')]
+    [ValidateSet('PurchaseOrderItem:SalesOrderID', 'Opportunity:SalesOrderID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

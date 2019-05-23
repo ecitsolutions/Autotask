@@ -54,7 +54,7 @@ Set-AtwsTaskPredecessor
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TaskPredecessor[]]
+    [long[]]
     $Id
   )
  

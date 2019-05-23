@@ -55,7 +55,7 @@ Set-AtwsContractCost
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ContractCost[]]
+    [long[]]
     $Id
   )
  

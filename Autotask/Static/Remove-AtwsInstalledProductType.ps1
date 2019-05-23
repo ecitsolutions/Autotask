@@ -55,7 +55,7 @@ Set-AtwsInstalledProductType
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.InstalledProductType[]]
+    [long[]]
     $Id
   )
  

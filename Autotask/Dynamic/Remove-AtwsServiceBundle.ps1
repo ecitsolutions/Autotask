@@ -62,7 +62,7 @@ Set-AtwsServiceBundle
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ServiceBundle[]]
+    [long[]]
     $Id
   )
  

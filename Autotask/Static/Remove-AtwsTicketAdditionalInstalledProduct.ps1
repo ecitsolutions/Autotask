@@ -52,7 +52,7 @@ Get-AtwsTicketAdditionalInstalledProduct
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TicketAdditionalInstalledProduct[]]
+    [long[]]
     $Id
   )
  

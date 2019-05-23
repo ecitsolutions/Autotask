@@ -55,7 +55,7 @@ Set-AtwsSubscription
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.Subscription[]]
+    [long[]]
     $Id
   )
  

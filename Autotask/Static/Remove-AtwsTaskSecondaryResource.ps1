@@ -52,7 +52,7 @@ Get-AtwsTaskSecondaryResource
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TaskSecondaryResource[]]
+    [long[]]
     $Id
   )
  

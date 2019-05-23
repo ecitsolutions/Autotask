@@ -54,7 +54,7 @@ Set-AtwsAppointment
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.Appointment[]]
+    [long[]]
     $Id
   )
  

@@ -55,7 +55,7 @@ Set-AtwsProjectCost
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ProjectCost[]]
+    [long[]]
     $Id
   )
  

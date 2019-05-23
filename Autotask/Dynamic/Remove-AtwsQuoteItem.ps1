@@ -58,7 +58,7 @@ Set-AtwsQuoteItem
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.QuoteItem[]]
+    [long[]]
     $Id
   )
  

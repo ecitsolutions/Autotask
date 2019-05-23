@@ -59,7 +59,7 @@ Set-AtwsAccountPhysicalLocation
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.AccountPhysicalLocation[]]
+    [long[]]
     $Id
   )
  

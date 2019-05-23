@@ -55,7 +55,7 @@ Set-AtwsTicketCost
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TicketCost[]]
+    [long[]]
     $Id
   )
  

@@ -52,7 +52,7 @@ Get-AtwsChangeRequestLink
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ChangeRequestLink[]]
+    [integer[]]
     $Id
   )
  

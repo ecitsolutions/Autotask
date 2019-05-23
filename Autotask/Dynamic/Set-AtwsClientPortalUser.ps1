@@ -64,7 +64,7 @@ Get-AtwsClientPortalUser
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [long[]]
     $Id,
 
 # Return any updated objects through the pipeline

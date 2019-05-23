@@ -52,7 +52,7 @@ Get-AtwsTicketAdditionalContact
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TicketAdditionalContact[]]
+    [long[]]
     $Id
   )
  

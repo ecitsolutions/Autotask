@@ -57,7 +57,7 @@ Set-AtwsContractExclusionSet
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ContractExclusionSet[]]
+    [long[]]
     $Id
   )
  

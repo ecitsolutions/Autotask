@@ -54,7 +54,7 @@ Set-AtwsTicketChecklistItem
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TicketChecklistItem[]]
+    [long[]]
     $Id
   )
  

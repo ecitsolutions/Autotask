@@ -56,7 +56,7 @@ Set-AtwsChecklistLibrary
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ChecklistLibrary[]]
+    [long[]]
     $Id
   )
  
