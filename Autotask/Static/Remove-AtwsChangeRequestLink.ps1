@@ -52,7 +52,7 @@ Get-AtwsChangeRequestLink
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [integer[]]
+    [Int[]]
     $Id
   )
  

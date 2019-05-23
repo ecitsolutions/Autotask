@@ -52,7 +52,7 @@ Get-AtwsTicketChangeRequestApproval
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [integer[]]
+    [Int[]]
     $Id
   )
  

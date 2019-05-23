@@ -64,7 +64,7 @@ Get-AtwsSalesOrder
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [integer[]]
+    [Int[]]
     $Id,
 
 # Return any updated objects through the pipeline
@@ -445,7 +445,10 @@ Get-AtwsSalesOrder
     # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
     # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
     $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
-   
+    
+    # Do Picklists more human readable
+    $Picklists = $Fields.Where{$_.IsPickList}
+    
     # Adjust TimeZone on all DateTime properties
     Foreach ($Object in $InputObject) 
     { 
@@ -460,6 +463,14 @@ Get-AtwsSalesOrder
         }
         # Convert the datetime back to CEST
         $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
+      }
+      
+      # Revert picklist labels to their values
+      Foreach ($Field in $Picklists)
+      {
+        If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
+          $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
+        }
       }
     }
     
@@ -480,6 +491,16 @@ Get-AtwsSalesOrder
         # Revert the datetime back from CEST
         $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
       }
+      
+      If ($Script:UsePickListLabels) { 
+        # Restore picklist labels
+        Foreach ($Field in $Picklists)
+        {
+          If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
+            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+          }
+        }
+      }
     }
     
   }
@@ -487,7 +508,9 @@ Get-AtwsSalesOrder
   End
   {
     Write-Debug ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $ModifiedObjects.count, $EntityName)
-    Return $ModifiedObjects
+    If ($PassThru.IsPresent) { 
+      Return $ModifiedObjects
+    }
   }
 
 }
