@@ -97,6 +97,21 @@
     }
 
     # Add the correct variable type for the parameter
+    $Type = Switch ($Type) 
+    {
+      'Integer' 
+      {
+        'Int'
+      }
+      'Short'   
+      {
+        'Int16'
+      }
+      default   
+      {
+        $Type
+      }
+    }
     $Text += "    [$Type"
     If ($Array.IsPresent) {
         $Text += '[]'

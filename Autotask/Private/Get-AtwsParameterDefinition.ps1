@@ -132,21 +132,8 @@
     $EntityNameParameter = '{0}Name' -f $Entity.Name
     Foreach ($Field in $Fields )
     {
-      $Type = Switch ($Field.Type) 
-      {
-        'Integer' 
-        {
-          'Int'
-        }
-        'Short'   
-        {
-          'Int16'
-        }
-        default   
-        {
-          $Field.Type
-        }
-      }
+      # Start with native field type
+      $Type = $Field.Type
 
       # Fieldtype for picklists
       If ($Field.IsPickList) {
