@@ -46,7 +46,7 @@ Function Update-AtwsFilter {
   }
 
   Process {
-    # $Filter is usually passed as a flat string. Convert it to an array.
+      # $Filter is usually passed as a flat string. Convert it to an array.
       If ($FilterString.Count -eq 1 -and $FilterString -match ' ' )
       { 
         # First, make sure it is a single string and replace parenthesis with our special operator

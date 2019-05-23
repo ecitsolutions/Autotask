@@ -56,6 +56,18 @@ Function Connect-AtwsWebAPI {
     $ApiTrackingIdentifier,
     
     [Parameter(
+        Mandatory = $true,
+        ParameterSetName = 'Default'
+    )]
+    [Parameter(
+        Mandatory = $true,
+        ParameterSetName = 'NoDiskCache'
+    )]
+    [Alias('Picklist')]
+    [Switch]
+    $UsePicklistLabels,
+    
+    [Parameter(
         ParameterSetName = 'Default'
     )]
     [Parameter(
@@ -94,11 +106,20 @@ Function Connect-AtwsWebAPI {
     # Store parameters to global variables. Force-reloading the module destroys this scope.
     $Global:AtwsCredential = $Credential
     $Global:AtwsApiTrackingIdentifier = $ApiTrackingIdentifier
+    
+    # Set Refresh pattern 
     If ($RefreshCache.IsPresent) {
       $Global:AtwsRefreshCachePattern = '*'
     }
+    
+    # Set No disk cache preference
     If ($NoDiskCache.IsPresent) {
       $Global:AtwsNoDiskCache = $True
+    }
+    
+    # Set Picklist preference
+    If ($UsePicklistLabels.IsPresent) {
+      $Global:AtwsUsePicklistLabels = $True
     }
     
     
@@ -117,7 +138,8 @@ Function Connect-AtwsWebAPI {
 
   }
   
-  Process { 
+  Process {
+  
     Try 
     { 
       # First try to re-import the module by name

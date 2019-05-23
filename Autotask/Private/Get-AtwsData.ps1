@@ -90,104 +90,14 @@ Function Get-AtwsData
   
   Process
   {
-  
-    Write-Debug ('{0}: Mashing parameters into an array of strings.' -F $MyInvocation.MyCommand.Name)
-    
-    # $Filter should not be a flat string. If it is - fix it!
+    # $Filter is usually passed as a flat string. Make sure it is formatted properly
     If ($Filter.Count -eq 1 -and $Filter -match ' ' )
     { 
-      # First, make sure it is a single string and replace parenthesis with our special operator
-      $Filter = $Filter -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '
-    
-      # Removing double possible spaces we may have introduced
-      Do {$Filter = $Filter -replace '  ',' '}
-      While ($Filter -match '  ')
-
-      # Split back in to array, respecting quotes
-      $Words = $Filter.Trim().Split(' ')
-      $Filter = @()
-      $Temp = @()
-      Foreach ($Word in $Words)
-      {
-        If ($Temp.Count -eq 0 -and $Word -match '^[\"\'']')
-        {
-          $Temp += $Word.TrimStart('"''')
-        }
-        ElseIf ($Temp.Count -gt 0 -and $Word -match "[\'\""]$")
-        {
-          $Temp += $Word.TrimEnd("'""")
-          $Filter += $Temp -join ' '
-          $Temp = @()
-        }
-        ElseIf ($Temp.Count -gt 0)
-        {
-          $Temp += $Word
-        }
-        Else
-        {
-          $Filter += $Word
-        }
-      }
-    }
-    Write-Debug ('{0}: Checking query for variables that have survived as string' -F $MyInvocation.MyCommand.Name)
-    $NewFilter = @()
-    Foreach ($Word in $Filter)
-    {
-      $Value = $Word
-      # Is it a variable name?
-      If ($Word -match '^\$\{?(\w+:)?(\w+)\}?(\.\w[\.\w]+)?$')
-      {
-        # If present, first group is SCOPE. In the context of this function, scope is always Global, i.e. 3
-        # so any value her is just ignored
-
-        
-        # The variable name MUST be present
-        $VariableName = $Matches[2]
-
-        # A property tail CAN be present
-        $PropertyTail = $Matches[3]
-        
-        # Check that the variable exists
-        $Variable = Try
-        { Get-Variable -Name $VariableName -Scope 3 -ValueOnly -ErrorAction Stop }
-        Catch
-        {
-          Write-Error ('{0}: Could not find any variable called ${1}. Is it misspelled or has it not been set yet?' -f $MyInvocation.MyCommand.Name, $VariableName)
-          # Force stop of calling script, because this will completely break the query
-          Return
-        }
-
-        # Test if the variable "Variable" has been set
-        If (Test-Path Variable:Variable) {
-          Write-Debug ('{0}: Substituting {1} for its value' -F $MyInvocation.MyCommand.Name, $Word)
-          If ($PropertyTail) {
-            # Add properties back 
-            $Expression = '$Variable{0}' -F $PropertyTail
-  
-            # Invoke-Expression is considered risky from an SQL injection kind of perspective. But by only
-            # permitting a .dot separated string of [a-zA-Z0-9_] we are PROBABLY safe...
-            $Value = Invoke-Expression -Command $Expression
-          }
-          Else {
-            $Value = $Variable
-          }
-          If ($Value -eq $Null) {
-            Write-Error ('{0}: Could not find any variable called {1}. Is it misspelled or has it not been set yet?' -F $MyInvocation.MyCommand.Name, $Expression)
-            # Force stop of calling script, because this will completely break the query
-            Return
-          }
-          Else { 
-            # Normalize dates. Important to avoid QueryXML problems
-            If ($Value.GetType().Name -eq 'DateTime')
-            {[String]$Value = ConvertTo-AtwsDate -ParameterName $NewFilter[-2] -DateTime $Value}
-          }
-        }
-      }
-      $NewFilter += $Value
+        $Filter = . Update-AtwsFilter -FilterString $Filter
     }
     
     # Squash into a flat array with entity first
-    [Array]$Query = @($Entity) + $NewFilter
+    [Array]$Query = @($Entity) + $Filter
   
     Write-Debug ('{0}: Converting query string into QueryXml. String as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
     [xml]$QueryXml = ConvertTo-QueryXML @Query
@@ -218,8 +128,11 @@ Function Get-AtwsData
       Do 
       {
         Write-Verbose ('{0}: Passing QueryXML to Autotask API' -F $MyInvocation.MyCommand.Name)
+
+        # Get the first batch - the API returns max 500 items
         $lastquery = $atws.query($QueryXml.InnerXml)
 
+        # Handle any errors
         If ($lastquery.Errors.Count -gt 0)
         {
           Foreach ($AtwsError in $lastquery.Errors)
@@ -228,9 +141,17 @@ Function Get-AtwsData
           }
           Return
         }
+
+        # Add all returned objects to the Result
         $result += $lastquery.EntityResults
+
+        # Results are sorted by object Id. The Id of the last object is the highest object id in the result
         $UpperBound = $lastquery.EntityResults[$lastquery.EntityResults.GetUpperBound(0)].id
+
+        # Add the higest Id (so far) to the id -gt ? condition
         $expression.InnerText = $UpperBound
+
+        # If this is the first pass we append the expression to the query
         If ($FirstPass)
         {
           # Insert looping construct into query
@@ -238,15 +159,18 @@ Function Get-AtwsData
           $FirstPass = $False        
         }
       }
+      # The last query we have to make will have between 0 and 499 items
       Until ($lastquery.EntityResults.Count -lt 500)
-      
-      
+     
     }
     
     # Datetimeparameters
     $Fields = Get-AtwsFieldInfo -Entity $Entity
     $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime'}).Name
-    
+
+    # Picklists
+    $Picklists = $Fields.Where{$_.IsPickList}
+
     # Expand UDFs by default
     # Normalize dates (convert to local time). EVery datetime field ever returned
     # By the API is in CEST.
@@ -278,6 +202,16 @@ Function Get-AtwsData
         }
         # Yes, you really have to ADD the difference
         $Item.$DateTimeParam  = $Value.AddHours($script:ESToffset)
+      }
+
+      If ($Script:UsePickListLabels) { 
+        # Restore picklist labels
+        Foreach ($Field in $Picklists)
+        {
+          If ($Item.$($Field.Name) -in $Field.PicklistValues.Value) {
+            $Item.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+          }
+        }
       }
     }
   }
