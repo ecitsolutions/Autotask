@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -108,7 +108,7 @@ Set-AtwsInvoice
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'CreatorResourceID', 'VoidedByResourceID', 'InvoiceEditorTemplateID')]
+    [ValidateSet('AccountID', 'CreatorResourceID', 'InvoiceEditorTemplateID', 'VoidedByResourceID')]
     [String]
     $GetReferenceEntityById,
 

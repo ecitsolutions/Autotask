@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -89,7 +89,7 @@ Remove-AtwsTaskSecondaryResource
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TaskID', 'ResourceID', 'RoleID')]
+    [ValidateSet('ResourceID', 'RoleID', 'TaskID')]
     [String]
     $GetReferenceEntityById,
 

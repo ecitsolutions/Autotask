@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -102,7 +102,7 @@ An example of a more complex query. This command returns any ResourceRoles with 
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ResourceID', 'DepartmentID', 'RoleID')]
+    [ValidateSet('DepartmentID', 'ResourceID', 'RoleID')]
     [String]
     $GetReferenceEntityById,
 

@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -109,7 +109,7 @@ Set-AtwsTicketNote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CreatorResourceID', 'TicketID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID')]
+    [ValidateSet('CreatorResourceID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'TicketID')]
     [String]
     $GetReferenceEntityById,
 

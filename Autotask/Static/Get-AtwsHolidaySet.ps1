@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -105,7 +105,7 @@ Set-AtwsHolidaySet
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Holiday:HolidaySetID', 'BusinessLocation:HolidaySetID')]
+    [ValidateSet('BusinessLocation:HolidaySetID', 'Holiday:HolidaySetID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

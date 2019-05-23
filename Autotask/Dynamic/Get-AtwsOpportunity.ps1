@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -135,7 +135,7 @@ Set-AtwsOpportunity
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'ContactID', 'OwnerResourceID', 'ProductID', 'SalesOrderID', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AccountID', 'BusinessDivisionSubdivisionID', 'ContactID', 'OwnerResourceID', 'ProductID', 'SalesOrderID')]
     [String]
     $GetReferenceEntityById,
 
@@ -148,7 +148,7 @@ Set-AtwsOpportunity
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:OpportunityID', 'NotificationHistory:OpportunityID', 'Contract:OpportunityID', 'AttachmentInfo:OpportunityID', 'Ticket:OpportunityId', 'AccountNote:OpportunityID', 'Quote:OpportunityID', 'AccountToDo:OpportunityID')]
+    [ValidateSet('AccountNote:OpportunityID', 'AccountToDo:OpportunityID', 'AttachmentInfo:OpportunityID', 'Contract:OpportunityID', 'NotificationHistory:OpportunityID', 'Quote:OpportunityID', 'SalesOrder:OpportunityID', 'Ticket:OpportunityId')]
     [String]
     $GetExternalEntityByThisEntityId,
 

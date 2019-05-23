@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -120,7 +120,7 @@ Set-AtwsQuote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('OpportunityID', 'CreatorResourceID', 'ContactID', 'ProposalProjectID', 'BillToLocationID', 'ShipToLocationID', 'SoldToLocationID', 'AccountID', 'LastModifiedBy', 'QuoteTemplateID')]
+    [ValidateSet('AccountID', 'BillToLocationID', 'ContactID', 'CreatorResourceID', 'LastModifiedBy', 'OpportunityID', 'ProposalProjectID', 'QuoteTemplateID', 'ShipToLocationID', 'SoldToLocationID')]
     [String]
     $GetReferenceEntityById,
 

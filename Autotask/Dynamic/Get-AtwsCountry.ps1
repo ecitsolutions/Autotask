@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -109,7 +109,7 @@ Set-AtwsCountry
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('InvoiceTemplateID', 'QuoteTemplateID')]
     [String]
     $GetReferenceEntityById,
 
@@ -122,7 +122,7 @@ Set-AtwsCountry
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:BillToCountryID', 'SalesOrder:ShipToCountryID', 'Contact:CountryID', 'Account:CountryID', 'Account:BillToCountryID', 'AccountPhysicalLocation:CountryID', 'BusinessLocation:CountryID')]
+    [ValidateSet('Account:BillToCountryID', 'Account:CountryID', 'AccountPhysicalLocation:CountryID', 'BusinessLocation:CountryID', 'Contact:CountryID', 'SalesOrder:BillToCountryID', 'SalesOrder:ShipToCountryID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

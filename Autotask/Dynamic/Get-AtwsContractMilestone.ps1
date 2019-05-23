@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -107,7 +107,7 @@ Set-AtwsContractMilestone
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CreatorResourceID', 'ContractID', 'AllocationCodeID', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractID', 'CreatorResourceID')]
     [String]
     $GetReferenceEntityById,
 

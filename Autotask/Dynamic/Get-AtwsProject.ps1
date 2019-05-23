@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -125,7 +125,7 @@ Set-AtwsProject
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'CreatorResourceID', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID')]
+    [ValidateSet('AccountID', 'BusinessDivisionSubdivisionID', 'CompanyOwnerResourceID', 'ContractID', 'CreatorResourceID', 'LastActivityResourceID', 'ProjectLeadResourceID')]
     [String]
     $GetReferenceEntityById,
 
@@ -138,7 +138,7 @@ Set-AtwsProject
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('NotificationHistory:ProjectID', 'BillingItem:ProjectID', 'Ticket:ProjectID', 'ProjectCost:ProjectID', 'Phase:ProjectID', 'ExpenseItem:ProjectID', 'Quote:ProposalProjectID', 'ProjectNote:ProjectID', 'PurchaseOrderItem:ProjectID', 'Task:ProjectID')]
+    [ValidateSet('BillingItem:ProjectID', 'ExpenseItem:ProjectID', 'NotificationHistory:ProjectID', 'Phase:ProjectID', 'ProjectCost:ProjectID', 'ProjectNote:ProjectID', 'PurchaseOrderItem:ProjectID', 'Quote:ProposalProjectID', 'Task:ProjectID', 'Ticket:ProjectID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

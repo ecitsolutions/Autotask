@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -89,7 +89,7 @@ Remove-AtwsServiceCallTaskResource
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceCallTaskID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'ServiceCallTaskID')]
     [String]
     $GetReferenceEntityById,
 

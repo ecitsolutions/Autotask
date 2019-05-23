@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -97,7 +97,7 @@ Set-AtwsContractService
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'ServiceID', 'QuoteItemID')]
+    [ValidateSet('ContractID', 'QuoteItemID', 'ServiceID')]
     [String]
     $GetReferenceEntityById,
 
@@ -110,7 +110,7 @@ Set-AtwsContractService
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractServiceAdjustment:ContractServiceID', 'Ticket:ContractServiceID', 'InstalledProduct:ContractServiceID', 'TicketCost:ContractServiceID', 'ContractServiceUnit:ContractServiceID', 'ProjectCost:ContractServiceID', 'ContractCost:ContractServiceID', 'TimeEntry:ContractServiceID')]
+    [ValidateSet('ContractCost:ContractServiceID', 'ContractServiceAdjustment:ContractServiceID', 'ContractServiceUnit:ContractServiceID', 'InstalledProduct:ContractServiceID', 'ProjectCost:ContractServiceID', 'Ticket:ContractServiceID', 'TicketCost:ContractServiceID', 'TimeEntry:ContractServiceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

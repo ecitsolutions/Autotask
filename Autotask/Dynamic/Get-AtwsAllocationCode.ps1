@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -142,7 +142,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Service:AllocationCodeID', 'TicketCategoryFieldDefaults:WorkTypeID', 'ContractExclusionAllocationCode:AllocationCodeID', 'ShippingType:AllocationCodeID', 'Subscription:MaterialCodeID', 'ServiceBundle:AllocationCodeID', 'BillingItem:AllocationCodeID', 'Ticket:AllocationCodeID', 'ContractMilestone:AllocationCodeID', 'TicketCost:AllocationCodeID', 'ProjectCost:AllocationCodeID', 'Product:ProductAllocationCodeID', 'Product:CostAllocationCodeID', 'ContractExclusionSetExcludedWorkType:ExcludedWorkTypeID', 'ContractCost:AllocationCodeID', 'PriceListMaterialCode:AllocationCodeID', 'QuoteItem:CostID', 'QuoteItem:ExpenseID', 'TimeEntry:InternalAllocationCodeID', 'TimeEntry:AllocationCodeID', 'Task:AllocationCodeID')]
+    [ValidateSet('BillingItem:AllocationCodeID', 'ContractCost:AllocationCodeID', 'ContractExclusionAllocationCode:AllocationCodeID', 'ContractExclusionSetExcludedWorkType:ExcludedWorkTypeID', 'ContractMilestone:AllocationCodeID', 'PriceListMaterialCode:AllocationCodeID', 'Product:CostAllocationCodeID', 'Product:ProductAllocationCodeID', 'ProjectCost:AllocationCodeID', 'QuoteItem:CostID', 'QuoteItem:ExpenseID', 'Service:AllocationCodeID', 'ServiceBundle:AllocationCodeID', 'ShippingType:AllocationCodeID', 'Subscription:MaterialCodeID', 'Task:AllocationCodeID', 'Ticket:AllocationCodeID', 'TicketCategoryFieldDefaults:WorkTypeID', 'TicketCost:AllocationCodeID', 'TimeEntry:AllocationCodeID', 'TimeEntry:InternalAllocationCodeID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -126,7 +126,7 @@ Set-AtwsContact
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'CountryID', 'AccountPhysicalLocationID')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'CountryID')]
     [String]
     $GetReferenceEntityById,
 
@@ -139,7 +139,7 @@ Set-AtwsContact
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:Contact', 'NotificationHistory:InitiatingContactID', 'Contract:ContactID', 'Contract:BillToAccountContactID', 'AttachmentInfo:AttachedByContactID', 'Ticket:ContactID', 'InstalledProduct:ContactID', 'InstalledProduct:InstalledByContactID', 'ContactGroupContact:ContactID', 'TicketAdditionalContact:ContactID', 'TicketChangeRequestApproval:ContactID', 'ClientPortalUser:ContactID', 'AccountNote:ContactID', 'Quote:ContactID', 'Opportunity:ContactID', 'SurveyResults:ContactID', 'AccountToDo:ContactID')]
+    [ValidateSet('AccountNote:ContactID', 'AccountToDo:ContactID', 'AttachmentInfo:AttachedByContactID', 'ClientPortalUser:ContactID', 'ContactGroupContact:ContactID', 'Contract:BillToAccountContactID', 'Contract:ContactID', 'InstalledProduct:ContactID', 'InstalledProduct:InstalledByContactID', 'NotificationHistory:InitiatingContactID', 'Opportunity:ContactID', 'Quote:ContactID', 'SalesOrder:Contact', 'SurveyResults:ContactID', 'Ticket:ContactID', 'TicketAdditionalContact:ContactID', 'TicketChangeRequestApproval:ContactID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

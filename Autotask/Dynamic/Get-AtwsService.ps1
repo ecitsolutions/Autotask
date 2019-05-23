@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -130,7 +130,7 @@ Set-AtwsService
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractServiceAdjustment:ServiceID', 'ContractService:ServiceID', 'BillingItem:ServiceID', 'PriceListService:ServiceID', 'InstalledProduct:ServiceID', 'ContractServiceUnit:ServiceID', 'ServiceBundleService:ServiceID', 'QuoteItem:ServiceID')]
+    [ValidateSet('BillingItem:ServiceID', 'ContractService:ServiceID', 'ContractServiceAdjustment:ServiceID', 'ContractServiceUnit:ServiceID', 'InstalledProduct:ServiceID', 'PriceListService:ServiceID', 'QuoteItem:ServiceID', 'ServiceBundleService:ServiceID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

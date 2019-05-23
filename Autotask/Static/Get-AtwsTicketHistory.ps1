@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -85,7 +85,7 @@ Returns any object with a TicketHistoryName that DOES NOT match the simple patte
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TicketID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'TicketID')]
     [String]
     $GetReferenceEntityById,
 

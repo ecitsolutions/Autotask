@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -89,7 +89,7 @@ Remove-AtwsContractExclusionAllocationCode
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'ContractID')]
     [String]
     $GetReferenceEntityById,
 

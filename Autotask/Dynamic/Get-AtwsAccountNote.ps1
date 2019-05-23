@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -106,7 +106,7 @@ Set-AtwsAccountNote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'AssignedResourceID', 'ContactID', 'OpportunityID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID')]
+    [ValidateSet('AccountID', 'AssignedResourceID', 'ContactID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'OpportunityID')]
     [String]
     $GetReferenceEntityById,
 

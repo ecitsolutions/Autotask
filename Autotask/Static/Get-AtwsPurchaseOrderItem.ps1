@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -90,7 +90,7 @@ Set-AtwsPurchaseOrderItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('OrderID', 'ProductID', 'InventoryLocationID', 'SalesOrderID', 'ContractID', 'ProjectID', 'TicketID')]
+    [ValidateSet('ContractID', 'InventoryLocationID', 'OrderID', 'ProductID', 'ProjectID', 'SalesOrderID', 'TicketID')]
     [String]
     $GetReferenceEntityById,
 

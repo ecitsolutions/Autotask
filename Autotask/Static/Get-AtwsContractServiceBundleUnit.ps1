@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -85,7 +85,7 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'ServiceBundleID', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceBundleID', 'ServiceBundleID')]
     [String]
     $GetReferenceEntityById,
 

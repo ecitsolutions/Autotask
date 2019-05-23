@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -115,7 +115,7 @@ Set-AtwsQuoteItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('QuoteID', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'TaxCategoryID')]
+    [ValidateSet('CostID', 'ExpenseID', 'LaborID', 'ProductID', 'QuoteID', 'ServiceBundleID', 'ServiceID', 'ShippingID', 'TaxCategoryID')]
     [String]
     $GetReferenceEntityById,
 
@@ -128,7 +128,7 @@ Set-AtwsQuoteItem
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractServiceAdjustment:QuoteItemID', 'ContractService:QuoteItemID', 'ContractServiceBundleAdjustment:QuoteItemID', 'ContractServiceBundle:QuoteItemID')]
+    [ValidateSet('ContractService:QuoteItemID', 'ContractServiceAdjustment:QuoteItemID', 'ContractServiceBundle:QuoteItemID', 'ContractServiceBundleAdjustment:QuoteItemID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

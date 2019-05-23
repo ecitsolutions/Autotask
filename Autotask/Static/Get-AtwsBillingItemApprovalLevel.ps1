@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -87,7 +87,7 @@ New-AtwsBillingItemApprovalLevel
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TimeEntryID', 'ApprovalResourceID')]
+    [ValidateSet('ApprovalResourceID', 'TimeEntryID')]
     [String]
     $GetReferenceEntityById,
 

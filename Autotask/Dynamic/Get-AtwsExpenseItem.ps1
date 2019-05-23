@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -113,7 +113,7 @@ Set-AtwsExpenseItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ExpenseReportID', 'AccountID', 'ProjectID', 'TaskID', 'TicketID', 'ExpenseCurrencyID')]
+    [ValidateSet('AccountID', 'ExpenseCurrencyID', 'ExpenseReportID', 'ProjectID', 'TaskID', 'TicketID')]
     [String]
     $GetReferenceEntityById,
 

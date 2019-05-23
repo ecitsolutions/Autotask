@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -87,7 +87,7 @@ Set-AtwsPriceListProduct
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProductID', 'CurrencyID')]
+    [ValidateSet('CurrencyID', 'ProductID')]
     [String]
     $GetReferenceEntityById,
 

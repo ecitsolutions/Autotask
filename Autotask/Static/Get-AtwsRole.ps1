@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -120,7 +120,7 @@ Set-AtwsRole
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractFactor:RoleID', 'ResourceServiceDeskRole:RoleID', 'PriceListRole:RoleID', 'TaskSecondaryResource:RoleID', 'ResourceRole:RoleID', 'BillingItem:RoleID', 'Ticket:AssignedResourceRoleID', 'ResourceRoleDepartment:RoleID', 'TicketSecondaryResource:RoleID', 'ContractExclusionSetExcludedRole:ExcludedRoleID', 'Resource:DefaultServiceDeskRoleID', 'QuoteItem:LaborID', 'TimeEntry:RoleID', 'ResourceRoleQueue:RoleID', 'ContractRoleCost:RoleID', 'Task:AssignedResourceRoleID', 'ContractExclusionRole:RoleID', 'ContractRate:RoleID')]
+    [ValidateSet('BillingItem:RoleID', 'ContractExclusionRole:RoleID', 'ContractExclusionSetExcludedRole:ExcludedRoleID', 'ContractFactor:RoleID', 'ContractRate:RoleID', 'ContractRoleCost:RoleID', 'PriceListRole:RoleID', 'QuoteItem:LaborID', 'Resource:DefaultServiceDeskRoleID', 'ResourceRole:RoleID', 'ResourceRoleDepartment:RoleID', 'ResourceRoleQueue:RoleID', 'ResourceServiceDeskRole:RoleID', 'Task:AssignedResourceRoleID', 'TaskSecondaryResource:RoleID', 'Ticket:AssignedResourceRoleID', 'TicketSecondaryResource:RoleID', 'TimeEntry:RoleID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

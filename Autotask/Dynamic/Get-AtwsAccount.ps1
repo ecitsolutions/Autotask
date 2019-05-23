@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -151,7 +151,7 @@ Set-AtwsAccount
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('OwnerResourceID', 'ParentAccountID', 'TaxRegionID', 'CountryID', 'BillToCountryID', 'QuoteTemplateID', 'InvoiceTemplateID', 'CurrencyID', 'BillToAccountPhysicalLocationID')]
+    [ValidateSet('BillToAccountPhysicalLocationID', 'BillToCountryID', 'CountryID', 'CurrencyID', 'InvoiceTemplateID', 'OwnerResourceID', 'ParentAccountID', 'QuoteTemplateID', 'TaxRegionID')]
     [String]
     $GetReferenceEntityById,
 
@@ -164,7 +164,7 @@ Set-AtwsAccount
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:AccountID', 'Project:AccountID', 'Invoice:AccountID', 'Service:VendorAccountID', 'Contact:AccountID', 'Account:ParentAccountID', 'AccountTeam:AccountID', 'NotificationHistory:AccountID', 'Contract:AccountID', 'Contract:BillToAccountID', 'ServiceCall:AccountID', 'Subscription:VendorID', 'BillingItem:AccountID', 'BillingItem:VendorID', 'Ticket:AccountID', 'InstalledProduct:AccountID', 'InstalledProduct:VendorID', 'ContractServiceUnit:VendorAccountID', 'AccountPhysicalLocation:AccountID', 'PurchaseOrder:VendorID', 'PurchaseOrder:PurchaseForAccountID', 'ProductVendor:VendorID', 'Product:DefaultVendorID', 'ExpenseItem:AccountID', 'AccountAlert:AccountID', 'AccountNote:AccountID', 'Quote:AccountID', 'Opportunity:AccountID', 'SurveyResults:AccountID', 'AccountToDo:AccountID', 'AccountLocation:AccountID')]
+    [ValidateSet('Account:ParentAccountID', 'AccountAlert:AccountID', 'AccountLocation:AccountID', 'AccountNote:AccountID', 'AccountPhysicalLocation:AccountID', 'AccountTeam:AccountID', 'AccountToDo:AccountID', 'BillingItem:AccountID', 'BillingItem:VendorID', 'Contact:AccountID', 'Contract:AccountID', 'Contract:BillToAccountID', 'ContractServiceUnit:VendorAccountID', 'ExpenseItem:AccountID', 'InstalledProduct:AccountID', 'InstalledProduct:VendorID', 'Invoice:AccountID', 'NotificationHistory:AccountID', 'Opportunity:AccountID', 'Product:DefaultVendorID', 'ProductVendor:VendorID', 'Project:AccountID', 'PurchaseOrder:PurchaseForAccountID', 'PurchaseOrder:VendorID', 'Quote:AccountID', 'SalesOrder:AccountID', 'Service:VendorAccountID', 'ServiceCall:AccountID', 'Subscription:VendorID', 'SurveyResults:AccountID', 'Ticket:AccountID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

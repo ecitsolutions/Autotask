@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -104,7 +104,7 @@ Set-AtwsPriceListWorkTypeModifier
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('WorkTypeModifierID', 'CurrencyID')]
+    [ValidateSet('CurrencyID', 'WorkTypeModifierID')]
     [String]
     $GetReferenceEntityById,
 

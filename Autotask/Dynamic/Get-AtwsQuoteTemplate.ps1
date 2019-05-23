@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -130,7 +130,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Country:QuoteTemplateID', 'Account:QuoteTemplateID', 'Quote:QuoteTemplateID')]
+    [ValidateSet('Account:QuoteTemplateID', 'Country:QuoteTemplateID', 'Quote:QuoteTemplateID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

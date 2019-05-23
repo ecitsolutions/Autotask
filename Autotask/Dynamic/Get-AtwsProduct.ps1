@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -120,7 +120,7 @@ Set-AtwsProduct
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('DefaultVendorID', 'ProductAllocationCodeID', 'CostAllocationCodeID')]
+    [ValidateSet('CostAllocationCodeID', 'DefaultVendorID', 'ProductAllocationCodeID')]
     [String]
     $GetReferenceEntityById,
 
@@ -133,7 +133,7 @@ Set-AtwsProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('PriceListProduct:ProductID', 'InstalledProduct:ProductID', 'TicketCost:ProductID', 'ProjectCost:ProductID', 'ProductVendor:ProductID', 'ContractCost:ProductID', 'InventoryItem:ProductID', 'QuoteItem:ProductID', 'PurchaseOrderItem:ProductID', 'Opportunity:ProductID', 'InventoryTransfer:ProductID')]
+    [ValidateSet('ContractCost:ProductID', 'InstalledProduct:ProductID', 'InventoryItem:ProductID', 'InventoryTransfer:ProductID', 'Opportunity:ProductID', 'PriceListProduct:ProductID', 'ProductVendor:ProductID', 'ProjectCost:ProductID', 'PurchaseOrderItem:ProductID', 'QuoteItem:ProductID', 'TicketCost:ProductID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

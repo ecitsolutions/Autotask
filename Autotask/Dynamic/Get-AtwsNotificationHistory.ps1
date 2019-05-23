@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -108,7 +108,7 @@ An example of a more complex query. This command returns any NotificationHistory
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InitiatingResourceID', 'InitiatingContactID', 'AccountID', 'QuoteID', 'OpportunityID', 'ProjectID', 'TaskID', 'TicketID', 'TimeEntryID')]
+    [ValidateSet('AccountID', 'InitiatingContactID', 'InitiatingResourceID', 'OpportunityID', 'ProjectID', 'QuoteID', 'TaskID', 'TicketID', 'TimeEntryID')]
     [String]
     $GetReferenceEntityById,
 

@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -118,7 +118,7 @@ Set-AtwsBusinessDivisionSubdivision
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('SalesOrder:BusinessDivisionSubdivisionID', 'Project:BusinessDivisionSubdivisionID', 'TicketCategoryFieldDefaults:BusinessDivisionSubdivisionID', 'Contract:BusinessDivisionSubdivisionID', 'Subscription:BusinessDivisionSubdivisionID', 'BillingItem:BusinessDivisionSubdivisionID', 'Ticket:BusinessDivisionSubdivisionID', 'ContractMilestone:BusinessDivisionSubdivisionID', 'TicketCost:BusinessDivisionSubdivisionID', 'ContractServiceUnit:BusinessDivisionSubdivisionID', 'ProjectCost:BusinessDivisionSubdivisionID', 'BusinessDivisionSubdivisionResource:BusinessDivisionSubdivisionID', 'ContractCost:BusinessDivisionSubdivisionID', 'ExpenseReport:BusinessDivisionSubdivisionID', 'Opportunity:BusinessDivisionSubdivisionID', 'ContractServiceBundleUnit:BusinessDivisionSubdivisionID')]
+    [ValidateSet('BillingItem:BusinessDivisionSubdivisionID', 'BusinessDivisionSubdivisionResource:BusinessDivisionSubdivisionID', 'Contract:BusinessDivisionSubdivisionID', 'ContractCost:BusinessDivisionSubdivisionID', 'ContractMilestone:BusinessDivisionSubdivisionID', 'ContractServiceBundleUnit:BusinessDivisionSubdivisionID', 'ContractServiceUnit:BusinessDivisionSubdivisionID', 'ExpenseReport:BusinessDivisionSubdivisionID', 'Opportunity:BusinessDivisionSubdivisionID', 'Project:BusinessDivisionSubdivisionID', 'ProjectCost:BusinessDivisionSubdivisionID', 'SalesOrder:BusinessDivisionSubdivisionID', 'Subscription:BusinessDivisionSubdivisionID', 'Ticket:BusinessDivisionSubdivisionID', 'TicketCategoryFieldDefaults:BusinessDivisionSubdivisionID', 'TicketCost:BusinessDivisionSubdivisionID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

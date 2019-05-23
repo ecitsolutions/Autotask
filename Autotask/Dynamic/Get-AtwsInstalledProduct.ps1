@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -168,7 +168,7 @@ Set-AtwsInstalledProduct
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'ProductID', 'ContractID', 'ServiceID', 'ServiceBundleID', 'ContactID', 'VendorID', 'InstalledByID', 'InstalledByContactID', 'ParentInstalledProductID', 'ContractServiceID', 'ContractServiceBundleID', 'AccountPhysicalLocationID', 'LastActivityPersonID')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'ContactID', 'ContractID', 'ContractServiceBundleID', 'ContractServiceID', 'InstalledByContactID', 'InstalledByID', 'LastActivityPersonID', 'ParentInstalledProductID', 'ProductID', 'ServiceBundleID', 'ServiceID', 'VendorID')]
     [String]
     $GetReferenceEntityById,
 
@@ -181,7 +181,7 @@ Set-AtwsInstalledProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Subscription:InstalledProductID', 'BillingItem:InstalledProductID', 'Ticket:InstalledProductID', 'InstalledProduct:ParentInstalledProductID', 'TicketAdditionalInstalledProduct:InstalledProductID')]
+    [ValidateSet('BillingItem:InstalledProductID', 'InstalledProduct:ParentInstalledProductID', 'Subscription:InstalledProductID', 'Ticket:InstalledProductID', 'TicketAdditionalInstalledProduct:InstalledProductID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

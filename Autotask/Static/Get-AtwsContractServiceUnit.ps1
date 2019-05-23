@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -85,7 +85,7 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'ServiceID', 'VendorAccountID', 'ContractServiceID', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceID', 'ServiceID', 'VendorAccountID')]
     [String]
     $GetReferenceEntityById,
 

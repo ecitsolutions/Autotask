@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -112,7 +112,7 @@ Set-AtwsProjectCost
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProjectID', 'ProductID', 'AllocationCodeID', 'CreatorResourceID', 'ContractServiceID', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'ContractServiceID', 'CreatorResourceID', 'ProductID', 'ProjectID')]
     [String]
     $GetReferenceEntityById,
 

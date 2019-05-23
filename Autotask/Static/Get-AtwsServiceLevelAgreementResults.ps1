@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -85,7 +85,7 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TicketID', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'ResolutionPlanResourceID', 'ResolutionResourceID')]
+    [ValidateSet('FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'TicketID')]
     [String]
     $GetReferenceEntityById,
 

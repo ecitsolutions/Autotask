@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -112,7 +112,7 @@ Set-AtwsTicketCost
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TicketID', 'ProductID', 'AllocationCodeID', 'CreatorResourceID', 'ContractServiceID', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'ContractServiceID', 'CreatorResourceID', 'ProductID', 'TicketID')]
     [String]
     $GetReferenceEntityById,
 

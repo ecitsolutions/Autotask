@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -91,7 +91,7 @@ Set-AtwsAppointment
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ResourceID', 'CreatorResourceID')]
+    [ValidateSet('CreatorResourceID', 'ResourceID')]
     [String]
     $GetReferenceEntityById,
 

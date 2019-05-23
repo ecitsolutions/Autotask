@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -139,7 +139,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Invoice:InvoiceEditorTemplateID', 'Country:InvoiceTemplateID', 'Account:InvoiceTemplateID')]
+    [ValidateSet('Account:InvoiceTemplateID', 'Country:InvoiceTemplateID', 'Invoice:InvoiceEditorTemplateID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

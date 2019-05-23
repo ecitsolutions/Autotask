@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -112,7 +112,7 @@ Set-AtwsSubscription
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('MaterialCodeID', 'InstalledProductID', 'VendorID', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'InstalledProductID', 'MaterialCodeID', 'VendorID')]
     [String]
     $GetReferenceEntityById,
 

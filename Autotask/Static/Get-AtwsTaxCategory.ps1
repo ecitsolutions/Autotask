@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -105,7 +105,7 @@ Set-AtwsTaxCategory
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AllocationCode:TaxCategoryID', 'Tax:TaxCategoryID', 'QuoteItem:TaxCategoryID', 'Role:QuoteItemDefaultTaxCategoryId')]
+    [ValidateSet('AllocationCode:TaxCategoryID', 'QuoteItem:TaxCategoryID', 'Role:QuoteItemDefaultTaxCategoryId', 'Tax:TaxCategoryID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

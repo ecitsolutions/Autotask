@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -149,7 +149,7 @@ Set-AtwsContract
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'OpportunityID', 'ExclusionContractID', 'ContactID', 'BusinessDivisionSubdivisionID', 'BillToAccountID', 'BillToAccountContactID', 'ContractExclusionSetID')]
+    [ValidateSet('AccountID', 'BillToAccountContactID', 'BillToAccountID', 'BusinessDivisionSubdivisionID', 'ContactID', 'ContractExclusionSetID', 'ExclusionContractID', 'OpportunityID')]
     [String]
     $GetReferenceEntityById,
 
@@ -162,7 +162,7 @@ Set-AtwsContract
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Project:ContractID', 'ContractFactor:ContractID', 'ContractServiceAdjustment:ContractID', 'Contract:ExclusionContractID', 'ContractExclusionAllocationCode:ContractID', 'ContractService:ContractID', 'ContractRetainer:ContractID', 'ContractNote:ContractID', 'BillingItem:ContractID', 'Ticket:ContractID', 'ContractMilestone:ContractID', 'InstalledProduct:ContractID', 'ContractServiceUnit:ContractID', 'ContractServiceBundleAdjustment:ContractID', 'ContractTicketPurchase:ContractID', 'ContractCost:ContractID', 'TimeEntry:ContractID', 'PurchaseOrderItem:ContractID', 'ContractBlock:ContractID', 'AccountToDo:ContractID', 'ContractRoleCost:ContractID', 'ContractServiceBundle:ContractID', 'ContractServiceBundleUnit:ContractID', 'ContractExclusionRole:ContractID', 'ContractRate:ContractID')]
+    [ValidateSet('AccountToDo:ContractID', 'BillingItem:ContractID', 'Contract:ExclusionContractID', 'ContractBlock:ContractID', 'ContractCost:ContractID', 'ContractExclusionAllocationCode:ContractID', 'ContractExclusionRole:ContractID', 'ContractFactor:ContractID', 'ContractMilestone:ContractID', 'ContractNote:ContractID', 'ContractRate:ContractID', 'ContractRetainer:ContractID', 'ContractRoleCost:ContractID', 'ContractService:ContractID', 'ContractServiceAdjustment:ContractID', 'ContractServiceBundle:ContractID', 'ContractServiceBundleAdjustment:ContractID', 'ContractServiceBundleUnit:ContractID', 'ContractServiceUnit:ContractID', 'ContractTicketPurchase:ContractID', 'InstalledProduct:ContractID', 'Project:ContractID', 'PurchaseOrderItem:ContractID', 'Ticket:ContractID', 'TimeEntry:ContractID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

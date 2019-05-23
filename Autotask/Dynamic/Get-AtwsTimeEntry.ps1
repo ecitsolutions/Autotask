@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -111,7 +111,7 @@ Set-AtwsTimeEntry
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TaskID', 'TicketID', 'InternalAllocationCodeID', 'RoleID', 'ResourceID', 'AllocationCodeID', 'ContractID', 'BillingApprovalResourceID', 'ContractServiceID', 'ContractServiceBundleID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID')]
+    [ValidateSet('AllocationCodeID', 'BillingApprovalResourceID', 'ContractID', 'ContractServiceBundleID', 'ContractServiceID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InternalAllocationCodeID', 'ResourceID', 'RoleID', 'TaskID', 'TicketID')]
     [String]
     $GetReferenceEntityById,
 
@@ -124,7 +124,7 @@ Set-AtwsTimeEntry
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItemApprovalLevel:TimeEntryID', 'NotificationHistory:TimeEntryID', 'BillingItem:TimeEntryID')]
+    [ValidateSet('BillingItem:TimeEntryID', 'BillingItemApprovalLevel:TimeEntryID', 'NotificationHistory:TimeEntryID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

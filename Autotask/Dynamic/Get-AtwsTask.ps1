@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -132,7 +132,7 @@ Set-AtwsTask
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CreatorResourceID', 'PhaseID', 'ProjectID', 'CompletedByResourceID', 'LastActivityResourceID')]
+    [ValidateSet('AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedByResourceID', 'CreatorResourceID', 'LastActivityResourceID', 'PhaseID', 'ProjectID')]
     [String]
     $GetReferenceEntityById,
 
@@ -145,7 +145,7 @@ Set-AtwsTask
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('NotificationHistory:TaskID', 'TaskNote:TaskID', 'TaskPredecessor:PredecessorTaskID', 'TaskPredecessor:SuccessorTaskID', 'TaskSecondaryResource:TaskID', 'BillingItem:TaskID', 'ServiceCallTask:TaskID', 'ExpenseItem:TaskID', 'TimeEntry:TaskID')]
+    [ValidateSet('BillingItem:TaskID', 'ExpenseItem:TaskID', 'NotificationHistory:TaskID', 'ServiceCallTask:TaskID', 'TaskNote:TaskID', 'TaskPredecessor:PredecessorTaskID', 'TaskPredecessor:SuccessorTaskID', 'TaskSecondaryResource:TaskID', 'TimeEntry:TaskID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

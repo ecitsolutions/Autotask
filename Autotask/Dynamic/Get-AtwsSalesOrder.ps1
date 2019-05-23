@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.8
+#Version 1.6.2.9
 <#
 
 .COPYRIGHT
@@ -106,7 +106,7 @@ Set-AtwsSalesOrder
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'Contact', 'OwnerResourceID', 'OpportunityID', 'BillToCountryID', 'ShipToCountryID', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AccountID', 'BillToCountryID', 'BusinessDivisionSubdivisionID', 'Contact', 'OpportunityID', 'OwnerResourceID', 'ShipToCountryID')]
     [String]
     $GetReferenceEntityById,
 
@@ -119,7 +119,7 @@ Set-AtwsSalesOrder
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('PurchaseOrderItem:SalesOrderID', 'Opportunity:SalesOrderID')]
+    [ValidateSet('Opportunity:SalesOrderID', 'PurchaseOrderItem:SalesOrderID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
