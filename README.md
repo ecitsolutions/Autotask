@@ -36,9 +36,12 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
-## Version 1.6.2.9 - Bugfix release
+## Version 1.6.2.10 - Bugfix and an update
 
 - BUGFIX: The Id field has type Long (64 bit integer), not Int (32 bit integer). Get- functions already knew this. Now Set- and Remove- functions also know. New- doesn't care as Id is a read-only parameter.
+- UPDATE: Added wrapper function for .GetThresholdAndUsageInfo() method. Now you can keep an eye on your API threshold usage from within your scripts with Get-AtwsThresholdAndUsageInfo. The function needs no parameters.
+- UPDATE: Use Picklist labels with objects. The default is still the numerical values of picklists, but you can set an object picklist to its text label and have the module convert it automatically for you: `$Ticket.Status = 'Complete'; $Ticket | Set-AtwsTicket`
+- UPDATE: If you prefer to have all your picklists converted to their text labels when you work with the API you can now use `Connect-AtwsWebAPI -UsePicklistLabels`
 
 ## Version 1.6.2.8 - Date improvements
 
