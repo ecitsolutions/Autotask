@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.2.9 - Bugfix release
+
+- BUGFIX: The Id field has type Long (64 bit integer), not Int (32 bit integer). Get- functions already knew this. Now Set- and Remove- functions also know. New- doesn't care as Id is a read-only parameter.
+
 ## Version 1.6.2.8 - Date improvements
 
 - UPDATE: All datetime fields should be handled more efficiently now. It was a bit of a mess, because the API supposedly only works in CEST. But the .Create() method takes values in local time and converts everything correctly through the API. The .Query() method will likewise accept values in local time for queries, as long as you include timezone info in the formatting of datetime values. But always, *always*, any objects *returned* by the API will have all its datetime fields in CEST.
