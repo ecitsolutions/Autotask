@@ -56,11 +56,9 @@ Function Connect-AtwsWebAPI {
     $ApiTrackingIdentifier,
     
     [Parameter(
-        Mandatory = $true,
         ParameterSetName = 'Default'
     )]
     [Parameter(
-        Mandatory = $true,
         ParameterSetName = 'NoDiskCache'
     )]
     [Alias('Picklist')]
