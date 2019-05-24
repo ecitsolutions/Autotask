@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.2.11 - Bufix release
+
+- BUGFIX: `Connect-AtwsWebAPI -UsePicklistLabels` should NOT be Mandatory...
+
 ## Version 1.6.2.10 - Bugfix and an update
 
 - BUGFIX: The Id field has type Long (64 bit integer), not Int (32 bit integer). Get- functions already knew this. Now Set- and Remove- functions also know. New- doesn't care as Id is a read-only parameter.
