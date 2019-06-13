@@ -81,7 +81,7 @@ Set-AtwsAccount
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -109,7 +109,7 @@ Set-AtwsAccount
     )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $AccountName,
 
@@ -117,7 +117,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $Address1,
 
@@ -125,7 +125,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $Address2,
 
@@ -133,7 +133,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,30)]
+    [ValidateLength(0,30)]
     [string]
     $City,
 
@@ -141,7 +141,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,40)]
+    [ValidateLength(0,40)]
     [string]
     $State,
 
@@ -149,7 +149,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,10)]
+    [ValidateLength(0,10)]
     [string]
     $PostalCode,
 
@@ -157,7 +157,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $Country,
 
@@ -167,7 +167,7 @@ Set-AtwsAccount
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $Phone,
 
@@ -175,7 +175,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $AlternatePhone1,
 
@@ -183,7 +183,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $AlternatePhone2,
 
@@ -191,7 +191,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $Fax,
 
@@ -199,7 +199,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string]
     $WebAddress,
 
@@ -260,7 +260,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,10)]
+    [ValidateLength(0,10)]
     [string]
     $StockSymbol,
 
@@ -268,7 +268,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,10)]
+    [ValidateLength(0,10)]
     [string]
     $StockMarket,
 
@@ -276,7 +276,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,32)]
+    [ValidateLength(0,32)]
     [string]
     $SICCode,
 
@@ -291,7 +291,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $AccountNumber,
 
@@ -348,7 +348,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $TaxID,
 
@@ -356,7 +356,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $AdditionalAddressInformation,
 
@@ -378,7 +378,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $BillToAttention,
 
@@ -386,7 +386,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,150)]
+    [ValidateLength(0,150)]
     [string]
     $BillToAddress1,
 
@@ -394,7 +394,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,150)]
+    [ValidateLength(0,150)]
     [string]
     $BillToAddress2,
 
@@ -402,7 +402,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $BillToCity,
 
@@ -410,7 +410,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $BillToState,
 
@@ -418,7 +418,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $BillToZipCode,
 
@@ -433,7 +433,7 @@ Set-AtwsAccount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $BillToAdditionalAddressInformation,
 
@@ -583,9 +583,15 @@ Set-AtwsAccount
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }    
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
 
-    $Result = New-AtwsData -Entity $ProcessObject
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
+    }
   }
 
   End

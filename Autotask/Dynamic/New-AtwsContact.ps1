@@ -71,7 +71,7 @@ Set-AtwsContact
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -107,7 +107,7 @@ Set-AtwsContact
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $FirstName,
 
@@ -117,7 +117,7 @@ Set-AtwsContact
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $LastName,
 
@@ -125,7 +125,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,2)]
+    [ValidateLength(0,2)]
     [string]
     $MiddleInitial,
 
@@ -133,7 +133,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $Title,
 
@@ -141,7 +141,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $AddressLine,
 
@@ -149,7 +149,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $AddressLine1,
 
@@ -157,7 +157,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,32)]
+    [ValidateLength(0,32)]
     [string]
     $City,
 
@@ -165,7 +165,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,40)]
+    [ValidateLength(0,40)]
     [string]
     $State,
 
@@ -173,7 +173,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,16)]
+    [ValidateLength(0,16)]
     [string]
     $ZipCode,
 
@@ -181,7 +181,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $Country,
 
@@ -189,7 +189,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,254)]
+    [ValidateLength(0,254)]
     [string]
     $EMailAddress,
 
@@ -197,7 +197,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,254)]
+    [ValidateLength(0,254)]
     [string]
     $EMailAddress2,
 
@@ -205,7 +205,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,254)]
+    [ValidateLength(0,254)]
     [string]
     $EMailAddress3,
 
@@ -220,7 +220,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $Phone,
 
@@ -228,7 +228,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,10)]
+    [ValidateLength(0,10)]
     [string]
     $Extension,
 
@@ -236,7 +236,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,32)]
+    [ValidateLength(0,32)]
     [string]
     $AlternatePhone,
 
@@ -244,7 +244,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $MobilePhone,
 
@@ -252,7 +252,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $FaxNumber,
 
@@ -260,7 +260,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $Note,
 
@@ -275,7 +275,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $RoomNumber,
 
@@ -306,7 +306,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $AdditionalAddressInformation,
 
@@ -314,7 +314,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $ExternalID,
 
@@ -364,7 +364,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,200)]
+    [ValidateLength(0,200)]
     [string]
     $FacebookUrl,
 
@@ -372,7 +372,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,200)]
+    [ValidateLength(0,200)]
     [string]
     $TwitterUrl,
 
@@ -380,7 +380,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,200)]
+    [ValidateLength(0,200)]
     [string]
     $LinkedInUrl,
 
@@ -495,9 +495,15 @@ Set-AtwsContact
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }    
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
 
-    $Result = New-AtwsData -Entity $ProcessObject
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
+    }
   }
 
   End

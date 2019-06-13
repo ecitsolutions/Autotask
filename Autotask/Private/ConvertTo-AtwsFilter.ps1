@@ -9,24 +9,23 @@
 Function ConvertTo-AtwsFilter {
   <#
       .SYNOPSIS
-      This function converts a datetime object to a string representation of the datetime object that is 
-      compatible with the Autotask Web Services API.
+      This function converts a parameter set of a Get-function to a parsable approximation of a PowerShell
+      filter.
       .DESCRIPTION
-      There are two challenges with the Autotask Web Services API: There is a single DateTime property type
-      that is used for both date fields and datetime fields. This becomes a challenge when you factor in
-      that the API always uses the EST timezone, but most users expect DateTime to be treated in their local
-      Timezone. This function takes both the DateTime object and the parameter name, because the parameter
-      name is the only clue as to whether this property should be treated as a Date or a full DateTime value. 
+      This function converts a parameter set of a Get-function to a parsable approximation of a PowerShell
+      filter. Due to internal scope contraints the function needs to be dot.sourced in the calling function.
+      This function is not stand alone. It uses several variables that only exist in the calling scope, 
+      another reason it needs to be dot.sourced. This is not best practice, but it is still by design. 
       .INPUTS
-      [DateTime]
+      System.Collections.Generic.Dictionary`2[System.String,System.Object]]
       .OUTPUTS
-      [String]
+      [String[]]
       .EXAMPLE
       $Element | ConvertTo-AtwsDate -ParameterName <ParameterName>
       Converts variable $Element with must contain a single DateTime value to a string representation of the 
       Date or the DateTime, based on the parameter name.
       .NOTES
-      NAME: ConvertTo-AtwsDate
+      NAME: ConvertTo-AtwsFilter
       
   #>
   [cmdletbinding()]
@@ -75,6 +74,16 @@ Function ConvertTo-AtwsFilter {
  
     Foreach ($Parameter in $BoundParameters.GetEnumerator()) {
       $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
+      
+      # If Parameter value is null or an empty string for string types, add name to $IsNull array
+      # and continue
+      If (($Field.Type -ne 'String' -and $Null -eq $Parameter.Value) -or ($Field.Type -eq 'String' -and $Parameter.Value.Length -eq 0)) {
+        If ($IsNull -notcontains $Parameter.Key) { 
+          $IsNull += $Parameter.Key
+        }
+        Continue
+      }
+      
       If ($Field -or $Parameter.Key -eq 'UserDefinedField') { 
         If ($Parameter.Value.Count -gt 1) {
           $Filter += '-begin'

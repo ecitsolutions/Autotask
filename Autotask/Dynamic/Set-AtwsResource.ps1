@@ -96,7 +96,7 @@ Get-AtwsResource
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
   Param
   (
 # An object that will be modified by any parameters and updated in Autotask
@@ -138,7 +138,7 @@ Get-AtwsResource
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [boolean]
+    [Nullable[boolean]]
     $Active,
 
 # Email
@@ -153,7 +153,7 @@ Get-AtwsResource
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,254)]
+    [ValidateLength(0,254)]
     [string]
     $Email,
 
@@ -167,7 +167,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,254)]
+    [ValidateLength(0,254)]
     [string]
     $Email2,
 
@@ -181,7 +181,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,254)]
+    [ValidateLength(0,254)]
     [string]
     $Email3,
 
@@ -238,7 +238,7 @@ Get-AtwsResource
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $FirstName,
 
@@ -278,7 +278,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $HomePhone,
 
@@ -292,7 +292,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,32)]
+    [ValidateLength(0,32)]
     [string]
     $Initials,
 
@@ -308,7 +308,7 @@ Get-AtwsResource
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $LastName,
 
@@ -322,7 +322,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $MiddleName,
 
@@ -336,7 +336,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $MobilePhone,
 
@@ -350,7 +350,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,10)]
+    [ValidateLength(0,10)]
     [string]
     $OfficeExtension,
 
@@ -364,7 +364,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $OfficePhone,
 
@@ -406,7 +406,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $Title,
 
@@ -435,7 +435,7 @@ Get-AtwsResource
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,32)]
+    [ValidateLength(0,32)]
     [string]
     $UserName,
 
@@ -449,7 +449,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [long]
+    [Nullable[long]]
     $DefaultServiceDeskRoleID,
 
 # Password
@@ -462,7 +462,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,64)]
+    [ValidateLength(0,64)]
     [string]
     $Password,
 
@@ -506,7 +506,7 @@ Get-AtwsResource
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $AccountingReferenceID
   )
@@ -535,6 +535,9 @@ Get-AtwsResource
     If ($Id.Count -gt 0 -and $Id.Count -le 200) {
       $Filter = 'Id -eq {0}' -F ($Id -join ' -or Id -eq ')
       $InputObject = Get-AtwsData -Entity $EntityName -Filter $Filter
+      
+      # Remove the ID parameter so we do not try to set it on every object
+      $Null = $PSBoundParameters.Remove('id')
     }
     ElseIf ($Id.Count -gt 200) {
       Throw [ApplicationException] 'Too many objects, the module can process a maximum of 200 objects when using the Id parameter.'
@@ -549,7 +552,7 @@ Get-AtwsResource
     Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
     {
       $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-      If ($Field -or $Parameter.Key -eq 'UserDefinedFields')
+      If (($Field) -or $Parameter.Key -eq 'UserDefinedFields')
       { 
         If ($Field.IsPickList)
         {
@@ -566,63 +569,70 @@ Get-AtwsResource
         }
       }
     }
+
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to modify {1} {2}(s). This action cannot be undone.' -F $Caption, $InputObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to modify {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $InputObject.Count, $EntityName
+
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+  
+      # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
+      # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
+      $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
     
-    # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
-    # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-    $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
+      # Do Picklists more human readable
+      $Picklists = $Fields.Where{$_.IsPickList}
     
-    # Do Picklists more human readable
-    $Picklists = $Fields.Where{$_.IsPickList}
-    
-    # Adjust TimeZone on all DateTime properties
-    Foreach ($Object in $InputObject) 
-    { 
-      Foreach ($DateTimeParam in $DateTimeParams) {
+      # Adjust TimeZone on all DateTime properties
+      Foreach ($Object in $InputObject) 
+      { 
+        Foreach ($DateTimeParam in $DateTimeParams) {
       
-        # Get the datetime value
-        $Value = $Object.$DateTimeParam
+          # Get the datetime value
+          $Value = $Object.$DateTimeParam
                 
-        # Skip if parameter is empty
-        If (-not ($Value)) {
-          Continue
+          # Skip if parameter is empty
+          If (-not ($Value)) {
+            Continue
+          }
+          # Convert the datetime back to CEST
+          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
         }
-        # Convert the datetime back to CEST
-        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
-      }
       
-      # Revert picklist labels to their values
-      Foreach ($Field in $Picklists)
-      {
-        If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
-          $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
-        }
-      }
-    }
-    
-    $ModifiedObjects = Set-AtwsData -Entity $InputObject
-    
-    # Revert changes back on any inputobject
-    Foreach ($Object in $InputObject) 
-    { 
-      Foreach ($DateTimeParam in $DateTimeParams) {
-      
-        # Get the datetime value
-        $Value = $Object.$DateTimeParam
-                
-        # Skip if parameter is empty
-        If (-not ($Value)) {
-          Continue
-        }
-        # Revert the datetime back from CEST
-        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
-      }
-      
-      If ($Script:UsePickListLabels) { 
-        # Restore picklist labels
+        # Revert picklist labels to their values
         Foreach ($Field in $Picklists)
         {
-          If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
-            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+          If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
+            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
+          }
+        }
+      }
+
+      $ModifiedObjects = Set-AtwsData -Entity $InputObject
+    
+      # Revert changes back on any inputobject
+      Foreach ($Object in $InputObject) 
+      { 
+        Foreach ($DateTimeParam in $DateTimeParams) {
+      
+          # Get the datetime value
+          $Value = $Object.$DateTimeParam
+                
+          # Skip if parameter is empty
+          If (-not ($Value)) {
+            Continue
+          }
+          # Revert the datetime back from CEST
+          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
+        }
+      
+        If ($Script:UsePickListLabels) { 
+          # Restore picklist labels
+          Foreach ($Field in $Picklists)
+          {
+            If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
+              $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+            }
           }
         }
       }

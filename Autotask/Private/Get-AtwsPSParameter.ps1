@@ -32,7 +32,9 @@
 
         [String]$Comment,
 
-        [Switch]$Array
+        [Switch]$Array,
+        
+        [Switch]$Nullable
 
 
           
@@ -79,7 +81,7 @@
 
     # Add validate length if present
     If ($ValidateLength -gt 0) {
-        $Text += "    [ValidateLength(1,$ValidateLength)]`n" 
+        $Text += "    [ValidateLength(0,$ValidateLength)]`n" 
     }
         
     # Add Validateset if present
@@ -111,6 +113,9 @@
       {
         $Type
       }
+    }
+    If ($Nullable.IsPresent) {
+      $Type = "Nullable[$Type]"
     }
     $Text += "    [$Type"
     If ($Array.IsPresent) {

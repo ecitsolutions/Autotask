@@ -97,7 +97,7 @@ Set-AtwsServiceBundle
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
@@ -161,7 +161,7 @@ Set-AtwsServiceBundle
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Nullable[long][]]
     $id,
 
 # service_bundle_name
@@ -169,7 +169,7 @@ Set-AtwsServiceBundle
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,150)]
+    [ValidateLength(0,150)]
     [string[]]
     $Name,
 
@@ -177,7 +177,7 @@ Set-AtwsServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,200)]
+    [ValidateLength(0,200)]
     [string[]]
     $Description,
 
@@ -185,21 +185,21 @@ Set-AtwsServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $UnitPrice,
 
 # discount_dollars
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $UnitDiscount,
 
 # discount_percent
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $PercentageDiscount,
 
 # period_type
@@ -215,42 +215,42 @@ Set-AtwsServiceBundle
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [Nullable[Int][]]
     $AllocationCodeID,
 
 # active
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [boolean[]]
+    [Nullable[boolean][]]
     $IsActive,
 
 # create_by_id
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # update_by_id
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $UpdateResourceID,
 
 # create_date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Invoice Description
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,1000)]
+    [ValidateLength(0,1000)]
     [string[]]
     $InvoiceDescription,
 
@@ -258,7 +258,7 @@ Set-AtwsServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $LastModifiedDate,
 
 # Service Level Agreement Id
@@ -272,7 +272,7 @@ Set-AtwsServiceBundle
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $UnitCost,
 
     [Parameter(
@@ -398,48 +398,55 @@ Set-AtwsServiceBundle
       $Filter = . Update-AtwsFilter -FilterString $Filter
     } 
 
-    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
+    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+    
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    
 
-    Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
-    # Datetimeparameters
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName
+      # Datetimeparameters
+      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
-    # Should we return an indirect object?
-    if ( ($Result) -and ($GetReferenceEntityById))
-    {
-      Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
+      # Should we return an indirect object?
+      if ( ($Result) -and ($GetReferenceEntityById))
+      {
+        Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
       
-      $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
-      $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
-      If ($ResultValues.Count -lt $Result.Count)
-      {
-        Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
-          $ResultValues.Count,
-          $EntityName,
-        $GetReferenceEntityById) -WarningAction Continue
-      }
-      $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
-      $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
-    }
-    ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
-    {
-      Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
-      $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
-      $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
-      $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
-     }
-    # Do the user want labels along with index values for Picklists?
-    ElseIf ( ($Result) -and -not ($NoPickListLabel))
-    {
-      Foreach ($Field in $Fields.Where{$_.IsPickList})
-      {
-        $FieldName = '{0}Label' -F $Field.Name
-        Foreach ($Item in $Result)
+        $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
+        $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
+        If ($ResultValues.Count -lt $Result.Count)
         {
-          $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
-          Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
+          Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+            $ResultValues.Count,
+            $EntityName,
+          $GetReferenceEntityById) -WarningAction Continue
+        }
+        $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
+        $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
+      }
+      ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
+      {
+        Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+        $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
+        $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
+        $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
+      }
+      # Do the user want labels along with index values for Picklists?
+      ElseIf ( ($Result) -and -not ($NoPickListLabel))
+      {
+        Foreach ($Field in $Fields.Where{$_.IsPickList})
+        {
+          $FieldName = '{0}Label' -F $Field.Name
+          Foreach ($Item in $Result)
+          {
+            $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+            Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
           
+          }
         }
       }
     }

@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.11
+#Version 1.6.2.12
 <#
 
 .COPYRIGHT
@@ -37,7 +37,7 @@ Set-AtwsInstalledProductType
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='Input_Object', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Input_Object', ConfirmImpact='Low')]
   Param
   (
 # Any objects that should be deleted
@@ -80,7 +80,14 @@ Set-AtwsInstalledProductType
 
     If ($InputObject)
     { 
-      Remove-AtwsData -Entity $InputObject
+      
+      $Caption = $MyInvocation.MyCommand.Name
+      $VerboseDescrition = '{0}: About to delete {1} {2}(s). This action cannot be undone.' -F $Caption, $InputObject.Count, $EntityName
+      $VerboseWarning = '{0}: About to delete {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $InputObject.Count, $EntityName
+
+      If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+        Remove-AtwsData -Entity $InputObject
+      }
     }
   }
 

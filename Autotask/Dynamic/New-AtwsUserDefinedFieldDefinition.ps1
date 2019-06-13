@@ -54,7 +54,7 @@ Set-AtwsUserDefinedFieldDefinition
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -72,7 +72,7 @@ Set-AtwsUserDefinedFieldDefinition
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,45)]
+    [ValidateLength(0,45)]
     [string]
     $Name,
 
@@ -80,7 +80,7 @@ Set-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $Description,
 
@@ -106,7 +106,7 @@ Set-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,1024)]
+    [ValidateLength(0,1024)]
     [string]
     $DefaultValue,
 
@@ -149,7 +149,7 @@ Set-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $MergeVariableName,
 
@@ -278,9 +278,15 @@ Set-AtwsUserDefinedFieldDefinition
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }    
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
 
-    $Result = New-AtwsData -Entity $ProcessObject
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
+    }
   }
 
   End

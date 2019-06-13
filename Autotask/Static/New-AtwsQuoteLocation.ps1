@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.11
+#Version 1.6.2.12
 <#
 
 .COPYRIGHT
@@ -52,7 +52,7 @@ Set-AtwsQuoteLocation
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -68,7 +68,7 @@ Set-AtwsQuoteLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $Address1,
 
@@ -76,7 +76,7 @@ Set-AtwsQuoteLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $Address2,
 
@@ -84,7 +84,7 @@ Set-AtwsQuoteLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $City,
 
@@ -92,7 +92,7 @@ Set-AtwsQuoteLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $State,
 
@@ -100,7 +100,7 @@ Set-AtwsQuoteLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,20)]
+    [ValidateLength(0,20)]
     [string]
     $PostalCode
   )
@@ -187,9 +187,15 @@ Set-AtwsQuoteLocation
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }    
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
 
-    $Result = New-AtwsData -Entity $ProcessObject
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
+    }
   }
 
   End

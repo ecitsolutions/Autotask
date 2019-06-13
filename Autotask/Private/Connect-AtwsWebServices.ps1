@@ -174,24 +174,6 @@ Function Connect-AtwsWebServices {
       Write-Verbose ('{0}: Loading disk cache' -F $MyInvocation.MyCommand.Name)
       
       Import-AtwsDiskCache
-      
-      # Check date and time formats and warn if the are different. This will affect how dates as text will be converted to datetime objects
-
-      $CultureInfo = ([CultureInfo]::CurrentCulture).DateTimeFormat
-
-      If ($Result.DateFormat -ne $CultureInfo.ShortDatePattern -and $Result.TimeFormat -ne $CultureInfo.ShortTimePattern) {
-        Write-host 'WARNING: DATE and TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date and time entries wrong.' -ForegroundColor DarkYellow
-        Write-Host ('Log on to Autotask and edit resource {0}. Change Date format to "{1}" and Time format to "{2}"' -F $username, $CultureInfo.ShortDatePattern, $CultureInfo.ShortTimePattern) -ForegroundColor DarkYellow
-      }
-      ElseIf ($Result.DateFormat -ne $CultureInfo.ShortDatePattern) {
-        Write-host 'WARNING: DATE format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your date entries wrong.' -ForegroundColor DarkYellow
-        Write-Host ('Log on to Autotask and edit resource {0}. Change Date format to "{1}"' -F $username, $CultureInfo.ShortDatePattern) -ForegroundColor DarkYellow
-      }
-
-      ElseIf ($Result.TimeFormat -ne $CultureInfo.ShortTimePattern) {
-        Write-host 'WARNING: TIME format of the current Autotask user should be updated to match local computer. Otherwise you risk that the API interprets your time entries wrong.' -ForegroundColor DarkYellow
-        Write-Host ('Log on to Autotask and edit resource {0}. Change Time format to "{1}"' -F $username, $CultureInfo.ShortTimePattern) -ForegroundColor DarkYellow
-      }
     }
     Else {
       Remove-Variable -Name Atws -Scope Script

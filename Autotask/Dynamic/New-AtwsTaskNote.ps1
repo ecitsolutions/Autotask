@@ -55,7 +55,7 @@ Set-AtwsTaskNote
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -80,7 +80,7 @@ Set-AtwsTaskNote
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,32000)]
+    [ValidateLength(0,32000)]
     [string]
     $Description,
 
@@ -124,7 +124,7 @@ Set-AtwsTaskNote
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,250)]
+    [ValidateLength(0,250)]
     [string]
     $Title,
 
@@ -232,9 +232,15 @@ Set-AtwsTaskNote
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }    
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
 
-    $Result = New-AtwsData -Entity $ProcessObject
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
+    }
   }
 
   End

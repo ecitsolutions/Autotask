@@ -56,7 +56,7 @@ Set-AtwsBusinessLocation
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -74,7 +74,7 @@ Set-AtwsBusinessLocation
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $Name,
 
@@ -82,7 +82,7 @@ Set-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $Address1,
 
@@ -90,7 +90,7 @@ Set-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $Address2,
 
@@ -98,7 +98,7 @@ Set-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $City,
 
@@ -106,7 +106,7 @@ Set-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $State,
 
@@ -114,7 +114,7 @@ Set-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,20)]
+    [ValidateLength(0,20)]
     [string]
     $PostalCode,
 
@@ -122,7 +122,7 @@ Set-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $AdditionalAddressInfo,
 
@@ -476,9 +476,15 @@ Set-AtwsBusinessLocation
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }    
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
 
-    $Result = New-AtwsData -Entity $ProcessObject
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
+    }
   }
 
   End

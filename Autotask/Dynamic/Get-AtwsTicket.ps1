@@ -152,7 +152,7 @@ Set-AtwsTicket
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
@@ -225,70 +225,70 @@ Set-AtwsTicket
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Allocation Code Name
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $AllocationCodeID,
 
 # Resource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $AssignedResourceID,
 
 # Resource Role Name
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $AssignedResourceRoleID,
 
 # Ticket Date Completed by Complete Project Wizard
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $CompletedDate,
 
 # Ticket Contact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ContactID,
 
 # Contract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Ticket Creation Date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Ticket Creator
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Ticket Description
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,8000)]
+    [ValidateLength(0,8000)]
     [string[]]
     $Description,
 
@@ -297,21 +297,21 @@ Set-AtwsTicket
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime[]]
+    [Nullable[datetime][]]
     $DueDateTime,
 
 # Ticket Estimated Hours
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $EstimatedHours,
 
 # Ticket External ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $ExternalID,
 
@@ -320,14 +320,14 @@ Set-AtwsTicket
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Nullable[long][]]
     $id,
 
 # Configuration Item
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $InstalledProductID,
 
 # Ticket Issue
@@ -341,7 +341,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $LastActivityDate,
 
 # Ticket Priority
@@ -385,7 +385,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $TicketNumber,
 
@@ -394,7 +394,7 @@ Set-AtwsTicket
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $Title,
 
@@ -402,42 +402,42 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $FirstResponseDateTime,
 
 # Resolution Plan Date Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $ResolutionPlanDateTime,
 
 # Resolved Date Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $ResolvedDateTime,
 
 # First Response Due Date Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $FirstResponseDueDateTime,
 
 # Resolution Plan Due Date Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $ResolutionPlanDueDateTime,
 
 # Resolved Due Date Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $ResolvedDueDateTime,
 
 # Service Level Agreement ID
@@ -451,14 +451,14 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [boolean[]]
+    [Nullable[boolean][]]
     $ServiceLevelAgreementHasBeenMet,
 
 # Resolution
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,32000)]
+    [ValidateLength(0,32000)]
     [string[]]
     $Resolution,
 
@@ -466,7 +466,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $PurchaseOrderNumber,
 
@@ -481,14 +481,14 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ProblemTicketId,
 
 # Opportunity ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $OpportunityId,
 
 # Change Approval Board ID
@@ -516,7 +516,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,8000)]
+    [ValidateLength(0,8000)]
     [string[]]
     $ChangeInfoField1,
 
@@ -524,7 +524,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,8000)]
+    [ValidateLength(0,8000)]
     [string[]]
     $ChangeInfoField2,
 
@@ -532,7 +532,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,8000)]
+    [ValidateLength(0,8000)]
     [string[]]
     $ChangeInfoField3,
 
@@ -540,7 +540,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,8000)]
+    [ValidateLength(0,8000)]
     [string[]]
     $ChangeInfoField4,
 
@@ -548,7 +548,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,8000)]
+    [ValidateLength(0,8000)]
     [string[]]
     $ChangeInfoField5,
 
@@ -556,28 +556,28 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $LastCustomerNotificationDateTime,
 
 # Last Customer Visible Activity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $LastCustomerVisibleActivityDateTime,
 
 # Contract Service ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $ContractServiceID,
 
 # Contract Service Bundle ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $ContractServiceBundleID,
 
 # Monitor Type ID
@@ -591,14 +591,14 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $MonitorID,
 
 # AEM Alert ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $AEMAlertID,
 
@@ -606,7 +606,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $HoursToBeScheduled,
 
 # Ticket Category
@@ -620,49 +620,49 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $FirstResponseInitiatingResourceID,
 
 # First Response Assigned Resource
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $FirstResponseAssignedResourceID,
 
 # Project ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ProjectID,
 
 # Business Division Subdivision ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Ticket Completed By
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $CompletedByResourceID,
 
 # Account Physical Location
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $AccountPhysicalLocationID,
 
 # Last Edited Resource ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $LastActivityResourceID,
 
 # Current Service Thermometer Rating
@@ -683,7 +683,7 @@ Set-AtwsTicket
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ServiceThermometerTemperature,
 
     [Parameter(
@@ -809,48 +809,55 @@ Set-AtwsTicket
       $Filter = . Update-AtwsFilter -FilterString $Filter
     } 
 
-    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
+    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+    
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    
 
-    Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
-    # Datetimeparameters
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName
+      # Datetimeparameters
+      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
-    # Should we return an indirect object?
-    if ( ($Result) -and ($GetReferenceEntityById))
-    {
-      Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
+      # Should we return an indirect object?
+      if ( ($Result) -and ($GetReferenceEntityById))
+      {
+        Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
       
-      $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
-      $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
-      If ($ResultValues.Count -lt $Result.Count)
-      {
-        Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
-          $ResultValues.Count,
-          $EntityName,
-        $GetReferenceEntityById) -WarningAction Continue
-      }
-      $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
-      $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
-    }
-    ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
-    {
-      Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
-      $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
-      $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
-      $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
-     }
-    # Do the user want labels along with index values for Picklists?
-    ElseIf ( ($Result) -and -not ($NoPickListLabel))
-    {
-      Foreach ($Field in $Fields.Where{$_.IsPickList})
-      {
-        $FieldName = '{0}Label' -F $Field.Name
-        Foreach ($Item in $Result)
+        $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
+        $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
+        If ($ResultValues.Count -lt $Result.Count)
         {
-          $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
-          Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
+          Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+            $ResultValues.Count,
+            $EntityName,
+          $GetReferenceEntityById) -WarningAction Continue
+        }
+        $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
+        $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
+      }
+      ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
+      {
+        Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+        $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
+        $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
+        $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
+      }
+      # Do the user want labels along with index values for Picklists?
+      ElseIf ( ($Result) -and -not ($NoPickListLabel))
+      {
+        Foreach ($Field in $Fields.Where{$_.IsPickList})
+        {
+          $FieldName = '{0}Label' -F $Field.Name
+          Foreach ($Item in $Result)
+          {
+            $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+            Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
           
+          }
         }
       }
     }

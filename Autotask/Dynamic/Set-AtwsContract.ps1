@@ -72,7 +72,7 @@ Get-AtwsContract
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
   Param
   (
 # An object that will be modified by any parameters and updated in Autotask
@@ -136,7 +136,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [boolean]
+    [Nullable[boolean]]
     $Compliance,
 
 # Contract Contact
@@ -149,7 +149,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,250)]
+    [ValidateLength(0,250)]
     [string]
     $ContactName,
 
@@ -179,7 +179,7 @@ Get-AtwsContract
     )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $ContractName,
 
@@ -193,7 +193,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $ContractNumber,
 
@@ -207,7 +207,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [boolean]
+    [Nullable[boolean]]
     $IsDefaultContract,
 
 # Description
@@ -220,7 +220,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,2000)]
+    [ValidateLength(0,2000)]
     [string]
     $Description,
 
@@ -236,7 +236,7 @@ Get-AtwsContract
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime]
+    [Nullable[datetime]]
     $EndDate,
 
 # Estimated Cost
@@ -249,7 +249,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [double]
+    [Nullable[double]]
     $EstimatedCost,
 
 # Estimated Hours
@@ -262,7 +262,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [double]
+    [Nullable[double]]
     $EstimatedHours,
 
 # Estimated Revenue
@@ -275,7 +275,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [double]
+    [Nullable[double]]
     $EstimatedRevenue,
 
 # Contract Overage Billing Rate
@@ -288,7 +288,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [double]
+    [Nullable[double]]
     $OverageBillingRate,
 
 # Start Date
@@ -303,7 +303,7 @@ Get-AtwsContract
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime]
+    [Nullable[datetime]]
     $StartDate,
 
 # Status
@@ -344,7 +344,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [double]
+    [Nullable[double]]
     $SetupFee,
 
 # purchase_order_number
@@ -357,7 +357,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $PurchaseOrderNumber,
 
@@ -386,7 +386,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $OpportunityID,
 
 # Renewed Contract Id
@@ -399,7 +399,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [long]
+    [Nullable[long]]
     $RenewedContractID,
 
 # Contract Setup Fee Allocation Code ID
@@ -412,7 +412,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [long]
+    [Nullable[long]]
     $SetupFeeAllocationCodeID,
 
 # Contact ID
@@ -425,7 +425,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $ContactID,
 
 # Business Division Subdivision ID
@@ -438,7 +438,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $BusinessDivisionSubdivisionID,
 
 # Bill To Client ID
@@ -451,7 +451,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $BillToAccountID,
 
 # Bill To Client Contact ID
@@ -464,7 +464,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $BillToAccountContactID,
 
 # Contract Exclusion Set ID
@@ -477,7 +477,7 @@ Get-AtwsContract
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $ContractExclusionSetID
   )
  
@@ -505,6 +505,9 @@ Get-AtwsContract
     If ($Id.Count -gt 0 -and $Id.Count -le 200) {
       $Filter = 'Id -eq {0}' -F ($Id -join ' -or Id -eq ')
       $InputObject = Get-AtwsData -Entity $EntityName -Filter $Filter
+      
+      # Remove the ID parameter so we do not try to set it on every object
+      $Null = $PSBoundParameters.Remove('id')
     }
     ElseIf ($Id.Count -gt 200) {
       Throw [ApplicationException] 'Too many objects, the module can process a maximum of 200 objects when using the Id parameter.'
@@ -519,7 +522,7 @@ Get-AtwsContract
     Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
     {
       $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-      If ($Field -or $Parameter.Key -eq 'UserDefinedFields')
+      If (($Field) -or $Parameter.Key -eq 'UserDefinedFields')
       { 
         If ($Field.IsPickList)
         {
@@ -536,63 +539,70 @@ Get-AtwsContract
         }
       }
     }
+
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to modify {1} {2}(s). This action cannot be undone.' -F $Caption, $InputObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to modify {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $InputObject.Count, $EntityName
+
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+  
+      # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
+      # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
+      $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
     
-    # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
-    # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-    $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
+      # Do Picklists more human readable
+      $Picklists = $Fields.Where{$_.IsPickList}
     
-    # Do Picklists more human readable
-    $Picklists = $Fields.Where{$_.IsPickList}
-    
-    # Adjust TimeZone on all DateTime properties
-    Foreach ($Object in $InputObject) 
-    { 
-      Foreach ($DateTimeParam in $DateTimeParams) {
+      # Adjust TimeZone on all DateTime properties
+      Foreach ($Object in $InputObject) 
+      { 
+        Foreach ($DateTimeParam in $DateTimeParams) {
       
-        # Get the datetime value
-        $Value = $Object.$DateTimeParam
+          # Get the datetime value
+          $Value = $Object.$DateTimeParam
                 
-        # Skip if parameter is empty
-        If (-not ($Value)) {
-          Continue
+          # Skip if parameter is empty
+          If (-not ($Value)) {
+            Continue
+          }
+          # Convert the datetime back to CEST
+          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
         }
-        # Convert the datetime back to CEST
-        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
-      }
       
-      # Revert picklist labels to their values
-      Foreach ($Field in $Picklists)
-      {
-        If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
-          $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
-        }
-      }
-    }
-    
-    $ModifiedObjects = Set-AtwsData -Entity $InputObject
-    
-    # Revert changes back on any inputobject
-    Foreach ($Object in $InputObject) 
-    { 
-      Foreach ($DateTimeParam in $DateTimeParams) {
-      
-        # Get the datetime value
-        $Value = $Object.$DateTimeParam
-                
-        # Skip if parameter is empty
-        If (-not ($Value)) {
-          Continue
-        }
-        # Revert the datetime back from CEST
-        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
-      }
-      
-      If ($Script:UsePickListLabels) { 
-        # Restore picklist labels
+        # Revert picklist labels to their values
         Foreach ($Field in $Picklists)
         {
-          If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
-            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+          If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
+            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
+          }
+        }
+      }
+
+      $ModifiedObjects = Set-AtwsData -Entity $InputObject
+    
+      # Revert changes back on any inputobject
+      Foreach ($Object in $InputObject) 
+      { 
+        Foreach ($DateTimeParam in $DateTimeParams) {
+      
+          # Get the datetime value
+          $Value = $Object.$DateTimeParam
+                
+          # Skip if parameter is empty
+          If (-not ($Value)) {
+            Continue
+          }
+          # Revert the datetime back from CEST
+          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
+        }
+      
+        If ($Script:UsePickListLabels) { 
+          # Restore picklist labels
+          Foreach ($Field in $Picklists)
+          {
+            If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
+              $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+            }
           }
         }
       }

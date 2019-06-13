@@ -146,7 +146,7 @@ Set-AtwsInstalledProduct
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
@@ -217,7 +217,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Client
@@ -225,7 +225,7 @@ Set-AtwsInstalledProduct
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Product Active
@@ -233,21 +233,21 @@ Set-AtwsInstalledProduct
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [boolean[]]
+    [Nullable[boolean][]]
     $Active,
 
 # Configuration Item Daily Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $DailyCost,
 
 # Configuration Item Hourly Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $HourlyCost,
 
 # Configuration Item ID
@@ -255,7 +255,7 @@ Set-AtwsInstalledProduct
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Nullable[long][]]
     $id,
 
 # Install Date
@@ -263,21 +263,21 @@ Set-AtwsInstalledProduct
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime[]]
+    [Nullable[datetime][]]
     $InstallDate,
 
 # Configuration Item Monthly Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $MonthlyCost,
 
 # Configuration Item Notes
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,5000)]
+    [ValidateLength(0,5000)]
     [string[]]
     $Notes,
 
@@ -285,14 +285,14 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $NumberOfUsers,
 
 # Configuration Item Per Use Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $PerUseCost,
 
 # Product ID
@@ -300,14 +300,14 @@ Set-AtwsInstalledProduct
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [Nullable[Int][]]
     $ProductID,
 
 # Reference Number
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $ReferenceNumber,
 
@@ -315,7 +315,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,200)]
+    [ValidateLength(0,200)]
     [string[]]
     $ReferenceTitle,
 
@@ -323,7 +323,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string[]]
     $SerialNumber,
 
@@ -331,35 +331,35 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $SetupFee,
 
 # Warranty Expiration Date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $WarrantyExpirationDate,
 
 # Contract ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Service ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ServiceID,
 
 # Service Bundle ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ServiceBundleID,
 
 # Configuration Item Type
@@ -373,7 +373,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string[]]
     $Location,
 
@@ -381,56 +381,56 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ContactID,
 
 # Vendor Name
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $VendorID,
 
 # Installed By Resource ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $InstalledByID,
 
 # Installed By Contact ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $InstalledByContactID,
 
 # Parent Configuration Item
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ParentInstalledProductID,
 
 # Last Modified Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $LastModifiedTime,
 
 # Contract Service Id
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ContractServiceID,
 
 # Contract Service Bundle Id
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ContractServiceBundleID,
 
 # Service Level Agreement
@@ -444,21 +444,21 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $AccountPhysicalLocationID,
 
 # RMM Device ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $RMMDeviceID,
 
 # RMM Device UID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $RMMDeviceUID,
 
@@ -487,7 +487,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $RMMDeviceAuditExternalIPAddress,
 
@@ -495,7 +495,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $RMMDeviceAuditHostname,
 
@@ -503,7 +503,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $RMMDeviceAuditIPAddress,
 
@@ -511,7 +511,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $RMMDeviceAuditMacAddress,
 
@@ -526,7 +526,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $RMMDeviceAuditMemoryBytes,
 
 # RMM Device Audit Model ID
@@ -561,7 +561,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $RMMDeviceAuditStorageBytes,
 
 # RMM Device Audit Device Type ID
@@ -575,7 +575,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $RMMDeviceAuditSNMPLocation,
 
@@ -583,7 +583,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $RMMDeviceAuditSNMPName,
 
@@ -591,7 +591,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $RMMDeviceAuditSNMPContact,
 
@@ -606,7 +606,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $RMMDeviceAuditMobileNumber,
 
@@ -614,7 +614,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $RMMDeviceAuditDescription,
 
@@ -622,14 +622,14 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $RMMOpenAlertCount,
 
 # RMM Device Audit Last User
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $RMMDeviceAuditLastUser,
 
@@ -637,14 +637,14 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $RMMDeviceAuditMissingPatchCount,
 
 # Datto Serial Number
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string[]]
     $DattoSerialNumber,
 
@@ -652,7 +652,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $DattoInternalIP,
 
@@ -660,7 +660,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $DattoRemoteIP,
 
@@ -668,7 +668,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $DattoHostname,
 
@@ -676,35 +676,35 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $DattoProtectedKilobytes,
 
 # Datto Used Kilobytes
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $DattoUsedKilobytes,
 
 # Datto Available Kilobytes
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $DattoAvailableKilobytes,
 
 # Datto Percentage Used
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $DattoPercentageUsed,
 
 # Datto Offsite Used Bytes
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $DattoOffsiteUsedBytes,
 
 # Datto OS Version ID
@@ -732,56 +732,56 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $DattoNICSpeedKilobitsPerSecond,
 
 # Datto Device Memory Megabytes
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $DattoDeviceMemoryMegabytes,
 
 # Datto Uptime Seconds
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $DattoUptimeSeconds,
 
 # Datto Number Of Agents
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $DattoNumberOfAgents,
 
 # Datto Number Of Drives
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $DattoNumberOfDrives,
 
 # Datto Drives Errors
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [boolean[]]
+    [Nullable[boolean][]]
     $DattoDrivesErrors,
 
 # Datto Number Of Volumes
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $DattoNumberOfVolumes,
 
 # Datto Last Check In Date Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $DattoLastCheckInDateTime,
 
 # RMM Device Audit Antivirus Status ID
@@ -816,7 +816,7 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $LastActivityPersonID,
 
     [Parameter(
@@ -942,48 +942,55 @@ Set-AtwsInstalledProduct
       $Filter = . Update-AtwsFilter -FilterString $Filter
     } 
 
-    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
+    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+    
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    
 
-    Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
-    # Datetimeparameters
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName
+      # Datetimeparameters
+      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
-    # Should we return an indirect object?
-    if ( ($Result) -and ($GetReferenceEntityById))
-    {
-      Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
+      # Should we return an indirect object?
+      if ( ($Result) -and ($GetReferenceEntityById))
+      {
+        Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
       
-      $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
-      $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
-      If ($ResultValues.Count -lt $Result.Count)
-      {
-        Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
-          $ResultValues.Count,
-          $EntityName,
-        $GetReferenceEntityById) -WarningAction Continue
-      }
-      $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
-      $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
-    }
-    ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
-    {
-      Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
-      $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
-      $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
-      $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
-     }
-    # Do the user want labels along with index values for Picklists?
-    ElseIf ( ($Result) -and -not ($NoPickListLabel))
-    {
-      Foreach ($Field in $Fields.Where{$_.IsPickList})
-      {
-        $FieldName = '{0}Label' -F $Field.Name
-        Foreach ($Item in $Result)
+        $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
+        $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
+        If ($ResultValues.Count -lt $Result.Count)
         {
-          $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
-          Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
+          Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+            $ResultValues.Count,
+            $EntityName,
+          $GetReferenceEntityById) -WarningAction Continue
+        }
+        $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
+        $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
+      }
+      ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
+      {
+        Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+        $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
+        $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
+        $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
+      }
+      # Do the user want labels along with index values for Picklists?
+      ElseIf ( ($Result) -and -not ($NoPickListLabel))
+      {
+        Foreach ($Field in $Fields.Where{$_.IsPickList})
+        {
+          $FieldName = '{0}Label' -F $Field.Name
+          Foreach ($Item in $Result)
+          {
+            $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+            Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
           
+          }
         }
       }
     }

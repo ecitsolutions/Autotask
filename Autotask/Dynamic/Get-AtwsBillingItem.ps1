@@ -85,7 +85,7 @@ Set-AtwsBillingItem
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
@@ -148,7 +148,7 @@ Set-AtwsBillingItem
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Nullable[long][]]
     $id,
 
 # Type
@@ -171,7 +171,7 @@ Set-AtwsBillingItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,255)]
+    [ValidateLength(0,255)]
     [string[]]
     $ItemName,
 
@@ -179,7 +179,7 @@ Set-AtwsBillingItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,2000)]
+    [ValidateLength(0,2000)]
     [string[]]
     $Description,
 
@@ -187,112 +187,112 @@ Set-AtwsBillingItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $Quantity,
 
 # Rate
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $Rate,
 
 # TotalAmount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $TotalAmount,
 
 # OurCost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $OurCost,
 
 # ItemDate
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $ItemDate,
 
 # InvoiceID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $InvoiceID,
 
 # ItemApproverID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ItemApproverID,
 
 # Client
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $AccountID,
 
 # TicketID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $TicketID,
 
 # TaskID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $TaskID,
 
 # ProjectID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ProjectID,
 
 # AllocationCodeID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $AllocationCodeID,
 
 # RoleID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $RoleID,
 
 # TimeEntryID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $TimeEntryID,
 
 # ContractID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ContractID,
 
 # WebServiceDate
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $WebServiceDate,
 
 # NonBillable
@@ -300,21 +300,21 @@ Set-AtwsBillingItem
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [Nullable[Int][]]
     $NonBillable,
 
 # TaxDollars
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $TaxDollars,
 
 # purchase_order_number
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $PurchaseOrderNumber,
 
@@ -322,133 +322,133 @@ Set-AtwsBillingItem
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $ExtendedPrice,
 
 # Expense Item
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ExpenseItemID,
 
 # Contract Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $ContractCostID,
 
 # Project Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $ProjectCostID,
 
 # Ticket Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $TicketCostID,
 
 # Invoice Line Item ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $LineItemID,
 
 # Milestone ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $MilestoneID,
 
 # Service ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $ServiceID,
 
 # Service Bundle ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $ServiceBundleID,
 
 # Vendor ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $VendorID,
 
 # Installed Product Id
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [long[]]
+    [Nullable[long][]]
     $InstalledProductID,
 
 # InternalCurrencyExtendedPrice
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $InternalCurrencyExtendedPrice,
 
 # InternalCurrencyRate
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $InternalCurrencyRate,
 
 # InternalCurrencyTaxDollars
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $InternalCurrencyTaxDollars,
 
 # InternalCurrencyTotalAmount
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $InternalCurrencyTotalAmount,
 
 # AccountManagerWhenApprovedID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $AccountManagerWhenApprovedID,
 
 # Business Division Subdivision ID
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Posted On Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $PostedOnTime,
 
 # Posted Date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $PostedDate,
 
     [Parameter(
@@ -574,48 +574,55 @@ Set-AtwsBillingItem
       $Filter = . Update-AtwsFilter -FilterString $Filter
     } 
 
-    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
+    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+    
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    
 
-    Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
-    # Datetimeparameters
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName
+      # Datetimeparameters
+      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
-    # Should we return an indirect object?
-    if ( ($Result) -and ($GetReferenceEntityById))
-    {
-      Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
+      # Should we return an indirect object?
+      if ( ($Result) -and ($GetReferenceEntityById))
+      {
+        Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
       
-      $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
-      $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
-      If ($ResultValues.Count -lt $Result.Count)
-      {
-        Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
-          $ResultValues.Count,
-          $EntityName,
-        $GetReferenceEntityById) -WarningAction Continue
-      }
-      $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
-      $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
-    }
-    ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
-    {
-      Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
-      $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
-      $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
-      $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
-     }
-    # Do the user want labels along with index values for Picklists?
-    ElseIf ( ($Result) -and -not ($NoPickListLabel))
-    {
-      Foreach ($Field in $Fields.Where{$_.IsPickList})
-      {
-        $FieldName = '{0}Label' -F $Field.Name
-        Foreach ($Item in $Result)
+        $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
+        $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
+        If ($ResultValues.Count -lt $Result.Count)
         {
-          $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
-          Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
+          Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+            $ResultValues.Count,
+            $EntityName,
+          $GetReferenceEntityById) -WarningAction Continue
+        }
+        $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
+        $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
+      }
+      ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
+      {
+        Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+        $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
+        $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
+        $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
+      }
+      # Do the user want labels along with index values for Picklists?
+      ElseIf ( ($Result) -and -not ($NoPickListLabel))
+      {
+        Foreach ($Field in $Fields.Where{$_.IsPickList})
+        {
+          $FieldName = '{0}Label' -F $Field.Name
+          Foreach ($Item in $Result)
+          {
+            $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+            Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
           
+          }
         }
       }
     }

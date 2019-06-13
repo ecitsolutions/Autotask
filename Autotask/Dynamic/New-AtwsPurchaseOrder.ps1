@@ -58,7 +58,7 @@ Set-AtwsPurchaseOrder
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -122,7 +122,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $ShipToName,
 
@@ -132,7 +132,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $ShipToAddress1,
 
@@ -140,7 +140,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $ShipToAddress2,
 
@@ -150,7 +150,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,30)]
+    [ValidateLength(0,30)]
     [string]
     $ShipToCity,
 
@@ -160,7 +160,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $ShipToState,
 
@@ -170,7 +170,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,10)]
+    [ValidateLength(0,10)]
     [string]
     $ShipToPostalCode,
 
@@ -178,7 +178,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,4000)]
+    [ValidateLength(0,4000)]
     [string]
     $GeneralMemo,
 
@@ -186,7 +186,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $Phone,
 
@@ -194,7 +194,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $Fax,
 
@@ -202,7 +202,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $VendorInvoiceNumber,
 
@@ -210,7 +210,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $ExternalPONumber,
 
@@ -374,9 +374,15 @@ Set-AtwsPurchaseOrder
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }    
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
 
-    $Result = New-AtwsData -Entity $ProcessObject
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
+    }
   }
 
   End

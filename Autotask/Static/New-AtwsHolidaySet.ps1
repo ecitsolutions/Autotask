@@ -55,7 +55,7 @@ Set-AtwsHolidaySet
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -74,7 +74,7 @@ Set-AtwsHolidaySet
     )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,64)]
+    [ValidateLength(0,64)]
     [string]
     $HolidaySetName,
 
@@ -82,7 +82,7 @@ Set-AtwsHolidaySet
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,512)]
+    [ValidateLength(0,512)]
     [string]
     $HolidaySetDescription
   )
@@ -169,9 +169,15 @@ Set-AtwsHolidaySet
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }    
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
 
-    $Result = New-AtwsData -Entity $ProcessObject
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
+    }
   }
 
   End

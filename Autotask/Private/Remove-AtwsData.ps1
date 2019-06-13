@@ -29,7 +29,7 @@ Function Remove-AtwsData {
  
   [cmdletbinding(
       SupportsShouldProcess = $True,
-      ConfirmImpact = 'High'
+      ConfirmImpact = 'Low'
   )]
   param
   (
@@ -54,22 +54,16 @@ Function Remove-AtwsData {
   }
   
   Process {   
-    $Caption = 'Remove-Atws{0}' -F $Entity[0].GetType().Name
-    $VerboseDescrition = '{0}: About to remove {1} {2}(s). This action cannot be undone.' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
-    $VerboseWarning = '{0}: About to remove {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $Entity.Count, $Entity[0].GetType().Name
-
-    Write-Verbose ('{0}: Running ShouldProcess with WhatifPreference {1} and ConfirmPreference {2}' -F $MyInvocation.MyCommand.Name, $WhatIfPreference, $ConfirmPreference)
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-      Write-Verbose ('{0}: Deleting {1} [Autotask.{2}] object(s) with Id {3}' -F $MyInvocation.MyCommand.Name, $Entity.Count, $Entity[0].GetType().Name, ($Entity.Id -join ','))        
+    
+    Write-Verbose ('{0}: Deleting {1} [Autotask.{2}] object(s) with Id {3}' -F $MyInvocation.MyCommand.Name, $Entity.Count, $Entity[0].GetType().Name, ($Entity.Id -join ','))        
       
-      $Result = $atws.delete($Entity)
+    $Result = $atws.delete($Entity)
       
-      If ($Result.Errors.Count -gt 0) {
-        Foreach ($AtwsError in $Result.Errors) {
-          Write-Error -Message $AtwsError.Message
-        }
-      }    
-    }
+    If ($Result.Errors.Count -gt 0) {
+      Foreach ($AtwsError in $Result.Errors) {
+        Write-Error -Message $AtwsError.Message
+      }
+    }    
   }
   
   End {

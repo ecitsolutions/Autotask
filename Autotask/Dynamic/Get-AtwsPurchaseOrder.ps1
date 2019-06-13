@@ -94,7 +94,7 @@ Set-AtwsPurchaseOrder
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
@@ -158,7 +158,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Nullable[long][]]
     $id,
 
 # Vendor Account ID
@@ -166,7 +166,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [Nullable[Int][]]
     $VendorID,
 
 # Order Status ID
@@ -181,28 +181,28 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Create Date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Submit Date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $SubmitDateTime,
 
 # Cancel Date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $CancelDateTime,
 
 # Addressee Name
@@ -210,7 +210,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string[]]
     $ShipToName,
 
@@ -219,7 +219,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string[]]
     $ShipToAddress1,
 
@@ -227,7 +227,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string[]]
     $ShipToAddress2,
 
@@ -236,7 +236,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,30)]
+    [ValidateLength(0,30)]
     [string[]]
     $ShipToCity,
 
@@ -245,7 +245,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string[]]
     $ShipToState,
 
@@ -254,7 +254,7 @@ Set-AtwsPurchaseOrder
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,10)]
+    [ValidateLength(0,10)]
     [string[]]
     $ShipToPostalCode,
 
@@ -262,7 +262,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,4000)]
+    [ValidateLength(0,4000)]
     [string[]]
     $GeneralMemo,
 
@@ -270,7 +270,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string[]]
     $Phone,
 
@@ -278,7 +278,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string[]]
     $Fax,
 
@@ -286,7 +286,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $VendorInvoiceNumber,
 
@@ -294,7 +294,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $ExternalPONumber,
 
@@ -302,28 +302,28 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $PurchaseForAccountID,
 
 # Shipping Type
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ShippingType,
 
 # Expected Ship Date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $ShippingDate,
 
 # Freight Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $Freight,
 
 # Tax Group ID
@@ -344,21 +344,21 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [boolean[]]
+    [Nullable[boolean][]]
     $ShowTaxCategory,
 
 # Show Each Tax In Tax Group
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [boolean[]]
+    [Nullable[boolean][]]
     $ShowEachTaxInGroup,
 
 # Latest Estimated Arrival Date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $LatestEstimatedArrivalDate,
 
 # Use Item Descriptions From
@@ -372,7 +372,7 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [double[]]
+    [Nullable[double][]]
     $InternalCurrencyFreight,
 
     [Parameter(
@@ -498,48 +498,55 @@ Set-AtwsPurchaseOrder
       $Filter = . Update-AtwsFilter -FilterString $Filter
     } 
 
-    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
+    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+    
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    
 
-    Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
-    # Datetimeparameters
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName
+      # Datetimeparameters
+      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
-    # Should we return an indirect object?
-    if ( ($Result) -and ($GetReferenceEntityById))
-    {
-      Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
+      # Should we return an indirect object?
+      if ( ($Result) -and ($GetReferenceEntityById))
+      {
+        Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
       
-      $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
-      $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
-      If ($ResultValues.Count -lt $Result.Count)
-      {
-        Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
-          $ResultValues.Count,
-          $EntityName,
-        $GetReferenceEntityById) -WarningAction Continue
-      }
-      $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
-      $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
-    }
-    ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
-    {
-      Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
-      $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
-      $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
-      $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
-     }
-    # Do the user want labels along with index values for Picklists?
-    ElseIf ( ($Result) -and -not ($NoPickListLabel))
-    {
-      Foreach ($Field in $Fields.Where{$_.IsPickList})
-      {
-        $FieldName = '{0}Label' -F $Field.Name
-        Foreach ($Item in $Result)
+        $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
+        $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
+        If ($ResultValues.Count -lt $Result.Count)
         {
-          $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
-          Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
+          Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+            $ResultValues.Count,
+            $EntityName,
+          $GetReferenceEntityById) -WarningAction Continue
+        }
+        $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
+        $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
+      }
+      ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
+      {
+        Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+        $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
+        $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
+        $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
+      }
+      # Do the user want labels along with index values for Picklists?
+      ElseIf ( ($Result) -and -not ($NoPickListLabel))
+      {
+        Foreach ($Field in $Fields.Where{$_.IsPickList})
+        {
+          $FieldName = '{0}Label' -F $Field.Name
+          Foreach ($Item in $Result)
+          {
+            $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+            Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
           
+          }
         }
       }
     }

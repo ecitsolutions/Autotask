@@ -36,7 +36,13 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
-## Version 1.6.2.11 - Bufix release
+## Version 1.6.2.12 - Bugfix release
+
+- BUGFIX: Issue #29: Set-AtwsContact :: Cannot convert Parameter -id from int64[] to int64. Set functions no longer try to set the ID field when using the -ID parameter.
+- BUGFIX: Issue #27: Receiving Confirm prompts with `$global:ConfirmPreference="None"`. Moved ConfirmPreferene to wrapper functions only, enabling support for -Whatif and -Confirm parameters.
+- UPDATE: All Get & Set functions now support `$Null` values for parameters. You can null out fields directly: `Set-AtwsTicket -ContactId $Null`
+
+## Version 1.6.2.11 - Bugfix release
 
 - BUGFIX: `Connect-AtwsWebAPI -UsePicklistLabels` should NOT be Mandatory...
 

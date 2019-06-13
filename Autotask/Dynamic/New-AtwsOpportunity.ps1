@@ -69,7 +69,7 @@ Set-AtwsOpportunity
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -138,7 +138,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $Barriers,
 
@@ -171,7 +171,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $HelpNeeded,
 
@@ -186,7 +186,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $Market,
 
@@ -194,7 +194,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $NextStep,
 
@@ -234,7 +234,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $PromotionName,
 
@@ -276,7 +276,7 @@ Set-AtwsOpportunity
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $Title,
 
@@ -340,7 +340,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $WinReasonDetail,
 
@@ -348,7 +348,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $LossReasonDetail,
 
@@ -572,9 +572,15 @@ Set-AtwsOpportunity
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }    
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
 
-    $Result = New-AtwsData -Entity $ProcessObject
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
+    }
   }
 
   End

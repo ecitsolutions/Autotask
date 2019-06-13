@@ -48,7 +48,7 @@ Get-AtwsUserDefinedFieldDefinition
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
   Param
   (
 # An object that will be modified by any parameters and updated in Autotask
@@ -90,7 +90,7 @@ Get-AtwsUserDefinedFieldDefinition
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,45)]
+    [ValidateLength(0,45)]
     [string]
     $Name,
 
@@ -104,7 +104,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $Description,
 
@@ -148,7 +148,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,1024)]
+    [ValidateLength(0,1024)]
     [string]
     $DefaultValue,
 
@@ -162,7 +162,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [boolean]
+    [Nullable[boolean]]
     $IsProtected,
 
 # Required
@@ -175,7 +175,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [boolean]
+    [Nullable[boolean]]
     $IsRequired,
 
 # Active
@@ -188,7 +188,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [boolean]
+    [Nullable[boolean]]
     $IsActive,
 
 # Merge Variable Name
@@ -201,7 +201,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $MergeVariableName,
 
@@ -215,7 +215,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [long]
+    [Nullable[long]]
     $CrmToProjectUdfId,
 
 # Display Format
@@ -241,7 +241,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $SortOrder,
 
 # Number of Decimal Places
@@ -254,7 +254,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $NumberOfDecimalPlaces,
 
 # Visible to Client Portal
@@ -267,7 +267,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [boolean]
+    [Nullable[boolean]]
     $IsVisibleToClientPortal,
 
 # Encrypted
@@ -280,7 +280,7 @@ Get-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [boolean]
+    [Nullable[boolean]]
     $IsEncrypted
   )
  
@@ -308,6 +308,9 @@ Get-AtwsUserDefinedFieldDefinition
     If ($Id.Count -gt 0 -and $Id.Count -le 200) {
       $Filter = 'Id -eq {0}' -F ($Id -join ' -or Id -eq ')
       $InputObject = Get-AtwsData -Entity $EntityName -Filter $Filter
+      
+      # Remove the ID parameter so we do not try to set it on every object
+      $Null = $PSBoundParameters.Remove('id')
     }
     ElseIf ($Id.Count -gt 200) {
       Throw [ApplicationException] 'Too many objects, the module can process a maximum of 200 objects when using the Id parameter.'
@@ -322,7 +325,7 @@ Get-AtwsUserDefinedFieldDefinition
     Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
     {
       $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-      If ($Field -or $Parameter.Key -eq 'UserDefinedFields')
+      If (($Field) -or $Parameter.Key -eq 'UserDefinedFields')
       { 
         If ($Field.IsPickList)
         {
@@ -339,63 +342,70 @@ Get-AtwsUserDefinedFieldDefinition
         }
       }
     }
+
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to modify {1} {2}(s). This action cannot be undone.' -F $Caption, $InputObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to modify {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $InputObject.Count, $EntityName
+
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+  
+      # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
+      # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
+      $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
     
-    # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
-    # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-    $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
+      # Do Picklists more human readable
+      $Picklists = $Fields.Where{$_.IsPickList}
     
-    # Do Picklists more human readable
-    $Picklists = $Fields.Where{$_.IsPickList}
-    
-    # Adjust TimeZone on all DateTime properties
-    Foreach ($Object in $InputObject) 
-    { 
-      Foreach ($DateTimeParam in $DateTimeParams) {
+      # Adjust TimeZone on all DateTime properties
+      Foreach ($Object in $InputObject) 
+      { 
+        Foreach ($DateTimeParam in $DateTimeParams) {
       
-        # Get the datetime value
-        $Value = $Object.$DateTimeParam
+          # Get the datetime value
+          $Value = $Object.$DateTimeParam
                 
-        # Skip if parameter is empty
-        If (-not ($Value)) {
-          Continue
+          # Skip if parameter is empty
+          If (-not ($Value)) {
+            Continue
+          }
+          # Convert the datetime back to CEST
+          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
         }
-        # Convert the datetime back to CEST
-        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
-      }
       
-      # Revert picklist labels to their values
-      Foreach ($Field in $Picklists)
-      {
-        If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
-          $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
-        }
-      }
-    }
-    
-    $ModifiedObjects = Set-AtwsData -Entity $InputObject
-    
-    # Revert changes back on any inputobject
-    Foreach ($Object in $InputObject) 
-    { 
-      Foreach ($DateTimeParam in $DateTimeParams) {
-      
-        # Get the datetime value
-        $Value = $Object.$DateTimeParam
-                
-        # Skip if parameter is empty
-        If (-not ($Value)) {
-          Continue
-        }
-        # Revert the datetime back from CEST
-        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
-      }
-      
-      If ($Script:UsePickListLabels) { 
-        # Restore picklist labels
+        # Revert picklist labels to their values
         Foreach ($Field in $Picklists)
         {
-          If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
-            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+          If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
+            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
+          }
+        }
+      }
+
+      $ModifiedObjects = Set-AtwsData -Entity $InputObject
+    
+      # Revert changes back on any inputobject
+      Foreach ($Object in $InputObject) 
+      { 
+        Foreach ($DateTimeParam in $DateTimeParams) {
+      
+          # Get the datetime value
+          $Value = $Object.$DateTimeParam
+                
+          # Skip if parameter is empty
+          If (-not ($Value)) {
+            Continue
+          }
+          # Revert the datetime back from CEST
+          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
+        }
+      
+        If ($Script:UsePickListLabels) { 
+          # Restore picklist labels
+          Foreach ($Field in $Picklists)
+          {
+            If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
+              $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+            }
           }
         }
       }

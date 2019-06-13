@@ -39,10 +39,7 @@ Function Get-AtwsData
       Remove-AtwsData
   #>
   
-  [cmdletbinding(
-      SupportsShouldProcess = $True,
-      ConfirmImpact = 'Low'
-  )]
+  [cmdletbinding()]
   [OutputType([PSObject[]])]
   param
   (
@@ -104,65 +101,54 @@ Function Get-AtwsData
 
     Write-Debug ('{0}: QueryXml looks like: {1}' -F $MyInvocation.MyCommand.Name, $QueryXml.InnerXml.ToString())
     
-    $Caption = 'Get-Atws{0}' -F $Entity
-    $VerboseDescrition = '{0}: About to run a query for Autotask.{1} using Filter {{{2}}}' -F $Caption, $Entity, ($Filter -join ' ')
-    $VerboseWarning = '{0}: About to run a query for Autotask.{1} using Filter {{{2}}}. Do you want to continue?' -F $Caption, $Entity, ($Filter -join ' ')
-  
+    Write-Verbose ('{0}: Adding looping construct to query to handle more than 500 results.' -F $MyInvocation.MyCommand.Name)
+    
+    # Native XML is rather tedious...
+    $field = $QueryXml.CreateElement('field')
+    $expression = $QueryXml.CreateElement('expression')
+    $expression.SetAttribute('op','greaterthan')
+    $expression.InnerText = 0
+    $field.InnerText = 'id'
+    [void]$field.AppendChild($expression)
+    
+    $FirstPass = $True
+    Do 
+    {
+      Write-Verbose ('{0}: Passing QueryXML to Autotask API' -F $MyInvocation.MyCommand.Name)
 
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption))
-    { 
-    
-      Write-Debug ('{0}: Adding looping construct to query to handle more than 500 results.' -F $MyInvocation.MyCommand.Name)
-    
-      # Native XML is rather tedious...
-      $field = $QueryXml.CreateElement('field')
-      $expression = $QueryXml.CreateElement('expression')
-      $expression.SetAttribute('op','greaterthan')
-      $expression.InnerText = 0
-      $field.InnerText = 'id'
-      [void]$field.AppendChild($expression)
-    
-      $FirstPass = $True
-    
-      
-      Do 
+      # Get the first batch - the API returns max 500 items
+      $lastquery = $atws.query($QueryXml.InnerXml)
+
+      # Handle any errors
+      If ($lastquery.Errors.Count -gt 0)
       {
-        Write-Verbose ('{0}: Passing QueryXML to Autotask API' -F $MyInvocation.MyCommand.Name)
-
-        # Get the first batch - the API returns max 500 items
-        $lastquery = $atws.query($QueryXml.InnerXml)
-
-        # Handle any errors
-        If ($lastquery.Errors.Count -gt 0)
+        Foreach ($AtwsError in $lastquery.Errors)
         {
-          Foreach ($AtwsError in $lastquery.Errors)
-          {
-            Write-Error $AtwsError.Message
-          }
-          Return
+          Write-Error $AtwsError.Message
         }
-
-        # Add all returned objects to the Result
-        $result += $lastquery.EntityResults
-
-        # Results are sorted by object Id. The Id of the last object is the highest object id in the result
-        $UpperBound = $lastquery.EntityResults[$lastquery.EntityResults.GetUpperBound(0)].id
-
-        # Add the higest Id (so far) to the id -gt ? condition
-        $expression.InnerText = $UpperBound
-
-        # If this is the first pass we append the expression to the query
-        If ($FirstPass)
-        {
-          # Insert looping construct into query
-          [void]$QueryXml.queryxml.query.AppendChild($field)
-          $FirstPass = $False        
-        }
+        Return
       }
-      # The last query we have to make will have between 0 and 499 items
-      Until ($lastquery.EntityResults.Count -lt 500)
-     
+
+      # Add all returned objects to the Result
+      $result += $lastquery.EntityResults
+
+      # Results are sorted by object Id. The Id of the last object is the highest object id in the result
+      $UpperBound = $lastquery.EntityResults[$lastquery.EntityResults.GetUpperBound(0)].id
+
+      # Add the higest Id (so far) to the id -gt ? condition
+      $expression.InnerText = $UpperBound
+
+      # If this is the first pass we append the expression to the query
+      If ($FirstPass)
+      {
+        # Insert looping construct into query
+        [void]$QueryXml.queryxml.query.AppendChild($field)
+        $FirstPass = $False        
+      }
     }
+    # The last query we have to make will have between 0 and 499 items
+    Until ($lastquery.EntityResults.Count -lt 500)
+     
     
     # Datetimeparameters
     $Fields = Get-AtwsFieldInfo -Entity $Entity

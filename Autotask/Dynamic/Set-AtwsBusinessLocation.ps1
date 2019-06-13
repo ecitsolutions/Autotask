@@ -48,7 +48,7 @@ Get-AtwsBusinessLocation
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
   Param
   (
 # An object that will be modified by any parameters and updated in Autotask
@@ -90,7 +90,7 @@ Get-AtwsBusinessLocation
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $Name,
 
@@ -104,7 +104,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $Address1,
 
@@ -118,7 +118,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $Address2,
 
@@ -132,7 +132,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $City,
 
@@ -146,7 +146,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string]
     $State,
 
@@ -160,7 +160,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,20)]
+    [ValidateLength(0,20)]
     [string]
     $PostalCode,
 
@@ -174,7 +174,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $AdditionalAddressInfo,
 
@@ -188,7 +188,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $CountryID,
 
 # Holiday Set ID
@@ -201,7 +201,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $HolidaySetID,
 
 # No Hours On Holidays
@@ -214,7 +214,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [boolean]
+    [Nullable[boolean]]
     $NoHoursOnHolidays,
 
 # Default
@@ -227,7 +227,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [boolean]
+    [Nullable[boolean]]
     $Default,
 
 # First Day Of Week
@@ -313,7 +313,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $SundayBusinessHoursStartTime,
 
 # SundayBusinessHoursEndTime
@@ -326,7 +326,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $SundayBusinessHoursEndTime,
 
 # SundayExtendedHoursStartTime
@@ -339,7 +339,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $SundayExtendedHoursStartTime,
 
 # SundayExtendedHoursEndTime
@@ -352,7 +352,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $SundayExtendedHoursEndTime,
 
 # MondayBusinessHoursStartTime
@@ -365,7 +365,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $MondayBusinessHoursStartTime,
 
 # MondayBusinessHoursEndTime
@@ -378,7 +378,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $MondayBusinessHoursEndTime,
 
 # MondayExtendedHoursStartTime
@@ -391,7 +391,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $MondayExtendedHoursStartTime,
 
 # MondayExtendedHoursEndTime
@@ -404,7 +404,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $MondayExtendedHoursEndTime,
 
 # TuesdayBusinessHoursStartTime
@@ -417,7 +417,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $TuesdayBusinessHoursStartTime,
 
 # TuesdayBusinessHoursEndTime
@@ -430,7 +430,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $TuesdayBusinessHoursEndTime,
 
 # TuesdayExtendedHoursStartTime
@@ -443,7 +443,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $TuesdayExtendedHoursStartTime,
 
 # TuesdayExtendedHoursEndTime
@@ -456,7 +456,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $TuesdayExtendedHoursEndTime,
 
 # WednesdayBusinessHoursStartTime
@@ -469,7 +469,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $WednesdayBusinessHoursStartTime,
 
 # WednesdayBusinessHoursEndTime
@@ -482,7 +482,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $WednesdayBusinessHoursEndTime,
 
 # WednesdayExtendedHoursStartTime
@@ -495,7 +495,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $WednesdayExtendedHoursStartTime,
 
 # WednesdayExtendedHoursEndTime
@@ -508,7 +508,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $WednesdayExtendedHoursEndTime,
 
 # ThursdayBusinessHoursStartTime
@@ -521,7 +521,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $ThursdayBusinessHoursStartTime,
 
 # ThursdayBusinessHoursEndTime
@@ -534,7 +534,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $ThursdayBusinessHoursEndTime,
 
 # ThursdayExtendedHoursStartTime
@@ -547,7 +547,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $ThursdayExtendedHoursStartTime,
 
 # ThursdayExtendedHoursEndTime
@@ -560,7 +560,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $ThursdayExtendedHoursEndTime,
 
 # FridayBusinessHoursStartTime
@@ -573,7 +573,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $FridayBusinessHoursStartTime,
 
 # FridayBusinessHoursEndTime
@@ -586,7 +586,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $FridayBusinessHoursEndTime,
 
 # FridayExtendedHoursStartTime
@@ -599,7 +599,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $FridayExtendedHoursStartTime,
 
 # FridayExtendedHoursEndTime
@@ -612,7 +612,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $FridayExtendedHoursEndTime,
 
 # SaturdayBusinessHoursStartTime
@@ -625,7 +625,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $SaturdayBusinessHoursStartTime,
 
 # SaturdayBusinessHoursEndTime
@@ -638,7 +638,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $SaturdayBusinessHoursEndTime,
 
 # SaturdayExtendedHoursStartTime
@@ -651,7 +651,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $SaturdayExtendedHoursStartTime,
 
 # SaturdayExtendedHoursEndTime
@@ -664,7 +664,7 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $SaturdayExtendedHoursEndTime
   )
  
@@ -692,6 +692,9 @@ Get-AtwsBusinessLocation
     If ($Id.Count -gt 0 -and $Id.Count -le 200) {
       $Filter = 'Id -eq {0}' -F ($Id -join ' -or Id -eq ')
       $InputObject = Get-AtwsData -Entity $EntityName -Filter $Filter
+      
+      # Remove the ID parameter so we do not try to set it on every object
+      $Null = $PSBoundParameters.Remove('id')
     }
     ElseIf ($Id.Count -gt 200) {
       Throw [ApplicationException] 'Too many objects, the module can process a maximum of 200 objects when using the Id parameter.'
@@ -706,7 +709,7 @@ Get-AtwsBusinessLocation
     Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
     {
       $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-      If ($Field -or $Parameter.Key -eq 'UserDefinedFields')
+      If (($Field) -or $Parameter.Key -eq 'UserDefinedFields')
       { 
         If ($Field.IsPickList)
         {
@@ -723,63 +726,70 @@ Get-AtwsBusinessLocation
         }
       }
     }
+
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to modify {1} {2}(s). This action cannot be undone.' -F $Caption, $InputObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to modify {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $InputObject.Count, $EntityName
+
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+  
+      # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
+      # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
+      $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
     
-    # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
-    # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-    $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
+      # Do Picklists more human readable
+      $Picklists = $Fields.Where{$_.IsPickList}
     
-    # Do Picklists more human readable
-    $Picklists = $Fields.Where{$_.IsPickList}
-    
-    # Adjust TimeZone on all DateTime properties
-    Foreach ($Object in $InputObject) 
-    { 
-      Foreach ($DateTimeParam in $DateTimeParams) {
+      # Adjust TimeZone on all DateTime properties
+      Foreach ($Object in $InputObject) 
+      { 
+        Foreach ($DateTimeParam in $DateTimeParams) {
       
-        # Get the datetime value
-        $Value = $Object.$DateTimeParam
+          # Get the datetime value
+          $Value = $Object.$DateTimeParam
                 
-        # Skip if parameter is empty
-        If (-not ($Value)) {
-          Continue
+          # Skip if parameter is empty
+          If (-not ($Value)) {
+            Continue
+          }
+          # Convert the datetime back to CEST
+          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
         }
-        # Convert the datetime back to CEST
-        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
-      }
       
-      # Revert picklist labels to their values
-      Foreach ($Field in $Picklists)
-      {
-        If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
-          $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
-        }
-      }
-    }
-    
-    $ModifiedObjects = Set-AtwsData -Entity $InputObject
-    
-    # Revert changes back on any inputobject
-    Foreach ($Object in $InputObject) 
-    { 
-      Foreach ($DateTimeParam in $DateTimeParams) {
-      
-        # Get the datetime value
-        $Value = $Object.$DateTimeParam
-                
-        # Skip if parameter is empty
-        If (-not ($Value)) {
-          Continue
-        }
-        # Revert the datetime back from CEST
-        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
-      }
-      
-      If ($Script:UsePickListLabels) { 
-        # Restore picklist labels
+        # Revert picklist labels to their values
         Foreach ($Field in $Picklists)
         {
-          If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
-            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+          If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
+            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
+          }
+        }
+      }
+
+      $ModifiedObjects = Set-AtwsData -Entity $InputObject
+    
+      # Revert changes back on any inputobject
+      Foreach ($Object in $InputObject) 
+      { 
+        Foreach ($DateTimeParam in $DateTimeParams) {
+      
+          # Get the datetime value
+          $Value = $Object.$DateTimeParam
+                
+          # Skip if parameter is empty
+          If (-not ($Value)) {
+            Continue
+          }
+          # Revert the datetime back from CEST
+          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
+        }
+      
+        If ($Script:UsePickListLabels) { 
+          # Restore picklist labels
+          Foreach ($Field in $Picklists)
+          {
+            If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
+              $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+            }
           }
         }
       }

@@ -162,6 +162,7 @@
         Alias                  = $Alias
         Type                   = $Type
         Comment                = $Field.Label
+        Nullable               = $Verb -ne 'New' -and $Type -ne 'String'
       }
 
       Get-AtwsPSParameter @ParameterOptions

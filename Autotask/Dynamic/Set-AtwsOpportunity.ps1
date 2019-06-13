@@ -55,7 +55,7 @@ Get-AtwsOpportunity
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
   Param
   (
 # An object that will be modified by any parameters and updated in Autotask
@@ -97,7 +97,7 @@ Get-AtwsOpportunity
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [Nullable[Int]]
     $AccountID,
 
 # NumberOfUsers
@@ -110,7 +110,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $AdvancedField1,
 
 # SetupFee
@@ -123,7 +123,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $AdvancedField2,
 
 # HourlyCost
@@ -136,7 +136,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $AdvancedField3,
 
 # DailyCost
@@ -149,7 +149,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $AdvancedField4,
 
 # MonthlyCost
@@ -162,7 +162,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $AdvancedField5,
 
 # Amount
@@ -177,7 +177,7 @@ Get-AtwsOpportunity
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [decimal]
+    [Nullable[decimal]]
     $Amount,
 
 # Barriers
@@ -190,7 +190,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $Barriers,
 
@@ -204,7 +204,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $ContactID,
 
 # Cost
@@ -219,7 +219,7 @@ Get-AtwsOpportunity
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [decimal]
+    [Nullable[decimal]]
     $Cost,
 
 # CreateDate
@@ -234,7 +234,7 @@ Get-AtwsOpportunity
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime]
+    [Nullable[datetime]]
     $CreateDate,
 
 # HelpNeeded
@@ -247,7 +247,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $HelpNeeded,
 
@@ -274,7 +274,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $Market,
 
@@ -288,7 +288,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $NextStep,
 
@@ -304,7 +304,7 @@ Get-AtwsOpportunity
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [Nullable[Int]]
     $OwnerResourceID,
 
 # ProductObjectID
@@ -317,7 +317,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $ProductID,
 
 # ProjClose
@@ -332,7 +332,7 @@ Get-AtwsOpportunity
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime]
+    [Nullable[datetime]]
     $ProjectedCloseDate,
 
 # StartDate
@@ -345,7 +345,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $ProjectedLiveDate,
 
 # promotion_name
@@ -358,7 +358,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $PromotionName,
 
@@ -415,7 +415,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $ThroughDate,
 
 # Description
@@ -430,7 +430,7 @@ Get-AtwsOpportunity
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string]
     $Title,
 
@@ -457,7 +457,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [datetime]
+    [Nullable[datetime]]
     $ClosedDate,
 
 # Primary Competitor
@@ -509,7 +509,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $WinReasonDetail,
 
@@ -523,7 +523,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateLength(1,500)]
+    [ValidateLength(0,500)]
     [string]
     $LossReasonDetail,
 
@@ -539,7 +539,7 @@ Get-AtwsOpportunity
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
+    [Nullable[Int]]
     $Probability,
 
 # Revenue Spread
@@ -552,7 +552,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $RevenueSpread,
 
 # Use Quote Totals
@@ -567,7 +567,7 @@ Get-AtwsOpportunity
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [boolean]
+    [Nullable[boolean]]
     $UseQuoteTotals,
 
 # Total Amount Months
@@ -580,7 +580,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $TotalAmountMonths,
 
 # One-Time Cost
@@ -593,7 +593,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $OnetimeCost,
 
 # One-Time Revenue
@@ -606,7 +606,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $OnetimeRevenue,
 
 # Monthly Cost
@@ -619,7 +619,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $MonthlyCost,
 
 # Monthly Revenue
@@ -632,7 +632,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $MonthlyRevenue,
 
 # Quarterly Cost
@@ -645,7 +645,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $QuarterlyCost,
 
 # Quarterly Revenue
@@ -658,7 +658,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $QuarterlyRevenue,
 
 # Semi-Annual Cost
@@ -671,7 +671,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $SemiannualCost,
 
 # Semi-Annual Revenue
@@ -684,7 +684,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $SemiannualRevenue,
 
 # Yearly Cost
@@ -697,7 +697,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $YearlyCost,
 
 # Yearly Revenue
@@ -710,7 +710,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [decimal]
+    [Nullable[decimal]]
     $YearlyRevenue,
 
 # Business Division Subdivision ID
@@ -723,7 +723,7 @@ Get-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Int]
+    [Nullable[Int]]
     $BusinessDivisionSubdivisionID
   )
  
@@ -751,6 +751,9 @@ Get-AtwsOpportunity
     If ($Id.Count -gt 0 -and $Id.Count -le 200) {
       $Filter = 'Id -eq {0}' -F ($Id -join ' -or Id -eq ')
       $InputObject = Get-AtwsData -Entity $EntityName -Filter $Filter
+      
+      # Remove the ID parameter so we do not try to set it on every object
+      $Null = $PSBoundParameters.Remove('id')
     }
     ElseIf ($Id.Count -gt 200) {
       Throw [ApplicationException] 'Too many objects, the module can process a maximum of 200 objects when using the Id parameter.'
@@ -765,7 +768,7 @@ Get-AtwsOpportunity
     Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
     {
       $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-      If ($Field -or $Parameter.Key -eq 'UserDefinedFields')
+      If (($Field) -or $Parameter.Key -eq 'UserDefinedFields')
       { 
         If ($Field.IsPickList)
         {
@@ -782,63 +785,70 @@ Get-AtwsOpportunity
         }
       }
     }
+
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to modify {1} {2}(s). This action cannot be undone.' -F $Caption, $InputObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to modify {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $InputObject.Count, $EntityName
+
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+  
+      # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
+      # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
+      $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
     
-    # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
-    # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-    $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
+      # Do Picklists more human readable
+      $Picklists = $Fields.Where{$_.IsPickList}
     
-    # Do Picklists more human readable
-    $Picklists = $Fields.Where{$_.IsPickList}
-    
-    # Adjust TimeZone on all DateTime properties
-    Foreach ($Object in $InputObject) 
-    { 
-      Foreach ($DateTimeParam in $DateTimeParams) {
+      # Adjust TimeZone on all DateTime properties
+      Foreach ($Object in $InputObject) 
+      { 
+        Foreach ($DateTimeParam in $DateTimeParams) {
       
-        # Get the datetime value
-        $Value = $Object.$DateTimeParam
+          # Get the datetime value
+          $Value = $Object.$DateTimeParam
                 
-        # Skip if parameter is empty
-        If (-not ($Value)) {
-          Continue
+          # Skip if parameter is empty
+          If (-not ($Value)) {
+            Continue
+          }
+          # Convert the datetime back to CEST
+          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
         }
-        # Convert the datetime back to CEST
-        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
-      }
       
-      # Revert picklist labels to their values
-      Foreach ($Field in $Picklists)
-      {
-        If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
-          $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
-        }
-      }
-    }
-    
-    $ModifiedObjects = Set-AtwsData -Entity $InputObject
-    
-    # Revert changes back on any inputobject
-    Foreach ($Object in $InputObject) 
-    { 
-      Foreach ($DateTimeParam in $DateTimeParams) {
-      
-        # Get the datetime value
-        $Value = $Object.$DateTimeParam
-                
-        # Skip if parameter is empty
-        If (-not ($Value)) {
-          Continue
-        }
-        # Revert the datetime back from CEST
-        $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
-      }
-      
-      If ($Script:UsePickListLabels) { 
-        # Restore picklist labels
+        # Revert picklist labels to their values
         Foreach ($Field in $Picklists)
         {
-          If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
-            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+          If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
+            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
+          }
+        }
+      }
+
+      $ModifiedObjects = Set-AtwsData -Entity $InputObject
+    
+      # Revert changes back on any inputobject
+      Foreach ($Object in $InputObject) 
+      { 
+        Foreach ($DateTimeParam in $DateTimeParams) {
+      
+          # Get the datetime value
+          $Value = $Object.$DateTimeParam
+                
+          # Skip if parameter is empty
+          If (-not ($Value)) {
+            Continue
+          }
+          # Revert the datetime back from CEST
+          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
+        }
+      
+        If ($Script:UsePickListLabels) { 
+          # Restore picklist labels
+          Foreach ($Field in $Picklists)
+          {
+            If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
+              $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+            }
           }
         }
       }

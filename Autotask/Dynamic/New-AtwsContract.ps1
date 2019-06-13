@@ -82,7 +82,7 @@ Set-AtwsContract
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
@@ -130,7 +130,7 @@ Set-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,250)]
+    [ValidateLength(0,250)]
     [string]
     $ContactName,
 
@@ -148,7 +148,7 @@ Set-AtwsContract
     )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string]
     $ContractName,
 
@@ -156,7 +156,7 @@ Set-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $ContractNumber,
 
@@ -187,7 +187,7 @@ Set-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,2000)]
+    [ValidateLength(0,2000)]
     [string]
     $Description,
 
@@ -264,7 +264,7 @@ Set-AtwsContract
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string]
     $PurchaseOrderNumber,
 
@@ -437,9 +437,15 @@ Set-AtwsContract
           $Object.$($Parameter.Key) = $Value
         }
       }
-    }    
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
 
-    $Result = New-AtwsData -Entity $ProcessObject
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
+    }
   }
 
   End

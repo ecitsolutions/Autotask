@@ -104,7 +104,7 @@ Set-AtwsContact
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
@@ -177,7 +177,7 @@ Set-AtwsContact
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Nullable[long][]]
     $id,
 
 # Client
@@ -185,7 +185,7 @@ Set-AtwsContact
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [Nullable[Int][]]
     $AccountID,
 
 # First Name
@@ -193,7 +193,7 @@ Set-AtwsContact
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $FirstName,
 
@@ -202,7 +202,7 @@ Set-AtwsContact
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $LastName,
 
@@ -210,7 +210,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,2)]
+    [ValidateLength(0,2)]
     [string[]]
     $MiddleInitial,
 
@@ -218,7 +218,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $Title,
 
@@ -226,7 +226,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string[]]
     $AddressLine,
 
@@ -234,7 +234,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,128)]
+    [ValidateLength(0,128)]
     [string[]]
     $AddressLine1,
 
@@ -242,7 +242,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,32)]
+    [ValidateLength(0,32)]
     [string[]]
     $City,
 
@@ -250,7 +250,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,40)]
+    [ValidateLength(0,40)]
     [string[]]
     $State,
 
@@ -258,7 +258,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,16)]
+    [ValidateLength(0,16)]
     [string[]]
     $ZipCode,
 
@@ -266,7 +266,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string[]]
     $Country,
 
@@ -274,7 +274,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,254)]
+    [ValidateLength(0,254)]
     [string[]]
     $EMailAddress,
 
@@ -282,7 +282,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,254)]
+    [ValidateLength(0,254)]
     [string[]]
     $EMailAddress2,
 
@@ -290,7 +290,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,254)]
+    [ValidateLength(0,254)]
     [string[]]
     $EMailAddress3,
 
@@ -298,14 +298,14 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [boolean[]]
+    [Nullable[boolean][]]
     $Notification,
 
 # Contact Phone
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string[]]
     $Phone,
 
@@ -313,7 +313,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,10)]
+    [ValidateLength(0,10)]
     [string[]]
     $Extension,
 
@@ -321,7 +321,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,32)]
+    [ValidateLength(0,32)]
     [string[]]
     $AlternatePhone,
 
@@ -329,7 +329,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string[]]
     $MobilePhone,
 
@@ -337,7 +337,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,25)]
+    [ValidateLength(0,25)]
     [string[]]
     $FaxNumber,
 
@@ -345,7 +345,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $Note,
 
@@ -353,14 +353,14 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $LastActivityDate,
 
 # Room Number
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $RoomNumber,
 
@@ -369,28 +369,28 @@ Set-AtwsContact
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [Nullable[Int][]]
     $Active,
 
 # Create Date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Last Modified Date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $LastModifiedDate,
 
 # Additional Address Information
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string[]]
     $AdditionalAddressInformation,
 
@@ -398,7 +398,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $ExternalID,
 
@@ -406,14 +406,14 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $CountryID,
 
 # Bulk Email Opt Out Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $BulkEmailOptOutTime,
 
 # Name Prefix
@@ -434,7 +434,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,200)]
+    [ValidateLength(0,200)]
     [string[]]
     $FacebookUrl,
 
@@ -442,7 +442,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,200)]
+    [ValidateLength(0,200)]
     [string[]]
     $TwitterUrl,
 
@@ -450,7 +450,7 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,200)]
+    [ValidateLength(0,200)]
     [string[]]
     $LinkedInUrl,
 
@@ -458,21 +458,21 @@ Set-AtwsContact
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [boolean[]]
+    [Nullable[boolean][]]
     $PrimaryContact,
 
 # Account Physical Location
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $AccountPhysicalLocationID,
 
 # Solicitation Opt Out Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $SolicitationOptOutTime,
 
     [Parameter(
@@ -598,48 +598,55 @@ Set-AtwsContact
       $Filter = . Update-AtwsFilter -FilterString $Filter
     } 
 
-    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
+    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+    
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    
 
-    Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
-    # Datetimeparameters
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName
+      # Datetimeparameters
+      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
-    # Should we return an indirect object?
-    if ( ($Result) -and ($GetReferenceEntityById))
-    {
-      Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
+      # Should we return an indirect object?
+      if ( ($Result) -and ($GetReferenceEntityById))
+      {
+        Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
       
-      $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
-      $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
-      If ($ResultValues.Count -lt $Result.Count)
-      {
-        Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
-          $ResultValues.Count,
-          $EntityName,
-        $GetReferenceEntityById) -WarningAction Continue
-      }
-      $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
-      $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
-    }
-    ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
-    {
-      Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
-      $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
-      $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
-      $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
-     }
-    # Do the user want labels along with index values for Picklists?
-    ElseIf ( ($Result) -and -not ($NoPickListLabel))
-    {
-      Foreach ($Field in $Fields.Where{$_.IsPickList})
-      {
-        $FieldName = '{0}Label' -F $Field.Name
-        Foreach ($Item in $Result)
+        $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
+        $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
+        If ($ResultValues.Count -lt $Result.Count)
         {
-          $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
-          Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
+          Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+            $ResultValues.Count,
+            $EntityName,
+          $GetReferenceEntityById) -WarningAction Continue
+        }
+        $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
+        $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
+      }
+      ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
+      {
+        Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+        $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
+        $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
+        $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
+      }
+      # Do the user want labels along with index values for Picklists?
+      ElseIf ( ($Result) -and -not ($NoPickListLabel))
+      {
+        Foreach ($Field in $Fields.Where{$_.IsPickList})
+        {
+          $FieldName = '{0}Label' -F $Field.Name
+          Foreach ($Item in $Result)
+          {
+            $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+            Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
           
+          }
         }
       }
     }

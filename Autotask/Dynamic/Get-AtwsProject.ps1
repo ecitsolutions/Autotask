@@ -103,7 +103,7 @@ Set-AtwsProject
 
 #>
 
-  [CmdLetBinding(DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
@@ -167,7 +167,7 @@ Set-AtwsProject
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Nullable[long][]]
     $id,
 
 # Project Name
@@ -176,7 +176,7 @@ Set-AtwsProject
     )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(1,100)]
+    [ValidateLength(0,100)]
     [string[]]
     $ProjectName,
 
@@ -185,7 +185,7 @@ Set-AtwsProject
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Type
@@ -200,7 +200,7 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $ExtPNumber,
 
@@ -208,7 +208,7 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $ProjectNumber,
 
@@ -216,7 +216,7 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,2000)]
+    [ValidateLength(0,2000)]
     [string[]]
     $Description,
 
@@ -224,14 +224,14 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Created By
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Start Date
@@ -239,7 +239,7 @@ Set-AtwsProject
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime[]]
+    [Nullable[datetime][]]
     $StartDateTime,
 
 # End Date
@@ -247,105 +247,105 @@ Set-AtwsProject
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime[]]
+    [Nullable[datetime][]]
     $EndDateTime,
 
 # Duration
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $Duration,
 
 # Actual Hours
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $ActualHours,
 
 # Actual Billed Hours
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $ActualBilledHours,
 
 # Estimated Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $EstimatedTime,
 
 # Labor Estimated Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $LaborEstimatedRevenue,
 
 # Labor Estimated Costs
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $LaborEstimatedCosts,
 
 # Labor Estimated Margin Percentage
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $LaborEstimatedMarginPercentage,
 
 # Project Cost Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $ProjectCostsRevenue,
 
 # Project Estimated costs
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $ProjectCostsBudget,
 
 # Project Cost Estimated Margin Percentage
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $ProjectCostEstimatedMarginPercentage,
 
 # Change Orders Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $ChangeOrdersRevenue,
 
 # SG&A
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $SGDA,
 
 # Original Estimated Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $OriginalEstimatedRevenue,
 
 # Estimated Sales Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float[]]
+    [Nullable[float][]]
     $EstimatedSalesCost,
 
 # Status
@@ -360,42 +360,42 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Project Lead
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $ProjectLeadResourceID,
 
 # Account Owner
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $CompanyOwnerResourceID,
 
 # Completed Percentage
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $CompletedPercentage,
 
 # Completed date
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $CompletedDateTime,
 
 # Status Detail
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,2000)]
+    [ValidateLength(0,2000)]
     [string[]]
     $StatusDetail,
 
@@ -403,7 +403,7 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $StatusDateTime,
 
 # Department
@@ -424,7 +424,7 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateLength(1,50)]
+    [ValidateLength(0,50)]
     [string[]]
     $PurchaseOrderNumber,
 
@@ -432,28 +432,28 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Last Activity By
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $LastActivityResourceID,
 
 # Last Activity Date Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime[]]
+    [Nullable[datetime][]]
     $LastActivityDateTime,
 
 # Last Activity Person Type
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Int[]]
+    [Nullable[Int][]]
     $LastActivityPersonType,
 
     [Parameter(
@@ -579,48 +579,55 @@ Set-AtwsProject
       $Filter = . Update-AtwsFilter -FilterString $Filter
     } 
 
-    $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
+    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+    
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter
+    
 
-    Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
-    # Datetimeparameters
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName
+      # Datetimeparameters
+      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
-    # Should we return an indirect object?
-    if ( ($Result) -and ($GetReferenceEntityById))
-    {
-      Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
+      # Should we return an indirect object?
+      if ( ($Result) -and ($GetReferenceEntityById))
+      {
+        Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
       
-      $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
-      $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
-      If ($ResultValues.Count -lt $Result.Count)
-      {
-        Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
-          $ResultValues.Count,
-          $EntityName,
-        $GetReferenceEntityById) -WarningAction Continue
-      }
-      $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
-      $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
-    }
-    ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
-    {
-      Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
-      $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
-      $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
-      $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
-     }
-    # Do the user want labels along with index values for Picklists?
-    ElseIf ( ($Result) -and -not ($NoPickListLabel))
-    {
-      Foreach ($Field in $Fields.Where{$_.IsPickList})
-      {
-        $FieldName = '{0}Label' -F $Field.Name
-        Foreach ($Item in $Result)
+        $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
+        $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
+        If ($ResultValues.Count -lt $Result.Count)
         {
-          $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
-          Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
+          Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+            $ResultValues.Count,
+            $EntityName,
+          $GetReferenceEntityById) -WarningAction Continue
+        }
+        $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
+        $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
+      }
+      ElseIf ( ($Result) -and ($GetExternalEntityByThisEntityId))
+      {
+        Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+        $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
+        $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
+        $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
+      }
+      # Do the user want labels along with index values for Picklists?
+      ElseIf ( ($Result) -and -not ($NoPickListLabel))
+      {
+        Foreach ($Field in $Fields.Where{$_.IsPickList})
+        {
+          $FieldName = '{0}Label' -F $Field.Name
+          Foreach ($Item in $Result)
+          {
+            $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+            Add-Member -InputObject $Item -MemberType NoteProperty -Name $FieldName -Value $Value -Force
           
+          }
         }
       }
     }
