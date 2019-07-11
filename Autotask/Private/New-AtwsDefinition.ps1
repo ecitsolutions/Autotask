@@ -3,29 +3,18 @@
   Begin
   { 
     $EntityName = '#EntityName'
-    $Prefix = '#Prefix'
-        
-    # Lookup Verbose, WhatIf and other preferences from calling context
-    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
+           
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
     
-    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    
     $ProcessObject = @()
-    
-    # Set up TimeZone offset handling
-    If (-not($script:ESToffset))
-    {
-      $Now = Get-Date
-      $ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($Now.ToUniversalTime(), $ESTzone)
-
-      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
-    }
-
   }
 
   Process
   {
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName -Connection $Prefix
+    $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
     If ($InputObject)
     {
@@ -39,7 +28,11 @@
         $NewObject = New-Object Autotask.$EntityName
         
         # Copy every non readonly property
-        Foreach ($Field in $Fields.Where({$_.Name -ne 'id'}).Name)
+        $FieldNames = $Fields.Where({$_.Name -ne 'id'}).Name
+        If ($PSBoundParameters.ContainsKey('UserDefinedFields')) {
+          $FieldNames += 'UserDefinedFields'
+        }
+        Foreach ($Field in $FieldNames)
         {
           $NewObject.$Field = $Object.$Field
         }
@@ -55,7 +48,7 @@
     }
     Else
     {
-      Write-Verbose ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $EntityName) 
+      Write-Debug ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $EntityName) 
       $ProcessObject += New-Object Autotask.$EntityName    
     }
     
@@ -79,11 +72,6 @@
           }
           $Value = $PickListValue.Value
         }
-        ElseIf ($Field.Type -eq 'datetime')
-        {
-          # Yes, you really have to ADD the difference
-          $Value = $Parameter.Value.AddHours($script:ESToffset)
-        }
         Else
         {
           $Value = $Parameter.Value
@@ -94,27 +82,20 @@
           $Object.$($Parameter.Key) = $Value
         }
       }
+    }   
+     
+    $Caption = $MyInvocation.MyCommand.Name
+    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
+    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
+
+    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+      $Result = New-AtwsData -Entity $ProcessObject
     }
-    $Result = New-AtwsData -Entity $ProcessObject -Connection $Prefix
   }
 
   End
   {
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-
-    If ($PSCmdLet.ParameterSetName -eq 'Input_Object')
-    {
-      # Verify copy mode
-      Foreach ($Object in $Result)
-      {
-        If ($InputObject.Id -contains $Object.Id)
-        {
-          Write-Verbose ('{0}: Autotask detected new object as duplicate of {1} with Id {2} and tried to update object, not create a new copy. ' -F $MyInvocation.MyCommand.Name, $EntityName, $Object.Id)
-        }
-      }
-    }
-
+    Write-Debug ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $Result.count, $EntityName)
     Return $Result
   }
-
 }

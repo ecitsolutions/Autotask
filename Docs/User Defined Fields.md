@@ -76,3 +76,13 @@ To filter on more than one UDF you may use one for the query and then use a stan
 $ConfigurationItems = Get-AtwsInstalledProduct -UserDefinedField @{name='Klikkpris sort/hvitt (øre)';value=0} | 
   Where-Object {[int]$_.'#Tellerverk sort/hvitt' -gt 0}
 ```
+
+## Modifiers and wildcards (Version >= 1.6.1.0)
+
+You can use modifiers on any field. See [How to Query](./How%20to%20Query.md). This works for userdefined fields, too. to use wildcards you supply the pattern in the *value* clause.
+
+```powershell
+# Genuine example from our own tenant. Note the horrid UDF name!
+$ConfigurationItems = Get-AtwsInstalledProduct -UserDefinedField @{name='Klikkpris sort/hvitt (øre)';value=0} -GreaterThan UserDefinedField
+$ConfigurationItems = Get-AtwsInstalledProduct -UserDefinedField @{name='Operativsystem';value='Win*'} -Like UserDefinedField
+```

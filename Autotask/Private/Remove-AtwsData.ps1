@@ -1,0 +1,73 @@
+﻿<#
+
+    .COPYRIGHT
+    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md  for license information.
+
+#>
+
+Function Remove-AtwsData {
+  <#
+      .SYNOPSIS
+      This function updates one or more Autotask entities with new or modified properties.
+      .DESCRIPTION
+      This function updates one or more Autotask entities with new or modified properties
+      .INPUTS
+      Autotask.Entity[]. One or more Autotask entities to delete.
+      .OUTPUTS
+      Nothing.
+      .EXAMPLE
+      Remove-AtwsData -Entity $Entity
+      Passes all Autotask entities in $Entity to the Autotask webservices API and deletes them.
+      .NOTES
+      NAME: Remove-AtwsData
+      .LINK
+      Get-AtwsData
+      New-AtwsData
+      Set-AtwsData
+  #>
+ 
+  [cmdletbinding(
+      SupportsShouldProcess = $True,
+      ConfirmImpact = 'Low'
+  )]
+  param
+  (
+    [Parameter(Mandatory = $True,
+      ValueFromPipeline = $True)]
+    [ValidateNotNullOrEmpty()]
+    [PSObject[]]
+    $Entity
+  )
+    
+  Begin { 
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Verbose ('{0}: Start of Function' -F $MyInvocation.MyCommand.Name)
+
+    # Check if we are connected before trying anything
+    If (-not($Script:Atws.Url)) {
+      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+    }
+
+  }
+  
+  Process {   
+    
+    Write-Verbose ('{0}: Deleting {1} [Autotask.{2}] object(s) with Id {3}' -F $MyInvocation.MyCommand.Name, $Entity.Count, $Entity[0].GetType().Name, ($Entity.Id -join ','))        
+      
+    $Result = $atws.delete($Entity)
+      
+    If ($Result.Errors.Count -gt 0) {
+      Foreach ($AtwsError in $Result.Errors) {
+        Write-Error -Message $AtwsError.Message
+      }
+    }    
+  }
+  
+  End {
+    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)    
+  }
+}
+

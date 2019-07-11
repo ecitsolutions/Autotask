@@ -32,7 +32,9 @@
 
         [String]$Comment,
 
-        [Switch]$Array
+        [Switch]$Array,
+        
+        [Switch]$Nullable
 
 
           
@@ -46,8 +48,9 @@
     Foreach ($SetName in $ParameterSetName) { 
         # Make an array of properties that goes inside the Parameter clause
         $ParamProperties = @()
-    
-        If ($Mandatory.IsPresent) {
+        
+        # Hardcoded filter against requiring parameters for 'Input_Object'
+        If ($Mandatory.IsPresent -and $SetName -in 'By_parameters','Filter') {
             $ParamProperties += "      Mandatory = `$true"  
         }
         If ($ValueFromRemainingArguments.IsPresent) {
@@ -78,7 +81,7 @@
 
     # Add validate length if present
     If ($ValidateLength -gt 0) {
-        $Text += "    [ValidateLength(1,$ValidateLength)]`n" 
+        $Text += "    [ValidateLength(0,$ValidateLength)]`n" 
     }
         
     # Add Validateset if present
@@ -96,6 +99,24 @@
     }
 
     # Add the correct variable type for the parameter
+    $Type = Switch ($Type) 
+    {
+      'Integer' 
+      {
+        'Int'
+      }
+      'Short'   
+      {
+        'Int16'
+      }
+      default   
+      {
+        $Type
+      }
+    }
+    If ($Nullable.IsPresent) {
+      $Type = "Nullable[$Type]"
+    }
     $Text += "    [$Type"
     If ($Array.IsPresent) {
         $Text += '[]'

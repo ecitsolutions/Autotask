@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
-<package >
-<metadata>
+<package>
+  <metadata>
     <id>Autotask</id>
-        <version>0.2.2.2</version>
-        <authors>Hugo Klemmestad, Kristoffer Ryeng</authors>
-        <owners>klemmestad, kristofferoch</owners>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>PowerShell module for connecting to and interacting with the Autotask Web Services API</description>
-        <releaseNotes>PowerShell module for connecting to and interacting with the Autotask Web Services API. Initial release.</releaseNotes>
-        <copyright>Copyright 2017 Office Center </copyright>
-        <tags>OCH automatisering, Autotask, Dynamic Module, SOAP</tags>
-    </metadata>
+    <version>1.6.2.12</version>
+    <authors>Hugo Klemmestad</authors>
+    <owners>klemmestad, kristofferoch</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This module connects to the Autotask web services API. It downloads information about entities and fields and generates Powershell functions with parameter validation to support Intellisense script editing. To download first all entities and then detailed information about all fields and selection lists is quite time consuming. To speed up module load time and get to coding faster the module caches both script functions and the field info cache to disk.</description>
+    <releaseNotes>https://github.com/officecenter/Autotask/blob/master/README.md</releaseNotes>
+    <copyright>Copyright 2017 Office Center </copyright>
+    <tags>Autotask, Function, SOAP</tags>
+  </metadata>
 </package>

@@ -3,12 +3,11 @@
   Begin
   { 
     $EntityName = '#EntityName'
-    $Prefix = '#Prefix' 
     
-    # Lookup Verbose, WhatIf and other preferences from calling context
-    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState 
-
-    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    # Enable modern -Debug behavior
+    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
   }
 
@@ -22,13 +21,20 @@
 
     If ($InputObject)
     { 
-      Remove-AtwsData -Entity $InputObject -Connection $Prefix 
+      
+      $Caption = $MyInvocation.MyCommand.Name
+      $VerboseDescrition = '{0}: About to delete {1} {2}(s). This action cannot be undone.' -F $Caption, $InputObject.Count, $EntityName
+      $VerboseWarning = '{0}: About to delete {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $InputObject.Count, $EntityName
+
+      If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+        Remove-AtwsData -Entity $InputObject
+      }
     }
   }
 
   End
   {
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
   }
 
 }
