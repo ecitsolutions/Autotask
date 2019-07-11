@@ -1,6 +1,6 @@
 # Prefixes and multiple connections
 
-By default our PowerShell module uses the prefix *Atws* for all functions. But when you connect to the API you may choose any prefix you want:
+By default, our PowerShell module uses the prefix *Atws* for all functions. But when you connect to the API you may choose any prefix you want:
 
 ```powershell
 Import-Module Autotask -Prefix Company1 -Verbose -Variable $Credential, $ApiKey 

@@ -1,6 +1,6 @@
 # User Defined Fields
 
-User defined fields are an important Autotask feature and the API supports them fully. The most important difference between normal fields and user defined fields is that user defined fields are referenced indirectly. A normal field has a name and a single valuem but user defined fields are an array of name/value pairs:
+User defined fields are an important Autotask feature and the API supports them fully. The most important difference between normal fields and user defined fields is that user defined fields are referenced indirectly. A normal field has a name and a single value but user defined fields are an array of name/value pairs:
 
 ```powershell
 $Account.AccountName = 'Company Name'
@@ -46,7 +46,7 @@ Get-AtwsInstalledProduct -Filter {-udf 'udf_name' -eq 'udf_value'}
 
 ## Filtering on UDFs
 
-Working with an array of name/value pairs is a lot of work in code. So to make things easier we expand all UDFs on returned queries. All UDFs are added as extra properties with a hashtag in front of the field name to mark it clearly as an UDF. It is necessary to separate UDFs from ordinary fields because you are entirely free to create an UDF with the same name as an ordinary field. Another reason is that UDF names are enirely free form. You may use spaces and special characters in their names, so we figured we'd better make it impossible to refer to UDFs in your code without using quotes or escape characters.
+Working with an array of name/value pairs is a lot of work in code. So to make things easier we expand all UDFs on returned queries. All UDFs are added as extra properties with a hashtag in front of the field name to mark it clearly as an UDF. It is necessary to separate UDFs from ordinary fields because you are entirely free to create an UDF with the same name as an ordinary field. Another reason is that UDF names are entirely free form. You may use spaces and special characters in their names, so we figured we'd better make it impossible to refer to UDFs in your code without using quotes or escape characters.
 
 ```powershell
 # Genuine example from our own tenant. Note the horrid UDF name!

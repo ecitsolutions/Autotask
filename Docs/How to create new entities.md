@@ -1,4 +1,4 @@
-# New Entites
+# New Entities
 
 For every entity in the Autotask that support being created through the API there are created a *New-* function. All New functions support 2 methods for creating new objects: *By parameters* and *by object*. Choose whichever method that suits your coding style, or switch between them as needs dictate.
 
