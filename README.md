@@ -36,6 +36,13 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.2.13 - Bugfix release
+
+- BUGFIX: Issue #36: Date queries with multiple date fields return 0 objects - **Fixed**
+- BUGFIX: Issue #33: Updating Diskcache auto running at every import - **Fixed**
+- UPDATE: Issue #32: Suppress DATE and TIME warning - **Fixed**. The code should work with any datetime formats your powershell instance are compatible with.
+- UPDATE: Better handling of global variables used by Connect-AtwsApi (Thanks @JsonWud!)
+
 ## Version 1.6.2.12 - Bugfix release
 
 - BUGFIX: Issue #29: Set-AtwsContact :: Cannot convert Parameter -id from int64[] to int64. Set functions no longer try to set the ID field when using the -ID parameter.

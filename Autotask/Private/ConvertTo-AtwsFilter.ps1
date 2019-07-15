@@ -119,7 +119,7 @@ Function ConvertTo-AtwsFilter {
               $Filter += $ParameterName
               $Filter += '-ge'
               $Filter += ConvertTo-AtwsDate -ParameterName $ParameterName -DateTime $ParameterValue
-              $LessThanOrEquals += $ParameterName
+              [Array]$LessThanOrEquals += $ParameterName
               $Value = ConvertTo-AtwsDate -ParameterName $ParameterName -DateTime $ParameterValue.AddDays(1)
             }
             Else { 
