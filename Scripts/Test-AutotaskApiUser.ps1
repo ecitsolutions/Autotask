@@ -42,7 +42,10 @@ Function Test-AutotaskApiUser {
     
     [Parameter(Mandatory = $true)]
     [String]
-    $ApiTrackingIdentifier
+    $ApiTrackingIdentifier,
+    
+    [String]
+    $NameSpace = "TestAutotask$PID" # Unique namespace to avoid .NET confusion
   )
     
   Begin { 
@@ -115,11 +118,11 @@ Function Test-AutotaskApiUser {
     Write-Output ('{0}: Creating New-WebServiceProxy against URI: {1}' -F $MyInvocation.MyCommand.Name, $Uri)
     Try {
       # Create a new webservice proxy or die trying...
-      Write-Output ('{0}: New-WebServiceProxy -URI {1}  -Credential {2} -Namespace "Autotask" -Class "AutotaskAPI" -ErrorAction Stop' -F $MyInvocation.MyCommand.Name, $Uri, $Credential.Username)
+      Write-Output ('{0}: New-WebServiceProxy -URI {1}  -Credential {2} -Namespace {3} -Class "AutotaskAPI" -ErrorAction Stop' -F $MyInvocation.MyCommand.Name, $Uri, $Credential.Username, $NameSpace)
 
-      $Atws = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
+      $Atws = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace $NameSpace -Class 'AutotaskAPI' -ErrorAction Stop
 
-      If ($Atws.Uri -eq $Uri) {
+      If ($Atws.Url -eq $Uri) {
         Write-Output ('{0}: SUCCESS: WebServiceProxy object created without error' -F $MyInvocation.MyCommand.Name)
       }
 
@@ -131,7 +134,7 @@ Function Test-AutotaskApiUser {
       Write-Output ('{0}: Adding API integration code to the WebServiceProxy object' -F $MyInvocation.MyCommand.Name)
        
       # A dedicated object type has been created to store integration values
-      $AutotaskIntegrationsValue = New-Object Autotask.AutotaskIntegrations
+      $AutotaskIntegrationsValue = New-Object "$NameSpace.AutotaskIntegrations"
 
       # Set the integrationcode property to the API tracking identifier provided by the user
       $AutotaskIntegrationsValue.IntegrationCode = $ApiTrackingIdentifier
@@ -160,15 +163,25 @@ Function Test-AutotaskApiUser {
   </query>
 </queryxml>
 "@
-
-    $Result = $Atws.query($QueryXML)
+    Try { 
+      $Result = $Atws.query($QueryXML)
+    }
+    Catch {
+      If ($_.Exception.InnerException.Message -match '.*Invalid Username or password.*') {
+        Write-Error 'Invalid Username or Password'
+        Return
+      }
+    }
 
     If ($Result.ReturnCode -eq 1) {
       Write-Output $Result.EntityResults[0]
     }
 
-    Foreach ($Err in $Result.Errors) {
-      Write-Error $Err.message
+    If ($Result.Errors.Count -gt 0) { 
+      Foreach ($Err in $Result.Errors) {
+        Write-Error $Err.message
+      }
+      Return
     }
 
     # Get username part of credential
@@ -187,14 +200,25 @@ Function Test-AutotaskApiUser {
 </queryxml>
 "@
 
-    $Result = $Atws.query($QueryXML)
+    Try { 
+      $Result = $Atws.query($QueryXML)
+    }
+    Catch {
+      If ($_.Exception.InnerException.Message -match '.*Invalid Username or password.*') {
+        Write-Error 'Invalid Username or Password'
+        Return
+      }
+    }
 
     If ($Result.ReturnCode -eq 1) {
       Write-Output $Result.EntityResults[0]
     }
-
-    Foreach ($Err in $Result.Errors) {
-      Write-Error $Err.message
+    
+    If ($Result.Errors.Count -gt 0) { 
+      Foreach ($Err in $Result.Errors) {
+        Write-Error $Err.message
+      }
+      Return
     }
   }
   End {
