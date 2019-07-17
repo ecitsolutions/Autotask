@@ -9,27 +9,29 @@
 Function Test-AutotaskApiUser {
   <#
       .SYNOPSIS
-      This function re-loads the module with the correct parameters for full functionality
+      This functions logs on to the API with your credentials for testing purposes only. No module is imported.
       .DESCRIPTION
-      This function is a wrapper that is included for backwards compatibility with previous module behavior.
-      These parameters should be passed to Import-Module -Variable directly, but previously the module 
-      consisted of two, nested modules. Now there is a single module with all functionality.
+      This functions takes a credential and an ApiTracking code and test them against the version 1.6 API
+      endpoint of the Autotask Web Api. The script is only meant as a test of your credentials and to make 
+      sure they work with PowerShell access to the API.
+
+      Note of warning: A successfully created Web Service Proxy object is created in the .NET environment
+      outside of PowerShell. During testing I have not yet been able to delete preexisting objects entirely
+      and they seem to be connected to the URI. As soon as you have created an object successfully with a set
+      of credentials you will be unable to recreate it completely with a different set of credentials. I.E.
+      this test only works reliably the first time you run it.
       .INPUTS
       A PSCredential object. Required. 
       A string used as ApiTrackingIdentifier. Required. 
       .OUTPUTS
-      Nothing.
+      Text.
       .EXAMPLE
-      Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $String
+      Test-AutotaskApiUser -Credential $Credential -ApiTrackingIdentifier $String
       .NOTES
-      NAME: Connect-AtwsWebAPI
+      NAME: Test-AutotaskApiUser
   #>
 	
-  [cmdletbinding(
-      SupportsShouldProcess = $True,
-      ConfirmImpact = 'Low',
-      DefaultParameterSetName = 'Default'
-  )]
+  [cmdletbinding()]
 
   Param
   (
@@ -116,6 +118,10 @@ Function Test-AutotaskApiUser {
       Write-Output ('{0}: New-WebServiceProxy -URI {1}  -Credential {2} -Namespace "Autotask" -Class "AutotaskAPI" -ErrorAction Stop' -F $MyInvocation.MyCommand.Name, $Uri, $Credential.Username)
 
       $Atws = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
+
+      If ($Atws.Uri -eq $Uri) {
+        Write-Output ('{0}: SUCCESS: WebServiceProxy object created without error' -F $MyInvocation.MyCommand.Name)
+      }
 
       # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
       $Atws.PreAuthenticate = $True
