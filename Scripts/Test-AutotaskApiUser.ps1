@@ -122,7 +122,7 @@ Function Test-AutotaskApiUser {
 
       $Atws = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace $NameSpace -Class 'AutotaskAPI' -ErrorAction Stop
 
-      If ($Atws.Url -eq $Uri) {
+      If ($Atws.Url) {
         Write-Output ('{0}: SUCCESS: WebServiceProxy object created without error' -F $MyInvocation.MyCommand.Name)
       }
 
