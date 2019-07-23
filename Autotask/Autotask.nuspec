@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Autotask</id>
-    <version>1.6.2.14</version>
+    <version>1.6.2.15</version>
     <authors>Hugo Klemmestad</authors>
     <owners>klemmestad, kristofferoch</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

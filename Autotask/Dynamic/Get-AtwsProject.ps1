@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.14
+#Version 1.6.2.15
 <#
 
 .COPYRIGHT
@@ -50,7 +50,6 @@ Entities that have fields that refer to the base entity of this CmdLet:
 BillingItem
  ExpenseItem
  NotificationHistory
- Phase
  ProjectCost
  ProjectNote
  PurchaseOrderItem
@@ -138,7 +137,7 @@ Set-AtwsProject
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem:ProjectID', 'ExpenseItem:ProjectID', 'NotificationHistory:ProjectID', 'Phase:ProjectID', 'ProjectCost:ProjectID', 'ProjectNote:ProjectID', 'PurchaseOrderItem:ProjectID', 'Quote:ProposalProjectID', 'Task:ProjectID', 'Ticket:ProjectID')]
+    [ValidateSet('BillingItem:ProjectID', 'ExpenseItem:ProjectID', 'NotificationHistory:ProjectID', 'ProjectCost:ProjectID', 'ProjectNote:ProjectID', 'PurchaseOrderItem:ProjectID', 'Quote:ProposalProjectID', 'Task:ProjectID', 'Ticket:ProjectID')]
     [String]
     $GetExternalEntityByThisEntityId,
 

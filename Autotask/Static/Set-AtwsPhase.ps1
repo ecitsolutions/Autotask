@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.14
+#Version 1.6.2.15
 <#
 
 .COPYRIGHT
@@ -19,8 +19,7 @@ This function one or more objects of type [Autotask.Phase] as input. You can pip
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-Phase
- Task
+Task
 
 .INPUTS
 [Autotask.Phase[]]. This function takes one or more objects as input. Pipeline is supported.
@@ -79,74 +78,7 @@ Get-AtwsPhase
     [Switch]
     $PassThru,
 
-# Phase Description
-    [Parameter(
-      ParameterSetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParameterSetName = 'By_Id'
-    )]
-    [ValidateLength(0,8000)]
-    [string]
-    $Description,
-
-# Phase End Date
-    [Parameter(
-      ParameterSetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParameterSetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $DueDate,
-
-# Phase External ID
-    [Parameter(
-      ParameterSetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParameterSetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ExternalID,
-
-# Parent Phase
-    [Parameter(
-      ParameterSetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParameterSetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $ParentPhaseID,
-
-# Phase Start Date
-    [Parameter(
-      ParameterSetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParameterSetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $StartDate,
-
-# Phase Title
+# Name
     [Parameter(
       ParameterSetName = 'Input_Object'
     )]
@@ -158,9 +90,49 @@ Get-AtwsPhase
       ParameterSetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
+    [ValidateLength(0,100)]
     [string]
-    $Title
+    $Name,
+
+# Description
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# Active
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $Active,
+
+# Payment Due In Days
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $PaymentDueInDays
   )
  
   Begin

@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.14
+#Version 1.6.2.15
 <#
 
 .COPYRIGHT
@@ -22,7 +22,6 @@ Entities that have fields that refer to the base entity of this CmdLet:
 BillingItem
  ExpenseItem
  NotificationHistory
- Phase
  ProjectCost
  ProjectNote
  PurchaseOrderItem

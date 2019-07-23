@@ -18,21 +18,22 @@ Function New-AtwsAttachment {
       a Project or a Ticket. The attachment can be passed through the pipeline or provided as
       en URL or a file or folder path.
       .INPUTS
-      [Byte[]]
+      Nothing
       .OUTPUTS
       Autotask attachments
-      .EXAMPLE
-      $Document | New-AtwsAttachment -TicketId 0 -Title 'A title'
-      Uploads $Document as an attachment to the Ticket with id 0 and sets the attachment title to 'A Title'.
       .EXAMPLE
       New-AtwsAttachment -TicketId 0 -Path C:\Document.docx
       Uploads C:\Document.docx as an attachment to the Ticket with id 0 and sets the attachment title to 'Document.docx'.
       .EXAMPLE
-      New-AtwsAttachment -TicketId 0 -Title 'A title' -Path C:\Document.docx
+      New-AtwsAttachment -TicketId 0 -Path C:\Document.docx  -Title 'A title' 
       Uploads C:\Document.docx as an attachment to the Ticket with id 0 and sets the attachment title to 'A title'.
       .EXAMPLE
       New-AtwsAttachment -TicketId 0 -Path C:\Document.docx -FileLink
       Adds an file link attachment to the Ticket with id 0, title 'Document.docx' and C:\Document.docx as full path.
+      .EXAMPLE
+      $Attachment = Get-AtwsAttachment -TicketID 0 | Select-Object -First 1
+      New-AtwsAttachment -Data $Attachment.Data -TicketId 1 -Title $Attachment.Info.Title -Extension $([IO.Path]::GetExtension($Attachment.Info.FullPath))
+      Gets the first attachment from Ticket with id 0 and attaches it to Ticket with id 1
       .NOTE
       Strongly related to Get-AtwsAttachmentInfo
   #>
@@ -44,27 +45,45 @@ Function New-AtwsAttachment {
     # An object as a byte array that will be attached to an Autotask object
     [Parameter(
         Mandatory = $True,
-        ParameterSetName = 'Account_as_byte',
-        ValueFromPipeline = $true
+        ParameterSetName = 'Account_as_byte'
     )]
     [Parameter(
         Mandatory = $True, 
-        ParameterSetName = 'Opportunity_as_byte',
-        ValueFromPipeline = $true
+        ParameterSetName = 'Opportunity_as_byte'
     )]
     [Parameter(
         Mandatory = $True, 
-        ParameterSetName = 'Project_as_byte',
-        ValueFromPipeline = $true
+        ParameterSetName = 'Project_as_byte'
     )]
     [Parameter(
         Mandatory = $True, 
-        ParameterSetName = 'Ticket_as_byte',
-        ValueFromPipeline = $true
+        ParameterSetName = 'Ticket_as_byte'
     )]
     [ValidateNotNullOrEmpty()]
     [Byte[]]
     $Data,
+    
+    # An object as a byte array that will be attached to an Autotask object
+    [Parameter(
+        Mandatory = $True,
+        ParameterSetName = 'Account_as_byte'
+    )]
+    [Parameter(
+        Mandatory = $True, 
+        ParameterSetName = 'Opportunity_as_byte'
+    )]
+    [Parameter(
+        Mandatory = $True, 
+        ParameterSetName = 'Project_as_byte'
+    )]
+    [Parameter(
+        Mandatory = $True, 
+        ParameterSetName = 'Ticket_as_byte'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidatePattern('^\.?\w+$')]
+    [String]
+    $Extension,
 
     # A is required for Data
     [Parameter(
@@ -336,7 +355,7 @@ Function New-AtwsAttachment {
     If ($Data) {
       $Attachment.Data = $Data
       $AttachmentInfo.Type = 'FILE_ATTACHMENT'
-      $AttachmentInfo.FullPath = $Title
+      $AttachmentInfo.FullPath = '{0}.{1}' -F $Title, $Extension.TrimStart('.')
     }
     # Is it an URL?
     ElseIf ($URI) {
@@ -361,6 +380,7 @@ Function New-AtwsAttachment {
       $AttachmentInfo.Type = 'FILE_ATTACHMENT'
       $AttachmentInfo.Title = $Path.BaseName
       $AttachmentInfo.FullPath = $Path.FullName
+      $AttachmentInfo.ContentType = 'image/png'
 
     }
     

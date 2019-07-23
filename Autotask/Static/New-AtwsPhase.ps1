@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.14
+#Version 1.6.2.15
 <#
 
 .COPYRIGHT
@@ -22,20 +22,18 @@ If you need very complicated queries you can write a filter directly and pass it
 'New-AtwsPhase -Id 0,4' could be written as 'New-AtwsPhase -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
 
 To create a new Phase you need the following required fields:
- -ProjectID
- -Title
+ -Name
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-Phase
- Task
+Task
 
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.Phase]. This function outputs the Autotask.Phase that was created by the API.
 .EXAMPLE
-$Result = New-AtwsPhase -ProjectID [Value] -Title [Value]
+$Result = New-AtwsPhase -Name [Value]
 Creates a new [Autotask.Phase] through the Web Services API and returns the new object.
  .EXAMPLE
 $Result = Get-AtwsPhase -Id 124 | New-AtwsPhase 
@@ -66,104 +64,37 @@ Set-AtwsPhase
     [Autotask.Phase[]]
     $InputObject,
 
-# Phase Creation Date
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDate,
-
-# Phase Creator
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
-
-# Phase Description
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string]
-    $Description,
-
-# Phase End Date
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [datetime]
-    $DueDate,
-
-# Phase Estimated Hours
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [double]
-    $EstimatedHours,
-
-# Phase External ID
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ExternalID,
-
-# Phase Last Activity Date
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastActivityDateTime,
-
-# Parent Phase
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [Int]
-    $ParentPhaseID,
-
-# Phase Number
-    [Parameter(
-      ParameterSetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PhaseNumber,
-
-# Project
+# Name
     [Parameter(
       Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
-    $ProjectID,
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
 
-# Is Scheduled
+# Description
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# Active
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
     [boolean]
-    $Scheduled,
+    $Active,
 
-# Phase Start Date
+# Payment Due In Days
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [datetime]
-    $StartDate,
-
-# Phase Title
-    [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string]
-    $Title
+    [Int]
+    $PaymentDueInDays
   )
  
   Begin

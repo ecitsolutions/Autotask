@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.2.15 - Re-release
+
+- BUGFIX: Issue #42: no valid module was found in any module directory - **Fixed** - A git error in my automated build script caused a merge error in the code tree used to build the published module. 
+
 ## Version 1.6.2.14 - Attachments supported
 
 - UPDATE: Issue #35: How to access API methods directly with 1.6.2.x - **Fixed** with new advanced function `Get-AtwsConnectionObject`
