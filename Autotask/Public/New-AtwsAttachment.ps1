@@ -321,10 +321,10 @@ Function New-AtwsAttachment {
   Process {
     
     # A new Attachment object
-    $Attachment = New-object "$Script:Namespace.Attachment"
+    $Attachment = New-object "Autotask.Attachment"
     
     # A new AttachmentInfo object
-    $AttachmentInfo = New-object "$Script:Namespace.AttachmentInfo"
+    $AttachmentInfo = New-object "Autotask.AttachmentInfo"
     
     # Attach info object to attachment object
     $Attachment.Info = $AttachmentInfo

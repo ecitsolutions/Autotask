@@ -45,8 +45,8 @@ Function Get-AtwsConnectionObject {
 
   Process {
     $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: About to return the Web Proxy Object for the current connection Autotask Web API in namespace {1}' -F $Caption, $Script:NameSpace
-    $VerboseWarning = '{0}: About to return the Web Proxy Object for the current connection Autotask Web API in namespace {1}. Do you want to continue?' -F $Caption, $Script:NameSpace
+    $VerboseDescrition = '{0}: About to return the Web Proxy Object for the current connection Autotask Web API. ' -F $Caption
+    $VerboseWarning = '{0}: About to return the Web Proxy Object for the current connection Autotask Web API. Do you want to continue?' -F $Caption
     
     If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
       Return $Script:Atws
