@@ -25,9 +25,18 @@ Function Import-AtwsCmdLet
     Write-Debug -Message ('{0}: Start of functions.' -F $MyInvocation.MyCommand.Name)
     
     $RootPath = '{0}\WindowsPowershell\Cache\{1}' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
-    
-    If (-not (Test-Path "$RootPath\Dynamic")) {
-      $Null = New-Item -Path "$RootPath\Dynamic" -ItemType Directory -Force
+
+    # Separate cache for beta module
+    If ($Script:IsBeta) { 
+      $RootPath += '\Beta'
+    }
+    Else {
+      $RootPath += '\Dynamic'
+    }
+
+    # Make sure directory exists
+    If (-not (Test-Path "$RootPath")) {
+      $Null = New-Item -Path "$RootPath" -ItemType Directory -Force
     }
     
   } 
@@ -64,10 +73,10 @@ Function Import-AtwsCmdLet
       $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -FieldInfo $CacheEntry.Value.FieldInfo
         
       If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
-      
+        
         Foreach ($Function in $FunctionDefinition.GetEnumerator()) {
           # Set path to powershell script file in user cache
-          $FilePath = '{0}\Dynamic\{1}.ps1' -F $RootPath, $Function.Key
+          $FilePath = '{0}\{1}.ps1' -F $RootPath, $Function.Key
           
           # IMport the updated function
           . ([ScriptBlock]::Create($Function.Value))
