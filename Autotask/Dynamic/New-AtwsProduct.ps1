@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -29,12 +29,16 @@ To create a new Product you need the following required fields:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-ContractCost
+ContactBillingProductAssociation
+ ContractBillingRule
+ ContractCost
  InstalledProduct
+ InstalledProductBillingProductAssociation
  InventoryItem
  InventoryTransfer
  Opportunity
  PriceListProduct
+ ProductTier
  ProductVendor
  ProjectCost
  PurchaseOrderItem
@@ -239,7 +243,21 @@ Set-AtwsProduct
     )]
     [ValidateLength(0,50)]
     [string]
-    $InternalProductID
+    $InternalProductID,
+
+# Billing Type
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [String]
+    $BillingType,
+
+# Price Cost Method
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [String]
+    $PriceCostMethod
   )
  
   Begin

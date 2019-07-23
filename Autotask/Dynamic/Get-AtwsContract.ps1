@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -59,6 +59,7 @@ Entities that have fields that refer to the base entity of this CmdLet:
 AccountToDo
  BillingItem
  Contract
+ ContractBillingRule
  ContractBlock
  ContractCost
  ContractExclusionAllocationCode
@@ -162,7 +163,7 @@ Set-AtwsContract
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountToDo:ContractID', 'BillingItem:ContractID', 'Contract:ExclusionContractID', 'ContractBlock:ContractID', 'ContractCost:ContractID', 'ContractExclusionAllocationCode:ContractID', 'ContractExclusionRole:ContractID', 'ContractFactor:ContractID', 'ContractMilestone:ContractID', 'ContractNote:ContractID', 'ContractRate:ContractID', 'ContractRetainer:ContractID', 'ContractRoleCost:ContractID', 'ContractService:ContractID', 'ContractServiceAdjustment:ContractID', 'ContractServiceBundle:ContractID', 'ContractServiceBundleAdjustment:ContractID', 'ContractServiceBundleUnit:ContractID', 'ContractServiceUnit:ContractID', 'ContractTicketPurchase:ContractID', 'InstalledProduct:ContractID', 'Project:ContractID', 'PurchaseOrderItem:ContractID', 'Ticket:ContractID', 'TimeEntry:ContractID')]
+    [ValidateSet('AccountToDo:ContractID', 'BillingItem:ContractID', 'Contract:ExclusionContractID', 'ContractBillingRule:ContractID', 'ContractBlock:ContractID', 'ContractCost:ContractID', 'ContractExclusionAllocationCode:ContractID', 'ContractExclusionRole:ContractID', 'ContractFactor:ContractID', 'ContractMilestone:ContractID', 'ContractNote:ContractID', 'ContractRate:ContractID', 'ContractRetainer:ContractID', 'ContractRoleCost:ContractID', 'ContractService:ContractID', 'ContractServiceAdjustment:ContractID', 'ContractServiceBundle:ContractID', 'ContractServiceBundleAdjustment:ContractID', 'ContractServiceBundleUnit:ContractID', 'ContractServiceUnit:ContractID', 'ContractTicketPurchase:ContractID', 'InstalledProduct:ContractID', 'Project:ContractID', 'PurchaseOrderItem:ContractID', 'Ticket:ContractID', 'TimeEntry:ContractID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -579,9 +580,6 @@ Set-AtwsContract
     
 
       Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
-    
-      # Datetimeparameters
-      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
       # Should we return an indirect object?
       if ( ($Result) -and ($GetReferenceEntityById))

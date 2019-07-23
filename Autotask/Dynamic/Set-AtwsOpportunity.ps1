@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -724,7 +724,33 @@ Get-AtwsOpportunity
       ParameterSetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $BusinessDivisionSubdivisionID
+    $BusinessDivisionSubdivisionID,
+
+# Opportunity Category ID
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [String]
+    $OpportunityCategoryID,
+
+# Lost Date
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $LostDate
   )
  
   Begin

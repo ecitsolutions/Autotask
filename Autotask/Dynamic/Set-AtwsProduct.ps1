@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -19,12 +19,16 @@ This function one or more objects of type [Autotask.Product] as input. You can p
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-ContractCost
+ContactBillingProductAssociation
+ ContractBillingRule
+ ContractCost
  InstalledProduct
+ InstalledProductBillingProductAssociation
  InventoryItem
  InventoryTransfer
  Opportunity
  PriceListProduct
+ ProductTier
  ProductVendor
  ProjectCost
  PurchaseOrderItem

@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -40,6 +40,7 @@ Account
  Contact
  InstalledProduct
  ServiceCall
+ Task
  Ticket
 
 .INPUTS
@@ -109,7 +110,7 @@ Set-AtwsAccountPhysicalLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Account:BillToAccountPhysicalLocationID', 'Contact:AccountPhysicalLocationID', 'InstalledProduct:AccountPhysicalLocationID', 'ServiceCall:AccountPhysicalLocationID', 'Ticket:AccountPhysicalLocationID')]
+    [ValidateSet('Account:BillToAccountPhysicalLocationID', 'Contact:AccountPhysicalLocationID', 'InstalledProduct:AccountPhysicalLocationID', 'ServiceCall:AccountPhysicalLocationID', 'Task:AccountPhysicalLocationID', 'Ticket:AccountPhysicalLocationID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -397,9 +398,6 @@ Set-AtwsAccountPhysicalLocation
     
 
       Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
-    
-      # Datetimeparameters
-      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
       # Should we return an indirect object?
       if ( ($Result) -and ($GetReferenceEntityById))

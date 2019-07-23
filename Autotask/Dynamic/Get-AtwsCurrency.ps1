@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -43,6 +43,7 @@ Account
  ExpenseReport
  PriceListMaterialCode
  PriceListProduct
+ PriceListProductTier
  PriceListRole
  PriceListService
  PriceListServiceBundle
@@ -126,7 +127,7 @@ Set-AtwsCurrency
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Account:CurrencyID', 'ExpenseItem:ExpenseCurrencyID', 'ExpenseReport:ReimbursementCurrencyID', 'PriceListMaterialCode:CurrencyID', 'PriceListProduct:CurrencyID', 'PriceListRole:CurrencyID', 'PriceListService:CurrencyID', 'PriceListServiceBundle:CurrencyID', 'PriceListWorkTypeModifier:CurrencyID')]
+    [ValidateSet('Account:CurrencyID', 'ExpenseItem:ExpenseCurrencyID', 'ExpenseReport:ReimbursementCurrencyID', 'PriceListMaterialCode:CurrencyID', 'PriceListProduct:CurrencyID', 'PriceListProductTier:CurrencyID', 'PriceListRole:CurrencyID', 'PriceListService:CurrencyID', 'PriceListServiceBundle:CurrencyID', 'PriceListWorkTypeModifier:CurrencyID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -372,9 +373,6 @@ Set-AtwsCurrency
     
 
       Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
-    
-      # Datetimeparameters
-      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
       # Should we return an indirect object?
       if ( ($Result) -and ($GetReferenceEntityById))

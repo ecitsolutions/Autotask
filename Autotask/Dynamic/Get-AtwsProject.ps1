@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -261,91 +261,91 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $ActualHours,
 
 # Actual Billed Hours
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $ActualBilledHours,
 
 # Estimated Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $EstimatedTime,
 
 # Labor Estimated Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $LaborEstimatedRevenue,
 
 # Labor Estimated Costs
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $LaborEstimatedCosts,
 
 # Labor Estimated Margin Percentage
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $LaborEstimatedMarginPercentage,
 
 # Project Cost Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $ProjectCostsRevenue,
 
 # Project Estimated costs
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $ProjectCostsBudget,
 
 # Project Cost Estimated Margin Percentage
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $ProjectCostEstimatedMarginPercentage,
 
 # Change Orders Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $ChangeOrdersRevenue,
 
 # SG&A
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $SGDA,
 
 # Original Estimated Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $OriginalEstimatedRevenue,
 
 # Estimated Sales Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [Nullable[float][]]
+    [Nullable[double][]]
     $EstimatedSalesCost,
 
 # Status
@@ -588,9 +588,6 @@ Set-AtwsProject
     
 
       Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
-    
-      # Datetimeparameters
-      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
       # Should we return an indirect object?
       if ( ($Result) -and ($GetReferenceEntityById))

@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -31,6 +31,7 @@ Entities that have fields that refer to the base entity of this CmdLet:
 
 BillingItem
  InstalledProduct
+ InstalledProductBillingProductAssociation
  Subscription
  Ticket
  TicketAdditionalInstalledProduct
@@ -694,7 +695,29 @@ Set-AtwsInstalledProduct
       ParameterSetName = 'By_parameters'
     )]
     [String]
-    $LastActivityPersonType
+    $LastActivityPersonType,
+
+# Created By Person ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatedByPersonID,
+
+# API Vendor ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [String]
+    $ApiVendorID,
+
+# Device Networking ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $DeviceNetworkingID
   )
  
   Begin

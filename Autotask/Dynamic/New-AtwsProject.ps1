@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -181,98 +181,98 @@ Set-AtwsProject
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $ActualHours,
 
 # Actual Billed Hours
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $ActualBilledHours,
 
 # Estimated Time
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $EstimatedTime,
 
 # Labor Estimated Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $LaborEstimatedRevenue,
 
 # Labor Estimated Costs
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $LaborEstimatedCosts,
 
 # Labor Estimated Margin Percentage
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $LaborEstimatedMarginPercentage,
 
 # Project Cost Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $ProjectCostsRevenue,
 
 # Project Estimated costs
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $ProjectCostsBudget,
 
 # Project Cost Estimated Margin Percentage
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $ProjectCostEstimatedMarginPercentage,
 
 # Change Orders Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $ChangeOrdersRevenue,
 
 # Changed Orders
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $ChangeOrdersBudget,
 
 # SG&A
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $SGDA,
 
 # Original Estimated Revenue
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $OriginalEstimatedRevenue,
 
 # Estimated Sales Cost
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $EstimatedSalesCost,
 
 # Status

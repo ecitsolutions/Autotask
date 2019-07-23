@@ -36,6 +36,12 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.2.14 - Attachments supported
+
+- UPDATE: Issue #35: How to access API methods directly with 1.6.2.x - **Fixed** with new advanced function `Get-AtwsConnectionObject`
+- UPDATE: Issue #37: Feature request: Attachments upload - **Fixed** with new, static functions `Get-AtwsAttachment`, `New-AtwsAttachment` and `Remove-AtwsAttachment`
+- UPDATE: Issue #41: Beta-module overwrites personal disk cache for release module - **Fixed** Now you can install and use the beta module without destroying your personal script cache
+
 ## Version 1.6.2.13 - Bugfix release
 
 - BUGFIX: Issue #36: Date queries with multiple date fields return 0 objects - **Fixed**

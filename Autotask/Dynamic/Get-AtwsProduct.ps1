@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -39,14 +39,24 @@ ProductCategory
 PeriodType
  
 
+BillingType
+ 
+
+PriceCostMethod
+ 
+
 Entities that have fields that refer to the base entity of this CmdLet:
 
-ContractCost
+ContactBillingProductAssociation
+ ContractBillingRule
+ ContractCost
  InstalledProduct
+ InstalledProductBillingProductAssociation
  InventoryItem
  InventoryTransfer
  Opportunity
  PriceListProduct
+ ProductTier
  ProductVendor
  ProjectCost
  PurchaseOrderItem
@@ -133,7 +143,7 @@ Set-AtwsProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractCost:ProductID', 'InstalledProduct:ProductID', 'InventoryItem:ProductID', 'InventoryTransfer:ProductID', 'Opportunity:ProductID', 'PriceListProduct:ProductID', 'ProductVendor:ProductID', 'ProjectCost:ProductID', 'PurchaseOrderItem:ProductID', 'QuoteItem:ProductID', 'TicketCost:ProductID')]
+    [ValidateSet('ContactBillingProductAssociation:BillingProductID', 'ContractBillingRule:ProductID', 'ContractCost:ProductID', 'InstalledProduct:ProductID', 'InstalledProductBillingProductAssociation:BillingProductID', 'InventoryItem:ProductID', 'InventoryTransfer:ProductID', 'Opportunity:ProductID', 'PriceListProduct:ProductID', 'ProductTier:ProductID', 'ProductVendor:ProductID', 'ProjectCost:ProductID', 'PurchaseOrderItem:ProductID', 'QuoteItem:ProductID', 'TicketCost:ProductID')]
     [String]
     $GetExternalEntityByThisEntityId,
 
@@ -325,52 +335,66 @@ Set-AtwsProduct
     [string[]]
     $InternalProductID,
 
+# Billing Type
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'Active', 'PeriodType', 'ProductAllocationCodeID', 'Serialized', 'CostAllocationCodeID', 'DoesNotRequireProcurement', 'MarkupRate', 'InternalProductID')]
+    [String[]]
+    $BillingType,
+
+# Price Cost Method
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [String[]]
+    $PriceCostMethod,
+
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'Active', 'PeriodType', 'ProductAllocationCodeID', 'Serialized', 'CostAllocationCodeID', 'DoesNotRequireProcurement', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod')]
     [String[]]
     $NotEquals,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'Active', 'PeriodType', 'ProductAllocationCodeID', 'Serialized', 'CostAllocationCodeID', 'DoesNotRequireProcurement', 'MarkupRate', 'InternalProductID')]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'Active', 'PeriodType', 'ProductAllocationCodeID', 'Serialized', 'CostAllocationCodeID', 'DoesNotRequireProcurement', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod')]
     [String[]]
     $IsNull,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'Active', 'PeriodType', 'ProductAllocationCodeID', 'Serialized', 'CostAllocationCodeID', 'DoesNotRequireProcurement', 'MarkupRate', 'InternalProductID')]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'Active', 'PeriodType', 'ProductAllocationCodeID', 'Serialized', 'CostAllocationCodeID', 'DoesNotRequireProcurement', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod')]
     [String[]]
     $IsNotNull,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID')]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod')]
     [String[]]
     $GreaterThan,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID')]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod')]
     [String[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID')]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod')]
     [String[]]
     $LessThan,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID')]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod')]
     [String[]]
     $LessThanOrEquals,
 
@@ -456,9 +480,6 @@ Set-AtwsProduct
     
 
       Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
-    
-      # Datetimeparameters
-      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
       # Should we return an indirect object?
       if ( ($Result) -and ($GetReferenceEntityById))

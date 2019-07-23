@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -134,7 +134,20 @@ Get-AtwsTicketCategory
     )]
     [ValidateNotNullOrEmpty()]
     [String]
-    $DisplayColorRGB
+    $DisplayColorRGB,
+
+# Api Only
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $ApiOnly
   )
  
   Begin

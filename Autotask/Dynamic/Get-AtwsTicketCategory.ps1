@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -189,24 +189,31 @@ Set-AtwsTicketCategory
     [Nullable[boolean][]]
     $GlobalDefault,
 
+# Api Only
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Nickname', 'Active', 'DisplayColorRGB', 'GlobalDefault')]
+    [Nullable[boolean][]]
+    $ApiOnly,
+
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'Name', 'Nickname', 'Active', 'DisplayColorRGB', 'GlobalDefault', 'ApiOnly')]
     [String[]]
     $NotEquals,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Nickname', 'Active', 'DisplayColorRGB', 'GlobalDefault')]
+    [ValidateSet('id', 'Name', 'Nickname', 'Active', 'DisplayColorRGB', 'GlobalDefault', 'ApiOnly')]
     [String[]]
     $IsNull,
 
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Nickname', 'Active', 'DisplayColorRGB', 'GlobalDefault')]
+    [ValidateSet('id', 'Name', 'Nickname', 'Active', 'DisplayColorRGB', 'GlobalDefault', 'ApiOnly')]
     [String[]]
     $IsNotNull,
 
@@ -320,9 +327,6 @@ Set-AtwsTicketCategory
     
 
       Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
-    
-      # Datetimeparameters
-      $Fields = Get-AtwsFieldInfo -Entity $EntityName
     
       # Should we return an indirect object?
       if ( ($Result) -and ($GetReferenceEntityById))

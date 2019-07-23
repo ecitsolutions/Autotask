@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -23,6 +23,7 @@ AccountNote
  AccountToDo
  AttachmentInfo
  ClientPortalUser
+ ContactBillingProductAssociation
  ContactGroupContact
  Contract
  InstalledProduct

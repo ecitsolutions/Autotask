@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -187,7 +187,7 @@ Get-AtwsTask
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Nullable[float]]
+    [Nullable[double]]
     $EstimatedHours,
 
 # Task External ID
@@ -282,7 +282,7 @@ Get-AtwsTask
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Nullable[float]]
+    [Nullable[double]]
     $RemainingHours,
 
 # Task Start Date
@@ -355,7 +355,20 @@ Get-AtwsTask
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
     [string]
-    $Title
+    $Title,
+
+# Account Physical Location ID
+    [Parameter(
+      ParameterSetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParameterSetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $AccountPhysicalLocationID
   )
  
   Begin

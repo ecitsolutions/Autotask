@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -298,21 +298,21 @@ Set-AtwsOpportunity
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $AssessmentScore,
 
 # Technical Assessment Score
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $TechnicalAssessmentScore,
 
 # Relationship Assessment Score
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $RelationshipAssessmentScore,
 
 # Primary Competitor
@@ -487,7 +487,21 @@ Set-AtwsOpportunity
       ParameterSetName = 'By_parameters'
     )]
     [Int]
-    $BusinessDivisionSubdivisionID
+    $BusinessDivisionSubdivisionID,
+
+# Opportunity Category ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [String]
+    $OpportunityCategoryID,
+
+# Lost Date
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [datetime]
+    $LostDate
   )
  
   Begin

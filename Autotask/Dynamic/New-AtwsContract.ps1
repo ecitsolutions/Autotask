@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -35,6 +35,7 @@ Entities that have fields that refer to the base entity of this CmdLet:
 AccountToDo
  BillingItem
  Contract
+ ContractBillingRule
  ContractBlock
  ContractCost
  ContractExclusionAllocationCode

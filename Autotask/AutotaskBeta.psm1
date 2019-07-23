@@ -47,6 +47,11 @@ If ($ParentCommand -like '*-Debug*') {
     $DebugPreference = 'Continue'
 }
 
+# Am I being loaded as the Beta version?
+If ($MyInvocation.MyCommand.Name -eq 'AutotaskBeta.psm1') {
+    $Script:IsBeta = $True
+}
+
 # Read our own manifest to access configuration data
 $ManifestFileName = $MyInvocation.MyCommand.Name -replace 'pdm1$', 'psd1'
 $ManifestDirectory = Split-Path $MyInvocation.MyCommand.Path -Parent
@@ -55,7 +60,6 @@ Write-Debug ('{0}: Loading Manifest file {1} from {2}' -F $MyInvocation.MyComman
 
 
 Import-LocalizedData -BindingVariable My -FileName $ManifestFileName -BaseDirectory $ManifestDirectory
-
 
 # Get all function files as file objects
 # Private functions can only be called internally in other functions in the module 
@@ -157,7 +161,12 @@ If (($Credential) -or ($ApiTrackingIdentifier)) {
     # Connect to the API using required, additional parameters, using internal function name
     . Connect-AtwsWebServices @ConnectArgs
     if (!$ConnectArgs['NoDiskCache']) {
-        $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
+        If ($IsBeta) { 
+          $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Beta' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
+        }
+        Else {
+          $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
+        }
         If (Test-Path $DynamicCache) {
             $FunctionCount = $DynamicFunction.Count
             $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )

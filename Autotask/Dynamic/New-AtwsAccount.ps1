@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -498,7 +498,21 @@ Set-AtwsAccount
       ParameterSetName = 'By_parameters'
     )]
     [double]
-    $SurveyAccountRating
+    $SurveyAccountRating,
+
+# Created By Resource ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatedByResourceID,
+
+# API Vendor ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [String]
+    $ApiVendorID
   )
  
   Begin

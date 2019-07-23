@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -207,13 +207,11 @@ Get-AtwsTicket
       ParameterSetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[datetime]]
     $DueDateTime,
 

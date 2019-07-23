@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -149,7 +149,7 @@ Set-AtwsTask
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $EstimatedHours,
 
 # Task External ID
@@ -164,7 +164,7 @@ Set-AtwsTask
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $HoursToBeScheduled,
 
 # Is Visible in Client Portal
@@ -216,7 +216,7 @@ Set-AtwsTask
     [Parameter(
       ParameterSetName = 'By_parameters'
     )]
-    [float]
+    [double]
     $RemainingHours,
 
 # Task Start Date
@@ -309,7 +309,14 @@ Set-AtwsTask
       ParameterSetName = 'By_parameters'
     )]
     [Int]
-    $LastActivityResourceID
+    $LastActivityResourceID,
+
+# Account Physical Location ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [Int]
+    $AccountPhysicalLocationID
   )
  
   Begin

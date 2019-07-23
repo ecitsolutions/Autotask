@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -23,7 +23,6 @@ If you need very complicated queries you can write a filter directly and pass it
 
 To create a new Ticket you need the following required fields:
  -AccountID
- -DueDateTime
  -Priority
  -Status
  -Title
@@ -56,7 +55,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.Ticket]. This function outputs the Autotask.Ticket that was created by the API.
 .EXAMPLE
-$Result = New-AtwsTicket -AccountID [Value] -DueDateTime [Value] -Priority [Value] -Status [Value] -Title [Value]
+$Result = New-AtwsTicket -AccountID [Value] -Priority [Value] -Status [Value] -Title [Value]
 Creates a new [Autotask.Ticket] through the Web Services API and returns the new object.
  .EXAMPLE
 $Result = Get-AtwsTicket -Id 124 | New-AtwsTicket 
@@ -171,10 +170,8 @@ Set-AtwsTicket
 
 # Ticket End Date
     [Parameter(
-      Mandatory = $true,
       ParameterSetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [datetime]
     $DueDateTime,
 
@@ -578,7 +575,14 @@ Set-AtwsTicket
       ParameterSetName = 'By_parameters'
     )]
     [Int]
-    $ServiceThermometerTemperature
+    $ServiceThermometerTemperature,
+
+# API Vendor ID
+    [Parameter(
+      ParameterSetName = 'By_parameters'
+    )]
+    [String]
+    $ApiVendorID
   )
  
   Begin

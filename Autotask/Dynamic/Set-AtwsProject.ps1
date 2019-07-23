@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.13
+#Version 1.6.2.14
 <#
 
 .COPYRIGHT
@@ -200,7 +200,7 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Nullable[float]]
+    [Nullable[double]]
     $LaborEstimatedRevenue,
 
 # Labor Estimated Costs
@@ -213,7 +213,7 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Nullable[float]]
+    [Nullable[double]]
     $LaborEstimatedCosts,
 
 # Project Cost Revenue
@@ -226,7 +226,7 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Nullable[float]]
+    [Nullable[double]]
     $ProjectCostsRevenue,
 
 # Project Estimated costs
@@ -239,7 +239,7 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Nullable[float]]
+    [Nullable[double]]
     $ProjectCostsBudget,
 
 # SG&A
@@ -252,7 +252,7 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Nullable[float]]
+    [Nullable[double]]
     $SGDA,
 
 # Original Estimated Revenue
@@ -265,7 +265,7 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Nullable[float]]
+    [Nullable[double]]
     $OriginalEstimatedRevenue,
 
 # Estimated Sales Cost
@@ -278,7 +278,7 @@ Get-AtwsProject
     [Parameter(
       ParameterSetName = 'By_Id'
     )]
-    [Nullable[float]]
+    [Nullable[double]]
     $EstimatedSalesCost,
 
 # Status
