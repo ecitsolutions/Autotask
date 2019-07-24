@@ -215,7 +215,7 @@ Function Get-AtwsAttachment {
         $Result += $Script:Atws.GetAttachment($AttachmentId)
       }
 
-      Write-Verbose ('{0}: Number of attachments created: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+      Write-Verbose ('{0}: Number of attachments downloaded: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
     
 
       # Expand UDFs by default

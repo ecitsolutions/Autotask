@@ -391,19 +391,16 @@ Function New-AtwsAttachment {
     
     # What are we attaching to?
     $ObjectType = ($PSCmdlet.ParameterSetName -split '_')[0]
+  
+    $AttachmentInfo.ParentId = $TicketId + $AccountID + $ProjectID + $OpportunityId
+    $AttachmentInfo.ParentType = $Picklists.Where{$_.name -eq 'ParentType'}.PickListValues.Where{$_.Label -eq $ObjectType}.Value
 
-    If ($OpportunityID) {
-       $AttachmentInfo.OpportunityId = $OpportunityId
-    }
-    Else {
-      $AttachmentInfo.ParentId = $TicketId + $AccountID + $ProjectID
-      $AttachmentInfo.ParentType = $Picklists.Where{$_.name -eq 'ParentType'}.PickListValues.Where{$_.Label -eq $ObjectType}.Value
-    }
-
+    # Prepare ShouldProcess
     $Caption = $MyInvocation.MyCommand.Name
     $VerboseDescrition = '{0}: About to create an attachment of type {1} with title {2}.' -F $Caption, $AttachmentInfo.Type, $AttachmentInfo.Title
     $VerboseWarning = '{0}: About to create an attachment of type {1} with title {2}. Do you want to continue?' -F $Caption, $AttachmentInfo.Type, $AttachmentInfo.Title
     
+    # Do it, I dare you!
     If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
       $AttachmentId = $Script:Atws.CreateAttachment($Attachment)
       
@@ -411,50 +408,6 @@ Function New-AtwsAttachment {
       
       Write-Verbose ('{0}: Created attachment with id {1} and title {2}' -F $MyInvocation.MyCommand.Name, $AttachmentId, $Result.Title)
     
-
-      # Expand UDFs by default
-      # Normalize dates (convert to local time). EVery datetime field ever returned
-      # By the API is in CEST.
-      Foreach ($Item in $Result)
-      {
-        # Any userdefined fields?
-        If ($Item.UserDefinedFields.Count -gt 0)
-        { 
-          # Expand User defined fields for easy filtering of collections and readability
-          Foreach ($UDF in $Item.UserDefinedFields)
-          {
-            # Make names you HAVE TO escape...
-            $UDFName = '#{0}' -F $UDF.Name
-            Add-Member -InputObject $Item -MemberType NoteProperty -Name $UDFName -Value $UDF.Value -Force
-          }  
-        }
-      
-        # Adjust TimeZone on all DateTime properties
-        # Dates RETURNED by the API are always in CEST. Add timezone difference
-        # to get local time
-        Foreach ($DateTimeParam in $DateTimeParams) {
-      
-          # Get the datetime value
-          $Value = $Item.$DateTimeParam
-                
-          # Skip if parameter is empty
-          If (-not ($Value)) {
-            Continue
-          }
-          # Yes, you really have to ADD the difference
-          $Item.$DateTimeParam  = $Value.AddHours($script:ESToffset)
-        }
-
-        If ($Script:UsePickListLabels) { 
-          # Restore picklist labels
-          Foreach ($Field in $Picklists)
-          {
-            If ($Item.$($Field.Name) -in $Field.PicklistValues.Value) {
-              $Item.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
-            }
-          }
-        }
-      }
     }
   }
 
