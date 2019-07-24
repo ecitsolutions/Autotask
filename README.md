@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Upcoming version
+
+- BUGFIX: Issue #43: New-AtwsAttachment adds timezone difference twice - **Fixed**
+
 ## Version 1.6.2.15 - Re-release
 
 - BUGFIX: Issue #42: no valid module was found in any module directory - **Fixed** - A git error in my automated build script caused a merge error in the code tree used to build the published module. 
