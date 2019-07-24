@@ -34,6 +34,7 @@ Entities that have fields that refer to the base entity of this CmdLet:
 BillingItem
  ExpenseItem
  NotificationHistory
+ Phase
  ProjectCost
  ProjectNote
  PurchaseOrderItem

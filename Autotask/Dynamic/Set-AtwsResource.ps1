@@ -40,6 +40,7 @@ Account
  Invoice
  NotificationHistory
  Opportunity
+ Phase
  Project
  ProjectCost
  ProjectNote
