@@ -380,7 +380,10 @@ Function New-AtwsAttachment {
       $AttachmentInfo.Type = 'FILE_ATTACHMENT'
       $AttachmentInfo.Title = $Path.BaseName
       $AttachmentInfo.FullPath = $Path.FullName
-      $AttachmentInfo.ContentType = 'image/png'
+      
+      # Determine content type by file name
+      Add-Type -AssemblyName "System.Web"
+      $AttachmentInfo.ContentType = [System.Web.MimeMapping]::GetMimeMapping($Path.FullName)
 
     }
     
