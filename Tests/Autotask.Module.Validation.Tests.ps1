@@ -1,37 +1,46 @@
-$here = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+<#
+    .COPYRIGHT
+    Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
-$module = 'Autotask'
+    .SYNOPSIS
+    Test if the module can be imported without error
+    .DESCRIPTION
+    Test the various ways this module can be imported. Requires valid Autotask credentials and an Api Tracking identifier.
+#>
 
-$moduledir = '{0}\{1}' -F $here, $module
+$ModuleName = 'Autotask'
+
+$ModulePath = '{0}\{1}' -F $(Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)), $ModuleName
 
 
-Describe -Tags ('Unit', 'Acceptance') "$module Module Tests" {
+Describe "$ModuleName Module Manifest tests" -Tag 'Manifest' {
 
   Context 'Module Setup' {
-    It "has the root module $module.psm1" {
-      "$moduledir\$module.psm1" | Should -Exist
+    It "has the root module $ModuleName.psm1" {
+      "$ModulePath\$ModuleName.psm1" | Should -Exist
     }
 
-    It "has the a manifest file of $module.psd1" {
-      "$moduledir\$module.psd1" | Should -Exist
-      "$moduledir\$module.psd1" | Should -FileContentMatch "$module.psm1"
+    It "has the a manifest file of $ModuleName.psd1" {
+      "$ModulePath\$ModuleName.psd1" | Should -Exist
+      "$ModulePath\$ModuleName.psd1" | Should -FileContentMatch "$ModuleName.psm1"
     }
     
-    It "$module\Dynamic folder has functions" {
-      "$moduledir\Dynamic\*.ps1" | Should -Exist
+    It "$ModulePath\Dynamic folder has functions" {
+      "$ModulePath\Dynamic\*.ps1" | Should -Exist
     }
     It "$module\Static folder has functions" {
-      "$moduledir\Static\*.ps1" | Should -Exist
+      "$ModulePath\Static\*.ps1" | Should -Exist
     }
     It "$module\Private folder has functions" {
-      "$moduledir\Private\*.ps1" | Should -Exist
+      "$ModulePath\Private\*.ps1" | Should -Exist
     }
     It "$module\Public folder has functions" {
-      "$moduledir\Public\*.ps1" | Should -Exist
+      "$ModulePath\Public\*.ps1" | Should -Exist
     }
 
-    It "$module is valid PowerShell code" {
-      $psFile = Get-Content -Path "$moduledir\$module.psm1" `
+    It "$ModuleName is valid PowerShell code" {
+      $psFile = Get-Content -Path "$ModulePath\$ModuleName.psm1" `
         -ErrorAction Stop
       $errors = $null
       $null = [System.Management.Automation.PSParser]::Tokenize($psFile, [ref]$errors)
@@ -40,10 +49,13 @@ Describe -Tags ('Unit', 'Acceptance') "$module Module Tests" {
 
   } # Context 'Module Setup'
 
+}
+
+Describe "$ModuleName Module function tests" -Tag 'Functions' { 
 
   Foreach ($directory in 'Dynamic', 'Static', 'Private', 'Public') { 
     
-    $subdir = '{0}\{1}' -F $moduledir, $directory 
+    $subdir = '{0}\{1}' -F $ModulePath, $directory 
 
     $functions = (Get-ChildItem -Path $subdir -Exclude *-AtwsDefinition.ps1).BaseName
 
@@ -91,15 +103,7 @@ Describe -Tags ('Unit', 'Acceptance') "$module Module Tests" {
         }
     
       } # Context "Test Function $function"
-<# 
-      $testdir = '{0}\Tests\{1}' -F $here, $directory
 
-      Context "$function has tests" {
-        It "$($function).Tests.ps1 should exist" {
-          "$testdir\$($function).Tests.ps1" | Should -Exist
-        }
-      }
-#>  
     } # foreach ($function in $functions)
 
   }
