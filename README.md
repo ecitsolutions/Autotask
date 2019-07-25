@@ -36,9 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
-## Upcoming version
+## Version 1.6.2.16
 
 - BUGFIX: Issue #43: New-AtwsAttachment adds timezone difference twice - **Fixed**
+- BUGFIX: Issue #44: GetEntityByReferenceId documentation - **Fixed**
 
 ## Version 1.6.2.15 - Re-release
 

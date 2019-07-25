@@ -1,5 +1,5 @@
 ﻿#Requires -Version 4.0
-#Version 1.6.2.16
+#Version 1.6.2.17
 <#
 
 .COPYRIGHT
@@ -76,6 +76,8 @@ Set-AtwsChecklistLibraryChecklistItem
       $Filter = 'id -eq {0}' -F ($Id -join ' -or id -eq ')
       $InputObject = Get-AtwsData -Entity $EntityName -Filter $Filter
     }
+
+    Write-Verbose ('{0}: Deleting {1} object(s) from Autotask' -F $MyInvocation.MyCommand.Name, $InputObject.Count)
 
     If ($InputObject)
     { 
