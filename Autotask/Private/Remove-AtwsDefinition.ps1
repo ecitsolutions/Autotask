@@ -19,6 +19,8 @@
       $InputObject = Get-AtwsData -Entity $EntityName -Filter $Filter
     }
 
+    Write-Verbose ('{0}: Deleting {1} object(s) from Autotask' -F $MyInvocation.MyCommand.Name, $InputObject.Count)
+
     If ($InputObject)
     { 
       

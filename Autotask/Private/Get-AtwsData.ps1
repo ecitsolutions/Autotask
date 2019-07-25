@@ -56,7 +56,16 @@ Function Get-AtwsData
         Position = 1
     )]
     [String[]]
-    $Filter
+    $Filter,
+    
+    [String]
+    $GetReferenceEntityById,
+    
+    [String]
+    $GetExternalEntityByThisEntityId,
+    
+    [Switch]
+    $NoPickListLabel
   )
   Begin
   { 
@@ -90,7 +99,7 @@ Function Get-AtwsData
     # $Filter is usually passed as a flat string. Make sure it is formatted properly
     If ($Filter.Count -eq 1 -and $Filter -match ' ' )
     { 
-        $Filter = . Update-AtwsFilter -FilterString $Filter
+      $Filter = . Update-AtwsFilter -FilterString $Filter
     }
     
     # Squash into a flat array with entity first
@@ -199,13 +208,46 @@ Function Get-AtwsData
           }
         }
       }
+      # Do the user want labels along with index values for Picklists?      
+      ElseIf (-not $NoPickListLabel.IsPresent) {
+        $Value = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+        Add-Member -InputObject $Item -MemberType NoteProperty -Name $Field.Name -Value $Value -Force
+      }
     }
   }
   
   End
   { 
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    Return $result
+    # Some last minute changes
+    If ($Result) { 
+      # Should we return an indirect object?
+      if ($GetReferenceEntityById)
+      {
+        Write-Debug ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
+      
+        $Field = $Fields.Where({$_.Name -eq $GetReferenceEntityById})
+        $ResultValues = $Result | Where-Object {$null -ne $_.$GetReferenceEntityById}
+        If ($ResultValues.Count -lt $Result.Count)
+        {
+          Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+            $ResultValues.Count,
+            $Entity,
+          $GetReferenceEntityById) -WarningAction Continue
+        }
+        $Filter = 'id -eq {0}' -F $($ResultValues.$GetReferenceEntityById -join ' -or id -eq ')
+        $Result = Get-Atwsdata -Entity $Field.ReferenceEntityType -Filter $Filter
+      }
+      ElseIf ($GetExternalEntityByThisEntityId)
+      {
+        Write-Debug ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+        $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
+        $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($Result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
+        $Result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
+      }
+
+      Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+      Return $result
+    }
   }
   
 }
