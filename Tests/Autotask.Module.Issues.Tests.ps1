@@ -42,9 +42,9 @@ Param
 
 Describe 'Test all issues for regression errors' -Tag 'Issues' { 
 
-  Context 'Issue #44: GetEntityByReferenceId documentation ' -Tag 'Issue #44' {
+  Context 'Issue #44: GetEntityByReferenceId documentation ' {
     
-    $Contract = Get-AtwsContract -AccountID 0 -IsDefaultContract
+    $Contract = Get-AtwsContract -AccountID 0 -IsDefaultContract $True
     $Account = Get-AtwsContract -id $Contract.Id -GetReferenceEntityById AccountID
 
     It 'Account 0 should have a default contract' {
@@ -52,7 +52,7 @@ Describe 'Test all issues for regression errors' -Tag 'Issues' {
     }
 
     It '$Contract should be a contract' {
-      $Contract | Should -BeOfType Contract
+      $Contract | Should -BeOfType Autotask.Contract
     }
 
     It '-GetReferenceEntityById AccountID should return a single account' {
@@ -60,92 +60,158 @@ Describe 'Test all issues for regression errors' -Tag 'Issues' {
     }
 
     It 'should be an Account and have id 0' {
-      $Account | Should -BeOfType Account
+      $Account | Should -BeOfType Autotask.Account
       $Account.id | Should -Be 0
     }
 
   }
 
-  Context 'Issue #43: New-AtwsAttachment adds timezone difference twice ' -Tag 'Issue #43' { }
+  Context 'Issue #43: New-AtwsAttachment adds timezone difference twice ' { }
 
-  Context 'Issue #42: 1.6.2.14: no valid module was found in any module directory ' -Tag 'Issue #42' { }
+  # Issue #42 is tested in Autotask.Module.Import.Tests.ps1
 
-  Context 'Issue #41: Beta-module overwrites personal disk cache for release module ' -Tag 'Issue #41' { }
+  Context 'Issue #41: Beta-module overwrites personal disk cache for release module ' { }
 
-  Context 'Issue #40: Get-AtwsService - No Unit Count? ' -Tag 'Issue #40' { }
+  # Issue #40 is an information request
 
-  Context 'Issue #39: New-AtwsData : Contracts of type 7 (Recurring Services) require a ContractPeriodType. ' -Tag 'Issue #39' { }
+  # Issue #39 was retracted
 
-  Context 'Issue #38: Feature request: Make connection object available to advanced users duplicate enhancement ' -Tag 'Issue #38' { }
+  Context 'Issue #38: Feature request: Make connection object available to advanced users duplicate enhancement ' {
 
-  Context 'Issue #37: Feature request: Attachments upload enhancement good first issue ' -Tag 'Issue #37' { }
+    # Load the module in this context, a straight load with -Argumentlist is appropriate
+    $ModuleName = 'Autotask'
 
-  Context 'Issue #36: Date queries with multiple date fields return 0 objects ' -Tag 'Issue #36' { }
+    $ModulePath = '{0}\{1}' -F $(Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)), $ModuleName
+    
+    Import-Module $ModulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
 
-  Context 'Issue #35: How to access API methods directly with 1.6.2.x ' -Tag 'Issue #35' { }
+    $LoadedModule = Get-Module $ModuleName
 
-  Context 'Issue #33: Updating Diskcache auto running at every import ' -Tag 'Issue #33' { }
+    It 'should be loaded' {
+      $LoadedModule.Name | Should -Be $ModuleName
+    }
 
-  Context 'Issue #32: Suppress DATE and TIME warning enhancement ' -Tag 'Issue #32' { }
+    It 'should export Get-AtwsConnectionObject' {
+      $LoadedModule.ExportedCommands['Get-AtwsConnectionObject'].Name | Should -Be 'Get-AtwsConnectionObject'
+    }
 
-  Context 'Issue #31: No DefaultServiceDeskRoleID parameter on the Get-AtwsResource function ' -Tag 'Issue #31' { }
+    $Result = Get-AtwsConnectionObject -Confirm:$false
 
-  Context 'Issue #30: Switch to skip ApiTrackingIdentifier for backward compatibility? ' -Tag 'Issue #30' { }
+    It 'should return an Autotask web proxy object' {
+      $Result | Should -BeOfType Autotask.ATWS
+    }
 
-  Context 'Issue #29: Set-AtwsContact :: Cannot convert Parameter -id from int64[] to int64 bug ' -Tag 'Issue #29' { }
+  }
 
+  Context 'Issue #37: Feature request: Attachments upload enhancement good first issue ' {
+    
+    # Load the module in this context, a straight load with -Argumentlist is appropriate
+    $ModuleName = 'Autotask'
 
-  Context 'Issue #28: Set-AtWsTicketCost - Update status ' -Tag 'Issue #28' { }
+    $ModulePath = '{0}\{1}' -F $(Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)), $ModuleName
+    
+    Import-Module $ModulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
 
-  Context 'Issue #27: Receiving Confirm prompts with $global:ConfirmPreference="None" ' -Tag 'Issue #27' { }
+    $LoadedModule = Get-Module $ModuleName
 
+    It 'should be loaded' {
+      $LoadedModule.Name | Should -Be $ModuleName
+    }
 
-  Context 'Issue #26: Multiple errors and issues. ' -Tag 'Issue #26' { }
+    It 'should export Get-AtwsAttachment' {
+      $LoadedModule.ExportedCommands['Get-AtwsAttachment'].Name | Should -Be 'Get-AtwsAttachment'
+    }
 
-  Context 'Issue #25: Set-AtwsTicket.ps1 - int32[] to int64 conversion error ' -Tag 'Issue #25' { }
+    It 'should export New-AtwsAttachment' {
+      $LoadedModule.ExportedCommands['New-AtwsAttachment'].Name | Should -Be 'New-AtwsAttachment'
+    }
 
+    It 'should export Remove-AtwsAttachment' {
+      $LoadedModule.ExportedCommands['Remove-AtwsAttachment'].Name | Should -Be 'Remove-AtwsAttachment'
+    }
 
-  Context 'Issue #24: Missing commands, e.g., *-AtwsTicket ' -Tag 'Issue #24' { }
+  }
 
-  Context 'Issue #23: Help w/ picklists lookups in functions and scripts. ' -Tag 'Issue #23' { }
+  Context 'Issue #36: Date queries with multiple date fields return 0 objects ' { }
 
-  Context 'Issue #22: UDF wildcard does not work ' -Tag 'Issue #22' { }
+  # Issue #35 is a duplicate of issue #38. Or vice versa. But it is already tested...
+  # Issue #34 does not exist 
 
-  Context 'Issue #21: New-AtwsContractServiceAdjustment: Get-AtwsData : This entity type does not support the query action. ' -Tag 'Issue #21' { }
+  Context 'Issue #33: Updating Diskcache auto running at every import ' { }
 
-  Context 'Issue #20: new-atwscontract: System.dateTime: Can not convert data to date in field ' -Tag 'Issue #20' { }
+  Context 'Issue #32: Suppress DATE and TIME warning enhancement ' { }
 
-  Context 'Issue #19: Receiving this error when importing the Autotask Module. I am using an API User. ' -Tag 'Issue #19' { }
+  # Issue #31 was outside of scope - a parameter wasnt queryable by Autotask design
 
-  Context 'Issue #18: The specified module was not loaded because no valid module file was found in any module directory. ' -Tag 'Issue #18' { }
+  # Issue #30: Switch to skip ApiTrackingIdentifier for backward compatibility?  - Deemed out of scope
 
-  Context 'Issue #17: Running on Azure Runbooks (Cache) ' -Tag 'Issue #17' { }
+  Context 'Issue #29: Set-AtwsContact :: Cannot convert Parameter -id from int64[] to int64 bug ' { }
 
-  Context 'Issue #16: Always confirming the write of new autotask data. ' -Tag 'Issue #16' { }
+  #Issue #28: Set-AtWsTicketCost - Update status - was an API documentation issue
 
-  Context 'Issue #15: Date errors using filter ' -Tag 'Issue #15' { }
+  Context 'Issue #27: Receiving Confirm prompts with $global:ConfirmPreference="None" ' { }
 
-  Context 'Issue #14: Changing UDF ' -Tag 'Issue #14' { }
-
-  Context 'Issue #11: Set "ServiceLevelAgreementID" on contract to nothing ' -Tag 'Issue #11' { }
-
-  Context 'Issue #10: Unable to connect, as a "\" seems to be prepended ' -Tag 'Issue #10' { }
-
-  Context 'Issue #9: DateTime conversions ' -Tag 'Issue #9' { }
-
-  Context 'Issue #8: Set-AtwsAccount -TerritoryID <Integer> Fails  ' -Tag 'Issue #8' { }
-
-  Context 'Issue #7: Get-AtwsTicket -SubIssueType not updating properly. ' -Tag 'Issue #7' { }
- 
-  Context 'Issue #4: Get / Set AccountManager field ' -Tag 'Issue #4' { }
-
-  Context 'Issue #3: Value does not exist for the required field when using New-AtwsData -InputObject ' -Tag 'Issue #3' { }
-
-  Context 'Issue #2: Filters with parenthesis no longer work ' -Tag 'Issue #2' { }
-
-
-  Context 'Issue #1: Account where a certain field (int) is empty' -Tag 'Issue #1' {
+  # Issue #26: Multiple errors and issues - reporter got it to work on a different computer
   
+  Context 'Issue #25: Set-AtwsTicket.ps1 - int32[] to int64 conversion error ' { }
+
+
+  Context 'Issue #24: Missing commands, e.g., *-AtwsTicket ' { }
+
+  Context 'Issue #23: Help w/ picklists lookups in functions and scripts. ' { }
+
+  Context 'Issue #22: UDF wildcard does not work ' { }
+
+  Context 'Issue #21: New-AtwsContractServiceAdjustment: Get-AtwsData : This entity type does not support the query action. ' { }
+
+  Context 'Issue #20: new-atwscontract: System.dateTime: Can not convert data to date in field ' { }
+
+  # Issue #19: Receiving this error when importing the Autotask Module. I am using an API User. - An API documentation issue related to API version 1.6
+
+  # Issue #18: The specified module was not loaded because no valid module file was found in any module directory. - Already tested in separate tests
+
+  Context 'Issue #17: Running on Azure Runbooks (Cache) ' { }
+
+  Context 'Issue #16: Always confirming the write of new autotask data. ' { }
+
+  Context 'Issue #15: Date errors using filter ' { }
+
+  Context 'Issue #14: Changing UDF ' { }
+
+  Context 'Issue #11: Set "ServiceLevelAgreementID" on contract to nothing ' { }
+
+  Context 'Issue #10: Unable to connect, as a "\" seems to be prepended ' { }
+
+  Context 'Issue #9: DateTime conversions ' { }
+
+  Context 'Issue #8: Set-AtwsAccount -TerritoryID <Integer> Fails  ' { }
+
+  Context 'Issue #7: Get-AtwsTicket -SubIssueType not updating properly. ' { }
+ 
+  Context 'Issue #4: Get / Set AccountManager field ' { }
+
+  Context 'Issue #3: Value does not exist for the required field when using New-AtwsData -InputObject ' { }
+
+  Context 'Issue #2: Filters with parenthesis no longer work ' { }
+
+
+  Context 'Issue #1: Account where a certain field (int) is empty' {
+    
+    $Account = Get-AtwsAccount -id 0
+    $NoAccount = Get-AtwsAccount -id 0 -KeyAccountIcon $null
+    $AccountWithNull = Get-AtwsAccount -id 0 -ParentAccountId $null
+
+    It 'should exist an Account with id 0' {
+      $Account | Should -BeOfType Autotask.Account
+    }
+
+    It 'should NOT return anything with -KeyAccountIcon $null' {
+      $NoAccount | Should -BeNullOrEmpty
+    }
+
+    It 'should exist an Account with id 0 and a ParentAccountId of $null' {
+      $AccountWithNull | Should -BeOfType Autotask.Account
+    }
   }
 
 }
