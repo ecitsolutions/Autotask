@@ -539,7 +539,12 @@ Set-AtwsTask
     $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
     
     If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter -NoPickListLabel:$NoPickListLabel.IsPresent
+    
+      # Make the query and pass the optional parameters to Get-AtwsData
+      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter `
+        -NoPickListLabel:$NoPickListLabel.IsPresent `
+        -GetReferenceEntityById $GetReferenceEntityById `
+        -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
     
       Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
 
