@@ -66,7 +66,13 @@ foreach ($tag in 'Manifest'<#, 'Functions'#>) {
 
 }
 # Test module import
-Invoke-Pester -Script @{ Path = "$TestsFolder\Autotask.Module.Import.Tests.ps1"; Parameters = @{ Credential = $Credential; ApiTrackingIdentifier = $ApiTrackingIdentifier } }
+Invoke-Pester -Script @{ 
+  Path       = "$TestsFolder\Autotask.Module.Import.Tests.ps1"; 
+  Parameters = @{ Credential = $Credential; ApiTrackingIdentifier = $ApiTrackingIdentifier } 
+}
 
 # Verify that we still pass all issues
-Invoke-Pester -Script @{ Path = "$TestsFolder\Autotask.Module.Issues.Tests.ps1"; Parameters = @{ Credential = $Credential; ApiTrackingIdentifier = $ApiTrackingIdentifier } }
+Invoke-Pester -Script @{ 
+  Path       = "$TestsFolder\Autotask.Module.Issues.Tests.ps1"; 
+  Parameters = @{ Credential = $Credential; ApiTrackingIdentifier = $ApiTrackingIdentifier } 
+} # -Name 'Issue #1'
