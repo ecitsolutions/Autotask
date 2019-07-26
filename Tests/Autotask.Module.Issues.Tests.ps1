@@ -17,30 +17,30 @@
 #>
 
 [cmdletbinding(
-    SupportsShouldProcess = $True,
-    ConfirmImpact = 'Low',
-    DefaultParameterSetName = 'Default'
+  SupportsShouldProcess = $True,
+  ConfirmImpact = 'Low',
+  DefaultParameterSetName = 'Default'
 )]
 
 Param
 (
   [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'Default'
+    Mandatory = $true,
+    ParameterSetName = 'Default'
   )]
   [ValidateNotNullOrEmpty()]    
   [pscredential]
   $Credential,
     
   [Parameter(
-      Mandatory = $true,
-      ParameterSetName = 'Default'
+    Mandatory = $true,
+    ParameterSetName = 'Default'
   )]
   [String]
   $ApiTrackingIdentifier
 )
 
-Describe 'Test all issues for regression errors' -Tag 'Issues' { 
+Describe 'Issue #44' -Tag 'Issues' {
 
   Context 'Issue #44: GetEntityByReferenceId documentation ' {
     
@@ -66,15 +66,27 @@ Describe 'Test all issues for regression errors' -Tag 'Issues' {
 
   }
 
+}
+
+Describe 'Issue #43' -Tag 'Issues' {
+
   Context 'Issue #43: New-AtwsAttachment adds timezone difference twice ' { }
 
   # Issue #42 is tested in Autotask.Module.Import.Tests.ps1
+
+}
+
+Describe 'Issue #41' -Tag 'Issues' {
 
   Context 'Issue #41: Beta-module overwrites personal disk cache for release module ' { }
 
   # Issue #40 is an information request
 
   # Issue #39 was retracted
+
+}
+
+Describe 'Issue #38' -Tag 'Issues' {
 
   Context 'Issue #38: Feature request: Make connection object available to advanced users duplicate enhancement ' {
 
@@ -102,6 +114,10 @@ Describe 'Test all issues for regression errors' -Tag 'Issues' {
     }
 
   }
+
+}
+
+Describe 'Issue #37' -Tag 'Issues' {
 
   Context 'Issue #37: Feature request: Attachments upload enhancement good first issue ' {
     
@@ -132,12 +148,24 @@ Describe 'Test all issues for regression errors' -Tag 'Issues' {
 
   }
 
+}
+
+Describe 'Issue #36' -Tag 'Issues' {
+
   Context 'Issue #36: Date queries with multiple date fields return 0 objects ' { }
 
   # Issue #35 is a duplicate of issue #38. Or vice versa. But it is already tested...
   # Issue #34 does not exist 
 
+}
+
+Describe 'Issue #33' -Tag 'Issues' {
+
   Context 'Issue #33: Updating Diskcache auto running at every import ' { }
+
+}
+
+Describe 'Issue #32' -Tag 'Issues' {
 
   Context 'Issue #32: Suppress DATE and TIME warning enhancement ' { }
 
@@ -145,24 +173,56 @@ Describe 'Test all issues for regression errors' -Tag 'Issues' {
 
   # Issue #30: Switch to skip ApiTrackingIdentifier for backward compatibility?  - Deemed out of scope
 
+}
+
+Describe 'Issue #29' -Tag 'Issues' {
+
   Context 'Issue #29: Set-AtwsContact :: Cannot convert Parameter -id from int64[] to int64 bug ' { }
 
   #Issue #28: Set-AtWsTicketCost - Update status - was an API documentation issue
+
+}
+
+Describe 'Issue #27' -Tag 'Issues' {
 
   Context 'Issue #27: Receiving Confirm prompts with $global:ConfirmPreference="None" ' { }
 
   # Issue #26: Multiple errors and issues - reporter got it to work on a different computer
   
+}
+
+Describe 'Issue #25' -Tag 'Issues' {
+
   Context 'Issue #25: Set-AtwsTicket.ps1 - int32[] to int64 conversion error ' { }
 
 
+}
+
+Describe 'Issue #24' -Tag 'Issues' {
+
   Context 'Issue #24: Missing commands, e.g., *-AtwsTicket ' { }
+
+}
+
+Describe 'Issue #23' -Tag 'Issues' {
 
   Context 'Issue #23: Help w/ picklists lookups in functions and scripts. ' { }
 
+}
+
+Describe 'Issue #22' -Tag 'Issues' {
+
   Context 'Issue #22: UDF wildcard does not work ' { }
 
+}
+
+Describe 'Issue #21' -Tag 'Issues' {
+
   Context 'Issue #21: New-AtwsContractServiceAdjustment: Get-AtwsData : This entity type does not support the query action. ' { }
+
+}
+
+Describe 'Issue #20' -Tag 'Issues' {
 
   Context 'Issue #20: new-atwscontract: System.dateTime: Can not convert data to date in field ' { }
 
@@ -170,30 +230,82 @@ Describe 'Test all issues for regression errors' -Tag 'Issues' {
 
   # Issue #18: The specified module was not loaded because no valid module file was found in any module directory. - Already tested in separate tests
 
+}
+
+Describe 'Issue #17' -Tag 'Issues' {
+
   Context 'Issue #17: Running on Azure Runbooks (Cache) ' { }
+
+}
+
+Describe 'Issue #16' -Tag 'Issues' {
 
   Context 'Issue #16: Always confirming the write of new autotask data. ' { }
 
+}
+
+Describe 'Issue #15' -Tag 'Issues' {
+
   Context 'Issue #15: Date errors using filter ' { }
+
+}
+
+Describe 'Issue #14' -Tag 'Issues' {
 
   Context 'Issue #14: Changing UDF ' { }
 
+}
+
+Describe 'Issue #11' -Tag 'Issues' {
+
   Context 'Issue #11: Set "ServiceLevelAgreementID" on contract to nothing ' { }
+
+}
+
+Describe 'Issue #10' -Tag 'Issues' {
 
   Context 'Issue #10: Unable to connect, as a "\" seems to be prepended ' { }
 
+}
+
+Describe 'Issue #9' -Tag 'Issues' {
+
   Context 'Issue #9: DateTime conversions ' { }
+
+}
+
+Describe 'Issue #8' -Tag 'Issues' {
 
   Context 'Issue #8: Set-AtwsAccount -TerritoryID <Integer> Fails  ' { }
 
+}
+
+Describe 'Issue #7' -Tag 'Issues' {
+
   Context 'Issue #7: Get-AtwsTicket -SubIssueType not updating properly. ' { }
  
+}
+
+Describe 'Issue #4' -Tag 'Issues' {
+
   Context 'Issue #4: Get / Set AccountManager field ' { }
+
+}
+
+Describe 'Issue #3' -Tag 'Issues' {
 
   Context 'Issue #3: Value does not exist for the required field when using New-AtwsData -InputObject ' { }
 
+}
+
+Describe 'Issue #2' -Tag 'Issues' {
+
   Context 'Issue #2: Filters with parenthesis no longer work ' { }
 
+
+}
+
+Describe 'Issue #1' -Tag 'Issues' {
 
   Context 'Issue #1: Account where a certain field (int) is empty' {
     
