@@ -110,7 +110,7 @@ Describe 'Issue #43' -Tag 'Issues' {
       It 'should call with mocked AttachmentId' {
         $AssertParams = @{
           CommandName     = 'Get-AtwsAttachmentInfo'
-          #ParameterFilter = { $Id -eq 2134 }
+          ParameterFilter = { $id -eq 1234 }
         }
         Assert-MockCalled @AssertParams
       }
