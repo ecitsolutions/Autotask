@@ -75,4 +75,4 @@ Invoke-Pester -Script @{
 Invoke-Pester -Script @{ 
   Path       = "$TestsFolder\Autotask.Module.Issues.Tests.ps1"; 
   Parameters = @{ Credential = $Credential; ApiTrackingIdentifier = $ApiTrackingIdentifier } 
-} # -Name 'Issue #1'
+}  -Name 'Issue #43'

@@ -40,6 +40,11 @@ Param
   $ApiTrackingIdentifier
 )
 
+# Information about module location
+$ModuleName = 'Autotask'
+
+$ModulePath = '{0}\{1}' -F $(Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)), $ModuleName
+
 Describe 'Issue #44' -Tag 'Issues' {
 
   Context 'Issue #44: GetEntityByReferenceId documentation ' {
@@ -70,7 +75,52 @@ Describe 'Issue #44' -Tag 'Issues' {
 
 Describe 'Issue #43' -Tag 'Issues' {
 
-  Context 'Issue #43: New-AtwsAttachment adds timezone difference twice ' { }
+  Context 'Issue #43: New-AtwsAttachment adds timezone difference twice ' { 
+    
+    Import-Module $ModulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
+
+    InModuleScope Autotask { 
+      
+      # Get a datetime object
+      $CreateDate = Get-Date
+      $Atws = Get-AtwsConnectionObject -Confirm:$false
+
+      Mock 'Get-AtwsAttachmentInfo' {
+        [PSCustomObject]@{
+          PSTypeName = 'Autotask.AttachmentInfo'
+          CreateDate = $CreateDate
+        }
+      }
+
+      Mock 'Get-AtwsTicket' {
+        Return $True
+      }
+
+      # Mock CreateAttachment()
+      $CreateAttachmentMethod = @{
+        Type  = 'ScriptMethod'
+        Name  = 'CreateAttachment'
+        Value = { 1234 }
+        Force = $True
+      }
+      $Atws | Add-Member @CreateAttachmentMethod 
+
+      $Result = New-AtwsAttachment -Uri https://google.com -TicketId 0
+
+      It 'should call with mocked AttachmentId' {
+        $AssertParams = @{
+          CommandName     = 'Get-AtwsAttachmentInfo'
+          #ParameterFilter = { $Id -eq 2134 }
+        }
+        Assert-MockCalled @AssertParams
+      }
+
+      It 'should return the date unchanged' {
+        $Result.CreateDate | Should -Be $CreateDate
+      }
+    }
+
+  }
 
   # Issue #42 is tested in Autotask.Module.Import.Tests.ps1
 
