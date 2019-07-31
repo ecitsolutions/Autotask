@@ -24,7 +24,7 @@ Possible operators for all parameters are:
  -LessThan
  -LessThanOrEquals 
 
-Additional operators for [String] parameters are:
+Additional operators for [string] parameters are:
  -Like (supports * or % as wildcards)
  -NotLike
  -BeginsWith
@@ -63,67 +63,67 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
     [Parameter(
       Mandatory = $true,
       ValueFromRemainingArguments = $true,
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
     [ValidateSet('AccountID', 'ContactID', 'SurveyID', 'TicketID')]
-    [String]
+    [string]
     $GetReferenceEntityById,
 
 # Return entities of selected type that are referencing to this entity.
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [String]
+    [string]
     $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
-      ParameterSetName = 'Get_all'
+      ParametersetName = 'Get_all'
     )]
-    [Switch]
+    [switch]
     $All,
 
 # Do not add descriptions for all picklist attributes with values
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'Get_all'
+      ParametersetName = 'Get_all'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [Switch]
+    [switch]
     $NoPickListLabel,
 
 # Survey Results ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
@@ -131,56 +131,56 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
 
 # Account ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $AccountID,
 
 # Company Rating
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[decimal][]]
     $CompanyRating,
 
 # Contact ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ContactID,
 
 # Contact Rating
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[decimal][]]
     $ContactRating,
 
 # Complete Date
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $CompleteDate,
 
 # Resource Rating
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[decimal][]]
     $ResourceRating,
 
 # Send Date
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $SendDate,
 
 # Survey ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
@@ -188,162 +188,168 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
 
 # Survey Rating
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[decimal][]]
     $SurveyRating,
 
 # Ticket ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $TicketID,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
-    [String[]]
+    [string[]]
     $NotEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
-    [String[]]
+    [string[]]
     $IsNull,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
-    [String[]]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
-    [String[]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
-    [String[]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
-    [String[]]
+    [string[]]
     $LessThan,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
-    [String[]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $Like,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $NotLike,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $Contains,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CompleteDate', 'SendDate')]
-    [String[]]
+    [string[]]
     $IsThisDay
   )
 
-  Begin
-  { 
-    $EntityName = 'SurveyResults'
+    begin { 
+        $entityName = 'SurveyResults'
     
-    # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
+            $DebugPreference = 'Continue' 
+        }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-  }
-
-
-  Process
-  {
-    If ($PSCmdlet.ParameterSetName -eq 'Get_all')
-    { 
-      $Filter = @('id', '-ge', 0)
     }
-    ElseIf (-not ($Filter)) {
+
+
+    process {
+        # Parameterset Get_All has a single parameter: -All
+        # Set the Filter manually to get every single object of this type 
+        if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
+            $Filter = @('id', '-ge', 0)
+        }
+        # So it is not -All. If Filter does not exist it has to be By_parameters
+        elseif (-not ($Filter)) {
     
-      Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
+            Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
-      # Convert named parameters to a filter definition that can be parsed to QueryXML
-      $Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $EntityName
-    }
-    Else {
+            # Convert named parameters to a filter definition that can be parsed to QueryXML
+            $Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+        }
+        # Not parameters, nor Get_all. There are only three parameter sets, so now we know
+        # that we were passed a Filter
+        else {
       
-      Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
-              
-      $Filter = . Update-AtwsFilter -FilterString $Filter
-    } 
+            Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
+            
+            # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
+            # or the variables will not be available and expansion will fail
+            $Filter = . Update-AtwsFilter -Filterstring $Filter
+        } 
 
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
-    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+        # Prepare shouldProcess comments
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to query the Autotask Web API for {1}(s).' -F $caption, $entityName
+        $verboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $caption, $entityName
     
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+        # Lets do it and say we didn't!
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
     
-      # Make the query and pass the optional parameters to Get-AtwsData
-      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter `
-        -NoPickListLabel:$NoPickListLabel.IsPresent `
-        -GetReferenceEntityById $GetReferenceEntityById `
-        -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+            # Make the query and pass the optional parameters to Get-AtwsData
+            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
+                -NoPickListLabel:$NoPickListLabel.IsPresent `
+                -GetReferenceEntityById $GetReferenceEntityById `
+                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
     
-      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 
+        }
     }
-  }
 
-  End
-  {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    If ($Result)
-    {
-      Return $Result
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        if ($result) {
+            Return $result
+        }
     }
-  }
 
 
 }

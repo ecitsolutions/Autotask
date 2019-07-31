@@ -43,7 +43,7 @@ Gets the instance with Id 0 directly from the Web Services API, modifies a param
 Get-AtwsAccountPhysicalLocation -Id 0,4,8 | Set-AtwsAccountPhysicalLocation -ParameterName <Parameter value>
 Gets multiple instances by Id, modifies them all and updates Autotask.
  .EXAMPLE
-$Result = Get-AtwsAccountPhysicalLocation -Id 0,4,8 | Set-AtwsAccountPhysicalLocation -ParameterName <Parameter value> -PassThru
+$result = Get-AtwsAccountPhysicalLocation -Id 0,4,8 | Set-AtwsAccountPhysicalLocation -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
 .LINK
@@ -55,12 +55,12 @@ Get-AtwsAccountPhysicalLocation
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
   Param
   (
 # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-      ParameterSetName = 'Input_Object',
+      ParametersetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
@@ -69,7 +69,7 @@ Get-AtwsAccountPhysicalLocation
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [long[]]
@@ -77,24 +77,24 @@ Get-AtwsAccountPhysicalLocation
 
 # Return any updated objects through the pipeline
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [Switch]
+    [switch]
     $PassThru,
 
 # Name
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
       Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
@@ -103,13 +103,13 @@ Get-AtwsAccountPhysicalLocation
 
 # Description
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateLength(0,500)]
     [string]
@@ -117,13 +117,13 @@ Get-AtwsAccountPhysicalLocation
 
 # Address1
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateLength(0,128)]
     [string]
@@ -131,13 +131,13 @@ Get-AtwsAccountPhysicalLocation
 
 # Address2
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateLength(0,128)]
     [string]
@@ -145,13 +145,13 @@ Get-AtwsAccountPhysicalLocation
 
 # City
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateLength(0,50)]
     [string]
@@ -159,13 +159,13 @@ Get-AtwsAccountPhysicalLocation
 
 # State
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateLength(0,25)]
     [string]
@@ -173,13 +173,13 @@ Get-AtwsAccountPhysicalLocation
 
 # Postal Code
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateLength(0,20)]
     [string]
@@ -187,26 +187,26 @@ Get-AtwsAccountPhysicalLocation
 
 # Country ID
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
     $CountryID,
 
 # Phone
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateLength(0,25)]
     [string]
@@ -214,13 +214,13 @@ Get-AtwsAccountPhysicalLocation
 
 # Alternate Phone 1
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateLength(0,25)]
     [string]
@@ -228,13 +228,13 @@ Get-AtwsAccountPhysicalLocation
 
 # Alternate Phone 2
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateLength(0,25)]
     [string]
@@ -242,13 +242,13 @@ Get-AtwsAccountPhysicalLocation
 
 # Fax
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [ValidateLength(0,25)]
     [string]
@@ -256,179 +256,98 @@ Get-AtwsAccountPhysicalLocation
 
 # Round Trip Distance
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [Nullable[decimal]]
     $RoundtripDistance,
 
 # Active
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [Nullable[boolean]]
     $Active,
 
 # Primary
     [Parameter(
-      ParameterSetName = 'Input_Object'
+      ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Parameter(
-      ParameterSetName = 'By_Id'
+      ParametersetName = 'By_Id'
     )]
     [Nullable[boolean]]
     $Primary
   )
  
-  Begin
-  { 
-    $EntityName = 'AccountPhysicalLocation'
+    begin { 
+        $entityName = 'AccountPhysicalLocation'
     
-    # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
-    
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-        
-    # Set up TimeZone offset handling
-    If (-not($script:LocalToEST))
-    {
-      $Now = Get-Date
-      $ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($Now.ToUniversalTime(), $ESTzone)
-
-      # Time difference in hours from localtime to API time
-      $script:LocalToEST = (New-TimeSpan -Start $Now -End $ESTtime).TotalHours
-    }
-    
-    # Collect fresh copies of InputObject if passed any IDs
-    If ($Id.Count -gt 0 -and $Id.Count -le 200) {
-      $Filter = 'Id -eq {0}' -F ($Id -join ' -or Id -eq ')
-      $InputObject = Get-AtwsData -Entity $EntityName -Filter $Filter
-      
-      # Remove the ID parameter so we do not try to set it on every object
-      $Null = $PSBoundParameters.Remove('id')
-    }
-    ElseIf ($Id.Count -gt 200) {
-      Throw [ApplicationException] 'Too many objects, the module can process a maximum of 200 objects when using the Id parameter.'
-    }
-  }
-
-  Process
-  {
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName
-    
-    # Loop through parameters and update any inputobjects with the given parameter values    
-    Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
-    {
-      $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-      If (($Field) -or $Parameter.Key -eq 'UserDefinedFields')
-      { 
-        If ($Field.IsPickList)
-        {
-          $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $Parameter.Value}
-          $Value = $PickListValue.Value
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
+            $DebugPreference = 'Continue'
         }
-        Else
-        {
-          $Value = $Parameter.Value
-        }  
-        Foreach ($Object in $InputObject) 
-        { 
-          $Object.$($Parameter.Key) = $Value
-        }
-      }
-    }
-
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: About to modify {1} {2}(s). This action cannot be undone.' -F $Caption, $InputObject.Count, $EntityName
-    $VerboseWarning = '{0}: About to modify {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $InputObject.Count, $EntityName
-
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-  
-      # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
-      # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-      $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime' -and -not $_.IsReadOnly}).Name
     
-      # Do Picklists more human readable
-      $Picklists = $Fields.Where{$_.IsPickList}
-    
-      # Adjust TimeZone on all DateTime properties
-      Foreach ($Object in $InputObject) 
-      { 
-        Foreach ($DateTimeParam in $DateTimeParams) {
-      
-          # Get the datetime value
-          $Value = $Object.$DateTimeParam
-                
-          # Skip if parameter is empty
-          If (-not ($Value)) {
-            Continue
-          }
-          # Convert the datetime back to CEST
-          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST)
-        }
-      
-        # Revert picklist labels to their values
-        Foreach ($Field in $Picklists)
-        {
-          If ($Object.$($Field.Name) -in $Field.PicklistValues.Label) {
-            $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Label -eq $Object.$($Field.Name)}).Value
-          }
-        }
-      }
-
-      $ModifiedObjects = Set-AtwsData -Entity $InputObject
-    
-      # Revert changes back on any inputobject
-      Foreach ($Object in $InputObject) 
-      { 
-        Foreach ($DateTimeParam in $DateTimeParams) {
-      
-          # Get the datetime value
-          $Value = $Object.$DateTimeParam
-                
-          # Skip if parameter is empty
-          If (-not ($Value)) {
-            Continue
-          }
-          # Revert the datetime back from CEST
-          $Object.$DateTimeParam = $Value.AddHours($script:LocalToEST * -1)
-        }
-      
-        If ($Script:UsePickListLabels) { 
-          # Restore picklist labels
-          Foreach ($Field in $Picklists)
-          {
-            If ($Object.$($Field.Name) -in $Field.PicklistValues.Value) {
-              $Object.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Object.$($Field.Name)}).Label
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+           
+        # Collect fresh copies of InputObject if passed any IDs
+        # Has to collect in batches, or we are going to get the 
+        # dreaded 'too nested SQL' error
+        If ($Id.count -gt 0) { 
+            $InputObject = @()
+            for ($i = 0; $i -lt $Id.count; $i += 200) {
+                $j = $i + 199
+                if ($j -ge $Id.count) {
+                    $j = $Id.count - 1
+                } 
+            
+                # Create a filter with the current batch
+                $Filter = 'Id -eq {0}' -F ($Id[$i .. $j] -join ' -or Id -eq ')
+            
+                $InputObject += Get-AtwsData -Entity $entityName -Filter $Filter
             }
-          }
-        }
-      }
-    }
-    
-  }
 
-  End
-  {
-    Write-Debug ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $ModifiedObjects.count, $EntityName)
-    If ($PassThru.IsPresent) { 
-      Return $ModifiedObjects
+            # Remove the ID parameter so we do not try to set it on every object
+            $null = $PSBoundParameters.Remove('id')
+        }
     }
-  }
+
+    process {
+
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to modify {1} {2}(s). This action cannot be undone.' -F $caption, $InputObject.Count, $entityName
+        $verboseWarning = '{0}: About to modify {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $caption, $InputObject.Count, $entityName
+
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+            
+            # Process parameters and update objects with their values
+            $processObject = $InputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            
+            $ModifiedObjects = Set-AtwsData -Entity $processObject
+        
+        }
+    
+    }
+
+    end {
+        Write-Debug ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $ModifiedObjects.count, $entityName)
+        if ($PassThru.IsPresent) { 
+            Return $ModifiedObjects
+        }
+    }
 
 }

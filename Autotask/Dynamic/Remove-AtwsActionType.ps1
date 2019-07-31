@@ -36,12 +36,12 @@ Set-AtwsActionType
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Input_Object', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Input_Object', ConfirmImpact='Low')]
   Param
   (
 # Any objects that should be deleted
     [Parameter(
-      ParameterSetName = 'Input_Object',
+      ParametersetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
@@ -51,51 +51,61 @@ Set-AtwsActionType
 # The unique id of an object to delete
     [Parameter(
       Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [long[]]
     $Id
   )
  
-  Begin
-  { 
-    $EntityName = 'ActionType'
+    begin { 
+        $entityName = 'ActionType'
     
-    # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
-  }
-
-  Process
-  {
-    If ($Id.Count -gt 0)
-    {
-      $Filter = 'id -eq {0}' -F ($Id -join ' -or id -eq ')
-      $InputObject = Get-AtwsData -Entity $EntityName -Filter $Filter
     }
 
-    Write-Verbose ('{0}: Deleting {1} object(s) from Autotask' -F $MyInvocation.MyCommand.Name, $InputObject.Count)
+    process {
 
-    If ($InputObject)
-    { 
+        # Collect copies of InputObject if passed any IDs
+        # Has to collect in batches, or we are going to get the 
+        # dreaded 'too nested SQL' error
+        If ($Id.count -gt 0) { 
+            $InputObject = @()
+            for ($i = 0; $i -lt $Id.count; $i += 200) {
+                $j = $i + 199
+                if ($j -ge $Id.count) {
+                    $j = $Id.count - 1
+                } 
+            
+                # Create a filter with the current batch
+                $Filter = 'Id -eq {0}' -F ($Id[$i .. $j] -join ' -or Id -eq ')
+            
+                $InputObject += Get-AtwsData -Entity $entityName -Filter $Filter
+            }
+
+        }
+
+        Write-Verbose ('{0}: Deleting {1} object(s) from Autotask' -F $MyInvocation.MyCommand.Name, $InputObject.Count)
+
+        if ($InputObject) { 
       
-      $Caption = $MyInvocation.MyCommand.Name
-      $VerboseDescrition = '{0}: About to delete {1} {2}(s). This action cannot be undone.' -F $Caption, $InputObject.Count, $EntityName
-      $VerboseWarning = '{0}: About to delete {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $Caption, $InputObject.Count, $EntityName
+            $caption = $MyInvocation.MyCommand.Name
+            $verboseDescription = '{0}: About to delete {1} {2}(s). This action cannot be undone.' -F $caption, $InputObject.Count, $entityName
+            $verboseWarning = '{0}: About to delete {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $caption, $InputObject.Count, $entityName
 
-      If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-        Remove-AtwsData -Entity $InputObject
-      }
+            if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+                Remove-AtwsData -Entity $InputObject
+            }
+        }
     }
-  }
 
-  End
-  {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-  }
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    }
 
 
 }

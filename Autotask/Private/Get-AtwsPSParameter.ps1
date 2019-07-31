@@ -1,127 +1,129 @@
 ﻿Function Get-AtwsPSParameter {
     [CmdLetBinding()]
-    [OutputType([String])]
+    [Outputtype([string])]
     Param
     (
-        [Parameter(Mandatory = $True)]
-        [String]$Name,
+        [Parameter(Mandatory = $true)]
+        [string]$Name,
 
-        [String[]]$Alias,
+        [string[]]$Alias,
     
-        [Parameter(Mandatory = $True)]
-        [String]$Type,
+        [Parameter(Mandatory = $true)]
+        [string]$type,
     
-        [Switch]$Mandatory,
+        [switch]$Mandatory,
 
         [Alias('Remaining')]
-        [Switch]$ValueFromRemainingArguments,
+        [switch]$ValueFromRemainingArguments,
 
-        [Alias('SetName')]
-        [String[]]$ParameterSetName,
+        [Alias('setName')]
+        [string[]]$ParametersetName,
 
         [Alias('Pipeline')]
-        [Switch]$ValueFromPipeline,
+        [switch]$valueFromPipeline,
 
         [Alias('NotNull')]
-        [Switch]$ValidateNotNullOrEmpty,
+        [switch]$ValidateNotNullOrEmpty,
 
-        [String[]]$ValidateSet,
+        [string[]]$ValidateSet,
 
         [Alias('Length')]
         [int]$ValidateLength,
 
-        [String]$Comment,
+        [string]$Comment,
 
-        [Switch]$Array,
+        [switch]$Array,
         
-        [Switch]$Nullable
+        [switch]$nullable
 
 
           
     )
   
-    If ($Comment)
-    { [String]$Text = "# {0}`n" -F $Comment }
-    Else
-    { [String]$Text = '' }
-    
-    Foreach ($SetName in $ParameterSetName) { 
-        # Make an array of properties that goes inside the Parameter clause
-        $ParamProperties = @()
-        
-        # Hardcoded filter against requiring parameters for 'Input_Object'
-        If ($Mandatory.IsPresent -and $SetName -in 'By_parameters','Filter') {
-            $ParamProperties += "      Mandatory = `$true"  
-        }
-        If ($ValueFromRemainingArguments.IsPresent) {
-            $ParamProperties += "      ValueFromRemainingArguments = `$true" 
-        } 
-        If ($ParameterSetName) {
-            $ParamProperties += "      ParameterSetName = '$SetName'" 
-        }
-        If ($ValueFromPipeline.IsPresent) {
-            $ParamProperties += "      ValueFromPipeline = `$true" 
-        }
-
-        # Create the [Parameter()] clause
-        If ($ParamProperties.Count -gt 0) {
-            $Text += "    [Parameter(`n"
-            $Text += $ParamProperties -join ",`n"
-            $Text += "`n    )]`n"
-        }
-    }
-    # Add any aliases
-    If ($Alias.Count -gt 0) {
-        $Text += "    [Alias('{0}')]`n" -F $($Alias -join "','")
-    }
-    # Add validate not null if present
-    If ($ValidateNotNullOrEmpty.IsPresent) {
-        $Text += "    [ValidateNotNullOrEmpty()]`n" 
+    begin { 
+        if ($Comment)
+        { [string]$text = "# {0}`n" -F $Comment }
+        else
+        { [string]$text = '' }
     }
 
-    # Add validate length if present
-    If ($ValidateLength -gt 0) {
-        $Text += "    [ValidateLength(0,$ValidateLength)]`n" 
-    }
+    process { 
+        foreach ($setName in $parametersetName) { 
+            # Make an array of properties that goes inside the Parameter clause
+            $paramProperties = @()
         
-    # Add Validateset if present
-    If ($ValidateSet.Count -gt 0) { 
-        # Fix quote characters for labels
-        $Labels = Foreach ($Label in  $ValidateSet) {
-            If ($Label -match ("['{0}]" -F [Char]8217)) {
-                '"{0}"' -F $Label
+            # Hardcoded filter against requiring parameters for 'Input_Object'
+            if ($Mandatory.IsPresent -and $setName -in 'By_parameters', 'Filter') {
+                $paramProperties += "      Mandatory = `$true"  
             }
-            Else {
-                "'{0}'" -F $Label
+            if ($valueFromRemainingArguments.IsPresent) {
+                $paramProperties += "      ValueFromRemainingArguments = `$true" 
+            } 
+            if ($parametersetName) {
+                $paramProperties += "      ParametersetName = '$setName'" 
             }
-        }          
-        $Text += "    [ValidateSet($($Labels -join ', '))]`n" 
+            if ($valueFromPipeline.IsPresent) {
+                $paramProperties += "      ValueFromPipeline = `$true" 
+            }
+
+            # Create the [Parameter()] clause
+            if ($paramProperties.Count -gt 0) {
+                $text += "    [Parameter(`n"
+                $text += $paramProperties -join ",`n"
+                $text += "`n    )]`n"
+            }
+        }
+        # Add any aliases
+        if ($Alias.Count -gt 0) {
+            $text += "    [Alias('{0}')]`n" -F $($Alias -join "','")
+        }
+        # Add validate not null if present
+        if ($ValidateNotNullOrEmpty.IsPresent) {
+            $text += "    [ValidateNotNullOrEmpty()]`n" 
+        }
+
+        # Add validate length if present
+        if ($ValidateLength -gt 0) {
+            $text += "    [ValidateLength(0,$ValidateLength)]`n" 
+        }
+        
+        # Add Validateset if present
+        if ($ValidateSet.Count -gt 0) { 
+            # Fix quote characters for labels
+            $labels = foreach ($Label in  $ValidateSet) {
+                if ($Label -match ("['{0}]" -F [Char]8217)) {
+                    '"{0}"' -F $Label
+                }
+                else {
+                    "'{0}'" -F $Label
+                }
+            }          
+            $text += "    [ValidateSet($($labels -join ', '))]`n" 
+        }
+
+        # Add the correct variable type for the parameter
+        $type = switch ($type) {
+            'Integer' {
+                'Int'
+            }
+            'Short' {
+                'Int16'
+            }
+            default {
+                $type
+            }
+        }
+        if ($nullable.IsPresent) {
+            $type = "Nullable[$type]"
+        }
+        $text += "    [$type"
+        if ($Array.IsPresent) {
+            $text += '[]'
+        }
+        $text += "]`n`    `$$Name"
     }
 
-    # Add the correct variable type for the parameter
-    $Type = Switch ($Type) 
-    {
-      'Integer' 
-      {
-        'Int'
-      }
-      'Short'   
-      {
-        'Int16'
-      }
-      default   
-      {
-        $Type
-      }
+    end { 
+        Return $text
     }
-    If ($Nullable.IsPresent) {
-      $Type = "Nullable[$Type]"
-    }
-    $Text += "    [$Type"
-    If ($Array.IsPresent) {
-        $Text += '[]'
-    }
-    $Text += "]`n`    `$$Name"
-        
-    Return $Text
 }

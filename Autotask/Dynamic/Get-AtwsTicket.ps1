@@ -24,7 +24,7 @@ Possible operators for all parameters are:
  -LessThan
  -LessThanOrEquals 
 
-Additional operators for [String] parameters are:
+Additional operators for [string] parameters are:
  -Like (supports * or % as wildcards)
  -NotLike
  -BeginsWith
@@ -155,68 +155,68 @@ Set-AtwsTicket
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
     [Parameter(
       Mandatory = $true,
       ValueFromRemainingArguments = $true,
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
     [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'BusinessDivisionSubdivisionID', 'CompletedByResourceID', 'ContactID', 'ContractID', 'ContractServiceBundleID', 'ContractServiceID', 'CreatorResourceID', 'InstalledProductID', 'LastActivityResourceID', 'OpportunityId', 'ProblemTicketId', 'ProjectID')]
-    [String]
+    [string]
     $GetReferenceEntityById,
 
 # Return entities of selected type that are referencing to this entity.
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
     [ValidateSet('AccountToDo:TicketID', 'BillingItem:TicketID', 'ChangeRequestLink:ChangeRequestTicketID', 'ChangeRequestLink:ProblemOrIncidentTicketID', 'ExpenseItem:TicketID', 'NotificationHistory:TicketID', 'PurchaseOrderItem:TicketID', 'ServiceCallTicket:TicketID', 'ServiceLevelAgreementResults:TicketID', 'SurveyResults:TicketID', 'Ticket:ProblemTicketId', 'TicketAdditionalContact:TicketID', 'TicketAdditionalInstalledProduct:TicketID', 'TicketChangeRequestApproval:TicketID', 'TicketChecklistItem:TicketID', 'TicketChecklistLibrary:TicketID', 'TicketCost:TicketID', 'TicketHistory:TicketID', 'TicketNote:TicketID', 'TicketSecondaryResource:TicketID', 'TimeEntry:TicketID')]
-    [String]
+    [string]
     $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
-      ParameterSetName = 'Get_all'
+      ParametersetName = 'Get_all'
     )]
-    [Switch]
+    [switch]
     $All,
 
 # Do not add descriptions for all picklist attributes with values
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'Get_all'
+      ParametersetName = 'Get_all'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [Switch]
+    [switch]
     $NoPickListLabel,
 
 # A single user defined field can be used pr query
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Alias('UDF')]
     [ValidateNotNullOrEmpty()]
@@ -225,7 +225,7 @@ Set-AtwsTicket
 
 # Client
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
@@ -233,63 +233,63 @@ Set-AtwsTicket
 
 # Allocation Code Name
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $AllocationCodeID,
 
 # Resource
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $AssignedResourceID,
 
 # Resource Role Name
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $AssignedResourceRoleID,
 
 # Ticket Date Completed by Complete Project Wizard
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $CompletedDate,
 
 # Ticket Contact
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ContactID,
 
 # Contract
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ContractID,
 
 # Ticket Creation Date
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $CreateDate,
 
 # Ticket Creator
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $CreatorResourceID,
 
 # Ticket Description
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
     [string[]]
@@ -297,21 +297,21 @@ Set-AtwsTicket
 
 # Ticket End Date
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $DueDateTime,
 
 # Ticket Estimated Hours
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $EstimatedHours,
 
 # Ticket External ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
@@ -319,7 +319,7 @@ Set-AtwsTicket
 
 # Ticket ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
@@ -327,65 +327,65 @@ Set-AtwsTicket
 
 # Configuration Item
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $InstalledProductID,
 
 # Ticket Issue
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $IssueType,
 
 # Ticket Last Activity Date
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $LastActivityDate,
 
 # Ticket Priority
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $Priority,
 
 # Ticket Department Name OR Ticket Queue Name
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $QueueID,
 
 # Ticket Source
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $Source,
 
 # Ticket Status
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $Status,
 
 # Ticket Subissue Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $SubIssueType,
 
 # Ticket Number
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
@@ -393,7 +393,7 @@ Set-AtwsTicket
 
 # Ticket Title
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
@@ -402,63 +402,63 @@ Set-AtwsTicket
 
 # First Response Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $FirstResponseDateTime,
 
 # Resolution Plan Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $ResolutionPlanDateTime,
 
 # Resolved Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $ResolvedDateTime,
 
 # First Response Due Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $FirstResponseDueDateTime,
 
 # Resolution Plan Due Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $ResolutionPlanDueDateTime,
 
 # Resolved Due Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $ResolvedDueDateTime,
 
 # Service Level Agreement ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $ServiceLevelAgreementID,
 
 # Has Met SLA
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
     $ServiceLevelAgreementHasBeenMet,
 
 # Resolution
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,32000)]
     [string[]]
@@ -466,7 +466,7 @@ Set-AtwsTicket
 
 # purchase_order_number
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
@@ -474,49 +474,49 @@ Set-AtwsTicket
 
 # Ticket Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $TicketType,
 
 # Problem Ticket ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ProblemTicketId,
 
 # Opportunity ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $OpportunityId,
 
 # Change Approval Board ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $ChangeApprovalBoard,
 
 # Change Approval Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $ChangeApprovalType,
 
 # Change Approval Status
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $ChangeApprovalStatus,
 
 # Change Info Field 1
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
     [string[]]
@@ -524,7 +524,7 @@ Set-AtwsTicket
 
 # Change Info Field 2
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
     [string[]]
@@ -532,7 +532,7 @@ Set-AtwsTicket
 
 # Change Info Field 3
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
     [string[]]
@@ -540,7 +540,7 @@ Set-AtwsTicket
 
 # Change Info Field 4
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
     [string[]]
@@ -548,7 +548,7 @@ Set-AtwsTicket
 
 # Change Info Field 5
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
     [string[]]
@@ -556,49 +556,49 @@ Set-AtwsTicket
 
 # Last Customer Notification
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $LastCustomerNotificationDateTime,
 
 # Last Customer Visible Activity
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $LastCustomerVisibleActivityDateTime,
 
 # Contract Service ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
     $ContractServiceID,
 
 # Contract Service Bundle ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
     $ContractServiceBundleID,
 
 # Monitor Type ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $MonitorTypeID,
 
 # Monitor ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $MonitorID,
 
 # AEM Alert ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
@@ -606,244 +606,250 @@ Set-AtwsTicket
 
 # Hours to be Scheduled
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $HoursToBeScheduled,
 
 # Ticket Category
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $TicketCategory,
 
 # First Response Initiating Resource
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $FirstResponseInitiatingResourceID,
 
 # First Response Assigned Resource
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $FirstResponseAssignedResourceID,
 
 # Project ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ProjectID,
 
 # Business Division Subdivision ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Ticket Completed By
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $CompletedByResourceID,
 
 # Account Physical Location
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $AccountPhysicalLocationID,
 
 # Last Edited Resource ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $LastActivityResourceID,
 
 # Current Service Thermometer Rating
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $CurrentServiceThermometerRating,
 
 # Previous Service Thermometer Rating
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $PreviousServiceThermometerRating,
 
 # Service Thermometer Temperature
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ServiceThermometerTemperature,
 
 # API Vendor ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $ApiVendorID,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'ServiceLevelAgreementHasBeenMet', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityResourceID', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $NotEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'ServiceLevelAgreementHasBeenMet', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityResourceID', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $IsNull,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'ServiceLevelAgreementHasBeenMet', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityResourceID', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityResourceID', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityResourceID', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityResourceID', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $LessThan,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityResourceID', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ExternalID', 'TicketNumber', 'Title', 'Resolution', 'PurchaseOrderNumber', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'AEMAlertID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $Like,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ExternalID', 'TicketNumber', 'Title', 'Resolution', 'PurchaseOrderNumber', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'AEMAlertID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $NotLike,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ExternalID', 'TicketNumber', 'Title', 'Resolution', 'PurchaseOrderNumber', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'AEMAlertID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ExternalID', 'TicketNumber', 'Title', 'Resolution', 'PurchaseOrderNumber', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'AEMAlertID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ExternalID', 'TicketNumber', 'Title', 'Resolution', 'PurchaseOrderNumber', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'AEMAlertID', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $Contains,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CompletedDate', 'CreateDate', 'DueDateTime', 'LastActivityDate', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'UserDefinedField')]
-    [String[]]
+    [string[]]
     $IsThisDay
   )
 
-  Begin
-  { 
-    $EntityName = 'Ticket'
+    begin { 
+        $entityName = 'Ticket'
     
-    # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
+            $DebugPreference = 'Continue' 
+        }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-  }
-
-
-  Process
-  {
-    If ($PSCmdlet.ParameterSetName -eq 'Get_all')
-    { 
-      $Filter = @('id', '-ge', 0)
     }
-    ElseIf (-not ($Filter)) {
+
+
+    process {
+        # Parameterset Get_All has a single parameter: -All
+        # Set the Filter manually to get every single object of this type 
+        if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
+            $Filter = @('id', '-ge', 0)
+        }
+        # So it is not -All. If Filter does not exist it has to be By_parameters
+        elseif (-not ($Filter)) {
     
-      Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
+            Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
-      # Convert named parameters to a filter definition that can be parsed to QueryXML
-      $Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $EntityName
-    }
-    Else {
+            # Convert named parameters to a filter definition that can be parsed to QueryXML
+            $Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+        }
+        # Not parameters, nor Get_all. There are only three parameter sets, so now we know
+        # that we were passed a Filter
+        else {
       
-      Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
-              
-      $Filter = . Update-AtwsFilter -FilterString $Filter
-    } 
+            Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
+            
+            # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
+            # or the variables will not be available and expansion will fail
+            $Filter = . Update-AtwsFilter -Filterstring $Filter
+        } 
 
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
-    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+        # Prepare shouldProcess comments
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to query the Autotask Web API for {1}(s).' -F $caption, $entityName
+        $verboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $caption, $entityName
     
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+        # Lets do it and say we didn't!
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
     
-      # Make the query and pass the optional parameters to Get-AtwsData
-      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter `
-        -NoPickListLabel:$NoPickListLabel.IsPresent `
-        -GetReferenceEntityById $GetReferenceEntityById `
-        -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+            # Make the query and pass the optional parameters to Get-AtwsData
+            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
+                -NoPickListLabel:$NoPickListLabel.IsPresent `
+                -GetReferenceEntityById $GetReferenceEntityById `
+                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
     
-      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 
+        }
     }
-  }
 
-  End
-  {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    If ($Result)
-    {
-      Return $Result
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        if ($result) {
+            Return $result
+        }
     }
-  }
 
 
 }

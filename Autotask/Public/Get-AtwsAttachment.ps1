@@ -10,7 +10,7 @@ See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license 
 Function Get-AtwsAttachment {
 
 
-  <#
+    <#
       .SYNOPSIS
       This function gets one or more Attachments through the Autotask Web Services API.
       .DESCRIPTION
@@ -45,231 +45,227 @@ Function Get-AtwsAttachment {
       Strongly related to Get-AtwsAttachmentInfo
   #>
 
-  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName = 'By_id', ConfirmImpact = 'None')]
-  Param
-  (
+    [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'By_id', ConfirmImpact = 'None')]
+    Param
+    (
 
-    # An object that will be modified by any parameters and updated in Autotask
-    [Parameter(
-        Mandatory = $True,
-        ParameterSetName = 'Input_Object',
-        ValueFromPipeline = $true
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateScript( { 
-          # InputObject must be one of these four types
-          $_[0].GetType().Name -in 'Account', 'Ticket', 'Opportunity', 'Project' 
-    })]
-    [PSObject[]]
-    $InputObject,
+        # An object that will be modified by any parameters and updated in Autotask
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Input_Object',
+            ValueFromPipeline = $true
+        )]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript( { 
+                # InputObject must be one of these four types
+                $_[0].GetType().Name -in 'Account', 'Ticket', 'Opportunity', 'Project' 
+            })]
+        [PSObject[]]
+        $InputObject,
 
-    # Attachment ID
-    [Parameter(
-        Mandatory = $True,
-        ParameterSetName = 'By_id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long[]]
-    $id,
+        # Attachment ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'By_id'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [long[]]
+        $id,
 
-    # Account ID
-    [Parameter(
-        Mandatory = $True,
-        ParameterSetName = 'Account'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsAccount -id $_) ){
-            throw "Account does not exist"
-          }
-          return $true
-    })]
-    [long[]]
-    $AccountID,
+        # Account ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Account'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsAccount -id $_) ) {
+                    throw "Account does not exist"
+                }
+                return $true
+            })]
+        [long[]]
+        $AccountID,
 
-    # Opportunity ID
-    [Parameter(
-        Mandatory = $True,
-        ParameterSetName = 'Opportunity'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsOpportunity -id $_) ){
-            throw "Opportunity does not exist"
-          }
-          return $true
-    })]
-    [long[]]
-    $OpportunityID,
+        # Opportunity ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Opportunity'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsOpportunity -id $_) ) {
+                    throw "Opportunity does not exist"
+                }
+                return $true
+            })]
+        [long[]]
+        $OpportunityID,
 
-    # Project ID
-    [Parameter(
-        Mandatory = $True,
-        ParameterSetName = 'Project'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsProject -id $_) ){
-            throw "Project does not exist"
-          }
-          return $true
-    })]
-    [long[]]
-    $ProjectID,
+        # Project ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Project'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsProject -id $_) ) {
+                    throw "Project does not exist"
+                }
+                return $true
+            })]
+        [long[]]
+        $ProjectID,
 
-    # Ticket ID
-    [Parameter(
-        Mandatory = $True,
-        ParameterSetName = 'Ticket'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsTicket -id $_) ){
-            throw "Ticket does not exist"
-          }
-          return $true
-    })]
-    [long[]]
-    $TicketID
+        # Ticket ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Ticket'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsTicket -id $_) ) {
+                    throw "Ticket does not exist"
+                }
+                return $true
+            })]
+        [long[]]
+        $TicketID
    
-  )
+    )
 
-  Begin { 
+    begin { 
    
-    # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    # Dynamic field info
-    $Fields = Get-AtwsFieldInfo -Entity AttachmentInfo
-    $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime'}).Name
-    $Picklists = $Fields.Where{$_.IsPickList}
+        # Dynamic field info
+        $fields = Get-AtwsFieldInfo -Entity AttachmentInfo
+        $dateTimeParams = $fields.Where( { $_.Type -eq 'datetime' }).Name
+        $picklists = $fields.Where{ $_.IsPickList }
     
-    # Set up TimeZone offset handling
-    If (-not($script:ESTzone)) {
-      $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
+        # Set up TimeZone offset handling
+        if (-not($script:ESTzone)) {
+            $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
+        }
+    
+        if (-not($script:ESToffset)) {
+            $now = Get-Date
+            $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
+
+            $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $now).TotalHours
+        }
+    
     }
-    
-    If (-not($script:ESToffset)) {
-      $Now = Get-Date
-      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($Now.ToUniversalTime(), $ESTzone)
-
-      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
-    }
-    
-  }
 
 
-  Process {
+    process {
 
-    # Do we have to look up attachment Id by another object Id
-    If ($PSCmdlet.ParameterSetName -ne 'By_id') { 
+        # Do we have to look up attachment Id by another object Id
+        if ($PSCmdlet.ParameterSetName -ne 'By_id') { 
       
-      # Yes, we have to get the attachment Id ourselves. So, what kind of object 
-      # are we looking for?
+            # Yes, we have to get the attachment Id ourselves. So, what kind of object 
+            # are we looking for?
 
-      $AttachmentInfoParams = @{ } 
+            $attachmentInfoParams = @{ } 
 
-      $ObjectType = Switch ($PSCmdlet.ParameterSetName) {
-        'Input_Object' { 
-          $InputObject[0].GetType().Name 
-          $ObjectId = $InputObject.Id
-        }
-        default { 
-          $PSCmdlet.ParameterSetName 
-          $ObjectId = Switch ($PSCmdlet.ParameterSetName) {
-            'Account' { $AccountID }
-            'Opportunity' { $OpportunityID }
-            'Project' { $ProjectID }
-            'Ticket' { $TicketID }
-          }
-        }
-      }
-
-      Switch ($ObjectType) {
-        'Opportunity' {
-          $AttachmentInfoParams['OpportunityId'] = $ObjectId
-        }
-        default {
-          $AttachmentInfoParams['ParentId'] = $ObjectId
-          $AttachmentInfoParams['ParentType'] = $ObjectType
-        }
-      }
-      
-      $AttachmentInfo = Get-AtwsAttachmentInfo @AttachmentInfoParams
-
-      If ($AttachmentInfo.Count -gt 0) {
-        $id = $AttachmentInfo.Id
-      }
-      else {
-        # Empty result
-        Return
-      }
-    }
-    
-
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: About to query the Autotask Web API for attatchment(s).' -F $Caption
-    $VerboseWarning = '{0}: About to query the Autotask Web API for attatchment(s). Do you want to continue?' -F $Caption
-    
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-      $Result = @()
-      Foreach ($AttachmentId in $id) {
-        $Result += $Script:Atws.GetAttachment($AttachmentId)
-      }
-
-      Write-Verbose ('{0}: Number of attachments downloaded: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
-    
-
-      # Expand UDFs by default
-      # Normalize dates (convert to local time). EVery datetime field ever returned
-      # By the API is in CEST.
-      Foreach ($Item in $Result)
-      {
-        # Any userdefined fields?
-        If ($Item.UserDefinedFields.Count -gt 0)
-        { 
-          # Expand User defined fields for easy filtering of collections and readability
-          Foreach ($UDF in $Item.UserDefinedFields)
-          {
-            # Make names you HAVE TO escape...
-            $UDFName = '#{0}' -F $UDF.Name
-            Add-Member -InputObject $Item -MemberType NoteProperty -Name $UDFName -Value $UDF.Value -Force
-          }  
-        }
-      
-        # Adjust TimeZone on all DateTime properties
-        # Dates RETURNED by the API are always in CEST. Add timezone difference
-        # to get local time
-        Foreach ($DateTimeParam in $DateTimeParams) {
-      
-          # Get the datetime value
-          $Value = $Item.$DateTimeParam
-                
-          # Skip if parameter is empty
-          If (-not ($Value)) {
-            Continue
-          }
-          # Yes, you really have to ADD the difference
-          $Item.$DateTimeParam  = $Value.AddHours($script:ESToffset)
-        }
-
-        If ($Script:UsePickListLabels) { 
-          # Restore picklist labels
-          Foreach ($Field in $Picklists)
-          {
-            If ($Item.$($Field.Name) -in $Field.PicklistValues.Value) {
-              $Item.$($Field.Name) = ($Field.PickListValues.Where{$_.Value -eq $Item.$($Field.Name)}).Label
+            $objectType = switch ($PSCmdlet.ParameterSetName) {
+                'Input_Object' { 
+                    $InputObject[0].GetType().Name 
+                    $objectId = $InputObject.Id
+                }
+                default { 
+                    $PSCmdlet.ParameterSetName 
+                    $objectId = switch ($PSCmdlet.ParameterSetName) {
+                        'Account' { $AccountID }
+                        'Opportunity' { $OpportunityID }
+                        'Project' { $ProjectID }
+                        'Ticket' { $TicketID }
+                    }
+                }
             }
-          }
-        }
-      }
-    }
-  }
 
-  End {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    If ($Result) {
-      Return $Result
+            switch ($objectType) {
+                'Opportunity' {
+                    $attachmentInfoParams['OpportunityId'] = $objectId
+                }
+                default {
+                    $attachmentInfoParams['ParentId'] = $objectId
+                    $attachmentInfoParams['ParentType'] = $objectType
+                }
+            }
+      
+            $attachmentInfo = Get-AtwsAttachmentInfo @attachmentInfoParams
+
+            if ($attachmentInfo.Count -gt 0) {
+                $id = $attachmentInfo.Id
+            }
+            else {
+                # Empty result
+                return
+            }
+        }
+    
+
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to query the Autotask Web API for attatchment(s).' -F $caption
+        $verboseWarning = '{0}: About to query the Autotask Web API for attatchment(s). Do you want to continue?' -F $caption
+    
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+            $result = @()
+            foreach ($attachmentId in $id) {
+                $result += $Script:Atws.GetAttachment($attachmentId)
+            }
+
+            Write-Verbose ('{0}: Number of attachments downloaded: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+    
+
+            # Expand UDFs by default
+            # Normalize dates (convert to local time). EVery datetime field ever returned
+            # By the API is in CEST.
+            foreach ($item in $result) {
+                # Any userdefined fields?
+                if ($item.UserDefinedFields.Count -gt 0) { 
+                    # Expand User defined fields for easy filtering of collections and readability
+                    foreach ($UDF in $item.UserDefinedFields) {
+                        # Make names you HAVE TO escape...
+                        $UDFName = '#{0}' -F $UDF.Name
+                        Add-Member -InputObject $item -MemberType NoteProperty -Name $UDFName -Value $UDF.Value -Force
+                    }  
+                }
+      
+                # Adjust TimeZone on all DateTime properties
+                # Dates RETURNED by the API are always in CEST. Add timezone difference
+                # to get local time
+                foreach ($dateTimeParam in $dateTimeParams) {
+      
+                    # Get the datetime value
+                    $value = $item.$dateTimeParam
+                
+                    # Skip if parameter is empty
+                    if (-not ($value)) {
+                        Continue
+                    }
+                    # Yes, you really have to ADD the difference
+                    $item.$dateTimeParam = $value.AddHours($script:ESToffset)
+                }
+
+                if ($Script:UsePickListLabels) { 
+                    # Restore picklist labels
+                    foreach ($field in $picklists) {
+                        if ($item.$($field.Name) -in $field.PicklistValues.Value) {
+                            $item.$($field.Name) = ($field.PickListValues.Where{ $_.Value -eq $item.$($field.Name) }).Label
+                        }
+                    }
+                }
+            }
+        }
     }
-  }
+
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        if ($result) {
+            return $result
+        }
+    }
 
 
 }

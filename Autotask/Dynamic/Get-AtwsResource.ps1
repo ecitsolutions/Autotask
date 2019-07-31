@@ -24,7 +24,7 @@ Possible operators for all parameters are:
  -LessThan
  -LessThanOrEquals 
 
-Additional operators for [String] parameters are:
+Additional operators for [string] parameters are:
  -Like (supports * or % as wildcards)
  -NotLike
  -BeginsWith
@@ -175,68 +175,68 @@ Set-AtwsResource
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
     [Parameter(
       Mandatory = $true,
       ValueFromRemainingArguments = $true,
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
     [ValidateSet('DefaultServiceDeskRoleID')]
-    [String]
+    [string]
     $GetReferenceEntityById,
 
 # Return entities of selected type that are referencing to this entity.
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
     [ValidateSet('Account:CreatedByResourceID', 'Account:OwnerResourceID', 'AccountNote:AssignedResourceID', 'AccountNote:ImpersonatorCreatorResourceID', 'AccountNote:ImpersonatorUpdaterResourceID', 'AccountTeam:ResourceID', 'AccountToDo:AssignedToResourceID', 'AccountToDo:CreatorResourceID', 'Appointment:CreatorResourceID', 'Appointment:ResourceID', 'AttachmentInfo:AttachedByResourceID', 'BillingItem:AccountManagerWhenApprovedID', 'BillingItem:ItemApproverID', 'BillingItemApprovalLevel:ApprovalResourceID', 'BusinessDivisionSubdivisionResource:ResourceID', 'ContractCost:CreatorResourceID', 'ContractMilestone:CreatorResourceID', 'ContractNote:CreatorResourceID', 'ContractNote:ImpersonatorCreatorResourceID', 'ContractNote:ImpersonatorUpdaterResourceID', 'ContractRoleCost:ResourceID', 'Currency:UpdateResourceId', 'ExpenseReport:ApproverID', 'ExpenseReport:SubmitterID', 'InstalledProduct:CreatedByPersonID', 'InstalledProduct:InstalledByID', 'InstalledProduct:LastActivityPersonID', 'InventoryLocation:ResourceID', 'InventoryTransfer:TransferByResourceID', 'Invoice:CreatorResourceID', 'Invoice:VoidedByResourceID', 'NotificationHistory:InitiatingResourceID', 'Opportunity:OwnerResourceID', 'Phase:CreatorResourceID', 'Project:CompanyOwnerResourceID', 'Project:CreatorResourceID', 'Project:LastActivityResourceID', 'Project:ProjectLeadResourceID', 'ProjectCost:CreatorResourceID', 'ProjectNote:CreatorResourceID', 'ProjectNote:ImpersonatorCreatorResourceID', 'ProjectNote:ImpersonatorUpdaterResourceID', 'PurchaseOrder:CreatorResourceID', 'PurchaseOrderReceive:ReceivedByResourceID', 'Quote:CreatorResourceID', 'Quote:LastModifiedBy', 'QuoteTemplate:CreatedBy', 'QuoteTemplate:LastActivityBy', 'ResourceRole:ResourceID', 'ResourceRoleDepartment:ResourceID', 'ResourceRoleQueue:ResourceID', 'ResourceServiceDeskRole:ResourceID', 'ResourceSkill:ResourceID', 'SalesOrder:OwnerResourceID', 'Service:CreatorResourceID', 'Service:UpdateResourceID', 'ServiceBundle:CreatorResourceID', 'ServiceBundle:UpdateResourceID', 'ServiceCallTaskResource:ResourceID', 'ServiceCallTicketResource:ResourceID', 'ServiceLevelAgreementResults:FirstResponseInitiatingResourceID', 'ServiceLevelAgreementResults:FirstResponseResourceID', 'ServiceLevelAgreementResults:ResolutionPlanResourceID', 'ServiceLevelAgreementResults:ResolutionResourceID', 'Task:AssignedResourceID', 'Task:CompletedByResourceID', 'Task:CreatorResourceID', 'Task:LastActivityResourceID', 'TaskNote:CreatorResourceID', 'TaskNote:ImpersonatorCreatorResourceID', 'TaskNote:ImpersonatorUpdaterResourceID', 'TaskSecondaryResource:ResourceID', 'Ticket:AssignedResourceID', 'Ticket:CompletedByResourceID', 'Ticket:CreatorResourceID', 'Ticket:LastActivityResourceID', 'TicketChangeRequestApproval:ResourceID', 'TicketChecklistItem:CompletedByResourceID', 'TicketCost:CreatorResourceID', 'TicketHistory:ResourceID', 'TicketNote:CreatorResourceID', 'TicketNote:ImpersonatorCreatorResourceID', 'TicketNote:ImpersonatorUpdaterResourceID', 'TicketSecondaryResource:ResourceID', 'TimeEntry:BillingApprovalResourceID', 'TimeEntry:ImpersonatorCreatorResourceID', 'TimeEntry:ImpersonatorUpdaterResourceID', 'TimeEntry:ResourceID')]
-    [String]
+    [string]
     $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
-      ParameterSetName = 'Get_all'
+      ParametersetName = 'Get_all'
     )]
-    [Switch]
+    [switch]
     $All,
 
 # Do not add descriptions for all picklist attributes with values
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'Get_all'
+      ParametersetName = 'Get_all'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [Switch]
+    [switch]
     $NoPickListLabel,
 
 # Status
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
@@ -244,7 +244,7 @@ Set-AtwsResource
 
 # Email
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,254)]
@@ -253,7 +253,7 @@ Set-AtwsResource
 
 # Add Email 1
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,254)]
     [string[]]
@@ -261,7 +261,7 @@ Set-AtwsResource
 
 # Add Email 2
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,254)]
     [string[]]
@@ -269,29 +269,29 @@ Set-AtwsResource
 
 # Email Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $EmailTypeCode,
 
 # Add Email 1 Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $EmailTypeCode2,
 
 # Add Email 2 Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $EmailTypeCode3,
 
 # First Name
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
@@ -300,21 +300,21 @@ Set-AtwsResource
 
 # Gender
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $Gender,
 
 # Greeting
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $Greeting,
 
 # Home Phone
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
     [string[]]
@@ -322,7 +322,7 @@ Set-AtwsResource
 
 # Resource ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
@@ -330,7 +330,7 @@ Set-AtwsResource
 
 # Pay Roll Identifier
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,32)]
     [string[]]
@@ -338,7 +338,7 @@ Set-AtwsResource
 
 # Last Name
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
@@ -347,15 +347,15 @@ Set-AtwsResource
 
 # Pimary Location
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $LocationID,
 
 # Middle Initial
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
@@ -363,7 +363,7 @@ Set-AtwsResource
 
 # Mobile Phone
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
     [string[]]
@@ -371,7 +371,7 @@ Set-AtwsResource
 
 # Office Extension
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,10)]
     [string[]]
@@ -379,7 +379,7 @@ Set-AtwsResource
 
 # Office Phone
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
     [string[]]
@@ -387,22 +387,22 @@ Set-AtwsResource
 
 # Resource Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $ResourceType,
 
 # Suffix
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $Suffix,
 
 # Title
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
@@ -410,14 +410,14 @@ Set-AtwsResource
 
 # Travel Availability Pct
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $TravelAvailabilityPct,
 
 # UserName
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,32)]
@@ -426,45 +426,45 @@ Set-AtwsResource
 
 # User Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $UserType,
 
 # Date Format
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $DateFormat,
 
 # Time Format
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $TimeFormat,
 
 # Payroll Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $PayrollType,
 
 # Number Format
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $NumberFormat,
 
 # Accounting Reference ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
     [string[]]
@@ -472,14 +472,14 @@ Set-AtwsResource
 
 # Interal Cost
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $InternalCost,
 
 # Hire Date
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[datetime][]]
@@ -487,168 +487,174 @@ Set-AtwsResource
 
 # Survey Resource Rating
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $SurveyResourceRating,
 
 # License Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $LicenseType,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Active', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DateFormat', 'TimeFormat', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [String[]]
+    [string[]]
     $NotEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Active', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DateFormat', 'TimeFormat', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [String[]]
+    [string[]]
     $IsNull,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Active', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DateFormat', 'TimeFormat', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [String[]]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DateFormat', 'TimeFormat', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [String[]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DateFormat', 'TimeFormat', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [String[]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DateFormat', 'TimeFormat', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [String[]]
+    [string[]]
     $LessThan,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DateFormat', 'TimeFormat', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [String[]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'NumberFormat', 'AccountingReferenceID')]
-    [String[]]
+    [string[]]
     $Like,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'NumberFormat', 'AccountingReferenceID')]
-    [String[]]
+    [string[]]
     $NotLike,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'NumberFormat', 'AccountingReferenceID')]
-    [String[]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'NumberFormat', 'AccountingReferenceID')]
-    [String[]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'NumberFormat', 'AccountingReferenceID')]
-    [String[]]
+    [string[]]
     $Contains,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('HireDate')]
-    [String[]]
+    [string[]]
     $IsThisDay
   )
 
-  Begin
-  { 
-    $EntityName = 'Resource'
+    begin { 
+        $entityName = 'Resource'
     
-    # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
+            $DebugPreference = 'Continue' 
+        }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-  }
-
-
-  Process
-  {
-    If ($PSCmdlet.ParameterSetName -eq 'Get_all')
-    { 
-      $Filter = @('id', '-ge', 0)
     }
-    ElseIf (-not ($Filter)) {
+
+
+    process {
+        # Parameterset Get_All has a single parameter: -All
+        # Set the Filter manually to get every single object of this type 
+        if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
+            $Filter = @('id', '-ge', 0)
+        }
+        # So it is not -All. If Filter does not exist it has to be By_parameters
+        elseif (-not ($Filter)) {
     
-      Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
+            Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
-      # Convert named parameters to a filter definition that can be parsed to QueryXML
-      $Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $EntityName
-    }
-    Else {
+            # Convert named parameters to a filter definition that can be parsed to QueryXML
+            $Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+        }
+        # Not parameters, nor Get_all. There are only three parameter sets, so now we know
+        # that we were passed a Filter
+        else {
       
-      Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
-              
-      $Filter = . Update-AtwsFilter -FilterString $Filter
-    } 
+            Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
+            
+            # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
+            # or the variables will not be available and expansion will fail
+            $Filter = . Update-AtwsFilter -Filterstring $Filter
+        } 
 
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
-    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+        # Prepare shouldProcess comments
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to query the Autotask Web API for {1}(s).' -F $caption, $entityName
+        $verboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $caption, $entityName
     
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+        # Lets do it and say we didn't!
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
     
-      # Make the query and pass the optional parameters to Get-AtwsData
-      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter `
-        -NoPickListLabel:$NoPickListLabel.IsPresent `
-        -GetReferenceEntityById $GetReferenceEntityById `
-        -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+            # Make the query and pass the optional parameters to Get-AtwsData
+            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
+                -NoPickListLabel:$NoPickListLabel.IsPresent `
+                -GetReferenceEntityById $GetReferenceEntityById `
+                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
     
-      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 
+        }
     }
-  }
 
-  End
-  {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    If ($Result)
-    {
-      Return $Result
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        if ($result) {
+            Return $result
+        }
     }
-  }
 
 
 }

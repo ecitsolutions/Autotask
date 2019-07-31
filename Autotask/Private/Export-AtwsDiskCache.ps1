@@ -1,56 +1,52 @@
-﻿Function Export-AtwsDiskCache
-{
-  [CmdLetBinding()]
+﻿Function Export-AtwsDiskCache {
+    [CmdLetBinding()]
   
-  Param()
+    Param()
 
-  Begin
-  {
-    If (-not ($Script:Cache)) {
-      Write-Error -Message 'The diskcache has not been imported yet. Noting to save.'
-      Return
-    }
-     
-    $CacheFile = 'AutotaskFieldInfoCache.xml'
-    $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
-    $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
-
-    Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
-  }
-  
-  Process
-  {
-    # If the module variable UseDiskCache is $False or does not exist, this function does nothing...
-    
-    If ($Script:UseDiskCache) { 
-      # This REALLY should be there, but better safe than sorry
-      # Create Personalcache directory if it doesn't exist
-      If (-not (Test-Path $PersonalCacheDir)) {
-      
-        $Caption = $MyInvocation.MyCommand.Name
-        $VerboseDescrition = '{0}: Creating a new personal cache dir {1}' -F $Caption, $PersonalCacheDir
-        $VerboseWarning = '{0}: About to create a new personal cache dir {1}. Do you want to continue?' -F $Caption, $PersonalCacheDir
-          
-        If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-          New-Item -Path $PersonalCacheDir -ItemType Directory
+    begin {
+        if (-not ($Script:Cache)) {
+            Write-Error -Message 'The diskcache has not been imported yet. Noting to save.'
+            Return
         }
-    
-      }
-               
-      $Caption = $MyInvocation.MyCommand.Name
-      $VerboseDescrition = '{0}: Saving updated cache info to {1}' -F $Caption, $PersonalCache
-      $VerboseWarning = '{0}: About to save updated cache info to {1}. Do you want to continue?' -F $Caption, $PersonalCache
-          
-      If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-            
-        $Script:Cache | Export-Clixml -Path $PersonalCache -Force
-    
-      }
+     
+        $CacheFile = 'AutotaskFieldInfoCache.xml'
+        $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
+        $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
+
+        Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
     }
-  }
   
-  End
-  {
-    Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)    
-  }
+    process {
+        # If the module variable UseDiskCache is $false or does not exist, this function does nothing...
+    
+        if ($Script:UseDiskCache) { 
+            # This REALLY should be there, but better safe than sorry
+            # Create Personalcache directory if it doesn't exist
+            if (-not (Test-Path $PersonalCacheDir)) {
+      
+                $caption = $MyInvocation.MyCommand.Name
+                $verboseDescription = '{0}: Creating a new personal cache dir {1}' -F $caption, $PersonalCacheDir
+                $verboseWarning = '{0}: About to create a new personal cache dir {1}. Do you want to continue?' -F $caption, $PersonalCacheDir
+          
+                if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+                    New-Item -Path $PersonalCacheDir -ItemType Directory
+                }
+    
+            }
+               
+            $caption = $MyInvocation.MyCommand.Name
+            $verboseDescription = '{0}: Saving updated cache info to {1}' -F $caption, $PersonalCache
+            $verboseWarning = '{0}: About to save updated cache info to {1}. Do you want to continue?' -F $caption, $PersonalCache
+          
+            if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+            
+                $Script:Cache | Export-Clixml -Path $PersonalCache -Force
+    
+            }
+        }
+    }
+  
+    end {
+        Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)    
+    }
 }

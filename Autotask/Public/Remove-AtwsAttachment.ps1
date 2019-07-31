@@ -44,13 +44,13 @@ Function Remove-AtwsAttachment {
       Strongly related to Get-AtwsAttachmentInfo
   #>
 
-  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName = 'Input_Object', ConfirmImpact = 'Low')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Input_Object', ConfirmImpact = 'Low')]
   Param
   (
 
     # An object that will be modified by any parameters and updated in Autotask
     [Parameter(
-        Mandatory = $True,
+        Mandatory = $true,
         ParameterSetName = 'Input_Object',
         ValueFromPipeline = $true
     )]
@@ -64,7 +64,7 @@ Function Remove-AtwsAttachment {
 
     # Attachment ID
     [Parameter(
-        Mandatory = $True,
+        Mandatory = $true,
         ParameterSetName = 'By_id'
     )]
     [ValidateNotNullOrEmpty()]
@@ -73,7 +73,7 @@ Function Remove-AtwsAttachment {
 
     # Account ID
     [Parameter(
-        Mandatory = $True,
+        Mandatory = $true,
         ParameterSetName = 'Account'
     )]
     [ValidateScript({
@@ -87,7 +87,7 @@ Function Remove-AtwsAttachment {
 
     # Opportunity ID
     [Parameter(
-        Mandatory = $True,
+        Mandatory = $true,
         ParameterSetName = 'Opportunity'
     )]
     [ValidateScript({
@@ -101,7 +101,7 @@ Function Remove-AtwsAttachment {
 
     # Project ID
     [Parameter(
-        Mandatory = $True,
+        Mandatory = $true,
         ParameterSetName = 'Project'
     )]
     [ValidateScript({
@@ -115,7 +115,7 @@ Function Remove-AtwsAttachment {
 
     # Ticket ID
     [Parameter(
-        Mandatory = $True,
+        Mandatory = $true,
         ParameterSetName = 'Ticket'
     )]
     [ValidateScript({
@@ -129,51 +129,51 @@ Function Remove-AtwsAttachment {
    
   )
 
-  Begin { 
+  begin { 
    
     # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
     Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
     # Dynamic field info
-    $Fields = Get-AtwsFieldInfo -Entity AttachmentInfo
-    $DateTimeParams = $Fields.Where({$_.Type -eq 'datetime'}).Name
-    $Picklists = $Fields.Where{$_.IsPickList}
+    $fields = Get-AtwsFieldInfo -Entity AttachmentInfo
+    $DateTimeParams = $fields.Where({$_.Type -eq 'datetime'}).Name
+    $Picklists = $fields.Where{$_.IsPickList}
     
     # Set up TimeZone offset handling
-    If (-not($script:ESTzone)) {
+    if (-not($script:ESTzone)) {
       $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
     }
     
-    If (-not($script:ESToffset)) {
-      $Now = Get-Date
-      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($Now.ToUniversalTime(), $ESTzone)
+    if (-not($script:ESToffset)) {
+      $now = Get-Date
+      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
 
-      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $Now).TotalHours
+      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $now).TotalHours
     }
     
   }
 
 
-  Process {
+  process {
 
     # Do we have to look up attachment Id by another object Id
-    If ($PSCmdlet.ParameterSetName -ne 'By_id') { 
+    if ($PSCmdlet.ParameterSetName -ne 'By_id') { 
       
       # Yes, we have to get the attachment Id ourselves. So, what kind of object 
       # are we looking for?
 
       $AttachmentInfoParams = @{ } 
 
-      $ObjectType = Switch ($PSCmdlet.ParameterSetName) {
+      $objectType = switch ($PSCmdlet.ParameterSetName) {
         'Input_Object' { 
           $InputObject[0].GetType().Name 
-          $ObjectId = $InputObject.Id
+          $objectId = $InputObject.Id
         }
         default { 
           $PSCmdlet.ParameterSetName 
-          $ObjectId = Switch ($PSCmdlet.ParameterSetName) {
+          $objectId = switch ($PSCmdlet.ParameterSetName) {
             'Account' { $AccountID }
             'Opportunity' { $OpportunityID }
             'Project' { $ProjectID }
@@ -182,19 +182,19 @@ Function Remove-AtwsAttachment {
         }
       }
 
-      Switch ($ObjectType) {
+      switch ($objectType) {
         'Opportunity' {
-          $AttachmentInfoParams['OpportunityId'] = $ObjectId
+          $AttachmentInfoParams['OpportunityId'] = $objectId
         }
         default {
-          $AttachmentInfoParams['ParentId'] = $ObjectId
-          $AttachmentInfoParams['ParentType'] = $ObjectType
+          $AttachmentInfoParams['ParentId'] = $objectId
+          $AttachmentInfoParams['ParentType'] = $objectType
         }
       }
       
       $AttachmentInfo = Get-AtwsAttachmentInfo @AttachmentInfoParams
 
-      If ($AttachmentInfo.Count -gt 0) {
+      if ($AttachmentInfo.Count -gt 0) {
         $id = $AttachmentInfo.Id
       }
       else {
@@ -204,22 +204,22 @@ Function Remove-AtwsAttachment {
     }
     
 
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: About to delete {1} attatchment(s).' -F $Caption, $id.count
-    $VerboseWarning = '{0}: About to delete {1} attatchment(s). Do you want to continue?' -F $Caption, $id.count
+    $caption = $MyInvocation.MyCommand.Name
+    $verboseDescription = '{0}: About to delete {1} attatchment(s).' -F $caption, $id.count
+    $verboseWarning = '{0}: About to delete {1} attatchment(s). Do you want to continue?' -F $caption, $id.count
     
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-      $Result = @()
-      Foreach ($AttachmentId in $id) {
-        $Result += $Script:Atws.DeleteAttachment($AttachmentId)
+    if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+      $result = @()
+      foreach ($AttachmentId in $id) {
+        $result += $Script:Atws.DeleteAttachment($AttachmentId)
       }
 
-      Write-Verbose ('{0}: Number of attachment(s) deleted: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+      Write-Verbose ('{0}: Number of attachment(s) deleted: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
     
     }
   }
 
-  End {
+  end {
     Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
   }
 

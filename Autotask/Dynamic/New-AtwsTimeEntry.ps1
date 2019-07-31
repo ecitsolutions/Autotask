@@ -36,16 +36,16 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.TimeEntry]. This function outputs the Autotask.TimeEntry that was created by the API.
 .EXAMPLE
-$Result = New-AtwsTimeEntry -DateWorked [Value] -ResourceID [Value]
+$result = New-AtwsTimeEntry -DateWorked [Value] -ResourceID [Value]
 Creates a new [Autotask.TimeEntry] through the Web Services API and returns the new object.
  .EXAMPLE
-$Result = Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry 
+$result = Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry 
 Copies [Autotask.TimeEntry] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
 Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry | Set-AtwsTimeEntry -ParameterName <Parameter Value>
 Copies [Autotask.TimeEntry] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTimeEntry to modify the object.
  .EXAMPLE
-$Result = Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry | Set-AtwsTimeEntry -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry | Set-AtwsTimeEntry -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TimeEntry] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTimeEntry to modify the object and returns the new object.
 
 .LINK
@@ -57,12 +57,12 @@ Set-AtwsTimeEntry
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
   Param
   (
 # An array of objects to create
     [Parameter(
-      ParameterSetName = 'Input_Object',
+      ParametersetName = 'Input_Object',
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
@@ -71,36 +71,36 @@ Set-AtwsTimeEntry
 
 # Task ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $TaskID,
 
 # Ticket ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $TicketID,
 
 # Internal Allocation Code ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $InternalAllocationCodeID,
 
 # TaskTypeLink
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String]
+    [string]
     $Type,
 
 # Date
     [Parameter(
       Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
@@ -108,42 +108,42 @@ Set-AtwsTimeEntry
 
 # Start Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [datetime]
     $StartDateTime,
 
 # End Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [datetime]
     $EndDateTime,
 
 # Hours Worked
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [double]
     $HoursWorked,
 
 # Hours To Bill
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [double]
     $HoursToBill,
 
 # Offset Hours
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [double]
     $OffsetHours,
 
 # Summary Notes
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
     [string]
@@ -151,7 +151,7 @@ Set-AtwsTimeEntry
 
 # Internal Notes
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
     [string]
@@ -159,14 +159,14 @@ Set-AtwsTimeEntry
 
 # Role ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $RoleID,
 
 # Create Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [datetime]
     $CreateDateTime,
@@ -174,7 +174,7 @@ Set-AtwsTimeEntry
 # Resource ID
     [Parameter(
       Mandatory = $true,
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
@@ -182,200 +182,170 @@ Set-AtwsTimeEntry
 
 # Created User ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $CreatorUserID,
 
 # Last Modified By User ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $LastModifiedUserID,
 
 # Last Modified Datetime
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [datetime]
     $LastModifiedDateTime,
 
 # Allocation Code ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $AllocationCodeID,
 
 # Contract ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $ContractID,
 
 # Show On Invoice
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [boolean]
     $ShowOnInvoice,
 
 # Non-Billable
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [boolean]
     $NonBillable,
 
 # Billing Approval Level Most Recent
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $BillingApprovalLevelMostRecent,
 
 # Billing Approval Resource ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $BillingApprovalResourceID,
 
 # Billing Approval Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [datetime]
     $BillingApprovalDateTime,
 
 # Contract Service ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [long]
     $ContractServiceID,
 
 # Contract Service Bundle ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [long]
     $ContractServiceBundleID,
 
 # Impersonator Creator Resource ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $ImpersonatorCreatorResourceID,
 
 # Impersonator Updater Resource ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Int]
     $ImpersonatorUpdaterResourceID
   )
  
-  Begin
-  { 
-    $EntityName = 'TimeEntry'
+    begin { 
+        $entityName = 'TimeEntry'
            
-    # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug -Message ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    $ProcessObject = @()
-  }
+        $processObject = @()
+    }
 
-  Process
-  {
-    $Fields = Get-AtwsFieldInfo -Entity $EntityName
+    process {
     
-    If ($InputObject)
-    {
-      Write-Verbose ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
+        if ($InputObject) {
+            Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
+
+            $fields = Get-AtwsFieldInfo -Entity $entityName
       
-      $CopyNo = 1
+            $CopyNo = 1
 
-      Foreach ($Object in $InputObject) 
-      { 
-        # Create a new object and copy properties
-        $NewObject = New-Object Autotask.$EntityName
+            foreach ($object in $InputObject) { 
+                # Create a new object and copy properties
+                $newObject = New-Object -TypeName Autotask.$entityName
         
-        # Copy every non readonly property
-        $FieldNames = $Fields.Where({$_.Name -ne 'id'}).Name
-        If ($PSBoundParameters.ContainsKey('UserDefinedFields')) {
-          $FieldNames += 'UserDefinedFields'
-        }
-        Foreach ($Field in $FieldNames)
-        {
-          $NewObject.$Field = $Object.$Field
-        }
-        If ($NewObject -is [Autotask.Ticket])
-        {
-          Write-Verbose ('{0}: Copy Object mode: Object is a Ticket. Title must be modified to avoid duplicate detection.' -F $MyInvocation.MyCommand.Name)  
-          $Title = '{0} (Copy {1})' -F $NewObject.Title, $CopyNo
-          $CopyNo++
-          $NewObject.Title = $Title
-        }
-        $ProcessObject += $NewObject
-      }   
-    }
-    Else
-    {
-      Write-Debug ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $EntityName) 
-      $ProcessObject += New-Object Autotask.$EntityName    
-    }
-    
-    Foreach ($Parameter in $PSBoundParameters.GetEnumerator())
-    {
-      $Field = $Fields | Where-Object {$_.Name -eq $Parameter.Key}
-      If ($Field -or $Parameter.Key -eq 'UserDefinedFields')
-      { 
-        If ($Field.IsPickList)
-        {
-          If($Field.PickListParentValueField)
-          {
-            $ParentField = $Fields.Where{$_.Name -eq $Field.PickListParentValueField}
-            $ParentLabel = $PSBoundParameters.$($ParentField.Name)
-            $ParentValue = $ParentField.PickListValues | Where-Object {$_.Label -eq $ParentLabel}
-            $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $Parameter.Value -and $_.ParentValue -eq $ParentValue.Value}                
-          }
-          Else 
-          { 
-            $PickListValue = $Field.PickListValues | Where-Object {$_.Label -eq $Parameter.Value}
-          }
-          $Value = $PickListValue.Value
-        }
-        Else
-        {
-          $Value = $Parameter.Value
-        } 
+                # Copy every non readonly property
+                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
 
-        Foreach ($Object in $ProcessObject) 
-        { 
-          $Object.$($Parameter.Key) = $Value
+                if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
+                    $fieldNames += 'UserDefinedFields' 
+                }
+
+                foreach ($field in $fieldNames) { 
+                    $newObject.$field = $object.$field 
+                }
+
+                if ($newObject -is [Autotask.Ticket]) {
+                    Write-Verbose -Message ('{0}: Copy Object mode: Object is a Ticket. Title must be modified to avoid duplicate detection.' -F $MyInvocation.MyCommand.Name)  
+                    $title = '{0} (Copy {1})' -F $newObject.Title, $CopyNo
+                    $copyNo++
+                    $newObject.Title = $title
+                }
+                $processObject += $newObject
+            }   
         }
-      }
-    }   
-     
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $Caption, $ProcessObject.Count, $EntityName
-    $VerboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $Caption, $ProcessObject.Count, $EntityName
+        else {
+            Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
+            $processObject += New-Object -TypeName Autotask.$entityName    
+        }
+        
+        # Prepare shouldProcess comments
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-      $Result = New-AtwsData -Entity $ProcessObject
+        # Lets don't and say we did!
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+            
+            # Process parameters and update objects with their values
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            
+            $result = Set-AtwsData -Entity $processObject -Create
+        }
     }
-  }
 
-  End
-  {
-    Write-Debug ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $Result.count, $EntityName)
-    Return $Result
-  }
+    end {
+        Write-Debug -Message ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $result.count, $entityName)
+        Return $result
+    }
 
 }

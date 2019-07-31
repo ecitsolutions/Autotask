@@ -24,7 +24,7 @@ Possible operators for all parameters are:
  -LessThan
  -LessThanOrEquals 
 
-Additional operators for [String] parameters are:
+Additional operators for [string] parameters are:
  -Like (supports * or % as wildcards)
  -NotLike
  -BeginsWith
@@ -103,68 +103,68 @@ Set-AtwsProject
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $True, DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Filter', ConfirmImpact='None')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
     [Parameter(
       Mandatory = $true,
       ValueFromRemainingArguments = $true,
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
     [ValidateSet('AccountID', 'BusinessDivisionSubdivisionID', 'CompanyOwnerResourceID', 'ContractID', 'CreatorResourceID', 'LastActivityResourceID', 'ProjectLeadResourceID')]
-    [String]
+    [string]
     $GetReferenceEntityById,
 
 # Return entities of selected type that are referencing to this entity.
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
     [ValidateSet('BillingItem:ProjectID', 'ExpenseItem:ProjectID', 'NotificationHistory:ProjectID', 'Phase:ProjectID', 'ProjectCost:ProjectID', 'ProjectNote:ProjectID', 'PurchaseOrderItem:ProjectID', 'Quote:ProposalProjectID', 'Task:ProjectID', 'Ticket:ProjectID')]
-    [String]
+    [string]
     $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
-      ParameterSetName = 'Get_all'
+      ParametersetName = 'Get_all'
     )]
-    [Switch]
+    [switch]
     $All,
 
 # Do not add descriptions for all picklist attributes with values
     [Parameter(
-      ParameterSetName = 'Filter'
+      ParametersetName = 'Filter'
     )]
     [Parameter(
-      ParameterSetName = 'Get_all'
+      ParametersetName = 'Get_all'
     )]
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [Switch]
+    [switch]
     $NoPickListLabel,
 
 # id
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
@@ -172,7 +172,7 @@ Set-AtwsProject
 
 # Project Name
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
@@ -182,7 +182,7 @@ Set-AtwsProject
 
 # Account ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
@@ -190,15 +190,15 @@ Set-AtwsProject
 
 # Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $Type,
 
 # Ext Project Number
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
@@ -206,7 +206,7 @@ Set-AtwsProject
 
 # Project Number
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
@@ -214,7 +214,7 @@ Set-AtwsProject
 
 # Description
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
     [string[]]
@@ -222,21 +222,21 @@ Set-AtwsProject
 
 # Created DateTime
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $CreateDateTime,
 
 # Created By
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $CreatorResourceID,
 
 # Start Date
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[datetime][]]
@@ -244,7 +244,7 @@ Set-AtwsProject
 
 # End Date
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[datetime][]]
@@ -252,148 +252,148 @@ Set-AtwsProject
 
 # Duration
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $Duration,
 
 # Actual Hours
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $ActualHours,
 
 # Actual Billed Hours
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $ActualBilledHours,
 
 # Estimated Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $EstimatedTime,
 
 # Labor Estimated Revenue
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $LaborEstimatedRevenue,
 
 # Labor Estimated Costs
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $LaborEstimatedCosts,
 
 # Labor Estimated Margin Percentage
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $LaborEstimatedMarginPercentage,
 
 # Project Cost Revenue
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $ProjectCostsRevenue,
 
 # Project Estimated costs
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $ProjectCostsBudget,
 
 # Project Cost Estimated Margin Percentage
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $ProjectCostEstimatedMarginPercentage,
 
 # Change Orders Revenue
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $ChangeOrdersRevenue,
 
 # SG&A
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $SGDA,
 
 # Original Estimated Revenue
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $OriginalEstimatedRevenue,
 
 # Estimated Sales Cost
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $EstimatedSalesCost,
 
 # Status
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [String[]]
+    [string[]]
     $Status,
 
 # Contract
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ContractID,
 
 # Project Lead
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ProjectLeadResourceID,
 
 # Account Owner
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $CompanyOwnerResourceID,
 
 # Completed Percentage
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $CompletedPercentage,
 
 # Completed date
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $CompletedDateTime,
 
 # Status Detail
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
     [string[]]
@@ -401,28 +401,28 @@ Set-AtwsProject
 
 # Status Date
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $StatusDateTime,
 
 # Department
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $Department,
 
 # Line Of Business
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
-    [String[]]
+    [string[]]
     $LineOfBusiness,
 
 # purchase_order_number
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
@@ -430,181 +430,187 @@ Set-AtwsProject
 
 # Business Division Subdivision ID
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Last Activity By
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $LastActivityResourceID,
 
 # Last Activity Date Time
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $LastActivityDateTime,
 
 # Last Activity Person Type
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $LastActivityPersonType,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType')]
-    [String[]]
+    [string[]]
     $NotEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType')]
-    [String[]]
+    [string[]]
     $IsNull,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType')]
-    [String[]]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType')]
-    [String[]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType')]
-    [String[]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType')]
-    [String[]]
+    [string[]]
     $LessThan,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType')]
-    [String[]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
-    [String[]]
+    [string[]]
     $Like,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
-    [String[]]
+    [string[]]
     $NotLike,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
-    [String[]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
-    [String[]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
-    [String[]]
+    [string[]]
     $Contains,
 
     [Parameter(
-      ParameterSetName = 'By_parameters'
+      ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDateTime', 'StartDateTime', 'EndDateTime', 'CompletedDateTime', 'StatusDateTime', 'LastActivityDateTime')]
-    [String[]]
+    [string[]]
     $IsThisDay
   )
 
-  Begin
-  { 
-    $EntityName = 'Project'
+    begin { 
+        $entityName = 'Project'
     
-    # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
+            $DebugPreference = 'Continue' 
+        }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-  }
-
-
-  Process
-  {
-    If ($PSCmdlet.ParameterSetName -eq 'Get_all')
-    { 
-      $Filter = @('id', '-ge', 0)
     }
-    ElseIf (-not ($Filter)) {
+
+
+    process {
+        # Parameterset Get_All has a single parameter: -All
+        # Set the Filter manually to get every single object of this type 
+        if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
+            $Filter = @('id', '-ge', 0)
+        }
+        # So it is not -All. If Filter does not exist it has to be By_parameters
+        elseif (-not ($Filter)) {
     
-      Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
+            Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
-      # Convert named parameters to a filter definition that can be parsed to QueryXML
-      $Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $EntityName
-    }
-    Else {
+            # Convert named parameters to a filter definition that can be parsed to QueryXML
+            $Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+        }
+        # Not parameters, nor Get_all. There are only three parameter sets, so now we know
+        # that we were passed a Filter
+        else {
       
-      Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
-              
-      $Filter = . Update-AtwsFilter -FilterString $Filter
-    } 
+            Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
+            
+            # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
+            # or the variables will not be available and expansion will fail
+            $Filter = . Update-AtwsFilter -Filterstring $Filter
+        } 
 
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: About to query the Autotask Web API for {1}(s).' -F $Caption, $EntityName
-    $VerboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $Caption, $EntityName
+        # Prepare shouldProcess comments
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to query the Autotask Web API for {1}(s).' -F $caption, $entityName
+        $verboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $caption, $entityName
     
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+        # Lets do it and say we didn't!
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
     
-      # Make the query and pass the optional parameters to Get-AtwsData
-      $Result = Get-AtwsData -Entity $EntityName -Filter $Filter `
-        -NoPickListLabel:$NoPickListLabel.IsPresent `
-        -GetReferenceEntityById $GetReferenceEntityById `
-        -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+            # Make the query and pass the optional parameters to Get-AtwsData
+            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
+                -NoPickListLabel:$NoPickListLabel.IsPresent `
+                -GetReferenceEntityById $GetReferenceEntityById `
+                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
     
-      Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $Result.Count)
+            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 
+        }
     }
-  }
 
-  End
-  {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    If ($Result)
-    {
-      Return $Result
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        if ($result) {
+            Return $result
+        }
     }
-  }
 
 
 }

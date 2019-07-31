@@ -17,11 +17,11 @@ Function Update-AtwsFilter {
       as easy as possible for new users that are experienced in PowerShell, but not in QueryXML to use the module.
       To make variable expansion possible the function should be dot-sourced from the entity wrapper functions. 
       .INPUTS
-      [String[]]
+      [string[]]
       .OUTPUTS
-      [String[]]
+      [string[]]
       .EXAMPLE
-      Update-AtwsFilter -FilterString <String[]>
+      Update-AtwsFilter -Filterstring <string[]>
       Parses an Atws filterstring or -array and makes sure it conforms to the format needed by core functions. 
       .NOTES
       NAME: Update-AtwsFilter
@@ -31,54 +31,54 @@ Function Update-AtwsFilter {
   Param
   (
     [Parameter(
-      Mandatory = $True,
-      ValueFromPipeline = $True
+      Mandatory = $true,
+      ValueFromPipeline = $true
     )]
-    [String[]]
-    $FilterString
+    [string[]]
+    $Filterstring
   )
 
-  Begin {
+  begin {
     # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
     Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
   }
 
-  Process {
+  process {
       # $Filter is usually passed as a flat string. Convert it to an array.
-      If ($FilterString.Count -eq 1 -and $FilterString -match ' ' )
+      if ($Filterstring.Count -eq 1 -and $Filterstring -match ' ' )
       { 
         # First, make sure it is a single string and replace parenthesis with our special operator
-        $FilterString = $FilterString -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '
+        $Filterstring = $Filterstring -join ' ' -replace '\(',' -begin ' -replace '\)', ' -end '
     
         # Removing double possible spaces we may have introduced
-        Do {$FilterString = $FilterString -replace '  ',' '}
-        While ($FilterString -match '  ')
+        Do {$Filterstring = $Filterstring -replace '  ',' '}
+        While ($Filterstring -match '  ')
 
         # Split back in to array, respecting quotes
-        $Words = $FilterString.Trim().Split(' ')
-        [String[]]$FilterString = @()
+        $Words = $Filterstring.Trim().Split(' ')
+        [string[]]$Filterstring = @()
         $Temp = @()
-        Foreach ($Word in $Words)
+        foreach ($Word in $Words)
         {
-          If ($Temp.Count -eq 0 -and $Word -match '^[\"\'']')
+          if ($Temp.Count -eq 0 -and $Word -match '^[\"\'']')
           {
             $Temp += $Word.TrimStart('"''')
           }
-          ElseIf ($Temp.Count -gt 0 -and $Word -match "[\'\""]$")
+          elseif ($Temp.Count -gt 0 -and $Word -match "[\'\""]$")
           {
             $Temp += $Word.TrimEnd("'""")
-            $FilterString += $Temp -join ' '
+            $Filterstring += $Temp -join ' '
             $Temp = @()
           }
-          ElseIf ($Temp.Count -gt 0)
+          elseif ($Temp.Count -gt 0)
           {
             $Temp += $Word
           }
-          Else
+          else
           {
-            $FilterString += $Word
+            $Filterstring += $Word
           }
         }
       }
@@ -86,11 +86,11 @@ Function Update-AtwsFilter {
       Write-Debug ('{0}: Checking query for variables that have survived as string' -F $MyInvocation.MyCommand.Name)
       
       $NewFilter = @()
-      Foreach ($Word in $FilterString)
+      foreach ($Word in $Filterstring)
       {
-        $Value = $Word
+        $value = $Word
         # Is it a variable name?
-        If ($Word -match '^\$\{?(\w+:)?(\w+)\}?(\.\w[\.\w]+)?$')
+        if ($Word -match '^\$\{?(\w+:)?(\w+)\}?(\.\w[\.\w]+)?$')
         {
           # If present, first group is SCOPE. In the context of this function, the only possible scope
           # is Global; Script = the module, local is internal to this function.
@@ -103,9 +103,9 @@ Function Update-AtwsFilter {
           $PropertyTail = $Matches[3]
         
           # Check that the variable exists
-          $Variable = Try
+          $Variable = try
           { Get-Variable -Name $VariableName -Scope $Scope -ValueOnly -ErrorAction Stop }
-          Catch
+          catch
           {
             Write-Error ('{0}: Could not find any variable called ${1}. Is it misspelled or has it not been set yet?' -f $MyInvocation.MyCommand.Name, $VariableName)
             # Force stop of calling script, because this will completely break the query
@@ -113,39 +113,39 @@ Function Update-AtwsFilter {
           }
 
           # Test if the variable "Variable" has been set
-          If (Test-Path Variable:Variable) {
+          if (Test-Path Variable:Variable) {
             Write-Debug ('{0}: Substituting {1} for its value' -F $MyInvocation.MyCommand.Name, $Word)
-            If ($PropertyTail) {
+            if ($PropertyTail) {
               # Add properties back 
               $Expression = '$Variable{0}' -F $PropertyTail
   
               # Invoke-Expression is considered risky from an SQL injection kind of perspective. But by only
               # permitting a .dot separated string of [a-zA-Z0-9_] we are PROBABLY safe...
-              $Value = Invoke-Expression -Command $Expression
+              $value = Invoke-Expression -Command $Expression
             }
-            Else {
-              $Value = $Variable
+            else {
+              $value = $Variable
             }
-            If ($Null -eq $Value) {
+            if ($null -eq $value) {
               Write-Error ('{0}: Could not find any variable called {1}. Is it misspelled or has it not been set yet?' -F $MyInvocation.MyCommand.Name, $Expression)
               # Force stop of calling script, because this will completely break the query
               Return
             }
-            Else { 
+            else { 
               # Normalize dates. Important to avoid QueryXML problems
-              If ($Value.GetType().Name -eq 'DateTime')
+              if ($value.GetType().Name -eq 'DateTime')
               {
-                [String]$Value = ConvertTo-AtwsDate -ParameterName $NewFilter[-2] -DateTime $Value
+                [string]$value = ConvertTo-AtwsDate -ParameterName $NewFilter[-2] -DateTime $value
               }
             }
           }
         }
-        $NewFilter += $Value
+        $NewFilter += $value
       }
  
   }
 
-  End {
+  end {
     Return $NewFilter
   }
 }

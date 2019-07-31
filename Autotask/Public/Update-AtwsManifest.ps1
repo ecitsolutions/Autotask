@@ -7,31 +7,31 @@
 #>
 Function Update-AtwsManifest {
   [CmdLetBinding(
-      SupportsShouldProcess = $True,
+      SupportsShouldProcess = $true,
       ConfirmImpact = 'High'
   )]
   Param(
-    [Switch]
+    [switch]
     $UpdateVersion,
     
-    [Switch]
+    [switch]
     $Beta
   )
   
-  Begin { 
+  begin { 
     # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
     Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
        
-    If (-not($Script:Atws.Url)) {
+    if (-not($Script:Atws.Url)) {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }
     
     # Get info from current module
     $ModuleInfo = $MyInvocation.MyCommand.Module
     
-    If ($Beta.IsPresent) {
+    if ($Beta.IsPresent) {
       $ModuleName = '{0}Beta' -F $ModuleInfo.Name
       $GUID = 'ff62b403-3520-4b98-a12b-343bb6b79255'
       
@@ -40,9 +40,9 @@ Function Update-AtwsManifest {
       $PSMDest = '{0}\{1}.psm1' -F $ModuleInfo.ModuleBase, $ModuleName
       
       # Update Beta rootmodule
-      $Null = Copy-Item -Path $PSMName -Destination $PSMDest -Force
+      $null = Copy-Item -Path $PSMName -Destination $PSMDest -Force
     }
-    Else {
+    else {
       $ModuleName = $ModuleInfo.Name
       $GUID = 'abd8b426-797b-4702-b66d-5f871d0701dc'
     }
@@ -55,9 +55,9 @@ Function Update-AtwsManifest {
     $Command = Get-Command -Name New-ModuleManifest
     
     # Pre-populate with previous values
-    Foreach ($Parameter in $Command.Parameters.GetEnumerator()) {
-      $Name = $Parameter.Key
-      If ($ModuleInfo.$Name) {
+    foreach ($parameter in $Command.Parameters.GetEnumerator()) {
+      $Name = $parameter.Key
+      if ($ModuleInfo.$Name) {
         $ManifestParams[$Name] = $ModuleInfo.$Name
       }
     }
@@ -69,22 +69,22 @@ Function Update-AtwsManifest {
     $Nuspec.Load($NuspecSourcePath)
   } 
   
-  Process {
+  process {
     
     # Overwrite parameters that need new values
     $ManifestParams['Path'] = '{0}\{1}.psd1' -F $ModuleInfo.ModuleBase, $ModuleName
     
-    If ($UpdateVersion.IsPresent) { 
+    if ($UpdateVersion.IsPresent) { 
     
       # Figure out the new module version number
       [Version]$ApiVersion = '{0}.{1}' -F $Script:Atws.GetWsdlVersion(), $ModuleInfo.Version.Revision
     
-      If ($ApiVersion -eq $ModuleInfo.Version) {
+      if ($ApiVersion -eq $ModuleInfo.Version) {
         # It is the same API version. Increase the revision number
         $Revision = $ModuleInfo.Version.Revision
         $Revision++
       }
-      Else {
+      else {
         # New API version. Then this is the first revision of the new API version
         $Revision = 1
       }
@@ -92,7 +92,7 @@ Function Update-AtwsManifest {
       # Save the new version number to the parameter set
       [Version]$Moduleversion = '{0}.{1}' -F $Script:Atws.GetWsdlVersion(), $Revision
     }
-    Else {
+    else {
       # Use existing version if no update has been requested
       $Moduleversion = $ModuleInfo.Version
     }
@@ -108,12 +108,12 @@ Function Update-AtwsManifest {
     <# 
         $Functions = @()
         $Moduleinfo.ExportedFunctions.Keys | ForEach-Object { $Functions += $_ }#-replace $ModuleInfo.Prefix, '')}
-        If ($Beta.IsPresent) {
+        if ($Beta.IsPresent) {
         # Make sure the beta version does not clobber the release version through 
         # automatic module import
         $ManifestParams['FunctionsToExport'] = '*'
         }
-        Else { 
+        else { 
         $ManifestParams['FunctionsToExport'] = $Functions
         }
     #>
@@ -132,25 +132,25 @@ Function Update-AtwsManifest {
     $ManifestParams['PrivateData'] = @{ }
 
     # There shoult not be any default prefix anymore
-    If ($ManifestParams.Keys -contains 'DefaultCommandPrefix') {
+    if ($ManifestParams.Keys -contains 'DefaultCommandPrefix') {
       $ManifestParams.Remove('DefaultCommandPrefix')
     }
  
     
     # Update nuspec
     $Nuspec.DocumentElement.metadata.id = $ModuleName
-    $Nuspec.DocumentElement.metadata.version = $ManifestParams['Moduleversion'].ToString()
+    $Nuspec.DocumentElement.metadata.version = $ManifestParams['Moduleversion'].Tostring()
     $Nuspec.DocumentElement.metadata.description = $ManifestParams['Description']
     $Nuspec.DocumentElement.metadata.authors = $ManifestParams['Author']
     $Nuspec.DocumentElement.metadata.tags = $ManifestParams['Tags'] -join ', '
     $Nuspec.DocumentElement.metadata.releasenotes = $ManifestParams['ReleaseNotes']
   }
-  End {
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: Overwriting existing module manifest and nuspec information file in {1}' -F $Caption, $ModuleInfo.ModuleBase
-    $VerboseWarning = '{0}: About to overwrite existing module manifest and nuspec information file in {1}. Do you want to continue?' -F $Caption, $ModuleInfo.ModuleBase
+  end {
+    $caption = $MyInvocation.MyCommand.Name
+    $verboseDescription = '{0}: Overwriting existing module manifest and nuspec information file in {1}' -F $caption, $ModuleInfo.ModuleBase
+    $verboseWarning = '{0}: About to overwrite existing module manifest and nuspec information file in {1}. Do you want to continue?' -F $caption, $ModuleInfo.ModuleBase
           
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+    if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
       # Create the new manifest
       New-ModuleManifest @ManifestParams
     

@@ -9,18 +9,18 @@
 
 Function Uninstall-AtwsOldModuleVersion {
   [CmdLetBinding(
-      SupportsShouldProcess = $True,
+      SupportsShouldProcess = $true,
       ConfirmImpact = 'Medium'
   )]
   Param(
     [Alias('Name')]
-    [String]
+    [string]
     $ModuleName = $MyInvocation.MyCommand.ModuleName
   )
 
-  Begin {
+  begin {
     # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
     
     Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
@@ -28,16 +28,16 @@ Function Uninstall-AtwsOldModuleVersion {
     $AllVersions = Get-InstalledModule -Name $ModuleName -AllVersions
   }
 
-  Process {
+  process {
     # If there is only a single module version installed, do nothing
-    If ($AllVersions.count -gt 1) { 
+    if ($AllVersions.count -gt 1) { 
 
       # Prepare for removal, use confirmimpact to verify potentially destructive action
-      $Caption = $MyInvocation.MyCommand.Name
-      $VerboseDescription = '{0}: Uninstalling {1} old versions of module {2}' -F $Caption, $AllVersions.count, $ModuleName
-      $VerboseWarning = '{0}: About to uninstall {1} old versions of module {2}. Do you want to continue?' -F $Caption, $AllVersions.count, $ModuleName
+      $caption = $MyInvocation.MyCommand.Name
+      $verboseDescription = '{0}: Uninstalling {1} old versions of module {2}' -F $caption, $AllVersions.count, $ModuleName
+      $verboseWarning = '{0}: About to uninstall {1} old versions of module {2}. Do you want to continue?' -F $caption, $AllVersions.count, $ModuleName
           
-      If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
+      if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
 
         $Activity = 'Uninstalling {0} old versions of module {1}' -F $AllVersions.count, $ModuleName
 
@@ -51,7 +51,7 @@ Function Uninstall-AtwsOldModuleVersion {
 
           Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
 
-          If ($Version.version -ne $latest.version) {
+          if ($Version.version -ne $latest.version) {
             Write-Verbose "Uninstalling $($sm.name) - $($sm.version) [latest is $($latest.version)]"
             $Version | Uninstall-Module -Force
           }
@@ -60,7 +60,7 @@ Function Uninstall-AtwsOldModuleVersion {
     }
   }
 
-  End {
+  end {
     Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
   }
 }

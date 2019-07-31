@@ -7,7 +7,7 @@
 #>
 
 Function ConvertTo-AtwsDate {
-  <#
+    <#
       .SYNOPSIS
       This function converts a datetime object to a string representation of the datetime object that is 
       compatible with the Autotask Web Services API.
@@ -20,7 +20,7 @@ Function ConvertTo-AtwsDate {
       .INPUTS
       [DateTime]
       .OUTPUTS
-      [String]
+      [string]
       .EXAMPLE
       $Element | ConvertTo-AtwsDate -ParameterName <ParameterName>
       Converts variable $Element with must contain a single DateTime value to a string representation of the 
@@ -29,46 +29,46 @@ Function ConvertTo-AtwsDate {
       NAME: ConvertTo-AtwsDate
       
   #>
-  [cmdletbinding()]
-  Param
-  (
-    [Parameter(
-        Mandatory = $True,
-        ValueFromPipeline = $True
-    )]
-    [DateTime]
-    $DateTime,
+    [cmdletbinding()]
+    Param
+    (
+        [Parameter(
+            Mandatory = $true,
+            ValueFromPipeline = $true
+        )]
+        [DateTime]
+        $DateTime,
 
-    [Parameter(
-        Mandatory = $True
-    )]
-    [String]
-    $ParameterName
-  )
+        [Parameter(
+            Mandatory = $true
+        )]
+        [string]
+        $parameterName
+    )
 
-  Begin {
-    Write-Debug ('{0}: Input Value: {1}' -F $MyInvocation.MyCommand.Name, $DateTime)
-  }
-
-  Process {
-    
-    # Use local time for DateTime
-    $OffsetSpan = (Get-TimeZone).BaseUtcOffset
-      
-    # Create the correct text string                           
-    $Offset = '{0:00}:{1:00}' -F $OffsetSpan.Hours, $OffsetSpan.Minutes
-    If ($OffsetSpan.Hours -ge 0) {
-      $Offset = '+{0}' -F $Offset
+    begin {
+        Write-Debug ('{0}: Input Value: {1}' -F $MyInvocation.MyCommand.Name, $DateTime)
     }
-    $Value = '{0}{1}' -F $(Get-Date $DateTime -Format s), $Offset
-    
-    Write-Verbose ('{0}: Converting datetime to {1}' -F $MyInvocation.MyCommand.Name, $Value)
-        
-  }
 
-  End {
-    Write-Debug ('{0}: Output value: {1}' -F $MyInvocation.MyCommand.Name, $Value)
+    process {
+    
+        # Use local time for DateTime
+        $OffsetSpan = (Get-TimeZone).BaseUtcOffset
       
-    Return $Value
-  }
+        # Create the correct text string                           
+        $Offset = '{0:00}:{1:00}' -F $OffsetSpan.Hours, $OffsetSpan.Minutes
+        if ($OffsetSpan.Hours -ge 0) {
+            $Offset = '+{0}' -F $Offset
+        }
+        $value = '{0}{1}' -F $(Get-Date $DateTime -Format s), $Offset
+    
+        Write-Verbose ('{0}: Converting datetime to {1}' -F $MyInvocation.MyCommand.Name, $value)
+        
+    }
+
+    end {
+        Write-Debug ('{0}: Output value: {1}' -F $MyInvocation.MyCommand.Name, $value)
+      
+        Return $value
+    }
 }

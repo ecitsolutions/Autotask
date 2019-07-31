@@ -15,15 +15,15 @@ Param(
     [Parameter(
         Position = 1  
     )]
-    [String]
+    [string]
     $ApiTrackingIdentifier = $Global:AtwsApiTrackingIdentifier,
 
     [Parameter(
         Position = 2,
-        ValueFromRemainingArguments = $True
+        ValueFromRemainingArguments = $true
     )]
-    [String[]]
-    $EntityName = $Global:AtwsRefreshCachePattern
+    [string[]]
+    $entityName = $Global:AtwsRefreshCachePattern
 )
 
 Write-Debug ('{0}: Start of module import' -F $MyInvocation.MyCommand.Name)
@@ -37,19 +37,19 @@ $ParentCommand = ($MyInvocation.Line -split '#')[0]
 
 # Store Previous preference
 $OldVerbosePreference = $VerbosePreference
-If ($ParentCommand -like '*-Verbose*') {
+if ($ParentCommand -like '*-Verbose*') {
     Write-Debug ('{0}: Verbose preference detected. Verbose messages ON.' -F $MyInvocation.MyCommand.Name)
     $VerbosePreference = 'Continue'
 }
 $OldDebugPreference = $DebugPreference
-If ($ParentCommand -like '*-Debug*') {
+if ($ParentCommand -like '*-Debug*') {
     Write-Debug ('{0}: Debug preference detected. Debug messages ON.' -F $MyInvocation.MyCommand.Name)
     $DebugPreference = 'Continue'
 }
 
 # Am I being loaded as the Beta version?
-If ($MyInvocation.MyCommand.Name -eq 'AutotaskBeta.psm1') {
-    $Script:IsBeta = $True
+if ($MyInvocation.MyCommand.Name -eq 'AutotaskBeta.psm1') {
+    $Script:IsBeta = $true
 }
 
 # Read our own manifest to access configuration data
@@ -97,7 +97,7 @@ foreach ($Import in @($PrivateFunction + $PublicFunction)) {
 }
 
 # If they tried to pass any variables
-If (($Credential) -or ($ApiTrackingIdentifier)) {
+if (($Credential) -or ($ApiTrackingIdentifier)) {
     Write-Verbose ('{0}: Credentials detected. Connecting to Autotask API' -F $MyInvocation.MyCommand.Name)
     
     # Remove Global variables (if used) for security
@@ -138,7 +138,7 @@ If (($Credential) -or ($ApiTrackingIdentifier)) {
         { $_.Name -eq 'AtwsUsePicklistLabels' } {
             Write-Debug ('{0}: Converting picklistvalues to their labels are turned ON' -F $MyInvocation.MyCommand.Name)
 
-            $Script:UsePickListLabels = $True
+            $Script:UsePickListLabels = $true
     
             # Remove Global Object
     
@@ -161,43 +161,43 @@ If (($Credential) -or ($ApiTrackingIdentifier)) {
     # Connect to the API using required, additional parameters, using internal function name
     . Connect-AtwsWebServices @ConnectArgs
     if (!$ConnectArgs['NoDiskCache']) {
-        If ($IsBeta) { 
+        if ($IsBeta) { 
           $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Beta' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
         }
-        Else {
+        else {
           $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
         }
-        If (Test-Path $DynamicCache) {
+        if (Test-Path $DynamicCache) {
             $FunctionCount = $DynamicFunction.Count
             $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )
             Write-Debug ('{0}: Personal disk cache: Found {1} script files in {2}' -F $MyInvocation.MyCommand.Name, $DynamicFunction.Count, $DynamicCache)
       
-            $VersionString = "#Version {0}" -F $My.ModuleVersion
-            $ScriptVersion = Select-String -Pattern $VersionString -Path $DynamicFunction.FullName
-            If ($ScriptVersion.Count -ne $FunctionCount) {
+            $Versionstring = "#Version {0}" -F $My.ModuleVersion
+            $ScriptVersion = Select-string -Pattern $Versionstring -Path $DynamicFunction.FullName
+            if ($ScriptVersion.Count -ne $FunctionCount) {
                 Write-Debug ('{0}: Personal disk cache: Wrong number of script files or scripts are not the right version in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $DynamicCache)
   
                 # Clear out old cache, it will be recreated
-                $Null = Remove-Item -Path $DynamicFunction.fullname -Force -ErrorAction SilentlyContinue
+                $null = Remove-Item -Path $DynamicFunction.fullname -Force -ErrorAction SilentlyContinue
   
                 # Refresh  ALL dynamic entities.
-                $EntityName = '*' 
+                $entityName = '*' 
             }
 
             $OldFunctions = @(Get-ChildItem -Path $DynamicCache\*.ps1 -Exclude *Atws* -ErrorAction SilentlyContinue)
-            If ($OldFunctions.Count -gt 0) {
+            if ($OldFunctions.Count -gt 0) {
 
                 Write-Debug ('{0}: Personal disk cache: Found {1} old script files in {2}. Deleting.' -F $MyInvocation.MyCommand.Name, $OldFunctions.Count, $DynamicCache)
         
-                $Null = Remove-Item -Path $OldFunctions.fullname -Force -ErrorAction SilentlyContinue
+                $null = Remove-Item -Path $OldFunctions.fullname -Force -ErrorAction SilentlyContinue
             }
         }
-        Else {
+        else {
 
             Write-Debug ('{0}: Personal disk cache {1} does not exist. Forcing load of all dynamic entities.' -F $MyInvocation.MyCommand.Name, $DynamicCache)
     
             # No personal dynamic cache. Refresh  ALL dynamic entities.
-            $EntityName = '*'
+            $entityName = '*'
         }
 
         # Refresh any entities the caller has ordered
@@ -207,10 +207,10 @@ If (($Credential) -or ($ApiTrackingIdentifier)) {
 
         Write-Debug ('{0}: {1} dynamic entities are eligible for refresh.' -F $MyInvocation.MyCommand.Name, $DynamicCache)
 
-        Foreach ($String in $EntityName) {
-            Write-Debug ('{0}: Selecting entities that match pattern "{1}"' -F $MyInvocation.MyCommand.Name, $String)
+        foreach ($string in $entityName) {
+            Write-Debug ('{0}: Selecting entities that match pattern "{1}"' -F $MyInvocation.MyCommand.Name, $string)
       
-            $EntitiesToProcess += $Entities.GetEnumerator().Where( { $_.Key -like $String })
+            $EntitiesToProcess += $Entities.GetEnumerator().Where( { $_.Key -like $string })
         }
         # Prepare Index for progressbar
         $Index = 0
@@ -225,7 +225,7 @@ If (($Credential) -or ($ApiTrackingIdentifier)) {
         Write-Debug ('{0}: {1} entities have been selected for refresh' -F $MyInvocation.MyCommand.Name, $EntitiesToProcess.Count)
   
 
-        Foreach ($EntityToProcess in $EntitiesToProcess) {
+        foreach ($EntityToProcess in $EntitiesToProcess) {
             $Index++
             $PercentComplete = $Index / $EntitiesToProcess.Count * 100
 
@@ -239,7 +239,7 @@ If (($Credential) -or ($ApiTrackingIdentifier)) {
             $null = Get-AtwsFieldInfo -Entity $EntityToProcess.Key -UpdateCache
         }
 
-        If ($EntitiesToProcess.Count -gt 0) { 
+        if ($EntitiesToProcess.Count -gt 0) { 
             Write-Debug ('{0}: Calling Import-AtwsCmdLet with {1} entities to process' -F $MyInvocation.MyCommand.Name, $EntitiesToProcess.Count)
   
             # Recreate functions that have been updated
@@ -278,7 +278,7 @@ If (($Credential) -or ($ApiTrackingIdentifier)) {
     Write-Debug ('{0}: Exporting {1} Dynamic functions.' -F $MyInvocation.MyCommand.Name, $DynamicFunction.Count)
     Export-ModuleMember -Function $DynamicFunction.Basename
 }
-Else {
+else {
     Write-Verbose 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI to connect.'
     Export-ModuleMember -Function 'Connect-AtwsWebAPI'
 }
@@ -289,11 +289,11 @@ Set-Alias -Scope Global -Name 'Connect-AutotaskWebAPI' -Value 'Connect-AtwsWebAP
 
 
 # Restore Previous preference
-If ($OldVerbosePreference -ne $VerbosePreference) {
+if ($OldVerbosePreference -ne $VerbosePreference) {
     Write-Debug ('{0}: Restoring old Verbose preference' -F $MyInvocation.MyCommand.Name)
     $VerbosePreference = $OldVerbosePreference
 }
-If ($OldDebugPreference -ne $DebugPreference) {
+if ($OldDebugPreference -ne $DebugPreference) {
     Write-Debug ('{0}: Restoring old Debug preference' -F $MyInvocation.MyCommand.Name)
     $DebugPreference = $OldDebugPreference
 }

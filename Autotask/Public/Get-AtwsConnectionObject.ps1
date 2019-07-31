@@ -8,7 +8,7 @@
 #>
 
 Function Get-AtwsConnectionObject {
-  <#
+    <#
       .SYNOPSIS
       This function returns a Web Proxy Object with the active connection to Autotask Web Api from the current namespace.
       .DESCRIPTION
@@ -27,33 +27,33 @@ Function Get-AtwsConnectionObject {
       
   #>
 	
-  [cmdletbinding(SupportsShouldProcess = $True, ConfirmImpact = 'High')]
-  Param()
+    [cmdletbinding(SupportsShouldProcess = $true, ConfirmImpact = 'High')]
+    Param()
   
-  Begin {
+    begin {
     
-    # Enable modern -Debug behavior before the first Write-Debug
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+        # Enable modern -Debug behavior before the first Write-Debug
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    If (-not($Script:Atws.Url)) {
-      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
-    }    
+        if (-not($Script:Atws.Url)) {
+            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+        }    
     
-  }
-
-  Process {
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: About to return the Web Proxy Object for the current connection Autotask Web API. ' -F $Caption
-    $VerboseWarning = '{0}: About to return the Web Proxy Object for the current connection Autotask Web API. Do you want to continue?' -F $Caption
-    
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
-      Return $Script:Atws
     }
-  }
 
-  End {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-  }
+    process {
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to return the Web Proxy Object for the current connection Autotask Web API. This will expose your credentials in clear text in your terminals variable scope.' -F $caption
+        $verboseWarning = '{0}: About to return the Web Proxy Object for the current connection Autotask Web API. This will expose your credentials in clear text in your terminals variable scope. Do you want to continue?' -F $caption
+    
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+            Return $Script:Atws
+        }
+    }
+
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    }
 }

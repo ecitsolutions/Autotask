@@ -1,85 +1,79 @@
-﻿Function Get-AtwsFunctionDefinition
-{
-  [CmdLetBinding()]
-  [OutputType([PSObject[]])]
-  Param
-  (
-    [Parameter(Mandatory = $True)]
-    [Autotask.EntityInfo]
-    $Entity,
+﻿Function Get-AtwsfunctionDefinition {
+    [CmdLetBinding()]
+    [OutputType([PSObject[]])]
+    Param
+    (
+        [Parameter(Mandatory = $true)]
+        [Autotask.EntityInfo]
+        $Entity,
     
-    [Parameter(Mandatory = $True)]
-    [Autotask.Field[]]
-    $FieldInfo
-  )
+        [Parameter(Mandatory = $true)]
+        [Autotask.Field[]]
+        $fieldInfo
+    )
    
-  Begin
-  {
-    $FunctionDefinition = @{}
-    
-    $Verbs = @()
-  }
-  Process
-  { 
-    
-    If ($Entity.CanCreate) 
-    {
-      $Verbs += 'New'
-    }
-    If ($Entity.CanDelete) 
-    {
-      $Verbs += 'Remove'
-    }
-    If ($Entity.CanQuery)  
-    {
-      $Verbs += 'Get'
-    }
-    If ($Entity.CanUpdate) 
-    {
-      $Verbs += 'Set'
+    begin {
+
+        # Hashtable for storing all function properties
+        $functionDefinition = @{ }
+        
+        # A container for all valid verbs for a function
+        $verbs = @()
     }
 
+    process { 
     
+        # Collect valid verbs based on Autotask.EntityInfo for the current entity
+        if ($Entity.CanCreate) {
+            $verbs += 'New'
+        }
+        if ($Entity.CanDelete) {
+            $verbs += 'Remove'
+        }
+        if ($Entity.CanQuery) {
+            $verbs += 'Get'
+        }
+        if ($Entity.CanUpdate) {
+            $verbs += 'Set'
+        }
 
-    Foreach ($Verb in $Verbs)
-    {
-      $FunctionName = '{0}-Atws{1}' -F $Verb, $Entity.Name
-
-      Write-Verbose ('{0}: Creating Function {1}' -F $MyInvocation.MyCommand.Name, $FunctionName)
     
-      $ConfirmImpact = Switch ($Verb)
-      {
-        'New'    {'Low'}
-        'Remove' {'Low'}
-        'Get'    {'None'}
-        'Set'    {'Low'}
-      }
+        # Loop through the valid verbs and generate functions for each of them
+        foreach ($verb in $verbs) {
+            $functionName = '{0}-Atws{1}' -F $verb, $Entity.Name
+
+            Write-Verbose ('{0}: Creating Function {1}' -F $MyInvocation.MyCommand.Name, $functionName)
+    
+            $confirmImpact = switch ($verb) {
+                'New' { 'Low' }
+                'Remove' { 'Low' }
+                'Get' { 'None' }
+                'Set' { 'Low' }
+            }
       
-      $DefaultParameterSetName = Switch ($Verb)
-      {
-        'New'    {'By_parameters'}
-        'Remove' {'Input_Object'}
-        'Get'    {'Filter'}
-        'Set'    {'InputObject'}
-      }
+            $defaultParameterSetName = switch ($verb) {
+                'New' { 'By_parameters' }
+                'Remove' { 'Input_Object' }
+                'Get' { 'Filter' }
+                'Set' { 'InputObject' }
+            }
      
-      $AtwsFunction = New-Object -TypeName PSObject -Property @{
-        FunctionName = $FunctionName
-        Copyright = Get-Copyright
-        HelpText = Get-AtwsHelpText -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo -FunctionName $FunctionName
-        DefaultParameterSetName = $DefaultParameterSetName 
-        ConfirmImpact = $ConfirmImpact
-        Parameters = Get-AtwsParameterDefinition -Entity $Entity -Verb $Verb -FieldInfo $FieldInfo
-        Definition = (Get-Command ('{0}-AtwsDefinition' -F $Verb)).Definition -replace '#EntityName',$($Entity.Name)
-      }
+            $atwsFunction = New-Object -TypeName PSObject -Property @{
+                FunctionName            = $functionName
+                Copyright               = Get-Copyright
+                HelpText                = Get-AtwsHelpText -Entity $Entity -verb $verb -FieldInfo $fieldInfo -functionName $functionName
+                DefaultParameterSetName = $defaultParameterSetName 
+                ConfirmImpact           = $confirmImpact
+                Parameters              = Get-AtwsParameterDefinition -Entity $Entity -verb $verb -FieldInfo $fieldInfo
+                Definition              = (Get-Command ('{0}-AtwsDefinition' -F $verb)).Definition -replace '#EntityName', $($Entity.Name)
+            }
     
-      $FunctionDefinition[$FunctionName] = Convert-AtwsFunctionToText -AtwsFunction $AtwsFunction
+            $functionDefinition[$functionName] = Convert-AtwsFunctionToText -AtwsFunction $atwsFunction
    
+        }
     }
-  }
   
-  End 
-  { 
-    Return $FunctionDefinition
-  }
+    end { 
+        Return $functionDefinition
+    }
 }

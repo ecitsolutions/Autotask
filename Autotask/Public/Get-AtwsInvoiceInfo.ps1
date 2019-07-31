@@ -8,7 +8,7 @@
 #>
 
 Function Get-AtwsInvoiceInfo {
-  <#
+    <#
       .SYNOPSIS
       This function collects information about a specific Autotask invoice object and returns a generic
       powershell object with all relevant information as a starting point for import into other systems.
@@ -32,82 +32,81 @@ Function Get-AtwsInvoiceInfo {
       
   #>
 	
-  [cmdletbinding()]
-  Param
-  (
-    [Parameter(
-        Mandatory = $True,
-        ValueFromPipeLine = $True,
-        ParameterSetName = 'Input_Object'
-    )]
-    [Autotask.Invoice[]]
-    $InputObject,
+    [cmdletbinding()]
+    Param
+    (
+        [Parameter(
+            Mandatory = $true,
+            ValueFromPipeLine = $true,
+            ParameterSetName = 'Input_Object'
+        )]
+        [Autotask.Invoice[]]
+        $InputObject,
 
-    [Parameter(
-        Mandatory = $True,
-        ParameterSetName = 'By_parameters'
-    )]
-    [String[]]
-    $InvoiceId,
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'By_parameters'
+        )]
+        [string[]]
+        $InvoiceId,
     
-    [Switch]
-    $XML
-  )
+        [switch]
+        $XML
+    )
   
-  Begin {
+    begin {
     
-    # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-    If (-not($Script:Atws.Url))
-    {
-      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
-    }    
+        if (-not($Script:Atws.Url)) {
+            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+        }    
     
-    # Input was by object. Extract invoice ids into an array and proceed 
-    If ($PSCmdlet.ParameterSetName -eq 'Input_Object') {
-      $InvoiceId = $InputObject.id
+        # Input was by object. Extract invoice ids into an array and proceed 
+        if ($PSCmdlet.ParameterSetName -eq 'Input_Object') {
+            $InvoiceId = $InputObject.id
+        }
+
     }
 
-  }
-
-  Process {
-    # Empty container to return with results
-    $Result = @()
+    process {
+        # Empty container to return with results
+        $result = @()
   
-    # Get detailed invoice info through special API call. Have to call
-    # API once for each invoice. Second parameter says we want the result
-    # as XML. Actually we don't, but the alternative (HTML) is worse.
+        # Get detailed invoice info through special API call. Have to call
+        # API once for each invoice. Second parameter says we want the result
+        # as XML. Actually we don't, but the alternative (HTML) is worse.
     
-    Write-Verbose ('{0}: Asking for details on Invoice IDs {1}' -F $MyInvocation.MyCommand.Name, ($InvoiceId -join ', '))
+        Write-Verbose ('{0}: Asking for details on Invoice IDs {1}' -F $MyInvocation.MyCommand.Name, ($InvoiceId -join ', '))
        
-    ForEach ($Id in $InvoiceId) {
+        ForEach ($id in $InvoiceId) {
            
-      # The API call. Make sure to query the correct WebServiceProxy object
-      # specified by the $Prefix name. If the Id does not exist we get a
-      # SOAP exception for some inexplicable reason
-      Try { 
-        [Xml]$InvoiceInfo = $Script:Atws.GetInvoiceMarkup($Id, 'XML')
-      }
-      Catch {
-        Write-Warning ('{0}: FAILED on Invoice ID {1}. No data returned.' -F $MyInvocation.MyCommand.Name, $Id)
+            # The API call. Make sure to query the correct WebServiceProxy object
+            # specified by the $Prefix name. If the Id does not exist we get a
+            # SOAP exception for some inexplicable reason
+            try { 
+                [Xml]$invoiceInfo = $Script:Atws.GetInvoiceMarkup($id, 'XML')
+            }
+            catch {
+                Write-Warning ('{0}: FAILED on Invoice ID {1}. No data returned.' -F $MyInvocation.MyCommand.Name, $id)
               
-        # Try the next ID
-        Continue
-      }
+                # try the next ID
+                Continue
+            }
       
-      Write-Verbose ('{0}: Converting Invoice ID {1} to a PSObject' -F $MyInvocation.MyCommand.Name, $Id)
+            Write-Verbose ('{0}: Converting Invoice ID {1} to a PSObject' -F $MyInvocation.MyCommand.Name, $id)
            
-      If ($XML.IsPresent) { 
-        $Result += $InvoiceInfo.invoice_batch_generic
-      }
-      Else { 
-        $Result += $InvoiceInfo.invoice_batch_generic | ConvertFrom-XML
-      }
+            if ($XML.IsPresent) { 
+                $result += $invoiceInfo.invoice_batch_generic
+            }
+            else { 
+                $result += $invoiceInfo.invoice_batch_generic | ConvertFrom-XML
+            }
+        }
     }
-  }
 
-  End {
-    Return $Result
-  }
+    end {
+        return $result
+    }
 }

@@ -37,33 +37,33 @@ Function Get-AtwsThresholdAndUsageInfo {
   (
   )
   
-  Begin {
+  begin {
     
     # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
     
-    If (-not($Script:Atws.Url))
+    if (-not($Script:Atws.Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }    
   }
 
-  Process {
-    Try { 
-      $Result = $Script:Atws.GetThresholdAndUsageInfo()
+  process {
+    try { 
+      $result = $Script:Atws.GetThresholdAndUsageInfo()
     }
-    Catch {
+    catch {
       Write-Warning ('{0}: FAILED on GetThresholdAndUsageInfo(). No data returned.' -F $MyInvocation.MyCommand.Name)
               
-      # Try the next ID
+      # try the next ID
       Continue
     }
 
 
     # Handle any errors
-    If ($Result.Errors.Count -gt 0)
+    if ($result.Errors.Count -gt 0)
     {
-      Foreach ($AtwsError in $Result.Errors)
+      foreach ($AtwsError in $result.Errors)
       {
         Write-Error $AtwsError.Message
       }
@@ -71,16 +71,16 @@ Function Get-AtwsThresholdAndUsageInfo {
     }
     
     $ThresholdInfo = New-Object -TypeName PSObject
-    Foreach ($String in $Result.EntityReturnInfoResults.Message -Split ';') {
-      $SubString = $String -split ':'
-      If ($SubString[0].length -gt 0) {
-        Add-Member -InputObject $ThresholdInfo -MemberType NoteProperty -Name $SubString[0].Trim() -Value $SubString[1].Trim()
+    foreach ($string in $result.EntityReturnInfoResults.Message -Split ';') {
+      $Substring = $string -split ':'
+      if ($Substring[0].length -gt 0) {
+        Add-Member -InputObject $ThresholdInfo -MemberType NoteProperty -Name $Substring[0].Trim() -Value $Substring[1].Trim()
       }
     }
 
   }
 
-  End {
+  end {
     Return $ThresholdInfo
   }
 }

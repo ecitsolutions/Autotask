@@ -7,22 +7,22 @@
 #>
 Function Update-AtwsFunctions {
   [CmdLetBinding(
-      SupportsShouldProcess = $True,
+      SupportsShouldProcess = $true,
       ConfirmImpact = 'High'
   )]
   Param(
     [ValidateSet('Dynamic','Static')]
-    [String]
+    [string]
     $FunctionSet = 'Static'
   )
   
-  Begin { 
+  begin { 
     # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
     
     Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    If (-not($Script:Atws.Url))
+    if (-not($Script:Atws.Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }
@@ -36,13 +36,13 @@ Function Update-AtwsFunctions {
                 
     Write-Verbose -Message ('{0}: Making sure cache is loaded.' -F $MyInvocation.MyCommand.Name)
     
-    If (-not ($Script:Cache)) {
+    if (-not ($Script:Cache)) {
       Import-AtwsDiskCache
     }
    
   } 
   
-  Process {
+  process {
            
     # Prepare parameters for @splatting
     $ParentProgressParameters = @{
@@ -53,7 +53,7 @@ Function Update-AtwsFunctions {
     # Prepare Index for progressbar
     $ParentIndex = 0
     
-    Foreach ($Tenant in $Script:Cache.GetEnumerator()) { 
+    foreach ($Tenant in $Script:Cache.GetEnumerator()) { 
       
       # Calculating progress percentage and displaying it
       $ParentIndex++
@@ -67,24 +67,24 @@ Function Update-AtwsFunctions {
       Write-Progress @ParentProgressParameters
         
         
-      If ($Tenant.Key -eq '00') {
+      if ($Tenant.Key -eq '00') {
         $RootPath = $MyInvocation.MyCommand.Module.ModuleBase
       }
-      ElseIf ($FunctionSet -eq 'Dynamic') {
+      elseif ($FunctionSet -eq 'Dynamic') {
         $RootPath = '{0}\WindowsPowershell\Cache\{1}' -f $([environment]::GetFolderPath('MyDocuments')), $Tenant.Key
         
         # Create Rootpath directory if it doesn't exist
-        If (-not (Test-Path "$RootPath\Dynamic")) {
-          $Null = New-Item -Path "$RootPath\Dynamic" -ItemType Directory -Force
+        if (-not (Test-Path "$RootPath\Dynamic")) {
+          $null = New-Item -Path "$RootPath\Dynamic" -ItemType Directory -Force
           
         }
       }
-      Else {
+      else {
         # Do not create static functions pr tenant
         Continue
       }
       
-      $Entities = Switch ($FunctionSet) {
+      $Entities = switch ($FunctionSet) {
         'Static' {
           $Tenant.Value.FieldInfoCache.GetEnumerator() | Where-Object {-not $_.Value.HasPickList}
         }
@@ -101,17 +101,17 @@ Function Update-AtwsFunctions {
       }
       
       
-      $Caption = $MyInvocation.MyCommand.Name
-      $VerboseDescription = '{0}: Creating and overwriting {1} functions for {2} entities' -F $Caption, $FunctionSet, $Entities.count
-      $VerboseWarning = '{0}: About to create and oiverwrite {1} functions for {2} entities. Do you want to continue?' -F $Caption, $FunctionSet, $Entities.count
+      $caption = $MyInvocation.MyCommand.Name
+      $verboseDescription = '{0}: Creating and overwriting {1} functions for {2} entities' -F $caption, $FunctionSet, $Entities.count
+      $verboseWarning = '{0}: About to create and oiverwrite {1} functions for {2} entities. Do you want to continue?' -F $caption, $FunctionSet, $Entities.count
        
-      If ($PSCmdlet.ShouldProcess($VerboseDescription, $VerboseWarning, $Caption)) { 
+      if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
         # Prepare Index for progressbar
         $Index = 0
         
         Write-Verbose -Message ('{0}: Creating functions for {1} entities.' -F $MyInvocation.MyCommand.Name, $Entities.count) 
             
-        Foreach ($CacheEntry in $Entities) {
+        foreach ($CacheEntry in $Entities) {
           # EntityInfo()
           $Entity = $CacheEntry.Value.EntityInfo
       
@@ -128,36 +128,36 @@ Function Update-AtwsFunctions {
       
           Write-Progress @ProgressParameters
       
-          $Caption = $MyInvocation.MyCommand.Name
-          $VerboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $Caption, $Entity.Name
-          $VerboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $Caption, $Entity.Name
+          $caption = $MyInvocation.MyCommand.Name
+          $verboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $caption, $Entity.Name
+          $verboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $caption, $Entity.Name
        
           $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -FieldInfo $CacheEntry.Value.FieldInfo
         
         
-          Foreach ($Function in $FunctionDefinition.GetEnumerator()) {
+          foreach ($Function in $FunctionDefinition.GetEnumerator()) {
   
             Write-Debug -Message ('{0}: Writing file for function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
                         
             $FilePath = '{0}\{1}\{2}.ps1' -F $RootPath, $FunctionSet, $Function.Key
           
-            $VerboseDescrition = '{0}: Overwriting {1}' -F $Caption, $FilePath
-            $VerboseWarning = '{0}: About to overwrite {1}. Do you want to continue?' -F $Caption, $FilePath
+            $verboseDescription = '{0}: Overwriting {1}' -F $caption, $FilePath
+            $verboseWarning = '{0}: About to overwrite {1}. Do you want to continue?' -F $caption, $FilePath
 
-            If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) {
+            if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
               Set-Content -Path $FilePath -Value $Function.Value -Force -Encoding UTF8
             }
-          } # Foreach $Function
-        } # Foreach $Cacheentry
+          } # foreach $Function
+        } # foreach $Cacheentry
       } # Shouldprocess
-    } # Foreach $TenantS
+    } # foreach $TenantS
   } # Process
-  End {
-    $Caption = $MyInvocation.MyCommand.Name
-    $VerboseDescrition = '{0}: Overwriting existing module info cache with updated data.' -F $Caption
-    $VerboseWarning = '{0}: About to overwrite existing module info cache with updated data. This cannot be undone. Do you want to continue?' -F $Caption
+  end {
+    $caption = $MyInvocation.MyCommand.Name
+    $verboseDescription = '{0}: Overwriting existing module info cache with updated data.' -F $caption
+    $verboseWarning = '{0}: About to overwrite existing module info cache with updated data. This cannot be undone. Do you want to continue?' -F $caption
           
-    If ($PSCmdlet.ShouldProcess($VerboseDescrition, $VerboseWarning, $Caption)) { 
+    if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
       # Save updated base info for connection to new tenants.
       $BaseEntityInfo = @{}
       $BaseEntityInfo['00'] = $script:Cache['00']

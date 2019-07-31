@@ -1,6 +1,5 @@
-﻿Function Get-Copyright
-{
-@"
+﻿Function Get-Copyright {
+    @"
 <#
 
 .COPYRIGHT

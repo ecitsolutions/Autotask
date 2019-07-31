@@ -13,7 +13,7 @@ Function New-AtwsData
   param
   (
     [Parameter(
-        Mandatory = $True,
+        Mandatory = $true,
         Position = 0
     )]
     [PSObject[]]
@@ -23,26 +23,26 @@ Function New-AtwsData
   Begin 
   { 
     # Enable modern -Debug behavior
-    If ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
     
     Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
      
-    If (-not($Script:Atws.Url))
+    if (-not($Script:Atws.Url))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }
 
-    $EndResult = @()
+    $endResult = @()
   }
     
-  Process { 
+  process { 
     Write-Verbose -Message ('{0}: Creating a new object of type Autotask.{1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
     
     # create() function can take up to 200 objects at a time
-    For ($i = 0; $i -lt $Entity.count; $i += 200) 
+    for ($i = 0; $i -lt $Entity.count; $i += 200) 
     {
       $j = $i + 199
-      If ($j -gt ($Entity.count - 1)) 
+      if ($j -gt ($Entity.count - 1)) 
       {
         $j = $Entity.count - 1
       } 
@@ -51,15 +51,15 @@ Function New-AtwsData
       # the .Create() method takes datetime in local time and correctly 
       # translates to CEST without our assistance. .Update() is not as nice...
         
-      $Result = $Atws.Create($Entity[$i .. $j])
+      $result = $Atws.Create($Entity[$i .. $j])
         
         
-      If ($Result.Errors.Count -eq 0) 
+      if ($result.Errors.Count -eq 0) 
       {
         # Check for duplicates
-        $Duplicates = $Result.EntityReturnInfoResults | Where-Object {$_.DuplicateStatus.Found -and -not $_.DuplicateStauts.Ignored}
+        $Duplicates = $result.EntityReturnInfoResults | Where-Object {$_.DuplicateStatus.Found -and -not $_.DuplicateStauts.Ignored}
            
-        Foreach ($Duplicate in $Duplicates)
+        foreach ($Duplicate in $Duplicates)
         {
           Write-Warning ('{0}: Duplicate found for Object Id {1} on {2}' -F $MyInvocation.MyCommand.Name, $Duplicate.EntityId, $Duplicate.DuplicateStatus.MatchInfo)
         }
@@ -70,27 +70,27 @@ Function New-AtwsData
         # get them again by id
         # But not all objects support queries, for instance service adjustments
           
-        $EntityInfo = Get-AtwsFieldInfo -Entity $Result.EntityResultType -EntityInfo
+        $EntityInfo = Get-AtwsFieldInfo -Entity $result.EntityResultType -EntityInfo
           
-        If ($Result.EntityResults.Count -gt 0 -and $EntityInfo.CanQuery)
+        if ($result.EntityResults.Count -gt 0 -and $EntityInfo.CanQuery)
         {
-          $NewObjectFilter = 'id -eq {0}' -F ($Result.EntityResults.Id -join ' -or id -eq ')
+          $newObjectFilter = 'id -eq {0}' -F ($result.EntityResults.Id -join ' -or id -eq ')
                         
-          $EndResult += Get-AtwsData -Entity $Result.Entityresulttype -Filter $NewObjectFilter
+          $endResult += Get-AtwsData -Entity $result.Entityresulttype -Filter $newObjectFilter
         }
       }
-      Else 
+      else 
       {
-        Foreach ($AtwsError in $Result.Errors) 
+        foreach ($AtwsError in $result.Errors) 
         {
           Write-Error -Message $AtwsError.Message
         }
       }
     }
   }
-  End {
+  end {
    
     Write-Debug -Message ('{0}: End of function' -F $MyInvocation.MyCommand.Name) 
-    Return $EndResult  
+    Return $endResult  
   }
 }
