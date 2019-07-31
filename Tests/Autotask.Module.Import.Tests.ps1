@@ -1,154 +1,120 @@
 <#
-    .COPYRIGHT
-    Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+        .COPYRIGHT
+        Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+        See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
-    .SYNOPSIS
-    Test if the module can be imported without error
-    .DESCRIPTION
-    Test the various ways this module can be imported. Requires valid Autotask credentials and an Api Tracking identifier.
+        .SYNOPSIS
+        Test if the module can be imported without error
+        .DESCRIPTION
+        Test the various ways this module can be imported. Requires valid Autotask credentials and an Api Tracking identifier.
 #>
 
 [cmdletbinding(
-  SupportsShouldProcess = $True,
-  ConfirmImpact = 'Low',
-  DefaultParameterSetName = 'Default'
+        SupportsShouldProcess = $True,
+        ConfirmImpact = 'Low',
+        DefaultParameterSetName = 'Default'
 )]
 
 Param
 (
-  [Parameter(
-    Mandatory = $true,
-    ParameterSetName = 'Default'
-  )]
-  [ValidateNotNullOrEmpty()]    
-  [pscredential]
-  $Credential,
+    [Parameter(
+            Mandatory = $True,
+            ParameterSetName = 'Default'
+    )]
+    [ValidateNotNullOrEmpty()]    
+    [pscredential]
+    $Credential,
     
-  [Parameter(
-    Mandatory = $true,
-    ParameterSetName = 'Default'
-  )]
-  [String]
-  $ApiTrackingIdentifier
+    [Parameter(
+            Mandatory = $True,
+            ParameterSetName = 'Default'
+    )]
+    [String]
+    $ApiTrackingIdentifier
 )
 
 $ModuleName = 'Autotask'
 
-$ModulePath = '{0}\{1}' -F $(Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)), $ModuleName
+$ModulePath = '{0}\{1}' -F $(Split-Path -Parent -Path (Split-Path -Parent -Path $MyInvocation.MyCommand.Path)), $ModuleName
 
 
-Describe 'Import module without any parameters' -Tag 'Import-Module' {
-
-  Import-Module $ModulePath -Force
-
-  $LoadedModule = Get-Module $ModuleName
-
-  It 'should be loaded' {
-
-    $LoadedModule.Name | Should -Be $ModuleName
-
-  }
-
-  It 'should export only 1 command' {
-
-    $LoadedModule.ExportedCommands.Count | Should -Be 1
-
-  }
-
-  It 'should export only Connect-AtwsWebAPI' {
-
-    $LoadedModule.ExportedCommands['Connect-AtwsWebApi'].Name | Should -Be 'Connect-AtwsWebApi'
-
-  }
-
-}
-
-Describe 'Import module with Credentials' -Tag 'Import-Module', 'Authentication' {
-
-  Context 'Straight import with credential and api tracking id' {
-
-    Import-Module $ModulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
+Describe -Name 'Import module without any parameters' -Tag 'Import-Module' -Fixture {
+    Import-Module $ModulePath -Force
 
     $LoadedModule = Get-Module $ModuleName
 
-    It 'should be loaded' {
-
-      $LoadedModule.Name | Should -Be $ModuleName
-
+    It -Name 'should be loaded' -Test {
+        $LoadedModule.Name | Should -Be $ModuleName
     }
 
-    It 'should export hundreds of commands' {
-
-      $LoadedModule.ExportedCommands.Count | Should -BeGreaterThan 300
-
+    It -Name 'should export only 1 command' -Test {
+        $LoadedModule.ExportedCommands.Count | Should -Be 1
     }
 
-    It 'Get-AtwsAccount should have parameters with picklists' {
-
-      $LoadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -BeGreaterThan 1
-
+    It -Name 'should export only Connect-AtwsWebAPI' -Test {
+        $LoadedModule.ExportedCommands['Connect-AtwsWebApi'].Name | Should -Be 'Connect-AtwsWebApi'
     }
+}
 
-  }
+Describe -Name 'Import module with Credentials' -Tag 'Import-Module', 'Authentication' -Fixture {
+    Context -Name 'Straight import with credential and api tracking id' -Fixture {
+        Import-Module $ModulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
+
+        $LoadedModule = Get-Module $ModuleName
+
+        It -Name 'should be loaded' -Test {
+            $LoadedModule.Name | Should -Be $ModuleName
+        }
+
+        It -Name 'should export hundreds of commands' -Test {
+            $LoadedModule.ExportedCommands.Count | Should -BeGreaterThan 300
+        }
+
+        It -Name 'Get-AtwsAccount should have parameters with picklists' -Test {
+            $LoadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -BeGreaterThan 1
+        }
+    }
 }
 
 
-Describe 'Import module with Connect-AtwsWebApi' -Tag 'Import-Module', 'Authentication' {
+Describe -Name 'Import module with Connect-AtwsWebApi' -Tag 'Import-Module', 'Authentication' -Fixture {
+    Import-Module $ModulePath -Force
 
-  Import-Module $ModulePath -Force
+    Context -Name 'Straight import with credential and api tracking id' -Fixture {
+        Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
 
-  Context 'Straight import with credential and api tracking id' {
+        $LoadedModule = Get-Module $ModuleName
 
-    Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
+        It -Name 'should be loaded' -Test {
+            $LoadedModule.Name | Should -Be $ModuleName
+        }
 
-    $LoadedModule = Get-Module $ModuleName
+        It -Name 'should export hundreds of commands' -Test {
+            $LoadedModule.ExportedCommands.Count | Should -BeGreaterThan 300
+        }
 
-    It 'should be loaded' {
-
-      $LoadedModule.Name | Should -Be $ModuleName
-
+        It -Name 'Get-AtwsAccount should have parameters with picklists' -Test {
+            $LoadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -BeGreaterThan 1
+        }
     }
 
-    It 'should export hundreds of commands' {
+    Context -Name 'Import with -NoDiskCache' -Fixture {
+        Import-Module $ModulePath -Force    
 
-      $LoadedModule.ExportedCommands.Count | Should -BeGreaterThan 300
+        Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier -NoDiskCache
 
+        $LoadedModule = Get-Module $ModuleName
+
+        It -Name 'should be loaded' -Test {
+            $LoadedModule.Name | Should -Be $ModuleName
+        }
+
+        It -Name 'should export hundreds of commands' -Test {
+            $LoadedModule.ExportedCommands.Count | Should -BeGreaterThan 300
+        }
+
+        It -Name 'Get-AtwsAccount should NOT have parameters with picklists' -Test {
+            $LoadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -Be 0
+        }
     }
-
-    It 'Get-AtwsAccount should have parameters with picklists' {
-
-      $LoadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -BeGreaterThan 1
-
-    }
-
-  }
-
-  Context 'Import with -NoDiskCache' {
-
-    Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier -NoDiskCache
-
-    $LoadedModule = Get-Module $ModuleName
-
-    It 'should be loaded' {
-
-      $LoadedModule.Name | Should -Be $ModuleName
-
-    }
-
-    It 'should export hundreds of commands' {
-
-      $LoadedModule.ExportedCommands.Count | Should -BeGreaterThan 300
-
-    }
-
-    It 'Get-AtwsAccount should NOT have parameters with picklists' {
-
-      $LoadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -Be 0
-
-    }
-
-  }
-
-
 }

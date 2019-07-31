@@ -54,12 +54,13 @@ Set-Location  $TestsFolder
 
 # Run the structure test
 
-foreach ($tag in 'Manifest'<#, 'Functions'#>) 
+foreach ($tag in 'Manifest', 'Functions') 
 {
     $TestResult = Invoke-Pester "$TestsFolder\Autotask.Module.Validation.Tests.ps1" -Show Fails -Tag $tag -PassThru
 
     If ($TestResult.PassedCount -ne $TestResult.PassedCount) {Throw 'Manifest did not validate, execution stopped'}
 }
+
 # Test module import
 Invoke-Pester -Script @{
     Path       = "$TestsFolder\Autotask.Module.Import.Tests.ps1"
@@ -76,4 +77,4 @@ Invoke-Pester -Script @{
         Credential            = $Credential
         ApiTrackingIdentifier = $ApiTrackingIdentifier
     }
-}  -Name 'Issue #43'
+}  #-Name 'Issue #33'

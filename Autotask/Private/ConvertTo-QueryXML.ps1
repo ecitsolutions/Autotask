@@ -7,6 +7,22 @@
 #>
 
 function ConvertTo-QueryXML {
+     <#
+      .SYNOPSIS
+
+      .DESCRIPTION
+
+      .INPUTS
+
+      .OUTPUTS
+
+      .EXAMPLE
+
+      .NOTES
+      NAME: 
+      .LINK
+
+  #>
     [cmdletbinding()]
     param(    
         [Parameter(
