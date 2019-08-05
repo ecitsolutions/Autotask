@@ -132,6 +132,8 @@ Get-AtwsAccountAlert
 
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             
+            Write-Verbose $verboseDescription
+
             # Process parameters and update objects with their values
             $processObject = $InputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             

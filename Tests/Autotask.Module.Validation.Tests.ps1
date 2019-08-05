@@ -9,92 +9,92 @@
     Test the various ways this module can be imported. Requires valid Autotask credentials and an Api Tracking identifier.
 #>
 
-$ModuleName = 'Autotask'
+$moduleName = 'Autotask'
 
-$ModulePath = '{0}\{1}' -F $(Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)), $ModuleName
+$modulePath = '{0}\{1}' -F $(Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)), $moduleName
 
 
-Describe "$ModuleName Module Manifest tests" -Tag 'Manifest' {
+describe "$moduleName Module Manifest tests" -Tag 'Manifest' {
 
-  Context 'Module Setup' {
-    It "has the root module $ModuleName.psm1" {
-      "$ModulePath\$ModuleName.psm1" | Should -Exist
+  context 'Module Setup' {
+    it "has the root module $moduleName.psm1" {
+      "$modulePath\$moduleName.psm1" | Should -Exist
     }
 
-    It "has the a manifest file of $ModuleName.psd1" {
-      "$ModulePath\$ModuleName.psd1" | Should -Exist
-      "$ModulePath\$ModuleName.psd1" | Should -FileContentMatch "$ModuleName.psm1"
+    it "has the a manifest file of $moduleName.psd1" {
+      "$modulePath\$moduleName.psd1" | Should -Exist
+      "$modulePath\$moduleName.psd1" | Should -FileContentMatch "$moduleName.psm1"
     }
     
-    It "$ModulePath\Dynamic folder has functions" {
-      "$ModulePath\Dynamic\*.ps1" | Should -Exist
+    it "$modulePath\Dynamic folder has functions" {
+      "$modulePath\Dynamic\*.ps1" | Should -Exist
     }
-    It "$module\Static folder has functions" {
-      "$ModulePath\Static\*.ps1" | Should -Exist
+    it "$module\Static folder has functions" {
+      "$modulePath\Static\*.ps1" | Should -Exist
     }
-    It "$module\Private folder has functions" {
-      "$ModulePath\Private\*.ps1" | Should -Exist
+    it "$module\Private folder has functions" {
+      "$modulePath\Private\*.ps1" | Should -Exist
     }
-    It "$module\Public folder has functions" {
-      "$ModulePath\Public\*.ps1" | Should -Exist
+    it "$module\Public folder has functions" {
+      "$modulePath\Public\*.ps1" | Should -Exist
     }
 
-    It "$ModuleName is valid PowerShell code" {
-      $psFile = Get-Content -Path "$ModulePath\$ModuleName.psm1" `
+    it "$moduleName is valid PowerShell code" {
+      $psFile = Get-Content -Path "$modulePath\$moduleName.psm1" `
         -ErrorAction Stop
       $errors = $null
       $null = [System.Management.Automation.PSParser]::Tokenize($psFile, [ref]$errors)
       $errors.Count | Should -Be 0
     }
 
-  } # Context 'Module Setup'
+  } # context 'Module Setup'
 
 }
 
-Describe "$ModuleName Module function tests" -Tag 'Functions' { 
+describe "$moduleName Module function tests" -Tag 'Functions' { 
 
-  Foreach ($directory in 'Dynamic', 'Static', 'Private', 'Public') { 
+  foreach ($directory in 'Dynamic', 'Static', 'Private', 'Public') { 
     
-    $subdir = '{0}\{1}' -F $ModulePath, $directory 
+    $subdir = '{0}\{1}' -F $modulePath, $directory 
 
-    $functions = (Get-ChildItem -Path $subdir -Exclude *-AtwsDefinition.ps1).BaseName
+    $functions = (Get-ChildItem -Path $subdir\*.ps1 -Exclude *-AtwsDefinition.ps1).BaseName
 
     foreach ($function in $functions) {
   
-      Context "Test Function $function" {
+      context "Test Function $function" {
       
-        It "$function.ps1 should have help block" {
+        it "$function.ps1 should have help block" {
           "$subdir\$function.ps1" | Should -FileContentMatch '<#'
           "$subdir\$function.ps1" | Should -FileContentMatch '#>'
         }
 
-        It "$function.ps1 should have a SYNOPSIS section in the help block" {
+        it "$function.ps1 should have a SYNOPSIS section in the help block" {
           "$subdir\$function.ps1" | Should -FileContentMatch '.SYNOPSIS'
         }
     
-        It "$function.ps1 should have a DESCRIPTION section in the help block" {
+        it "$function.ps1 should have a DESCRIPTION section in the help block" {
           "$subdir\$function.ps1" | Should -FileContentMatch '.DESCRIPTION'
         }
 
-        It "$function.ps1 should have a EXAMPLE section in the help block" {
+        it "$function.ps1 should have a EXAMPLE section in the help block" {
           "$subdir\$function.ps1" | Should -FileContentMatch '.EXAMPLE'
         }
     
-        It "$function.ps1 should be an advanced function" {
+        it "$function.ps1 should be an advanced function" {
           "$subdir\$function.ps1" | Should -FileContentMatch 'function'
           "$subdir\$function.ps1" | Should -FileContentMatch 'cmdletbinding'
           "$subdir\$function.ps1" | Should -FileContentMatch 'param'
         }
       
-        It "$function.ps1 should contain Write-Verbose blocks" {
+        it "$function.ps1 should contain Write-Verbose blocks" {
           "$subdir\$function.ps1" | Should -FileContentMatch 'Write-Verbose'
         }
 
-        It "$function.ps1 should contain Write-Debug blocks" {
+        it "$function.ps1 should contain Write-Debug blocks" {
           "$subdir\$function.ps1" | Should -FileContentMatch 'Write-Debug'
         }
 
-        It "$function.ps1 is valid PowerShell code" {
+        it "$function.ps1 is valid PowerShell code" {
           $psFile = Get-Content -Path "$subdir\$function.ps1" `
             -ErrorAction Stop
           $errors = $null
@@ -102,7 +102,7 @@ Describe "$ModuleName Module function tests" -Tag 'Functions' {
           $errors.Count | Should -Be 0
         }
     
-      } # Context "Test Function $function"
+      } # context "Test Function $function"
 
     } # foreach ($function in $functions)
 
