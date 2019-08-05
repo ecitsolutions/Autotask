@@ -109,14 +109,14 @@ Function Get-AtwsData {
             Write-Verbose ('{0}: Passing QueryXML to Autotask API' -F $MyInvocation.MyCommand.Name)
 
             # Get the first batch - the API returns max 500 items
-            $lastquery = $atws.query($QueryXml.InnerXml)
+            $lastquery = $Script:Atws.query($QueryXml.InnerXml)
 
             # Handle any errors
             if ($lastquery.Errors.Count -gt 0) {
-                foreach ($AtwsError in $lastquery.Errors) {
-                    Write-Error $AtwsError.Message
+                foreach ($atwsError in $lastquery.Errors) {
+                    Write-Error $atwsError.Message
                 }
-                Return
+                return
             }
 
             # Add all returned objects to the Result - if any
@@ -125,10 +125,10 @@ Function Get-AtwsData {
             }
             
             # Results are sorted by object Id. The Id of the last object is the highest object id in the result
-            $UpperBound = $lastquery.EntityResults[$lastquery.EntityResults.GetUpperBound(0)].id
+            $upperBound = $lastquery.EntityResults[$lastquery.EntityResults.GetUpperBound(0)].id
 
             # Add the higest Id (so far) to the id -gt ? condition
-            $expression.InnerText = $UpperBound
+            $expression.InnerText = $upperBound
 
             # If this is the first pass we append the expression to the query
             if ($FirstPass) {
@@ -148,7 +148,7 @@ Function Get-AtwsData {
             # Should we return an indirect object?
             if ($GetReferenceEntityById) {
                 Write-Verbose ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
-      
+                $fields = Get-AtwsFieldInfo -Entity $result[0].GetType().Name
                 $field = $fields.Where( { $_.Name -eq $GetReferenceEntityById })
                 $resultValues = $result | Where-Object { $null -ne $_.$GetReferenceEntityById }
                 if ($resultValues.Count -lt $result.Count) {
