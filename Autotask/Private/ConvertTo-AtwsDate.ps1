@@ -37,13 +37,7 @@ Function ConvertTo-AtwsDate {
             ValueFromPipeline = $true
         )]
         [DateTime]
-        $DateTime,
-
-        [Parameter(
-            Mandatory = $true
-        )]
-        [string]
-        $parameterName
+        $DateTime
     )
 
     begin {
@@ -51,7 +45,7 @@ Function ConvertTo-AtwsDate {
     }
 
     process {
-    
+        <# In memoria of superflouous code
         # Use local time for DateTime
         $OffsetSpan = (Get-TimeZone).BaseUtcOffset
       
@@ -61,7 +55,9 @@ Function ConvertTo-AtwsDate {
             $Offset = '+{0}' -F $Offset
         }
         $value = '{0}{1}' -F $(Get-Date $DateTime -Format s), $Offset
-    
+        #>
+        $value = $DateTime.ToString('yyyy-MM-ddTHH:mm:ss.ffffz')
+
         Write-Verbose ('{0}: Converting datetime to {1}' -F $MyInvocation.MyCommand.Name, $value)
         
     }
@@ -69,6 +65,6 @@ Function ConvertTo-AtwsDate {
     end {
         Write-Debug ('{0}: Output value: {1}' -F $MyInvocation.MyCommand.Name, $value)
       
-        Return $value
+        return $value
     }
 }
