@@ -42,52 +42,60 @@ Function Compare-PSObject {
     )
   
     begin {
-        # Setup objects for use
-        $ReferenceStream = New-Object System.IO.MemoryStream
-        $DifferenceStream = New-Object System.IO.MemoryStream
-        
-        $Binary = New-Object System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-        $Algorithm = [Security.Cryptography.HashAlgorithm]::Create("MD5")
+
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-        $Identical = $true
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+
+        # A bright hope for an identical future
+        $identical = $true
     }
   
     process { 
-        <#
-        # Serialize data using BinaryFormatter
-        $Binary.Serialize($ReferenceStream, $ReferenceObject)
-    
-        # Reset Stream position
-        $ReferenceStream.Position = 0
-    
-        $ReferenceHash = -join ($Algorithm.ComputeHash($ReferenceStream) | foreach-Object -process {"{0:x2}" -f $_}) 
-    
-        # Serialize data using BinaryFormatter
-        $Binary.Serialize($DifferenceStream, $DifferenceObject)
-      
-        # Reset Stream position
-        $DifferenceStream.Position = 0
-      
-        $DifferenceHash = -join ($Algorithm.ComputeHash($DifferenceStream) | foreach-Object -process {"{0:x2}" -f $_}) 
-      
-        if ($ReferenceHash -ne $DifferenceHash) {
-        $Identical = $false
-        }
-    #>
-        $PropertyList = $ReferenceObject[0] | Get-Member -MemberType Property, NoteProperty | ForEach-Object Name
 
-        foreach ($object in $ReferenceObject) {
-            $Index = $ReferenceObject.IndexOf($object)
-            $Difference = Compare-Object -ReferenceObject $object -DifferenceObject $DifferenceObject[$Index] -Property $PropertyList
-            if ($Difference) {
-                $Identical = $false
-                Break
-            }
+        
+        Write-Verbose ('{0}: Comparing collection of {1} objects to  calling default URI {2}' -F $MyInvocation.MyCommand.Name, $ReferenceObject.Count, $DefaultUri)
+
+        # Both objects must have the same number of items
+        if ($ReferenceObject.Count -eq $DifferenceObject.Count) {
+
+            # Compare collections both ways, any object in one should exist in the other
+            foreach ($object in $ReferenceObject) {
+                # Get the index of the current object
+                $index = $ReferenceObject.IndexOf($object)
+
+                # Is it a system.<type>?
+                if ($object.GetType().Fullname -match 'System\.\w+$' -and $object -ne $DifferenceObject[$index]) { 
+                    $identical = $false
+                    break
+                }
+                else { 
+                    # Get the names of the properties
+                    $propertyList = $object | Get-Member -MemberType Property, NoteProperty | ForEach-Object Name
+
+                    # Compare all properties with the object with same index in other collection
+                    $difference = Compare-Object -ReferenceObject $object -DifferenceObject $DifferenceObject[$index] -Property $propertyList
+                    if ($difference) {
+                        $identical = $false
+                        break
+                    }
+                    
+                }
+
+                
+            }            
+        }
+        else {
+            $identical = $false
         }
     
     }
   
     end {
-        Return $Identical
+        
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+
+        Return $identical
     }
 }
