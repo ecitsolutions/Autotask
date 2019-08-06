@@ -37,41 +37,55 @@ Param
             ParameterSetName = 'Default'
     )]
     [String]
-    $ApiTrackingIdentifier
+    $ApiTrackingIdentifier,
+
+    [Parameter(
+        Mandatory = $false,
+        ParameterSetName = 'Default'
+    )]
+    [String]
+    $ModuleName = 'Autotask',
+
+    [Parameter(
+        Mandatory = $false,
+        ParameterSetName = 'Default'
+    )]
+    [ValidateSCript( {
+            Test-Path $_
+        })]
+    [String]
+    $RootPath = $(Split-Path -Parent -Path (Split-Path -Parent -Path $MyInvocation.MyCommand.Path))
 )
 
-# Information about module location
-$ModuleName = 'Autotask'
+$modulePath = '{0}\{1}' -F $RootPath, $ModuleName
 
-$ModulePath = '{0}\{1}' -F $(Split-Path -Parent -Path (Split-Path -Parent -Path $MyInvocation.MyCommand.Path)), $ModuleName
-
-# Import the module. Issues that need their own load version will have to do so in their context
-Import-Module $ModulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
-
-# Quite a few issues need this
-$LoadedModule = Get-Module $ModuleName
+$loadedModule = Get-Module -Name $ModuleName
+If (-not ($loadedModule)) { 
+    # Import the module. Issues that need their own load version will have to do so in their context
+    Import-Module $modulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
+}
 
 describe 'Issue #44' -Tag 'Issues' {
 
     context 'Issue #44: GetEntityByReferenceId documentation ' {
-        $Contract = Get-AtwsContract -AccountID 0 -IsDefaultContract $True
-        $Account = Get-AtwsContract -id $Contract.Id -GetReferenceEntityById AccountID
+        $contract = Get-AtwsContract -AccountID 0 -IsDefaultContract $True
+        $account = Get-AtwsContract -id $contract.Id -GetReferenceEntityById AccountID
 
         it 'Account 0 should have a default contract' {
-            $Contract.Count | Should -Be 1
+            $contract.Count | Should -Be 1
         }
 
-        it '$Contract should be a contract' {
-            $Contract | Should -BeOfType Autotask.Contract
+        it '$contract should be a contract' {
+            $contract | Should -BeOfType Autotask.Contract
         }
 
         it '-GetReferenceEntityById AccountID should return a single account' {
-            $Account.Count | Should -Be 1
+            $account.Count | Should -Be 1
         }
 
         it 'should be an Account and have id 0' {
-            $Account | Should -BeOfType Autotask.Account
-            $Account.id | Should -Be 0
+            $account | Should -BeOfType Autotask.Account
+            $account.id | Should -Be 0
         }
     }
 }
@@ -83,13 +97,13 @@ describe 'Issue #43' -Tag 'Issues' {
         InModuleScope Autotask {
         
             # Get a datetime object
-            $CreateDate = Get-Date
-            $Atws = Get-AtwsConnectionObject -Confirm:$false
+            $createDate = Get-Date
+            $atws = Get-AtwsConnectionObject -Confirm:$false
 
             Mock 'Get-AtwsAttachmentInfo' {
                 [PSCustomObject]@{
                     PSTypeName = 'Autotask.AttachmentInfo'
-                    CreateDate = $CreateDate
+                    CreateDate = $createDate
                 }
             }
 
@@ -98,7 +112,7 @@ describe 'Issue #43' -Tag 'Issues' {
             }
 
             # Mock CreateAttachment()
-            $CreateAttachmentMethod = @{
+            $createAttachmentMethod = @{
                 Type  = 'ScriptMethod'
                 Name  = 'CreateAttachment'
                 Value = {
@@ -106,22 +120,22 @@ describe 'Issue #43' -Tag 'Issues' {
                 }
                 Force = $True
             }
-            $Atws | Add-Member @CreateAttachmentMethod 
+            $atws | Add-Member @createAttachmentMethod 
 
-            $Result = New-AtwsAttachment -URI https://google.com -TicketID 0
+            $result = New-AtwsAttachment -URI https://google.com -TicketID 0
 
             it 'should call with mocked AttachmentId' {
-                $AssertParams = @{
+                $assertParams = @{
                     CommandName     = 'Get-AtwsAttachmentInfo'
                     ParameterFilter = {
                         $id -eq 1234 
                     }
                 }
-                Assert-MockCalled @AssertParams
+                Assert-MockCalled @assertParams
             }
 
             it 'should return the date unchanged' {
-                $Result.CreateDate | Should -Be $CreateDate
+                $result.CreateDate | Should -Be $createDate
             }
         }
     }
@@ -146,17 +160,17 @@ describe 'Issue #38' -Tag 'Issues' {
 
     context 'Issue #38: Feature request: Make connection object available to advanced users duplicate enhancement ' {
         it 'should be loaded' {
-            $LoadedModule.Name | Should -Be $ModuleName
+            $loadedModule.Name | Should -Be $ModuleName
         }
 
         it 'should export Get-AtwsConnectionObject' {
-            $LoadedModule.ExportedCommands['Get-AtwsConnectionObject'].Name | Should -Be 'Get-AtwsConnectionObject'
+            $loadedModule.ExportedCommands['Get-AtwsConnectionObject'].Name | Should -Be 'Get-AtwsConnectionObject'
         }
 
-        $Result = Get-AtwsConnectionObject -Confirm:$false
+        $result = Get-AtwsConnectionObject -Confirm:$false
 
         it 'should return an Autotask web proxy object' {
-            $Result | Should -BeOfType Autotask.ATWS
+            $result | Should -BeOfType Autotask.ATWS
         }
     }
 }
@@ -165,19 +179,19 @@ describe 'Issue #37' -Tag 'Issues' {
     context 'Issue #37: Feature request: Attachments upload enhancement good first issue ' {
 
         it 'should be loaded' {
-            $LoadedModule.Name | Should -Be $ModuleName
+            $loadedModule.Name | Should -Be $ModuleName
         }
 
         it 'should export Get-AtwsAttachment' {
-            $LoadedModule.ExportedCommands['Get-AtwsAttachment'].Name | Should -Be 'Get-AtwsAttachment'
+            $loadedModule.ExportedCommands['Get-AtwsAttachment'].Name | Should -Be 'Get-AtwsAttachment'
         }
 
         it 'should export New-AtwsAttachment' {
-            $LoadedModule.ExportedCommands['New-AtwsAttachment'].Name | Should -Be 'New-AtwsAttachment'
+            $loadedModule.ExportedCommands['New-AtwsAttachment'].Name | Should -Be 'New-AtwsAttachment'
         }
 
         it 'should export Remove-AtwsAttachment' {
-            $LoadedModule.ExportedCommands['Remove-AtwsAttachment'].Name | Should -Be 'Remove-AtwsAttachment'
+            $loadedModule.ExportedCommands['Remove-AtwsAttachment'].Name | Should -Be 'Remove-AtwsAttachment'
         }
     }
 }
@@ -200,13 +214,13 @@ describe 'Issue #36' -Tag 'Issues' {
             $result = Get-AtwsContractServiceUnit -ContractID 0 -StartDate '2019.01.01' -EndDate '2019.12.31'
             
             it 'should pass -le as the last operator' { 
-                $AssertParams = @{
+                $assertParams = @{
                     CommandName     = 'Get-AtwsData'
                     ParameterFilter = {
                         $Filter[-2] -eq '-le' 
                     }
                 }
-                Assert-MockCalled @AssertParams
+                Assert-MockCalled @assertParams
             }
         }
     }
@@ -386,21 +400,35 @@ describe 'Issue #2' -Tag 'Issues' {
 }
 
 describe 'Issue #1' -Tag 'Issues' {
-    context 'Issue #1: Account where a certain field (int) is empty' {
-        $Account = Get-AtwsAccount -id 0
-        $NoAccount = Get-AtwsAccount -id 0 -KeyAccountIcon $null
-        $AccountWithNull = Get-AtwsAccount -id 0 -ParentAccountID $null
+    Context 'Issue #1: Account where a certain field (int) is empty' {
 
-        it 'should exist an Account with id 0' {
-            $Account | Should -BeOfType Autotask.Account
+        $account = Get-AtwsAccount -id 0
+
+        It 'should exist an Account with id 0' {
+            $account | Should -BeOfType Autotask.Account
+        }
+        
+        It 'should not throw an exception when using -IsNull' { 
+            { $null = Get-AtwsAccount -id 0 -IsNull KeyAccountIcon } | Should -Not -Throw
         }
 
-        it 'should NOT return anything with -KeyAccountIcon $null' {
-            $NoAccount | Should -BeNullOrEmpty
+        # Do it for real this time
+        $accountWithPicklistNull = Get-AtwsAccount -id 0 -IsNull KeyAccountIcon
+        It 'should NOT return anything with -IsNull KeyAccountIcon' {
+            $accountWithPicklistNull | Should -BeNullOrEmpty
         }
 
-        it 'should exist an Account with id 0 and a ParentAccountId of $null' {
-            $AccountWithNull | Should -BeOfType Autotask.Account
+        It 'should throw an exception when using $null with a validateset parameter' { 
+            { $null = Get-AtwsAccount -id 0 -KeyAccountIcon $null } | Should -Throw
+        }
+        
+        It 'should NOT throw an exception when using $null with an integer parameter' { 
+            { $null = Get-AtwsAccount -id 0 -ParentAccountID $null } | Should -Not -Throw
+        }
+        
+        $accountWithNull = Get-AtwsAccount -id 0 -ParentAccountID $null
+        It 'should exist an Account with id 0 and a ParentAccountId of $null' {
+            $accountWithNull | Should -BeOfType Autotask.Account
         }
     }
 }

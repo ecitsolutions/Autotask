@@ -50,15 +50,19 @@ $TestsFolder = Split-Path -Parent -Path $MyInvocation.MyCommand.Path
 
 Set-Location  $TestsFolder 
 
+# Name the module
+$moduleName = 'Autotask'
+
+# Store its path
+$rootPath = Split-Path -Parent $TestsFolder
 
 
 # Run the structure test
 
-foreach ($tag in 'Manifest', 'Functions') 
-{
+foreach ($tag in 'Manifest', 'Functions') {
     $TestResult = Invoke-Pester "$TestsFolder\Autotask.Module.Validation.Tests.ps1" -Show Fails -Tag $tag -PassThru
 
-    If ($TestResult.PassedCount -ne $TestResult.PassedCount) {Throw 'Manifest did not validate, execution stopped'}
+    If ($TestResult.PassedCount -ne $TestResult.PassedCount) { Throw 'Manifest did not validate, execution stopped' }
 }
 
 # Test module import
@@ -67,8 +71,33 @@ Invoke-Pester -Script @{
     Parameters = @{
         Credential            = $Credential
         ApiTrackingIdentifier = $ApiTrackingIdentifier
+        ModuleName            = $moduleName
+        RootPath              = $rootPath 
     }
 }
+
+# Test Datetime handling
+Invoke-Pester -Script @{
+    Path       = "$TestsFolder\Autotask.Module.DateTime.Tests.ps1"
+    Parameters = @{
+        Credential            = $Credential
+        ApiTrackingIdentifier = $ApiTrackingIdentifier
+        ModuleName            = $moduleName
+        RootPath              = $rootPath 
+    }
+}
+
+# Test private functions
+Invoke-Pester -Script @{
+    Path       = "$TestsFolder\Private\*.Tests.ps1"
+    Parameters = @{
+        Credential            = $Credential
+        ApiTrackingIdentifier = $ApiTrackingIdentifier
+        ModuleName            = $moduleName
+        RootPath              = $rootPath 
+    }
+}  #-Name 'Compare-PSObject'
+
 
 # Verify that we still pass all issues
 Invoke-Pester -Script @{
@@ -76,5 +105,7 @@ Invoke-Pester -Script @{
     Parameters = @{
         Credential            = $Credential
         ApiTrackingIdentifier = $ApiTrackingIdentifier
+        ModuleName            = $moduleName
+        RootPath              = $rootPath 
     }
 }  #-Name 'Issue #1'

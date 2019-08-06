@@ -9,12 +9,51 @@
     Test the various ways this module can be imported. Requires valid Autotask credentials and an Api Tracking identifier.
 #>
 
-$moduleName = 'Autotask'
+[cmdletbinding(
+    SupportsShouldProcess = $True,
+    ConfirmImpact = 'Low',
+    DefaultParameterSetName = 'Default'
+)]
 
-$modulePath = '{0}\{1}' -F $(Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)), $moduleName
+Param
+(
+    [Parameter(
+        Mandatory = $True,
+        ParameterSetName = 'Default'
+    )]
+    [ValidateNotNullOrEmpty()]    
+    [pscredential]
+    $Credential,
+    
+    [Parameter(
+        Mandatory = $True,
+        ParameterSetName = 'Default'
+    )]
+    [String]
+    $ApiTrackingIdentifier,
+
+    [Parameter(
+        Mandatory = $false,
+        ParameterSetName = 'Default'
+    )]
+    [String]
+    $ModuleName = 'Autotask',
+
+    [Parameter(
+        Mandatory = $false,
+        ParameterSetName = 'Default'
+    )]
+    [ValidateSCript( {
+            Test-Path $_
+        })]
+    [String]
+    $RootPath = $(Split-Path -Parent -Path (Split-Path -Parent -Path $MyInvocation.MyCommand.Path))
+)
+
+$modulePath = '{0}\{1}' -F $RootPath, $ModuleName
 
 
-describe "$moduleName Module Manifest tests" -Tag 'Manifest' {
+describe "$ModuleName Module Manifest tests" -Tag 'Manifest' {
 
   context 'Module Setup' {
     it "has the root module $moduleName.psm1" {
@@ -29,17 +68,17 @@ describe "$moduleName Module Manifest tests" -Tag 'Manifest' {
     it "$modulePath\Dynamic folder has functions" {
       "$modulePath\Dynamic\*.ps1" | Should -Exist
     }
-    it "$module\Static folder has functions" {
+    it "$modulePath\Static folder has functions" {
       "$modulePath\Static\*.ps1" | Should -Exist
     }
-    it "$module\Private folder has functions" {
+    it "$modulePath\Private folder has functions" {
       "$modulePath\Private\*.ps1" | Should -Exist
     }
-    it "$module\Public folder has functions" {
+    it "$modulePath\Public folder has functions" {
       "$modulePath\Public\*.ps1" | Should -Exist
     }
 
-    it "$moduleName is valid PowerShell code" {
+    it "$ModuleName is valid PowerShell code" {
       $psFile = Get-Content -Path "$modulePath\$moduleName.psm1" `
         -ErrorAction Stop
       $errors = $null
@@ -51,7 +90,7 @@ describe "$moduleName Module Manifest tests" -Tag 'Manifest' {
 
 }
 
-describe "$moduleName Module function tests" -Tag 'Functions' { 
+describe "$ModuleName Module function tests" -Tag 'Functions' { 
 
   foreach ($directory in 'Dynamic', 'Static', 'Private', 'Public') { 
     
