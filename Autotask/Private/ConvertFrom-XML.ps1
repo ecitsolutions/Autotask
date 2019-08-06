@@ -39,6 +39,12 @@ Function ConvertFrom-XML {
     )
 
     begin {
+ 
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+    
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        
         $result = @()
 
         # Set up TimeZone offset handling

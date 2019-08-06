@@ -61,7 +61,12 @@ Function Connect-AtwsWebServices {
     )
     
     begin { 
-        Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+    
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        
     
         $DefaultUri = 'https://webservices.Autotask.net/atservices/1.6/atws.wsdl'
     

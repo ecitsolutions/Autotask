@@ -31,7 +31,13 @@ Function Convert-AtwsFunctionToText {
     )
 
     begin { 
-        # Value to insert in #Requires tag on top of every script file
+ 
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+    
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        
+       # Value to insert in #Requires tag on top of every script file
         $requiredVersion = '4.0'
 
         # The current module version from the $My variable (initialized from the module manifest in autotask.psm1)

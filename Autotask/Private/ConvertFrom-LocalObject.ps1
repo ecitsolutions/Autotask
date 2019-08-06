@@ -44,15 +44,7 @@ Function ConvertFrom-LocalObject {
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
         # Set up TimeZone offset handling
-        if (-not($script:LocalToEST)) {
-            $now = Get-Date
-            $ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-            $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
-
-            # Time difference in hours from localtime to API time
-            $script:LocalToEST = (New-TimeSpan -Start $now -End $ESTtime).TotalHours
-        }
-
+        $EST = Get-TimeZone -Id 'Eastern Standard Time'
      
     }
 
@@ -66,27 +58,26 @@ Function ConvertFrom-LocalObject {
     
         # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
         # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-        # $DateTimeParams = $fields.Where( { $_.Type -eq 'datetime' -and -not $_.IsReadOnly }).Name
+        $dateTimeParams = $fields.Where( { $_.Type -eq 'datetime' -and -not $_.IsReadOnly }).Name
     
         # Prepare picklists
         $Picklists = $fields.Where{ $_.IsPickList }
     
         # Adjust TimeZone on all DateTime properties
         foreach ($object in $InputObject) { 
-            <# Do not convert to EST time. current testing indicates that XML encoding handles it
-            foreach ($DateTimeParam in $DateTimeParams) {
+            foreach ($dateTimeParam in $dateTimeParams) {
     
                 # Get the datetime value
-                $value = $object.$DateTimeParam
+                $value = $object.$dateTimeParam
                 
                 # Skip if parameter is empty
                 if (-not ($value)) {
                     Continue
                 }
                 # Convert the datetime back to CEST
-                $object.$DateTimeParam = $value.AddHours($script:LocalToEST)
+                $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, [TimeZoneInfo]::Local, $EST)
             }
-            #>
+            
             # Revert picklist labels to their values
             foreach ($field in $Picklists) {
                 if ($object.$($field.Name) -in $field.PicklistValues.Label) {

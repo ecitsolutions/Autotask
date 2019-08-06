@@ -118,14 +118,14 @@ Function ConvertTo-AtwsFilter {
                             # User is searching for a date, not a specific datetime
                             $Filter += $parameterName
                             $Filter += '-ge'
-                            $Filter += ConvertTo-AtwsDate -ParameterName $parameterName -DateTime $parameterValue
+                            $Filter += ConvertTo-AtwsDate -DateTime $parameterValue
 
                             # Force array, or the next time around we'll get a concatenated string
                             [Array]$LessThanOrEquals += $parameterName
-                            $value = ConvertTo-AtwsDate -ParameterName $parameterName -DateTime $parameterValue.AddDays(1)
+                            $value = ConvertTo-AtwsDate -DateTime $parameterValue.AddDays(1)
                         }
                         else { 
-                            $value = ConvertTo-AtwsDate -ParameterName $parameterName -DateTime $parameterValue
+                            $value = ConvertTo-AtwsDate -DateTime $parameterValue
                         }
                     }            
                     else {

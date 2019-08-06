@@ -95,7 +95,7 @@ Function Connect-AtwsWebAPI {
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-        Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
         # The module is already loaded. It has to be, or this function would not be in
         # the users scope.
@@ -181,7 +181,7 @@ Function Connect-AtwsWebAPI {
     }
   
     end {
-        Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
     }
  
 }

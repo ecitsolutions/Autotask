@@ -135,7 +135,7 @@ Function Update-AtwsFilter {
               # Normalize dates. Important to avoid QueryXML problems
               if ($value.GetType().Name -eq 'DateTime')
               {
-                [string]$value = ConvertTo-AtwsDate -ParameterName $NewFilter[-2] -DateTime $value
+                [string]$value = ConvertTo-AtwsDate -DateTime $value
               }
             }
           }
