@@ -97,7 +97,7 @@ Function ConvertFrom-XML {
                                 }
                     
                                 '^\d+$' { 
-                                    [Int]$Integer = $element.$propertyName
+                                    [Int64]$Integer = $element.$propertyName
                                     $value = $Integer
                                 }
                                 Default 
