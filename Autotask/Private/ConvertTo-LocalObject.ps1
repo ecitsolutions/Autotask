@@ -44,15 +44,7 @@ Function ConvertTo-LocalObject {
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
         # Set up TimeZone offset handling
-        if (-not($script:LocalToEST)) {
-            $now = Get-Date
-            $ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-            $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
-
-            # Time difference in hours from localtime to API time
-            $script:LocalToEST = (New-TimeSpan -Start $now -End $ESTtime).TotalHours
-        }
-
+        $EST = Get-TimeZone -Id 'Eastern Standard Time'
         
     }
 
@@ -97,8 +89,8 @@ Function ConvertTo-LocalObject {
                 # Convert the datetime to LocalTime unless it is a date
                 If ($object.$DateTimeParam -ne $object.$DateTimeParam.Date) { 
 
-                    # It is a date. Leave it.
-                    $object.$DateTimeParam = $value.AddHours($script:LocalToEST * -1)
+                    # Convert the datetime back to CEST
+                    $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, $EST, [TimeZoneInfo]::Local)
                 }
             }
     
