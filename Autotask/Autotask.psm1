@@ -58,8 +58,10 @@ $manifestDirectory = Split-Path $MyInvocation.MyCommand.Path -Parent
 
 Write-Debug ('{0}: Loading Manifest file {1} from {2}' -F $MyInvocation.MyCommand.Name, $manifestFileName, $manifestDirectory)
 
-
 Import-LocalizedData -BindingVariable My -FileName $manifestFileName -BaseDirectory $manifestDirectory
+
+# Add module path to manifest variable
+$My['ModuleBase'] = $manifestDirectory
 
 # Get all function files as file objects
 # Private functions can only be called internally in other functions in the module 
@@ -162,10 +164,10 @@ if (($Credential) -or ($ApiTrackingIdentifier)) {
     . Connect-AtwsWebServices @connectArgs
     if (!$connectArgs['NoDiskCache']) {
         if ($isBeta) { 
-          $dynamicCache = '{0}\WindowsPowershell\Cache\{1}\Beta' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
+            $dynamicCache = '{0}\WindowsPowershell\Cache\{1}\Beta' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
         }
         else {
-          $dynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
+            $dynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
         }
         if (Test-Path $dynamicCache) {
             $FunctionCount = $dynamicFunction.Count
@@ -173,7 +175,7 @@ if (($Credential) -or ($ApiTrackingIdentifier)) {
             Write-Debug ('{0}: Personal disk cache: Found {1} script files in {2}' -F $MyInvocation.MyCommand.Name, $dynamicFunction.Count, $dynamicCache)
       
             $Versionstring = "#Version {0}" -F $My.ModuleVersion
-            $ScriptVersion = Select-string -Pattern $Versionstring -Path $dynamicFunction.FullName
+            $ScriptVersion = Select-String -Pattern $Versionstring -Path $dynamicFunction.FullName
             if ($ScriptVersion.Count -ne $FunctionCount) {
                 Write-Debug ('{0}: Personal disk cache: Wrong number of script files or scripts are not the right version in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $dynamicCache)
   

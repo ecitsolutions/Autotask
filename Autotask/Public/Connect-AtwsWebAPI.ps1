@@ -123,7 +123,7 @@ Function Connect-AtwsWebAPI {
     
         $importParams = @{
             Global      = $true
-            Version     = $MyInvocation.MyCommand.Module.Version
+            Version     = $My.ModuleVersion
             Force       = $true
             ErrorAction = 'Stop'
         }
@@ -159,7 +159,7 @@ Function Connect-AtwsWebAPI {
         catch {
             # If import by name fails the module has most likely been loaded directly from disk (path)
             # Retry loading the module from its base directory
-            $modulePath = $MyInvocation.MyCommand.Module.ModuleBase
+            $modulePath = $My.ModuleBase
             $importParams['ErrorAction'] = 'Continue'
       
             # Unfortunately -Debug and -Verbose is not inherited into the module load, so we have to do a bit of awkward checking
