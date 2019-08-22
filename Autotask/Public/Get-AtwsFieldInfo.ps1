@@ -166,7 +166,12 @@ Function Get-AtwsFieldInfo {
                     # No errors
                     Write-Verbose ('{0}: Save or update FieldInfo cache for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity)
                     $script:FieldInfoCache[$Entity].FieldInfo = $result
-          
+                    
+                    # If not called during module load, give this warning
+                    if ($PSCmdLet.MyInvocation.ScriptName -notlike '*.psm1') { 
+                        Write-Warning ('{0}: The {1} entity has been modified in Autotask! Re-import module with -Argumentlist $creds, $ApiKey, "{1}" to refresh.' -F $MyInvocation.MyCommand.Name, $Entity)
+                    }
+                    
                     $cacheDirty = $true
           
                 }
@@ -303,10 +308,7 @@ Function Get-AtwsFieldInfo {
     }  
     end {
         if ($cacheDirty -and $Script:UseDiskCache) { 
-            # If not called during module load, give this warning
-            if ($PSCmdLet.MyInvocation.ScriptName -notlike '*.psm1') { 
-                Write-Warning ('One or more entities has been modified in Autotask! Re-import module with -Force to refresh.')
-            }
+            
             Export-AtwsDiskCache
         }
 
