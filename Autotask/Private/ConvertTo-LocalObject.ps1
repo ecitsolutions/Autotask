@@ -67,12 +67,12 @@ Function ConvertTo-LocalObject {
         foreach ($object in $InputObject) { 
 
             # Any userdefined fields?
-            if ($Item.UserDefinedFields.Count -gt 0) { 
+            if ($object.UserDefinedFields.Count -gt 0) { 
                 # Expand User defined fields for easy filtering of collections and readability
-                foreach ($UDF in $Item.UserDefinedFields) {
+                foreach ($UDF in $object.UserDefinedFields) {
                     # Make names you HAVE TO escape...
                     $UDFName = '#{0}' -F $UDF.Name
-                    Add-Member -InputObject $Item -MemberType NoteProperty -Name $UDFName -Value $UDF.Value -Force
+                    Add-Member -InputObject $object -MemberType NoteProperty -Name $UDFName -Value $UDF.Value -Force
                 }  
             }
 
@@ -97,8 +97,8 @@ Function ConvertTo-LocalObject {
             if ($Script:UsePickListLabels) { 
                 # Restore picklist labels
                 foreach ($field in $Picklists) {
-                    if ($Item.$($field.Name) -in $field.PicklistValues.Value) {
-                        $Item.$($field.Name) = ($field.PickListValues.Where{ $_.Value -eq $Item.$($field.Name) }).Label
+                    if ($object.$($field.Name) -in $field.PicklistValues.Value) {
+                        $object.$($field.Name) = ($field.PickListValues.Where{ $_.Value -eq $object.$($field.Name) }).Label
                     }
                 }
             }
