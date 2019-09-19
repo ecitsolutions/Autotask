@@ -8,31 +8,34 @@
 
 Function ConvertTo-LocalObject {
     <#
-      .SYNOPSIS
-      This function adjusts the timezone and converts picklist fields from their label to their index value.
-      .DESCRIPTION
-      This function adjusts the timezone and converts picklist fields from their label to their index value.
-      .INPUTS
-      [PSObject[]]
-      .OUTPUTS
-      [PSObject[]]
-      .EXAMPLE
-      $Element | ConvertFrom-LocalTimeAndLabels
-      Updates the properties of object $Element with the values of any parameter with the same name as a property-
-      .NOTES
-      NAME: Update-AtwsObjectsWithParameters
+            .SYNOPSIS
+            This function adjusts the timezone and converts picklist fields from their label to their index value.
+            .DESCRIPTION
+            This function adjusts the timezone and converts picklist fields from their label to their index value.
+            .INPUTS
+            [PSObject[]]
+            .OUTPUTS
+            [PSObject[]]
+            .EXAMPLE
+            $Element | ConvertFrom-LocalTimeAndLabels
+            Updates the properties of object $Element with the values of any parameter with the same name as a property-
+            .NOTES
+            NAME: Update-AtwsObjectsWithParameters
       
-  #>
+    #>
     [cmdletbinding()]
     
     Param
     (
         [Parameter(
-            Mandatory = $true,
-            ValueFromPipeline = $true
+                Mandatory = $true,
+                ValueFromPipeline = $true
         )]
         [PSObject[]]
-        $InputObject
+        $InputObject,
+        
+        [switch]
+        $NoPicklistLabel
     )
 
     begin {
@@ -100,6 +103,15 @@ Function ConvertTo-LocalObject {
                     if ($object.$($field.Name) -in $field.PicklistValues.Value) {
                         $object.$($field.Name) = ($field.PickListValues.Where{ $_.Value -eq $object.$($field.Name) }).Label
                     }
+                }
+            }
+            
+            if (-not $NoPickListLabel.IsPresent) { 
+                Foreach ($field in $Picklists)
+                {
+                    $fieldName = '{0}Label' -F $field.Name
+                    $value = ($field.PickListValues.Where{$_.Value -eq $object.$($field.Name)}).Label
+                    Add-Member -InputObject $object -MemberType NoteProperty -Name $fieldName -Value $value -Force
                 }
             }
         }
