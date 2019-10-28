@@ -81,7 +81,7 @@ Function ConvertFrom-XML {
                     # try to recognise other value types
                     'string*' {
                         # Test if it is a date first
-                        if ($element.$propertyName -match '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))') {
+                        if ($element.$propertyName -match '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))') {
                             # Convert to a Datetime object
                             [DateTime]$dateTime = $element.$propertyName
                   
