@@ -10,47 +10,50 @@
 #>
 
 [cmdletbinding(
-    SupportsShouldProcess = $True,
-    ConfirmImpact = 'Low',
-    DefaultParameterSetName = 'Default'
+        SupportsShouldProcess = $True,
+        ConfirmImpact = 'Low',
+        DefaultParameterSetName = 'Default'
 )]
 
 Param
 (
     [Parameter(
-        Mandatory = $True,
-        ParameterSetName = 'Default'
+            Mandatory = $True,
+            ParameterSetName = 'Default'
     )]
     [ValidateNotNullOrEmpty()]    
     [pscredential]
     $Credential,
     
     [Parameter(
-        Mandatory = $True,
-        ParameterSetName = 'Default'
+            Mandatory = $True,
+            ParameterSetName = 'Default'
     )]
     [String]
     $ApiTrackingIdentifier,
 
     [Parameter(
-        Mandatory = $false,
-        ParameterSetName = 'Default'
+            Mandatory = $false,
+            ParameterSetName = 'Default'
     )]
     [String]
     $ModuleName = 'Autotask',
 
     [Parameter(
-        Mandatory = $false,
-        ParameterSetName = 'Default'
+            Mandatory = $false,
+            ParameterSetName = 'Default'
     )]
     [ValidateSCript( {
-            Test-Path $_
+                Test-Path $_
         })]
     [String]
     $RootPath =  $(Split-Path -Parent -Path (Split-Path -Parent -Path $MyInvocation.MyCommand.Path))
 )
 
 $modulePath = '{0}\{1}' -F $RootPath, $ModuleName
+
+# Remove any loaded modules before trying to load it again
+Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
 
 Describe -Name 'Import module without any parameters' -Tag 'Import-Module' -Fixture {
     Import-Module $modulePath -Force
@@ -92,6 +95,10 @@ Describe -Name 'Import module with Credentials' -Tag 'Import-Module', 'Authentic
 
 
 Describe -Name 'Import module with Connect-AtwsWebApi' -Tag 'Import-Module', 'Authentication' -Fixture {
+    
+    # Remove any loaded modules before trying to load it again
+    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
+    
     Import-Module $modulePath -Force
 
     Context -Name 'Straight import with credential and api tracking id' -Fixture {

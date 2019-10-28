@@ -60,7 +60,15 @@ $rootPath = Split-Path -Parent $TestsFolder
 # Run the structure test
 
 foreach ($tag in 'Manifest', 'Functions') {
-    $TestResult = Invoke-Pester "$TestsFolder\Autotask.Module.Validation.Tests.ps1" -Show Fails -Tag $tag -PassThru
+    $TestResult = Invoke-Pester -Script @{
+        Path       = "$TestsFolder\Autotask.Module.Validation.Tests.ps1"
+        Parameters = @{
+            Credential            = $Credential
+            ApiTrackingIdentifier = $ApiTrackingIdentifier
+            ModuleName            = $moduleName
+            RootPath              = $rootPath 
+        }
+    } -Show Fails -Tag $tag -PassThru
 
     If ($TestResult.PassedCount -ne $TestResult.PassedCount) { Throw 'Manifest did not validate, execution stopped' }
 }

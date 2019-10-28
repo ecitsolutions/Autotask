@@ -236,6 +236,9 @@ describe 'Issue #33' -Tag 'Issues' {
     [IO.FileInfo]$functionFile = '{0}\WindowsPowershell\Cache\{1}\Dynamic\Get-AtwsTicket.ps1' -f $([environment]::GetFolderPath('MyDocuments')), $atws.CI
     $lastWriteTime = $functionFile.LastWriteTime
     
+    # Remove any loaded modules before trying to load it again
+    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
+    
     context 'Issue #33: Updating Diskcache auto running at every import' {
         
         # Reimport module
