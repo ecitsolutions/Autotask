@@ -62,24 +62,27 @@ Function Update-AtwsFilter {
         $Temp = @()
         foreach ($Word in $Words)
         {
-          if ($Temp.Count -eq 0 -and $Word -match '^[\"\'']')
-          {
-            $Temp += $Word.TrimStart('"''')
-          }
-          elseif ($Temp.Count -gt 0 -and $Word -match "[\'\""]$")
-          {
-            $Temp += $Word.TrimEnd("'""")
-            $Filterstring += $Temp -join ' '
-            $Temp = @()
-          }
-          elseif ($Temp.Count -gt 0)
-          {
-            $Temp += $Word
-          }
-          else
-          {
-            $Filterstring += $Word
-          }
+            if($Word -match '^[\"\'']' -and $Word -match "[\'\""]$") {
+                $Filterstring += $Word.Trim('"''')
+            }
+            elseif ($Temp.Count -eq 0 -and $Word -match '^[\"\'']')
+            {
+                $Temp += $Word.TrimStart('"''')
+            }
+            elseif ($Temp.Count -gt 0 -and $Word -match "[\'\""]$")
+            {
+                $Temp += $Word.TrimEnd("'""")
+                $Filterstring += $Temp -join ' '
+                $Temp = @()
+            }
+            elseif ($Temp.Count -gt 0)
+            {
+                $Temp += $Word
+            }
+            else
+            {
+                $Filterstring += $Word
+            }
         }
       }
       
@@ -116,15 +119,17 @@ Function Update-AtwsFilter {
           if (Test-Path Variable:Variable) {
             Write-Debug ('{0}: Substituting {1} for its value' -F $MyInvocation.MyCommand.Name, $Word)
             if ($PropertyTail) {
-              # Add properties back 
-              $Expression = '$Variable{0}' -F $PropertyTail
+                # Add properties back 
+                $Expression = '$Variable{0}' -F $PropertyTail
   
-              # Invoke-Expression is considered risky from an SQL injection kind of perspective. But by only
-              # permitting a .dot separated string of [a-zA-Z0-9_] we are PROBABLY safe...
-              $value = Invoke-Expression -Command $Expression
+                # Invoke-Expression is considered risky from an SQL injection kind of perspective. But by only
+                # permitting a .dot separated string of [a-zA-Z0-9_] we are PROBABLY safe...
+                $value = Invoke-Expression -Command $Expression
             }
             else {
-              $value = $Variable
+                # $value must be removed or it will retain the type of the first value
+                Remove-Variable -Name value -Force
+                $value = $Variable
             }
             if ($null -eq $value) {
               Write-Error ('{0}: Could not find any variable called {1}. Is it misspelled or has it not been set yet?' -F $MyInvocation.MyCommand.Name, $Expression)
