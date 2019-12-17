@@ -42,7 +42,7 @@ Function Update-AtwsFilter {
     # Enable modern -Debug behavior
     if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
   }
 
   process {

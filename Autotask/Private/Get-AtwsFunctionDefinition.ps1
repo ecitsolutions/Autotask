@@ -43,6 +43,9 @@ Function Get-AtwsfunctionDefinition {
         
         # A container for all valid verbs for a function
         $verbs = @()
+
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+
     }
 
     process { 

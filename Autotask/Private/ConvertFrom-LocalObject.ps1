@@ -8,27 +8,27 @@
 
 Function ConvertFrom-LocalObject {
     <#
-      .SYNOPSIS
-      This function adjusts the timezone and converts picklist fields from their label to their index value.
-      .DESCRIPTION
-      This function adjusts the timezone and converts picklist fields from their label to their index value.
-      .INPUTS
-      [PSObject[]]
-      .OUTPUTS
-      [PSObject[]]
-      .EXAMPLE
-      $Element | ConvertFrom-LocalTimeAndLabels
-      Updates the properties of object $Element with the values of any parameter with the same name as a property-
-      .NOTES
-      NAME: Update-AtwsObjectsWithParameters
+            .SYNOPSIS
+            This function adjusts the timezone and converts picklist fields from their label to their index value.
+            .DESCRIPTION
+            This function adjusts the timezone and converts picklist fields from their label to their index value.
+            .INPUTS
+            [PSObject[]]
+            .OUTPUTS
+            [PSObject[]]
+            .EXAMPLE
+            $Element | ConvertFrom-LocalTimeAndLabels
+            Updates the properties of object $Element with the values of any parameter with the same name as a property-
+            .NOTES
+            NAME: Update-AtwsObjectsWithParameters
       
-  #>
+    #>
     [cmdletbinding()]
     Param
     (
         [Parameter(
-            Mandatory = $true,
-            ValueFromPipeline = $true
+                Mandatory = $true,
+                ValueFromPipeline = $true
         )]
         [PSObject[]]
         $InputObject
@@ -45,7 +45,8 @@ Function ConvertFrom-LocalObject {
         
         # Set up TimeZone offset handling
         $EST = Get-TimeZone -Id 'Eastern Standard Time'
-     
+        
+        $result = @()
     }
 
     process {
@@ -74,8 +75,11 @@ Function ConvertFrom-LocalObject {
                 if (-not ($value)) {
                     Continue
                 }
-                # Convert the datetime back to CEST
-                $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, [TimeZoneInfo]::Local, $EST)
+                # Convert the datetime from LocalTime unless it is a date
+                If ($object.$DateTimeParam -ne $object.$DateTimeParam.Date) { 
+                    # Convert the datetime back to CEST
+                    $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, [TimeZoneInfo]::Local, $EST)
+                }
             }
             
             # Revert picklist labels to their values
@@ -86,10 +90,13 @@ Function ConvertFrom-LocalObject {
             }
         }
         
+        # If using pipeline the process block will run once per object in pipeline. Store them all
+        $result += $InputObject
+        
     }
 
     end {
-        Write-Debug -Message ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $InputObject.count, $entityName)
-        Return $InputObject
+        Write-Debug -Message ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $result.count, $entityName)
+        Return $result
     }
 }

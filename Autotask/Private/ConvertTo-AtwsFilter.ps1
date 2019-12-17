@@ -8,38 +8,38 @@
 
 Function ConvertTo-AtwsFilter {
     <#
-      .SYNOPSIS
-      This function converts a parameter set of a Get-function to a parsable approximation of a PowerShell
-      filter.
-      .DESCRIPTION
-      This function converts a parameter set of a Get-function to a parsable approximation of a PowerShell
-      filter. Due to internal scope contraints the function needs to be dot.sourced in the calling function.
-      This function is not stand alone. It uses several variables that only exist in the calling scope, 
-      another reason it needs to be dot.sourced. This is not best practice, but it is still by design. 
-      .INPUTS
-      System.Collections.Generic.Dictionary`2[System.string,System.Object]]
-      .OUTPUTS
-      [string[]]
-      .EXAMPLE
-      $Element | ConvertTo-AtwsDate -ParameterName <ParameterName>
-      Converts variable $Element with must contain a single DateTime value to a string representation of the 
-      Date or the DateTime, based on the parameter name.
-      .NOTES
-      NAME: ConvertTo-AtwsFilter
+            .SYNOPSIS
+            This function converts a parameter set of a Get-function to a parsable approximation of a PowerShell
+            filter.
+            .DESCRIPTION
+            This function converts a parameter set of a Get-function to a parsable approximation of a PowerShell
+            filter. Due to internal scope contraints the function needs to be dot.sourced in the calling function.
+            This function is not stand alone. It uses several variables that only exist in the calling scope, 
+            another reason it needs to be dot.sourced. This is not best practice, but it is still by design. 
+            .INPUTS
+            System.Collections.Generic.Dictionary`2[System.string,System.Object]]
+            .OUTPUTS
+            [string[]]
+            .EXAMPLE
+            $Element | ConvertTo-AtwsDate -ParameterName <ParameterName>
+            Converts variable $Element with must contain a single DateTime value to a string representation of the 
+            Date or the DateTime, based on the parameter name.
+            .NOTES
+            NAME: ConvertTo-AtwsFilter
       
-  #>
+    #>
     [cmdletbinding()]
     Param
     (
         [Parameter(
-            Mandatory = $true,
-            ValueFromPipeline = $true
+                Mandatory = $true,
+                ValueFromPipeline = $true
         )]
         [System.Collections.Generic.Dictionary`2[System.string, System.Object]]
         $BoundParameters,
     
         [Parameter(
-            Mandatory = $true
+                Mandatory = $true
         )]
         [ValidateScript( { $Script:FieldInfoCache.Keys -contains $_ })]
         [string]
@@ -64,13 +64,15 @@ Function ConvertTo-AtwsFilter {
             $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $now).TotalHours
         }
     
+        $fields = Get-AtwsFieldInfo -Entity $entityName
+        
         [string[]]$Filter = @()
     }
 
     process {
         Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
       
-        $fields = Get-AtwsFieldInfo -Entity $entityName
+        
  
         foreach ($parameter in $BoundParameters.GetEnumerator()) {
             $field = $fields | Where-Object { $_.Name -eq $parameter.Key }
@@ -106,7 +108,13 @@ Function ConvertTo-AtwsFilter {
                     elseif ($parameterName -eq 'UserDefinedField') {
                         $Filter += '-udf'              
                         $parameterName = $parameterValue.Name
+                        
+                        if ($null -eq $parameter.Value -or $parameter.Value.Length -eq 0) {
+                            $IsNull += 'UserDefinedField'
+                        }
+                        
                         $value = $parameterValue.Value
+                        
                     }
                     elseif ($parameterValue.GetType().Name -eq 'DateTime') {
                         if ($parameterValue -eq $parameterValue.Date -and 

@@ -49,6 +49,7 @@ Function ConvertTo-LocalObject {
         # Set up TimeZone offset handling
         $EST = Get-TimeZone -Id 'Eastern Standard Time'
         
+        $result = @()
     }
 
     process {
@@ -116,10 +117,13 @@ Function ConvertTo-LocalObject {
             }
         }
         
+        # If using pipeline the process block will run once per object in pipeline. Store them all
+        $result += $InputObject
+        
     }
 
     end {
-        Write-Debug -Message ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $InputObject.count, $entityName)
-        Return $InputObject
+        Write-Debug -Message ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $result.count, $entityName)
+        Return $result
     }
 }

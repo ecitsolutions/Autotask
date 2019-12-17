@@ -29,6 +29,8 @@
             # Remove the ID parameter so we do not try to set it on every object
             $null = $PSBoundParameters.Remove('id')
         }
+        
+        $ModifiedObjects = @()
     }
 
     process {
@@ -44,7 +46,8 @@
             # Process parameters and update objects with their values
             $processObject = $InputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             
-            $ModifiedObjects = Set-AtwsData -Entity $processObject
+            # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
+            $ModifiedObjects += Set-AtwsData -Entity $processObject
         
         }
     
