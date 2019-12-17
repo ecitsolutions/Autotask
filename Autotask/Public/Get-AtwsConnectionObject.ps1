@@ -31,6 +31,7 @@ Function Get-AtwsConnectionObject {
     Param()
   
     begin {
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
         # Enable modern -Debug behavior before the first Write-Debug
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }

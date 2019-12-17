@@ -7,7 +7,7 @@ See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license 
 
 #>
 Function Get-AtwsPSParameter {
-     <#
+    <#
       .SYNOPSIS
 
       .DESCRIPTION
@@ -65,6 +65,8 @@ Function Get-AtwsPSParameter {
     )
   
     begin { 
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        
         if ($Comment)
         { [string]$text = "# {0}`n" -F $Comment }
         else

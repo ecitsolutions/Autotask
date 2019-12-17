@@ -7,7 +7,7 @@ See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license 
 
 #>
 Function Get-AtwsParameterDefinition {
-     <#
+    <#
       .SYNOPSIS
 
       .DESCRIPTION
@@ -41,6 +41,9 @@ Function Get-AtwsParameterDefinition {
     )
     
     begin {
+
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        
         $Mandatory = @{ }
         $parameterSet = @{ }
     
@@ -124,98 +127,98 @@ Function Get-AtwsParameterDefinition {
                     $Mandatory[$_.Name] = $false
                     $_
                 }
-            }
-            'Set' { 
-                [array]$fields = $fieldInfo.Where( {
-                        -Not $_.IsReadOnly
-                    }) | ForEach-Object -process {
-                    $parameterSet[$_.Name] = @('Input_Object', 'By_parameters', 'By_Id')
-                    $_
-                }
-            }
-            'New' {
-                [array]$fields = $fieldInfo.Where( {
-                        $_.Name -ne 'Id'
-                    })
-            }
-            default {
-                return
-            }
-
         }
-    
-        # Add Name alias for EntityName parameters
-        $entityNameParameter = '{0}Name' -f $Entity.Name
-        foreach ($field in $fields ) {
-            # Start with native field type
-            $Type = $field.Type
-
-            # Fieldtype for picklists
-            if ($field.IsPickList) {
-                $Type = 'string'
-                $ValidateLength = 0
+        'Set' { 
+            [array]$fields = $fieldInfo.Where( {
+                    -Not $_.IsReadOnly
+                }) | ForEach-Object -process {
+                $parameterSet[$_.Name] = @('Input_Object', 'By_parameters', 'By_Id')
+                $_
             }
-            else {
-                $ValidateLength = $field.Length
-            }
-
-      
-            $Alias = @() 
-            if ($field.Name -eq $entityNameParameter) {
-                $Alias += 'Name'
-            }
-
-            $parameterOptions = @{
-                Mandatory              = $Mandatory[$field.Name]
-                ParameterSetName       = $parameterSet[$field.Name]
-                ValidateNotNullOrEmpty = $field.IsRequired
-                ValidateLength         = $ValidateLength
-                ValidateSet            = $field.PickListValues.Label | Sort-Object -Unique
-                Array                  = $(($Verb -eq 'Get'))
-                Name                   = $field.Name
-                Alias                  = $Alias
-                Type                   = $Type
-                Comment                = $field.Label
-                Nullable               = $Verb -ne 'New' -and $Type -ne 'string'
-            }
-
-            Get-AtwsPSParameter @ParameterOptions
-        }
-    
-    
-        # Make modifying operators possible
-        if ($Verb -eq 'Get') {
-            # These operators work for all fields (add quote characters here)
-            [array]$Labels = $fields | Select-Object -ExpandProperty Name
-            if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
-            foreach ($Operator in 'NotEquals', 'IsNull', 'IsNotNull') {
-                Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
-            }
-
-            # These operators work for all fields except boolean (add quote characters here)
-            [array]$Labels = $fields | Where-Object { $_.Type -ne 'boolean' } | Select-Object -ExpandProperty Name
-            if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
-            foreach ($Operator in 'GreaterThan', 'GreaterThanOrEquals', 'LessThan', 'LessThanOrEquals') {
-                Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
-            }
-
-            # These operators only work for strings (add quote characters here)
-            [array]$Labels = $fields | Where-Object { $_.Type -eq 'string' } | Select-Object -ExpandProperty Name
-            if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
-            foreach ($Operator in 'Like', 'NotLike', 'BeginsWith', 'EndsWith', 'Contains') {
-                Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
-            }
-      
-            # This operator only work for datetime (add quote characters here)
-            [array]$Labels = $fields | Where-Object { $_.Type -eq 'datetime' } | Select-Object -ExpandProperty Name
-            if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
-            foreach ($Operator in 'IsThisDay') {
-                Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
-            }
-        }
     }
-
-    end {
+    'New' {
+        [array]$fields = $fieldInfo.Where( {
+                $_.Name -ne 'Id'
+            })
+    }
+    default {
         return
     }
+
+}
+    
+# Add Name alias for EntityName parameters
+$entityNameParameter = '{0}Name' -f $Entity.Name
+foreach ($field in $fields ) {
+    # Start with native field type
+    $Type = $field.Type
+
+    # Fieldtype for picklists
+    if ($field.IsPickList) {
+        $Type = 'string'
+        $ValidateLength = 0
+    }
+    else {
+        $ValidateLength = $field.Length
+    }
+
+      
+    $Alias = @() 
+    if ($field.Name -eq $entityNameParameter) {
+        $Alias += 'Name'
+    }
+
+    $parameterOptions = @{
+        Mandatory              = $Mandatory[$field.Name]
+        ParameterSetName       = $parameterSet[$field.Name]
+        ValidateNotNullOrEmpty = $field.IsRequired
+        ValidateLength         = $ValidateLength
+        ValidateSet            = $field.PickListValues | Where-Object {$_.IsActive} | Select-Object -ExpandProperty Label | Sort-Object -Unique
+        Array                  = $(($Verb -eq 'Get'))
+        Name                   = $field.Name
+        Alias                  = $Alias
+        Type                   = $Type
+        Comment                = $field.Label
+        Nullable               = $Verb -ne 'New' -and $Type -ne 'string'
+    }
+
+    Get-AtwsPSParameter @ParameterOptions
+}
+    
+    
+# Make modifying operators possible
+if ($Verb -eq 'Get') {
+    # These operators work for all fields (add quote characters here)
+    [array]$Labels = $fields | Select-Object -ExpandProperty Name
+    if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
+    foreach ($Operator in 'NotEquals', 'IsNull', 'IsNotNull') {
+        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
+    }
+
+    # These operators work for all fields except boolean (add quote characters here)
+    [array]$Labels = $fields | Where-Object { $_.Type -ne 'boolean' } | Select-Object -ExpandProperty Name
+    if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
+    foreach ($Operator in 'GreaterThan', 'GreaterThanOrEquals', 'LessThan', 'LessThanOrEquals') {
+        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
+    }
+
+    # These operators only work for strings (add quote characters here)
+    [array]$Labels = $fields | Where-Object { $_.Type -eq 'string' } | Select-Object -ExpandProperty Name
+    if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
+    foreach ($Operator in 'Like', 'NotLike', 'BeginsWith', 'EndsWith', 'Contains') {
+        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
+    }
+      
+    # This operator only work for datetime (add quote characters here)
+    [array]$Labels = $fields | Where-Object { $_.Type -eq 'datetime' } | Select-Object -ExpandProperty Name
+    if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
+    foreach ($Operator in 'IsThisDay') {
+        Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
+    }
+}
+}
+
+end {
+    return
+}
 }
