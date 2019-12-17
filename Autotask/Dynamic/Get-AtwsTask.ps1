@@ -3,7 +3,7 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
 See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
@@ -57,6 +57,7 @@ LastActivityPersonType
 Entities that have fields that refer to the base entity of this CmdLet:
 
 BillingItem
+ ChangeOrderCost
  ExpenseItem
  NotificationHistory
  ServiceCallTask
@@ -145,7 +146,7 @@ Set-AtwsTask
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem:TaskID', 'ExpenseItem:TaskID', 'NotificationHistory:TaskID', 'ServiceCallTask:TaskID', 'TaskNote:TaskID', 'TaskPredecessor:PredecessorTaskID', 'TaskPredecessor:SuccessorTaskID', 'TaskSecondaryResource:TaskID', 'TimeEntry:TaskID')]
+    [ValidateSet('BillingItem:TaskID', 'ChangeOrderCost:TaskID', 'ExpenseItem:TaskID', 'NotificationHistory:TaskID', 'ServiceCallTask:TaskID', 'TaskNote:TaskID', 'TaskPredecessor:PredecessorTaskID', 'TaskPredecessor:SuccessorTaskID', 'TaskSecondaryResource:TaskID', 'TimeEntry:TaskID')]
     [string]
     $GetExternalEntityByThisEntityId,
 

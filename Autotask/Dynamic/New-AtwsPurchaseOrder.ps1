@@ -3,7 +3,7 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
 See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
@@ -26,9 +26,6 @@ To create a new PurchaseOrder you need the following required fields:
  -Status
  -ShipToName
  -ShipToAddress1
- -ShipToCity
- -ShipToState
- -ShipToPostalCode
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -39,7 +36,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.PurchaseOrder]. This function outputs the Autotask.PurchaseOrder that was created by the API.
 .EXAMPLE
-$result = New-AtwsPurchaseOrder -VendorID [Value] -Status [Value] -ShipToName [Value] -ShipToAddress1 [Value] -ShipToCity [Value] -ShipToState [Value] -ShipToPostalCode [Value]
+$result = New-AtwsPurchaseOrder -VendorID [Value] -Status [Value] -ShipToName [Value] -ShipToAddress1 [Value]
 Creates a new [Autotask.PurchaseOrder] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsPurchaseOrder -Id 124 | New-AtwsPurchaseOrder 
@@ -146,30 +143,24 @@ Set-AtwsPurchaseOrder
 
 # City
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,30)]
     [string]
     $ShipToCity,
 
 # State
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,25)]
     [string]
     $ShipToState,
 
 # Postal Code
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,10)]
     [string]
     $ShipToPostalCode,

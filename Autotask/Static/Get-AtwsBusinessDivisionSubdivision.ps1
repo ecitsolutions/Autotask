@@ -3,7 +3,7 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
 See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
@@ -38,6 +38,7 @@ Entities that have fields that refer to the base entity of this CmdLet:
 
 BillingItem
  BusinessDivisionSubdivisionResource
+ ChangeOrderCost
  Contract
  ContractCost
  ContractMilestone
@@ -118,7 +119,7 @@ Set-AtwsBusinessDivisionSubdivision
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem:BusinessDivisionSubdivisionID', 'BusinessDivisionSubdivisionResource:BusinessDivisionSubdivisionID', 'Contract:BusinessDivisionSubdivisionID', 'ContractCost:BusinessDivisionSubdivisionID', 'ContractMilestone:BusinessDivisionSubdivisionID', 'ContractServiceBundleUnit:BusinessDivisionSubdivisionID', 'ContractServiceUnit:BusinessDivisionSubdivisionID', 'ExpenseReport:BusinessDivisionSubdivisionID', 'Opportunity:BusinessDivisionSubdivisionID', 'Project:BusinessDivisionSubdivisionID', 'ProjectCost:BusinessDivisionSubdivisionID', 'SalesOrder:BusinessDivisionSubdivisionID', 'Subscription:BusinessDivisionSubdivisionID', 'Ticket:BusinessDivisionSubdivisionID', 'TicketCategoryFieldDefaults:BusinessDivisionSubdivisionID', 'TicketCost:BusinessDivisionSubdivisionID')]
+    [ValidateSet('BillingItem:BusinessDivisionSubdivisionID', 'BusinessDivisionSubdivisionResource:BusinessDivisionSubdivisionID', 'ChangeOrderCost:BusinessDivisionSubdivisionID', 'Contract:BusinessDivisionSubdivisionID', 'ContractCost:BusinessDivisionSubdivisionID', 'ContractMilestone:BusinessDivisionSubdivisionID', 'ContractServiceBundleUnit:BusinessDivisionSubdivisionID', 'ContractServiceUnit:BusinessDivisionSubdivisionID', 'ExpenseReport:BusinessDivisionSubdivisionID', 'Opportunity:BusinessDivisionSubdivisionID', 'Project:BusinessDivisionSubdivisionID', 'ProjectCost:BusinessDivisionSubdivisionID', 'SalesOrder:BusinessDivisionSubdivisionID', 'Subscription:BusinessDivisionSubdivisionID', 'Ticket:BusinessDivisionSubdivisionID', 'TicketCategoryFieldDefaults:BusinessDivisionSubdivisionID', 'TicketCost:BusinessDivisionSubdivisionID')]
     [string]
     $GetExternalEntityByThisEntityId,
 

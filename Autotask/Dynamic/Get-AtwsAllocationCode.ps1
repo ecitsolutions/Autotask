@@ -3,7 +3,7 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
 See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
@@ -48,6 +48,7 @@ AllocationCodeType
 Entities that have fields that refer to the base entity of this CmdLet:
 
 BillingItem
+ ChangeOrderCost
  ContractCost
  ContractExclusionAllocationCode
  ContractExclusionSetExcludedWorkType
@@ -142,7 +143,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem:AllocationCodeID', 'ContractCost:AllocationCodeID', 'ContractExclusionAllocationCode:AllocationCodeID', 'ContractExclusionSetExcludedWorkType:ExcludedWorkTypeID', 'ContractMilestone:AllocationCodeID', 'PriceListMaterialCode:AllocationCodeID', 'Product:CostAllocationCodeID', 'Product:ProductAllocationCodeID', 'ProjectCost:AllocationCodeID', 'QuoteItem:CostID', 'QuoteItem:ExpenseID', 'Service:AllocationCodeID', 'ServiceBundle:AllocationCodeID', 'ShippingType:AllocationCodeID', 'Subscription:MaterialCodeID', 'Task:AllocationCodeID', 'Ticket:AllocationCodeID', 'TicketCategoryFieldDefaults:WorkTypeID', 'TicketCost:AllocationCodeID', 'TimeEntry:AllocationCodeID', 'TimeEntry:InternalAllocationCodeID')]
+    [ValidateSet('BillingItem:AllocationCodeID', 'ChangeOrderCost:AllocationCodeID', 'ContractCost:AllocationCodeID', 'ContractExclusionAllocationCode:AllocationCodeID', 'ContractExclusionSetExcludedWorkType:ExcludedWorkTypeID', 'ContractMilestone:AllocationCodeID', 'PriceListMaterialCode:AllocationCodeID', 'Product:CostAllocationCodeID', 'Product:ProductAllocationCodeID', 'ProjectCost:AllocationCodeID', 'QuoteItem:CostID', 'QuoteItem:ExpenseID', 'Service:AllocationCodeID', 'ServiceBundle:AllocationCodeID', 'ShippingType:AllocationCodeID', 'Subscription:MaterialCodeID', 'Task:AllocationCodeID', 'Ticket:AllocationCodeID', 'TicketCategoryFieldDefaults:WorkTypeID', 'TicketCost:AllocationCodeID', 'TimeEntry:AllocationCodeID', 'TimeEntry:InternalAllocationCodeID')]
     [string]
     $GetExternalEntityByThisEntityId,
 

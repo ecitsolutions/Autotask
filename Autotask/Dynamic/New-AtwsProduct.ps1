@@ -3,7 +3,7 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
 See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
@@ -29,7 +29,8 @@ To create a new Product you need the following required fields:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-ContactBillingProductAssociation
+ChangeOrderCost
+ ContactBillingProductAssociation
  ContractBillingRule
  ContractCost
  InstalledProduct

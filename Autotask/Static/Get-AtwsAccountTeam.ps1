@@ -3,7 +3,7 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
 See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
@@ -149,24 +149,31 @@ Remove-AtwsAccountTeam
     [Nullable[long][]]
     $ResourceID,
 
+# Associated As Comanaged
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ResourceID')]
+    [Nullable[boolean][]]
+    $AssociatedAsComanaged,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'AccountID', 'ResourceID', 'AssociatedAsComanaged')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ResourceID')]
+    [ValidateSet('id', 'AccountID', 'ResourceID', 'AssociatedAsComanaged')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ResourceID')]
+    [ValidateSet('id', 'AccountID', 'ResourceID', 'AssociatedAsComanaged')]
     [string[]]
     $IsNotNull,
 

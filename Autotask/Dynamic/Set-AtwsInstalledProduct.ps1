@@ -3,7 +3,7 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
 See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
@@ -22,6 +22,7 @@ Entities that have fields that refer to the base entity of this CmdLet:
 BillingItem
  InstalledProduct
  InstalledProductBillingProductAssociation
+ InstalledProductNote
  Subscription
  Ticket
  TicketAdditionalInstalledProduct
@@ -474,6 +475,8 @@ Get-AtwsInstalledProduct
             # Remove the ID parameter so we do not try to set it on every object
             $null = $PSBoundParameters.Remove('id')
         }
+        
+        $ModifiedObjects = @()
     }
 
     process {
@@ -489,7 +492,8 @@ Get-AtwsInstalledProduct
             # Process parameters and update objects with their values
             $processObject = $InputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             
-            $ModifiedObjects = Set-AtwsData -Entity $processObject
+            # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
+            $ModifiedObjects += Set-AtwsData -Entity $processObject
         
         }
     

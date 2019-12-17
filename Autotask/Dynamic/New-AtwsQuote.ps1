@@ -3,7 +3,7 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
 See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
 
 #>
@@ -305,7 +305,50 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $QuoteNumber
+    $QuoteNumber,
+
+# Ext Approval Contact Response
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [string]
+    $ExtApprovalContactResponse,
+
+# Ext Approval Response Signature
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,250)]
+    [string]
+    $ExtApprovalResponseSignature,
+
+# Ext Approval Response Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $ExtApprovalResponseDate,
+
+# Approval Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [string]
+    $ApprovalStatus,
+
+# Approval Status Changed Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $ApprovalStatusChangedDate,
+
+# Approval Status Changed By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ApprovalStatusChangedByResourceID
   )
  
     begin { 
