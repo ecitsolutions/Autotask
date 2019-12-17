@@ -92,7 +92,7 @@ describe "$ModuleName Module Manifest tests" -Tag 'Manifest' {
 
 describe "$ModuleName Module function tests" -Tag 'Functions' { 
 
-  foreach ($directory in 'Dynamic', 'Static', 'Private', 'Public') { 
+    foreach ($directory in 'Dynamic', 'Static', 'Public') { 
     
     $subdir = '{0}\{1}' -F $modulePath, $directory 
 
@@ -146,5 +146,40 @@ describe "$ModuleName Module function tests" -Tag 'Functions' {
     } # foreach ($function in $functions)
 
   }
+
+}
+
+
+Describe "$ModuleName Module function tests" -Tag 'Functions' { 
+
+    foreach ($directory in 'Private') { 
+    
+        $subdir = '{0}\{1}' -F $modulePath, $directory 
+
+        $functions = (Get-ChildItem -Path $subdir\*.ps1 -Exclude *-AtwsDefinition.ps1).BaseName
+
+        foreach ($function in $functions) {
+  
+            Context "Test Function $function" {
+      
+                It "$function.ps1 should be an advanced function" {
+                    "$subdir\$function.ps1" | Should -FileContentMatch 'function'
+                    "$subdir\$function.ps1" | Should -FileContentMatch 'cmdletbinding'
+                    "$subdir\$function.ps1" | Should -FileContentMatch 'param'
+                }
+      
+                It "$function.ps1 is valid PowerShell code" {
+                    $psFile = Get-Content -Path "$subdir\$function.ps1" `
+                        -ErrorAction Stop
+                    $errors = $null
+                    $null = [System.Management.Automation.PSParser]::Tokenize($psFile, [ref]$errors)
+                    $errors.Count | Should -Be 0
+                }
+    
+            } # context "Test Function $function"
+
+        } # foreach ($function in $functions)
+
+    }
 
 }

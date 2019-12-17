@@ -73,7 +73,13 @@ Describe -Name 'Import module without any parameters' -Tag 'Import-Module' -Fixt
     }
 }
 
+
+
 Describe -Name 'Import module with Credentials' -Tag 'Import-Module', 'Authentication' -Fixture {
+
+    # Remove any loaded modules before trying to load it again
+    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
+
     Context -Name 'Straight import with credential and api tracking id' -Fixture {
         Import-Module $modulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
 
@@ -99,6 +105,7 @@ Describe -Name 'Import module with Connect-AtwsWebApi' -Tag 'Import-Module', 'Au
     # Remove any loaded modules before trying to load it again
     Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
     
+    # This one starts with a module loaded without options - already tested
     Import-Module $modulePath -Force
 
     Context -Name 'Straight import with credential and api tracking id' -Fixture {
@@ -119,7 +126,11 @@ Describe -Name 'Import module with Connect-AtwsWebApi' -Tag 'Import-Module', 'Au
         }
     }
 
+    # Remove any loaded modules before trying to load it again
+    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
+    
     Context -Name 'Import with -NoDiskCache' -Fixture {
+
         Import-Module $modulePath -Force    
 
         Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier -NoDiskCache
