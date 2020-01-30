@@ -71,6 +71,8 @@ Function Get-AtwsThresholdAndUsageInfo {
       Return
     }
     
+    Write-Verbose ('{0}: Creating a return object with threshold and usage info.' -F $MyInvocation.MyCommand.Name)
+    
     $ThresholdInfo = New-Object -TypeName PSObject
     foreach ($string in $result.EntityReturnInfoResults.Message -Split ';') {
       $Substring = $string -split ':'
@@ -82,6 +84,8 @@ Function Get-AtwsThresholdAndUsageInfo {
   }
 
   end {
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+      
     Return $ThresholdInfo
   }
 }

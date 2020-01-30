@@ -8,7 +8,7 @@
 #>
 
 Function Get-AtwsWsdlVersion {
-    <#
+  <#
       .SYNOPSIS
       This function collects information about a specific Autotask invoice object and returns a generic
       powershell object with all relevant information as a starting point for import into other systems.
@@ -32,44 +32,48 @@ Function Get-AtwsWsdlVersion {
       
   #>
 	
-    [cmdletbinding()]
-    Param
-    (
-    )
+  [cmdletbinding()]
+  Param
+  (
+  )
   
-    begin {
-        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+  begin {
+    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-        # Enable modern -Debug behavior
-        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+    # Enable modern -Debug behavior
+    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-        if (-not($Script:Atws.Url)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
-        }    
-    }
+    if (-not($Script:Atws.Url)) {
+      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+    }    
+  }
 
-    process {
-        try { 
-            $result = $Script:Atws.GetWsdlVersion()
-        }
-        catch {
-            Write-Warning ('{0}: FAILED on GetWsdlVersion(). No data returned.' -F $MyInvocation.MyCommand.Name)
+  process {
+    Write-Verbose ('{0}: Calling GetWsdkVersion()' -F $MyInvocation.MyCommand.Name)
+      
+    try { 
+      $result = $Script:Atws.GetWsdlVersion()
+    }
+    catch {
+      Write-Warning ('{0}: FAILED on GetWsdlVersion(). No data returned.' -F $MyInvocation.MyCommand.Name)
               
-            Return
-        }
+      Return
+    }
 
 
-        # Handle any errors
-        if ($result.Errors.Count -gt 0) {
-            foreach ($AtwsError in $result.Errors) {
-                Write-Error $AtwsError.Message
-            }
-            Return
-        }
+    # Handle any errors
+    if ($result.Errors.Count -gt 0) {
+      foreach ($AtwsError in $result.Errors) {
+        Write-Error $AtwsError.Message
+      }
+      Return
+    }
     
-    }
+  }
 
-    end {
-        Return $result
-    }
+  end {
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        
+    Return $result
+  }
 }

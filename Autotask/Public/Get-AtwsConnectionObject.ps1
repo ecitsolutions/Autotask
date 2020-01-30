@@ -36,7 +36,7 @@ Function Get-AtwsConnectionObject {
         # Enable modern -Debug behavior before the first Write-Debug
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
         if (-not($Script:Atws.Url)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
@@ -48,7 +48,7 @@ Function Get-AtwsConnectionObject {
         $caption = $MyInvocation.MyCommand.Name
         $verboseDescription = '{0}: About to return the Web Proxy Object for the current connection Autotask Web API. This will expose your credentials in clear text in your terminals variable scope.' -F $caption
         $verboseWarning = '{0}: About to return the Web Proxy Object for the current connection Autotask Web API. This will expose your credentials in clear text in your terminals variable scope. Do you want to continue?' -F $caption
-    
+        
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             Return $Script:Atws
         }
