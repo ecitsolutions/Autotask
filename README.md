@@ -43,6 +43,7 @@ Update-AtwsFunctions -FunctionSet Dynamic
 - UPDATE: Copyright text updated with new company name after merger
 - BUGFIX: Fixed parsing bugs in manual -Filter
 - BUGFIX: Issue #59: Unable to set Issue/SubIssue when Subissue is on index 0 - **Fixed**
+- BUGFIX: Issue #66: Still getting 'updating disk cache' on every module import - **Fixed**
 
 
 This version has been delayed a lot by the introduction of pester testing, but I sincerely hope the added QA was worth the wait.
