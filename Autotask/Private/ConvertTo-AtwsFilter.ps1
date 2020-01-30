@@ -135,7 +135,13 @@ Function ConvertTo-AtwsFilter {
                         else { 
                             $value = ConvertTo-AtwsDate -DateTime $parameterValue
                         }
-                    }            
+                    }  
+                    elseif ($field.Type -eq 'boolean') {
+                      $value = switch ($parameterValue) {
+                        {@('1','true') -contains $_}  { 1 }
+                        {@('0','false') -contains $_} { 0 }
+                      }          
+                    }       
                     else {
                         $value = $parameterValue
                     }

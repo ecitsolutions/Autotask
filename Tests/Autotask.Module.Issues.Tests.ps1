@@ -65,6 +65,17 @@ If (-not ($loadedModule)) {
     Import-Module $modulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
 }
 
+describe 'Issue #63' -Tag 'Issues' {
+
+    context 'Issue #63: Data type convertion error on Get-AtwsTicketCost ' {
+
+        it 'Boolean parameters should not throw an exception' {
+          {$null = Get-AtwsTicketCost -TicketID 0 -BillableToAccount $true -Billed $false} | Should -Not -Throw
+        }
+
+    }
+}
+
 describe 'Issue #44' -Tag 'Issues' {
 
     context 'Issue #44: GetEntityByReferenceId documentation ' {
