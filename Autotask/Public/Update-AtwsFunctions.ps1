@@ -103,7 +103,7 @@ Function Update-AtwsFunctions {
       
       $caption = $MyInvocation.MyCommand.Name
       $verboseDescription = '{0}: Creating and overwriting {1} functions for {2} entities' -F $caption, $FunctionSet, $Entities.count
-      $verboseWarning = '{0}: About to create and oiverwrite {1} functions for {2} entities. Do you want to continue?' -F $caption, $FunctionSet, $Entities.count
+      $verboseWarning = '{0}: About to create and overwrite {1} functions for {2} entities. Do you want to continue?' -F $caption, $FunctionSet, $Entities.count
        
       if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
         # Prepare Index for progressbar
