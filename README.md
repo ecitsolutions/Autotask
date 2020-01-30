@@ -36,7 +36,7 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
-## Version 1.6.4.1
+## Version 1.6.4.2
 
 - UPDATE: Included functions are updated to support API version 1.6.4
 - UPDATE: Implemented pester testing to improve QA
