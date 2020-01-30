@@ -6,6 +6,32 @@
 
 #>
 Function Update-AtwsFunctions {
+ <#
+      .SYNOPSIS
+      This function updates the on-disk versions of all the cmdlets in this module.
+      .DESCRIPTION
+      This function loops through all entities in the entity cache and recreates the PowerShell code
+      for each cmdlet both in the module directory and in the current users personal disk cache.
+      .INPUTS
+      Nothing.
+      .OUTPUTS
+      Powershell script files
+      .EXAMPLE
+      Update-AtwsFunctions
+      Updates the default function set which is the static functions, i.e. any function that does not
+      have any picklists.
+      .EXAMPLE
+      Update-AtwsFunctions -FunctionSet Static
+      Updates the default function set which is the static functions, i.e. any function that does not
+      have any picklists.
+      .EXAMPLE
+      Update-AtwsFunctions -FunctionSet Dynamic
+      Updates the dynamic functions, i.e. any function that does have one or more fields that have picklists
+      or the entity has userdefined fields.
+      .NOTES
+      NAME: Get-AtwsConnectionObject
+      
+  #>
   [CmdLetBinding(
       SupportsShouldProcess = $true,
       ConfirmImpact = 'High'

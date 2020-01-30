@@ -6,6 +6,26 @@
 
 #>
 Function Update-AtwsManifest {
+  <#
+      .SYNOPSIS
+      This updates the module manifest file with correct parameters and updates the version number if the user requires it.
+      .DESCRIPTION
+      This updates the module manifest file with correct parameters and updates the version number if the user requires it.
+      .INPUTS
+      Nothing.
+      .OUTPUTS
+      A module manifest file for the current module.
+      .EXAMPLE
+      Update-AtwsManifest
+      Regenerates the manifest file from pre-existing info, some of which is hardcoded into this  file.
+      .EXAMPLE
+      Update-AtwsManifest -UpdateVersion
+      Regenerates the manifest file from pre-existing info, some of which is hardcoded into this  file. Updates the version
+      number based on the current API version and previous version number.
+      .NOTES
+      NAME: Get-AtwsConnectionObject
+      
+  #>
   [CmdLetBinding(
       SupportsShouldProcess = $true,
       ConfirmImpact = 'High'
@@ -122,6 +142,8 @@ Function Update-AtwsManifest {
     $ManifestParams['VariablesToExport'] = @()
     $ManifestParams['AliasesToExport'] = @()
     
+        
+    
     # Custom
     $ManifestParams['LicenseUri'] = $ModuleInfo.PrivateData.PSData.LicenseUri
     $ManifestParams['ProjectUri'] = $ModuleInfo.PrivateData.PSData.ProjectUri
@@ -135,7 +157,9 @@ Function Update-AtwsManifest {
     if ($ManifestParams.Keys -contains 'DefaultCommandPrefix') {
       $ManifestParams.Remove('DefaultCommandPrefix')
     }
- 
+    
+    Write-Verbose ('{0}: New manifest prepared' -F $MyInvocation.MyCommand.Name)
+     
     
     # Update nuspec
     $Nuspec.DocumentElement.metadata.id = $ModuleName

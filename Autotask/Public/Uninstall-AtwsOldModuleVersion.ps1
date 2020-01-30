@@ -8,6 +8,26 @@
 #>
 
 Function Uninstall-AtwsOldModuleVersion {
+ <#
+      .SYNOPSIS
+      This function uninstalls all module versions but the latest from this machine.
+      .DESCRIPTION
+      This function uses Get-InstalledModule to list all versions of this module, sorts them by
+      version number and uninstalls all versions but the one with the highest version number.
+      .INPUTS
+      Nothing.
+      .OUTPUTS
+      Nothing
+      .EXAMPLE
+      Uninstall-AtwsOldModuleVersion
+      Uninstalls all but the latest module version of this module
+      .EXAMPLE
+      Uninstall-AtwsOldModuleVersion -ModuleName modulename
+      Uninstalls all but the latest module version of a module named "modulename".
+      .NOTES
+      NAME: Get-AtwsConnectionObject
+      
+  #>
   [CmdLetBinding(
       SupportsShouldProcess = $true,
       ConfirmImpact = 'Medium'
