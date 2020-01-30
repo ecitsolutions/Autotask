@@ -22,7 +22,12 @@ Function Get-Copyright {
       .LINK
 
   #>
-  
+    [CmdLetBinding(
+      SupportsShouldProcess = $true,
+      ConfirmImpact = 'Medium'
+    )]
+    Param()
+    
     Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
     @"
