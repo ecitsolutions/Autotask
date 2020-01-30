@@ -36,6 +36,15 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.4.1
+
+- UPDATE: Included functions are updated to support API version 1.6.4
+- UPDATE: Implemented pester testing to improve QA
+- UPDATE: Copyright text updated with new company name after merger
+- BUGFIX: Fixed parsing bugs in manual -Filter
+
+This version has been delayed a lot by the introduction of pester testing, but I sincerely hope the added QA was worth the wait.
+
 ## Version 1.6.2.17
 
 - BUGFIX: Issue #43: New-AtwsAttachment adds timezone difference twice - **Fixed**
