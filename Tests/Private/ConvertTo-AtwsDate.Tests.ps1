@@ -66,7 +66,7 @@ InModuleScope Autotask {
         $date = Get-Date '2019.08.06'
         
         # The date as a sortable date [string] with UTC offset appended                           
-        $this = $date.ToString('yyyy-MM-ddTHH:mm:ssz')
+        $this = $date.ToString('yyyy-MM-ddTHH:mm:ss.ffffz')
 
         It 'should be this' {
             ConvertTo-AtwsDate -DateTime $Date | Should -Be $this
