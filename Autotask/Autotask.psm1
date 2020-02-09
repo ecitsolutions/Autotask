@@ -28,6 +28,9 @@ Param(
 
 Write-Debug ('{0}: Start of module import' -F $MyInvocation.MyCommand.Name)
 
+# Explicit loading of namespace
+$namespace = 'Autotask'
+. ([scriptblock]::Create("using namespace $namespace"))
 
 # Special consideration for -Verbose, as there is no $PSCmdLet context to check if Import-Module was called using -Verbose
 # and $VerbosePreference is not inherited from Import-Module for some reason.
@@ -51,6 +54,8 @@ if ($parentCommand -like '*-Debug*') {
 if ($MyInvocation.MyCommand.Name -eq 'AutotaskBeta.psm1') {
     $Script:IsBeta = $true
 }
+
+
 
 # Read our own manifest to access configuration data
 $manifestFileName = $MyInvocation.MyCommand.Name -replace 'pdm1$', 'psd1'
