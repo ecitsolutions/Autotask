@@ -104,14 +104,19 @@ Function Connect-AtwsWebServices {
             'System.Xml'
             'System.Xml.ReaderWriter'
             'System.Runtime.Serialization'
-            # Core on MacOs
-            'netstandard'
-            'System.Xml.XmlSerializer'
-            'System.Runtime.Serialization.Xml'
-            'System.ServiceModel.Primitives'
-            'System.Private.ServiceModel'
-            'System.Diagnostics.Tools'
         )
+        # Check OS platform and add assemblies if not on windows. These will fail on windows.
+        if (-not([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows))) { 
+            $assemblies += @( 
+                # Core on MacOs
+                'netstandard'
+                'System.Xml.XmlSerializer'
+                'System.Runtime.Serialization.Xml'
+                'System.ServiceModel.Primitives'
+                'System.Private.ServiceModel'
+                'System.Diagnostics.Tools'
+            )
+        }
     }
   
     process { 
