@@ -46,7 +46,7 @@ Function Update-AtwsDiskCache {
       Import-AtwsDiskCache
     }
     # Load current API version from API
-    $CurrentApiVersion = $Script:Atws.GetWsdlVersion()
+    $CurrentApiVersion = $Script:Atws.GetWsdlVersion($script:atws.IntegrationsValue)
     $CurrentModuleVersion = $My.ModuleVersion
     $CacheApiVersion = $script:Cache[$Script:Atws.CI].ApiVersion.Tostring()
     $CacheModuleVersion = $script:Cache[$Script:Atws.CI].ModuleVersion.Tostring()
@@ -61,7 +61,7 @@ Function Update-AtwsDiskCache {
       Id = 9
     }
     
-    $Entities = $Script:Atws.getEntityInfo()
+    $Entities = $Script:Atws.GetEntityInfo($script:atws.IntegrationsValue)
         
     $caption = $MyInvocation.MyCommand.Name
     $verboseDescription = '{0}: Retreiving detailed field information about {1} entities. This will take a while. Go grab some coffee.' -F $caption, $Entities.count
@@ -84,7 +84,7 @@ Function Update-AtwsDiskCache {
         Write-Progress -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation @ProgressParameters
  
         # Retrieving FieldInfo for current Entity
-        $fieldInfo = $Script:Atws.GetFieldInfo($object.Name)
+        $fieldInfo = $Script:Atws.GetFieldInfo($script:atws.IntegrationsValue, $object.Name)
             
         # Check if entity has picklists
         $HasPickList = $false

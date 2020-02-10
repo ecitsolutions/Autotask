@@ -43,7 +43,7 @@ Function Get-AtwsThresholdAndUsageInfo {
     # Enable modern -Debug behavior
     if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
     
-    if (-not($Script:Atws.Url))
+    if (-not($script:atws.integrationsValue))
     {
       Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
     }    

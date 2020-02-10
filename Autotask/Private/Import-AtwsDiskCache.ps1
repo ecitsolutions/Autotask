@@ -127,7 +127,7 @@ Function Import-AtwsDiskCache {
       
             # If the API version has been changed at the Autotask end we unfortunately have to reload all
             # entities from scratch
-            $currentApiVersion = $Script:Atws.GetWsdlVersion()
+            $currentApiVersion = $Script:Atws.GetWsdlVersion($script:atws.IntegrationsValue)
             if ($Script:Cache[$Script:Atws.CI].ApiVersion -ne $currentApiVersion -or [Version]$My.ModuleVersion -ne $Script:Cache[$Script:Atws.CI].ModuleVersion) {
         
                 # Write-Warning to inform user that an update of static functions is due

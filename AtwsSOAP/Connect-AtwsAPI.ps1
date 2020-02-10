@@ -3,7 +3,9 @@
 
 $cs = get-childitem .\Autotask\Reference.cs
 
+
 $assemblies = @(
+    # These were enough on Windows 10
     'System.ServiceModel'
     'System.ServiceModel.Duplex' 
     'System.ServiceModel.Http'
@@ -13,6 +15,13 @@ $assemblies = @(
     'System.Xml'
     'System.Xml.ReaderWriter'
     'System.Runtime.Serialization'
+    # Core on MacOs
+    'netstandard'
+    'System.Xml.XmlSerializer'
+    'System.Runtime.Serialization.Xml'
+    'System.ServiceModel.Primitives'
+    'System.Private.ServiceModel'
+    'System.Diagnostics.Tools'
 )
 Add-Type -TypeDefinition (get-content -raw $cs.FullName) -ReferencedAssemblies $assemblies
 

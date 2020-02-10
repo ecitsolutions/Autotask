@@ -58,7 +58,7 @@ Function Set-AtwsData {
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-        if (-not($Script:Atws.Url)) {
+        if (-not($script:atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
         }
 

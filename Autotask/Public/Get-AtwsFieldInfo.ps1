@@ -144,7 +144,7 @@ Function Get-AtwsFieldInfo {
                     Write-Verbose -Message ("{0}: Calling .GetFieldInfo('{1}')" -F $MyInvocation.MyCommand.Name, $Entity) 
           
                     try { 
-                        $result = $Script:atws.GetFieldInfo($Entity)
+                        $result = $Script:atws.GetFieldInfo($script:atws.IntegrationsValue, $Entity)
                     }
                     catch {
                         Throw $_
@@ -182,7 +182,7 @@ Function Get-AtwsFieldInfo {
                     $verboseWarning = '{0}: About to get userdefined fields for {1}s. Do you want to continue?' -F $caption, $Entity
 
                     if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-                        $UDF = $Script:atws.GetUDFInfo($Entity)
+                        $UDF = $Script:atws.GetUDFInfo($script:atws.IntegrationsValue, $Entity)
                  
                         if ($result.Errors.Count -gt 0) {
                             foreach ($AtwsError in $result.Errors) {

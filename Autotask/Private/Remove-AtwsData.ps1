@@ -47,7 +47,7 @@ Function Remove-AtwsData {
         Write-Verbose ('{0}: Start of Function' -F $MyInvocation.MyCommand.Name)
 
         # Check if we are connected before trying anything
-        if (-not($Script:Atws.Url)) {
+        if (-not($script:atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
         }
 
