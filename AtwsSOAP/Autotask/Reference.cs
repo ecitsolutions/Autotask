@@ -7,133 +7,133 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Core
+namespace Autotask
 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://autotask.net/ATWS/v1_6/", ConfigurationName="Core.ATWSSoap")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://autotask.net/ATWS/v1_6/", ConfigurationName="Autotask.ATWSSoap")]
     public interface ATWSSoap
     {
         
         // CODEGEN: Generating message contract since message GetAttachmentRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/GetAttachment", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.GetAttachmentResponse GetAttachment(Core.GetAttachmentRequest request);
+        Autotask.GetAttachmentResponse GetAttachment(Autotask.GetAttachmentRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/GetAttachment", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.GetAttachmentResponse> GetAttachmentAsync(Core.GetAttachmentRequest request);
+        System.Threading.Tasks.Task<Autotask.GetAttachmentResponse> GetAttachmentAsync(Autotask.GetAttachmentRequest request);
         
         // CODEGEN: Generating message contract since message CreateAttachmentRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/CreateAttachment", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.CreateAttachmentResponse CreateAttachment(Core.CreateAttachmentRequest request);
+        Autotask.CreateAttachmentResponse CreateAttachment(Autotask.CreateAttachmentRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/CreateAttachment", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.CreateAttachmentResponse> CreateAttachmentAsync(Core.CreateAttachmentRequest request);
+        System.Threading.Tasks.Task<Autotask.CreateAttachmentResponse> CreateAttachmentAsync(Autotask.CreateAttachmentRequest request);
         
         // CODEGEN: Generating message contract since message DeleteAttachmentRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/DeleteAttachment", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.DeleteAttachmentResponse DeleteAttachment(Core.DeleteAttachmentRequest request);
+        Autotask.DeleteAttachmentResponse DeleteAttachment(Autotask.DeleteAttachmentRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/DeleteAttachment", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.DeleteAttachmentResponse> DeleteAttachmentAsync(Core.DeleteAttachmentRequest request);
+        System.Threading.Tasks.Task<Autotask.DeleteAttachmentResponse> DeleteAttachmentAsync(Autotask.DeleteAttachmentRequest request);
         
         // CODEGEN: Generating message contract since the wrapper name (GetEntityInfo) of message GetEntityInfo does not match the default value (getEntityInfo)
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/GetEntityInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.GetEntityInfo1 getEntityInfo(Core.GetEntityInfo request);
+        Autotask.GetEntityInfo1 getEntityInfo(Autotask.GetEntityInfo request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/GetEntityInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.GetEntityInfo1> getEntityInfoAsync(Core.GetEntityInfo request);
+        System.Threading.Tasks.Task<Autotask.GetEntityInfo1> getEntityInfoAsync(Autotask.GetEntityInfo request);
         
         // CODEGEN: Generating message contract since message GetFieldInfoRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/GetFieldInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.GetFieldInfoResponse GetFieldInfo(Core.GetFieldInfoRequest request);
+        Autotask.GetFieldInfoResponse GetFieldInfo(Autotask.GetFieldInfoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/GetFieldInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.GetFieldInfoResponse> GetFieldInfoAsync(Core.GetFieldInfoRequest request);
+        System.Threading.Tasks.Task<Autotask.GetFieldInfoResponse> GetFieldInfoAsync(Autotask.GetFieldInfoRequest request);
         
         // CODEGEN: Generating message contract since message getUDFInfoRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/getUDFInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.getUDFInfoResponse getUDFInfo(Core.getUDFInfoRequest request);
+        Autotask.getUDFInfoResponse getUDFInfo(Autotask.getUDFInfoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/getUDFInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.getUDFInfoResponse> getUDFInfoAsync(Core.getUDFInfoRequest request);
+        System.Threading.Tasks.Task<Autotask.getUDFInfoResponse> getUDFInfoAsync(Autotask.getUDFInfoRequest request);
         
         // CODEGEN: Generating message contract since message queryRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/query", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.queryResponse query(Core.queryRequest request);
+        Autotask.queryResponse query(Autotask.queryRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/query", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.queryResponse> queryAsync(Core.queryRequest request);
+        System.Threading.Tasks.Task<Autotask.queryResponse> queryAsync(Autotask.queryRequest request);
         
         // CODEGEN: Generating message contract since message createRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/create", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.createResponse create(Core.createRequest request);
+        Autotask.createResponse create(Autotask.createRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/create", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.createResponse> createAsync(Core.createRequest request);
+        System.Threading.Tasks.Task<Autotask.createResponse> createAsync(Autotask.createRequest request);
         
         // CODEGEN: Generating message contract since message updateRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/update", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.updateResponse update(Core.updateRequest request);
+        Autotask.updateResponse update(Autotask.updateRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/update", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.updateResponse> updateAsync(Core.updateRequest request);
+        System.Threading.Tasks.Task<Autotask.updateResponse> updateAsync(Autotask.updateRequest request);
         
         // CODEGEN: Generating message contract since message deleteRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/delete", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.deleteResponse delete(Core.deleteRequest request);
+        Autotask.deleteResponse delete(Autotask.deleteRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/delete", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.deleteResponse> deleteAsync(Core.deleteRequest request);
+        System.Threading.Tasks.Task<Autotask.deleteResponse> deleteAsync(Autotask.deleteRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/getZoneInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.ATWSZoneInfo getZoneInfo(string UserName);
+        Autotask.ATWSZoneInfo getZoneInfo(string UserName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/getZoneInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.ATWSZoneInfo> getZoneInfoAsync(string UserName);
+        System.Threading.Tasks.Task<Autotask.ATWSZoneInfo> getZoneInfoAsync(string UserName);
         
         // CODEGEN: Generating message contract since message getThresholdAndUsageInfoRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/getThresholdAndUsageInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.getThresholdAndUsageInfoResponse getThresholdAndUsageInfo(Core.getThresholdAndUsageInfoRequest request);
+        Autotask.getThresholdAndUsageInfoResponse getThresholdAndUsageInfo(Autotask.getThresholdAndUsageInfoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/getThresholdAndUsageInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.getThresholdAndUsageInfoResponse> getThresholdAndUsageInfoAsync(Core.getThresholdAndUsageInfoRequest request);
+        System.Threading.Tasks.Task<Autotask.getThresholdAndUsageInfoResponse> getThresholdAndUsageInfoAsync(Autotask.getThresholdAndUsageInfoRequest request);
         
         // CODEGEN: Generating message contract since message GetWsdlVersionRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/GetWsdlVersion", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.GetWsdlVersionResponse GetWsdlVersion(Core.GetWsdlVersionRequest request);
+        Autotask.GetWsdlVersionResponse GetWsdlVersion(Autotask.GetWsdlVersionRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/GetWsdlVersion", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.GetWsdlVersionResponse> GetWsdlVersionAsync(Core.GetWsdlVersionRequest request);
+        System.Threading.Tasks.Task<Autotask.GetWsdlVersionResponse> GetWsdlVersionAsync(Autotask.GetWsdlVersionRequest request);
         
         // CODEGEN: Generating message contract since message GetInvoiceMarkupRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/GetInvoiceMarkup", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.GetInvoiceMarkupResponse GetInvoiceMarkup(Core.GetInvoiceMarkupRequest request);
+        Autotask.GetInvoiceMarkupResponse GetInvoiceMarkup(Autotask.GetInvoiceMarkupRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/GetInvoiceMarkup", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.GetInvoiceMarkupResponse> GetInvoiceMarkupAsync(Core.GetInvoiceMarkupRequest request);
+        System.Threading.Tasks.Task<Autotask.GetInvoiceMarkupResponse> GetInvoiceMarkupAsync(Autotask.GetInvoiceMarkupRequest request);
         
         // CODEGEN: Generating message contract since message IntegrationCodeCheckRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/IntegrationCodeCheck", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        Core.IntegrationCodeCheckResponse1 IntegrationCodeCheck(Core.IntegrationCodeCheckRequest request);
+        Autotask.IntegrationCodeCheckResponse1 IntegrationCodeCheck(Autotask.IntegrationCodeCheckRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://autotask.net/ATWS/v1_6/IntegrationCodeCheck", ReplyAction="*")]
-        System.Threading.Tasks.Task<Core.IntegrationCodeCheckResponse1> IntegrationCodeCheckAsync(Core.IntegrationCodeCheckRequest request);
+        System.Threading.Tasks.Task<Autotask.IntegrationCodeCheckResponse1> IntegrationCodeCheckAsync(Autotask.IntegrationCodeCheckRequest request);
     }
     
     /// <remarks/>
@@ -29350,7 +29350,7 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
         public long attachmentId;
@@ -29359,7 +29359,7 @@ namespace Core
         {
         }
         
-        public GetAttachmentRequest(Core.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
+        public GetAttachmentRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.attachmentId = attachmentId;
@@ -29374,13 +29374,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.Attachment GetAttachmentResult;
+        public Autotask.Attachment GetAttachmentResult;
         
         public GetAttachmentResponse()
         {
         }
         
-        public GetAttachmentResponse(Core.Attachment GetAttachmentResult)
+        public GetAttachmentResponse(Autotask.Attachment GetAttachmentResult)
         {
             this.GetAttachmentResult = GetAttachmentResult;
         }
@@ -29394,16 +29394,16 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.Attachment attachment;
+        public Autotask.Attachment attachment;
         
         public CreateAttachmentRequest()
         {
         }
         
-        public CreateAttachmentRequest(Core.AutotaskIntegrations AutotaskIntegrations, Core.Attachment attachment)
+        public CreateAttachmentRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Attachment attachment)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.attachment = attachment;
@@ -29438,7 +29438,7 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
         public long attachmentId;
@@ -29447,7 +29447,7 @@ namespace Core
         {
         }
         
-        public DeleteAttachmentRequest(Core.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
+        public DeleteAttachmentRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.attachmentId = attachmentId;
@@ -29482,13 +29482,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         public GetEntityInfo()
         {
         }
         
-        public GetEntityInfo(Core.AutotaskIntegrations AutotaskIntegrations)
+        public GetEntityInfo(Autotask.AutotaskIntegrations AutotaskIntegrations)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
         }
@@ -29502,13 +29502,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.EntityInfo[] GetEntityInfoResult;
+        public Autotask.EntityInfo[] GetEntityInfoResult;
         
         public GetEntityInfo1()
         {
         }
         
-        public GetEntityInfo1(Core.EntityInfo[] GetEntityInfoResult)
+        public GetEntityInfo1(Autotask.EntityInfo[] GetEntityInfoResult)
         {
             this.GetEntityInfoResult = GetEntityInfoResult;
         }
@@ -29522,7 +29522,7 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
         public string psObjectType;
@@ -29531,7 +29531,7 @@ namespace Core
         {
         }
         
-        public GetFieldInfoRequest(Core.AutotaskIntegrations AutotaskIntegrations, string psObjectType)
+        public GetFieldInfoRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, string psObjectType)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.psObjectType = psObjectType;
@@ -29546,13 +29546,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.Field[] GetFieldInfoResult;
+        public Autotask.Field[] GetFieldInfoResult;
         
         public GetFieldInfoResponse()
         {
         }
         
-        public GetFieldInfoResponse(Core.Field[] GetFieldInfoResult)
+        public GetFieldInfoResponse(Autotask.Field[] GetFieldInfoResult)
         {
             this.GetFieldInfoResult = GetFieldInfoResult;
         }
@@ -29566,7 +29566,7 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
         public string psTable;
@@ -29575,7 +29575,7 @@ namespace Core
         {
         }
         
-        public getUDFInfoRequest(Core.AutotaskIntegrations AutotaskIntegrations, string psTable)
+        public getUDFInfoRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, string psTable)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.psTable = psTable;
@@ -29590,13 +29590,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.Field[] getUDFInfoResult;
+        public Autotask.Field[] getUDFInfoResult;
         
         public getUDFInfoResponse()
         {
         }
         
-        public getUDFInfoResponse(Core.Field[] getUDFInfoResult)
+        public getUDFInfoResponse(Autotask.Field[] getUDFInfoResult)
         {
             this.getUDFInfoResult = getUDFInfoResult;
         }
@@ -29610,7 +29610,7 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
         public string sXML;
@@ -29619,7 +29619,7 @@ namespace Core
         {
         }
         
-        public queryRequest(Core.AutotaskIntegrations AutotaskIntegrations, string sXML)
+        public queryRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, string sXML)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.sXML = sXML;
@@ -29634,13 +29634,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.ATWSResponse queryResult;
+        public Autotask.ATWSResponse queryResult;
         
         public queryResponse()
         {
         }
         
-        public queryResponse(Core.ATWSResponse queryResult)
+        public queryResponse(Autotask.ATWSResponse queryResult)
         {
             this.queryResult = queryResult;
         }
@@ -29654,16 +29654,16 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.Entity[] Entities;
+        public Autotask.Entity[] Entities;
         
         public createRequest()
         {
         }
         
-        public createRequest(Core.AutotaskIntegrations AutotaskIntegrations, Core.Entity[] Entities)
+        public createRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Entity[] Entities)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.Entities = Entities;
@@ -29678,13 +29678,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.ATWSResponse createResult;
+        public Autotask.ATWSResponse createResult;
         
         public createResponse()
         {
         }
         
-        public createResponse(Core.ATWSResponse createResult)
+        public createResponse(Autotask.ATWSResponse createResult)
         {
             this.createResult = createResult;
         }
@@ -29698,16 +29698,16 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.Entity[] Entities;
+        public Autotask.Entity[] Entities;
         
         public updateRequest()
         {
         }
         
-        public updateRequest(Core.AutotaskIntegrations AutotaskIntegrations, Core.Entity[] Entities)
+        public updateRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Entity[] Entities)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.Entities = Entities;
@@ -29722,13 +29722,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.ATWSResponse updateResult;
+        public Autotask.ATWSResponse updateResult;
         
         public updateResponse()
         {
         }
         
-        public updateResponse(Core.ATWSResponse updateResult)
+        public updateResponse(Autotask.ATWSResponse updateResult)
         {
             this.updateResult = updateResult;
         }
@@ -29742,16 +29742,16 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.Entity[] Entities;
+        public Autotask.Entity[] Entities;
         
         public deleteRequest()
         {
         }
         
-        public deleteRequest(Core.AutotaskIntegrations AutotaskIntegrations, Core.Entity[] Entities)
+        public deleteRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Entity[] Entities)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.Entities = Entities;
@@ -29766,13 +29766,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.ATWSResponse deleteResult;
+        public Autotask.ATWSResponse deleteResult;
         
         public deleteResponse()
         {
         }
         
-        public deleteResponse(Core.ATWSResponse deleteResult)
+        public deleteResponse(Autotask.ATWSResponse deleteResult)
         {
             this.deleteResult = deleteResult;
         }
@@ -29786,13 +29786,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         public getThresholdAndUsageInfoRequest()
         {
         }
         
-        public getThresholdAndUsageInfoRequest(Core.AutotaskIntegrations AutotaskIntegrations)
+        public getThresholdAndUsageInfoRequest(Autotask.AutotaskIntegrations AutotaskIntegrations)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
         }
@@ -29806,13 +29806,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.ATWSResponse getThresholdAndUsageInfoResult;
+        public Autotask.ATWSResponse getThresholdAndUsageInfoResult;
         
         public getThresholdAndUsageInfoResponse()
         {
         }
         
-        public getThresholdAndUsageInfoResponse(Core.ATWSResponse getThresholdAndUsageInfoResult)
+        public getThresholdAndUsageInfoResponse(Autotask.ATWSResponse getThresholdAndUsageInfoResult)
         {
             this.getThresholdAndUsageInfoResult = getThresholdAndUsageInfoResult;
         }
@@ -29826,13 +29826,13 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         public GetWsdlVersionRequest()
         {
         }
         
-        public GetWsdlVersionRequest(Core.AutotaskIntegrations AutotaskIntegrations)
+        public GetWsdlVersionRequest(Autotask.AutotaskIntegrations AutotaskIntegrations)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
         }
@@ -29866,7 +29866,7 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
         public int InvoiceId;
@@ -29878,7 +29878,7 @@ namespace Core
         {
         }
         
-        public GetInvoiceMarkupRequest(Core.AutotaskIntegrations AutotaskIntegrations, int InvoiceId, string Format)
+        public GetInvoiceMarkupRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, int InvoiceId, string Format)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.InvoiceId = InvoiceId;
@@ -29914,7 +29914,7 @@ namespace Core
     {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
-        public Core.AutotaskIntegrations AutotaskIntegrations;
+        public Autotask.AutotaskIntegrations AutotaskIntegrations;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
         public string userName;
@@ -29923,7 +29923,7 @@ namespace Core
         {
         }
         
-        public IntegrationCodeCheckRequest(Core.AutotaskIntegrations AutotaskIntegrations, string userName)
+        public IntegrationCodeCheckRequest(Autotask.AutotaskIntegrations AutotaskIntegrations, string userName)
         {
             this.AutotaskIntegrations = AutotaskIntegrations;
             this.userName = userName;
@@ -29938,26 +29938,26 @@ namespace Core
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://autotask.net/ATWS/v1_6/", Order=0)]
-        public Core.IntegrationCodeCheckResponse IntegrationCodeCheckResult;
+        public Autotask.IntegrationCodeCheckResponse IntegrationCodeCheckResult;
         
         public IntegrationCodeCheckResponse1()
         {
         }
         
-        public IntegrationCodeCheckResponse1(Core.IntegrationCodeCheckResponse IntegrationCodeCheckResult)
+        public IntegrationCodeCheckResponse1(Autotask.IntegrationCodeCheckResponse IntegrationCodeCheckResult)
         {
             this.IntegrationCodeCheckResult = IntegrationCodeCheckResult;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    public interface ATWSSoapChannel : Core.ATWSSoap, System.ServiceModel.IClientChannel
+    public interface ATWSSoapChannel : Autotask.ATWSSoap, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    public partial class ATWSSoapClient : System.ServiceModel.ClientBase<Core.ATWSSoap>, Core.ATWSSoap
+    public partial class ATWSSoapClient : System.ServiceModel.ClientBase<Autotask.ATWSSoap>, Autotask.ATWSSoap
     {
         
         /// <summary>
@@ -30001,415 +30001,415 @@ namespace Core
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.GetAttachmentResponse Core.ATWSSoap.GetAttachment(Core.GetAttachmentRequest request)
+        Autotask.GetAttachmentResponse Autotask.ATWSSoap.GetAttachment(Autotask.GetAttachmentRequest request)
         {
             return base.Channel.GetAttachment(request);
         }
         
-        public Core.Attachment GetAttachment(Core.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
+        public Autotask.Attachment GetAttachment(Autotask.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
         {
-            Core.GetAttachmentRequest inValue = new Core.GetAttachmentRequest();
+            Autotask.GetAttachmentRequest inValue = new Autotask.GetAttachmentRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.attachmentId = attachmentId;
-            Core.GetAttachmentResponse retVal = ((Core.ATWSSoap)(this)).GetAttachment(inValue);
+            Autotask.GetAttachmentResponse retVal = ((Autotask.ATWSSoap)(this)).GetAttachment(inValue);
             return retVal.GetAttachmentResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.GetAttachmentResponse> Core.ATWSSoap.GetAttachmentAsync(Core.GetAttachmentRequest request)
+        System.Threading.Tasks.Task<Autotask.GetAttachmentResponse> Autotask.ATWSSoap.GetAttachmentAsync(Autotask.GetAttachmentRequest request)
         {
             return base.Channel.GetAttachmentAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.GetAttachmentResponse> GetAttachmentAsync(Core.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
+        public System.Threading.Tasks.Task<Autotask.GetAttachmentResponse> GetAttachmentAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
         {
-            Core.GetAttachmentRequest inValue = new Core.GetAttachmentRequest();
+            Autotask.GetAttachmentRequest inValue = new Autotask.GetAttachmentRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.attachmentId = attachmentId;
-            return ((Core.ATWSSoap)(this)).GetAttachmentAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).GetAttachmentAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.CreateAttachmentResponse Core.ATWSSoap.CreateAttachment(Core.CreateAttachmentRequest request)
+        Autotask.CreateAttachmentResponse Autotask.ATWSSoap.CreateAttachment(Autotask.CreateAttachmentRequest request)
         {
             return base.Channel.CreateAttachment(request);
         }
         
-        public long CreateAttachment(Core.AutotaskIntegrations AutotaskIntegrations, Core.Attachment attachment)
+        public long CreateAttachment(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Attachment attachment)
         {
-            Core.CreateAttachmentRequest inValue = new Core.CreateAttachmentRequest();
+            Autotask.CreateAttachmentRequest inValue = new Autotask.CreateAttachmentRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.attachment = attachment;
-            Core.CreateAttachmentResponse retVal = ((Core.ATWSSoap)(this)).CreateAttachment(inValue);
+            Autotask.CreateAttachmentResponse retVal = ((Autotask.ATWSSoap)(this)).CreateAttachment(inValue);
             return retVal.CreateAttachmentResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.CreateAttachmentResponse> Core.ATWSSoap.CreateAttachmentAsync(Core.CreateAttachmentRequest request)
+        System.Threading.Tasks.Task<Autotask.CreateAttachmentResponse> Autotask.ATWSSoap.CreateAttachmentAsync(Autotask.CreateAttachmentRequest request)
         {
             return base.Channel.CreateAttachmentAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.CreateAttachmentResponse> CreateAttachmentAsync(Core.AutotaskIntegrations AutotaskIntegrations, Core.Attachment attachment)
+        public System.Threading.Tasks.Task<Autotask.CreateAttachmentResponse> CreateAttachmentAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Attachment attachment)
         {
-            Core.CreateAttachmentRequest inValue = new Core.CreateAttachmentRequest();
+            Autotask.CreateAttachmentRequest inValue = new Autotask.CreateAttachmentRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.attachment = attachment;
-            return ((Core.ATWSSoap)(this)).CreateAttachmentAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).CreateAttachmentAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.DeleteAttachmentResponse Core.ATWSSoap.DeleteAttachment(Core.DeleteAttachmentRequest request)
+        Autotask.DeleteAttachmentResponse Autotask.ATWSSoap.DeleteAttachment(Autotask.DeleteAttachmentRequest request)
         {
             return base.Channel.DeleteAttachment(request);
         }
         
-        public string DeleteAttachment(Core.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
+        public string DeleteAttachment(Autotask.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
         {
-            Core.DeleteAttachmentRequest inValue = new Core.DeleteAttachmentRequest();
+            Autotask.DeleteAttachmentRequest inValue = new Autotask.DeleteAttachmentRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.attachmentId = attachmentId;
-            Core.DeleteAttachmentResponse retVal = ((Core.ATWSSoap)(this)).DeleteAttachment(inValue);
+            Autotask.DeleteAttachmentResponse retVal = ((Autotask.ATWSSoap)(this)).DeleteAttachment(inValue);
             return retVal.DeleteAttachmentResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.DeleteAttachmentResponse> Core.ATWSSoap.DeleteAttachmentAsync(Core.DeleteAttachmentRequest request)
+        System.Threading.Tasks.Task<Autotask.DeleteAttachmentResponse> Autotask.ATWSSoap.DeleteAttachmentAsync(Autotask.DeleteAttachmentRequest request)
         {
             return base.Channel.DeleteAttachmentAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.DeleteAttachmentResponse> DeleteAttachmentAsync(Core.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
+        public System.Threading.Tasks.Task<Autotask.DeleteAttachmentResponse> DeleteAttachmentAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, long attachmentId)
         {
-            Core.DeleteAttachmentRequest inValue = new Core.DeleteAttachmentRequest();
+            Autotask.DeleteAttachmentRequest inValue = new Autotask.DeleteAttachmentRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.attachmentId = attachmentId;
-            return ((Core.ATWSSoap)(this)).DeleteAttachmentAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).DeleteAttachmentAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.GetEntityInfo1 Core.ATWSSoap.getEntityInfo(Core.GetEntityInfo request)
+        Autotask.GetEntityInfo1 Autotask.ATWSSoap.getEntityInfo(Autotask.GetEntityInfo request)
         {
             return base.Channel.getEntityInfo(request);
         }
         
-        public Core.EntityInfo[] getEntityInfo(Core.AutotaskIntegrations AutotaskIntegrations)
+        public Autotask.EntityInfo[] getEntityInfo(Autotask.AutotaskIntegrations AutotaskIntegrations)
         {
-            Core.GetEntityInfo inValue = new Core.GetEntityInfo();
+            Autotask.GetEntityInfo inValue = new Autotask.GetEntityInfo();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
-            Core.GetEntityInfo1 retVal = ((Core.ATWSSoap)(this)).getEntityInfo(inValue);
+            Autotask.GetEntityInfo1 retVal = ((Autotask.ATWSSoap)(this)).getEntityInfo(inValue);
             return retVal.GetEntityInfoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.GetEntityInfo1> Core.ATWSSoap.getEntityInfoAsync(Core.GetEntityInfo request)
+        System.Threading.Tasks.Task<Autotask.GetEntityInfo1> Autotask.ATWSSoap.getEntityInfoAsync(Autotask.GetEntityInfo request)
         {
             return base.Channel.getEntityInfoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.GetEntityInfo1> getEntityInfoAsync(Core.AutotaskIntegrations AutotaskIntegrations)
+        public System.Threading.Tasks.Task<Autotask.GetEntityInfo1> getEntityInfoAsync(Autotask.AutotaskIntegrations AutotaskIntegrations)
         {
-            Core.GetEntityInfo inValue = new Core.GetEntityInfo();
+            Autotask.GetEntityInfo inValue = new Autotask.GetEntityInfo();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
-            return ((Core.ATWSSoap)(this)).getEntityInfoAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).getEntityInfoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.GetFieldInfoResponse Core.ATWSSoap.GetFieldInfo(Core.GetFieldInfoRequest request)
+        Autotask.GetFieldInfoResponse Autotask.ATWSSoap.GetFieldInfo(Autotask.GetFieldInfoRequest request)
         {
             return base.Channel.GetFieldInfo(request);
         }
         
-        public Core.Field[] GetFieldInfo(Core.AutotaskIntegrations AutotaskIntegrations, string psObjectType)
+        public Autotask.Field[] GetFieldInfo(Autotask.AutotaskIntegrations AutotaskIntegrations, string psObjectType)
         {
-            Core.GetFieldInfoRequest inValue = new Core.GetFieldInfoRequest();
+            Autotask.GetFieldInfoRequest inValue = new Autotask.GetFieldInfoRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.psObjectType = psObjectType;
-            Core.GetFieldInfoResponse retVal = ((Core.ATWSSoap)(this)).GetFieldInfo(inValue);
+            Autotask.GetFieldInfoResponse retVal = ((Autotask.ATWSSoap)(this)).GetFieldInfo(inValue);
             return retVal.GetFieldInfoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.GetFieldInfoResponse> Core.ATWSSoap.GetFieldInfoAsync(Core.GetFieldInfoRequest request)
+        System.Threading.Tasks.Task<Autotask.GetFieldInfoResponse> Autotask.ATWSSoap.GetFieldInfoAsync(Autotask.GetFieldInfoRequest request)
         {
             return base.Channel.GetFieldInfoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.GetFieldInfoResponse> GetFieldInfoAsync(Core.AutotaskIntegrations AutotaskIntegrations, string psObjectType)
+        public System.Threading.Tasks.Task<Autotask.GetFieldInfoResponse> GetFieldInfoAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, string psObjectType)
         {
-            Core.GetFieldInfoRequest inValue = new Core.GetFieldInfoRequest();
+            Autotask.GetFieldInfoRequest inValue = new Autotask.GetFieldInfoRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.psObjectType = psObjectType;
-            return ((Core.ATWSSoap)(this)).GetFieldInfoAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).GetFieldInfoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.getUDFInfoResponse Core.ATWSSoap.getUDFInfo(Core.getUDFInfoRequest request)
+        Autotask.getUDFInfoResponse Autotask.ATWSSoap.getUDFInfo(Autotask.getUDFInfoRequest request)
         {
             return base.Channel.getUDFInfo(request);
         }
         
-        public Core.Field[] getUDFInfo(Core.AutotaskIntegrations AutotaskIntegrations, string psTable)
+        public Autotask.Field[] getUDFInfo(Autotask.AutotaskIntegrations AutotaskIntegrations, string psTable)
         {
-            Core.getUDFInfoRequest inValue = new Core.getUDFInfoRequest();
+            Autotask.getUDFInfoRequest inValue = new Autotask.getUDFInfoRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.psTable = psTable;
-            Core.getUDFInfoResponse retVal = ((Core.ATWSSoap)(this)).getUDFInfo(inValue);
+            Autotask.getUDFInfoResponse retVal = ((Autotask.ATWSSoap)(this)).getUDFInfo(inValue);
             return retVal.getUDFInfoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.getUDFInfoResponse> Core.ATWSSoap.getUDFInfoAsync(Core.getUDFInfoRequest request)
+        System.Threading.Tasks.Task<Autotask.getUDFInfoResponse> Autotask.ATWSSoap.getUDFInfoAsync(Autotask.getUDFInfoRequest request)
         {
             return base.Channel.getUDFInfoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.getUDFInfoResponse> getUDFInfoAsync(Core.AutotaskIntegrations AutotaskIntegrations, string psTable)
+        public System.Threading.Tasks.Task<Autotask.getUDFInfoResponse> getUDFInfoAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, string psTable)
         {
-            Core.getUDFInfoRequest inValue = new Core.getUDFInfoRequest();
+            Autotask.getUDFInfoRequest inValue = new Autotask.getUDFInfoRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.psTable = psTable;
-            return ((Core.ATWSSoap)(this)).getUDFInfoAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).getUDFInfoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.queryResponse Core.ATWSSoap.query(Core.queryRequest request)
+        Autotask.queryResponse Autotask.ATWSSoap.query(Autotask.queryRequest request)
         {
             return base.Channel.query(request);
         }
         
-        public Core.ATWSResponse query(Core.AutotaskIntegrations AutotaskIntegrations, string sXML)
+        public Autotask.ATWSResponse query(Autotask.AutotaskIntegrations AutotaskIntegrations, string sXML)
         {
-            Core.queryRequest inValue = new Core.queryRequest();
+            Autotask.queryRequest inValue = new Autotask.queryRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.sXML = sXML;
-            Core.queryResponse retVal = ((Core.ATWSSoap)(this)).query(inValue);
+            Autotask.queryResponse retVal = ((Autotask.ATWSSoap)(this)).query(inValue);
             return retVal.queryResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.queryResponse> Core.ATWSSoap.queryAsync(Core.queryRequest request)
+        System.Threading.Tasks.Task<Autotask.queryResponse> Autotask.ATWSSoap.queryAsync(Autotask.queryRequest request)
         {
             return base.Channel.queryAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.queryResponse> queryAsync(Core.AutotaskIntegrations AutotaskIntegrations, string sXML)
+        public System.Threading.Tasks.Task<Autotask.queryResponse> queryAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, string sXML)
         {
-            Core.queryRequest inValue = new Core.queryRequest();
+            Autotask.queryRequest inValue = new Autotask.queryRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.sXML = sXML;
-            return ((Core.ATWSSoap)(this)).queryAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).queryAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.createResponse Core.ATWSSoap.create(Core.createRequest request)
+        Autotask.createResponse Autotask.ATWSSoap.create(Autotask.createRequest request)
         {
             return base.Channel.create(request);
         }
         
-        public Core.ATWSResponse create(Core.AutotaskIntegrations AutotaskIntegrations, Core.Entity[] Entities)
+        public Autotask.ATWSResponse create(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Entity[] Entities)
         {
-            Core.createRequest inValue = new Core.createRequest();
+            Autotask.createRequest inValue = new Autotask.createRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.Entities = Entities;
-            Core.createResponse retVal = ((Core.ATWSSoap)(this)).create(inValue);
+            Autotask.createResponse retVal = ((Autotask.ATWSSoap)(this)).create(inValue);
             return retVal.createResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.createResponse> Core.ATWSSoap.createAsync(Core.createRequest request)
+        System.Threading.Tasks.Task<Autotask.createResponse> Autotask.ATWSSoap.createAsync(Autotask.createRequest request)
         {
             return base.Channel.createAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.createResponse> createAsync(Core.AutotaskIntegrations AutotaskIntegrations, Core.Entity[] Entities)
+        public System.Threading.Tasks.Task<Autotask.createResponse> createAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Entity[] Entities)
         {
-            Core.createRequest inValue = new Core.createRequest();
+            Autotask.createRequest inValue = new Autotask.createRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.Entities = Entities;
-            return ((Core.ATWSSoap)(this)).createAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).createAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.updateResponse Core.ATWSSoap.update(Core.updateRequest request)
+        Autotask.updateResponse Autotask.ATWSSoap.update(Autotask.updateRequest request)
         {
             return base.Channel.update(request);
         }
         
-        public Core.ATWSResponse update(Core.AutotaskIntegrations AutotaskIntegrations, Core.Entity[] Entities)
+        public Autotask.ATWSResponse update(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Entity[] Entities)
         {
-            Core.updateRequest inValue = new Core.updateRequest();
+            Autotask.updateRequest inValue = new Autotask.updateRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.Entities = Entities;
-            Core.updateResponse retVal = ((Core.ATWSSoap)(this)).update(inValue);
+            Autotask.updateResponse retVal = ((Autotask.ATWSSoap)(this)).update(inValue);
             return retVal.updateResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.updateResponse> Core.ATWSSoap.updateAsync(Core.updateRequest request)
+        System.Threading.Tasks.Task<Autotask.updateResponse> Autotask.ATWSSoap.updateAsync(Autotask.updateRequest request)
         {
             return base.Channel.updateAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.updateResponse> updateAsync(Core.AutotaskIntegrations AutotaskIntegrations, Core.Entity[] Entities)
+        public System.Threading.Tasks.Task<Autotask.updateResponse> updateAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Entity[] Entities)
         {
-            Core.updateRequest inValue = new Core.updateRequest();
+            Autotask.updateRequest inValue = new Autotask.updateRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.Entities = Entities;
-            return ((Core.ATWSSoap)(this)).updateAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).updateAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.deleteResponse Core.ATWSSoap.delete(Core.deleteRequest request)
+        Autotask.deleteResponse Autotask.ATWSSoap.delete(Autotask.deleteRequest request)
         {
             return base.Channel.delete(request);
         }
         
-        public Core.ATWSResponse delete(Core.AutotaskIntegrations AutotaskIntegrations, Core.Entity[] Entities)
+        public Autotask.ATWSResponse delete(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Entity[] Entities)
         {
-            Core.deleteRequest inValue = new Core.deleteRequest();
+            Autotask.deleteRequest inValue = new Autotask.deleteRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.Entities = Entities;
-            Core.deleteResponse retVal = ((Core.ATWSSoap)(this)).delete(inValue);
+            Autotask.deleteResponse retVal = ((Autotask.ATWSSoap)(this)).delete(inValue);
             return retVal.deleteResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.deleteResponse> Core.ATWSSoap.deleteAsync(Core.deleteRequest request)
+        System.Threading.Tasks.Task<Autotask.deleteResponse> Autotask.ATWSSoap.deleteAsync(Autotask.deleteRequest request)
         {
             return base.Channel.deleteAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.deleteResponse> deleteAsync(Core.AutotaskIntegrations AutotaskIntegrations, Core.Entity[] Entities)
+        public System.Threading.Tasks.Task<Autotask.deleteResponse> deleteAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, Autotask.Entity[] Entities)
         {
-            Core.deleteRequest inValue = new Core.deleteRequest();
+            Autotask.deleteRequest inValue = new Autotask.deleteRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.Entities = Entities;
-            return ((Core.ATWSSoap)(this)).deleteAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).deleteAsync(inValue);
         }
         
-        public Core.ATWSZoneInfo getZoneInfo(string UserName)
+        public Autotask.ATWSZoneInfo getZoneInfo(string UserName)
         {
             return base.Channel.getZoneInfo(UserName);
         }
         
-        public System.Threading.Tasks.Task<Core.ATWSZoneInfo> getZoneInfoAsync(string UserName)
+        public System.Threading.Tasks.Task<Autotask.ATWSZoneInfo> getZoneInfoAsync(string UserName)
         {
             return base.Channel.getZoneInfoAsync(UserName);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.getThresholdAndUsageInfoResponse Core.ATWSSoap.getThresholdAndUsageInfo(Core.getThresholdAndUsageInfoRequest request)
+        Autotask.getThresholdAndUsageInfoResponse Autotask.ATWSSoap.getThresholdAndUsageInfo(Autotask.getThresholdAndUsageInfoRequest request)
         {
             return base.Channel.getThresholdAndUsageInfo(request);
         }
         
-        public Core.ATWSResponse getThresholdAndUsageInfo(Core.AutotaskIntegrations AutotaskIntegrations)
+        public Autotask.ATWSResponse getThresholdAndUsageInfo(Autotask.AutotaskIntegrations AutotaskIntegrations)
         {
-            Core.getThresholdAndUsageInfoRequest inValue = new Core.getThresholdAndUsageInfoRequest();
+            Autotask.getThresholdAndUsageInfoRequest inValue = new Autotask.getThresholdAndUsageInfoRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
-            Core.getThresholdAndUsageInfoResponse retVal = ((Core.ATWSSoap)(this)).getThresholdAndUsageInfo(inValue);
+            Autotask.getThresholdAndUsageInfoResponse retVal = ((Autotask.ATWSSoap)(this)).getThresholdAndUsageInfo(inValue);
             return retVal.getThresholdAndUsageInfoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.getThresholdAndUsageInfoResponse> Core.ATWSSoap.getThresholdAndUsageInfoAsync(Core.getThresholdAndUsageInfoRequest request)
+        System.Threading.Tasks.Task<Autotask.getThresholdAndUsageInfoResponse> Autotask.ATWSSoap.getThresholdAndUsageInfoAsync(Autotask.getThresholdAndUsageInfoRequest request)
         {
             return base.Channel.getThresholdAndUsageInfoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.getThresholdAndUsageInfoResponse> getThresholdAndUsageInfoAsync(Core.AutotaskIntegrations AutotaskIntegrations)
+        public System.Threading.Tasks.Task<Autotask.getThresholdAndUsageInfoResponse> getThresholdAndUsageInfoAsync(Autotask.AutotaskIntegrations AutotaskIntegrations)
         {
-            Core.getThresholdAndUsageInfoRequest inValue = new Core.getThresholdAndUsageInfoRequest();
+            Autotask.getThresholdAndUsageInfoRequest inValue = new Autotask.getThresholdAndUsageInfoRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
-            return ((Core.ATWSSoap)(this)).getThresholdAndUsageInfoAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).getThresholdAndUsageInfoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.GetWsdlVersionResponse Core.ATWSSoap.GetWsdlVersion(Core.GetWsdlVersionRequest request)
+        Autotask.GetWsdlVersionResponse Autotask.ATWSSoap.GetWsdlVersion(Autotask.GetWsdlVersionRequest request)
         {
             return base.Channel.GetWsdlVersion(request);
         }
         
-        public string GetWsdlVersion(Core.AutotaskIntegrations AutotaskIntegrations)
+        public string GetWsdlVersion(Autotask.AutotaskIntegrations AutotaskIntegrations)
         {
-            Core.GetWsdlVersionRequest inValue = new Core.GetWsdlVersionRequest();
+            Autotask.GetWsdlVersionRequest inValue = new Autotask.GetWsdlVersionRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
-            Core.GetWsdlVersionResponse retVal = ((Core.ATWSSoap)(this)).GetWsdlVersion(inValue);
+            Autotask.GetWsdlVersionResponse retVal = ((Autotask.ATWSSoap)(this)).GetWsdlVersion(inValue);
             return retVal.GetWsdlVersionResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.GetWsdlVersionResponse> Core.ATWSSoap.GetWsdlVersionAsync(Core.GetWsdlVersionRequest request)
+        System.Threading.Tasks.Task<Autotask.GetWsdlVersionResponse> Autotask.ATWSSoap.GetWsdlVersionAsync(Autotask.GetWsdlVersionRequest request)
         {
             return base.Channel.GetWsdlVersionAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.GetWsdlVersionResponse> GetWsdlVersionAsync(Core.AutotaskIntegrations AutotaskIntegrations)
+        public System.Threading.Tasks.Task<Autotask.GetWsdlVersionResponse> GetWsdlVersionAsync(Autotask.AutotaskIntegrations AutotaskIntegrations)
         {
-            Core.GetWsdlVersionRequest inValue = new Core.GetWsdlVersionRequest();
+            Autotask.GetWsdlVersionRequest inValue = new Autotask.GetWsdlVersionRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
-            return ((Core.ATWSSoap)(this)).GetWsdlVersionAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).GetWsdlVersionAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.GetInvoiceMarkupResponse Core.ATWSSoap.GetInvoiceMarkup(Core.GetInvoiceMarkupRequest request)
+        Autotask.GetInvoiceMarkupResponse Autotask.ATWSSoap.GetInvoiceMarkup(Autotask.GetInvoiceMarkupRequest request)
         {
             return base.Channel.GetInvoiceMarkup(request);
         }
         
-        public string GetInvoiceMarkup(Core.AutotaskIntegrations AutotaskIntegrations, int InvoiceId, string Format)
+        public string GetInvoiceMarkup(Autotask.AutotaskIntegrations AutotaskIntegrations, int InvoiceId, string Format)
         {
-            Core.GetInvoiceMarkupRequest inValue = new Core.GetInvoiceMarkupRequest();
+            Autotask.GetInvoiceMarkupRequest inValue = new Autotask.GetInvoiceMarkupRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.InvoiceId = InvoiceId;
             inValue.Format = Format;
-            Core.GetInvoiceMarkupResponse retVal = ((Core.ATWSSoap)(this)).GetInvoiceMarkup(inValue);
+            Autotask.GetInvoiceMarkupResponse retVal = ((Autotask.ATWSSoap)(this)).GetInvoiceMarkup(inValue);
             return retVal.GetInvoiceMarkupResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.GetInvoiceMarkupResponse> Core.ATWSSoap.GetInvoiceMarkupAsync(Core.GetInvoiceMarkupRequest request)
+        System.Threading.Tasks.Task<Autotask.GetInvoiceMarkupResponse> Autotask.ATWSSoap.GetInvoiceMarkupAsync(Autotask.GetInvoiceMarkupRequest request)
         {
             return base.Channel.GetInvoiceMarkupAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.GetInvoiceMarkupResponse> GetInvoiceMarkupAsync(Core.AutotaskIntegrations AutotaskIntegrations, int InvoiceId, string Format)
+        public System.Threading.Tasks.Task<Autotask.GetInvoiceMarkupResponse> GetInvoiceMarkupAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, int InvoiceId, string Format)
         {
-            Core.GetInvoiceMarkupRequest inValue = new Core.GetInvoiceMarkupRequest();
+            Autotask.GetInvoiceMarkupRequest inValue = new Autotask.GetInvoiceMarkupRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.InvoiceId = InvoiceId;
             inValue.Format = Format;
-            return ((Core.ATWSSoap)(this)).GetInvoiceMarkupAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).GetInvoiceMarkupAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Core.IntegrationCodeCheckResponse1 Core.ATWSSoap.IntegrationCodeCheck(Core.IntegrationCodeCheckRequest request)
+        Autotask.IntegrationCodeCheckResponse1 Autotask.ATWSSoap.IntegrationCodeCheck(Autotask.IntegrationCodeCheckRequest request)
         {
             return base.Channel.IntegrationCodeCheck(request);
         }
         
-        public Core.IntegrationCodeCheckResponse IntegrationCodeCheck(Core.AutotaskIntegrations AutotaskIntegrations, string userName)
+        public Autotask.IntegrationCodeCheckResponse IntegrationCodeCheck(Autotask.AutotaskIntegrations AutotaskIntegrations, string userName)
         {
-            Core.IntegrationCodeCheckRequest inValue = new Core.IntegrationCodeCheckRequest();
+            Autotask.IntegrationCodeCheckRequest inValue = new Autotask.IntegrationCodeCheckRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.userName = userName;
-            Core.IntegrationCodeCheckResponse1 retVal = ((Core.ATWSSoap)(this)).IntegrationCodeCheck(inValue);
+            Autotask.IntegrationCodeCheckResponse1 retVal = ((Autotask.ATWSSoap)(this)).IntegrationCodeCheck(inValue);
             return retVal.IntegrationCodeCheckResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Core.IntegrationCodeCheckResponse1> Core.ATWSSoap.IntegrationCodeCheckAsync(Core.IntegrationCodeCheckRequest request)
+        System.Threading.Tasks.Task<Autotask.IntegrationCodeCheckResponse1> Autotask.ATWSSoap.IntegrationCodeCheckAsync(Autotask.IntegrationCodeCheckRequest request)
         {
             return base.Channel.IntegrationCodeCheckAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Core.IntegrationCodeCheckResponse1> IntegrationCodeCheckAsync(Core.AutotaskIntegrations AutotaskIntegrations, string userName)
+        public System.Threading.Tasks.Task<Autotask.IntegrationCodeCheckResponse1> IntegrationCodeCheckAsync(Autotask.AutotaskIntegrations AutotaskIntegrations, string userName)
         {
-            Core.IntegrationCodeCheckRequest inValue = new Core.IntegrationCodeCheckRequest();
+            Autotask.IntegrationCodeCheckRequest inValue = new Autotask.IntegrationCodeCheckRequest();
             inValue.AutotaskIntegrations = AutotaskIntegrations;
             inValue.userName = userName;
-            return ((Core.ATWSSoap)(this)).IntegrationCodeCheckAsync(inValue);
+            return ((Autotask.ATWSSoap)(this)).IntegrationCodeCheckAsync(inValue);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
