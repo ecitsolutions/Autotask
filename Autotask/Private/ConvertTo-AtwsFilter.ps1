@@ -51,19 +51,7 @@ Function ConvertTo-AtwsFilter {
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-        
-        # Set up TimeZone offset handling
-        if (-not($script:ESTzone)) {
-            $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-        }
-    
-        if (-not($script:ESToffset)) {
-            $now = Get-Date
-            $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
-
-            $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $now).TotalHours
-        }
-    
+            
         $fields = Get-AtwsFieldInfo -Entity $entityName
         
         [string[]]$Filter = @()

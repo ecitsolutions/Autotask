@@ -314,21 +314,9 @@ Function New-AtwsAttachment {
     
     # Dynamic field info
     $fields = Get-AtwsFieldInfo -Entity AttachmentInfo
-    $DateTimeParams = $fields.Where({$_.Type -eq 'datetime'}).Name
-    $Picklists = $fields.Where{$_.IsPickList}
-    
-    # Set up TimeZone offset handling
-    if (-not($script:ESTzone)) {
-      $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-    }
-    
-    if (-not($script:ESToffset)) {
-      $now = Get-Date
-      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
 
-      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $now).TotalHours
-    }
-    
+    $Picklists = $fields.Where{$_.IsPickList}
+     
     # Publish dictionary
     $PublishToIndex = @{
       'All Autotask Users' = '1'
