@@ -47,8 +47,14 @@ Function ConvertTo-LocalObject {
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
         # Set up TimeZone offset handling
-        $EST = Get-TimeZone -Id 'Eastern Standard Time'
-        
+        $EST = Try {
+            # Attempt the windows naming convention first, should definitely hit the most use cases
+            Get-TimeZone -Id 'Eastern Standard Time'
+        }
+        catch {
+            # Probably not on windows. Lets try unix
+            Get-TimeZone -Id 'America/New_York'
+        }
         $result = @()
     }
 
