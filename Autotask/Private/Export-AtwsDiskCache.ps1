@@ -33,7 +33,12 @@ Function Export-AtwsDiskCache {
         }
      
         $CacheFile = 'AutotaskFieldInfoCache.xml'
-        $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
+        if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {  
+            $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
+        }
+        else {
+            $PersonalCacheDir = '{0}\.atwsCache' -f $([environment]::GetFolderPath('MyDocuments'))
+        }
         $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
 
         Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   

@@ -37,8 +37,15 @@ Function Import-AtwsDiskCache {
         $centralCache = '{0}\Private\{1}' -F $myModule.ModuleBase, $cacheFile
 
         Write-Verbose -Message ('{0}: Module cache location is {1}' -F $MyInvocation.MyCommand.Name, $centralCache)    
-    
-        $personalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
+        
+        # On Windows we store the cache in the WindowsPowerhell folder in My documents
+        # On macOS and Linux we use a dot-folder in the users $HOME folder as is customary
+        if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {  
+            $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
+        }
+        else {
+            $PersonalCacheDir = '{0}\.atwsCache' -f $([environment]::GetFolderPath('MyDocuments'))
+        }
         $personalCache = '{0}\{1}' -F $personalCacheDir, $cacheFile
     
         Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $personalCache)   

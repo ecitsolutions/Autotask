@@ -56,7 +56,6 @@ if ($MyInvocation.MyCommand.Name -eq 'AutotaskBeta.psm1') {
 }
 
 
-
 # Read our own manifest to access configuration data
 $manifestFileName = $MyInvocation.MyCommand.Name -replace 'pdm1$', 'psd1'
 $manifestDirectory = Split-Path $MyInvocation.MyCommand.Path -Parent
@@ -67,6 +66,25 @@ Import-LocalizedData -BindingVariable My -FileName $manifestFileName -BaseDirect
 
 # Add module path to manifest variable
 $My['ModuleBase'] = $manifestDirectory
+
+# On Windows we store the cache in the WindowsPowerhell folder in My documents
+# On macOS and Linux we use a dot-folder in the users $HOME folder as is customary
+if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {  
+    $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
+}
+else {
+    $PersonalCacheDir = '{0}\.atwsCache' -f $([environment]::GetFolderPath('MyDocuments'))
+}
+
+# Use different directory for beta versions
+if ($isBeta) { 
+    $dynamicCache = '{0}\{1}\Beta' -f $PersonalCacheDir, $Script:Atws.CI
+}
+else {
+    $dynamicCache = '{0}\{1}\Dynamic' -f $PersonalCacheDir, $Script:Atws.CI
+}
+
+$My['DynamicCache'] = $dynamicCache
 
 # Get all function files as file objects
 # Private functions can only be called internally in other functions in the module 
@@ -168,12 +186,8 @@ if (($Credential) -or ($ApiTrackingIdentifier)) {
     # Connect to the API using required, additional parameters, using internal function name
     . Connect-AtwsWebServices @connectArgs
     if (!$connectArgs['NoDiskCache']) {
-        if ($isBeta) { 
-            $dynamicCache = '{0}\WindowsPowershell\Cache\{1}\Beta' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
-        }
-        else {
-            $dynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
-        }
+
+        
         if (Test-Path $dynamicCache) {
             $FunctionCount = $dynamicFunction.Count
             $dynamicFunction = @( Get-ChildItem -Path $dynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )
