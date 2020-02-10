@@ -1,7 +1,7 @@
 <#
     .COPYRIGHT
     Copyright (c) Office Center H�nefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 

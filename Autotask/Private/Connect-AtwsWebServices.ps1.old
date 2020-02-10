@@ -1,8 +1,8 @@
 ﻿<#
 
     .COPYRIGHT
-    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md  for license information.
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 
 #>
 
@@ -68,7 +68,7 @@ Function Connect-AtwsWebServices {
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
     
-        $DefaultUri = 'https://webservices.Autotask.net/atservices/1.6/atws.wsdl'
+        $DefaultUri = 'https://webservices.Autotask.net/atservices/1.6/atws.asmx'
     
         # Unless warning level is specified explicitly - Show warnings!
         if (-not ($WarningAction)) {
@@ -88,6 +88,35 @@ Function Connect-AtwsWebServices {
         else {
             $Script:UseDiskCache = $true    
         }
+
+        # Path to web service reference
+        $code = '{0}\Private\Reference.cs' -f $My['ModuleBase']
+
+        # List of needed assemblies
+        $assemblies = @(
+            # These were enough on Windows 10
+            'System.ServiceModel'
+            'System.ServiceModel.Duplex' 
+            'System.ServiceModel.Http'
+            'System.ServiceModel.NetTcp'
+            'System.ServiceModel.Security'
+            'System.Diagnostics.Debug'
+            'System.Xml'
+            'System.Xml.ReaderWriter'
+            'System.Runtime.Serialization'
+        )
+        # Check OS platform and add assemblies if not on windows. These will fail on windows.
+        if (-not([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows))) { 
+            $assemblies += @( 
+                # Core on MacOs
+                'netstandard'
+                'System.Xml.XmlSerializer'
+                'System.Runtime.Serialization.Xml'
+                'System.ServiceModel.Primitives'
+                'System.Private.ServiceModel'
+                'System.Diagnostics.Tools'
+            )
+        }
     }
   
     process { 
@@ -98,23 +127,25 @@ Function Connect-AtwsWebServices {
             Id       = 4
         }
     
-        # Make sure Windows does not try to add a domain to username
-        # Prefix username with a backslash if nobody has added one yet
-        # And make sure we stick to the local scope - important when debugging...
-        if ($($local:Credential.UserName).Substring(0, 1) -ne '\') {
-            $local:Credential = New-Object System.Management.Automation.PSCredential("\$($local:Credential.UserName)", $($local:Credential.Password))
-        }
-    
-        # Post progress info to console
-        Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $local:Credential.UserName, $DefaultUri)
-        Write-Progress -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
-    
+        # Compile webserviceinfo (Reference.cs) and instantiate a SOAP client
+        Add-Type -TypeDefinition (get-content -raw $code) -ReferencedAssemblies $assemblies
+        
+        # Create a  binding with no authentication
+        $anonymousBinding = [ServiceModel.BasicHttpsBinding]::new()
+
+        # Create an endpoint pointing at the default URI
+        $endPoint = [ServiceModel.EndpointAddress]::new($DefaultUri)
+
         # First make an unauthenticated call to the DefaultURI to determine correct
         # web services endpoint for the user we are going to authenticate as
-        $RootService = New-WebServiceProxy -URI $DefaultUri
+        $rootService = [Autotask.ATWSSoapClient]::new($anonymousBinding, $endPoint)
+  
+        # Post progress info to console
+        Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $Credential.UserName, $DefaultUri)
+        Write-Progress -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
     
         # Get ZoneInfo for username
-        $ZoneInfo = $RootService.getZoneInfo($local:Credential.UserName)
+        $zoneInfo = $rootService.getZoneInfo($Credential.UserName)
     
         # If we get an error the username is almost certainly misspelled or nonexistant
         if ($ZoneInfo.ErrorCode -ne 0) {
@@ -129,18 +160,30 @@ Function Connect-AtwsWebServices {
     
         # Post progress to console
         Write-Progress -Status 'Datacenter located' -PercentComplete 30 -CurrentOperation 'Authenticating to web service' @ProgressParameters
-          
-        # Pick the correct web services endpoint for the current username
-        # and change it to point at the WSDL definitoin
-        $Uri = $ZoneInfo.URL -replace 'atws.asmx', 'atws.wsdl'
-    
+             
         # Make sure a failure to create this object truly fails the script
-        Write-Verbose ('{0}: Creating New-WebServiceProxy against URI: {1}' -F $MyInvocation.MyCommand.Name, $Uri)
+        Write-Verbose ('{0}: Creating new SOAP client using URI: {1}' -F $MyInvocation.MyCommand.Name, $Uri)
         try {
             # Create a new webservice proxy or die trying...
-            $script:Atws = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
-            # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
-            $script:Atws.PreAuthenticate = $true
+            # First create an endpoint pointing at the correct URI
+            $endPoint = [ServiceModel.EndpointAddress]::new($zoneInfo.url)
+
+            # Create a new binding with basic authentication
+            $binding = [ServiceModel.BasicHttpsBinding]::new()
+            $binding.Security.Transport.ClientCredentialType = [ServiceModel.HttpClientCredentialType]::Basic
+            $binding.Security.Mode = [ServiceModel.BasicHttpsSecurityMode]::Transport
+
+            # Increase the message size from default
+            $binding.MaxReceivedMessageSize = 20000000
+            $binding.MaxBufferSize = 20000000
+            $binding.MaxBufferPoolSize = 20000000
+
+            # Create a new SOAP client pointing at the correct webservice with authentication
+            $script:Atws = [Autotask.ATWSSoapClient]::new($binding, $endPoint)
+            
+            # Set username and password immediately as the first two methods to call
+            $script:Atws.ClientCredentials.UserName.UserName = $Credential.UserName
+            $script:Atws.ClientCredentials.UserName.Password = $Credential.GetNetworkCredential().Password
       
             ## Add API Integrations Value 
             # A dedicated object type has been created to store integration values
@@ -150,7 +193,7 @@ Function Connect-AtwsWebServices {
             $AutotaskIntegrationsValue.IntegrationCode = $ApiTrackingIdentifier
 
             # Add the integrations value to the Web Service Proxy
-            $script:Atws.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
+            Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name IntegrationsValue -Value $AutotaskIntegrationsValue -Force
         
             ## Add tenant identifier to connection
             Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name CI -Value $ZoneInfo.CI -Force
@@ -166,7 +209,7 @@ Function Connect-AtwsWebServices {
         Write-Progress -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection' @ProgressParameters
        
         # Get username part of credential
-        $UserName = $Credential.UserName.Split('@')[0].Trim('\')
+        $UserName = $Credential.UserName.Split('@')[0]
         $result = Get-AtwsData -Entity Resource -Filter "username -eq $UserName"
     
         if ($result) {

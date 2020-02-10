@@ -3,8 +3,8 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+Copyright (c) ECIT Solutions AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 Function New-AtwsAttachment {
@@ -393,7 +393,7 @@ Function New-AtwsAttachment {
     
     # Do it, I dare you!
     if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-      $AttachmentId = $Script:Atws.CreateAttachment($Attachment)
+            $AttachmentId = $Script:Atws.CreateAttachment($script:atws.integrationsValue, $Attachment)
       
       $result = Get-AtwsAttachmentInfo -id $AttachmentId
       

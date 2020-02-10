@@ -2,7 +2,7 @@
 
 .COPYRIGHT
 Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 Function Get-Copyright {
@@ -30,7 +30,7 @@ Function Get-Copyright {
 
 .COPYRIGHT
 Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 "@

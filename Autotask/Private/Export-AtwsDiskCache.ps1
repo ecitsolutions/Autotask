@@ -1,8 +1,8 @@
 ﻿<#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+Copyright (c) ECIT Solutions AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 Function Export-AtwsDiskCache {
@@ -33,21 +33,17 @@ Function Export-AtwsDiskCache {
         }
      
         $CacheFile = 'AutotaskFieldInfoCache.xml'
-        if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {  
-            $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
-        }
-        else {
-            $PersonalCacheDir = '{0}\.atwsCache' -f $([environment]::GetFolderPath('MyDocuments'))
-        }
-        $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
-
-        Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
     }
   
     process {
         # If the module variable UseDiskCache is $false or does not exist, this function does nothing...
     
-        if ($Script:UseDiskCache) { 
+        if ($script:atws.Configuration.UseDiskCache) { 
+
+            $PersonalCacheDir = $My['DynamicCache']
+            $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
+            Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
+
             # This REALLY should be there, but better safe than sorry
             # Create Personalcache directory if it doesn't exist
             if (-not (Test-Path $PersonalCacheDir)) {

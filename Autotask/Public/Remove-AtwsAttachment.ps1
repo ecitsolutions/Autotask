@@ -3,8 +3,8 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+Copyright (c) ECIT Solutions AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 Function Remove-AtwsAttachment {
@@ -194,7 +194,7 @@ Function Remove-AtwsAttachment {
     if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
       $result = @()
       foreach ($AttachmentId in $id) {
-        $result += $Script:Atws.DeleteAttachment($AttachmentId)
+        $result += $Script:Atws.DeleteAttachment($script:atws.integrationsValue, $AttachmentId)
       }
 
       Write-Verbose ('{0}: Number of attachment(s) deleted: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)

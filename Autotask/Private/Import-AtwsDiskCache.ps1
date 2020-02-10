@@ -1,8 +1,8 @@
 ﻿<#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+Copyright (c) ECIT Solutions AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 Function Import-AtwsDiskCache {
@@ -38,22 +38,15 @@ Function Import-AtwsDiskCache {
 
         Write-Verbose -Message ('{0}: Module cache location is {1}' -F $MyInvocation.MyCommand.Name, $centralCache)    
         
-        # On Windows we store the cache in the WindowsPowerhell folder in My documents
-        # On macOS and Linux we use a dot-folder in the users $HOME folder as is customary
-        if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {  
-            $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
-        }
-        else {
-            $PersonalCacheDir = '{0}\.atwsCache' -f $([environment]::GetFolderPath('MyDocuments'))
-        }
-        $personalCache = '{0}\{1}' -F $personalCacheDir, $cacheFile
-    
-        Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $personalCache)   
+        $PersonalCacheDir = $My['DynamicCache']
+        $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
+        Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
+  
     }
   
     process {
         # Do not check for existence of personal cache if asked to load module without it
-        if ($Script:UseDiskCache) { 
+        if ($script:atws.Configuration.UseDiskCache) { 
             if (-not (Test-Path $personalCache)) {
                 Write-Verbose -Message ('{0}: There is no personal cache. Creating from central location.' -F $MyInvocation.MyCommand.Name)
       
@@ -110,7 +103,7 @@ Function Import-AtwsDiskCache {
         }
     
         # We must be connected to know the customer identity number
-        if ($Script:Atws -and $Script:UseDiskCache) {
+        if ($script:Atws.CI) {
             # If the current connection is for a new Autotask tenant, copy the blank 
             # cache from the included pre-cache
             if (-not ($Script:Cache.ContainsKey($Script:Atws.CI))) {

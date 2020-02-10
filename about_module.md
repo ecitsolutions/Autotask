@@ -51,7 +51,7 @@ This starts the process that creates a dynamic PowerShell module, tailor made fo
 
 [1]: https://www.autotask.com
 [2]: https://ww4.autotask.net/help/Content/LinkedDOCUMENTS/WSAPI/T_WebServicesAPIv1_5.pdf
-[3]: https://github.com/officecenter/Autotask/blob/master/LICENSE.md
+[3]: https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md
 [4]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20Query.md
 [5]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20create%20new%20entities.md
 [6]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20make%20changes%20to%20entities.md

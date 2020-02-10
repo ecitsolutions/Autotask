@@ -2,8 +2,8 @@
 <#
 
     .COPYRIGHT
-    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md  for license information.
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 
 #>
 
@@ -51,7 +51,7 @@ Function Get-AtwsThresholdAndUsageInfo {
 
   process {
     try { 
-      $result = $Script:Atws.GetThresholdAndUsageInfo()
+      $result = $Script:Atws.GetThresholdAndUsageInfo($script:atws.integrationsValue)
     }
     catch {
       Write-Warning ('{0}: FAILED on GetThresholdAndUsageInfo(). No data returned.' -F $MyInvocation.MyCommand.Name)
