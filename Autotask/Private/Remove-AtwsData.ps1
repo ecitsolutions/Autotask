@@ -75,7 +75,7 @@ Function Remove-AtwsData {
                 $errors = @()
         
                 # We are deleting...
-                $result = $atws.delete($workingSet)
+                $result = $atws.delete($script:atws.integrationValue, $workingSet)
                 
                 # Do we have any errors? We get two lines pr error. Or so I did during testing.
                 for ($t = 0; $t -lt $result.errors.Count; $t += 2) {

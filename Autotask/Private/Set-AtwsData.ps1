@@ -96,7 +96,7 @@ Function Set-AtwsData {
                 # Are we creating or updating? 
                 if ($Create.IsPresent) { 
                     # We are creating. i.e. New-
-                    $result = $atws.create($workingSet)
+                    $result = $atws.create($script:atws.integrationValue, $workingSet)
 
                     # Check for duplicates
                     $duplicates = $result.EntityReturnInfoResults | Where-Object { $_.DuplicateStatus.Found -and -not $_.DuplicateStauts.Ignored }
@@ -107,7 +107,7 @@ Function Set-AtwsData {
                 }
                 else { 
                     # We are updating
-                    $result = $atws.update($workingSet)
+                    $result = $atws.update($script:atws.integrationValue, $workingSet)
                 }
         
                 for ($t = 0; $t -lt $result.errors.Count; $t += 2) {
