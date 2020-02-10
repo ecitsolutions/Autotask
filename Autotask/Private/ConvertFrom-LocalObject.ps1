@@ -46,7 +46,7 @@ Function ConvertFrom-LocalObject {
         # Set up TimeZone offset handling
         $EST = Try {
             # Attempt the windows naming convention first, should definitely hit the most use cases
-            Get-TimeZone -Id 'Eastern Standard Time'
+            Get-TimeZone -Id 'Eastern Standard Time' -ErrorAction Stop
         }
         catch {
             # Probably not on windows. Lets try unix
