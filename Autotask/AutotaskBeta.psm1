@@ -138,7 +138,7 @@ if (($Credential) -or ($ApiTrackingIdentifier)) {
         { $_.Name -eq 'AtwsUsePicklistLabels' } {
             Write-Debug ('{0}: Converting picklistvalues to their labels are turned ON' -F $MyInvocation.MyCommand.Name)
 
-            $Script:UsePickListLabels = $true
+            $Script:Atws.Configuration.ConvertPicklistIdToLabel = $true
     
             # Remove Global Object
     
