@@ -7,21 +7,21 @@ See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license
 #>
 Function Import-AtwsDiskCache {
      <#
-      .SYNOPSIS
+            .SYNOPSIS
 
-      .DESCRIPTION
+            .DESCRIPTION
 
-      .INPUTS
+            .INPUTS
 
-      .OUTPUTS
+            .OUTPUTS
 
-      .EXAMPLE
+            .EXAMPLE
 
-      .NOTES
-      NAME: 
-      .LINK
+            .NOTES
+            NAME: 
+            .LINK
 
-  #>
+    #>
     [CmdLetBinding()]
   
     Param()
@@ -36,9 +36,28 @@ Function Import-AtwsDiskCache {
     
         $centralCache = '{0}\Private\{1}' -F $myModule.ModuleBase, $cacheFile
 
-        Write-Verbose -Message ('{0}: Module cache location is {1}' -F $MyInvocation.MyCommand.Name, $centralCache)    
+        Write-Verbose -Message ('{0}: Module cache location is {1}' -F $MyInvocation.MyCommand.Name, $centralCache)  
         
-        $PersonalCacheDir = $My['DynamicCache']
+        # On Windows we store the cache in the WindowsPowerhell folder in My documents
+        # On macOS and Linux we use a dot-folder in the users $HOME folder as is customary
+        if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {  
+            $dynamicCache = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
+        }
+        else {
+            $dynamicCache = '{0}\.atwsCache' -f $([environment]::GetFolderPath('MyDocuments'))
+        }
+
+        # Use different directory for beta versions
+        if ($My['IsBeta']) { 
+            $PersonalCacheDir = '{0}\{1}\Beta' -f $dynamicCache, $Script:Atws.CI
+        }
+        else {
+            $PersonalCacheDir = '{0}\{1}\Dynamic' -f $dynamicCache, $Script:Atws.CI
+        }
+
+        # Save the cache path to the module information
+        $My['DynamicCache'] = $PersonalCacheDir  
+        
         $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
         Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
   
@@ -46,6 +65,8 @@ Function Import-AtwsDiskCache {
   
     process {
         # Do not check for existence of personal cache if asked to load module without it
+        # This function should not be called from a context where this is necessary, but
+        # better be on the safe side
         if ($script:atws.Configuration.UseDiskCache) { 
             if (-not (Test-Path $personalCache)) {
                 Write-Verbose -Message ('{0}: There is no personal cache. Creating from central location.' -F $MyInvocation.MyCommand.Name)
