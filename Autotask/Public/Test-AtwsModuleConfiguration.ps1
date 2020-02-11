@@ -26,29 +26,29 @@ Function Test-AtwsModuleConfiguration {
     #>
 	
     [cmdletbinding(
-            ConfirmImpact = 'Low',
-            DefaultParameterSetName = 'Default'
+        ConfirmImpact = 'Low',
+        DefaultParameterSetName = 'Default'
     )]
     Param
     (
         [Parameter(
-                Mandatory = $true,
-                ValueFromPipeline = $true
+            Mandatory = $true,
+            ValueFromPipeline = $true
         )]
         [ValidateNotNullOrEmpty()]
         [ValidateScript( { 
-                    $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'UsePicklistLabels', 'Prefix', 'RefreshCache', 'UseDiskCache')
-                    $members = Get-Member -InputObject $_ -MemberType NoteProperty
-                    $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
-                    if (-not($missingProperties)) {
-                        $true               
-                    }
-                    else {
-                        $missingProperties | ForEach-Object {
-                            Throw [System.Management.Automation.ValidationMetadataException] "Property: '$_' missing"
-                        } 
-                    }
-        })]
+                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'UsePicklistLabels', 'Prefix', 'RefreshCache', 'UseDiskCache')
+                $members = Get-Member -InputObject $_ -MemberType NoteProperty
+                $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
+                if (-not($missingProperties)) {
+                    $true               
+                }
+                else {
+                    $missingProperties | ForEach-Object {
+                        Throw [System.Management.Automation.ValidationMetadataException] "Property: '$_' missing"
+                    } 
+                }
+            })]
         [pscustomobject]
         $Configuration 
     )
@@ -73,68 +73,68 @@ Function Test-AtwsModuleConfiguration {
         #>
 	
         [cmdletbinding(
-                ConfirmImpact = 'Low',
-                DefaultParameterSetName = 'Default'
+            ConfirmImpact = 'Low',
+            DefaultParameterSetName = 'Default'
         )]
         Param
         (
             [Parameter(
-                    Mandatory = $true,
-                    ValueFromPipelineByPropertyName = $true
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
             )]
             [ValidateNotNullOrEmpty()] 
             [string]
             $Username,
     
             [Parameter(
-                    Mandatory = $true,
-                    ValueFromPipelineByPropertyName = $true
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
             )]
             [ValidateNotNullOrEmpty()]
             [securestring]
             $SecurePassword,
     
             [Parameter(
-                    Mandatory = $true,
-                    ValueFromPipelineByPropertyName = $true
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
             )]
             [ValidateNotNullOrEmpty()]
             [securestring]
             $SecureTrackingIdentifier,
     
             [Parameter(
-                    Mandatory = $true,
-                    ValueFromPipelineByPropertyName = $true
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
             )]
             [switch]
             $UsePicklistLabels,
     
             [Parameter(
-                    ValueFromPipelineByPropertyName = $true
+                ValueFromPipelineByPropertyName = $true
             )]
-            [ValidateScript({
-                # It can be empty, but if it isn't it should be max 8 characters and only letters and numbers
-                if($_.length -eq 0 -or ($_ -match '[a-zA-Z0-9]' -and $_.length -gt 0 -and $_.length -le 8)) {
-                    $true
-                }
-                else {
-                    $false
-                }
-              })]
+            [ValidateScript( {
+                    # It can be empty, but if it isn't it should be max 8 characters and only letters and numbers
+                    if ($_.length -eq 0 -or ($_ -match '[a-zA-Z0-9]' -and $_.length -gt 0 -and $_.length -le 8)) {
+                        $true
+                    }
+                    else {
+                        $false
+                    }
+                })]
             [string]
             $Prefix,
 
             [Parameter(
-                    Mandatory = $true,
-                    ValueFromPipelineByPropertyName = $true
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
             )]
             [switch]
             $RefreshCache,
 
     
             [Parameter(
-                    Mandatory = $true,
-                    ValueFromPipelineByPropertyName = $true
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
             )]
             [switch]
             $UseDiskCache

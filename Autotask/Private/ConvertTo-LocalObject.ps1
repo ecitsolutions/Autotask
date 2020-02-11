@@ -28,8 +28,8 @@ Function ConvertTo-LocalObject {
     Param
     (
         [Parameter(
-                Mandatory = $true,
-                ValueFromPipeline = $true
+            Mandatory = $true,
+            ValueFromPipeline = $true
         )]
         [PSObject[]]
         $InputObject,
@@ -114,10 +114,9 @@ Function ConvertTo-LocalObject {
             }
             
             if (-not $NoPickListLabel.IsPresent) { 
-                Foreach ($field in $Picklists)
-                {
+                Foreach ($field in $Picklists) {
                     $fieldName = '{0}Label' -F $field.Name
-                    $value = ($field.PickListValues.Where{$_.Value -eq $object.$($field.Name)}).Label
+                    $value = ($field.PickListValues.Where{ $_.Value -eq $object.$($field.Name) }).Label
                     Add-Member -InputObject $object -MemberType NoteProperty -Name $fieldName -Value $value -Force
                 }
             }

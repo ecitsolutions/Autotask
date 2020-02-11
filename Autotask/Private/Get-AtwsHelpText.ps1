@@ -6,7 +6,7 @@ See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license
 
 #>
 Function Get-AtwsHelpText {
-     <#
+    <#
       .SYNOPSIS
 
       .DESCRIPTION

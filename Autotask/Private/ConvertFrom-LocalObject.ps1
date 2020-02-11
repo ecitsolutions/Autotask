@@ -27,8 +27,8 @@ Function ConvertFrom-LocalObject {
     Param
     (
         [Parameter(
-                Mandatory = $true,
-                ValueFromPipeline = $true
+            Mandatory = $true,
+            ValueFromPipeline = $true
         )]
         [PSObject[]]
         $InputObject

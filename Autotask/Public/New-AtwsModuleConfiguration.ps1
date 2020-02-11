@@ -7,7 +7,7 @@
 #>
 
 Function New-AtwsModuleConfiguration {
-  <#
+    <#
             .SYNOPSIS
             This function re-loads the module with the correct parameters for full functionality
             .DESCRIPTION
@@ -25,73 +25,73 @@ Function New-AtwsModuleConfiguration {
             NAME: Connect-AtwsWebAPI
     #>
 	
-  [cmdletbinding(
-    SupportsShouldProcess = $true,
-    ConfirmImpact = 'Low',
-    DefaultParameterSetName = 'Default'
-  )]
-  Param
-  (
-    [Parameter()]
-    [ValidateNotNullOrEmpty()]    
-    [pscredential]
-    $Credential = $(Get-Credential -Message 'Your Autotask API user'),
+    [cmdletbinding(
+        SupportsShouldProcess = $true,
+        ConfirmImpact = 'Low',
+        DefaultParameterSetName = 'Default'
+    )]
+    Param
+    (
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]    
+        [pscredential]
+        $Credential = $(Get-Credential -Message 'Your Autotask API user'),
     
-    [Parameter()]
-    [securestring]
-    $ApiTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier:'),
+        [Parameter()]
+        [securestring]
+        $ApiTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier:'),
     
-    [Parameter()]
-    [Alias('Picklist')]
-    [switch]
-    $UsePicklistLabels = $false,
+        [Parameter()]
+        [Alias('Picklist')]
+        [switch]
+        $UsePicklistLabels = $false,
     
-    [Parameter()]
-    [ValidatePattern('[a-zA-Z0-9]')]
-    [ValidateLength(1, 8)]
-    [string]
-    $Prefix,
+        [Parameter()]
+        [ValidatePattern('[a-zA-Z0-9]')]
+        [ValidateLength(1, 8)]
+        [string]
+        $Prefix,
 
-    [Parameter()]
-    [switch]
-    $RefreshCache = $false,
+        [Parameter()]
+        [switch]
+        $RefreshCache = $false,
 
     
-    [Parameter()]
-    [switch]
-    $NoDiskCache = $false
-  )
+        [Parameter()]
+        [switch]
+        $NoDiskCache = $false
+    )
     
-  begin { 
+    begin { 
     
-    # Enable modern -Debug behavior
-    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-  }
+    }
   
-  process {
-    $configuration = [PSCustomObject]@{
-      Username                 = $Credential.UserName
-      SecurePassword           = $Credential.Password
-      SecureTrackingIdentifier = $ApiTrackingIdentifier
-      UsePicklistLabels        = $UsePicklistLabels.IsPresent
-      Prefix                   = $Prefix
-      RefreshCache             = $RefreshCache.IsPresent
-      UseDiskCache             = $NoDiskCache.IsPresent -xor $true
+    process {
+        $configuration = [PSCustomObject]@{
+            Username                 = $Credential.UserName
+            SecurePassword           = $Credential.Password
+            SecureTrackingIdentifier = $ApiTrackingIdentifier
+            UsePicklistLabels        = $UsePicklistLabels.IsPresent
+            Prefix                   = $Prefix
+            RefreshCache             = $RefreshCache.IsPresent
+            UseDiskCache             = $NoDiskCache.IsPresent -xor $true
+        }
+        if (Test-AtwsModuleConfiguration -Configuration $configuration) {
+            Write-Verbose ('{0}: Module configuration validated OK.' -F $MyInvocation.MyCommand.Name)
+        }
+        else {
+            Write-Warning ('{0}: Module configuration could not be validated!' -F $MyInvocation.MyCommand.Name)
+        }
     }
-    if (Test-AtwsModuleConfiguration -Configuration $configuration) {
-      Write-Verbose ('{0}: Module configuration validated OK.' -F $MyInvocation.MyCommand.Name)
-    }
-    else {
-      Write-Warning ('{0}: Module configuration could not be validated!' -F $MyInvocation.MyCommand.Name)
-    }
-  }
   
-  end {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    return $configuration
-  }
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        return $configuration
+    }
  
 }

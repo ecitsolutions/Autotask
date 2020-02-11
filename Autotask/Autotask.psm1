@@ -1,28 +1,28 @@
 <#
-        .COPYRIGHT
-        Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
-        See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
+    .COPYRIGHT
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 #>
 
 [CmdletBinding(
-        PositionalBinding = $false
+    PositionalBinding = $false
 )]
 Param(
     [Parameter(
-            Position = 0
+        Position = 0
     )]
     [pscustomobject]
     $Credential,
     
     [Parameter(
-            Position = 1
+        Position = 1
     )]
     [string]
     $ApiTrackingIdentifier, 
 
     [Parameter(
-            Position = 2,
-            ValueFromRemainingArguments = $true
+        Position = 2,
+        ValueFromRemainingArguments = $true
     )]
     [string[]]
     $entityName
@@ -115,7 +115,7 @@ if ($Credential) {
         #  The user passed credentials directly
         $Parameters = @{
             Credential            = $Credential
-            ApiTrackingIdentifier = ConvertTo-Securestring $ApiTrackingIdentifier -AsPlainText -Force
+            ApiTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
         }
         $Configuration = New-AtwsModuleConfiguration @Parameters
     }
@@ -136,13 +136,9 @@ if ($Credential) {
         throw $_
         return
     }
+    
     # From now on we should have module variable atws available
-
     if ($script:atws.Configuration.UseDiskCache) {
-
-       
-        
-       
         
         # Locate and load the connection specific script files
         if (Test-Path $dynamicCache) {
@@ -282,6 +278,6 @@ if ($oldVerbosePreference -ne $VerbosePreference) {
     $VerbosePreference = $oldVerbosePreference
 }
 if ($oldDebugPreference -ne $DebugPreference) {
-  Write-Debug ('{0}: Restoring old Debug preference' -F $MyInvocation.MyCommand.Name)
-  $DebugPreference = $oldDebugPreference
+    Write-Debug ('{0}: Restoring old Debug preference' -F $MyInvocation.MyCommand.Name)
+    $DebugPreference = $oldDebugPreference
 }

@@ -32,14 +32,14 @@ Function ConvertTo-AtwsFilter {
     Param
     (
         [Parameter(
-                Mandatory = $true,
-                ValueFromPipeline = $true
+            Mandatory = $true,
+            ValueFromPipeline = $true
         )]
         [System.Collections.Generic.Dictionary`2[System.string, System.Object]]
         $BoundParameters,
     
         [Parameter(
-                Mandatory = $true
+            Mandatory = $true
         )]
         [ValidateScript( { $Script:FieldInfoCache.Keys -contains $_ })]
         [string]
@@ -125,10 +125,10 @@ Function ConvertTo-AtwsFilter {
                         }
                     }  
                     elseif ($field.Type -eq 'boolean') {
-                      $value = switch ($parameterValue) {
-                        {@('1','true') -contains $_}  { 1 }
-                        {@('0','false') -contains $_} { 0 }
-                      }          
+                        $value = switch ($parameterValue) {
+                            { @('1', 'true') -contains $_ } { 1 }
+                            { @('0', 'false') -contains $_ } { 0 }
+                        }          
                     }       
                     else {
                         $value = $parameterValue
