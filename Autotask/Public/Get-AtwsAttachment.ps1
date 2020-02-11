@@ -2,7 +2,7 @@
 <#
 
 .COPYRIGHT
-Copyright (c) ECIT Solutions AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
 See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
@@ -247,7 +247,7 @@ Function Get-AtwsAttachment {
                     $item.$dateTimeParam = $value.AddHours($script:ESToffset)
                 }
 
-                if ($Script:UsePickListLabels) { 
+                if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) { 
                     # Restore picklist labels
                     foreach ($field in $picklists) {
                         if ($item.$($field.Name) -in $field.PicklistValues.Value) {

@@ -26,7 +26,6 @@ Function New-AtwsModuleConfiguration {
     #>
 	
     [cmdletbinding(
-        SupportsShouldProcess = $true,
         ConfirmImpact = 'Low',
         DefaultParameterSetName = 'Default'
     )]
@@ -76,7 +75,7 @@ Function New-AtwsModuleConfiguration {
             Username                 = $Credential.UserName
             SecurePassword           = $Credential.Password
             SecureTrackingIdentifier = $ApiTrackingIdentifier
-            UsePicklistLabels        = $UsePicklistLabels.IsPresent
+            ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
             Prefix                   = $Prefix
             RefreshCache             = $RefreshCache.IsPresent
             UseDiskCache             = $NoDiskCache.IsPresent -xor $true

@@ -52,7 +52,7 @@ Function Connect-AtwsWebServices {
         [Alias('Configuration')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript( { 
-                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'UsePicklistLabels', 'Prefix', 'RefreshCache', 'UseDiskCache')
+                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'UseDiskCache')
                 $members = Get-Member -InputObject $_ -MemberType NoteProperty
                 $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
                 if (-not($missingProperties)) {

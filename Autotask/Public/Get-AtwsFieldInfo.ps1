@@ -106,7 +106,7 @@ Function Get-AtwsFieldInfo {
         }
     
         # Has cache been loaded?
-        if ($Script:Atws.Cache.Count -gt 0) {
+        if (-not($Script:Atws.Cache.Count -gt 0)) {
             # Load it.
             Import-AtwsDiskCache
         }

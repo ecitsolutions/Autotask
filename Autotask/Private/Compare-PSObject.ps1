@@ -1,26 +1,25 @@
 ﻿<#
-
-.COPYRIGHT
-Copyright (c) ECIT Solutions AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
-
+    .COPYRIGHT
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
 Function Compare-PSObject {
     <#
-      .SYNOPSIS
-
-      .DESCRIPTION
-
-      .INPUTS
-
-      .OUTPUTS
-
-      .EXAMPLE
-
-      .NOTES
-      NAME: 
-      .LINK
-
+        .SYNOPSIS
+            This function compares two collections of PSObjects and returns $true if they
+            are identical by value.
+        .DESCRIPTION
+            This function compares two collections of PSObjects and returns $true if they
+            are identical by value.
+        .INPUTS
+            [PSObject[]]
+        .OUTPUTS
+            [bool]
+        .EXAMPLE
+            Compare-PSObject -ReferenceObject $Collection1 -DifferenceObject $Collection2
+            Returns true if both collections contains the same objects by value
+        .NOTES
+            NAME: Compare-PSObject
   #>
     [CmdLetBinding()]
     Param

@@ -101,7 +101,7 @@ Function ConvertTo-LocalObject {
                 }
             }
     
-            if ($Script:UsePickListLabels) { 
+            if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) { 
                 # Restore picklist labels
                 foreach ($field in $Picklists) {
                     if ($object.$($field.Name) -in $field.PicklistValues.Value) {
