@@ -1,26 +1,36 @@
 ﻿
 <#
-
-.COPYRIGHT
-Copyright (c) ECIT Solutions AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
-
+    .COPYRIGHT
+    Copyright (c) ECIT Solutions AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
 Function Get-AtwsPSParameter {
     <#
-      .SYNOPSIS
+        .SYNOPSIS
+            This function creates a Powershell parameter definition as text.
+        .DESCRIPTION
+            Based on parameter values this function creates Powershell code as
+            text that can be converted to a scriptblock and executed.
+        .INPUTS
+            Multiple parameters representing the various parameter options.
+        .OUTPUTS
+            Text
+        .EXAMPLE
+            Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'string' -Mandatory -Remaining -NotNull  -Array -Comment $Comment
+            Returns as text:
 
-      .DESCRIPTION
-
-      .INPUTS
-
-      .OUTPUTS
-
-      .EXAMPLE
-
-      .NOTES
-      NAME: 
-      .LINK
+            # <value of $comment>
+            [Parameter(
+                Mandatory = $true,
+                ValueFromRemainingArguments = $true,
+                ParametersetName = 'Filter'
+            )]
+            [ValidateNotNullOrEmpty()]
+            [string[]]
+            $Filter
+        .NOTES
+            NAME: Get-AtwsPSParameter
+        .LINK
 
   #>
     [CmdLetBinding()]
