@@ -75,13 +75,13 @@ Function New-AtwsModuleConfiguration {
     $configuration = [PSCustomObject]@{
       Username                 = $Credential.UserName
       SecurePassword           = $Credential.Password
-      SecureTrackingIdentifier = $ApiTrackingIdentifier.Password
+      SecureTrackingIdentifier = $ApiTrackingIdentifier
       UsePicklistLabels        = $UsePicklistLabels.IsPresent
       Prefix                   = $Prefix
       RefreshCache             = $RefreshCache.IsPresent
       UseDiskCache             = $NoDiskCache.IsPresent -xor $true
     }
-    if (Validate-AtwsModuleConfiguration -Configuration $configuration) {
+    if (Test-AtwsModuleConfiguration -Configuration $configuration) {
       Write-Verbose ('{0}: Module configuration validated OK.' -F $MyInvocation.MyCommand.Name)
     }
     else {

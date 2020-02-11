@@ -54,98 +54,99 @@ Function Test-AtwsModuleConfiguration {
   )
 
   Function Test-AtwsModuleConfigurationByPropertyname {
-    <#
-            .SYNOPSIS
-            This function re-loads the module with the correct parameters for full functionality
-            .DESCRIPTION
-            This function is a wrapper that is included for backwards compatibility with previous module behavior.
-            These parameters should be passed to Import-Module -Variable directly, but previously the module 
-            consisted of two, nested modules. Now there is a single module with all functionality.
-            .INPUTS
-            A PSCredential object. Required. 
-            A string used as ApiTrackingIdentifier. Required. 
-            .OUTPUTS
-            Nothing.
-            .EXAMPLE
-            Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $string
-            .NOTES
-            NAME: Connect-AtwsWebAPI
-    #>
+      <#
+              .SYNOPSIS
+              This function re-loads the module with the correct parameters for full functionality
+              .DESCRIPTION
+              This function is a wrapper that is included for backwards compatibility with previous module behavior.
+              These parameters should be passed to Import-Module -Variable directly, but previously the module 
+              consisted of two, nested modules. Now there is a single module with all functionality.
+              .INPUTS
+              A PSCredential object. Required. 
+              A string used as ApiTrackingIdentifier. Required. 
+              .OUTPUTS
+              Nothing.
+              .EXAMPLE
+              Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $string
+              .NOTES
+              NAME: Connect-AtwsWebAPI
+      #>
 	
-    [cmdletbinding(
-      ConfirmImpact = 'Low',
-      DefaultParameterSetName = 'Default'
-    )]
-    Param
-    (
-      [Parameter(
-        ValueFromPipelineByPropertyName = $true
+      [cmdletbinding(
+              ConfirmImpact = 'Low',
+              DefaultParameterSetName = 'Default'
       )]
-      [ValidateNotNullOrEmpty()] 
-      [string]
-      $Username,
+      Param
+      (
+          [Parameter(
+                  ValueFromPipelineByPropertyName = $true
+          )]
+          [ValidateNotNullOrEmpty()] 
+          [string]
+          $Username,
     
-      [Parameter(
-        ValueFromPipelineByPropertyName = $true
-      )]
-      [ValidateNotNullOrEmpty()]
-      [securestring]
-      $SecurePassword,
+          [Parameter(
+                  ValueFromPipelineByPropertyName = $true
+          )]
+          [ValidateNotNullOrEmpty()]
+          [securestring]
+          $SecurePassword,
     
-      [Parameter(
-        ValueFromPipelineByPropertyName = $true
-      )]
-      [ValidateNotNullOrEmpty()]
-      [securestring]
-      $SecureTrackingIdentifier,
+          [Parameter(
+                  ValueFromPipelineByPropertyName = $true
+          )]
+          [ValidateNotNullOrEmpty()]
+          [securestring]
+          $SecureTrackingIdentifier,
     
-      [Parameter(
-        Mandatory = $true,
-        ValueFromPipelineByPropertyName = $true
-      )]
-      [switch]
-      $UsePicklistLabels = $false,
+          [Parameter(
+                  Mandatory = $true,
+                  ValueFromPipelineByPropertyName = $true
+          )]
+          [switch]
+          $UsePicklistLabels = $false,
     
-      [Parameter(
-        ValueFromPipelineByPropertyName = $true
-      )]
-      [ValidatePattern('[a-zA-Z0-9]')]
-      [ValidateLength(1, 8)]
-      [string]
-      $Prefix,
+          [Parameter(
+                  ValueFromPipelineByPropertyName = $true
+          )]
+          [ValidatePattern('[a-zA-Z0-9]')]
+          [ValidateLength(0, 8)]
+          [AllowEmptyString()]
+          [string]
+          $Prefix,
 
-      [Parameter(
-        Mandatory = $true,
-        ValueFromPipelineByPropertyName = $true
-      )]
-      [switch]
-      $RefreshCache,
+          [Parameter(
+                  Mandatory = $true,
+                  ValueFromPipelineByPropertyName = $true
+          )]
+          [switch]
+          $RefreshCache,
 
     
-      [Parameter(
-        Mandatory = $true,
-        ValueFromPipelineByPropertyName = $true
-      )]
-      [switch]
-      $UseDiskCache
-    )
+          [Parameter(
+                  Mandatory = $true,
+                  ValueFromPipelineByPropertyName = $true
+          )]
+          [switch]
+          $UseDiskCache
+      )
     
-    begin { 
+      begin { 
     
-      # Enable modern -Debug behavior
-      if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+          # Enable modern -Debug behavior
+          if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-      Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+          Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    }
+      }
   
-    process {
-      Write-Verbose  ('{0}: Configuration validated OK' -F $MyInvocation.MyCommand.Name)
-    }
+      process {
+          Write-Verbose  ('{0}: Configuration validated OK' -F $MyInvocation.MyCommand.Name)
+      }
   
-    end {
-      Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    }
+      end {
+          Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+      }
   }
   
   Try {

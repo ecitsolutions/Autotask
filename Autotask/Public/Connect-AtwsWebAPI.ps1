@@ -133,7 +133,7 @@ Function Connect-AtwsWebAPI {
       $Parameters = @{
         Username                 = $Credential.UserName
         SecurePassword           = $Credential.Password
-        SecureTrackingIdentifier = $ApiTrackingIdentifier.Password
+        SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
         UsePicklistLabels        = $UsePicklistLabels.IsPresent
         Prefix                   = $Prefix
         RefreshCache             = $RefreshCache.IsPresent
