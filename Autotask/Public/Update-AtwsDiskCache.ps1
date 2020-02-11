@@ -7,17 +7,17 @@
 #>
 Function Update-AtwsDiskCache {
     <#
-      .SYNOPSIS
-      This function reads all entities with detailed fieldinfo and writes everything to disk.
-      .DESCRIPTION
-      This function reads all entities with detailed fieldinfo and writes everything to disk.
-      .INPUTS
-      None.
-      .OUTPUTS
-      Nothing (writes data to disk)
-      .EXAMPLE
-      Import-AtwsAPIVersionToCache
-      Gets all valid built-in fields and user defined fields for the Account entity.
+        .SYNOPSIS
+            This function reads all entities with detailed fieldinfo and writes everything to disk.
+        .DESCRIPTION
+            This function reads all entities with detailed fieldinfo and writes everything to disk.
+        .INPUTS
+            None.
+        .OUTPUTS
+            Nothing (writes data to disk)
+        .EXAMPLE
+            Update-AtwsDiskCache
+            Gets all valid built-in fields and user defined fields for the Account entity.
   #>
 	
     [cmdletbinding(
