@@ -133,13 +133,16 @@ if ($Credential) {
         . Connect-AtwsWebServices -Configuration $Configuration -Erroraction Stop
     }
     catch {
-        throw $_
+        Write-Error $_
+        throw $_.ScriptStackTrace
         return
     }
     
     # From now on we should have module variable atws available
     if ($Script:Atws.Configuration.UseDiskCache) {
         
+        $dynamicCache = $My['DynamicCache']
+
         # Locate and load the connection specific script files
         if (Test-Path $dynamicCache) {
             # We have this many dynamic functions distributed with the module
