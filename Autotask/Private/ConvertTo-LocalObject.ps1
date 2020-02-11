@@ -8,19 +8,19 @@
 
 Function ConvertTo-LocalObject {
     <#
-            .SYNOPSIS
+        .SYNOPSIS
             This function adjusts the timezone and converts picklist fields from their label to their index value.
-            .DESCRIPTION
+        .DESCRIPTION
             This function adjusts the timezone and converts picklist fields from their label to their index value.
-            .INPUTS
+        .INPUTS
             [PSObject[]]
-            .OUTPUTS
+        .OUTPUTS
             [PSObject[]]
-            .EXAMPLE
+        .EXAMPLE
             $Element | ConvertFrom-LocalTimeAndLabels
             Updates the properties of object $Element with the values of any parameter with the same name as a property-
-            .NOTES
-            NAME: Update-AtwsObjectsWithParameters
+        .NOTES
+            NAME: ConvertTo-LocalObject
       
     #>
     [cmdletbinding()]
