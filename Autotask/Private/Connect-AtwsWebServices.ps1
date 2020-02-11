@@ -51,6 +51,7 @@ Function Connect-AtwsWebServices {
       Mandatory = $true,
       ValueFromPipeline = $true
     )]
+    [Alias('Configuration')]
     [ValidateNotNullOrEmpty()]
     [ValidateScript( { 
         $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'UsePicklistLabels', 'Prefix', 'RefreshCache', 'UseDiskCache')
@@ -66,7 +67,7 @@ Function Connect-AtwsWebServices {
         }
       })]
     [pscustomobject]
-    $Configuration 
+    $ConfigurationData 
   )
     
   begin { 
@@ -143,17 +144,17 @@ Function Connect-AtwsWebServices {
     $rootService = [Autotask.ATWSSoapClient]::new($anonymousBinding, $endPoint)
   
     # Post progress info to console
-    Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $Credential.UserName, $DefaultUri)
+    Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $ConfigurationData.UserName, $DefaultUri)
     Write-Progress -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
     
     # Get ZoneInfo for username
-    $zoneInfo = $rootService.getZoneInfo($Configuration.UserName)
+    $zoneInfo = $rootService.getZoneInfo($ConfigurationData.UserName)
     
     # If we get an error the username is almost certainly misspelled or nonexistant
     if ($ZoneInfo.ErrorCode -ne 0) {
       Write-Progress -Status 'Creating connection' -PercentComplete 100 -CurrentOperation 'Operation failed' @ProgressParameters
             
-      Throw [ApplicationException] ('Invalid username "{0}". try again.' -f $Configuration.UserName)
+      Throw [ApplicationException] ('Invalid username "{0}". try again.' -f $ConfigurationData.UserName)
       
     }
     
@@ -164,7 +165,7 @@ Function Connect-AtwsWebServices {
     Write-Progress -Status 'Datacenter located' -PercentComplete 30 -CurrentOperation 'Authenticating to web service' @ProgressParameters
              
     # Make sure a failure to create this object truly fails the script
-    Write-Verbose ('{0}: Creating new SOAP client using URI: {1}' -F $MyInvocation.MyCommand.Name, $Uri)
+    Write-Verbose ('{0}: Creating new SOAP client using URI: {1}' -F $MyInvocation.MyCommand.Name, $ZoneInfo.Url)
     try {
       # Create a new webservice proxy or die trying...
       # First create an endpoint pointing at the correct URI
@@ -181,14 +182,14 @@ Function Connect-AtwsWebServices {
       $binding.MaxBufferPoolSize = 20000000
 
       # Prepare securestring password to be converted to plaintext
-      $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Configuration.Password)
+      $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($ConfigurationData.SecurePassword)
 
       # Create a new SOAP client pointing at the correct webservice with authentication
       $script:Atws = [Autotask.ATWSSoapClient]::new($binding, $endPoint)
             
       # Set username and password immediately as the first two methods to call
       # Username is plaintext, but password as securestring needs another step
-      $script:Atws.ClientCredentials.UserName.UserName = $Configuration.UserName
+      $script:Atws.ClientCredentials.UserName.UserName = $ConfigurationData.UserName
       $script:Atws.ClientCredentials.UserName.Password = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
       
       ## Add API Integrations Value 
@@ -196,7 +197,7 @@ Function Connect-AtwsWebServices {
       $AutotaskIntegrationsValue = New-Object Autotask.AutotaskIntegrations
 
       # Set the integrationcode property to the API tracking identifier provided by the user
-      $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Configuration.SecureTrackingIdentifier)
+      $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($ConfigurationData.SecureTrackingIdentifier)
       $AutotaskIntegrationsValue.IntegrationCode = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
 
       # Add the integrations value to the Web Service Proxy
@@ -206,7 +207,7 @@ Function Connect-AtwsWebServices {
       Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name CI -Value $ZoneInfo.CI -Force
 
       ## Add configuration to connection
-      Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name Configuration -Value $Configuration -Force
+      Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name Configuration -Value $ConfigurationData -Force
 
     }
     catch {
@@ -219,21 +220,22 @@ Function Connect-AtwsWebServices {
     Write-Progress -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection' @ProgressParameters
        
     # Get username part of credential
-    $UserName = $Credential.UserName.Split('@')[0]
+    $UserName = $ConfigurationData.UserName.Split('@')[0]
     $result = Get-AtwsData -Entity Resource -Filter "username -eq $UserName"
     
     if ($result) {
     
-      # The connection has been verified. Use it to dynamically create functions for all entities
-      Write-Progress -Status 'Connection OK' -PercentComplete 90 -CurrentOperation 'Importing dynamic module' @ProgressParameters
+        # The connection has been verified. Use it to dynamically create functions for all entities
+        Write-Progress -Status 'Connection OK' -PercentComplete 90 -CurrentOperation 'Importing dynamic module' @ProgressParameters
         
-      Write-Verbose ('{0}: Loading disk cache' -F $MyInvocation.MyCommand.Name)
-      
-      Import-AtwsDiskCache
+        # Load the entity cache to memory
+        Write-Verbose ('{0}: Loading disk cache' -F $MyInvocation.MyCommand.Name)
+        Import-AtwsDiskCache
+        
     }
     else {
-      Remove-Variable -Name Atws -Scope Script
-      Throw [ApplicationException] 'Could not complete a query to Autotask WebAPI. Verify your credentials. You seem to have been logged in, but do you have the necessary rights?'    
+        Remove-Variable -Name Atws -Scope Script
+        Throw [ApplicationException] 'Could not complete a query to Autotask WebAPI. Verify your credentials. You seem to have been logged in, but do you have the necessary rights?'    
     }
   }
   
