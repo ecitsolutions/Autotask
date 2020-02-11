@@ -40,7 +40,7 @@ Function Update-AtwsDiskCache {
         }
     
         # Has cache been loaded?
-        if (-not($Script:Atws.Cache)) {
+        if ($Script:Atws.Cache.Count -eq 0) {
             # Load it.
             Import-AtwsDiskCache
         }

@@ -37,7 +37,7 @@ Function Test-AtwsModuleConfiguration {
         )]
         [ValidateNotNullOrEmpty()]
         [ValidateScript( { 
-                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'UsePicklistLabels', 'Prefix', 'RefreshCache', 'UseDiskCache')
+                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'UseDiskCache')
                 $members = Get-Member -InputObject $_ -MemberType NoteProperty
                 $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
                 if (-not($missingProperties)) {
@@ -107,7 +107,7 @@ Function Test-AtwsModuleConfiguration {
                 ValueFromPipelineByPropertyName = $true
             )]
             [switch]
-            $UsePicklistLabels,
+            $ConvertPicklistIdToLabel,
     
             [Parameter(
                 ValueFromPipelineByPropertyName = $true

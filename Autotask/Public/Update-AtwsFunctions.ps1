@@ -35,7 +35,7 @@ Function Update-AtwsFunctions {
                 
         Write-Verbose -Message ('{0}: Making sure cache is loaded.' -F $MyInvocation.MyCommand.Name)
     
-        if (-not ($Script:Atws.Cache)) {
+        if (-not ($Script:Atws.Cache.Count -gt 0)) {
             Import-AtwsDiskCache
         }
    

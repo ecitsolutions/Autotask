@@ -60,9 +60,9 @@ Function Connect-AtwsWebAPI {
         [Parameter(
             ParameterSetName = 'NoDiskCache'
         )]
-        [Alias('Picklist')]
+        [Alias('Picklist','UsePickListLabel')]
         [switch]
-        $UsePicklistLabels,
+        $ConvertPicklistIdToLabel,
     
         [Parameter(
             ParameterSetName = 'Default'
@@ -93,7 +93,7 @@ Function Connect-AtwsWebAPI {
             ParameterSetName = 'ConfigurationObject'
         )]
         [ValidateScript( { 
-                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'UsePicklistLabels', 'Prefix', 'RefreshCache', 'NoDiskCache')
+                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'NoDiskCache')
                 $members = Get-Member -InputObject $_ -MemberType NoteProperty
                 $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
                 if (-not($missingProperties)) {
@@ -133,7 +133,7 @@ Function Connect-AtwsWebAPI {
                 Username                 = $Credential.UserName
                 SecurePassword           = $Credential.Password
                 SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
-                UsePicklistLabels        = $UsePicklistLabels.IsPresent
+                ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
                 Prefix                   = $Prefix
                 RefreshCache             = $RefreshCache.IsPresent
                 NoDiskCache              = $NoDiskCache.IsPresent

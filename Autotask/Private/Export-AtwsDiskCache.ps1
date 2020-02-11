@@ -27,7 +27,7 @@ Function Export-AtwsDiskCache {
     Param()
 
     begin {
-        if (-not ($Script:Atws.Cache)) {
+        if (-not ($Script:Atws.Cache.Count -gt 0)) {
             Write-Error -Message 'The diskcache has not been imported yet. Noting to save.'
             Return
         }

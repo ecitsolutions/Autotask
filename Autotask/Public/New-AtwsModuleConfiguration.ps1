@@ -42,9 +42,9 @@ Function New-AtwsModuleConfiguration {
         $ApiTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier:'),
     
         [Parameter()]
-        [Alias('Picklist')]
+        [Alias('Picklist','UsePickListLabel')]
         [switch]
-        $UsePicklistLabels = $false,
+        $ConvertPicklistIdToLabel = $false,
     
         [Parameter()]
         [ValidatePattern('[a-zA-Z0-9]')]
