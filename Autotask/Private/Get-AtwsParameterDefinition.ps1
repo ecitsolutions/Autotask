@@ -76,9 +76,6 @@ Function Get-AtwsParameterDefinition {
             # -All
             $Comment = 'Return all objects in one query'    
             Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'switch' -Comment $Comment
-            # -NoPickListLabel
-            $Comment = 'Do not add descriptions for all picklist attributes with values'
-            Get-AtwsPSParameter -Name 'NoPickListLabel' -SetName 'Filter', 'Get_all', 'By_parameters' -Type 'switch' -Comment $Comment
             if ($Entity.HasUserDefinedFields) {
                 # -UserDefinedField
                 $Comment = 'A single user defined field can be used pr query'

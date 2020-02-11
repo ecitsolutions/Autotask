@@ -121,7 +121,7 @@ Function Get-AtwsData {
 
             # Add all returned objects to the Result - if any
             if ($lastquery.EntityResults.Count -gt 0) { 
-                $result += ConvertTo-LocalObject -InputObject $lastquery.EntityResults -NoPickListLabel:$NoPickListLabel.IsPresent
+                $result += ConvertTo-LocalObject -InputObject $lastquery.EntityResults
             }
             
             # Results are sorted by object Id. The Id of the last object is the highest object id in the result
