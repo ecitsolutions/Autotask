@@ -184,12 +184,12 @@ Function Connect-AtwsWebServices {
             $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($ConfigurationData.SecurePassword)
 
             # Create a new SOAP client pointing at the correct webservice with authentication
-            $script:Atws = [Autotask.ATWSSoapClient]::new($binding, $endPoint)
+            $Script:Atws = [Autotask.ATWSSoapClient]::new($binding, $endPoint)
             
             # Set username and password immediately as the first two methods to call
             # Username is plaintext, but password as securestring needs another step
-            $script:Atws.ClientCredentials.UserName.UserName = $ConfigurationData.UserName
-            $script:Atws.ClientCredentials.UserName.Password = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+            $Script:Atws.ClientCredentials.UserName.UserName = $ConfigurationData.UserName
+            $Script:Atws.ClientCredentials.UserName.Password = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
       
             ## Add API Integrations Value 
             # A dedicated object type has been created to store integration values
@@ -200,13 +200,16 @@ Function Connect-AtwsWebServices {
             $AutotaskIntegrationsValue.IntegrationCode = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
 
             # Add the integrations value to the Web Service Proxy
-            Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name IntegrationsValue -Value $AutotaskIntegrationsValue -Force
+            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name IntegrationsValue -Value $AutotaskIntegrationsValue -Force
         
-            ## Add tenant identifier to connection
-            Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name CI -Value $ZoneInfo.CI -Force
+            # Add tenant identifier to connection
+            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name CI -Value $ZoneInfo.CI -Force
 
-            ## Add configuration to connection
-            Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name Configuration -Value $ConfigurationData -Force
+            # Add configuration to connection
+            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name Configuration -Value $ConfigurationData -Force
+
+            # Add empty hashtable as placeholder for in memory cache - will be populated from disk later
+            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name Cache -Value @{} -Force
 
         }
         catch {

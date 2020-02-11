@@ -22,13 +22,13 @@ Function Get-AtwsInvoiceInfo {
       .OUTPUTS
       A custom PSObject with detailed information about an invoice
       .EXAMPLE
-      $Invoice | Get-#PrefixInvoiceInfo
+      $Invoice | Get-AtwsInvoiceInfo
       Gets information about invoices passed through the pipeline
       .EXAMPLE
-      Get-#PrefixInvoiceInfo -InvoiceID $Invoice.id
+      Get-AtwsInvoiceInfo -InvoiceID $Invoice.id
       Gets information about invoices based on the ids passed as a parameter
       .NOTES
-      NAME: Get-#PrefixInvoiceInfo
+      NAME: Get-AtwsInvoiceInfo
       
   #>
 	
@@ -59,7 +59,7 @@ Function Get-AtwsInvoiceInfo {
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-        if (-not($script:atws.integrationsValue)) {
+        if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
         }    
     

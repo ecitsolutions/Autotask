@@ -22,13 +22,13 @@ Function Get-AtwsThresholdAndUsageInfo {
       .OUTPUTS
       A custom PSObject with detailed information about an invoice
       .EXAMPLE
-      $Invoice | Get-#PrefixInvoiceInfo
+      $Invoice | Get-AtwsInvoiceInfo
       Gets information about invoices passed through the pipeline
       .EXAMPLE
-      Get-#PrefixInvoiceInfo -InvoiceID $Invoice.id
+      Get-AtwsInvoiceInfo -InvoiceID $Invoice.id
       Gets information about invoices based on the ids passed as a parameter
       .NOTES
-      NAME: Get-#PrefixInvoiceInfo
+      NAME: Get-AtwsInvoiceInfo
       
   #>
 	
@@ -43,14 +43,14 @@ Function Get-AtwsThresholdAndUsageInfo {
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-        if (-not($script:atws.integrationsValue)) {
+        if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
         }    
     }
 
     process {
         try { 
-            $result = $Script:Atws.GetThresholdAndUsageInfo($script:atws.integrationsValue)
+            $result = $Script:Atws.GetThresholdAndUsageInfo($Script:Atws.integrationsValue)
         }
         catch {
             Write-Warning ('{0}: FAILED on GetThresholdAndUsageInfo(). No data returned.' -F $MyInvocation.MyCommand.Name)

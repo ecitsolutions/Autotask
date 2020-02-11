@@ -8,17 +8,17 @@
 
 Function Get-AtwsFieldInfo {
     <#
-      .SYNOPSIS
-      This function gets valid fields for an Autotask Entity
-      .DESCRIPTION
-      This function gets valid fields for an Autotask Entity
-      .INPUTS
-      None.
-      .OUTPUTS
-      [Autotask.Field[]]
-      .EXAMPLE
-      Get-AtwsFieldInfo -Entity Account
-      Gets all valid built-in fields and user defined fields for the Account entity.
+        .SYNOPSIS
+            This function gets valid fields for an Autotask Entity
+        .DESCRIPTION
+            This function gets valid fields for an Autotask Entity
+        .INPUTS
+            None.
+        .OUTPUTS
+            [Autotask.Field[]]
+        .EXAMPLE
+            Get-AtwsFieldInfo -Entity Account
+            Gets all valid built-in fields and user defined fields for the Account entity.
   #>
 	
     [cmdletbinding(
@@ -101,22 +101,19 @@ Function Get-AtwsFieldInfo {
     
         # Check if we are connected before trying anything
         if (-not($Script:Atws)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            return
         }
     
         # Has cache been loaded?
-        if (-not($script:Cache)) {
+        if (-not($Script:Atws.Cache)) {
             # Load it.
             Import-AtwsDiskCache
         }
-         
-   
-
         $cacheExpiry = (Get-Date).AddMinutes(-15)
     }
   
     process { 
-        
         Function Update-AtwsEntity {
             [CmdLetBinding()]
             Param
@@ -144,7 +141,7 @@ Function Get-AtwsFieldInfo {
                     Write-Verbose -Message ("{0}: Calling .GetFieldInfo('{1}')" -F $MyInvocation.MyCommand.Name, $Entity) 
           
                     try { 
-                        $result = $Script:atws.GetFieldInfo($script:atws.IntegrationsValue, $Entity)
+                        $result = $Script:Atws.GetFieldInfo($Script:Atws.IntegrationsValue, $Entity)
                     }
                     catch {
                         Throw $_
@@ -182,7 +179,7 @@ Function Get-AtwsFieldInfo {
                     $verboseWarning = '{0}: About to get userdefined fields for {1}s. Do you want to continue?' -F $caption, $Entity
 
                     if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-                        $UDF = $Script:atws.GetUDFInfo($script:atws.IntegrationsValue, $Entity)
+                        $UDF = $Script:Atws.GetUDFInfo($Script:Atws.IntegrationsValue, $Entity)
                  
                         if ($result.Errors.Count -gt 0) {
                             foreach ($AtwsError in $result.Errors) {
@@ -307,8 +304,7 @@ Function Get-AtwsFieldInfo {
         }
     }  
     end {
-        if ($cacheDirty -and $Script:UseDiskCache) { 
-            
+        if ($cacheDirty -and $Script:Atws.Configuration.UseDiskCache) {  
             Export-AtwsDiskCache
         }
 

@@ -393,7 +393,7 @@ Function New-AtwsAttachment {
     
         # Do it, I dare you!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-            $AttachmentId = $Script:Atws.CreateAttachment($script:atws.integrationsValue, $Attachment)
+            $AttachmentId = $Script:Atws.CreateAttachment($Script:Atws.integrationsValue, $Attachment)
       
             $result = Get-AtwsAttachmentInfo -id $AttachmentId
       

@@ -179,11 +179,11 @@ Function Connect-AtwsWebServices {
             $binding.MaxBufferPoolSize = 20000000
 
             # Create a new SOAP client pointing at the correct webservice with authentication
-            $script:Atws = [Autotask.ATWSSoapClient]::new($binding, $endPoint)
+            $Script:Atws = [Autotask.ATWSSoapClient]::new($binding, $endPoint)
             
             # Set username and password immediately as the first two methods to call
-            $script:Atws.ClientCredentials.UserName.UserName = $Credential.UserName
-            $script:Atws.ClientCredentials.UserName.Password = $Credential.GetNetworkCredential().Password
+            $Script:Atws.ClientCredentials.UserName.UserName = $Credential.UserName
+            $Script:Atws.ClientCredentials.UserName.Password = $Credential.GetNetworkCredential().Password
       
             ## Add API Integrations Value 
             # A dedicated object type has been created to store integration values
@@ -193,10 +193,10 @@ Function Connect-AtwsWebServices {
             $AutotaskIntegrationsValue.IntegrationCode = $ApiTrackingIdentifier
 
             # Add the integrations value to the Web Service Proxy
-            Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name IntegrationsValue -Value $AutotaskIntegrationsValue -Force
+            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name IntegrationsValue -Value $AutotaskIntegrationsValue -Force
         
             ## Add tenant identifier to connection
-            Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name CI -Value $ZoneInfo.CI -Force
+            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name CI -Value $ZoneInfo.CI -Force
 
         }
         catch {

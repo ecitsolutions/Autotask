@@ -27,7 +27,7 @@ Function Export-AtwsDiskCache {
     Param()
 
     begin {
-        if (-not ($Script:Cache)) {
+        if (-not ($Script:Atws.Cache)) {
             Write-Error -Message 'The diskcache has not been imported yet. Noting to save.'
             Return
         }
@@ -38,7 +38,7 @@ Function Export-AtwsDiskCache {
     process {
         # If the module variable UseDiskCache is $false or does not exist, this function does nothing...
     
-        if ($script:atws.Configuration.UseDiskCache) { 
+        if ($Script:Atws.Configuration.UseDiskCache) { 
 
             $PersonalCacheDir = $My['DynamicCache']
             $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
@@ -64,7 +64,7 @@ Function Export-AtwsDiskCache {
           
             if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             
-                $Script:Cache | Export-Clixml -Path $PersonalCache -Force
+                $Script:Atws.Cache | Export-Clixml -Path $PersonalCache -Force
     
             }
         }

@@ -47,7 +47,7 @@ Function Remove-AtwsData {
         Write-Verbose ('{0}: Start of Function' -F $MyInvocation.MyCommand.Name)
 
         # Check if we are connected before trying anything
-        if (-not($script:atws.integrationsValue)) {
+        if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
         }
 
@@ -75,7 +75,7 @@ Function Remove-AtwsData {
                 $errors = @()
         
                 # We are deleting...
-                $result = $atws.delete($script:atws.integrationsValue, $workingSet)
+                $result = $atws.delete($Script:Atws.integrationsValue, $workingSet)
                 
                 # Do we have any errors? We get two lines pr error. Or so I did during testing.
                 for ($t = 0; $t -lt $result.errors.Count; $t += 2) {

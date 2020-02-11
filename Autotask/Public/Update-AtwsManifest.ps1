@@ -24,7 +24,7 @@ Function Update-AtwsManifest {
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
        
-        if (-not($script:atws.integrationsValue)) {
+        if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
         }
     
@@ -77,7 +77,7 @@ Function Update-AtwsManifest {
         if ($UpdateVersion.IsPresent) { 
     
             # Figure out the new module version number
-            [Version]$ApiVersion = '{0}.{1}' -F $Script:Atws.GetWsdlVersion($script:atws.IntegrationsValue), $ModuleInfo.Version.Revision
+            [Version]$ApiVersion = '{0}.{1}' -F $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue), $ModuleInfo.Version.Revision
     
             if ($ApiVersion -eq $ModuleInfo.Version) {
                 # It is the same API version. Increase the revision number
@@ -90,7 +90,7 @@ Function Update-AtwsManifest {
             }
     
             # Save the new version number to the parameter set
-            [Version]$Moduleversion = '{0}.{1}' -F $Script:Atws.GetWsdlVersion($script:atws.IntegrationsValue), $Revision
+            [Version]$Moduleversion = '{0}.{1}' -F $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue), $Revision
         }
         else {
             # Use existing version if no update has been requested

@@ -58,7 +58,7 @@ Function Set-AtwsData {
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-        if (-not($script:atws.integrationsValue)) {
+        if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
         }
 
@@ -96,7 +96,7 @@ Function Set-AtwsData {
                 # Are we creating or updating? 
                 if ($Create.IsPresent) { 
                     # We are creating. i.e. New-
-                    $result = $atws.create($script:atws.integrationsValue, $workingSet)
+                    $result = $atws.create($Script:Atws.integrationsValue, $workingSet)
 
                     # Check for duplicates
                     $duplicates = $result.EntityReturnInfoResults | Where-Object { $_.DuplicateStatus.Found -and -not $_.DuplicateStauts.Ignored }
@@ -107,7 +107,7 @@ Function Set-AtwsData {
                 }
                 else { 
                     # We are updating
-                    $result = $atws.update($script:atws.integrationsValue, $workingSet)
+                    $result = $atws.update($Script:Atws.integrationsValue, $workingSet)
                 }
         
                 for ($t = 0; $t -lt $result.errors.Count; $t += 2) {

@@ -73,7 +73,7 @@ Function Get-AtwsData {
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
        
-        if (-not($script:atws.integrationsValue)) {
+        if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
         }
     
@@ -109,7 +109,7 @@ Function Get-AtwsData {
             Write-Verbose ('{0}: Passing QueryXML to Autotask API' -F $MyInvocation.MyCommand.Name)
 
             # Get the first batch - the API returns max 500 items
-            $lastquery = $script:Atws.query($script:Atws.IntegrationsValue, $QueryXml.InnerXml)
+            $lastquery = $Script:Atws.query($Script:Atws.IntegrationsValue, $QueryXml.InnerXml)
 
             # Handle any errors
             if ($lastquery.Errors.Count -gt 0) {

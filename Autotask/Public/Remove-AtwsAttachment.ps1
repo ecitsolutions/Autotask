@@ -194,7 +194,7 @@ Function Remove-AtwsAttachment {
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             $result = @()
             foreach ($AttachmentId in $id) {
-                $result += $Script:Atws.DeleteAttachment($script:atws.integrationsValue, $AttachmentId)
+                $result += $Script:Atws.DeleteAttachment($Script:Atws.integrationsValue, $AttachmentId)
             }
 
             Write-Verbose ('{0}: Number of attachment(s) deleted: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)

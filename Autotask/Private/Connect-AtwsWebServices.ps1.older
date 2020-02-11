@@ -138,9 +138,9 @@ Function Connect-AtwsWebServices {
         Write-Verbose ('{0}: Creating New-WebServiceProxy against URI: {1}' -F $MyInvocation.MyCommand.Name, $Uri)
         try {
             # Create a new webservice proxy or die trying...
-            $script:Atws = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
+            $Script:Atws = New-WebServiceProxy -URI $Uri  -Credential $local:Credential -Namespace 'Autotask' -Class 'AutotaskAPI' -ErrorAction Stop
             # Make sure the webserviceproxy authenticates every time (saves a webconnection and a few milliseconds)
-            $script:Atws.PreAuthenticate = $true
+            $Script:Atws.PreAuthenticate = $true
       
             ## Add API Integrations Value 
             # A dedicated object type has been created to store integration values
@@ -150,10 +150,10 @@ Function Connect-AtwsWebServices {
             $AutotaskIntegrationsValue.IntegrationCode = $ApiTrackingIdentifier
 
             # Add the integrations value to the Web Service Proxy
-            $script:Atws.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
+            $Script:Atws.AutotaskIntegrationsValue = $AutotaskIntegrationsValue
         
             ## Add tenant identifier to connection
-            Add-Member -InputObject $script:Atws -MemberType NoteProperty -Name CI -Value $ZoneInfo.CI -Force
+            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name CI -Value $ZoneInfo.CI -Force
 
         }
         catch {

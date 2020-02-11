@@ -22,7 +22,7 @@ Function Update-AtwsFunctions {
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-        if (-not($script:atws.integrationsValue)) {
+        if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
         }
     
@@ -35,7 +35,7 @@ Function Update-AtwsFunctions {
                 
         Write-Verbose -Message ('{0}: Making sure cache is loaded.' -F $MyInvocation.MyCommand.Name)
     
-        if (-not ($Script:Cache)) {
+        if (-not ($Script:Atws.Cache)) {
             Import-AtwsDiskCache
         }
    
@@ -52,15 +52,15 @@ Function Update-AtwsFunctions {
         # Prepare Index for progressbar
         $ParentIndex = 0
     
-        foreach ($Tenant in $Script:Cache.GetEnumerator()) { 
+        foreach ($Tenant in $Script:Atws.Cache.GetEnumerator()) { 
       
             # Calculating progress percentage and displaying it
             $ParentIndex++
-            $PercentComplete = $ParentIndex / $Script:Cache.Count * 100
+            $PercentComplete = $ParentIndex / $Script:Atws.Cache.Count * 100
       
             # Add parameters for @splatting
             $ParentProgressParameters['PercentComplete'] = $PercentComplete
-            $ParentProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $ParentIndex, $Script:Cache.Count, $PercentComplete
+            $ParentProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $ParentIndex, $Script:Atws.Cache.Count, $PercentComplete
             $ParentProgressParameters['CurrentOperation'] = 'Importing {0}' -F $Entity.Key
       
             Write-Progress @ParentProgressParameters
@@ -159,7 +159,7 @@ Function Update-AtwsFunctions {
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             # Save updated base info for connection to new tenants.
             $BaseEntityInfo = @{ }
-            $BaseEntityInfo['00'] = $script:Cache['00']
+            $BaseEntityInfo['00'] = $Script:Atws.Cache['00']
         
             $BaseEntityInfoPath = '{0}\Private\AutotaskFieldInfoCache.xml' -F $MyInvocation.MyCommand.Module.ModuleBase
             $BaseEntityInfo | Export-Clixml -Path $BaseEntityInfoPath -Force
