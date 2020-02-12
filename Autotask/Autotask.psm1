@@ -114,10 +114,10 @@ if ($Credential) {
             ## Legacy
             #  The user passed credentials directly
             $Parameters = @{
-                Credential            = $Credential
-                ApiTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
-                DebugPref             = $DebugPreference
-                VerbosePref           = $VerbosePreference
+                Credential               = $Credential
+                SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
+                DebugPref                = $DebugPreference
+                VerbosePref              = $VerbosePreference
             }
             $Configuration = New-AtwsModuleConfiguration @Parameters
         }
