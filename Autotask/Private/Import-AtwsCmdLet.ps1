@@ -41,7 +41,7 @@ Function Import-AtwsCmdLet {
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }  
               
-        Write-Debug -Message ('{0}: Start of functions.' -F $MyInvocation.MyCommand.Name)
+        Write-Debug -Message ('{0}: Start of function.' -F $MyInvocation.MyCommand.Name)
 
         # Prepare parameters for @splatting
         $progressId = 2
