@@ -6,23 +6,22 @@ See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license
 
 #>
 Function Export-AtwsDiskCache {
-     <#
-      .SYNOPSIS
-
-      .DESCRIPTION
-
-      .INPUTS
-
-      .OUTPUTS
-
-      .EXAMPLE
-
-      .NOTES
-      NAME: 
-      .LINK
-
+    <#
+        .SYNOPSIS
+            This function flushes the current in-memory cache to disk.
+        .DESCRIPTION
+            This function flushes the current in-memory cache to disk
+        .OUTPUTS
+            A CliXml file
+        .EXAMPLE
+            Export-AtwsDiskCache
+            Exports the current in memory entity cache to a file on disk.
+        .NOTES
+            NAME: Export-AtwsDiskCache
   #>
-    [CmdLetBinding()]
+    [CmdLetBinding(
+        SupportsShouldProcess = $true
+    )]
   
     Param()
 
@@ -40,7 +39,7 @@ Function Export-AtwsDiskCache {
     
         if ($Script:Atws.Configuration.UseDiskCache) { 
 
-            $PersonalCacheDir = $My['DynamicCache']
+            $PersonalCacheDir = $Script:Atws.DynamicCache
             $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
             Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
 

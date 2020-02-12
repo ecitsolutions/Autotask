@@ -56,7 +56,7 @@ Function Import-AtwsDiskCache {
         }
 
         # Save the cache path to the module information
-        $My['DynamicCache'] = $PersonalCacheDir  
+        $Script:Atws.DynamicCache = $PersonalCacheDir  
         
         $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
         Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   

@@ -181,7 +181,7 @@ describe 'Issue #38' -Tag 'Issues' {
         $result = Get-AtwsConnectionObject -Confirm:$false
 
         it 'should return an Autotask web proxy object' {
-            $result | Should -BeOfType Autotask.ATWS
+            $result | Should -BeOfType Autotask.SOAPClient
         }
     }
 }
@@ -244,7 +244,7 @@ describe 'Issue #33' -Tag 'Issues' {
     
     # Get creation time of current file
     $atws = Get-AtwsConnectionObject -Confirm:$false
-    [IO.FileInfo]$functionFile = '{0}\WindowsPowershell\Cache\{1}\Dynamic\Get-AtwsTicket.ps1' -f $([environment]::GetFolderPath('MyDocuments')), $atws.CI
+    [IO.FileInfo]$functionFile = '{0}\Get-AtwsTicket.ps1' -f $atws.DynamicCache, $atws.CI
     $lastWriteTime = $functionFile.LastWriteTime
     
     # Remove any loaded modules before trying to load it again
@@ -256,7 +256,7 @@ describe 'Issue #33' -Tag 'Issues' {
         Import-Module $ModulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
        
         # Re-read fileinfo
-        [IO.FileInfo]$functionFile = '{0}\WindowsPowershell\Cache\{1}\Dynamic\Get-AtwsTicket.ps1' -f $([environment]::GetFolderPath('MyDocuments')), $atws.CI
+        [IO.FileInfo]$functionFile = '{0}\Get-AtwsTicket.ps1' -f $atws.DynamicCache, $atws.CI
 
         it 'should NOT have updated Get-AtwsTicket' {
             $functionFile.LastWriteTime | should -Be $lastWriteTime
@@ -266,7 +266,7 @@ describe 'Issue #33' -Tag 'Issues' {
         Import-Module $ModulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier, 'Ticket'
 
         # Re-read fileinfo
-        [IO.FileInfo]$functionFile = '{0}\WindowsPowershell\Cache\{1}\Dynamic\Get-AtwsTicket.ps1' -f $([environment]::GetFolderPath('MyDocuments')), $atws.CI
+        [IO.FileInfo]$functionFile = '{0}\Get-AtwsTicket.ps1' -f $atws.DynamicCache, $atws.CI
 
         it 'should have updated Get-AtwsTicket after second module import' {
             $functionFile.LastWriteTime | should -Not -Be $lastWriteTime

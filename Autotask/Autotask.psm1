@@ -147,7 +147,7 @@ if ($Credential) {
     # From now on we should have module variable atws available
     if ($Script:Atws.Configuration.UseDiskCache) {
         
-        $dynamicCache = $My['DynamicCache']
+        $dynamicCache = $Script:Atws.DynamicCache
 
         # Locate and load the connection specific script files
         if (Test-Path $dynamicCache) {

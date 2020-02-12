@@ -51,7 +51,7 @@ Function Import-AtwsCmdLet {
         }
         
         # The path to a users personal cache folder
-        $rootPath = $My['DynamicCache']
+        $rootPath = $Script:Atws.DynamicCache
 
         # Make sure directory exists
         if (-not (Test-Path "$rootPath")) {

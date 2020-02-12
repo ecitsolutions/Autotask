@@ -194,7 +194,10 @@ Function Connect-AtwsWebServices {
             Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name Configuration -Value $ConfigurationData -Force
 
             # Add empty hashtable as placeholder for in memory cache - will be populated from disk later
-            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name Cache -Value @{} -Force
+            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name Cache -Value @{ } -Force
+            
+            # Add empty string as placeholder for cache path - will be populated later
+            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name DynamicCache -Value '' -Force
 
         }
         catch {

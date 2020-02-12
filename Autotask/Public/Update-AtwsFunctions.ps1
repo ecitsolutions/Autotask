@@ -93,7 +93,7 @@ Function Update-AtwsFunctions {
                 $RootPath = $MyInvocation.MyCommand.Module.ModuleBase
             }
             elseif ($FunctionSet -eq 'Dynamic' -and $My.ContainsKey('DynamicCache') -and -not $My['IsBeta']) {
-                $RootPath = $My['DynamicCache']
+                $RootPath = $Script:Atws.DynamicCache
         
                 # Create Rootpath directory if it doesn't exist
                 if (-not (Test-Path $RootPath)) {

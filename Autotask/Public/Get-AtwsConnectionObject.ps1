@@ -10,9 +10,9 @@
 Function Get-AtwsConnectionObject {
     <#
         .SYNOPSIS
-            This function returns a Web Proxy Object with the active connection to Autotask Web Api from the current namespace.
+            This function returns a SOAPClient Object with the active connection to Autotask Web Api from the current namespace.
         .DESCRIPTION
-            This function returns a Web Proxy Object with the active connection to Autotask Web API from the current namespace.
+            This function returns a SOAPClient Object with the active connection to Autotask Web API from the current namespace.
             Advanced users may use this object for direct access to API methods or hardcoded queries. It may also be useful for 
             debugging.
         .INPUTS
@@ -21,7 +21,7 @@ Function Get-AtwsConnectionObject {
             [Autotask.SOAPClient]
         .EXAMPLE
             $Atws = Get-AtwsConnectionObject
-            Gets a Web Proxy Object with the active connection to Autotask Web Api from the current namespace.
+            Gets a SOAPClient Object with the active connection to Autotask Web Api from the current namespace.
         .NOTES
             NAME: Get-AtwsConnectionObject
       
