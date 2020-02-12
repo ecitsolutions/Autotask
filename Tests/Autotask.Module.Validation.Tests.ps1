@@ -126,7 +126,7 @@ describe "$ModuleName Module function tests" -Tag 'Functions' {
         }
       
         it "$function.ps1 should contain Write-Verbose blocks" {
-          "$subdir\$function.ps1" | Should -FileContentMatch 'Write-Verbose'
+          "$subdir\$function.ps1" | Should -FileContentMatch 'Write-Verbose|ShouldProcess'
         }
 
         it "$function.ps1 should contain Write-Debug blocks" {
