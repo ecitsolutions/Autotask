@@ -1,26 +1,28 @@
 ﻿<#
-
-.COPYRIGHT
-Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
-See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
-
+    .COPYRIGHT
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
 Function Import-AtwsDiskCache {
-     <#
+    <#
             .SYNOPSIS
-
+                This function reads the cachefile into memory.
             .DESCRIPTION
-
+                This function determines the correct paths to cache files and creates any
+                missing path if necessary. If there isn't any cache for the current Autotask
+                tenant available this function creates it, starting with a supplied cache 
+                file from the module.
             .INPUTS
-
+                Nothing.
             .OUTPUTS
-
+                Nothing, but the cache property of the SOAP Client object is filled.
             .EXAMPLE
-
+                Import-AtwsDiskCache
+                Loads the cache from disk
             .NOTES
-            NAME: 
+                NAME: Import-AtwsDiskCache
             .LINK
-
+                Export-AtwsDiskCache
     #>
     [CmdLetBinding()]
   
@@ -34,31 +36,36 @@ Function Import-AtwsDiskCache {
     
         $cacheFile = 'AutotaskFieldInfoCache.xml'
     
-        $centralCache = '{0}\Private\{1}' -F $myModule.ModuleBase, $cacheFile
+        # Use join-path to be platform agnostic on slashes in paths
+        $centralCache = Join-Path $(Join-Path $myModule.ModuleBase 'Private') $cacheFile
+
 
         Write-Verbose -Message ('{0}: Module cache location is {1}' -F $MyInvocation.MyCommand.Name, $centralCache)  
         
         # On Windows we store the cache in the WindowsPowerhell folder in My documents
         # On macOS and Linux we use a dot-folder in the users $HOME folder as is customary
         if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {  
-            $dynamicCache = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
+            $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) 'WindowsPowershell\Cache' 
         }
         else {
-            $dynamicCache = '{0}\.config\powershell\cache' -f $([environment]::GetFolderPath('MyDocuments'))
+            $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) '.config\powershell\atwsCache' 
         }
+
+        # Add tenant id to path
+        $PersonalCacheDir = Join-Path $PersonalCacheDir $Script:Atws.CI
 
         # Use different directory for beta versions
         if ($My['IsBeta']) { 
-            $PersonalCacheDir = '{0}\{1}\Beta' -f $dynamicCache, $Script:Atws.CI
+            $PersonalCacheDir = Join-Path $PersonalCacheDir 'Beta'
         }
         else {
-            $PersonalCacheDir = '{0}\{1}\Dynamic' -f $dynamicCache, $Script:Atws.CI
+            $PersonalCacheDir = Join-Path $PersonalCacheDir 'Dynamic'
         }
 
         # Save the cache path to the module information
         $Script:Atws.DynamicCache = $PersonalCacheDir  
         
-        $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
+        $PersonalCache = Join-Path $PersonalCacheDir $CacheFile
         Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
   
     }

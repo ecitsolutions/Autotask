@@ -94,9 +94,9 @@ Function Import-AtwsCmdLet {
         
                 foreach ($function in $functionDefinition.GetEnumerator()) {
                     # Set path to powershell script file in user cache
-                    $filePath = '{0}\{1}.ps1' -F $rootPath, $function.Key
+                    $filePath = Join-Path $rootPath ('{0}.ps1' -f $function.Key)
           
-                    # IMport the updated function
+                    # Import the updated function
                     . ([ScriptBlock]::Create($function.Value))
           
                     # Export the module member
