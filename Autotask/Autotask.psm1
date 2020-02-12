@@ -109,32 +109,38 @@ foreach ($import in @($privateFunction + $publicFunction)) {
 # If they tried to pass any variables
 if ($Credential) {
     Write-Verbose ('{0}: Parameters detected. Connecting to Autotask API' -F $MyInvocation.MyCommand.Name)
-  
-    if ($Credential -is [pscredential]) {
-        ## Legacy
-        #  The user passed credentials directly
-        $Parameters = @{
-            Credential            = $Credential
-            ApiTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
-        }
-        $Configuration = New-AtwsModuleConfiguration @Parameters
-    }
-    elseif (Test-AtwsModuleConfiguration -Configuration $Credential) {
-        ## First parameter was a valid configuration object
-        $Configuration = $Credential
-    }
-    else {
-        throw [System.Management.Automation.ParameterBindingException]::New()
-    }
-
-    ## Connect to the API
-    #  or die trying
     Try { 
+        if ($Credential -is [pscredential]) {
+            ## Legacy
+            #  The user passed credentials directly
+            $Parameters = @{
+                Credential            = $Credential
+                ApiTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
+                DebugPref             = $DebugPreference
+                VerbosePref           = $VerbosePreference
+            }
+            $Configuration = New-AtwsModuleConfiguration @Parameters
+        }
+        elseif (Test-AtwsModuleConfiguration -Configuration $Credential) {
+            ## First parameter was a valid configuration object
+            $Configuration = $Credential
+
+            # Switch to configured debug and verbose preferences
+            $VerbosePreference = $Configuration.VerbosePref
+            $DebugPreference = $Configuration.DebugPref
+        }
+        else {
+            throw [System.Management.Automation.ParameterBindingException]::New()
+        }
+
+        ## Connect to the API
+        #  or die trying
         . Connect-AtwsWebServices -Configuration $Configuration -Erroraction Stop
     }
     catch {
-        Write-Error $_
-        throw $_.ScriptStackTrace
+        $message = "{0}`n`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
+        throw [System.Configuration.Provider.ProviderException]::New($message)
+    
         return
     }
     

@@ -60,7 +60,7 @@ Function Connect-AtwsWebAPI {
         [Parameter(
             ParameterSetName = 'NoDiskCache'
         )]
-        [Alias('Picklist','UsePickListLabel')]
+        [Alias('Picklist','UsePickListLabels')]
         [switch]
         $ConvertPicklistIdToLabel,
     
@@ -70,8 +70,15 @@ Function Connect-AtwsWebAPI {
         [Parameter(
             ParameterSetName = 'NoDiskCache'
         )]
-        [ValidatePattern('[a-zA-Z0-9]')]
-        [ValidateLength(1, 8)]
+        [ValidateScript( {
+            # It can be empty, but if it isn't it should be max 8 characters and only letters and numbers
+            if ($_.length -eq 0 -or ($_ -match '[a-zA-Z0-9]' -and $_.length -gt 0 -and $_.length -le 8)) {
+                $true
+            }
+            else {
+                $false
+            }
+        })]
         [string]
         $Prefix,
 
@@ -93,7 +100,7 @@ Function Connect-AtwsWebAPI {
             ParameterSetName = 'ConfigurationObject'
         )]
         [ValidateScript( { 
-                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'NoDiskCache')
+                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'NoDiskCache', 'DebugPref', 'VerbosePref')
                 $members = Get-Member -InputObject $_ -MemberType NoteProperty
                 $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
                 if (-not($missingProperties)) {
@@ -128,21 +135,32 @@ Function Connect-AtwsWebAPI {
   
     process {
         # Make sure we have a valid configuration before we proceed
-        if ($PSCmdlet.ParameterSetName -ne 'ConfigurationObject') {
-            $Parameters = @{
-                Username                 = $Credential.UserName
-                SecurePassword           = $Credential.Password
-                SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
-                ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
-                Prefix                   = $Prefix
-                RefreshCache             = $RefreshCache.IsPresent
-                NoDiskCache              = $NoDiskCache.IsPresent
+        try { 
+            # If we didn't get a prepared configuration object, create one from the parameters
+            if ($PSCmdlet.ParameterSetName -ne 'ConfigurationObject') {
+                $Parameters = @{
+                    Credential               = $Credential
+                    SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
+                    ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
+                    Prefix                   = $Prefix
+                    RefreshCache             = $RefreshCache.IsPresent
+                    NoDiskCache              = $NoDiskCache.IsPresent
+                    DebugPref                = $DebugPreference
+                    VerbosePref              = $VerbosePreference
+                }
+                # We cannot reuse $configuration variable without triggering the validationscript
+                # again
+                $ConfigurationData = New-AtwsModuleConfiguration @Parameters
             }
-            $Configuration = New-AtwsModuleConfiguration @Parameters
+            elseif (Test-AtwsModuleConfiguration -Configuration $Configuration) {
+                # We got a configuration object and it passed validation
+                $ConfigurationData = $Configuration
+            }
         }
-
-        if (!(Test-AtwsModuleConfiguration -Configuration $Configuration)) {
-            throw [System.Configuration.Provider.ProviderException]::New('The module configuration could not be validated.')
+        catch {
+            $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
+            throw [System.Configuration.Provider.ProviderException]::New($message)
+            
             return
         }
 
@@ -158,22 +176,14 @@ Function Connect-AtwsWebAPI {
             # Import the module from its base directory
             $moduleName = $My.ModuleBase
         }
-      
-        # Unfortunately -Debug and -Verbose is not inherited into the module load, so we have to do a bit of awkward checking
-        # It is a hack - we need the parameters to be explicitly shown in $MyInvocation
-        if ($DebugPreference -eq 'Continue' -and $VerbosePreference -eq 'Continue') {
-            Import-Module -Name $moduleName @importParams -Debug -Verbose
-        }
-        elseif ($DebugPreference -eq 'Continue' -and $VerbosePreference -ne 'Continue') {
-            $importParams['Verbose'] = $false 
-            Import-Module -Name $moduleName @importParams -Debug 
-        }
-        elseif ($DebugPreference -ne 'Continue' -and $VerbosePreference -eq 'Continue') {
-            Import-Module -Name $moduleName @importParams -Verbose 
-        }
         else {
-            Import-Module -Name $moduleName @importParams 
+            # Import by module name
+            $moduleName = $MyInvocation.MyCommand.ModuleName
         }
+      
+        # Reload the module with configuration 
+        Import-Module -Name $moduleName @importParams -ArgumentList $ConfigurationData
+
         
     }
   

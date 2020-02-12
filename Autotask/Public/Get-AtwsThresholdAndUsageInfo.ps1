@@ -50,6 +50,8 @@ Function Get-AtwsThresholdAndUsageInfo {
 
     process {
         try { 
+            Write-Verbose ('{0}: Calling GetThresholdAndUsageInfo()' -F $MyInvocation.MyCommand.Name)
+
             $result = $Script:Atws.GetThresholdAndUsageInfo($Script:Atws.integrationsValue)
         }
         catch {
@@ -79,6 +81,8 @@ Function Get-AtwsThresholdAndUsageInfo {
     }
 
     end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+
         Return $ThresholdInfo
     }
 }

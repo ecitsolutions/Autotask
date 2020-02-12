@@ -29,11 +29,11 @@ Function Get-AtwsWsdlVersion {
     (
     )
   
-    begin {
-        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-    
+    begin {    
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+   
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
         if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
@@ -42,6 +42,8 @@ Function Get-AtwsWsdlVersion {
 
     process {
         try { 
+            Write-Verbose ('{0}: Calling GetWsdlVersion()' -F $MyInvocation.MyCommand.Name)
+
             $result = $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue)
         }
         catch {

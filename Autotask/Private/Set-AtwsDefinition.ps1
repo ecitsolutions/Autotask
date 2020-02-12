@@ -4,12 +4,19 @@
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
-            $DebugPreference = 'Continue'
+            $DebugPreference = 'Continue' 
+        }
+        else {
+            # Respect configured preference
+            $DebugPreference = $Script:Atws.Configuration.DebugPref
         }
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-           
-        
+
+        if (!($PSCmdlet.MyInvocation.BoundParameters['Verbose'].IsPresent)) {
+            # No local override of central preference. Load central preference
+            $VerbosePreference = $Script:Atws.Configuration.VerbosePref
+        }
         
         $ModifiedObjects = @()
     }

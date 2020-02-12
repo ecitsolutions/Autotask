@@ -31,34 +31,40 @@ Function New-AtwsModuleConfiguration {
     )]
     Param
     (
-        [Parameter()]
         [ValidateNotNullOrEmpty()]    
         [pscredential]
         $Credential = $(Get-Credential -Message 'Your Autotask API user'),
     
-        [Parameter()]
         [securestring]
-        $ApiTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier:'),
+        $SecureTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier:'),
     
-        [Parameter()]
-        [Alias('Picklist','UsePickListLabel')]
+        [Alias('Picklist', 'UsePickListLabel')]
         [switch]
         $ConvertPicklistIdToLabel = $false,
     
-        [Parameter()]
-        [ValidatePattern('[a-zA-Z0-9]')]
-        [ValidateLength(1, 8)]
+        [ValidateScript( {
+                # It can be empty, but if it isn't it should be max 8 characters and only letters and numbers
+                if ($_.length -eq 0 -or ($_ -match '[a-zA-Z0-9]' -and $_.length -gt 0 -and $_.length -le 8)) {
+                    $true
+                }
+                else {
+                    $false
+                }
+            })]
         [string]
         $Prefix,
 
-        [Parameter()]
         [switch]
         $RefreshCache = $false,
 
-    
-        [Parameter()]
         [switch]
-        $NoDiskCache = $false
+        $NoDiskCache = $false,
+
+        [string]
+        $DebugPref = $DebugPreference,
+
+        [string]
+        $VerbosePref = $VerbosePreference
     )
     
     begin { 
@@ -71,20 +77,31 @@ Function New-AtwsModuleConfiguration {
     }
   
     process {
-        $configuration = [PSCustomObject]@{
-            Username                 = $Credential.UserName
-            SecurePassword           = $Credential.Password
-            SecureTrackingIdentifier = $ApiTrackingIdentifier
-            ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
-            Prefix                   = $Prefix
-            RefreshCache             = $RefreshCache.IsPresent
-            UseDiskCache             = $NoDiskCache.IsPresent -xor $true
+        Try { 
+            $configuration = [PSCustomObject]@{
+                Username                 = $Credential.UserName
+                SecurePassword           = $Credential.Password
+                SecureTrackingIdentifier = $SecureTrackingIdentifier
+                ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
+                Prefix                   = $Prefix
+                RefreshCache             = $RefreshCache.IsPresent
+                UseDiskCache             = $NoDiskCache.IsPresent -xor $true
+                DebugPref                = $DebugPreference
+                VerbosePref              = $VerbosePreference
+            }
+        
+            if (Test-AtwsModuleConfiguration -Configuration $configuration) {
+                Write-Verbose ('{0}: Module configuration validated OK.' -F $MyInvocation.MyCommand.Name)
+            }
+            else {
+                Write-Warning ('{0}: Module configuration could not be validated!' -F $MyInvocation.MyCommand.Name)
+            }
         }
-        if (Test-AtwsModuleConfiguration -Configuration $configuration) {
-            Write-Verbose ('{0}: Module configuration validated OK.' -F $MyInvocation.MyCommand.Name)
-        }
-        else {
-            Write-Warning ('{0}: Module configuration could not be validated!' -F $MyInvocation.MyCommand.Name)
+        catch {
+            $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
+            throw [System.Configuration.Provider.ProviderException]::New($message)
+        
+            return
         }
     }
   

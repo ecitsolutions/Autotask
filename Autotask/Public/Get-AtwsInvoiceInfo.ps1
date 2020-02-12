@@ -9,26 +9,26 @@
 
 Function Get-AtwsInvoiceInfo {
     <#
-      .SYNOPSIS
-      This function collects information about a specific Autotask invoice object and returns a generic
-      powershell object with all relevant information as a starting point for import into other systems.
-      .DESCRIPTION
-      The function accepts an invoice object or an invoice id and makes a special API call to get a 
-      complete invoice description, including billingitems. For some types of billingitems additional
-      information may be collected. All information is collected and stored in a PSObject which is
-      returned.
-      .INPUTS
-      An Autotask invoice object or an invoice id
-      .OUTPUTS
-      A custom PSObject with detailed information about an invoice
-      .EXAMPLE
-      $Invoice | Get-AtwsInvoiceInfo
-      Gets information about invoices passed through the pipeline
-      .EXAMPLE
-      Get-AtwsInvoiceInfo -InvoiceID $Invoice.id
-      Gets information about invoices based on the ids passed as a parameter
-      .NOTES
-      NAME: Get-AtwsInvoiceInfo
+        .SYNOPSIS
+            This function collects information about a specific Autotask invoice object and returns a generic
+            powershell object with all relevant information as a starting point for import into other systems.
+        .DESCRIPTION
+            The function accepts an invoice object or an invoice id and makes a special API call to get a 
+            complete invoice description, including billingitems. For some types of billingitems additional
+            information may be collected. All information is collected and stored in a PSObject which is
+            returned.
+        .INPUTS
+            An Autotask invoice object or an invoice id
+        .OUTPUTS
+            A custom PSObject with detailed information about an invoice
+        .EXAMPLE
+            $Invoice | Get-AtwsInvoiceInfo
+            Gets information about invoices passed through the pipeline
+        .EXAMPLE
+            Get-AtwsInvoiceInfo -InvoiceID $Invoice.id
+            Gets information about invoices based on the ids passed as a parameter
+        .NOTES
+            NAME: Get-AtwsInvoiceInfo
       
   #>
 	
@@ -58,6 +58,8 @@ Function Get-AtwsInvoiceInfo {
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
         if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
@@ -107,6 +109,8 @@ Function Get-AtwsInvoiceInfo {
     }
 
     end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+
         return $result
     }
 }

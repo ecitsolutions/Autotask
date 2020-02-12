@@ -44,7 +44,7 @@ Function Import-AtwsDiskCache {
             $dynamicCache = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
         }
         else {
-            $dynamicCache = '{0}\.atwsCache' -f $([environment]::GetFolderPath('MyDocuments'))
+            $dynamicCache = '{0}\.config\powershell\cache' -f $([environment]::GetFolderPath('MyDocuments'))
         }
 
         # Use different directory for beta versions

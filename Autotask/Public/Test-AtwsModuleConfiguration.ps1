@@ -36,39 +36,26 @@ Function Test-AtwsModuleConfiguration {
             ValueFromPipeline = $true
         )]
         [ValidateNotNullOrEmpty()]
-        [ValidateScript( { 
-                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'UseDiskCache')
-                $members = Get-Member -InputObject $_ -MemberType NoteProperty
-                $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
-                if (-not($missingProperties)) {
-                    $true               
-                }
-                else {
-                    $missingProperties | ForEach-Object {
-                        Throw [System.Management.Automation.ValidationMetadataException] "Property: '$_' missing"
-                    } 
-                }
-            })]
         [pscustomobject]
         $Configuration 
     )
 
     Function Test-AtwsModuleConfigurationByPropertyname {
         <#
-                .SYNOPSIS
+            .SYNOPSIS
                 This function re-loads the module with the correct parameters for full functionality
-                .DESCRIPTION
+            .DESCRIPTION
                 This function is a wrapper that is included for backwards compatibility with previous module behavior.
                 These parameters should be passed to Import-Module -Variable directly, but previously the module 
                 consisted of two, nested modules. Now there is a single module with all functionality.
-                .INPUTS
+            .INPUTS
                 A PSCredential object. Required. 
                 A string used as ApiTrackingIdentifier. Required. 
-                .OUTPUTS
+            .OUTPUTS
                 Nothing.
-                .EXAMPLE
+            .EXAMPLE
                 Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $string
-                .NOTES
+            .NOTES
                 NAME: Connect-AtwsWebAPI
         #>
 	
@@ -137,7 +124,23 @@ Function Test-AtwsModuleConfiguration {
                 ValueFromPipelineByPropertyName = $true
             )]
             [switch]
-            $UseDiskCache
+            $UseDiskCache,
+
+            [Parameter(
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
+            )]
+            [ValidateSet('Stop', 'Inquire', 'Continue', 'SilentlyContinue')]
+            [string]
+            $DebugPref,
+
+            [Parameter(
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
+            )]
+            [ValidateSet('Stop', 'Inquire', 'Continue', 'SilentlyContinue')]
+            [string]
+            $VerbosePref
         )
     
         begin { 
