@@ -8,11 +8,33 @@
 #>
 
 Function Uninstall-AtwsOldModuleVersion {
+    <#
+        .SYNOPSIS
+            This function uninstalls old module versions.
+        .DESCRIPTION
+            When you update modules from Powershell Gallery with built-in functions any new
+            module versions are installed alongside existing versions. Sometimes this may 
+            cause problems, including wasting disk space. This function gets a list of all
+            installed versions of a module and uninstalls every version but the last.
+        .INPUTS
+            Nothing, only a parameter.
+        .OUTPUTS
+            Nothing, it only deletes.
+        .EXAMPLE
+            Uninstall-AtwsOldModuleVersion
+            Uninstalls all but the last version of this module.
+        .EXAMPLE
+            Uninstall-AtwsOldModuleVersion -ModuleName ModuleName
+            Uninstalls all but the last version of any module named ModuleName.
+        .NOTES
+            NAME: Uninstall-AtwsOldModuleVersion
+    #>
     [CmdLetBinding(
         SupportsShouldProcess = $true,
         ConfirmImpact = 'Medium'
     )]
     Param(
+        # The name of the module where all versions but the last should be uninstalled.
         [Alias('Name')]
         [string]
         $ModuleName = $MyInvocation.MyCommand.ModuleName

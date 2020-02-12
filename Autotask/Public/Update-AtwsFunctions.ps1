@@ -1,15 +1,38 @@
 ﻿<#
-
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 
 #>
 Function Update-AtwsFunctions {
+    <#
+        .SYNOPSIS
+            This function recreates the autotask powershell functions.
+        .DESCRIPTION
+            Entities with picklists need customized parameter definitions to get the right validateset
+            attributes. This function regenerates either static functions (those for entities that do not
+            have any picklists or user defined fields) or dynamic functions (any function for an entity
+            with either picklists or user defined fields).
+        .INPUTS
+            A string representing the function set to regenerate, either Static or Dynamic.
+        .OUTPUTS
+            Script files in module directory and the current user's dynamic cache.
+        .EXAMPLE
+            Update-AtwsFunctions -FunctionSet Static
+            Regenerates all static functions in $Module.Modulebase/Static directory
+        .EXAMPLE
+            Update-AtwsFunctions -FunctionSet Dynamic
+            Regenerates all static functions in $Module.Modulebase/Dynamic directory and the current user's
+            dynamic cache directory.
+        .NOTES
+            NAME: Update-AtwsFunctions
+    #>
+
     [CmdLetBinding(
         SupportsShouldProcess = $true,
         ConfirmImpact = 'High'
     )]
+    # The function set to generate, either 'Dynamic' or 'Static'
     Param(
         [ValidateSet('Dynamic', 'Static')]
         [string]
@@ -69,13 +92,12 @@ Function Update-AtwsFunctions {
             if ($Tenant.Key -eq '00') {
                 $RootPath = $MyInvocation.MyCommand.Module.ModuleBase
             }
-            elseif ($FunctionSet -eq 'Dynamic') {
-                $RootPath = '{0}\WindowsPowershell\Cache\{1}' -f $([environment]::GetFolderPath('MyDocuments')), $Tenant.Key
+            elseif ($FunctionSet -eq 'Dynamic' -and $My.ContainsKey('DynamicCache') -and -not $My['IsBeta']) {
+                $RootPath = $My['DynamicCache']
         
                 # Create Rootpath directory if it doesn't exist
-                if (-not (Test-Path "$RootPath\Dynamic")) {
-                    $null = New-Item -Path "$RootPath\Dynamic" -ItemType Directory -Force
-          
+                if (-not (Test-Path $RootPath)) {
+                    $null = New-Item -Path "$RootPath" -ItemType Directory -Force
                 }
             }
             else {

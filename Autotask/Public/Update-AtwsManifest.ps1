@@ -6,14 +6,38 @@
 
 #>
 Function Update-AtwsManifest {
+    <#
+        .SYNOPSIS
+            This function recreates the module manifest and nuspec with default settings.
+        .DESCRIPTION
+            This function recreates a module manifest and nuspec for the current module and has an option
+            for increasing the version number to the next available based on current API version
+            and module version. There is also an option for creating a manifest for a beta module.
+        .INPUTS
+            Nothing, only parameters.
+        .OUTPUTS
+            A PowerShell module manifest and nuspec file for the current module.
+        .EXAMPLE
+            Update-AtwsManifest
+            Recreates a manifest and a nuspec file for the current module and overwrites the existing files
+            with them.
+        .EXAMPLE
+            Update-AtwsManifest -UpdateVersion
+            Recreates a manifest and a nuspec file for the current module, updates the version number in both
+            and overwrites the existing files with them.
+        .NOTES
+            NAME: Update-AtwsFunctions
+    #>
     [CmdLetBinding(
         SupportsShouldProcess = $true,
         ConfirmImpact = 'High'
     )]
     Param(
+        # Optional flag that causes the function to increase the version number a single increment.
         [switch]
         $UpdateVersion,
     
+        # Optional flag that causes the function to save the manifest files with suffix "Beta".
         [switch]
         $Beta
     )
