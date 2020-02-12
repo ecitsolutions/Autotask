@@ -93,9 +93,8 @@ Function Connect-AtwsWebServices {
         # Path to web service reference
         $code = '{0}\Private\Reference.cs' -f $My['ModuleBase']
 
-        # List of needed assemblies
+        # List of needed assemblies for Powershell 5.1
         $assemblies = @(
-            # These were enough on Windows 10
             'System.ServiceModel'
             'System.ServiceModel.Duplex' 
             'System.ServiceModel.Http'
@@ -106,10 +105,9 @@ Function Connect-AtwsWebServices {
             'System.Xml.ReaderWriter'
             'System.Runtime.Serialization'
         )
-        # Check OS platform and add assemblies if not on windows. These will fail on windows.
-        if (-not([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows))) { 
+        # For Powershell versions 6 and higher, add these assemblies
+        if ($PSVersionTable.PSVersion.Major -ge 6) { 
             $assemblies += @( 
-                # Core on MacOs
                 'netstandard'
                 'System.Xml.XmlSerializer'
                 'System.Runtime.Serialization.Xml'
