@@ -165,7 +165,7 @@ Function Get-AtwsFieldInfo {
                     $script:FieldInfoCache[$Entity].FieldInfo = $result
                     
                     # If not called during module load, give this warning
-                    if ($PSCmdLet.MyInvocation.ScriptName -notlike '*.psm1') { 
+                    if ($PSCmdLet.MyInvocation.ScriptName -notlike '*.psm1' -and $Script:Atws.Configuration.UseDiskCache) { 
                         Write-Warning ('{0}: The {1} entity has been modified in Autotask! Re-import module with -Argumentlist $creds, $ApiKey, "{1}" to refresh.' -F $MyInvocation.MyCommand.Name, $Entity)
                     }
                     
