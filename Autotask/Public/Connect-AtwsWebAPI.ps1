@@ -166,7 +166,7 @@ Function Connect-AtwsWebAPI {
 
         # Question 1: Is the current module in $env:PSModulePath
         $notInPath = $true
-        foreach ($dir in $env:PSModulePath -split ';') {
+        foreach ($dir in $env:PSModulePath -split ';|:') { # Separator can be both ; and : depending on platform
             if ($My.ModuleBase -like "$dir*") {
                 $notInPath = $false
             }
