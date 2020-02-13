@@ -163,7 +163,7 @@ if ($Credential) {
             $Versionstring = "#Version {0}" -F $My.ModuleVersion
             
             # This is the number of dynamic functions that have the correct version tag
-            $ScriptVersion = Select-String -Pattern $Versionstring -Path $dynamicFunction.FullName
+            $ScriptVersion = Select-String -Pattern $Versionstring -Path $dynamicFunction.FullName -ErrorAction SilentlyContinue
             
             # All function files MUST have the correct version and be of the correct version, or they will
             # recreated just to be safe.
