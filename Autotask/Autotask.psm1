@@ -31,8 +31,8 @@ Param(
 Write-Debug ('{0}: Start of module import' -F $MyInvocation.MyCommand.Name)
 
 # Explicit loading of namespace
-$namespace = 'Autotask'
-. ([scriptblock]::Create("using namespace $namespace"))
+#$namespace = 'Autotask'
+#. ([scriptblock]::Create("using namespace $namespace"))
 
 # Special consideration for -Verbose, as there is no $PSCmdLet context to check if Import-Module was called using -Verbose
 # and $VerbosePreference is not inherited from Import-Module for some reason.
@@ -150,7 +150,7 @@ if ($Credential) {
         $dynamicCache = $Script:Atws.DynamicCache
 
         # Locate and load the connection specific script files
-        if (Test-Path $dynamicCache) {
+        if (Test-Path $dynamicCache\*atws*.ps1) {
             # We have this many dynamic functions distributed with the module
             $FunctionCount = $dynamicFunction.Count
             
