@@ -4,197 +4,190 @@
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 #>
 
-[CmdletBinding()]
+[CmdletBinding(
+    PositionalBinding = $false
+)]
 Param(
     [Parameter(
         Position = 0
     )]
-    [pscredential]
-    $Credential = $Global:AtwsCredential,
+    [pscustomobject]
+    $Credential,
     
     [Parameter(
-        Position = 1  
+        Position = 1
     )]
     [string]
-    $ApiTrackingIdentifier = $Global:AtwsApiTrackingIdentifier,
+    $ApiTrackingIdentifier, 
 
     [Parameter(
         Position = 2,
         ValueFromRemainingArguments = $true
     )]
     [string[]]
-    $entityName = $Global:AtwsRefreshCachePattern
+    $entityName
 )
 
 Write-Debug ('{0}: Start of module import' -F $MyInvocation.MyCommand.Name)
 
+# Explicit loading of namespace
+#$namespace = 'Autotask'
+#. ([scriptblock]::Create("using namespace $namespace"))
 
 # Special consideration for -Verbose, as there is no $PSCmdLet context to check if Import-Module was called using -Verbose
 # and $VerbosePreference is not inherited from Import-Module for some reason.
 
 # Remove comments
-$ParentCommand = ($MyInvocation.Line -split '#')[0]
+$parentCommand = ($MyInvocation.Line -split '#')[0]
 
 # Store Previous preference
-$OldVerbosePreference = $VerbosePreference
-if ($ParentCommand -like '*-Verbose*') {
+$oldVerbosePreference = $VerbosePreference
+if ($parentCommand -like '*-Verbose*') {
     Write-Debug ('{0}: Verbose preference detected. Verbose messages ON.' -F $MyInvocation.MyCommand.Name)
     $VerbosePreference = 'Continue'
 }
-$OldDebugPreference = $DebugPreference
-if ($ParentCommand -like '*-Debug*') {
+$oldDebugPreference = $DebugPreference
+if ($parentCommand -like '*-Debug*') {
     Write-Debug ('{0}: Debug preference detected. Debug messages ON.' -F $MyInvocation.MyCommand.Name)
     $DebugPreference = 'Continue'
 }
 
+# Read our own manifest to access configuration data
+$manifestFileName = $MyInvocation.MyCommand.Name -replace 'pdm1$', 'psd1'
+$manifestDirectory = Split-Path $MyInvocation.MyCommand.Path -Parent
+
+Write-Debug ('{0}: Loading Manifest file {1} from {2}' -F $MyInvocation.MyCommand.Name, $manifestFileName, $manifestDirectory)
+
+Import-LocalizedData -BindingVariable My -FileName $manifestFileName -BaseDirectory $manifestDirectory
+
+# Add module path to manifest variable
+$My['ModuleBase'] = $manifestDirectory
+
 # Am I being loaded as the Beta version?
 if ($MyInvocation.MyCommand.Name -eq 'AutotaskBeta.psm1') {
-    $Script:IsBeta = $true
+    $My['IsBeta'] = $true
 }
-
-# Read our own manifest to access configuration data
-$ManifestFileName = $MyInvocation.MyCommand.Name -replace 'pdm1$', 'psd1'
-$ManifestDirectory = Split-Path $MyInvocation.MyCommand.Path -Parent
-
-Write-Debug ('{0}: Loading Manifest file {1} from {2}' -F $MyInvocation.MyCommand.Name, $ManifestFileName, $ManifestDirectory)
-
-
-Import-LocalizedData -BindingVariable My -FileName $ManifestFileName -BaseDirectory $ManifestDirectory
+else {
+    $My['IsBeta'] = $false
+}
 
 # Get all function files as file objects
 # Private functions can only be called internally in other functions in the module 
 
-$PrivateFunction = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue ) 
-Write-Debug ('{0}: Found {1} script files in {2}\Private' -F $MyInvocation.MyCommand.Name, $PrivateFunction.Count, $PSScriptRoot)
+$privateFunction = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue ) 
+Write-Debug ('{0}: Found {1} script files in {2}\Private' -F $MyInvocation.MyCommand.Name, $privateFunction.Count, $PSScriptRoot)
 
 # Public functions will be exported with Prefix prepended to the Noun of the function name
 
-$PublicFunction = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue ) 
-Write-Debug ('{0}: Found {1} script files in {2}\Public' -F $MyInvocation.MyCommand.Name, $PublicFunction.Count, $PSScriptRoot)
+$publicFunction = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue ) 
+Write-Debug ('{0}: Found {1} script files in {2}\Public' -F $MyInvocation.MyCommand.Name, $publicFunction.Count, $PSScriptRoot)
 
 # Static functions will be exported with Prefix prepended to the Noun of the function name
 
-$StaticFunction = @( Get-ChildItem -Path $PSScriptRoot\Static\*.ps1 -ErrorAction SilentlyContinue ) 
-Write-Debug ('{0}: Found {1} script files in {2}\Static' -F $MyInvocation.MyCommand.Name, $StaticFunction.Count, $PSScriptRoot)
+$staticFunction = @( Get-ChildItem -Path $PSScriptRoot\Static\*.ps1 -ErrorAction SilentlyContinue ) 
+Write-Debug ('{0}: Found {1} script files in {2}\Static' -F $MyInvocation.MyCommand.Name, $staticFunction.Count, $PSScriptRoot)
 
 # Static functions will be exported with Prefix prepended to the Noun of the function name
 
-$DynamicFunction = @( Get-ChildItem -Path $PSScriptRoot\Dynamic\*.ps1 -ErrorAction SilentlyContinue ) 
-Write-Debug ('{0}: Found {1} script files in {2}\Dynamic' -F $MyInvocation.MyCommand.Name, $DynamicFunction.Count, $PSScriptRoot)
+$dynamicFunction = @( Get-ChildItem -Path $PSScriptRoot\Dynamic\*.ps1 -ErrorAction SilentlyContinue ) 
+Write-Debug ('{0}: Found {1} script files in {2}\Dynamic' -F $MyInvocation.MyCommand.Name, $dynamicFunction.Count, $PSScriptRoot)
 
 
-Write-Verbose ('{0}: Importing {1} Private and {2} Public functions.' -F $MyInvocation.MyCommand.Name, $PrivateFunction.Count, $PublicFunction.Count)
+Write-Verbose ('{0}: Importing {1} Private and {2} Public functions.' -F $MyInvocation.MyCommand.Name, $privateFunction.Count, $publicFunction.Count)
 
-# Loop through all script files and source them
-foreach ($Import in @($PrivateFunction + $PublicFunction)) {
-    Write-Debug ('{0}: Importing {1}' -F $MyInvocation.MyCommand.Name, $Import)
+# Loop through all supporting script files and source them
+foreach ($import in @($privateFunction + $publicFunction)) {
+    Write-Debug ('{0}: Importing {1}' -F $MyInvocation.MyCommand.Name, $import)
     try {
-        . $Import.fullname
+        . $import.fullname
     }
     catch {
-        throw "Could not import function $($Import.fullname): $_"
+        throw "Could not import function $($import.fullname): $_"
     }
 }
 
 # If they tried to pass any variables
-if (($Credential) -or ($ApiTrackingIdentifier)) {
-    Write-Verbose ('{0}: Credentials detected. Connecting to Autotask API' -F $MyInvocation.MyCommand.Name)
-    
-    # Remove Global variables (if used) for security
-    $MyGlobalVars = Get-Variable -Scope Global -ErrorAction SilentlyContinue
-    $TargetVarNames = 'AtwsCredential', 'AtwsApiTrackingIdentifier', 'AtwsRefreshCachePattern', 'AtwsUsePicklistLabels', 'AtwsNoDiskCache'
-    $ConnectArgs = @{
-        Credential            = $Credential
-        ApiTrackingIdentifier = $ApiTrackingIdentifier
-    }
-    switch ($MyGlobalVars | Where-Object { $_.Name -in $TargetVarNames }) {
-        { $_.Name -eq 'AtwsCredential' } {
-            Write-Debug ('{0}: Credentials for {1} detected.' -F $MyInvocation.MyCommand.Name, $AtwsCredential.UserName)
-
-            # Remove Global Object, credentials are now stored in a variable internal to the module
-      
-            Remove-Variable -Name $_.Name -Scope Global
-    
-            continue
+if ($Credential) {
+    Write-Verbose ('{0}: Parameters detected. Connecting to Autotask API' -F $MyInvocation.MyCommand.Name)
+    Try { 
+        if ($Credential -is [pscredential]) {
+            ## Legacy
+            #  The user passed credentials directly
+            $Parameters = @{
+                Credential               = $Credential
+                SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
+                DebugPref                = $DebugPreference
+                VerbosePref              = $VerbosePreference
+            }
+            $Configuration = New-AtwsModuleConfiguration @Parameters
         }
-        { $_.Name -eq 'AtwsApiTrackingIdentifier' } {
-            Write-Debug ('{0}: API tracking identifier for {1} detected.' -F $MyInvocation.MyCommand.Name, $AtwsCredential.UserName)
+        elseif (Test-AtwsModuleConfiguration -Configuration $Credential) {
+            ## First parameter was a valid configuration object
+            $Configuration = $Credential
 
-            # Remove Global Object, credentials are now stored in a variable internal to the module
-    
-            Remove-Variable -Name AtwsApiTrackingIdentifier -Scope Global
-    
-            continue
-        }
-        { $_.Name -eq 'AtwsRefreshCachePattern' } {
-            Write-Debug ('{0}: Refreshing disk cache by force' -F $MyInvocation.MyCommand.Name)
-
-            # Remove Global Object
-    
-            Remove-Variable -Name AtwsRefreshCachePattern -Scope Global
-    
-            continue
-        }
-        { $_.Name -eq 'AtwsUsePicklistLabels' } {
-            Write-Debug ('{0}: Converting picklistvalues to their labels are turned ON' -F $MyInvocation.MyCommand.Name)
-
-            $Script:Atws.Configuration.ConvertPicklistIdToLabel = $true
-    
-            # Remove Global Object
-    
-            Remove-Variable -Name AtwsUsePicklistLabels -Scope Global
-
-            continue
-        }
-        { $_.Name -eq 'AtwsNoDiskCache' } {
-            Write-Debug ('{0}: Force No disk cache detected. All functions are loaded from the scripts supplied by the module.' -F $MyInvocation.MyCommand.Name)
-            Write-Verbose ('{0}: Force No disk cache detected. All functions are loaded from the scripts supplied by the module.' -F $MyInvocation.MyCommand.Name)
-        
-            # Remove Global Object, credentials are now stored in a variable internal to the module
-            Remove-Variable -Name AtwsNoDiskCache -Scope Global
-  
-            # Add the NoDiskCache switch to the splatted arguments we will use to connect
-            $ConnectArgs['NoDiskCache'] = $true
-        }
-        default { }
-    }
-    # Connect to the API using required, additional parameters, using internal function name
-    . Connect-AtwsWebServices @ConnectArgs
-    if (!$ConnectArgs['NoDiskCache']) {
-        if ($IsBeta) { 
-          $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Beta' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
+            # Switch to configured debug and verbose preferences
+            $VerbosePreference = $Configuration.VerbosePref
+            $DebugPreference = $Configuration.DebugPref
         }
         else {
-          $DynamicCache = '{0}\WindowsPowershell\Cache\{1}\Dynamic' -f $([environment]::GetFolderPath('MyDocuments')), $Script:Atws.CI
+            throw [System.Management.Automation.ParameterBindingException]::New()
         }
-        if (Test-Path $DynamicCache) {
-            $FunctionCount = $DynamicFunction.Count
-            $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )
-            Write-Debug ('{0}: Personal disk cache: Found {1} script files in {2}' -F $MyInvocation.MyCommand.Name, $DynamicFunction.Count, $DynamicCache)
-      
+
+        ## Connect to the API
+        #  or die trying
+        . Connect-AtwsWebServices -Configuration $Configuration -Erroraction Stop
+    }
+    catch {
+        $message = "{0}`n`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
+        throw [System.Configuration.Provider.ProviderException]::New($message)
+    
+        return
+    }
+    
+    # From now on we should have module variable atws available
+    if ($Script:Atws.Configuration.UseDiskCache) {
+        
+        $dynamicCache = $Script:Atws.DynamicCache
+
+        # Locate and load the connection specific script files
+        if (Test-Path $dynamicCache\*atws*.ps1) {
+            # We have this many dynamic functions distributed with the module
+            $FunctionCount = $dynamicFunction.Count
+            
+            # We have this many dynamic functions in the disc cache
+            $dynamicFunction = @( Get-ChildItem -Path $dynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue )
+            
+            Write-Debug ('{0}: Personal disk cache: Found {1} script files in {2}' -F $MyInvocation.MyCommand.Name, $dynamicFunction.Count, $dynamicCache)
+            
+            # This is the version string that should be inside every valid function
             $Versionstring = "#Version {0}" -F $My.ModuleVersion
-            $ScriptVersion = Select-string -Pattern $Versionstring -Path $DynamicFunction.FullName
+            
+            # This is the number of dynamic functions that have the correct version tag
+            $ScriptVersion = Select-String -Pattern $Versionstring -Path $dynamicFunction.FullName -ErrorAction SilentlyContinue
+            
+            # All function files MUST have the correct version and be of the correct version, or they will
+            # recreated just to be safe.
             if ($ScriptVersion.Count -ne $FunctionCount) {
-                Write-Debug ('{0}: Personal disk cache: Wrong number of script files or scripts are not the right version in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $DynamicCache)
+                Write-Warning ('{0}: Personal disk cache: Wrong number of script files or scripts are not the right version in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $dynamicCache)
   
                 # Clear out old cache, it will be recreated
-                $null = Remove-Item -Path $DynamicFunction.fullname -Force -ErrorAction SilentlyContinue
+                $null = Remove-Item -Path $dynamicFunction.fullname -Force -ErrorAction SilentlyContinue
   
                 # Refresh  ALL dynamic entities.
                 $entityName = '*' 
             }
 
-            $OldFunctions = @(Get-ChildItem -Path $DynamicCache\*.ps1 -Exclude *Atws* -ErrorAction SilentlyContinue)
+            $OldFunctions = @(Get-ChildItem -Path $dynamicCache\*.ps1 -Exclude *Atws* -ErrorAction SilentlyContinue)
             if ($OldFunctions.Count -gt 0) {
 
-                Write-Debug ('{0}: Personal disk cache: Found {1} old script files in {2}. Deleting.' -F $MyInvocation.MyCommand.Name, $OldFunctions.Count, $DynamicCache)
+                Write-Warning ('{0}: Personal disk cache: Found {1} old script files in {2}. Deleting.' -F $MyInvocation.MyCommand.Name, $OldFunctions.Count, $dynamicCache)
         
                 $null = Remove-Item -Path $OldFunctions.fullname -Force -ErrorAction SilentlyContinue
             }
         }
         else {
 
-            Write-Debug ('{0}: Personal disk cache {1} does not exist. Forcing load of all dynamic entities.' -F $MyInvocation.MyCommand.Name, $DynamicCache)
+            Write-Warning ('{0}: Personal disk cache {1} does not exist. Forcing load of all dynamic entities.' -F $MyInvocation.MyCommand.Name, $dynamicCache)
     
             # No personal dynamic cache. Refresh  ALL dynamic entities.
             $entityName = '*'
@@ -203,80 +196,80 @@ if (($Credential) -or ($ApiTrackingIdentifier)) {
         # Refresh any entities the caller has ordered
         # We only consider entities that are dynamic
         $Entities = Get-AtwsFieldInfo -Dynamic
-        $EntitiesToProcess = @()
+        $entitiesToProcess = @()
 
-        Write-Debug ('{0}: {1} dynamic entities are eligible for refresh.' -F $MyInvocation.MyCommand.Name, $DynamicCache)
+        Write-Debug ('{0}: {1} dynamic entities are eligible for refresh.' -F $MyInvocation.MyCommand.Name, $dynamicCache)
 
         foreach ($string in $entityName) {
             Write-Debug ('{0}: Selecting entities that match pattern "{1}"' -F $MyInvocation.MyCommand.Name, $string)
       
-            $EntitiesToProcess += $Entities.GetEnumerator().Where( { $_.Key -like $string })
+            $entitiesToProcess += $Entities.GetEnumerator().Where( { $_.Key -like $string })
         }
-        # Prepare Index for progressbar
-        $Index = 0
-        $ProgressParameters = @{
+        # Prepare index for progressbar
+        $index = 0
+        $progressParameters = @{
             Activity = 'Updating diskcache for requested entities.'
             Id       = 10
         }
 
         # Make sure we only check each possible entity once
-        $EntitiesToProcess = $EntitiesToProcess | Sort-Object -Property Name -Unique
+        $entitiesToProcess = $entitiesToProcess | Sort-Object -Property Name -Unique
 
-        Write-Debug ('{0}: {1} entities have been selected for refresh' -F $MyInvocation.MyCommand.Name, $EntitiesToProcess.Count)
+        Write-Debug ('{0}: {1} entities have been selected for refresh' -F $MyInvocation.MyCommand.Name, $entitiesToProcess.Count)
   
 
-        foreach ($EntityToProcess in $EntitiesToProcess) {
-            $Index++
-            $PercentComplete = $Index / $EntitiesToProcess.Count * 100
+        foreach ($entityToProcess in $entitiesToProcess) {
+            $index++
+            $percentComplete = $index / $entitiesToProcess.Count * 100
 
             # Add parameters for @splatting
-            $ProgressParameters['PercentComplete'] = $PercentComplete
-            $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $EntitiesToProcess.Count, $PercentComplete
-            $ProgressParameters['CurrentOperation'] = 'Getting fieldinfo for {0}' -F $EntityToProcess.Name
+            $progressParameters['PercentComplete'] = $percentComplete
+            $progressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $index, $entitiesToProcess.Count, $percentComplete
+            $progressParameters['CurrentOperation'] = 'Getting fieldinfo for {0}' -F $entityToProcess.Name
 
-            Write-Progress @ProgressParameters
+            Write-Progress @progressParameters
 
-            $null = Get-AtwsFieldInfo -Entity $EntityToProcess.Key -UpdateCache
+            $null = Get-AtwsFieldInfo -Entity $entityToProcess.Key -UpdateCache
         }
 
-        if ($EntitiesToProcess.Count -gt 0) { 
-            Write-Debug ('{0}: Calling Import-AtwsCmdLet with {1} entities to process' -F $MyInvocation.MyCommand.Name, $EntitiesToProcess.Count)
+        if ($entitiesToProcess.Count -gt 0) { 
+            Write-Debug ('{0}: Calling Import-AtwsCmdLet with {1} entities to process' -F $MyInvocation.MyCommand.Name, $entitiesToProcess.Count)
   
             # Recreate functions that have been updated
-            Import-AtwsCmdLet -Entities $EntitiesToProcess
+            Import-AtwsCmdLet -Entities $entitiesToProcess
 
             # Re-read Dynamic functions
-            $DynamicFunction = @( Get-ChildItem -Path $DynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue ) 
+            $dynamicFunction = @( Get-ChildItem -Path $dynamicCache\*atws*.ps1 -ErrorAction SilentlyContinue ) 
 
-            Write-Debug ('{0}: Personal disk cache: Found {1} script files in {2}' -F $MyInvocation.MyCommand.Name, $DynamicFunction.Count, $DynamicCache)
+            Write-Debug ('{0}: Personal disk cache: Found {1} script files in {2}' -F $MyInvocation.MyCommand.Name, $dynamicFunction.Count, $dynamicCache)
         }
     }
 
-    Write-Verbose ('{0}: Importing {1} Static and {2} Dynamic functions.' -F $MyInvocation.MyCommand.Name, $StaticFunction.Count, $DynamicFunction.Count)
+    Write-Verbose ('{0}: Importing {1} Static and {2} Dynamic functions.' -F $MyInvocation.MyCommand.Name, $staticFunction.Count, $dynamicFunction.Count)
   
     # Loop through all script files and source them
-    foreach ($Import in @($StaticFunction + $DynamicFunction)) {
-        Write-Debug ('{0}: Importing {1}' -F $MyInvocation.MyCommand.Name, $Import)
+    foreach ($import in @($staticFunction + $dynamicFunction)) {
+        Write-Debug ('{0}: Importing {1}' -F $MyInvocation.MyCommand.Name, $import)
 
         try {
-            . $Import.fullname
+            . $import.fullname
         }
         catch {
-            throw "Could not import function $($Import.fullname): $_"
+            throw "Could not import function $($import.fullname): $_"
         }
     }
   
     # Explicitly export public functions
-    Write-Debug ('{0}: Exporting {1} Public functions.' -F $MyInvocation.MyCommand.Name, $PublicFunction.Count) 
-    Export-ModuleMember -Function $PublicFunction.Basename
+    Write-Verbose ('{0}: Exporting {1} Public functions.' -F $MyInvocation.MyCommand.Name, $publicFunction.Count) 
+    Export-ModuleMember -Function $publicFunction.Basename
 
     # Explicitly export static functions
-    Write-Debug ('{0}: Exporting {1} Static functions.' -F $MyInvocation.MyCommand.Name, $StaticFunction.Count)
-    Export-ModuleMember -Function $StaticFunction.Basename
+    Write-Verbose ('{0}: Exporting {1} Static functions.' -F $MyInvocation.MyCommand.Name, $staticFunction.Count)
+    Export-ModuleMember -Function $staticFunction.Basename
 
     # Explicitly export dynamic functions
-    Write-Debug ('{0}: Exporting {1} Dynamic functions.' -F $MyInvocation.MyCommand.Name, $DynamicFunction.Count)
-    Export-ModuleMember -Function $DynamicFunction.Basename
+    Write-Verbose ('{0}: Exporting {1} Dynamic functions.' -F $MyInvocation.MyCommand.Name, $dynamicFunction.Count)
+    Export-ModuleMember -Function $dynamicFunction.Basename
 }
 else {
     Write-Verbose 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI to connect.'
@@ -289,11 +282,11 @@ Set-Alias -Scope Global -Name 'Connect-AutotaskWebAPI' -Value 'Connect-AtwsWebAP
 
 
 # Restore Previous preference
-if ($OldVerbosePreference -ne $VerbosePreference) {
+if ($oldVerbosePreference -ne $VerbosePreference) {
     Write-Debug ('{0}: Restoring old Verbose preference' -F $MyInvocation.MyCommand.Name)
-    $VerbosePreference = $OldVerbosePreference
+    $VerbosePreference = $oldVerbosePreference
 }
-if ($OldDebugPreference -ne $DebugPreference) {
+if ($oldDebugPreference -ne $DebugPreference) {
     Write-Debug ('{0}: Restoring old Debug preference' -F $MyInvocation.MyCommand.Name)
-    $DebugPreference = $OldDebugPreference
+    $DebugPreference = $oldDebugPreference
 }
