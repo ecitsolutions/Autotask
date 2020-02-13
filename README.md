@@ -36,7 +36,16 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
-## Version 1.6.4.2
+## Version 1.6.4.3 - Multiplatform release
+
+- FEATURE: PowerShell Core support. Now you can use this module from macOS and Linux!
+- UPDATE: Replaced New-WebServiceReference with a auto-generated Reference.cs generated with dotnet-svcutil
+- UPDATE: Replaced multiple global and script variables with a single configuration object connected to the SOAP client object
+- UPDATE: Several minor changes to make scripts run on all platforms
+- UPDATE: Included help sections in several functions where this was still missing
+- DEPRECATED: Removed -NoPickListLabels parameter from individual entity functions
+
+## Version 1.6.4.2 - API update and bugfix release
 
 - UPDATE: Included functions are updated to support API version 1.6.4
 - UPDATE: Implemented pester testing to improve QA
@@ -48,7 +57,7 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 This version has been delayed a lot by the introduction of pester testing, but I sincerely hope the added QA was worth the wait.
 
-## Version 1.6.2.17
+## Version 1.6.2.17 - Bugfix release
 
 - BUGFIX: Issue #43: New-AtwsAttachment adds timezone difference twice - **Fixed**
 - BUGFIX: Issue #44: GetEntityByReferenceId documentation - **Fixed**
