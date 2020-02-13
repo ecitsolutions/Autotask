@@ -30,7 +30,7 @@ Function Update-AtwsManifest {
     #>
     [CmdLetBinding(
         SupportsShouldProcess = $true,
-        ConfirmImpact = 'High'
+        ConfirmImpact = 'Medium'
     )]
     Param(
         # Optional flag that causes the function to increase the version number a single increment.
@@ -60,8 +60,8 @@ Function Update-AtwsManifest {
             $GUID = 'ff62b403-3520-4b98-a12b-343bb6b79255'
       
             # Path to RootModule
-            $PSMName = '{0}\{1}.psm1' -F $ModuleInfo.ModuleBase, $ModuleInfo.Name
-            $PSMDest = '{0}\{1}.psm1' -F $ModuleInfo.ModuleBase, $ModuleName
+            $PSMName = Join-Path $ModuleInfo.ModuleBase ('{0}.psm1' -F $ModuleInfo.Name)
+            $PSMDest = Join-Path $ModuleInfo.ModuleBase ('{0}.psm1' -F $ModuleName)
       
             # Update Beta rootmodule
             $null = Copy-Item -Path $PSMName -Destination $PSMDest -Force
@@ -88,15 +88,15 @@ Function Update-AtwsManifest {
     
         # Read the nuspec
         $Nuspec = New-Object -TypeName XML
-        $NuspecSourcePath = '{0}\{1}.nuspec' -F $ModuleInfo.ModuleBase, $ModuleInfo.Name
-        $NuspecPath = '{0}\{1}.nuspec' -F $ModuleInfo.ModuleBase, $ModuleName
+        $NuspecSourcePath = Join-Path $ModuleInfo.ModuleBase ('{0}.nuspec' -F $ModuleInfo.Name)
+        $NuspecPath = Join-Path $ModuleInfo.ModuleBase ('{0}.nuspec' -F $ModuleName)
         $Nuspec.Load($NuspecSourcePath)
     } 
   
     process {
     
         # Overwrite parameters that need new values
-        $ManifestParams['Path'] = '{0}\{1}.psd1' -F $ModuleInfo.ModuleBase, $ModuleName
+        $ManifestParams['Path'] = Join-Path $ModuleInfo.ModuleBase ('{0}.psd1' -F $ModuleName)
     
         if ($UpdateVersion.IsPresent) { 
     
