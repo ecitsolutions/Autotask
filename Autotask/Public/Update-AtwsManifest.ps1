@@ -54,24 +54,9 @@ Function Update-AtwsManifest {
     
         # Get info from current module
         $ModuleInfo = $MyInvocation.MyCommand.Module
-    
-        if ($Beta.IsPresent) {
-            $ModuleName = '{0}Beta' -F $ModuleInfo.Name
-            $GUID = 'ff62b403-3520-4b98-a12b-343bb6b79255'
-      
-            # Path to RootModule
-            $PSMName = Join-Path $ModuleInfo.ModuleBase ('{0}.psm1' -F $ModuleInfo.Name)
-            $PSMDest = Join-Path $ModuleInfo.ModuleBase ('{0}.psm1' -F $ModuleName)
-      
-            # Update Beta rootmodule
-            $null = Copy-Item -Path $PSMName -Destination $PSMDest -Force
-        }
-        else {
-            $ModuleName = $ModuleInfo.Name
-            $GUID = 'abd8b426-797b-4702-b66d-5f871d0701dc'
-        }
-    
-    
+        $ModuleName = $ModuleInfo.Name
+        $GUID = 'abd8b426-797b-4702-b66d-5f871d0701dc'
+   
         # Create the parameter hashtable 
         $ManifestParams = @{ }
     
@@ -97,11 +82,12 @@ Function Update-AtwsManifest {
     
         # Overwrite parameters that need new values
         $ManifestParams['Path'] = Join-Path $ModuleInfo.ModuleBase ('{0}.psd1' -F $ModuleName)
+        $OnlineVersion = $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue)
     
         if ($UpdateVersion.IsPresent) { 
     
             # Figure out the new module version number
-            [Version]$ApiVersion = '{0}.{1}' -F $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue), $ModuleInfo.Version.Revision
+            [Version]$ApiVersion = $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue)
     
             if ($ApiVersion -eq $ModuleInfo.Version) {
                 # It is the same API version. Increase the revision number
@@ -153,7 +139,7 @@ Function Update-AtwsManifest {
         $ManifestParams['Tags'] = $ModuleInfo.PrivateData.PSData.Tags
             
         # Recreate PrivateData
-        $ManifestParams['PrivateData'] = @{ }
+        $ManifestParams['PrivateData'] = $PrivateData
 
         # There shoult not be any default prefix anymore
         if ($ManifestParams.Keys -contains 'DefaultCommandPrefix') {
@@ -177,6 +163,10 @@ Function Update-AtwsManifest {
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             # Create the new manifest
             New-ModuleManifest @ManifestParams
+
+            if ($Beta.IsPresent) {
+                Update-ModuleManifest -Path $ManifestParams['Path'] -Prerelease 'beta'
+            }
     
             # Save the nuspec
             $Nuspec.Save($NuspecPath)
