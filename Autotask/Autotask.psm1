@@ -60,17 +60,6 @@ Write-Debug ('{0}: Loading Manifest file {1} from {2}' -F $MyInvocation.MyComman
 
 Import-LocalizedData -BindingVariable My -FileName $manifestFileName -BaseDirectory $manifestDirectory
 
-# Add module path to manifest variable
-$My['ModuleBase'] = $manifestDirectory
-
-# Am I being loaded as the Beta version?
-if ($MyInvocation.MyCommand.Name -eq 'AutotaskBeta.psm1') {
-    $My['IsBeta'] = $true
-}
-else {
-    $My['IsBeta'] = $false
-}
-
 # Get all function files as file objects
 # Private functions can only be called internally in other functions in the module 
 
