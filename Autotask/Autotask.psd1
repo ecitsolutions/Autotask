@@ -12,7 +12,7 @@
 RootModule = 'Autotask.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.6.4.2'
+ModuleVersion = '1.6.5'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -96,7 +96,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'Autotask', 'Function', 'SOAP'
+        Tags = 'Autotask','Function','SOAP'
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md'
@@ -110,9 +110,18 @@ PrivateData = @{
         # ReleaseNotes of this module
         ReleaseNotes = 'https://github.com/officecenter/Autotask/blob/master/README.md'
 
+        # Prerelease string of this module
+        Prerelease = 'beta1'
+
+        # Flag to indicate whether the module requires explicit user acceptance for install/update/save
+        # RequireLicenseAcceptance = $false
+
+        # External dependent modules of this module
+        # ExternalModuleDependencies = @()
+
     } # End of PSData hashtable
 
-} # End of PrivateData hashtable
+ } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
 # HelpInfoURI = ''
