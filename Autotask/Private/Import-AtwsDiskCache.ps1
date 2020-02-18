@@ -54,14 +54,9 @@ Function Import-AtwsDiskCache {
         # Add tenant id to path
         $PersonalCacheDir = Join-Path $PersonalCacheDir $Script:Atws.CI
 
-        # Use different directory for beta versions
-        if ($My['IsBeta']) { 
-            $PersonalCacheDir = Join-Path $PersonalCacheDir 'Beta'
-        }
-        else {
-            $PersonalCacheDir = Join-Path $PersonalCacheDir 'Dynamic'
-        }
-
+        # Add module version to cache path (join-path only takes a single childpath parameter)
+        $PersonalCacheDir = Join-Path $PersonalCacheDir $My.ModuleVersion.ToString()
+        
         # Save the cache path to the module information
         $Script:Atws.DynamicCache = $PersonalCacheDir  
         
