@@ -181,7 +181,7 @@ describe 'Issue #38' -Tag 'Issues' {
         $result = Get-AtwsConnectionObject -Confirm:$false
 
         it 'should return an Autotask web proxy object' {
-            $result.GetType() | Should -be '[Autotask.ATWSSoapClient]'
+            $result.GetType() | Should -be 'Autotask.ATWSSoapClient'
         }
     }
 }
