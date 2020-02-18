@@ -117,14 +117,14 @@ Function Connect-AtwsWebServices {
         Add-Type -TypeDefinition (Get-Content -raw $code) -ReferencedAssemblies $assemblies
         
         # Create a  binding with no authentication
-        $anonymousBinding = [ServiceModel.BasicHttpsBinding]::new()
+        $anonymousBinding = New-Object ServiceModel.BasicHttpsBinding 
 
         # Create an endpoint pointing at the default URI
-        $endPoint = [ServiceModel.EndpointAddress]::new($DefaultUri)
+        $endPoint = New-Object System.ServiceModel.EndpointAddress $DefaultUri 
 
         # First make an unauthenticated call to the DefaultURI to determine correct
         # web services endpoint for the user we are going to authenticate as
-        $rootService = [Autotask.ATWSSoapClient]::new($anonymousBinding, $endPoint)
+        $rootService = New-Object Autotask.ATWSSoapClient  $anonymousBinding, $endPoint 
   
         # Post progress info to console
         Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $ConfigurationData.UserName, $DefaultUri)
@@ -137,7 +137,7 @@ Function Connect-AtwsWebServices {
         if ($ZoneInfo.ErrorCode -ne 0) {
             Write-Progress -Status 'Creating connection' -PercentComplete 100 -CurrentOperation 'Operation failed' @ProgressParameters
             
-            throw [System.Data.SyntaxErrorException]::New('Invalid username "{0}". try again.' -f $ConfigurationData.UserName)
+            throw (New-Object System.Data.SyntaxErrorException ('Invalid username "{0}". try again.' -f $ConfigurationData.UserName))
             return
       
         }
@@ -153,10 +153,10 @@ Function Connect-AtwsWebServices {
         try {
             # Create a new webservice proxy or die trying...
             # First create an endpoint pointing at the correct URI
-            $endPoint = [ServiceModel.EndpointAddress]::new($zoneInfo.url)
+            $endPoint = New-Object System.ServiceModel.EndpointAddress $zoneInfo.url 
 
             # Create a new binding with basic authentication
-            $binding = [ServiceModel.BasicHttpsBinding]::new()
+            $binding = New-Object ServiceModel.BasicHttpsBinding 
             $binding.Security.Transport.ClientCredentialType = [ServiceModel.HttpClientCredentialType]::Basic
             $binding.Security.Mode = [ServiceModel.BasicHttpsSecurityMode]::Transport
 
@@ -169,7 +169,7 @@ Function Connect-AtwsWebServices {
             $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($ConfigurationData.SecurePassword)
 
             # Create a new SOAP client pointing at the correct webservice with authentication
-            $Script:Atws = [Autotask.ATWSSoapClient]::new($binding, $endPoint)
+            $Script:Atws = New-Object Autotask.ATWSSoapClient $binding, $endPoint 
             
             # Set username and password immediately as the first two methods to call
             # Username is plaintext, but password as securestring needs another step
@@ -226,7 +226,7 @@ Function Connect-AtwsWebServices {
         }
         else {
             Remove-Variable -Name Atws -Scope Script
-            throw [System.Data.SyntaxErrorException]::New('Could not complete a query to Autotask WebAPI. Verify your credentials. You seem to have been logged in, but do you have the necessary rights?')   
+            throw (New-object System.Data.SyntaxErrorException 'Could not complete a query to Autotask WebAPI. Verify your credentials. You seem to have been logged in, but do you have the necessary rights?')   
         }
     }
   

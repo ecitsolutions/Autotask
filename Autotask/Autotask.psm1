@@ -130,7 +130,7 @@ if ($Credential) {
             $DebugPreference = $Configuration.DebugPref
         }
         else {
-            throw [System.Management.Automation.ParameterBindingException]::New()
+            throw (New-Object System.Management.Automation.ParameterBindingException)
         }
 
         ## Connect to the API
@@ -139,7 +139,7 @@ if ($Credential) {
     }
     catch {
         $message = "{0}`n`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
-        throw [System.Configuration.Provider.ProviderException]::New($message)
+        throw (New-Object System.Configuration.Provider.ProviderException $message)
     
         return
     }

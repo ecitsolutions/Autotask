@@ -47,7 +47,7 @@ Function Get-AtwsWsdlVersion {
             $result = $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue)
         }
         catch {
-            throw [System.Net.WebException]::New('{0}: FAILED on GetWsdlVersion($Script:Atws.IntegrationsValue). No data returned.' -F $MyInvocation.MyCommand.Name)           
+            throw (New-Object System.Net.WebException ('{0}: FAILED on GetWsdlVersion($Script:Atws.IntegrationsValue). No data returned.' -F $MyInvocation.MyCommand.Name))       
             Return
         }
 

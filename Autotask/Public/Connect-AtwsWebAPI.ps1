@@ -159,7 +159,7 @@ Function Connect-AtwsWebAPI {
         }
         catch {
             $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
-            throw [System.Configuration.Provider.ProviderException]::New($message)
+            throw (New-Object System.Configuration.Provider.ProviderException $message)
             
             return
         }
