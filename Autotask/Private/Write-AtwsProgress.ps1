@@ -56,7 +56,7 @@ Function Write-AtwsProgress {
         }
         else {
             # Write-Progress should be supported. Pass all parameters to Write-Progress
-            Write-Progress @BoundParameters
+            Write-Progress @PSBoundParameters
         }
         Write-Verbose ('{0}: Converting datetime to {1}' -F $MyInvocation.MyCommand.Name, $value)
         
