@@ -27,7 +27,7 @@ Author = 'Hugo Klemmestad'
 CompanyName = 'ECIT Solutions AS'
 
 # Copyright statement for this module
-Copyright = 'Copyright (c) Office Center Honefoss AS. All rights reserved. Licensed under the MIT license.
+Copyright = 'Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
 See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.'
 
 # Description of the functionality provided by this module
