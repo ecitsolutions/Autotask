@@ -163,12 +163,13 @@ if ($Credential) {
             
             # All function files MUST have the correct version and be of the correct version, or they will
             # recreated just to be safe.
-            if ($ScriptVersion.Count -ne $FunctionCount) {
-                Write-Warning ('{0}: Personal disk cache: Wrong number of script files or scripts are not the right version in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $dynamicCache)
+            if ($ScriptVersion.Count -ne $FunctionCount -or $Script:Atws.Configuration.RefreshCache) {
+                if (-not($Script:Atws.Configuration.RefreshCache)) { 
+                    Write-Warning ('{0}: Personal disk cache: Wrong number of script files or scripts are not the right version in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $dynamicCache)
   
-                # Clear out old cache, it will be recreated
-                $null = Remove-Item -Path $dynamicFunction.fullname -Force -ErrorAction SilentlyContinue
-  
+                    # Clear out old cache, it will be recreated
+                    $null = Remove-Item -Path $dynamicFunction.fullname -Force -ErrorAction SilentlyContinue
+                }
                 # Refresh  ALL dynamic entities.
                 $entityName = '*' 
             }
