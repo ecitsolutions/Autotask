@@ -81,6 +81,10 @@ Function Get-AtwsPSParameter {
         { [string]$text = "# {0}`n" -F $Comment }
         else
         { [string]$text = '' }
+
+        # Set up regex and replacement variables for curly single quote
+        $pattern = [Char]8217
+        $replacement = [Char]8217, [Char]8217 -join ''
     }
 
     process { 
@@ -127,12 +131,8 @@ Function Get-AtwsPSParameter {
         if ($ValidateSet.Count -gt 0) { 
             # Fix quote characters for labels
             $labels = foreach ($Label in  $ValidateSet) {
-                if ($Label -match ("['{0}]" -F [Char]8217)) {
-                    '"{0}"' -F $Label
-                }
-                else {
-                    "'{0}'" -F $Label
-                }
+                # Use literal string with escaped literal quotes, both straight and curly
+                "'{0}'" -F $($Label -replace "'", "''" -replace $pattern, $replacement) 
             }          
             $text += "    [ValidateSet($($labels -join ', '))]`n" 
         }
