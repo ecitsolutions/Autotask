@@ -61,7 +61,7 @@ Function New-AtwsSoapServiceReference {
 
         if (!(Test-Path $dotnetsvcutil)) {
             if (Get-Command dotnet) {
-                dotnet tools install --global dotnet-svcutil
+                dotnet tool install --global dotnet-svcutil
             }
             else {
                 throw "dotnet SDK is REQUIRED to build a new service reference file."
