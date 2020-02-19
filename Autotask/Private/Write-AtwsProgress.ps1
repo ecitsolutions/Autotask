@@ -47,8 +47,8 @@ Function Write-AtwsProgress {
 
     process {
         if ($env:TERM_PROGRAM -eq 'vscode') {
-            # Running in VSCode. Do our own stuff
-            $Message = "{0}: {1} % Complete ({2})`r" -f $Activity, $PercentComplete, $CurrentOperation
+            # Running in VSCode. Do our own stuff.
+            $Message = "{0}: {1} % Complete ({2})                                                                                 `r" -f $Activity, $PercentComplete, $CurrentOperation
             # When using -NoNewLine this will be overwritten by -Verbose and/or -Debug
             Write-Host $Message -ForegroundColor Green -NoNewline
             # Repeat message if -Verbose is on
