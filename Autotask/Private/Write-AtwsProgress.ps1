@@ -41,16 +41,21 @@ Function Write-AtwsProgress {
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
             $DebugPreference = 'Continue'
         }
-    
+
+        # Progress bar length in characters
+        $size = 40
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     }
 
     process {
         if ($env:TERM_PROGRAM -eq 'vscode') {
             # Running in VSCode. Do our own stuff.
-            $Message = "{0}: {1} % Complete ({2})                                                                                 `r" -f $Activity, $PercentComplete, $CurrentOperation
+            $i = [Math]::Round($PercentComplete / (100/ $size))
+            $Message = "`r{0}: [{2}] {1} % Complete" -f $Activity, $PercentComplete, (''.PadLeft($i, '*') + ''.PadLeft($size - $i, '-'))
+
             # When using -NoNewLine this will be overwritten by -Verbose and/or -Debug
             Write-Host $Message -ForegroundColor Green -NoNewline
+            
             # Repeat message if -Verbose is on
             Write-Verbose $Message
         }
