@@ -36,7 +36,7 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
-## Version 1.6.5 - Multiplatform release
+## Version 1.6.5-beta1 - Multiplatform release
 
 - FEATURE: PowerShell Core support. Now you can use this module from macOS and Linux!
 - FEATURE: Rudimentary Write-Progress support under VSCode. Very simple and will be killed when Write-Progress support is released
@@ -47,6 +47,7 @@ Update-AtwsFunctions -FunctionSet Dynamic
 - UPDATE: Included help sections in several functions where this was still missing
 - UPDATE: Switched to separate cache directories pr module version. Makes it more convenient to switch between module versions
 - UPDATE: Changing a few code sections back to v4 compatible code, the difference was mostly cosmetic anyway
+- UPDATE: Modified version numbering scheme to enable support for prerelease versions
 - DEPRECATED: Removed -NoPickListLabels parameter from individual entity functions
 
 ## Version 1.6.4.2 - API update and bugfix release
