@@ -22,7 +22,7 @@ Function Update-AtwsDiskCache {
 	
     [cmdletbinding(
         SupportsShouldProcess = $true,
-        ConfirmImpact = 'Medium'
+        ConfirmImpact = 'Low'
     )]
     Param
     (
@@ -98,7 +98,7 @@ Function Update-AtwsDiskCache {
             
                 # Check if entity has userdefined fields
                 if ($object.HasUserDefinedFields) {
-                    $UDF = $Script:Atws.GetUDFInfo($object.Name)
+                    $UDF = $Script:Atws.GetUDFInfo($Script:Atws.IntegrationsValue, $object.Name)
                     Add-Member -InputObject $CacheEntry -MemberType NoteProperty -Name UDFInfo -Value $UDF -Force
                 }
                         

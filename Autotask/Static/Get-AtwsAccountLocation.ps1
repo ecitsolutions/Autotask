@@ -1,11 +1,9 @@
-﻿#Requires -Version 4.0
-#Version 1.6.4.1
+#Requires -Version 4.0
+#Version 1.6.5
 <#
-
-.COPYRIGHT
-Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
-See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
-
+    .COPYRIGHT
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
 Function Get-AtwsAccountLocation
 {
@@ -110,28 +108,6 @@ Set-AtwsAccountLocation
     [switch]
     $All,
 
-# Do not add descriptions for all picklist attributes with values
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'Get_all'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [switch]
-    $NoPickListLabel,
-
-# A single user defined field can be used pr query
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('UDF')]
-    [ValidateNotNullOrEmpty()]
-    [Autotask.UserDefinedField]
-    $UserDefinedField,
-
 # Client ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -159,91 +135,90 @@ Set-AtwsAccountLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
+    [ValidateSet('id', 'LocationName', 'AccountID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
+    [ValidateSet('id', 'LocationName', 'AccountID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
+    [ValidateSet('id', 'LocationName', 'AccountID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
+    [ValidateSet('id', 'LocationName', 'AccountID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
+    [ValidateSet('id', 'LocationName', 'AccountID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
+    [ValidateSet('id', 'LocationName', 'AccountID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
+    [ValidateSet('id', 'LocationName', 'AccountID')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName', 'UserDefinedField')]
+    [ValidateSet('LocationName')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName', 'UserDefinedField')]
+    [ValidateSet('LocationName')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName', 'UserDefinedField')]
+    [ValidateSet('LocationName')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName', 'UserDefinedField')]
+    [ValidateSet('LocationName')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName', 'UserDefinedField')]
+    [ValidateSet('LocationName')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserDefinedField')]
     [string[]]
     $IsThisDay
   )
@@ -255,8 +230,17 @@ Set-AtwsAccountLocation
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
             $DebugPreference = 'Continue' 
         }
+        else {
+            # Respect configured preference
+            $DebugPreference = $Script:Atws.Configuration.DebugPref
+        }
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+
+        if (!($PSCmdlet.MyInvocation.BoundParameters['Verbose'].IsPresent)) {
+            # No local override of central preference. Load central preference
+            $VerbosePreference = $Script:Atws.Configuration.VerbosePref
+        }
     
     }
 
