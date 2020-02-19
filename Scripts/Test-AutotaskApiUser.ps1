@@ -87,7 +87,7 @@ Function Test-AutotaskApiUser {
     
     # Post progress info to console
     Write-Output ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $local:Credential.UserName, $DefaultUri)
-    Write-Progress -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
+    Write-AtwsProgress -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
     
     # First make an unauthenticated call to the DefaultURI to determine correct
     # web services endpoint for the user we are going to authenticate as
@@ -98,7 +98,7 @@ Function Test-AutotaskApiUser {
     
     # If we get an error the username is almost certainly misspelled or nonexistant
     If ($ZoneInfo.ErrorCode -ne 0) {
-      Write-Progress -Status 'Creating connection' -PercentComplete 100 -CurrentOperation 'Operation failed' @ProgressParameters
+      Write-AtwsProgress -Status 'Creating connection' -PercentComplete 100 -CurrentOperation 'Operation failed' @ProgressParameters
             
       Throw [ApplicationException] ('Invalid username "{0}". Try again.' -f $local:Credential.UserName)
       
@@ -108,7 +108,7 @@ Function Test-AutotaskApiUser {
     Write-Output ('{0}: Customer tenant ID: {1}, Web URL: {2}, SOAP endpoint: {3}' -F $MyInvocation.MyCommand.Name, $ZoneInfo.CI, $ZoneInfo.WebUrl, $ZoneInfo.Url)
     
     # Post progress to console
-    Write-Progress -Status 'Datacenter located' -PercentComplete 30 -CurrentOperation 'Authenticating to web service' @ProgressParameters
+    Write-AtwsProgress -Status 'Datacenter located' -PercentComplete 30 -CurrentOperation 'Authenticating to web service' @ProgressParameters
           
     # Pick the correct web services endpoint for the current username
     # and change it to point at the WSDL definitoin
@@ -151,7 +151,7 @@ Function Test-AutotaskApiUser {
    
     Write-Output ('{0}: Testing hardcoded query for Account with ID 0 (exists in every Autotask tenant)' -F $MyInvocation.MyCommand.Name)
     
-    Write-Progress -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing Connection' @ProgressParameters
+    Write-AtwsProgress -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing Connection' @ProgressParameters
 
     $QueryXML = @"
 <queryxml>
@@ -223,7 +223,7 @@ Function Test-AutotaskApiUser {
   }
   End {
     Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    Write-Progress -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done' @ProgressParameters
+    Write-AtwsProgress -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done' @ProgressParameters
        
   }
 }

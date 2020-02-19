@@ -128,14 +128,14 @@ Function Connect-AtwsWebServices {
   
         # Post progress info to console
         Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $ConfigurationData.UserName, $DefaultUri)
-        Write-Progress -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
+        Write-AtwsProgress -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
     
         # Get ZoneInfo for username
         $zoneInfo = $rootService.getZoneInfo($ConfigurationData.UserName)
     
         # If we get an error the username is almost certainly misspelled or nonexistant
         if ($ZoneInfo.ErrorCode -ne 0) {
-            Write-Progress -Status 'Creating connection' -PercentComplete 100 -CurrentOperation 'Operation failed' @ProgressParameters
+            Write-AtwsProgress -Status 'Creating connection' -PercentComplete 100 -CurrentOperation 'Operation failed' @ProgressParameters
             
             throw (New-Object System.Data.SyntaxErrorException ('Invalid username "{0}". try again.' -f $ConfigurationData.UserName))
             return
@@ -146,7 +146,7 @@ Function Connect-AtwsWebServices {
         Write-Verbose ('{0}: Customer tenant ID: {1}, Web URL: {2}, SOAP endpoint: {3}' -F $MyInvocation.MyCommand.Name, $ZoneInfo.CI, $ZoneInfo.WebUrl, $ZoneInfo.Url)
     
         # Post progress to console
-        Write-Progress -Status 'Datacenter located' -PercentComplete 30 -CurrentOperation 'Authenticating to web service' @ProgressParameters
+        Write-AtwsProgress -Status 'Datacenter located' -PercentComplete 30 -CurrentOperation 'Authenticating to web service' @ProgressParameters
              
         # Make sure a failure to create this object truly fails the script
         Write-Verbose ('{0}: Creating new SOAP client using URI: {1}' -F $MyInvocation.MyCommand.Name, $ZoneInfo.Url)
@@ -208,7 +208,7 @@ Function Connect-AtwsWebServices {
    
         Write-Verbose ('{0}: Running query Get-AtwsData -Entity Resource -Filter "username -eq $UserName"' -F $MyInvocation.MyCommand.Name)
     
-        Write-Progress -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection' @ProgressParameters
+        Write-AtwsProgress -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection' @ProgressParameters
        
         # Get username part of credential
         $UserName = $ConfigurationData.UserName.Split('@')[0]
@@ -217,7 +217,7 @@ Function Connect-AtwsWebServices {
         if ($result) {
     
             # The connection has been verified. Use it to dynamically create functions for all entities
-            Write-Progress -Status 'Connection OK' -PercentComplete 90 -CurrentOperation 'Importing dynamic module' @ProgressParameters
+            Write-AtwsProgress -Status 'Connection OK' -PercentComplete 90 -CurrentOperation 'Importing dynamic module' @ProgressParameters
         
             # Load the entity cache to memory
             Write-Verbose ('{0}: Loading disk cache' -F $MyInvocation.MyCommand.Name)
@@ -232,6 +232,6 @@ Function Connect-AtwsWebServices {
   
     end {
         Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-        Write-Progress -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done' @ProgressParameters   
+        Write-AtwsProgress -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done' @ProgressParameters   
     }
 }

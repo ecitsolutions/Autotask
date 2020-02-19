@@ -60,6 +60,9 @@ Write-Debug ('{0}: Loading Manifest file {1} from {2}' -F $MyInvocation.MyComman
 
 Import-LocalizedData -BindingVariable My -FileName $manifestFileName -BaseDirectory $manifestDirectory
 
+# Add module path to manifest variable
+$My['ModuleBase'] = $manifestDirectory
+
 # Get all function files as file objects
 # Private functions can only be called internally in other functions in the module 
 
@@ -98,8 +101,12 @@ foreach ($import in @($privateFunction + $publicFunction)) {
 # If they tried to pass any variables
 if ($Credential) {
     Write-Verbose ('{0}: Parameters detected. Connecting to Autotask API' -F $MyInvocation.MyCommand.Name)
+
+    # Notify Get-AtwsFieldInfo that we are currently loading the module
+    $Script:LoadingModule = $true
+
     Try { 
-        if ($Credential -is [pscredential]) {
+                if ($Credential -is [pscredential]) {
             ## Legacy
             #  The user passed credentials directly
             $Parameters = @{
@@ -216,7 +223,7 @@ if ($Credential) {
             $progressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $index, $entitiesToProcess.Count, $percentComplete
             $progressParameters['CurrentOperation'] = 'Getting fieldinfo for {0}' -F $entityToProcess.Name
 
-            Write-Progress @progressParameters
+            Write-AtwsProgress @progressParameters
 
             $null = Get-AtwsFieldInfo -Entity $entityToProcess.Key -UpdateCache
         }
@@ -269,6 +276,8 @@ else {
 # Backwards compatibility since we are now trying to use consistent naming
 Set-Alias -Scope Global -Name 'Connect-AutotaskWebAPI' -Value 'Connect-AtwsWebAPI'
 
+# Done loading
+$Script:LoadingModule = $false
 
 # Restore Previous preference
 if ($oldVerbosePreference -ne $VerbosePreference) {

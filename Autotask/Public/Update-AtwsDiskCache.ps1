@@ -79,7 +79,7 @@ Function Update-AtwsDiskCache {
                 $Status = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
                 $CurrentOperation = "GetFieldInfo('{0}')" -F $object.Name
       
-                Write-Progress -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation @ProgressParameters
+                Write-AtwsProgress -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation @ProgressParameters
  
                 # Retrieving FieldInfo for current Entity
                 $fieldInfo = $Script:Atws.GetFieldInfo($Script:Atws.IntegrationsValue, $object.Name)

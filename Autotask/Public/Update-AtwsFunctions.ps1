@@ -86,7 +86,7 @@ Function Update-AtwsFunctions {
             $ParentProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $ParentIndex, $Script:Atws.Cache.Count, $PercentComplete
             $ParentProgressParameters['CurrentOperation'] = 'Importing {0}' -F $Entity.Key
       
-            Write-Progress @ParentProgressParameters
+            Write-AtwsProgress @ParentProgressParameters
         
         
             if ($Tenant.Key -eq '00') {
@@ -147,7 +147,7 @@ Function Update-AtwsFunctions {
                     $ProgressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $Index, $Entities.Count, $PercentComplete
                     $ProgressParameters['CurrentOperation'] = 'Importing {0}' -F $Entity.Name
       
-                    Write-Progress @ProgressParameters
+                    Write-AtwsProgress @ProgressParameters
       
                     $caption = $MyInvocation.MyCommand.Name
                     $verboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $caption, $Entity.Name

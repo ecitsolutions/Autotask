@@ -82,7 +82,7 @@ Function Import-AtwsCmdLet {
             $progressParameters['Status'] = 'Entity {0}/{1} ({2:n0}%)' -F $index, $Entities.Count, $percentComplete
             $progressParameters['CurrentOperation'] = 'Importing {0}' -F $entity.Name
       
-            Write-Progress @progressParameters
+            Write-AtwsProgress @progressParameters
       
             $caption = $MyInvocation.MyCommand.Name
             $verboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $caption, $entity.Name

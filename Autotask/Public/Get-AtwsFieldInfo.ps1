@@ -165,7 +165,7 @@ Function Get-AtwsFieldInfo {
                     $script:FieldInfoCache[$Entity].FieldInfo = $result
                     
                     # If not called during module load, give this warning
-                    if ($PSCmdLet.MyInvocation.ScriptName -notlike '*.psm1' -and $Script:Atws.Configuration.UseDiskCache) { 
+                    if (-not $Script:LoadingModule -and $Script:Atws.Configuration.UseDiskCache) { 
                         Write-Warning ('{0}: The {1} entity has been modified in Autotask! Re-import module with -Argumentlist $creds, $ApiKey, "{1}" to refresh.' -F $MyInvocation.MyCommand.Name, $Entity)
                     }
                     
@@ -276,7 +276,7 @@ Function Get-AtwsFieldInfo {
                     $status = 'Entity {0}/{1} ({2:n0}%)' -F $index, $entities.Count, $percentComplete
                     $currentOperation = "GetFieldInfo('{0}')" -F $object.Key
       
-                    Write-Progress -Status $status -PercentComplete $percentComplete -CurrentOperation $currentOperation @ProgressParameters
+                    Write-AtwsProgress -Status $status -PercentComplete $percentComplete -CurrentOperation $currentOperation @ProgressParameters
         
                     # Is the Cache too old? I.E. older than 15 minutes?
                     If ($object.Value.RetrievalTime -lt $cacheExpiry) {

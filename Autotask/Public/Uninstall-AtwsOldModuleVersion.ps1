@@ -71,7 +71,7 @@ Function Uninstall-AtwsOldModuleVersion {
                     $Status = 'Module {0}/{1} ({2:n0}%)' -F $Index, $AllVersions.Count, $PercentComplete
                     $CurrentOperation = "Uninstalling version {0}" -F $Version.version
 
-                    Write-Progress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
+                    Write-AtwsProgress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation
 
                     if ($Version.version -ne $latest.version) {
                         Write-Verbose "Uninstalling $($sm.name) - $($sm.version) [latest is $($latest.version)]"
