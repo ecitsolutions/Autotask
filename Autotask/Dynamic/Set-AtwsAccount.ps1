@@ -103,6 +103,17 @@ Get-AtwsAccount
     [switch]
     $PassThru,
 
+# User defined fields already setup i Autotask
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [Autotask.UserDefinedField[]]
+    $UserDefinedFields,
+
 # Client Name
     [Parameter(
       ParametersetName = 'Input_Object'

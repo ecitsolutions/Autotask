@@ -82,6 +82,17 @@ Get-AtwsInstalledProduct
     [switch]
     $PassThru,
 
+# User defined fields already setup i Autotask
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [Autotask.UserDefinedField[]]
+    $UserDefinedFields,
+
 # Product Active
     [Parameter(
       ParametersetName = 'Input_Object'

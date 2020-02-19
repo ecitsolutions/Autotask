@@ -82,6 +82,15 @@ Set-AtwsContact
     [Autotask.Contact[]]
     $InputObject,
 
+# User defined fields already setup i Autotask
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [ValidateNotNullOrEmpty()]
+    [Autotask.UserDefinedField[]]
+    $UserDefinedFields,
+
 # Client
     [Parameter(
       Mandatory = $true,

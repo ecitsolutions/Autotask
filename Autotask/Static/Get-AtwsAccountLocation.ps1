@@ -108,6 +108,15 @@ Set-AtwsAccountLocation
     [switch]
     $All,
 
+# A single user defined field can be used pr query
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [ValidateNotNullOrEmpty()]
+    [Autotask.UserDefinedField]
+    $UserDefinedField,
+
 # Client ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -135,90 +144,91 @@ Set-AtwsAccountLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID')]
+    [ValidateSet('id', 'LocationName', 'AccountID', 'UserDefinedField')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('LocationName', 'UserDefinedField')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('LocationName', 'UserDefinedField')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('LocationName', 'UserDefinedField')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('LocationName', 'UserDefinedField')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('LocationName', 'UserDefinedField')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateSet('UserDefinedField')]
     [string[]]
     $IsThisDay
   )
