@@ -45,12 +45,19 @@ Function New-AtwsSoapServiceReference {
         $source = Join-Path $outputDir 'Reference.cs'
         $target = Join-Path $location '../Autotask/Private/Reference.cs'
         $uri = 'https://webservices.Autotask.net/atservices/1.6/atws.wsdl'
+
+        # Locate command. Should be in .dotnet/tools
+        $dotnetsvcutil = Join-Path $HOME '.dotnet/tools/dotnet-svcutil'
+
+        # On windows add .exe
+        if (-not($IsMacos -or $IsLinux)) {
+            $dotnetsvcutil = $dotnetsvcutil + '.exe'
+        }
     }
 
     process {
 
-        # Locate command. Should be in .dotnet/tools
-        $dotnetsvcutil = Join-Path ([environment]::getenvironmentvariable('HOME')) '.dotnet/tools/dotnet-svcutil'
+        
 
         if (!(Test-Path $dotnetsvcutil)) {
             if (Get-Command dotnet) {
