@@ -50,11 +50,16 @@ Function Write-AtwsProgress {
     process {
         if ($env:TERM_PROGRAM -eq 'vscode') {
             # Running in VSCode. Do our own stuff.
-            $i = [Math]::Round($PercentComplete / (100/ $size))
+            $i = [Math]::Round($PercentComplete / (100 / $size))
             $Message = "`r{0}: [{2}] {1} % Complete" -f $Activity, $PercentComplete, (''.PadLeft($i, '#') + ''.PadLeft($size - $i, '-'))
 
             # When using -NoNewLine this will be overwritten by -Verbose and/or -Debug
             Write-Host $Message -ForegroundColor Green -NoNewline
+            
+            if ($Completed.IsPresent) {
+                # End the line. Looks better.
+                Write-Host 
+            }
             
             # Repeat message if -Verbose is on
             Write-Verbose $Message
