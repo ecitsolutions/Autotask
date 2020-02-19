@@ -36,13 +36,17 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
-## Version 1.6.4.3 - Multiplatform release
+## Version 1.6.5 - Multiplatform release
 
 - FEATURE: PowerShell Core support. Now you can use this module from macOS and Linux!
+- FEATURE: Rudimentary Write-Progress support under VSCode. Very simple and will be killed when Write-Progress support is released
 - UPDATE: Replaced New-WebServiceReference with a auto-generated Reference.cs generated with dotnet-svcutil
 - UPDATE: Replaced multiple global and script variables with a single configuration object connected to the SOAP client object
 - UPDATE: Several minor changes to make scripts run on all platforms
+- UPDATE: Many more changes to make scripts run on all platforms...
 - UPDATE: Included help sections in several functions where this was still missing
+- UPDATE: Switched to separate cache directories pr module version. Makes it more convenient to switch between module versions
+- UPDATE: Changing a few code sections back to v4 compatible code, the difference was mostly cosmetic anyway
 - DEPRECATED: Removed -NoPickListLabels parameter from individual entity functions
 
 ## Version 1.6.4.2 - API update and bugfix release
