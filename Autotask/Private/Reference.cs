@@ -29215,6 +29215,14 @@ namespace Autotask
         
         private bool canQueryField;
         
+        private string UserAccessForCreateField;
+
+        private string UserAccessForQueryField;
+
+        private string UserAccessForUpdateField;
+
+        private string UserAccessForDeleteField;
+
         private bool hasUserDefinedFieldsField;
         
         /// <remarks/>
@@ -29289,6 +29297,62 @@ namespace Autotask
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string UserAccessForCreate
+        {
+            get
+            {
+                return this.UserAccessForCreateField;
+            }
+            set
+            {
+                this.UserAccessForCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string UserAccessForQuery
+        {
+            get
+            {
+                return this.UserAccessForQueryField;
+            }
+            set
+            {
+                this.UserAccessForQueryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string UserAccessForUpdate
+        {
+            get
+            {
+                return this.UserAccessForUpdateField;
+            }
+            set
+            {
+                this.UserAccessForUpdateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string UserAccessForDelete
+        {
+            get
+            {
+                return this.UserAccessForDeleteField;
+            }
+            set
+            {
+                this.UserAccessForDeleteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
         public bool HasUserDefinedFields
         {
             get
