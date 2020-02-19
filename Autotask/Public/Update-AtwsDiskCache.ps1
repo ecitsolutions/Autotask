@@ -109,6 +109,9 @@ Function Update-AtwsDiskCache {
                 $Script:FieldInfoCache[$object.Name] = $CacheEntry
 
             }
+            if ($CurrentOperation) { 
+                Write-AtwsProgress @progressParameters -PercentComplete 100 -Completed
+            }
         
             # Add cache to $Cache object and save to disk
             $Script:Atws.Cache[$Script:Atws.CI] = New-Object -TypeName PSObject -Property @{

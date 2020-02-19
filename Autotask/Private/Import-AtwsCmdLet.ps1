@@ -6,7 +6,7 @@ See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license
 
 #>
 Function Import-AtwsCmdLet {
-     <#
+    <#
         .SYNOPSIS
             This function generates and imports Powershell functions tailored to the input.
         .DESCRIPTION
@@ -106,6 +106,10 @@ Function Import-AtwsCmdLet {
                     Set-Content -Path $filePath -Value $function.Value -Force -Encoding UTF8           
                 }
             }
+        }
+        
+        if ($progressParameters['CurrentOperation']) { 
+            Write-AtwsProgress @progressParameters -Completed
         }        
 
     }

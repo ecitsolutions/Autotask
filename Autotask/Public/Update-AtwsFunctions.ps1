@@ -172,6 +172,10 @@ Function Update-AtwsFunctions {
                 } # foreach $Cacheentry
             } # Shouldprocess
         } # foreach $TenantS
+        
+        if ($progressParameters['CurrentOperation']) { 
+            Write-AtwsProgress @progressParameters -Completed
+        }
     } # Process
     end {
         $caption = $MyInvocation.MyCommand.Name

@@ -228,7 +228,10 @@ if ($Credential) {
 
             $null = Get-AtwsFieldInfo -Entity $entityToProcess.Key -UpdateCache
         }
-
+        if ($progressParameters['CurrentOperation']) { 
+            Write-AtwsProgress @progressParameters -Completed
+        }
+        
         if ($entitiesToProcess.Count -gt 0) { 
             Write-Debug ('{0}: Calling Import-AtwsCmdLet with {1} entities to process' -F $MyInvocation.MyCommand.Name, $entitiesToProcess.Count)
   

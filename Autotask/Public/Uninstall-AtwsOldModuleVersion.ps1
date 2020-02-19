@@ -80,6 +80,9 @@ Function Uninstall-AtwsOldModuleVersion {
                 }
             }
         }
+        if ($CurrentOperation) { 
+            Write-AtwsProgress -Activity $Activity -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation -Completed
+        }
     }
 
     end {

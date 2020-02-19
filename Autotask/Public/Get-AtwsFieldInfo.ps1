@@ -285,6 +285,9 @@ Function Get-AtwsFieldInfo {
                         $cacheDirty = Update-AtwsEntity -Entity $Entity
                     }
                 }
+                if ($currentOperation) { 
+                    Write-AtwsProgress -Status $status -PercentComplete $percentComplete -CurrentOperation $currentOperation @ProgressParameters -Completed
+                }
             }
     
 
