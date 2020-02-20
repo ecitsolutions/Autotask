@@ -1,4 +1,4 @@
-#Requires -Version 4.0
+﻿#Requires -Version 4.0
 #Version 1.6.5
 <#
     .COPYRIGHT
