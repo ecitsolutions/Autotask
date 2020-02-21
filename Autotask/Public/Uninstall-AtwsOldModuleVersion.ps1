@@ -48,6 +48,8 @@ Function Uninstall-AtwsOldModuleVersion {
 
         $Latest = Get-InstalledModule -Name $ModuleName
         $AllVersions = Get-InstalledModule -Name $ModuleName -AllVersions
+
+        $cacheRoot = Split-Path -Parent $Script:Atws.DynamicCache
     }
 
     process {
@@ -76,6 +78,16 @@ Function Uninstall-AtwsOldModuleVersion {
                     if ($Version.version -ne $latest.version) {
                         Write-Verbose "Uninstalling $($sm.name) - $($sm.version) [latest is $($latest.version)]"
                         $Version | Uninstall-Module -Force
+                        
+                        # A bit of customization to our own module
+                        if ($ModuleName -eq $MyInvocation.MyCommand.ModuleName) { 
+                            $cacheDir = Join-Path $cacheRoot $Version.version
+                            if (Test-Path $cacheDir -and $ModuleName -eq 'Autotask') {
+                                # Delete associated cache directory. Could be one in use if the module is beta,
+                                # but then the next module load will recreate it
+                                Remove-Item -Recurse -Force $cacheDir
+                            }
+                        }
                     }
                 }
             }
