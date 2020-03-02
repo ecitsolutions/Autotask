@@ -218,7 +218,9 @@ Function Connect-AtwsWebServices {
     
             # The connection has been verified. Use it to dynamically create functions for all entities
             Write-AtwsProgress -Status 'Connection OK' -PercentComplete 90 -CurrentOperation 'Importing dynamic module' @ProgressParameters
-        
+            
+            # Clear result variable
+            Remove-Variable -Name result -Force
             # Load the entity cache to memory
             Write-Verbose ('{0}: Loading disk cache' -F $MyInvocation.MyCommand.Name)
             Import-AtwsDiskCache
