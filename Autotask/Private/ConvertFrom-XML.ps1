@@ -48,16 +48,9 @@ Function ConvertFrom-XML {
         $result = @()
 
         # Set up TimeZone offset handling
-        if (-not($script:ESTzone)) {
-            $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-        }
-    
-        if (-not($script:ESToffset)) {
-            $now = Get-Date
-            $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
-
-            $script:ESToffset = (New-TimeSpan -Start $now -End $ESTtime).TotalHours 
-        }
+        $timezoneid = if ($IsMacOS -or $IsLinux) { 'America/New_York' }
+        else { 'Eastern Standard Time' }
+        $EST = [System.Timezoneinfo]::FindSystemTimeZoneById($timezoneid)
     }
     process {
         
@@ -82,11 +75,13 @@ Function ConvertFrom-XML {
                     'string*' {
                         # Test if it is a date first
                         if ($element.$propertyName -match '^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))') {
-                            # Convert to a Datetime object
+                            # Convert to a Datetime object in two steps to explicitly set datetime Kind to unspecified
+                            # $d = [DateTime]$element.$propertyName
+                            # $dateTime = New-Object DateTime $d.Year, $d.Month, $d.Day, $d.Hour, $d.Minute, $d.Second, ([DateTimeKind]::Unspecified)
                             [DateTime]$dateTime = $element.$propertyName
-                  
+
                             # Add timezone difference
-                            $value = $dateTime.AddHours($script:ESToffset)
+                            $value = [TimeZoneInfo]::ConvertTime($dateTime, [TimeZoneInfo]::Local, $EST)
                         }
                         else {
                             # This isn't a date. We'll use a regex to avoid turning integers into doubles
