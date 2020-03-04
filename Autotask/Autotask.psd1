@@ -99,16 +99,16 @@ PrivateData = @{
         Tags = 'Autotask','Function','SOAP'
 
         # A URL to the license for this module.
-        LicenseUri = 'https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md'
+        License = 'https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md'
 
         # A URL to the main website for this project.
-        ProjectUri = 'https://github.com/officecenter/Autotask'
+            ProjectUri = 'https://github.com/ecitsolutions/Autotask'
 
         # A URL to an icon representing this module.
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'https://github.com/officecenter/Autotask/blob/master/README.md'
+            ReleaseNotes = 'https://github.com/ecitsolutions/Autotask/blob/master/README.md'
 
         # Prerelease string of this module
         Prerelease = 'beta3'
