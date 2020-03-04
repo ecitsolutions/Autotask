@@ -164,7 +164,7 @@ Function Update-AtwsManifest {
         $ManifestParams['AliasesToExport'] = @()
     
         # Custom
-        $ManifestParams['LicenseUri'] = $ModuleInfo.PrivateData.PSData.LicenseUri
+        $ManifestParams['License'] = $ModuleInfo.PrivateData.PSData.License
         $ManifestParams['ProjectUri'] = $ModuleInfo.PrivateData.PSData.ProjectUri
         $ManifestParams['ReleaseNotes'] = $ModuleInfo.PrivateData.PSData.ReleaseNotes
         $ManifestParams['Tags'] = $ModuleInfo.PrivateData.PSData.Tags
@@ -172,11 +172,13 @@ Function Update-AtwsManifest {
         # Recreate PrivateData
         $ManifestParams['PrivateData'] = $PrivateData
 
-        # There shoult not be any default prefix anymore
+        # There should not be any default prefix anymore
         if ($ManifestParams.Keys -contains 'DefaultCommandPrefix') {
             $ManifestParams.Remove('DefaultCommandPrefix')
         }
- 
+    
+        Write-Verbose ('{0}: New manifest prepared' -F $MyInvocation.MyCommand.Name)
+     
     
         # Update nuspec
         $Nuspec.DocumentElement.metadata.id = $ModuleName

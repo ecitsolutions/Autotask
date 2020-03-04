@@ -24,10 +24,10 @@ Function Get-AtwsWsdlVersion {
       
   #>
 	
-    [cmdletbinding()]
-    Param
-    (
-    )
+  [cmdletbinding()]
+  Param
+  (
+  )
   
     begin {    
         # Enable modern -Debug behavior
@@ -59,8 +59,11 @@ Function Get-AtwsWsdlVersion {
             Return
         }
     }
+    
 
-    end {
-        Return $result
-    }
+  end {
+    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        
+    Return $result
+  }
 }
