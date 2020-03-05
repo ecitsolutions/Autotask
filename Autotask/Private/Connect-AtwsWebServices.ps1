@@ -61,7 +61,7 @@ Function Connect-AtwsWebServices {
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-        
+
     
         $DefaultUri = 'https://webservices.Autotask.net/atservices/1.6/atws.asmx'
     
@@ -174,7 +174,7 @@ Function Connect-AtwsWebServices {
             # Set username and password immediately as the first two methods to call
             # Username is plaintext, but password as securestring needs another step
             $Script:Atws.ClientCredentials.UserName.UserName = $ConfigurationData.UserName
-            $Script:Atws.ClientCredentials.UserName.Password = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+            $Script:Atws.ClientCredentials.UserName.Password = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($BSTR)
       
             ## Add API Integrations Value 
             # A dedicated object type has been created to store integration values
@@ -182,7 +182,7 @@ Function Connect-AtwsWebServices {
 
             # Set the integrationcode property to the API tracking identifier provided by the user
             $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($ConfigurationData.SecureTrackingIdentifier)
-            $AutotaskIntegrationsValue.IntegrationCode = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+            $AutotaskIntegrationsValue.IntegrationCode = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($BSTR)
 
             # Add the integrations value to the Web Service Proxy
             Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name IntegrationsValue -Value $AutotaskIntegrationsValue -Force
