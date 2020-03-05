@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.5-beta4
+
+- UPDATE: Powershell 7 support
+
 ## Version 1.6.5-beta3
 
 - FEATURE: Get-AtwsInvoiceInfo - added support for export to Excel (requires module ImportExcel)

@@ -164,7 +164,7 @@ Function Update-AtwsManifest {
         $ManifestParams['AliasesToExport'] = @()
     
         # Custom
-        $ManifestParams['License'] = $ModuleInfo.PrivateData.PSData.License
+        $ManifestParams['LicenseUri'] = $ModuleInfo.PrivateData.PSData.LicenseUri
         $ManifestParams['ProjectUri'] = $ModuleInfo.PrivateData.PSData.ProjectUri
         $ManifestParams['ReleaseNotes'] = $ModuleInfo.PrivateData.PSData.ReleaseNotes
         $ManifestParams['Tags'] = $ModuleInfo.PrivateData.PSData.Tags
