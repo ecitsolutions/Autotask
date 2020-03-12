@@ -749,26 +749,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hugo\\.nuget\\packages\\": {}
+    "/Users/Hugo/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hugo\\Source\\Autotask\\AtwsSOAP\\AtwsSOAP.csproj",
+      "projectUniqueName": "/Users/Hugo/source/Autotask/AtwsSOAP/AtwsSOAP.csproj",
       "projectName": "AtwsSOAP",
-      "projectPath": "C:\\Users\\hugo\\Source\\Autotask\\AtwsSOAP\\AtwsSOAP.csproj",
-      "packagesPath": "C:\\Users\\hugo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hugo\\Source\\Autotask\\AtwsSOAP\\obj\\",
+      "projectPath": "/Users/Hugo/source/Autotask/AtwsSOAP/AtwsSOAP.csproj",
+      "packagesPath": "/Users/Hugo/.nuget/packages/",
+      "outputPath": "/Users/Hugo/source/Autotask/AtwsSOAP/obj/",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\hugo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/Hugo/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -817,7 +819,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
       }
     }
   }
