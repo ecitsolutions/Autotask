@@ -65,6 +65,32 @@ If (-not ($loadedModule)) {
     Import-Module $modulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
 }
 
+Describe 'Issue #75' -Tag 'Issues' {
+
+    Context 'Issue #75: ATWSSoap returns wrong value on EntityInfo.HasUserDefinedFields' {
+        # Get entityinfo for Account and force a lookup through the API
+        $result = Get-AtwsFieldInfo -Entity Account -EntityInfo -UpdateCache
+
+        It 'Account should have Userdefined fields' {
+            $result.HasUserDefinedFields  | Should -be $true
+        }
+
+    }
+}
+
+
+Describe 'Issue #74' -Tag 'Issues' {
+
+    Context 'Issue #74: Updating Disc Cache on every Import' {
+
+        It 'Boolean parameters should not throw an exception' {
+            # Placeholder
+        }
+
+    }
+}
+
+
 describe 'Issue #63' -Tag 'Issues' {
 
     context 'Issue #63: Data type convertion error on Get-AtwsTicketCost ' {
