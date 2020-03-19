@@ -69,7 +69,7 @@ Function ConvertTo-AtwsFilter {
             # and continue
             if (($field.Type -ne 'string' -and $null -eq $parameter.Value) -or ($field.Type -eq 'string' -and $parameter.Value.Length -eq 0)) {
                 if ($IsNull -notcontains $parameter.Key) { 
-                    $IsNull += $parameter.Key
+                    [Array]$IsNull += $parameter.Key
                 }
                 Continue
             }
@@ -98,7 +98,7 @@ Function ConvertTo-AtwsFilter {
                         $parameterName = $parameterValue.Name
                         
                         if ($null -eq $parameter.Value -or $parameter.Value.Length -eq 0) {
-                            $IsNull += 'UserDefinedField'
+                            [Array]$IsNull += 'UserDefinedField'
                         }
                         
                         $value = $parameterValue.Value
@@ -129,7 +129,7 @@ Function ConvertTo-AtwsFilter {
                             { @('1', 'true') -contains $_ } { 1 }
                             { @('0', 'false') -contains $_ } { 0 }
                         }          
-                    }       
+                    }
                     else {
                         $value = $parameterValue
                     }
