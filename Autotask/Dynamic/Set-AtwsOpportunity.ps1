@@ -416,7 +416,7 @@ Get-AtwsOpportunity
     [Nullable[datetime]]
     $ThroughDate,
 
-# Description
+# Name
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -761,7 +761,21 @@ Get-AtwsOpportunity
       ParametersetName = 'By_Id'
     )]
     [Nullable[datetime]]
-    $PromisedFulfillmentDate
+    $PromisedFulfillmentDate,
+
+# Description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,8000)]
+    [string]
+    $Description
   )
  
     begin { 

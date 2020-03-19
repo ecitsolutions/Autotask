@@ -174,7 +174,14 @@ Set-AtwsAccountToDo
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $LastModifiedDate
+    $LastModifiedDate,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

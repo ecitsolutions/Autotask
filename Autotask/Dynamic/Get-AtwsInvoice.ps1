@@ -179,7 +179,7 @@ Set-AtwsInvoice
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,4000)]
+    [ValidateLength(0,2000)]
     [string[]]
     $Comments,
 

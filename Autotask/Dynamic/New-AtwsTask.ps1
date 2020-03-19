@@ -315,7 +315,14 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $AccountPhysicalLocationID
+    $AccountPhysicalLocationID,
+
+# Task Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [string]
+    $TaskCategoryID
   )
  
     begin { 

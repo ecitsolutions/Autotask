@@ -5,53 +5,51 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function New-AtwsServiceCall
+Function New-AtwsInstalledProductCategory
 {
 
 
 <#
 .SYNOPSIS
-This function creates a new ServiceCall through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.
+This function creates a new InstalledProductCategory through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.
 .DESCRIPTION
-The function supports all properties of an [Autotask.ServiceCall] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.
+The function supports all properties of an [Autotask.InstalledProductCategory] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.
 
-If you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the ServiceCall with Id number 0 you could write 'New-AtwsServiceCall -Id 0' or you could write 'New-AtwsServiceCall -Filter {Id -eq 0}.
+If you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the InstalledProductCategory with Id number 0 you could write 'New-AtwsInstalledProductCategory -Id 0' or you could write 'New-AtwsInstalledProductCategory -Filter {Id -eq 0}.
 
-'New-AtwsServiceCall -Id 0,4' could be written as 'New-AtwsServiceCall -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
+'New-AtwsInstalledProductCategory -Id 0,4' could be written as 'New-AtwsInstalledProductCategory -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
 
-To create a new ServiceCall you need the following required fields:
- -AccountID
- -StartDateTime
- -EndDateTime
+To create a new InstalledProductCategory you need the following required fields:
+ -Name
+ -Active
+ -DisplayColorRGB
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-ServiceCallTask
- ServiceCallTicket
+InstalledProduct
+ InstalledProductCategoryUdfAssociation
 
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.ServiceCall]. This function outputs the Autotask.ServiceCall that was created by the API.
+[Autotask.InstalledProductCategory]. This function outputs the Autotask.InstalledProductCategory that was created by the API.
 .EXAMPLE
-$result = New-AtwsServiceCall -AccountID [Value] -StartDateTime [Value] -EndDateTime [Value]
-Creates a new [Autotask.ServiceCall] through the Web Services API and returns the new object.
+$result = New-AtwsInstalledProductCategory -Name [Value] -Active [Value] -DisplayColorRGB [Value]
+Creates a new [Autotask.InstalledProductCategory] through the Web Services API and returns the new object.
  .EXAMPLE
-$result = Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall 
-Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services API and returns the new object.
+$result = Get-AtwsInstalledProductCategory -Id 124 | New-AtwsInstalledProductCategory 
+Copies [Autotask.InstalledProductCategory] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall | Set-AtwsServiceCall -ParameterName <Parameter Value>
-Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCall to modify the object.
+Get-AtwsInstalledProductCategory -Id 124 | New-AtwsInstalledProductCategory | Set-AtwsInstalledProductCategory -ParameterName <Parameter Value>
+Copies [Autotask.InstalledProductCategory] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductCategory to modify the object.
  .EXAMPLE
-$result = Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall | Set-AtwsServiceCall -ParameterName <Parameter Value> -Passthru
-Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCall to modify the object and returns the new object.
+$result = Get-AtwsInstalledProductCategory -Id 124 | New-AtwsInstalledProductCategory | Set-AtwsInstalledProductCategory -ParameterName <Parameter Value> -Passthru
+Copies [Autotask.InstalledProductCategory] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductCategory to modify the object and returns the new object.
 
 .LINK
-Remove-AtwsServiceCall
+Get-AtwsInstalledProductCategory
  .LINK
-Get-AtwsServiceCall
- .LINK
-Set-AtwsServiceCall
+Set-AtwsInstalledProductCategory
 
 #>
 
@@ -64,124 +62,62 @@ Set-AtwsServiceCall
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ServiceCall[]]
+    [Autotask.InstalledProductCategory[]]
     $InputObject,
 
-# Client ID
+# Name
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
-    $AccountID,
-
-# Start Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDateTime,
-
-# End Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EndDateTime,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
+    [ValidateLength(0,100)]
     [string]
-    $Description,
+    $Name,
 
-# Complete
+# Nickname
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int16]
-    $Complete,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
-
-# Last Modified Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastModifiedDateTime,
-
-# Duration
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $Duration,
-
-# Status
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
+    [ValidateLength(0,3)]
     [string]
-    $Status,
+    $Nickname,
 
-# Canceled By
+# Active
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active,
+
+# Display Color RGB
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [string]
+    $DisplayColorRGB,
+
+# Global Default
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $CanceledByResource,
+    [boolean]
+    $GlobalDefault,
 
-# Canceled Date Time
+# Client Portal Default
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CanceledDateTime,
-
-# Cancelation Notice Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $CancelationNoticeHours,
-
-# Account Physical Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AccountPhysicalLocationID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID
+    [boolean]
+    $ClientPortalDefault
   )
  
     begin { 
-        $entityName = 'ServiceCall'
+        $entityName = 'InstalledProductCategory'
            
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

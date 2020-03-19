@@ -82,6 +82,8 @@ Account
  AccountNote
  AccountTeam
  AccountToDo
+ AccountWebhook
+ AccountWebhookExcludedResource
  Appointment
  AttachmentInfo
  BillingItem
@@ -89,6 +91,9 @@ Account
  BusinessDivisionSubdivisionResource
  ChangeOrderCost
  ComanagedAssociation
+ Contact
+ ContactWebhook
+ ContactWebhookExcludedResource
  ContractCost
  ContractMilestone
  ContractNote
@@ -97,12 +102,14 @@ Account
  ExpenseReport
  InstalledProduct
  InstalledProductNote
+ InventoryItem
  InventoryLocation
  InventoryTransfer
  Invoice
  NotificationHistory
  Opportunity
  Phase
+ Product
  Project
  ProjectCost
  ProjectNote
@@ -118,9 +125,11 @@ Account
  SalesOrder
  Service
  ServiceBundle
+ ServiceCall
  ServiceCallTaskResource
  ServiceCallTicketResource
  ServiceLevelAgreementResults
+ Subscription
  Task
  TaskNote
  TaskSecondaryResource
@@ -211,7 +220,7 @@ Set-AtwsResource
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Account:CreatedByResourceID', 'Account:OwnerResourceID', 'AccountNote:AssignedResourceID', 'AccountNote:ImpersonatorCreatorResourceID', 'AccountNote:ImpersonatorUpdaterResourceID', 'AccountTeam:ResourceID', 'AccountToDo:AssignedToResourceID', 'AccountToDo:CreatorResourceID', 'Appointment:CreatorResourceID', 'Appointment:ResourceID', 'AttachmentInfo:AttachedByResourceID', 'BillingItem:AccountManagerWhenApprovedID', 'BillingItem:ItemApproverID', 'BillingItemApprovalLevel:ApprovalResourceID', 'BusinessDivisionSubdivisionResource:ResourceID', 'ChangeOrderCost:CreatorResourceID', 'ChangeOrderCost:StatusLastModifiedBy', 'ComanagedAssociation:ResourceID', 'ContractCost:CreatorResourceID', 'ContractMilestone:CreatorResourceID', 'ContractNote:CreatorResourceID', 'ContractNote:ImpersonatorCreatorResourceID', 'ContractNote:ImpersonatorUpdaterResourceID', 'ContractRoleCost:ResourceID', 'Currency:UpdateResourceId', 'ExpenseReport:ApproverID', 'ExpenseReport:SubmitterID', 'InstalledProduct:CreatedByPersonID', 'InstalledProduct:InstalledByID', 'InstalledProduct:LastActivityPersonID', 'InstalledProductNote:CreatorResourceID', 'InstalledProductNote:ImpersonatorCreatorResourceID', 'InstalledProductNote:ImpersonatorUpdaterResourceID', 'InventoryLocation:ResourceID', 'InventoryTransfer:TransferByResourceID', 'Invoice:CreatorResourceID', 'Invoice:VoidedByResourceID', 'NotificationHistory:InitiatingResourceID', 'Opportunity:OwnerResourceID', 'Phase:CreatorResourceID', 'Project:CompanyOwnerResourceID', 'Project:CreatorResourceID', 'Project:LastActivityResourceID', 'Project:ProjectLeadResourceID', 'ProjectCost:CreatorResourceID', 'ProjectNote:CreatorResourceID', 'ProjectNote:ImpersonatorCreatorResourceID', 'ProjectNote:ImpersonatorUpdaterResourceID', 'PurchaseOrder:CreatorResourceID', 'PurchaseOrderReceive:ReceivedByResourceID', 'Quote:ApprovalStatusChangedByResourceID', 'Quote:CreatorResourceID', 'Quote:LastModifiedBy', 'QuoteTemplate:CreatedBy', 'QuoteTemplate:LastActivityBy', 'ResourceRole:ResourceID', 'ResourceRoleDepartment:ResourceID', 'ResourceRoleQueue:ResourceID', 'ResourceServiceDeskRole:ResourceID', 'ResourceSkill:ResourceID', 'SalesOrder:OwnerResourceID', 'Service:CreatorResourceID', 'Service:UpdateResourceID', 'ServiceBundle:CreatorResourceID', 'ServiceBundle:UpdateResourceID', 'ServiceCallTaskResource:ResourceID', 'ServiceCallTicketResource:ResourceID', 'ServiceLevelAgreementResults:FirstResponseInitiatingResourceID', 'ServiceLevelAgreementResults:FirstResponseResourceID', 'ServiceLevelAgreementResults:ResolutionPlanResourceID', 'ServiceLevelAgreementResults:ResolutionResourceID', 'Task:AssignedResourceID', 'Task:CompletedByResourceID', 'Task:CreatorResourceID', 'Task:LastActivityResourceID', 'TaskNote:CreatorResourceID', 'TaskNote:ImpersonatorCreatorResourceID', 'TaskNote:ImpersonatorUpdaterResourceID', 'TaskSecondaryResource:ResourceID', 'Ticket:AssignedResourceID', 'Ticket:CompletedByResourceID', 'Ticket:CreatorResourceID', 'Ticket:LastActivityResourceID', 'TicketChangeRequestApproval:ResourceID', 'TicketChecklistItem:CompletedByResourceID', 'TicketCost:CreatorResourceID', 'TicketHistory:ResourceID', 'TicketNote:CreatorResourceID', 'TicketNote:ImpersonatorCreatorResourceID', 'TicketNote:ImpersonatorUpdaterResourceID', 'TicketSecondaryResource:ResourceID', 'TimeEntry:BillingApprovalResourceID', 'TimeEntry:ImpersonatorCreatorResourceID', 'TimeEntry:ImpersonatorUpdaterResourceID', 'TimeEntry:ResourceID')]
+    [ValidateSet('Account:CreatedByResourceID', 'Account:ImpersonatorCreatorResourceID', 'Account:OwnerResourceID', 'AccountNote:AssignedResourceID', 'AccountNote:ImpersonatorCreatorResourceID', 'AccountNote:ImpersonatorUpdaterResourceID', 'AccountTeam:ResourceID', 'AccountToDo:AssignedToResourceID', 'AccountToDo:CreatorResourceID', 'AccountToDo:ImpersonatorCreatorResourceID', 'AccountWebhook:OwnerResourceID', 'AccountWebhookExcludedResource:ResourceID', 'Appointment:CreatorResourceID', 'Appointment:ResourceID', 'AttachmentInfo:AttachedByResourceID', 'AttachmentInfo:ImpersonatorCreatorResourceID', 'BillingItem:AccountManagerWhenApprovedID', 'BillingItem:ItemApproverID', 'BillingItemApprovalLevel:ApprovalResourceID', 'BusinessDivisionSubdivisionResource:ResourceID', 'ChangeOrderCost:CreatorResourceID', 'ChangeOrderCost:StatusLastModifiedBy', 'ComanagedAssociation:ResourceID', 'Contact:ImpersonatorCreatorResourceID', 'ContactWebhook:OwnerResourceID', 'ContactWebhookExcludedResource:ResourceID', 'ContractCost:CreatorResourceID', 'ContractMilestone:CreatorResourceID', 'ContractNote:CreatorResourceID', 'ContractNote:ImpersonatorCreatorResourceID', 'ContractNote:ImpersonatorUpdaterResourceID', 'ContractRoleCost:ResourceID', 'Currency:UpdateResourceId', 'ExpenseReport:ApproverID', 'ExpenseReport:SubmitterID', 'InstalledProduct:CreatedByPersonID', 'InstalledProduct:ImpersonatorCreatorResourceID', 'InstalledProduct:InstalledByID', 'InstalledProduct:LastActivityPersonID', 'InstalledProductNote:CreatorResourceID', 'InstalledProductNote:ImpersonatorCreatorResourceID', 'InstalledProductNote:ImpersonatorUpdaterResourceID', 'InventoryItem:ImpersonatorCreatorResourceID', 'InventoryLocation:ImpersonatorCreatorResourceID', 'InventoryLocation:ResourceID', 'InventoryTransfer:TransferByResourceID', 'Invoice:CreatorResourceID', 'Invoice:VoidedByResourceID', 'NotificationHistory:InitiatingResourceID', 'Opportunity:ImpersonatorCreatorResourceID', 'Opportunity:OwnerResourceID', 'Phase:CreatorResourceID', 'Product:ImpersonatorCreatorResourceID', 'Project:CompanyOwnerResourceID', 'Project:CreatorResourceID', 'Project:ImpersonatorCreatorResourceID', 'Project:LastActivityResourceID', 'Project:ProjectLeadResourceID', 'ProjectCost:CreatorResourceID', 'ProjectNote:CreatorResourceID', 'ProjectNote:ImpersonatorCreatorResourceID', 'ProjectNote:ImpersonatorUpdaterResourceID', 'PurchaseOrder:CreatorResourceID', 'PurchaseOrder:ImpersonatorCreatorResourceID', 'PurchaseOrderReceive:ReceivedByResourceID', 'Quote:ApprovalStatusChangedByResourceID', 'Quote:CreatorResourceID', 'Quote:ImpersonatorCreatorResourceID', 'Quote:LastModifiedBy', 'QuoteTemplate:CreatedBy', 'QuoteTemplate:LastActivityBy', 'ResourceRole:ResourceID', 'ResourceRoleDepartment:ResourceID', 'ResourceRoleQueue:ResourceID', 'ResourceServiceDeskRole:ResourceID', 'ResourceSkill:ResourceID', 'SalesOrder:ImpersonatorCreatorResourceID', 'SalesOrder:OwnerResourceID', 'Service:CreatorResourceID', 'Service:UpdateResourceID', 'ServiceBundle:CreatorResourceID', 'ServiceBundle:UpdateResourceID', 'ServiceCall:ImpersonatorCreatorResourceID', 'ServiceCallTaskResource:ResourceID', 'ServiceCallTicketResource:ResourceID', 'ServiceLevelAgreementResults:FirstResponseInitiatingResourceID', 'ServiceLevelAgreementResults:FirstResponseResourceID', 'ServiceLevelAgreementResults:ResolutionPlanResourceID', 'ServiceLevelAgreementResults:ResolutionResourceID', 'Subscription:ImpersonatorCreatorResourceID', 'Task:AssignedResourceID', 'Task:CompletedByResourceID', 'Task:CreatorResourceID', 'Task:LastActivityResourceID', 'TaskNote:CreatorResourceID', 'TaskNote:ImpersonatorCreatorResourceID', 'TaskNote:ImpersonatorUpdaterResourceID', 'TaskSecondaryResource:ResourceID', 'Ticket:AssignedResourceID', 'Ticket:CompletedByResourceID', 'Ticket:CreatorResourceID', 'Ticket:ImpersonatorCreatorResourceID', 'Ticket:LastActivityResourceID', 'TicketChangeRequestApproval:ResourceID', 'TicketChecklistItem:CompletedByResourceID', 'TicketCost:CreatorResourceID', 'TicketHistory:ResourceID', 'TicketNote:CreatorResourceID', 'TicketNote:ImpersonatorCreatorResourceID', 'TicketNote:ImpersonatorUpdaterResourceID', 'TicketSecondaryResource:ResourceID', 'TimeEntry:BillingApprovalResourceID', 'TimeEntry:ImpersonatorCreatorResourceID', 'TimeEntry:ImpersonatorUpdaterResourceID', 'TimeEntry:ResourceID')]
     [string]
     $GetExternalEntityByThisEntityId,
 

@@ -5,13 +5,13 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function Get-AtwsAttachmentInfo
+Function Get-AtwsInstalledProductCategory
 {
 
 
 <#
 .SYNOPSIS
-This function get one or more AttachmentInfo through the Autotask Web Services API.
+This function get one or more InstalledProductCategory through the Autotask Web Services API.
 .DESCRIPTION
 This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.
 
@@ -31,56 +31,56 @@ Additional operators for [string] parameters are:
 
 Properties with picklists are:
 
-ParentType
- 
-
-Type
- 
-
-Publish
+DisplayColorRGB
  
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
+InstalledProduct
+ InstalledProductCategoryUdfAssociation
 
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.AttachmentInfo[]]. This function outputs the Autotask.AttachmentInfo that was returned by the API.
+[Autotask.InstalledProductCategory[]]. This function outputs the Autotask.InstalledProductCategory that was returned by the API.
 .EXAMPLE
-Get-AtwsAttachmentInfo -Id 0
+Get-AtwsInstalledProductCategory -Id 0
 Returns the object with Id 0, if any.
  .EXAMPLE
-Get-AtwsAttachmentInfo -AttachmentInfoName SomeName
-Returns the object with AttachmentInfoName 'SomeName', if any.
+Get-AtwsInstalledProductCategory -InstalledProductCategoryName SomeName
+Returns the object with InstalledProductCategoryName 'SomeName', if any.
  .EXAMPLE
-Get-AtwsAttachmentInfo -AttachmentInfoName 'Some Name'
-Returns the object with AttachmentInfoName 'Some Name', if any.
+Get-AtwsInstalledProductCategory -InstalledProductCategoryName 'Some Name'
+Returns the object with InstalledProductCategoryName 'Some Name', if any.
  .EXAMPLE
-Get-AtwsAttachmentInfo -AttachmentInfoName 'Some Name' -NotEquals AttachmentInfoName
-Returns any objects with a AttachmentInfoName that is NOT equal to 'Some Name', if any.
+Get-AtwsInstalledProductCategory -InstalledProductCategoryName 'Some Name' -NotEquals InstalledProductCategoryName
+Returns any objects with a InstalledProductCategoryName that is NOT equal to 'Some Name', if any.
  .EXAMPLE
-Get-AtwsAttachmentInfo -AttachmentInfoName SomeName* -Like AttachmentInfoName
-Returns any object with a AttachmentInfoName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsInstalledProductCategory -InstalledProductCategoryName SomeName* -Like InstalledProductCategoryName
+Returns any object with a InstalledProductCategoryName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsAttachmentInfo -AttachmentInfoName SomeName* -NotLike AttachmentInfoName
-Returns any object with a AttachmentInfoName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsInstalledProductCategory -InstalledProductCategoryName SomeName* -NotLike InstalledProductCategoryName
+Returns any object with a InstalledProductCategoryName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label>
-Returns any AttachmentInfos with property ParentType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsInstalledProductCategory -D <PickList Label>
+Returns any InstalledProductCategorys with property D equal to the <PickList Label>. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label> -NotEquals ParentType 
-Returns any AttachmentInfos with property ParentType NOT equal to the <PickList Label>.
+Get-AtwsInstalledProductCategory -D <PickList Label> -NotEquals D 
+Returns any InstalledProductCategorys with property D NOT equal to the <PickList Label>.
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label1>, <PickList Label2>
-Returns any AttachmentInfos with property ParentType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsInstalledProductCategory -D <PickList Label1>, <PickList Label2>
+Returns any InstalledProductCategorys with property D equal to EITHER <PickList Label1> OR <PickList Label2>.
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label1>, <PickList Label2> -NotEquals ParentType
-Returns any AttachmentInfos with property ParentType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInstalledProductCategory -D <PickList Label1>, <PickList Label2> -NotEquals D
+Returns any InstalledProductCategorys with property D NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
  .EXAMPLE
-Get-AtwsAttachmentInfo -Id 1234 -AttachmentInfoName SomeName* -ParentType <PickList Label1>, <PickList Label2> -Like AttachmentInfoName -NotEquals ParentType -GreaterThan Id
-An example of a more complex query. This command returns any AttachmentInfos with Id GREATER THAN 1234, a AttachmentInfoName that matches the simple pattern SomeName* AND that has a ParentType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInstalledProductCategory -Id 1234 -InstalledProductCategoryName SomeName* -D <PickList Label1>, <PickList Label2> -Like InstalledProductCategoryName -NotEquals D -GreaterThan Id
+An example of a more complex query. This command returns any InstalledProductCategorys with Id GREATER THAN 1234, a InstalledProductCategoryName that matches the simple pattern SomeName* AND that has a D that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
+.LINK
+New-AtwsInstalledProductCategory
+ .LINK
+Set-AtwsInstalledProductCategory
 
 #>
 
@@ -106,7 +106,6 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AttachedByContactID', 'AttachedByResourceID', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
     [string]
     $GetReferenceEntityById,
 
@@ -119,6 +118,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
+    [ValidateSet('InstalledProduct:InstalledProductCategoryID', 'InstalledProductCategoryUdfAssociation:InstalledProductCategoryID')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -129,7 +129,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [switch]
     $All,
 
-# Attachment ID
+# Installed Product Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -137,192 +137,146 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [Nullable[long][]]
     $id,
 
-# Parent ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ParentID,
-
-# Parent Type
+# Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [string[]]
-    $ParentType,
-
-# Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [string[]]
-    $Type,
-
-# Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $Title,
-
-# File Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $FullPath,
-
-# Attach Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $AttachDate,
-
-# Attached By Contact
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $AttachedByContactID,
-
-# Attached By Resource
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $AttachedByResourceID,
-
-# Publish
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [string[]]
-    $Publish,
-
-# Content Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
     [ValidateLength(0,100)]
     [string[]]
-    $ContentType,
+    $Name,
 
-# Opportunity ID
+# Nickname
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
-    $OpportunityID,
+    [ValidateLength(0,3)]
+    [string[]]
+    $Nickname,
 
-# Impersonator Creator Resource ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
+
+# Display Color RGB
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [string[]]
+    $DisplayColorRGB,
+
+# Global Default
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $GlobalDefault,
+
+# Client Portal Default
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ClientPortalDefault,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Nickname', 'Active', 'DisplayColorRGB', 'GlobalDefault', 'ClientPortalDefault')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Nickname', 'Active', 'DisplayColorRGB', 'GlobalDefault', 'ClientPortalDefault')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Nickname', 'Active', 'DisplayColorRGB', 'GlobalDefault', 'ClientPortalDefault')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Nickname', 'DisplayColorRGB')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Nickname', 'DisplayColorRGB')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Nickname', 'DisplayColorRGB')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Nickname', 'DisplayColorRGB')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Type', 'Title', 'FullPath', 'ContentType')]
+    [ValidateSet('Name', 'Nickname')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Type', 'Title', 'FullPath', 'ContentType')]
+    [ValidateSet('Name', 'Nickname')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Type', 'Title', 'FullPath', 'ContentType')]
+    [ValidateSet('Name', 'Nickname')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Type', 'Title', 'FullPath', 'ContentType')]
+    [ValidateSet('Name', 'Nickname')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Type', 'Title', 'FullPath', 'ContentType')]
+    [ValidateSet('Name', 'Nickname')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachDate')]
     [string[]]
     $IsThisDay
   )
 
     begin { 
-        $entityName = 'AttachmentInfo'
+        $entityName = 'InstalledProductCategory'
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

@@ -35,6 +35,7 @@ AccountToDo
  TicketCost
  TicketHistory
  TicketNote
+ TicketRmaCredit
  TicketSecondaryResource
  TimeEntry
 
@@ -642,7 +643,33 @@ Get-AtwsTicket
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $AccountPhysicalLocationID
+    $AccountPhysicalLocationID,
+
+# RMA Status
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [string]
+    $RmaStatus,
+
+# RMA Type
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [string]
+    $RmaType
   )
  
     begin { 

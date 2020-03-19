@@ -256,7 +256,21 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [string]
-    $PriceCostMethod
+    $PriceCostMethod,
+
+# Eligible For RMA
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $EligibleForRma,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

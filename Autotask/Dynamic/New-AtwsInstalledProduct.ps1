@@ -22,7 +22,6 @@ If you need very complicated queries you can write a filter directly and pass it
 To create a new InstalledProduct you need the following required fields:
  -AccountID
  -Active
- -InstallDate
  -ProductID
 
 Entities that have fields that refer to the base entity of this CmdLet:
@@ -40,7 +39,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.InstalledProduct]. This function outputs the Autotask.InstalledProduct that was created by the API.
 .EXAMPLE
-$result = New-AtwsInstalledProduct -AccountID [Value] -Active [Value] -InstallDate [Value] -ProductID [Value]
+$result = New-AtwsInstalledProduct -AccountID [Value] -Active [Value] -ProductID [Value]
 Creates a new [Autotask.InstalledProduct] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsInstalledProduct -Id 124 | New-AtwsInstalledProduct 
@@ -120,10 +119,8 @@ Set-AtwsInstalledProduct
 
 # Install Date
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [datetime]
     $InstallDate,
 
@@ -716,7 +713,35 @@ Set-AtwsInstalledProduct
     )]
     [ValidateLength(0,100)]
     [string]
-    $DeviceNetworkingID
+    $DeviceNetworkingID,
+
+# Installed Product Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $InstalledProductCategoryID,
+
+# Source Cost ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $SourceCostID,
+
+# Source Cost Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [string]
+    $SourceCostType,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

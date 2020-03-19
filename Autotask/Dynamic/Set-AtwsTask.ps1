@@ -367,7 +367,20 @@ Get-AtwsTask
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $AccountPhysicalLocationID
+    $AccountPhysicalLocationID,
+
+# Task Category ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [string]
+    $TaskCategoryID
   )
  
     begin { 

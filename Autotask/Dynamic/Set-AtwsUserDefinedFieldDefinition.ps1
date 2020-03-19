@@ -17,7 +17,8 @@ This function one or more objects of type [Autotask.UserDefinedFieldDefinition] 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-UserDefinedFieldListItem
+InstalledProductCategoryUdfAssociation
+ UserDefinedFieldListItem
 
 .INPUTS
 [Autotask.UserDefinedFieldDefinition[]]. This function takes one or more objects as input. Pipeline is supported.
@@ -279,7 +280,20 @@ Get-AtwsUserDefinedFieldDefinition
       ParametersetName = 'By_Id'
     )]
     [Nullable[boolean]]
-    $IsEncrypted
+    $IsEncrypted,
+
+# Is Private
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $IsPrivate
   )
  
     begin { 

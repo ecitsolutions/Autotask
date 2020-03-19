@@ -416,7 +416,14 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [string]
-    $ApiVendorID
+    $ApiVendorID,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

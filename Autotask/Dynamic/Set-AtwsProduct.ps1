@@ -366,7 +366,20 @@ Get-AtwsProduct
     )]
     [ValidateLength(0,50)]
     [string]
-    $InternalProductID
+    $InternalProductID,
+
+# Eligible For RMA
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $EligibleForRma
   )
  
     begin { 

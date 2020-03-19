@@ -5,42 +5,45 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function Set-AtwsTicketCategory
+Function Set-AtwsInstalledProductCategory
 {
 
 
 <#
 .SYNOPSIS
-This function sets parameters on the TicketCategory specified by the -InputObject parameter or pipeline through the use of the Autotask Web Services API. Any property of the TicketCategory that is not marked as READ ONLY by Autotask can be speficied with a parameter. You can specify multiple paramters.
+This function sets parameters on the InstalledProductCategory specified by the -InputObject parameter or pipeline through the use of the Autotask Web Services API. Any property of the InstalledProductCategory that is not marked as READ ONLY by Autotask can be speficied with a parameter. You can specify multiple paramters.
 .DESCRIPTION
-This function one or more objects of type [Autotask.TicketCategory] as input. You can pipe the objects to the function or pass them using the -InputObject parameter. You specify the property you want to set and the value you want to set it to using parameters. The function modifies all objects and updates the online data through the Autotask Web Services API. The function supports all properties of an [Autotask.TicketCategory] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values.
+This function one or more objects of type [Autotask.InstalledProductCategory] as input. You can pipe the objects to the function or pass them using the -InputObject parameter. You specify the property you want to set and the value you want to set it to using parameters. The function modifies all objects and updates the online data through the Autotask Web Services API. The function supports all properties of an [Autotask.InstalledProductCategory] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values.
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-TicketCategoryFieldDefaults
+InstalledProduct
+ InstalledProductCategoryUdfAssociation
 
 .INPUTS
-[Autotask.TicketCategory[]]. This function takes one or more objects as input. Pipeline is supported.
+[Autotask.InstalledProductCategory[]]. This function takes one or more objects as input. Pipeline is supported.
 .OUTPUTS
-Nothing or [Autotask.TicketCategory]. This function optionally returns the updated objects if you use the -PassThru parameter.
+Nothing or [Autotask.InstalledProductCategory]. This function optionally returns the updated objects if you use the -PassThru parameter.
 .EXAMPLE
-Set-AtwsTicketCategory -InputObject $TicketCategory [-ParameterName] [Parameter value]
-Passes one or more [Autotask.TicketCategory] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
+Set-AtwsInstalledProductCategory -InputObject $InstalledProductCategory [-ParameterName] [Parameter value]
+Passes one or more [Autotask.InstalledProductCategory] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
  .EXAMPLE
-$TicketCategory | Set-AtwsTicketCategory -ParameterName <Parameter value>
+$InstalledProductCategory | Set-AtwsInstalledProductCategory -ParameterName <Parameter value>
 Same as the first example, but now the objects are passed to the funtion through the pipeline, not passed as a parameter. The end result is identical.
  .EXAMPLE
-Get-AtwsTicketCategory -Id 0 | Set-AtwsTicketCategory -ParameterName <Parameter value>
+Get-AtwsInstalledProductCategory -Id 0 | Set-AtwsInstalledProductCategory -ParameterName <Parameter value>
 Gets the instance with Id 0 directly from the Web Services API, modifies a parameter and updates Autotask. This approach works with all valid parameters for the Get function.
  .EXAMPLE
-Get-AtwsTicketCategory -Id 0,4,8 | Set-AtwsTicketCategory -ParameterName <Parameter value>
+Get-AtwsInstalledProductCategory -Id 0,4,8 | Set-AtwsInstalledProductCategory -ParameterName <Parameter value>
 Gets multiple instances by Id, modifies them all and updates Autotask.
  .EXAMPLE
-$result = Get-AtwsTicketCategory -Id 0,4,8 | Set-AtwsTicketCategory -ParameterName <Parameter value> -PassThru
+$result = Get-AtwsInstalledProductCategory -Id 0,4,8 | Set-AtwsInstalledProductCategory -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
 .LINK
-Get-AtwsTicketCategory
+New-AtwsInstalledProductCategory
+ .LINK
+Get-AtwsInstalledProductCategory
 
 #>
 
@@ -53,7 +56,7 @@ Get-AtwsTicketCategory
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TicketCategory[]]
+    [Autotask.InstalledProductCategory[]]
     $InputObject,
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
@@ -86,7 +89,7 @@ Get-AtwsTicketCategory
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,30)]
+    [ValidateLength(0,100)]
     [string]
     $Name,
 
@@ -132,24 +135,11 @@ Get-AtwsTicketCategory
     )]
     [ValidateNotNullOrEmpty()]
     [string]
-    $DisplayColorRGB,
-
-# API Only
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[boolean]]
-    $ApiOnly
+    $DisplayColorRGB
   )
  
     begin { 
-        $entityName = 'TicketCategory'
+        $entityName = 'InstalledProductCategory'
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

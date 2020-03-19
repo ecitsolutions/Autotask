@@ -26,7 +26,8 @@ To create a new UserDefinedFieldDefinition you need the following required field
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-UserDefinedFieldListItem
+InstalledProductCategoryUdfAssociation
+ UserDefinedFieldListItem
 
 .INPUTS
 Nothing. This function only takes parameters.
@@ -191,7 +192,14 @@ Set-AtwsUserDefinedFieldDefinition
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $IsEncrypted
+    $IsEncrypted,
+
+# Is Private
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsPrivate
   )
  
     begin { 

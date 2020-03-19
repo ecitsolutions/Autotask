@@ -389,7 +389,42 @@ Set-AtwsBusinessLocation
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $SaturdayExtendedHoursEndTime
+    $SaturdayExtendedHoursEndTime,
+
+# Holiday Hours Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [string]
+    $HolidayHoursType,
+
+# Holiday Hours Start Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $HolidayHoursStartTime,
+
+# Holiday Hours End Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $HolidayHoursEndTime,
+
+# Holiday Extended Hours Start Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $HolidayExtendedHoursStartTime,
+
+# Holiday Extended Hours End Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $HolidayExtendedHoursEndTime
   )
  
     begin { 

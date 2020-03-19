@@ -45,6 +45,7 @@ AccountToDo
  TicketCost
  TicketHistory
  TicketNote
+ TicketRmaCredit
  TicketSecondaryResource
  TimeEntry
 
@@ -580,7 +581,35 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [string]
-    $ApiVendorID
+    $ApiVendorID,
+
+# Last Tracked Modification Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastTrackedModificationDateTime,
+
+# RMA Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [string]
+    $RmaStatus,
+
+# RMA Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [string]
+    $RmaType,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

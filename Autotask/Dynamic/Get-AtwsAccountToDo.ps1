@@ -106,7 +106,7 @@ Set-AtwsAccountToDo
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'AssignedToResourceID', 'ContactID', 'ContractID', 'CreatorResourceID', 'OpportunityID', 'TicketID')]
+    [ValidateSet('AccountID', 'AssignedToResourceID', 'ContactID', 'ContractID', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -241,52 +241,59 @@ Set-AtwsAccountToDo
     [Nullable[datetime][]]
     $LastModifiedDate,
 
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate')]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate')]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate')]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate')]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate')]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate')]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate')]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $LessThanOrEquals,
 

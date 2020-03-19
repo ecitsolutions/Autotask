@@ -518,7 +518,14 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $EnabledForComanaged
+    $EnabledForComanaged,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

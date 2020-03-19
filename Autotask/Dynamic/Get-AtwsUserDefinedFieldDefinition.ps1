@@ -42,7 +42,8 @@ DisplayFormat
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-UserDefinedFieldListItem
+InstalledProductCategoryUdfAssociation
+ UserDefinedFieldListItem
 
 .INPUTS
 Nothing. This function only takes parameters.
@@ -123,7 +124,7 @@ Set-AtwsUserDefinedFieldDefinition
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('UserDefinedFieldListItem:UdfFieldId')]
+    [ValidateSet('InstalledProductCategoryUdfAssociation:UserDefinedFieldDefinitionID', 'UserDefinedFieldListItem:UdfFieldId')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -268,24 +269,31 @@ Set-AtwsUserDefinedFieldDefinition
     [Nullable[boolean][]]
     $IsEncrypted,
 
+# Is Private
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'IsFieldMapping', 'IsProtected', 'IsRequired', 'IsActive', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'IsEncrypted')]
+    [Nullable[boolean][]]
+    $IsPrivate,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'IsFieldMapping', 'IsProtected', 'IsRequired', 'IsActive', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'IsEncrypted', 'IsPrivate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'IsFieldMapping', 'IsProtected', 'IsRequired', 'IsActive', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'IsEncrypted')]
+    [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'IsFieldMapping', 'IsProtected', 'IsRequired', 'IsActive', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'IsEncrypted', 'IsPrivate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'IsFieldMapping', 'IsProtected', 'IsRequired', 'IsActive', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'IsEncrypted')]
+    [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'IsFieldMapping', 'IsProtected', 'IsRequired', 'IsActive', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'IsEncrypted', 'IsPrivate')]
     [string[]]
     $IsNotNull,
 

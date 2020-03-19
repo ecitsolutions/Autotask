@@ -21,6 +21,8 @@ Account
  AccountNote
  AccountTeam
  AccountToDo
+ AccountWebhook
+ AccountWebhookExcludedResource
  Appointment
  AttachmentInfo
  BillingItem
@@ -28,6 +30,9 @@ Account
  BusinessDivisionSubdivisionResource
  ChangeOrderCost
  ComanagedAssociation
+ Contact
+ ContactWebhook
+ ContactWebhookExcludedResource
  ContractCost
  ContractMilestone
  ContractNote
@@ -36,12 +41,14 @@ Account
  ExpenseReport
  InstalledProduct
  InstalledProductNote
+ InventoryItem
  InventoryLocation
  InventoryTransfer
  Invoice
  NotificationHistory
  Opportunity
  Phase
+ Product
  Project
  ProjectCost
  ProjectNote
@@ -57,9 +64,11 @@ Account
  SalesOrder
  Service
  ServiceBundle
+ ServiceCall
  ServiceCallTaskResource
  ServiceCallTicketResource
  ServiceLevelAgreementResults
+ Subscription
  Task
  TaskNote
  TaskSecondaryResource

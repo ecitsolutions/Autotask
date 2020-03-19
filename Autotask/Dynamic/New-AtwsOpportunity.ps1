@@ -268,7 +268,7 @@ Set-AtwsOpportunity
     [datetime]
     $ThroughDate,
 
-# Description
+# Name
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -506,7 +506,22 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $PromisedFulfillmentDate
+    $PromisedFulfillmentDate,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string]
+    $Description,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

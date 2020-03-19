@@ -139,13 +139,11 @@ Get-AtwsInstalledProduct
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[datetime]]
     $InstallDate,
 
@@ -440,7 +438,20 @@ Get-AtwsInstalledProduct
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $AccountPhysicalLocationID
+    $AccountPhysicalLocationID,
+
+# Installed Product Category ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $InstalledProductCategoryID
   )
  
     begin { 

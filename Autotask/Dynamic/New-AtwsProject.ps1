@@ -380,7 +380,14 @@ Set-AtwsProject
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $LastActivityPersonType
+    $LastActivityPersonType,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

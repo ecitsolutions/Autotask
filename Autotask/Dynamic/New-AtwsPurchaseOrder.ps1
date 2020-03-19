@@ -278,7 +278,14 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $InternalCurrencyFreight
+    $InternalCurrencyFreight,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

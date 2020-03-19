@@ -174,7 +174,7 @@ Set-AtwsTicketCategory
     [Nullable[boolean][]]
     $GlobalDefault,
 
-# Api Only
+# API Only
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

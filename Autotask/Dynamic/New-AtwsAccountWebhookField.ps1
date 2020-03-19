@@ -5,53 +5,52 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function New-AtwsServiceCall
+Function New-AtwsAccountWebhookField
 {
 
 
 <#
 .SYNOPSIS
-This function creates a new ServiceCall through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.
+This function creates a new AccountWebhookField through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.
 .DESCRIPTION
-The function supports all properties of an [Autotask.ServiceCall] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.
+The function supports all properties of an [Autotask.AccountWebhookField] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.
 
-If you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the ServiceCall with Id number 0 you could write 'New-AtwsServiceCall -Id 0' or you could write 'New-AtwsServiceCall -Filter {Id -eq 0}.
+If you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the AccountWebhookField with Id number 0 you could write 'New-AtwsAccountWebhookField -Id 0' or you could write 'New-AtwsAccountWebhookField -Filter {Id -eq 0}.
 
-'New-AtwsServiceCall -Id 0,4' could be written as 'New-AtwsServiceCall -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
+'New-AtwsAccountWebhookField -Id 0,4' could be written as 'New-AtwsAccountWebhookField -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
 
-To create a new ServiceCall you need the following required fields:
- -AccountID
- -StartDateTime
- -EndDateTime
+To create a new AccountWebhookField you need the following required fields:
+ -WebhookID
+ -FieldID
+ -IsSubscribedField
+ -IsDisplayAlwaysField
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-ServiceCallTask
- ServiceCallTicket
 
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.ServiceCall]. This function outputs the Autotask.ServiceCall that was created by the API.
+[Autotask.AccountWebhookField]. This function outputs the Autotask.AccountWebhookField that was created by the API.
 .EXAMPLE
-$result = New-AtwsServiceCall -AccountID [Value] -StartDateTime [Value] -EndDateTime [Value]
-Creates a new [Autotask.ServiceCall] through the Web Services API and returns the new object.
+$result = New-AtwsAccountWebhookField -WebhookID [Value] -FieldID [Value] -IsSubscribedField [Value] -IsDisplayAlwaysField [Value]
+Creates a new [Autotask.AccountWebhookField] through the Web Services API and returns the new object.
  .EXAMPLE
-$result = Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall 
-Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services API and returns the new object.
+$result = Get-AtwsAccountWebhookField -Id 124 | New-AtwsAccountWebhookField 
+Copies [Autotask.AccountWebhookField] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall | Set-AtwsServiceCall -ParameterName <Parameter Value>
-Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCall to modify the object.
+Get-AtwsAccountWebhookField -Id 124 | New-AtwsAccountWebhookField | Set-AtwsAccountWebhookField -ParameterName <Parameter Value>
+Copies [Autotask.AccountWebhookField] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountWebhookField to modify the object.
  .EXAMPLE
-$result = Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall | Set-AtwsServiceCall -ParameterName <Parameter Value> -Passthru
-Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCall to modify the object and returns the new object.
+$result = Get-AtwsAccountWebhookField -Id 124 | New-AtwsAccountWebhookField | Set-AtwsAccountWebhookField -ParameterName <Parameter Value> -Passthru
+Copies [Autotask.AccountWebhookField] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountWebhookField to modify the object and returns the new object.
 
 .LINK
-Remove-AtwsServiceCall
+Remove-AtwsAccountWebhookField
  .LINK
-Get-AtwsServiceCall
+Get-AtwsAccountWebhookField
  .LINK
-Set-AtwsServiceCall
+Set-AtwsAccountWebhookField
 
 #>
 
@@ -64,124 +63,48 @@ Set-AtwsServiceCall
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ServiceCall[]]
+    [Autotask.AccountWebhookField[]]
     $InputObject,
 
-# Client ID
+# Webhook ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $AccountID,
+    $WebhookID,
 
-# Start Date
+# Field ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDateTime,
-
-# End Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EndDateTime,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
     [string]
-    $Description,
+    $FieldID,
 
-# Complete
+# Is Subscribed Field
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [Int16]
-    $Complete,
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $IsSubscribedField,
 
-# Created By
+# Is Display Always Field
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $CreatorResourceID,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
-
-# Last Modified Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastModifiedDateTime,
-
-# Duration
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $Duration,
-
-# Status
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [string]
-    $Status,
-
-# Canceled By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CanceledByResource,
-
-# Canceled Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CanceledDateTime,
-
-# Cancelation Notice Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $CancelationNoticeHours,
-
-# Account Physical Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AccountPhysicalLocationID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $IsDisplayAlwaysField
   )
  
     begin { 
-        $entityName = 'ServiceCall'
+        $entityName = 'AccountWebhookField'
            
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

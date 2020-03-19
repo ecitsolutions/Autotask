@@ -194,7 +194,14 @@ Set-AtwsSubscription
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $BusinessDivisionSubdivisionID
+    $BusinessDivisionSubdivisionID,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

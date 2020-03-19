@@ -346,7 +346,14 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ApprovalStatusChangedByResourceID
+    $ApprovalStatusChangedByResourceID,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

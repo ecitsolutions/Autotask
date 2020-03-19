@@ -663,7 +663,72 @@ Get-AtwsBusinessLocation
       ParametersetName = 'By_Id'
     )]
     [Nullable[datetime]]
-    $SaturdayExtendedHoursEndTime
+    $SaturdayExtendedHoursEndTime,
+
+# Holiday Hours Type
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [string]
+    $HolidayHoursType,
+
+# Holiday Hours Start Time
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $HolidayHoursStartTime,
+
+# Holiday Hours End Time
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $HolidayHoursEndTime,
+
+# Holiday Extended Hours Start Time
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $HolidayExtendedHoursStartTime,
+
+# Holiday Extended Hours End Time
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $HolidayExtendedHoursEndTime
   )
  
     begin { 
