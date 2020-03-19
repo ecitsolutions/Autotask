@@ -5,13 +5,13 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function Get-AtwsInventoryLocation
+Function Get-AtwsContactWebhook
 {
 
 
 <#
 .SYNOPSIS
-This function get one or more InventoryLocation through the Autotask Web Services API.
+This function get one or more ContactWebhook through the Autotask Web Services API.
 .DESCRIPTION
 This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.
 
@@ -34,37 +34,40 @@ Properties with picklists are:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-InventoryItem
- InventoryTransfer
- PurchaseOrderItem
+ContactWebhookExcludedResource
+ ContactWebhookField
+ ContactWebhookUdfField
+ WebhookEventErrorLog
 
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.InventoryLocation[]]. This function outputs the Autotask.InventoryLocation that was returned by the API.
+[Autotask.ContactWebhook[]]. This function outputs the Autotask.ContactWebhook that was returned by the API.
 .EXAMPLE
-Get-AtwsInventoryLocation -Id 0
+Get-AtwsContactWebhook -Id 0
 Returns the object with Id 0, if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName SomeName
-Returns the object with InventoryLocationName 'SomeName', if any.
+Get-AtwsContactWebhook -ContactWebhookName SomeName
+Returns the object with ContactWebhookName 'SomeName', if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName 'Some Name'
-Returns the object with InventoryLocationName 'Some Name', if any.
+Get-AtwsContactWebhook -ContactWebhookName 'Some Name'
+Returns the object with ContactWebhookName 'Some Name', if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName 'Some Name' -NotEquals InventoryLocationName
-Returns any objects with a InventoryLocationName that is NOT equal to 'Some Name', if any.
+Get-AtwsContactWebhook -ContactWebhookName 'Some Name' -NotEquals ContactWebhookName
+Returns any objects with a ContactWebhookName that is NOT equal to 'Some Name', if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName SomeName* -Like InventoryLocationName
-Returns any object with a InventoryLocationName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsContactWebhook -ContactWebhookName SomeName* -Like ContactWebhookName
+Returns any object with a ContactWebhookName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName SomeName* -NotLike InventoryLocationName
-Returns any object with a InventoryLocationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsContactWebhook -ContactWebhookName SomeName* -NotLike ContactWebhookName
+Returns any object with a ContactWebhookName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
 .LINK
-New-AtwsInventoryLocation
+New-AtwsContactWebhook
  .LINK
-Set-AtwsInventoryLocation
+Remove-AtwsContactWebhook
+ .LINK
+Set-AtwsContactWebhook
 
 #>
 
@@ -90,7 +93,7 @@ Set-AtwsInventoryLocation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'ResourceID')]
+    [ValidateSet('OwnerResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -103,7 +106,7 @@ Set-AtwsInventoryLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InventoryItem:InventoryLocationID', 'InventoryTransfer:FromLocationID', 'InventoryTransfer:ToLocationID', 'PurchaseOrderItem:InventoryLocationID')]
+    [ValidateSet('ContactWebhookExcludedResource:WebhookID', 'ContactWebhookField:WebhookID', 'ContactWebhookUdfField:WebhookID', 'WebhookEventErrorLog:ContactWebhookID')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -114,7 +117,7 @@ Set-AtwsInventoryLocation
     [switch]
     $All,
 
-# LocationID
+# Contact Webhook Configuration ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -122,14 +125,13 @@ Set-AtwsInventoryLocation
     [Nullable[long][]]
     $id,
 
-# Location Name
+# Webhook GUID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,100)]
     [string[]]
-    $LocationName,
+    $WebhookGUID,
 
 # Active
     [Parameter(
@@ -139,108 +141,174 @@ Set-AtwsInventoryLocation
     [Nullable[boolean][]]
     $Active,
 
-# IsDefault
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Name,
+
+# Webhook Url
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,500)]
+    [string[]]
+    $WebhookUrl,
+
+# Is Subscribed To Create Events
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $IsDefault,
+    $IsSubscribedToCreateEvents,
 
-# Resource ID
+# Is Subscribed To Update Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsSubscribedToUpdateEvents,
+
+# Is Subscribed To Delete Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsSubscribedToDeleteEvents,
+
+# Deactivation URL
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,500)]
+    [string[]]
+    $DeactivationUrl,
+
+# Notification Email Address
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,150)]
+    [string[]]
+    $NotificationEmailAddress,
+
+# Send Threshold Exceeded Notification
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $SendThresholdExceededNotification,
+
+# Owner Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $ResourceID,
+    $OwnerResourceID,
 
-# Impersonator Creator Resource ID
+# Secret Key
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,64)]
+    [string[]]
+    $SecretKey,
+
+# Ready
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Ready,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'WebhookGUID', 'Active', 'Name', 'WebhookUrl', 'IsSubscribedToCreateEvents', 'IsSubscribedToUpdateEvents', 'IsSubscribedToDeleteEvents', 'DeactivationUrl', 'NotificationEmailAddress', 'SendThresholdExceededNotification', 'OwnerResourceID', 'SecretKey', 'Ready')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'WebhookGUID', 'Active', 'Name', 'WebhookUrl', 'IsSubscribedToCreateEvents', 'IsSubscribedToUpdateEvents', 'IsSubscribedToDeleteEvents', 'DeactivationUrl', 'NotificationEmailAddress', 'SendThresholdExceededNotification', 'OwnerResourceID', 'SecretKey', 'Ready')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'WebhookGUID', 'Active', 'Name', 'WebhookUrl', 'IsSubscribedToCreateEvents', 'IsSubscribedToUpdateEvents', 'IsSubscribedToDeleteEvents', 'DeactivationUrl', 'NotificationEmailAddress', 'SendThresholdExceededNotification', 'OwnerResourceID', 'SecretKey', 'Ready')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
     [string[]]
     $Contains,
 
@@ -252,7 +320,7 @@ Set-AtwsInventoryLocation
   )
 
     begin { 
-        $entityName = 'InventoryLocation'
+        $entityName = 'ContactWebhook'
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

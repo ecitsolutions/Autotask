@@ -5,13 +5,13 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function Get-AtwsInventoryLocation
+Function Get-AtwsWebhookEventErrorLog
 {
 
 
 <#
 .SYNOPSIS
-This function get one or more InventoryLocation through the Autotask Web Services API.
+This function get one or more WebhookEventErrorLog through the Autotask Web Services API.
 .DESCRIPTION
 This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.
 
@@ -34,37 +34,32 @@ Properties with picklists are:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-InventoryItem
- InventoryTransfer
- PurchaseOrderItem
 
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.InventoryLocation[]]. This function outputs the Autotask.InventoryLocation that was returned by the API.
+[Autotask.WebhookEventErrorLog[]]. This function outputs the Autotask.WebhookEventErrorLog that was returned by the API.
 .EXAMPLE
-Get-AtwsInventoryLocation -Id 0
+Get-AtwsWebhookEventErrorLog -Id 0
 Returns the object with Id 0, if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName SomeName
-Returns the object with InventoryLocationName 'SomeName', if any.
+Get-AtwsWebhookEventErrorLog -WebhookEventErrorLogName SomeName
+Returns the object with WebhookEventErrorLogName 'SomeName', if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName 'Some Name'
-Returns the object with InventoryLocationName 'Some Name', if any.
+Get-AtwsWebhookEventErrorLog -WebhookEventErrorLogName 'Some Name'
+Returns the object with WebhookEventErrorLogName 'Some Name', if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName 'Some Name' -NotEquals InventoryLocationName
-Returns any objects with a InventoryLocationName that is NOT equal to 'Some Name', if any.
+Get-AtwsWebhookEventErrorLog -WebhookEventErrorLogName 'Some Name' -NotEquals WebhookEventErrorLogName
+Returns any objects with a WebhookEventErrorLogName that is NOT equal to 'Some Name', if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName SomeName* -Like InventoryLocationName
-Returns any object with a InventoryLocationName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsWebhookEventErrorLog -WebhookEventErrorLogName SomeName* -Like WebhookEventErrorLogName
+Returns any object with a WebhookEventErrorLogName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName SomeName* -NotLike InventoryLocationName
-Returns any object with a InventoryLocationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsWebhookEventErrorLog -WebhookEventErrorLogName SomeName* -NotLike WebhookEventErrorLogName
+Returns any object with a WebhookEventErrorLogName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
 .LINK
-New-AtwsInventoryLocation
- .LINK
-Set-AtwsInventoryLocation
+Remove-AtwsWebhookEventErrorLog
 
 #>
 
@@ -90,7 +85,7 @@ Set-AtwsInventoryLocation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'ResourceID')]
+    [ValidateSet('AccountWebhookID', 'ContactWebhookID')]
     [string]
     $GetReferenceEntityById,
 
@@ -103,7 +98,6 @@ Set-AtwsInventoryLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InventoryItem:InventoryLocationID', 'InventoryTransfer:FromLocationID', 'InventoryTransfer:ToLocationID', 'PurchaseOrderItem:InventoryLocationID')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -114,7 +108,7 @@ Set-AtwsInventoryLocation
     [switch]
     $All,
 
-# LocationID
+# Webhook Event Error Log ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -122,137 +116,144 @@ Set-AtwsInventoryLocation
     [Nullable[long][]]
     $id,
 
-# Location Name
+# Account Webhook ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
+    [Nullable[Int][]]
+    $AccountWebhookID,
+
+# Contact Webhook ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContactWebhookID,
+
+# Sequence Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $SequenceNumber,
+
+# Payload
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
     [string[]]
-    $LocationName,
+    $Payload,
 
-# Active
+# Error Message
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
+    [ValidateLength(0,8000)]
+    [string[]]
+    $ErrorMessage,
 
-# IsDefault
+# Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $IsDefault,
-
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ResourceID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    [Nullable[datetime][]]
+    $CreateDateTime,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('Payload', 'ErrorMessage')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('Payload', 'ErrorMessage')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('Payload', 'ErrorMessage')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('Payload', 'ErrorMessage')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
+    [ValidateSet('Payload', 'ErrorMessage')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateSet('CreateDateTime')]
     [string[]]
     $IsThisDay
   )
 
     begin { 
-        $entityName = 'InventoryLocation'
+        $entityName = 'WebhookEventErrorLog'
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

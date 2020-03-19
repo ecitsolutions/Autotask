@@ -5,13 +5,13 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function Get-AtwsInventoryLocation
+Function Get-AtwsInstalledProductCategoryUdfAssociation
 {
 
 
 <#
 .SYNOPSIS
-This function get one or more InventoryLocation through the Autotask Web Services API.
+This function get one or more InstalledProductCategoryUdfAssociation through the Autotask Web Services API.
 .DESCRIPTION
 This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.
 
@@ -34,37 +34,36 @@ Properties with picklists are:
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-InventoryItem
- InventoryTransfer
- PurchaseOrderItem
 
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.InventoryLocation[]]. This function outputs the Autotask.InventoryLocation that was returned by the API.
+[Autotask.InstalledProductCategoryUdfAssociation[]]. This function outputs the Autotask.InstalledProductCategoryUdfAssociation that was returned by the API.
 .EXAMPLE
-Get-AtwsInventoryLocation -Id 0
+Get-AtwsInstalledProductCategoryUdfAssociation -Id 0
 Returns the object with Id 0, if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName SomeName
-Returns the object with InventoryLocationName 'SomeName', if any.
+Get-AtwsInstalledProductCategoryUdfAssociation -InstalledProductCategoryUdfAssociationName SomeName
+Returns the object with InstalledProductCategoryUdfAssociationName 'SomeName', if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName 'Some Name'
-Returns the object with InventoryLocationName 'Some Name', if any.
+Get-AtwsInstalledProductCategoryUdfAssociation -InstalledProductCategoryUdfAssociationName 'Some Name'
+Returns the object with InstalledProductCategoryUdfAssociationName 'Some Name', if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName 'Some Name' -NotEquals InventoryLocationName
-Returns any objects with a InventoryLocationName that is NOT equal to 'Some Name', if any.
+Get-AtwsInstalledProductCategoryUdfAssociation -InstalledProductCategoryUdfAssociationName 'Some Name' -NotEquals InstalledProductCategoryUdfAssociationName
+Returns any objects with a InstalledProductCategoryUdfAssociationName that is NOT equal to 'Some Name', if any.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName SomeName* -Like InventoryLocationName
-Returns any object with a InventoryLocationName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsInstalledProductCategoryUdfAssociation -InstalledProductCategoryUdfAssociationName SomeName* -Like InstalledProductCategoryUdfAssociationName
+Returns any object with a InstalledProductCategoryUdfAssociationName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInventoryLocation -InventoryLocationName SomeName* -NotLike InventoryLocationName
-Returns any object with a InventoryLocationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsInstalledProductCategoryUdfAssociation -InstalledProductCategoryUdfAssociationName SomeName* -NotLike InstalledProductCategoryUdfAssociationName
+Returns any object with a InstalledProductCategoryUdfAssociationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
 .LINK
-New-AtwsInventoryLocation
+New-AtwsInstalledProductCategoryUdfAssociation
  .LINK
-Set-AtwsInventoryLocation
+Remove-AtwsInstalledProductCategoryUdfAssociation
+ .LINK
+Set-AtwsInstalledProductCategoryUdfAssociation
 
 #>
 
@@ -90,7 +89,7 @@ Set-AtwsInventoryLocation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'ResourceID')]
+    [ValidateSet('InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
     [string]
     $GetReferenceEntityById,
 
@@ -103,7 +102,6 @@ Set-AtwsInventoryLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InventoryItem:InventoryLocationID', 'InventoryTransfer:FromLocationID', 'InventoryTransfer:ToLocationID', 'PurchaseOrderItem:InventoryLocationID')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -114,7 +112,7 @@ Set-AtwsInventoryLocation
     [switch]
     $All,
 
-# LocationID
+# Installed Product Category Udf Association ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -122,125 +120,106 @@ Set-AtwsInventoryLocation
     [Nullable[long][]]
     $id,
 
-# Location Name
+# Installed Product Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $LocationName,
+    [Nullable[Int][]]
+    $InstalledProductCategoryID,
 
-# Active
+# User Defined Field Definition ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $UserDefinedFieldDefinitionID,
+
+# Is Required
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
-    $Active,
-
-# IsDefault
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsDefault,
-
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ResourceID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    $IsRequired,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID', 'IsRequired')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID', 'IsRequired')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'Active', 'IsDefault', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID', 'IsRequired')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationName')]
     [string[]]
     $Contains,
 
@@ -252,7 +231,7 @@ Set-AtwsInventoryLocation
   )
 
     begin { 
-        $entityName = 'InventoryLocation'
+        $entityName = 'InstalledProductCategoryUdfAssociation'
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

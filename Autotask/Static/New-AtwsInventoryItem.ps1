@@ -153,7 +153,14 @@ Set-AtwsInventoryItem
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $Picked
+    $Picked,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 

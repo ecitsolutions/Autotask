@@ -5,51 +5,58 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function New-AtwsInventoryLocation
+Function New-AtwsAccountWebhook
 {
 
 
 <#
 .SYNOPSIS
-This function creates a new InventoryLocation through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.
+This function creates a new AccountWebhook through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.
 .DESCRIPTION
-The function supports all properties of an [Autotask.InventoryLocation] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.
+The function supports all properties of an [Autotask.AccountWebhook] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.
 
-If you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the InventoryLocation with Id number 0 you could write 'New-AtwsInventoryLocation -Id 0' or you could write 'New-AtwsInventoryLocation -Filter {Id -eq 0}.
+If you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the AccountWebhook with Id number 0 you could write 'New-AtwsAccountWebhook -Id 0' or you could write 'New-AtwsAccountWebhook -Filter {Id -eq 0}.
 
-'New-AtwsInventoryLocation -Id 0,4' could be written as 'New-AtwsInventoryLocation -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
+'New-AtwsAccountWebhook -Id 0,4' could be written as 'New-AtwsAccountWebhook -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
 
-To create a new InventoryLocation you need the following required fields:
- -LocationName
+To create a new AccountWebhook you need the following required fields:
  -Active
+ -Name
+ -WebhookUrl
+ -DeactivationUrl
+ -SendThresholdExceededNotification
+ -SecretKey
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-InventoryItem
- InventoryTransfer
- PurchaseOrderItem
+AccountWebhookExcludedResource
+ AccountWebhookField
+ AccountWebhookUdfField
+ WebhookEventErrorLog
 
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.InventoryLocation]. This function outputs the Autotask.InventoryLocation that was created by the API.
+[Autotask.AccountWebhook]. This function outputs the Autotask.AccountWebhook that was created by the API.
 .EXAMPLE
-$result = New-AtwsInventoryLocation -LocationName [Value] -Active [Value]
-Creates a new [Autotask.InventoryLocation] through the Web Services API and returns the new object.
+$result = New-AtwsAccountWebhook -Active [Value] -Name [Value] -WebhookUrl [Value] -DeactivationUrl [Value] -SendThresholdExceededNotification [Value] -SecretKey [Value]
+Creates a new [Autotask.AccountWebhook] through the Web Services API and returns the new object.
  .EXAMPLE
-$result = Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation 
-Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Services API and returns the new object.
+$result = Get-AtwsAccountWebhook -Id 124 | New-AtwsAccountWebhook 
+Copies [Autotask.AccountWebhook] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation | Set-AtwsInventoryLocation -ParameterName <Parameter Value>
-Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryLocation to modify the object.
+Get-AtwsAccountWebhook -Id 124 | New-AtwsAccountWebhook | Set-AtwsAccountWebhook -ParameterName <Parameter Value>
+Copies [Autotask.AccountWebhook] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountWebhook to modify the object.
  .EXAMPLE
-$result = Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation | Set-AtwsInventoryLocation -ParameterName <Parameter Value> -Passthru
-Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryLocation to modify the object and returns the new object.
+$result = Get-AtwsAccountWebhook -Id 124 | New-AtwsAccountWebhook | Set-AtwsAccountWebhook -ParameterName <Parameter Value> -Passthru
+Copies [Autotask.AccountWebhook] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountWebhook to modify the object and returns the new object.
 
 .LINK
-Get-AtwsInventoryLocation
+Remove-AtwsAccountWebhook
  .LINK
-Set-AtwsInventoryLocation
+Get-AtwsAccountWebhook
+ .LINK
+Set-AtwsAccountWebhook
 
 #>
 
@@ -62,18 +69,16 @@ Set-AtwsInventoryLocation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.InventoryLocation[]]
+    [Autotask.AccountWebhook[]]
     $InputObject,
 
-# Location Name
+# Webhook GUID
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,100)]
     [string]
-    $LocationName,
+    $WebhookGUID,
 
 # Active
     [Parameter(
@@ -84,30 +89,101 @@ Set-AtwsInventoryLocation
     [boolean]
     $Active,
 
-# IsDefault
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string]
+    $Name,
+
+# Webhook Url
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,500)]
+    [string]
+    $WebhookUrl,
+
+# Is Subscribed To Create Events
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $IsDefault,
+    $IsSubscribedToCreateEvents,
 
-# Resource ID
+# Is Subscribed To Update Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsSubscribedToUpdateEvents,
+
+# Is Subscribed To Delete Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsSubscribedToDeleteEvents,
+
+# Deactivation URL
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,500)]
+    [string]
+    $DeactivationUrl,
+
+# Notification Email Address
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,150)]
+    [string]
+    $NotificationEmailAddress,
+
+# Send Threshold Exceeded Notification
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $SendThresholdExceededNotification,
+
+# Owner Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ResourceID,
+    $OwnerResourceID,
 
-# Impersonator Creator Resource ID
+# Secret Key
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,64)]
+    [string]
+    $SecretKey,
+
+# Ready
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $ImpersonatorCreatorResourceID
+    [boolean]
+    $Ready
   )
  
     begin { 
-        $entityName = 'InventoryLocation'
+        $entityName = 'AccountWebhook'
            
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

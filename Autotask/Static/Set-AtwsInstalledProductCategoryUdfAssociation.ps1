@@ -5,44 +5,45 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function Set-AtwsPurchaseOrderItem
+Function Set-AtwsInstalledProductCategoryUdfAssociation
 {
 
 
 <#
 .SYNOPSIS
-This function sets parameters on the PurchaseOrderItem specified by the -InputObject parameter or pipeline through the use of the Autotask Web Services API. Any property of the PurchaseOrderItem that is not marked as READ ONLY by Autotask can be speficied with a parameter. You can specify multiple paramters.
+This function sets parameters on the InstalledProductCategoryUdfAssociation specified by the -InputObject parameter or pipeline through the use of the Autotask Web Services API. Any property of the InstalledProductCategoryUdfAssociation that is not marked as READ ONLY by Autotask can be speficied with a parameter. You can specify multiple paramters.
 .DESCRIPTION
-This function one or more objects of type [Autotask.PurchaseOrderItem] as input. You can pipe the objects to the function or pass them using the -InputObject parameter. You specify the property you want to set and the value you want to set it to using parameters. The function modifies all objects and updates the online data through the Autotask Web Services API. The function supports all properties of an [Autotask.PurchaseOrderItem] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values.
+This function one or more objects of type [Autotask.InstalledProductCategoryUdfAssociation] as input. You can pipe the objects to the function or pass them using the -InputObject parameter. You specify the property you want to set and the value you want to set it to using parameters. The function modifies all objects and updates the online data through the Autotask Web Services API. The function supports all properties of an [Autotask.InstalledProductCategoryUdfAssociation] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values.
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-PurchaseOrderReceive
 
 .INPUTS
-[Autotask.PurchaseOrderItem[]]. This function takes one or more objects as input. Pipeline is supported.
+[Autotask.InstalledProductCategoryUdfAssociation[]]. This function takes one or more objects as input. Pipeline is supported.
 .OUTPUTS
-Nothing or [Autotask.PurchaseOrderItem]. This function optionally returns the updated objects if you use the -PassThru parameter.
+Nothing or [Autotask.InstalledProductCategoryUdfAssociation]. This function optionally returns the updated objects if you use the -PassThru parameter.
 .EXAMPLE
-Set-AtwsPurchaseOrderItem -InputObject $PurchaseOrderItem [-ParameterName] [Parameter value]
-Passes one or more [Autotask.PurchaseOrderItem] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
+Set-AtwsInstalledProductCategoryUdfAssociation -InputObject $InstalledProductCategoryUdfAssociation [-ParameterName] [Parameter value]
+Passes one or more [Autotask.InstalledProductCategoryUdfAssociation] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
  .EXAMPLE
-$PurchaseOrderItem | Set-AtwsPurchaseOrderItem -ParameterName <Parameter value>
+$InstalledProductCategoryUdfAssociation | Set-AtwsInstalledProductCategoryUdfAssociation -ParameterName <Parameter value>
 Same as the first example, but now the objects are passed to the funtion through the pipeline, not passed as a parameter. The end result is identical.
  .EXAMPLE
-Get-AtwsPurchaseOrderItem -Id 0 | Set-AtwsPurchaseOrderItem -ParameterName <Parameter value>
+Get-AtwsInstalledProductCategoryUdfAssociation -Id 0 | Set-AtwsInstalledProductCategoryUdfAssociation -ParameterName <Parameter value>
 Gets the instance with Id 0 directly from the Web Services API, modifies a parameter and updates Autotask. This approach works with all valid parameters for the Get function.
  .EXAMPLE
-Get-AtwsPurchaseOrderItem -Id 0,4,8 | Set-AtwsPurchaseOrderItem -ParameterName <Parameter value>
+Get-AtwsInstalledProductCategoryUdfAssociation -Id 0,4,8 | Set-AtwsInstalledProductCategoryUdfAssociation -ParameterName <Parameter value>
 Gets multiple instances by Id, modifies them all and updates Autotask.
  .EXAMPLE
-$result = Get-AtwsPurchaseOrderItem -Id 0,4,8 | Set-AtwsPurchaseOrderItem -ParameterName <Parameter value> -PassThru
+$result = Get-AtwsInstalledProductCategoryUdfAssociation -Id 0,4,8 | Set-AtwsInstalledProductCategoryUdfAssociation -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
 .LINK
-New-AtwsPurchaseOrderItem
+New-AtwsInstalledProductCategoryUdfAssociation
  .LINK
-Get-AtwsPurchaseOrderItem
+Remove-AtwsInstalledProductCategoryUdfAssociation
+ .LINK
+Get-AtwsInstalledProductCategoryUdfAssociation
 
 #>
 
@@ -55,7 +56,7 @@ Get-AtwsPurchaseOrderItem
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.PurchaseOrderItem[]]
+    [Autotask.InstalledProductCategoryUdfAssociation[]]
     $InputObject,
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
@@ -76,20 +77,7 @@ Get-AtwsPurchaseOrderItem
     [switch]
     $PassThru,
 
-# Product ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $ProductID,
-
-# Inventory Location ID
+# Is Required
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -101,82 +89,12 @@ Get-AtwsPurchaseOrderItem
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $InventoryLocationID,
-
-# Quantity Ordered
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $Quantity,
-
-# Memo
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,4000)]
-    [string]
-    $Memo,
-
-# Product Unit Cost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double]]
-    $UnitCost,
-
-# Estimated Arrival Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $EstimatedArrivalDate,
-
-# Cost ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $CostID
+    [Nullable[boolean]]
+    $IsRequired
   )
  
     begin { 
-        $entityName = 'PurchaseOrderItem'
+        $entityName = 'InstalledProductCategoryUdfAssociation'
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

@@ -5,51 +5,51 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function New-AtwsInventoryLocation
+Function New-AtwsInstalledProductCategoryUdfAssociation
 {
 
 
 <#
 .SYNOPSIS
-This function creates a new InventoryLocation through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.
+This function creates a new InstalledProductCategoryUdfAssociation through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.
 .DESCRIPTION
-The function supports all properties of an [Autotask.InventoryLocation] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.
+The function supports all properties of an [Autotask.InstalledProductCategoryUdfAssociation] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.
 
-If you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the InventoryLocation with Id number 0 you could write 'New-AtwsInventoryLocation -Id 0' or you could write 'New-AtwsInventoryLocation -Filter {Id -eq 0}.
+If you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the InstalledProductCategoryUdfAssociation with Id number 0 you could write 'New-AtwsInstalledProductCategoryUdfAssociation -Id 0' or you could write 'New-AtwsInstalledProductCategoryUdfAssociation -Filter {Id -eq 0}.
 
-'New-AtwsInventoryLocation -Id 0,4' could be written as 'New-AtwsInventoryLocation -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
+'New-AtwsInstalledProductCategoryUdfAssociation -Id 0,4' could be written as 'New-AtwsInstalledProductCategoryUdfAssociation -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
 
-To create a new InventoryLocation you need the following required fields:
- -LocationName
- -Active
+To create a new InstalledProductCategoryUdfAssociation you need the following required fields:
+ -InstalledProductCategoryID
+ -UserDefinedFieldDefinitionID
+ -IsRequired
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
-InventoryItem
- InventoryTransfer
- PurchaseOrderItem
 
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.InventoryLocation]. This function outputs the Autotask.InventoryLocation that was created by the API.
+[Autotask.InstalledProductCategoryUdfAssociation]. This function outputs the Autotask.InstalledProductCategoryUdfAssociation that was created by the API.
 .EXAMPLE
-$result = New-AtwsInventoryLocation -LocationName [Value] -Active [Value]
-Creates a new [Autotask.InventoryLocation] through the Web Services API and returns the new object.
+$result = New-AtwsInstalledProductCategoryUdfAssociation -InstalledProductCategoryID [Value] -UserDefinedFieldDefinitionID [Value] -IsRequired [Value]
+Creates a new [Autotask.InstalledProductCategoryUdfAssociation] through the Web Services API and returns the new object.
  .EXAMPLE
-$result = Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation 
-Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Services API and returns the new object.
+$result = Get-AtwsInstalledProductCategoryUdfAssociation -Id 124 | New-AtwsInstalledProductCategoryUdfAssociation 
+Copies [Autotask.InstalledProductCategoryUdfAssociation] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation | Set-AtwsInventoryLocation -ParameterName <Parameter Value>
-Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryLocation to modify the object.
+Get-AtwsInstalledProductCategoryUdfAssociation -Id 124 | New-AtwsInstalledProductCategoryUdfAssociation | Set-AtwsInstalledProductCategoryUdfAssociation -ParameterName <Parameter Value>
+Copies [Autotask.InstalledProductCategoryUdfAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductCategoryUdfAssociation to modify the object.
  .EXAMPLE
-$result = Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation | Set-AtwsInventoryLocation -ParameterName <Parameter Value> -Passthru
-Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryLocation to modify the object and returns the new object.
+$result = Get-AtwsInstalledProductCategoryUdfAssociation -Id 124 | New-AtwsInstalledProductCategoryUdfAssociation | Set-AtwsInstalledProductCategoryUdfAssociation -ParameterName <Parameter Value> -Passthru
+Copies [Autotask.InstalledProductCategoryUdfAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductCategoryUdfAssociation to modify the object and returns the new object.
 
 .LINK
-Get-AtwsInventoryLocation
+Remove-AtwsInstalledProductCategoryUdfAssociation
  .LINK
-Set-AtwsInventoryLocation
+Get-AtwsInstalledProductCategoryUdfAssociation
+ .LINK
+Set-AtwsInstalledProductCategoryUdfAssociation
 
 #>
 
@@ -62,52 +62,39 @@ Set-AtwsInventoryLocation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.InventoryLocation[]]
+    [Autotask.InstalledProductCategoryUdfAssociation[]]
     $InputObject,
 
-# Location Name
+# Installed Product Category ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string]
-    $LocationName,
+    [Int]
+    $InstalledProductCategoryID,
 
-# Active
+# User Defined Field Definition ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $UserDefinedFieldDefinitionID,
+
+# Is Required
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [boolean]
-    $Active,
-
-# IsDefault
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsDefault,
-
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ResourceID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID
+    $IsRequired
   )
  
     begin { 
-        $entityName = 'InventoryLocation'
+        $entityName = 'InstalledProductCategoryUdfAssociation'
            
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
