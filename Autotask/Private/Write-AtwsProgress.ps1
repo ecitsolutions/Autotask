@@ -48,7 +48,7 @@ Function Write-AtwsProgress {
     }
 
     process {
-        if ($env:TERM_PROGRAM -eq 'vscode' -and $PSVersionTable.PSVersion.Major -le 6) {
+        if ($env:TERM_PROGRAM -eq 'vscode' -and $PSVersionTable.PSVersion.Major -le 8) {
             # Running in VSCode. Do our own stuff.
             $i = [Math]::Round($PercentComplete / (100 / $size))
             $Message = "`r{0}: [{2}] {1} % Complete" -f $Activity, $PercentComplete, (''.PadLeft($i, '#') + ''.PadLeft($size - $i, '-'))
