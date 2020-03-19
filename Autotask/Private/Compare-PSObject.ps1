@@ -54,7 +54,7 @@ Function Compare-PSObject {
     process { 
 
         
-        Write-Verbose ('{0}: Comparing collection of {1} objects to  calling default URI {2}' -F $MyInvocation.MyCommand.Name, $ReferenceObject.Count, $DefaultUri)
+        Write-Verbose ('{0}: Comparing collection of {1} objects to different collection of {2} objects' -F $MyInvocation.MyCommand.Name, $ReferenceObject.Count, $DifferenceObject.count)
 
         # Both objects must have the same number of items
         if ($ReferenceObject.Count -eq $DifferenceObject.Count) {
