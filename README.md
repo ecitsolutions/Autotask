@@ -36,6 +36,11 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.5 (GA)
+
+- UPDATE: Support for API version 1.6.5 included
+- BUGFIX: Issue #66 and #74: Updating disk cache on every import finally solved
+
 ## Version 1.6.5-beta4
 
 - UPDATE: Powershell 7 support
