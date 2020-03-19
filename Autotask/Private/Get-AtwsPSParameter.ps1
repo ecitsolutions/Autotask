@@ -1,26 +1,36 @@
 ﻿
 <#
-
-.COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
-
+    .COPYRIGHT
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
 Function Get-AtwsPSParameter {
     <#
-      .SYNOPSIS
+        .SYNOPSIS
+            This function creates a Powershell parameter definition as text.
+        .DESCRIPTION
+            Based on parameter values this function creates Powershell code as
+            text that can be converted to a scriptblock and executed.
+        .INPUTS
+            Multiple parameters representing the various parameter options.
+        .OUTPUTS
+            Text
+        .EXAMPLE
+            Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'string' -Mandatory -Remaining -NotNull  -Array -Comment $Comment
+            Returns as text:
 
-      .DESCRIPTION
-
-      .INPUTS
-
-      .OUTPUTS
-
-      .EXAMPLE
-
-      .NOTES
-      NAME: 
-      .LINK
+            # <value of $comment>
+            [Parameter(
+                Mandatory = $true,
+                ValueFromRemainingArguments = $true,
+                ParametersetName = 'Filter'
+            )]
+            [ValidateNotNullOrEmpty()]
+            [string[]]
+            $Filter
+        .NOTES
+            NAME: Get-AtwsPSParameter
+        .LINK
 
   #>
     [CmdLetBinding()]
@@ -71,6 +81,10 @@ Function Get-AtwsPSParameter {
         { [string]$text = "# {0}`n" -F $Comment }
         else
         { [string]$text = '' }
+
+        # Set up regex and replacement variables for curly single quote
+        $pattern = [Char]8217
+        $replacement = [Char]8217, [Char]8217 -join ''
     }
 
     process { 
@@ -117,12 +131,8 @@ Function Get-AtwsPSParameter {
         if ($ValidateSet.Count -gt 0) { 
             # Fix quote characters for labels
             $labels = foreach ($Label in  $ValidateSet) {
-                if ($Label -match ("['{0}]" -F [Char]8217)) {
-                    '"{0}"' -F $Label
-                }
-                else {
-                    "'{0}'" -F $Label
-                }
+                # Use literal string with escaped literal quotes, both straight and curly
+                "'{0}'" -F $($Label -replace "'", "''" -replace $pattern, $replacement) 
             }          
             $text += "    [ValidateSet($($labels -join ', '))]`n" 
         }

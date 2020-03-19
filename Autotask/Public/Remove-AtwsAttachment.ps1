@@ -3,14 +3,14 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 Function Remove-AtwsAttachment {
 
 
-  <#
+    <#
       .SYNOPSIS
       This function deletes Attachments through the Autotask Web Services API.
       .DESCRIPTION
@@ -44,183 +44,166 @@ Function Remove-AtwsAttachment {
       Strongly related to Get-AtwsAttachmentInfo
   #>
 
-  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Input_Object', ConfirmImpact = 'Low')]
-  Param
-  (
+    [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Input_Object', ConfirmImpact = 'Low')]
+    Param
+    (
 
-    # An object that will be modified by any parameters and updated in Autotask
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Input_Object',
-        ValueFromPipeline = $true
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateScript( { 
-          # InputObject must be one of these four types
-          $_[0].GetType().Name -in 'Account', 'Ticket', 'Opportunity', 'Project' 
-    })]
-    [PSObject[]]
-    $InputObject,
+        # An object that will be modified by any parameters and updated in Autotask
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Input_Object',
+            ValueFromPipeline = $true
+        )]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript( { 
+                # InputObject must be one of these four types
+                $_[0].GetType().Name -in 'Account', 'Ticket', 'Opportunity', 'Project' 
+            })]
+        [PSObject[]]
+        $InputObject,
 
-    # Attachment ID
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'By_id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long[]]
-    $id,
+        # Attachment ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'By_id'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [long[]]
+        $id,
 
-    # Account ID
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Account'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsAccount -id $_) ){
-            throw "Account does not exist"
-          }
-          return $true
-    })]
-    [long[]]
-    $AccountID,
+        # Account ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Account'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsAccount -id $_) ) {
+                    throw "Account does not exist"
+                }
+                return $true
+            })]
+        [long[]]
+        $AccountID,
 
-    # Opportunity ID
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Opportunity'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsOpportunity -id $_) ){
-            throw "Opportunity does not exist"
-          }
-          return $true
-    })]
-    [long[]]
-    $OpportunityID,
+        # Opportunity ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Opportunity'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsOpportunity -id $_) ) {
+                    throw "Opportunity does not exist"
+                }
+                return $true
+            })]
+        [long[]]
+        $OpportunityID,
 
-    # Project ID
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Project'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsProject -id $_) ){
-            throw "Project does not exist"
-          }
-          return $true
-    })]
-    [long[]]
-    $ProjectID,
+        # Project ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Project'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsProject -id $_) ) {
+                    throw "Project does not exist"
+                }
+                return $true
+            })]
+        [long[]]
+        $ProjectID,
 
-    # Ticket ID
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Ticket'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsTicket -id $_) ){
-            throw "Ticket does not exist"
-          }
-          return $true
-    })]
-    [long[]]
-    $TicketID
+        # Ticket ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Ticket'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsTicket -id $_) ) {
+                    throw "Ticket does not exist"
+                }
+                return $true
+            })]
+        [long[]]
+        $TicketID
    
-  )
+    )
 
-  begin { 
+    begin { 
    
-    # Enable modern -Debug behavior
-    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    # Dynamic field info
-    $fields = Get-AtwsFieldInfo -Entity AttachmentInfo
-    $DateTimeParams = $fields.Where({$_.Type -eq 'datetime'}).Name
-    $Picklists = $fields.Where{$_.IsPickList}
-    
-    # Set up TimeZone offset handling
-    if (-not($script:ESTzone)) {
-      $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
     }
-    
-    if (-not($script:ESToffset)) {
-      $now = Get-Date
-      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
-
-      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $now).TotalHours
-    }
-    
-  }
 
 
-  process {
+    process {
 
-    # Do we have to look up attachment Id by another object Id
-    if ($PSCmdlet.ParameterSetName -ne 'By_id') { 
+        # Do we have to look up attachment Id by another object Id
+        if ($PSCmdlet.ParameterSetName -ne 'By_id') { 
       
-      # Yes, we have to get the attachment Id ourselves. So, what kind of object 
-      # are we looking for?
+            # Yes, we have to get the attachment Id ourselves. So, what kind of object 
+            # are we looking for?
 
-      $AttachmentInfoParams = @{ } 
+            $AttachmentInfoParams = @{ } 
 
-      $objectType = switch ($PSCmdlet.ParameterSetName) {
-        'Input_Object' { 
-          $InputObject[0].GetType().Name 
-          $objectId = $InputObject.Id
-        }
-        default { 
-          $PSCmdlet.ParameterSetName 
-          $objectId = switch ($PSCmdlet.ParameterSetName) {
-            'Account' { $AccountID }
-            'Opportunity' { $OpportunityID }
-            'Project' { $ProjectID }
-            'Ticket' { $TicketID }
-          }
-        }
-      }
+            $objectType = switch ($PSCmdlet.ParameterSetName) {
+                'Input_Object' { 
+                    $InputObject[0].GetType().Name 
+                    $objectId = $InputObject.Id
+                }
+                default { 
+                    $PSCmdlet.ParameterSetName 
+                    $objectId = switch ($PSCmdlet.ParameterSetName) {
+                        'Account' { $AccountID }
+                        'Opportunity' { $OpportunityID }
+                        'Project' { $ProjectID }
+                        'Ticket' { $TicketID }
+                    }
+                }
+            }
 
-      switch ($objectType) {
-        'Opportunity' {
-          $AttachmentInfoParams['OpportunityId'] = $objectId
-        }
-        default {
-          $AttachmentInfoParams['ParentId'] = $objectId
-          $AttachmentInfoParams['ParentType'] = $objectType
-        }
-      }
+            switch ($objectType) {
+                'Opportunity' {
+                    $AttachmentInfoParams['OpportunityId'] = $objectId
+                }
+                default {
+                    $AttachmentInfoParams['ParentId'] = $objectId
+                    $AttachmentInfoParams['ParentType'] = $objectType
+                }
+            }
       
-      $AttachmentInfo = Get-AtwsAttachmentInfo @AttachmentInfoParams
+            $AttachmentInfo = Get-AtwsAttachmentInfo @AttachmentInfoParams
 
-      if ($AttachmentInfo.Count -gt 0) {
-        $id = $AttachmentInfo.Id
-      }
-      else {
-        # Empty result
-        Return
-      }
+            if ($AttachmentInfo.Count -gt 0) {
+                $id = $AttachmentInfo.Id
+            }
+            else {
+                # Empty result
+                Return
+            }
+        }
+    
+
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to delete {1} attatchment(s).' -F $caption, $id.count
+        $verboseWarning = '{0}: About to delete {1} attatchment(s). Do you want to continue?' -F $caption, $id.count
+    
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+            $result = @()
+            foreach ($AttachmentId in $id) {
+                $result += $Script:Atws.DeleteAttachment($Script:Atws.integrationsValue, $AttachmentId)
+            }
+
+            Write-Verbose ('{0}: Number of attachment(s) deleted: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+    
+        }
     }
-    
 
-    $caption = $MyInvocation.MyCommand.Name
-    $verboseDescription = '{0}: About to delete {1} attatchment(s).' -F $caption, $id.count
-    $verboseWarning = '{0}: About to delete {1} attatchment(s). Do you want to continue?' -F $caption, $id.count
-    
-    if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-      $result = @()
-      foreach ($AttachmentId in $id) {
-        $result += $Script:Atws.DeleteAttachment($AttachmentId)
-      }
-
-      Write-Verbose ('{0}: Number of attachment(s) deleted: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
-    
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
     }
-  }
-
-  end {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-  }
 
 }

@@ -1,8 +1,8 @@
 <#
 
         .COPYRIGHT
-        Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-        See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+        Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+        See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
         .SYNOPSIS
         Start the test set

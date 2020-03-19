@@ -1,8 +1,8 @@
 ﻿<#
 
         .COPYRIGHT
-        Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-        See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+        Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+        See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
         .SYNOPSIS
         This set of tests has a test per issue reported on GitHub and is supposed to guard against re-introducing old bugs
@@ -63,6 +63,43 @@ $loadedModule = Get-Module -Name $ModuleName
 If (-not ($loadedModule)) { 
     # Import the module. Issues that need their own load version will have to do so in their context
     Import-Module $modulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
+}
+
+Describe 'Issue #75' -Tag 'Issues' {
+
+    Context 'Issue #75: ATWSSoap returns wrong value on EntityInfo.HasUserDefinedFields' {
+        # Get entityinfo for Account and force a lookup through the API
+        $result = Get-AtwsFieldInfo -Entity Account -EntityInfo -UpdateCache
+
+        It 'Account should have Userdefined fields' {
+            $result.HasUserDefinedFields  | Should -be $true
+        }
+
+    }
+}
+
+
+Describe 'Issue #74' -Tag 'Issues' {
+
+    Context 'Issue #74: Updating Disc Cache on every Import' {
+
+        It 'Boolean parameters should not throw an exception' {
+            # Placeholder
+        }
+
+    }
+}
+
+
+describe 'Issue #63' -Tag 'Issues' {
+
+    context 'Issue #63: Data type convertion error on Get-AtwsTicketCost ' {
+
+        it 'Boolean parameters should not throw an exception' {
+          {$null = Get-AtwsTicketCost -TicketID 0 -BillableToAccount $true -Billed $false} | Should -Not -Throw
+        }
+
+    }
 }
 
 describe 'Issue #44' -Tag 'Issues' {
@@ -170,7 +207,7 @@ describe 'Issue #38' -Tag 'Issues' {
         $result = Get-AtwsConnectionObject -Confirm:$false
 
         it 'should return an Autotask web proxy object' {
-            $result | Should -BeOfType Autotask.ATWS
+            $result.GetType() | Should -be 'Autotask.ATWSSoapClient'
         }
     }
 }
@@ -233,7 +270,7 @@ describe 'Issue #33' -Tag 'Issues' {
     
     # Get creation time of current file
     $atws = Get-AtwsConnectionObject -Confirm:$false
-    [IO.FileInfo]$functionFile = '{0}\WindowsPowershell\Cache\{1}\Dynamic\Get-AtwsTicket.ps1' -f $([environment]::GetFolderPath('MyDocuments')), $atws.CI
+    [IO.FileInfo]$functionFile = Join-Path $atws.DynamicCache 'Get-AtwsTicket.ps1'
     $lastWriteTime = $functionFile.LastWriteTime
     
     # Remove any loaded modules before trying to load it again
@@ -245,7 +282,7 @@ describe 'Issue #33' -Tag 'Issues' {
         Import-Module $ModulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
        
         # Re-read fileinfo
-        [IO.FileInfo]$functionFile = '{0}\WindowsPowershell\Cache\{1}\Dynamic\Get-AtwsTicket.ps1' -f $([environment]::GetFolderPath('MyDocuments')), $atws.CI
+        [IO.FileInfo]$functionFile = Join-Path $atws.DynamicCache 'Get-AtwsTicket.ps1'
 
         it 'should NOT have updated Get-AtwsTicket' {
             $functionFile.LastWriteTime | should -Be $lastWriteTime
@@ -255,7 +292,7 @@ describe 'Issue #33' -Tag 'Issues' {
         Import-Module $ModulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier, 'Ticket'
 
         # Re-read fileinfo
-        [IO.FileInfo]$functionFile = '{0}\WindowsPowershell\Cache\{1}\Dynamic\Get-AtwsTicket.ps1' -f $([environment]::GetFolderPath('MyDocuments')), $atws.CI
+        [IO.FileInfo]$functionFile = Join-Path $atws.DynamicCache 'Get-AtwsTicket.ps1'
 
         it 'should have updated Get-AtwsTicket after second module import' {
             $functionFile.LastWriteTime | should -Not -Be $lastWriteTime

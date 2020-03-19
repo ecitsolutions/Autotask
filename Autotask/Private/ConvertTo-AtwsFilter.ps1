@@ -1,8 +1,8 @@
 <#
 
     .COPYRIGHT
-    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md  for license information.
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 
 #>
 
@@ -32,14 +32,14 @@ Function ConvertTo-AtwsFilter {
     Param
     (
         [Parameter(
-                Mandatory = $true,
-                ValueFromPipeline = $true
+            Mandatory = $true,
+            ValueFromPipeline = $true
         )]
         [System.Collections.Generic.Dictionary`2[System.string, System.Object]]
         $BoundParameters,
     
         [Parameter(
-                Mandatory = $true
+            Mandatory = $true
         )]
         [ValidateScript( { $Script:FieldInfoCache.Keys -contains $_ })]
         [string]
@@ -51,19 +51,7 @@ Function ConvertTo-AtwsFilter {
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-        
-        # Set up TimeZone offset handling
-        if (-not($script:ESTzone)) {
-            $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-        }
-    
-        if (-not($script:ESToffset)) {
-            $now = Get-Date
-            $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
-
-            $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $now).TotalHours
-        }
-    
+            
         $fields = Get-AtwsFieldInfo -Entity $entityName
         
         [string[]]$Filter = @()
@@ -135,7 +123,13 @@ Function ConvertTo-AtwsFilter {
                         else { 
                             $value = ConvertTo-AtwsDate -DateTime $parameterValue
                         }
-                    }            
+                    }  
+                    elseif ($field.Type -eq 'boolean') {
+                        $value = switch ($parameterValue) {
+                            { @('1', 'true') -contains $_ } { 1 }
+                            { @('0', 'false') -contains $_ } { 0 }
+                        }          
+                    }       
                     else {
                         $value = $parameterValue
                     }

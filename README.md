@@ -36,6 +36,15 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.5 (GA)
+
+- UPDATE: Support for API version 1.6.5 included
+- BUGFIX: Issue #66 and #74: Updating disk cache on every import finally solved
+
+## Version 1.6.5-beta4
+
+- UPDATE: Powershell 7 support
+
 ## Version 1.6.5-beta3
 
 - FEATURE: Get-AtwsInvoiceInfo - added support for export to Excel (requires module ImportExcel)
@@ -62,16 +71,19 @@ Update-AtwsFunctions -FunctionSet Dynamic
 - UPDATE: Modified version numbering scheme to enable support for prerelease versions
 - DEPRECATED: Removed -NoPickListLabels parameter from individual entity functions
 
-## Version 1.6.4.2
+## Version 1.6.4.2 - API update and bugfix release
 
 - UPDATE: Included functions are updated to support API version 1.6.4
 - UPDATE: Implemented pester testing to improve QA
 - UPDATE: Copyright text updated with new company name after merger
 - BUGFIX: Fixed parsing bugs in manual -Filter
+- BUGFIX: Issue #59: Unable to set Issue/SubIssue when Subissue is on index 0 - **Fixed**
+- BUGFIX: Issue #66: Still getting 'updating disk cache' on every module import - **Fixed**
+
 
 This version has been delayed a lot by the introduction of pester testing, but I sincerely hope the added QA was worth the wait.
 
-## Version 1.6.2.17
+## Version 1.6.2.17 - Bugfix release
 
 - BUGFIX: Issue #43: New-AtwsAttachment adds timezone difference twice - **Fixed**
 - BUGFIX: Issue #44: GetEntityByReferenceId documentation - **Fixed**

@@ -3,14 +3,14 @@
 <#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 Function New-AtwsAttachment {
 
 
-  <#
+    <#
       .SYNOPSIS
       This function creates a new attachment through the Autotask Web Services API.
       .DESCRIPTION
@@ -38,388 +38,376 @@ Function New-AtwsAttachment {
       Strongly related to Get-AtwsAttachmentInfo
   #>
 
-  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Ticket', ConfirmImpact = 'None')]
-  Param
-  (
+    [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Ticket', ConfirmImpact = 'None')]
+    Param
+    (
 
-    # An object as a byte array that will be attached to an Autotask object
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Account_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Opportunity_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Project_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Ticket_as_byte'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Byte[]]
-    $Data,
+        # An object as a byte array that will be attached to an Autotask object
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Account_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Opportunity_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Project_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Ticket_as_byte'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [Byte[]]
+        $Data,
     
-    # An object as a byte array that will be attached to an Autotask object
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Account_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Opportunity_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Project_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Ticket_as_byte'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidatePattern('^\.?\w+$')]
-    [string]
-    $Extension,
+        # An object as a byte array that will be attached to an Autotask object
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Account_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Opportunity_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Project_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Ticket_as_byte'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [ValidatePattern('^\.?\w+$')]
+        [string]
+        $Extension,
 
-    # A is required for Data
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Account_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Opportunity_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Project_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Ticket_as_byte'
-    )]
-    [Parameter(
-        ParameterSetName = 'Account'
-    )]
-    [Parameter(
-        ParameterSetName = 'Opportunity'
-    )]
-    [Parameter(
-        ParameterSetName = 'Project'
-    )]
-    [Parameter(
-        ParameterSetName = 'Ticket'
-    )]
-    [Parameter(
-        ParameterSetName = 'Account_as_url'
-    )]
-    [Parameter(
-        ParameterSetName = 'Opportunity_as_url'
-    )]
-    [Parameter(
-        ParameterSetName = 'Project_as_url'
-    )]
-    [Parameter(
-        ParameterSetName = 'Ticket_as_url'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $Title,
+        # A is required for Data
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Account_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Opportunity_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Project_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Ticket_as_byte'
+        )]
+        [Parameter(
+            ParameterSetName = 'Account'
+        )]
+        [Parameter(
+            ParameterSetName = 'Opportunity'
+        )]
+        [Parameter(
+            ParameterSetName = 'Project'
+        )]
+        [Parameter(
+            ParameterSetName = 'Ticket'
+        )]
+        [Parameter(
+            ParameterSetName = 'Account_as_url'
+        )]
+        [Parameter(
+            ParameterSetName = 'Opportunity_as_url'
+        )]
+        [Parameter(
+            ParameterSetName = 'Project_as_url'
+        )]
+        [Parameter(
+            ParameterSetName = 'Ticket_as_url'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [string]
+        $Title,
     
-    # A file path that will be attached to an Autotask object
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Account'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Opportunity'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Project'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Ticket'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateScript({
-          if( -Not ($_ | Test-Path) ){
-            throw "File or folder does not exist"
-          }
-          return $true
-    })]
-    [IO.FileInfo]
-    $Path,
+        # A file path that will be attached to an Autotask object
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Account'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Opportunity'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Project'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Ticket'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript( {
+                if ( -Not ($_ | Test-Path) ) {
+                    throw "File or folder does not exist"
+                }
+                return $true
+            })]
+        [IO.FileInfo]
+        $Path,
 
-    # URL to attach
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Account_as_url'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Opportunity_as_url'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Project_as_url'
-    )]
-    [Parameter(
-        Mandatory = $true, 
-        ParameterSetName = 'Ticket_as_url'
-    )]
-    [URI]
-    $URI,
+        # URL to attach
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Account_as_url'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Opportunity_as_url'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Project_as_url'
+        )]
+        [Parameter(
+            Mandatory = $true, 
+            ParameterSetName = 'Ticket_as_url'
+        )]
+        [URI]
+        $URI,
     
-    # Attach as a file link, not an attachment
-    [Parameter(
-        ParameterSetName = 'Account_as_url'
-    )]
-    [Parameter(
-        ParameterSetName = 'Opportunity_as_url'
-    )]
-    [Parameter(
-        ParameterSetName = 'Project_as_url'
-    )]
-    [Parameter(
-        ParameterSetName = 'Ticket_as_url'
-    )]
-    [Alias('Link')]
-    [switch]
-    $FileLink,
+        # Attach as a file link, not an attachment
+        [Parameter(
+            ParameterSetName = 'Account_as_url'
+        )]
+        [Parameter(
+            ParameterSetName = 'Opportunity_as_url'
+        )]
+        [Parameter(
+            ParameterSetName = 'Project_as_url'
+        )]
+        [Parameter(
+            ParameterSetName = 'Ticket_as_url'
+        )]
+        [Alias('Link')]
+        [switch]
+        $FileLink,
     
-    # Attach as a folder link, not an attachment
-    [Parameter(
-        ParameterSetName = 'Account_as_url'
-    )]
-    [Parameter(
-        ParameterSetName = 'Opportunity_as_url'
-    )]
-    [Parameter(
-        ParameterSetName = 'Project_as_url'
-    )]
-    [Parameter(
-        ParameterSetName = 'Ticket_as_url'
-    )]
-    [Alias('Folder')]
-    [switch]
-    $FolderLink,
+        # Attach as a folder link, not an attachment
+        [Parameter(
+            ParameterSetName = 'Account_as_url'
+        )]
+        [Parameter(
+            ParameterSetName = 'Opportunity_as_url'
+        )]
+        [Parameter(
+            ParameterSetName = 'Project_as_url'
+        )]
+        [Parameter(
+            ParameterSetName = 'Ticket_as_url'
+        )]
+        [Alias('Folder')]
+        [switch]
+        $FolderLink,
 
-    # Account ID
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Account'
-    )]
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Account_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Account_as_url'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsAccount -id $_) ){
-            throw "Account does not exist"
-          }
-          return $true
-    })]    
-    [long]
-    $AccountID,
+        # Account ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Account'
+        )]
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Account_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Account_as_url'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsAccount -id $_) ) {
+                    throw "Account does not exist"
+                }
+                return $true
+            })]    
+        [long]
+        $AccountID,
 
-    # Opportunity ID
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Opportunity'
-    )]
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Opportunity_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Opportunity_as_url'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsOpportunity -id $_) ){
-            throw "Opportunity does not exist"
-          }
-          return $true
-    })]
-    [long]
-    $OpportunityID,
+        # Opportunity ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Opportunity'
+        )]
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Opportunity_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Opportunity_as_url'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsOpportunity -id $_) ) {
+                    throw "Opportunity does not exist"
+                }
+                return $true
+            })]
+        [long]
+        $OpportunityID,
 
-    # Project ID
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Project'
-    )]
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Project_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Project_as_url'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsProject -id $_) ){
-            throw "Project does not exist"
-          }
-          return $true
-    })]
-    [long]
-    $ProjectID,
+        # Project ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Project'
+        )]
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Project_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Project_as_url'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsProject -id $_) ) {
+                    throw "Project does not exist"
+                }
+                return $true
+            })]
+        [long]
+        $ProjectID,
 
-    # Ticket ID
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Ticket'
-    )]
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Ticket_as_byte'
-    )]
-    [Parameter(
-        Mandatory = $true,
-        ParameterSetName = 'Ticket_as_url'
-    )]
-    [ValidateScript({
-          if( -Not (Get-AtwsTicket -id $_) ){
-            throw "Ticket does not exist"
-          }
-          return $true
-    })]
-    [long]
-    $TicketID,
+        # Ticket ID
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Ticket'
+        )]
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Ticket_as_byte'
+        )]
+        [Parameter(
+            Mandatory = $true,
+            ParameterSetName = 'Ticket_as_url'
+        )]
+        [ValidateScript( {
+                if ( -Not (Get-AtwsTicket -id $_) ) {
+                    throw "Ticket does not exist"
+                }
+                return $true
+            })]
+        [long]
+        $TicketID,
 
-    [ValidateSet('All Autotask Users','Internal Users Only')]
-    [string]
-    $Publish = 'All Autotask Users'
+        [ValidateSet('All Autotask Users', 'Internal Users Only')]
+        [string]
+        $Publish = 'All Autotask Users'
    
-  )
+    )
 
-  begin { 
+    begin { 
    
-    # Enable modern -Debug behavior
-    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    # Dynamic field info
-    $fields = Get-AtwsFieldInfo -Entity AttachmentInfo
-    $DateTimeParams = $fields.Where({$_.Type -eq 'datetime'}).Name
-    $Picklists = $fields.Where{$_.IsPickList}
-    
-    # Set up TimeZone offset handling
-    if (-not($script:ESTzone)) {
-      $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-    }
-    
-    if (-not($script:ESToffset)) {
-      $now = Get-Date
-      $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
+        # Dynamic field info
+        $fields = Get-AtwsFieldInfo -Entity AttachmentInfo
 
-      $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $now).TotalHours
+        $Picklists = $fields.Where{ $_.IsPickList }
+     
+        # Publish dictionary
+        $PublishToIndex = @{
+            'All Autotask Users'  = '1'
+            'Internal Users Only' = '2'
+        }
     }
-    
-    # Publish dictionary
-    $PublishToIndex = @{
-      'All Autotask Users' = '1'
-      'Internal Users Only' = '2'
-    }
-  }
 
 
-  process {
+    process {
     
-    # A new Attachment object
-    $Attachment = New-object "Autotask.Attachment"
+        # A new Attachment object
+        $Attachment = New-Object "Autotask.Attachment"
     
-    # A new AttachmentInfo object
-    $AttachmentInfo = New-object "Autotask.AttachmentInfo"
+        # A new AttachmentInfo object
+        $AttachmentInfo = New-Object "Autotask.AttachmentInfo"
     
-    # Attach info object to attachment object
-    $Attachment.Info = $AttachmentInfo
+        # Attach info object to attachment object
+        $Attachment.Info = $AttachmentInfo
 
-    # Publishsettings 
-    $AttachmentInfo.Publish = $PublishToIndex[$Publish]
+        # Publishsettings 
+        $AttachmentInfo.Publish = $PublishToIndex[$Publish]
     
-    # Attachment type
-    if ($Data) {
-      $Attachment.Data = $Data
-      $AttachmentInfo.Type = 'FILE_ATTACHMENT'
-      $AttachmentInfo.FullPath = '{0}.{1}' -F $Title, $Extension.TrimStart('.')
-    }
-    # Is it an URL?
-    elseif ($URI) {
-      if ($FolderLink.IsPresent) {
-        $AttachmentInfo.Type = 'FOLDER_LINK'
-      }
-      elseif ($FileLink.IsPresent) {
-        $AttachmentInfo.Type = 'FILE_LINK'
-      }
-      else { 
-        $AttachmentInfo.Type = 'URL'
-      }
-      $ATtachmentInfo.FullPath = $URI.AbsoluteUri
-      $AttachmentInfo.Title = $AttachmentInfo.FullPath
-    }
-    # It is a file and it is going to be attached.
-    else {
-      [Byte[]]$Data = Get-Content -Path $Path.FullName -Encoding Byte -ReadCount 0
-      $Attachment.Data = $Data
+        # Attachment type
+        if ($Data) {
+            $Attachment.Data = $Data
+            $AttachmentInfo.Type = 'FILE_ATTACHMENT'
+            $AttachmentInfo.FullPath = '{0}.{1}' -F $Title, $Extension.TrimStart('.')
+        }
+        # Is it an URL?
+        elseif ($URI) {
+            if ($FolderLink.IsPresent) {
+                $AttachmentInfo.Type = 'FOLDER_LINK'
+            }
+            elseif ($FileLink.IsPresent) {
+                $AttachmentInfo.Type = 'FILE_LINK'
+            }
+            else { 
+                $AttachmentInfo.Type = 'URL'
+            }
+            $ATtachmentInfo.FullPath = $URI.AbsoluteUri
+            $AttachmentInfo.Title = $AttachmentInfo.FullPath
+        }
+        # It is a file and it is going to be attached.
+        else {
+            [Byte[]]$Data = Get-Content -Path $Path.FullName -Encoding Byte -ReadCount 0
+            $Attachment.Data = $Data
 
-      # Type is attachment
-      $AttachmentInfo.Type = 'FILE_ATTACHMENT'
-      $AttachmentInfo.Title = $Path.BaseName
-      $AttachmentInfo.FullPath = $Path.FullName
+            # Type is attachment
+            $AttachmentInfo.Type = 'FILE_ATTACHMENT'
+            $AttachmentInfo.Title = $Path.BaseName
+            $AttachmentInfo.FullPath = $Path.FullName
       
-      # Determine content type by file name
-      Add-Type -AssemblyName "System.Web"
-      $AttachmentInfo.ContentType = [System.Web.MimeMapping]::GetMimeMapping($Path.FullName)
+            # Determine content type by file name
+            Add-Type -AssemblyName "System.Web"
+            $AttachmentInfo.ContentType = [System.Web.MimeMapping]::GetMimeMapping($Path.FullName)
 
-    }
+        }
     
-    # Overwrite title with $Title if it exists
-    if ($Title) {
-      $AttachmentInfo.Title = $Title
-    }
+        # Overwrite title with $Title if it exists
+        if ($Title) {
+            $AttachmentInfo.Title = $Title
+        }
     
-    # What are we attaching to?
-    $objectType = ($PSCmdlet.ParameterSetName -split '_')[0]
+        # What are we attaching to?
+        $objectType = ($PSCmdlet.ParameterSetName -split '_')[0]
   
-    $AttachmentInfo.ParentId = $TicketId + $AccountID + $ProjectID + $OpportunityId
-    $AttachmentInfo.ParentType = $Picklists.Where{$_.name -eq 'ParentType'}.PickListValues.Where{$_.Label -eq $objectType}.Value
+        $AttachmentInfo.ParentId = $TicketId + $AccountID + $ProjectID + $OpportunityId
+        $AttachmentInfo.ParentType = $Picklists.Where{ $_.name -eq 'ParentType' }.PickListValues.Where{ $_.Label -eq $objectType }.Value
 
-    # Prepare ShouldProcess
-    $caption = $MyInvocation.MyCommand.Name
-    $verboseDescription = '{0}: About to create an attachment of type {1} with title {2}.' -F $caption, $AttachmentInfo.Type, $AttachmentInfo.Title
-    $verboseWarning = '{0}: About to create an attachment of type {1} with title {2}. Do you want to continue?' -F $caption, $AttachmentInfo.Type, $AttachmentInfo.Title
+        # Prepare ShouldProcess
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to create an attachment of type {1} with title {2}.' -F $caption, $AttachmentInfo.Type, $AttachmentInfo.Title
+        $verboseWarning = '{0}: About to create an attachment of type {1} with title {2}. Do you want to continue?' -F $caption, $AttachmentInfo.Type, $AttachmentInfo.Title
     
-    # Do it, I dare you!
-    if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-      $AttachmentId = $Script:Atws.CreateAttachment($Attachment)
+        # Do it, I dare you!
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+            $AttachmentId = $Script:Atws.CreateAttachment($Script:Atws.integrationsValue, $Attachment)
       
-      $result = Get-AtwsAttachmentInfo -id $AttachmentId
+            $result = Get-AtwsAttachmentInfo -id $AttachmentId
       
-      Write-Verbose ('{0}: Created attachment with id {1} and title {2}' -F $MyInvocation.MyCommand.Name, $AttachmentId, $result.Title)
+            Write-Verbose ('{0}: Created attachment with id {1} and title {2}' -F $MyInvocation.MyCommand.Name, $AttachmentId, $result.Title)
     
+        }
     }
-  }
 
-  end {
-    Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    if ($result) {
-      Return $result
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        if ($result) {
+            Return $result
+        }
     }
-  }
 
 
 }

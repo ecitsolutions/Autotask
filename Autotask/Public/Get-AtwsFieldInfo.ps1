@@ -1,24 +1,24 @@
 ﻿<#
 
     .COPYRIGHT
-    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 
 Function Get-AtwsFieldInfo {
     <#
-      .SYNOPSIS
-      This function gets valid fields for an Autotask Entity
-      .DESCRIPTION
-      This function gets valid fields for an Autotask Entity
-      .INPUTS
-      None.
-      .OUTPUTS
-      [Autotask.Field[]]
-      .EXAMPLE
-      Get-AtwsFieldInfo -Entity Account
-      Gets all valid built-in fields and user defined fields for the Account entity.
+        .SYNOPSIS
+            This function gets valid fields for an Autotask Entity
+        .DESCRIPTION
+            This function gets valid fields for an Autotask Entity
+        .INPUTS
+            None.
+        .OUTPUTS
+            [Autotask.Field[]]
+        .EXAMPLE
+            Get-AtwsFieldInfo -Entity Account
+            Gets all valid built-in fields and user defined fields for the Account entity.
   #>
 	
     [cmdletbinding(
@@ -101,22 +101,19 @@ Function Get-AtwsFieldInfo {
     
         # Check if we are connected before trying anything
         if (-not($Script:Atws)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            return
         }
     
         # Has cache been loaded?
-        if (-not($script:Cache)) {
+        if (-not($Script:Atws.Cache.Count -gt 0)) {
             # Load it.
             Import-AtwsDiskCache
         }
-         
-   
-
         $cacheExpiry = (Get-Date).AddMinutes(-15)
     }
   
     process { 
-        
         Function Update-AtwsEntity {
             [CmdLetBinding()]
             Param
@@ -144,7 +141,7 @@ Function Get-AtwsFieldInfo {
                     Write-Verbose -Message ("{0}: Calling .GetFieldInfo('{1}')" -F $MyInvocation.MyCommand.Name, $Entity) 
           
                     try { 
-                        $result = $Script:atws.GetFieldInfo($Entity)
+                        $result = $Script:Atws.GetFieldInfo($Script:Atws.IntegrationsValue, $Entity)
                     }
                     catch {
                         Throw $_
@@ -168,7 +165,7 @@ Function Get-AtwsFieldInfo {
                     $script:FieldInfoCache[$Entity].FieldInfo = $result
                     
                     # If not called during module load, give this warning
-                    if ($PSCmdLet.MyInvocation.ScriptName -notlike '*.psm1') { 
+                    if (-not $Script:LoadingModule -and $Script:Atws.Configuration.UseDiskCache) { 
                         Write-Warning ('{0}: The {1} entity has been modified in Autotask! Re-import module with -Argumentlist $creds, $ApiKey, "{1}" to refresh.' -F $MyInvocation.MyCommand.Name, $Entity)
                     }
                     
@@ -182,7 +179,7 @@ Function Get-AtwsFieldInfo {
                     $verboseWarning = '{0}: About to get userdefined fields for {1}s. Do you want to continue?' -F $caption, $Entity
 
                     if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-                        $UDF = $Script:atws.GetUDFInfo($Entity)
+                        $UDF = $Script:Atws.GetUDFInfo($Script:Atws.IntegrationsValue, $Entity)
                  
                         if ($result.Errors.Count -gt 0) {
                             foreach ($AtwsError in $result.Errors) {
@@ -279,7 +276,7 @@ Function Get-AtwsFieldInfo {
                     $status = 'Entity {0}/{1} ({2:n0}%)' -F $index, $entities.Count, $percentComplete
                     $currentOperation = "GetFieldInfo('{0}')" -F $object.Key
       
-                    Write-Progress -Status $status -PercentComplete $percentComplete -CurrentOperation $currentOperation @ProgressParameters
+                    Write-AtwsProgress -Status $status -PercentComplete $percentComplete -CurrentOperation $currentOperation @ProgressParameters
         
                     # Is the Cache too old? I.E. older than 15 minutes?
                     If ($object.Value.RetrievalTime -lt $cacheExpiry) {
@@ -287,6 +284,9 @@ Function Get-AtwsFieldInfo {
                         # Force a refresh by calling this function
                         $cacheDirty = Update-AtwsEntity -Entity $Entity
                     }
+                }
+                if ($currentOperation) { 
+                    Write-AtwsProgress -Status $status -PercentComplete $percentComplete -CurrentOperation $currentOperation @ProgressParameters -Completed
                 }
             }
     
@@ -307,8 +307,7 @@ Function Get-AtwsFieldInfo {
         }
     }  
     end {
-        if ($cacheDirty -and $Script:UseDiskCache) { 
-            
+        if ($cacheDirty -and $Script:Atws.Configuration.UseDiskCache) {  
             Export-AtwsDiskCache
         }
 

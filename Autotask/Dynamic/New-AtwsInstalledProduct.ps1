@@ -1,11 +1,9 @@
-﻿#Requires -Version 4.0
-#Version 1.6.4.1
+#Requires -Version 4.0
+#Version 1.6.5
 <#
-
-.COPYRIGHT
-Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
-
+    .COPYRIGHT
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
 Function New-AtwsInstalledProduct
 {
@@ -24,7 +22,6 @@ If you need very complicated queries you can write a filter directly and pass it
 To create a new InstalledProduct you need the following required fields:
  -AccountID
  -Active
- -InstallDate
  -ProductID
 
 Entities that have fields that refer to the base entity of this CmdLet:
@@ -42,7 +39,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.InstalledProduct]. This function outputs the Autotask.InstalledProduct that was created by the API.
 .EXAMPLE
-$result = New-AtwsInstalledProduct -AccountID [Value] -Active [Value] -InstallDate [Value] -ProductID [Value]
+$result = New-AtwsInstalledProduct -AccountID [Value] -Active [Value] -ProductID [Value]
 Creates a new [Autotask.InstalledProduct] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsInstalledProduct -Id 124 | New-AtwsInstalledProduct 
@@ -122,10 +119,8 @@ Set-AtwsInstalledProduct
 
 # Install Date
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [datetime]
     $InstallDate,
 
@@ -718,17 +713,56 @@ Set-AtwsInstalledProduct
     )]
     [ValidateLength(0,100)]
     [string]
-    $DeviceNetworkingID
+    $DeviceNetworkingID,
+
+# Installed Product Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $InstalledProductCategoryID,
+
+# Source Cost ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $SourceCostID,
+
+# Source Cost Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [string]
+    $SourceCostType,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID
   )
  
     begin { 
         $entityName = 'InstalledProduct'
            
         # Enable modern -Debug behavior
-        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
+            $DebugPreference = 'Continue' 
+        }
+        else {
+            # Respect configured preference
+            $DebugPreference = $Script:Atws.Configuration.DebugPref
+        }
     
-        Write-Debug -Message ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-    
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+
+        if (!($PSCmdlet.MyInvocation.BoundParameters['Verbose'].IsPresent)) {
+            # No local override of central preference. Load central preference
+            $VerbosePreference = $Script:Atws.Configuration.VerbosePref
+        }
+        
         $processObject = @()
     }
 

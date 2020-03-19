@@ -1,48 +1,48 @@
 ﻿<#
 
 .COPYRIGHT
-Copyright (c) Office Center Hønefoss AS. All rights reserved. Based on code from Jan Egil Ring (Crayon). Licensed under the MIT license.
-See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 Function Export-AtwsDiskCache {
-     <#
-      .SYNOPSIS
-
-      .DESCRIPTION
-
-      .INPUTS
-
-      .OUTPUTS
-
-      .EXAMPLE
-
-      .NOTES
-      NAME: 
-      .LINK
-
+    <#
+        .SYNOPSIS
+            This function flushes the current in-memory cache to disk.
+        .DESCRIPTION
+            This function flushes the current in-memory cache to disk
+        .OUTPUTS
+            A CliXml file
+        .EXAMPLE
+            Export-AtwsDiskCache
+            Exports the current in memory entity cache to a file on disk.
+        .NOTES
+            NAME: Export-AtwsDiskCache
   #>
-    [CmdLetBinding()]
+    [CmdLetBinding(
+        SupportsShouldProcess = $true
+    )]
   
     Param()
 
     begin {
-        if (-not ($Script:Cache)) {
+        if (-not ($Script:Atws.Cache.Count -gt 0)) {
             Write-Error -Message 'The diskcache has not been imported yet. Noting to save.'
             Return
         }
      
         $CacheFile = 'AutotaskFieldInfoCache.xml'
-        $PersonalCacheDir = '{0}\WindowsPowershell\Cache' -f $([environment]::GetFolderPath('MyDocuments'))
-        $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
-
-        Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
     }
   
     process {
         # If the module variable UseDiskCache is $false or does not exist, this function does nothing...
     
-        if ($Script:UseDiskCache) { 
+        if ($Script:Atws.Configuration.UseDiskCache) { 
+
+            $PersonalCacheDir = $Script:Atws.DynamicCache
+            $PersonalCache = '{0}\{1}' -F $PersonalCacheDir, $CacheFile
+            Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
+
             # This REALLY should be there, but better safe than sorry
             # Create Personalcache directory if it doesn't exist
             if (-not (Test-Path $PersonalCacheDir)) {
@@ -63,7 +63,7 @@ Function Export-AtwsDiskCache {
           
             if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             
-                $Script:Cache | Export-Clixml -Path $PersonalCache -Force
+                $Script:Atws.Cache | Export-Clixml -Path $PersonalCache -Force
     
             }
         }

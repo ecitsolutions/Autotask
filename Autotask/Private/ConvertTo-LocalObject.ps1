@@ -1,26 +1,26 @@
 <#
 
     .COPYRIGHT
-    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md  for license information.
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 
 #>
 
 Function ConvertTo-LocalObject {
     <#
-            .SYNOPSIS
+        .SYNOPSIS
             This function adjusts the timezone and converts picklist fields from their label to their index value.
-            .DESCRIPTION
+        .DESCRIPTION
             This function adjusts the timezone and converts picklist fields from their label to their index value.
-            .INPUTS
+        .INPUTS
             [PSObject[]]
-            .OUTPUTS
+        .OUTPUTS
             [PSObject[]]
-            .EXAMPLE
+        .EXAMPLE
             $Element | ConvertFrom-LocalTimeAndLabels
             Updates the properties of object $Element with the values of any parameter with the same name as a property-
-            .NOTES
-            NAME: Update-AtwsObjectsWithParameters
+        .NOTES
+            NAME: ConvertTo-LocalObject
       
     #>
     [cmdletbinding()]
@@ -28,14 +28,11 @@ Function ConvertTo-LocalObject {
     Param
     (
         [Parameter(
-                Mandatory = $true,
-                ValueFromPipeline = $true
+            Mandatory = $true,
+            ValueFromPipeline = $true
         )]
         [PSObject[]]
-        $InputObject,
-        
-        [switch]
-        $NoPicklistLabel
+        $InputObject
     )
 
     begin {
@@ -46,9 +43,11 @@ Function ConvertTo-LocalObject {
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
-        # Set up TimeZone offset handling
-        $EST = Get-TimeZone -Id 'Eastern Standard Time'
-        
+        # Set up TimeZone offset handling and make sure the if statement will
+        # default to Windows if platform information is not available
+        $timezoneid = if ($IsMacOS -or $IsLinux) { 'America/New_York' }
+        else { 'Eastern Standard Time' }
+        $EST = [System.Timezoneinfo]::FindSystemTimeZoneById($timezoneid)
         $result = @()
     }
 
@@ -93,12 +92,12 @@ Function ConvertTo-LocalObject {
                 # Convert the datetime to LocalTime unless it is a date
                 If ($object.$DateTimeParam -ne $object.$DateTimeParam.Date) { 
 
-                    # Convert the datetime back to CEST
+                    # Convert the datetime from EST back to local time
                     $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, $EST, [TimeZoneInfo]::Local)
                 }
             }
     
-            if ($Script:UsePickListLabels) { 
+            if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) { 
                 # Restore picklist labels
                 foreach ($field in $Picklists) {
                     if ($object.$($field.Name) -in $field.PicklistValues.Value) {
@@ -106,14 +105,11 @@ Function ConvertTo-LocalObject {
                     }
                 }
             }
-            
-            if (-not $NoPickListLabel.IsPresent) { 
-                Foreach ($field in $Picklists)
-                {
-                    $fieldName = '{0}Label' -F $field.Name
-                    $value = ($field.PickListValues.Where{$_.Value -eq $object.$($field.Name)}).Label
-                    Add-Member -InputObject $object -MemberType NoteProperty -Name $fieldName -Value $value -Force
-                }
+
+            Foreach ($field in $Picklists) {
+                $fieldName = '{0}Label' -F $field.Name
+                $value = ($field.PickListValues.Where{ $_.Value -eq $object.$($field.Name) }).Label
+                Add-Member -InputObject $object -MemberType NoteProperty -Name $fieldName -Value $value -Force
             }
         }
         

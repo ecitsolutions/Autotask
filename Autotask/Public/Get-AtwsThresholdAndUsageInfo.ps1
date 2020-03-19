@@ -2,13 +2,13 @@
 <#
 
     .COPYRIGHT
-    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md  for license information.
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 
 #>
 
 Function Get-AtwsThresholdAndUsageInfo {
-  <#
+    <#
       .SYNOPSIS
       This function collects information about a specific Autotask invoice object and returns a generic
       powershell object with all relevant information as a starting point for import into other systems.
@@ -22,66 +22,68 @@ Function Get-AtwsThresholdAndUsageInfo {
       .OUTPUTS
       A custom PSObject with detailed information about an invoice
       .EXAMPLE
-      $Invoice | Get-#PrefixInvoiceInfo
+      $Invoice | Get-AtwsInvoiceInfo
       Gets information about invoices passed through the pipeline
       .EXAMPLE
-      Get-#PrefixInvoiceInfo -InvoiceID $Invoice.id
+      Get-AtwsInvoiceInfo -InvoiceID $Invoice.id
       Gets information about invoices based on the ids passed as a parameter
       .NOTES
-      NAME: Get-#PrefixInvoiceInfo
+      NAME: Get-AtwsInvoiceInfo
       
   #>
 	
-  [cmdletbinding()]
-  Param
-  (
-  )
+    [cmdletbinding()]
+    Param
+    (
+    )
   
-  begin {
-    Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+    begin {
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
-    # Enable modern -Debug behavior
-    if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {$DebugPreference = 'Continue'}
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
-    if (-not($Script:Atws.Url))
-    {
-      Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
-    }    
-  }
-
-  process {
-    try { 
-      $result = $Script:Atws.GetThresholdAndUsageInfo()
+        if (-not($Script:Atws.integrationsValue)) {
+            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+        }    
     }
-    catch {
-      Write-Warning ('{0}: FAILED on GetThresholdAndUsageInfo(). No data returned.' -F $MyInvocation.MyCommand.Name)
+
+    process {
+        try { 
+            Write-Verbose ('{0}: Calling GetThresholdAndUsageInfo()' -F $MyInvocation.MyCommand.Name)
+
+            $result = $Script:Atws.GetThresholdAndUsageInfo($Script:Atws.integrationsValue)
+        }
+        catch {
+            Write-Warning ('{0}: FAILED on GetThresholdAndUsageInfo(). No data returned.' -F $MyInvocation.MyCommand.Name)
               
-      # try the next ID
-      Continue
-    }
+            # try the next ID
+            Continue
+        }
 
 
-    # Handle any errors
-    if ($result.Errors.Count -gt 0)
-    {
-      foreach ($AtwsError in $result.Errors)
-      {
-        Write-Error $AtwsError.Message
-      }
-      Return
-    }
+        # Handle any errors
+        if ($result.Errors.Count -gt 0) {
+            foreach ($AtwsError in $result.Errors) {
+                Write-Error $AtwsError.Message
+            }
+            Return
+        }
     
-    $ThresholdInfo = New-Object -TypeName PSObject
-    foreach ($string in $result.EntityReturnInfoResults.Message -Split ';') {
-      $Substring = $string -split ':'
-      if ($Substring[0].length -gt 0) {
-        Add-Member -InputObject $ThresholdInfo -MemberType NoteProperty -Name $Substring[0].Trim() -Value $Substring[1].Trim()
-      }
+        Write-Verbose ('{0}: Creating a return object with threshold and usage info.' -F $MyInvocation.MyCommand.Name)
+    
+        $ThresholdInfo = New-Object -TypeName PSObject
+        foreach ($string in $result.EntityReturnInfoResults.Message -Split ';') {
+            $Substring = $string -split ':'
+            if ($Substring[0].length -gt 0) {
+                Add-Member -InputObject $ThresholdInfo -MemberType NoteProperty -Name $Substring[0].Trim() -Value $Substring[1].Trim()
+            }
+        }
     }
 
-  }
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
 
-  end {
-    Return $ThresholdInfo
-  }
+        Return $ThresholdInfo
+    }
 }

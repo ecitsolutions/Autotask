@@ -1,8 +1,8 @@
 <#
 
     .COPYRIGHT
-    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md  for license information.
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 
 #>
 
@@ -27,8 +27,8 @@ Function ConvertFrom-LocalObject {
     Param
     (
         [Parameter(
-                Mandatory = $true,
-                ValueFromPipeline = $true
+            Mandatory = $true,
+            ValueFromPipeline = $true
         )]
         [PSObject[]]
         $InputObject
@@ -43,8 +43,12 @@ Function ConvertFrom-LocalObject {
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
-        # Set up TimeZone offset handling
-        $EST = Get-TimeZone -Id 'Eastern Standard Time'
+        # Set up TimeZone offset handling and make sure the if statement will
+        # default to Windows if platform information is not available
+        $timezoneid = if ($IsMacOS -or $IsLinux) { 'America/New_York' }
+        else { 'Eastern Standard Time' }
+        $EST = [System.Timezoneinfo]::FindSystemTimeZoneById($timezoneid)
+        $result = @()
         
         $result = @()
     }

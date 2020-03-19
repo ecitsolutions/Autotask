@@ -1,8 +1,8 @@
 <#
 
     .COPYRIGHT
-    Copyright (c) Office Center Hønefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md  for license information.
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 
 #>
 
@@ -27,20 +27,20 @@ Function Update-AtwsObjectsWithParameters {
     Param
     (
         [Parameter(
-                Mandatory = $true,
-                ValueFromPipeline = $true
+            Mandatory = $true,
+            ValueFromPipeline = $true
         )]
         [PSObject[]]
         $InputObject,
 
         [Parameter(
-                Mandatory = $true
+            Mandatory = $true
         )]
         [System.Collections.Generic.Dictionary`2[System.string, System.Object]]
         $BoundParameters,
 
         [Parameter(
-                Mandatory = $true
+            Mandatory = $true
         )]
         [ValidateScript( { $Script:FieldInfoCache.Keys -contains $_ })]
         [string]
@@ -80,14 +80,14 @@ Function Update-AtwsObjectsWithParameters {
 
                         # Get the Parent label and value
                         $parentLabel = $BoundParameters.$($parentField.Name)
-                        $parentValue = $parentField.PickListValues | Where-Object { $_.Label -eq $parentLabel -and $_.IsActive}
+                        $parentValue = $parentField.PickListValues | Where-Object { $_.Label -eq $parentLabel -and $_.IsActive }
 
                         # Select pickListValue based on label -and parentValue
-                        $pickListValue = $field.PickListValues | Where-Object { $_.Label -eq $parameter.Value -and $_.ParentValue -eq $parentValue.Value -and $_.IsActive}   
+                        $pickListValue = $field.PickListValues | Where-Object { $_.Label -eq $parameter.Value -and $_.ParentValue -eq $parentValue.Value -and $_.IsActive }   
                     }
                     else { 
                         # No parent field. Select pickListValue based on value
-                        $pickListValue = $field.PickListValues | Where-Object { $_.Label -eq $parameter.Value -and $_.IsActive} 
+                        $pickListValue = $field.PickListValues | Where-Object { $_.Label -eq $parameter.Value -and $_.IsActive } 
                     }
                     # Set value to the picklist index value, not the label
                     $value = $pickListValue.Value

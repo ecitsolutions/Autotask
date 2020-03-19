@@ -1,7 +1,7 @@
 <#
     .COPYRIGHT
     Copyright (c) Office Center H�nefoss AS. All rights reserved. Licensed under the MIT license.
-    See https://github.com/officecenter/Autotask/blob/master/LICENSE.md for license information.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 
 #>
 
@@ -73,7 +73,7 @@ Function Get-AtwsData {
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
        
-        if (-not($Script:Atws.Url)) {
+        if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
         }
     
@@ -109,7 +109,7 @@ Function Get-AtwsData {
             Write-Verbose ('{0}: Passing QueryXML to Autotask API' -F $MyInvocation.MyCommand.Name)
 
             # Get the first batch - the API returns max 500 items
-            $lastquery = $Script:Atws.query($QueryXml.InnerXml)
+            $lastquery = $Script:Atws.query($Script:Atws.IntegrationsValue, $QueryXml.InnerXml)
 
             # Handle any errors
             if ($lastquery.Errors.Count -gt 0) {
@@ -121,7 +121,7 @@ Function Get-AtwsData {
 
             # Add all returned objects to the Result - if any
             if ($lastquery.EntityResults.Count -gt 0) { 
-                $result += ConvertTo-LocalObject -InputObject $lastquery.EntityResults -NoPickListLabel:$NoPickListLabel.IsPresent
+                $result += ConvertTo-LocalObject -InputObject $lastquery.EntityResults
             }
             
             # Results are sorted by object Id. The Id of the last object is the highest object id in the result
