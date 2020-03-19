@@ -28,7 +28,7 @@ Function Get-AtwsfunctionDefinition {
     Param
     (
         [Parameter(Mandatory = $true)]
-        [Autotask.EntityInfo]
+        [PSObject]
         $Entity,
     
         [Parameter(Mandatory = $true)]

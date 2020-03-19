@@ -31,7 +31,7 @@ Function Get-AtwsParameterDefinition {
     Param
     (   
         [Parameter(Mandatory)]
-        [Autotask.EntityInfo]
+        [PSObject]
         $Entity,
         
         [Parameter(Mandatory)]
