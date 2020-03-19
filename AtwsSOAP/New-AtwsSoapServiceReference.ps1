@@ -27,7 +27,7 @@ Function New-AtwsSoapServiceReference {
 
     [CmdLetBinding(
         SupportsShouldProcess = $true,
-        ConfirmImpact = 'High'
+        ConfirmImpact = 'medium'
     )]
     # The function set to generate, either 'Dynamic' or 'Static'
     Param(
