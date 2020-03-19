@@ -162,7 +162,8 @@ if ($Credential) {
             $ScriptVersion = Select-String -Pattern $Versionstring -Path $dynamicFunction.FullName -ErrorAction SilentlyContinue
             
             # All function files MUST have the correct version and be of the correct version, or they will
-            # recreated just to be safe.
+            # recreated just to be safe. Allow more cached functions than distributed with module - this happens
+            # when the API version is updated before the module can be updated.
             if ($ScriptVersion.Count -lt $FunctionCount -or $Script:Atws.Configuration.RefreshCache) {
                 if (-not($Script:Atws.Configuration.RefreshCache)) { 
                     Write-Warning ('{0}: Personal disk cache: Wrong number of script files or scripts are not the right version in {1}, refreshing all entities.' -F $MyInvocation.MyCommand.Name, $dynamicCache)
