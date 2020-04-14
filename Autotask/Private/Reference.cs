@@ -32133,7 +32133,7 @@ namespace Autotask
         {
             if ((endpointConfiguration == EndpointConfiguration.ATWSSoap))
             {
-                return new System.ServiceModel.EndpointAddress("https://webservices4.autotask.net/ATServices/1.6/atws.asmx");
+                return new System.ServiceModel.EndpointAddress("https://webservices.autotask.net/ATServices/1.6/atws.asmx");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
