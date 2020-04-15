@@ -59,7 +59,7 @@ Function Write-AtwsProgress {
             
             if ($Completed.IsPresent) {
                 # End the line. Looks better.
-                Write-Host 
+                Write-Host "`n"
             }
             
             # Repeat message if -Verbose is on
