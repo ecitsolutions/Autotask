@@ -43,7 +43,7 @@ Function Write-AtwsProgress {
         }
 
         # Progress bar length in characters
-        $size = 40
+        $size = 30
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     }
 
@@ -51,14 +51,15 @@ Function Write-AtwsProgress {
         if ($env:TERM_PROGRAM -eq 'vscode' -and $PSVersionTable.PSVersion.Major -le 8) {
             # Running in VSCode. Do our own stuff.
             $i = [Math]::Round($PercentComplete / (100 / $size))
-            $Message = "`r{0}: [{2}] {1} % Complete" -f $Activity, $PercentComplete, (''.PadLeft($i, '#') + ''.PadLeft($size - $i, '-'))
+            $string = $CurrentOperation.substring(0, [System.Math]::Min(39, $CurrentOperation.Length))
+            $Message = "`r[{2}] {1,3} % - {0,-39}" -f $string, $PercentComplete, (''.PadLeft($i, '#') + ''.PadLeft($size - $i, '-'))
 
             # When using -NoNewLine this will be overwritten by -Verbose and/or -Debug
             Write-Host $Message -ForegroundColor Green -NoNewline
             
             if ($Completed.IsPresent) {
                 # End the line. Looks better.
-                Write-Host 
+                Write-Host "`n"
             }
             
             # Repeat message if -Verbose is on

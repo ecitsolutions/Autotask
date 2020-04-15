@@ -1,0 +1,98 @@
+diff --git a/Autotask/Private/Reference.cs b/Autotask/Private/Reference.cs
+index b4a77f9..38a53d5 100644
+--- a/Autotask/Private/Reference.cs
++++ b/Autotask/Private/Reference.cs
+@@ -30890,7 +30890,15 @@ namespace Autotask
+         private bool canCreateField;
+         
+         private bool canQueryField;
+-        
++
++        private string userAccessForCreateField;
++
++        private string userAccessForQueryField;
++
++        private string userAccessForUpdateField;
++
++        private string userAccessForDeleteField;
++
+         private bool hasUserDefinedFieldsField;
+         
+         private bool supportsWebhookCalloutsField;
+@@ -30964,9 +30972,65 @@ namespace Autotask
+                 this.canQueryField = value;
+             }
+         }
+-        
++
+         /// <remarks/>
+-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
++        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
++        public string UserAccessForCreate
++        {
++            get
++            {
++                return this.userAccessForCreateField;
++            }
++            set
++            {
++                this.userAccessForCreateField = value;
++            }
++        }
++
++        /// <remarks/>
++        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
++        public string UserAccessForQuery
++        {
++            get
++            {
++                return this.userAccessForQueryField;
++            }
++            set
++            {
++                this.userAccessForQueryField = value;
++            }
++        }
++
++        /// <remarks/>
++        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
++        public string UserAccessForUpdate
++        {
++            get
++            {
++                return this.userAccessForUpdateField;
++            }
++            set
++            {
++                this.userAccessForUpdateField = value;
++            }
++        }
++
++        /// <remarks/>
++        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
++        public string UserAccessForDelete
++        {
++            get
++            {
++                return this.userAccessForDeleteField;
++            }
++            set
++            {
++                this.userAccessForDeleteField = value;
++            }
++        }
++
++        /// <remarks/>
++        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+         public bool HasUserDefinedFields
+         {
+             get
+@@ -30980,7 +31044,7 @@ namespace Autotask
+         }
+         
+         /// <remarks/>
+-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
++        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+         public bool SupportsWebhookCallouts
+         {
+             get

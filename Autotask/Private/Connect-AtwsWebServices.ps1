@@ -234,6 +234,6 @@ Function Connect-AtwsWebServices {
   
     end {
         Write-Verbose ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-        Write-AtwsProgress -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done' @ProgressParameters   
+        Write-AtwsProgress -Status 'Completed' -PercentComplete 100 -CurrentOperation 'Done' @ProgressParameters -Completed
     }
 }

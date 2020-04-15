@@ -36,6 +36,13 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.6
+
+- BUGFIX: Issue #79: Contact UDF's Missing. It was missing on all relevant entities, manual fix of Reference.cs
+- UPDATE: Automatic build related: Automatic patch for missing properties on EntityInfo
+- UPDATE: Minor improvements to Write-AtwsProgress
+- UPDATE: Catching and displaying errors from indirect module load
+
 ## Version 1.6.5 (GA)
 
 - UPDATE: Support for API version 1.6.5 included

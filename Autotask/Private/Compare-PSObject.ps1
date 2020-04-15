@@ -80,6 +80,15 @@ Function Compare-PSObject {
                         break
                     }
                     
+                    # Do we have a picklist? If so, compare picklist values, too
+                    if ($object.PicklistValues.Count -gt 0) {
+                        # Compare picklistvalues
+                        $difference = Compare-Object -ReferenceObject $object.PicklistValues -DifferenceObject $DifferenceObject[$index].PicklistValues -Property value, label, sortorder, isactive
+                        if ($difference) {
+                            $identical = $false
+                            break
+                        }
+                    }
                 }
 
                 

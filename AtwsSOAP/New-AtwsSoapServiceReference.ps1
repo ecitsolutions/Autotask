@@ -44,6 +44,7 @@ Function New-AtwsSoapServiceReference {
         $outputDir = Join-Path $location 'Autotask'
         $source = Join-Path $outputDir 'Reference.cs'
         $target = Join-Path $location '../Autotask/Private/Reference.cs'
+        $patch = Join-Path $location 'Missing properties on EntityInfo.patch'
         $uri = 'https://webservices.Autotask.net/atservices/1.6/atws.wsdl'
 
         # Locate command. Should be in .dotnet/tools
@@ -80,6 +81,8 @@ Function New-AtwsSoapServiceReference {
         $verboseWarning = '{0}: About to move service reference file to {1} overwriting any pre-existing file. Do you want to continue?' -F $caption, $target
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             Move-Item $source $target -Force
+            # Apply patch, ignore errors
+            Get-Content $patch | git am
         }
 
     }
