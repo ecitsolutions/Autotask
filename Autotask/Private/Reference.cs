@@ -30893,9 +30893,9 @@ namespace Autotask
 
         private string userAccessForCreateField;
 
-        private string userAccessForUpdateField;
-
         private string userAccessForQueryField;
+        
+        private string userAccessForUpdateField;
 
         private string userAccessForDeleteField;
 
@@ -30989,20 +30989,6 @@ namespace Autotask
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
-        public string UserAccessForUpdate
-        {
-            get
-            {
-                return this.userAccessForUpdateField;
-            }
-            set
-            {
-                this.userAccessForUpdateField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
         public string UserAccessForQuery
         {
             get
@@ -31012,6 +30998,20 @@ namespace Autotask
             set
             {
                 this.userAccessForQueryField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        public string UserAccessForUpdate
+        {
+            get
+            {
+                return this.userAccessForUpdateField;
+            }
+            set
+            {
+                this.userAccessForUpdateField = value;
             }
         }
 
