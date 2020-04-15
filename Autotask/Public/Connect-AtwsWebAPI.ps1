@@ -183,8 +183,12 @@ Function Connect-AtwsWebAPI {
         }
       
         # Reload the module with configuration 
-        Import-Module -Name $moduleName @importParams -ArgumentList $ConfigurationData
-
+        Try { 
+            Import-Module -Name $moduleName @importParams -ArgumentList $ConfigurationData
+        }
+        catch { 
+            Write-Host ('ERROR: {0}' -f $_.Exception.Message) -ForegroundColor Red
+        }
         
     }
   
