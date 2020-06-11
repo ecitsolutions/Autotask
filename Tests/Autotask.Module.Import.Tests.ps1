@@ -105,30 +105,6 @@ Describe -Name 'Import module with Connect-AtwsWebApi' -Tag 'Import-Module', 'Au
     # Remove any loaded modules before trying to load it again
     Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
     
-    # This one starts with a module loaded without options - already tested
-    Import-Module $modulePath -Force
-
-    Context -Name 'Straight import with credential and api tracking id' -Fixture {
-        Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
-
-        $loadedModule = Get-Module $moduleName
-
-        It -Name 'should be loaded' -Test {
-            $loadedModule.Name | Should -Be $moduleName
-        }
-
-        It -Name 'should export hundreds of commands' -Test {
-            $loadedModule.ExportedCommands.Count | Should -BeGreaterThan 300
-        }
-
-        It -Name 'Get-AtwsAccount should have parameters with picklists' -Test {
-            $loadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -BeGreaterThan 1
-        }
-    }
-
-    # Remove any loaded modules before trying to load it again
-    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
-    
     Context -Name 'Import with -NoDiskCache' -Fixture {
 
         Import-Module $modulePath -Force    
@@ -149,4 +125,29 @@ Describe -Name 'Import module with Connect-AtwsWebApi' -Tag 'Import-Module', 'Au
             $loadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -Be 0
         }
     }
+ 
+    # Remove any loaded modules before trying to load it again
+    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
+    
+    # This one starts with a module loaded without options - already tested
+    Import-Module $modulePath -Force
+
+    Context -Name 'Straight import with credential and api tracking id' -Fixture {
+        Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
+
+        $loadedModule = Get-Module $moduleName
+
+        It -Name 'should be loaded' -Test {
+            $loadedModule.Name | Should -Be $moduleName
+        }
+
+        It -Name 'should export hundreds of commands' -Test {
+            $loadedModule.ExportedCommands.Count | Should -BeGreaterThan 300
+        }
+
+        It -Name 'Get-AtwsAccount should have parameters with picklists' -Test {
+            $loadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -BeGreaterThan 1
+        }
+    }
+    
 }
