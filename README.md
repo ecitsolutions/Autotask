@@ -36,6 +36,11 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.7
+
+- BUGFIX: Issue #83: Still checking for well known folder My Documents on Windows, even when using -NoDiskCache
+- BUGFIX: Issue #61: When passing multiple values for a datetime parameter it was expanded even when it shouldn't be
+
 ## Version 1.6.6
 
 - BUGFIX: Issue #79: Contact UDF's Missing. It was missing on all relevant entities, manual fix of Reference.cs
