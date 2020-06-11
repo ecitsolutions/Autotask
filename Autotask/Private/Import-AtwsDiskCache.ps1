@@ -39,30 +39,8 @@ Function Import-AtwsDiskCache {
         # Use join-path to be platform agnostic on slashes in paths
         $centralCache = Join-Path $(Join-Path $myModule.ModuleBase 'Private') $cacheFile
 
-
         Write-Verbose -Message ('{0}: Module cache location is {1}' -F $MyInvocation.MyCommand.Name, $centralCache)  
         
-        # On Windows we store the cache in the WindowsPowerhell folder in My documents
-        # On macOS and Linux we use a dot-folder in the users $HOME folder as is customary
-        if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {  
-            $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) 'WindowsPowershell\Cache' 
-        }
-        else {
-            $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) '.config\powershell\atwsCache' 
-        }
-
-        # Add tenant id to path
-        $PersonalCacheDir = Join-Path $PersonalCacheDir $Script:Atws.CI
-
-        # Add module version to cache path (join-path only takes a single childpath parameter)
-        $PersonalCacheDir = Join-Path $PersonalCacheDir $My.ModuleVersion.ToString()
-        
-        # Save the cache path to the module information
-        $Script:Atws.DynamicCache = $PersonalCacheDir  
-        
-        $PersonalCache = Join-Path $PersonalCacheDir $CacheFile
-        Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)   
-  
     }
   
     process {
@@ -70,6 +48,28 @@ Function Import-AtwsDiskCache {
         # This function should not be called from a context where this is necessary, but
         # better be on the safe side
         if ($Script:Atws.Configuration.UseDiskCache) { 
+            # On Windows we store the cache in the WindowsPowerhell folder in My documents
+            # On macOS and Linux we use a dot-folder in the users $HOME folder as is customary
+            if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {  
+                $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) 'WindowsPowershell\Cache' 
+            }
+            else {
+                $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) '.config\powershell\atwsCache' 
+            }
+
+            # Add tenant id to path
+            $PersonalCacheDir = Join-Path $PersonalCacheDir $Script:Atws.CI
+
+            # Add module version to cache path (join-path only takes a single childpath parameter)
+            $PersonalCacheDir = Join-Path $PersonalCacheDir $My.ModuleVersion.ToString()
+        
+            # Save the cache path to the module information
+            $Script:Atws.DynamicCache = $PersonalCacheDir  
+        
+            $PersonalCache = Join-Path $PersonalCacheDir $CacheFile
+
+            Write-Verbose -Message ('{0}: Personal cache location is {1}.' -F $MyInvocation.MyCommand.Name, $PersonalCache)  
+
             if (-not (Test-Path $personalCache)) {
                 Write-Verbose -Message ('{0}: There is no personal cache. Creating from central location.' -F $MyInvocation.MyCommand.Name)
       
