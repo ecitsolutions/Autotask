@@ -104,7 +104,7 @@ Function ConvertTo-AtwsFilter {
                         $value = $parameterValue.Value
                         
                     }
-                    elseif ($parameterValue.GetType().Name -eq 'DateTime' -and -not $Parameter.Value.Count -gt 1) {
+                    elseif (($parameterValue.GetType().Name -eq 'DateTime') -and -not ($parameter.Value.Count -gt 1)) {
                         if ($parameterValue -eq $parameterValue.Date -and 
                             $parameter.Key -notin $GreaterThan -and 
                             $parameter.Key -notin $GreaterThanOrEquals -and 
