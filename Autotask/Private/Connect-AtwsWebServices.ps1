@@ -221,10 +221,7 @@ Function Connect-AtwsWebServices {
             
             # Clear result variable
             Remove-Variable -Name result -Force
-            # Load the entity cache to memory
-            Write-Verbose ('{0}: Loading disk cache' -F $MyInvocation.MyCommand.Name)
-            Import-AtwsDiskCache
-        
+           
         }
         else {
             Remove-Variable -Name Atws -Scope Script

@@ -102,6 +102,38 @@ describe 'Issue #63' -Tag 'Issues' {
     }
 }
 
+
+Describe 'Issue #61' -Tag 'Issues' {
+    # The root cause was a mistake in ConvertTo-AtwsFilter
+    # We'll check this by mocking Get-AtwsData and verifying the -Filter
+    InModuleScope Autotask { 
+        
+        Mock 'Get-AtwsData' {
+            [PSCustomObject]@{
+                PSTypeName = 'Autotask.ContractServiceUnit'
+                StartDate  = Get-Date
+                EndDate    = Get-Date
+            }
+        }
+        
+        Context 'Issue #61: Date queries with multiple date values should not be expanded to date filters ' {
+            $dates = @('2019.01.01', '2019.12.31')
+            $result = Get-AtwsContractServiceUnit -ContractID 0 -StartDate $dates
+            
+            It 'should pass -eq as the last operator' { 
+                $assertParams = @{
+                    CommandName     = 'Get-AtwsData'
+                    ParameterFilter = {
+                        $Filter[-2] -eq '-eq' 
+                    }
+                }
+                Assert-MockCalled @assertParams
+            }
+        }
+    }
+}
+
+
 describe 'Issue #44' -Tag 'Issues' {
 
     context 'Issue #44: GetEntityByReferenceId documentation ' {
