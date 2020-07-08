@@ -1,5 +1,5 @@
-#Requires -Version 4.0
-#Version 1.6.6
+﻿#Requires -Version 4.0
+#Version 1.6.8
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -25,6 +25,7 @@ To create a new TaxRegion you need the following required fields:
 Entities that have fields that refer to the base entity of this CmdLet:
 
 Account
+ AccountPhysicalLocation
  Tax
 
 .INPUTS

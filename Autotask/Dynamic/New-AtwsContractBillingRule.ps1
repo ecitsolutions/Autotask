@@ -1,5 +1,5 @@
-#Requires -Version 4.0
-#Version 1.6.6
+﻿#Requires -Version 4.0
+#Version 1.6.8
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -183,7 +183,14 @@ Set-AtwsContractBillingRule
       ParametersetName = 'By_parameters'
     )]
     [decimal]
-    $DailyProratedPrice
+    $DailyProratedPrice,
+
+# Execution Method
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [string]
+    $ExecutionMethod
   )
  
     begin { 

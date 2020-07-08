@@ -1,5 +1,5 @@
-#Requires -Version 4.0
-#Version 1.6.6
+﻿#Requires -Version 4.0
+#Version 1.6.8
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -521,7 +521,14 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ImpersonatorCreatorResourceID
+    $ImpersonatorCreatorResourceID,
+
+# Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorResourceID
   )
  
     begin { 

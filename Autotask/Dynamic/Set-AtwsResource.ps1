@@ -1,5 +1,5 @@
-#Requires -Version 4.0
-#Version 1.6.6
+﻿#Requires -Version 4.0
+#Version 1.6.8
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -49,6 +49,7 @@ Account
  Opportunity
  Phase
  Product
+ ProductNote
  Project
  ProjectCost
  ProjectNote
@@ -66,6 +67,7 @@ Account
  ServiceBundle
  ServiceCall
  ServiceCallTaskResource
+ ServiceCallTicket
  ServiceCallTicketResource
  ServiceLevelAgreementResults
  Subscription

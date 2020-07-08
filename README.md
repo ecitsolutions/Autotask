@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.8
+
+- UPDATE: New API version. Rebuild to include new and changed entities
+
 ## Version 1.6.7
 
 - BUGFIX: Issue #83: Still checking for well known folder My Documents on Windows, even when using -NoDiskCache

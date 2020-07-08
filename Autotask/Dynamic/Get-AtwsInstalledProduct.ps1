@@ -1,5 +1,5 @@
-#Requires -Version 4.0
-#Version 1.6.6
+﻿#Requires -Version 4.0
+#Version 1.6.8
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -103,6 +103,7 @@ BillingItem
  InstalledProduct
  InstalledProductBillingProductAssociation
  InstalledProductNote
+ ProductNote
  Subscription
  Ticket
  TicketAdditionalInstalledProduct
@@ -187,7 +188,7 @@ Set-AtwsInstalledProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem:InstalledProductID', 'InstalledProduct:ParentInstalledProductID', 'InstalledProductBillingProductAssociation:InstalledProductID', 'InstalledProductNote:InstalledProductID', 'Subscription:InstalledProductID', 'Ticket:InstalledProductID', 'TicketAdditionalInstalledProduct:InstalledProductID')]
+    [ValidateSet('BillingItem:InstalledProductID', 'InstalledProduct:ParentInstalledProductID', 'InstalledProductBillingProductAssociation:InstalledProductID', 'InstalledProductNote:InstalledProductID', 'ProductNote:ProductID', 'Subscription:InstalledProductID', 'Ticket:InstalledProductID', 'TicketAdditionalInstalledProduct:InstalledProductID')]
     [string]
     $GetExternalEntityByThisEntityId,
 

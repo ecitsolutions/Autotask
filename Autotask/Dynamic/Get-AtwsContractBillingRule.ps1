@@ -1,5 +1,5 @@
-#Requires -Version 4.0
-#Version 1.6.6
+﻿#Requires -Version 4.0
+#Version 1.6.8
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -34,6 +34,9 @@ Properties with picklists are:
 DetermineUnits
  
 
+ExecutionMethod
+ 
+
 Entities that have fields that refer to the base entity of this CmdLet:
 
 
@@ -60,20 +63,20 @@ Returns any object with a ContractBillingRuleName that matches the simple patter
 Get-AtwsContractBillingRule -ContractBillingRuleName SomeName* -NotLike ContractBillingRuleName
 Returns any object with a ContractBillingRuleName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsContractBillingRule -D <PickList Label>
-Returns any ContractBillingRules with property D equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsContractBillingRule -DetermineUnits <PickList Label>
+Returns any ContractBillingRules with property DetermineUnits equal to the <PickList Label>. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsContractBillingRule -D <PickList Label> -NotEquals D 
-Returns any ContractBillingRules with property D NOT equal to the <PickList Label>.
+Get-AtwsContractBillingRule -DetermineUnits <PickList Label> -NotEquals DetermineUnits 
+Returns any ContractBillingRules with property DetermineUnits NOT equal to the <PickList Label>.
  .EXAMPLE
-Get-AtwsContractBillingRule -D <PickList Label1>, <PickList Label2>
-Returns any ContractBillingRules with property D equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsContractBillingRule -DetermineUnits <PickList Label1>, <PickList Label2>
+Returns any ContractBillingRules with property DetermineUnits equal to EITHER <PickList Label1> OR <PickList Label2>.
  .EXAMPLE
-Get-AtwsContractBillingRule -D <PickList Label1>, <PickList Label2> -NotEquals D
-Returns any ContractBillingRules with property D NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContractBillingRule -DetermineUnits <PickList Label1>, <PickList Label2> -NotEquals DetermineUnits
+Returns any ContractBillingRules with property DetermineUnits NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
  .EXAMPLE
-Get-AtwsContractBillingRule -Id 1234 -ContractBillingRuleName SomeName* -D <PickList Label1>, <PickList Label2> -Like ContractBillingRuleName -NotEquals D -GreaterThan Id
-An example of a more complex query. This command returns any ContractBillingRules with Id GREATER THAN 1234, a ContractBillingRuleName that matches the simple pattern SomeName* AND that has a D that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContractBillingRule -Id 1234 -ContractBillingRuleName SomeName* -DetermineUnits <PickList Label1>, <PickList Label2> -Like ContractBillingRuleName -NotEquals DetermineUnits -GreaterThan Id
+An example of a more complex query. This command returns any ContractBillingRules with Id GREATER THAN 1234, a ContractBillingRuleName that matches the simple pattern SomeName* AND that has a DetermineUnits that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
 .LINK
 New-AtwsContractBillingRule
@@ -244,52 +247,59 @@ Set-AtwsContractBillingRule
     [Nullable[decimal][]]
     $DailyProratedPrice,
 
+# Execution Method
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'Active', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'CreateChargesAsBillable', 'IncludeItemsInChargeDescription', 'EnableDailyProrating', 'DailyProratedCost', 'DailyProratedPrice')]
+    [string[]]
+    $ExecutionMethod,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'Active', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'CreateChargesAsBillable', 'IncludeItemsInChargeDescription', 'EnableDailyProrating', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'Active', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'CreateChargesAsBillable', 'IncludeItemsInChargeDescription', 'EnableDailyProrating', 'DailyProratedCost', 'DailyProratedPrice')]
+    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'Active', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'CreateChargesAsBillable', 'IncludeItemsInChargeDescription', 'EnableDailyProrating', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'Active', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'CreateChargesAsBillable', 'IncludeItemsInChargeDescription', 'EnableDailyProrating', 'DailyProratedCost', 'DailyProratedPrice')]
+    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'Active', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'CreateChargesAsBillable', 'IncludeItemsInChargeDescription', 'EnableDailyProrating', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice')]
+    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice')]
+    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice')]
+    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice')]
+    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
     [string[]]
     $LessThanOrEquals,
 
