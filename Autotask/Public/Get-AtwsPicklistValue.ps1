@@ -106,7 +106,7 @@ Function Get-AtwsPicklistValue {
     
         # Check if we are connected before trying anything
         if (-not($Script:Atws)) {
-            throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
             return
         }
 
@@ -132,7 +132,7 @@ Function Get-AtwsPicklistValue {
             Write-Debug -Message ('{0}: Entity {1} has picklists and field {2} has {3} picklist values.' -F $MyInvocation.MyCommand.Name, $Entity, $FieldName, $result.count) 
         }
         if ($picklistValues.count -gt 0) {
-            if($Hashtable.IsPresent) {
+            if ($Hashtable.IsPresent) {
                 $result = @{}
                 foreach ($item in $picklistValues) {
                     if ($Value.IsPresent) {
