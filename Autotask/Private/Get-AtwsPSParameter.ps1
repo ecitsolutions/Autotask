@@ -40,6 +40,8 @@ Function Get-AtwsPSParameter {
         [Parameter(Mandatory = $true)]
         [string]$Name,
 
+        [string]$EntityName,
+
         [string[]]$Alias,
     
         [Parameter(Mandatory = $true)]
@@ -61,6 +63,8 @@ Function Get-AtwsPSParameter {
 
         [string[]]$ValidateSet,
 
+        [switch]$isPicklist,
+
         [Alias('Length')]
         [int]$ValidateLength,
 
@@ -70,8 +74,6 @@ Function Get-AtwsPSParameter {
         
         [switch]$nullable
 
-
-          
     )
   
     begin { 
@@ -127,8 +129,15 @@ Function Get-AtwsPSParameter {
             $text += "    [ValidateLength(0,$ValidateLength)]`n" 
         }
         
+        # Add picklists expander if present
+        if ($isPicklist.IsPresent) { 
+            # Add dynamic intellisense help 
+            $text += "    [ArgumentCompleter({`n      param(`$Cmd, `$Param, `$Word, `$Ast, `$FakeBound)`n      Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label`n    })]`n"
+            $text += "    [ValidateScript({`n      $_ -in (Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label)`n    })]`n"
+
+        }
         # Add Validateset if present
-        if ($ValidateSet.Count -gt 0) { 
+        elseIf ($ValidateSet.Count -gt 0) { 
             # Fix quote characters for labels
             $labels = foreach ($Label in  $ValidateSet) {
                 # Use literal string with escaped literal quotes, both straight and curly

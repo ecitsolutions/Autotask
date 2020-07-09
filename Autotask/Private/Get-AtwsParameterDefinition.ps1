@@ -170,9 +170,11 @@ Function Get-AtwsParameterDefinition {
                 ParameterSetName       = $parameterSet[$field.Name]
                 ValidateNotNullOrEmpty = $field.IsRequired
                 ValidateLength         = $ValidateLength
-                ValidateSet            = $field.PickListValues | Where-Object { $_.IsActive } | Select-Object -ExpandProperty Label | Sort-Object -Unique
+                ValidateSet            = @()
+                isPicklist             = $field.IsPickList
                 Array                  = $(($Verb -eq 'Get'))
                 Name                   = $field.Name
+                EntityName             = $Entity.Name
                 Alias                  = $Alias
                 Type                   = $Type
                 Comment                = $field.Label

@@ -111,7 +111,7 @@ Function Get-AtwsPicklistValue {
         }
 
         # Prepare an empty container for a result
-        $values = @()
+        $picklistValues = @()
     }
   
     process { 
