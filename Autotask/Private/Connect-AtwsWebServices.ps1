@@ -70,39 +70,6 @@ Function Connect-AtwsWebServices {
             $Global:WarningPreference = 'Continue'
         }
 
-        # Load support for TLS 1.2 if the Service Point Manager haven't loaded it yet
-        # This is now a REQUIREMENT to talk to the API endpoints
-        $Protocol = [System.Net.ServicePointManager]::SecurityProtocol
-        if ($Protocol.Tostring() -notlike '*Tls12*') { 
-            [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
-        }
-    
-        # Path to web service reference
-        $code = '{0}\Private\Reference.cs' -f $My['ModuleBase']
-
-        # List of needed assemblies for Powershell 5.1
-        $assemblies = @(
-            'System.ServiceModel'
-            'System.ServiceModel.Duplex' 
-            'System.ServiceModel.Http'
-            'System.ServiceModel.NetTcp'
-            'System.ServiceModel.Security'
-            'System.Diagnostics.Debug'
-            'System.Xml'
-            'System.Xml.ReaderWriter'
-            'System.Runtime.Serialization'
-        )
-        # For Powershell versions 6 and higher, add these assemblies
-        if ($PSVersionTable.PSVersion.Major -ge 6) { 
-            $assemblies += @( 
-                'netstandard'
-                'System.Xml.XmlSerializer'
-                'System.Runtime.Serialization.Xml'
-                'System.ServiceModel.Primitives'
-                'System.Private.ServiceModel'
-                'System.Diagnostics.Tools'
-            )
-        }
     }
   
     process { 
@@ -113,9 +80,6 @@ Function Connect-AtwsWebServices {
             Id       = 4
         }
     
-        # Compile webserviceinfo (Reference.cs) and instantiate a SOAP client
-        Add-Type -TypeDefinition (Get-Content -raw $code) -ReferencedAssemblies $assemblies
-        
         # Create a  binding with no authentication
         $anonymousBinding = New-Object ServiceModel.BasicHttpsBinding 
 
@@ -192,12 +156,6 @@ Function Connect-AtwsWebServices {
 
             # Add configuration to connection
             Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name Configuration -Value $ConfigurationData -Force
-
-            # Add empty hashtable as placeholder for in memory cache - will be populated from disk later
-            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name Cache -Value @{ } -Force
-            
-            # Add empty string as placeholder for cache path - will be populated later
-            Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name DynamicCache -Value '' -Force
 
         }
         catch {

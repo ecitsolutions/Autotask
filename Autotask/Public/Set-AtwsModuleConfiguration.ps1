@@ -56,9 +56,6 @@ Function Set-AtwsModuleConfiguration {
         [switch]
         $RefreshCache,
 
-        [switch]
-        $NoDiskCache,
-
         [ValidateSet('Stop', 'Inquire', 'Continue', 'SilentlyContinue')]
         [string]
         $DebugPref,
@@ -87,13 +84,13 @@ Function Set-AtwsModuleConfiguration {
         }
 
         if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }
     
     }
   
     process {
-        $reloadModule = $false
+
         switch ($PSCmdlet.MyInvocation.BoundParameters) { 
             'Credential' {
                 $Script:Atws.Configuration.Username = $Credential.UserName
@@ -111,29 +108,14 @@ Function Set-AtwsModuleConfiguration {
                 if ($Prefix -ne $Script:Atws.Configuration.Prefix) { 
                     Write-Warning "The module prefix cannot be changed while the module is loaded. A module reload is necessary."
                     $Script:Atws.Configuration.Prefix = $Prefix
-                    $reloadModule = $true
                 }
             }
             'RefreshCache' { 
                 if ($RefreshCache.IsPresent) { 
-                    Write-Warning "Setting this option while the module is loaded does not change anything. A module reload is necessary."
                     $Script:Atws.Configuration.RefreshCache = $true
-                    $reloadModule = $true
-                }
+                    $reloadModule = $true                }
                 else {
                     $Script:Atws.Configuration.RefreshCache = $false
-                }
-            }
-            'UseDiskCache' { 
-                if ($UseDiskCache.IsPresent -and -not $Script:Atws.Configuration.UseDiskCache) {
-                    Write-Warning "Turning ON the disk cache. A module reload is necessary."
-                    $Script:Atws.Configuration.UseDiskCache = $true
-                    $reloadModule = $true
-                }
-                elseIf (-not $UseDiskCache.IsPresent -and $Script:Atws.Configuration.UseDiskCache) {
-                    Write-Warning "Turning OFF the disk cache. A module reload is necessary."
-                    $Script:Atws.Configuration.UseDiskCache = $true
-                    $reloadModule = $true
                 }
             }
             'DebugPref' { 
@@ -143,16 +125,6 @@ Function Set-AtwsModuleConfiguration {
             'VerbosePref' {
                 $VerbosePreference = $VerbosePref
                 $Script:Atws.Configuration.VerbosePref = $VerbosePref
-            }
-        }
-
-        if ($reloadModule) {
-            $caption = $MyInvocation.MyCommand.Name
-            $verboseDescription = '{0}: Reloading module {1} with changed options' -F $caption, $ModuleName
-            $verboseWarning = '{0}: About to reload module {1} with changed options. Do you want to continue?' -F $caption, $ModuleName
-          
-            if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-                Connect-AtwsWebAPI -Configuration $Script:Atws.Configuration
             }
         }
         

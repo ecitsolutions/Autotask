@@ -32,8 +32,8 @@ Function Import-AtwsCmdLet {
         ConfirmImpact = 'Medium'
     )]
     Param(
-        [PSObject[]]
-        $Entities = $(Get-AtwsFieldInfo -Dynamic)
+        [Hashtable]
+        $Entities = $(Get-AtwsFieldInfo -All)
     )
   
     begin { 
@@ -46,16 +46,8 @@ Function Import-AtwsCmdLet {
         # Prepare parameters for @splatting
         $progressId = 2
         $progressParameters = @{
-            Activity = 'Creating and importing functions for all Autotask entities with picklists.'
+            Activity = 'Creating and importing functions for all Autotask entities.'
             Id       = $progressId
-        }
-        
-        # The path to a users personal cache folder
-        $rootPath = $Script:Atws.DynamicCache
-
-        # Make sure directory exists
-        if (-not (Test-Path "$rootPath")) {
-            $null = New-Item -Path "$rootPath" -ItemType Directory -Force
         }
     
     } 
@@ -88,22 +80,17 @@ Function Import-AtwsCmdLet {
             $verboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $caption, $entity.Name
             $verboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $caption, $entity.Name
        
-            $functionDefinition = Get-AtwsfunctionDefinition -Entity $entity -FieldInfo $cacheEntry.Value.FieldInfo
+            $functionDefinition = Get-AtwsDynamicFunctionDefinition -Entity $entity -FieldInfo $cacheEntry.Value.FieldInfo
         
             if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
         
-                foreach ($function in $functionDefinition.GetEnumerator()) {
-                    # Set path to powershell script file in user cache
-                    $filePath = Join-Path $rootPath ('{0}.ps1' -f $function.Key)
+                foreach ($function in $functionDefinition.GetEnumerator()) { 
           
                     # Import the updated function
                     . ([ScriptBlock]::Create($function.Value))
-          
+      
                     # Export the module member
-                    Export-ModuleMember -Function $function.Key
-          
-                    # Write the function to disk for faster load later
-                    Set-Content -Path $filePath -Value $function.Value -Force -Encoding UTF8           
+                    Export-ModuleMember -Function $function.Key           
                 }
             }
         }
@@ -115,6 +102,6 @@ Function Import-AtwsCmdLet {
     }
 
     end {
-        Write-Debug -Message ('{0}: Imported {1} dynamic functions' -F $MyInvocation.MyCommand.Name, $index)
+        Write-Debug -Message ('{0}: Imported {1} functions' -F $MyInvocation.MyCommand.Name, $index)
     }
 }

@@ -108,7 +108,7 @@ Function Get-AtwsInvoiceInfo {
         $OutputFile
     )
   
-  begin {
+    begin {
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
@@ -116,7 +116,7 @@ Function Get-AtwsInvoiceInfo {
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     
         if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }    
     
         # Empty container to return with results
@@ -148,9 +148,9 @@ Function Get-AtwsInvoiceInfo {
         # API once for each invoice. Second parameter says we want the result
         # as XML. Actually we don't, but the alternative (HTML) is worse.
     
-    Write-Verbose ('{0}: Asking for details on Invoice IDs {1}' -F $MyInvocation.MyCommand.Name, ($InvoiceId -join ', '))
+        Write-Verbose ('{0}: Asking for details on Invoice IDs {1}' -F $MyInvocation.MyCommand.Name, ($InvoiceId -join ', '))
        
-    ForEach ($id in $InvoiceId) {
+        ForEach ($id in $InvoiceId) {
            
             # The API call. Make sure to query the correct WebServiceProxy object
             # specified by the $Prefix name. If the Id does not exist we get a
@@ -161,11 +161,11 @@ Function Get-AtwsInvoiceInfo {
             catch {
                 Write-Warning ('{0}: FAILED on Invoice ID {1}. No data returned.' -F $MyInvocation.MyCommand.Name, $id)
               
-        # try the next ID
-        Continue
-      }
+                # try the next ID
+                Continue
+            }
       
-      Write-Verbose ('{0}: Converting Invoice ID {1} to a PSObject' -F $MyInvocation.MyCommand.Name, $id)
+            Write-Verbose ('{0}: Converting Invoice ID {1} to a PSObject' -F $MyInvocation.MyCommand.Name, $id)
            
             if ($XML.IsPresent) { 
                 # Import node with deep clone = $true

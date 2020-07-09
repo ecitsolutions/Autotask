@@ -57,9 +57,6 @@ Function New-AtwsModuleConfiguration {
         [switch]
         $RefreshCache = $false,
 
-        [switch]
-        $NoDiskCache = $false,
-
         [string]
         $DebugPref = $DebugPreference,
 
@@ -85,7 +82,6 @@ Function New-AtwsModuleConfiguration {
                 ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
                 Prefix                   = $Prefix
                 RefreshCache             = $RefreshCache.IsPresent
-                UseDiskCache             = $NoDiskCache.IsPresent -xor $true
                 DebugPref                = $DebugPreference
                 VerbosePref              = $VerbosePreference
             }

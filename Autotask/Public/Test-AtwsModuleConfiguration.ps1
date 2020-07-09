@@ -118,14 +118,6 @@ Function Test-AtwsModuleConfiguration {
             [switch]
             $RefreshCache,
 
-    
-            [Parameter(
-                Mandatory = $true,
-                ValueFromPipelineByPropertyName = $true
-            )]
-            [switch]
-            $UseDiskCache,
-
             [Parameter(
                 Mandatory = $true,
                 ValueFromPipelineByPropertyName = $true

@@ -8,21 +8,27 @@
 Function Connect-AtwsWebAPI {
     <#
         .SYNOPSIS
-            This function re-loads the module with the correct parameters for full functionality
+            This function connects to the Autotask Web Services API, authenticates a user and creates a 
+            SOAP webservices proxy object. 
         .DESCRIPTION
-            This function is a wrapper that is included for backwards compatibility with previous module behavior.
-            These parameters should be passed to Import-Module -Variable directly, but previously the module 
-            consisted of two, nested modules. Now there is a single module with all functionality.
+            The function takes a credential object and uses it to authenticate and connect to the Autotask
+            Web Services API. This is done by creating a webservices proxy. The proxy object imports the SOAP 
+            WSDL definition file, creates all entity classes in PowerShell and exposes the basic methods
+            (query(), create(), update(), remove(), GetEntityInfo(), GetFieldInfo() and a few more). 
         .INPUTS
-            A PSCredential object. Required. 
-            A string used as ApiTrackingIdentifier. Required. 
+            A PSCredential object. Required. It will prompt for credentials if the object is not provided.
         .OUTPUTS
-            Nothing.
+            A webserviceproxy object is created.
         .EXAMPLE
-            Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $string
+            Connect-AtwsWebAPI
+            Prompts for a username and password and authenticates to Autotask
+        .EXAMPLE
+            Connect-AtwsWebAPI
         .NOTES
             NAME: Connect-AtwsWebAPI
-    #>
+        .LINK
+            Get-AtwsData
+  #>
 	
     [cmdletbinding(
         SupportsShouldProcess = $true,
@@ -35,10 +41,6 @@ Function Connect-AtwsWebAPI {
             Mandatory = $true,
             ParameterSetName = 'Default'
         )]
-        [Parameter(
-            Mandatory = $true,
-            ParameterSetName = 'NoDiskCache'
-        )]
         [ValidateNotNullOrEmpty()]    
         [pscredential]
         $Credential,
@@ -47,18 +49,11 @@ Function Connect-AtwsWebAPI {
             Mandatory = $true,
             ParameterSetName = 'Default'
         )]
-        [Parameter(
-            Mandatory = $true,
-            ParameterSetName = 'NoDiskCache'
-        )]
         [string]
         $ApiTrackingIdentifier,
     
         [Parameter(
             ParameterSetName = 'Default'
-        )]
-        [Parameter(
-            ParameterSetName = 'NoDiskCache'
         )]
         [Alias('Picklist','UsePickListLabels')]
         [switch]
@@ -66,9 +61,6 @@ Function Connect-AtwsWebAPI {
     
         [Parameter(
             ParameterSetName = 'Default'
-        )]
-        [Parameter(
-            ParameterSetName = 'NoDiskCache'
         )]
         [ValidateScript( {
             # It can be empty, but if it isn't it should be max 8 characters and only letters and numbers
@@ -90,7 +82,7 @@ Function Connect-AtwsWebAPI {
 
     
         [Parameter(
-            ParameterSetName = 'NoDiskCache'
+            ParameterSetName = 'Default'
         )]
         [switch]
         $NoDiskCache,
@@ -100,7 +92,7 @@ Function Connect-AtwsWebAPI {
             ParameterSetName = 'ConfigurationObject'
         )]
         [ValidateScript( { 
-                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'NoDiskCache', 'DebugPref', 'VerbosePref')
+                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'DebugPref', 'VerbosePref')
                 $members = Get-Member -InputObject $_ -MemberType NoteProperty
                 $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
                 if (-not($missingProperties)) {
@@ -144,7 +136,6 @@ Function Connect-AtwsWebAPI {
                     ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
                     Prefix                   = $Prefix
                     RefreshCache             = $RefreshCache.IsPresent
-                    NoDiskCache              = $NoDiskCache.IsPresent
                     DebugPref                = $DebugPreference
                     VerbosePref              = $VerbosePreference
                 }
@@ -164,31 +155,9 @@ Function Connect-AtwsWebAPI {
             return
         }
 
-        # Question 1: Is the current module in $env:PSModulePath
-        $notInPath = $true
-        $separator = if ($IsMacOS -or $IsLinux) { ':' } else { ';' }
-        foreach ($dir in $env:PSModulePath -split $separator) { # Separator can be both ; and : depending on platform
-            if ($My.ModuleBase -like "$dir*") {
-                $notInPath = $false
-            }
-        }
-  
-        if ($notInPath) { 
-            # Import the module from its base directory
-            $moduleName = $My.ModuleBase
-        }
-        else {
-            # Import by module name
-            $moduleName = $MyInvocation.MyCommand.ModuleName
-        }
-      
-        # Reload the module with configuration 
-        Try { 
-            Import-Module -Name $moduleName @importParams -ArgumentList $ConfigurationData
-        }
-        catch { 
-            Write-Host ('ERROR: {0}' -f $_.Exception.Message) -ForegroundColor Red
-        }
+        ## Connect to the API
+        #  or die trying
+        . Connect-AtwsWebServices -Configuration $ConfigurationData -Erroraction Stop
         
     }
   

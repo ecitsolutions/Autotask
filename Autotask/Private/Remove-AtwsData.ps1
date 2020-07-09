@@ -48,7 +48,7 @@ Function Remove-AtwsData {
 
         # Check if we are connected before trying anything
         if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }
 
     }

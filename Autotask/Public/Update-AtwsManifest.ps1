@@ -49,7 +49,7 @@ Function Update-AtwsManifest {
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
        
         if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }
     
         # Get info from current module
@@ -146,19 +146,20 @@ Function Update-AtwsManifest {
         $ManifestParams['GUID'] = $GUID
     
         # Information to export
-        <# 
+  
         $Functions = @()
-        $Moduleinfo.ExportedFunctions.Keys | ForEach-Object { $Functions += $_ }#-replace $ModuleInfo.Prefix, '')}
+        $Moduleinfo.ExportedFunctions.Keys | ForEach-Object { $Functions += $_ } #-replace $ModuleInfo.Prefix, '')}
+  
+    <# 
         if ($Beta.IsPresent) {
         # Make sure the beta version does not clobber the release version through 
         # automatic module import
         $ManifestParams['FunctionsToExport'] = '*'
         }
         else { 
-        $ManifestParams['FunctionsToExport'] = $Functions
         }
     #>
-        $ManifestParams['FunctionsToExport'] = '*'
+        $ManifestParams['FunctionsToExport'] = $Functions
         $ManifestParams['CmdletsToExport'] = @()
         $ManifestParams['VariablesToExport'] = @()
         $ManifestParams['AliasesToExport'] = @()
