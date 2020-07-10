@@ -56,86 +56,66 @@ $modulePath = '{0}\{1}' -F $RootPath, $ModuleName
 Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
 
 Describe -Name 'Import module without any parameters' -Tag 'Import-Module' -Fixture {
-    Import-Module $modulePath -Force
 
-    $loadedModule = Get-Module $moduleName
+    BeforeAll { 
+        Import-Module $modulePath -Force
+        $loadedModule = Get-Module $moduleName
+    }
 
     It -Name 'should be loaded' -Test {
         $loadedModule.Name | Should -Be $moduleName
     }
 
-    It -Name 'should export only 1 command' -Test {
-        $loadedModule.ExportedCommands.Count | Should -Be 1
+    It -Name 'should export all commands' -Test {
+        $loadedModule.ExportedCommands.Count | Should -BeGreaterThan 400
     }
 
-    It -Name 'should export only Connect-AtwsWebAPI' -Test {
-        $loadedModule.ExportedCommands['Connect-AtwsWebApi'].Name | Should -Be 'Connect-AtwsWebApi'
+    It -Name 'Get-AtwsAccount should have parameters with picklists' -Test {
+        $loadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.TypeId.Name | Should -Contain 'ArgumentCompleterAttribute'
     }
 }
 
-
+# Remove any loaded modules before trying to load it again
+Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
 
 Describe -Name 'Import module with Credentials' -Tag 'Import-Module', 'Authentication' -Fixture {
 
-    # Remove any loaded modules before trying to load it again
-    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
-
     Context -Name 'Straight import with credential and api tracking id' -Fixture {
-        Import-Module $modulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
 
-        $loadedModule = Get-Module $moduleName
+        BeforeAll { 
+            Import-Module $modulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
+
+            $loadedModule = Get-Module $moduleName
+        }
 
         It -Name 'should be loaded' -Test {
             $loadedModule.Name | Should -Be $moduleName
         }
 
         It -Name 'should export hundreds of commands' -Test {
-            $loadedModule.ExportedCommands.Count | Should -BeGreaterThan 300
+            $loadedModule.ExportedCommands.Count | Should -BeGreaterThan 400
         }
 
         It -Name 'Get-AtwsAccount should have parameters with picklists' -Test {
-            $loadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -BeGreaterThan 1
+            $loadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.TypeId.Name | Should -Contain 'ArgumentCompleterAttribute'
         }
     }
 }
-
+    
+    # Remove any loaded modules before trying to load it again
+    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
 
 Describe -Name 'Import module with Connect-AtwsWebApi' -Tag 'Import-Module', 'Authentication' -Fixture {
-    
-    # Remove any loaded modules before trying to load it again
-    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
-    
-    Context -Name 'Import with -NoDiskCache' -Fixture {
 
-        Import-Module $modulePath -Force    
-
-        Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier -NoDiskCache
-
-        $loadedModule = Get-Module $moduleName
-
-        It -Name 'should be loaded' -Test {
-            $loadedModule.Name | Should -Be $moduleName
-        }
-
-        It -Name 'should export hundreds of commands' -Test {
-            $loadedModule.ExportedCommands.Count | Should -BeGreaterThan 300
-        }
-
-        It -Name 'Get-AtwsAccount should NOT have parameters with picklists' -Test {
-            $loadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -Be 0
-        }
-    }
- 
-    # Remove any loaded modules before trying to load it again
-    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
-    
-    # This one starts with a module loaded without options - already tested
-    Import-Module $modulePath -Force
-
-    Context -Name 'Straight import with credential and api tracking id' -Fixture {
+    BeforeAll { 
+        # This one starts with a module loaded without options - already tested
+        Import-Module $modulePath -Force
         Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
 
         $loadedModule = Get-Module $moduleName
+    }
+
+    Context -Name 'Straight import with credential and api tracking id' -Fixture {
 
         It -Name 'should be loaded' -Test {
             $loadedModule.Name | Should -Be $moduleName
@@ -146,8 +126,8 @@ Describe -Name 'Import module with Connect-AtwsWebApi' -Tag 'Import-Module', 'Au
         }
 
         It -Name 'Get-AtwsAccount should have parameters with picklists' -Test {
-            $loadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.ValidValues.Count | Should -BeGreaterThan 1
-        }
+            $loadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.TypeId.Name | Should -Contain 'ArgumentCompleterAttribute'
+       }
     }
     
 }

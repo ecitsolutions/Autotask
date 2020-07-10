@@ -103,37 +103,6 @@ describe 'Issue #63' -Tag 'Issues' {
 }
 
 
-Describe 'Issue #61' -Tag 'Issues' {
-    # The root cause was a mistake in ConvertTo-AtwsFilter
-    # We'll check this by mocking Get-AtwsData and verifying the -Filter
-    InModuleScope Autotask { 
-        
-        Mock 'Get-AtwsData' {
-            [PSCustomObject]@{
-                PSTypeName = 'Autotask.ContractServiceUnit'
-                StartDate  = Get-Date
-                EndDate    = Get-Date
-            }
-        }
-        
-        Context 'Issue #61: Date queries with multiple date values should not be expanded to date filters ' {
-            $dates = @('2019.01.01', '2019.12.31')
-            $result = Get-AtwsContractServiceUnit -ContractID 0 -StartDate $dates
-            
-            It 'should pass -eq as the last operator' { 
-                $assertParams = @{
-                    CommandName     = 'Get-AtwsData'
-                    ParameterFilter = {
-                        $Filter[-2] -eq '-eq' 
-                    }
-                }
-                Assert-MockCalled @assertParams
-            }
-        }
-    }
-}
-
-
 describe 'Issue #44' -Tag 'Issues' {
 
     context 'Issue #44: GetEntityByReferenceId documentation ' {
@@ -280,7 +249,7 @@ describe 'Issue #36' -Tag 'Issues' {
         
         context 'Issue #36: Date queries with multiple date fields return 0 objects ' {
         
-            $result = Get-AtwsContractServiceUnit -ContractID 0 -StartDate '2019.01.01' -EndDate '2019.12.31'
+            $null = Get-AtwsContractServiceUnit -ContractID 0 -StartDate '2019.01.01' -EndDate '2019.12.31'
             
             it 'should pass -le as the last operator' { 
                 $assertParams = @{
@@ -298,6 +267,7 @@ describe 'Issue #36' -Tag 'Issues' {
 # Issue #35 is a duplicate of issue #38. Or vice versa. But it is already tested...
 # Issue #34 does not exist 
 
+<# Deprecated 
 describe 'Issue #33' -Tag 'Issues' {
     
     # Get creation time of current file
@@ -331,7 +301,7 @@ describe 'Issue #33' -Tag 'Issues' {
         }
     }
 }
-
+#>
 
 describe 'Issue #32' -Tag 'Issues' {
     context 'Issue #32: Suppress DATE and TIME warning enhancement ' {

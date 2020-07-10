@@ -56,11 +56,10 @@ $moduleName = 'Autotask'
 # Store its path
 $rootPath = Split-Path -Parent $TestsFolder
 
-
 # Run the structure test
 
 foreach ($tag in 'Manifest', 'Functions') {
-    $TestResult = Invoke-Pester -Script @{
+    $TestResult = Invoke-Pester  -Script @{
         Path       = "$TestsFolder\Autotask.Module.Validation.Tests.ps1"
         Parameters = @{
             Credential            = $Credential
