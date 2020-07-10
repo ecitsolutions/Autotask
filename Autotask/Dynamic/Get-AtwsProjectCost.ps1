@@ -198,7 +198,7 @@ Set-AtwsProjectCost
       Get-AtwsPicklistValue -Entity ProjectCost -FieldName CostType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ProjectCost -FieldName CostType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -290,7 +290,7 @@ Set-AtwsProjectCost
       Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

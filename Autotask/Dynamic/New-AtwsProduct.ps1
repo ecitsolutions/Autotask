@@ -122,7 +122,7 @@ Set-AtwsProduct
       Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -210,7 +210,7 @@ Set-AtwsProduct
       Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -276,7 +276,7 @@ Set-AtwsProduct
       Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -295,7 +295,7 @@ Set-AtwsProduct
       Get-AtwsPicklistValue -Entity Product -FieldName PriceCostMethod -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity Product -FieldName PriceCostMethod -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

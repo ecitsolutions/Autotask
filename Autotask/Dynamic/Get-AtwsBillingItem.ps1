@@ -145,7 +145,7 @@ Set-AtwsBillingItem
       Get-AtwsPicklistValue -Entity BillingItem -FieldName Type -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity BillingItem -FieldName Type -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -165,7 +165,7 @@ Set-AtwsBillingItem
       Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

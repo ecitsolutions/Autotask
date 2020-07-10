@@ -162,7 +162,7 @@ Set-AtwsQuoteItem
       Get-AtwsPicklistValue -Entity QuoteItem -FieldName Type -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity QuoteItem -FieldName Type -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -291,7 +291,7 @@ Set-AtwsQuoteItem
       Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

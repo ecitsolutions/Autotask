@@ -89,7 +89,7 @@ Get-AtwsResourceSkill
       Get-AtwsPicklistValue -Entity ResourceSkill -FieldName SkillLevel -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ResourceSkill -FieldName SkillLevel -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

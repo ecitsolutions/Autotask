@@ -211,7 +211,7 @@ An example of a more complex query. This command returns any InternalLocations w
       Get-AtwsPicklistValue -Entity InternalLocation -FieldName HolidaySetId -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity InternalLocation -FieldName HolidaySetId -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

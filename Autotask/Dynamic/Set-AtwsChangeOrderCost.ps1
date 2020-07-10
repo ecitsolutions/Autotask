@@ -119,7 +119,7 @@ Get-AtwsChangeOrderCost
       Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName CostType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName CostType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

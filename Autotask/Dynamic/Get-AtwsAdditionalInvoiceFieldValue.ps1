@@ -139,7 +139,7 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
       Get-AtwsPicklistValue -Entity AdditionalInvoiceFieldValue -FieldName AdditionalInvoiceFieldID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity AdditionalInvoiceFieldValue -FieldName AdditionalInvoiceFieldID -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

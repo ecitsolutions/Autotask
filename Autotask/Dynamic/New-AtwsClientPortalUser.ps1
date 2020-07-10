@@ -77,7 +77,7 @@ Set-AtwsClientPortalUser
       Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -107,7 +107,7 @@ Set-AtwsClientPortalUser
       Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -128,7 +128,7 @@ Set-AtwsClientPortalUser
       Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -149,7 +149,7 @@ Set-AtwsClientPortalUser
       Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName NumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName NumberFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

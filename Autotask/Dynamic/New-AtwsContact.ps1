@@ -353,7 +353,7 @@ Set-AtwsContact
       Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -372,7 +372,7 @@ Set-AtwsContact
       Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -443,7 +443,7 @@ Set-AtwsContact
       Get-AtwsPicklistValue -Entity Contact -FieldName ApiVendorID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity Contact -FieldName ApiVendorID -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

@@ -154,7 +154,7 @@ Set-AtwsAccountWebhookField
       Get-AtwsPicklistValue -Entity AccountWebhookField -FieldName FieldID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity AccountWebhookField -FieldName FieldID -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

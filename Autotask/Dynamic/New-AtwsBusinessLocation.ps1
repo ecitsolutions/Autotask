@@ -160,7 +160,7 @@ Set-AtwsBusinessLocation
       Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -181,7 +181,7 @@ Set-AtwsBusinessLocation
       Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -202,7 +202,7 @@ Set-AtwsBusinessLocation
       Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -223,7 +223,7 @@ Set-AtwsBusinessLocation
       Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -244,7 +244,7 @@ Set-AtwsBusinessLocation
       Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeZoneID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeZoneID -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -459,7 +459,7 @@ Set-AtwsBusinessLocation
       Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

@@ -189,7 +189,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -209,7 +209,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -229,7 +229,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -313,7 +313,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -341,7 +341,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -361,7 +361,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -381,7 +381,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -401,7 +401,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

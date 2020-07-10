@@ -160,7 +160,7 @@ An example of a more complex query. This command returns any NotificationHistory
       Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -179,7 +179,7 @@ An example of a more complex query. This command returns any NotificationHistory
       Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -198,7 +198,7 @@ An example of a more complex query. This command returns any NotificationHistory
       Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

@@ -169,7 +169,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
       Get-AtwsPicklistValue -Entity AllocationCode -FieldName GeneralLedgerCode -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity AllocationCode -FieldName GeneralLedgerCode -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -211,7 +211,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
       Get-AtwsPicklistValue -Entity AllocationCode -FieldName Type -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity AllocationCode -FieldName Type -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -230,7 +230,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
       Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -281,7 +281,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
       Get-AtwsPicklistValue -Entity AllocationCode -FieldName AllocationCodeType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity AllocationCode -FieldName AllocationCodeType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

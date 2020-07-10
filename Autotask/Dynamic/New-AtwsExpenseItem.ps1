@@ -106,7 +106,7 @@ Set-AtwsExpenseItem
       Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -133,7 +133,7 @@ Set-AtwsExpenseItem
       Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -161,7 +161,7 @@ Set-AtwsExpenseItem
       Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

@@ -183,7 +183,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
       Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -240,7 +240,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
       Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName NumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName NumberFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -259,7 +259,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
       Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -278,7 +278,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
       Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
