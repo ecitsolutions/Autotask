@@ -70,12 +70,6 @@ Function Update-AtwsManifest {
                 $ManifestParams[$Name] = $ModuleInfo.$Name
             }
         }
-    
-        # Read the nuspec
-        $Nuspec = New-Object -TypeName XML
-        $NuspecSourcePath = Join-Path $ModuleInfo.ModuleBase ('{0}.nuspec' -F $ModuleInfo.Name)
-        $NuspecPath = Join-Path $ModuleInfo.ModuleBase ('{0}.nuspec' -F $ModuleName)
-        $Nuspec.Load($NuspecSourcePath)
     } 
   
     process {
@@ -179,15 +173,6 @@ Function Update-AtwsManifest {
         }
     
         Write-Verbose ('{0}: New manifest prepared' -F $MyInvocation.MyCommand.Name)
-     
-    
-        # Update nuspec
-        $Nuspec.DocumentElement.metadata.id = $ModuleName
-        $Nuspec.DocumentElement.metadata.version = $ManifestParams['Moduleversion'].Tostring()
-        $Nuspec.DocumentElement.metadata.description = $ManifestParams['Description']
-        $Nuspec.DocumentElement.metadata.authors = $ManifestParams['Author']
-        $Nuspec.DocumentElement.metadata.tags = $ManifestParams['Tags'] -join ', '
-        $Nuspec.DocumentElement.metadata.releasenotes = $ManifestParams['ReleaseNotes']
     }
     end {
         $caption = $MyInvocation.MyCommand.Name
@@ -202,8 +187,6 @@ Function Update-AtwsManifest {
                 Update-ModuleManifest -Path $ManifestParams['Path'] -Prerelease $Prerelease
             }
     
-            # Save the nuspec
-            $Nuspec.Save($NuspecPath)
         }
     
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
