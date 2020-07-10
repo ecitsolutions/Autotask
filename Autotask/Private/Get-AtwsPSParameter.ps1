@@ -133,7 +133,7 @@ Function Get-AtwsPSParameter {
         if ($isPicklist.IsPresent) { 
             # Add dynamic intellisense help 
             $text += "    [ArgumentCompleter({`n      param(`$Cmd, `$Param, `$Word, `$Ast, `$FakeBound)`n      Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label`n    })]`n"
-            $text += "    [ValidateScript({`n      $_ -in (Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label)`n    })]`n"
+            $text += "    [ValidateScript({`n      `$set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label`n      if (`$_ -in `$set) { return `$true}`n      else {`n        Write-Warning ('{0} is not one of {1}' -f `$_, (`$set -join ', '))`n        Return `$false`n      }`n    })]`n"
 
         }
         # Add Validateset if present
