@@ -99,11 +99,6 @@ Function Get-AtwsFieldInfo {
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
         
-        # Has cache been loaded?
-        if (-not($Script:FieldInfoCache)) {
-            # Load it.
-            Initialize-AtwsRamCache
-        }
         $cacheExpiry = (Get-Date).AddMinutes(-15)
     }
   

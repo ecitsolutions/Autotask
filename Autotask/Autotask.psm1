@@ -110,7 +110,7 @@ Write-Verbose ('{0}: Exporting {1} Public functions.' -F $MyInvocation.MyCommand
 Export-ModuleMember -Function $dynamicFunction.Basename
 
 # Set to $true for explicit export of private functions. For debugging purposes only
-if ($true){
+if ($false){
     # Explicitly export private functions
     Write-Verbose ('{0}: Exporting {1} Private functions.' -F $MyInvocation.MyCommand.Name, $privateFunction.Count) 
     Export-ModuleMember -Function $privateFunction.Basename

@@ -48,6 +48,19 @@ Function Initialize-AtwsRamCache {
         # Initialize memory only cache from module directory
         $Script:WebServiceCache = Import-Clixml -Path $centralCache 
 
+        # Nested testing to make sure the structure is OK
+        if ($Script:WebServiceCache -is [PSCustomObject]) {
+            if ([bool]($Script:WebServiceCache.PSobject.Properties.name -match "FieldInfoCache")) {
+                if (-not ($Script:WebServiceCache.FieldInfoCache.Count -gt 0)) {
+                    Write-Warning ('{0}: RAM cache file is broken! Loading data from API!' -F $MyInvocation.MyCommand.Name)
+                    # Restart import
+                    Update-AtwsRamCache
+                    # Do not process rest of script
+                    return
+                }
+            }
+        }
+
         # Initialize the $Script:FieldInfoCache shorthand 
         $Script:FieldInfoCache = $Script:WebServiceCache.FieldInfoCache    
 
