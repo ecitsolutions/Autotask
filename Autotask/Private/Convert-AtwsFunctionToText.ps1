@@ -41,7 +41,7 @@ Function Convert-AtwsFunctionToText {
         $requiredVersion = '5.0'
 
         # The textframe with placeholders for all dynamic elements
-        $textFrame = "#Requires -Version {0}`n{2}`nFunction {3}`n{{`n{4}`n  [CmdLetBinding(SupportsShouldProcess = `$true, DefaultParameterSetName='{5}', ConfirmImpact='{6}')]`n  Param`n  (`n{7}`n  )`n{8}`n}}"
+        $textFrame = "#Requires -Version {0}`n{1}`nFunction {2}`n{{`n{3}`n  [CmdLetBinding(SupportsShouldProcess = `$true, DefaultParameterSetName='{4}', ConfirmImpact='{5}')]`n  Param`n  (`n{6}`n  )`n{7}`n}}"
     }
   
     process {
