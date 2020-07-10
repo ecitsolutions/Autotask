@@ -1,5 +1,4 @@
-﻿#Requires -Version 4.0
-#Version 1.6.8
+#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -32,49 +31,128 @@ Additional operators for [string] parameters are:
 Properties with picklists are:
 
 EmailTypeCode
- 
+ MOBILE - Mobile email service
+ PAGER - Pager e-mail address
+ PRIMARY - Primary e-mail address
+ SECONDARY - Secondary e-mail address
+ SMS - SMS text messaging address
 
 EmailTypeCode2
- 
+ MOBILE - Mobile email service
+ PAGER - Pager e-mail address
+ PRIMARY - Primary e-mail address
+ SECONDARY - Secondary e-mail address
+ SMS - SMS text messaging address
 
 EmailTypeCode3
- 
+ MOBILE - Mobile email service
+ PAGER - Pager e-mail address
+ PRIMARY - Primary e-mail address
+ SECONDARY - Secondary e-mail address
+ SMS - SMS text messaging address
 
 Gender
- 
+ F - Female
+ M - Male
 
 Greeting
- 
+ 1 - Mr.
+ 2 - Mrs.
+ 3 - Ms.
 
 LocationID
- 
+ 90682 - Hønefoss
+ 90684 - ECIT Group Services
+ 90685 - Fornebu
+ 90686 - Fornebu (Holiday Set 2)
+ 90687 - Utdatert Location
+ 90688 - Autotask API
+ 90689 - Nøtterøy
+ 90690 - Drammen
+ 90691 - Drammen (Holiday Set 2)
+ 90692 - Hønefoss (Holiday Set 2)
 
 ResourceType
- 
+ Contractor - Contractor
+ Employee - Employee
 
 Suffix
  
 
 TravelAvailabilityPct
- 
+ 0% - 0%
+ up to 100% - up to 100%
+ up to 25% - up to 25%
+ up to 50% - up to 50%
+ up to 75% - up to 75%
 
 UserType
- 
+ 7 - Service Desk User
+ 17 - Full Access (system)
+ 18 - System Administrator - Full tilgang
+ 19 - Sales
+ 20 - Service Desk User - Standard bruker
+ 21 - Dashboard User (system)
+ 22 - Minimal Access (system)
+ 23 - Service Desk User - Standard bruker+Kontrakter
+ 24 - API User (system)
+ 26 - Service Desk User - Standard bruker+Kontrakt+Kost
+ 27 - API User - custom changes
+ 28 - ECIT Group Services - Service Desk User
+ 29 - ECIT Group Services - Manager
+ 33 - System Administrator (system)
+ 34 - Manager (system)
+ 35 - Project Manager (system)
+ 36 - Sales (system)
+ 37 - Team Member (system)
+ 38 - Contractor (system)
+ 39 - Service Desk User (system)
+ 40 - Private CRM (system)
+ 41 - Time and Attendance (system)
+ 48 - Copy (1) of Service Desk User - Standard bruker
+ 49 - Service Desk User - Standard bruker+Kontrakt(les)
+ 51 - Co-Managed Help Desk (system)
+ 52 - Manager + Add Contacts
+ 53 - Service Desk User - Standard bruker+Kontrakt+exten
+ 54 - Jon Erik
+ 55 - Stian Mauritzen (copy og S&O+Products & Services)
 
 DateFormat
- 
+ MM/dd/yyyy - MM/dd/yyyy
+ MM-dd-yyyy - MM-dd-yyyy
+ MM.dd.yyyy - MM.dd.yyyy
+ dd/MM/yyyy - dd/MM/yyyy
+ dd-MM-yyyy - dd-MM-yyyy
+ dd.MM.yyyy - dd.MM.yyyy
+ yyyy/MM/dd - yyyy/MM/dd
+ yyyy-MM-dd - yyyy-MM-dd
+ yyyy.MM.dd - yyyy.MM.dd
 
 TimeFormat
- 
+ hh:mm a - hh:mm a
+ HH:mm - HH:mm
+ h:mm a - h:mm a
 
 PayrollType
- 
+ 1 - Salary
+ 2 - Hourly
+ 3 - Contractor
+ 4 - Salary Non Exempt
 
 NumberFormat
- 
+ X,XXX.XX - X,XXX.XX
+ X.XXX,XX - X.XXX,XX
 
 LicenseType
- 
+ 1 - Administrator
+ 2 - Executive
+ 3 - Professional
+ 4 - Team Member
+ 5 - Time & Attendance Only
+ 6 - Dashboard User
+ 7 - API User
+ 8 - Contractor
+ 9 - Co-Managed Help Desk
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -110,7 +188,6 @@ Account
  Opportunity
  Phase
  Product
- ProductNote
  Project
  ProjectCost
  ProjectNote
@@ -128,7 +205,6 @@ Account
  ServiceBundle
  ServiceCall
  ServiceCallTaskResource
- ServiceCallTicket
  ServiceCallTicketResource
  ServiceLevelAgreementResults
  Subscription
@@ -222,7 +298,7 @@ Set-AtwsResource
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Account:CreatedByResourceID', 'Account:ImpersonatorCreatorResourceID', 'Account:OwnerResourceID', 'AccountNote:AssignedResourceID', 'AccountNote:ImpersonatorCreatorResourceID', 'AccountNote:ImpersonatorUpdaterResourceID', 'AccountTeam:ResourceID', 'AccountToDo:AssignedToResourceID', 'AccountToDo:CreatorResourceID', 'AccountToDo:ImpersonatorCreatorResourceID', 'AccountWebhook:OwnerResourceID', 'AccountWebhookExcludedResource:ResourceID', 'Appointment:CreatorResourceID', 'Appointment:ResourceID', 'AttachmentInfo:AttachedByResourceID', 'AttachmentInfo:ImpersonatorCreatorResourceID', 'BillingItem:AccountManagerWhenApprovedID', 'BillingItem:ItemApproverID', 'BillingItemApprovalLevel:ApprovalResourceID', 'BusinessDivisionSubdivisionResource:ResourceID', 'ChangeOrderCost:CreatorResourceID', 'ChangeOrderCost:StatusLastModifiedBy', 'ComanagedAssociation:ResourceID', 'Contact:ImpersonatorCreatorResourceID', 'ContactWebhook:OwnerResourceID', 'ContactWebhookExcludedResource:ResourceID', 'ContractCost:CreatorResourceID', 'ContractMilestone:CreatorResourceID', 'ContractNote:CreatorResourceID', 'ContractNote:ImpersonatorCreatorResourceID', 'ContractNote:ImpersonatorUpdaterResourceID', 'ContractRoleCost:ResourceID', 'Currency:UpdateResourceId', 'ExpenseReport:ApproverID', 'ExpenseReport:SubmitterID', 'InstalledProduct:CreatedByPersonID', 'InstalledProduct:ImpersonatorCreatorResourceID', 'InstalledProduct:InstalledByID', 'InstalledProduct:LastActivityPersonID', 'InstalledProductNote:CreatorResourceID', 'InstalledProductNote:ImpersonatorCreatorResourceID', 'InstalledProductNote:ImpersonatorUpdaterResourceID', 'InventoryItem:ImpersonatorCreatorResourceID', 'InventoryLocation:ImpersonatorCreatorResourceID', 'InventoryLocation:ResourceID', 'InventoryTransfer:TransferByResourceID', 'Invoice:CreatorResourceID', 'Invoice:VoidedByResourceID', 'NotificationHistory:InitiatingResourceID', 'Opportunity:CreatorResourceID', 'Opportunity:ImpersonatorCreatorResourceID', 'Opportunity:OwnerResourceID', 'Phase:CreatorResourceID', 'Product:ImpersonatorCreatorResourceID', 'ProductNote:CreatorResourceID', 'ProductNote:ImpersonatorCreatorResourceID', 'ProductNote:ImpersonatorUpdaterResourceID', 'Project:CompanyOwnerResourceID', 'Project:CreatorResourceID', 'Project:ImpersonatorCreatorResourceID', 'Project:LastActivityResourceID', 'Project:ProjectLeadResourceID', 'ProjectCost:CreatorResourceID', 'ProjectNote:CreatorResourceID', 'ProjectNote:ImpersonatorCreatorResourceID', 'ProjectNote:ImpersonatorUpdaterResourceID', 'PurchaseOrder:CreatorResourceID', 'PurchaseOrder:ImpersonatorCreatorResourceID', 'PurchaseOrderReceive:ReceivedByResourceID', 'Quote:ApprovalStatusChangedByResourceID', 'Quote:CreatorResourceID', 'Quote:ImpersonatorCreatorResourceID', 'Quote:LastModifiedBy', 'QuoteTemplate:CreatedBy', 'QuoteTemplate:LastActivityBy', 'ResourceRole:ResourceID', 'ResourceRoleDepartment:ResourceID', 'ResourceRoleQueue:ResourceID', 'ResourceServiceDeskRole:ResourceID', 'ResourceSkill:ResourceID', 'SalesOrder:ImpersonatorCreatorResourceID', 'SalesOrder:OwnerResourceID', 'Service:CreatorResourceID', 'Service:UpdateResourceID', 'ServiceBundle:CreatorResourceID', 'ServiceBundle:UpdateResourceID', 'ServiceCall:ImpersonatorCreatorResourceID', 'ServiceCallTaskResource:ResourceID', 'ServiceCallTicket:CreatedByResourceID', 'ServiceCallTicketResource:CreatedByResourceID', 'ServiceCallTicketResource:LastModifiedByResourceID', 'ServiceCallTicketResource:ResourceID', 'ServiceLevelAgreementResults:CreatorResourceID', 'ServiceLevelAgreementResults:FirstResponseInitiatingResourceID', 'ServiceLevelAgreementResults:FirstResponseResourceID', 'ServiceLevelAgreementResults:LastModifiedByResourceID', 'ServiceLevelAgreementResults:ResolutionPlanResourceID', 'ServiceLevelAgreementResults:ResolutionResourceID', 'Subscription:ImpersonatorCreatorResourceID', 'Task:AssignedResourceID', 'Task:CompletedByResourceID', 'Task:CreatorResourceID', 'Task:LastActivityResourceID', 'TaskNote:CreatorResourceID', 'TaskNote:ImpersonatorCreatorResourceID', 'TaskNote:ImpersonatorUpdaterResourceID', 'TaskSecondaryResource:ResourceID', 'Ticket:AssignedResourceID', 'Ticket:CompletedByResourceID', 'Ticket:CreatorResourceID', 'Ticket:ImpersonatorCreatorResourceID', 'Ticket:LastActivityResourceID', 'TicketChangeRequestApproval:ResourceID', 'TicketChecklistItem:CompletedByResourceID', 'TicketCost:CreatorResourceID', 'TicketHistory:ResourceID', 'TicketNote:CreatorResourceID', 'TicketNote:ImpersonatorCreatorResourceID', 'TicketNote:ImpersonatorUpdaterResourceID', 'TicketSecondaryResource:ResourceID', 'TimeEntry:BillingApprovalResourceID', 'TimeEntry:ImpersonatorCreatorResourceID', 'TimeEntry:ImpersonatorUpdaterResourceID', 'TimeEntry:ResourceID')]
+    [ValidateSet('Account:CreatedByResourceID', 'Account:ImpersonatorCreatorResourceID', 'Account:OwnerResourceID', 'AccountNote:AssignedResourceID', 'AccountNote:ImpersonatorCreatorResourceID', 'AccountNote:ImpersonatorUpdaterResourceID', 'AccountTeam:ResourceID', 'AccountToDo:AssignedToResourceID', 'AccountToDo:CreatorResourceID', 'AccountToDo:ImpersonatorCreatorResourceID', 'AccountWebhook:OwnerResourceID', 'AccountWebhookExcludedResource:ResourceID', 'Appointment:CreatorResourceID', 'Appointment:ResourceID', 'AttachmentInfo:AttachedByResourceID', 'AttachmentInfo:ImpersonatorCreatorResourceID', 'BillingItem:AccountManagerWhenApprovedID', 'BillingItem:ItemApproverID', 'BillingItemApprovalLevel:ApprovalResourceID', 'BusinessDivisionSubdivisionResource:ResourceID', 'ChangeOrderCost:CreatorResourceID', 'ChangeOrderCost:StatusLastModifiedBy', 'ComanagedAssociation:ResourceID', 'Contact:ImpersonatorCreatorResourceID', 'ContactWebhook:OwnerResourceID', 'ContactWebhookExcludedResource:ResourceID', 'ContractCost:CreatorResourceID', 'ContractMilestone:CreatorResourceID', 'ContractNote:CreatorResourceID', 'ContractNote:ImpersonatorCreatorResourceID', 'ContractNote:ImpersonatorUpdaterResourceID', 'ContractRoleCost:ResourceID', 'Currency:UpdateResourceId', 'ExpenseReport:ApproverID', 'ExpenseReport:SubmitterID', 'InstalledProduct:CreatedByPersonID', 'InstalledProduct:ImpersonatorCreatorResourceID', 'InstalledProduct:InstalledByID', 'InstalledProduct:LastActivityPersonID', 'InstalledProductNote:CreatorResourceID', 'InstalledProductNote:ImpersonatorCreatorResourceID', 'InstalledProductNote:ImpersonatorUpdaterResourceID', 'InventoryItem:ImpersonatorCreatorResourceID', 'InventoryLocation:ImpersonatorCreatorResourceID', 'InventoryLocation:ResourceID', 'InventoryTransfer:TransferByResourceID', 'Invoice:CreatorResourceID', 'Invoice:VoidedByResourceID', 'NotificationHistory:InitiatingResourceID', 'Opportunity:ImpersonatorCreatorResourceID', 'Opportunity:OwnerResourceID', 'Phase:CreatorResourceID', 'Product:ImpersonatorCreatorResourceID', 'Project:CompanyOwnerResourceID', 'Project:CreatorResourceID', 'Project:ImpersonatorCreatorResourceID', 'Project:LastActivityResourceID', 'Project:ProjectLeadResourceID', 'ProjectCost:CreatorResourceID', 'ProjectNote:CreatorResourceID', 'ProjectNote:ImpersonatorCreatorResourceID', 'ProjectNote:ImpersonatorUpdaterResourceID', 'PurchaseOrder:CreatorResourceID', 'PurchaseOrder:ImpersonatorCreatorResourceID', 'PurchaseOrderReceive:ReceivedByResourceID', 'Quote:ApprovalStatusChangedByResourceID', 'Quote:CreatorResourceID', 'Quote:ImpersonatorCreatorResourceID', 'Quote:LastModifiedBy', 'QuoteTemplate:CreatedBy', 'QuoteTemplate:LastActivityBy', 'ResourceRole:ResourceID', 'ResourceRoleDepartment:ResourceID', 'ResourceRoleQueue:ResourceID', 'ResourceServiceDeskRole:ResourceID', 'ResourceSkill:ResourceID', 'SalesOrder:ImpersonatorCreatorResourceID', 'SalesOrder:OwnerResourceID', 'Service:CreatorResourceID', 'Service:UpdateResourceID', 'ServiceBundle:CreatorResourceID', 'ServiceBundle:UpdateResourceID', 'ServiceCall:ImpersonatorCreatorResourceID', 'ServiceCallTaskResource:ResourceID', 'ServiceCallTicketResource:ResourceID', 'ServiceLevelAgreementResults:FirstResponseInitiatingResourceID', 'ServiceLevelAgreementResults:FirstResponseResourceID', 'ServiceLevelAgreementResults:ResolutionPlanResourceID', 'ServiceLevelAgreementResults:ResolutionResourceID', 'Subscription:ImpersonatorCreatorResourceID', 'Task:AssignedResourceID', 'Task:CompletedByResourceID', 'Task:CreatorResourceID', 'Task:LastActivityResourceID', 'TaskNote:CreatorResourceID', 'TaskNote:ImpersonatorCreatorResourceID', 'TaskNote:ImpersonatorUpdaterResourceID', 'TaskSecondaryResource:ResourceID', 'Ticket:AssignedResourceID', 'Ticket:CompletedByResourceID', 'Ticket:CreatorResourceID', 'Ticket:ImpersonatorCreatorResourceID', 'Ticket:LastActivityResourceID', 'TicketChangeRequestApproval:ResourceID', 'TicketChecklistItem:CompletedByResourceID', 'TicketCost:CreatorResourceID', 'TicketHistory:ResourceID', 'TicketNote:CreatorResourceID', 'TicketNote:ImpersonatorCreatorResourceID', 'TicketNote:ImpersonatorUpdaterResourceID', 'TicketSecondaryResource:ResourceID', 'TimeEntry:BillingApprovalResourceID', 'TimeEntry:ImpersonatorCreatorResourceID', 'TimeEntry:ImpersonatorUpdaterResourceID', 'TimeEntry:ResourceID')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -271,6 +347,18 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $EmailTypeCode,
 
@@ -278,6 +366,18 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $EmailTypeCode2,
 
@@ -285,6 +385,18 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $EmailTypeCode3,
 
@@ -301,6 +413,18 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $Gender,
 
@@ -308,6 +432,18 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $Greeting,
 
@@ -349,6 +485,18 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $LocationID,
 
@@ -389,6 +537,18 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName ResourceType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $ResourceType,
 
@@ -396,6 +556,18 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $Suffix,
 
@@ -411,6 +583,18 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $TravelAvailabilityPct,
 
@@ -428,6 +612,18 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $UserType,
 
@@ -435,6 +631,18 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $DateFormat,
 
@@ -442,6 +650,18 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName TimeFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $TimeFormat,
 
@@ -450,6 +670,18 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $PayrollType,
 
@@ -458,6 +690,18 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $NumberFormat,
 
@@ -496,6 +740,18 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $LicenseType,
 

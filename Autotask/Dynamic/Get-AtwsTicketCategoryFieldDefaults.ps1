@@ -1,5 +1,4 @@
-﻿#Requires -Version 4.0
-#Version 1.6.8
+#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -178,6 +177,18 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $IssueTypeID,
 
@@ -193,6 +204,18 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName QueueID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $QueueID,
 
@@ -208,6 +231,18 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $ServiceLevelAgreementID,
 
@@ -215,6 +250,18 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $SourceID,
 
@@ -222,6 +269,18 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $SubIssueTypeID,
 
@@ -237,6 +296,18 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $TicketTypeID,
 
@@ -259,6 +330,18 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $Status,
 
@@ -266,6 +349,18 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
     $Priority,
 

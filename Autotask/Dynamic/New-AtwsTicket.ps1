@@ -1,5 +1,4 @@
-﻿#Requires -Version 4.0
-#Version 1.6.8
+#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -200,6 +199,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName IssueType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $IssueType,
 
@@ -216,6 +227,18 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName Priority -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $Priority,
 
@@ -223,6 +246,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName QueueID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $QueueID,
 
@@ -230,6 +265,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName Source -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $Source,
 
@@ -239,6 +286,18 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName Status -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $Status,
 
@@ -246,6 +305,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $SubIssueType,
 
@@ -313,6 +384,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $ServiceLevelAgreementID,
 
@@ -343,6 +426,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName TicketType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $TicketType,
 
@@ -364,6 +459,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $ChangeApprovalBoard,
 
@@ -371,6 +478,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $ChangeApprovalType,
 
@@ -378,6 +497,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $ChangeApprovalStatus,
 
@@ -453,6 +584,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $MonitorTypeID,
 
@@ -482,6 +625,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $TicketCategory,
 
@@ -517,6 +672,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName CreatorType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $CreatorType,
 
@@ -538,6 +705,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName LastActivityPersonType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $LastActivityPersonType,
 
@@ -559,6 +738,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName CurrentServiceThermometerRating -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $CurrentServiceThermometerRating,
 
@@ -566,6 +757,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName PreviousServiceThermometerRating -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $PreviousServiceThermometerRating,
 
@@ -580,6 +783,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ApiVendorID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $ApiVendorID,
 
@@ -594,6 +809,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $RmaStatus,
 
@@ -601,6 +828,18 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $RmaType,
 

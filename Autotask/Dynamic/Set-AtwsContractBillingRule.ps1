@@ -1,5 +1,4 @@
-﻿#Requires -Version 4.0
-#Version 1.6.8
+#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -146,6 +145,18 @@ Get-AtwsContractBillingRule
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
     $DetermineUnits,
 
@@ -244,20 +255,7 @@ Get-AtwsContractBillingRule
       ParametersetName = 'By_Id'
     )]
     [Nullable[decimal]]
-    $DailyProratedPrice,
-
-# Execution Method
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [string]
-    $ExecutionMethod
+    $DailyProratedPrice
   )
  
     begin { 
