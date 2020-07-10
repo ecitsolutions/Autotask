@@ -1,5 +1,4 @@
-﻿#Requires -Version 4.0
-#Version 1.6.8
+#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.

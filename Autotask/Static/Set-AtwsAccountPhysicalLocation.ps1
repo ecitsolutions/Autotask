@@ -1,5 +1,4 @@
-﻿#Requires -Version 4.0
-#Version 1.6.8
+#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -289,46 +288,7 @@ Get-AtwsAccountPhysicalLocation
       ParametersetName = 'By_Id'
     )]
     [Nullable[boolean]]
-    $Primary,
-
-# Override Account Tax Settings
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[boolean]]
-    $OverrideAccountTaxSettings,
-
-# Is Tax Exempt
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[boolean]]
-    $IsTaxExempt,
-
-# Tax Region ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $TaxRegionID
+    $Primary
   )
  
     begin { 

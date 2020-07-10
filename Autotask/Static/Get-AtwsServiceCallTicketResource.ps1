@@ -1,5 +1,4 @@
-﻿#Requires -Version 4.0
-#Version 1.6.8
+#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -87,7 +86,7 @@ Remove-AtwsServiceCallTicketResource
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CreatedByResourceID', 'LastModifiedByResourceID', 'ResourceID', 'ServiceCallTicketID')]
+    [ValidateSet('ResourceID', 'ServiceCallTicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -133,80 +132,52 @@ Remove-AtwsServiceCallTicketResource
     [Nullable[Int][]]
     $ResourceID,
 
-# Created By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $CreatedByResourceID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# Last Modified By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LastModifiedByResourceID,
-
-# Last Modified Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastModifiedDateTime,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -243,7 +214,6 @@ Remove-AtwsServiceCallTicketResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'LastModifiedDateTime')]
     [string[]]
     $IsThisDay
   )

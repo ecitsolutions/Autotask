@@ -1,5 +1,4 @@
-﻿#Requires -Version 4.0
-#Version 1.6.8
+#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -79,21 +78,7 @@ Get-AtwsServiceCallTicket
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $TicketID,
-
-# Created By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatedByResourceID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime
+    $TicketID
   )
  
     begin { 
