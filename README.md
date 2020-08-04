@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.9
+
+- BUGFIX: Updated classes file (Reference.cs). Added missing class ProductNote.
+
 ## Version 1.6.8
 
 - UPDATE: New API version. Rebuild to include new and changed entities
