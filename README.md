@@ -13,7 +13,7 @@ Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiKey
 ```
 
 # Important upgrade! 
-From version 2 the module no longer needs to maintain a per tenant disk cache. Any picklists are resolved dynamically using (ArgumentCompleter)[https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-argumentcompleter?view=powershell-7]. 
+From version 2 the module no longer needs to maintain a per tenant disk cache. Any picklists are resolved dynamically using [ArgumentCompleter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-argumentcompleter?view=powershell-7). 
 
 # Release notes
 
