@@ -670,6 +670,7 @@ namespace Autotask
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ContactWebhook))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AccountWebhook))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ComanagedAssociation))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProductNote))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(InstalledProductNote))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ChangeOrderCost))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PriceListProductTier))]
@@ -2486,6 +2487,158 @@ namespace Autotask
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class ProductNote : Entity
+    {
+        
+        private object createDateTimeField;
+        
+        private object creatorResourceIDField;
+        
+        private object descriptionField;
+        
+        private object impersonatorCreatorResourceIDField;
+        
+        private object impersonatorUpdaterResourceIDField;
+        
+        private object productIDField;
+        
+        private object lastActivityDateField;
+        
+        private object noteTypeField;
+        
+        private object titleField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object CreateDateTime
+        {
+            get
+            {
+                return this.createDateTimeField;
+            }
+            set
+            {
+                this.createDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object CreatorResourceID
+        {
+            get
+            {
+                return this.creatorResourceIDField;
+            }
+            set
+            {
+                this.creatorResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object Description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object ImpersonatorCreatorResourceID
+        {
+            get
+            {
+                return this.impersonatorCreatorResourceIDField;
+            }
+            set
+            {
+                this.impersonatorCreatorResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public object ImpersonatorUpdaterResourceID
+        {
+            get
+            {
+                return this.impersonatorUpdaterResourceIDField;
+            }
+            set
+            {
+                this.impersonatorUpdaterResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public object ProductID
+        {
+            get
+            {
+                return this.productIDField;
+            }
+            set
+            {
+                this.productIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public object LastActivityDate
+        {
+            get
+            {
+                return this.lastActivityDateField;
+            }
+            set
+            {
+                this.lastActivityDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public object NoteType
+        {
+            get
+            {
+                return this.noteTypeField;
+            }
+            set
+            {
+                this.noteTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public object Title
+        {
+            get
+            {
+                return this.titleField;
+            }
+            set
+            {
+                this.titleField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
     public partial class InstalledProductNote : Entity
     {
         
@@ -3413,6 +3566,8 @@ namespace Autotask
         
         private object dailyProratedPriceField;
         
+        private object executionMethodField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object InvoiceDescription
@@ -3606,6 +3761,20 @@ namespace Autotask
             set
             {
                 this.dailyProratedPriceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public object ExecutionMethod
+        {
+            get
+            {
+                return this.executionMethodField;
+            }
+            set
+            {
+                this.executionMethodField = value;
             }
         }
     }
@@ -4537,6 +4706,14 @@ namespace Autotask
         
         private object resolutionMetField;
         
+        private object createDateTimeField;
+        
+        private object creatorResourceIDField;
+        
+        private object lastModifiedDateTimeField;
+        
+        private object lastModifiedByResourceIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object TicketID
@@ -4702,6 +4879,62 @@ namespace Autotask
             set
             {
                 this.resolutionMetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public object CreateDateTime
+        {
+            get
+            {
+                return this.createDateTimeField;
+            }
+            set
+            {
+                this.createDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public object CreatorResourceID
+        {
+            get
+            {
+                return this.creatorResourceIDField;
+            }
+            set
+            {
+                this.creatorResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public object LastModifiedDateTime
+        {
+            get
+            {
+                return this.lastModifiedDateTimeField;
+            }
+            set
+            {
+                this.lastModifiedDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public object LastModifiedByResourceID
+        {
+            get
+            {
+                return this.lastModifiedByResourceIDField;
+            }
+            set
+            {
+                this.lastModifiedByResourceIDField = value;
             }
         }
     }
@@ -5249,6 +5482,12 @@ namespace Autotask
         
         private object primaryField;
         
+        private object overrideAccountTaxSettingsField;
+        
+        private object isTaxExemptField;
+        
+        private object taxRegionIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object AccountID
@@ -5470,6 +5709,48 @@ namespace Autotask
             set
             {
                 this.primaryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public object OverrideAccountTaxSettings
+        {
+            get
+            {
+                return this.overrideAccountTaxSettingsField;
+            }
+            set
+            {
+                this.overrideAccountTaxSettingsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        public object IsTaxExempt
+        {
+            get
+            {
+                return this.isTaxExemptField;
+            }
+            set
+            {
+                this.isTaxExemptField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        public object TaxRegionID
+        {
+            get
+            {
+                return this.taxRegionIDField;
+            }
+            set
+            {
+                this.taxRegionIDField = value;
             }
         }
     }
@@ -16073,6 +16354,8 @@ namespace Autotask
         
         private object impersonatorCreatorResourceIDField;
         
+        private object lastTrackedModifiedDateTimeField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object Address1
@@ -16854,6 +17137,20 @@ namespace Autotask
             set
             {
                 this.impersonatorCreatorResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=56)]
+        public object LastTrackedModifiedDateTime
+        {
+            get
+            {
+                return this.lastTrackedModifiedDateTimeField;
+            }
+            set
+            {
+                this.lastTrackedModifiedDateTimeField = value;
             }
         }
     }
@@ -22165,6 +22462,14 @@ namespace Autotask
         
         private object resourceIDField;
         
+        private object createdByResourceIDField;
+        
+        private object createDateTimeField;
+        
+        private object lastModifiedByResourceIDField;
+        
+        private object lastModifiedDateTimeField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object ServiceCallTicketID
@@ -22190,6 +22495,62 @@ namespace Autotask
             set
             {
                 this.resourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object CreatedByResourceID
+        {
+            get
+            {
+                return this.createdByResourceIDField;
+            }
+            set
+            {
+                this.createdByResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object CreateDateTime
+        {
+            get
+            {
+                return this.createDateTimeField;
+            }
+            set
+            {
+                this.createDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public object LastModifiedByResourceID
+        {
+            get
+            {
+                return this.lastModifiedByResourceIDField;
+            }
+            set
+            {
+                this.lastModifiedByResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public object LastModifiedDateTime
+        {
+            get
+            {
+                return this.lastModifiedDateTimeField;
+            }
+            set
+            {
+                this.lastModifiedDateTimeField = value;
             }
         }
     }
@@ -22493,6 +22854,10 @@ namespace Autotask
         
         private object ticketIDField;
         
+        private object createdByResourceIDField;
+        
+        private object createDateTimeField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object ServiceCallID
@@ -22518,6 +22883,34 @@ namespace Autotask
             set
             {
                 this.ticketIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object CreatedByResourceID
+        {
+            get
+            {
+                return this.createdByResourceIDField;
+            }
+            set
+            {
+                this.createdByResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object CreateDateTime
+        {
+            get
+            {
+                return this.createDateTimeField;
+            }
+            set
+            {
+                this.createDateTimeField = value;
             }
         }
     }
@@ -25455,6 +25848,8 @@ namespace Autotask
         
         private object impersonatorCreatorResourceIDField;
         
+        private object creatorResourceIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object AccountID
@@ -26278,6 +26673,20 @@ namespace Autotask
             set
             {
                 this.impersonatorCreatorResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=59)]
+        public object CreatorResourceID
+        {
+            get
+            {
+                return this.creatorResourceIDField;
+            }
+            set
+            {
+                this.creatorResourceIDField = value;
             }
         }
     }
@@ -30898,7 +31307,7 @@ namespace Autotask
         private string userAccessForUpdateField;
 
         private string userAccessForDeleteField;
-
+        
         private bool hasUserDefinedFieldsField;
         
         private bool supportsWebhookCalloutsField;
@@ -30972,7 +31381,7 @@ namespace Autotask
                 this.canQueryField = value;
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
         public string UserAccessForCreate
