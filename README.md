@@ -20,7 +20,7 @@ From version 2 the module no longer needs to maintain a per tenant disk cache. A
 ## Version 2.0.0-beta1
 
 - UPDATE: New function Get-AtwsPicklistValue -Entity $entityName -FieldName $fieldName for easy access to picklist values and labels
-- UPDATE: Replaced [ValidateSet()] with [ArgumentCompleter()] for picklist! No longer any need for a personal cache on disk! Just load the module, connect and go!
+- UPDATE: Replaced `[ValidateSet()]` with `[ArgumentCompleter()]` for picklist! No longer any need for a personal cache on disk! Just install the module, connect and go!
 - DEPRECATED: There is no longer any need to cache files to disk to support intellisense for picklists. Removed code for personal disk cache.
 - REQUIREMENT: Moved minimum PowerShell requirement up from 4 to 5.
 
