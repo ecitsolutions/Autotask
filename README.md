@@ -1,38 +1,19 @@
 # Basics
 
-Install the module from PowerShell Gallery (the published module version may lag a few days behind this code tree):
+Install the module from PowerShell Gallery (the published module version is based on branch "master". Any prerelease version is based on a snapshot of "Development"):
 
 ```powershell
 # Download and install the module
 Install-Module Autotask
 
-# Connect to the Autotask Web Services API and load the module
-# The first time you connect a disk cache will be created
+# Connect to the Autotask Web Services API
 $Credential = Get-Credential
 $ApiKey = "<the API identifier from your resource in Autotask>"
-Import-Module Autotask -ArgumentList $Credential, $ApiKey
-
-# Lots of entities has picklists that are unique to your tenant
-# When a picklist has been changed you will want to refresh the disk cache
-
-Import-Module Autotask -ArgumentList $Credential, $ApiKey, 'Account'
-
-# Refresh more than 1 entity
-Import-Module Autotask -ArgumentList $Credential, $ApiKey, 'Account', 'Contact'
-
-# Use wildcards
-Import-Module Autotask -ArgumentList $Credential, $ApiKey, 'Acc*'
-
-# Refresh all entities with picklists
-Import-Module Autotask -ArgumentList $Credential, $ApiKey, '*'
-
-## Refresh EVERYTHING in the cache and script functions on disk
-# Will download all entities and detailed field info for all entities
-Update-AtwsDiskCache
-
-# Will recreate all .ps1 scripts for any entity with a picklist
-Update-AtwsFunctions -FunctionSet Dynamic
+Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiKey
 ```
+
+# Important upgrade! 
+From version 2 the module no longer needs to maintain a per tenant disk cache. Any picklists are resolved dynamically using (ArgumentCompleter)[https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-argumentcompleter?view=powershell-7]. 
 
 # Release notes
 
@@ -42,6 +23,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 - UPDATE: Replaced [ValidateSet()] with [ArgumentCompleter()] for picklist! No longer any need for a personal cache on disk! Just load the module, connect and go!
 - DEPRECATED: There is no longer any need to cache files to disk to support intellisense for picklists. Removed code for personal disk cache.
 - REQUIREMENT: Moved minimum PowerShell requirement up from 4 to 5.
+
+## Version 1.6.9
+
+- BUGFIX: Updated classes file (Reference.cs). Added missing class ProductNote.
 
 ## Version 1.6.8
 
