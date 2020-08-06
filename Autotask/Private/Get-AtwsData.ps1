@@ -77,7 +77,7 @@ Function Get-AtwsData {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }
     
-        $result = @()
+        $result = [Collections.ArrayList]::new()
     }
   
     process {
@@ -121,7 +121,7 @@ Function Get-AtwsData {
 
             # Add all returned objects to the Result - if any
             if ($lastquery.EntityResults.Count -gt 0) { 
-                $result += ConvertTo-LocalObject -InputObject $lastquery.EntityResults
+                [void]$result.add((ConvertTo-LocalObject -InputObject $lastquery.EntityResults))
             }
             
             # Results are sorted by object Id. The Id of the last object is the highest object id in the result

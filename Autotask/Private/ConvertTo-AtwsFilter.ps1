@@ -54,7 +54,7 @@ Function ConvertTo-AtwsFilter {
             
         $fields = Get-AtwsFieldInfo -Entity $entityName
         
-        [string[]]$Filter = @()
+        $Filter = [Collections.ArrayList]::new()
     }
 
     process {
@@ -76,7 +76,7 @@ Function ConvertTo-AtwsFilter {
       
             if ($field -or $parameter.Key -eq 'UserDefinedField') { 
                 if ($parameter.Value.Count -gt 1) {
-                    $Filter += '-begin'
+                    [void]$Filter.add('-begin')
                 }
                 foreach ($parameterValue in $parameter.Value) {   
                     $Operator = '-or'
@@ -94,7 +94,7 @@ Function ConvertTo-AtwsFilter {
                         $value = $pickListValue.Value
                     }
                     elseif ($parameterName -eq 'UserDefinedField') {
-                        $Filter += '-udf'              
+                        [void]$Filter.add('-udf')            
                         $parameterName = $parameterValue.Name
                         
                         if ($null -eq $parameter.Value -or $parameter.Value.Length -eq 0) {
@@ -112,9 +112,9 @@ Function ConvertTo-AtwsFilter {
                             $parameter.Key -notin $LessThanOrEquals) {
 
                             # User is searching for a date, not a specific datetime
-                            $Filter += $parameterName
-                            $Filter += '-ge'
-                            $Filter += ConvertTo-AtwsDate -DateTime $parameterValue
+                            [void]$Filter.add($parameterName)
+                            [void]$Filter.add('-ge')
+                            [void]$Filter.add((ConvertTo-AtwsDate -DateTime $parameterValue))
 
                             # Force array, or the next time around we'll get a concatenated string
                             [Array]$LessThanOrEquals += $parameterName
@@ -133,56 +133,56 @@ Function ConvertTo-AtwsFilter {
                     else {
                         $value = $parameterValue
                     }
-                    $Filter += $parameterName
+                    [void]$Filter.add($parameterName)
                     if ($parameter.Key -in $NotEquals) { 
-                        $Filter += '-ne'
+                        [void]$Filter.add('-ne')
                         $Operator = '-and'
                     }
                     elseif ($parameter.Key -in $GreaterThan)
-                    { $Filter += '-gt' }
+                    { [void]$Filter.add('-gt') }
                     elseif ($parameter.Key -in $GreaterThanOrEquals)
-                    { $Filter += '-ge' }
+                    { [void]$Filter.add('-ge') }
                     elseif ($parameter.Key -in $LessThan)
-                    { $Filter += '-lt' }
+                    { [void]$Filter.add('-lt') }
                     elseif ($parameter.Key -in $LessThanOrEquals)
-                    { $Filter += '-le' }
+                    { [void]$Filter.add('-le') }
                     elseif ($parameter.Key -in $Like) { 
-                        $Filter += '-like'
+                        [void]$Filter.add('-like')
                         $value = $value -replace '\*', '%'
                     }
                     elseif ($parameter.Key -in $NotLike) { 
-                        $Filter += '-notlike'
+                        [void]$Filter.add('-notlike')
                         $value = $value -replace '\*', '%'
                     }
                     elseif ($parameter.Key -in $BeginsWith)
-                    { $Filter += '-beginswith' }
+                    { [void]$Filter.add('-beginswith') }
                     elseif ($parameter.Key -in $EndsWith)
-                    { $Filter += '-endswith' }
+                    { [void]$Filter.add('-endswith') }
                     elseif ($parameter.Key -in $Contains)
-                    { $Filter += '-contains' }
+                    { [void]$Filter.add('-contains') }
                     elseif ($parameter.Key -in $IsThisDay)
-                    { $Filter += '-isthisday' }
+                    { [void]$Filter.add('-isthisday') }
                     elseif ($parameter.Key -in $IsNull -and $parameter.Key -eq 'UserDefinedField') {
-                        $Filter += '-IsNull'
+                        [void]$Filter.add('-IsNull')
                         $IsNull = $IsNull.Where( { $_ -ne 'UserDefinedField' })
                     }
                     elseif ($parameter.Key -in $IsNotNull -and $parameter.Key -eq 'UserDefinedField') {
-                        $Filter += '-IsNotNull'
+                        [void]$Filter.add('-IsNotNull')
                         $IsNotNull = $IsNotNull.Where( { $_ -ne 'UserDefinedField' })
                     }
                     else
-                    { $Filter += '-eq' }
+                    { [void]$Filter.add('-eq') }
             
                     # Add Value to expression, unless this is a UserDefinedfield AND UserDefinedField has been
                     # specified for -IsNull or -IsNotNull
                     if ($Filter[-1] -notin @('-IsNull', '-IsNotNull'))
-                    { $Filter += $value }
+                    { [void]$Filter.add($value) }
 
                     if ($parameter.Value.Count -gt 1 -and $parameterValue -ne $parameter.Value[-1]) {
-                        $Filter += $Operator
+                        [void]$Filter.add($Operator)
                     }
                     elseif ($parameter.Value.Count -gt 1) {
-                        $Filter += '-end'
+                        [void]$Filter.add('-end')
                     }
             
                 }
@@ -192,20 +192,20 @@ Function ConvertTo-AtwsFilter {
         # IsNull and IsNotNull are special. They are the only operators that does not require a value to work
         if ($IsNull.Count -gt 0) {
             if ($Filter.Count -gt 0) {
-                $Filter += '-and'
+                [void]$Filter.add('-and')
             }
             foreach ($PropertyName in $IsNull) {
-                $Filter += $PropertyName
-                $Filter += '-isnull'
+                [void]$Filter.add($PropertyName)
+                [void]$Filter.add('-isnull')
             }
         }
         if ($IsNotNull.Count -gt 0) {
             if ($Filter.Count -gt 0) {
-                $Filter += '-and'
+                [void]$Filter.add('-and')
             }
             foreach ($PropertyName in $IsNotNull) {
-                $Filter += $PropertyName
-                $Filter += '-isnotnull'
+                [void]$Filter.add($PropertyName)
+                [void]$Filter.add('-isnotnull')
             }
         }  
  
