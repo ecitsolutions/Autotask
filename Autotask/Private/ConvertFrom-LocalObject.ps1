@@ -48,9 +48,8 @@ Function ConvertFrom-LocalObject {
         $timezoneid = if ($IsMacOS -or $IsLinux) { 'America/New_York' }
         else { 'Eastern Standard Time' }
         $EST = [System.Timezoneinfo]::FindSystemTimeZoneById($timezoneid)
-        $result = @()
-        
-        $result = @()
+        $result = [Collections.Generic.List[PSObject]]::new()
+
     }
 
     process {
@@ -95,7 +94,7 @@ Function ConvertFrom-LocalObject {
         }
         
         # If using pipeline the process block will run once per object in pipeline. Store them all
-        $result += $InputObject
+        $result.add($InputObject)
         
     }
 
