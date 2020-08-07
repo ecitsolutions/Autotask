@@ -7,7 +7,7 @@ Install the module from PowerShell Gallery (the published module version is base
 Install-Module Autotask
 
 # Connect to the Autotask Web Services API
-$Credential = Get-Credential
+$Credential = Get-Credential # Your Autotask API user and password
 $ApiKey = "<the API identifier from your resource in Autotask>"
 Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiKey
 ```
