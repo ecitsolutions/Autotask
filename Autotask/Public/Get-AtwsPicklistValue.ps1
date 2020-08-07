@@ -121,13 +121,13 @@ Function Get-AtwsPicklistValue {
         
         if ($UserDefinedFields.IsPresent -and $script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields) {
 
-            $picklistValues = (Get-AtwsFieldInfo -Entity $Entity -UserDefinedFields).Where{ $_.Name -eq $FieldName }.PicklistValues.where{ $_.IsActive }
+            $picklistValues = (Get-AtwsFieldInfo -Entity $Entity -UserDefinedFields)[$FieldName].PicklistValues
     
             Write-Debug -Message ('{0}: Entity {1} has userdefined fields and user defined field {2} has {3} picklist values.' -F $MyInvocation.MyCommand.Name, $Entity, $FieldName, $result.count) 
         }
         elseIf ($script:FieldInfoCache[$Entity].HasPicklist) { 
     
-            $picklistValues = (Get-AtwsFieldInfo -Entity $Entity).Where{ $_.Name -eq $FieldName }.PicklistValues.where{ $_.IsActive }
+            $picklistValues = (Get-AtwsFieldInfo -Entity $Entity)[$FieldName].PicklistValues
     
             Write-Debug -Message ('{0}: Entity {1} has picklists and field {2} has {3} picklist values.' -F $MyInvocation.MyCommand.Name, $Entity, $FieldName, $result.count) 
         }
