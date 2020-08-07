@@ -155,8 +155,9 @@ if ($PSVersionTable.PSVersion.Major -ge 6) {
 }
 
 # Compile webserviceinfo (Reference.cs) and instantiate a SOAP client
-Add-Type -TypeDefinition (Get-Content -raw $code) -ReferencedAssemblies $assemblies
-
+if ([appdomain]::CurrentDomain.GetAssemblies().exportedtypes.name -notcontains "ATWSSoap") { 
+    Add-Type -TypeDefinition (Get-Content -raw $code) -ReferencedAssemblies $assemblies
+}
 # Load the cache from disk
 Initialize-AtwsRamCache
 
