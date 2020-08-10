@@ -63,7 +63,7 @@ Function ConvertTo-AtwsFilter {
         
  
         foreach ($parameter in $BoundParameters.GetEnumerator()) {
-            $field = $fields | Where-Object { $_.Name -eq $parameter.Key }
+            $field = $fields[$parameter.Key]
       
             # If Parameter value is null or an empty string for string types, add name to $IsNull array
             # and continue
@@ -74,7 +74,7 @@ Function ConvertTo-AtwsFilter {
                 Continue
             }
       
-            if ($field -or $parameter.Key -eq 'UserDefinedField') { 
+            if (($field) -or $parameter.Key -eq 'UserDefinedField') { 
                 if ($parameter.Value.Count -gt 1) {
                     [void]$Filter.add('-begin')
                 }
@@ -83,15 +83,15 @@ Function ConvertTo-AtwsFilter {
                     $parameterName = $parameter.Key
                     if ($field.IsPickList) {
                         if ($field.PickListParentValueField) {
-                            $parentField = $fields.Where{ $_.Name -eq $field.PickListParentValueField }
+                            $parentField = $fields[$field.PickListParentValueField]
                             $parentLabel = $PSBoundParameters.$($parentField.Name)
-                            $parentValue = $parentField.PickListValues | Where-Object { $_.Label -eq $parentLabel }
-                            $pickListValue = $field.PickListValues | Where-Object { $_.Label -eq $parameterValue -and $_.ParentValue -eq $parentValue.Value }                
+                            $parentValue = $parentField['PickListValues']['byLabel'][$parentLabel]
+                            $pickListValue = $field['PickListValues'][$parentValue]['byLabel'][$parameterValue]               
                         }
                         else { 
-                            $pickListValue = $field.PickListValues | Where-Object { $_.Label -eq $parameterValue }
+                            $pickListValue = $field['PickListValues']['byLabel'][$parameterValue]
                         }
-                        $value = $pickListValue.Value
+                        $value = $pickListValue
                     }
                     elseif ($parameterName -eq 'UserDefinedField') {
                         [void]$Filter.add('-udf')            

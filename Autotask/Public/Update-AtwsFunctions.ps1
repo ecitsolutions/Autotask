@@ -32,11 +32,8 @@ Function Update-AtwsFunctions {
         SupportsShouldProcess = $true,
         ConfirmImpact = 'High'
     )]
-    # The function set to generate, either 'Dynamic' or 'Static'
+   
     Param(
-        [ValidateSet('Dynamic', 'Static')]
-        [string]
-        $FunctionSet = 'Static'
     )
   
     begin { 
@@ -66,14 +63,7 @@ Function Update-AtwsFunctions {
             $null = New-Item -Path "$RootPath" -ItemType Directory -Force
         }
         
-        $Entities = switch ($FunctionSet) {
-            'Static' {
-                $FieldInfoCache.GetEnumerator() | Where-Object { -not $_.Value.HasPickList }
-            }
-            'Dynamic' {
-                $FieldInfoCache.GetEnumerator() | Where-Object { $_.Value.HasPickList }
-            }
-        }
+        $Entities = $Script:FieldInfoCache.keys | Where-Object {$_ -ne 'APIVersion'}
       
         # Prepare parameters for @splatting
         $ProgressParameters = @{
@@ -91,9 +81,10 @@ Function Update-AtwsFunctions {
         
             Write-Verbose -Message ('{0}: Creating functions for {1} entities.' -F $MyInvocation.MyCommand.Name, $Entities.count) 
             
-            foreach ($CacheEntry in $Entities) {
+            foreach ($EntityName in $Entities) {
+
                 # EntityInfo()
-                $Entity = $CacheEntry.Value.EntityInfo
+                $Entity = $Script:FieldInfoCache[$EntityName]
       
                 Write-Debug -Message ('{0}: Creating functions for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
       
@@ -112,14 +103,14 @@ Function Update-AtwsFunctions {
                 $verboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $caption, $Entity.Name
                 $verboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $caption, $Entity.Name
        
-                $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -FieldInfo $CacheEntry.Value.FieldInfo
+                $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity
         
         
                 foreach ($Function in $FunctionDefinition.GetEnumerator()) {
   
                     Write-Debug -Message ('{0}: Writing file for function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
                         
-                    $FilePath = '{0}\{1}\{2}.ps1' -F $RootPath, $FunctionSet, $Function.Key
+                    $FilePath = '{0}\Functions\{1}.ps1' -F $RootPath, $Function.Key
           
                     $verboseDescription = '{0}: Overwriting {1}' -F $caption, $FilePath
                     $verboseWarning = '{0}: About to overwrite {1}. Do you want to continue?' -F $caption, $FilePath

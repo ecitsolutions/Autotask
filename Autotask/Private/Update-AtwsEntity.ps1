@@ -73,9 +73,54 @@ Function Update-AtwsEntity {
 
         # Create hashtable for faster lookup
         $fieldInfo = @{}
+        $requiredFields = [Collections.Generic.list[string]]::new()
+        $queryableFields = [Collections.Generic.list[string]]::new()
+        $writableFields = [Collections.Generic.list[string]]::new()
+        $picklistFields = [Collections.Generic.list[string]]::new()
+        $externalReferences = @{}
+        $notBooleanFields = [Collections.Generic.list[string]]::new()
+        $stringFields = [Collections.Generic.list[string]]::new()
+        $datetimeFields = [Collections.Generic.list[string]]::new()
         $HasPickList = $false
         foreach ($field in $result) {
             $fieldTable = @{}
+            
+            # Collect required fields
+            if ($field.name -ne 'id' -and $field.IsRequired) {
+                $requiredFields.add($field.name)
+            }
+
+            # Collect queryable fields
+            if ($field.IsQueryable) {
+                $queryableFields.add($field.name)
+            }
+
+            # Collect all writable fields
+            if (-not ($field.IsReadOnly)) {
+                $writableFields.add($field.name)
+            }
+
+            # Collect external references
+            if ($field.IsReference) {
+                $externalReferences[$field.ReferenceEntityType] = $field.name
+            }
+
+            # Collect all fields but boolean for -gt, -ge, -lt and -le queries
+            if ($field.Type -ne 'Boolean') {
+                $notBooleanFields.add($field.name)
+            }
+
+            # Collect string fields for -like, -beginswith and -endswith
+            if ($field.Type -eq 'String') {
+                $stringFields.add($field.name)
+            }
+
+            # Collect datetime fields
+            if ($field.Type -eq 'Datetime') {
+                $datetimeFields.add($field.name)
+            }
+
+            # Add all properties to hashtable
             foreach ($property in $field.psobject.properties) {
                 $fieldTable[$property.Name] = $property.Value
             }
@@ -83,23 +128,47 @@ Function Update-AtwsEntity {
             # Convert array of name/value pairs to hashtables with direct lookup
             if ($field.IsPickList) {
                 $HasPickList = $true
-                $byValue = @{}
-                $byLabel = @{}
-                foreach ($p in $field.PicklistValues) { 
-                    if ($p.IsActive) { 
-                        $byValue[$p.Value] = $p.Label 
-                        $byLabel[$p.Label] = $p.Value
+                $picklistFields += $field.name
+                $fieldTable['PicklistValues'] = @{}
+                if ($field.PickListParentFieldName) {
+                    foreach ($p in $field.PicklistValues) { 
+                        if ($p.IsActive) {
+                            if (-not ($byParentValue.ContainsKey($p.ParentValue))) {
+                                $fieldTable['PicklistValues'][$p.ParentValue] = @{
+                                    byValue = @{}
+                                    byLabel = @{}
+                                }
+                            }
+                            $fieldTable['PicklistValues'][$p.ParentValue]['byValue'][$p.Value] = $p.Label 
+                            $fieldTable['PicklistValues'][$p.ParentValue]['byLabel'][$p.Label] = $p.Value
+                        }
                     }
+                    
                 }
-                $fieldTable['PicklistValues'] = @{
-                    byValue = $byValue
-                    byLabel = $byLabel
+                else {
+                    $fieldTable['PicklistValues']['byValue'] = @{}
+                    $fieldTable['PicklistValues']['byLabel'] = @{}
+                    foreach ($p in $field.PicklistValues) { 
+                        if ($p.IsActive) { 
+                            $fieldTable['PicklistValues']['byValue'][$p.Value] = $p.Label 
+                            $fieldTable['PicklistValues']['byLabel'][$p.Label] = $p.Value
+                        }
+                    }
                 }
             }
             $fieldInfo[$field.Name] = $fieldTable
         }
         $script:FieldInfoCache[$Entity]['FieldInfo'] = $fieldInfo
         $script:FieldInfoCache[$Entity]['HasPicklist'] = $HasPickList
+        $script:FieldInfoCache[$Entity]['RequiredFields'] = $requiredFields
+        $script:FieldInfoCache[$Entity]['QueryableFields'] = $queryableFields
+        $script:FieldInfoCache[$Entity]['WriteableFields'] = $writableFields
+        $script:FieldInfoCache[$Entity]['PicklistFields'] = $picklistFields
+        $script:FieldInfoCache[$Entity]['ExternalReferences'] = $externalReferences
+        $script:FieldInfoCache[$Entity]['NotBooleanFields'] = $notBooleanFields
+        $script:FieldInfoCache[$Entity]['StringFields'] = $stringFields
+        $script:FieldInfoCache[$Entity]['DatetimeFields'] = $datetimeFields
+
         
         if ($script:FieldInfoCache[$Entity].HasUserDefinedFields) { 
             $caption = $MyInvocation.MyCommand.Name

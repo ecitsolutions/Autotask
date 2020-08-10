@@ -33,18 +33,6 @@ Function Get-AtwsFieldInfo {
         )]
         [switch]
         $All,
-    
-        [Parameter(
-            ParameterSetName = 'get_Static'
-        )]
-        [switch]
-        $Static, 
- 
-        [Parameter(
-            ParameterSetName = 'get_Dynamic'
-        )]
-        [switch]
-        $Dynamic, 
      
         [Parameter(
             Mandatory = $true,
@@ -55,6 +43,9 @@ Function Get-AtwsFieldInfo {
      
         [Parameter(
             ParameterSetName = 'by_Entity'
+        )]
+        [Parameter(
+            ParameterSetName = 'single_Field'
         )]
         [Alias('UDF')]
         [switch]
@@ -76,20 +67,42 @@ Function Get-AtwsFieldInfo {
             Position = 0,
             ParameterSetName = 'by_Reference'
         )]
+        [Parameter(
+            Mandatory = $true,
+            Position = 0,
+            ParameterSetName = 'single_Field'
+        )]
         [string]
         $Entity,
+
+        [Parameter(
+            Mandatory = $true,
+            Position = 1,
+            ParameterSetName = 'single_Field'
+        )]
+        [string]
+        $FieldName,
 
         [Parameter(
             ParameterSetName = 'by_Entity'
         )]
         [Parameter(
-            ParameterSetName = 'get_Dynamic'
+            ParameterSetName = 'get_All'
+        )]
+        [switch]
+        $UpdateCache,
+
+        [Parameter(
+            ParameterSetName = 'by_Entity'
         )]
         [Parameter(
             ParameterSetName = 'get_All'
         )]
+        [Parameter(
+            ParameterSetName = 'single_Field'
+        )]
         [switch]
-        $UpdateCache
+        $CacheOnly
     )
     
     begin { 
@@ -105,10 +118,10 @@ Function Get-AtwsFieldInfo {
     process { 
 
         # By ENTITY
-        if ($PSCmdlet.ParameterSetName -eq 'by_Entity') {
+        if ('by_Entity', 'single_Field' -contains $PSCmdlet.ParameterSetName) {
             Write-Verbose -Message ('{0}: Looking up detailed Fieldinfo for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity) 
             
-            if (($script:FieldInfoCache[$Entity].HasPicklist -or $script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields) -and ($script:FieldInfoCache[$Entity].RetrievalTime -lt $cacheExpiry -or $UpdateCache.IsPresent) -and ($Script:Atws)) { 
+            if (($script:FieldInfoCache[$Entity].HasPicklist -or $script:FieldInfoCache[$Entity].HasUserDefinedFields) -and ($script:FieldInfoCache[$Entity].RetrievalTime -lt $cacheExpiry -or $UpdateCache.IsPresent) -and ($Script:Atws) -and -not ($CacheOnly.IsPresent)) { 
         
                 Update-AtwsEntity -Entity $Entity
         
@@ -132,19 +145,22 @@ Function Get-AtwsFieldInfo {
                 Write-Debug ('{0}: Returning fieldinfo for entity {1} from cache' -F $MyInvocation.MyCommand.Name, $Entity)   
                 $result = $script:FieldInfoCache[$Entity].FieldInfo
             }
-        }
-        # ReferencingEntity
-        elseIf ($PSCmdlet.ParameterSetName -eq 'by_Reference') {
-            $result = @()
-            foreach ($object in $Script:FieldInfoCache.GetEnumerator()) {
-                $isReferencing = $object.Value.FieldInfo.Where( { $_.ReferenceEntityType -eq $Entity })
-                # Include the fieldname. Or we will never be able to make this work
-                foreach ($ref in $isReferencing) {
-                    $result += '{0}:{1}' -F $object.Name, $ref.Name
-                }
+
+            if ($PSCmdlet.ParameterSetName -eq 'single_Field') {
+                $FieldType = 'FieldInfo'
+                if ($UserDefinedFields.IsPresent) {$FieldType = 'UDFInfo'}
+                $result = $script:FieldInfoCache[$Entity][$FieldType][$FieldName]
             }
         }
-        # For all other options
+        # ReferencingEntity
+        elseIf ($PSCmdlet.ParameterSetName -eq 'by_Reference' -and $script:FieldInfoCache[$Entity].Containskey('IncomingReferences')) {
+            $result = @()
+            foreach ($ref in $script:FieldInfoCache[$Entity]['IncomingReferences'].GetEnumerator()) {
+                # Include the fieldname. Or we will never be able to make this work
+                $result += '{0}:{1}' -F $ref.key, $ref.value
+            }
+        }
+        # get_All
         else { 
   
             if ($UpdateCache.IsPresent) { 
@@ -154,7 +170,7 @@ Function Get-AtwsFieldInfo {
                     Id       = 9
                 }
       
-                $entities = $script:FieldInfoCache.GetEnumerator().Where{ $_.Value.HasPicklist -or $_.Value.EntityInfo.HasUserDefinedfields }
+                $entities = $script:FieldInfoCache.GetEnumerator().Where{ $_.Value.HasPicklist -or $_.Value.EntityInfo.HasUserDefinedfields }.Value
       
                 foreach ($object in $entities) {
       
@@ -172,7 +188,7 @@ Function Get-AtwsFieldInfo {
                     If ($object.Value.RetrievalTime -lt $cacheExpiry) {
           
                         # Force a refresh by calling this function
-                        Update-AtwsEntity -Entity $Entity
+                        Update-AtwsEntity -Entity $object.Name
                     }
                 }
                 if ($currentOperation) { 
@@ -185,13 +201,7 @@ Function Get-AtwsFieldInfo {
             # Return the correct set
             $result = switch ($PSCmdLet.ParameterSetName) { 
                 'get_All' {
-                    $script:FieldInfoCache
-                }
-                'get_Static' {
-                    $script:FieldInfoCache.GetEnumerator() | Where-Object { -not $_.Value.HasPickList }
-                }
-                'get_Dynamic' {
-                    $script:FieldInfoCache.GetEnumerator() | Where-Object { $_.Value.HasPickList }
+                    $script:FieldInfoCache.Values
                 }
             } 
         }

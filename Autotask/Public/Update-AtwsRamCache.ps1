@@ -69,6 +69,8 @@ Function Update-AtwsRamCache {
                 ApiVersion = $CurrentApiVersion
             }
 
+            # Loop through entities and get fresh info from API
+            $incomingReferences = @{}
             foreach ($object in $Entities) { 
     
                 Write-Verbose -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $object.Name) 
@@ -94,8 +96,24 @@ Function Update-AtwsRamCache {
                 }
                 $Script:FieldInfoCache[$object.Name] = $entityinfo
 
+                # Lookup FieldInfo from API
                 Update-AtwsEntity -Entity $object.Name
-                
+
+                # Add any external references to meta-table
+                if ($Script:FieldInfoCache[$object.Name]['ExternalReferences'].count -gt 0) {
+                    foreach ($ref in $Script:FieldInfoCache[$object.Name]['ExternalReferences'].GetEnumerator()) {
+                        if ($incomingReferences.keys -notcontains $ref.key) {
+                            $incomingReferences[$ref.key] = @{}
+                        }
+                        # Store reference indexed on entity name
+                        $incomingReferences[$ref.key][$object.Name] = $ref.value
+                    }
+                }
+            }
+
+            # Loop through detailed info and extract cross references
+            foreach ($object in $incomingReferences.GetEnumerator()) {
+                $Script:FieldInfoCache[$object.Key]['IncomingReferences'] = $incomingReferences[$object.Key]
             }
 
             # Get a copy of cache that can be used as a basis for a tenant independent cache file

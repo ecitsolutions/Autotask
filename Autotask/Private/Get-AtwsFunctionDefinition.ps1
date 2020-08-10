@@ -29,11 +29,7 @@ Function Get-AtwsfunctionDefinition {
     (
         [Parameter(Mandatory = $true)]
         [PSObject]
-        $Entity,
-    
-        [Parameter(Mandatory = $true)]
-        [Autotask.Field[]]
-        $fieldInfo
+        $Entity
     )
    
     begin {
@@ -88,10 +84,10 @@ Function Get-AtwsfunctionDefinition {
             $atwsFunction = New-Object -TypeName PSObject -Property @{
                 FunctionName            = $functionName
                 Copyright               = Get-Copyright
-                HelpText                = Get-AtwsHelpText -Entity $Entity -verb $verb -FieldInfo $fieldInfo -functionName $functionName
+                HelpText                = Get-AtwsHelpText -Entity $Entity -verb $verb -functionName $functionName
                 DefaultParameterSetName = $defaultParameterSetName 
                 ConfirmImpact           = $confirmImpact
-                Parameters              = Get-AtwsParameterDefinition -Entity $Entity -verb $verb -FieldInfo $fieldInfo
+                Parameters              = Get-AtwsParameterDefinition -Entity $Entity -verb $verb
                 Definition              = (Get-Command ('{0}-AtwsDefinition' -F $verb)).Definition -replace '#EntityName', $($Entity.Name)
             }
     
