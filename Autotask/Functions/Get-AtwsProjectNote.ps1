@@ -29,12 +29,8 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 NoteType
- 
-
 Publish
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -106,7 +102,7 @@ Set-AtwsProjectNote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProjectID', 'ImpersonatorUpdaterResourceID')]
+    [ValidateSet('ImpersonatorUpdaterResourceID', 'ProjectID')]
     [string]
     $GetReferenceEntityById,
 
@@ -249,21 +245,21 @@ Set-AtwsProjectNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'CreatorResourceID', 'Publish', 'ProjectID', 'Title', 'Announce', 'Description', 'NoteType', 'CreateDateTime')]
+    [ValidateSet('Publish', 'ImpersonatorCreatorResourceID', 'ProjectID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'Announce', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'CreatorResourceID', 'Publish', 'ProjectID', 'Title', 'Announce', 'Description', 'NoteType', 'CreateDateTime')]
+    [ValidateSet('Publish', 'ImpersonatorCreatorResourceID', 'ProjectID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'Announce', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'CreatorResourceID', 'Publish', 'ProjectID', 'Title', 'Announce', 'Description', 'NoteType', 'CreateDateTime')]
+    [ValidateSet('Publish', 'ImpersonatorCreatorResourceID', 'ProjectID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'Announce', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
     [string[]]
     $IsNotNull,
 

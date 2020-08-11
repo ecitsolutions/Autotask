@@ -63,49 +63,26 @@ Set-AtwsTimeEntry
     [Autotask.TimeEntry[]]
     $InputObject,
 
-# Contract ID
+# Billing Approval Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $BillingApprovalDateTime,
+
+# Last Modified By User ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ContractID,
+    $LastModifiedUserID,
 
-# Impersonator Updater Resource ID
+# Hours To Bill
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $ImpersonatorUpdaterResourceID,
-
-# Show On Invoice
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $ShowOnInvoice,
-
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AllocationCodeID,
-
-# Role ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $RoleID,
-
-# Resource ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ResourceID,
+    [double]
+    $HoursToBill,
 
 # Offset Hours
     [Parameter(
@@ -114,12 +91,33 @@ Set-AtwsTimeEntry
     [double]
     $OffsetHours,
 
-# Internal Allocation Code ID
+# Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $InternalAllocationCodeID,
+    $TicketID,
+
+# Task ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $TaskID,
+
+# End Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $EndDateTime,
+
+# Show On Invoice
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $ShowOnInvoice,
 
 # Non-Billable
     [Parameter(
@@ -127,21 +125,6 @@ Set-AtwsTimeEntry
     )]
     [boolean]
     $NonBillable,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $ContractServiceID,
-
-# Summary Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string]
-    $SummaryNotes,
 
 # TaskTypeLink
     [Parameter(
@@ -162,41 +145,19 @@ Set-AtwsTimeEntry
     [string]
     $Type,
 
-# Internal Notes
+# Contract Service ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,8000)]
-    [string]
-    $InternalNotes,
+    [long]
+    $ContractServiceID,
 
-# Last Modified Datetime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastModifiedDateTime,
-
-# End Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $EndDateTime,
-
-# Last Modified By User ID
+# Billing Approval Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $LastModifiedUserID,
-
-# Billing Approval Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $BillingApprovalDateTime,
+    $BillingApprovalResourceID,
 
 # Contract Service Bundle ID
     [Parameter(
@@ -205,12 +166,21 @@ Set-AtwsTimeEntry
     [long]
     $ContractServiceBundleID,
 
-# Created User ID
+# Resource ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ResourceID,
+
+# Role ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $CreatorUserID,
+    $RoleID,
 
 # Hours Worked
     [Parameter(
@@ -219,6 +189,13 @@ Set-AtwsTimeEntry
     [double]
     $HoursWorked,
 
+# Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $AllocationCodeID,
+
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -226,40 +203,34 @@ Set-AtwsTimeEntry
     [Int]
     $ImpersonatorCreatorResourceID,
 
-# Create Date Time
+# Internal Notes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CreateDateTime,
+    [ValidateLength(0,8000)]
+    [string]
+    $InternalNotes,
 
-# Ticket ID
+# Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $TicketID,
+    $ContractID,
 
-# Task ID
+# Internal Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $TaskID,
+    $InternalAllocationCodeID,
 
-# Billing Approval Level Most Recent
+# Impersonator Updater Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $BillingApprovalLevelMostRecent,
-
-# Billing Approval Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BillingApprovalResourceID,
+    $ImpersonatorUpdaterResourceID,
 
 # Date
     [Parameter(
@@ -270,12 +241,41 @@ Set-AtwsTimeEntry
     [datetime]
     $DateWorked,
 
-# Hours To Bill
+# Last Modified Datetime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $HoursToBill,
+    [datetime]
+    $LastModifiedDateTime,
+
+# Created User ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorUserID,
+
+# Summary Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string]
+    $SummaryNotes,
+
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDateTime,
+
+# Billing Approval Level Most Recent
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BillingApprovalLevelMostRecent,
 
 # Start Date Time
     [Parameter(

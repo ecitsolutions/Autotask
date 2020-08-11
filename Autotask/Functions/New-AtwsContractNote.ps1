@@ -72,22 +72,12 @@ Set-AtwsContractNote
     [string]
     $ContractID,
 
-# Description
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,8000)]
-    [string]
-    $Description,
-
-# Creator Resource ID
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $CreatorResourceID,
+    $ImpersonatorCreatorResourceID,
 
 # Create Date Time
     [Parameter(
@@ -103,19 +93,22 @@ Set-AtwsContractNote
     [Int]
     $ImpersonatorUpdaterResourceID,
 
-# Impersonator Creator Resource ID
+# Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ImpersonatorCreatorResourceID,
+    $CreatorResourceID,
 
-# Last Activity Date
+# Description
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $LastActivityDate,
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,8000)]
+    [string]
+    $Description,
 
 # Title
     [Parameter(
@@ -125,7 +118,14 @@ Set-AtwsContractNote
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,250)]
     [string]
-    $Title
+    $Title,
+
+# Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastActivityDate
   )
  
     begin { 

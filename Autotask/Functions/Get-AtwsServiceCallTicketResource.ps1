@@ -86,7 +86,7 @@ Remove-AtwsServiceCallTicketResource
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceCallTicketID', 'LastModifiedByResourceID')]
+    [ValidateSet('LastModifiedByResourceID', 'ServiceCallTicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -163,21 +163,21 @@ Remove-AtwsServiceCallTicketResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatedByResourceID', 'CreateDateTime', 'ServiceCallTicketID', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'id', 'ResourceID')]
+    [ValidateSet('LastModifiedByResourceID', 'LastModifiedDateTime', 'CreatedByResourceID', 'CreateDateTime', 'ServiceCallTicketID', 'id', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatedByResourceID', 'CreateDateTime', 'ServiceCallTicketID', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'id', 'ResourceID')]
+    [ValidateSet('LastModifiedByResourceID', 'LastModifiedDateTime', 'CreatedByResourceID', 'CreateDateTime', 'ServiceCallTicketID', 'id', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatedByResourceID', 'CreateDateTime', 'ServiceCallTicketID', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'id', 'ResourceID')]
+    [ValidateSet('LastModifiedByResourceID', 'LastModifiedDateTime', 'CreatedByResourceID', 'CreateDateTime', 'ServiceCallTicketID', 'id', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

@@ -63,12 +63,12 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
     [Int]
     $ContractID,
 
-# UnitChange
+# Adjusted Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $UnitChange,
+    [double]
+    $AdjustedUnitPrice,
 
 # Adjusted Unit Cost
     [Parameter(
@@ -76,6 +76,27 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
     )]
     [double]
     $AdjustedUnitCost,
+
+# Allow Repeat Service
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $AllowRepeatService,
+
+# ServiceID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ServiceID,
+
+# UnitChange
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $UnitChange,
 
 # Quote Item Id
     [Parameter(
@@ -93,33 +114,12 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
     [datetime]
     $EffectiveDate,
 
-# Allow Repeat Service
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $AllowRepeatService,
-
 # Contract Service Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ContractServiceID,
-
-# ServiceID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ServiceID,
-
-# Adjusted Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $AdjustedUnitPrice
+    $ContractServiceID
   )
  
     begin { 

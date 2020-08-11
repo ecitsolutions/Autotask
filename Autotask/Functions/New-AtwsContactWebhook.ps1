@@ -67,6 +67,14 @@ Set-AtwsContactWebhook
     [Autotask.ContactWebhook[]]
     $InputObject,
 
+# Webhook GUID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $WebhookGUID,
+
 # Owner Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -81,32 +89,6 @@ Set-AtwsContactWebhook
     [boolean]
     $Ready,
 
-# Webhook GUID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $WebhookGUID,
-
-# Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string]
-    $Name,
-
-# Notification Email Address
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,150)]
-    [string]
-    $NotificationEmailAddress,
-
 # Is Subscribed To Update Events
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -114,16 +96,7 @@ Set-AtwsContactWebhook
     [boolean]
     $IsSubscribedToUpdateEvents,
 
-# Send Threshold Exceeded Notification
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $SendThresholdExceededNotification,
-
-# Webhook Url
+# Deactivation URL
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -131,30 +104,7 @@ Set-AtwsContactWebhook
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,500)]
     [string]
-    $WebhookUrl,
-
-# Is Subscribed To Create Events
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsSubscribedToCreateEvents,
-
-# Is Subscribed To Delete Events
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsSubscribedToDeleteEvents,
-
-# Active
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
+    $DeactivationUrl,
 
 # Secret Key
     [Parameter(
@@ -166,7 +116,31 @@ Set-AtwsContactWebhook
     [string]
     $SecretKey,
 
-# Deactivation URL
+# Active
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active,
+
+# Notification Email Address
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,150)]
+    [string]
+    $NotificationEmailAddress,
+
+# Is Subscribed To Delete Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsSubscribedToDeleteEvents,
+
+# Webhook Url
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -174,7 +148,33 @@ Set-AtwsContactWebhook
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,500)]
     [string]
-    $DeactivationUrl
+    $WebhookUrl,
+
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string]
+    $Name,
+
+# Send Threshold Exceeded Notification
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $SendThresholdExceededNotification,
+
+# Is Subscribed To Create Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsSubscribedToCreateEvents
   )
  
     begin { 

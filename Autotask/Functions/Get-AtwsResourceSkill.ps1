@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 SkillLevel
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -179,21 +177,21 @@ Set-AtwsResourceSkill
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SkillDescription', 'SkillLevel', 'ResourceID', 'SkillID')]
+    [ValidateSet('SkillLevel', 'SkillDescription', 'SkillID', 'id', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SkillDescription', 'SkillLevel', 'ResourceID', 'SkillID')]
+    [ValidateSet('SkillLevel', 'SkillDescription', 'SkillID', 'id', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SkillDescription', 'SkillLevel', 'ResourceID', 'SkillID')]
+    [ValidateSet('SkillLevel', 'SkillDescription', 'SkillID', 'id', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

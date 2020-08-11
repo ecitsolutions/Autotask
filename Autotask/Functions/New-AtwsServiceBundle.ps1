@@ -64,29 +64,19 @@ Set-AtwsServiceBundle
     [Autotask.ServiceBundle[]]
     $InputObject,
 
-# discount_dollars
+# discount_percent
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $UnitDiscount,
+    $PercentageDiscount,
 
-# service_bundle_name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,150)]
-    [string]
-    $Name,
-
-# create_date
+# unit_price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CreateDate,
+    [double]
+    $UnitPrice,
 
 # update_date
     [Parameter(
@@ -94,6 +84,55 @@ Set-AtwsServiceBundle
     )]
     [datetime]
     $LastModifiedDate,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $UnitCost,
+
+# Service Level Agreement Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ServiceLevelAgreementID,
+
+# create_by_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorResourceID,
+
+# service_bundle_description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,200)]
+    [string]
+    $Description,
+
+# Invoice Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,1000)]
+    [string]
+    $InvoiceDescription,
 
 # allocation_code_id
     [Parameter(
@@ -103,13 +142,6 @@ Set-AtwsServiceBundle
     [ValidateNotNullOrEmpty()]
     [Int]
     $AllocationCodeID,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $UnitCost,
 
 # active
     [Parameter(
@@ -139,61 +171,29 @@ Set-AtwsServiceBundle
     [string]
     $PeriodType,
 
-# service_bundle_description
+# create_date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,200)]
-    [string]
-    $Description,
+    [datetime]
+    $CreateDate,
 
-# Service Level Agreement Id
+# service_bundle_name
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,150)]
     [string]
-    $ServiceLevelAgreementID,
+    $Name,
 
-# discount_percent
+# discount_dollars
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $PercentageDiscount,
-
-# unit_price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $UnitPrice,
-
-# create_by_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1000)]
-    [string]
-    $InvoiceDescription,
+    $UnitDiscount,
 
 # update_by_id
     [Parameter(

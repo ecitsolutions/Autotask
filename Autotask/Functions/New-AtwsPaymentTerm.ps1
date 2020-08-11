@@ -60,6 +60,24 @@ Set-AtwsPaymentTerm
     [Autotask.PaymentTerm[]]
     $InputObject,
 
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
+
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -72,25 +90,7 @@ Set-AtwsPaymentTerm
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $PaymentDueInDays,
-
-# Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description
+    $PaymentDueInDays
   )
  
     begin { 

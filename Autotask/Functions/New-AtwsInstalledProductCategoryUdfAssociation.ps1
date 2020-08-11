@@ -64,15 +64,6 @@ Set-AtwsInstalledProductCategoryUdfAssociation
     [Autotask.InstalledProductCategoryUdfAssociation[]]
     $InputObject,
 
-# Is Required
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $IsRequired,
-
 # User Defined Field Definition ID
     [Parameter(
       Mandatory = $true,
@@ -81,6 +72,15 @@ Set-AtwsInstalledProductCategoryUdfAssociation
     [ValidateNotNullOrEmpty()]
     [Int]
     $UserDefinedFieldDefinitionID,
+
+# Is Required
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $IsRequired,
 
 # Installed Product Category ID
     [Parameter(

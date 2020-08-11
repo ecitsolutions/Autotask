@@ -29,51 +29,21 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 EmailTypeCode
- 
-
 EmailTypeCode2
- 
-
 EmailTypeCode3
- 
-
 Gender
- 
-
 Greeting
- 
-
 LocationID
- 
-
 ResourceType
- 
-
 Suffix
- 
-
 TravelAvailabilityPct
- 
-
 UserType
- 
-
 DateFormat
- 
-
 TimeFormat
- 
-
 PayrollType
- 
-
 NumberFormat
- 
-
 LicenseType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -156,7 +126,7 @@ Set-AtwsResource
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InventoryTransfer', 'Account', 'TaskSecondaryResource', 'AttachmentInfo', 'Ticket', 'AccountToDo', 'ContractMilestone', 'AccountNote', 'TaskNote', 'ContractNote', 'ExpenseReport', 'ContractCost', 'TicketChecklistItem', 'Task', 'ChangeOrderCost', 'ResourceSkill', 'ResourceRoleQueue', 'ContractRoleCost', 'ProductNote', 'TimeEntry', 'Product', 'PurchaseOrder', 'BillingItem', 'Contact', 'Service', 'ComanagedAssociation', 'TicketHistory', 'TicketSecondaryResource', 'ServiceCall', 'ProjectCost', 'InstalledProductNote', 'QuoteTemplate', 'ServiceBundle', 'Project', 'Invoice', 'ServiceCallTicket', 'ContactWebhook', 'InstalledProduct', 'Subscription', 'Appointment', 'ServiceCallTaskResource', 'BusinessDivisionSubdivisionResource', 'AccountWebhookExcludedResource', 'SalesOrder', 'ServiceLevelAgreementResults', 'TicketNote', 'BillingItemApprovalLevel', 'InventoryItem', 'Quote', 'AccountTeam', 'ResourceServiceDeskRole', 'ResourceRoleDepartment', 'PurchaseOrderReceive', 'Opportunity', 'ContactWebhookExcludedResource', 'InventoryLocation', 'Phase', 'Currency', 'TicketChangeRequestApproval', 'AccountWebhook', 'ServiceCallTicketResource', 'TicketCost', 'ResourceRole', 'NotificationHistory', 'ProjectNote')]
+    [ValidateSet('ServiceCallTicketResource', 'ResourceRoleDepartment', 'ServiceBundle', 'ContractRoleCost', 'ResourceServiceDeskRole', 'TaskNote', 'ServiceCallTaskResource', 'Currency', 'BillingItem', 'ServiceCallTicket', 'ContractMilestone', 'ProductNote', 'ContractCost', 'ChangeOrderCost', 'AccountWebhookExcludedResource', 'ResourceRoleQueue', 'Opportunity', 'InventoryItem', 'Subscription', 'TicketChecklistItem', 'ContactWebhookExcludedResource', 'BillingItemApprovalLevel', 'ServiceLevelAgreementResults', 'Ticket', 'NotificationHistory', 'Task', 'TicketHistory', 'ProjectCost', 'AccountTeam', 'ResourceSkill', 'TicketCost', 'PurchaseOrder', 'AccountWebhook', 'ComanagedAssociation', 'Service', 'Invoice', 'ResourceRole', 'TaskSecondaryResource', 'TimeEntry', 'SalesOrder', 'InventoryLocation', 'ContractNote', 'TicketSecondaryResource', 'Phase', 'Contact', 'AccountToDo', 'PurchaseOrderReceive', 'InstalledProductNote', 'AttachmentInfo', 'InventoryTransfer', 'ProjectNote', 'TicketChangeRequestApproval', 'ExpenseReport', 'ServiceCall', 'Account', 'BusinessDivisionSubdivisionResource', 'TicketNote', 'Product', 'QuoteTemplate', 'Project', 'AccountNote', 'Appointment', 'InstalledProduct', 'ContactWebhook', 'Quote')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -616,21 +586,21 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Initials', 'UserType', 'HomePhone', 'ResourceType', 'Greeting', 'TravelAvailabilityPct', 'FirstName', 'LicenseType', 'EmailTypeCode3', 'OfficeExtension', 'NumberFormat', 'MobilePhone', 'Gender', 'UserName', 'EmailTypeCode2', 'Email', 'Password', 'HireDate', 'id', 'DateFormat', 'LocationID', 'Email3', 'OfficePhone', 'MiddleName', 'Suffix', 'PayrollType', 'SurveyResourceRating', 'EmailTypeCode', 'TimeFormat', 'DefaultServiceDeskRoleID', 'Email2', 'Title', 'Active', 'AccountingReferenceID', 'LastName', 'InternalCost')]
+    [ValidateSet('HomePhone', 'Initials', 'AccountingReferenceID', 'Email2', 'Gender', 'LocationID', 'Email', 'HireDate', 'SurveyResourceRating', 'LicenseType', 'EmailTypeCode3', 'ResourceType', 'Active', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'MiddleName', 'Suffix', 'UserName', 'Title', 'id', 'DateFormat', 'UserType', 'EmailTypeCode2', 'MobilePhone', 'Email3', 'FirstName', 'NumberFormat', 'Greeting', 'EmailTypeCode', 'Password', 'PayrollType', 'TravelAvailabilityPct', 'InternalCost', 'OfficePhone', 'TimeFormat', 'LastName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Initials', 'UserType', 'HomePhone', 'ResourceType', 'Greeting', 'TravelAvailabilityPct', 'FirstName', 'LicenseType', 'EmailTypeCode3', 'OfficeExtension', 'NumberFormat', 'MobilePhone', 'Gender', 'UserName', 'EmailTypeCode2', 'Email', 'Password', 'HireDate', 'id', 'DateFormat', 'LocationID', 'Email3', 'OfficePhone', 'MiddleName', 'Suffix', 'PayrollType', 'SurveyResourceRating', 'EmailTypeCode', 'TimeFormat', 'DefaultServiceDeskRoleID', 'Email2', 'Title', 'Active', 'AccountingReferenceID', 'LastName', 'InternalCost')]
+    [ValidateSet('HomePhone', 'Initials', 'AccountingReferenceID', 'Email2', 'Gender', 'LocationID', 'Email', 'HireDate', 'SurveyResourceRating', 'LicenseType', 'EmailTypeCode3', 'ResourceType', 'Active', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'MiddleName', 'Suffix', 'UserName', 'Title', 'id', 'DateFormat', 'UserType', 'EmailTypeCode2', 'MobilePhone', 'Email3', 'FirstName', 'NumberFormat', 'Greeting', 'EmailTypeCode', 'Password', 'PayrollType', 'TravelAvailabilityPct', 'InternalCost', 'OfficePhone', 'TimeFormat', 'LastName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Initials', 'UserType', 'HomePhone', 'ResourceType', 'Greeting', 'TravelAvailabilityPct', 'FirstName', 'LicenseType', 'EmailTypeCode3', 'OfficeExtension', 'NumberFormat', 'MobilePhone', 'Gender', 'UserName', 'EmailTypeCode2', 'Email', 'Password', 'HireDate', 'id', 'DateFormat', 'LocationID', 'Email3', 'OfficePhone', 'MiddleName', 'Suffix', 'PayrollType', 'SurveyResourceRating', 'EmailTypeCode', 'TimeFormat', 'DefaultServiceDeskRoleID', 'Email2', 'Title', 'Active', 'AccountingReferenceID', 'LastName', 'InternalCost')]
+    [ValidateSet('HomePhone', 'Initials', 'AccountingReferenceID', 'Email2', 'Gender', 'LocationID', 'Email', 'HireDate', 'SurveyResourceRating', 'LicenseType', 'EmailTypeCode3', 'ResourceType', 'Active', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'MiddleName', 'Suffix', 'UserName', 'Title', 'id', 'DateFormat', 'UserType', 'EmailTypeCode2', 'MobilePhone', 'Email3', 'FirstName', 'NumberFormat', 'Greeting', 'EmailTypeCode', 'Password', 'PayrollType', 'TravelAvailabilityPct', 'InternalCost', 'OfficePhone', 'TimeFormat', 'LastName')]
     [string[]]
     $IsNotNull,
 

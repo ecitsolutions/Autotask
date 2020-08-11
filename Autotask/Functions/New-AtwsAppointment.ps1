@@ -74,28 +74,6 @@ Set-AtwsAppointment
     [datetime]
     $EndDateTime,
 
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string]
-    $Description,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
-
 # Start Date
     [Parameter(
       Mandatory = $true,
@@ -104,6 +82,35 @@ Set-AtwsAppointment
     [ValidateNotNullOrEmpty()]
     [datetime]
     $StartDateTime,
+
+# Created By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorResourceID,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string]
+    $Description,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDateTime,
+
+# Update Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $UpdateDateTime,
 
 # Appointment Title
     [Parameter(
@@ -114,13 +121,6 @@ Set-AtwsAppointment
     [ValidateLength(0,256)]
     [string]
     $Title,
-
-# Update Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $UpdateDateTime,
 
 # Resource
     [Parameter(

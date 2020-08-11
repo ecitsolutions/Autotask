@@ -66,12 +66,21 @@ Set-AtwsContractCost
     [Autotask.ContractCost[]]
     $InputObject,
 
-# Internal Currency Unit Price
+# Unit Quantity
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $UnitQuantity,
+
+# Extended Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $InternalCurrencyUnitPrice,
+    $ExtendedCost,
 
 # Unit Price
     [Parameter(
@@ -80,63 +89,12 @@ Set-AtwsContractCost
     [double]
     $UnitPrice,
 
-# Contract
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $ContractID,
-
-# Last Modified By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $StatusLastModifiedBy,
-
-# Allocation Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $AllocationCodeID,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDate,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $CreatorResourceID,
-
-# Unit Cost
+# Billable Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $UnitCost,
-
-# Internal Currency Billable Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyBillableAmount,
-
-# Extended Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $ExtendedCost,
+    $BillableAmount,
 
 # Date Purchased
     [Parameter(
@@ -147,20 +105,26 @@ Set-AtwsContractCost
     [datetime]
     $DatePurchased,
 
-# Notes
+# Billed
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Notes,
+    [boolean]
+    $Billed,
 
-# Billable Amount
+# Billable To Client
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $BillableToAccount,
+
+# Internal Currency Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $BillableAmount,
+    $InternalCurrencyUnitPrice,
 
 # Description
     [Parameter(
@@ -169,28 +133,6 @@ Set-AtwsContractCost
     [ValidateLength(0,2000)]
     [string]
     $Description,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $ContractServiceID,
-
-# Internal Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $InternalPurchaseOrderNumber,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BusinessDivisionSubdivisionID,
 
 # Contract Service Bundle ID
     [Parameter(
@@ -205,30 +147,6 @@ Set-AtwsContractCost
     )]
     [long]
     $ProductID,
-
-# Unit Quantity
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $UnitQuantity,
-
-# Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PurchaseOrderNumber,
-
-# Billed
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Billed,
 
 # Status
     [Parameter(
@@ -249,19 +167,33 @@ Set-AtwsContractCost
     [string]
     $Status,
 
-# Last Modified Date
+# Internal Currency Billable Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $StatusLastModifiedDate,
+    [double]
+    $InternalCurrencyBillableAmount,
 
-# Billable To Client
+# Created By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $BillableToAccount,
+    [long]
+    $CreatorResourceID,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $UnitCost,
+
+# Allocation Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $AllocationCodeID,
 
 # Cost Type
     [Parameter(
@@ -284,6 +216,59 @@ Set-AtwsContractCost
     [string]
     $CostType,
 
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $ContractServiceID,
+
+# Contract
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $ContractID,
+
+# Last Modified Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $StatusLastModifiedDate,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BusinessDivisionSubdivisionID,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
+
+# Internal Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $InternalPurchaseOrderNumber,
+
 # Name
     [Parameter(
       Mandatory = $true,
@@ -292,7 +277,22 @@ Set-AtwsContractCost
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
     [string]
-    $Name
+    $Name,
+
+# Last Modified By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $StatusLastModifiedBy,
+
+# Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Notes
   )
  
     begin { 

@@ -61,15 +61,6 @@ Get-AtwsChangeRequestLink
     [Autotask.ChangeRequestLink[]]
     $InputObject,
 
-# Change Request Ticket ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ChangeRequestTicketID,
-
 # Problem Or Incident Ticket ID
     [Parameter(
       Mandatory = $true,
@@ -77,7 +68,16 @@ Get-AtwsChangeRequestLink
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ProblemOrIncidentTicketID
+    $ProblemOrIncidentTicketID,
+
+# Change Request Ticket ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ChangeRequestTicketID
   )
  
     begin { 

@@ -64,14 +64,14 @@ Set-AtwsProductTier
     [Autotask.ProductTier[]]
     $InputObject,
 
-# Product ID
+# Unit Cost
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
-    $ProductID,
+    [decimal]
+    $UnitCost,
 
 # Unit Price
     [Parameter(
@@ -82,21 +82,21 @@ Set-AtwsProductTier
     [decimal]
     $UnitPrice,
 
-# Unit Cost
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [decimal]
-    $UnitCost,
-
 # Up To Unit Count
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [decimal]
-    $UpToUnitCount
+    $UpToUnitCount,
+
+# Product ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ProductID
   )
  
     begin { 

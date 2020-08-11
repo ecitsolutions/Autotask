@@ -29,12 +29,8 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 PeriodType
- 
-
 Status
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -108,7 +104,7 @@ Set-AtwsSubscription
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('MaterialCodeID', 'BusinessDivisionSubdivisionID', 'VendorID', 'ImpersonatorCreatorResourceID', 'InstalledProductID')]
+    [ValidateSet('InstalledProductID', 'VendorID', 'MaterialCodeID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -276,21 +272,21 @@ Set-AtwsSubscription
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TotalCost', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'BusinessDivisionSubdivisionID', 'PeriodPrice', 'PurchaseOrderNumber', 'TotalPrice', 'VendorID', 'SubscriptionName', 'ExpirationDate', 'MaterialCodeID', 'id', 'Description', 'PeriodCost', 'PeriodType', 'EffectiveDate', 'Status')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'SubscriptionName', 'Description', 'EffectiveDate', 'PeriodType', 'TotalPrice', 'Status', 'PeriodCost', 'TotalCost', 'InstalledProductID', 'ExpirationDate', 'PurchaseOrderNumber', 'MaterialCodeID', 'VendorID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TotalCost', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'BusinessDivisionSubdivisionID', 'PeriodPrice', 'PurchaseOrderNumber', 'TotalPrice', 'VendorID', 'SubscriptionName', 'ExpirationDate', 'MaterialCodeID', 'id', 'Description', 'PeriodCost', 'PeriodType', 'EffectiveDate', 'Status')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'SubscriptionName', 'Description', 'EffectiveDate', 'PeriodType', 'TotalPrice', 'Status', 'PeriodCost', 'TotalCost', 'InstalledProductID', 'ExpirationDate', 'PurchaseOrderNumber', 'MaterialCodeID', 'VendorID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TotalCost', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'BusinessDivisionSubdivisionID', 'PeriodPrice', 'PurchaseOrderNumber', 'TotalPrice', 'VendorID', 'SubscriptionName', 'ExpirationDate', 'MaterialCodeID', 'id', 'Description', 'PeriodCost', 'PeriodType', 'EffectiveDate', 'Status')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'SubscriptionName', 'Description', 'EffectiveDate', 'PeriodType', 'TotalPrice', 'Status', 'PeriodCost', 'TotalCost', 'InstalledProductID', 'ExpirationDate', 'PurchaseOrderNumber', 'MaterialCodeID', 'VendorID')]
     [string[]]
     $IsNotNull,
 

@@ -29,30 +29,14 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 AccountType
- 
-
 KeyAccountIcon
- 
-
 TerritoryID
- 
-
 MarketSegmentID
- 
-
 CompetitorID
- 
-
 BillToAddressToUse
- 
-
 InvoiceMethod
- 
-
 ApiVendorID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -124,7 +108,7 @@ Set-AtwsAccount
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillToAccountPhysicalLocationID', 'BillToCountryID', 'ImpersonatorCreatorResourceID', 'QuoteTemplateID', 'TaxRegionID', 'CurrencyID', 'InvoiceTemplateID', 'ParentAccountID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'TaxRegionID', 'BillToAccountPhysicalLocationID', 'ParentAccountID', 'QuoteTemplateID', 'InvoiceTemplateID', 'CurrencyID', 'BillToCountryID')]
     [string]
     $GetReferenceEntityById,
 
@@ -137,7 +121,7 @@ Set-AtwsAccount
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Contact', 'AccountPhysicalLocation', 'Invoice', 'Service', 'ProductVendor', 'Contract', 'Account', 'Ticket', 'NotificationHistory', 'ComanagedAssociation', 'SurveyResults', 'Opportunity', 'AccountTeam', 'ContractServiceUnit', 'AccountNote', 'PurchaseOrder', 'Quote', 'AccountAlert', 'Project', 'Product', 'InstalledProduct', 'ServiceCall', 'AccountLocation', 'Subscription', 'AccountToDo', 'ExpenseItem', 'BillingItem', 'SalesOrder')]
+    [ValidateSet('Subscription', 'ProductVendor', 'Account', 'Product', 'ComanagedAssociation', 'NotificationHistory', 'SalesOrder', 'Service', 'ExpenseItem', 'Opportunity', 'Ticket', 'SurveyResults', 'PurchaseOrder', 'Quote', 'BillingItem', 'ContractServiceUnit', 'Contact', 'InstalledProduct', 'ServiceCall', 'AccountNote', 'Project', 'AccountPhysicalLocation', 'AccountTeam', 'Contract', 'AccountLocation', 'Invoice', 'AccountAlert', 'AccountToDo')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -662,21 +646,21 @@ Set-AtwsAccount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceMethod', 'CountryID', 'City', 'AdditionalAddressInformation', 'BillToZipCode', 'BillToAddressToUse', 'AlternatePhone2', 'CreatedByResourceID', 'Address1', 'PostalCode', 'EnabledForComanaged', 'TaskFireActive', 'QuoteTemplateID', 'OwnerResourceID', 'LastActivityDate', 'AssetValue', 'LastTrackedModifiedDateTime', 'Fax', 'Country', 'StockMarket', 'InvoiceEmailMessageID', 'AccountNumber', 'Address2', 'BillToAddress2', 'StockSymbol', 'ImpersonatorCreatorResourceID', 'MarketSegmentID', 'BillToAdditionalAddressInformation', 'BillToState', 'CreateDate', 'ParentAccountID', 'QuoteEmailMessageID', 'Active', 'BillToAccountPhysicalLocationID', 'WebAddress', 'TaxExempt', 'SICCode', 'BillToCountryID', 'AccountName', 'State', 'AccountType', 'TaxRegionID', 'InvoiceNonContractItemsToParentAccount', 'BillToCity', 'id', 'SurveyAccountRating', 'InvoiceTemplateID', 'ClientPortalActive', 'ApiVendorID', 'KeyAccountIcon', 'Phone', 'CompetitorID', 'AlternatePhone1', 'CurrencyID', 'TerritoryID', 'BillToAttention', 'BillToAddress1', 'TaxID', '')]
+    [ValidateSet('CreatedByResourceID', 'State', 'QuoteTemplateID', 'AlternatePhone1', 'AssetValue', 'BillToAddress2', 'SICCode', 'BillToAttention', 'Address2', 'InvoiceEmailMessageID', 'Active', 'City', 'MarketSegmentID', 'CompetitorID', 'TaxRegionID', 'BillToState', 'TaxID', 'BillToAddressToUse', 'AccountType', 'SurveyAccountRating', 'StockMarket', 'Country', 'BillToCity', 'AccountName', 'InvoiceTemplateID', 'PostalCode', 'TaxExempt', 'InvoiceMethod', 'Address1', 'TerritoryID', 'CurrencyID', 'ImpersonatorCreatorResourceID', 'BillToAccountPhysicalLocationID', 'BillToAddress1', 'LastActivityDate', 'BillToCountryID', 'ParentAccountID', 'InvoiceNonContractItemsToParentAccount', 'ApiVendorID', 'Fax', 'QuoteEmailMessageID', 'BillToZipCode', 'KeyAccountIcon', 'CountryID', 'BillToAdditionalAddressInformation', 'EnabledForComanaged', 'AccountNumber', 'ClientPortalActive', 'Phone', 'AlternatePhone2', 'CreateDate', 'StockSymbol', 'LastTrackedModifiedDateTime', 'WebAddress', 'OwnerResourceID', 'id', 'AdditionalAddressInformation', 'TaskFireActive', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceMethod', 'CountryID', 'City', 'AdditionalAddressInformation', 'BillToZipCode', 'BillToAddressToUse', 'AlternatePhone2', 'CreatedByResourceID', 'Address1', 'PostalCode', 'EnabledForComanaged', 'TaskFireActive', 'QuoteTemplateID', 'OwnerResourceID', 'LastActivityDate', 'AssetValue', 'LastTrackedModifiedDateTime', 'Fax', 'Country', 'StockMarket', 'InvoiceEmailMessageID', 'AccountNumber', 'Address2', 'BillToAddress2', 'StockSymbol', 'ImpersonatorCreatorResourceID', 'MarketSegmentID', 'BillToAdditionalAddressInformation', 'BillToState', 'CreateDate', 'ParentAccountID', 'QuoteEmailMessageID', 'Active', 'BillToAccountPhysicalLocationID', 'WebAddress', 'TaxExempt', 'SICCode', 'BillToCountryID', 'AccountName', 'State', 'AccountType', 'TaxRegionID', 'InvoiceNonContractItemsToParentAccount', 'BillToCity', 'id', 'SurveyAccountRating', 'InvoiceTemplateID', 'ClientPortalActive', 'ApiVendorID', 'KeyAccountIcon', 'Phone', 'CompetitorID', 'AlternatePhone1', 'CurrencyID', 'TerritoryID', 'BillToAttention', 'BillToAddress1', 'TaxID', '')]
+    [ValidateSet('CreatedByResourceID', 'State', 'QuoteTemplateID', 'AlternatePhone1', 'AssetValue', 'BillToAddress2', 'SICCode', 'BillToAttention', 'Address2', 'InvoiceEmailMessageID', 'Active', 'City', 'MarketSegmentID', 'CompetitorID', 'TaxRegionID', 'BillToState', 'TaxID', 'BillToAddressToUse', 'AccountType', 'SurveyAccountRating', 'StockMarket', 'Country', 'BillToCity', 'AccountName', 'InvoiceTemplateID', 'PostalCode', 'TaxExempt', 'InvoiceMethod', 'Address1', 'TerritoryID', 'CurrencyID', 'ImpersonatorCreatorResourceID', 'BillToAccountPhysicalLocationID', 'BillToAddress1', 'LastActivityDate', 'BillToCountryID', 'ParentAccountID', 'InvoiceNonContractItemsToParentAccount', 'ApiVendorID', 'Fax', 'QuoteEmailMessageID', 'BillToZipCode', 'KeyAccountIcon', 'CountryID', 'BillToAdditionalAddressInformation', 'EnabledForComanaged', 'AccountNumber', 'ClientPortalActive', 'Phone', 'AlternatePhone2', 'CreateDate', 'StockSymbol', 'LastTrackedModifiedDateTime', 'WebAddress', 'OwnerResourceID', 'id', 'AdditionalAddressInformation', 'TaskFireActive', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceMethod', 'CountryID', 'City', 'AdditionalAddressInformation', 'BillToZipCode', 'BillToAddressToUse', 'AlternatePhone2', 'CreatedByResourceID', 'Address1', 'PostalCode', 'EnabledForComanaged', 'TaskFireActive', 'QuoteTemplateID', 'OwnerResourceID', 'LastActivityDate', 'AssetValue', 'LastTrackedModifiedDateTime', 'Fax', 'Country', 'StockMarket', 'InvoiceEmailMessageID', 'AccountNumber', 'Address2', 'BillToAddress2', 'StockSymbol', 'ImpersonatorCreatorResourceID', 'MarketSegmentID', 'BillToAdditionalAddressInformation', 'BillToState', 'CreateDate', 'ParentAccountID', 'QuoteEmailMessageID', 'Active', 'BillToAccountPhysicalLocationID', 'WebAddress', 'TaxExempt', 'SICCode', 'BillToCountryID', 'AccountName', 'State', 'AccountType', 'TaxRegionID', 'InvoiceNonContractItemsToParentAccount', 'BillToCity', 'id', 'SurveyAccountRating', 'InvoiceTemplateID', 'ClientPortalActive', 'ApiVendorID', 'KeyAccountIcon', 'Phone', 'CompetitorID', 'AlternatePhone1', 'CurrencyID', 'TerritoryID', 'BillToAttention', 'BillToAddress1', 'TaxID', '')]
+    [ValidateSet('CreatedByResourceID', 'State', 'QuoteTemplateID', 'AlternatePhone1', 'AssetValue', 'BillToAddress2', 'SICCode', 'BillToAttention', 'Address2', 'InvoiceEmailMessageID', 'Active', 'City', 'MarketSegmentID', 'CompetitorID', 'TaxRegionID', 'BillToState', 'TaxID', 'BillToAddressToUse', 'AccountType', 'SurveyAccountRating', 'StockMarket', 'Country', 'BillToCity', 'AccountName', 'InvoiceTemplateID', 'PostalCode', 'TaxExempt', 'InvoiceMethod', 'Address1', 'TerritoryID', 'CurrencyID', 'ImpersonatorCreatorResourceID', 'BillToAccountPhysicalLocationID', 'BillToAddress1', 'LastActivityDate', 'BillToCountryID', 'ParentAccountID', 'InvoiceNonContractItemsToParentAccount', 'ApiVendorID', 'Fax', 'QuoteEmailMessageID', 'BillToZipCode', 'KeyAccountIcon', 'CountryID', 'BillToAdditionalAddressInformation', 'EnabledForComanaged', 'AccountNumber', 'ClientPortalActive', 'Phone', 'AlternatePhone2', 'CreateDate', 'StockSymbol', 'LastTrackedModifiedDateTime', 'WebAddress', 'OwnerResourceID', 'id', 'AdditionalAddressInformation', 'TaskFireActive', '')]
     [string[]]
     $IsNotNull,
 

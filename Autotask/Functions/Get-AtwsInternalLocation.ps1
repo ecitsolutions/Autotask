@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 HolidaySetId
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -231,21 +229,21 @@ An example of a more complex query. This command returns any InternalLocations w
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PostalCode', 'Country', 'HolidaySetId', 'Name', 'City', 'id', 'TimeZone', 'Address1', 'State', 'AdditionalAddressInfo', 'Address2', 'IsDefault')]
+    [ValidateSet('City', 'Address2', 'Name', 'Country', 'IsDefault', 'State', 'AdditionalAddressInfo', 'id', 'PostalCode', 'Address1', 'HolidaySetId', 'TimeZone')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PostalCode', 'Country', 'HolidaySetId', 'Name', 'City', 'id', 'TimeZone', 'Address1', 'State', 'AdditionalAddressInfo', 'Address2', 'IsDefault')]
+    [ValidateSet('City', 'Address2', 'Name', 'Country', 'IsDefault', 'State', 'AdditionalAddressInfo', 'id', 'PostalCode', 'Address1', 'HolidaySetId', 'TimeZone')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PostalCode', 'Country', 'HolidaySetId', 'Name', 'City', 'id', 'TimeZone', 'Address1', 'State', 'AdditionalAddressInfo', 'Address2', 'IsDefault')]
+    [ValidateSet('City', 'Address2', 'Name', 'Country', 'IsDefault', 'State', 'AdditionalAddressInfo', 'id', 'PostalCode', 'Address1', 'HolidaySetId', 'TimeZone')]
     [string[]]
     $IsNotNull,
 

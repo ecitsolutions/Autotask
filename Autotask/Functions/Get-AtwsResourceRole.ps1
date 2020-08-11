@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 QueueID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -99,7 +97,7 @@ An example of a more complex query. This command returns any ResourceRoles with 
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ResourceID', 'RoleID', 'DepartmentID')]
+    [ValidateSet('DepartmentID', 'RoleID', 'ResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -182,21 +180,21 @@ An example of a more complex query. This command returns any ResourceRoles with 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'DepartmentID', 'ResourceID', 'id', 'QueueID', 'RoleID')]
+    [ValidateSet('DepartmentID', 'RoleID', 'QueueID', 'Active', 'id', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'DepartmentID', 'ResourceID', 'id', 'QueueID', 'RoleID')]
+    [ValidateSet('DepartmentID', 'RoleID', 'QueueID', 'Active', 'id', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'DepartmentID', 'ResourceID', 'id', 'QueueID', 'RoleID')]
+    [ValidateSet('DepartmentID', 'RoleID', 'QueueID', 'Active', 'id', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

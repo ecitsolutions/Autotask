@@ -68,16 +68,6 @@ Set-AtwsInventoryLocation
     [Int]
     $ImpersonatorCreatorResourceID,
 
-# Location Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string]
-    $LocationName,
-
 # IsDefault
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -93,6 +83,16 @@ Set-AtwsInventoryLocation
     [ValidateNotNullOrEmpty()]
     [boolean]
     $Active,
+
+# Location Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string]
+    $LocationName,
 
 # Resource ID
     [Parameter(

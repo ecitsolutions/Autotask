@@ -86,7 +86,7 @@ Remove-AtwsTicketAdditionalContact
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TicketID', 'ContactID')]
+    [ValidateSet('ContactID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -136,21 +136,21 @@ Remove-AtwsTicketAdditionalContact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ContactID', 'id')]
+    [ValidateSet('TicketID', 'id', 'ContactID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ContactID', 'id')]
+    [ValidateSet('TicketID', 'id', 'ContactID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ContactID', 'id')]
+    [ValidateSet('TicketID', 'id', 'ContactID')]
     [string[]]
     $IsNotNull,
 

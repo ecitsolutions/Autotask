@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 AddressFormatID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -101,7 +99,7 @@ Set-AtwsCountry
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InvoiceTemplateID', 'QuoteTemplateID')]
+    [ValidateSet('QuoteTemplateID', 'InvoiceTemplateID')]
     [string]
     $GetReferenceEntityById,
 
@@ -114,7 +112,7 @@ Set-AtwsCountry
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Contact', 'SalesOrder', 'Account', 'BusinessLocation', 'AccountPhysicalLocation')]
+    [ValidateSet('Contact', 'AccountPhysicalLocation', 'SalesOrder', 'BusinessLocation', 'Account')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -209,21 +207,21 @@ Set-AtwsCountry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressFormatID', 'DisplayName', 'Active', 'id', 'Name', 'CountryCode', 'QuoteTemplateID', 'IsDefaultCountry', 'InvoiceTemplateID')]
+    [ValidateSet('InvoiceTemplateID', 'QuoteTemplateID', 'Name', 'IsDefaultCountry', 'Active', 'id', 'CountryCode', 'AddressFormatID', 'DisplayName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressFormatID', 'DisplayName', 'Active', 'id', 'Name', 'CountryCode', 'QuoteTemplateID', 'IsDefaultCountry', 'InvoiceTemplateID')]
+    [ValidateSet('InvoiceTemplateID', 'QuoteTemplateID', 'Name', 'IsDefaultCountry', 'Active', 'id', 'CountryCode', 'AddressFormatID', 'DisplayName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressFormatID', 'DisplayName', 'Active', 'id', 'Name', 'CountryCode', 'QuoteTemplateID', 'IsDefaultCountry', 'InvoiceTemplateID')]
+    [ValidateSet('InvoiceTemplateID', 'QuoteTemplateID', 'Name', 'IsDefaultCountry', 'Active', 'id', 'CountryCode', 'AddressFormatID', 'DisplayName')]
     [string[]]
     $IsNotNull,
 

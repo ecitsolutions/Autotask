@@ -99,7 +99,7 @@ Set-AtwsContractServiceBundle
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractServiceBundleUnit', 'TimeEntry', 'TicketCost', 'ProjectCost', 'ContractCost', 'ChangeOrderCost', 'Ticket', 'InstalledProduct', 'ContractServiceBundleAdjustment')]
+    [ValidateSet('TimeEntry', 'InstalledProduct', 'ProjectCost', 'ContractServiceBundleUnit', 'ContractServiceBundleAdjustment', 'ChangeOrderCost', 'TicketCost', 'ContractCost', 'Ticket')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -188,21 +188,21 @@ Set-AtwsContractServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'AdjustedPrice', 'ServiceBundleID', 'InvoiceDescription', 'InternalCurrencyUnitPrice', 'UnitPrice', 'InternalDescription', 'QuoteItemID', 'InternalCurrencyAdjustedPrice', 'id')]
+    [ValidateSet('AdjustedPrice', 'ServiceBundleID', 'InternalDescription', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'id', 'ContractID', 'QuoteItemID', 'UnitPrice', 'InvoiceDescription')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'AdjustedPrice', 'ServiceBundleID', 'InvoiceDescription', 'InternalCurrencyUnitPrice', 'UnitPrice', 'InternalDescription', 'QuoteItemID', 'InternalCurrencyAdjustedPrice', 'id')]
+    [ValidateSet('AdjustedPrice', 'ServiceBundleID', 'InternalDescription', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'id', 'ContractID', 'QuoteItemID', 'UnitPrice', 'InvoiceDescription')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'AdjustedPrice', 'ServiceBundleID', 'InvoiceDescription', 'InternalCurrencyUnitPrice', 'UnitPrice', 'InternalDescription', 'QuoteItemID', 'InternalCurrencyAdjustedPrice', 'id')]
+    [ValidateSet('AdjustedPrice', 'ServiceBundleID', 'InternalDescription', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'id', 'ContractID', 'QuoteItemID', 'UnitPrice', 'InvoiceDescription')]
     [string[]]
     $IsNotNull,
 

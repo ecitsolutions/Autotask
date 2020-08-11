@@ -62,15 +62,6 @@ Get-AtwsTicketSecondaryResource
     [Autotask.TicketSecondaryResource[]]
     $InputObject,
 
-# Resource
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $ResourceID,
-
 # Ticket
     [Parameter(
       Mandatory = $true,
@@ -87,7 +78,16 @@ Get-AtwsTicketSecondaryResource
     )]
     [ValidateNotNullOrEmpty()]
     [long]
-    $RoleID
+    $RoleID,
+
+# Resource
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $ResourceID
   )
  
     begin { 

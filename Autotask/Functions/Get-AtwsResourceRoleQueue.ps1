@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 QueueID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -165,21 +163,21 @@ Set-AtwsResourceRoleQueue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'ResourceID', 'id', 'QueueID', 'RoleID', 'Default')]
+    [ValidateSet('Default', 'RoleID', 'QueueID', 'Active', 'id', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'ResourceID', 'id', 'QueueID', 'RoleID', 'Default')]
+    [ValidateSet('Default', 'RoleID', 'QueueID', 'Active', 'id', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'ResourceID', 'id', 'QueueID', 'RoleID', 'Default')]
+    [ValidateSet('Default', 'RoleID', 'QueueID', 'Active', 'id', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

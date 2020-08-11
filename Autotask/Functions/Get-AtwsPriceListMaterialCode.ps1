@@ -84,7 +84,7 @@ Set-AtwsPriceListMaterialCode
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AllocationCodeID', 'CurrencyID')]
+    [ValidateSet('CurrencyID', 'AllocationCodeID')]
     [string]
     $GetReferenceEntityById,
 
@@ -149,21 +149,21 @@ Set-AtwsPriceListMaterialCode
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'CurrencyID', 'AllocationCodeID', 'id', 'UnitPrice')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'AllocationCodeID', 'CurrencyID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'CurrencyID', 'AllocationCodeID', 'id', 'UnitPrice')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'AllocationCodeID', 'CurrencyID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'CurrencyID', 'AllocationCodeID', 'id', 'UnitPrice')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'AllocationCodeID', 'CurrencyID')]
     [string[]]
     $IsNotNull,
 

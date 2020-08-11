@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 FieldID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -183,21 +181,21 @@ Set-AtwsContactWebhookField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'IsSubscribedField', 'FieldID', 'IsDisplayAlwaysField', 'WebhookID')]
+    [ValidateSet('FieldID', 'IsDisplayAlwaysField', 'id', 'IsSubscribedField', 'WebhookID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'IsSubscribedField', 'FieldID', 'IsDisplayAlwaysField', 'WebhookID')]
+    [ValidateSet('FieldID', 'IsDisplayAlwaysField', 'id', 'IsSubscribedField', 'WebhookID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'IsSubscribedField', 'FieldID', 'IsDisplayAlwaysField', 'WebhookID')]
+    [ValidateSet('FieldID', 'IsDisplayAlwaysField', 'id', 'IsSubscribedField', 'WebhookID')]
     [string[]]
     $IsNotNull,
 

@@ -63,6 +63,14 @@ Set-AtwsProductVendor
     [Autotask.ProductVendor[]]
     $InputObject,
 
+# Vendor Part Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $VendorPartNumber,
+
 # Vendor Account ID
     [Parameter(
       Mandatory = $true,
@@ -71,14 +79,6 @@ Set-AtwsProductVendor
     [ValidateNotNullOrEmpty()]
     [Int]
     $VendorID,
-
-# Vendor Part Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $VendorPartNumber,
 
 # Is Default
     [Parameter(
@@ -96,15 +96,6 @@ Set-AtwsProductVendor
     [double]
     $VendorCost,
 
-# Product ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ProductID,
-
 # Is Active
     [Parameter(
       Mandatory = $true,
@@ -112,7 +103,16 @@ Set-AtwsProductVendor
     )]
     [ValidateNotNullOrEmpty()]
     [boolean]
-    $Active
+    $Active,
+
+# Product ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ProductID
   )
  
     begin { 

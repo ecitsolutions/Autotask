@@ -61,15 +61,6 @@ Get-AtwsComanagedAssociation
     [Autotask.ComanagedAssociation[]]
     $InputObject,
 
-# Resource ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ResourceID,
-
 # Account ID
     [Parameter(
       Mandatory = $true,
@@ -77,7 +68,16 @@ Get-AtwsComanagedAssociation
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $AccountID
+    $AccountID,
+
+# Resource ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ResourceID
   )
  
     begin { 

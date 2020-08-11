@@ -62,6 +62,40 @@ Set-AtwsInstalledProductCategory
     [Autotask.InstalledProductCategory[]]
     $InputObject,
 
+# Nickname
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,3)]
+    [string]
+    $Nickname,
+
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
+
+# Global Default
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $GlobalDefault,
+
+# Active
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active,
+
 # Display Color RGB
     [Parameter(
       Mandatory = $true,
@@ -82,40 +116,6 @@ Set-AtwsInstalledProductCategory
     })]
     [string]
     $DisplayColorRGB,
-
-# Global Default
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $GlobalDefault,
-
-# Nickname
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,3)]
-    [string]
-    $Nickname,
-
-# Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# Active
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
 
 # Client Portal Default
     [Parameter(

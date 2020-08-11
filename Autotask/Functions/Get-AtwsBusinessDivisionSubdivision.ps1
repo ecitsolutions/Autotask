@@ -99,7 +99,7 @@ Set-AtwsBusinessDivisionSubdivision
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem', 'ChangeOrderCost', 'ExpenseReport', 'TicketCategoryFieldDefaults', 'TicketCost', 'BusinessDivisionSubdivisionResource', 'Contract', 'Opportunity', 'ContractCost', 'Ticket', 'ContractMilestone', 'Project', 'Subscription', 'ContractServiceUnit', 'ProjectCost', 'SalesOrder', 'ContractServiceBundleUnit')]
+    [ValidateSet('ChangeOrderCost', 'ExpenseReport', 'Contract', 'ProjectCost', 'ContractMilestone', 'ContractCost', 'TicketCategoryFieldDefaults', 'SalesOrder', 'Project', 'Ticket', 'Subscription', 'BillingItem', 'ContractServiceBundleUnit', 'TicketCost', 'ContractServiceUnit', 'Opportunity', 'BusinessDivisionSubdivisionResource')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -144,21 +144,21 @@ Set-AtwsBusinessDivisionSubdivision
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionID', 'Active', 'id', 'BusinessSubdivisionID')]
+    [ValidateSet('BusinessSubdivisionID', 'id', 'Active', 'BusinessDivisionID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionID', 'Active', 'id', 'BusinessSubdivisionID')]
+    [ValidateSet('BusinessSubdivisionID', 'id', 'Active', 'BusinessDivisionID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionID', 'Active', 'id', 'BusinessSubdivisionID')]
+    [ValidateSet('BusinessSubdivisionID', 'id', 'Active', 'BusinessDivisionID')]
     [string[]]
     $IsNotNull,
 

@@ -29,72 +29,28 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 Type
- 
-
 ServiceLevelAgreementID
- 
-
 RMMDeviceAuditArchitectureID
- 
-
 RMMDeviceAuditDisplayAdaptorID
- 
-
 RMMDeviceAuditDomainID
- 
-
 RMMDeviceAuditManufacturerID
- 
-
 RMMDeviceAuditModelID
- 
-
 RMMDeviceAuditMotherboardID
- 
-
 RMMDeviceAuditProcessorID
- 
-
 RMMDeviceAuditServicePackID
- 
-
 RMMDeviceAuditDeviceTypeID
- 
-
 RMMDeviceAuditMobileNetworkOperatorID
- 
-
 DattoOSVersionID
- 
-
 DattoZFSVersionID
- 
-
 DattoKernelVersionID
- 
-
 RMMDeviceAuditAntivirusStatusID
- 
-
 RMMDeviceAuditBackupStatusID
- 
-
 RMMDeviceAuditPatchStatusID
- 
-
 RMMDeviceAuditSoftwareStatusID
- 
-
 LastActivityPersonType
- 
-
 ApiVendorID
- 
-
 SourceCostType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -166,7 +122,7 @@ Set-AtwsInstalledProduct
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProductID', 'ImpersonatorCreatorResourceID', 'VendorID', 'ContractServiceBundleID', 'ParentInstalledProductID', 'ContractServiceID', 'AccountPhysicalLocationID', 'InstalledProductCategoryID', 'ContractID', 'InstalledByContactID', 'ServiceID', 'ServiceBundleID')]
+    [ValidateSet('ServiceID', 'ServiceBundleID', 'AccountPhysicalLocationID', 'InstalledProductCategoryID', 'ParentInstalledProductID', 'ProductID', 'ContractServiceBundleID', 'ImpersonatorCreatorResourceID', 'InstalledByContactID', 'ContractServiceID', 'ContractID', 'VendorID')]
     [string]
     $GetReferenceEntityById,
 
@@ -179,7 +135,7 @@ Set-AtwsInstalledProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Subscription', 'InstalledProductNote', 'TicketAdditionalInstalledProduct', 'ProductNote', 'Ticket', 'InstalledProduct', 'BillingItem', 'InstalledProductBillingProductAssociation')]
+    [ValidateSet('InstalledProductBillingProductAssociation', 'TicketAdditionalInstalledProduct', 'InstalledProductNote', 'Subscription', 'ProductNote', 'InstalledProduct', 'BillingItem', 'Ticket')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -1108,21 +1064,21 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RMMDeviceAuditOperatingSystem', 'ReferenceTitle', 'RMMDeviceAuditDescription', 'DattoDrivesErrors', 'Notes', 'RMMDeviceAuditExternalIPAddress', 'Type', 'RMMDeviceAuditDisplayAdaptorID', 'DattoAvailableKilobytes', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditManufacturerID', 'RMMDeviceAuditMacAddress', 'DailyCost', 'RMMDeviceAuditPatchStatusID', 'ServiceLevelAgreementID', 'SourceCostType', 'RMMDeviceAuditSoftwareStatusID', 'ServiceID', 'RMMDeviceAuditSNMPContact', 'DattoNumberOfDrives', 'DeviceNetworkingID', 'ProductID', 'VendorID', 'RMMDeviceAuditIPAddress', 'ServiceBundleID', 'DattoProtectedKilobytes', 'SerialNumber', 'DattoNumberOfVolumes', 'RMMDeviceAuditSNMPName', 'HourlyCost', 'RMMDeviceAuditMobileNumber', 'AccountID', 'InstalledProductCategoryID', 'ParentInstalledProductID', 'ApiVendorID', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditModelID', 'PerUseCost', 'CreateDate', 'DattoOffsiteUsedBytes', 'RMMDeviceID', 'RMMDeviceUID', 'WarrantyExpirationDate', 'RMMDeviceAuditDeviceTypeID', 'NumberOfUsers', 'RMMDeviceAuditProcessorID', 'LastModifiedTime', 'LastActivityPersonID', 'ContactID', 'RMMDeviceAuditBackupStatusID', 'DattoZFSVersionID', 'RMMDeviceAuditMemoryBytes', 'DattoNumberOfAgents', 'RMMDeviceAuditLastUser', 'InstalledByContactID', 'DattoLastCheckInDateTime', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditMissingPatchCount', 'RMMDeviceAuditDomainID', 'RMMDeviceAuditMobileNetworkOperatorID', 'SourceCostID', 'DattoHostname', 'AccountPhysicalLocationID', 'DattoOSVersionID', 'ContractServiceID', 'Active', 'ReferenceNumber', 'DattoDeviceMemoryMegabytes', 'DattoPercentageUsed', 'ContractID', 'RMMOpenAlertCount', 'DattoUptimeSeconds', 'ImpersonatorCreatorResourceID', 'MonthlyCost', 'DattoKernelVersionID', 'RMMDeviceAuditMotherboardID', 'DattoNICSpeedKilobitsPerSecond', 'DattoInternalIP', 'SetupFee', 'DattoRemoteIP', 'ContractServiceBundleID', 'id', 'Location', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditHostname', 'InstalledByID', 'DattoUsedKilobytes', 'LastActivityPersonType', 'CreatedByPersonID', 'InstallDate', 'DattoSerialNumber', '')]
+    [ValidateSet('DattoZFSVersionID', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditMemoryBytes', 'SourceCostID', 'RMMDeviceAuditManufacturerID', 'RMMDeviceAuditBackupStatusID', 'ContractID', 'ContactID', 'RMMDeviceAuditModelID', 'DattoHostname', 'DattoDrivesErrors', 'DattoAvailableKilobytes', 'RMMDeviceAuditStorageBytes', 'RMMOpenAlertCount', 'InstalledByContactID', 'RMMDeviceID', 'DattoKernelVersionID', 'DattoOSVersionID', 'CreateDate', 'RMMDeviceAuditSoftwareStatusID', 'RMMDeviceAuditDeviceTypeID', 'RMMDeviceAuditDomainID', 'VendorID', 'ContractServiceID', 'InstalledByID', 'RMMDeviceAuditHostname', 'SourceCostType', 'DattoDeviceMemoryMegabytes', 'ServiceLevelAgreementID', 'DattoPercentageUsed', 'AccountID', 'RMMDeviceAuditMacAddress', 'ParentInstalledProductID', 'DattoRemoteIP', 'InstallDate', 'RMMDeviceUID', 'WarrantyExpirationDate', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditMissingPatchCount', 'ReferenceNumber', 'AccountPhysicalLocationID', 'DattoNumberOfAgents', 'ServiceID', 'ApiVendorID', 'DattoLastCheckInDateTime', 'InstalledProductCategoryID', 'Notes', 'NumberOfUsers', 'RMMDeviceAuditExternalIPAddress', 'DailyCost', 'DattoNICSpeedKilobitsPerSecond', 'PerUseCost', 'RMMDeviceAuditProcessorID', 'DattoUptimeSeconds', 'ImpersonatorCreatorResourceID', 'ProductID', 'Type', 'ServiceBundleID', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditOperatingSystem', 'SetupFee', 'CreatedByPersonID', 'RMMDeviceAuditMobileNumber', 'LastActivityPersonType', 'DattoUsedKilobytes', 'DattoNumberOfVolumes', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'DattoSerialNumber', 'RMMDeviceAuditMotherboardID', 'LastModifiedTime', 'DattoProtectedKilobytes', 'ReferenceTitle', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMobileNetworkOperatorID', 'RMMDeviceAuditLastUser', 'Active', 'DattoOffsiteUsedBytes', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditSNMPContact', 'DeviceNetworkingID', 'HourlyCost', 'RMMDeviceAuditDisplayAdaptorID', 'SerialNumber', 'DattoInternalIP', 'Location', 'id', 'ContractServiceBundleID', 'RMMDeviceAuditDescription', 'MonthlyCost', 'DattoNumberOfDrives', 'LastActivityPersonID', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RMMDeviceAuditOperatingSystem', 'ReferenceTitle', 'RMMDeviceAuditDescription', 'DattoDrivesErrors', 'Notes', 'RMMDeviceAuditExternalIPAddress', 'Type', 'RMMDeviceAuditDisplayAdaptorID', 'DattoAvailableKilobytes', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditManufacturerID', 'RMMDeviceAuditMacAddress', 'DailyCost', 'RMMDeviceAuditPatchStatusID', 'ServiceLevelAgreementID', 'SourceCostType', 'RMMDeviceAuditSoftwareStatusID', 'ServiceID', 'RMMDeviceAuditSNMPContact', 'DattoNumberOfDrives', 'DeviceNetworkingID', 'ProductID', 'VendorID', 'RMMDeviceAuditIPAddress', 'ServiceBundleID', 'DattoProtectedKilobytes', 'SerialNumber', 'DattoNumberOfVolumes', 'RMMDeviceAuditSNMPName', 'HourlyCost', 'RMMDeviceAuditMobileNumber', 'AccountID', 'InstalledProductCategoryID', 'ParentInstalledProductID', 'ApiVendorID', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditModelID', 'PerUseCost', 'CreateDate', 'DattoOffsiteUsedBytes', 'RMMDeviceID', 'RMMDeviceUID', 'WarrantyExpirationDate', 'RMMDeviceAuditDeviceTypeID', 'NumberOfUsers', 'RMMDeviceAuditProcessorID', 'LastModifiedTime', 'LastActivityPersonID', 'ContactID', 'RMMDeviceAuditBackupStatusID', 'DattoZFSVersionID', 'RMMDeviceAuditMemoryBytes', 'DattoNumberOfAgents', 'RMMDeviceAuditLastUser', 'InstalledByContactID', 'DattoLastCheckInDateTime', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditMissingPatchCount', 'RMMDeviceAuditDomainID', 'RMMDeviceAuditMobileNetworkOperatorID', 'SourceCostID', 'DattoHostname', 'AccountPhysicalLocationID', 'DattoOSVersionID', 'ContractServiceID', 'Active', 'ReferenceNumber', 'DattoDeviceMemoryMegabytes', 'DattoPercentageUsed', 'ContractID', 'RMMOpenAlertCount', 'DattoUptimeSeconds', 'ImpersonatorCreatorResourceID', 'MonthlyCost', 'DattoKernelVersionID', 'RMMDeviceAuditMotherboardID', 'DattoNICSpeedKilobitsPerSecond', 'DattoInternalIP', 'SetupFee', 'DattoRemoteIP', 'ContractServiceBundleID', 'id', 'Location', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditHostname', 'InstalledByID', 'DattoUsedKilobytes', 'LastActivityPersonType', 'CreatedByPersonID', 'InstallDate', 'DattoSerialNumber', '')]
+    [ValidateSet('DattoZFSVersionID', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditMemoryBytes', 'SourceCostID', 'RMMDeviceAuditManufacturerID', 'RMMDeviceAuditBackupStatusID', 'ContractID', 'ContactID', 'RMMDeviceAuditModelID', 'DattoHostname', 'DattoDrivesErrors', 'DattoAvailableKilobytes', 'RMMDeviceAuditStorageBytes', 'RMMOpenAlertCount', 'InstalledByContactID', 'RMMDeviceID', 'DattoKernelVersionID', 'DattoOSVersionID', 'CreateDate', 'RMMDeviceAuditSoftwareStatusID', 'RMMDeviceAuditDeviceTypeID', 'RMMDeviceAuditDomainID', 'VendorID', 'ContractServiceID', 'InstalledByID', 'RMMDeviceAuditHostname', 'SourceCostType', 'DattoDeviceMemoryMegabytes', 'ServiceLevelAgreementID', 'DattoPercentageUsed', 'AccountID', 'RMMDeviceAuditMacAddress', 'ParentInstalledProductID', 'DattoRemoteIP', 'InstallDate', 'RMMDeviceUID', 'WarrantyExpirationDate', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditMissingPatchCount', 'ReferenceNumber', 'AccountPhysicalLocationID', 'DattoNumberOfAgents', 'ServiceID', 'ApiVendorID', 'DattoLastCheckInDateTime', 'InstalledProductCategoryID', 'Notes', 'NumberOfUsers', 'RMMDeviceAuditExternalIPAddress', 'DailyCost', 'DattoNICSpeedKilobitsPerSecond', 'PerUseCost', 'RMMDeviceAuditProcessorID', 'DattoUptimeSeconds', 'ImpersonatorCreatorResourceID', 'ProductID', 'Type', 'ServiceBundleID', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditOperatingSystem', 'SetupFee', 'CreatedByPersonID', 'RMMDeviceAuditMobileNumber', 'LastActivityPersonType', 'DattoUsedKilobytes', 'DattoNumberOfVolumes', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'DattoSerialNumber', 'RMMDeviceAuditMotherboardID', 'LastModifiedTime', 'DattoProtectedKilobytes', 'ReferenceTitle', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMobileNetworkOperatorID', 'RMMDeviceAuditLastUser', 'Active', 'DattoOffsiteUsedBytes', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditSNMPContact', 'DeviceNetworkingID', 'HourlyCost', 'RMMDeviceAuditDisplayAdaptorID', 'SerialNumber', 'DattoInternalIP', 'Location', 'id', 'ContractServiceBundleID', 'RMMDeviceAuditDescription', 'MonthlyCost', 'DattoNumberOfDrives', 'LastActivityPersonID', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RMMDeviceAuditOperatingSystem', 'ReferenceTitle', 'RMMDeviceAuditDescription', 'DattoDrivesErrors', 'Notes', 'RMMDeviceAuditExternalIPAddress', 'Type', 'RMMDeviceAuditDisplayAdaptorID', 'DattoAvailableKilobytes', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditManufacturerID', 'RMMDeviceAuditMacAddress', 'DailyCost', 'RMMDeviceAuditPatchStatusID', 'ServiceLevelAgreementID', 'SourceCostType', 'RMMDeviceAuditSoftwareStatusID', 'ServiceID', 'RMMDeviceAuditSNMPContact', 'DattoNumberOfDrives', 'DeviceNetworkingID', 'ProductID', 'VendorID', 'RMMDeviceAuditIPAddress', 'ServiceBundleID', 'DattoProtectedKilobytes', 'SerialNumber', 'DattoNumberOfVolumes', 'RMMDeviceAuditSNMPName', 'HourlyCost', 'RMMDeviceAuditMobileNumber', 'AccountID', 'InstalledProductCategoryID', 'ParentInstalledProductID', 'ApiVendorID', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditModelID', 'PerUseCost', 'CreateDate', 'DattoOffsiteUsedBytes', 'RMMDeviceID', 'RMMDeviceUID', 'WarrantyExpirationDate', 'RMMDeviceAuditDeviceTypeID', 'NumberOfUsers', 'RMMDeviceAuditProcessorID', 'LastModifiedTime', 'LastActivityPersonID', 'ContactID', 'RMMDeviceAuditBackupStatusID', 'DattoZFSVersionID', 'RMMDeviceAuditMemoryBytes', 'DattoNumberOfAgents', 'RMMDeviceAuditLastUser', 'InstalledByContactID', 'DattoLastCheckInDateTime', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditMissingPatchCount', 'RMMDeviceAuditDomainID', 'RMMDeviceAuditMobileNetworkOperatorID', 'SourceCostID', 'DattoHostname', 'AccountPhysicalLocationID', 'DattoOSVersionID', 'ContractServiceID', 'Active', 'ReferenceNumber', 'DattoDeviceMemoryMegabytes', 'DattoPercentageUsed', 'ContractID', 'RMMOpenAlertCount', 'DattoUptimeSeconds', 'ImpersonatorCreatorResourceID', 'MonthlyCost', 'DattoKernelVersionID', 'RMMDeviceAuditMotherboardID', 'DattoNICSpeedKilobitsPerSecond', 'DattoInternalIP', 'SetupFee', 'DattoRemoteIP', 'ContractServiceBundleID', 'id', 'Location', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditHostname', 'InstalledByID', 'DattoUsedKilobytes', 'LastActivityPersonType', 'CreatedByPersonID', 'InstallDate', 'DattoSerialNumber', '')]
+    [ValidateSet('DattoZFSVersionID', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditMemoryBytes', 'SourceCostID', 'RMMDeviceAuditManufacturerID', 'RMMDeviceAuditBackupStatusID', 'ContractID', 'ContactID', 'RMMDeviceAuditModelID', 'DattoHostname', 'DattoDrivesErrors', 'DattoAvailableKilobytes', 'RMMDeviceAuditStorageBytes', 'RMMOpenAlertCount', 'InstalledByContactID', 'RMMDeviceID', 'DattoKernelVersionID', 'DattoOSVersionID', 'CreateDate', 'RMMDeviceAuditSoftwareStatusID', 'RMMDeviceAuditDeviceTypeID', 'RMMDeviceAuditDomainID', 'VendorID', 'ContractServiceID', 'InstalledByID', 'RMMDeviceAuditHostname', 'SourceCostType', 'DattoDeviceMemoryMegabytes', 'ServiceLevelAgreementID', 'DattoPercentageUsed', 'AccountID', 'RMMDeviceAuditMacAddress', 'ParentInstalledProductID', 'DattoRemoteIP', 'InstallDate', 'RMMDeviceUID', 'WarrantyExpirationDate', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditMissingPatchCount', 'ReferenceNumber', 'AccountPhysicalLocationID', 'DattoNumberOfAgents', 'ServiceID', 'ApiVendorID', 'DattoLastCheckInDateTime', 'InstalledProductCategoryID', 'Notes', 'NumberOfUsers', 'RMMDeviceAuditExternalIPAddress', 'DailyCost', 'DattoNICSpeedKilobitsPerSecond', 'PerUseCost', 'RMMDeviceAuditProcessorID', 'DattoUptimeSeconds', 'ImpersonatorCreatorResourceID', 'ProductID', 'Type', 'ServiceBundleID', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditOperatingSystem', 'SetupFee', 'CreatedByPersonID', 'RMMDeviceAuditMobileNumber', 'LastActivityPersonType', 'DattoUsedKilobytes', 'DattoNumberOfVolumes', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'DattoSerialNumber', 'RMMDeviceAuditMotherboardID', 'LastModifiedTime', 'DattoProtectedKilobytes', 'ReferenceTitle', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMobileNetworkOperatorID', 'RMMDeviceAuditLastUser', 'Active', 'DattoOffsiteUsedBytes', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditSNMPContact', 'DeviceNetworkingID', 'HourlyCost', 'RMMDeviceAuditDisplayAdaptorID', 'SerialNumber', 'DattoInternalIP', 'Location', 'id', 'ContractServiceBundleID', 'RMMDeviceAuditDescription', 'MonthlyCost', 'DattoNumberOfDrives', 'LastActivityPersonID', '')]
     [string[]]
     $IsNotNull,
 

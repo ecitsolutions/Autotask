@@ -163,21 +163,21 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PostedDate', 'PeriodCost', 'PeriodDate', 'PurchaseOrderNumber', 'SubscriptionID', 'id', 'PeriodPrice')]
+    [ValidateSet('PeriodPrice', 'PurchaseOrderNumber', 'SubscriptionID', 'id', 'PeriodCost', 'PeriodDate', 'PostedDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PostedDate', 'PeriodCost', 'PeriodDate', 'PurchaseOrderNumber', 'SubscriptionID', 'id', 'PeriodPrice')]
+    [ValidateSet('PeriodPrice', 'PurchaseOrderNumber', 'SubscriptionID', 'id', 'PeriodCost', 'PeriodDate', 'PostedDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PostedDate', 'PeriodCost', 'PeriodDate', 'PurchaseOrderNumber', 'SubscriptionID', 'id', 'PeriodPrice')]
+    [ValidateSet('PeriodPrice', 'PurchaseOrderNumber', 'SubscriptionID', 'id', 'PeriodCost', 'PeriodDate', 'PostedDate')]
     [string[]]
     $IsNotNull,
 

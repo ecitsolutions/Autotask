@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 AlertTypeID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -173,21 +171,21 @@ Set-AtwsAccountAlert
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AlertTypeID', 'AccountID', 'AlertText')]
+    [ValidateSet('AccountID', 'id', 'AlertText', 'AlertTypeID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AlertTypeID', 'AccountID', 'AlertText')]
+    [ValidateSet('AccountID', 'id', 'AlertText', 'AlertTypeID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AlertTypeID', 'AccountID', 'AlertText')]
+    [ValidateSet('AccountID', 'id', 'AlertText', 'AlertTypeID')]
     [string[]]
     $IsNotNull,
 

@@ -29,15 +29,9 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 IsPaid
- 
-
 PaymentType
- 
-
 Status
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -265,21 +259,21 @@ Set-AtwsContractTicketPurchase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentType', 'TicketsPurchased', 'ContractID', 'PaymentNumber', 'PerTicketRate', 'IsPaid', 'TicketsUsed', 'id', 'DatePurchased', 'InvoiceNumber', 'StartDate', 'EndDate', 'Status')]
+    [ValidateSet('PerTicketRate', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'EndDate', 'Status', 'ContractID', 'TicketsUsed', 'IsPaid', 'TicketsPurchased', 'InvoiceNumber')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentType', 'TicketsPurchased', 'ContractID', 'PaymentNumber', 'PerTicketRate', 'IsPaid', 'TicketsUsed', 'id', 'DatePurchased', 'InvoiceNumber', 'StartDate', 'EndDate', 'Status')]
+    [ValidateSet('PerTicketRate', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'EndDate', 'Status', 'ContractID', 'TicketsUsed', 'IsPaid', 'TicketsPurchased', 'InvoiceNumber')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentType', 'TicketsPurchased', 'ContractID', 'PaymentNumber', 'PerTicketRate', 'IsPaid', 'TicketsUsed', 'id', 'DatePurchased', 'InvoiceNumber', 'StartDate', 'EndDate', 'Status')]
+    [ValidateSet('PerTicketRate', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'EndDate', 'Status', 'ContractID', 'TicketsUsed', 'IsPaid', 'TicketsPurchased', 'InvoiceNumber')]
     [string[]]
     $IsNotNull,
 

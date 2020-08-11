@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 Status
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -105,7 +103,7 @@ Set-AtwsServiceCall
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'ImpersonatorCreatorResourceID', 'AccountPhysicalLocationID')]
+    [ValidateSet('AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID', 'AccountID')]
     [string]
     $GetReferenceEntityById,
 
@@ -261,21 +259,21 @@ Set-AtwsServiceCall
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CanceledDateTime', 'CreatorResourceID', 'CanceledByResource', 'ImpersonatorCreatorResourceID', 'StartDateTime', 'AccountPhysicalLocationID', 'AccountID', 'EndDateTime', 'Complete', 'LastModifiedDateTime', 'id', 'Description', 'Duration', 'CancelationNoticeHours', 'Status', 'CreateDateTime')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AccountID', 'CreateDateTime', 'Description', 'AccountPhysicalLocationID', 'CreatorResourceID', 'EndDateTime', 'Complete', 'Status', 'CancelationNoticeHours', 'LastModifiedDateTime', 'CanceledByResource', 'Duration', 'CanceledDateTime', 'StartDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CanceledDateTime', 'CreatorResourceID', 'CanceledByResource', 'ImpersonatorCreatorResourceID', 'StartDateTime', 'AccountPhysicalLocationID', 'AccountID', 'EndDateTime', 'Complete', 'LastModifiedDateTime', 'id', 'Description', 'Duration', 'CancelationNoticeHours', 'Status', 'CreateDateTime')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AccountID', 'CreateDateTime', 'Description', 'AccountPhysicalLocationID', 'CreatorResourceID', 'EndDateTime', 'Complete', 'Status', 'CancelationNoticeHours', 'LastModifiedDateTime', 'CanceledByResource', 'Duration', 'CanceledDateTime', 'StartDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CanceledDateTime', 'CreatorResourceID', 'CanceledByResource', 'ImpersonatorCreatorResourceID', 'StartDateTime', 'AccountPhysicalLocationID', 'AccountID', 'EndDateTime', 'Complete', 'LastModifiedDateTime', 'id', 'Description', 'Duration', 'CancelationNoticeHours', 'Status', 'CreateDateTime')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AccountID', 'CreateDateTime', 'Description', 'AccountPhysicalLocationID', 'CreatorResourceID', 'EndDateTime', 'Complete', 'Status', 'CancelationNoticeHours', 'LastModifiedDateTime', 'CanceledByResource', 'Duration', 'CanceledDateTime', 'StartDateTime')]
     [string[]]
     $IsNotNull,
 

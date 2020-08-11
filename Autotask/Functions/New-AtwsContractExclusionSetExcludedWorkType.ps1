@@ -61,15 +61,6 @@ Get-AtwsContractExclusionSetExcludedWorkType
     [Autotask.ContractExclusionSetExcludedWorkType[]]
     $InputObject,
 
-# Excluded Work Type ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ExcludedWorkTypeID,
-
 # Contract Exclusion Set ID
     [Parameter(
       Mandatory = $true,
@@ -77,7 +68,16 @@ Get-AtwsContractExclusionSetExcludedWorkType
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ContractExclusionSetID
+    $ContractExclusionSetID,
+
+# Excluded Work Type ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ExcludedWorkTypeID
   )
  
     begin { 

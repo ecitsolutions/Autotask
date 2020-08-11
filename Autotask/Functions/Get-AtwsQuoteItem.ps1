@@ -29,12 +29,8 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 Type
- 
-
 PeriodType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -108,7 +104,7 @@ Set-AtwsQuoteItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ExpenseID', 'ServiceID', 'LaborID', 'TaxCategoryID', 'ServiceBundleID', 'ProductID', 'QuoteID', 'ShippingID')]
+    [ValidateSet('ServiceID', 'ExpenseID', 'LaborID', 'ProductID', 'ServiceBundleID', 'ShippingID', 'TaxCategoryID', 'QuoteID')]
     [string]
     $GetReferenceEntityById,
 
@@ -121,7 +117,7 @@ Set-AtwsQuoteItem
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractServiceBundleAdjustment', 'ContractServiceBundle', 'ContractServiceAdjustment', 'ContractService')]
+    [ValidateSet('ContractServiceBundleAdjustment', 'ContractService', 'ContractServiceAdjustment', 'ContractServiceBundle')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -358,21 +354,21 @@ Set-AtwsQuoteItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'InternalCurrencyUnitPrice', 'PeriodType', 'MarkupRate', 'UnitPrice', 'IsOptional', 'HighestCost', 'ProductID', 'InternalCurrencyLineDiscount', 'ShippingID', 'id', 'Type', 'CostID', 'LaborID', 'InternalCurrencyUnitDiscount', 'Quantity', 'PercentageDiscount', 'TaxCategoryID', 'ServiceBundleID', 'QuoteID', 'Name', 'TotalEffectiveTax', 'ExpenseID', 'UnitDiscount', 'IsTaxable', 'AverageCost', 'ServiceID', 'UnitCost', 'LineDiscount')]
+    [ValidateSet('IsTaxable', 'ServiceID', 'HighestCost', 'AverageCost', 'UnitPrice', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'IsOptional', 'ExpenseID', 'PercentageDiscount', 'Type', 'MarkupRate', 'Description', 'TaxCategoryID', 'PeriodType', 'UnitDiscount', 'ProductID', 'QuoteID', 'ShippingID', 'UnitCost', 'CostID', 'LaborID', 'TotalEffectiveTax', 'Quantity', 'ServiceBundleID', 'Name', 'LineDiscount', 'id', 'InternalCurrencyLineDiscount')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'InternalCurrencyUnitPrice', 'PeriodType', 'MarkupRate', 'UnitPrice', 'IsOptional', 'HighestCost', 'ProductID', 'InternalCurrencyLineDiscount', 'ShippingID', 'id', 'Type', 'CostID', 'LaborID', 'InternalCurrencyUnitDiscount', 'Quantity', 'PercentageDiscount', 'TaxCategoryID', 'ServiceBundleID', 'QuoteID', 'Name', 'TotalEffectiveTax', 'ExpenseID', 'UnitDiscount', 'IsTaxable', 'AverageCost', 'ServiceID', 'UnitCost', 'LineDiscount')]
+    [ValidateSet('IsTaxable', 'ServiceID', 'HighestCost', 'AverageCost', 'UnitPrice', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'IsOptional', 'ExpenseID', 'PercentageDiscount', 'Type', 'MarkupRate', 'Description', 'TaxCategoryID', 'PeriodType', 'UnitDiscount', 'ProductID', 'QuoteID', 'ShippingID', 'UnitCost', 'CostID', 'LaborID', 'TotalEffectiveTax', 'Quantity', 'ServiceBundleID', 'Name', 'LineDiscount', 'id', 'InternalCurrencyLineDiscount')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'InternalCurrencyUnitPrice', 'PeriodType', 'MarkupRate', 'UnitPrice', 'IsOptional', 'HighestCost', 'ProductID', 'InternalCurrencyLineDiscount', 'ShippingID', 'id', 'Type', 'CostID', 'LaborID', 'InternalCurrencyUnitDiscount', 'Quantity', 'PercentageDiscount', 'TaxCategoryID', 'ServiceBundleID', 'QuoteID', 'Name', 'TotalEffectiveTax', 'ExpenseID', 'UnitDiscount', 'IsTaxable', 'AverageCost', 'ServiceID', 'UnitCost', 'LineDiscount')]
+    [ValidateSet('IsTaxable', 'ServiceID', 'HighestCost', 'AverageCost', 'UnitPrice', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'IsOptional', 'ExpenseID', 'PercentageDiscount', 'Type', 'MarkupRate', 'Description', 'TaxCategoryID', 'PeriodType', 'UnitDiscount', 'ProductID', 'QuoteID', 'ShippingID', 'UnitCost', 'CostID', 'LaborID', 'TotalEffectiveTax', 'Quantity', 'ServiceBundleID', 'Name', 'LineDiscount', 'id', 'InternalCurrencyLineDiscount')]
     [string[]]
     $IsNotNull,
 

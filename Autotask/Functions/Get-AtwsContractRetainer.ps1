@@ -29,15 +29,9 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 Status
- 
-
 IsPaid
- 
-
 paymentID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -264,21 +258,21 @@ Set-AtwsContractRetainer
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('paymentID', 'AmountApproved', 'InternalCurrencyAmountApproved', 'ContractID', 'Amount', 'PaymentNumber', 'IsPaid', 'InternalCurrencyAmount', 'id', 'DatePurchased', 'InvoiceNumber', 'StartDate', 'EndDate', 'Status')]
+    [ValidateSet('StartDate', 'PaymentNumber', 'id', 'DatePurchased', 'EndDate', 'InternalCurrencyAmountApproved', 'Amount', 'AmountApproved', 'Status', 'ContractID', 'InternalCurrencyAmount', 'paymentID', 'IsPaid', 'InvoiceNumber')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('paymentID', 'AmountApproved', 'InternalCurrencyAmountApproved', 'ContractID', 'Amount', 'PaymentNumber', 'IsPaid', 'InternalCurrencyAmount', 'id', 'DatePurchased', 'InvoiceNumber', 'StartDate', 'EndDate', 'Status')]
+    [ValidateSet('StartDate', 'PaymentNumber', 'id', 'DatePurchased', 'EndDate', 'InternalCurrencyAmountApproved', 'Amount', 'AmountApproved', 'Status', 'ContractID', 'InternalCurrencyAmount', 'paymentID', 'IsPaid', 'InvoiceNumber')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('paymentID', 'AmountApproved', 'InternalCurrencyAmountApproved', 'ContractID', 'Amount', 'PaymentNumber', 'IsPaid', 'InternalCurrencyAmount', 'id', 'DatePurchased', 'InvoiceNumber', 'StartDate', 'EndDate', 'Status')]
+    [ValidateSet('StartDate', 'PaymentNumber', 'id', 'DatePurchased', 'EndDate', 'InternalCurrencyAmountApproved', 'Amount', 'AmountApproved', 'Status', 'ContractID', 'InternalCurrencyAmount', 'paymentID', 'IsPaid', 'InvoiceNumber')]
     [string[]]
     $IsNotNull,
 

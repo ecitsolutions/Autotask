@@ -61,13 +61,13 @@ Set-AtwsDepartment
     [Autotask.Department[]]
     $InputObject,
 
-# Number
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,1000)]
     [string]
-    $Number,
+    $Description,
 
 # Name
     [Parameter(
@@ -88,13 +88,13 @@ Set-AtwsDepartment
     [Int]
     $PrimaryLocationID,
 
-# Description
+# Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,1000)]
+    [ValidateLength(0,50)]
     [string]
-    $Description
+    $Number
   )
  
     begin { 

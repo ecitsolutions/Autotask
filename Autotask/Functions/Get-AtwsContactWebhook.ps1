@@ -101,7 +101,7 @@ Set-AtwsContactWebhook
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContactWebhookUdfField', 'ContactWebhookField', 'ContactWebhookExcludedResource', 'WebhookEventErrorLog')]
+    [ValidateSet('ContactWebhookUdfField', 'ContactWebhookField', 'WebhookEventErrorLog', 'ContactWebhookExcludedResource')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -226,21 +226,21 @@ Set-AtwsContactWebhook
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OwnerResourceID', 'Ready', 'WebhookGUID', 'id', 'Name', 'NotificationEmailAddress', 'IsSubscribedToUpdateEvents', 'SendThresholdExceededNotification', 'WebhookUrl', 'IsSubscribedToCreateEvents', 'IsSubscribedToDeleteEvents', 'Active', 'SecretKey', 'DeactivationUrl')]
+    [ValidateSet('WebhookGUID', 'OwnerResourceID', 'Ready', 'IsSubscribedToUpdateEvents', 'DeactivationUrl', 'SecretKey', 'id', 'Active', 'NotificationEmailAddress', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'Name', 'SendThresholdExceededNotification', 'IsSubscribedToCreateEvents')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OwnerResourceID', 'Ready', 'WebhookGUID', 'id', 'Name', 'NotificationEmailAddress', 'IsSubscribedToUpdateEvents', 'SendThresholdExceededNotification', 'WebhookUrl', 'IsSubscribedToCreateEvents', 'IsSubscribedToDeleteEvents', 'Active', 'SecretKey', 'DeactivationUrl')]
+    [ValidateSet('WebhookGUID', 'OwnerResourceID', 'Ready', 'IsSubscribedToUpdateEvents', 'DeactivationUrl', 'SecretKey', 'id', 'Active', 'NotificationEmailAddress', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'Name', 'SendThresholdExceededNotification', 'IsSubscribedToCreateEvents')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OwnerResourceID', 'Ready', 'WebhookGUID', 'id', 'Name', 'NotificationEmailAddress', 'IsSubscribedToUpdateEvents', 'SendThresholdExceededNotification', 'WebhookUrl', 'IsSubscribedToCreateEvents', 'IsSubscribedToDeleteEvents', 'Active', 'SecretKey', 'DeactivationUrl')]
+    [ValidateSet('WebhookGUID', 'OwnerResourceID', 'Ready', 'IsSubscribedToUpdateEvents', 'DeactivationUrl', 'SecretKey', 'id', 'Active', 'NotificationEmailAddress', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'Name', 'SendThresholdExceededNotification', 'IsSubscribedToCreateEvents')]
     [string[]]
     $IsNotNull,
 

@@ -99,7 +99,7 @@ Set-AtwsInventoryLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InventoryItem', 'InventoryTransfer', 'PurchaseOrderItem')]
+    [ValidateSet('InventoryTransfer', 'PurchaseOrderItem', 'InventoryItem')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -159,21 +159,21 @@ Set-AtwsInventoryLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'LocationName', 'IsDefault', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'IsDefault', 'Active', 'id', 'LocationName', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'LocationName', 'IsDefault', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'IsDefault', 'Active', 'id', 'LocationName', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'LocationName', 'IsDefault', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'IsDefault', 'Active', 'id', 'LocationName', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

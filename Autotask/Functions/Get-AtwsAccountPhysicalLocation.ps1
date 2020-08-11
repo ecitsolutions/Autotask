@@ -88,7 +88,7 @@ Set-AtwsAccountPhysicalLocation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'TaxRegionID', 'CountryID')]
+    [ValidateSet('TaxRegionID', 'CountryID', 'AccountID')]
     [string]
     $GetReferenceEntityById,
 
@@ -101,7 +101,7 @@ Set-AtwsAccountPhysicalLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceCall', 'Account', 'Contact', 'Task', 'Ticket', 'InstalledProduct')]
+    [ValidateSet('Account', 'InstalledProduct', 'ServiceCall', 'Contact', 'Task', 'Ticket')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -269,21 +269,21 @@ Set-AtwsAccountPhysicalLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('State', 'Address1', 'CountryID', 'id', 'Name', 'Active', 'Description', 'Fax', 'OverrideAccountTaxSettings', 'PostalCode', 'IsTaxExempt', 'Primary', 'Address2', 'TaxRegionID', 'AlternatePhone2', 'AccountID', 'City', 'RoundtripDistance', 'AlternatePhone1', 'Phone')]
+    [ValidateSet('CountryID', 'AlternatePhone2', 'TaxRegionID', 'RoundtripDistance', 'AlternatePhone1', 'AccountID', 'Address2', 'State', 'Fax', 'City', 'Description', 'id', 'Active', 'IsTaxExempt', 'Phone', 'Primary', 'OverrideAccountTaxSettings', 'Name', 'PostalCode', 'Address1')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('State', 'Address1', 'CountryID', 'id', 'Name', 'Active', 'Description', 'Fax', 'OverrideAccountTaxSettings', 'PostalCode', 'IsTaxExempt', 'Primary', 'Address2', 'TaxRegionID', 'AlternatePhone2', 'AccountID', 'City', 'RoundtripDistance', 'AlternatePhone1', 'Phone')]
+    [ValidateSet('CountryID', 'AlternatePhone2', 'TaxRegionID', 'RoundtripDistance', 'AlternatePhone1', 'AccountID', 'Address2', 'State', 'Fax', 'City', 'Description', 'id', 'Active', 'IsTaxExempt', 'Phone', 'Primary', 'OverrideAccountTaxSettings', 'Name', 'PostalCode', 'Address1')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('State', 'Address1', 'CountryID', 'id', 'Name', 'Active', 'Description', 'Fax', 'OverrideAccountTaxSettings', 'PostalCode', 'IsTaxExempt', 'Primary', 'Address2', 'TaxRegionID', 'AlternatePhone2', 'AccountID', 'City', 'RoundtripDistance', 'AlternatePhone1', 'Phone')]
+    [ValidateSet('CountryID', 'AlternatePhone2', 'TaxRegionID', 'RoundtripDistance', 'AlternatePhone1', 'AccountID', 'Address2', 'State', 'Fax', 'City', 'Description', 'id', 'Active', 'IsTaxExempt', 'Phone', 'Primary', 'OverrideAccountTaxSettings', 'Name', 'PostalCode', 'Address1')]
     [string[]]
     $IsNotNull,
 

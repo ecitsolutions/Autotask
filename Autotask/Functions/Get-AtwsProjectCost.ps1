@@ -29,12 +29,8 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 CostType
- 
-
 Status
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -108,7 +104,7 @@ Set-AtwsProjectCost
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AllocationCodeID', 'CreatorResourceID', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'ProjectID', 'ContractServiceID', 'ProductID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'AllocationCodeID', 'ProductID', 'ContractServiceBundleID', 'CreatorResourceID', 'ContractServiceID', 'ProjectID')]
     [string]
     $GetReferenceEntityById,
 
@@ -373,21 +369,21 @@ Set-AtwsProjectCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'DatePurchased', 'PurchaseOrderNumber', 'InternalCurrencyUnitPrice', 'Billed', 'StatusLastModifiedBy', 'Notes', 'BillableAmount', 'UnitPrice', 'ExtendedCost', 'CreateDate', 'ProductID', 'StatusLastModifiedDate', 'InternalCurrencyBillableAmount', 'id', 'ContractServiceID', 'ProjectID', 'ContractServiceBundleID', 'UnitQuantity', 'BillableToAccount', 'AllocationCodeID', 'Status', 'Name', 'InternalPurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'EstimatedCost', 'CreatorResourceID', 'UnitCost', 'CostType')]
+    [ValidateSet('UnitQuantity', 'ExtendedCost', 'UnitPrice', 'BillableAmount', 'DatePurchased', 'Billed', 'BillableToAccount', 'InternalCurrencyUnitPrice', 'Description', 'ContractServiceBundleID', 'ProductID', 'Status', 'InternalCurrencyBillableAmount', 'CreatorResourceID', 'UnitCost', 'AllocationCodeID', 'CostType', 'ProjectID', 'PurchaseOrderNumber', 'ContractServiceID', 'StatusLastModifiedDate', 'BusinessDivisionSubdivisionID', 'CreateDate', 'InternalPurchaseOrderNumber', 'Name', 'EstimatedCost', 'StatusLastModifiedBy', 'Notes', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'DatePurchased', 'PurchaseOrderNumber', 'InternalCurrencyUnitPrice', 'Billed', 'StatusLastModifiedBy', 'Notes', 'BillableAmount', 'UnitPrice', 'ExtendedCost', 'CreateDate', 'ProductID', 'StatusLastModifiedDate', 'InternalCurrencyBillableAmount', 'id', 'ContractServiceID', 'ProjectID', 'ContractServiceBundleID', 'UnitQuantity', 'BillableToAccount', 'AllocationCodeID', 'Status', 'Name', 'InternalPurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'EstimatedCost', 'CreatorResourceID', 'UnitCost', 'CostType')]
+    [ValidateSet('UnitQuantity', 'ExtendedCost', 'UnitPrice', 'BillableAmount', 'DatePurchased', 'Billed', 'BillableToAccount', 'InternalCurrencyUnitPrice', 'Description', 'ContractServiceBundleID', 'ProductID', 'Status', 'InternalCurrencyBillableAmount', 'CreatorResourceID', 'UnitCost', 'AllocationCodeID', 'CostType', 'ProjectID', 'PurchaseOrderNumber', 'ContractServiceID', 'StatusLastModifiedDate', 'BusinessDivisionSubdivisionID', 'CreateDate', 'InternalPurchaseOrderNumber', 'Name', 'EstimatedCost', 'StatusLastModifiedBy', 'Notes', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'DatePurchased', 'PurchaseOrderNumber', 'InternalCurrencyUnitPrice', 'Billed', 'StatusLastModifiedBy', 'Notes', 'BillableAmount', 'UnitPrice', 'ExtendedCost', 'CreateDate', 'ProductID', 'StatusLastModifiedDate', 'InternalCurrencyBillableAmount', 'id', 'ContractServiceID', 'ProjectID', 'ContractServiceBundleID', 'UnitQuantity', 'BillableToAccount', 'AllocationCodeID', 'Status', 'Name', 'InternalPurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'EstimatedCost', 'CreatorResourceID', 'UnitCost', 'CostType')]
+    [ValidateSet('UnitQuantity', 'ExtendedCost', 'UnitPrice', 'BillableAmount', 'DatePurchased', 'Billed', 'BillableToAccount', 'InternalCurrencyUnitPrice', 'Description', 'ContractServiceBundleID', 'ProductID', 'Status', 'InternalCurrencyBillableAmount', 'CreatorResourceID', 'UnitCost', 'AllocationCodeID', 'CostType', 'ProjectID', 'PurchaseOrderNumber', 'ContractServiceID', 'StatusLastModifiedDate', 'BusinessDivisionSubdivisionID', 'CreateDate', 'InternalPurchaseOrderNumber', 'Name', 'EstimatedCost', 'StatusLastModifiedBy', 'Notes', 'id')]
     [string[]]
     $IsNotNull,
 

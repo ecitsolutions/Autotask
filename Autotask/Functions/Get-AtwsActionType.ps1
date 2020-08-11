@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 View
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -182,21 +180,21 @@ Set-AtwsActionType
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SystemActionType', 'Active', 'View', 'Name')]
+    [ValidateSet('Active', 'id', 'Name', 'SystemActionType', 'View')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SystemActionType', 'Active', 'View', 'Name')]
+    [ValidateSet('Active', 'id', 'Name', 'SystemActionType', 'View')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SystemActionType', 'Active', 'View', 'Name')]
+    [ValidateSet('Active', 'id', 'Name', 'SystemActionType', 'View')]
     [string[]]
     $IsNotNull,
 

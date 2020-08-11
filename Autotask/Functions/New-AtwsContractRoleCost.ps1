@@ -63,15 +63,6 @@ Set-AtwsContractRoleCost
     [Autotask.ContractRoleCost[]]
     $InputObject,
 
-# Resource ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ResourceID,
-
 # Contract ID
     [Parameter(
       Mandatory = $true,
@@ -97,7 +88,16 @@ Set-AtwsContractRoleCost
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $RoleID
+    $RoleID,
+
+# Resource ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ResourceID
   )
  
     begin { 

@@ -86,7 +86,7 @@ Set-AtwsProductNote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProductID', 'ImpersonatorUpdaterResourceID')]
+    [ValidateSet('ImpersonatorUpdaterResourceID', 'ProductID')]
     [string]
     $GetReferenceEntityById,
 
@@ -181,21 +181,21 @@ Set-AtwsProductNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'CreatorResourceID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'Title', 'ProductID', 'id')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'CreateDateTime', 'Title', 'ProductID', 'LastActivityDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'CreatorResourceID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'Title', 'ProductID', 'id')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'CreateDateTime', 'Title', 'ProductID', 'LastActivityDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'CreatorResourceID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'Title', 'ProductID', 'id')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'CreateDateTime', 'Title', 'ProductID', 'LastActivityDate')]
     [string[]]
     $IsNotNull,
 

@@ -61,19 +61,14 @@ Get-AtwsServiceCallTicket
     [Autotask.ServiceCallTicket[]]
     $InputObject,
 
-# Create Date Time
+# Service Call ID
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CreateDateTime,
-
-# Created By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
+    [ValidateNotNullOrEmpty()]
     [Int]
-    $CreatedByResourceID,
+    $ServiceCallID,
 
 # Ticket ID
     [Parameter(
@@ -84,14 +79,19 @@ Get-AtwsServiceCallTicket
     [Int]
     $TicketID,
 
-# Service Call ID
+# Created By Resource ID
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Int]
-    $ServiceCallID
+    $CreatedByResourceID,
+
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDateTime
   )
  
     begin { 

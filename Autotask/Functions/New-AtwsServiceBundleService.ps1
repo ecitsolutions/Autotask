@@ -61,15 +61,6 @@ Get-AtwsServiceBundleService
     [Autotask.ServiceBundleService[]]
     $InputObject,
 
-# Service ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $ServiceID,
-
 # Service Bundle ID
     [Parameter(
       Mandatory = $true,
@@ -77,7 +68,16 @@ Get-AtwsServiceBundleService
     )]
     [ValidateNotNullOrEmpty()]
     [long]
-    $ServiceBundleID
+    $ServiceBundleID,
+
+# Service ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $ServiceID
   )
  
     begin { 

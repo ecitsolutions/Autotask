@@ -62,6 +62,27 @@ Set-AtwsProductNote
     [Autotask.ProductNote[]]
     $InputObject,
 
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
+# Impersonator Updater Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorUpdaterResourceID,
+
+# Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorResourceID,
+
 # Description
     [Parameter(
       Mandatory = $true,
@@ -72,40 +93,12 @@ Set-AtwsProductNote
     [string]
     $Description,
 
-# Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
-
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
     $CreateDateTime,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorUpdaterResourceID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Last Activity Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastActivityDate,
 
 # Title
     [Parameter(
@@ -124,7 +117,14 @@ Set-AtwsProductNote
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ProductID
+    $ProductID,
+
+# Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastActivityDate
   )
  
     begin { 

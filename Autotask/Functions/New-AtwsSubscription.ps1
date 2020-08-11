@@ -69,6 +69,20 @@ Set-AtwsSubscription
     [Autotask.Subscription[]]
     $InputObject,
 
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BusinessDivisionSubdivisionID,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
 # Period Price
     [Parameter(
       Mandatory = $true,
@@ -77,27 +91,6 @@ Set-AtwsSubscription
     [ValidateNotNullOrEmpty()]
     [decimal]
     $PeriodPrice,
-
-# Type
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $Status,
 
 # Subscription Name
     [Parameter(
@@ -110,45 +103,13 @@ Set-AtwsSubscription
     [string]
     $SubscriptionName,
 
-# Purchase Order Number
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,2000)]
     [string]
-    $PurchaseOrderNumber,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BusinessDivisionSubdivisionID,
-
-# Expiration Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $ExpirationDate,
-
-# Material Code Id
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $MaterialCodeID,
-
-# Period Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $PeriodCost,
+    $Description,
 
 # Effective Date
     [Parameter(
@@ -158,27 +119,6 @@ Set-AtwsSubscription
     [ValidateNotNullOrEmpty()]
     [datetime]
     $EffectiveDate,
-
-# Total Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $TotalCost,
-
-# Vendor ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $VendorID,
-
-# Total Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $TotalPrice,
 
 # Period Type
     [Parameter(
@@ -201,20 +141,47 @@ Set-AtwsSubscription
     [string]
     $PeriodType,
 
-# Description
+# Total Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
+    [decimal]
+    $TotalPrice,
 
-# Impersonator Creator Resource ID
+# Type
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $Status,
+
+# Period Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
+    [decimal]
+    $PeriodCost,
+
+# Total Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $TotalCost,
 
 # Installed Product ID
     [Parameter(
@@ -223,7 +190,40 @@ Set-AtwsSubscription
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $InstalledProductID
+    $InstalledProductID,
+
+# Expiration Date
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $ExpirationDate,
+
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
+
+# Material Code Id
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $MaterialCodeID,
+
+# Vendor ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $VendorID
   )
  
     begin { 

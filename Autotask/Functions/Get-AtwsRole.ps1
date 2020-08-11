@@ -99,7 +99,7 @@ Set-AtwsRole
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ResourceRoleDepartment', 'ContractRate', 'TicketSecondaryResource', 'ResourceRole', 'ContractFactor', 'Task', 'ContractExclusionSetExcludedRole', 'ContractRoleCost', 'QuoteItem', 'Ticket', 'BillingItem', 'PriceListRole', 'Resource', 'TimeEntry', 'TaskSecondaryResource', 'ResourceRoleQueue', 'ContractExclusionRole', 'ResourceServiceDeskRole')]
+    [ValidateSet('ContractFactor', 'ContractRate', 'Task', 'ResourceRoleDepartment', 'ResourceRole', 'ContractExclusionRole', 'TaskSecondaryResource', 'PriceListRole', 'TicketSecondaryResource', 'Ticket', 'ResourceServiceDeskRole', 'QuoteItem', 'TimeEntry', 'ContractRoleCost', 'ContractExclusionSetExcludedRole', 'BillingItem', 'Resource', 'ResourceRoleQueue')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -190,21 +190,21 @@ Set-AtwsRole
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'QuoteItemDefaultTaxCategoryId', 'IsExcludedFromNewContracts', 'HourlyRate', 'Name', 'SystemRole', 'Active', 'RoleType', 'id', 'HourlyFactor')]
+    [ValidateSet('Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType', 'HourlyRate', 'Active', 'Description', 'SystemRole', 'id', 'IsExcludedFromNewContracts', 'HourlyFactor')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'QuoteItemDefaultTaxCategoryId', 'IsExcludedFromNewContracts', 'HourlyRate', 'Name', 'SystemRole', 'Active', 'RoleType', 'id', 'HourlyFactor')]
+    [ValidateSet('Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType', 'HourlyRate', 'Active', 'Description', 'SystemRole', 'id', 'IsExcludedFromNewContracts', 'HourlyFactor')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'QuoteItemDefaultTaxCategoryId', 'IsExcludedFromNewContracts', 'HourlyRate', 'Name', 'SystemRole', 'Active', 'RoleType', 'id', 'HourlyFactor')]
+    [ValidateSet('Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType', 'HourlyRate', 'Active', 'Description', 'SystemRole', 'id', 'IsExcludedFromNewContracts', 'HourlyFactor')]
     [string[]]
     $IsNotNull,
 

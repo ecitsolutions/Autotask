@@ -86,7 +86,7 @@ Remove-AtwsContractExclusionSetExcludedRole
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ExcludedRoleID', 'ContractExclusionSetID')]
+    [ValidateSet('ContractExclusionSetID', 'ExcludedRoleID')]
     [string]
     $GetReferenceEntityById,
 
@@ -136,21 +136,21 @@ Remove-AtwsContractExclusionSetExcludedRole
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExcludedRoleID', 'id', 'ContractExclusionSetID')]
+    [ValidateSet('id', 'ExcludedRoleID', 'ContractExclusionSetID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExcludedRoleID', 'id', 'ContractExclusionSetID')]
+    [ValidateSet('id', 'ExcludedRoleID', 'ContractExclusionSetID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExcludedRoleID', 'id', 'ContractExclusionSetID')]
+    [ValidateSet('id', 'ExcludedRoleID', 'ContractExclusionSetID')]
     [string[]]
     $IsNotNull,
 

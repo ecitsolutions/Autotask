@@ -68,93 +68,12 @@ Set-AtwsQuoteItem
     [Autotask.QuoteItem[]]
     $InputObject,
 
-# tax_rate_applied
+# taxable
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $TotalEffectiveTax,
-
-# unit_price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $UnitPrice,
-
-# tax_category_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $TaxCategoryID,
-
-# markup_rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $MarkupRate,
-
-# service_bundle_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ServiceBundleID,
-
-# cost_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CostID,
-
-# discount_dollars
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $UnitDiscount,
-
-# shipping_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ShippingID,
-
-# unit_cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $UnitCost,
-
-# internal_currency_discount_dollars
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyUnitDiscount,
-
-# quantity
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $Quantity,
-
-# highest_cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $HighestCost,
+    [boolean]
+    $IsTaxable,
 
 # service_id
     [Parameter(
@@ -163,6 +82,50 @@ Set-AtwsQuoteItem
     [Int]
     $ServiceID,
 
+# highest_cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $HighestCost,
+
+# average_cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $AverageCost,
+
+# unit_price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $UnitPrice,
+
+# internal_currency_unit_price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyUnitPrice,
+
+# internal_currency_discount_dollars
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyUnitDiscount,
+
+# optional
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $IsOptional,
+
 # expense_id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -170,39 +133,14 @@ Set-AtwsQuoteItem
     [Int]
     $ExpenseID,
 
-# quote_item_description
+# discount_percent
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
-
-# period_type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PeriodType,
-
-# taxable
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsTaxable,
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $PercentageDiscount,
 
 # parent_type
     [Parameter(
@@ -225,37 +163,62 @@ Set-AtwsQuoteItem
     [string]
     $Type,
 
+# markup_rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $MarkupRate,
+
+# quote_item_description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# tax_category_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $TaxCategoryID,
+
+# period_type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PeriodType,
+
+# discount_dollars
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $UnitDiscount,
+
 # product_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $ProductID,
-
-# internal_currency_unit_price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyUnitPrice,
-
-# optional
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $IsOptional,
-
-# line_discount_dollars
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $LineDiscount,
 
 # quote_id
     [Parameter(
@@ -266,14 +229,56 @@ Set-AtwsQuoteItem
     [Int]
     $QuoteID,
 
-# discount_percent
+# shipping_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ShippingID,
+
+# unit_cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $UnitCost,
+
+# cost_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CostID,
+
+# labor_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $LaborID,
+
+# tax_rate_applied
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $TotalEffectiveTax,
+
+# quantity
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [double]
-    $PercentageDiscount,
+    $Quantity,
+
+# service_bundle_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ServiceBundleID,
 
 # quote_item_name
     [Parameter(
@@ -283,26 +288,21 @@ Set-AtwsQuoteItem
     [string]
     $Name,
 
+# line_discount_dollars
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $LineDiscount,
+
 # internal_currency_line_discount_dollars
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $InternalCurrencyLineDiscount,
-
-# labor_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $LaborID,
-
-# average_cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $AverageCost
+    $InternalCurrencyLineDiscount
   )
  
     begin { 

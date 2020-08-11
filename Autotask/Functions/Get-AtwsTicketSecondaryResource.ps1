@@ -144,21 +144,21 @@ Remove-AtwsTicketSecondaryResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'TicketID', 'id', 'RoleID')]
+    [ValidateSet('TicketID', 'id', 'RoleID', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'TicketID', 'id', 'RoleID')]
+    [ValidateSet('TicketID', 'id', 'RoleID', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'TicketID', 'id', 'RoleID')]
+    [ValidateSet('TicketID', 'id', 'RoleID', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

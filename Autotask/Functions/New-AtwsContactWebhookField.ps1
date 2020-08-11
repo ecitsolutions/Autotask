@@ -95,15 +95,6 @@ Set-AtwsContactWebhookField
     [boolean]
     $IsDisplayAlwaysField,
 
-# Webhook ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $WebhookID,
-
 # Is Subscribed Field
     [Parameter(
       Mandatory = $true,
@@ -111,7 +102,16 @@ Set-AtwsContactWebhookField
     )]
     [ValidateNotNullOrEmpty()]
     [boolean]
-    $IsSubscribedField
+    $IsSubscribedField,
+
+# Webhook ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $WebhookID
   )
  
     begin { 

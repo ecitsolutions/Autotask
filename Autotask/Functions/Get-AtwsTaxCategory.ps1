@@ -98,7 +98,7 @@ Set-AtwsTaxCategory
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Tax', 'QuoteItem', 'AllocationCode', 'Role')]
+    [ValidateSet('QuoteItem', 'Tax', 'AllocationCode', 'Role')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -144,21 +144,21 @@ Set-AtwsTaxCategory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'Description', 'id')]
+    [ValidateSet('Description', 'Name', 'Active', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'Description', 'id')]
+    [ValidateSet('Description', 'Name', 'Active', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'Description', 'id')]
+    [ValidateSet('Description', 'Name', 'Active', 'id')]
     [string[]]
     $IsNotNull,
 

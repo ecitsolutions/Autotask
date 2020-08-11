@@ -88,7 +88,7 @@ Set-AtwsInstalledProductBillingProductAssociation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProductID', 'BillingProductID')]
+    [ValidateSet('BillingProductID', 'InstalledProductID')]
     [string]
     $GetReferenceEntityById,
 
@@ -153,21 +153,21 @@ Set-AtwsInstalledProductBillingProductAssociation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpirationDate', 'InstalledProductID', 'EffectiveDate', 'id', 'BillingProductID')]
+    [ValidateSet('BillingProductID', 'id', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpirationDate', 'InstalledProductID', 'EffectiveDate', 'id', 'BillingProductID')]
+    [ValidateSet('BillingProductID', 'id', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpirationDate', 'InstalledProductID', 'EffectiveDate', 'id', 'BillingProductID')]
+    [ValidateSet('BillingProductID', 'id', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
     [string[]]
     $IsNotNull,
 

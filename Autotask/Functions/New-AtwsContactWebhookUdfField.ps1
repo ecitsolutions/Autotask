@@ -65,6 +65,33 @@ Set-AtwsContactWebhookUdfField
     [Autotask.ContactWebhookUdfField[]]
     $InputObject,
 
+# Is Display Always Field
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $IsDisplayAlwaysField,
+
+# Is Subscribed Field
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $IsSubscribedField,
+
+# Webhook ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $WebhookID,
+
 # UDF Field ID
     [Parameter(
       Mandatory = $true,
@@ -84,34 +111,7 @@ Set-AtwsContactWebhookUdfField
       }
     })]
     [string]
-    $UdfFieldID,
-
-# Is Display Always Field
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $IsDisplayAlwaysField,
-
-# Webhook ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $WebhookID,
-
-# Is Subscribed Field
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $IsSubscribedField
+    $UdfFieldID
   )
  
     begin { 

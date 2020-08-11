@@ -29,12 +29,8 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 DetermineUnits
- 
-
 ExecutionMethod
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -280,21 +276,21 @@ Set-AtwsContractBillingRule
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('MinimumUnits', 'EnableDailyProrating', 'DailyProratedCost', 'DailyProratedPrice', 'ProductID', 'MaximumUnits', 'IncludeItemsInChargeDescription', 'Active', 'id', 'InvoiceDescription', 'CreateChargesAsBillable', 'StartDate', 'DetermineUnits', 'ExecutionMethod', 'EndDate', 'ContractID')]
+    [ValidateSet('StartDate', 'EnableDailyProrating', 'id', 'DailyProratedPrice', 'MinimumUnits', 'EndDate', 'IncludeItemsInChargeDescription', 'InvoiceDescription', 'ContractID', 'Active', 'ExecutionMethod', 'DailyProratedCost', 'MaximumUnits', 'CreateChargesAsBillable', 'ProductID', 'DetermineUnits')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('MinimumUnits', 'EnableDailyProrating', 'DailyProratedCost', 'DailyProratedPrice', 'ProductID', 'MaximumUnits', 'IncludeItemsInChargeDescription', 'Active', 'id', 'InvoiceDescription', 'CreateChargesAsBillable', 'StartDate', 'DetermineUnits', 'ExecutionMethod', 'EndDate', 'ContractID')]
+    [ValidateSet('StartDate', 'EnableDailyProrating', 'id', 'DailyProratedPrice', 'MinimumUnits', 'EndDate', 'IncludeItemsInChargeDescription', 'InvoiceDescription', 'ContractID', 'Active', 'ExecutionMethod', 'DailyProratedCost', 'MaximumUnits', 'CreateChargesAsBillable', 'ProductID', 'DetermineUnits')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('MinimumUnits', 'EnableDailyProrating', 'DailyProratedCost', 'DailyProratedPrice', 'ProductID', 'MaximumUnits', 'IncludeItemsInChargeDescription', 'Active', 'id', 'InvoiceDescription', 'CreateChargesAsBillable', 'StartDate', 'DetermineUnits', 'ExecutionMethod', 'EndDate', 'ContractID')]
+    [ValidateSet('StartDate', 'EnableDailyProrating', 'id', 'DailyProratedPrice', 'MinimumUnits', 'EndDate', 'IncludeItemsInChargeDescription', 'InvoiceDescription', 'ContractID', 'Active', 'ExecutionMethod', 'DailyProratedCost', 'MaximumUnits', 'CreateChargesAsBillable', 'ProductID', 'DetermineUnits')]
     [string[]]
     $IsNotNull,
 

@@ -86,7 +86,7 @@ Remove-AtwsContactWebhookExcludedResource
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('WebhookID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'WebhookID')]
     [string]
     $GetReferenceEntityById,
 
@@ -136,21 +136,21 @@ Remove-AtwsContactWebhookExcludedResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'WebhookID', 'id')]
+    [ValidateSet('id', 'WebhookID', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'WebhookID', 'id')]
+    [ValidateSet('id', 'WebhookID', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'WebhookID', 'id')]
+    [ValidateSet('id', 'WebhookID', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

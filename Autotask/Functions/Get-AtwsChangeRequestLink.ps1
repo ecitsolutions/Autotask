@@ -136,21 +136,21 @@ Remove-AtwsChangeRequestLink
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ChangeRequestTicketID', 'ProblemOrIncidentTicketID', 'id')]
+    [ValidateSet('ProblemOrIncidentTicketID', 'id', 'ChangeRequestTicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ChangeRequestTicketID', 'ProblemOrIncidentTicketID', 'id')]
+    [ValidateSet('ProblemOrIncidentTicketID', 'id', 'ChangeRequestTicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ChangeRequestTicketID', 'ProblemOrIncidentTicketID', 'id')]
+    [ValidateSet('ProblemOrIncidentTicketID', 'id', 'ChangeRequestTicketID')]
     [string[]]
     $IsNotNull,
 

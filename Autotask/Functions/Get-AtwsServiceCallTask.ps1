@@ -86,7 +86,7 @@ Remove-AtwsServiceCallTask
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TaskID', 'ServiceCallID')]
+    [ValidateSet('ServiceCallID', 'TaskID')]
     [string]
     $GetReferenceEntityById,
 
@@ -137,21 +137,21 @@ Remove-AtwsServiceCallTask
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskID', 'id', 'ServiceCallID')]
+    [ValidateSet('ServiceCallID', 'TaskID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskID', 'id', 'ServiceCallID')]
+    [ValidateSet('ServiceCallID', 'TaskID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskID', 'id', 'ServiceCallID')]
+    [ValidateSet('ServiceCallID', 'TaskID', 'id')]
     [string[]]
     $IsNotNull,
 

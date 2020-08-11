@@ -63,12 +63,12 @@ Set-AtwsPurchaseOrderItem
     [Autotask.PurchaseOrderItem[]]
     $InputObject,
 
-# Cost ID
+# Estimated Arrival Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $CostID,
+    [datetime]
+    $EstimatedArrivalDate,
 
 # Quantity Ordered
     [Parameter(
@@ -79,20 +79,19 @@ Set-AtwsPurchaseOrderItem
     [Int]
     $Quantity,
 
-# Memo
+# Internal Currency Product Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,4000)]
-    [string]
-    $Memo,
+    [double]
+    $InternalCurrencyUnitCost,
 
-# Contract ID
+# Project ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [long]
-    $ContractID,
+    $ProjectID,
 
 # Inventory Order ID
     [Parameter(
@@ -103,14 +102,12 @@ Set-AtwsPurchaseOrderItem
     [Int]
     $OrderID,
 
-# Product Unit Cost
+# Contract ID
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $UnitCost,
+    [long]
+    $ContractID,
 
 # Ticket ID
     [Parameter(
@@ -119,19 +116,12 @@ Set-AtwsPurchaseOrderItem
     [long]
     $TicketID,
 
-# Internal Currency Product Unit Cost
+# Cost ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $InternalCurrencyUnitCost,
-
-# Estimated Arrival Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $EstimatedArrivalDate,
+    [Int]
+    $CostID,
 
 # Inventory Location ID
     [Parameter(
@@ -142,26 +132,36 @@ Set-AtwsPurchaseOrderItem
     [Int]
     $InventoryLocationID,
 
-# Project ID
+# Sales Order ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [long]
-    $ProjectID,
+    $SalesOrderID,
+
+# Memo
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,4000)]
+    [string]
+    $Memo,
+
+# Product Unit Cost
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $UnitCost,
 
 # Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ProductID,
-
-# Sales Order ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $SalesOrderID
+    $ProductID
   )
  
     begin { 

@@ -141,21 +141,21 @@ Returns any object with a SurveyName that DOES NOT match the simple pattern 'Som
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DisplayName', 'Name', 'Description', 'id')]
+    [ValidateSet('Description', 'Name', 'DisplayName', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DisplayName', 'Name', 'Description', 'id')]
+    [ValidateSet('Description', 'Name', 'DisplayName', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DisplayName', 'Name', 'Description', 'id')]
+    [ValidateSet('Description', 'Name', 'DisplayName', 'id')]
     [string[]]
     $IsNotNull,
 

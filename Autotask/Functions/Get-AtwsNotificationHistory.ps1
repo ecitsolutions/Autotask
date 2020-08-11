@@ -29,15 +29,9 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 NotificationHistoryTypeID
- 
-
 EntityTitle
- 
-
 EntityNumber
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -105,7 +99,7 @@ An example of a more complex query. This command returns any NotificationHistory
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InitiatingResourceID', 'OpportunityID', 'InitiatingContactID', 'TicketID', 'ProjectID', 'TimeEntryID', 'TaskID', 'QuoteID', 'AccountID')]
+    [ValidateSet('ProjectID', 'TimeEntryID', 'QuoteID', 'AccountID', 'OpportunityID', 'InitiatingResourceID', 'InitiatingContactID', 'TaskID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -314,21 +308,21 @@ An example of a more complex query. This command returns any NotificationHistory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'ProjectID', 'IsTemplateJob', 'TaskID', 'EntityTitle', 'TicketID', 'NotificationSentTime', 'RecipientEmailAddress', 'RecipientDisplayName', 'IsDeleted', 'IsActive', 'TimeEntryID', 'id', 'AccountID', 'InitiatingResourceID', 'EntityNumber', 'InitiatingContactID', 'QuoteID', 'OpportunityID', 'NotificationHistoryTypeID')]
+    [ValidateSet('EntityTitle', 'IsDeleted', 'InitiatingContactID', 'id', 'NotificationSentTime', 'AccountID', 'RecipientDisplayName', 'EntityNumber', 'ProjectID', 'RecipientEmailAddress', 'IsTemplateJob', 'IsActive', 'TicketID', 'InitiatingResourceID', 'TaskID', 'NotificationHistoryTypeID', 'TimeEntryID', 'TemplateName', 'OpportunityID', 'QuoteID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'ProjectID', 'IsTemplateJob', 'TaskID', 'EntityTitle', 'TicketID', 'NotificationSentTime', 'RecipientEmailAddress', 'RecipientDisplayName', 'IsDeleted', 'IsActive', 'TimeEntryID', 'id', 'AccountID', 'InitiatingResourceID', 'EntityNumber', 'InitiatingContactID', 'QuoteID', 'OpportunityID', 'NotificationHistoryTypeID')]
+    [ValidateSet('EntityTitle', 'IsDeleted', 'InitiatingContactID', 'id', 'NotificationSentTime', 'AccountID', 'RecipientDisplayName', 'EntityNumber', 'ProjectID', 'RecipientEmailAddress', 'IsTemplateJob', 'IsActive', 'TicketID', 'InitiatingResourceID', 'TaskID', 'NotificationHistoryTypeID', 'TimeEntryID', 'TemplateName', 'OpportunityID', 'QuoteID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'ProjectID', 'IsTemplateJob', 'TaskID', 'EntityTitle', 'TicketID', 'NotificationSentTime', 'RecipientEmailAddress', 'RecipientDisplayName', 'IsDeleted', 'IsActive', 'TimeEntryID', 'id', 'AccountID', 'InitiatingResourceID', 'EntityNumber', 'InitiatingContactID', 'QuoteID', 'OpportunityID', 'NotificationHistoryTypeID')]
+    [ValidateSet('EntityTitle', 'IsDeleted', 'InitiatingContactID', 'id', 'NotificationSentTime', 'AccountID', 'RecipientDisplayName', 'EntityNumber', 'ProjectID', 'RecipientEmailAddress', 'IsTemplateJob', 'IsActive', 'TicketID', 'InitiatingResourceID', 'TaskID', 'NotificationHistoryTypeID', 'TimeEntryID', 'TemplateName', 'OpportunityID', 'QuoteID')]
     [string[]]
     $IsNotNull,
 

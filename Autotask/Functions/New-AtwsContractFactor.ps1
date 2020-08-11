@@ -71,15 +71,6 @@ Set-AtwsContractFactor
     [Int]
     $ContractID,
 
-# Role ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $RoleID,
-
 # Hourly Offset
     [Parameter(
       Mandatory = $true,
@@ -87,7 +78,16 @@ Set-AtwsContractFactor
     )]
     [ValidateNotNullOrEmpty()]
     [double]
-    $BlockHourFactor
+    $BlockHourFactor,
+
+# Role ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $RoleID
   )
  
     begin { 

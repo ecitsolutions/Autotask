@@ -82,7 +82,7 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID', 'ServiceBundleID')]
+    [ValidateSet('ContractID', 'BusinessDivisionSubdivisionID', 'ServiceBundleID', 'ContractServiceBundleID')]
     [string]
     $GetReferenceEntityById,
 
@@ -198,21 +198,21 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Cost', 'InternalCurrencyPrice', 'Units', 'Price', 'StartDate', 'EndDate', 'ServiceBundleID', 'ContractID', 'BusinessDivisionSubdivisionID', 'ApproveAndPostDate', 'ContractServiceBundleID', 'id')]
+    [ValidateSet('ContractID', 'ServiceBundleID', 'Cost', 'Units', 'EndDate', 'ContractServiceBundleID', 'StartDate', 'ApproveAndPostDate', 'Price', 'id', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Cost', 'InternalCurrencyPrice', 'Units', 'Price', 'StartDate', 'EndDate', 'ServiceBundleID', 'ContractID', 'BusinessDivisionSubdivisionID', 'ApproveAndPostDate', 'ContractServiceBundleID', 'id')]
+    [ValidateSet('ContractID', 'ServiceBundleID', 'Cost', 'Units', 'EndDate', 'ContractServiceBundleID', 'StartDate', 'ApproveAndPostDate', 'Price', 'id', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Cost', 'InternalCurrencyPrice', 'Units', 'Price', 'StartDate', 'EndDate', 'ServiceBundleID', 'ContractID', 'BusinessDivisionSubdivisionID', 'ApproveAndPostDate', 'ContractServiceBundleID', 'id')]
+    [ValidateSet('ContractID', 'ServiceBundleID', 'Cost', 'Units', 'EndDate', 'ContractServiceBundleID', 'StartDate', 'ApproveAndPostDate', 'Price', 'id', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
     [string[]]
     $IsNotNull,
 

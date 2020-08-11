@@ -61,15 +61,6 @@ Get-AtwsAccountWebhookExcludedResource
     [Autotask.AccountWebhookExcludedResource[]]
     $InputObject,
 
-# Resource ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ResourceID,
-
 # Webhook ID
     [Parameter(
       Mandatory = $true,
@@ -77,7 +68,16 @@ Get-AtwsAccountWebhookExcludedResource
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $WebhookID
+    $WebhookID,
+
+# Resource ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ResourceID
   )
  
     begin { 

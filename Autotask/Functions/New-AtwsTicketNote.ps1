@@ -64,22 +64,12 @@ Set-AtwsTicketNote
     [Autotask.TicketNote[]]
     $InputObject,
 
-# Description
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,32000)]
-    [string]
-    $Description,
-
-# Creator Resource
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $CreatorResourceID,
+    $ImpersonatorCreatorResourceID,
 
 # Create Date Time
     [Parameter(
@@ -95,19 +85,12 @@ Set-AtwsTicketNote
     [Int]
     $ImpersonatorUpdaterResourceID,
 
-# Impersonator Creator Resource ID
+# Creator Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ImpersonatorCreatorResourceID,
-
-# LastActivityDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastActivityDate,
+    $CreatorResourceID,
 
 # Note Type
     [Parameter(
@@ -130,14 +113,15 @@ Set-AtwsTicketNote
     [string]
     $NoteType,
 
-# Ticket
+# Description
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
-    $TicketID,
+    [ValidateLength(0,32000)]
+    [string]
+    $Description,
 
 # Title
     [Parameter(
@@ -168,7 +152,23 @@ Set-AtwsTicketNote
       }
     })]
     [string]
-    $Publish
+    $Publish,
+
+# Ticket
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $TicketID,
+
+# LastActivityDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastActivityDate
   )
  
     begin { 

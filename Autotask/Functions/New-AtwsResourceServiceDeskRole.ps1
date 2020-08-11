@@ -61,28 +61,19 @@ Set-AtwsResourceServiceDeskRole
     [Autotask.ResourceServiceDeskRole[]]
     $InputObject,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Active,
-
-# Resource ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ResourceID,
-
 # Default
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
     $Default,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Active,
 
 # Role ID
     [Parameter(
@@ -91,7 +82,16 @@ Set-AtwsResourceServiceDeskRole
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $RoleID
+    $RoleID,
+
+# Resource ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ResourceID
   )
  
     begin { 

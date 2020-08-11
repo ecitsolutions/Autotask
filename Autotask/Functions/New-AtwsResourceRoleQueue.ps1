@@ -61,19 +61,19 @@ Set-AtwsResourceRoleQueue
     [Autotask.ResourceRoleQueue[]]
     $InputObject,
 
-# Role ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $RoleID,
-
 # Default
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
     $Default,
+
+# Role ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $RoleID,
 
 # Queue ID
     [Parameter(

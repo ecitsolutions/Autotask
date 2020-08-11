@@ -65,6 +65,15 @@ Set-AtwsResourceRoleDepartment
     [Autotask.ResourceRoleDepartment[]]
     $InputObject,
 
+# Department ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $DepartmentID,
+
 # Role ID
     [Parameter(
       Mandatory = $true,
@@ -91,15 +100,6 @@ Set-AtwsResourceRoleDepartment
     [ValidateNotNullOrEmpty()]
     [boolean]
     $DepartmentLead,
-
-# Department ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $DepartmentID,
 
 # Active
     [Parameter(

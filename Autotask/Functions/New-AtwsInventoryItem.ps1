@@ -64,6 +64,30 @@ Set-AtwsInventoryItem
     [Autotask.InventoryItem[]]
     $InputObject,
 
+# Quantity On Hand
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $QuantityOnHand,
+
+# Bin
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $Bin,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
 # Quantity Maximum
     [Parameter(
       Mandatory = $true,
@@ -72,6 +96,23 @@ Set-AtwsInventoryItem
     [ValidateNotNullOrEmpty()]
     [Int]
     $QuantityMaximum,
+
+# Reference Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ReferenceNumber,
+
+# Inventory Location ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $InventoryLocationID,
 
 # On Order
     [Parameter(
@@ -89,15 +130,6 @@ Set-AtwsInventoryItem
     [Int]
     $QuantityMinimum,
 
-# Quantity On Hand
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $QuantityOnHand,
-
 # Picked
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -105,37 +137,12 @@ Set-AtwsInventoryItem
     [Int]
     $Picked,
 
-# Reference Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ReferenceNumber,
-
-# Impersonator Creator Resource ID
+# Reserved
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Inventory Location ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $InventoryLocationID,
-
-# Bin
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $Bin,
+    $Reserved,
 
 # Product ID
     [Parameter(
@@ -151,14 +158,7 @@ Set-AtwsInventoryItem
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $BackOrder,
-
-# Reserved
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $Reserved
+    $BackOrder
   )
  
     begin { 

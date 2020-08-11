@@ -61,43 +61,12 @@ Set-AtwsContractService
     [Autotask.ContractService[]]
     $InputObject,
 
-# Contract ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ContractID,
-
 # Adjusted Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
     $AdjustedPrice,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1000)]
-    [string]
-    $InvoiceDescription,
-
-# Internal Currency Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyUnitPrice,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $UnitPrice,
 
 # Service ID
     [Parameter(
@@ -123,6 +92,29 @@ Set-AtwsContractService
     [double]
     $UnitCost,
 
+# Internal Currency Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyUnitPrice,
+
+# Internal Currency Adjusted Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyAdjustedPrice,
+
+# Contract ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ContractID,
+
 # Quote Item Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -130,12 +122,20 @@ Set-AtwsContractService
     [long]
     $QuoteItemID,
 
-# Internal Currency Adjusted Price
+# Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $InternalCurrencyAdjustedPrice
+    $UnitPrice,
+
+# Invoice Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,1000)]
+    [string]
+    $InvoiceDescription
   )
  
     begin { 

@@ -167,21 +167,21 @@ Set-AtwsProductVendor
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorID', 'VendorPartNumber', 'id', 'IsDefault', 'VendorCost', 'ProductID', 'Active')]
+    [ValidateSet('VendorPartNumber', 'VendorID', 'IsDefault', 'VendorCost', 'Active', 'ProductID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorID', 'VendorPartNumber', 'id', 'IsDefault', 'VendorCost', 'ProductID', 'Active')]
+    [ValidateSet('VendorPartNumber', 'VendorID', 'IsDefault', 'VendorCost', 'Active', 'ProductID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorID', 'VendorPartNumber', 'id', 'IsDefault', 'VendorCost', 'ProductID', 'Active')]
+    [ValidateSet('VendorPartNumber', 'VendorID', 'IsDefault', 'VendorCost', 'Active', 'ProductID', 'id')]
     [string[]]
     $IsNotNull,
 

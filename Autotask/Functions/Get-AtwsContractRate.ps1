@@ -86,7 +86,7 @@ Set-AtwsContractRate
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'RoleID')]
+    [ValidateSet('RoleID', 'ContractID')]
     [string]
     $GetReferenceEntityById,
 
@@ -151,21 +151,21 @@ Set-AtwsContractRate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalCurrencyContractHourlyRate', 'ContractID', 'ContractHourlyRate', 'id', 'RoleID')]
+    [ValidateSet('InternalCurrencyContractHourlyRate', 'ContractID', 'id', 'ContractHourlyRate', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalCurrencyContractHourlyRate', 'ContractID', 'ContractHourlyRate', 'id', 'RoleID')]
+    [ValidateSet('InternalCurrencyContractHourlyRate', 'ContractID', 'id', 'ContractHourlyRate', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalCurrencyContractHourlyRate', 'ContractID', 'ContractHourlyRate', 'id', 'RoleID')]
+    [ValidateSet('InternalCurrencyContractHourlyRate', 'ContractID', 'id', 'ContractHourlyRate', 'RoleID')]
     [string[]]
     $IsNotNull,
 

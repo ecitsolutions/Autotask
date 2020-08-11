@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 DisplayColorRGB
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -194,21 +192,21 @@ Set-AtwsTicketCategory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'id', 'Nickname', 'GlobalDefault', 'DisplayColorRGB', 'ApiOnly')]
+    [ValidateSet('ApiOnly', 'Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'id', 'Nickname', 'GlobalDefault', 'DisplayColorRGB', 'ApiOnly')]
+    [ValidateSet('ApiOnly', 'Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'id', 'Nickname', 'GlobalDefault', 'DisplayColorRGB', 'ApiOnly')]
+    [ValidateSet('ApiOnly', 'Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB')]
     [string[]]
     $IsNotNull,
 

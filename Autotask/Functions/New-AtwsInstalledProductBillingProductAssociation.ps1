@@ -64,6 +64,15 @@ Set-AtwsInstalledProductBillingProductAssociation
     [Autotask.InstalledProductBillingProductAssociation[]]
     $InputObject,
 
+# Billing Product ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $BillingProductID,
+
 # Expiration Date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -87,16 +96,7 @@ Set-AtwsInstalledProductBillingProductAssociation
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
-    $EffectiveDate,
-
-# Billing Product ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $BillingProductID
+    $EffectiveDate
   )
  
     begin { 

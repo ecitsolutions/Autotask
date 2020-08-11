@@ -81,20 +81,20 @@ Set-AtwsTicketRmaCredit
     [decimal]
     $CreditAmount,
 
+# Internal Currency Credit Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $InternalCurrencyCreditAmount,
+
 # Credit Details
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
     [string]
-    $CreditDetails,
-
-# Internal Currency Credit Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $InternalCurrencyCreditAmount
+    $CreditDetails
   )
  
     begin { 

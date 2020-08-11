@@ -84,7 +84,7 @@ Set-AtwsPriceListServiceBundle
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CurrencyID', 'ServiceBundleID')]
+    [ValidateSet('ServiceBundleID', 'CurrencyID')]
     [string]
     $GetReferenceEntityById,
 
@@ -149,21 +149,21 @@ Set-AtwsPriceListServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'CurrencyID', 'ServiceBundleID', 'id', 'UnitPrice')]
+    [ValidateSet('ServiceBundleID', 'UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'CurrencyID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'CurrencyID', 'ServiceBundleID', 'id', 'UnitPrice')]
+    [ValidateSet('ServiceBundleID', 'UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'CurrencyID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'CurrencyID', 'ServiceBundleID', 'id', 'UnitPrice')]
+    [ValidateSet('ServiceBundleID', 'UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'CurrencyID')]
     [string[]]
     $IsNotNull,
 

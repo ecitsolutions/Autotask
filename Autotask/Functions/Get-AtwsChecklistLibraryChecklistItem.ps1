@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 KnowledgebaseArticleID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -189,21 +187,21 @@ Set-AtwsChecklistLibraryChecklistItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'Position', 'id', 'KnowledgebaseArticleID', 'ItemName', 'ChecklistLibraryID')]
+    [ValidateSet('Important', 'Position', 'ItemName', 'id', 'KnowledgebaseArticleID', 'ChecklistLibraryID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'Position', 'id', 'KnowledgebaseArticleID', 'ItemName', 'ChecklistLibraryID')]
+    [ValidateSet('Important', 'Position', 'ItemName', 'id', 'KnowledgebaseArticleID', 'ChecklistLibraryID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'Position', 'id', 'KnowledgebaseArticleID', 'ItemName', 'ChecklistLibraryID')]
+    [ValidateSet('Important', 'Position', 'ItemName', 'id', 'KnowledgebaseArticleID', 'ChecklistLibraryID')]
     [string[]]
     $IsNotNull,
 

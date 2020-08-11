@@ -73,43 +73,12 @@ Set-AtwsAccountNote
     [Int]
     $AssignedResourceID,
 
-# StartDate
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDateTime,
-
-# Contact
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ContactID,
-
-# DateCompleted
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CompletedDateTime,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string]
-    $Name,
+    $ImpersonatorCreatorResourceID,
 
 # DateStamp
     [Parameter(
@@ -117,6 +86,22 @@ Set-AtwsAccountNote
     )]
     [datetime]
     $LastModifiedDate,
+
+# Client
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $AccountID,
+
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDateTime,
 
 # Detail
     [Parameter(
@@ -126,13 +111,6 @@ Set-AtwsAccountNote
     [string]
     $Note,
 
-# ProposalID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $OpportunityID,
-
 # EndDate
     [Parameter(
       Mandatory = $true,
@@ -141,6 +119,51 @@ Set-AtwsAccountNote
     [ValidateNotNullOrEmpty()]
     [datetime]
     $EndDateTime,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $Name,
+
+# Impersonator Updater Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorUpdaterResourceID,
+
+# StartDate
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $StartDateTime,
+
+# ProposalID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $OpportunityID,
+
+# DateCompleted
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CompletedDateTime,
+
+# Contact
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContactID,
 
 # TypeValue
     [Parameter(
@@ -161,30 +184,7 @@ Set-AtwsAccountNote
       }
     })]
     [string]
-    $ActionType,
-
-# Client
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $AccountID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorUpdaterResourceID
+    $ActionType
   )
  
     begin { 

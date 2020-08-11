@@ -60,19 +60,13 @@ Get-AtwsTicketChangeRequestApproval
     [Autotask.TicketChangeRequestApproval[]]
     $InputObject,
 
-# Is Approved
+# Approve Reject Note
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $IsApproved,
-
-# Contact ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContactID,
+    [ValidateLength(0,2000)]
+    [string]
+    $ApproveRejectNote,
 
 # Approve Reject Date Time
     [Parameter(
@@ -80,6 +74,13 @@ Get-AtwsTicketChangeRequestApproval
     )]
     [datetime]
     $ApproveRejectDateTime,
+
+# Is Approved
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsApproved,
 
 # Ticket ID
     [Parameter(
@@ -90,13 +91,12 @@ Get-AtwsTicketChangeRequestApproval
     [Int]
     $TicketID,
 
-# Approve Reject Note
+# Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,2000)]
-    [string]
-    $ApproveRejectNote,
+    [Int]
+    $ContactID,
 
 # Resource ID
     [Parameter(

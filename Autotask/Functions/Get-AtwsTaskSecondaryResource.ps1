@@ -86,7 +86,7 @@ Remove-AtwsTaskSecondaryResource
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('RoleID', 'TaskID', 'ResourceID')]
+    [ValidateSet('TaskID', 'RoleID', 'ResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -144,21 +144,21 @@ Remove-AtwsTaskSecondaryResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'TaskID', 'id', 'RoleID')]
+    [ValidateSet('TaskID', 'RoleID', 'id', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'TaskID', 'id', 'RoleID')]
+    [ValidateSet('TaskID', 'RoleID', 'id', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'TaskID', 'id', 'RoleID')]
+    [ValidateSet('TaskID', 'RoleID', 'id', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

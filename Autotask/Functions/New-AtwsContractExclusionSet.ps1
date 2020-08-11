@@ -63,14 +63,13 @@ Set-AtwsContractExclusionSet
     [Autotask.ContractExclusionSet[]]
     $InputObject,
 
-# Active
+# Description
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
+    [ValidateLength(0,500)]
+    [string]
+    $Description,
 
 # Name
     [Parameter(
@@ -82,13 +81,14 @@ Set-AtwsContractExclusionSet
     [string]
     $Name,
 
-# Description
+# Active
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,500)]
-    [string]
-    $Description
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active
   )
  
     begin { 

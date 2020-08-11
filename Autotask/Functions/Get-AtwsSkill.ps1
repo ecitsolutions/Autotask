@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 CategoryID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -178,21 +176,21 @@ An example of a more complex query. This command returns any Skills with Id GREA
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Description', 'CategoryID', 'Active', 'Name')]
+    [ValidateSet('Description', 'Name', 'Active', 'id', 'CategoryID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Description', 'CategoryID', 'Active', 'Name')]
+    [ValidateSet('Description', 'Name', 'Active', 'id', 'CategoryID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Description', 'CategoryID', 'Active', 'Name')]
+    [ValidateSet('Description', 'Name', 'Active', 'id', 'CategoryID')]
     [string[]]
     $IsNotNull,
 

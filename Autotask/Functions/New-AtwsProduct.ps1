@@ -63,25 +63,6 @@ Set-AtwsProduct
     [Autotask.Product[]]
     $InputObject,
 
-# Billing Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $BillingType,
-
 # Product Link
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -89,6 +70,21 @@ Set-AtwsProduct
     [ValidateLength(0,500)]
     [string]
     $Link,
+
+# Manufacturer Product Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ManufacturerProductName,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID,
 
 # Product SKU
     [Parameter(
@@ -98,70 +94,6 @@ Set-AtwsProduct
     [string]
     $SKU,
 
-# markup_rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $MarkupRate,
-
-# Product Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# Product Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
-
-# Allocation Code ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ProductAllocationCodeID,
-
-# MSRP
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $MSRP,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Manufacturer Account Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $ManufacturerName,
-
-# Vendor Product Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $VendorProductNumber,
-
 # Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -169,45 +101,12 @@ Set-AtwsProduct
     [double]
     $UnitCost,
 
-# Does Not Require Procurement
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $DoesNotRequireProcurement,
-
 # Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
     $UnitPrice,
-
-# Vendor Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $DefaultVendorID,
-
-# Product Category
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $ProductCategory,
 
 # Is Serialized
     [Parameter(
@@ -218,30 +117,13 @@ Set-AtwsProduct
     [boolean]
     $Serialized,
 
-# Manufacturer Product Number
+# Vendor Product Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string]
-    $ManufacturerProductName,
-
-# External ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ExternalProductID,
-
-# Active
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
+    $VendorProductNumber,
 
 # Period Type
     [Parameter(
@@ -262,20 +144,37 @@ Set-AtwsProduct
     [string]
     $PeriodType,
 
-# Cost Allocation Code ID
+# Allocation Code ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ProductAllocationCodeID,
+
+# Vendor Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $CostAllocationCodeID,
+    $DefaultVendorID,
 
-# Internal Product ID
+# Manufacturer Account Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,100)]
     [string]
-    $InternalProductID,
+    $ManufacturerName,
+
+# Product Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
 
 # Price Cost Method
     [Parameter(
@@ -295,6 +194,107 @@ Set-AtwsProduct
     })]
     [string]
     $PriceCostMethod,
+
+# Cost Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CostAllocationCodeID,
+
+# Internal Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $InternalProductID,
+
+# markup_rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $MarkupRate,
+
+# Billing Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $BillingType,
+
+# Does Not Require Procurement
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $DoesNotRequireProcurement,
+
+# External ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ExternalProductID,
+
+# Product Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
+
+# MSRP
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $MSRP,
+
+# Active
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active,
+
+# Product Category
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ProductCategory,
 
 # Eligible For RMA
     [Parameter(

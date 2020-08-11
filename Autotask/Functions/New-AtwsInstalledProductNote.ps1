@@ -63,37 +63,6 @@ Set-AtwsInstalledProductNote
     [Autotask.InstalledProductNote[]]
     $InputObject,
 
-# Description
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,32000)]
-    [string]
-    $Description,
-
-# Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorUpdaterResourceID,
-
 # Installed Product ID
     [Parameter(
       Mandatory = $true,
@@ -103,12 +72,26 @@ Set-AtwsInstalledProductNote
     [Int]
     $InstalledProductID,
 
-# Last Activity Date
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $LastActivityDate,
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
+# Impersonator Updater Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorUpdaterResourceID,
+
+# Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorResourceID,
 
 # Note Type
     [Parameter(
@@ -131,12 +114,22 @@ Set-AtwsInstalledProductNote
     [string]
     $NoteType,
 
-# Impersonator Creator Resource ID
+# Description
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,32000)]
+    [string]
+    $Description,
+
+# Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
+    [datetime]
+    $CreateDateTime,
 
 # Title
     [Parameter(
@@ -146,7 +139,14 @@ Set-AtwsInstalledProductNote
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,250)]
     [string]
-    $Title
+    $Title,
+
+# Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastActivityDate
   )
  
     begin { 

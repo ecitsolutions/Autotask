@@ -29,15 +29,9 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 UdfType
- 
-
 DataType
- 
-
 DisplayFormat
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -312,21 +306,21 @@ Set-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsProtected', 'CreateDate', 'IsEncrypted', 'SortOrder', 'IsPrivate', 'Name', 'IsActive', 'IsVisibleToClientPortal', 'NumberOfDecimalPlaces', 'IsFieldMapping', 'CrmToProjectUdfId', 'id', 'UdfType', 'Description', 'IsRequired', 'DataType', 'DisplayFormat', 'MergeVariableName', 'DefaultValue')]
+    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'IsActive', 'IsRequired', 'DisplayFormat', 'NumberOfDecimalPlaces', 'DataType', 'IsVisibleToClientPortal', 'MergeVariableName', 'Description', 'IsEncrypted', 'id', 'IsPrivate', 'IsProtected', 'Name', 'UdfType', 'IsFieldMapping', 'SortOrder', 'DefaultValue')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsProtected', 'CreateDate', 'IsEncrypted', 'SortOrder', 'IsPrivate', 'Name', 'IsActive', 'IsVisibleToClientPortal', 'NumberOfDecimalPlaces', 'IsFieldMapping', 'CrmToProjectUdfId', 'id', 'UdfType', 'Description', 'IsRequired', 'DataType', 'DisplayFormat', 'MergeVariableName', 'DefaultValue')]
+    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'IsActive', 'IsRequired', 'DisplayFormat', 'NumberOfDecimalPlaces', 'DataType', 'IsVisibleToClientPortal', 'MergeVariableName', 'Description', 'IsEncrypted', 'id', 'IsPrivate', 'IsProtected', 'Name', 'UdfType', 'IsFieldMapping', 'SortOrder', 'DefaultValue')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsProtected', 'CreateDate', 'IsEncrypted', 'SortOrder', 'IsPrivate', 'Name', 'IsActive', 'IsVisibleToClientPortal', 'NumberOfDecimalPlaces', 'IsFieldMapping', 'CrmToProjectUdfId', 'id', 'UdfType', 'Description', 'IsRequired', 'DataType', 'DisplayFormat', 'MergeVariableName', 'DefaultValue')]
+    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'IsActive', 'IsRequired', 'DisplayFormat', 'NumberOfDecimalPlaces', 'DataType', 'IsVisibleToClientPortal', 'MergeVariableName', 'Description', 'IsEncrypted', 'id', 'IsPrivate', 'IsProtected', 'Name', 'UdfType', 'IsFieldMapping', 'SortOrder', 'DefaultValue')]
     [string[]]
     $IsNotNull,
 

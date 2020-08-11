@@ -65,14 +65,14 @@ Set-AtwsInstalledProductTypeUdfAssociation
     [Autotask.InstalledProductTypeUdfAssociation[]]
     $InputObject,
 
-# Installed Product Type Id
+# User Defined Field Definition Id
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [long]
-    $InstalledProductTypeId,
+    $UserDefinedFieldDefinitionId,
 
 # Sort Order
     [Parameter(
@@ -83,14 +83,14 @@ Set-AtwsInstalledProductTypeUdfAssociation
     [Int]
     $SortOrder,
 
-# User Defined Field Definition Id
+# Installed Product Type Id
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [long]
-    $UserDefinedFieldDefinitionId,
+    $InstalledProductTypeId,
 
 # Required
     [Parameter(

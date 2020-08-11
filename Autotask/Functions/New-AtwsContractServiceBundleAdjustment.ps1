@@ -63,42 +63,12 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
     [Int]
     $ContractID,
 
-# Allow Repeat Service Bundle
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $AllowRepeatServiceBundle,
-
-# UnitChange
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $UnitChange,
-
 # ServiceBundleID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $ServiceBundleID,
-
-# StartDate
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EffectiveDate,
-
-# Quote Item Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $QuoteItemID,
 
 # Contract Service Bundle ID
     [Parameter(
@@ -107,12 +77,42 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
     [Int]
     $ContractServiceBundleID,
 
+# Allow Repeat Service Bundle
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $AllowRepeatServiceBundle,
+
 # Adjusted Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $AdjustedUnitPrice
+    $AdjustedUnitPrice,
+
+# UnitChange
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $UnitChange,
+
+# Quote Item Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $QuoteItemID,
+
+# StartDate
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $EffectiveDate
   )
  
     begin { 

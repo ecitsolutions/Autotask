@@ -60,12 +60,13 @@ Set-AtwsBusinessDivision
     [Autotask.BusinessDivision[]]
     $InputObject,
 
-# Active
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $Active,
+    [ValidateLength(0,400)]
+    [string]
+    $Description,
 
 # Division Name
     [Parameter(
@@ -77,13 +78,12 @@ Set-AtwsBusinessDivision
     [string]
     $Name,
 
-# Description
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,400)]
-    [string]
-    $Description
+    [boolean]
+    $Active
   )
  
     begin { 

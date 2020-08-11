@@ -66,21 +66,19 @@ Set-AtwsAccountToDo
     [Autotask.AccountToDo[]]
     $InputObject,
 
-# Start Date Time
+# Impersonator Creator Resource ID
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDateTime,
+    [Int]
+    $ImpersonatorCreatorResourceID,
 
-# Contact
+# Last Modified Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [long]
-    $ContactID,
+    [datetime]
+    $LastModifiedDate,
 
 # Completed Date
     [Parameter(
@@ -89,6 +87,15 @@ Set-AtwsAccountToDo
     [datetime]
     $CompletedDate,
 
+# Client
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $AccountID,
+
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -96,12 +103,20 @@ Set-AtwsAccountToDo
     [datetime]
     $CreateDateTime,
 
-# Last Modified Date
+# Creator Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $LastModifiedDate,
+    [long]
+    $CreatorResourceID,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,32000)]
+    [string]
+    $ActivityDescription,
 
 # Contract
     [Parameter(
@@ -119,20 +134,12 @@ Set-AtwsAccountToDo
     [long]
     $AssignedToResourceID,
 
-# Opportunity
+# Ticket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [long]
-    $OpportunityID,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,32000)]
-    [string]
-    $ActivityDescription,
+    $TicketID,
 
 # End Date Time
     [Parameter(
@@ -143,12 +150,28 @@ Set-AtwsAccountToDo
     [datetime]
     $EndDateTime,
 
-# Ticket
+# Start Date Time
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $StartDateTime,
+
+# Opportunity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [long]
-    $TicketID,
+    $OpportunityID,
+
+# Contact
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $ContactID,
 
 # Action Type
     [Parameter(
@@ -169,30 +192,7 @@ Set-AtwsAccountToDo
       }
     })]
     [string]
-    $ActionType,
-
-# Client
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $AccountID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Creator Resource
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $CreatorResourceID
+    $ActionType
   )
  
     begin { 

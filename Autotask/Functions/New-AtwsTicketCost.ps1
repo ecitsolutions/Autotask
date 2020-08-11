@@ -66,12 +66,21 @@ Set-AtwsTicketCost
     [Autotask.TicketCost[]]
     $InputObject,
 
-# Internal Currency Unit Price
+# Unit Quantity
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $UnitQuantity,
+
+# Extended Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $InternalCurrencyUnitPrice,
+    $ExtendedCost,
 
 # Unit Price
     [Parameter(
@@ -79,6 +88,74 @@ Set-AtwsTicketCost
     )]
     [double]
     $UnitPrice,
+
+# Billable Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $BillableAmount,
+
+# Date Purchased
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $DatePurchased,
+
+# Ticket
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $TicketID,
+
+# Billed
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Billed,
+
+# Billable To Client
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $BillableToAccount,
+
+# Internal Currency Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyUnitPrice,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# Contract Service Bundle ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $ContractServiceBundleID,
+
+# Product
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $ProductID,
 
 # Status
     [Parameter(
@@ -99,26 +176,12 @@ Set-AtwsTicketCost
     [string]
     $Status,
 
-# Last Modified By
+# Internal Currency Billable Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [long]
-    $StatusLastModifiedBy,
-
-# Allocation Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $AllocationCodeID,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDate,
+    [double]
+    $InternalCurrencyBillableAmount,
 
 # Created By
     [Parameter(
@@ -134,134 +197,12 @@ Set-AtwsTicketCost
     [double]
     $UnitCost,
 
-# Internal Currency Billable Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyBillableAmount,
-
-# Extended Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $ExtendedCost,
-
-# Date Purchased
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $DatePurchased,
-
-# Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Notes,
-
-# Billable Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $BillableAmount,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
-
-# Contract Service ID
+# Allocation Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [long]
-    $ContractServiceID,
-
-# Internal Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $InternalPurchaseOrderNumber,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BusinessDivisionSubdivisionID,
-
-# Contract Service Bundle ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $ContractServiceBundleID,
-
-# Product
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $ProductID,
-
-# Unit Quantity
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $UnitQuantity,
-
-# Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PurchaseOrderNumber,
-
-# Billed
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Billed,
-
-# Last Modified Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $StatusLastModifiedDate,
-
-# Billable To Client
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $BillableToAccount,
-
-# Ticket
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $TicketID,
+    $AllocationCodeID,
 
 # Cost Type
     [Parameter(
@@ -284,6 +225,50 @@ Set-AtwsTicketCost
     [string]
     $CostType,
 
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $ContractServiceID,
+
+# Last Modified Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $StatusLastModifiedDate,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BusinessDivisionSubdivisionID,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
+
+# Internal Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $InternalPurchaseOrderNumber,
+
 # Name
     [Parameter(
       Mandatory = $true,
@@ -292,7 +277,22 @@ Set-AtwsTicketCost
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
     [string]
-    $Name
+    $Name,
+
+# Last Modified By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $StatusLastModifiedBy,
+
+# Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Notes
   )
  
     begin { 

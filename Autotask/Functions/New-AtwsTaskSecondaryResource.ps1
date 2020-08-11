@@ -62,15 +62,6 @@ Get-AtwsTaskSecondaryResource
     [Autotask.TaskSecondaryResource[]]
     $InputObject,
 
-# Resource
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ResourceID,
-
 # Task ID
     [Parameter(
       Mandatory = $true,
@@ -87,7 +78,16 @@ Get-AtwsTaskSecondaryResource
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $RoleID
+    $RoleID,
+
+# Resource
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ResourceID
   )
  
     begin { 

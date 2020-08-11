@@ -65,36 +65,26 @@ Set-AtwsProjectNote
     [Autotask.ProjectNote[]]
     $InputObject,
 
-# Description
+# Publish
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,32000)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ProjectNote -FieldName Publish -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ProjectNote -FieldName Publish -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
-    $Description,
-
-# Creator Resource
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorUpdaterResourceID,
+    $Publish,
 
 # Impersonator Creator Resource ID
     [Parameter(
@@ -103,12 +93,28 @@ Set-AtwsProjectNote
     [Int]
     $ImpersonatorCreatorResourceID,
 
-# LastActivityDate
+# Project
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ProjectID,
+
+# Impersonator Updater Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $LastActivityDate,
+    [Int]
+    $ImpersonatorUpdaterResourceID,
+
+# Creator Resource
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorResourceID,
 
 # Note Type
     [Parameter(
@@ -131,6 +137,16 @@ Set-AtwsProjectNote
     [string]
     $NoteType,
 
+# Description
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,32000)]
+    [string]
+    $Description,
+
 # Announce
     [Parameter(
       Mandatory = $true,
@@ -140,35 +156,12 @@ Set-AtwsProjectNote
     [boolean]
     $Announce,
 
-# Project
+# Create Date Time
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ProjectID,
-
-# Publish
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ProjectNote -FieldName Publish -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ProjectNote -FieldName Publish -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $Publish,
+    [datetime]
+    $CreateDateTime,
 
 # Title
     [Parameter(
@@ -178,7 +171,14 @@ Set-AtwsProjectNote
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,250)]
     [string]
-    $Title
+    $Title,
+
+# LastActivityDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastActivityDate
   )
  
     begin { 

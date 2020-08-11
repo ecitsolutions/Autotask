@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 ActionType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -105,7 +103,7 @@ Set-AtwsAccountToDo
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'OpportunityID', 'ContactID', 'TicketID', 'ContractID', 'AccountID')]
+    [ValidateSet('AccountID', 'ContractID', 'ImpersonatorCreatorResourceID', 'ContactID', 'OpportunityID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -262,21 +260,21 @@ Set-AtwsAccountToDo
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'id', 'ActivityDescription', 'AssignedToResourceID', 'CompletedDate', 'ActionType', 'EndDateTime', 'AccountID', 'ContactID', 'TicketID', 'StartDateTime', 'LastModifiedDate', 'OpportunityID', 'ContractID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDate', 'AccountID', 'CreateDateTime', 'CreatorResourceID', 'id', 'ActivityDescription', 'ContractID', 'AssignedToResourceID', 'TicketID', 'EndDateTime', 'StartDateTime', 'OpportunityID', 'ContactID', 'ActionType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'id', 'ActivityDescription', 'AssignedToResourceID', 'CompletedDate', 'ActionType', 'EndDateTime', 'AccountID', 'ContactID', 'TicketID', 'StartDateTime', 'LastModifiedDate', 'OpportunityID', 'ContractID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDate', 'AccountID', 'CreateDateTime', 'CreatorResourceID', 'id', 'ActivityDescription', 'ContractID', 'AssignedToResourceID', 'TicketID', 'EndDateTime', 'StartDateTime', 'OpportunityID', 'ContactID', 'ActionType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'id', 'ActivityDescription', 'AssignedToResourceID', 'CompletedDate', 'ActionType', 'EndDateTime', 'AccountID', 'ContactID', 'TicketID', 'StartDateTime', 'LastModifiedDate', 'OpportunityID', 'ContractID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDate', 'AccountID', 'CreateDateTime', 'CreatorResourceID', 'id', 'ActivityDescription', 'ContractID', 'AssignedToResourceID', 'TicketID', 'EndDateTime', 'StartDateTime', 'OpportunityID', 'ContactID', 'ActionType')]
     [string[]]
     $IsNotNull,
 

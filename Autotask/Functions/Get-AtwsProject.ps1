@@ -29,18 +29,10 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 Type
- 
-
 Status
- 
-
 Department
- 
-
 LineOfBusiness
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -112,7 +104,7 @@ Set-AtwsProject
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'AccountID', 'ImpersonatorCreatorResourceID', 'ContractID')]
+    [ValidateSet('ContractID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'AccountID')]
     [string]
     $GetReferenceEntityById,
 
@@ -125,7 +117,7 @@ Set-AtwsProject
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('NotificationHistory', 'PurchaseOrderItem', 'Phase', 'Task', 'ExpenseItem', 'Quote', 'Ticket', 'ProjectCost', 'BillingItem', 'ProjectNote')]
+    [ValidateSet('PurchaseOrderItem', 'Phase', 'ProjectCost', 'ProjectNote', 'Ticket', 'BillingItem', 'NotificationHistory', 'Task', 'ExpenseItem', 'Quote')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -488,21 +480,21 @@ Set-AtwsProject
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDateTime', 'Description', 'ActualBilledHours', 'StatusDateTime', 'EndDateTime', 'OriginalEstimatedRevenue', 'LastActivityResourceID', 'LineOfBusiness', 'ActualHours', 'ProjectCostsRevenue', 'ProjectLeadResourceID', 'ChangeOrdersBudget', 'LaborEstimatedCosts', 'ProjectCostsBudget', 'SGDA', 'ChangeOrdersRevenue', 'Duration', 'PurchaseOrderNumber', 'Department', 'EstimatedTime', 'ExtProjectType', 'StatusDetail', 'id', 'Type', 'CompanyOwnerResourceID', 'CompletedDateTime', 'ContractID', 'Status', 'BusinessDivisionSubdivisionID', 'CompletedPercentage', 'ExtPNumber', 'ProjectCostEstimatedMarginPercentage', 'StartDateTime', 'EstimatedSalesCost', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'LaborEstimatedMarginPercentage', 'LaborEstimatedRevenue', 'LastActivityPersonType', 'AccountID', 'ProjectNumber', 'CreateDateTime', 'ProjectName')]
+    [ValidateSet('ProjectName', 'Status', 'AccountID', 'LineOfBusiness', 'ProjectCostEstimatedMarginPercentage', 'ExtPNumber', 'ChangeOrdersBudget', 'ExtProjectType', 'PurchaseOrderNumber', 'EndDateTime', 'StatusDateTime', 'ProjectNumber', 'Department', 'Type', 'Description', 'EstimatedSalesCost', 'CompletedDateTime', 'CreatorResourceID', 'OriginalEstimatedRevenue', 'LaborEstimatedCosts', 'LastActivityDateTime', 'SGDA', 'LaborEstimatedRevenue', 'ActualHours', 'ProjectLeadResourceID', 'ContractID', 'ProjectCostsBudget', 'ImpersonatorCreatorResourceID', 'ChangeOrdersRevenue', 'BusinessDivisionSubdivisionID', 'ActualBilledHours', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'id', 'CompanyOwnerResourceID', 'CompletedPercentage', 'LastActivityPersonType', 'CreateDateTime', 'Duration', 'LaborEstimatedMarginPercentage', 'StatusDetail', 'StartDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDateTime', 'Description', 'ActualBilledHours', 'StatusDateTime', 'EndDateTime', 'OriginalEstimatedRevenue', 'LastActivityResourceID', 'LineOfBusiness', 'ActualHours', 'ProjectCostsRevenue', 'ProjectLeadResourceID', 'ChangeOrdersBudget', 'LaborEstimatedCosts', 'ProjectCostsBudget', 'SGDA', 'ChangeOrdersRevenue', 'Duration', 'PurchaseOrderNumber', 'Department', 'EstimatedTime', 'ExtProjectType', 'StatusDetail', 'id', 'Type', 'CompanyOwnerResourceID', 'CompletedDateTime', 'ContractID', 'Status', 'BusinessDivisionSubdivisionID', 'CompletedPercentage', 'ExtPNumber', 'ProjectCostEstimatedMarginPercentage', 'StartDateTime', 'EstimatedSalesCost', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'LaborEstimatedMarginPercentage', 'LaborEstimatedRevenue', 'LastActivityPersonType', 'AccountID', 'ProjectNumber', 'CreateDateTime', 'ProjectName')]
+    [ValidateSet('ProjectName', 'Status', 'AccountID', 'LineOfBusiness', 'ProjectCostEstimatedMarginPercentage', 'ExtPNumber', 'ChangeOrdersBudget', 'ExtProjectType', 'PurchaseOrderNumber', 'EndDateTime', 'StatusDateTime', 'ProjectNumber', 'Department', 'Type', 'Description', 'EstimatedSalesCost', 'CompletedDateTime', 'CreatorResourceID', 'OriginalEstimatedRevenue', 'LaborEstimatedCosts', 'LastActivityDateTime', 'SGDA', 'LaborEstimatedRevenue', 'ActualHours', 'ProjectLeadResourceID', 'ContractID', 'ProjectCostsBudget', 'ImpersonatorCreatorResourceID', 'ChangeOrdersRevenue', 'BusinessDivisionSubdivisionID', 'ActualBilledHours', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'id', 'CompanyOwnerResourceID', 'CompletedPercentage', 'LastActivityPersonType', 'CreateDateTime', 'Duration', 'LaborEstimatedMarginPercentage', 'StatusDetail', 'StartDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDateTime', 'Description', 'ActualBilledHours', 'StatusDateTime', 'EndDateTime', 'OriginalEstimatedRevenue', 'LastActivityResourceID', 'LineOfBusiness', 'ActualHours', 'ProjectCostsRevenue', 'ProjectLeadResourceID', 'ChangeOrdersBudget', 'LaborEstimatedCosts', 'ProjectCostsBudget', 'SGDA', 'ChangeOrdersRevenue', 'Duration', 'PurchaseOrderNumber', 'Department', 'EstimatedTime', 'ExtProjectType', 'StatusDetail', 'id', 'Type', 'CompanyOwnerResourceID', 'CompletedDateTime', 'ContractID', 'Status', 'BusinessDivisionSubdivisionID', 'CompletedPercentage', 'ExtPNumber', 'ProjectCostEstimatedMarginPercentage', 'StartDateTime', 'EstimatedSalesCost', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'LaborEstimatedMarginPercentage', 'LaborEstimatedRevenue', 'LastActivityPersonType', 'AccountID', 'ProjectNumber', 'CreateDateTime', 'ProjectName')]
+    [ValidateSet('ProjectName', 'Status', 'AccountID', 'LineOfBusiness', 'ProjectCostEstimatedMarginPercentage', 'ExtPNumber', 'ChangeOrdersBudget', 'ExtProjectType', 'PurchaseOrderNumber', 'EndDateTime', 'StatusDateTime', 'ProjectNumber', 'Department', 'Type', 'Description', 'EstimatedSalesCost', 'CompletedDateTime', 'CreatorResourceID', 'OriginalEstimatedRevenue', 'LaborEstimatedCosts', 'LastActivityDateTime', 'SGDA', 'LaborEstimatedRevenue', 'ActualHours', 'ProjectLeadResourceID', 'ContractID', 'ProjectCostsBudget', 'ImpersonatorCreatorResourceID', 'ChangeOrdersRevenue', 'BusinessDivisionSubdivisionID', 'ActualBilledHours', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'id', 'CompanyOwnerResourceID', 'CompletedPercentage', 'LastActivityPersonType', 'CreateDateTime', 'Duration', 'LaborEstimatedMarginPercentage', 'StatusDetail', 'StartDateTime')]
     [string[]]
     $IsNotNull,
 

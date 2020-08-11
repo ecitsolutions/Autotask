@@ -100,7 +100,7 @@ Set-AtwsContractExclusionSet
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractExclusionSetExcludedWorkType', 'ContractExclusionSetExcludedRole', 'Contract')]
+    [ValidateSet('Contract', 'ContractExclusionSetExcludedWorkType', 'ContractExclusionSetExcludedRole')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -147,21 +147,21 @@ Set-AtwsContractExclusionSet
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'Description', 'id')]
+    [ValidateSet('Description', 'Name', 'Active', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'Description', 'id')]
+    [ValidateSet('Description', 'Name', 'Active', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'Description', 'id')]
+    [ValidateSet('Description', 'Name', 'Active', 'id')]
     [string[]]
     $IsNotNull,
 

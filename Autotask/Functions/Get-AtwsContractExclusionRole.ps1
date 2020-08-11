@@ -86,7 +86,7 @@ Remove-AtwsContractExclusionRole
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'RoleID')]
+    [ValidateSet('RoleID', 'ContractID')]
     [string]
     $GetReferenceEntityById,
 

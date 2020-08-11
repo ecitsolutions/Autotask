@@ -29,15 +29,9 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 ParentType
- 
-
 Type
- 
-
 Publish
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -105,7 +99,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('OpportunityID', 'AttachedByContactID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AttachedByContactID', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -267,21 +261,21 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ParentID', 'ParentType', 'FileSize', 'ImpersonatorCreatorResourceID', 'ContentType', 'AttachedByContactID', 'FullPath', 'Title', 'Publish', 'AttachDate', 'AttachedByResourceID', 'id', 'Type', 'OpportunityID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AttachedByResourceID', 'Type', 'ParentID', 'AttachDate', 'FileSize', 'FullPath', 'ContentType', 'ParentType', 'Publish', 'OpportunityID', 'AttachedByContactID', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ParentID', 'ParentType', 'FileSize', 'ImpersonatorCreatorResourceID', 'ContentType', 'AttachedByContactID', 'FullPath', 'Title', 'Publish', 'AttachDate', 'AttachedByResourceID', 'id', 'Type', 'OpportunityID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AttachedByResourceID', 'Type', 'ParentID', 'AttachDate', 'FileSize', 'FullPath', 'ContentType', 'ParentType', 'Publish', 'OpportunityID', 'AttachedByContactID', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ParentID', 'ParentType', 'FileSize', 'ImpersonatorCreatorResourceID', 'ContentType', 'AttachedByContactID', 'FullPath', 'Title', 'Publish', 'AttachDate', 'AttachedByResourceID', 'id', 'Type', 'OpportunityID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AttachedByResourceID', 'Type', 'ParentID', 'AttachDate', 'FileSize', 'FullPath', 'ContentType', 'ParentType', 'Publish', 'OpportunityID', 'AttachedByContactID', 'Title')]
     [string[]]
     $IsNotNull,
 

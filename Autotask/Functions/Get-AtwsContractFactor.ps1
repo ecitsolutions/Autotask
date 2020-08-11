@@ -86,7 +86,7 @@ Set-AtwsContractFactor
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'RoleID')]
+    [ValidateSet('RoleID', 'ContractID')]
     [string]
     $GetReferenceEntityById,
 
@@ -144,21 +144,21 @@ Set-AtwsContractFactor
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'RoleID', 'BlockHourFactor')]
+    [ValidateSet('ContractID', 'BlockHourFactor', 'id', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'RoleID', 'BlockHourFactor')]
+    [ValidateSet('ContractID', 'BlockHourFactor', 'id', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'RoleID', 'BlockHourFactor')]
+    [ValidateSet('ContractID', 'BlockHourFactor', 'id', 'RoleID')]
     [string[]]
     $IsNotNull,
 

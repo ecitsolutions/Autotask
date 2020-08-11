@@ -63,105 +63,12 @@ Set-AtwsAccountPhysicalLocation
     [Autotask.AccountPhysicalLocation[]]
     $InputObject,
 
-# State
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $State,
-
-# Address1
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string]
-    $Address1,
-
 # Country ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $CountryID,
-
-# Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Active,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string]
-    $Description,
-
-# Fax
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $Fax,
-
-# Override Account Tax Settings
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $OverrideAccountTaxSettings,
-
-# Postal Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,20)]
-    [string]
-    $PostalCode,
-
-# Is Tax Exempt
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsTaxExempt,
-
-# Primary
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Primary,
-
-# Address2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string]
-    $Address2,
-
-# Tax Region ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $TaxRegionID,
 
 # Alternate Phone 2
     [Parameter(
@@ -171,22 +78,12 @@ Set-AtwsAccountPhysicalLocation
     [string]
     $AlternatePhone2,
 
-# Account ID
+# Tax Region ID
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Int]
-    $AccountID,
-
-# City
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $City,
+    $TaxRegionID,
 
 # Round Trip Distance
     [Parameter(
@@ -203,13 +100,116 @@ Set-AtwsAccountPhysicalLocation
     [string]
     $AlternatePhone1,
 
+# Account ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $AccountID,
+
+# Address2
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $Address2,
+
+# State
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string]
+    $State,
+
+# Fax
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string]
+    $Fax,
+
+# City
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $City,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $Description,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Active,
+
+# Is Tax Exempt
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsTaxExempt,
+
 # Phone
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
     [string]
-    $Phone
+    $Phone,
+
+# Primary
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Primary,
+
+# Override Account Tax Settings
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $OverrideAccountTaxSettings,
+
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
+
+# Postal Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,20)]
+    [string]
+    $PostalCode,
+
+# Address1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $Address1
   )
  
     begin { 

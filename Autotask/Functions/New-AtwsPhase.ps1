@@ -61,66 +61,12 @@ Set-AtwsPhase
     [Autotask.Phase[]]
     $InputObject,
 
-# Phase Last Activity Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastActivityDateTime,
-
-# Phase End Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $DueDate,
-
-# Phase Creation Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDate,
-
-# Phase Title
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string]
-    $Title,
-
-# Phase External ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ExternalID,
-
-# Phase Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PhaseNumber,
-
 # Phase Start Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
     $StartDate,
-
-# Is Scheduled
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Scheduled,
 
 # Phase Estimated Hours
     [Parameter(
@@ -137,12 +83,19 @@ Set-AtwsPhase
     [string]
     $Description,
 
-# Parent Phase
+# Phase Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastActivityDateTime,
+
+# Phase Creator
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ParentPhaseID,
+    $CreatorResourceID,
 
 # Project
     [Parameter(
@@ -153,12 +106,59 @@ Set-AtwsPhase
     [Int]
     $ProjectID,
 
-# Phase Creator
+# Parent Phase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $CreatorResourceID
+    $ParentPhaseID,
+
+# Phase External ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ExternalID,
+
+# Phase Creation Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
+
+# Phase Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PhaseNumber,
+
+# Phase End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $DueDate,
+
+# Is Scheduled
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Scheduled,
+
+# Phase Title
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
+    [string]
+    $Title
   )
  
     begin { 

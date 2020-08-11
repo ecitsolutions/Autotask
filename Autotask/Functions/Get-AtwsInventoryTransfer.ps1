@@ -84,7 +84,7 @@ New-AtwsInventoryTransfer
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProductID', 'TransferByResourceID', 'ToLocationID')]
+    [ValidateSet('ProductID', 'ToLocationID', 'TransferByResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -188,21 +188,21 @@ New-AtwsInventoryTransfer
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ToLocationID', 'UpdateNote', 'TransferByResourceID', 'TransferDate', 'FromLocationID', 'SerialNumber', 'QuantityTransferred', 'Notes', 'ProductID', 'id')]
+    [ValidateSet('TransferDate', 'Notes', 'SerialNumber', 'QuantityTransferred', 'TransferByResourceID', 'id', 'UpdateNote', 'FromLocationID', 'ProductID', 'ToLocationID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ToLocationID', 'UpdateNote', 'TransferByResourceID', 'TransferDate', 'FromLocationID', 'SerialNumber', 'QuantityTransferred', 'Notes', 'ProductID', 'id')]
+    [ValidateSet('TransferDate', 'Notes', 'SerialNumber', 'QuantityTransferred', 'TransferByResourceID', 'id', 'UpdateNote', 'FromLocationID', 'ProductID', 'ToLocationID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ToLocationID', 'UpdateNote', 'TransferByResourceID', 'TransferDate', 'FromLocationID', 'SerialNumber', 'QuantityTransferred', 'Notes', 'ProductID', 'id')]
+    [ValidateSet('TransferDate', 'Notes', 'SerialNumber', 'QuantityTransferred', 'TransferByResourceID', 'id', 'UpdateNote', 'FromLocationID', 'ProductID', 'ToLocationID')]
     [string[]]
     $IsNotNull,
 

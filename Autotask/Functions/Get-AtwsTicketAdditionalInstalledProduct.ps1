@@ -86,7 +86,7 @@ Remove-AtwsTicketAdditionalInstalledProduct
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProductID', 'TicketID')]
+    [ValidateSet('TicketID', 'InstalledProductID')]
     [string]
     $GetReferenceEntityById,
 
@@ -136,21 +136,21 @@ Remove-AtwsTicketAdditionalInstalledProduct
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'InstalledProductID', 'id')]
+    [ValidateSet('TicketID', 'id', 'InstalledProductID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'InstalledProductID', 'id')]
+    [ValidateSet('TicketID', 'id', 'InstalledProductID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'InstalledProductID', 'id')]
+    [ValidateSet('TicketID', 'id', 'InstalledProductID')]
     [string[]]
     $IsNotNull,
 

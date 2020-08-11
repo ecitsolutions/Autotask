@@ -66,12 +66,130 @@ Set-AtwsQuote
     [Autotask.Quote[]]
     $InputObject,
 
-# Last Modified By
+# group_by_product_category
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $GroupByProductCategory,
+
+# show_each_tax_in_tax_group
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $ShowEachTaxInGroup,
+
+# Quote Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $LastModifiedBy,
+    $QuoteTemplateID,
+
+# Ext Approval Response Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $ExtApprovalResponseDate,
+
+# contact_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContactID,
+
+# payment_term_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Quote -FieldName PaymentTerm -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Quote -FieldName PaymentTerm -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PaymentTerm,
+
+# Approval Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Quote -FieldName ApprovalStatus -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Quote -FieldName ApprovalStatus -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ApprovalStatus,
+
+# tax_region_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Quote -FieldName TaxGroup -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Quote -FieldName TaxGroup -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $TaxGroup,
+
+# expiration_date
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $ExpirationDate,
+
+# quote_description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# sold_to_location_id
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $SoldToLocationID,
+
+# Approval Status Changed Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $ApprovalStatusChangedDate,
 
 # shipping_type_id
     [Parameter(
@@ -92,6 +210,21 @@ Set-AtwsQuote
     [string]
     $ShippingType,
 
+# equote_active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $eQuoteActive,
+
+# external_quote_number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ExternalQuoteNumber,
+
 # bill_to_location_id
     [Parameter(
       Mandatory = $true,
@@ -101,12 +234,148 @@ Set-AtwsQuote
     [Int]
     $BillToLocationID,
 
-# group_by_product_category
+# project_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ProposalProjectID,
+
+# payment_type_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Quote -FieldName PaymentType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Quote -FieldName PaymentType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PaymentType,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
+# AccountID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $AccountID,
+
+# purchase_order_number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
+
+# Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastActivityDate,
+
+# Show Tax Category
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $GroupByProductCategory,
+    $ShowTaxCategory,
+
+# Last Modified By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $LastModifiedBy,
+
+# quote_comment
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,1000)]
+    [string]
+    $Comment,
+
+# effective_date
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $EffectiveDate,
+
+# Group By ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Quote -FieldName GroupByID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Quote -FieldName GroupByID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $GroupByID,
+
+# opportunity_id
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $OpportunityID,
+
+# Ext Approval Contact Response
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Quote -FieldName ExtApprovalContactResponse -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Quote -FieldName ExtApprovalContactResponse -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ExtApprovalContactResponse,
+
+# quote_name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
 
 # Ext Approval Response Signature
     [Parameter(
@@ -137,24 +406,12 @@ Set-AtwsQuote
     [Int]
     $CreatorResourceID,
 
-# Approval Status
+# Approval Status Changed By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Quote -FieldName ApprovalStatus -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName ApprovalStatus -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $ApprovalStatus,
+    [Int]
+    $ApprovalStatusChangedByResourceID,
 
 # is_primary_quote
     [Parameter(
@@ -162,141 +419,6 @@ Set-AtwsQuote
     )]
     [boolean]
     $PrimaryQuote,
-
-# expiration_date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $ExpirationDate,
-
-# project_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ProposalProjectID,
-
-# Last Activity Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastActivityDate,
-
-# show_each_tax_in_tax_group
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $ShowEachTaxInGroup,
-
-# Ext Approval Contact Response
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Quote -FieldName ExtApprovalContactResponse -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName ExtApprovalContactResponse -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $ExtApprovalContactResponse,
-
-# opportunity_id
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $OpportunityID,
-
-# AccountID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AccountID,
-
-# quote_comment
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1000)]
-    [string]
-    $Comment,
-
-# quote_description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
-
-# Group By ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Quote -FieldName GroupByID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName GroupByID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $GroupByID,
-
-# payment_type_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Quote -FieldName PaymentType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName PaymentType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PaymentType,
-
-# sold_to_location_id
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $SoldToLocationID,
-
-# equote_active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $eQuoteActive,
 
 # Quote Number
     [Parameter(
@@ -312,129 +434,7 @@ Set-AtwsQuote
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ShipToLocationID,
-
-# Show Tax Category
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $ShowTaxCategory,
-
-# tax_region_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Quote -FieldName TaxGroup -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName TaxGroup -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $TaxGroup,
-
-# purchase_order_number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PurchaseOrderNumber,
-
-# Approval Status Changed By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ApprovalStatusChangedByResourceID,
-
-# contact_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContactID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# payment_term_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Quote -FieldName PaymentTerm -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName PaymentTerm -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PaymentTerm,
-
-# Ext Approval Response Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $ExtApprovalResponseDate,
-
-# external_quote_number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ExternalQuoteNumber,
-
-# Quote Template ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $QuoteTemplateID,
-
-# quote_name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# effective_date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EffectiveDate,
-
-# Approval Status Changed Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $ApprovalStatusChangedDate
+    $ShipToLocationID
   )
  
     begin { 

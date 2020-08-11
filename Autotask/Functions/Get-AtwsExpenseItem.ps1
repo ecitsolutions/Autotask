@@ -29,15 +29,9 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 ExpenseCategory
- 
-
 WorkType
- 
-
 PaymentType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -109,7 +103,7 @@ Set-AtwsExpenseItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ExpenseCurrencyID', 'TicketID', 'ProjectID', 'TaskID', 'ExpenseReportID', 'AccountID')]
+    [ValidateSet('ProjectID', 'ExpenseReportID', 'ExpenseCurrencyID', 'AccountID', 'TaskID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -360,21 +354,21 @@ Set-AtwsExpenseItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'TaskID', 'HaveReceipt', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseReportID', 'TicketID', 'PaymentType', 'ExpenseCategory', 'Rejected', 'EntertainmentLocation', 'OdometerEnd', 'Destination', 'GLCode', 'ExpenseAmount', 'id', 'ProjectID', 'ExpenseDate', 'Miles', 'BillableToAccount', 'Reimbursable', 'OdometerStart', 'ReimbursementAmount', 'Origin', 'ExpenseCurrencyID', 'PurchaseOrderNumber', 'ReceiptAmount', 'AccountID', 'WorkType')]
+    [ValidateSet('ReimbursementAmount', 'ExpenseAmount', 'HaveReceipt', 'TicketID', 'TaskID', 'Miles', 'GLCode', 'EntertainmentLocation', 'Reimbursable', 'BillableToAccount', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseCategory', 'OdometerStart', 'WorkType', 'AccountID', 'ProjectID', 'Rejected', 'ReceiptAmount', 'OdometerEnd', 'ExpenseCurrencyID', 'ExpenseReportID', 'PurchaseOrderNumber', 'ExpenseDate', 'PaymentType', 'Description', 'Origin', 'Destination', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'TaskID', 'HaveReceipt', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseReportID', 'TicketID', 'PaymentType', 'ExpenseCategory', 'Rejected', 'EntertainmentLocation', 'OdometerEnd', 'Destination', 'GLCode', 'ExpenseAmount', 'id', 'ProjectID', 'ExpenseDate', 'Miles', 'BillableToAccount', 'Reimbursable', 'OdometerStart', 'ReimbursementAmount', 'Origin', 'ExpenseCurrencyID', 'PurchaseOrderNumber', 'ReceiptAmount', 'AccountID', 'WorkType')]
+    [ValidateSet('ReimbursementAmount', 'ExpenseAmount', 'HaveReceipt', 'TicketID', 'TaskID', 'Miles', 'GLCode', 'EntertainmentLocation', 'Reimbursable', 'BillableToAccount', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseCategory', 'OdometerStart', 'WorkType', 'AccountID', 'ProjectID', 'Rejected', 'ReceiptAmount', 'OdometerEnd', 'ExpenseCurrencyID', 'ExpenseReportID', 'PurchaseOrderNumber', 'ExpenseDate', 'PaymentType', 'Description', 'Origin', 'Destination', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'TaskID', 'HaveReceipt', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseReportID', 'TicketID', 'PaymentType', 'ExpenseCategory', 'Rejected', 'EntertainmentLocation', 'OdometerEnd', 'Destination', 'GLCode', 'ExpenseAmount', 'id', 'ProjectID', 'ExpenseDate', 'Miles', 'BillableToAccount', 'Reimbursable', 'OdometerStart', 'ReimbursementAmount', 'Origin', 'ExpenseCurrencyID', 'PurchaseOrderNumber', 'ReceiptAmount', 'AccountID', 'WorkType')]
+    [ValidateSet('ReimbursementAmount', 'ExpenseAmount', 'HaveReceipt', 'TicketID', 'TaskID', 'Miles', 'GLCode', 'EntertainmentLocation', 'Reimbursable', 'BillableToAccount', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseCategory', 'OdometerStart', 'WorkType', 'AccountID', 'ProjectID', 'Rejected', 'ReceiptAmount', 'OdometerEnd', 'ExpenseCurrencyID', 'ExpenseReportID', 'PurchaseOrderNumber', 'ExpenseDate', 'PaymentType', 'Description', 'Origin', 'Destination', 'id')]
     [string[]]
     $IsNotNull,
 

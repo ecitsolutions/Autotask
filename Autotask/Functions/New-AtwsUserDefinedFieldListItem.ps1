@@ -62,15 +62,6 @@ Set-AtwsUserDefinedFieldListItem
     [Autotask.UserDefinedFieldListItem[]]
     $InputObject,
 
-# User Defined Field Definition
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $UdfFieldId,
-
 # Value For Display
     [Parameter(
       Mandatory = $true,
@@ -80,6 +71,13 @@ Set-AtwsUserDefinedFieldListItem
     [ValidateLength(0,128)]
     [string]
     $ValueForDisplay,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
 
 # Value For Export
     [Parameter(
@@ -91,12 +89,14 @@ Set-AtwsUserDefinedFieldListItem
     [string]
     $ValueForExport,
 
-# Create Date
+# User Defined Field Definition
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CreateDate
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $UdfFieldId
   )
  
     begin { 

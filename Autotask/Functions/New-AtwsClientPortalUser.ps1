@@ -66,6 +66,66 @@ Set-AtwsClientPortalUser
     [Autotask.ClientPortalUser[]]
     $InputObject,
 
+# Password
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $Password,
+
+# Security Level
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $SecurityLevel,
+
+# User Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,200)]
+    [string]
+    $UserName,
+
+# Time Format
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $TimeFormat,
+
 # Client Portal Active
     [Parameter(
       Mandatory = $true,
@@ -96,48 +156,6 @@ Set-AtwsClientPortalUser
     [string]
     $DateFormat,
 
-# Time Format
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $TimeFormat,
-
-# Security Level
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $SecurityLevel,
-
 # Contact ID
     [Parameter(
       Mandatory = $true,
@@ -146,24 +164,6 @@ Set-AtwsClientPortalUser
     [ValidateNotNullOrEmpty()]
     [Int]
     $ContactID,
-
-# Password
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $Password,
-
-# User Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,200)]
-    [string]
-    $UserName,
 
 # Number Format
     [Parameter(

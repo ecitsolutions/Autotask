@@ -61,15 +61,6 @@ Get-AtwsAccountTeam
     [Autotask.AccountTeam[]]
     $InputObject,
 
-# Resource
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $ResourceID,
-
 # Client
     [Parameter(
       Mandatory = $true,
@@ -84,7 +75,16 @@ Get-AtwsAccountTeam
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $AssociatedAsComanaged
+    $AssociatedAsComanaged,
+
+# Resource
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $ResourceID
   )
  
     begin { 

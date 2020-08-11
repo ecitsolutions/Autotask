@@ -59,6 +59,15 @@ Get-AtwsPurchaseOrderReceive
     [Autotask.PurchaseOrderReceive[]]
     $InputObject,
 
+# Purchase Order Item ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $PurchaseOrderItemID,
+
 # Quantity Now Receiving
     [Parameter(
       Mandatory = $true,
@@ -68,6 +77,14 @@ Get-AtwsPurchaseOrderReceive
     [Int]
     $QuantityNowReceiving,
 
+# Serial Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $SerialNumber,
+
 # Quantity Previously Received
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -75,14 +92,12 @@ Get-AtwsPurchaseOrderReceive
     [Int]
     $QuantityPreviouslyReceived,
 
-# Purchase Order Item ID
+# Transfer By Resource ID
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $PurchaseOrderItemID,
+    [Int]
+    $ReceivedByResourceID,
 
 # Receive Date
     [Parameter(
@@ -96,22 +111,7 @@ Get-AtwsPurchaseOrderReceive
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $QuantityBackOrdered,
-
-# Serial Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $SerialNumber,
-
-# Transfer By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ReceivedByResourceID
+    $QuantityBackOrdered
   )
  
     begin { 

@@ -139,21 +139,21 @@ Set-AtwsInstalledProductType
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'id')]
+    [ValidateSet('Name', 'Active', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'id')]
+    [ValidateSet('Name', 'Active', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'id')]
+    [ValidateSet('Name', 'Active', 'id')]
     [string[]]
     $IsNotNull,
 

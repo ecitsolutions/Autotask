@@ -64,14 +64,14 @@ Set-AtwsContactBillingProductAssociation
     [Autotask.ContactBillingProductAssociation[]]
     $InputObject,
 
-# Contact ID
+# Billing Product ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ContactID,
+    $BillingProductID,
 
 # Expiration Date
     [Parameter(
@@ -89,14 +89,14 @@ Set-AtwsContactBillingProductAssociation
     [datetime]
     $EffectiveDate,
 
-# Billing Product ID
+# Contact ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $BillingProductID
+    $ContactID
   )
  
     begin { 

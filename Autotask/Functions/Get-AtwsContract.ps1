@@ -29,27 +29,13 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 BillingPreference
- 
-
 ContractCategory
- 
-
 ContractPeriodType
- 
-
 ContractType
- 
-
 Status
- 
-
 ServiceLevelAgreementID
- 
-
 TimeReportingRequiresStartAndStopTimes
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -121,7 +107,7 @@ Set-AtwsContract
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('OpportunityID', 'BusinessDivisionSubdivisionID', 'BillToAccountContactID', 'ExclusionContractID', 'ContractExclusionSetID', 'BillToAccountID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'BillToAccountID', 'OpportunityID', 'ExclusionContractID', 'BillToAccountContactID', 'ContractExclusionSetID')]
     [string]
     $GetReferenceEntityById,
 
@@ -134,7 +120,7 @@ Set-AtwsContract
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem', 'ContractExclusionAllocationCode', 'InstalledProduct', 'AccountToDo', 'ContractFactor', 'ContractExclusionRole', 'ContractBillingRule', 'ContractRoleCost', 'ContractServiceAdjustment', 'ContractBlock', 'ContractNote', 'Contract', 'ContractTicketPurchase', 'Ticket', 'ContractRetainer', 'ContractServiceBundle', 'ContractMilestone', 'Project', 'ContractService', 'TimeEntry', 'ContractRate', 'ContractServiceUnit', 'PurchaseOrderItem', 'ContractCost', 'ContractServiceBundleAdjustment', 'ContractServiceBundleUnit')]
+    [ValidateSet('ContractFactor', 'ContractRate', 'ContractBlock', 'ContractBillingRule', 'ContractTicketPurchase', 'InstalledProduct', 'ContractMilestone', 'ContractCost', 'ContractExclusionRole', 'ContractService', 'PurchaseOrderItem', 'ContractServiceBundle', 'Project', 'ContractNote', 'Ticket', 'ContractExclusionAllocationCode', 'ContractServiceBundleUnit', 'TimeEntry', 'ContractRoleCost', 'Contract', 'ContractRetainer', 'ContractServiceUnit', 'BillingItem', 'AccountToDo', 'ContractServiceAdjustment', 'ContractServiceBundleAdjustment')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -493,21 +479,21 @@ Set-AtwsContract
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'SetupFeeAllocationCodeID', 'ContractCategory', 'RenewedContractID', 'TimeReportingRequiresStartAndStopTimes', 'ContractPeriodType', 'InternalCurrencySetupFee', 'ContractExclusionSetID', 'ContactID', 'OpportunityID', 'PurchaseOrderNumber', 'OverageBillingRate', 'Compliance', 'id', 'InternalCurrencyOverageBillingRate', 'BillToAccountID', 'ContractNumber', 'ContractName', 'BillToAccountContactID', 'Status', 'ContractType', 'ContactName', 'BusinessDivisionSubdivisionID', 'ExclusionContractID', 'IsDefaultContract', 'EstimatedCost', 'EstimatedHours', 'EstimatedRevenue', 'StartDate', 'BillingPreference', 'AccountID', 'SetupFee', 'ServiceLevelAgreementID', 'EndDate', '')]
+    [ValidateSet('ContractType', 'Status', 'BillToAccountContactID', 'ExclusionContractID', 'TimeReportingRequiresStartAndStopTimes', 'ContactID', 'ContractNumber', 'OverageBillingRate', 'IsDefaultContract', 'BillingPreference', 'EstimatedRevenue', 'ContractExclusionSetID', 'Compliance', 'SetupFee', 'ContractPeriodType', 'InternalCurrencyOverageBillingRate', 'EstimatedHours', 'ContractName', 'AccountID', 'PurchaseOrderNumber', 'ServiceLevelAgreementID', 'EndDate', 'BusinessDivisionSubdivisionID', 'StartDate', 'OpportunityID', 'ContactName', 'id', 'EstimatedCost', 'Description', 'SetupFeeAllocationCodeID', 'BillToAccountID', 'RenewedContractID', 'ContractCategory', 'InternalCurrencySetupFee', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'SetupFeeAllocationCodeID', 'ContractCategory', 'RenewedContractID', 'TimeReportingRequiresStartAndStopTimes', 'ContractPeriodType', 'InternalCurrencySetupFee', 'ContractExclusionSetID', 'ContactID', 'OpportunityID', 'PurchaseOrderNumber', 'OverageBillingRate', 'Compliance', 'id', 'InternalCurrencyOverageBillingRate', 'BillToAccountID', 'ContractNumber', 'ContractName', 'BillToAccountContactID', 'Status', 'ContractType', 'ContactName', 'BusinessDivisionSubdivisionID', 'ExclusionContractID', 'IsDefaultContract', 'EstimatedCost', 'EstimatedHours', 'EstimatedRevenue', 'StartDate', 'BillingPreference', 'AccountID', 'SetupFee', 'ServiceLevelAgreementID', 'EndDate', '')]
+    [ValidateSet('ContractType', 'Status', 'BillToAccountContactID', 'ExclusionContractID', 'TimeReportingRequiresStartAndStopTimes', 'ContactID', 'ContractNumber', 'OverageBillingRate', 'IsDefaultContract', 'BillingPreference', 'EstimatedRevenue', 'ContractExclusionSetID', 'Compliance', 'SetupFee', 'ContractPeriodType', 'InternalCurrencyOverageBillingRate', 'EstimatedHours', 'ContractName', 'AccountID', 'PurchaseOrderNumber', 'ServiceLevelAgreementID', 'EndDate', 'BusinessDivisionSubdivisionID', 'StartDate', 'OpportunityID', 'ContactName', 'id', 'EstimatedCost', 'Description', 'SetupFeeAllocationCodeID', 'BillToAccountID', 'RenewedContractID', 'ContractCategory', 'InternalCurrencySetupFee', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'SetupFeeAllocationCodeID', 'ContractCategory', 'RenewedContractID', 'TimeReportingRequiresStartAndStopTimes', 'ContractPeriodType', 'InternalCurrencySetupFee', 'ContractExclusionSetID', 'ContactID', 'OpportunityID', 'PurchaseOrderNumber', 'OverageBillingRate', 'Compliance', 'id', 'InternalCurrencyOverageBillingRate', 'BillToAccountID', 'ContractNumber', 'ContractName', 'BillToAccountContactID', 'Status', 'ContractType', 'ContactName', 'BusinessDivisionSubdivisionID', 'ExclusionContractID', 'IsDefaultContract', 'EstimatedCost', 'EstimatedHours', 'EstimatedRevenue', 'StartDate', 'BillingPreference', 'AccountID', 'SetupFee', 'ServiceLevelAgreementID', 'EndDate', '')]
+    [ValidateSet('ContractType', 'Status', 'BillToAccountContactID', 'ExclusionContractID', 'TimeReportingRequiresStartAndStopTimes', 'ContactID', 'ContractNumber', 'OverageBillingRate', 'IsDefaultContract', 'BillingPreference', 'EstimatedRevenue', 'ContractExclusionSetID', 'Compliance', 'SetupFee', 'ContractPeriodType', 'InternalCurrencyOverageBillingRate', 'EstimatedHours', 'ContractName', 'AccountID', 'PurchaseOrderNumber', 'ServiceLevelAgreementID', 'EndDate', 'BusinessDivisionSubdivisionID', 'StartDate', 'OpportunityID', 'ContactName', 'id', 'EstimatedCost', 'Description', 'SetupFeeAllocationCodeID', 'BillToAccountID', 'RenewedContractID', 'ContractCategory', 'InternalCurrencySetupFee', '')]
     [string[]]
     $IsNotNull,
 

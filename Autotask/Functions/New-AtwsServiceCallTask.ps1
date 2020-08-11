@@ -61,15 +61,6 @@ Get-AtwsServiceCallTask
     [Autotask.ServiceCallTask[]]
     $InputObject,
 
-# Task ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $TaskID,
-
 # Service Call ID
     [Parameter(
       Mandatory = $true,
@@ -77,7 +68,16 @@ Get-AtwsServiceCallTask
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ServiceCallID
+    $ServiceCallID,
+
+# Task ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $TaskID
   )
  
     begin { 

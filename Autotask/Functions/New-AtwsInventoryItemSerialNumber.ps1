@@ -61,6 +61,15 @@ Set-AtwsInventoryItemSerialNumber
     [Autotask.InventoryItemSerialNumber[]]
     $InputObject,
 
+# Inventory Item ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $InventoryItemID,
+
 # Serial Number
     [Parameter(
       Mandatory = $true,
@@ -69,16 +78,7 @@ Set-AtwsInventoryItemSerialNumber
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
     [string]
-    $SerialNumber,
-
-# Inventory Item ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $InventoryItemID
+    $SerialNumber
   )
  
     begin { 

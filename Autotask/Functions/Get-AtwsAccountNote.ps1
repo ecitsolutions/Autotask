@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 ActionType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -103,7 +101,7 @@ Set-AtwsAccountNote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContactID', 'OpportunityID', 'AccountID', 'ImpersonatorUpdaterResourceID')]
+    [ValidateSet('ContactID', 'ImpersonatorUpdaterResourceID', 'OpportunityID', 'AccountID')]
     [string]
     $GetReferenceEntityById,
 
@@ -254,21 +252,21 @@ Set-AtwsAccountNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompletedDateTime', 'ImpersonatorCreatorResourceID', 'Name', 'ActionType', 'EndDateTime', 'AccountID', 'AssignedResourceID', 'Note', 'ContactID', 'id', 'StartDateTime', 'LastModifiedDate', 'ImpersonatorUpdaterResourceID', 'OpportunityID', 'CreateDateTime')]
+    [ValidateSet('AssignedResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'AccountID', 'CreateDateTime', 'Note', 'id', 'EndDateTime', 'Name', 'ImpersonatorUpdaterResourceID', 'StartDateTime', 'OpportunityID', 'CompletedDateTime', 'ContactID', 'ActionType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompletedDateTime', 'ImpersonatorCreatorResourceID', 'Name', 'ActionType', 'EndDateTime', 'AccountID', 'AssignedResourceID', 'Note', 'ContactID', 'id', 'StartDateTime', 'LastModifiedDate', 'ImpersonatorUpdaterResourceID', 'OpportunityID', 'CreateDateTime')]
+    [ValidateSet('AssignedResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'AccountID', 'CreateDateTime', 'Note', 'id', 'EndDateTime', 'Name', 'ImpersonatorUpdaterResourceID', 'StartDateTime', 'OpportunityID', 'CompletedDateTime', 'ContactID', 'ActionType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompletedDateTime', 'ImpersonatorCreatorResourceID', 'Name', 'ActionType', 'EndDateTime', 'AccountID', 'AssignedResourceID', 'Note', 'ContactID', 'id', 'StartDateTime', 'LastModifiedDate', 'ImpersonatorUpdaterResourceID', 'OpportunityID', 'CreateDateTime')]
+    [ValidateSet('AssignedResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'AccountID', 'CreateDateTime', 'Note', 'id', 'EndDateTime', 'Name', 'ImpersonatorUpdaterResourceID', 'StartDateTime', 'OpportunityID', 'CompletedDateTime', 'ContactID', 'ActionType')]
     [string[]]
     $IsNotNull,
 

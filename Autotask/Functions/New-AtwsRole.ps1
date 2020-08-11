@@ -63,37 +63,6 @@ Set-AtwsRole
     [Autotask.Role[]]
     $InputObject,
 
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,200)]
-    [string]
-    $Description,
-
-# Quote Item Default Tax Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $QuoteItemDefaultTaxCategoryId,
-
-# Is Excluded From New Contracts
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsExcludedFromNewContracts,
-
-# Hourly Rate
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [decimal]
-    $HourlyRate,
-
 # Name
     [Parameter(
       Mandatory = $true,
@@ -104,12 +73,28 @@ Set-AtwsRole
     [string]
     $Name,
 
-# System Role
+# Quote Item Default Tax Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $SystemRole,
+    [Int]
+    $QuoteItemDefaultTaxCategoryId,
+
+# Role Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $RoleType,
+
+# Hourly Rate
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [decimal]
+    $HourlyRate,
 
 # Active
     [Parameter(
@@ -120,12 +105,27 @@ Set-AtwsRole
     [boolean]
     $Active,
 
-# Role Type
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $RoleType,
+    [ValidateLength(0,200)]
+    [string]
+    $Description,
+
+# System Role
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $SystemRole,
+
+# Is Excluded From New Contracts
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsExcludedFromNewContracts,
 
 # Hourly Factor
     [Parameter(

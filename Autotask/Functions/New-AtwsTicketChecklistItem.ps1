@@ -63,19 +63,28 @@ Set-AtwsTicketChecklistItem
     [Autotask.TicketChecklistItem[]]
     $InputObject,
 
+# Important
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Important,
+
+# Ticket ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $TicketID,
+
 # Completed By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $CompletedByResourceID,
-
-# Completed date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CompletedDateTime,
 
 # Name
     [Parameter(
@@ -94,21 +103,12 @@ Set-AtwsTicketChecklistItem
     [Int]
     $Position,
 
-# Important
+# Completed date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $Important,
-
-# Ticket ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $TicketID,
+    [datetime]
+    $CompletedDateTime,
 
 # Completed
     [Parameter(

@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 CostType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -153,21 +151,21 @@ Set-AtwsPurchaseApproval
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsApproved', 'CostType', 'RejectNote', 'id')]
+    [ValidateSet('id', 'CostType', 'RejectNote', 'IsApproved')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsApproved', 'CostType', 'RejectNote', 'id')]
+    [ValidateSet('id', 'CostType', 'RejectNote', 'IsApproved')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsApproved', 'CostType', 'RejectNote', 'id')]
+    [ValidateSet('id', 'CostType', 'RejectNote', 'IsApproved')]
     [string[]]
     $IsNotNull,
 

@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 DisplayColorRGB
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -115,7 +113,7 @@ Set-AtwsInstalledProductCategory
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProduct', 'InstalledProductCategoryUdfAssociation')]
+    [ValidateSet('InstalledProductCategoryUdfAssociation', 'InstalledProduct')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -196,21 +194,21 @@ Set-AtwsInstalledProductCategory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'id', 'Nickname', 'GlobalDefault', 'DisplayColorRGB', 'ClientPortalDefault')]
+    [ValidateSet('Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB', 'ClientPortalDefault')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'id', 'Nickname', 'GlobalDefault', 'DisplayColorRGB', 'ClientPortalDefault')]
+    [ValidateSet('Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB', 'ClientPortalDefault')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'Name', 'id', 'Nickname', 'GlobalDefault', 'DisplayColorRGB', 'ClientPortalDefault')]
+    [ValidateSet('Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB', 'ClientPortalDefault')]
     [string[]]
     $IsNotNull,
 

@@ -29,30 +29,14 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 IssueTypeID
- 
-
 QueueID
- 
-
 ServiceLevelAgreementID
- 
-
 SourceID
- 
-
 SubIssueTypeID
- 
-
 TicketTypeID
- 
-
 Status
- 
-
 Priority
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -120,7 +104,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('WorkTypeID', 'TicketCategoryID', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('WorkTypeID', 'BusinessDivisionSubdivisionID', 'TicketCategoryID')]
     [string]
     $GetReferenceEntityById,
 
@@ -367,21 +351,21 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IssueTypeID', 'QueueID', 'BusinessDivisionSubdivisionID', 'SubIssueTypeID', 'ServiceLevelAgreementID', 'Status', 'PurchaseOrderNumber', 'Title', 'TicketCategoryID', 'EstimatedHours', 'WorkTypeID', 'Priority', 'id', 'Description', 'SourceID', 'Resolution', 'TicketTypeID')]
+    [ValidateSet('SubIssueTypeID', 'Priority', 'BusinessDivisionSubdivisionID', 'WorkTypeID', 'Resolution', 'ServiceLevelAgreementID', 'Description', 'id', 'SourceID', 'Status', 'TicketTypeID', 'QueueID', 'TicketCategoryID', 'PurchaseOrderNumber', 'EstimatedHours', 'IssueTypeID', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IssueTypeID', 'QueueID', 'BusinessDivisionSubdivisionID', 'SubIssueTypeID', 'ServiceLevelAgreementID', 'Status', 'PurchaseOrderNumber', 'Title', 'TicketCategoryID', 'EstimatedHours', 'WorkTypeID', 'Priority', 'id', 'Description', 'SourceID', 'Resolution', 'TicketTypeID')]
+    [ValidateSet('SubIssueTypeID', 'Priority', 'BusinessDivisionSubdivisionID', 'WorkTypeID', 'Resolution', 'ServiceLevelAgreementID', 'Description', 'id', 'SourceID', 'Status', 'TicketTypeID', 'QueueID', 'TicketCategoryID', 'PurchaseOrderNumber', 'EstimatedHours', 'IssueTypeID', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IssueTypeID', 'QueueID', 'BusinessDivisionSubdivisionID', 'SubIssueTypeID', 'ServiceLevelAgreementID', 'Status', 'PurchaseOrderNumber', 'Title', 'TicketCategoryID', 'EstimatedHours', 'WorkTypeID', 'Priority', 'id', 'Description', 'SourceID', 'Resolution', 'TicketTypeID')]
+    [ValidateSet('SubIssueTypeID', 'Priority', 'BusinessDivisionSubdivisionID', 'WorkTypeID', 'Resolution', 'ServiceLevelAgreementID', 'Description', 'id', 'SourceID', 'Status', 'TicketTypeID', 'QueueID', 'TicketCategoryID', 'PurchaseOrderNumber', 'EstimatedHours', 'IssueTypeID', 'Title')]
     [string[]]
     $IsNotNull,
 

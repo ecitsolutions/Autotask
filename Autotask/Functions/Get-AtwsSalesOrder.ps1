@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 Status
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -101,7 +99,7 @@ Set-AtwsSalesOrder
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ShipToCountryID', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'BusinessDivisionSubdivisionID', 'Contact', 'AccountID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ShipToCountryID', 'AccountID', 'OpportunityID', 'ImpersonatorCreatorResourceID', 'Contact')]
     [string]
     $GetReferenceEntityById,
 
@@ -114,7 +112,7 @@ Set-AtwsSalesOrder
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Opportunity', 'PurchaseOrderItem')]
+    [ValidateSet('PurchaseOrderItem', 'Opportunity')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -352,21 +350,21 @@ Set-AtwsSalesOrder
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShipToCountry', 'Contact', 'AdditionalBillToAddressInformation', 'ShipToAddress1', 'OwnerResourceID', 'ShipToState', 'OpportunityID', 'BillToState', 'BillToAddress2', 'BillToAddress1', 'id', 'ShipToCity', 'ShipToCountryID', 'ShipToPostalCode', 'PromisedDueDate', 'Status', 'BusinessDivisionSubdivisionID', 'BillToCity', 'ShipToAddress2', 'SalesOrderDate', 'ImpersonatorCreatorResourceID', 'AdditionalShipToAddressInformation', 'Title', 'AccountID', 'BillToPostalCode', 'BillToCountryID', 'BillToCountry')]
+    [ValidateSet('Status', 'ShipToState', 'ShipToCountry', 'BillToAddress2', 'OwnerResourceID', 'BillToCountry', 'BillToState', 'ShipToAddress2', 'ShipToAddress1', 'BillToCity', 'ShipToCity', 'PromisedDueDate', 'ImpersonatorCreatorResourceID', 'AccountID', 'BillToAddress1', 'BillToCountryID', 'Contact', 'ShipToPostalCode', 'AdditionalShipToAddressInformation', 'BusinessDivisionSubdivisionID', 'OpportunityID', 'BillToPostalCode', 'id', 'ShipToCountryID', 'Title', 'AdditionalBillToAddressInformation', 'SalesOrderDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShipToCountry', 'Contact', 'AdditionalBillToAddressInformation', 'ShipToAddress1', 'OwnerResourceID', 'ShipToState', 'OpportunityID', 'BillToState', 'BillToAddress2', 'BillToAddress1', 'id', 'ShipToCity', 'ShipToCountryID', 'ShipToPostalCode', 'PromisedDueDate', 'Status', 'BusinessDivisionSubdivisionID', 'BillToCity', 'ShipToAddress2', 'SalesOrderDate', 'ImpersonatorCreatorResourceID', 'AdditionalShipToAddressInformation', 'Title', 'AccountID', 'BillToPostalCode', 'BillToCountryID', 'BillToCountry')]
+    [ValidateSet('Status', 'ShipToState', 'ShipToCountry', 'BillToAddress2', 'OwnerResourceID', 'BillToCountry', 'BillToState', 'ShipToAddress2', 'ShipToAddress1', 'BillToCity', 'ShipToCity', 'PromisedDueDate', 'ImpersonatorCreatorResourceID', 'AccountID', 'BillToAddress1', 'BillToCountryID', 'Contact', 'ShipToPostalCode', 'AdditionalShipToAddressInformation', 'BusinessDivisionSubdivisionID', 'OpportunityID', 'BillToPostalCode', 'id', 'ShipToCountryID', 'Title', 'AdditionalBillToAddressInformation', 'SalesOrderDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShipToCountry', 'Contact', 'AdditionalBillToAddressInformation', 'ShipToAddress1', 'OwnerResourceID', 'ShipToState', 'OpportunityID', 'BillToState', 'BillToAddress2', 'BillToAddress1', 'id', 'ShipToCity', 'ShipToCountryID', 'ShipToPostalCode', 'PromisedDueDate', 'Status', 'BusinessDivisionSubdivisionID', 'BillToCity', 'ShipToAddress2', 'SalesOrderDate', 'ImpersonatorCreatorResourceID', 'AdditionalShipToAddressInformation', 'Title', 'AccountID', 'BillToPostalCode', 'BillToCountryID', 'BillToCountry')]
+    [ValidateSet('Status', 'ShipToState', 'ShipToCountry', 'BillToAddress2', 'OwnerResourceID', 'BillToCountry', 'BillToState', 'ShipToAddress2', 'ShipToAddress1', 'BillToCity', 'ShipToCity', 'PromisedDueDate', 'ImpersonatorCreatorResourceID', 'AccountID', 'BillToAddress1', 'BillToCountryID', 'Contact', 'ShipToPostalCode', 'AdditionalShipToAddressInformation', 'BusinessDivisionSubdivisionID', 'OpportunityID', 'BillToPostalCode', 'id', 'ShipToCountryID', 'Title', 'AdditionalBillToAddressInformation', 'SalesOrderDate')]
     [string[]]
     $IsNotNull,
 

@@ -29,12 +29,8 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 NoteType
- 
-
 Publish
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -106,7 +102,7 @@ Set-AtwsTicketNote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TicketID', 'ImpersonatorUpdaterResourceID')]
+    [ValidateSet('ImpersonatorUpdaterResourceID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -241,21 +237,21 @@ Set-AtwsTicketNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'CreatorResourceID', 'Publish', 'TicketID', 'Title', 'Description', 'NoteType', 'CreateDateTime')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'id', 'Title', 'Publish', 'TicketID', 'LastActivityDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'CreatorResourceID', 'Publish', 'TicketID', 'Title', 'Description', 'NoteType', 'CreateDateTime')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'id', 'Title', 'Publish', 'TicketID', 'LastActivityDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'CreatorResourceID', 'Publish', 'TicketID', 'Title', 'Description', 'NoteType', 'CreateDateTime')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'id', 'Title', 'Publish', 'TicketID', 'LastActivityDate')]
     [string[]]
     $IsNotNull,
 

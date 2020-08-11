@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 Status
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -261,21 +259,21 @@ Set-AtwsExpenseReport
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpenseTotal', 'DepartmentNumber', 'SubmitterID', 'CashAdvanceAmount', 'ApprovedDate', 'BusinessDivisionSubdivisionID', 'ReimbursementCurrencyID', 'Name', 'ApproverID', 'SubmitDate', 'ReimbursementCurrencyAmountDue', 'QuickBooksReferenceNumber', 'AmountDue', 'Submit', 'ReimbursementCurrencyCashAdvanceAmount', 'id', 'RejectionReason', 'WeekEnding', 'Status')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'CashAdvanceAmount', 'AmountDue', 'QuickBooksReferenceNumber', 'Submit', 'id', 'ApproverID', 'ApprovedDate', 'DepartmentNumber', 'Status', 'SubmitDate', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyID', 'SubmitterID', 'Name', 'WeekEnding', 'ReimbursementCurrencyCashAdvanceAmount', 'ExpenseTotal', 'RejectionReason')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpenseTotal', 'DepartmentNumber', 'SubmitterID', 'CashAdvanceAmount', 'ApprovedDate', 'BusinessDivisionSubdivisionID', 'ReimbursementCurrencyID', 'Name', 'ApproverID', 'SubmitDate', 'ReimbursementCurrencyAmountDue', 'QuickBooksReferenceNumber', 'AmountDue', 'Submit', 'ReimbursementCurrencyCashAdvanceAmount', 'id', 'RejectionReason', 'WeekEnding', 'Status')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'CashAdvanceAmount', 'AmountDue', 'QuickBooksReferenceNumber', 'Submit', 'id', 'ApproverID', 'ApprovedDate', 'DepartmentNumber', 'Status', 'SubmitDate', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyID', 'SubmitterID', 'Name', 'WeekEnding', 'ReimbursementCurrencyCashAdvanceAmount', 'ExpenseTotal', 'RejectionReason')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpenseTotal', 'DepartmentNumber', 'SubmitterID', 'CashAdvanceAmount', 'ApprovedDate', 'BusinessDivisionSubdivisionID', 'ReimbursementCurrencyID', 'Name', 'ApproverID', 'SubmitDate', 'ReimbursementCurrencyAmountDue', 'QuickBooksReferenceNumber', 'AmountDue', 'Submit', 'ReimbursementCurrencyCashAdvanceAmount', 'id', 'RejectionReason', 'WeekEnding', 'Status')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'CashAdvanceAmount', 'AmountDue', 'QuickBooksReferenceNumber', 'Submit', 'id', 'ApproverID', 'ApprovedDate', 'DepartmentNumber', 'Status', 'SubmitDate', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyID', 'SubmitterID', 'Name', 'WeekEnding', 'ReimbursementCurrencyCashAdvanceAmount', 'ExpenseTotal', 'RejectionReason')]
     [string[]]
     $IsNotNull,
 

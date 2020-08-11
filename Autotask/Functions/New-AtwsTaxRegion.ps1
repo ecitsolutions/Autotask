@@ -60,13 +60,6 @@ Set-AtwsTaxRegion
     [Autotask.TaxRegion[]]
     $InputObject,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Active,
-
 # Tax Region Name
     [Parameter(
       Mandatory = $true,
@@ -75,7 +68,14 @@ Set-AtwsTaxRegion
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,200)]
     [string]
-    $Name
+    $Name,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Active
   )
  
     begin { 

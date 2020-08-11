@@ -61,14 +61,14 @@ Set-AtwsBusinessDivisionSubdivision
     [Autotask.BusinessDivisionSubdivision[]]
     $InputObject,
 
-# Business Division ID
+# Business Subdivision ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $BusinessDivisionID,
+    $BusinessSubdivisionID,
 
 # Active
     [Parameter(
@@ -77,14 +77,14 @@ Set-AtwsBusinessDivisionSubdivision
     [boolean]
     $Active,
 
-# Business Subdivision ID
+# Business Division ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $BusinessSubdivisionID
+    $BusinessDivisionID
   )
  
     begin { 

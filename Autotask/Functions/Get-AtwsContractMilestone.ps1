@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 Status
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -103,7 +101,7 @@ Set-AtwsContractMilestone
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AllocationCodeID', 'BusinessDivisionSubdivisionID', 'CreatorResourceID', 'ContractID')]
+    [ValidateSet('ContractID', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'CreatorResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -242,21 +240,21 @@ Set-AtwsContractMilestone
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDate', 'DateDue', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'Title', 'ContractID', 'Amount', 'CreatorResourceID', 'IsInitialPayment', 'InternalCurrencyAmount', 'id', 'Description', 'Status')]
+    [ValidateSet('IsInitialPayment', 'BusinessDivisionSubdivisionID', 'DateDue', 'id', 'Status', 'CreatorResourceID', 'Amount', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'CreateDate', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDate', 'DateDue', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'Title', 'ContractID', 'Amount', 'CreatorResourceID', 'IsInitialPayment', 'InternalCurrencyAmount', 'id', 'Description', 'Status')]
+    [ValidateSet('IsInitialPayment', 'BusinessDivisionSubdivisionID', 'DateDue', 'id', 'Status', 'CreatorResourceID', 'Amount', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'CreateDate', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDate', 'DateDue', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'Title', 'ContractID', 'Amount', 'CreatorResourceID', 'IsInitialPayment', 'InternalCurrencyAmount', 'id', 'Description', 'Status')]
+    [ValidateSet('IsInitialPayment', 'BusinessDivisionSubdivisionID', 'DateDue', 'id', 'Status', 'CreatorResourceID', 'Amount', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'CreateDate', 'Title')]
     [string[]]
     $IsNotNull,
 

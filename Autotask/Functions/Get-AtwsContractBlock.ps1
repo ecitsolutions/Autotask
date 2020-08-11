@@ -29,15 +29,9 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 Status
- 
-
 IsPaid
- 
-
 PaymentType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -264,21 +258,21 @@ Set-AtwsContractBlock
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HourlyRate', 'Hours', 'ContractID', 'PaymentNumber', 'IsPaid', 'PaymentType', 'HoursApproved', 'id', 'DatePurchased', 'InvoiceNumber', 'StartDate', 'EndDate', 'Status')]
+    [ValidateSet('HoursApproved', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'Status', 'EndDate', 'HourlyRate', 'ContractID', 'Hours', 'IsPaid', 'InvoiceNumber')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HourlyRate', 'Hours', 'ContractID', 'PaymentNumber', 'IsPaid', 'PaymentType', 'HoursApproved', 'id', 'DatePurchased', 'InvoiceNumber', 'StartDate', 'EndDate', 'Status')]
+    [ValidateSet('HoursApproved', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'Status', 'EndDate', 'HourlyRate', 'ContractID', 'Hours', 'IsPaid', 'InvoiceNumber')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HourlyRate', 'Hours', 'ContractID', 'PaymentNumber', 'IsPaid', 'PaymentType', 'HoursApproved', 'id', 'DatePurchased', 'InvoiceNumber', 'StartDate', 'EndDate', 'Status')]
+    [ValidateSet('HoursApproved', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'Status', 'EndDate', 'HourlyRate', 'ContractID', 'Hours', 'IsPaid', 'InvoiceNumber')]
     [string[]]
     $IsNotNull,
 

@@ -63,6 +63,30 @@ Set-AtwsChecklistLibraryChecklistItem
     [Autotask.ChecklistLibraryChecklistItem[]]
     $InputObject,
 
+# Important
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Important,
+
+# Position
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $Position,
+
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
+    [string]
+    $ItemName,
+
 # Knowledgebase Article ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -82,23 +106,6 @@ Set-AtwsChecklistLibraryChecklistItem
     [string]
     $KnowledgebaseArticleID,
 
-# Important
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Important,
-
-# Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string]
-    $ItemName,
-
 # Checklist Library ID
     [Parameter(
       Mandatory = $true,
@@ -106,14 +113,7 @@ Set-AtwsChecklistLibraryChecklistItem
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ChecklistLibraryID,
-
-# Position
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $Position
+    $ChecklistLibraryID
   )
  
     begin { 

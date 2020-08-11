@@ -65,6 +65,23 @@ Set-AtwsContractRetainer
     [Autotask.ContractRetainer[]]
     $InputObject,
 
+# StartDate
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $StartDate,
+
+# PaymentNumber
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PaymentNumber,
+
 # Date Purchased
     [Parameter(
       Mandatory = $true,
@@ -73,6 +90,38 @@ Set-AtwsContractRetainer
     [ValidateNotNullOrEmpty()]
     [datetime]
     $DatePurchased,
+
+# EndDate
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $EndDate,
+
+# Internal Currency Amount Approved
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyAmountApproved,
+
+# Amount
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $Amount,
+
+# Amount Approved
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $AmountApproved,
 
 # Status
     [Parameter(
@@ -95,24 +144,21 @@ Set-AtwsContractRetainer
     [string]
     $Status,
 
-# Paid
+# Contract ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ContractID,
+
+# Internal Currency Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $IsPaid,
+    [double]
+    $InternalCurrencyAmount,
 
 # Payment Type
     [Parameter(
@@ -133,54 +179,24 @@ Set-AtwsContractRetainer
     [string]
     $paymentID,
 
-# PaymentNumber
+# Paid
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
-    $PaymentNumber,
-
-# Amount
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $Amount,
-
-# Contract ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ContractID,
-
-# Internal Currency Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyAmount,
-
-# StartDate
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDate,
-
-# Internal Currency Amount Approved
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyAmountApproved,
+    $IsPaid,
 
 # InvoiceNumber
     [Parameter(
@@ -188,23 +204,7 @@ Set-AtwsContractRetainer
     )]
     [ValidateLength(0,50)]
     [string]
-    $InvoiceNumber,
-
-# Amount Approved
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $AmountApproved,
-
-# EndDate
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EndDate
+    $InvoiceNumber
   )
  
     begin { 

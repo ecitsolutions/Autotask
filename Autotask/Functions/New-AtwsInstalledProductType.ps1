@@ -63,15 +63,6 @@ Set-AtwsInstalledProductType
     [Autotask.InstalledProductType[]]
     $InputObject,
 
-# Active
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
-
 # Name
     [Parameter(
       Mandatory = $true,
@@ -80,7 +71,16 @@ Set-AtwsInstalledProductType
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
     [string]
-    $Name
+    $Name,
+
+# Active
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active
   )
  
     begin { 

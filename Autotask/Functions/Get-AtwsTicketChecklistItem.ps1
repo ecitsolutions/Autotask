@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 KnowledgebaseArticleID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -210,21 +208,21 @@ Set-AtwsTicketChecklistItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'id', 'CompletedDateTime', 'ItemName', 'CompletedByResourceID', 'KnowledgebaseArticleID', 'Completed', 'TicketID', 'Position')]
+    [ValidateSet('Important', 'TicketID', 'id', 'CompletedByResourceID', 'ItemName', 'Position', 'CompletedDateTime', 'Completed', 'KnowledgebaseArticleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'id', 'CompletedDateTime', 'ItemName', 'CompletedByResourceID', 'KnowledgebaseArticleID', 'Completed', 'TicketID', 'Position')]
+    [ValidateSet('Important', 'TicketID', 'id', 'CompletedByResourceID', 'ItemName', 'Position', 'CompletedDateTime', 'Completed', 'KnowledgebaseArticleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'id', 'CompletedDateTime', 'ItemName', 'CompletedByResourceID', 'KnowledgebaseArticleID', 'Completed', 'TicketID', 'Position')]
+    [ValidateSet('Important', 'TicketID', 'id', 'CompletedByResourceID', 'ItemName', 'Position', 'CompletedDateTime', 'Completed', 'KnowledgebaseArticleID')]
     [string[]]
     $IsNotNull,
 

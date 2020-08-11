@@ -64,21 +64,66 @@ Set-AtwsServiceCall
     [Autotask.ServiceCall[]]
     $InputObject,
 
-# Canceled Date Time
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
+# Client ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $AccountID,
+
+# Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $CanceledDateTime,
+    $CreateDateTime,
 
-# Start Date
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# Account Physical Location
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $AccountPhysicalLocationID,
+
+# Created By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorResourceID,
+
+# End Date
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
-    $StartDateTime,
+    $EndDateTime,
+
+# Complete
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int16]
+    $Complete,
 
 # Status
     [Parameter(
@@ -99,27 +144,12 @@ Set-AtwsServiceCall
     [string]
     $Status,
 
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
-
 # Cancelation Notice Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
     $CancelationNoticeHours,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
 
 # Last Modified Date Time
     [Parameter(
@@ -128,35 +158,12 @@ Set-AtwsServiceCall
     [datetime]
     $LastModifiedDateTime,
 
-# Complete
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int16]
-    $Complete,
-
-# End Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EndDateTime,
-
 # Canceled By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $CanceledByResource,
-
-# Account Physical Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AccountPhysicalLocationID,
 
 # Duration
     [Parameter(
@@ -165,28 +172,21 @@ Set-AtwsServiceCall
     [double]
     $Duration,
 
-# Client ID
+# Canceled Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CanceledDateTime,
+
+# Start Date
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
-    $AccountID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID
+    [datetime]
+    $StartDateTime
   )
  
     begin { 

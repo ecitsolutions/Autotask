@@ -29,18 +29,10 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 GeneralLedgerCode
- 
-
 Type
- 
-
 UseType
- 
-
 AllocationCodeType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -108,7 +100,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TaxCategoryID', 'AfterHoursWorkType')]
+    [ValidateSet('AfterHoursWorkType', 'TaxCategoryID')]
     [string]
     $GetReferenceEntityById,
 
@@ -121,7 +113,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem', 'ContractExclusionAllocationCode', 'ChangeOrderCost', 'ContractExclusionSetExcludedWorkType', 'TicketCategoryFieldDefaults', 'Ticket', 'Product', 'QuoteItem', 'AllocationCode', 'Task', 'ContractMilestone', 'TicketCost', 'TimeEntry', 'Subscription', 'PriceListMaterialCode', 'ShippingType', 'ContractCost', 'Service', 'ProjectCost', 'ServiceBundle')]
+    [ValidateSet('ShippingType', 'ChangeOrderCost', 'BillingItem', 'ProjectCost', 'ContractMilestone', 'ContractCost', 'TicketCategoryFieldDefaults', 'ServiceBundle', 'Ticket', 'Subscription', 'Service', 'ContractExclusionAllocationCode', 'QuoteItem', 'TimeEntry', 'Task', 'AllocationCode', 'TicketCost', 'ContractExclusionSetExcludedWorkType', 'Product', 'PriceListMaterialCode')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -302,21 +294,21 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UseType', 'Type', 'IsExcludedFromNewContracts', 'MarkupRate', 'TaxCategoryID', 'Name', 'GeneralLedgerCode', 'ExternalNumber', 'Active', 'AllocationCodeType', 'Department', 'AfterHoursWorkType', 'id', 'Description', 'Taxable', 'UnitCost', 'UnitPrice')]
+    [ValidateSet('UnitPrice', 'id', 'Type', 'Department', 'TaxCategoryID', 'AfterHoursWorkType', 'GeneralLedgerCode', 'Description', 'UseType', 'AllocationCodeType', 'Taxable', 'Active', 'MarkupRate', 'Name', 'ExternalNumber', 'UnitCost', 'IsExcludedFromNewContracts')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UseType', 'Type', 'IsExcludedFromNewContracts', 'MarkupRate', 'TaxCategoryID', 'Name', 'GeneralLedgerCode', 'ExternalNumber', 'Active', 'AllocationCodeType', 'Department', 'AfterHoursWorkType', 'id', 'Description', 'Taxable', 'UnitCost', 'UnitPrice')]
+    [ValidateSet('UnitPrice', 'id', 'Type', 'Department', 'TaxCategoryID', 'AfterHoursWorkType', 'GeneralLedgerCode', 'Description', 'UseType', 'AllocationCodeType', 'Taxable', 'Active', 'MarkupRate', 'Name', 'ExternalNumber', 'UnitCost', 'IsExcludedFromNewContracts')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UseType', 'Type', 'IsExcludedFromNewContracts', 'MarkupRate', 'TaxCategoryID', 'Name', 'GeneralLedgerCode', 'ExternalNumber', 'Active', 'AllocationCodeType', 'Department', 'AfterHoursWorkType', 'id', 'Description', 'Taxable', 'UnitCost', 'UnitPrice')]
+    [ValidateSet('UnitPrice', 'id', 'Type', 'Department', 'TaxCategoryID', 'AfterHoursWorkType', 'GeneralLedgerCode', 'Description', 'UseType', 'AllocationCodeType', 'Taxable', 'Active', 'MarkupRate', 'Name', 'ExternalNumber', 'UnitCost', 'IsExcludedFromNewContracts')]
     [string[]]
     $IsNotNull,
 

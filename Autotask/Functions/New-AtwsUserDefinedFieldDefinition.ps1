@@ -62,19 +62,59 @@ Set-AtwsUserDefinedFieldDefinition
     [Autotask.UserDefinedFieldDefinition[]]
     $InputObject,
 
-# Visible to Client Portal
+# Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $IsVisibleToClientPortal,
+    [datetime]
+    $CreateDate,
 
-# Protected
+# Crm to Project Udf Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $CrmToProjectUdfId,
+
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $IsProtected,
+    $IsActive,
+
+# Required
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsRequired,
+
+# Display Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $DisplayFormat,
+
+# Number of Decimal Places
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $NumberOfDecimalPlaces,
 
 # Data Type
     [Parameter(
@@ -97,31 +137,49 @@ Set-AtwsUserDefinedFieldDefinition
     [string]
     $DataType,
 
-# Display Format
+# Visible to Client Portal
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $DisplayFormat,
+    [boolean]
+    $IsVisibleToClientPortal,
 
-# Crm to Project Udf Id
+# Merge Variable Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [long]
-    $CrmToProjectUdfId,
+    [ValidateLength(0,100)]
+    [string]
+    $MergeVariableName,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $Description,
+
+# Encrypted
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsEncrypted,
+
+# Is Private
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsPrivate,
+
+# Protected
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsProtected,
 
 # Name
     [Parameter(
@@ -132,42 +190,6 @@ Set-AtwsUserDefinedFieldDefinition
     [ValidateLength(0,45)]
     [string]
     $Name,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDate,
-
-# Encrypted
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsEncrypted,
-
-# Required
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsRequired,
-
-# Is Private
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsPrivate,
-
-# Merge Variable Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $MergeVariableName,
 
 # Udf Type
     [Parameter(
@@ -190,35 +212,12 @@ Set-AtwsUserDefinedFieldDefinition
     [string]
     $UdfType,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsActive,
-
 # Field Mapping
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
     $IsFieldMapping,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string]
-    $Description,
-
-# Default Value
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1024)]
-    [string]
-    $DefaultValue,
 
 # Sort Order
     [Parameter(
@@ -227,12 +226,13 @@ Set-AtwsUserDefinedFieldDefinition
     [Int]
     $SortOrder,
 
-# Number of Decimal Places
+# Default Value
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $NumberOfDecimalPlaces
+    [ValidateLength(0,1024)]
+    [string]
+    $DefaultValue
   )
  
     begin { 

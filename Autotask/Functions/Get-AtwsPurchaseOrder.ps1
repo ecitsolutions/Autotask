@@ -29,18 +29,10 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 Status
- 
-
 TaxGroup
- 
-
 PaymentTerm
- 
-
 UseItemDescriptionsFrom
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -112,7 +104,7 @@ Set-AtwsPurchaseOrder
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('PurchaseForAccountID', 'ImpersonatorCreatorResourceID', 'ShippingType')]
+    [ValidateSet('ShippingType', 'ImpersonatorCreatorResourceID', 'PurchaseForAccountID')]
     [string]
     $GetReferenceEntityById,
 
@@ -413,21 +405,21 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CancelDateTime', 'PurchaseForAccountID', 'ShipToAddress1', 'ShipToName', 'VendorInvoiceNumber', 'SubmitDateTime', 'Fax', 'ShippingDate', 'LatestEstimatedArrivalDate', 'TaxGroup', 'ImpersonatorCreatorResourceID', 'id', 'ShipToCity', 'VendorID', 'ShipToPostalCode', 'ShippingType', 'Status', 'UseItemDescriptionsFrom', 'GeneralMemo', 'ShowTaxCategory', 'PaymentTerm', 'ShipToAddress2', 'ShipToState', 'CreatorResourceID', 'Phone', 'ExternalPONumber', 'ShowEachTaxInGroup', 'Freight', 'CreateDateTime', 'InternalCurrencyFreight')]
+    [ValidateSet('Status', 'ShipToState', 'InternalCurrencyFreight', 'ShippingDate', 'SubmitDateTime', 'LatestEstimatedArrivalDate', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'TaxGroup', 'UseItemDescriptionsFrom', 'ShipToAddress2', 'ShipToAddress1', 'ShippingType', 'ShowTaxCategory', 'ShipToCity', 'VendorID', 'CancelDateTime', 'ImpersonatorCreatorResourceID', 'ShipToName', 'ShipToPostalCode', 'GeneralMemo', 'VendorInvoiceNumber', 'Freight', 'Fax', 'Phone', 'CreatorResourceID', 'CreateDateTime', 'id', 'ShowEachTaxInGroup')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CancelDateTime', 'PurchaseForAccountID', 'ShipToAddress1', 'ShipToName', 'VendorInvoiceNumber', 'SubmitDateTime', 'Fax', 'ShippingDate', 'LatestEstimatedArrivalDate', 'TaxGroup', 'ImpersonatorCreatorResourceID', 'id', 'ShipToCity', 'VendorID', 'ShipToPostalCode', 'ShippingType', 'Status', 'UseItemDescriptionsFrom', 'GeneralMemo', 'ShowTaxCategory', 'PaymentTerm', 'ShipToAddress2', 'ShipToState', 'CreatorResourceID', 'Phone', 'ExternalPONumber', 'ShowEachTaxInGroup', 'Freight', 'CreateDateTime', 'InternalCurrencyFreight')]
+    [ValidateSet('Status', 'ShipToState', 'InternalCurrencyFreight', 'ShippingDate', 'SubmitDateTime', 'LatestEstimatedArrivalDate', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'TaxGroup', 'UseItemDescriptionsFrom', 'ShipToAddress2', 'ShipToAddress1', 'ShippingType', 'ShowTaxCategory', 'ShipToCity', 'VendorID', 'CancelDateTime', 'ImpersonatorCreatorResourceID', 'ShipToName', 'ShipToPostalCode', 'GeneralMemo', 'VendorInvoiceNumber', 'Freight', 'Fax', 'Phone', 'CreatorResourceID', 'CreateDateTime', 'id', 'ShowEachTaxInGroup')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CancelDateTime', 'PurchaseForAccountID', 'ShipToAddress1', 'ShipToName', 'VendorInvoiceNumber', 'SubmitDateTime', 'Fax', 'ShippingDate', 'LatestEstimatedArrivalDate', 'TaxGroup', 'ImpersonatorCreatorResourceID', 'id', 'ShipToCity', 'VendorID', 'ShipToPostalCode', 'ShippingType', 'Status', 'UseItemDescriptionsFrom', 'GeneralMemo', 'ShowTaxCategory', 'PaymentTerm', 'ShipToAddress2', 'ShipToState', 'CreatorResourceID', 'Phone', 'ExternalPONumber', 'ShowEachTaxInGroup', 'Freight', 'CreateDateTime', 'InternalCurrencyFreight')]
+    [ValidateSet('Status', 'ShipToState', 'InternalCurrencyFreight', 'ShippingDate', 'SubmitDateTime', 'LatestEstimatedArrivalDate', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'TaxGroup', 'UseItemDescriptionsFrom', 'ShipToAddress2', 'ShipToAddress1', 'ShippingType', 'ShowTaxCategory', 'ShipToCity', 'VendorID', 'CancelDateTime', 'ImpersonatorCreatorResourceID', 'ShipToName', 'ShipToPostalCode', 'GeneralMemo', 'VendorInvoiceNumber', 'Freight', 'Fax', 'Phone', 'CreatorResourceID', 'CreateDateTime', 'id', 'ShowEachTaxInGroup')]
     [string[]]
     $IsNotNull,
 

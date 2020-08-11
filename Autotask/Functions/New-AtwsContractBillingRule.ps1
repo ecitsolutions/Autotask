@@ -69,33 +69,30 @@ Set-AtwsContractBillingRule
     [Autotask.ContractBillingRule[]]
     $InputObject,
 
-# Maximum Units
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $MaximumUnits,
-
-# Determine Units
+# Start Date
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $DetermineUnits,
+    [datetime]
+    $StartDate,
+
+# Enable Daily Prorating
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $EnableDailyProrating,
+
+# Daily Prorated Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $DailyProratedPrice,
 
 # Minimum Units
     [Parameter(
@@ -104,14 +101,47 @@ Set-AtwsContractBillingRule
     [Int]
     $MinimumUnits,
 
-# Create Charges As Billable
+# End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $EndDate,
+
+# Include Items In Charge Description
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [boolean]
-    $CreateChargesAsBillable,
+    $IncludeItemsInChargeDescription,
+
+# Invoice Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $InvoiceDescription,
+
+# Contract ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ContractID,
+
+# Active
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active,
 
 # Execution Method
     [Parameter(
@@ -132,39 +162,28 @@ Set-AtwsContractBillingRule
     [string]
     $ExecutionMethod,
 
-# Contract ID
+# Daily Prorated Cost
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ContractID,
+    [decimal]
+    $DailyProratedCost,
 
-# Include Items In Charge Description
+# Maximum Units
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $MaximumUnits,
+
+# Create Charges As Billable
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [boolean]
-    $IncludeItemsInChargeDescription,
-
-# Daily Prorated Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $DailyProratedPrice,
-
-# Start Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDate,
+    $CreateChargesAsBillable,
 
 # Product ID
     [Parameter(
@@ -175,45 +194,26 @@ Set-AtwsContractBillingRule
     [Int]
     $ProductID,
 
-# Daily Prorated Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $DailyProratedCost,
-
-# Active
+# Determine Units
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
-
-# Enable Daily Prorating
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $EnableDailyProrating,
-
-# End Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $EndDate,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
-    $InvoiceDescription
+    $DetermineUnits
   )
  
     begin { 

@@ -63,16 +63,14 @@ Set-AtwsTax
     [Autotask.Tax[]]
     $InputObject,
 
-# Tax Name
+# Tax Rate
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [Alias('Name')]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $TaxName,
+    [double]
+    $TaxRate,
 
 # Tax Category ID
     [Parameter(
@@ -83,22 +81,6 @@ Set-AtwsTax
     [Int]
     $TaxCategoryID,
 
-# Compounded
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsCompounded,
-
-# Tax Rate
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $TaxRate,
-
 # Tax Region ID
     [Parameter(
       Mandatory = $true,
@@ -106,7 +88,25 @@ Set-AtwsTax
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $TaxRegionID
+    $TaxRegionID,
+
+# Compounded
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsCompounded,
+
+# Tax Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('Name')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $TaxName
   )
  
     begin { 

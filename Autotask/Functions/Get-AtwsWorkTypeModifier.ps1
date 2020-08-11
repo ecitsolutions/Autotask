@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 ModifierType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 

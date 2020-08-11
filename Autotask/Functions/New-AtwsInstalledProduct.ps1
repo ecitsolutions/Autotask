@@ -71,59 +71,16 @@ Set-AtwsInstalledProduct
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Datto Number Of Agents
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $DattoNumberOfAgents,
-
-# Datto Number Of Volumes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $DattoNumberOfVolumes,
-
-# RMM Device Audit IP Address
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $RMMDeviceAuditIPAddress,
-
-# Datto Percentage Used
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $DattoPercentageUsed,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDate,
-
-# Datto Hostname
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $DattoHostname,
-
-# RMM Device Audit Motherboard ID
+# Datto ZFS Version ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditMotherboardID -Label
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoZFSVersionID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditMotherboardID -Label
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoZFSVersionID -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -131,290 +88,7 @@ Set-AtwsInstalledProduct
       }
     })]
     [string]
-    $RMMDeviceAuditMotherboardID,
-
-# Configuration Item Number of Users
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $NumberOfUsers,
-
-# Serial Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $SerialNumber,
-
-# RMM Device Audit Architecture ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditArchitectureID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditArchitectureID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $RMMDeviceAuditArchitectureID,
-
-# RMM Open Alert Count
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $RMMOpenAlertCount,
-
-# Configuration Item Setup Fee
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $SetupFee,
-
-# Reference Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,200)]
-    [string]
-    $ReferenceTitle,
-
-# RMM Device Audit External IP Address
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $RMMDeviceAuditExternalIPAddress,
-
-# RMM Device Audit Mac Address
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $RMMDeviceAuditMacAddress,
-
-# Datto Device Memory Megabytes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $DattoDeviceMemoryMegabytes,
-
-# Datto Offsite Used Bytes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $DattoOffsiteUsedBytes,
-
-# Last Activity Person Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName LastActivityPersonType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName LastActivityPersonType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $LastActivityPersonType,
-
-# RMM Device Audit Hostname
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $RMMDeviceAuditHostname,
-
-# Configuration Item Monthly Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $MonthlyCost,
-
-# RMM Device Audit SNMP Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $RMMDeviceAuditSNMPLocation,
-
-# Product Active
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
-
-# Last Modified Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastModifiedTime,
-
-# RMM Device ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $RMMDeviceID,
-
-# RMM Device Audit Antivirus Status ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditAntivirusStatusID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditAntivirusStatusID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $RMMDeviceAuditAntivirusStatusID,
-
-# Parent Configuration Item
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ParentInstalledProductID,
-
-# Datto Remote IP
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $DattoRemoteIP,
-
-# Configuration Item Daily Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $DailyCost,
-
-# Datto Serial Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $DattoSerialNumber,
-
-# Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $Location,
-
-# RMM Device Audit Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $RMMDeviceAuditDescription,
-
-# RMM Device Audit SNMP Contact
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $RMMDeviceAuditSNMPContact,
-
-# Contact Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContactID,
-
-# Installed By Contact ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $InstalledByContactID,
-
-# API Vendor ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ApiVendorID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ApiVendorID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $ApiVendorID,
-
-# Datto Number Of Drives
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $DattoNumberOfDrives,
-
-# RMM Device Audit Manufacturer ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditManufacturerID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditManufacturerID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $RMMDeviceAuditManufacturerID,
+    $DattoZFSVersionID,
 
 # RMM Device Audit Patch Status ID
     [Parameter(
@@ -435,130 +109,12 @@ Set-AtwsInstalledProduct
     [string]
     $RMMDeviceAuditPatchStatusID,
 
-# Source Cost Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName SourceCostType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName SourceCostType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $SourceCostType,
-
 # RMM Device Audit Memory Bytes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [long]
     $RMMDeviceAuditMemoryBytes,
-
-# Install Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $InstallDate,
-
-# Client
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $AccountID,
-
-# Vendor Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $VendorID,
-
-# RMM Device Audit Mobile Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $RMMDeviceAuditMobileNumber,
-
-# Account Physical Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AccountPhysicalLocationID,
-
-# Installed Product Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $InstalledProductCategoryID,
-
-# Contract Service Bundle Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContractServiceBundleID,
-
-# Datto ZFS Version ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoZFSVersionID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoZFSVersionID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $DattoZFSVersionID,
-
-# Product ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ProductID,
-
-# RMM Device Audit Display Adaptor ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDisplayAdaptorID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDisplayAdaptorID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $RMMDeviceAuditDisplayAdaptorID,
 
 # Source Cost ID
     [Parameter(
@@ -567,16 +123,16 @@ Set-AtwsInstalledProduct
     [Int]
     $SourceCostID,
 
-# RMM Device Audit Software Status ID
+# RMM Device Audit Manufacturer ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditSoftwareStatusID -Label
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditManufacturerID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditSoftwareStatusID -Label
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditManufacturerID -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -584,362 +140,7 @@ Set-AtwsInstalledProduct
       }
     })]
     [string]
-    $RMMDeviceAuditSoftwareStatusID,
-
-# Configuration Item Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $Type,
-
-# Reference Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ReferenceNumber,
-
-# RMM Device Audit Missing Patch Count
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $RMMDeviceAuditMissingPatchCount,
-
-# Created By Person ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatedByPersonID,
-
-# RMM Device Audit Service Pack ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditServicePackID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditServicePackID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $RMMDeviceAuditServicePackID,
-
-# Datto Kernel Version ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoKernelVersionID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoKernelVersionID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $DattoKernelVersionID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Installed By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $InstalledByID,
-
-# Datto Available Kilobytes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $DattoAvailableKilobytes,
-
-# Configuration Item Hourly Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $HourlyCost,
-
-# RMM Device Audit Device Type ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDeviceTypeID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDeviceTypeID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $RMMDeviceAuditDeviceTypeID,
-
-# RMM Device Audit Mobile Network Operator ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditMobileNetworkOperatorID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditMobileNetworkOperatorID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $RMMDeviceAuditMobileNetworkOperatorID,
-
-# Warranty Expiration Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $WarrantyExpirationDate,
-
-# Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ServiceID,
-
-# Contract Service Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContractServiceID,
-
-# RMM Device Audit Processor ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditProcessorID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditProcessorID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $RMMDeviceAuditProcessorID,
-
-# Last Activity Person ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $LastActivityPersonID,
-
-# RMM Device Audit SNMP Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $RMMDeviceAuditSNMPName,
-
-# Service Bundle ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ServiceBundleID,
-
-# Datto Drives Errors
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $DattoDrivesErrors,
-
-# Device Networking ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $DeviceNetworkingID,
-
-# RMM Device Audit Domain ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDomainID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDomainID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $RMMDeviceAuditDomainID,
-
-# Datto Uptime Seconds
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $DattoUptimeSeconds,
-
-# Datto Protected Kilobytes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $DattoProtectedKilobytes,
-
-# Service Level Agreement
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $ServiceLevelAgreementID,
-
-# Datto Used Kilobytes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $DattoUsedKilobytes,
-
-# Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContractID,
-
-# Datto OS Version ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoOSVersionID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoOSVersionID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $DattoOSVersionID,
-
-# RMM Device Audit Storage Bytes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $RMMDeviceAuditStorageBytes,
-
-# Configuration Item Per Use Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $PerUseCost,
-
-# Datto Internal IP
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string]
-    $DattoInternalIP,
-
-# Datto Last Check In Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $DattoLastCheckInDateTime,
-
-# RMM Device Audit Model ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditModelID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditModelID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $RMMDeviceAuditModelID,
+    $RMMDeviceAuditManufacturerID,
 
 # RMM Device Audit Backup Status ID
     [Parameter(
@@ -960,6 +161,310 @@ Set-AtwsInstalledProduct
     [string]
     $RMMDeviceAuditBackupStatusID,
 
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContractID,
+
+# Contact Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContactID,
+
+# RMM Device Audit Model ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditModelID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditModelID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RMMDeviceAuditModelID,
+
+# Datto Hostname
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $DattoHostname,
+
+# Datto Drives Errors
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $DattoDrivesErrors,
+
+# Datto Available Kilobytes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $DattoAvailableKilobytes,
+
+# RMM Device Audit Storage Bytes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $RMMDeviceAuditStorageBytes,
+
+# RMM Open Alert Count
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $RMMOpenAlertCount,
+
+# Installed By Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $InstalledByContactID,
+
+# RMM Device ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $RMMDeviceID,
+
+# Datto Kernel Version ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoKernelVersionID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoKernelVersionID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $DattoKernelVersionID,
+
+# Datto OS Version ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoOSVersionID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName DattoOSVersionID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $DattoOSVersionID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
+
+# RMM Device Audit Software Status ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditSoftwareStatusID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditSoftwareStatusID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RMMDeviceAuditSoftwareStatusID,
+
+# RMM Device Audit Device Type ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDeviceTypeID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDeviceTypeID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RMMDeviceAuditDeviceTypeID,
+
+# RMM Device Audit Domain ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDomainID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDomainID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RMMDeviceAuditDomainID,
+
+# Vendor Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $VendorID,
+
+# Contract Service Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContractServiceID,
+
+# Installed By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $InstalledByID,
+
+# RMM Device Audit Hostname
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $RMMDeviceAuditHostname,
+
+# Source Cost Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName SourceCostType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName SourceCostType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $SourceCostType,
+
+# Datto Device Memory Megabytes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $DattoDeviceMemoryMegabytes,
+
+# Service Level Agreement
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ServiceLevelAgreementID,
+
+# Datto Percentage Used
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $DattoPercentageUsed,
+
+# Client
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $AccountID,
+
+# RMM Device Audit Mac Address
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $RMMDeviceAuditMacAddress,
+
+# Parent Configuration Item
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ParentInstalledProductID,
+
+# Datto Remote IP
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $DattoRemoteIP,
+
+# Install Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $InstallDate,
+
 # RMM Device UID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -967,6 +472,232 @@ Set-AtwsInstalledProduct
     [ValidateLength(0,255)]
     [string]
     $RMMDeviceUID,
+
+# Warranty Expiration Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $WarrantyExpirationDate,
+
+# RMM Device Audit Antivirus Status ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditAntivirusStatusID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditAntivirusStatusID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RMMDeviceAuditAntivirusStatusID,
+
+# RMM Device Audit Missing Patch Count
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $RMMDeviceAuditMissingPatchCount,
+
+# Reference Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ReferenceNumber,
+
+# Account Physical Location
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $AccountPhysicalLocationID,
+
+# Datto Number Of Agents
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $DattoNumberOfAgents,
+
+# Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ServiceID,
+
+# API Vendor ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ApiVendorID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ApiVendorID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ApiVendorID,
+
+# Datto Last Check In Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $DattoLastCheckInDateTime,
+
+# Installed Product Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $InstalledProductCategoryID,
+
+# Configuration Item Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,5000)]
+    [string]
+    $Notes,
+
+# Configuration Item Number of Users
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $NumberOfUsers,
+
+# RMM Device Audit External IP Address
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $RMMDeviceAuditExternalIPAddress,
+
+# Configuration Item Daily Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $DailyCost,
+
+# Datto NIC Speed Kilobits Per Second
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $DattoNICSpeedKilobitsPerSecond,
+
+# Configuration Item Per Use Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $PerUseCost,
+
+# RMM Device Audit Processor ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditProcessorID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditProcessorID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RMMDeviceAuditProcessorID,
+
+# Datto Uptime Seconds
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $DattoUptimeSeconds,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
+# Product ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ProductID,
+
+# Configuration Item Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $Type,
+
+# Service Bundle ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ServiceBundleID,
+
+# RMM Device Audit Service Pack ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditServicePackID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditServicePackID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RMMDeviceAuditServicePackID,
 
 # RMM Device Audit Operating System
     [Parameter(
@@ -976,12 +707,152 @@ Set-AtwsInstalledProduct
     [string]
     $RMMDeviceAuditOperatingSystem,
 
-# Datto NIC Speed Kilobits Per Second
+# Configuration Item Setup Fee
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $SetupFee,
+
+# Created By Person ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $DattoNICSpeedKilobitsPerSecond,
+    $CreatedByPersonID,
+
+# RMM Device Audit Mobile Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $RMMDeviceAuditMobileNumber,
+
+# Last Activity Person Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName LastActivityPersonType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName LastActivityPersonType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $LastActivityPersonType,
+
+# Datto Used Kilobytes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $DattoUsedKilobytes,
+
+# Datto Number Of Volumes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $DattoNumberOfVolumes,
+
+# RMM Device Audit SNMP Location
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $RMMDeviceAuditSNMPLocation,
+
+# RMM Device Audit SNMP Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $RMMDeviceAuditSNMPName,
+
+# Datto Serial Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $DattoSerialNumber,
+
+# RMM Device Audit Motherboard ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditMotherboardID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditMotherboardID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RMMDeviceAuditMotherboardID,
+
+# Last Modified Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastModifiedTime,
+
+# Datto Protected Kilobytes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $DattoProtectedKilobytes,
+
+# Reference Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,200)]
+    [string]
+    $ReferenceTitle,
+
+# RMM Device Audit IP Address
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $RMMDeviceAuditIPAddress,
+
+# RMM Device Audit Mobile Network Operator ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditMobileNetworkOperatorID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditMobileNetworkOperatorID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RMMDeviceAuditMobileNetworkOperatorID,
 
 # RMM Device Audit Last User
     [Parameter(
@@ -991,13 +862,142 @@ Set-AtwsInstalledProduct
     [string]
     $RMMDeviceAuditLastUser,
 
-# Configuration Item Notes
+# Product Active
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active,
+
+# Datto Offsite Used Bytes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,5000)]
+    [long]
+    $DattoOffsiteUsedBytes,
+
+# RMM Device Audit Architecture ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditArchitectureID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditArchitectureID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
-    $Notes
+    $RMMDeviceAuditArchitectureID,
+
+# RMM Device Audit SNMP Contact
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $RMMDeviceAuditSNMPContact,
+
+# Device Networking ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $DeviceNetworkingID,
+
+# Configuration Item Hourly Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $HourlyCost,
+
+# RMM Device Audit Display Adaptor ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDisplayAdaptorID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName RMMDeviceAuditDisplayAdaptorID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RMMDeviceAuditDisplayAdaptorID,
+
+# Serial Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $SerialNumber,
+
+# Datto Internal IP
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $DattoInternalIP,
+
+# Location
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $Location,
+
+# Contract Service Bundle Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContractServiceBundleID,
+
+# RMM Device Audit Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $RMMDeviceAuditDescription,
+
+# Configuration Item Monthly Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $MonthlyCost,
+
+# Datto Number Of Drives
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $DattoNumberOfDrives,
+
+# Last Activity Person ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $LastActivityPersonID
   )
  
     begin { 

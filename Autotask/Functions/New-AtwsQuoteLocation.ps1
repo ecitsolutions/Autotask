@@ -60,30 +60,6 @@ Set-AtwsQuoteLocation
     [Autotask.QuoteLocation[]]
     $InputObject,
 
-# state_province
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $State,
-
-# postal_code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,20)]
-    [string]
-    $PostalCode,
-
-# address_1
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $Address1,
-
 # city
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -98,7 +74,31 @@ Set-AtwsQuoteLocation
     )]
     [ValidateLength(0,50)]
     [string]
-    $Address2
+    $Address2,
+
+# address_1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $Address1,
+
+# state_province
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $State,
+
+# postal_code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,20)]
+    [string]
+    $PostalCode
   )
  
     begin { 

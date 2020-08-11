@@ -60,12 +60,13 @@ Set-AtwsTaxCategory
     [Autotask.TaxCategory[]]
     $InputObject,
 
-# Active
+# Tax Category Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $Active,
+    [ValidateLength(0,200)]
+    [string]
+    $Description,
 
 # Tax Category Name
     [Parameter(
@@ -77,13 +78,12 @@ Set-AtwsTaxCategory
     [string]
     $Name,
 
-# Tax Category Description
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,200)]
-    [string]
-    $Description
+    [boolean]
+    $Active
   )
  
     begin { 

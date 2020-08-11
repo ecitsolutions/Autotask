@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 ModifierType
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -159,21 +157,21 @@ Set-AtwsPriceListWorkTypeModifier
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierValue', 'ModifierType')]
+    [ValidateSet('ModifierValue', 'ModifierType', 'id', 'CurrencyID', 'WorkTypeModifierID', 'UsesInternalCurrencyPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierValue', 'ModifierType')]
+    [ValidateSet('ModifierValue', 'ModifierType', 'id', 'CurrencyID', 'WorkTypeModifierID', 'UsesInternalCurrencyPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierValue', 'ModifierType')]
+    [ValidateSet('ModifierValue', 'ModifierType', 'id', 'CurrencyID', 'WorkTypeModifierID', 'UsesInternalCurrencyPrice')]
     [string[]]
     $IsNotNull,
 

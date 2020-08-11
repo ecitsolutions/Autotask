@@ -86,7 +86,7 @@ Set-AtwsResourceRoleDepartment
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('RoleID', 'DepartmentID', 'ResourceID')]
+    [ValidateSet('DepartmentID', 'RoleID', 'ResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -168,21 +168,21 @@ Set-AtwsResourceRoleDepartment
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'Default', 'DepartmentLead', 'DepartmentID', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('DepartmentID', 'RoleID', 'Default', 'DepartmentLead', 'Active', 'id', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'Default', 'DepartmentLead', 'DepartmentID', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('DepartmentID', 'RoleID', 'Default', 'DepartmentLead', 'Active', 'id', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'Default', 'DepartmentLead', 'DepartmentID', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('DepartmentID', 'RoleID', 'Default', 'DepartmentLead', 'Active', 'id', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

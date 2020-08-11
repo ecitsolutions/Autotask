@@ -29,12 +29,8 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 NoteType
- 
-
 Publish
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -241,21 +237,21 @@ Set-AtwsTaskNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'CreateDateTime', 'CreatorResourceID', 'Publish', 'Title', 'Description', 'NoteType', 'TaskID')]
+    [ValidateSet('Publish', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'TaskID', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'CreateDateTime', 'CreatorResourceID', 'Publish', 'Title', 'Description', 'NoteType', 'TaskID')]
+    [ValidateSet('Publish', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'TaskID', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'CreateDateTime', 'CreatorResourceID', 'Publish', 'Title', 'Description', 'NoteType', 'TaskID')]
+    [ValidateSet('Publish', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'TaskID', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
     [string[]]
     $IsNotNull,
 

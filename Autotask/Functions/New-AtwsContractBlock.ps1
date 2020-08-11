@@ -72,6 +72,42 @@ Set-AtwsContractBlock
     [double]
     $HoursApproved,
 
+# StartDate
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $StartDate,
+
+# PaymentNumber
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PaymentNumber,
+
+# paymentID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PaymentType,
+
 # DatePurchased
     [Parameter(
       Mandatory = $true,
@@ -100,24 +136,23 @@ Set-AtwsContractBlock
     [string]
     $Status,
 
-# Paid
+# EndDate
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $IsPaid,
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $EndDate,
+
+# Rate
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $HourlyRate,
 
 # Contract ID
     [Parameter(
@@ -137,41 +172,16 @@ Set-AtwsContractBlock
     [double]
     $Hours,
 
-# StartDate
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDate,
-
-# PaymentNumber
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PaymentNumber,
-
-# InvoiceNumber
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $InvoiceNumber,
-
-# paymentID
+# Paid
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Label
+      Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Label
+      $set = Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -179,25 +189,15 @@ Set-AtwsContractBlock
       }
     })]
     [string]
-    $PaymentType,
+    $IsPaid,
 
-# EndDate
+# InvoiceNumber
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EndDate,
-
-# Rate
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $HourlyRate
+    [ValidateLength(0,50)]
+    [string]
+    $InvoiceNumber
   )
  
     begin { 

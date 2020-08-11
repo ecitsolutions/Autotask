@@ -61,6 +61,20 @@ Get-AtwsServiceCallTicketResource
     [Autotask.ServiceCallTicketResource[]]
     $InputObject,
 
+# Last Modified By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $LastModifiedByResourceID,
+
+# Last Modified Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastModifiedDateTime,
+
 # Created By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -83,20 +97,6 @@ Get-AtwsServiceCallTicketResource
     [ValidateNotNullOrEmpty()]
     [Int]
     $ServiceCallTicketID,
-
-# Last Modified By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $LastModifiedByResourceID,
-
-# Last Modified Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastModifiedDateTime,
 
 # Resource ID
     [Parameter(

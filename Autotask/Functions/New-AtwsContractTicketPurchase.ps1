@@ -66,6 +66,51 @@ Set-AtwsContractTicketPurchase
     [Autotask.ContractTicketPurchase[]]
     $InputObject,
 
+# Rate
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $PerTicketRate,
+
+# Start Date
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $StartDate,
+
+# Payment Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PaymentNumber,
+
+# Payment Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PaymentType,
+
 # DatePurchased
     [Parameter(
       Mandatory = $true,
@@ -74,6 +119,15 @@ Set-AtwsContractTicketPurchase
     [ValidateNotNullOrEmpty()]
     [datetime]
     $DatePurchased,
+
+# End Date
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $EndDate,
 
 # Status
     [Parameter(
@@ -93,6 +147,22 @@ Set-AtwsContractTicketPurchase
     })]
     [string]
     $Status,
+
+# Contract ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $ContractID,
+
+# Tickets Used
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $TicketsUsed,
 
 # Paid
     [Parameter(
@@ -115,65 +185,6 @@ Set-AtwsContractTicketPurchase
     [string]
     $IsPaid,
 
-# Payment Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PaymentNumber,
-
-# Invoice Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $InvoiceNumber,
-
-# End Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EndDate,
-
-# Contract ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $ContractID,
-
-# Rate
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $PerTicketRate,
-
-# Start Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDate,
-
-# Tickets Used
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $TicketsUsed,
-
 # Tickets Purchased
     [Parameter(
       Mandatory = $true,
@@ -183,24 +194,13 @@ Set-AtwsContractTicketPurchase
     [double]
     $TicketsPurchased,
 
-# Payment Type
+# Invoice Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,50)]
     [string]
-    $PaymentType
+    $InvoiceNumber
   )
  
     begin { 

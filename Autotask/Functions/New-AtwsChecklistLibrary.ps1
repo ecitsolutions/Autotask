@@ -64,14 +64,13 @@ Set-AtwsChecklistLibrary
     [Autotask.ChecklistLibrary[]]
     $InputObject,
 
-# Active
+# Description
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
+    [ValidateLength(0,500)]
+    [string]
+    $Description,
 
 # Name
     [Parameter(
@@ -83,13 +82,14 @@ Set-AtwsChecklistLibrary
     [string]
     $Name,
 
-# Description
+# Active
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,500)]
-    [string]
-    $Description,
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active,
 
 # Entity
     [Parameter(

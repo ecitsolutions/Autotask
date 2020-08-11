@@ -61,30 +61,6 @@ Get-AtwsInventoryTransfer
     [Autotask.InventoryTransfer[]]
     $InputObject,
 
-# Transfer To Inventory Location ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $ToLocationID,
-
-# Update Note
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string]
-    $UpdateNote,
-
-# Transfer By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $TransferByResourceID,
-
 # Transfer Date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -92,14 +68,13 @@ Get-AtwsInventoryTransfer
     [datetime]
     $TransferDate,
 
-# Transfer From Inventory Location ID
+# Notes
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $FromLocationID,
+    [ValidateLength(0,4000)]
+    [string]
+    $Notes,
 
 # Serial Number
     [Parameter(
@@ -118,13 +93,29 @@ Get-AtwsInventoryTransfer
     [Int]
     $QuantityTransferred,
 
-# Notes
+# Transfer By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,4000)]
+    [Int]
+    $TransferByResourceID,
+
+# Update Note
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
     [string]
-    $Notes,
+    $UpdateNote,
+
+# Transfer From Inventory Location ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $FromLocationID,
 
 # Product ID
     [Parameter(
@@ -133,7 +124,16 @@ Get-AtwsInventoryTransfer
     )]
     [ValidateNotNullOrEmpty()]
     [long]
-    $ProductID
+    $ProductID,
+
+# Transfer To Inventory Location ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $ToLocationID
   )
  
     begin { 

@@ -29,18 +29,10 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 SecurityLevel
- 
-
 DateFormat
- 
-
 TimeFormat
- 
-
 NumberFormat
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -251,21 +243,21 @@ Set-AtwsClientPortalUser
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ClientPortalActive', 'id', 'UserName', 'NumberFormat', 'DateFormat', 'TimeFormat', 'SecurityLevel', 'ContactID', 'Password')]
+    [ValidateSet('Password', 'SecurityLevel', 'UserName', 'TimeFormat', 'id', 'ClientPortalActive', 'DateFormat', 'ContactID', 'NumberFormat')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ClientPortalActive', 'id', 'UserName', 'NumberFormat', 'DateFormat', 'TimeFormat', 'SecurityLevel', 'ContactID', 'Password')]
+    [ValidateSet('Password', 'SecurityLevel', 'UserName', 'TimeFormat', 'id', 'ClientPortalActive', 'DateFormat', 'ContactID', 'NumberFormat')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ClientPortalActive', 'id', 'UserName', 'NumberFormat', 'DateFormat', 'TimeFormat', 'SecurityLevel', 'ContactID', 'Password')]
+    [ValidateSet('Password', 'SecurityLevel', 'UserName', 'TimeFormat', 'id', 'ClientPortalActive', 'DateFormat', 'ContactID', 'NumberFormat')]
     [string[]]
     $IsNotNull,
 

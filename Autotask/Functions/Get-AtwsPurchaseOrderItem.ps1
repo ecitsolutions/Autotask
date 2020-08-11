@@ -86,7 +86,7 @@ Set-AtwsPurchaseOrderItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'OrderID', 'ProductID', 'ProjectID', 'TicketID', 'InventoryLocationID', 'SalesOrderID')]
+    [ValidateSet('ProjectID', 'OrderID', 'ProductID', 'ContractID', 'InventoryLocationID', 'SalesOrderID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -217,21 +217,21 @@ Set-AtwsPurchaseOrderItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CostID', 'Quantity', 'id', 'Memo', 'ContractID', 'OrderID', 'UnitCost', 'TicketID', 'InternalCurrencyUnitCost', 'EstimatedArrivalDate', 'InventoryLocationID', 'ProjectID', 'ProductID', 'SalesOrderID')]
+    [ValidateSet('EstimatedArrivalDate', 'Quantity', 'id', 'InternalCurrencyUnitCost', 'ProjectID', 'OrderID', 'ContractID', 'TicketID', 'CostID', 'InventoryLocationID', 'SalesOrderID', 'Memo', 'UnitCost', 'ProductID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CostID', 'Quantity', 'id', 'Memo', 'ContractID', 'OrderID', 'UnitCost', 'TicketID', 'InternalCurrencyUnitCost', 'EstimatedArrivalDate', 'InventoryLocationID', 'ProjectID', 'ProductID', 'SalesOrderID')]
+    [ValidateSet('EstimatedArrivalDate', 'Quantity', 'id', 'InternalCurrencyUnitCost', 'ProjectID', 'OrderID', 'ContractID', 'TicketID', 'CostID', 'InventoryLocationID', 'SalesOrderID', 'Memo', 'UnitCost', 'ProductID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CostID', 'Quantity', 'id', 'Memo', 'ContractID', 'OrderID', 'UnitCost', 'TicketID', 'InternalCurrencyUnitCost', 'EstimatedArrivalDate', 'InventoryLocationID', 'ProjectID', 'ProductID', 'SalesOrderID')]
+    [ValidateSet('EstimatedArrivalDate', 'Quantity', 'id', 'InternalCurrencyUnitCost', 'ProjectID', 'OrderID', 'ContractID', 'TicketID', 'CostID', 'InventoryLocationID', 'SalesOrderID', 'Memo', 'UnitCost', 'ProductID')]
     [string[]]
     $IsNotNull,
 

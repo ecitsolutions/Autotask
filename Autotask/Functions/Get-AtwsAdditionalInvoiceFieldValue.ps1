@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 AdditionalInvoiceFieldID
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -169,21 +167,21 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FieldValue', 'id', 'InvoiceBatchID', 'AdditionalInvoiceFieldID')]
+    [ValidateSet('InvoiceBatchID', 'id', 'AdditionalInvoiceFieldID', 'FieldValue')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FieldValue', 'id', 'InvoiceBatchID', 'AdditionalInvoiceFieldID')]
+    [ValidateSet('InvoiceBatchID', 'id', 'AdditionalInvoiceFieldID', 'FieldValue')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FieldValue', 'id', 'InvoiceBatchID', 'AdditionalInvoiceFieldID')]
+    [ValidateSet('InvoiceBatchID', 'id', 'AdditionalInvoiceFieldID', 'FieldValue')]
     [string[]]
     $IsNotNull,
 

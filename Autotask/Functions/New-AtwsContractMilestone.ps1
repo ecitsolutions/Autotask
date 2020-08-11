@@ -65,6 +65,31 @@ Set-AtwsContractMilestone
     [Autotask.ContractMilestone[]]
     $InputObject,
 
+# Is This Initial Payment
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $IsInitialPayment,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BusinessDivisionSubdivisionID,
+
+# Date Due
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $DateDue,
+
 # Status
     [Parameter(
       Mandatory = $true,
@@ -86,14 +111,12 @@ Set-AtwsContractMilestone
     [string]
     $Status,
 
-# Contract ID
+# Creator Resource ID
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Int]
-    $ContractID,
+    $CreatorResourceID,
 
 # Amount
     [Parameter(
@@ -104,19 +127,29 @@ Set-AtwsContractMilestone
     [double]
     $Amount,
 
-# Create Date
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CreateDate,
+    [ValidateLength(0,250)]
+    [string]
+    $Description,
 
-# Business Division Subdivision ID
+# Contract ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ContractID,
+
+# Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $BusinessDivisionSubdivisionID,
+    $AllocationCodeID,
 
 # Internal Currency Amount
     [Parameter(
@@ -124,6 +157,13 @@ Set-AtwsContractMilestone
     )]
     [double]
     $InternalCurrencyAmount,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
 
 # Title
     [Parameter(
@@ -133,47 +173,7 @@ Set-AtwsContractMilestone
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
     [string]
-    $Title,
-
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AllocationCodeID,
-
-# Date Due
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $DateDue,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,250)]
-    [string]
-    $Description,
-
-# Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
-
-# Is This Initial Payment
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $IsInitialPayment
+    $Title
   )
  
     begin { 

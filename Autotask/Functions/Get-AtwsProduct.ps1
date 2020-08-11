@@ -29,18 +29,10 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 ProductCategory
- 
-
 PeriodType
- 
-
 BillingType
- 
-
 PriceCostMethod
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -125,7 +117,7 @@ Set-AtwsProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProduct', 'ProductVendor', 'ContactBillingProductAssociation', 'ContractBillingRule', 'ChangeOrderCost', 'InventoryTransfer', 'Opportunity', 'ContractCost', 'InstalledProductBillingProductAssociation', 'ProductTier', 'TicketCost', 'QuoteItem', 'InventoryItem', 'PurchaseOrderItem', 'ProjectCost', 'PriceListProduct')]
+    [ValidateSet('ChangeOrderCost', 'PurchaseOrderItem', 'ContractBillingRule', 'ProjectCost', 'InstalledProduct', 'PriceListProduct', 'InventoryTransfer', 'ContractCost', 'InventoryItem', 'InstalledProductBillingProductAssociation', 'ContactBillingProductAssociation', 'QuoteItem', 'ProductTier', 'TicketCost', 'Opportunity', 'ProductVendor')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -383,21 +375,21 @@ Set-AtwsProduct
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'ExternalProductID', 'EligibleForRma', 'InternalProductID', 'ManufacturerProductName', 'VendorProductNumber', 'ImpersonatorCreatorResourceID', 'PeriodType', 'DefaultVendorID', 'Name', 'ManufacturerName', 'PriceCostMethod', 'Serialized', 'MSRP', 'ProductCategory', 'MarkupRate', 'id', 'DoesNotRequireProcurement', 'Description', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'SKU', 'UnitCost', 'BillingType', 'Link', 'UnitPrice')]
+    [ValidateSet('Link', 'ManufacturerProductName', 'ImpersonatorCreatorResourceID', 'id', 'SKU', 'UnitCost', 'UnitPrice', 'Serialized', 'VendorProductNumber', 'PeriodType', 'ProductAllocationCodeID', 'DefaultVendorID', 'ManufacturerName', 'Description', 'PriceCostMethod', 'CostAllocationCodeID', 'InternalProductID', 'MarkupRate', 'BillingType', 'DoesNotRequireProcurement', 'ExternalProductID', 'Name', 'MSRP', 'Active', 'ProductCategory', 'EligibleForRma')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'ExternalProductID', 'EligibleForRma', 'InternalProductID', 'ManufacturerProductName', 'VendorProductNumber', 'ImpersonatorCreatorResourceID', 'PeriodType', 'DefaultVendorID', 'Name', 'ManufacturerName', 'PriceCostMethod', 'Serialized', 'MSRP', 'ProductCategory', 'MarkupRate', 'id', 'DoesNotRequireProcurement', 'Description', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'SKU', 'UnitCost', 'BillingType', 'Link', 'UnitPrice')]
+    [ValidateSet('Link', 'ManufacturerProductName', 'ImpersonatorCreatorResourceID', 'id', 'SKU', 'UnitCost', 'UnitPrice', 'Serialized', 'VendorProductNumber', 'PeriodType', 'ProductAllocationCodeID', 'DefaultVendorID', 'ManufacturerName', 'Description', 'PriceCostMethod', 'CostAllocationCodeID', 'InternalProductID', 'MarkupRate', 'BillingType', 'DoesNotRequireProcurement', 'ExternalProductID', 'Name', 'MSRP', 'Active', 'ProductCategory', 'EligibleForRma')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'ExternalProductID', 'EligibleForRma', 'InternalProductID', 'ManufacturerProductName', 'VendorProductNumber', 'ImpersonatorCreatorResourceID', 'PeriodType', 'DefaultVendorID', 'Name', 'ManufacturerName', 'PriceCostMethod', 'Serialized', 'MSRP', 'ProductCategory', 'MarkupRate', 'id', 'DoesNotRequireProcurement', 'Description', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'SKU', 'UnitCost', 'BillingType', 'Link', 'UnitPrice')]
+    [ValidateSet('Link', 'ManufacturerProductName', 'ImpersonatorCreatorResourceID', 'id', 'SKU', 'UnitCost', 'UnitPrice', 'Serialized', 'VendorProductNumber', 'PeriodType', 'ProductAllocationCodeID', 'DefaultVendorID', 'ManufacturerName', 'Description', 'PriceCostMethod', 'CostAllocationCodeID', 'InternalProductID', 'MarkupRate', 'BillingType', 'DoesNotRequireProcurement', 'ExternalProductID', 'Name', 'MSRP', 'Active', 'ProductCategory', 'EligibleForRma')]
     [string[]]
     $IsNotNull,
 

@@ -82,7 +82,7 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceID', 'ContractID', 'VendorAccountID', 'BusinessDivisionSubdivisionID', 'ContractServiceID')]
+    [ValidateSet('ContractID', 'ContractServiceID', 'BusinessDivisionSubdivisionID', 'ServiceID', 'VendorAccountID')]
     [string]
     $GetReferenceEntityById,
 
@@ -205,21 +205,21 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ApproveAndPostDate', 'ContractID', 'Cost', 'BusinessDivisionSubdivisionID', 'Price', 'StartDate', 'ServiceID', 'Units', 'InternalCurrencyPrice', 'VendorAccountID', 'EndDate', 'ContractServiceID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'id', 'VendorAccountID', 'EndDate', 'ContractServiceID', 'InternalCurrencyPrice', 'ContractID', 'StartDate', 'Cost', 'ApproveAndPostDate', 'Price', 'ServiceID', 'Units')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ApproveAndPostDate', 'ContractID', 'Cost', 'BusinessDivisionSubdivisionID', 'Price', 'StartDate', 'ServiceID', 'Units', 'InternalCurrencyPrice', 'VendorAccountID', 'EndDate', 'ContractServiceID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'id', 'VendorAccountID', 'EndDate', 'ContractServiceID', 'InternalCurrencyPrice', 'ContractID', 'StartDate', 'Cost', 'ApproveAndPostDate', 'Price', 'ServiceID', 'Units')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ApproveAndPostDate', 'ContractID', 'Cost', 'BusinessDivisionSubdivisionID', 'Price', 'StartDate', 'ServiceID', 'Units', 'InternalCurrencyPrice', 'VendorAccountID', 'EndDate', 'ContractServiceID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'id', 'VendorAccountID', 'EndDate', 'ContractServiceID', 'InternalCurrencyPrice', 'ContractID', 'StartDate', 'Cost', 'ApproveAndPostDate', 'Price', 'ServiceID', 'Units')]
     [string[]]
     $IsNotNull,
 

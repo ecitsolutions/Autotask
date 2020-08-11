@@ -29,9 +29,7 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-
 DisplaySymbol
- 
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -114,7 +112,7 @@ Set-AtwsCurrency
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('PriceListServiceBundle', 'PriceListWorkTypeModifier', 'PriceListProductTier', 'Account', 'ExpenseReport', 'PriceListService', 'PriceListProduct', 'ExpenseItem', 'PriceListMaterialCode', 'PriceListRole')]
+    [ValidateSet('ExpenseReport', 'PriceListProduct', 'PriceListProductTier', 'Account', 'PriceListServiceBundle', 'PriceListRole', 'PriceListService', 'PriceListWorkTypeModifier', 'PriceListMaterialCode', 'ExpenseItem')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -230,21 +228,21 @@ Set-AtwsCurrency
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'LastModifiedDateTime', 'Name', 'id', 'UpdateResourceId', 'IsInternalCurrency', 'CurrencyPositiveFormat', 'ExchangeRate', 'CurrencyNegativeFormat', 'DisplaySymbol', 'Description')]
+    [ValidateSet('ExchangeRate', 'DisplaySymbol', 'Name', 'LastModifiedDateTime', 'id', 'Active', 'Description', 'CurrencyPositiveFormat', 'UpdateResourceId', 'IsInternalCurrency', 'CurrencyNegativeFormat')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'LastModifiedDateTime', 'Name', 'id', 'UpdateResourceId', 'IsInternalCurrency', 'CurrencyPositiveFormat', 'ExchangeRate', 'CurrencyNegativeFormat', 'DisplaySymbol', 'Description')]
+    [ValidateSet('ExchangeRate', 'DisplaySymbol', 'Name', 'LastModifiedDateTime', 'id', 'Active', 'Description', 'CurrencyPositiveFormat', 'UpdateResourceId', 'IsInternalCurrency', 'CurrencyNegativeFormat')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'LastModifiedDateTime', 'Name', 'id', 'UpdateResourceId', 'IsInternalCurrency', 'CurrencyPositiveFormat', 'ExchangeRate', 'CurrencyNegativeFormat', 'DisplaySymbol', 'Description')]
+    [ValidateSet('ExchangeRate', 'DisplaySymbol', 'Name', 'LastModifiedDateTime', 'id', 'Active', 'Description', 'CurrencyPositiveFormat', 'UpdateResourceId', 'IsInternalCurrency', 'CurrencyNegativeFormat')]
     [string[]]
     $IsNotNull,
 

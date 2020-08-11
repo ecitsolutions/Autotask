@@ -86,7 +86,7 @@ Set-AtwsContractService
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('QuoteItemID', 'ServiceID', 'ContractID')]
+    [ValidateSet('QuoteItemID', 'ContractID', 'ServiceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -99,7 +99,7 @@ Set-AtwsContractService
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TimeEntry', 'TicketCost', 'ProjectCost', 'ContractServiceAdjustment', 'InstalledProduct', 'ChangeOrderCost', 'Ticket', 'ContractCost', 'ContractServiceUnit')]
+    [ValidateSet('ProjectCost', 'ContractServiceUnit', 'TimeEntry', 'InstalledProduct', 'ContractServiceAdjustment', 'TicketCost', 'ChangeOrderCost', 'ContractCost', 'Ticket')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -195,21 +195,21 @@ Set-AtwsContractService
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'AdjustedPrice', 'InvoiceDescription', 'InternalCurrencyUnitPrice', 'UnitPrice', 'ServiceID', 'InternalDescription', 'UnitCost', 'QuoteItemID', 'InternalCurrencyAdjustedPrice', 'id')]
+    [ValidateSet('AdjustedPrice', 'ServiceID', 'InternalDescription', 'UnitCost', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'id', 'ContractID', 'QuoteItemID', 'UnitPrice', 'InvoiceDescription')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'AdjustedPrice', 'InvoiceDescription', 'InternalCurrencyUnitPrice', 'UnitPrice', 'ServiceID', 'InternalDescription', 'UnitCost', 'QuoteItemID', 'InternalCurrencyAdjustedPrice', 'id')]
+    [ValidateSet('AdjustedPrice', 'ServiceID', 'InternalDescription', 'UnitCost', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'id', 'ContractID', 'QuoteItemID', 'UnitPrice', 'InvoiceDescription')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'AdjustedPrice', 'InvoiceDescription', 'InternalCurrencyUnitPrice', 'UnitPrice', 'ServiceID', 'InternalDescription', 'UnitCost', 'QuoteItemID', 'InternalCurrencyAdjustedPrice', 'id')]
+    [ValidateSet('AdjustedPrice', 'ServiceID', 'InternalDescription', 'UnitCost', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'id', 'ContractID', 'QuoteItemID', 'UnitPrice', 'InvoiceDescription')]
     [string[]]
     $IsNotNull,
 

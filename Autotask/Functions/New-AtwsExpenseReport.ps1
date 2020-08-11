@@ -62,6 +62,27 @@ Set-AtwsExpenseReport
     [Autotask.ExpenseReport[]]
     $InputObject,
 
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BusinessDivisionSubdivisionID,
+
+# Cash Advance Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $CashAdvanceAmount,
+
+# Amount Due
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $AmountDue,
+
 # Quick Books Reference Number
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -70,14 +91,34 @@ Set-AtwsExpenseReport
     [string]
     $QuickBooksReferenceNumber,
 
-# Submitter ID
+# Submit
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Submit,
+
+# Approver ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
     [Int]
-    $SubmitterID,
+    $ApproverID,
+
+# Approved Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $ApprovedDate,
+
+# Department Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $DepartmentNumber,
 
 # Status
     [Parameter(
@@ -98,20 +139,12 @@ Set-AtwsExpenseReport
     [string]
     $Status,
 
-# Rejection Reason
+# Submit Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,2048)]
-    [string]
-    $RejectionReason,
-
-# Cash Advance Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $CashAdvanceAmount,
+    [datetime]
+    $SubmitDate,
 
 # Reimbursement Currency Amount Due
     [Parameter(
@@ -127,6 +160,15 @@ Set-AtwsExpenseReport
     [Int]
     $ReimbursementCurrencyID,
 
+# Submitter ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $SubmitterID,
+
 # Name
     [Parameter(
       Mandatory = $true,
@@ -137,13 +179,6 @@ Set-AtwsExpenseReport
     [string]
     $Name,
 
-# Approver ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ApproverID,
-
 # Period Ending
     [Parameter(
       Mandatory = $true,
@@ -153,20 +188,12 @@ Set-AtwsExpenseReport
     [datetime]
     $WeekEnding,
 
-# Department Number
+# Reimbursement Currency Cash Advance Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string]
-    $DepartmentNumber,
-
-# Submit Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $SubmitDate,
+    [double]
+    $ReimbursementCurrencyCashAdvanceAmount,
 
 # Expense Total
     [Parameter(
@@ -175,40 +202,13 @@ Set-AtwsExpenseReport
     [double]
     $ExpenseTotal,
 
-# Amount Due
+# Rejection Reason
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $AmountDue,
-
-# Submit
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Submit,
-
-# Approved Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $ApprovedDate,
-
-# Reimbursement Currency Cash Advance Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $ReimbursementCurrencyCashAdvanceAmount,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BusinessDivisionSubdivisionID
+    [ValidateLength(0,2048)]
+    [string]
+    $RejectionReason
   )
  
     begin { 
