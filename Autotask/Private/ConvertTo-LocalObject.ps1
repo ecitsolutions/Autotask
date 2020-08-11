@@ -97,20 +97,20 @@ Function ConvertTo-LocalObject {
                 }
             }
     
-            if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) { 
-                # Restore picklist labels
-                foreach ($field in $Picklists) {
-                    $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field
-                    if ($object.$field -in $picklistValues['byValue'].Keys) { 
-                        $object.$field = $picklistValues['byValue'][$object.$field]
+             
+            # Restore picklist labels
+            foreach ($field in $Picklists) {
+                $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field
+                if ($object.$field -in $picklistValues.Keys) { 
+                    $value = $picklistValues[$object.$field]
+                    if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) {
+                        $object.$field = $value
                     }
-                }
-            }
+                    # Add Label property
+                    $fieldName = '{0}Label' -F $field
+                    Add-Member -InputObject $object -MemberType NoteProperty -Name $fieldName -Value $value -Force
 
-            Foreach ($field in $Picklists) {
-                $fieldName = '{0}Label' -F $field.Name
-                $value = ($field.PickListValues.Where{ $_.Value -eq $object.$($field.Name) }).Label
-                Add-Member -InputObject $object -MemberType NoteProperty -Name $fieldName -Value $value -Force
+                }
             }
         }
         
