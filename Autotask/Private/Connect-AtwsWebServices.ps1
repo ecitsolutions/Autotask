@@ -59,12 +59,19 @@ Function Connect-AtwsWebServices {
 
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
-    
-        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
-    
+        ## Preparing for a progressbar
+        # Prepare parameters for @splatting
+        $ProgressParameters = @{
+            Activity = 'Creating and importing functions for all Autotask entities.'
+            Id       = 4
+        }
+        Write-AtwsProgress -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
+
         $DefaultUri = 'https://webservices.Autotask.net/atservices/1.6/atws.asmx'
-    
+
+        Write-Debug "Connect-AtwsWebServices: DefaultUri set to $DefaultUri"
+
         # Unless warning level is specified explicitly - Show warnings!
         if (-not ($WarningAction)) {
             $Global:WarningPreference = 'Continue'
@@ -73,12 +80,7 @@ Function Connect-AtwsWebServices {
     }
   
     process { 
-        ## Preparing for a progressbar
-        # Prepare parameters for @splatting
-        $ProgressParameters = @{
-            Activity = 'Creating and importing functions for all Autotask entities.'
-            Id       = 4
-        }
+        
     
         # Create a  binding with no authentication
         $anonymousBinding = New-Object ServiceModel.BasicHttpsBinding 
@@ -89,10 +91,13 @@ Function Connect-AtwsWebServices {
         # First make an unauthenticated call to the DefaultURI to determine correct
         # web services endpoint for the user we are going to authenticate as
         $rootService = New-Object Autotask.ATWSSoapClient  $anonymousBinding, $endPoint 
+
+        Write-Debug "Connect-AtwsWebServices: rootService created successfully"
   
         # Post progress info to console
         Write-Verbose ('{0}: Getting ZoneInfo for user {1} by calling default URI {2}' -F $MyInvocation.MyCommand.Name, $ConfigurationData.UserName, $DefaultUri)
-        Write-AtwsProgress -Status 'Creating connection' -PercentComplete 1 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
+
+        Write-AtwsProgress -Status 'Creating connection' -PercentComplete 10 -CurrentOperation 'Locating correct datacenter' @ProgressParameters
     
         # Get ZoneInfo for username
         $zoneInfo = $rootService.getZoneInfo($ConfigurationData.UserName)
@@ -110,7 +115,7 @@ Function Connect-AtwsWebServices {
         Write-Verbose ('{0}: Customer tenant ID: {1}, Web URL: {2}, SOAP endpoint: {3}' -F $MyInvocation.MyCommand.Name, $ZoneInfo.CI, $ZoneInfo.WebUrl, $ZoneInfo.Url)
     
         # Post progress to console
-        Write-AtwsProgress -Status 'Datacenter located' -PercentComplete 30 -CurrentOperation 'Authenticating to web service' @ProgressParameters
+        Write-AtwsProgress -Status 'Datacenter located' -PercentComplete 40 -CurrentOperation 'Authenticating to web service' @ProgressParameters
              
         # Make sure a failure to create this object truly fails the script
         Write-Verbose ('{0}: Creating new SOAP client using URI: {1}' -F $MyInvocation.MyCommand.Name, $ZoneInfo.Url)
@@ -170,7 +175,7 @@ Function Connect-AtwsWebServices {
        
         # Get username part of credential
         $UserName = $ConfigurationData.UserName.Split('@')[0]
-        $result = Get-AtwsData -Entity Resource -Filter "username -eq $UserName"
+        $result = Get-AtwsResource -Username $UserName
     
         if ($result) {
     
