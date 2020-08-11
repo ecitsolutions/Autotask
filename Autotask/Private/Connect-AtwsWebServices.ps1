@@ -82,6 +82,7 @@ Function Connect-AtwsWebServices {
     process { 
         
     
+        ## SOAP
         # Create a  binding with no authentication
         $anonymousBinding = New-Object ServiceModel.BasicHttpsBinding 
 
@@ -108,7 +109,6 @@ Function Connect-AtwsWebServices {
             
             throw (New-Object System.Data.SyntaxErrorException ('Invalid username "{0}". try again.' -f $ConfigurationData.UserName))
             return
-      
         }
     
         # If we get to here the username exists and we have the information we need to try to authenticate
@@ -167,7 +167,19 @@ Function Connect-AtwsWebServices {
             throw $_   
             return
         }
-    
+
+        ## REST
+        $uri = '{0}/zoneInformation?user={1}' -f $DefaultRestUri, $ConfigurationData.UserName
+        $restZoneInfo = Invoke-RestMethod -Uri $uri
+        if ($restZoneInfo.CI -gt 0) {
+            $Script:RestUri = $restZoneInfo.url
+            $Script:RestHeader = @{
+                'ApiIntegrationcode' = $AutotaskIntegrationsValue.IntegrationCode
+                'UserName'           = $ConfigurationData.UserName
+                'Secret'             = $Script:Atws.ClientCredentials.UserName.Password 
+                'Content-Type'       = 'application/json'
+            }
+        }
    
         Write-Verbose ('{0}: Running query Get-AtwsData -Entity Resource -Filter "username -eq $UserName"' -F $MyInvocation.MyCommand.Name)
     
