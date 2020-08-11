@@ -81,11 +81,6 @@ Function Get-AtwsData {
     }
   
     process {
-        # $Filter is usually passed as a flat string. Make sure it is formatted properly
-        if ($Filter.Count -eq 1 -and $Filter -match ' ' ) { 
-            $Filter = . Update-AtwsFilter -Filterstring $Filter
-        }
-    
         # Squash into a flat array with entity first
         [Array]$Query = @($Entity) + $Filter
   
