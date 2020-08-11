@@ -85,7 +85,25 @@ Function Get-AtwsPicklistValue {
             ParameterSetName = 'as_Values'
         )]
         [string]
-        $FieldName
+        $FieldName,
+
+        [Parameter(
+            Mandatory = $false,
+            Position = 2,
+            ParameterSetName = 'by_Entity'
+        )]
+        [Parameter(
+            Mandatory = $false,
+            Position = 2,
+            ParameterSetName = 'as_Labels'
+        )]
+        [Parameter(
+            Mandatory = $false,
+            Position = 2,
+            ParameterSetName = 'as_Values'
+        )]
+        [string]
+        $ParentValue
     )
     
     begin { 
@@ -129,7 +147,7 @@ Function Get-AtwsPicklistValue {
                 # No parentfieldname
                 $result = switch ($PSCmdlet.ParameterSetName) {
                     'by_Entity' {
-                        $result = $picklistValues.byValue
+                        $picklistValues.byValue
                     }
                     'as_Labels' {
                         $picklistValues.byLabel.keys
@@ -140,11 +158,26 @@ Function Get-AtwsPicklistValue {
                 }
 
             }
-            # Take parentfieldname into account
+            # Take parentvalue into account
+            elseIf ($ParentValue) {
+                $result = switch ($PSCmdlet.ParameterSetName) {
+                    'by_Entity' {
+                        $picklistValues[$ParentValue]
+                    }
+                    'as_Labels' {
+                        $picklistValues[$ParentValue].byLabel.keys
+                    }
+                    'as_Values' {
+                        $picklistValues[$ParentValue].byLabel.values
+                    }
+                }
+            }
+            # We have a picklist with a parentfield, but no parentvalue. Return 
+            # hashtable for by_entity and all labels or keys if either is requested
             else {
                 $result = switch ($PSCmdlet.ParameterSetName) {
                     'by_Entity' {
-                        $result = $picklistValues
+                        $picklistValues
                     }
                     'as_Labels' {
                         $picklistValues.Values.byLabel.keys
