@@ -130,10 +130,10 @@ Function Update-AtwsEntity {
                 $HasPickList = $true
                 $picklistFields += $field.name
                 $fieldTable['PicklistValues'] = @{}
-                if ($field.PickListParentFieldName) {
+                if ($field.PickListParentValueField) {
                     foreach ($p in $field.PicklistValues) { 
                         if ($p.IsActive) {
-                            if (-not ($byParentValue.ContainsKey($p.ParentValue))) {
+                            if (-not ($fieldTable['PicklistValues'].ContainsKey($p.ParentValue))) {
                                 $fieldTable['PicklistValues'][$p.ParentValue] = @{
                                     byValue = @{}
                                     byLabel = @{}

@@ -169,6 +169,7 @@ Function Get-AtwsParameterDefinition {
                 ValidateLength         = $ValidateLength
                 ValidateSet            = @()
                 isPicklist             = $field.IsPickList
+                PickListParentValueField = $field.PickListParentValueField
                 Array                  = $(($Verb -eq 'Get'))
                 Name                   = $field.Name
                 EntityName             = $Entity.Name
