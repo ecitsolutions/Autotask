@@ -57,14 +57,14 @@ Function ConvertTo-LocalObject {
         $entityName = $InputObject[0].GetType().Name       
         
         # Get updated field info about this entity
-        $fields = Get-AtwsFieldInfo -Entity $entityName
+        $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
     
         # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
         # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-        $DateTimeParams = $fields.Where( { $_.Type -eq 'datetime' }).Name
+        $DateTimeParams = $entityInfo.DatetimeFields
     
         # Prepare picklists
-        $Picklists = $fields.Where{ $_.IsPickList }
+        $Picklists = $entityInfo.PicklistFields
     
         # Loop through all objects and make adjustments
         foreach ($object in $InputObject) { 
@@ -100,8 +100,9 @@ Function ConvertTo-LocalObject {
             if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) { 
                 # Restore picklist labels
                 foreach ($field in $Picklists) {
-                    if ($object.$($field.Name) -in $field.PicklistValues.Value) {
-                        $object.$($field.Name) = ($field.PickListValues.Where{ $_.Value -eq $object.$($field.Name) }).Label
+                    $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field
+                    if ($object.$field -in $picklistValues['byValue'].Keys) { 
+                        $object.$field = $picklistValues['byValue'][$object.$field]
                     }
                 }
             }
