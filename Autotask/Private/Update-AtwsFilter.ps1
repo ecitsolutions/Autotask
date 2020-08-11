@@ -82,7 +82,7 @@ Function Update-AtwsFilter {
       
         Write-Debug ('{0}: Checking query for variables that have survived as string' -F $MyInvocation.MyCommand.Name)
       
-        $NewFilter = @()
+        $NewFilter = [Collections.ArrayList]::new()
         foreach ($Word in $Filterstring) {
             $value = $Word
             # Is it a variable name?
@@ -135,7 +135,7 @@ Function Update-AtwsFilter {
                     }
                 }
             }
-            $NewFilter += $value
+            [void]$NewFilter.add($value)
         }
  
     }
