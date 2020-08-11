@@ -167,20 +167,7 @@ Function Connect-AtwsWebServices {
             throw $_   
             return
         }
-
-        ## REST
-        $uri = '{0}/zoneInformation?user={1}' -f $DefaultRestUri, $ConfigurationData.UserName
-        $restZoneInfo = Invoke-RestMethod -Uri $uri
-        if ($restZoneInfo.CI -gt 0) {
-            $Script:RestUri = $restZoneInfo.url
-            $Script:RestHeader = @{
-                'ApiIntegrationcode' = $AutotaskIntegrationsValue.IntegrationCode
-                'UserName'           = $ConfigurationData.UserName
-                'Secret'             = $Script:Atws.ClientCredentials.UserName.Password 
-                'Content-Type'       = 'application/json'
-            }
-        }
-   
+    
         Write-Verbose ('{0}: Running query Get-AtwsData -Entity Resource -Filter "username -eq $UserName"' -F $MyInvocation.MyCommand.Name)
     
         Write-AtwsProgress -Status 'Connected' -PercentComplete 60 -CurrentOperation 'Testing connection' @ProgressParameters
