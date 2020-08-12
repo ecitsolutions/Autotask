@@ -81,7 +81,12 @@ Function Get-AtwsData {
     }
   
     process {
-        # Squash into a flat array with entity first
+        # $Filter may in some cases be passed as a flat string. Make sure it is formatted properly
+        if ($Filter.Count -eq 1 -and $Filter -match ' ' ) { 
+            $Filter = . Update-AtwsFilter -Filterstring $Filter
+        }
+
+        # Create array with entity as first element
         [Array]$Query = @($Entity) + $Filter
   
         Write-Verbose ('{0}: Converting query string into QueryXml. string as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
