@@ -46,6 +46,12 @@ Function Get-AtwsPicklistValue {
         $Label, 
 
         [Parameter(
+            ParameterSetName = 'as_Labels'
+        )]
+        [switch]
+        $Hashtable, 
+
+        [Parameter(
             ParameterSetName = 'as_Values'
         )]
         [switch]
@@ -150,7 +156,12 @@ Function Get-AtwsPicklistValue {
                         $picklistValues.byValue
                     }
                     'as_Labels' {
-                        $picklistValues.byLabel.keys
+                        if ($Hashtable.IsPresent) { 
+                            $picklistValues.byLabel
+                        }
+                        else { 
+                            $picklistValues.byLabel.keys
+                        }
                     }
                     'as_Values' {
                         $picklistValues.byLabel.values
@@ -165,7 +176,12 @@ Function Get-AtwsPicklistValue {
                         $picklistValues[$ParentValue]
                     }
                     'as_Labels' {
-                        $picklistValues[$ParentValue].byLabel.keys
+                        if ($Hashtable.IsPresent) { 
+                            $picklistValues[$ParentValue].byLabel
+                        }
+                        else { 
+                            $picklistValues[$ParentValue].byLabel.keys
+                        }
                     }
                     'as_Values' {
                         $picklistValues[$ParentValue].byLabel.values
@@ -180,7 +196,12 @@ Function Get-AtwsPicklistValue {
                         $picklistValues
                     }
                     'as_Labels' {
-                        $picklistValues.Values.byLabel.keys
+                        if ($Hashtable.IsPresent) { 
+                            $picklistValues.Values.byLabel
+                        }
+                        else { 
+                            $picklistValues.Values.byLabel.keys
+                        }
                     }
                     'as_Values' {
                         $picklistValues.Values.byLabel.values
