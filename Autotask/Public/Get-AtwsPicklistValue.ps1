@@ -160,11 +160,11 @@ Function Get-AtwsPicklistValue {
                             $picklistValues.byLabel
                         }
                         else { 
-                            $picklistValues.byLabel.keys
+                            $picklistValues.byLabel.keys | Sort-Object
                         }
                     }
                     'as_Values' {
-                        $picklistValues.byLabel.values
+                        $picklistValues.byLabel.values | Sort-Object
                     }
                 }
 
@@ -180,11 +180,11 @@ Function Get-AtwsPicklistValue {
                             $picklistValues[$ParentValue].byLabel
                         }
                         else { 
-                            $picklistValues[$ParentValue].byLabel.keys
+                            $picklistValues[$ParentValue].byLabel.keys | Sort-Object
                         }
                     }
                     'as_Values' {
-                        $picklistValues[$ParentValue].byLabel.values
+                        $picklistValues[$ParentValue].byLabel.values | Sort-Object
                     }
                 }
             }
@@ -200,16 +200,17 @@ Function Get-AtwsPicklistValue {
                             $picklistValues.Values.byLabel
                         }
                         else { 
-                            $picklistValues.Values.byLabel.keys
+                            $picklistValues.Values.byLabel.keys | Sort-Object
                         }
                     }
                     'as_Values' {
-                        $picklistValues.Values.byLabel.values
+                        $picklistValues.Values.byLabel.values | Sort-Object
                     }
                 }
             }
         }
-    }  
+    } 
+     
     end {
 
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
