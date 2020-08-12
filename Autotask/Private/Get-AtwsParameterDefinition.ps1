@@ -123,8 +123,8 @@ Function Get-AtwsParameterDefinition {
                 }
             }
             'Set' { 
-                if (($Entity.ContainsKey('WritableFields'))) {
-                    [array]$fields = $Entity['WritableFields'] | ForEach-Object {
+                if (($Entity.ContainsKey('WriteableFields'))) {
+                    [array]$fields = $Entity['WriteableFields'] | ForEach-Object {
                         $parameterSet[$_] = @('Input_Object', 'By_parameters', 'By_Id')
                         $Entity['FieldInfo'][$_]
                     }
@@ -143,7 +143,7 @@ Function Get-AtwsParameterDefinition {
     
         # Add Name alias for EntityName parameters
         $entityNameParameter = '{0}Name' -f $Entity.Name
-        foreach ($field in $fields ) {
+        foreach ($field in $fields | sort-object -property name) {
             # Start with native field type
             $Type = $field.Type
 
