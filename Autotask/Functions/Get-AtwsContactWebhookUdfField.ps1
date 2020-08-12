@@ -134,13 +134,21 @@ Set-AtwsContactWebhookUdfField
     [Nullable[long][]]
     $id,
 
-# Webhook ID
+# Is Display Always Field
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $WebhookID,
+    [Nullable[boolean][]]
+    $IsDisplayAlwaysField,
+
+# Is Subscribed Field
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsSubscribedField,
 
 # UDF Field ID
     [Parameter(
@@ -162,40 +170,32 @@ Set-AtwsContactWebhookUdfField
     [string[]]
     $UdfFieldID,
 
-# Is Subscribed Field
+# Webhook ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsSubscribedField,
-
-# Is Display Always Field
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsDisplayAlwaysField,
+    [Nullable[Int][]]
+    $WebhookID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDisplayAlwaysField', 'id', 'IsSubscribedField', 'WebhookID', 'UdfFieldID')]
+    [ValidateSet('UdfFieldID', 'id', 'IsDisplayAlwaysField', 'IsSubscribedField', 'WebhookID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDisplayAlwaysField', 'id', 'IsSubscribedField', 'WebhookID', 'UdfFieldID')]
+    [ValidateSet('UdfFieldID', 'id', 'IsDisplayAlwaysField', 'IsSubscribedField', 'WebhookID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDisplayAlwaysField', 'id', 'IsSubscribedField', 'WebhookID', 'UdfFieldID')]
+    [ValidateSet('UdfFieldID', 'id', 'IsDisplayAlwaysField', 'IsSubscribedField', 'WebhookID')]
     [string[]]
     $IsNotNull,
 

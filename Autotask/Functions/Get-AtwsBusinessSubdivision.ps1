@@ -109,6 +109,21 @@ Set-AtwsBusinessSubdivision
     [switch]
     $All,
 
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Active,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,400)]
+    [string[]]
+    $Description,
+
 # Business Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -126,39 +141,24 @@ Set-AtwsBusinessSubdivision
     [string[]]
     $Name,
 
-# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,400)]
-    [string[]]
-    $Description,
-
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Active,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('Description', 'Name', 'Active', 'id')]
+    [ValidateSet('Description', 'id', 'Active', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id')]
+    [ValidateSet('Description', 'id', 'Active', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id')]
+    [ValidateSet('Description', 'id', 'Active', 'Name')]
     [string[]]
     $IsNotNull,
 

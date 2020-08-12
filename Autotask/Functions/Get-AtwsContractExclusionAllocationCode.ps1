@@ -86,7 +86,7 @@ Remove-AtwsContractExclusionAllocationCode
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AllocationCodeID', 'ContractID')]
+    [ValidateSet('ContractID', 'AllocationCodeID')]
     [string]
     $GetReferenceEntityById,
 
@@ -109,13 +109,13 @@ Remove-AtwsContractExclusionAllocationCode
     [switch]
     $All,
 
-# Id
+# Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $id,
+    $AllocationCodeID,
 
 # Contract ID
     [Parameter(
@@ -125,32 +125,32 @@ Remove-AtwsContractExclusionAllocationCode
     [Nullable[long][]]
     $ContractID,
 
-# Allocation Code ID
+# Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $AllocationCodeID,
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'id', 'ContractID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'id', 'ContractID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'id', 'ContractID')]
     [string[]]
     $IsNotNull,
 

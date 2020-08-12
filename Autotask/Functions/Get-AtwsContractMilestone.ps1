@@ -101,7 +101,7 @@ Set-AtwsContractMilestone
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'CreatorResourceID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'CreatorResourceID', 'AllocationCodeID', 'ContractID')]
     [string]
     $GetReferenceEntityById,
 
@@ -125,13 +125,35 @@ Set-AtwsContractMilestone
     [switch]
     $All,
 
-# id
+# Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AllocationCodeID,
+
+# Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[double][]]
+    $Amount,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
+
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ContractID,
 
 # Create Date
     [Parameter(
@@ -146,6 +168,45 @@ Set-AtwsContractMilestone
     )]
     [Nullable[Int][]]
     $CreatorResourceID,
+
+# Date Due
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $DateDue,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,250)]
+    [string[]]
+    $Description,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Internal Currency Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyAmount,
+
+# Is This Initial Payment
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsInitialPayment,
 
 # Status
     [Parameter(
@@ -167,22 +228,6 @@ Set-AtwsContractMilestone
     [string[]]
     $Status,
 
-# Date Due
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $DateDue,
-
-# Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $Amount,
-
 # Title
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -192,69 +237,24 @@ Set-AtwsContractMilestone
     [string[]]
     $Title,
 
-# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,250)]
-    [string[]]
-    $Description,
-
-# Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContractID,
-
-# Is This Initial Payment
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsInitialPayment,
-
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AllocationCodeID,
-
-# Internal Currency Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyAmount,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('IsInitialPayment', 'BusinessDivisionSubdivisionID', 'DateDue', 'id', 'Status', 'CreatorResourceID', 'Amount', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'CreateDate', 'Title')]
+    [ValidateSet('id', 'ContractID', 'Status', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID', 'Title', 'IsInitialPayment', 'CreateDate', 'AllocationCodeID', 'Description', 'Amount', 'DateDue', 'CreatorResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsInitialPayment', 'BusinessDivisionSubdivisionID', 'DateDue', 'id', 'Status', 'CreatorResourceID', 'Amount', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'CreateDate', 'Title')]
+    [ValidateSet('id', 'ContractID', 'Status', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID', 'Title', 'IsInitialPayment', 'CreateDate', 'AllocationCodeID', 'Description', 'Amount', 'DateDue', 'CreatorResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsInitialPayment', 'BusinessDivisionSubdivisionID', 'DateDue', 'id', 'Status', 'CreatorResourceID', 'Amount', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'CreateDate', 'Title')]
+    [ValidateSet('id', 'ContractID', 'Status', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID', 'Title', 'IsInitialPayment', 'CreateDate', 'AllocationCodeID', 'Description', 'Amount', 'DateDue', 'CreatorResourceID')]
     [string[]]
     $IsNotNull,
 

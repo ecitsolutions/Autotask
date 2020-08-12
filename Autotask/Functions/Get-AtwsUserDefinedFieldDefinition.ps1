@@ -126,50 +126,19 @@ Set-AtwsUserDefinedFieldDefinition
     [switch]
     $All,
 
-# ID
+# Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $CreateDate,
+
+# Crm to Project Udf Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
     [Nullable[long][]]
-    $id,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,45)]
-    [string[]]
-    $Name,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $Description,
-
-# Udf Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $UdfType,
+    $CrmToProjectUdfId,
 
 # Data Type
     [Parameter(
@@ -199,55 +168,13 @@ Set-AtwsUserDefinedFieldDefinition
     [string[]]
     $DefaultValue,
 
-# Field Mapping
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $IsFieldMapping,
-
-# Protected
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsProtected,
-
-# Required
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsRequired,
-
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsActive,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDate,
-
-# Merge Variable Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
+    [ValidateLength(0,128)]
     [string[]]
-    $MergeVariableName,
-
-# Crm to Project Udf Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $CrmToProjectUdfId,
+    $Description,
 
 # Display Format
     [Parameter(
@@ -268,26 +195,20 @@ Set-AtwsUserDefinedFieldDefinition
     [string[]]
     $DisplayFormat,
 
-# Sort Order
+# ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $SortOrder,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
-# Number of Decimal Places
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $NumberOfDecimalPlaces,
-
-# Visible to Client Portal
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $IsVisibleToClientPortal,
+    $IsActive,
 
 # Encrypted
     [Parameter(
@@ -296,6 +217,13 @@ Set-AtwsUserDefinedFieldDefinition
     [Nullable[boolean][]]
     $IsEncrypted,
 
+# Field Mapping
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsFieldMapping,
+
 # Is Private
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -303,24 +231,96 @@ Set-AtwsUserDefinedFieldDefinition
     [Nullable[boolean][]]
     $IsPrivate,
 
+# Protected
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'IsActive', 'IsRequired', 'DisplayFormat', 'NumberOfDecimalPlaces', 'DataType', 'IsVisibleToClientPortal', 'MergeVariableName', 'Description', 'IsEncrypted', 'id', 'IsPrivate', 'IsProtected', 'Name', 'UdfType', 'IsFieldMapping', 'SortOrder', 'DefaultValue')]
+    [Nullable[boolean][]]
+    $IsProtected,
+
+# Required
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsRequired,
+
+# Visible to Client Portal
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsVisibleToClientPortal,
+
+# Merge Variable Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $MergeVariableName,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,45)]
+    [string[]]
+    $Name,
+
+# Number of Decimal Places
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $NumberOfDecimalPlaces,
+
+# Sort Order
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $SortOrder,
+
+# Udf Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $UdfType,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'IsProtected', 'CrmToProjectUdfId', 'IsFieldMapping', 'IsVisibleToClientPortal', 'IsRequired', 'SortOrder', 'DataType', 'CreateDate', 'IsActive', 'Description', 'IsEncrypted', 'MergeVariableName', 'Name', 'DefaultValue', 'IsPrivate', 'NumberOfDecimalPlaces', 'UdfType', 'DisplayFormat')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'IsActive', 'IsRequired', 'DisplayFormat', 'NumberOfDecimalPlaces', 'DataType', 'IsVisibleToClientPortal', 'MergeVariableName', 'Description', 'IsEncrypted', 'id', 'IsPrivate', 'IsProtected', 'Name', 'UdfType', 'IsFieldMapping', 'SortOrder', 'DefaultValue')]
+    [ValidateSet('id', 'IsProtected', 'CrmToProjectUdfId', 'IsFieldMapping', 'IsVisibleToClientPortal', 'IsRequired', 'SortOrder', 'DataType', 'CreateDate', 'IsActive', 'Description', 'IsEncrypted', 'MergeVariableName', 'Name', 'DefaultValue', 'IsPrivate', 'NumberOfDecimalPlaces', 'UdfType', 'DisplayFormat')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'IsActive', 'IsRequired', 'DisplayFormat', 'NumberOfDecimalPlaces', 'DataType', 'IsVisibleToClientPortal', 'MergeVariableName', 'Description', 'IsEncrypted', 'id', 'IsPrivate', 'IsProtected', 'Name', 'UdfType', 'IsFieldMapping', 'SortOrder', 'DefaultValue')]
+    [ValidateSet('id', 'IsProtected', 'CrmToProjectUdfId', 'IsFieldMapping', 'IsVisibleToClientPortal', 'IsRequired', 'SortOrder', 'DataType', 'CreateDate', 'IsActive', 'Description', 'IsEncrypted', 'MergeVariableName', 'Name', 'DefaultValue', 'IsPrivate', 'NumberOfDecimalPlaces', 'UdfType', 'DisplayFormat')]
     [string[]]
     $IsNotNull,
 

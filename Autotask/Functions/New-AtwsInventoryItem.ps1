@@ -64,14 +64,12 @@ Set-AtwsInventoryItem
     [Autotask.InventoryItem[]]
     $InputObject,
 
-# Quantity On Hand
+# Back Order
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Int]
-    $QuantityOnHand,
+    $BackOrder,
 
 # Bin
     [Parameter(
@@ -87,23 +85,6 @@ Set-AtwsInventoryItem
     )]
     [Int]
     $ImpersonatorCreatorResourceID,
-
-# Quantity Maximum
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $QuantityMaximum,
-
-# Reference Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ReferenceNumber,
 
 # Inventory Location ID
     [Parameter(
@@ -121,28 +102,12 @@ Set-AtwsInventoryItem
     [Int]
     $OnOrder,
 
-# Quantity Minimum
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $QuantityMinimum,
-
 # Picked
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $Picked,
-
-# Reserved
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $Reserved,
 
 # Product ID
     [Parameter(
@@ -153,12 +118,47 @@ Set-AtwsInventoryItem
     [Int]
     $ProductID,
 
-# Back Order
+# Quantity Maximum
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $QuantityMaximum,
+
+# Quantity Minimum
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $QuantityMinimum,
+
+# Quantity On Hand
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $QuantityOnHand,
+
+# Reference Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ReferenceNumber,
+
+# Reserved
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $BackOrder
+    $Reserved
   )
  
     begin { 
@@ -180,7 +180,7 @@ Set-AtwsInventoryItem
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -188,7 +188,7 @@ Set-AtwsInventoryItem
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -197,7 +197,7 @@ Set-AtwsInventoryItem
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -213,12 +213,12 @@ Set-AtwsInventoryItem
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

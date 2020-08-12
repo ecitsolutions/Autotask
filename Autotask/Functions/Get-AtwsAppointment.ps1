@@ -111,6 +111,36 @@ Set-AtwsAppointment
     [switch]
     $All,
 
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Created By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $Description,
+
+# End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $EndDateTime,
+
 # Appointment Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -127,15 +157,6 @@ Set-AtwsAppointment
     [Nullable[Int][]]
     $ResourceID,
 
-# Appointment Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,256)]
-    [string[]]
-    $Title,
-
 # Start Date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -144,35 +165,14 @@ Set-AtwsAppointment
     [Nullable[datetime][]]
     $StartDateTime,
 
-# End Date
+# Appointment Title
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDateTime,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
+    [ValidateLength(0,256)]
     [string[]]
-    $Description,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
+    $Title,
 
 # Update Date
     [Parameter(
@@ -184,21 +184,21 @@ Set-AtwsAppointment
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'StartDateTime', 'CreatorResourceID', 'Description', 'CreateDateTime', 'UpdateDateTime', 'Title', 'id', 'ResourceID')]
+    [ValidateSet('UpdateDateTime', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'ResourceID', 'CreateDateTime', 'id', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'StartDateTime', 'CreatorResourceID', 'Description', 'CreateDateTime', 'UpdateDateTime', 'Title', 'id', 'ResourceID')]
+    [ValidateSet('UpdateDateTime', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'ResourceID', 'CreateDateTime', 'id', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'StartDateTime', 'CreatorResourceID', 'Description', 'CreateDateTime', 'UpdateDateTime', 'Title', 'id', 'ResourceID')]
+    [ValidateSet('UpdateDateTime', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'ResourceID', 'CreateDateTime', 'id', 'Title')]
     [string[]]
     $IsNotNull,
 

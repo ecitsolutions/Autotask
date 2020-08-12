@@ -88,7 +88,7 @@ Set-AtwsAccountPhysicalLocation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TaxRegionID', 'CountryID', 'AccountID')]
+    [ValidateSet('AccountID', 'TaxRegionID', 'CountryID')]
     [string]
     $GetReferenceEntityById,
 
@@ -101,7 +101,7 @@ Set-AtwsAccountPhysicalLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Account', 'InstalledProduct', 'ServiceCall', 'Contact', 'Task', 'Ticket')]
+    [ValidateSet('Contact', 'ServiceCall', 'InstalledProduct', 'Task', 'Account', 'Ticket')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -112,14 +112,6 @@ Set-AtwsAccountPhysicalLocation
     [switch]
     $All,
 
-# Account Physical Location ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -128,22 +120,12 @@ Set-AtwsAccountPhysicalLocation
     [Nullable[Int][]]
     $AccountID,
 
-# Name
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string[]]
-    $Description,
+    [Nullable[boolean][]]
+    $Active,
 
 # Address1
     [Parameter(
@@ -161,45 +143,6 @@ Set-AtwsAccountPhysicalLocation
     [string[]]
     $Address2,
 
-# City
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $City,
-
-# State
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string[]]
-    $State,
-
-# Postal Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,20)]
-    [string[]]
-    $PostalCode,
-
-# Country ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CountryID,
-
-# Phone
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string[]]
-    $Phone,
-
 # Alternate Phone 1
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -216,6 +159,29 @@ Set-AtwsAccountPhysicalLocation
     [string[]]
     $AlternatePhone2,
 
+# City
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $City,
+
+# Country ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CountryID,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string[]]
+    $Description,
+
 # Fax
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -224,26 +190,29 @@ Set-AtwsAccountPhysicalLocation
     [string[]]
     $Fax,
 
-# Round Trip Distance
+# Account Physical Location ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
-    $RoundtripDistance,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
-# Active
+# Is Tax Exempt
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $Active,
+    $IsTaxExempt,
 
-# Primary
+# Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $Primary,
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
 
 # Override Account Tax Settings
     [Parameter(
@@ -252,12 +221,43 @@ Set-AtwsAccountPhysicalLocation
     [Nullable[boolean][]]
     $OverrideAccountTaxSettings,
 
-# Is Tax Exempt
+# Phone
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $Phone,
+
+# Postal Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,20)]
+    [string[]]
+    $PostalCode,
+
+# Primary
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $IsTaxExempt,
+    $Primary,
+
+# Round Trip Distance
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $RoundtripDistance,
+
+# State
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $State,
 
 # Tax Region ID
     [Parameter(
@@ -269,21 +269,21 @@ Set-AtwsAccountPhysicalLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CountryID', 'AlternatePhone2', 'TaxRegionID', 'RoundtripDistance', 'AlternatePhone1', 'AccountID', 'Address2', 'State', 'Fax', 'City', 'Description', 'id', 'Active', 'IsTaxExempt', 'Phone', 'Primary', 'OverrideAccountTaxSettings', 'Name', 'PostalCode', 'Address1')]
+    [ValidateSet('Primary', 'RoundtripDistance', 'City', 'Phone', 'Active', 'PostalCode', 'id', 'Name', 'Address2', 'Description', 'TaxRegionID', 'CountryID', 'AlternatePhone2', 'Fax', 'AccountID', 'Address1', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'AlternatePhone1', 'State')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CountryID', 'AlternatePhone2', 'TaxRegionID', 'RoundtripDistance', 'AlternatePhone1', 'AccountID', 'Address2', 'State', 'Fax', 'City', 'Description', 'id', 'Active', 'IsTaxExempt', 'Phone', 'Primary', 'OverrideAccountTaxSettings', 'Name', 'PostalCode', 'Address1')]
+    [ValidateSet('Primary', 'RoundtripDistance', 'City', 'Phone', 'Active', 'PostalCode', 'id', 'Name', 'Address2', 'Description', 'TaxRegionID', 'CountryID', 'AlternatePhone2', 'Fax', 'AccountID', 'Address1', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'AlternatePhone1', 'State')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CountryID', 'AlternatePhone2', 'TaxRegionID', 'RoundtripDistance', 'AlternatePhone1', 'AccountID', 'Address2', 'State', 'Fax', 'City', 'Description', 'id', 'Active', 'IsTaxExempt', 'Phone', 'Primary', 'OverrideAccountTaxSettings', 'Name', 'PostalCode', 'Address1')]
+    [ValidateSet('Primary', 'RoundtripDistance', 'City', 'Phone', 'Active', 'PostalCode', 'id', 'Name', 'Address2', 'Description', 'TaxRegionID', 'CountryID', 'AlternatePhone2', 'Fax', 'AccountID', 'Address1', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'AlternatePhone1', 'State')]
     [string[]]
     $IsNotNull,
 

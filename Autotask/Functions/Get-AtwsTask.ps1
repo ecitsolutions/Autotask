@@ -108,7 +108,7 @@ Set-AtwsTask
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProjectID', 'AllocationCodeID', 'AccountPhysicalLocationID', 'AssignedResourceRoleID', 'LastActivityResourceID', 'PhaseID')]
+    [ValidateSet('AllocationCodeID', 'AccountPhysicalLocationID', 'LastActivityResourceID', 'AssignedResourceRoleID', 'PhaseID', 'ProjectID')]
     [string]
     $GetReferenceEntityById,
 
@@ -121,7 +121,7 @@ Set-AtwsTask
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceCallTask', 'TimeEntry', 'TaskSecondaryResource', 'TaskPredecessor', 'ChangeOrderCost', 'BillingItem', 'NotificationHistory', 'TaskNote', 'ExpenseItem')]
+    [ValidateSet('ExpenseItem', 'TaskPredecessor', 'ServiceCallTask', 'TaskSecondaryResource', 'NotificationHistory', 'ChangeOrderCost', 'TimeEntry', 'TaskNote', 'BillingItem')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -131,6 +131,13 @@ Set-AtwsTask
     )]
     [switch]
     $All,
+
+# Account Physical Location ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AccountPhysicalLocationID,
 
 # Allocation Code Name
     [Parameter(
@@ -160,6 +167,32 @@ Set-AtwsTask
     [Nullable[boolean][]]
     $CanClientPortalUserCompleteTask,
 
+# Task Completed By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CompletedByResourceID,
+
+# Completed By Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $CompletedByType,
+
 # Task Complete Date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -180,6 +213,25 @@ Set-AtwsTask
     )]
     [Nullable[Int][]]
     $CreatorResourceID,
+
+# Creator Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $CreatorType,
 
 # Task Department Name
     [Parameter(
@@ -259,6 +311,32 @@ Set-AtwsTask
     [Nullable[datetime][]]
     $LastActivityDateTime,
 
+# Last Activity Person Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Task -FieldName LastActivityPersonType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Task -FieldName LastActivityPersonType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $LastActivityPersonType,
+
+# Last Activity By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $LastActivityResourceID,
+
 # Phase ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -272,6 +350,25 @@ Set-AtwsTask
     )]
     [Nullable[Int][]]
     $Priority,
+
+# Priority Label
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PriorityLabel,
 
 # Project
     [Parameter(
@@ -316,16 +413,16 @@ Set-AtwsTask
     [string[]]
     $Status,
 
-# Priority Label
+# Task Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label
+      $set = Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -333,7 +430,7 @@ Set-AtwsTask
       }
     })]
     [string[]]
-    $PriorityLabel,
+    $TaskCategoryID,
 
 # Task Billable
     [Parameter(
@@ -379,121 +476,24 @@ Set-AtwsTask
     [string[]]
     $Title,
 
-# Creator Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $CreatorType,
-
-# Task Completed By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CompletedByResourceID,
-
-# Completed By Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $CompletedByType,
-
-# Last Activity Person Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName LastActivityPersonType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Task -FieldName LastActivityPersonType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $LastActivityPersonType,
-
-# Last Activity By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LastActivityResourceID,
-
-# Account Physical Location ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AccountPhysicalLocationID,
-
-# Task Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $TaskCategoryID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('Status', 'CompletedByType', 'Priority', 'TaskCategoryID', 'EndDateTime', 'RemainingHours', 'PriorityLabel', 'CanClientPortalUserCompleteTask', 'Description', 'HoursToBeScheduled', 'CompletedDateTime', 'Title', 'TaskNumber', 'CreatorResourceID', 'EstimatedHours', 'AccountPhysicalLocationID', 'ExternalID', 'AllocationCodeID', 'LastActivityDateTime', 'CreatorType', 'PurchaseOrderNumber', 'TaskIsBillable', 'AssignedResourceRoleID', 'CreateDateTime', 'DepartmentID', 'IsVisibleInClientPortal', 'LastActivityResourceID', 'CompletedByResourceID', 'AssignedResourceID', 'LastActivityPersonType', 'TaskType', 'ProjectID', 'PhaseID', 'id', 'StartDateTime')]
+    [ValidateSet('CreatorType', 'TaskType', 'PurchaseOrderNumber', 'RemainingHours', 'PhaseID', 'Priority', 'EndDateTime', 'CreateDateTime', 'CompletedByResourceID', 'CanClientPortalUserCompleteTask', 'TaskNumber', 'LastActivityResourceID', 'IsVisibleInClientPortal', 'Title', 'CreatorResourceID', 'EstimatedHours', 'DepartmentID', 'TaskCategoryID', 'Status', 'CompletedByType', 'AccountPhysicalLocationID', 'AssignedResourceID', 'ProjectID', 'LastActivityPersonType', 'id', 'PriorityLabel', 'StartDateTime', 'CompletedDateTime', 'TaskIsBillable', 'Description', 'AllocationCodeID', 'AssignedResourceRoleID', 'LastActivityDateTime', 'ExternalID', 'HoursToBeScheduled')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Status', 'CompletedByType', 'Priority', 'TaskCategoryID', 'EndDateTime', 'RemainingHours', 'PriorityLabel', 'CanClientPortalUserCompleteTask', 'Description', 'HoursToBeScheduled', 'CompletedDateTime', 'Title', 'TaskNumber', 'CreatorResourceID', 'EstimatedHours', 'AccountPhysicalLocationID', 'ExternalID', 'AllocationCodeID', 'LastActivityDateTime', 'CreatorType', 'PurchaseOrderNumber', 'TaskIsBillable', 'AssignedResourceRoleID', 'CreateDateTime', 'DepartmentID', 'IsVisibleInClientPortal', 'LastActivityResourceID', 'CompletedByResourceID', 'AssignedResourceID', 'LastActivityPersonType', 'TaskType', 'ProjectID', 'PhaseID', 'id', 'StartDateTime')]
+    [ValidateSet('CreatorType', 'TaskType', 'PurchaseOrderNumber', 'RemainingHours', 'PhaseID', 'Priority', 'EndDateTime', 'CreateDateTime', 'CompletedByResourceID', 'CanClientPortalUserCompleteTask', 'TaskNumber', 'LastActivityResourceID', 'IsVisibleInClientPortal', 'Title', 'CreatorResourceID', 'EstimatedHours', 'DepartmentID', 'TaskCategoryID', 'Status', 'CompletedByType', 'AccountPhysicalLocationID', 'AssignedResourceID', 'ProjectID', 'LastActivityPersonType', 'id', 'PriorityLabel', 'StartDateTime', 'CompletedDateTime', 'TaskIsBillable', 'Description', 'AllocationCodeID', 'AssignedResourceRoleID', 'LastActivityDateTime', 'ExternalID', 'HoursToBeScheduled')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Status', 'CompletedByType', 'Priority', 'TaskCategoryID', 'EndDateTime', 'RemainingHours', 'PriorityLabel', 'CanClientPortalUserCompleteTask', 'Description', 'HoursToBeScheduled', 'CompletedDateTime', 'Title', 'TaskNumber', 'CreatorResourceID', 'EstimatedHours', 'AccountPhysicalLocationID', 'ExternalID', 'AllocationCodeID', 'LastActivityDateTime', 'CreatorType', 'PurchaseOrderNumber', 'TaskIsBillable', 'AssignedResourceRoleID', 'CreateDateTime', 'DepartmentID', 'IsVisibleInClientPortal', 'LastActivityResourceID', 'CompletedByResourceID', 'AssignedResourceID', 'LastActivityPersonType', 'TaskType', 'ProjectID', 'PhaseID', 'id', 'StartDateTime')]
+    [ValidateSet('CreatorType', 'TaskType', 'PurchaseOrderNumber', 'RemainingHours', 'PhaseID', 'Priority', 'EndDateTime', 'CreateDateTime', 'CompletedByResourceID', 'CanClientPortalUserCompleteTask', 'TaskNumber', 'LastActivityResourceID', 'IsVisibleInClientPortal', 'Title', 'CreatorResourceID', 'EstimatedHours', 'DepartmentID', 'TaskCategoryID', 'Status', 'CompletedByType', 'AccountPhysicalLocationID', 'AssignedResourceID', 'ProjectID', 'LastActivityPersonType', 'id', 'PriorityLabel', 'StartDateTime', 'CompletedDateTime', 'TaskIsBillable', 'Description', 'AllocationCodeID', 'AssignedResourceRoleID', 'LastActivityDateTime', 'ExternalID', 'HoursToBeScheduled')]
     [string[]]
     $IsNotNull,
 

@@ -63,45 +63,6 @@ Set-AtwsPurchaseOrderItem
     [Autotask.PurchaseOrderItem[]]
     $InputObject,
 
-# Estimated Arrival Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $EstimatedArrivalDate,
-
-# Quantity Ordered
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $Quantity,
-
-# Internal Currency Product Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyUnitCost,
-
-# Project ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $ProjectID,
-
-# Inventory Order ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $OrderID,
-
 # Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -109,19 +70,26 @@ Set-AtwsPurchaseOrderItem
     [long]
     $ContractID,
 
-# Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $TicketID,
-
 # Cost ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $CostID,
+
+# Estimated Arrival Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $EstimatedArrivalDate,
+
+# Internal Currency Product Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyUnitCost,
 
 # Inventory Location ID
     [Parameter(
@@ -132,13 +100,6 @@ Set-AtwsPurchaseOrderItem
     [Int]
     $InventoryLocationID,
 
-# Sales Order ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $SalesOrderID,
-
 # Memo
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -147,6 +108,52 @@ Set-AtwsPurchaseOrderItem
     [string]
     $Memo,
 
+# Inventory Order ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $OrderID,
+
+# Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ProductID,
+
+# Project ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $ProjectID,
+
+# Quantity Ordered
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $Quantity,
+
+# Sales Order ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $SalesOrderID,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $TicketID,
+
 # Product Unit Cost
     [Parameter(
       Mandatory = $true,
@@ -154,14 +161,7 @@ Set-AtwsPurchaseOrderItem
     )]
     [ValidateNotNullOrEmpty()]
     [double]
-    $UnitCost,
-
-# Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ProductID
+    $UnitCost
   )
  
     begin { 
@@ -183,7 +183,7 @@ Set-AtwsPurchaseOrderItem
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -191,7 +191,7 @@ Set-AtwsPurchaseOrderItem
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -200,7 +200,7 @@ Set-AtwsPurchaseOrderItem
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -216,12 +216,12 @@ Set-AtwsPurchaseOrderItem
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

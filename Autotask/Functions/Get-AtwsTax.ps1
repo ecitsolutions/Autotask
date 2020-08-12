@@ -86,7 +86,7 @@ Set-AtwsTax
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TaxRegionID', 'TaxCategoryID')]
+    [ValidateSet('TaxCategoryID', 'TaxRegionID')]
     [string]
     $GetReferenceEntityById,
 
@@ -117,13 +117,12 @@ Set-AtwsTax
     [Nullable[Int][]]
     $id,
 
-# Tax Region ID
+# Compounded
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TaxRegionID,
+    [Nullable[boolean][]]
+    $IsCompounded,
 
 # Tax Category ID
     [Parameter(
@@ -151,31 +150,32 @@ Set-AtwsTax
     [Nullable[double][]]
     $TaxRate,
 
-# Compounded
+# Tax Region ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $IsCompounded,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TaxRegionID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaxRate', 'TaxCategoryID', 'id', 'TaxRegionID', 'IsCompounded', 'TaxName')]
+    [ValidateSet('TaxRate', 'TaxCategoryID', 'TaxName', 'TaxRegionID', 'id', 'IsCompounded')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaxRate', 'TaxCategoryID', 'id', 'TaxRegionID', 'IsCompounded', 'TaxName')]
+    [ValidateSet('TaxRate', 'TaxCategoryID', 'TaxName', 'TaxRegionID', 'id', 'IsCompounded')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaxRate', 'TaxCategoryID', 'id', 'TaxRegionID', 'IsCompounded', 'TaxName')]
+    [ValidateSet('TaxRate', 'TaxCategoryID', 'TaxName', 'TaxRegionID', 'id', 'IsCompounded')]
     [string[]]
     $IsNotNull,
 

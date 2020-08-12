@@ -126,14 +126,6 @@ Set-AtwsContractBlock
     [switch]
     $All,
 
-# id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -142,24 +134,53 @@ Set-AtwsContractBlock
     [Nullable[Int][]]
     $ContractID,
 
-# Status
+# DatePurchased
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $DatePurchased,
+
+# EndDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $EndDate,
+
+# Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $HourlyRate,
+
+# Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $Hours,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# InvoiceNumber
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
     [string[]]
-    $Status,
+    $InvoiceNumber,
 
 # Paid
     [Parameter(
@@ -179,54 +200,6 @@ Set-AtwsContractBlock
     })]
     [string[]]
     $IsPaid,
-
-# DatePurchased
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $DatePurchased,
-
-# StartDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDate,
-
-# EndDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDate,
-
-# Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $Hours,
-
-# Rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $HourlyRate,
-
-# InvoiceNumber
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $InvoiceNumber,
 
 # PaymentNumber
     [Parameter(
@@ -255,24 +228,51 @@ Set-AtwsContractBlock
     [string[]]
     $PaymentType,
 
+# StartDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HoursApproved', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'Status', 'EndDate', 'HourlyRate', 'ContractID', 'Hours', 'IsPaid', 'InvoiceNumber')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDate,
+
+# Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Status,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('DatePurchased', 'IsPaid', 'Status', 'StartDate', 'PaymentType', 'PaymentNumber', 'ContractID', 'EndDate', 'Hours', 'id', 'HoursApproved', 'InvoiceNumber', 'HourlyRate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HoursApproved', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'Status', 'EndDate', 'HourlyRate', 'ContractID', 'Hours', 'IsPaid', 'InvoiceNumber')]
+    [ValidateSet('DatePurchased', 'IsPaid', 'Status', 'StartDate', 'PaymentType', 'PaymentNumber', 'ContractID', 'EndDate', 'Hours', 'id', 'HoursApproved', 'InvoiceNumber', 'HourlyRate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HoursApproved', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'Status', 'EndDate', 'HourlyRate', 'ContractID', 'Hours', 'IsPaid', 'InvoiceNumber')]
+    [ValidateSet('DatePurchased', 'IsPaid', 'Status', 'StartDate', 'PaymentType', 'PaymentNumber', 'ContractID', 'EndDate', 'Hours', 'id', 'HoursApproved', 'InvoiceNumber', 'HourlyRate')]
     [string[]]
     $IsNotNull,
 

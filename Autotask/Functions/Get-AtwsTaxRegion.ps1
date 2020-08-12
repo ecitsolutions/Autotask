@@ -98,7 +98,7 @@ Set-AtwsTaxRegion
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountPhysicalLocation', 'Tax', 'Account')]
+    [ValidateSet('Account', 'Tax', 'AccountPhysicalLocation')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -108,6 +108,13 @@ Set-AtwsTaxRegion
     )]
     [switch]
     $All,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Active,
 
 # Tax Region ID
     [Parameter(
@@ -126,31 +133,24 @@ Set-AtwsTaxRegion
     [string[]]
     $Name,
 
-# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $Active,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('Name', 'Active', 'id')]
+    [ValidateSet('id', 'Active', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Active', 'id')]
+    [ValidateSet('id', 'Active', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Active', 'id')]
+    [ValidateSet('id', 'Active', 'Name')]
     [string[]]
     $IsNotNull,
 

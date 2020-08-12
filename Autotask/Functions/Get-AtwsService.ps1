@@ -102,7 +102,7 @@ Set-AtwsService
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AllocationCodeID', 'UpdateResourceID', 'VendorAccountID')]
+    [ValidateSet('VendorAccountID', 'UpdateResourceID', 'AllocationCodeID')]
     [string]
     $GetReferenceEntityById,
 
@@ -115,7 +115,7 @@ Set-AtwsService
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceBundleService', 'ContractServiceUnit', 'QuoteItem', 'InstalledProduct', 'PriceListService', 'ContractServiceAdjustment', 'BillingItem', 'ContractService')]
+    [ValidateSet('QuoteItem', 'ContractServiceAdjustment', 'InstalledProduct', 'ServiceBundleService', 'ContractServiceUnit', 'ContractService', 'PriceListService', 'BillingItem')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -126,22 +126,27 @@ Set-AtwsService
     [switch]
     $All,
 
-# service_id
+# allocation_code_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $AllocationCodeID,
 
-# service_name
+# create_date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,150)]
-    [string[]]
-    $Name,
+    [Nullable[datetime][]]
+    $CreateDate,
+
+# create_by_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
 
 # service_description
     [Parameter(
@@ -151,13 +156,51 @@ Set-AtwsService
     [string[]]
     $Description,
 
-# unit_price
+# service_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Invoice Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,1000)]
+    [string[]]
+    $InvoiceDescription,
+
+# active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsActive,
+
+# update_date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastModifiedDate,
+
+# Markup Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
     [Nullable[double][]]
-    $UnitPrice,
+    $MarkupRate,
+
+# service_name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,150)]
+    [string[]]
+    $Name,
 
 # period_type
     [Parameter(
@@ -179,71 +222,6 @@ Set-AtwsService
     [string[]]
     $PeriodType,
 
-# allocation_code_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $AllocationCodeID,
-
-# active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsActive,
-
-# create_by_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-# update_by_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $UpdateResourceID,
-
-# create_date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDate,
-
-# update_date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastModifiedDate,
-
-# Vendor Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $VendorAccountID,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $UnitCost,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1000)]
-    [string[]]
-    $InvoiceDescription,
-
 # Service Level Agreement Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -263,31 +241,53 @@ Set-AtwsService
     [string[]]
     $ServiceLevelAgreementID,
 
-# Markup Rate
+# Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $MarkupRate,
+    $UnitCost,
+
+# unit_price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $UnitPrice,
+
+# update_by_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $UpdateResourceID,
+
+# Vendor Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $VendorAccountID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'LastModifiedDate', 'ServiceLevelAgreementID', 'VendorAccountID', 'CreatorResourceID', 'id', 'Description', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'PeriodType', 'MarkupRate', 'CreateDate', 'Name', 'UnitCost', 'UpdateResourceID')]
+    [ValidateSet('id', 'UpdateResourceID', 'UnitCost', 'LastModifiedDate', 'CreatorResourceID', 'ServiceLevelAgreementID', 'CreateDate', 'AllocationCodeID', 'IsActive', 'Description', 'Name', 'UnitPrice', 'MarkupRate', 'VendorAccountID', 'InvoiceDescription', 'PeriodType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'LastModifiedDate', 'ServiceLevelAgreementID', 'VendorAccountID', 'CreatorResourceID', 'id', 'Description', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'PeriodType', 'MarkupRate', 'CreateDate', 'Name', 'UnitCost', 'UpdateResourceID')]
+    [ValidateSet('id', 'UpdateResourceID', 'UnitCost', 'LastModifiedDate', 'CreatorResourceID', 'ServiceLevelAgreementID', 'CreateDate', 'AllocationCodeID', 'IsActive', 'Description', 'Name', 'UnitPrice', 'MarkupRate', 'VendorAccountID', 'InvoiceDescription', 'PeriodType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'LastModifiedDate', 'ServiceLevelAgreementID', 'VendorAccountID', 'CreatorResourceID', 'id', 'Description', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'PeriodType', 'MarkupRate', 'CreateDate', 'Name', 'UnitCost', 'UpdateResourceID')]
+    [ValidateSet('id', 'UpdateResourceID', 'UnitCost', 'LastModifiedDate', 'CreatorResourceID', 'ServiceLevelAgreementID', 'CreateDate', 'AllocationCodeID', 'IsActive', 'Description', 'Name', 'UnitPrice', 'MarkupRate', 'VendorAccountID', 'InvoiceDescription', 'PeriodType')]
     [string[]]
     $IsNotNull,
 

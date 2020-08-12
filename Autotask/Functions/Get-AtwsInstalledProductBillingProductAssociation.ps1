@@ -88,7 +88,7 @@ Set-AtwsInstalledProductBillingProductAssociation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingProductID', 'InstalledProductID')]
+    [ValidateSet('InstalledProductID', 'BillingProductID')]
     [string]
     $GetReferenceEntityById,
 
@@ -110,22 +110,6 @@ Set-AtwsInstalledProductBillingProductAssociation
     )]
     [switch]
     $All,
-
-# Installed Product Billing Product Association ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Installed Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $InstalledProductID,
 
 # Billing Product ID
     [Parameter(
@@ -150,24 +134,40 @@ Set-AtwsInstalledProductBillingProductAssociation
     [Nullable[datetime][]]
     $ExpirationDate,
 
+# Installed Product Billing Product Association ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'id', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Installed Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $InstalledProductID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ExpirationDate', 'InstalledProductID', 'id', 'BillingProductID', 'EffectiveDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'id', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
+    [ValidateSet('ExpirationDate', 'InstalledProductID', 'id', 'BillingProductID', 'EffectiveDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'id', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
+    [ValidateSet('ExpirationDate', 'InstalledProductID', 'id', 'BillingProductID', 'EffectiveDate')]
     [string[]]
     $IsNotNull,
 

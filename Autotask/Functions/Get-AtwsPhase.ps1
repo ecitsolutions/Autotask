@@ -86,7 +86,7 @@ Set-AtwsPhase
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProjectID', 'ParentPhaseID', 'CreatorResourceID')]
+    [ValidateSet('ProjectID', 'CreatorResourceID', 'ParentPhaseID')]
     [string]
     $GetReferenceEntityById,
 
@@ -99,7 +99,7 @@ Set-AtwsPhase
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Task', 'Phase')]
+    [ValidateSet('Phase', 'Task')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -218,21 +218,21 @@ Set-AtwsPhase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'id', 'EstimatedHours', 'Description', 'LastActivityDateTime', 'CreatorResourceID', 'ProjectID', 'ParentPhaseID', 'ExternalID', 'CreateDate', 'PhaseNumber', 'DueDate', 'Scheduled', 'Title')]
+    [ValidateSet('id', 'LastActivityDateTime', 'EstimatedHours', 'StartDate', 'PhaseNumber', 'Title', 'ParentPhaseID', 'CreateDate', 'DueDate', 'Description', 'ProjectID', 'Scheduled', 'ExternalID', 'CreatorResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'id', 'EstimatedHours', 'Description', 'LastActivityDateTime', 'CreatorResourceID', 'ProjectID', 'ParentPhaseID', 'ExternalID', 'CreateDate', 'PhaseNumber', 'DueDate', 'Scheduled', 'Title')]
+    [ValidateSet('id', 'LastActivityDateTime', 'EstimatedHours', 'StartDate', 'PhaseNumber', 'Title', 'ParentPhaseID', 'CreateDate', 'DueDate', 'Description', 'ProjectID', 'Scheduled', 'ExternalID', 'CreatorResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'id', 'EstimatedHours', 'Description', 'LastActivityDateTime', 'CreatorResourceID', 'ProjectID', 'ParentPhaseID', 'ExternalID', 'CreateDate', 'PhaseNumber', 'DueDate', 'Scheduled', 'Title')]
+    [ValidateSet('id', 'LastActivityDateTime', 'EstimatedHours', 'StartDate', 'PhaseNumber', 'Title', 'ParentPhaseID', 'CreateDate', 'DueDate', 'Description', 'ProjectID', 'Scheduled', 'ExternalID', 'CreatorResourceID')]
     [string[]]
     $IsNotNull,
 

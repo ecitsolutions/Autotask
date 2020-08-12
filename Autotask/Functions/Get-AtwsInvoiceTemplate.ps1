@@ -117,7 +117,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Invoice', 'Country', 'Account')]
+    [ValidateSet('Account', 'Invoice', 'Country')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -128,137 +128,13 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [switch]
     $All,
 
-# Invoice Template ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Display Tax Category
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplayTaxCategory,
-
-# Display Tax Category Superscripts
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplayTaxCategorySuperscripts,
-
-# Display Separate Line Item For Each Tax
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplaySeparateLineItemForEachTax,
-
-# Group By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $GroupBy,
-
-# Itemize Items In Each Group
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ItemizeItemsInEachGroup,
-
-# Sort By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $SortBy,
-
-# Itemize Services And Bundles
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $ItemizeServicesAndBundles,
-
-# Display Zero Amount Recurring Services And Bundles
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplayZeroAmountRecurringServicesAndBundles,
-
-# Display Labor Associated With Recurring Service Contracts
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplayRecurringServiceContractLabor,
-
-# Display Labor Associated With Fixed Price Contracts
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplayFixedPriceContractLabor,
-
-# Rate Cost Expression
+# Covered By Block Retainer Contract Label
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
-    $RateCostExpression,
+    $CoveredByBlockRetainerContractLabel,
 
 # Covered By Recurring Service Fixed Price Per Ticket Contract Label
     [Parameter(
@@ -268,69 +144,23 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [string[]]
     $CoveredByRecurringServiceFixedPricePerTicketContractLabel,
 
-# Covered By Block Retainer Contract Label
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $CoveredByBlockRetainerContractLabel,
-
-# Non Billable Labor Label
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $NonBillableLaborLabel,
-
-# Page Layout
+# Currency Negative Pattern
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,10)]
     [string[]]
-    $PageLayout,
+    $CurrencyNegativeFormat,
 
-# Payment Terms
+# Currency Positive Pattern
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $PaymentTerms,
-
-# Display Page Number Format
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,10)]
     [string[]]
-    $PageNumberFormat,
+    $CurrencyPositiveFormat,
 
 # Date Format
     [Parameter(
@@ -352,6 +182,127 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [string[]]
     $DateFormat,
 
+# Display Labor Associated With Fixed Price Contracts
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DisplayFixedPriceContractLabor,
+
+# Display Labor Associated With Recurring Service Contracts
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DisplayRecurringServiceContractLabor,
+
+# Display Separate Line Item For Each Tax
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DisplaySeparateLineItemForEachTax,
+
+# Display Tax Category
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DisplayTaxCategory,
+
+# Display Tax Category Superscripts
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DisplayTaxCategorySuperscripts,
+
+# Display Zero Amount Recurring Services And Bundles
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DisplayZeroAmountRecurringServicesAndBundles,
+
+# Group By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $GroupBy,
+
+# Invoice Template ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Itemize Items In Each Group
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ItemizeItemsInEachGroup,
+
+# Itemize Services And Bundles
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $ItemizeServicesAndBundles,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Name,
+
+# Non Billable Labor Label
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $NonBillableLaborLabel,
+
 # Number Format
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -371,6 +322,98 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     })]
     [string[]]
     $NumberFormat,
+
+# Page Layout
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PageLayout,
+
+# Display Page Number Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PageNumberFormat,
+
+# Payment Terms
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $PaymentTerms,
+
+# Rate Cost Expression
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $RateCostExpression,
+
+# Show Grid Header
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $ShowGridHeader,
+
+# Show Vertical Grid Lines
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $ShowVerticalGridLines,
+
+# Sort By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $SortBy,
 
 # Time Format
     [Parameter(
@@ -392,67 +435,24 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [string[]]
     $TimeFormat,
 
-# Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $Name,
-
-# Show Grid Header
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $ShowGridHeader,
-
-# Show Vertical Grid Lines
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $ShowVerticalGridLines,
-
-# Currency Positive Pattern
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,10)]
-    [string[]]
-    $CurrencyPositiveFormat,
-
-# Currency Negative Pattern
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,10)]
-    [string[]]
-    $CurrencyNegativeFormat,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('CurrencyPositiveFormat', 'DisplayFixedPriceContractLabor', 'id', 'DisplaySeparateLineItemForEachTax', 'PageLayout', 'CurrencyNegativeFormat', 'DisplayTaxCategory', 'DateFormat', 'ItemizeServicesAndBundles', 'PaymentTerms', 'DisplayTaxCategorySuperscripts', 'CoveredByBlockRetainerContractLabel', 'GroupBy', 'NonBillableLaborLabel', 'NumberFormat', 'SortBy', 'DisplayRecurringServiceContractLabor', 'DisplayZeroAmountRecurringServicesAndBundles', 'ShowVerticalGridLines', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'TimeFormat', 'Name', 'RateCostExpression', 'PageNumberFormat', 'ShowGridHeader', 'ItemizeItemsInEachGroup')]
+    [ValidateSet('id', 'DisplayFixedPriceContractLabor', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeItemsInEachGroup', 'TimeFormat', 'DisplayTaxCategorySuperscripts', 'SortBy', 'PaymentTerms', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'NonBillableLaborLabel', 'DisplaySeparateLineItemForEachTax', 'GroupBy', 'DisplayTaxCategory', 'DisplayRecurringServiceContractLabor', 'DateFormat', 'Name', 'PageNumberFormat', 'CurrencyNegativeFormat', 'ItemizeServicesAndBundles', 'PageLayout', 'ShowGridHeader', 'CurrencyPositiveFormat', 'RateCostExpression', 'ShowVerticalGridLines', 'CoveredByBlockRetainerContractLabel', 'NumberFormat')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyPositiveFormat', 'DisplayFixedPriceContractLabor', 'id', 'DisplaySeparateLineItemForEachTax', 'PageLayout', 'CurrencyNegativeFormat', 'DisplayTaxCategory', 'DateFormat', 'ItemizeServicesAndBundles', 'PaymentTerms', 'DisplayTaxCategorySuperscripts', 'CoveredByBlockRetainerContractLabel', 'GroupBy', 'NonBillableLaborLabel', 'NumberFormat', 'SortBy', 'DisplayRecurringServiceContractLabor', 'DisplayZeroAmountRecurringServicesAndBundles', 'ShowVerticalGridLines', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'TimeFormat', 'Name', 'RateCostExpression', 'PageNumberFormat', 'ShowGridHeader', 'ItemizeItemsInEachGroup')]
+    [ValidateSet('id', 'DisplayFixedPriceContractLabor', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeItemsInEachGroup', 'TimeFormat', 'DisplayTaxCategorySuperscripts', 'SortBy', 'PaymentTerms', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'NonBillableLaborLabel', 'DisplaySeparateLineItemForEachTax', 'GroupBy', 'DisplayTaxCategory', 'DisplayRecurringServiceContractLabor', 'DateFormat', 'Name', 'PageNumberFormat', 'CurrencyNegativeFormat', 'ItemizeServicesAndBundles', 'PageLayout', 'ShowGridHeader', 'CurrencyPositiveFormat', 'RateCostExpression', 'ShowVerticalGridLines', 'CoveredByBlockRetainerContractLabel', 'NumberFormat')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyPositiveFormat', 'DisplayFixedPriceContractLabor', 'id', 'DisplaySeparateLineItemForEachTax', 'PageLayout', 'CurrencyNegativeFormat', 'DisplayTaxCategory', 'DateFormat', 'ItemizeServicesAndBundles', 'PaymentTerms', 'DisplayTaxCategorySuperscripts', 'CoveredByBlockRetainerContractLabel', 'GroupBy', 'NonBillableLaborLabel', 'NumberFormat', 'SortBy', 'DisplayRecurringServiceContractLabor', 'DisplayZeroAmountRecurringServicesAndBundles', 'ShowVerticalGridLines', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'TimeFormat', 'Name', 'RateCostExpression', 'PageNumberFormat', 'ShowGridHeader', 'ItemizeItemsInEachGroup')]
+    [ValidateSet('id', 'DisplayFixedPriceContractLabor', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeItemsInEachGroup', 'TimeFormat', 'DisplayTaxCategorySuperscripts', 'SortBy', 'PaymentTerms', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'NonBillableLaborLabel', 'DisplaySeparateLineItemForEachTax', 'GroupBy', 'DisplayTaxCategory', 'DisplayRecurringServiceContractLabor', 'DateFormat', 'Name', 'PageNumberFormat', 'CurrencyNegativeFormat', 'ItemizeServicesAndBundles', 'PageLayout', 'ShowGridHeader', 'CurrencyPositiveFormat', 'RateCostExpression', 'ShowVerticalGridLines', 'CoveredByBlockRetainerContractLabel', 'NumberFormat')]
     [string[]]
     $IsNotNull,
 

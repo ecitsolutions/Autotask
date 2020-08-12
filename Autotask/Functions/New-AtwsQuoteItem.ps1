@@ -68,19 +68,34 @@ Set-AtwsQuoteItem
     [Autotask.QuoteItem[]]
     $InputObject,
 
-# taxable
+# average_cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $IsTaxable,
+    [double]
+    $AverageCost,
 
-# service_id
+# cost_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ServiceID,
+    $CostID,
+
+# quote_item_description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# expense_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ExpenseID,
 
 # highest_cost
     [Parameter(
@@ -89,26 +104,12 @@ Set-AtwsQuoteItem
     [double]
     $HighestCost,
 
-# average_cost
+# internal_currency_line_discount_dollars
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $AverageCost,
-
-# unit_price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $UnitPrice,
-
-# internal_currency_unit_price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyUnitPrice,
+    $InternalCurrencyLineDiscount,
 
 # internal_currency_discount_dollars
     [Parameter(
@@ -116,6 +117,13 @@ Set-AtwsQuoteItem
     )]
     [double]
     $InternalCurrencyUnitDiscount,
+
+# internal_currency_unit_price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyUnitPrice,
 
 # optional
     [Parameter(
@@ -126,12 +134,43 @@ Set-AtwsQuoteItem
     [boolean]
     $IsOptional,
 
-# expense_id
+# taxable
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsTaxable,
+
+# labor_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ExpenseID,
+    $LaborID,
+
+# line_discount_dollars
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $LineDiscount,
+
+# markup_rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $MarkupRate,
+
+# quote_item_name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
 
 # discount_percent
     [Parameter(
@@ -141,6 +180,85 @@ Set-AtwsQuoteItem
     [ValidateNotNullOrEmpty()]
     [double]
     $PercentageDiscount,
+
+# period_type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PeriodType,
+
+# product_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ProductID,
+
+# quantity
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $Quantity,
+
+# quote_id
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $QuoteID,
+
+# service_bundle_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ServiceBundleID,
+
+# service_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ServiceID,
+
+# shipping_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ShippingID,
+
+# tax_category_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $TaxCategoryID,
+
+# tax_rate_applied
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $TotalEffectiveTax,
 
 # parent_type
     [Parameter(
@@ -163,46 +281,12 @@ Set-AtwsQuoteItem
     [string]
     $Type,
 
-# markup_rate
+# unit_cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $MarkupRate,
-
-# quote_item_description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
-
-# tax_category_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $TaxCategoryID,
-
-# period_type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PeriodType,
+    $UnitCost,
 
 # discount_dollars
     [Parameter(
@@ -213,96 +297,12 @@ Set-AtwsQuoteItem
     [double]
     $UnitDiscount,
 
-# product_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ProductID,
-
-# quote_id
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $QuoteID,
-
-# shipping_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ShippingID,
-
-# unit_cost
+# unit_price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $UnitCost,
-
-# cost_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CostID,
-
-# labor_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $LaborID,
-
-# tax_rate_applied
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $TotalEffectiveTax,
-
-# quantity
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $Quantity,
-
-# service_bundle_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ServiceBundleID,
-
-# quote_item_name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# line_discount_dollars
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $LineDiscount,
-
-# internal_currency_line_discount_dollars
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyLineDiscount
+    $UnitPrice
   )
  
     begin { 
@@ -324,7 +324,7 @@ Set-AtwsQuoteItem
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -332,7 +332,7 @@ Set-AtwsQuoteItem
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -341,7 +341,7 @@ Set-AtwsQuoteItem
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -357,12 +357,12 @@ Set-AtwsQuoteItem
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

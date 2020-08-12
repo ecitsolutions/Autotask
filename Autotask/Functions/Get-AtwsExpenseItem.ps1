@@ -103,7 +103,7 @@ Set-AtwsExpenseItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProjectID', 'ExpenseReportID', 'ExpenseCurrencyID', 'AccountID', 'TaskID', 'TicketID')]
+    [ValidateSet('AccountID', 'ExpenseReportID', 'TaskID', 'ProjectID', 'ExpenseCurrencyID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -127,21 +127,20 @@ Set-AtwsExpenseItem
     [switch]
     $All,
 
-# Expense Item ID
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Expense Report ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $ExpenseReportID,
+    $AccountID,
+
+# Billable To Account
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $BillableToAccount,
 
 # Description
     [Parameter(
@@ -152,13 +151,28 @@ Set-AtwsExpenseItem
     [string[]]
     $Description,
 
-# Expense Date
+# Destination
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $ExpenseDate,
+    [ValidateLength(0,128)]
+    [string[]]
+    $Destination,
+
+# Entertainment Location
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string[]]
+    $EntertainmentLocation,
+
+# Expense Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ExpenseAmount,
 
 # Expense Category
     [Parameter(
@@ -180,31 +194,73 @@ Set-AtwsExpenseItem
     [string[]]
     $ExpenseCategory,
 
-# Work Type
+# Currency ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $WorkType,
+    [Nullable[Int][]]
+    $ExpenseCurrencyID,
 
-# Expense Amount
+# Expense Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $ExpenseDate,
+
+# Expense Report ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ExpenseReportID,
+
+# Have Receipt
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $HaveReceipt,
+
+# Expense Item ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Miles
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $ExpenseAmount,
+    $Miles,
+
+# Odometer End
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $OdometerEnd,
+
+# Odometer Start
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $OdometerStart,
+
+# Origin
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string[]]
+    $Origin,
 
 # Payment Type
     [Parameter(
@@ -226,80 +282,12 @@ Set-AtwsExpenseItem
     [string[]]
     $PaymentType,
 
-# Have Receipt
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $HaveReceipt,
-
-# Billable To Account
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $BillableToAccount,
-
-# Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AccountID,
-
 # Project ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ProjectID,
-
-# Task ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TaskID,
-
-# Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TicketID,
-
-# Entertainment Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $EntertainmentLocation,
-
-# Miles
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $Miles,
-
-# Origin
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $Origin,
-
-# Destination
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $Destination,
 
 # purchase_order_number
     [Parameter(
@@ -308,27 +296,6 @@ Set-AtwsExpenseItem
     [ValidateLength(0,50)]
     [string[]]
     $PurchaseOrderNumber,
-
-# Odometer Start
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $OdometerStart,
-
-# Odometer End
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $OdometerEnd,
-
-# Currency ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ExpenseCurrencyID,
 
 # Receipt Amount
     [Parameter(
@@ -351,24 +318,57 @@ Set-AtwsExpenseItem
     [Nullable[double][]]
     $ReimbursementCurrencyReimbursementAmount,
 
+# Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementAmount', 'ExpenseAmount', 'HaveReceipt', 'TicketID', 'TaskID', 'Miles', 'GLCode', 'EntertainmentLocation', 'Reimbursable', 'BillableToAccount', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseCategory', 'OdometerStart', 'WorkType', 'AccountID', 'ProjectID', 'Rejected', 'ReceiptAmount', 'OdometerEnd', 'ExpenseCurrencyID', 'ExpenseReportID', 'PurchaseOrderNumber', 'ExpenseDate', 'PaymentType', 'Description', 'Origin', 'Destination', 'id')]
+    [Nullable[Int][]]
+    $TaskID,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TicketID,
+
+# Work Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $WorkType,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ReimbursementAmount', 'PurchaseOrderNumber', 'Origin', 'OdometerStart', 'Destination', 'ExpenseAmount', 'ExpenseReportID', 'ExpenseCategory', 'HaveReceipt', 'PaymentType', 'TaskID', 'GLCode', 'Reimbursable', 'AccountID', 'ReceiptAmount', 'ReimbursementCurrencyReimbursementAmount', 'id', 'EntertainmentLocation', 'ProjectID', 'ExpenseDate', 'ExpenseCurrencyID', 'TicketID', 'WorkType', 'Rejected', 'Miles', 'Description', 'BillableToAccount', 'OdometerEnd')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementAmount', 'ExpenseAmount', 'HaveReceipt', 'TicketID', 'TaskID', 'Miles', 'GLCode', 'EntertainmentLocation', 'Reimbursable', 'BillableToAccount', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseCategory', 'OdometerStart', 'WorkType', 'AccountID', 'ProjectID', 'Rejected', 'ReceiptAmount', 'OdometerEnd', 'ExpenseCurrencyID', 'ExpenseReportID', 'PurchaseOrderNumber', 'ExpenseDate', 'PaymentType', 'Description', 'Origin', 'Destination', 'id')]
+    [ValidateSet('ReimbursementAmount', 'PurchaseOrderNumber', 'Origin', 'OdometerStart', 'Destination', 'ExpenseAmount', 'ExpenseReportID', 'ExpenseCategory', 'HaveReceipt', 'PaymentType', 'TaskID', 'GLCode', 'Reimbursable', 'AccountID', 'ReceiptAmount', 'ReimbursementCurrencyReimbursementAmount', 'id', 'EntertainmentLocation', 'ProjectID', 'ExpenseDate', 'ExpenseCurrencyID', 'TicketID', 'WorkType', 'Rejected', 'Miles', 'Description', 'BillableToAccount', 'OdometerEnd')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementAmount', 'ExpenseAmount', 'HaveReceipt', 'TicketID', 'TaskID', 'Miles', 'GLCode', 'EntertainmentLocation', 'Reimbursable', 'BillableToAccount', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseCategory', 'OdometerStart', 'WorkType', 'AccountID', 'ProjectID', 'Rejected', 'ReceiptAmount', 'OdometerEnd', 'ExpenseCurrencyID', 'ExpenseReportID', 'PurchaseOrderNumber', 'ExpenseDate', 'PaymentType', 'Description', 'Origin', 'Destination', 'id')]
+    [ValidateSet('ReimbursementAmount', 'PurchaseOrderNumber', 'Origin', 'OdometerStart', 'Destination', 'ExpenseAmount', 'ExpenseReportID', 'ExpenseCategory', 'HaveReceipt', 'PaymentType', 'TaskID', 'GLCode', 'Reimbursable', 'AccountID', 'ReceiptAmount', 'ReimbursementCurrencyReimbursementAmount', 'id', 'EntertainmentLocation', 'ProjectID', 'ExpenseDate', 'ExpenseCurrencyID', 'TicketID', 'WorkType', 'Rejected', 'Miles', 'Description', 'BillableToAccount', 'OdometerEnd')]
     [string[]]
     $IsNotNull,
 

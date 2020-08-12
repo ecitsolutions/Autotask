@@ -56,26 +56,12 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
     [Autotask.ContractServiceBundleAdjustment[]]
     $InputObject,
 
-# ContractID
+# Adjusted Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $ContractID,
-
-# ServiceBundleID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ServiceBundleID,
-
-# Contract Service Bundle ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContractServiceBundleID,
+    [double]
+    $AdjustedUnitPrice,
 
 # Allow Repeat Service Bundle
     [Parameter(
@@ -84,26 +70,19 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
     [boolean]
     $AllowRepeatServiceBundle,
 
-# Adjusted Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $AdjustedUnitPrice,
-
-# UnitChange
+# ContractID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $UnitChange,
+    $ContractID,
 
-# Quote Item Id
+# Contract Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $QuoteItemID,
+    $ContractServiceBundleID,
 
 # StartDate
     [Parameter(
@@ -112,7 +91,28 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
-    $EffectiveDate
+    $EffectiveDate,
+
+# Quote Item Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $QuoteItemID,
+
+# ServiceBundleID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ServiceBundleID,
+
+# UnitChange
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $UnitChange
   )
  
     begin { 
@@ -134,7 +134,7 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -142,7 +142,7 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -151,7 +151,7 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -167,12 +167,12 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

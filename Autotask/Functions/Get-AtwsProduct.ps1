@@ -104,7 +104,7 @@ Set-AtwsProduct
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CostAllocationCodeID', 'DefaultVendorID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('DefaultVendorID', 'ImpersonatorCreatorResourceID', 'CostAllocationCodeID')]
     [string]
     $GetReferenceEntityById,
 
@@ -117,7 +117,7 @@ Set-AtwsProduct
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ChangeOrderCost', 'PurchaseOrderItem', 'ContractBillingRule', 'ProjectCost', 'InstalledProduct', 'PriceListProduct', 'InventoryTransfer', 'ContractCost', 'InventoryItem', 'InstalledProductBillingProductAssociation', 'ContactBillingProductAssociation', 'QuoteItem', 'ProductTier', 'TicketCost', 'Opportunity', 'ProductVendor')]
+    [ValidateSet('ChangeOrderCost', 'ProductVendor', 'PurchaseOrderItem', 'InventoryTransfer', 'InstalledProduct', 'ProductTier', 'InstalledProductBillingProductAssociation', 'ProjectCost', 'ContractCost', 'ContactBillingProductAssociation', 'Opportunity', 'InventoryItem', 'ContractBillingRule', 'TicketCost', 'PriceListProduct', 'QuoteItem')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -128,126 +128,6 @@ Set-AtwsProduct
     [switch]
     $All,
 
-# ProductID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Product Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
-# Product Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Description,
-
-# Product SKU
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $SKU,
-
-# Product Link
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string[]]
-    $Link,
-
-# Product Category
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ProductCategory,
-
-# External ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ExternalProductID,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $UnitCost,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $UnitPrice,
-
-# MSRP
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $MSRP,
-
-# Vendor Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $DefaultVendorID,
-
-# Vendor Product Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $VendorProductNumber,
-
-# Manufacturer Account Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ManufacturerName,
-
-# Manufacturer Product Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ManufacturerProductName,
-
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -255,70 +135,6 @@ Set-AtwsProduct
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $Active,
-
-# Period Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $PeriodType,
-
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ProductAllocationCodeID,
-
-# Is Serialized
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Serialized,
-
-# Cost Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CostAllocationCodeID,
-
-# Does Not Require Procurement
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $DoesNotRequireProcurement,
-
-# markup_rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $MarkupRate,
-
-# Internal Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $InternalProductID,
 
 # Billing Type
     [Parameter(
@@ -339,6 +155,139 @@ Set-AtwsProduct
     [string[]]
     $BillingType,
 
+# Cost Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CostAllocationCodeID,
+
+# Vendor Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $DefaultVendorID,
+
+# Product Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
+# Does Not Require Procurement
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $DoesNotRequireProcurement,
+
+# Eligible For RMA
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $EligibleForRma,
+
+# External ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ExternalProductID,
+
+# ProductID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Internal Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $InternalProductID,
+
+# Product Link
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string[]]
+    $Link,
+
+# Manufacturer Account Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $ManufacturerName,
+
+# Manufacturer Product Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ManufacturerProductName,
+
+# markup_rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $MarkupRate,
+
+# MSRP
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $MSRP,
+
+# Product Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
+
+# Period Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PeriodType,
+
 # Price Cost Method
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -358,38 +307,89 @@ Set-AtwsProduct
     [string[]]
     $PriceCostMethod,
 
-# Eligible For RMA
+# Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $EligibleForRma,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    $ProductAllocationCodeID,
+
+# Product Category
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ProductCategory,
+
+# Is Serialized
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Serialized,
+
+# Product SKU
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $SKU,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $UnitCost,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $UnitPrice,
+
+# Vendor Product Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $VendorProductNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Link', 'ManufacturerProductName', 'ImpersonatorCreatorResourceID', 'id', 'SKU', 'UnitCost', 'UnitPrice', 'Serialized', 'VendorProductNumber', 'PeriodType', 'ProductAllocationCodeID', 'DefaultVendorID', 'ManufacturerName', 'Description', 'PriceCostMethod', 'CostAllocationCodeID', 'InternalProductID', 'MarkupRate', 'BillingType', 'DoesNotRequireProcurement', 'ExternalProductID', 'Name', 'MSRP', 'Active', 'ProductCategory', 'EligibleForRma')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'DefaultVendorID', 'Active', 'VendorProductNumber', 'UnitCost', 'ExternalProductID', 'ManufacturerProductName', 'ProductAllocationCodeID', 'MarkupRate', 'InternalProductID', 'ManufacturerName', 'PriceCostMethod', 'ProductCategory', 'DoesNotRequireProcurement', 'MSRP', 'Serialized', 'Name', 'Link', 'UnitPrice', 'Description', 'SKU', 'EligibleForRma', 'CostAllocationCodeID', 'BillingType', 'PeriodType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Link', 'ManufacturerProductName', 'ImpersonatorCreatorResourceID', 'id', 'SKU', 'UnitCost', 'UnitPrice', 'Serialized', 'VendorProductNumber', 'PeriodType', 'ProductAllocationCodeID', 'DefaultVendorID', 'ManufacturerName', 'Description', 'PriceCostMethod', 'CostAllocationCodeID', 'InternalProductID', 'MarkupRate', 'BillingType', 'DoesNotRequireProcurement', 'ExternalProductID', 'Name', 'MSRP', 'Active', 'ProductCategory', 'EligibleForRma')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'DefaultVendorID', 'Active', 'VendorProductNumber', 'UnitCost', 'ExternalProductID', 'ManufacturerProductName', 'ProductAllocationCodeID', 'MarkupRate', 'InternalProductID', 'ManufacturerName', 'PriceCostMethod', 'ProductCategory', 'DoesNotRequireProcurement', 'MSRP', 'Serialized', 'Name', 'Link', 'UnitPrice', 'Description', 'SKU', 'EligibleForRma', 'CostAllocationCodeID', 'BillingType', 'PeriodType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Link', 'ManufacturerProductName', 'ImpersonatorCreatorResourceID', 'id', 'SKU', 'UnitCost', 'UnitPrice', 'Serialized', 'VendorProductNumber', 'PeriodType', 'ProductAllocationCodeID', 'DefaultVendorID', 'ManufacturerName', 'Description', 'PriceCostMethod', 'CostAllocationCodeID', 'InternalProductID', 'MarkupRate', 'BillingType', 'DoesNotRequireProcurement', 'ExternalProductID', 'Name', 'MSRP', 'Active', 'ProductCategory', 'EligibleForRma')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'DefaultVendorID', 'Active', 'VendorProductNumber', 'UnitCost', 'ExternalProductID', 'ManufacturerProductName', 'ProductAllocationCodeID', 'MarkupRate', 'InternalProductID', 'ManufacturerName', 'PriceCostMethod', 'ProductCategory', 'DoesNotRequireProcurement', 'MSRP', 'Serialized', 'Name', 'Link', 'UnitPrice', 'Description', 'SKU', 'EligibleForRma', 'CostAllocationCodeID', 'BillingType', 'PeriodType')]
     [string[]]
     $IsNotNull,
 

@@ -86,7 +86,7 @@ Set-AtwsContractRoleCost
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'RoleID', 'ResourceID')]
+    [ValidateSet('RoleID', 'ResourceID', 'ContractID')]
     [string]
     $GetReferenceEntityById,
 
@@ -109,6 +109,14 @@ Set-AtwsContractRoleCost
     [switch]
     $All,
 
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ContractID,
+
 # id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -117,13 +125,13 @@ Set-AtwsContractRoleCost
     [Nullable[long][]]
     $id,
 
-# Contract ID
+# Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContractID,
+    [Nullable[double][]]
+    $Rate,
 
 # Resource ID
     [Parameter(
@@ -141,32 +149,24 @@ Set-AtwsContractRoleCost
     [Nullable[Int][]]
     $RoleID,
 
-# Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $Rate,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('ContractID', 'id', 'Rate', 'RoleID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'id', 'Rate', 'RoleID', 'ContractID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'Rate', 'RoleID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'id', 'Rate', 'RoleID', 'ContractID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'Rate', 'RoleID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'id', 'Rate', 'RoleID', 'ContractID')]
     [string[]]
     $IsNotNull,
 

@@ -82,7 +82,7 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContactID', 'TicketID', 'SurveyID', 'AccountID')]
+    [ValidateSet('AccountID', 'TicketID', 'SurveyID', 'ContactID')]
     [string]
     $GetReferenceEntityById,
 
@@ -105,14 +105,6 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     [switch]
     $All,
 
-# Survey Results ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -126,6 +118,13 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     )]
     [Nullable[decimal][]]
     $CompanyRating,
+
+# Complete Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CompleteDate,
 
 # Contact ID
     [Parameter(
@@ -141,12 +140,13 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     [Nullable[decimal][]]
     $ContactRating,
 
-# Complete Date
+# Survey Results ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $CompleteDate,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Resource Rating
     [Parameter(
@@ -187,21 +187,21 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompleteDate', 'AccountID', 'ContactID', 'ResourceRating', 'CompanyRating', 'id', 'SurveyRating', 'SurveyID', 'ContactRating', 'TicketID', 'SendDate')]
+    [ValidateSet('CompleteDate', 'SendDate', 'CompanyRating', 'ResourceRating', 'ContactRating', 'AccountID', 'id', 'SurveyRating', 'SurveyID', 'TicketID', 'ContactID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompleteDate', 'AccountID', 'ContactID', 'ResourceRating', 'CompanyRating', 'id', 'SurveyRating', 'SurveyID', 'ContactRating', 'TicketID', 'SendDate')]
+    [ValidateSet('CompleteDate', 'SendDate', 'CompanyRating', 'ResourceRating', 'ContactRating', 'AccountID', 'id', 'SurveyRating', 'SurveyID', 'TicketID', 'ContactID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompleteDate', 'AccountID', 'ContactID', 'ResourceRating', 'CompanyRating', 'id', 'SurveyRating', 'SurveyID', 'ContactRating', 'TicketID', 'SendDate')]
+    [ValidateSet('CompleteDate', 'SendDate', 'CompanyRating', 'ResourceRating', 'ContactRating', 'AccountID', 'id', 'SurveyRating', 'SurveyID', 'TicketID', 'ContactID')]
     [string[]]
     $IsNotNull,
 

@@ -109,14 +109,6 @@ Set-AtwsProductNote
     [switch]
     $All,
 
-# Product Note ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -140,6 +132,14 @@ Set-AtwsProductNote
     [string[]]
     $Description,
 
+# Product Note ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -154,6 +154,13 @@ Set-AtwsProductNote
     [Nullable[Int][]]
     $ImpersonatorUpdaterResourceID,
 
+# Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastActivityDate,
+
 # Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -161,13 +168,6 @@ Set-AtwsProductNote
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ProductID,
-
-# Last Activity Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivityDate,
 
 # Title
     [Parameter(
@@ -181,21 +181,21 @@ Set-AtwsProductNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'CreateDateTime', 'Title', 'ProductID', 'LastActivityDate')]
+    [ValidateSet('CreateDateTime', 'ImpersonatorCreatorResourceID', 'Description', 'CreatorResourceID', 'id', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'Title', 'ProductID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'CreateDateTime', 'Title', 'ProductID', 'LastActivityDate')]
+    [ValidateSet('CreateDateTime', 'ImpersonatorCreatorResourceID', 'Description', 'CreatorResourceID', 'id', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'Title', 'ProductID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'CreateDateTime', 'Title', 'ProductID', 'LastActivityDate')]
+    [ValidateSet('CreateDateTime', 'ImpersonatorCreatorResourceID', 'Description', 'CreatorResourceID', 'id', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'Title', 'ProductID')]
     [string[]]
     $IsNotNull,
 

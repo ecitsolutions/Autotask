@@ -120,7 +120,7 @@ Set-AtwsTicket
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountPhysicalLocationID', 'ContactID', 'InstalledProductID', 'ContractID', 'OpportunityId', 'ContractServiceID', 'AccountID', 'ProjectID', 'ProblemTicketId', 'AllocationCodeID', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'AssignedResourceRoleID')]
+    [ValidateSet('AssignedResourceRoleID', 'ContractID', 'ContractServiceBundleID', 'AllocationCodeID', 'InstalledProductID', 'ProblemTicketId', 'ContractServiceID', 'ContactID', 'BusinessDivisionSubdivisionID', 'OpportunityId', 'AccountPhysicalLocationID', 'ProjectID', 'ImpersonatorCreatorResourceID', 'AccountID')]
     [string]
     $GetReferenceEntityById,
 
@@ -133,7 +133,7 @@ Set-AtwsTicket
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ExpenseItem', 'PurchaseOrderItem', 'ServiceCallTicket', 'TicketChecklistItem', 'TicketRmaCredit', 'ServiceLevelAgreementResults', 'TicketAdditionalInstalledProduct', 'TicketChecklistLibrary', 'TicketSecondaryResource', 'Ticket', 'ChangeRequestLink', 'TimeEntry', 'TicketChangeRequestApproval', 'TicketAdditionalContact', 'NotificationHistory', 'SurveyResults', 'TicketCost', 'TicketNote', 'BillingItem', 'AccountToDo', 'TicketHistory')]
+    [ValidateSet('SurveyResults', 'Ticket', 'TicketRmaCredit', 'TimeEntry', 'TicketChangeRequestApproval', 'NotificationHistory', 'TicketChecklistLibrary', 'ServiceLevelAgreementResults', 'ExpenseItem', 'AccountToDo', 'TicketChecklistItem', 'TicketAdditionalContact', 'TicketNote', 'BillingItem', 'TicketAdditionalInstalledProduct', 'PurchaseOrderItem', 'TicketSecondaryResource', 'TicketCost', 'ChangeRequestLink', 'ServiceCallTicket', 'TicketHistory')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -153,7 +153,7 @@ Set-AtwsTicket
     [Autotask.UserDefinedField]
     $UserDefinedField,
 
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -161,12 +161,46 @@ Set-AtwsTicket
     [Nullable[Int][]]
     $AccountID,
 
+# Account Physical Location
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AccountPhysicalLocationID,
+
+# AEM Alert ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $AEMAlertID,
+
 # Allocation Code Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $AllocationCodeID,
+
+# API Vendor ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ApiVendorID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ApiVendorID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ApiVendorID,
 
 # Resource
     [Parameter(
@@ -181,6 +215,117 @@ Set-AtwsTicket
     )]
     [Nullable[Int][]]
     $AssignedResourceRoleID,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
+
+# Change Approval Board ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ChangeApprovalBoard,
+
+# Change Approval Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ChangeApprovalStatus,
+
+# Change Approval Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ChangeApprovalType,
+
+# Change Info Field 1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $ChangeInfoField1,
+
+# Change Info Field 2
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $ChangeInfoField2,
+
+# Change Info Field 3
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $ChangeInfoField3,
+
+# Change Info Field 4
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $ChangeInfoField4,
+
+# Change Info Field 5
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $ChangeInfoField5,
+
+# Ticket Completed By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CompletedByResourceID,
 
 # Ticket Date Completed by Complete Project Wizard
     [Parameter(
@@ -203,6 +348,20 @@ Set-AtwsTicket
     [Nullable[Int][]]
     $ContractID,
 
+# Contract Service Bundle ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContractServiceBundleID,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContractServiceID,
+
 # Ticket Creation Date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -216,6 +375,25 @@ Set-AtwsTicket
     )]
     [Nullable[Int][]]
     $CreatorResourceID,
+
+# Current Service Thermometer Rating
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName CurrentServiceThermometerRating -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName CurrentServiceThermometerRating -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $CurrentServiceThermometerRating,
 
 # Ticket Description
     [Parameter(
@@ -247,6 +425,41 @@ Set-AtwsTicket
     [string[]]
     $ExternalID,
 
+# First Response Assigned Resource
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $FirstResponseAssignedResourceID,
+
+# First Response Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $FirstResponseDateTime,
+
+# First Response Due Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $FirstResponseDueDateTime,
+
+# First Response Initiating Resource
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $FirstResponseInitiatingResourceID,
+
+# Hours to be Scheduled
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $HoursToBeScheduled,
+
 # Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -254,6 +467,13 @@ Set-AtwsTicket
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
 
 # Configuration Item
     [Parameter(
@@ -288,6 +508,86 @@ Set-AtwsTicket
     [Nullable[datetime][]]
     $LastActivityDate,
 
+# Last Edited Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $LastActivityResourceID,
+
+# Last Customer Notification
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastCustomerNotificationDateTime,
+
+# Last Customer Visible Activity
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastCustomerVisibleActivityDateTime,
+
+# Last Tracked Modification Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastTrackedModificationDateTime,
+
+# Monitor ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $MonitorID,
+
+# Monitor Type ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $MonitorTypeID,
+
+# Opportunity ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $OpportunityId,
+
+# Previous Service Thermometer Rating
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName PreviousServiceThermometerRating -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName PreviousServiceThermometerRating -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PreviousServiceThermometerRating,
+
 # Ticket Priority
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -308,6 +608,28 @@ Set-AtwsTicket
     [string[]]
     $Priority,
 
+# Problem Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ProblemTicketId,
+
+# Project ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ProjectID,
+
+# purchase_order_number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
+
 # Ticket Department Name OR Ticket Queue Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -326,6 +648,113 @@ Set-AtwsTicket
     })]
     [string[]]
     $QueueID,
+
+# Resolution
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,32000)]
+    [string[]]
+    $Resolution,
+
+# Resolution Plan Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $ResolutionPlanDateTime,
+
+# Resolution Plan Due Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $ResolutionPlanDueDateTime,
+
+# Resolved Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $ResolvedDateTime,
+
+# Resolved Due Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $ResolvedDueDateTime,
+
+# RMA Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $RmaStatus,
+
+# RMA Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $RmaType,
+
+# Has Met SLA
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ServiceLevelAgreementHasBeenMet,
+
+# Service Level Agreement ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ServiceLevelAgreementID,
+
+# Service Thermometer Temperature
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ServiceThermometerTemperature,
 
 # Ticket Source
     [Parameter(
@@ -396,75 +825,16 @@ Set-AtwsTicket
     [string[]]
     $SubIssueType,
 
-# Ticket Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $TicketNumber,
-
-# Ticket Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $Title,
-
-# First Response Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $FirstResponseDateTime,
-
-# Resolution Plan Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $ResolutionPlanDateTime,
-
-# Resolved Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $ResolvedDateTime,
-
-# First Response Due Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $FirstResponseDueDateTime,
-
-# Resolution Plan Due Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $ResolutionPlanDueDateTime,
-
-# Resolved Due Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $ResolvedDueDateTime,
-
-# Service Level Agreement ID
+# Ticket Category
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label
+      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -472,30 +842,15 @@ Set-AtwsTicket
       }
     })]
     [string[]]
-    $ServiceLevelAgreementID,
+    $TicketCategory,
 
-# Has Met SLA
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ServiceLevelAgreementHasBeenMet,
-
-# Resolution
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,32000)]
-    [string[]]
-    $Resolution,
-
-# purchase_order_number
+# Ticket Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
-    $PurchaseOrderNumber,
+    $TicketNumber,
 
 # Ticket Type
     [Parameter(
@@ -516,388 +871,33 @@ Set-AtwsTicket
     [string[]]
     $TicketType,
 
-# Problem Ticket ID
+# Ticket Title
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ProblemTicketId,
-
-# Opportunity ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $OpportunityId,
-
-# Change Approval Board ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
     [string[]]
-    $ChangeApprovalBoard,
-
-# Change Approval Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ChangeApprovalType,
-
-# Change Approval Status
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ChangeApprovalStatus,
-
-# Change Info Field 1
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $ChangeInfoField1,
-
-# Change Info Field 2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $ChangeInfoField2,
-
-# Change Info Field 3
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $ChangeInfoField3,
-
-# Change Info Field 4
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $ChangeInfoField4,
-
-# Change Info Field 5
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $ChangeInfoField5,
-
-# Last Customer Notification
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastCustomerNotificationDateTime,
-
-# Last Customer Visible Activity
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastCustomerVisibleActivityDateTime,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ContractServiceID,
-
-# Contract Service Bundle ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ContractServiceBundleID,
-
-# Monitor Type ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $MonitorTypeID,
-
-# Monitor ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $MonitorID,
-
-# AEM Alert ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $AEMAlertID,
-
-# Hours to be Scheduled
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $HoursToBeScheduled,
-
-# Ticket Category
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $TicketCategory,
-
-# First Response Initiating Resource
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $FirstResponseInitiatingResourceID,
-
-# First Response Assigned Resource
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $FirstResponseAssignedResourceID,
-
-# Project ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ProjectID,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Ticket Completed By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CompletedByResourceID,
-
-# Account Physical Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AccountPhysicalLocationID,
-
-# Last Edited Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LastActivityResourceID,
-
-# Current Service Thermometer Rating
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName CurrentServiceThermometerRating -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName CurrentServiceThermometerRating -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $CurrentServiceThermometerRating,
-
-# Previous Service Thermometer Rating
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName PreviousServiceThermometerRating -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName PreviousServiceThermometerRating -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $PreviousServiceThermometerRating,
-
-# Service Thermometer Temperature
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ServiceThermometerTemperature,
-
-# API Vendor ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName ApiVendorID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ApiVendorID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ApiVendorID,
-
-# Last Tracked Modification Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastTrackedModificationDateTime,
-
-# RMA Status
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $RmaStatus,
-
-# RMA Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $RmaType,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    $Title,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceLevelAgreementPausedNextEventHours', 'ResolutionPlanDateTime', 'LastActivityResourceID', 'HoursToBeScheduled', 'LastTrackedModificationDateTime', 'AssignedResourceRoleID', 'Source', 'PreviousServiceThermometerRating', 'Description', 'AEMAlertID', 'CurrentServiceThermometerRating', 'ChangeApprovalType', 'InstalledProductID', 'MonitorID', 'CreateDate', 'ResolvedDueDateTime', 'LastCustomerNotificationDateTime', 'ContractServiceID', 'IssueType', 'ServiceLevelAgreementHasBeenMet', 'Priority', 'ServiceLevelAgreementID', 'AccountID', 'RmaType', 'DueDateTime', 'ChangeInfoField3', 'ResolutionPlanDueDateTime', 'FirstResponseAssignedResourceID', 'QueueID', 'ChangeApprovalBoard', 'ChangeApprovalStatus', 'ApiVendorID', 'ChangeInfoField4', 'ChangeInfoField5', 'OpportunityId', 'ContractID', 'Status', 'ContactID', 'BusinessDivisionSubdivisionID', 'ServiceThermometerTemperature', 'FirstResponseInitiatingResourceID', 'ChangeInfoField2', 'LastActivityDate', 'FirstResponseDueDateTime', 'ImpersonatorCreatorResourceID', 'ProjectID', 'Title', 'PurchaseOrderNumber', 'CreatorResourceID', 'SubIssueType', 'ResolvedDateTime', 'FirstResponseDateTime', 'AllocationCodeID', 'AssignedResourceID', 'CompletedDate', 'TicketType', 'EstimatedHours', 'TicketNumber', 'CreatorType', 'Resolution', 'LastCustomerVisibleActivityDateTime', 'RmaStatus', 'ExternalID', 'LastActivityPersonType', 'MonitorTypeID', 'AccountPhysicalLocationID', 'CompletedByResourceID', 'ProblemTicketId', 'ContractServiceBundleID', 'ChangeInfoField1', 'id', 'TicketCategory', '')]
+    [ValidateSet('LastActivityDate', 'Source', 'CompletedByResourceID', 'ResolutionPlanDateTime', 'ChangeInfoField4', 'HoursToBeScheduled', 'InstalledProductID', 'CreatorType', 'AccountID', 'FirstResponseAssignedResourceID', 'ContractServiceBundleID', 'ChangeInfoField3', 'CompletedDate', 'DueDateTime', 'AssignedResourceID', 'ServiceLevelAgreementHasBeenMet', 'ImpersonatorCreatorResourceID', 'FirstResponseDueDateTime', 'LastActivityResourceID', 'TicketNumber', 'TicketCategory', 'ChangeApprovalType', 'Priority', 'EstimatedHours', 'ApiVendorID', 'ServiceLevelAgreementID', 'ChangeInfoField2', 'LastCustomerNotificationDateTime', 'PurchaseOrderNumber', 'CreateDate', 'ContactID', 'Status', 'AllocationCodeID', 'ChangeInfoField1', 'Resolution', 'TicketType', 'OpportunityId', 'ProjectID', 'BusinessDivisionSubdivisionID', 'LastActivityPersonType', 'AEMAlertID', 'ResolutionPlanDueDateTime', 'QueueID', 'MonitorTypeID', 'ExternalID', 'ContractID', 'ResolvedDueDateTime', 'FirstResponseInitiatingResourceID', 'ProblemTicketId', 'ServiceThermometerTemperature', 'ContractServiceID', 'AssignedResourceRoleID', 'Description', 'MonitorID', 'RmaType', 'CurrentServiceThermometerRating', 'ChangeInfoField5', 'ChangeApprovalStatus', 'IssueType', 'LastTrackedModificationDateTime', 'PreviousServiceThermometerRating', 'ChangeApprovalBoard', 'Title', 'id', 'LastCustomerVisibleActivityDateTime', 'SubIssueType', 'RmaStatus', 'CreatorResourceID', 'AccountPhysicalLocationID', 'ResolvedDateTime', 'ServiceLevelAgreementPausedNextEventHours', 'FirstResponseDateTime', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceLevelAgreementPausedNextEventHours', 'ResolutionPlanDateTime', 'LastActivityResourceID', 'HoursToBeScheduled', 'LastTrackedModificationDateTime', 'AssignedResourceRoleID', 'Source', 'PreviousServiceThermometerRating', 'Description', 'AEMAlertID', 'CurrentServiceThermometerRating', 'ChangeApprovalType', 'InstalledProductID', 'MonitorID', 'CreateDate', 'ResolvedDueDateTime', 'LastCustomerNotificationDateTime', 'ContractServiceID', 'IssueType', 'ServiceLevelAgreementHasBeenMet', 'Priority', 'ServiceLevelAgreementID', 'AccountID', 'RmaType', 'DueDateTime', 'ChangeInfoField3', 'ResolutionPlanDueDateTime', 'FirstResponseAssignedResourceID', 'QueueID', 'ChangeApprovalBoard', 'ChangeApprovalStatus', 'ApiVendorID', 'ChangeInfoField4', 'ChangeInfoField5', 'OpportunityId', 'ContractID', 'Status', 'ContactID', 'BusinessDivisionSubdivisionID', 'ServiceThermometerTemperature', 'FirstResponseInitiatingResourceID', 'ChangeInfoField2', 'LastActivityDate', 'FirstResponseDueDateTime', 'ImpersonatorCreatorResourceID', 'ProjectID', 'Title', 'PurchaseOrderNumber', 'CreatorResourceID', 'SubIssueType', 'ResolvedDateTime', 'FirstResponseDateTime', 'AllocationCodeID', 'AssignedResourceID', 'CompletedDate', 'TicketType', 'EstimatedHours', 'TicketNumber', 'CreatorType', 'Resolution', 'LastCustomerVisibleActivityDateTime', 'RmaStatus', 'ExternalID', 'LastActivityPersonType', 'MonitorTypeID', 'AccountPhysicalLocationID', 'CompletedByResourceID', 'ProblemTicketId', 'ContractServiceBundleID', 'ChangeInfoField1', 'id', 'TicketCategory', '')]
+    [ValidateSet('LastActivityDate', 'Source', 'CompletedByResourceID', 'ResolutionPlanDateTime', 'ChangeInfoField4', 'HoursToBeScheduled', 'InstalledProductID', 'CreatorType', 'AccountID', 'FirstResponseAssignedResourceID', 'ContractServiceBundleID', 'ChangeInfoField3', 'CompletedDate', 'DueDateTime', 'AssignedResourceID', 'ServiceLevelAgreementHasBeenMet', 'ImpersonatorCreatorResourceID', 'FirstResponseDueDateTime', 'LastActivityResourceID', 'TicketNumber', 'TicketCategory', 'ChangeApprovalType', 'Priority', 'EstimatedHours', 'ApiVendorID', 'ServiceLevelAgreementID', 'ChangeInfoField2', 'LastCustomerNotificationDateTime', 'PurchaseOrderNumber', 'CreateDate', 'ContactID', 'Status', 'AllocationCodeID', 'ChangeInfoField1', 'Resolution', 'TicketType', 'OpportunityId', 'ProjectID', 'BusinessDivisionSubdivisionID', 'LastActivityPersonType', 'AEMAlertID', 'ResolutionPlanDueDateTime', 'QueueID', 'MonitorTypeID', 'ExternalID', 'ContractID', 'ResolvedDueDateTime', 'FirstResponseInitiatingResourceID', 'ProblemTicketId', 'ServiceThermometerTemperature', 'ContractServiceID', 'AssignedResourceRoleID', 'Description', 'MonitorID', 'RmaType', 'CurrentServiceThermometerRating', 'ChangeInfoField5', 'ChangeApprovalStatus', 'IssueType', 'LastTrackedModificationDateTime', 'PreviousServiceThermometerRating', 'ChangeApprovalBoard', 'Title', 'id', 'LastCustomerVisibleActivityDateTime', 'SubIssueType', 'RmaStatus', 'CreatorResourceID', 'AccountPhysicalLocationID', 'ResolvedDateTime', 'ServiceLevelAgreementPausedNextEventHours', 'FirstResponseDateTime', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceLevelAgreementPausedNextEventHours', 'ResolutionPlanDateTime', 'LastActivityResourceID', 'HoursToBeScheduled', 'LastTrackedModificationDateTime', 'AssignedResourceRoleID', 'Source', 'PreviousServiceThermometerRating', 'Description', 'AEMAlertID', 'CurrentServiceThermometerRating', 'ChangeApprovalType', 'InstalledProductID', 'MonitorID', 'CreateDate', 'ResolvedDueDateTime', 'LastCustomerNotificationDateTime', 'ContractServiceID', 'IssueType', 'ServiceLevelAgreementHasBeenMet', 'Priority', 'ServiceLevelAgreementID', 'AccountID', 'RmaType', 'DueDateTime', 'ChangeInfoField3', 'ResolutionPlanDueDateTime', 'FirstResponseAssignedResourceID', 'QueueID', 'ChangeApprovalBoard', 'ChangeApprovalStatus', 'ApiVendorID', 'ChangeInfoField4', 'ChangeInfoField5', 'OpportunityId', 'ContractID', 'Status', 'ContactID', 'BusinessDivisionSubdivisionID', 'ServiceThermometerTemperature', 'FirstResponseInitiatingResourceID', 'ChangeInfoField2', 'LastActivityDate', 'FirstResponseDueDateTime', 'ImpersonatorCreatorResourceID', 'ProjectID', 'Title', 'PurchaseOrderNumber', 'CreatorResourceID', 'SubIssueType', 'ResolvedDateTime', 'FirstResponseDateTime', 'AllocationCodeID', 'AssignedResourceID', 'CompletedDate', 'TicketType', 'EstimatedHours', 'TicketNumber', 'CreatorType', 'Resolution', 'LastCustomerVisibleActivityDateTime', 'RmaStatus', 'ExternalID', 'LastActivityPersonType', 'MonitorTypeID', 'AccountPhysicalLocationID', 'CompletedByResourceID', 'ProblemTicketId', 'ContractServiceBundleID', 'ChangeInfoField1', 'id', 'TicketCategory', '')]
+    [ValidateSet('LastActivityDate', 'Source', 'CompletedByResourceID', 'ResolutionPlanDateTime', 'ChangeInfoField4', 'HoursToBeScheduled', 'InstalledProductID', 'CreatorType', 'AccountID', 'FirstResponseAssignedResourceID', 'ContractServiceBundleID', 'ChangeInfoField3', 'CompletedDate', 'DueDateTime', 'AssignedResourceID', 'ServiceLevelAgreementHasBeenMet', 'ImpersonatorCreatorResourceID', 'FirstResponseDueDateTime', 'LastActivityResourceID', 'TicketNumber', 'TicketCategory', 'ChangeApprovalType', 'Priority', 'EstimatedHours', 'ApiVendorID', 'ServiceLevelAgreementID', 'ChangeInfoField2', 'LastCustomerNotificationDateTime', 'PurchaseOrderNumber', 'CreateDate', 'ContactID', 'Status', 'AllocationCodeID', 'ChangeInfoField1', 'Resolution', 'TicketType', 'OpportunityId', 'ProjectID', 'BusinessDivisionSubdivisionID', 'LastActivityPersonType', 'AEMAlertID', 'ResolutionPlanDueDateTime', 'QueueID', 'MonitorTypeID', 'ExternalID', 'ContractID', 'ResolvedDueDateTime', 'FirstResponseInitiatingResourceID', 'ProblemTicketId', 'ServiceThermometerTemperature', 'ContractServiceID', 'AssignedResourceRoleID', 'Description', 'MonitorID', 'RmaType', 'CurrentServiceThermometerRating', 'ChangeInfoField5', 'ChangeApprovalStatus', 'IssueType', 'LastTrackedModificationDateTime', 'PreviousServiceThermometerRating', 'ChangeApprovalBoard', 'Title', 'id', 'LastCustomerVisibleActivityDateTime', 'SubIssueType', 'RmaStatus', 'CreatorResourceID', 'AccountPhysicalLocationID', 'ResolvedDateTime', 'ServiceLevelAgreementPausedNextEventHours', 'FirstResponseDateTime', '')]
     [string[]]
     $IsNotNull,
 

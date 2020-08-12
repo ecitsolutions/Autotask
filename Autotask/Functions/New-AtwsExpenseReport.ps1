@@ -62,6 +62,27 @@ Set-AtwsExpenseReport
     [Autotask.ExpenseReport[]]
     $InputObject,
 
+# Amount Due
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $AmountDue,
+
+# Approved Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $ApprovedDate,
+
+# Approver ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ApproverID,
+
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -76,12 +97,30 @@ Set-AtwsExpenseReport
     [double]
     $CashAdvanceAmount,
 
-# Amount Due
+# Department Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $DepartmentNumber,
+
+# Expense Total
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $AmountDue,
+    $ExpenseTotal,
+
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
 
 # Quick Books Reference Number
     [Parameter(
@@ -91,34 +130,34 @@ Set-AtwsExpenseReport
     [string]
     $QuickBooksReferenceNumber,
 
-# Submit
+# Reimbursement Currency Amount Due
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $Submit,
+    [double]
+    $ReimbursementCurrencyAmountDue,
 
-# Approver ID
+# Reimbursement Currency Cash Advance Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $ReimbursementCurrencyCashAdvanceAmount,
+
+# Reimbursement Currency ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ApproverID,
+    $ReimbursementCurrencyID,
 
-# Approved Date
+# Rejection Reason
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $ApprovedDate,
-
-# Department Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,2048)]
     [string]
-    $DepartmentNumber,
+    $RejectionReason,
 
 # Status
     [Parameter(
@@ -139,26 +178,19 @@ Set-AtwsExpenseReport
     [string]
     $Status,
 
+# Submit
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Submit,
+
 # Submit Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
     $SubmitDate,
-
-# Reimbursement Currency Amount Due
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $ReimbursementCurrencyAmountDue,
-
-# Reimbursement Currency ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ReimbursementCurrencyID,
 
 # Submitter ID
     [Parameter(
@@ -169,16 +201,6 @@ Set-AtwsExpenseReport
     [Int]
     $SubmitterID,
 
-# Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
 # Period Ending
     [Parameter(
       Mandatory = $true,
@@ -186,29 +208,7 @@ Set-AtwsExpenseReport
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
-    $WeekEnding,
-
-# Reimbursement Currency Cash Advance Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $ReimbursementCurrencyCashAdvanceAmount,
-
-# Expense Total
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $ExpenseTotal,
-
-# Rejection Reason
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2048)]
-    [string]
-    $RejectionReason
+    $WeekEnding
   )
  
     begin { 
@@ -230,7 +230,7 @@ Set-AtwsExpenseReport
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -238,7 +238,7 @@ Set-AtwsExpenseReport
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -247,7 +247,7 @@ Set-AtwsExpenseReport
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -263,12 +263,12 @@ Set-AtwsExpenseReport
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

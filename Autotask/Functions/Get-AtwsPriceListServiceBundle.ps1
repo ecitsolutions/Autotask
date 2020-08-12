@@ -107,6 +107,14 @@ Set-AtwsPriceListServiceBundle
     [switch]
     $All,
 
+# Currency Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $CurrencyID,
+
 # ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -123,13 +131,12 @@ Set-AtwsPriceListServiceBundle
     [Nullable[Int][]]
     $ServiceBundleID,
 
-# Currency Id
+# Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $CurrencyID,
+    [Nullable[decimal][]]
+    $UnitPrice,
 
 # Uses Internal Currency Price
     [Parameter(
@@ -139,31 +146,24 @@ Set-AtwsPriceListServiceBundle
     [Nullable[boolean][]]
     $UsesInternalCurrencyPrice,
 
-# Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
-    $UnitPrice,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('ServiceBundleID', 'UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'CurrencyID')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'ServiceBundleID', 'CurrencyID', 'UnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'CurrencyID')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'ServiceBundleID', 'CurrencyID', 'UnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'CurrencyID')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'ServiceBundleID', 'CurrencyID', 'UnitPrice')]
     [string[]]
     $IsNotNull,
 

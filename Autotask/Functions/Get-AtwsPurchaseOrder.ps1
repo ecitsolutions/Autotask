@@ -104,7 +104,7 @@ Set-AtwsPurchaseOrder
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ShippingType', 'ImpersonatorCreatorResourceID', 'PurchaseForAccountID')]
+    [ValidateSet('PurchaseForAccountID', 'ShippingType', 'ImpersonatorCreatorResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -128,48 +128,12 @@ Set-AtwsPurchaseOrder
     [switch]
     $All,
 
-# Order ID
+# Cancel Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Vendor Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $VendorID,
-
-# Order Status ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Status,
-
-# Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
+    [Nullable[datetime][]]
+    $CancelDateTime,
 
 # Create Date
     [Parameter(
@@ -178,28 +142,120 @@ Set-AtwsPurchaseOrder
     [Nullable[datetime][]]
     $CreateDateTime,
 
-# Submit Date
+# Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $SubmitDateTime,
+    [Nullable[Int][]]
+    $CreatorResourceID,
 
-# Cancel Date
+# External Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $CancelDateTime,
+    [ValidateLength(0,50)]
+    [string[]]
+    $ExternalPONumber,
 
-# Addressee Name
+# Fax
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $Fax,
+
+# Freight Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $Freight,
+
+# General Memo
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,4000)]
+    [string[]]
+    $GeneralMemo,
+
+# Order ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
+    [Nullable[long][]]
+    $id,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Internal Currency Freight Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyFreight,
+
+# Latest Estimated Arrival Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LatestEstimatedArrivalDate,
+
+# Payment Term ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
-    $ShipToName,
+    $PaymentTerm,
+
+# Phone
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $Phone,
+
+# Purchase For Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $PurchaseForAccountID,
+
+# Expected Ship Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $ShippingDate,
+
+# Shipping Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ShippingType,
 
 # Address Line 1
     [Parameter(
@@ -226,13 +282,14 @@ Set-AtwsPurchaseOrder
     [string[]]
     $ShipToCity,
 
-# State
+# Addressee Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,25)]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
     [string[]]
-    $ShipToState,
+    $ShipToName,
 
 # Postal Code
     [Parameter(
@@ -242,73 +299,54 @@ Set-AtwsPurchaseOrder
     [string[]]
     $ShipToPostalCode,
 
-# General Memo
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,4000)]
-    [string[]]
-    $GeneralMemo,
-
-# Phone
+# State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
     [string[]]
-    $Phone,
+    $ShipToState,
 
-# Fax
+# Show Each Tax In Tax Group
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,25)]
+    [Nullable[boolean][]]
+    $ShowEachTaxInGroup,
+
+# Show Tax Category
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ShowTaxCategory,
+
+# Order Status ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
-    $Fax,
+    $Status,
 
-# Vendor Invoice Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $VendorInvoiceNumber,
-
-# External Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ExternalPONumber,
-
-# Purchase For Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $PurchaseForAccountID,
-
-# Shipping Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ShippingType,
-
-# Expected Ship Date
+# Submit Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $ShippingDate,
-
-# Freight Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $Freight,
+    $SubmitDateTime,
 
 # Tax Group ID
     [Parameter(
@@ -329,46 +367,6 @@ Set-AtwsPurchaseOrder
     [string[]]
     $TaxGroup,
 
-# Payment Term ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $PaymentTerm,
-
-# Show Tax Category
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ShowTaxCategory,
-
-# Show Each Tax In Tax Group
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ShowEachTaxInGroup,
-
-# Latest Estimated Arrival Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LatestEstimatedArrivalDate,
-
 # Use Item Descriptions From
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -388,38 +386,40 @@ Set-AtwsPurchaseOrder
     [string[]]
     $UseItemDescriptionsFrom,
 
-# Internal Currency Freight Cost
+# Vendor Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $InternalCurrencyFreight,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    $VendorID,
+
+# Vendor Invoice Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $VendorInvoiceNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Status', 'ShipToState', 'InternalCurrencyFreight', 'ShippingDate', 'SubmitDateTime', 'LatestEstimatedArrivalDate', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'TaxGroup', 'UseItemDescriptionsFrom', 'ShipToAddress2', 'ShipToAddress1', 'ShippingType', 'ShowTaxCategory', 'ShipToCity', 'VendorID', 'CancelDateTime', 'ImpersonatorCreatorResourceID', 'ShipToName', 'ShipToPostalCode', 'GeneralMemo', 'VendorInvoiceNumber', 'Freight', 'Fax', 'Phone', 'CreatorResourceID', 'CreateDateTime', 'id', 'ShowEachTaxInGroup')]
+    [ValidateSet('Fax', 'SubmitDateTime', 'InternalCurrencyFreight', 'TaxGroup', 'CancelDateTime', 'CreateDateTime', 'Freight', 'ShowEachTaxInGroup', 'ShowTaxCategory', 'ShipToCity', 'ShipToName', 'CreatorResourceID', 'Phone', 'ShipToPostalCode', 'GeneralMemo', 'ShippingDate', 'VendorID', 'id', 'Status', 'ImpersonatorCreatorResourceID', 'ShipToAddress2', 'ShipToAddress1', 'PurchaseForAccountID', 'UseItemDescriptionsFrom', 'PaymentTerm', 'VendorInvoiceNumber', 'ShipToState', 'LatestEstimatedArrivalDate', 'ShippingType', 'ExternalPONumber')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Status', 'ShipToState', 'InternalCurrencyFreight', 'ShippingDate', 'SubmitDateTime', 'LatestEstimatedArrivalDate', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'TaxGroup', 'UseItemDescriptionsFrom', 'ShipToAddress2', 'ShipToAddress1', 'ShippingType', 'ShowTaxCategory', 'ShipToCity', 'VendorID', 'CancelDateTime', 'ImpersonatorCreatorResourceID', 'ShipToName', 'ShipToPostalCode', 'GeneralMemo', 'VendorInvoiceNumber', 'Freight', 'Fax', 'Phone', 'CreatorResourceID', 'CreateDateTime', 'id', 'ShowEachTaxInGroup')]
+    [ValidateSet('Fax', 'SubmitDateTime', 'InternalCurrencyFreight', 'TaxGroup', 'CancelDateTime', 'CreateDateTime', 'Freight', 'ShowEachTaxInGroup', 'ShowTaxCategory', 'ShipToCity', 'ShipToName', 'CreatorResourceID', 'Phone', 'ShipToPostalCode', 'GeneralMemo', 'ShippingDate', 'VendorID', 'id', 'Status', 'ImpersonatorCreatorResourceID', 'ShipToAddress2', 'ShipToAddress1', 'PurchaseForAccountID', 'UseItemDescriptionsFrom', 'PaymentTerm', 'VendorInvoiceNumber', 'ShipToState', 'LatestEstimatedArrivalDate', 'ShippingType', 'ExternalPONumber')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Status', 'ShipToState', 'InternalCurrencyFreight', 'ShippingDate', 'SubmitDateTime', 'LatestEstimatedArrivalDate', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'TaxGroup', 'UseItemDescriptionsFrom', 'ShipToAddress2', 'ShipToAddress1', 'ShippingType', 'ShowTaxCategory', 'ShipToCity', 'VendorID', 'CancelDateTime', 'ImpersonatorCreatorResourceID', 'ShipToName', 'ShipToPostalCode', 'GeneralMemo', 'VendorInvoiceNumber', 'Freight', 'Fax', 'Phone', 'CreatorResourceID', 'CreateDateTime', 'id', 'ShowEachTaxInGroup')]
+    [ValidateSet('Fax', 'SubmitDateTime', 'InternalCurrencyFreight', 'TaxGroup', 'CancelDateTime', 'CreateDateTime', 'Freight', 'ShowEachTaxInGroup', 'ShowTaxCategory', 'ShipToCity', 'ShipToName', 'CreatorResourceID', 'Phone', 'ShipToPostalCode', 'GeneralMemo', 'ShippingDate', 'VendorID', 'id', 'Status', 'ImpersonatorCreatorResourceID', 'ShipToAddress2', 'ShipToAddress1', 'PurchaseForAccountID', 'UseItemDescriptionsFrom', 'PaymentTerm', 'VendorInvoiceNumber', 'ShipToState', 'LatestEstimatedArrivalDate', 'ShippingType', 'ExternalPONumber')]
     [string[]]
     $IsNotNull,
 

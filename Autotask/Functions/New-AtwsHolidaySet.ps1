@@ -62,6 +62,14 @@ Set-AtwsHolidaySet
     [Autotask.HolidaySet[]]
     $InputObject,
 
+# Holiday Set Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,512)]
+    [string]
+    $HolidaySetDescription,
+
 # Holiday Set Name
     [Parameter(
       Mandatory = $true,
@@ -71,15 +79,7 @@ Set-AtwsHolidaySet
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,64)]
     [string]
-    $HolidaySetName,
-
-# Holiday Set Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,512)]
-    [string]
-    $HolidaySetDescription
+    $HolidaySetName
   )
  
     begin { 
@@ -101,7 +101,7 @@ Set-AtwsHolidaySet
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -109,7 +109,7 @@ Set-AtwsHolidaySet
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -118,7 +118,7 @@ Set-AtwsHolidaySet
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -134,12 +134,12 @@ Set-AtwsHolidaySet
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

@@ -119,22 +119,13 @@ An example of a more complex query. This command returns any InternalLocations w
     [switch]
     $All,
 
-# Internal Location ID
+# Additional Address Info
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
     [string[]]
-    $Name,
+    $AdditionalAddressInfo,
 
 # Address 1
     [Parameter(
@@ -160,22 +151,6 @@ An example of a more complex query. This command returns any InternalLocations w
     [string[]]
     $City,
 
-# County
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string[]]
-    $State,
-
-# Postal Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,20)]
-    [string[]]
-    $PostalCode,
-
 # Country
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -183,22 +158,6 @@ An example of a more complex query. This command returns any InternalLocations w
     [ValidateLength(0,100)]
     [string[]]
     $Country,
-
-# Additional Address Info
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $AdditionalAddressInfo,
-
-# Time Zone Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $TimeZone,
 
 # Holiday Set
     [Parameter(
@@ -219,6 +178,14 @@ An example of a more complex query. This command returns any InternalLocations w
     [string[]]
     $HolidaySetId,
 
+# Internal Location ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
 # Is Default
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -226,24 +193,57 @@ An example of a more complex query. This command returns any InternalLocations w
     [Nullable[boolean][]]
     $IsDefault,
 
+# Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('City', 'Address2', 'Name', 'Country', 'IsDefault', 'State', 'AdditionalAddressInfo', 'id', 'PostalCode', 'Address1', 'HolidaySetId', 'TimeZone')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
+
+# Zip Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,20)]
+    [string[]]
+    $PostalCode,
+
+# State
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $State,
+
+# Time Zone Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $TimeZone,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('Address1', 'City', 'PostalCode', 'HolidaySetId', 'TimeZone', 'Address2', 'AdditionalAddressInfo', 'IsDefault', 'id', 'Name', 'Country', 'State')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('City', 'Address2', 'Name', 'Country', 'IsDefault', 'State', 'AdditionalAddressInfo', 'id', 'PostalCode', 'Address1', 'HolidaySetId', 'TimeZone')]
+    [ValidateSet('Address1', 'City', 'PostalCode', 'HolidaySetId', 'TimeZone', 'Address2', 'AdditionalAddressInfo', 'IsDefault', 'id', 'Name', 'Country', 'State')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('City', 'Address2', 'Name', 'Country', 'IsDefault', 'State', 'AdditionalAddressInfo', 'id', 'PostalCode', 'Address1', 'HolidaySetId', 'TimeZone')]
+    [ValidateSet('Address1', 'City', 'PostalCode', 'HolidaySetId', 'TimeZone', 'Address2', 'AdditionalAddressInfo', 'IsDefault', 'id', 'Name', 'Country', 'State')]
     [string[]]
     $IsNotNull,
 

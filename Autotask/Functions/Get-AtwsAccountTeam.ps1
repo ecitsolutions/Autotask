@@ -86,7 +86,7 @@ Remove-AtwsAccountTeam
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AccountID')]
     [string]
     $GetReferenceEntityById,
 
@@ -109,21 +109,28 @@ Remove-AtwsAccountTeam
     [switch]
     $All,
 
-# Client Team ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $AccountID,
+
+# Associated As Comanaged
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $AssociatedAsComanaged,
+
+# Account Team ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Resource
     [Parameter(
@@ -133,31 +140,24 @@ Remove-AtwsAccountTeam
     [Nullable[long][]]
     $ResourceID,
 
-# Associated As Comanaged
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $AssociatedAsComanaged,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('AccountID', 'id', 'AssociatedAsComanaged', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AccountID', 'id', 'AssociatedAsComanaged')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'id', 'AssociatedAsComanaged', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AccountID', 'id', 'AssociatedAsComanaged')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'id', 'AssociatedAsComanaged', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AccountID', 'id', 'AssociatedAsComanaged')]
     [string[]]
     $IsNotNull,
 

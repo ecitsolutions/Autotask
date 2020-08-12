@@ -126,22 +126,13 @@ Set-AtwsChecklistLibrary
     [switch]
     $All,
 
-# Checklist Library ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
+    [Nullable[boolean][]]
+    $Active,
 
 # Description
     [Parameter(
@@ -171,32 +162,41 @@ Set-AtwsChecklistLibrary
     [string[]]
     $EntityType,
 
-# Active
+# Checklist Library ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
+    [Nullable[long][]]
+    $id,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id', 'EntityType')]
+    [ValidateSet('Description', 'id', 'Active', 'Name', 'EntityType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id', 'EntityType')]
+    [ValidateSet('Description', 'id', 'Active', 'Name', 'EntityType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id', 'EntityType')]
+    [ValidateSet('Description', 'id', 'Active', 'Name', 'EntityType')]
     [string[]]
     $IsNotNull,
 

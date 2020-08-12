@@ -120,22 +120,13 @@ An example of a more complex query. This command returns any Skills with Id GREA
     [switch]
     $All,
 
-# Skill ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
+    [Nullable[boolean][]]
+    $Active,
 
 # Category ID
     [Parameter(
@@ -165,32 +156,41 @@ An example of a more complex query. This command returns any Skills with Id GREA
     [string[]]
     $Description,
 
-# Active
+# Skill ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
+    [Nullable[long][]]
+    $id,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id', 'CategoryID')]
+    [ValidateSet('Description', 'id', 'Active', 'Name', 'CategoryID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id', 'CategoryID')]
+    [ValidateSet('Description', 'id', 'Active', 'Name', 'CategoryID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id', 'CategoryID')]
+    [ValidateSet('Description', 'id', 'Active', 'Name', 'CategoryID')]
     [string[]]
     $IsNotNull,
 

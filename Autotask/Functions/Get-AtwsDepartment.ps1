@@ -110,6 +110,14 @@ Set-AtwsDepartment
     [switch]
     $All,
 
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,1000)]
+    [string[]]
+    $Description,
+
 # Department ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -127,14 +135,6 @@ Set-AtwsDepartment
     [string[]]
     $Name,
 
-# Primary Location ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $PrimaryLocationID,
-
 # Number
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -143,13 +143,13 @@ Set-AtwsDepartment
     [string[]]
     $Number,
 
-# Description
+# Primary Location ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,1000)]
-    [string[]]
-    $Description,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $PrimaryLocationID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

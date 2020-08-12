@@ -112,7 +112,7 @@ Set-AtwsCountry
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Contact', 'AccountPhysicalLocation', 'SalesOrder', 'BusinessLocation', 'Account')]
+    [ValidateSet('Account', 'SalesOrder', 'AccountPhysicalLocation', 'BusinessLocation', 'Contact')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -123,52 +123,12 @@ Set-AtwsCountry
     [switch]
     $All,
 
-# Country ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Country Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2)]
-    [string[]]
-    $CountryCode,
-
-# ISO Standard Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $Name,
-
-# Display Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $DisplayName,
-
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
     $Active,
-
-# Default Country
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsDefaultCountry,
 
 # Address Format ID
     [Parameter(
@@ -190,12 +150,30 @@ Set-AtwsCountry
     [string[]]
     $AddressFormatID,
 
-# Quote Template ID
+# Country Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $QuoteTemplateID,
+    [ValidateLength(0,2)]
+    [string[]]
+    $CountryCode,
+
+# Display Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $DisplayName,
+
+# Country ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Invoice Template ID
     [Parameter(
@@ -204,24 +182,46 @@ Set-AtwsCountry
     [Nullable[Int][]]
     $InvoiceTemplateID,
 
+# Default Country
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceTemplateID', 'QuoteTemplateID', 'Name', 'IsDefaultCountry', 'Active', 'id', 'CountryCode', 'AddressFormatID', 'DisplayName')]
+    [Nullable[boolean][]]
+    $IsDefaultCountry,
+
+# ISO Standard Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Name,
+
+# Quote Template ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $QuoteTemplateID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('AddressFormatID', 'IsDefaultCountry', 'Active', 'Name', 'QuoteTemplateID', 'DisplayName', 'id', 'InvoiceTemplateID', 'CountryCode')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceTemplateID', 'QuoteTemplateID', 'Name', 'IsDefaultCountry', 'Active', 'id', 'CountryCode', 'AddressFormatID', 'DisplayName')]
+    [ValidateSet('AddressFormatID', 'IsDefaultCountry', 'Active', 'Name', 'QuoteTemplateID', 'DisplayName', 'id', 'InvoiceTemplateID', 'CountryCode')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceTemplateID', 'QuoteTemplateID', 'Name', 'IsDefaultCountry', 'Active', 'id', 'CountryCode', 'AddressFormatID', 'DisplayName')]
+    [ValidateSet('AddressFormatID', 'IsDefaultCountry', 'Active', 'Name', 'QuoteTemplateID', 'DisplayName', 'id', 'InvoiceTemplateID', 'CountryCode')]
     [string[]]
     $IsNotNull,
 

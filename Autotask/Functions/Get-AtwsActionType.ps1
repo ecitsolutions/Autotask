@@ -125,6 +125,14 @@ Set-AtwsActionType
     [switch]
     $All,
 
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
+
 # Action Type ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -141,6 +149,13 @@ Set-AtwsActionType
     [ValidateLength(0,32)]
     [string[]]
     $Name,
+
+# System Action Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $SystemActionType,
 
 # View
     [Parameter(
@@ -162,39 +177,24 @@ Set-AtwsActionType
     [string[]]
     $View,
 
-# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
-# System Action Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $SystemActionType,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('Active', 'id', 'Name', 'SystemActionType', 'View')]
+    [ValidateSet('SystemActionType', 'id', 'Active', 'Name', 'View')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Name', 'SystemActionType', 'View')]
+    [ValidateSet('SystemActionType', 'id', 'Active', 'Name', 'View')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Name', 'SystemActionType', 'View')]
+    [ValidateSet('SystemActionType', 'id', 'Active', 'Name', 'View')]
     [string[]]
     $IsNotNull,
 

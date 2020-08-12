@@ -109,6 +109,21 @@ Set-AtwsPaymentTerm
     [switch]
     $All,
 
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Active,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
 # Payment Term ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -126,21 +141,6 @@ Set-AtwsPaymentTerm
     [string[]]
     $Name,
 
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Description,
-
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Active,
-
 # Payment Due In Days
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -151,21 +151,21 @@ Set-AtwsPaymentTerm
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id', 'PaymentDueInDays')]
+    [ValidateSet('Description', 'id', 'Name', 'PaymentDueInDays', 'Active')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id', 'PaymentDueInDays')]
+    [ValidateSet('Description', 'id', 'Name', 'PaymentDueInDays', 'Active')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'Active', 'id', 'PaymentDueInDays')]
+    [ValidateSet('Description', 'id', 'Name', 'PaymentDueInDays', 'Active')]
     [string[]]
     $IsNotNull,
 

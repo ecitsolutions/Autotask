@@ -109,28 +109,12 @@ Remove-AtwsServiceCallTicketResource
     [switch]
     $All,
 
+# Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Service Call Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ServiceCallTicketID,
-
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ResourceID,
+    [Nullable[datetime][]]
+    $CreateDateTime,
 
 # Created By Resource ID
     [Parameter(
@@ -139,12 +123,12 @@ Remove-AtwsServiceCallTicketResource
     [Nullable[Int][]]
     $CreatedByResourceID,
 
-# Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Last Modified By Resource ID
     [Parameter(
@@ -160,24 +144,40 @@ Remove-AtwsServiceCallTicketResource
     [Nullable[datetime][]]
     $LastModifiedDateTime,
 
+# Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastModifiedByResourceID', 'LastModifiedDateTime', 'CreatedByResourceID', 'CreateDateTime', 'ServiceCallTicketID', 'id', 'ResourceID')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ResourceID,
+
+# Service Call Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ServiceCallTicketID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('CreateDateTime', 'CreatedByResourceID', 'LastModifiedByResourceID', 'ServiceCallTicketID', 'ResourceID', 'id', 'LastModifiedDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastModifiedByResourceID', 'LastModifiedDateTime', 'CreatedByResourceID', 'CreateDateTime', 'ServiceCallTicketID', 'id', 'ResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatedByResourceID', 'LastModifiedByResourceID', 'ServiceCallTicketID', 'ResourceID', 'id', 'LastModifiedDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastModifiedByResourceID', 'LastModifiedDateTime', 'CreatedByResourceID', 'CreateDateTime', 'ServiceCallTicketID', 'id', 'ResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatedByResourceID', 'LastModifiedByResourceID', 'ServiceCallTicketID', 'ResourceID', 'id', 'LastModifiedDateTime')]
     [string[]]
     $IsNotNull,
 

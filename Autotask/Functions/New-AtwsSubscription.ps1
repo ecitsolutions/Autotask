@@ -76,33 +76,6 @@ Set-AtwsSubscription
     [Int]
     $BusinessDivisionSubdivisionID,
 
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Period Price
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [decimal]
-    $PeriodPrice,
-
-# Subscription Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('Name')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $SubscriptionName,
-
 # Description
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -119,6 +92,56 @@ Set-AtwsSubscription
     [ValidateNotNullOrEmpty()]
     [datetime]
     $EffectiveDate,
+
+# Expiration Date
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $ExpirationDate,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
+# Installed Product ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $InstalledProductID,
+
+# Material Code Id
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $MaterialCodeID,
+
+# Period Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $PeriodCost,
+
+# Period Price
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [decimal]
+    $PeriodPrice,
 
 # Period Type
     [Parameter(
@@ -141,12 +164,13 @@ Set-AtwsSubscription
     [string]
     $PeriodType,
 
-# Total Price
+# Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [decimal]
-    $TotalPrice,
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
 
 # Type
     [Parameter(
@@ -169,12 +193,16 @@ Set-AtwsSubscription
     [string]
     $Status,
 
-# Period Cost
+# Subscription Name
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [decimal]
-    $PeriodCost,
+    [Alias('Name')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $SubscriptionName,
 
 # Total Cost
     [Parameter(
@@ -183,40 +211,12 @@ Set-AtwsSubscription
     [decimal]
     $TotalCost,
 
-# Installed Product ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $InstalledProductID,
-
-# Expiration Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $ExpirationDate,
-
-# Purchase Order Number
+# Total Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string]
-    $PurchaseOrderNumber,
-
-# Material Code Id
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $MaterialCodeID,
+    [decimal]
+    $TotalPrice,
 
 # Vendor ID
     [Parameter(
@@ -245,7 +245,7 @@ Set-AtwsSubscription
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -253,7 +253,7 @@ Set-AtwsSubscription
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -262,7 +262,7 @@ Set-AtwsSubscription
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -278,12 +278,12 @@ Set-AtwsSubscription
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

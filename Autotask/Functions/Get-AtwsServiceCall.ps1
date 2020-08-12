@@ -103,7 +103,7 @@ Set-AtwsServiceCall
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID', 'AccountID')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -127,15 +127,7 @@ Set-AtwsServiceCall
     [switch]
     $All,
 
-# Service Call ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Client ID
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -143,21 +135,54 @@ Set-AtwsServiceCall
     [Nullable[Int][]]
     $AccountID,
 
-# Start Date
+# Account Physical Location
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDateTime,
+    [Nullable[Int][]]
+    $AccountPhysicalLocationID,
 
-# End Date
+# Cancelation Notice Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $CancelationNoticeHours,
+
+# Canceled By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CanceledByResource,
+
+# Canceled Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
     [Nullable[datetime][]]
-    $EndDateTime,
+    $CanceledDateTime,
+
+# Complete
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int16][]]
+    $Complete,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Created By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
 
 # Description
     [Parameter(
@@ -167,26 +192,35 @@ Set-AtwsServiceCall
     [string[]]
     $Description,
 
-# Complete
+# Duration
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int16][]]
-    $Complete,
+    [Nullable[double][]]
+    $Duration,
 
-# Created By
+# End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $EndDateTime,
+
+# Service Call ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $CreatorResourceID,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
+    $ImpersonatorCreatorResourceID,
 
 # Last Modified Date Time
     [Parameter(
@@ -195,12 +229,13 @@ Set-AtwsServiceCall
     [Nullable[datetime][]]
     $LastModifiedDateTime,
 
-# Duration
+# Start Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $Duration,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDateTime,
 
 # Status
     [Parameter(
@@ -221,59 +256,24 @@ Set-AtwsServiceCall
     [string[]]
     $Status,
 
-# Canceled By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $CanceledByResource,
-
-# Canceled Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CanceledDateTime,
-
-# Cancelation Notice Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $CancelationNoticeHours,
-
-# Account Physical Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AccountPhysicalLocationID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AccountID', 'CreateDateTime', 'Description', 'AccountPhysicalLocationID', 'CreatorResourceID', 'EndDateTime', 'Complete', 'Status', 'CancelationNoticeHours', 'LastModifiedDateTime', 'CanceledByResource', 'Duration', 'CanceledDateTime', 'StartDateTime')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'Status', 'EndDateTime', 'CanceledDateTime', 'CanceledByResource', 'Duration', 'StartDateTime', 'LastModifiedDateTime', 'Description', 'Complete', 'AccountPhysicalLocationID', 'CreateDateTime', 'CancelationNoticeHours', 'CreatorResourceID', 'AccountID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AccountID', 'CreateDateTime', 'Description', 'AccountPhysicalLocationID', 'CreatorResourceID', 'EndDateTime', 'Complete', 'Status', 'CancelationNoticeHours', 'LastModifiedDateTime', 'CanceledByResource', 'Duration', 'CanceledDateTime', 'StartDateTime')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'Status', 'EndDateTime', 'CanceledDateTime', 'CanceledByResource', 'Duration', 'StartDateTime', 'LastModifiedDateTime', 'Description', 'Complete', 'AccountPhysicalLocationID', 'CreateDateTime', 'CancelationNoticeHours', 'CreatorResourceID', 'AccountID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AccountID', 'CreateDateTime', 'Description', 'AccountPhysicalLocationID', 'CreatorResourceID', 'EndDateTime', 'Complete', 'Status', 'CancelationNoticeHours', 'LastModifiedDateTime', 'CanceledByResource', 'Duration', 'CanceledDateTime', 'StartDateTime')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'Status', 'EndDateTime', 'CanceledDateTime', 'CanceledByResource', 'Duration', 'StartDateTime', 'LastModifiedDateTime', 'Description', 'Complete', 'AccountPhysicalLocationID', 'CreateDateTime', 'CancelationNoticeHours', 'CreatorResourceID', 'AccountID')]
     [string[]]
     $IsNotNull,
 

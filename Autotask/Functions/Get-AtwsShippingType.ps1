@@ -95,7 +95,7 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('PurchaseOrder', 'QuoteItem')]
+    [ValidateSet('QuoteItem', 'PurchaseOrder')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -106,28 +106,12 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     [switch]
     $All,
 
-# shipping_type_id
+# AllocationCodeID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# shipping_type_name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
-# active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsActive,
+    [Nullable[Int][]]
+    $AllocationCodeID,
 
 # shipping_type_description
     [Parameter(
@@ -137,31 +121,47 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     [string[]]
     $Description,
 
-# AllocationCodeID
+# shipping_type_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $AllocationCodeID,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsActive,
+
+# shipping_type_name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Name', 'IsActive', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'Description', 'id', 'Name', 'IsActive')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Name', 'IsActive', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'Description', 'id', 'Name', 'IsActive')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Name', 'IsActive', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'Description', 'id', 'Name', 'IsActive')]
     [string[]]
     $IsNotNull,
 

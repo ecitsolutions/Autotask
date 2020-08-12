@@ -125,6 +125,13 @@ Set-AtwsTaskNote
     [switch]
     $All,
 
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
 # Creator Resource
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -148,6 +155,20 @@ Set-AtwsTaskNote
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Impersonator Updater Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorUpdaterResourceID,
 
 # LastActivityDate
     [Parameter(
@@ -213,45 +234,24 @@ Set-AtwsTaskNote
     [string[]]
     $Title,
 
-# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorUpdaterResourceID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('Publish', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'TaskID', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
+    [ValidateSet('Title', 'Description', 'Publish', 'NoteType', 'CreatorResourceID', 'LastActivityDate', 'CreateDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'TaskID', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Publish', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'TaskID', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
+    [ValidateSet('Title', 'Description', 'Publish', 'NoteType', 'CreatorResourceID', 'LastActivityDate', 'CreateDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'TaskID', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Publish', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'TaskID', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
+    [ValidateSet('Title', 'Description', 'Publish', 'NoteType', 'CreatorResourceID', 'LastActivityDate', 'CreateDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'TaskID', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $IsNotNull,
 

@@ -107,14 +107,6 @@ Set-AtwsPriceListMaterialCode
     [switch]
     $All,
 
-# ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Allocation Code Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -131,13 +123,13 @@ Set-AtwsPriceListMaterialCode
     [Nullable[Int][]]
     $CurrencyID,
 
-# Uses Internal Currency Price
+# ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $UsesInternalCurrencyPrice,
+    [Nullable[long][]]
+    $id,
 
 # Unit Price
     [Parameter(
@@ -146,24 +138,32 @@ Set-AtwsPriceListMaterialCode
     [Nullable[decimal][]]
     $UnitPrice,
 
+# Uses Internal Currency Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'AllocationCodeID', 'CurrencyID')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $UsesInternalCurrencyPrice,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('AllocationCodeID', 'UsesInternalCurrencyPrice', 'id', 'CurrencyID', 'UnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'AllocationCodeID', 'CurrencyID')]
+    [ValidateSet('AllocationCodeID', 'UsesInternalCurrencyPrice', 'id', 'CurrencyID', 'UnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'id', 'UnitPrice', 'AllocationCodeID', 'CurrencyID')]
+    [ValidateSet('AllocationCodeID', 'UsesInternalCurrencyPrice', 'id', 'CurrencyID', 'UnitPrice')]
     [string[]]
     $IsNotNull,
 

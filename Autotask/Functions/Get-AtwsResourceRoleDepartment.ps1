@@ -86,7 +86,7 @@ Set-AtwsResourceRoleDepartment
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('DepartmentID', 'RoleID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'RoleID', 'DepartmentID')]
     [string]
     $GetReferenceEntityById,
 
@@ -109,13 +109,21 @@ Set-AtwsResourceRoleDepartment
     [switch]
     $All,
 
-# Resource Role Department ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[boolean][]]
+    $Active,
+
+# Default
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Default,
 
 # Department ID
     [Parameter(
@@ -124,6 +132,22 @@ Set-AtwsResourceRoleDepartment
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $DepartmentID,
+
+# Department Lead
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DepartmentLead,
+
+# Resource Role Department ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Resource ID
     [Parameter(
@@ -141,48 +165,24 @@ Set-AtwsResourceRoleDepartment
     [Nullable[Int][]]
     $RoleID,
 
-# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
-# Default
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Default,
-
-# Department Lead
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DepartmentLead,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('DepartmentID', 'RoleID', 'Default', 'DepartmentLead', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('DepartmentID', 'Active', 'ResourceID', 'DepartmentLead', 'id', 'Default', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DepartmentID', 'RoleID', 'Default', 'DepartmentLead', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('DepartmentID', 'Active', 'ResourceID', 'DepartmentLead', 'id', 'Default', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DepartmentID', 'RoleID', 'Default', 'DepartmentLead', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('DepartmentID', 'Active', 'ResourceID', 'DepartmentLead', 'id', 'Default', 'RoleID')]
     [string[]]
     $IsNotNull,
 

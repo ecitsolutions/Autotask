@@ -116,21 +116,21 @@ Returns any object with a TicketHistoryName that DOES NOT match the simple patte
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Detail', 'Action', 'TicketID', 'ResourceID', 'Date')]
+    [ValidateSet('Date', 'Action', 'ResourceID', 'Detail', 'id', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Detail', 'Action', 'TicketID', 'ResourceID', 'Date')]
+    [ValidateSet('Date', 'Action', 'ResourceID', 'Detail', 'id', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Detail', 'Action', 'TicketID', 'ResourceID', 'Date')]
+    [ValidateSet('Date', 'Action', 'ResourceID', 'Detail', 'id', 'TicketID')]
     [string[]]
     $IsNotNull,
 

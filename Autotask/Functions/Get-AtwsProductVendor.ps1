@@ -109,45 +109,6 @@ Set-AtwsProductVendor
     [switch]
     $All,
 
-# id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ProductID,
-
-# Vendor Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $VendorID,
-
-# Vendor Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $VendorCost,
-
-# Vendor Part Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $VendorPartNumber,
-
 # Is Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -155,6 +116,14 @@ Set-AtwsProductVendor
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $Active,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Is Default
     [Parameter(
@@ -164,24 +133,55 @@ Set-AtwsProductVendor
     [Nullable[boolean][]]
     $IsDefault,
 
+# Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorPartNumber', 'VendorID', 'IsDefault', 'VendorCost', 'Active', 'ProductID', 'id')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ProductID,
+
+# Vendor Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $VendorCost,
+
+# Vendor Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $VendorID,
+
+# Vendor Part Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $VendorPartNumber,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('IsDefault', 'VendorCost', 'Active', 'VendorPartNumber', 'VendorID', 'id', 'ProductID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorPartNumber', 'VendorID', 'IsDefault', 'VendorCost', 'Active', 'ProductID', 'id')]
+    [ValidateSet('IsDefault', 'VendorCost', 'Active', 'VendorPartNumber', 'VendorID', 'id', 'ProductID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorPartNumber', 'VendorID', 'IsDefault', 'VendorCost', 'Active', 'ProductID', 'id')]
+    [ValidateSet('IsDefault', 'VendorCost', 'Active', 'VendorPartNumber', 'VendorID', 'id', 'ProductID')]
     [string[]]
     $IsNotNull,
 

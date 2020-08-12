@@ -127,33 +127,13 @@ Set-AtwsClientPortalUser
     [switch]
     $All,
 
-# Client Portal User ID
+# Client Portal Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Security Level
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $SecurityLevel,
+    [Nullable[boolean][]]
+    $ClientPortalActive,
 
 # Contact ID
     [Parameter(
@@ -183,25 +163,13 @@ Set-AtwsClientPortalUser
     [string[]]
     $DateFormat,
 
-# Time Format
+# Client Portal User ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $TimeFormat,
+    [Nullable[long][]]
+    $id,
 
 # Number Format
     [Parameter(
@@ -223,6 +191,46 @@ Set-AtwsClientPortalUser
     [string[]]
     $NumberFormat,
 
+# Security Level
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $SecurityLevel,
+
+# Time Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $TimeFormat,
+
 # User Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -232,32 +240,24 @@ Set-AtwsClientPortalUser
     [string[]]
     $UserName,
 
-# Client Portal Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $ClientPortalActive,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('Password', 'SecurityLevel', 'UserName', 'TimeFormat', 'id', 'ClientPortalActive', 'DateFormat', 'ContactID', 'NumberFormat')]
+    [ValidateSet('NumberFormat', 'UserName', 'TimeFormat', 'DateFormat', 'Password', 'id', 'SecurityLevel', 'ClientPortalActive', 'ContactID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Password', 'SecurityLevel', 'UserName', 'TimeFormat', 'id', 'ClientPortalActive', 'DateFormat', 'ContactID', 'NumberFormat')]
+    [ValidateSet('NumberFormat', 'UserName', 'TimeFormat', 'DateFormat', 'Password', 'id', 'SecurityLevel', 'ClientPortalActive', 'ContactID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Password', 'SecurityLevel', 'UserName', 'TimeFormat', 'id', 'ClientPortalActive', 'DateFormat', 'ContactID', 'NumberFormat')]
+    [ValidateSet('NumberFormat', 'UserName', 'TimeFormat', 'DateFormat', 'Password', 'id', 'SecurityLevel', 'ClientPortalActive', 'ContactID')]
     [string[]]
     $IsNotNull,
 

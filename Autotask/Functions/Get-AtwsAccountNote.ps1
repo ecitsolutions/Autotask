@@ -101,7 +101,7 @@ Set-AtwsAccountNote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContactID', 'ImpersonatorUpdaterResourceID', 'OpportunityID', 'AccountID')]
+    [ValidateSet('AccountID', 'OpportunityID', 'ImpersonatorUpdaterResourceID', 'ContactID')]
     [string]
     $GetReferenceEntityById,
 
@@ -124,7 +124,7 @@ Set-AtwsAccountNote
     [switch]
     $All,
 
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -174,6 +174,13 @@ Set-AtwsAccountNote
     [Nullable[Int][]]
     $ContactID,
 
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
 # EndDate
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -182,13 +189,27 @@ Set-AtwsAccountNote
     [Nullable[datetime][]]
     $EndDateTime,
 
-# Client Note ID
+# Account Note ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Impersonator Updater Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorUpdaterResourceID,
 
 # DateStamp
     [Parameter(
@@ -228,45 +249,24 @@ Set-AtwsAccountNote
     [Nullable[datetime][]]
     $StartDateTime,
 
-# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorUpdaterResourceID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('AssignedResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'AccountID', 'CreateDateTime', 'Note', 'id', 'EndDateTime', 'Name', 'ImpersonatorUpdaterResourceID', 'StartDateTime', 'OpportunityID', 'CompletedDateTime', 'ContactID', 'ActionType')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'EndDateTime', 'CompletedDateTime', 'LastModifiedDate', 'StartDateTime', 'OpportunityID', 'Note', 'ContactID', 'Name', 'AssignedResourceID', 'ActionType', 'CreateDateTime', 'AccountID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AssignedResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'AccountID', 'CreateDateTime', 'Note', 'id', 'EndDateTime', 'Name', 'ImpersonatorUpdaterResourceID', 'StartDateTime', 'OpportunityID', 'CompletedDateTime', 'ContactID', 'ActionType')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'EndDateTime', 'CompletedDateTime', 'LastModifiedDate', 'StartDateTime', 'OpportunityID', 'Note', 'ContactID', 'Name', 'AssignedResourceID', 'ActionType', 'CreateDateTime', 'AccountID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AssignedResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'AccountID', 'CreateDateTime', 'Note', 'id', 'EndDateTime', 'Name', 'ImpersonatorUpdaterResourceID', 'StartDateTime', 'OpportunityID', 'CompletedDateTime', 'ContactID', 'ActionType')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'EndDateTime', 'CompletedDateTime', 'LastModifiedDate', 'StartDateTime', 'OpportunityID', 'Note', 'ContactID', 'Name', 'AssignedResourceID', 'ActionType', 'CreateDateTime', 'AccountID')]
     [string[]]
     $IsNotNull,
 

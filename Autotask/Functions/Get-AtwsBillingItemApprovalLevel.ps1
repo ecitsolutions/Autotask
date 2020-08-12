@@ -107,30 +107,6 @@ New-AtwsBillingItemApprovalLevel
     [switch]
     $All,
 
-# ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $id,
-
-# Time Entry ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TimeEntryID,
-
-# Approval Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ApprovalResourceID,
-
 # Approval Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -147,24 +123,48 @@ New-AtwsBillingItemApprovalLevel
     [Nullable[Int][]]
     $ApprovalLevel,
 
+# Approval Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApprovalResourceID', 'id', 'ApprovalDateTime', 'ApprovalLevel', 'TimeEntryID')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ApprovalResourceID,
+
+# ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
+
+# Time Entry ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TimeEntryID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('TimeEntryID', 'ApprovalDateTime', 'ApprovalLevel', 'id', 'ApprovalResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApprovalResourceID', 'id', 'ApprovalDateTime', 'ApprovalLevel', 'TimeEntryID')]
+    [ValidateSet('TimeEntryID', 'ApprovalDateTime', 'ApprovalLevel', 'id', 'ApprovalResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApprovalResourceID', 'id', 'ApprovalDateTime', 'ApprovalLevel', 'TimeEntryID')]
+    [ValidateSet('TimeEntryID', 'ApprovalDateTime', 'ApprovalLevel', 'id', 'ApprovalResourceID')]
     [string[]]
     $IsNotNull,
 

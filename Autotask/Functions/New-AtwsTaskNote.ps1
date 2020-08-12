@@ -64,26 +64,29 @@ Set-AtwsTaskNote
     [Autotask.TaskNote[]]
     $InputObject,
 
-# Publish
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDateTime,
+
+# Creator Resource
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorResourceID,
+
+# Description
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,32000)]
     [string]
-    $Publish,
+    $Description,
 
 # Impersonator Creator Resource ID
     [Parameter(
@@ -99,12 +102,12 @@ Set-AtwsTaskNote
     [Int]
     $ImpersonatorUpdaterResourceID,
 
-# Creator Resource
+# LastActivityDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $CreatorResourceID,
+    [datetime]
+    $LastActivityDate,
 
 # Note Type
     [Parameter(
@@ -127,15 +130,26 @@ Set-AtwsTaskNote
     [string]
     $NoteType,
 
-# Description
+# Publish
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,32000)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
-    $Description,
+    $Publish,
 
 # Task
     [Parameter(
@@ -146,13 +160,6 @@ Set-AtwsTaskNote
     [Int]
     $TaskID,
 
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
-
 # Title
     [Parameter(
       Mandatory = $true,
@@ -161,14 +168,7 @@ Set-AtwsTaskNote
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,250)]
     [string]
-    $Title,
-
-# LastActivityDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastActivityDate
+    $Title
   )
  
     begin { 
@@ -190,7 +190,7 @@ Set-AtwsTaskNote
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -198,7 +198,7 @@ Set-AtwsTaskNote
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -207,7 +207,7 @@ Set-AtwsTaskNote
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -223,12 +223,12 @@ Set-AtwsTaskNote
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

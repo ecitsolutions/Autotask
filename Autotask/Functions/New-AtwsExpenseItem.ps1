@@ -66,72 +66,12 @@ Set-AtwsExpenseItem
     [Autotask.ExpenseItem[]]
     $InputObject,
 
-# Reimbursement Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $ReimbursementAmount,
-
-# Expense Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $ExpenseAmount,
-
-# Have Receipt
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $HaveReceipt,
-
-# Ticket ID
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $TicketID,
-
-# Task ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $TaskID,
-
-# Miles
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $Miles,
-
-# GL Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,20)]
-    [string]
-    $GLCode,
-
-# Entertainment Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string]
-    $EntertainmentLocation,
-
-# Reimbursable
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Reimbursable,
+    $AccountID,
 
 # Billable To Account
     [Parameter(
@@ -142,12 +82,38 @@ Set-AtwsExpenseItem
     [boolean]
     $BillableToAccount,
 
-# Reimbursement Currency Reimbursement Amount
+# Description
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,128)]
+    [string]
+    $Description,
+
+# Destination
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $Destination,
+
+# Entertainment Location
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $EntertainmentLocation,
+
+# Expense Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $ReimbursementCurrencyReimbursementAmount,
+    $ExpenseAmount,
 
 # Expense Category
     [Parameter(
@@ -170,73 +136,21 @@ Set-AtwsExpenseItem
     [string]
     $ExpenseCategory,
 
-# Odometer Start
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $OdometerStart,
-
-# Work Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $WorkType,
-
-# Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AccountID,
-
-# Project ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ProjectID,
-
-# Rejected
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Rejected,
-
-# Receipt Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $ReceiptAmount,
-
-# Odometer End
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $OdometerEnd,
-
 # Currency ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $ExpenseCurrencyID,
+
+# Expense Date
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $ExpenseDate,
 
 # Expense Report ID
     [Parameter(
@@ -247,22 +161,51 @@ Set-AtwsExpenseItem
     [Int]
     $ExpenseReportID,
 
-# purchase_order_number
+# GL Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,20)]
     [string]
-    $PurchaseOrderNumber,
+    $GLCode,
 
-# Expense Date
+# Have Receipt
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime]
-    $ExpenseDate,
+    [boolean]
+    $HaveReceipt,
+
+# Miles
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $Miles,
+
+# Odometer End
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $OdometerEnd,
+
+# Odometer Start
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $OdometerStart,
+
+# Origin
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $Origin,
 
 # Payment Type
     [Parameter(
@@ -285,31 +228,88 @@ Set-AtwsExpenseItem
     [string]
     $PaymentType,
 
-# Description
+# Project ID
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,128)]
-    [string]
-    $Description,
+    [Int]
+    $ProjectID,
 
-# Origin
+# purchase_order_number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,128)]
+    [ValidateLength(0,50)]
     [string]
-    $Origin,
+    $PurchaseOrderNumber,
 
-# Destination
+# Receipt Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,128)]
+    [double]
+    $ReceiptAmount,
+
+# Reimbursable
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Reimbursable,
+
+# Reimbursement Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $ReimbursementAmount,
+
+# Reimbursement Currency Reimbursement Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $ReimbursementCurrencyReimbursementAmount,
+
+# Rejected
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Rejected,
+
+# Task ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $TaskID,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $TicketID,
+
+# Work Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
-    $Destination
+    $WorkType
   )
  
     begin { 
@@ -331,7 +331,7 @@ Set-AtwsExpenseItem
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -339,7 +339,7 @@ Set-AtwsExpenseItem
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -348,7 +348,7 @@ Set-AtwsExpenseItem
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -364,12 +364,12 @@ Set-AtwsExpenseItem
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

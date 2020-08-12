@@ -104,6 +104,22 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
     [switch]
     $All,
 
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Description,
+
 # Classification Icon ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -121,30 +137,6 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
     [string[]]
     $Name,
 
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Description,
-
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
-# System
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $System,
-
 # Relative Url
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -154,24 +146,32 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
     [string[]]
     $RelativeUrl,
 
+# System
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RelativeUrl', 'Name', 'System', 'Active', 'Description', 'id')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $System,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('Active', 'Name', 'Description', 'RelativeUrl', 'id', 'System')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RelativeUrl', 'Name', 'System', 'Active', 'Description', 'id')]
+    [ValidateSet('Active', 'Name', 'Description', 'RelativeUrl', 'id', 'System')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RelativeUrl', 'Name', 'System', 'Active', 'Description', 'id')]
+    [ValidateSet('Active', 'Name', 'Description', 'RelativeUrl', 'id', 'System')]
     [string[]]
     $IsNotNull,
 

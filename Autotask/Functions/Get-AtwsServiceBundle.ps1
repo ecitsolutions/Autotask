@@ -117,7 +117,7 @@ Set-AtwsServiceBundle
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceBundleService', 'QuoteItem', 'InstalledProduct', 'PriceListServiceBundle', 'ContractServiceBundleUnit', 'ContractServiceBundle', 'BillingItem', 'ContractServiceBundleAdjustment')]
+    [ValidateSet('QuoteItem', 'ContractServiceBundleAdjustment', 'ContractServiceBundleUnit', 'PriceListServiceBundle', 'ServiceBundleService', 'InstalledProduct', 'ContractServiceBundle', 'BillingItem')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -128,22 +128,27 @@ Set-AtwsServiceBundle
     [switch]
     $All,
 
-# service_bundle_id
+# allocation_code_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $AllocationCodeID,
 
-# service_bundle_name
+# create_date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,150)]
-    [string[]]
-    $Name,
+    [Nullable[datetime][]]
+    $CreateDate,
+
+# create_by_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
 
 # service_bundle_description
     [Parameter(
@@ -153,19 +158,44 @@ Set-AtwsServiceBundle
     [string[]]
     $Description,
 
-# unit_price
+# service_bundle_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $UnitPrice,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
-# discount_dollars
+# Invoice Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $UnitDiscount,
+    [ValidateLength(0,1000)]
+    [string[]]
+    $InvoiceDescription,
+
+# active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsActive,
+
+# update_date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastModifiedDate,
+
+# service_bundle_name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,150)]
+    [string[]]
+    $Name,
 
 # discount_percent
     [Parameter(
@@ -194,57 +224,6 @@ Set-AtwsServiceBundle
     [string[]]
     $PeriodType,
 
-# allocation_code_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $AllocationCodeID,
-
-# active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsActive,
-
-# create_by_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-# update_by_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $UpdateResourceID,
-
-# create_date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDate,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1000)]
-    [string[]]
-    $InvoiceDescription,
-
-# update_date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastModifiedDate,
-
 # Service Level Agreement Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -271,24 +250,45 @@ Set-AtwsServiceBundle
     [Nullable[double][]]
     $UnitCost,
 
+# discount_dollars
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PercentageDiscount', 'UnitPrice', 'LastModifiedDate', 'UnitCost', 'ServiceLevelAgreementID', 'CreatorResourceID', 'id', 'Description', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'PeriodType', 'CreateDate', 'Name', 'UnitDiscount', 'UpdateResourceID')]
+    [Nullable[double][]]
+    $UnitDiscount,
+
+# unit_price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $UnitPrice,
+
+# update_by_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $UpdateResourceID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'UpdateResourceID', 'UnitCost', 'LastModifiedDate', 'CreatorResourceID', 'ServiceLevelAgreementID', 'CreateDate', 'AllocationCodeID', 'IsActive', 'UnitDiscount', 'Description', 'Name', 'PercentageDiscount', 'UnitPrice', 'InvoiceDescription', 'PeriodType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PercentageDiscount', 'UnitPrice', 'LastModifiedDate', 'UnitCost', 'ServiceLevelAgreementID', 'CreatorResourceID', 'id', 'Description', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'PeriodType', 'CreateDate', 'Name', 'UnitDiscount', 'UpdateResourceID')]
+    [ValidateSet('id', 'UpdateResourceID', 'UnitCost', 'LastModifiedDate', 'CreatorResourceID', 'ServiceLevelAgreementID', 'CreateDate', 'AllocationCodeID', 'IsActive', 'UnitDiscount', 'Description', 'Name', 'PercentageDiscount', 'UnitPrice', 'InvoiceDescription', 'PeriodType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PercentageDiscount', 'UnitPrice', 'LastModifiedDate', 'UnitCost', 'ServiceLevelAgreementID', 'CreatorResourceID', 'id', 'Description', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'PeriodType', 'CreateDate', 'Name', 'UnitDiscount', 'UpdateResourceID')]
+    [ValidateSet('id', 'UpdateResourceID', 'UnitCost', 'LastModifiedDate', 'CreatorResourceID', 'ServiceLevelAgreementID', 'CreateDate', 'AllocationCodeID', 'IsActive', 'UnitDiscount', 'Description', 'Name', 'PercentageDiscount', 'UnitPrice', 'InvoiceDescription', 'PeriodType')]
     [string[]]
     $IsNotNull,
 

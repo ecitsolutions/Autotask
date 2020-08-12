@@ -88,7 +88,7 @@ Set-AtwsContactBillingProductAssociation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingProductID', 'ContactID')]
+    [ValidateSet('ContactID', 'BillingProductID')]
     [string]
     $GetReferenceEntityById,
 
@@ -111,13 +111,13 @@ Set-AtwsContactBillingProductAssociation
     [switch]
     $All,
 
-# Contact Billing Product Association ID
+# Billing Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $BillingProductID,
 
 # Contact ID
     [Parameter(
@@ -126,14 +126,6 @@ Set-AtwsContactBillingProductAssociation
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ContactID,
-
-# Billing Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $BillingProductID,
 
 # Effective Date
     [Parameter(
@@ -150,24 +142,32 @@ Set-AtwsContactBillingProductAssociation
     [Nullable[datetime][]]
     $ExpirationDate,
 
+# Contact Billing Product Association ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'id', 'ExpirationDate', 'EffectiveDate', 'ContactID')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ExpirationDate', 'ContactID', 'id', 'BillingProductID', 'EffectiveDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'id', 'ExpirationDate', 'EffectiveDate', 'ContactID')]
+    [ValidateSet('ExpirationDate', 'ContactID', 'id', 'BillingProductID', 'EffectiveDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'id', 'ExpirationDate', 'EffectiveDate', 'ContactID')]
+    [ValidateSet('ExpirationDate', 'ContactID', 'id', 'BillingProductID', 'EffectiveDate')]
     [string[]]
     $IsNotNull,
 

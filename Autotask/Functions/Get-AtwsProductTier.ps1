@@ -128,13 +128,6 @@ Set-AtwsProductTier
     [Nullable[Int][]]
     $ProductID,
 
-# Up To Unit Count
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $UpToUnitCount,
-
 # Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -151,24 +144,31 @@ Set-AtwsProductTier
     [Nullable[decimal][]]
     $UnitPrice,
 
+# Up To Unit Count
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitCost', 'id', 'UnitPrice', 'UpToUnitCount', 'ProductID')]
+    [Nullable[decimal][]]
+    $UpToUnitCount,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('UnitCost', 'id', 'ProductID', 'UpToUnitCount', 'UnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitCost', 'id', 'UnitPrice', 'UpToUnitCount', 'ProductID')]
+    [ValidateSet('UnitCost', 'id', 'ProductID', 'UpToUnitCount', 'UnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitCost', 'id', 'UnitPrice', 'UpToUnitCount', 'ProductID')]
+    [ValidateSet('UnitCost', 'id', 'ProductID', 'UpToUnitCount', 'UnitPrice')]
     [string[]]
     $IsNotNull,
 

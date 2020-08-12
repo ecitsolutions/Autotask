@@ -126,6 +126,30 @@ Set-AtwsContractTicketPurchase
     [switch]
     $All,
 
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $ContractID,
+
+# DatePurchased
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $DatePurchased,
+
+# End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $EndDate,
+
 # id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -134,13 +158,13 @@ Set-AtwsContractTicketPurchase
     [Nullable[long][]]
     $id,
 
-# Contract ID
+# Invoice Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $ContractID,
+    [ValidateLength(0,50)]
+    [string[]]
+    $InvoiceNumber,
 
 # Paid
     [Parameter(
@@ -161,54 +185,6 @@ Set-AtwsContractTicketPurchase
     })]
     [string[]]
     $IsPaid,
-
-# DatePurchased
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $DatePurchased,
-
-# Start Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDate,
-
-# End Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDate,
-
-# Tickets Purchased
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $TicketsPurchased,
-
-# Rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $PerTicketRate,
-
-# Invoice Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $InvoiceNumber,
 
 # Payment Number
     [Parameter(
@@ -237,6 +213,22 @@ Set-AtwsContractTicketPurchase
     [string[]]
     $PaymentType,
 
+# Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $PerTicketRate,
+
+# Start Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDate,
+
 # Status
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -256,24 +248,32 @@ Set-AtwsContractTicketPurchase
     [string[]]
     $Status,
 
+# Tickets Purchased
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PerTicketRate', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'EndDate', 'Status', 'ContractID', 'TicketsUsed', 'IsPaid', 'TicketsPurchased', 'InvoiceNumber')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $TicketsPurchased,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'IsPaid', 'Status', 'StartDate', 'TicketsPurchased', 'InvoiceNumber', 'PaymentNumber', 'PerTicketRate', 'TicketsUsed', 'DatePurchased', 'ContractID', 'EndDate', 'PaymentType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PerTicketRate', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'EndDate', 'Status', 'ContractID', 'TicketsUsed', 'IsPaid', 'TicketsPurchased', 'InvoiceNumber')]
+    [ValidateSet('id', 'IsPaid', 'Status', 'StartDate', 'TicketsPurchased', 'InvoiceNumber', 'PaymentNumber', 'PerTicketRate', 'TicketsUsed', 'DatePurchased', 'ContractID', 'EndDate', 'PaymentType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PerTicketRate', 'StartDate', 'PaymentNumber', 'id', 'PaymentType', 'DatePurchased', 'EndDate', 'Status', 'ContractID', 'TicketsUsed', 'IsPaid', 'TicketsPurchased', 'InvoiceNumber')]
+    [ValidateSet('id', 'IsPaid', 'Status', 'StartDate', 'TicketsPurchased', 'InvoiceNumber', 'PaymentNumber', 'PerTicketRate', 'TicketsUsed', 'DatePurchased', 'ContractID', 'EndDate', 'PaymentType')]
     [string[]]
     $IsNotNull,
 

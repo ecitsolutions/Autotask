@@ -121,14 +121,6 @@ Set-AtwsPurchaseApproval
     [switch]
     $All,
 
-# Purchase Approval ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Cost Type
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -148,24 +140,32 @@ Set-AtwsPurchaseApproval
     [string[]]
     $CostType,
 
+# Purchase Approval ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CostType', 'RejectNote', 'IsApproved')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('CostType', 'id', 'IsApproved', 'RejectNote')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CostType', 'RejectNote', 'IsApproved')]
+    [ValidateSet('CostType', 'id', 'IsApproved', 'RejectNote')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CostType', 'RejectNote', 'IsApproved')]
+    [ValidateSet('CostType', 'id', 'IsApproved', 'RejectNote')]
     [string[]]
     $IsNotNull,
 

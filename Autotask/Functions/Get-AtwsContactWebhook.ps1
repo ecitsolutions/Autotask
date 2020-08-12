@@ -101,7 +101,7 @@ Set-AtwsContactWebhook
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContactWebhookUdfField', 'ContactWebhookField', 'WebhookEventErrorLog', 'ContactWebhookExcludedResource')]
+    [ValidateSet('ContactWebhookUdfField', 'WebhookEventErrorLog', 'ContactWebhookExcludedResource', 'ContactWebhookField')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -112,22 +112,6 @@ Set-AtwsContactWebhook
     [switch]
     $All,
 
-# Contact Webhook Configuration ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Webhook GUID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $WebhookGUID,
-
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -135,45 +119,6 @@ Set-AtwsContactWebhook
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $Active,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $Name,
-
-# Webhook Url
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,500)]
-    [string[]]
-    $WebhookUrl,
-
-# Is Subscribed To Create Events
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsSubscribedToCreateEvents,
-
-# Is Subscribed To Update Events
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsSubscribedToUpdateEvents,
-
-# Is Subscribed To Delete Events
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsSubscribedToDeleteEvents,
 
 # Deactivation URL
     [Parameter(
@@ -184,6 +129,44 @@ Set-AtwsContactWebhook
     [string[]]
     $DeactivationUrl,
 
+# Contact Webhook Configuration ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Is Subscribed To Create Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsSubscribedToCreateEvents,
+
+# Is Subscribed To Delete Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsSubscribedToDeleteEvents,
+
+# Is Subscribed To Update Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsSubscribedToUpdateEvents,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Name,
+
 # Notification Email Address
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -192,20 +175,19 @@ Set-AtwsContactWebhook
     [string[]]
     $NotificationEmailAddress,
 
-# Send Threshold Exceeded Notification
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $SendThresholdExceededNotification,
-
 # Owner Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $OwnerResourceID,
+
+# Ready
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Ready,
 
 # Secret Key
     [Parameter(
@@ -216,31 +198,49 @@ Set-AtwsContactWebhook
     [string[]]
     $SecretKey,
 
-# Ready
+# Send Threshold Exceeded Notification
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
-    $Ready,
+    $SendThresholdExceededNotification,
+
+# Webhook GUID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $WebhookGUID,
+
+# Webhook Url
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,500)]
+    [string[]]
+    $WebhookUrl,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookGUID', 'OwnerResourceID', 'Ready', 'IsSubscribedToUpdateEvents', 'DeactivationUrl', 'SecretKey', 'id', 'Active', 'NotificationEmailAddress', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'Name', 'SendThresholdExceededNotification', 'IsSubscribedToCreateEvents')]
+    [ValidateSet('Ready', 'SecretKey', 'IsSubscribedToUpdateEvents', 'Active', 'NotificationEmailAddress', 'WebhookUrl', 'WebhookGUID', 'DeactivationUrl', 'IsSubscribedToDeleteEvents', 'SendThresholdExceededNotification', 'Name', 'id', 'OwnerResourceID', 'IsSubscribedToCreateEvents')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookGUID', 'OwnerResourceID', 'Ready', 'IsSubscribedToUpdateEvents', 'DeactivationUrl', 'SecretKey', 'id', 'Active', 'NotificationEmailAddress', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'Name', 'SendThresholdExceededNotification', 'IsSubscribedToCreateEvents')]
+    [ValidateSet('Ready', 'SecretKey', 'IsSubscribedToUpdateEvents', 'Active', 'NotificationEmailAddress', 'WebhookUrl', 'WebhookGUID', 'DeactivationUrl', 'IsSubscribedToDeleteEvents', 'SendThresholdExceededNotification', 'Name', 'id', 'OwnerResourceID', 'IsSubscribedToCreateEvents')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookGUID', 'OwnerResourceID', 'Ready', 'IsSubscribedToUpdateEvents', 'DeactivationUrl', 'SecretKey', 'id', 'Active', 'NotificationEmailAddress', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'Name', 'SendThresholdExceededNotification', 'IsSubscribedToCreateEvents')]
+    [ValidateSet('Ready', 'SecretKey', 'IsSubscribedToUpdateEvents', 'Active', 'NotificationEmailAddress', 'WebhookUrl', 'WebhookGUID', 'DeactivationUrl', 'IsSubscribedToDeleteEvents', 'SendThresholdExceededNotification', 'Name', 'id', 'OwnerResourceID', 'IsSubscribedToCreateEvents')]
     [string[]]
     $IsNotNull,
 

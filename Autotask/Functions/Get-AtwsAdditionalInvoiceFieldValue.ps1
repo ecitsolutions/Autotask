@@ -119,14 +119,6 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
     [switch]
     $All,
 
-# Additional Invoice Field Value ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Additional Invoice Field ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -147,14 +139,6 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
     [string[]]
     $AdditionalInvoiceFieldID,
 
-# Batch ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $InvoiceBatchID,
-
 # Field Value
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -164,24 +148,40 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
     [string[]]
     $FieldValue,
 
+# Additional Invoice Field Value ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceBatchID', 'id', 'AdditionalInvoiceFieldID', 'FieldValue')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Batch ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $InvoiceBatchID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('AdditionalInvoiceFieldID', 'id', 'FieldValue', 'InvoiceBatchID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceBatchID', 'id', 'AdditionalInvoiceFieldID', 'FieldValue')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'id', 'FieldValue', 'InvoiceBatchID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceBatchID', 'id', 'AdditionalInvoiceFieldID', 'FieldValue')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'id', 'FieldValue', 'InvoiceBatchID')]
     [string[]]
     $IsNotNull,
 

@@ -137,21 +137,21 @@ Set-AtwsInventoryItemSerialNumber
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InventoryItemID', 'SerialNumber', 'id')]
+    [ValidateSet('id', 'SerialNumber', 'InventoryItemID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InventoryItemID', 'SerialNumber', 'id')]
+    [ValidateSet('id', 'SerialNumber', 'InventoryItemID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InventoryItemID', 'SerialNumber', 'id')]
+    [ValidateSet('id', 'SerialNumber', 'InventoryItemID')]
     [string[]]
     $IsNotNull,
 

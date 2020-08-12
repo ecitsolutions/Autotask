@@ -126,7 +126,7 @@ Set-AtwsResource
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceCallTicketResource', 'ResourceRoleDepartment', 'ServiceBundle', 'ContractRoleCost', 'ResourceServiceDeskRole', 'TaskNote', 'ServiceCallTaskResource', 'Currency', 'BillingItem', 'ServiceCallTicket', 'ContractMilestone', 'ProductNote', 'ContractCost', 'ChangeOrderCost', 'AccountWebhookExcludedResource', 'ResourceRoleQueue', 'Opportunity', 'InventoryItem', 'Subscription', 'TicketChecklistItem', 'ContactWebhookExcludedResource', 'BillingItemApprovalLevel', 'ServiceLevelAgreementResults', 'Ticket', 'NotificationHistory', 'Task', 'TicketHistory', 'ProjectCost', 'AccountTeam', 'ResourceSkill', 'TicketCost', 'PurchaseOrder', 'AccountWebhook', 'ComanagedAssociation', 'Service', 'Invoice', 'ResourceRole', 'TaskSecondaryResource', 'TimeEntry', 'SalesOrder', 'InventoryLocation', 'ContractNote', 'TicketSecondaryResource', 'Phase', 'Contact', 'AccountToDo', 'PurchaseOrderReceive', 'InstalledProductNote', 'AttachmentInfo', 'InventoryTransfer', 'ProjectNote', 'TicketChangeRequestApproval', 'ExpenseReport', 'ServiceCall', 'Account', 'BusinessDivisionSubdivisionResource', 'TicketNote', 'Product', 'QuoteTemplate', 'Project', 'AccountNote', 'Appointment', 'InstalledProduct', 'ContactWebhook', 'Quote')]
+    [ValidateSet('TicketHistory', 'ProductNote', 'TicketChecklistItem', 'ResourceRoleQueue', 'ContactWebhook', 'InventoryItem', 'NotificationHistory', 'PurchaseOrder', 'InstalledProductNote', 'Subscription', 'Project', 'Service', 'PurchaseOrderReceive', 'Product', 'ProjectNote', 'ServiceCallTaskResource', 'AccountNote', 'ServiceBundle', 'ResourceRoleDepartment', 'AccountToDo', 'InventoryLocation', 'ResourceServiceDeskRole', 'ServiceCall', 'Task', 'ServiceCallTicket', 'ContractNote', 'TicketSecondaryResource', 'ChangeOrderCost', 'ContractRoleCost', 'ContactWebhookExcludedResource', 'AccountTeam', 'BillingItemApprovalLevel', 'ResourceSkill', 'AttachmentInfo', 'TicketChangeRequestApproval', 'TimeEntry', 'ExpenseReport', 'ProjectCost', 'InstalledProduct', 'Quote', 'ComanagedAssociation', 'Ticket', 'TicketNote', 'TaskSecondaryResource', 'ServiceLevelAgreementResults', 'SalesOrder', 'Opportunity', 'AccountWebhook', 'ContractCost', 'Account', 'ResourceRole', 'BusinessDivisionSubdivisionResource', 'ContractMilestone', 'TicketCost', 'Contact', 'ServiceCallTicketResource', 'TaskNote', 'BillingItem', 'AccountWebhookExcludedResource', 'InventoryTransfer', 'Invoice', 'Currency', 'Phase', 'QuoteTemplate', 'Appointment')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -137,6 +137,14 @@ Set-AtwsResource
     [switch]
     $All,
 
+# Accounting Reference ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $AccountingReferenceID,
+
 # Status
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -144,6 +152,25 @@ Set-AtwsResource
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $Active,
+
+# Date Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $DateFormat,
 
 # Email
     [Parameter(
@@ -275,6 +302,14 @@ Set-AtwsResource
     [string[]]
     $Greeting,
 
+# Hire Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $HireDate,
+
 # Home Phone
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -299,6 +334,13 @@ Set-AtwsResource
     [string[]]
     $Initials,
 
+# Interal Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCost,
+
 # Last Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -307,6 +349,26 @@ Set-AtwsResource
     [ValidateLength(0,50)]
     [string[]]
     $LastName,
+
+# License Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $LicenseType,
 
 # Pimary Location
     [Parameter(
@@ -344,6 +406,26 @@ Set-AtwsResource
     [string[]]
     $MobilePhone,
 
+# Number Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $NumberFormat,
+
 # Office Extension
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -359,6 +441,26 @@ Set-AtwsResource
     [ValidateLength(0,25)]
     [string[]]
     $OfficePhone,
+
+# Payroll Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PayrollType,
 
 # Resource Type
     [Parameter(
@@ -398,6 +500,32 @@ Set-AtwsResource
     })]
     [string[]]
     $Suffix,
+
+# Survey Resource Rating
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $SurveyResourceRating,
+
+# Time Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName TimeFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Resource -FieldName TimeFormat -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $TimeFormat,
 
 # Title
     [Parameter(
@@ -455,152 +583,24 @@ Set-AtwsResource
     [string[]]
     $UserType,
 
-# Date Format
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $DateFormat,
-
-# Time Format
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName TimeFormat -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName TimeFormat -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $TimeFormat,
-
-# Payroll Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $PayrollType,
-
-# Number Format
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $NumberFormat,
-
-# Accounting Reference ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $AccountingReferenceID,
-
-# Interal Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCost,
-
-# Hire Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $HireDate,
-
-# Survey Resource Rating
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $SurveyResourceRating,
-
-# License Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $LicenseType,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('HomePhone', 'Initials', 'AccountingReferenceID', 'Email2', 'Gender', 'LocationID', 'Email', 'HireDate', 'SurveyResourceRating', 'LicenseType', 'EmailTypeCode3', 'ResourceType', 'Active', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'MiddleName', 'Suffix', 'UserName', 'Title', 'id', 'DateFormat', 'UserType', 'EmailTypeCode2', 'MobilePhone', 'Email3', 'FirstName', 'NumberFormat', 'Greeting', 'EmailTypeCode', 'Password', 'PayrollType', 'TravelAvailabilityPct', 'InternalCost', 'OfficePhone', 'TimeFormat', 'LastName')]
+    [ValidateSet('OfficeExtension', 'ResourceType', 'HireDate', 'HomePhone', 'Email', 'Password', 'Suffix', 'EmailTypeCode', 'NumberFormat', 'TimeFormat', 'EmailTypeCode3', 'DateFormat', 'AccountingReferenceID', 'Title', 'Email3', 'EmailTypeCode2', 'FirstName', 'UserType', 'MobilePhone', 'LicenseType', 'InternalCost', 'Active', 'UserName', 'Initials', 'LastName', 'SurveyResourceRating', 'Email2', 'id', 'MiddleName', 'Gender', 'DefaultServiceDeskRoleID', 'PayrollType', 'LocationID', 'OfficePhone', 'TravelAvailabilityPct', 'Greeting')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HomePhone', 'Initials', 'AccountingReferenceID', 'Email2', 'Gender', 'LocationID', 'Email', 'HireDate', 'SurveyResourceRating', 'LicenseType', 'EmailTypeCode3', 'ResourceType', 'Active', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'MiddleName', 'Suffix', 'UserName', 'Title', 'id', 'DateFormat', 'UserType', 'EmailTypeCode2', 'MobilePhone', 'Email3', 'FirstName', 'NumberFormat', 'Greeting', 'EmailTypeCode', 'Password', 'PayrollType', 'TravelAvailabilityPct', 'InternalCost', 'OfficePhone', 'TimeFormat', 'LastName')]
+    [ValidateSet('OfficeExtension', 'ResourceType', 'HireDate', 'HomePhone', 'Email', 'Password', 'Suffix', 'EmailTypeCode', 'NumberFormat', 'TimeFormat', 'EmailTypeCode3', 'DateFormat', 'AccountingReferenceID', 'Title', 'Email3', 'EmailTypeCode2', 'FirstName', 'UserType', 'MobilePhone', 'LicenseType', 'InternalCost', 'Active', 'UserName', 'Initials', 'LastName', 'SurveyResourceRating', 'Email2', 'id', 'MiddleName', 'Gender', 'DefaultServiceDeskRoleID', 'PayrollType', 'LocationID', 'OfficePhone', 'TravelAvailabilityPct', 'Greeting')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HomePhone', 'Initials', 'AccountingReferenceID', 'Email2', 'Gender', 'LocationID', 'Email', 'HireDate', 'SurveyResourceRating', 'LicenseType', 'EmailTypeCode3', 'ResourceType', 'Active', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'MiddleName', 'Suffix', 'UserName', 'Title', 'id', 'DateFormat', 'UserType', 'EmailTypeCode2', 'MobilePhone', 'Email3', 'FirstName', 'NumberFormat', 'Greeting', 'EmailTypeCode', 'Password', 'PayrollType', 'TravelAvailabilityPct', 'InternalCost', 'OfficePhone', 'TimeFormat', 'LastName')]
+    [ValidateSet('OfficeExtension', 'ResourceType', 'HireDate', 'HomePhone', 'Email', 'Password', 'Suffix', 'EmailTypeCode', 'NumberFormat', 'TimeFormat', 'EmailTypeCode3', 'DateFormat', 'AccountingReferenceID', 'Title', 'Email3', 'EmailTypeCode2', 'FirstName', 'UserType', 'MobilePhone', 'LicenseType', 'InternalCost', 'Active', 'UserName', 'Initials', 'LastName', 'SurveyResourceRating', 'Email2', 'id', 'MiddleName', 'Gender', 'DefaultServiceDeskRoleID', 'PayrollType', 'LocationID', 'OfficePhone', 'TravelAvailabilityPct', 'Greeting')]
     [string[]]
     $IsNotNull,
 

@@ -109,36 +109,6 @@ Remove-AtwsTicketChangeRequestApproval
     [switch]
     $All,
 
-# Change Request Ticket Vote ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $id,
-
-# Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TicketID,
-
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ResourceID,
-
-# Contact ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContactID,
-
 # Approve Reject Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -154,6 +124,21 @@ Remove-AtwsTicketChangeRequestApproval
     [string[]]
     $ApproveRejectNote,
 
+# Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContactID,
+
+# Change Request Ticket Vote ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
+
 # Is Approved
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -161,24 +146,39 @@ Remove-AtwsTicketChangeRequestApproval
     [Nullable[boolean][]]
     $IsApproved,
 
+# Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApproveRejectNote', 'ApproveRejectDateTime', 'id', 'IsApproved', 'TicketID', 'ContactID', 'ResourceID')]
+    [Nullable[Int][]]
+    $ResourceID,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TicketID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('TicketID', 'ApproveRejectNote', 'ResourceID', 'id', 'ApproveRejectDateTime', 'IsApproved', 'ContactID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApproveRejectNote', 'ApproveRejectDateTime', 'id', 'IsApproved', 'TicketID', 'ContactID', 'ResourceID')]
+    [ValidateSet('TicketID', 'ApproveRejectNote', 'ResourceID', 'id', 'ApproveRejectDateTime', 'IsApproved', 'ContactID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApproveRejectNote', 'ApproveRejectDateTime', 'id', 'IsApproved', 'TicketID', 'ContactID', 'ResourceID')]
+    [ValidateSet('TicketID', 'ApproveRejectNote', 'ResourceID', 'id', 'ApproveRejectDateTime', 'IsApproved', 'ContactID')]
     [string[]]
     $IsNotNull,
 

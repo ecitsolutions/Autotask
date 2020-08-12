@@ -111,13 +111,13 @@ Set-AtwsHoliday
     [switch]
     $All,
 
-# Holiday ID
+# HolidayDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[datetime][]]
+    $HolidayDate,
 
 # Holiday Name
     [Parameter(
@@ -129,14 +129,6 @@ Set-AtwsHoliday
     [string[]]
     $HolidayName,
 
-# HolidayDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $HolidayDate,
-
 # Holiday Set ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -145,24 +137,32 @@ Set-AtwsHoliday
     [Nullable[Int][]]
     $HolidaySetID,
 
+# Holiday ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidaySetID', 'HolidayName', 'id', 'HolidayDate')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('HolidayName', 'id', 'HolidaySetID', 'HolidayDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidaySetID', 'HolidayName', 'id', 'HolidayDate')]
+    [ValidateSet('HolidayName', 'id', 'HolidaySetID', 'HolidayDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidaySetID', 'HolidayName', 'id', 'HolidayDate')]
+    [ValidateSet('HolidayName', 'id', 'HolidaySetID', 'HolidayDate')]
     [string[]]
     $IsNotNull,
 

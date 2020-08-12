@@ -103,7 +103,7 @@ Set-AtwsAccountToDo
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'ContractID', 'ImpersonatorCreatorResourceID', 'ContactID', 'OpportunityID', 'TicketID')]
+    [ValidateSet('ContactID', 'ContractID', 'ImpersonatorCreatorResourceID', 'AccountID', 'TicketID', 'OpportunityID')]
     [string]
     $GetReferenceEntityById,
 
@@ -126,73 +126,13 @@ Set-AtwsAccountToDo
     [switch]
     $All,
 
-# Client To Do ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $AccountID,
-
-# Contact
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ContactID,
-
-# Opportunity
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $OpportunityID,
-
-# Ticket
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $TicketID,
-
-# Contract
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ContractID,
-
-# Assigned To Resource
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $AssignedToResourceID,
-
-# Start Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDateTime,
-
-# End Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDateTime,
 
 # Action Type
     [Parameter(
@@ -222,12 +162,34 @@ Set-AtwsAccountToDo
     [string[]]
     $ActivityDescription,
 
+# Assigned To Resource
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $AssignedToResourceID,
+
 # Completed Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $CompletedDate,
+
+# Contact
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContactID,
+
+# Contract
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContractID,
 
 # Create Date Time
     [Parameter(
@@ -243,12 +205,21 @@ Set-AtwsAccountToDo
     [Nullable[long][]]
     $CreatorResourceID,
 
-# Last Modified Date
+# End Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[datetime][]]
-    $LastModifiedDate,
+    $EndDateTime,
+
+# Account To Do ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
@@ -257,24 +228,53 @@ Set-AtwsAccountToDo
     [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
+# Last Modified Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDate', 'AccountID', 'CreateDateTime', 'CreatorResourceID', 'id', 'ActivityDescription', 'ContractID', 'AssignedToResourceID', 'TicketID', 'EndDateTime', 'StartDateTime', 'OpportunityID', 'ContactID', 'ActionType')]
+    [Nullable[datetime][]]
+    $LastModifiedDate,
+
+# Opportunity
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $OpportunityID,
+
+# Start Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDateTime,
+
+# Ticket
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $TicketID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContractID', 'LastModifiedDate', 'TicketID', 'AssignedToResourceID', 'EndDateTime', 'ActivityDescription', 'StartDateTime', 'CompletedDate', 'OpportunityID', 'AccountID', 'ContactID', 'ActionType', 'CreateDateTime', 'CreatorResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDate', 'AccountID', 'CreateDateTime', 'CreatorResourceID', 'id', 'ActivityDescription', 'ContractID', 'AssignedToResourceID', 'TicketID', 'EndDateTime', 'StartDateTime', 'OpportunityID', 'ContactID', 'ActionType')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContractID', 'LastModifiedDate', 'TicketID', 'AssignedToResourceID', 'EndDateTime', 'ActivityDescription', 'StartDateTime', 'CompletedDate', 'OpportunityID', 'AccountID', 'ContactID', 'ActionType', 'CreateDateTime', 'CreatorResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDate', 'AccountID', 'CreateDateTime', 'CreatorResourceID', 'id', 'ActivityDescription', 'ContractID', 'AssignedToResourceID', 'TicketID', 'EndDateTime', 'StartDateTime', 'OpportunityID', 'ContactID', 'ActionType')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContractID', 'LastModifiedDate', 'TicketID', 'AssignedToResourceID', 'EndDateTime', 'ActivityDescription', 'StartDateTime', 'CompletedDate', 'OpportunityID', 'AccountID', 'ContactID', 'ActionType', 'CreateDateTime', 'CreatorResourceID')]
     [string[]]
     $IsNotNull,
 

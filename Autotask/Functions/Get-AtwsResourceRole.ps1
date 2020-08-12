@@ -97,7 +97,7 @@ An example of a more complex query. This command returns any ResourceRoles with 
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('DepartmentID', 'RoleID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'RoleID', 'DepartmentID')]
     [string]
     $GetReferenceEntityById,
 
@@ -120,21 +120,12 @@ An example of a more complex query. This command returns any ResourceRoles with 
     [switch]
     $All,
 
-# ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Resource
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $ResourceID,
+    [Nullable[boolean][]]
+    $Active,
 
 # Department
     [Parameter(
@@ -142,6 +133,14 @@ An example of a more complex query. This command returns any ResourceRoles with 
     )]
     [Nullable[long][]]
     $DepartmentID,
+
+# ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Queue
     [Parameter(
@@ -162,6 +161,14 @@ An example of a more complex query. This command returns any ResourceRoles with 
     [string[]]
     $QueueID,
 
+# Resource
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $ResourceID,
+
 # Role
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -170,31 +177,24 @@ An example of a more complex query. This command returns any ResourceRoles with 
     [Nullable[long][]]
     $RoleID,
 
-# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $Active,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('DepartmentID', 'RoleID', 'QueueID', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('Active', 'ResourceID', 'DepartmentID', 'id', 'QueueID', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DepartmentID', 'RoleID', 'QueueID', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('Active', 'ResourceID', 'DepartmentID', 'id', 'QueueID', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DepartmentID', 'RoleID', 'QueueID', 'Active', 'id', 'ResourceID')]
+    [ValidateSet('Active', 'ResourceID', 'DepartmentID', 'id', 'QueueID', 'RoleID')]
     [string[]]
     $IsNotNull,
 

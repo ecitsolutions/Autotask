@@ -76,46 +76,6 @@ Set-AtwsUserDefinedFieldDefinition
     [long]
     $CrmToProjectUdfId,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsActive,
-
-# Required
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsRequired,
-
-# Display Format
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $DisplayFormat,
-
-# Number of Decimal Places
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $NumberOfDecimalPlaces,
-
 # Data Type
     [Parameter(
       Mandatory = $true,
@@ -137,20 +97,13 @@ Set-AtwsUserDefinedFieldDefinition
     [string]
     $DataType,
 
-# Visible to Client Portal
+# Default Value
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $IsVisibleToClientPortal,
-
-# Merge Variable Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
+    [ValidateLength(0,1024)]
     [string]
-    $MergeVariableName,
+    $DefaultValue,
 
 # Description
     [Parameter(
@@ -160,12 +113,45 @@ Set-AtwsUserDefinedFieldDefinition
     [string]
     $Description,
 
+# Display Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $DisplayFormat,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsActive,
+
 # Encrypted
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
     $IsEncrypted,
+
+# Field Mapping
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsFieldMapping,
 
 # Is Private
     [Parameter(
@@ -181,6 +167,28 @@ Set-AtwsUserDefinedFieldDefinition
     [boolean]
     $IsProtected,
 
+# Required
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsRequired,
+
+# Visible to Client Portal
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsVisibleToClientPortal,
+
+# Merge Variable Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $MergeVariableName,
+
 # Name
     [Parameter(
       Mandatory = $true,
@@ -190,6 +198,20 @@ Set-AtwsUserDefinedFieldDefinition
     [ValidateLength(0,45)]
     [string]
     $Name,
+
+# Number of Decimal Places
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $NumberOfDecimalPlaces,
+
+# Sort Order
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $SortOrder,
 
 # Udf Type
     [Parameter(
@@ -210,29 +232,7 @@ Set-AtwsUserDefinedFieldDefinition
       }
     })]
     [string]
-    $UdfType,
-
-# Field Mapping
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsFieldMapping,
-
-# Sort Order
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $SortOrder,
-
-# Default Value
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1024)]
-    [string]
-    $DefaultValue
+    $UdfType
   )
  
     begin { 
@@ -254,7 +254,7 @@ Set-AtwsUserDefinedFieldDefinition
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -262,7 +262,7 @@ Set-AtwsUserDefinedFieldDefinition
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -271,7 +271,7 @@ Set-AtwsUserDefinedFieldDefinition
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -287,12 +287,12 @@ Set-AtwsUserDefinedFieldDefinition
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

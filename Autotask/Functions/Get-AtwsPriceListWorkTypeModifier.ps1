@@ -122,22 +122,6 @@ Set-AtwsPriceListWorkTypeModifier
     [switch]
     $All,
 
-# ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Work Type Modifier Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $WorkTypeModifierID,
-
 # Currency Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -145,6 +129,14 @@ Set-AtwsPriceListWorkTypeModifier
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $CurrencyID,
+
+# ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Uses Internal Currency Price
     [Parameter(
@@ -154,24 +146,32 @@ Set-AtwsPriceListWorkTypeModifier
     [Nullable[boolean][]]
     $UsesInternalCurrencyPrice,
 
+# Work Type Modifier Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ModifierValue', 'ModifierType', 'id', 'CurrencyID', 'WorkTypeModifierID', 'UsesInternalCurrencyPrice')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $WorkTypeModifierID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('WorkTypeModifierID', 'UsesInternalCurrencyPrice', 'CurrencyID', 'ModifierValue', 'id', 'ModifierType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ModifierValue', 'ModifierType', 'id', 'CurrencyID', 'WorkTypeModifierID', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('WorkTypeModifierID', 'UsesInternalCurrencyPrice', 'CurrencyID', 'ModifierValue', 'id', 'ModifierType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ModifierValue', 'ModifierType', 'id', 'CurrencyID', 'WorkTypeModifierID', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('WorkTypeModifierID', 'UsesInternalCurrencyPrice', 'CurrencyID', 'ModifierValue', 'id', 'ModifierType')]
     [string[]]
     $IsNotNull,
 

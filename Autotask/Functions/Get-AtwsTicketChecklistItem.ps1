@@ -103,7 +103,7 @@ Set-AtwsTicketChecklistItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CompletedByResourceID', 'TicketID')]
+    [ValidateSet('TicketID', 'CompletedByResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -126,14 +126,6 @@ Set-AtwsTicketChecklistItem
     [switch]
     $All,
 
-# Ticket Checklist Item ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Completed
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -154,6 +146,14 @@ Set-AtwsTicketChecklistItem
     )]
     [Nullable[datetime][]]
     $CompletedDateTime,
+
+# Ticket Checklist Item ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Important
     [Parameter(
@@ -208,21 +208,21 @@ Set-AtwsTicketChecklistItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'TicketID', 'id', 'CompletedByResourceID', 'ItemName', 'Position', 'CompletedDateTime', 'Completed', 'KnowledgebaseArticleID')]
+    [ValidateSet('Important', 'CompletedDateTime', 'CompletedByResourceID', 'KnowledgebaseArticleID', 'Position', 'id', 'Completed', 'TicketID', 'ItemName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'TicketID', 'id', 'CompletedByResourceID', 'ItemName', 'Position', 'CompletedDateTime', 'Completed', 'KnowledgebaseArticleID')]
+    [ValidateSet('Important', 'CompletedDateTime', 'CompletedByResourceID', 'KnowledgebaseArticleID', 'Position', 'id', 'Completed', 'TicketID', 'ItemName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'TicketID', 'id', 'CompletedByResourceID', 'ItemName', 'Position', 'CompletedDateTime', 'Completed', 'KnowledgebaseArticleID')]
+    [ValidateSet('Important', 'CompletedDateTime', 'CompletedByResourceID', 'KnowledgebaseArticleID', 'Position', 'id', 'Completed', 'TicketID', 'ItemName')]
     [string[]]
     $IsNotNull,
 

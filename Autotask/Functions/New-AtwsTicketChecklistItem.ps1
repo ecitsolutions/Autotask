@@ -63,21 +63,12 @@ Set-AtwsTicketChecklistItem
     [Autotask.TicketChecklistItem[]]
     $InputObject,
 
-# Important
+# Completed
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $Important,
-
-# Ticket ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $TicketID,
+    $Completed,
 
 # Completed By Resource ID
     [Parameter(
@@ -85,6 +76,20 @@ Set-AtwsTicketChecklistItem
     )]
     [Int]
     $CompletedByResourceID,
+
+# Completed date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CompletedDateTime,
+
+# Important
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Important,
 
 # Name
     [Parameter(
@@ -95,27 +100,6 @@ Set-AtwsTicketChecklistItem
     [ValidateLength(0,255)]
     [string]
     $ItemName,
-
-# Position
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $Position,
-
-# Completed date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CompletedDateTime,
-
-# Completed
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Completed,
 
 # Knowledgebase Article ID
     [Parameter(
@@ -134,7 +118,23 @@ Set-AtwsTicketChecklistItem
       }
     })]
     [string]
-    $KnowledgebaseArticleID
+    $KnowledgebaseArticleID,
+
+# Position
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $Position,
+
+# Ticket ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $TicketID
   )
  
     begin { 
@@ -156,7 +156,7 @@ Set-AtwsTicketChecklistItem
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -164,7 +164,7 @@ Set-AtwsTicketChecklistItem
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -173,7 +173,7 @@ Set-AtwsTicketChecklistItem
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -189,12 +189,12 @@ Set-AtwsTicketChecklistItem
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

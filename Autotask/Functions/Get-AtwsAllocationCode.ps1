@@ -100,7 +100,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AfterHoursWorkType', 'TaxCategoryID')]
+    [ValidateSet('TaxCategoryID', 'AfterHoursWorkType')]
     [string]
     $GetReferenceEntityById,
 
@@ -113,7 +113,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ShippingType', 'ChangeOrderCost', 'BillingItem', 'ProjectCost', 'ContractMilestone', 'ContractCost', 'TicketCategoryFieldDefaults', 'ServiceBundle', 'Ticket', 'Subscription', 'Service', 'ContractExclusionAllocationCode', 'QuoteItem', 'TimeEntry', 'Task', 'AllocationCode', 'TicketCost', 'ContractExclusionSetExcludedWorkType', 'Product', 'PriceListMaterialCode')]
+    [ValidateSet('ChangeOrderCost', 'Product', 'TimeEntry', 'TicketCategoryFieldDefaults', 'AllocationCode', 'ContractExclusionAllocationCode', 'ServiceBundle', 'Ticket', 'Service', 'ProjectCost', 'ShippingType', 'BillingItem', 'ContractMilestone', 'ContractCost', 'Task', 'ContractExclusionSetExcludedWorkType', 'TicketCost', 'PriceListMaterialCode', 'Subscription', 'QuoteItem')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -124,102 +124,6 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [switch]
     $All,
 
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# General Ledger Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AllocationCode -FieldName GeneralLedgerCode -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity AllocationCode -FieldName GeneralLedgerCode -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $GeneralLedgerCode,
-
-# Department ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $Department,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,200)]
-    [string[]]
-    $Name,
-
-# Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ExternalNumber,
-
-# Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AllocationCode -FieldName Type -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity AllocationCode -FieldName Type -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Type,
-
-# Use Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $UseType,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string[]]
-    $Description,
-
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -228,21 +132,12 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Nullable[boolean][]]
     $Active,
 
-# Unit Cost
+# After Hours Work Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $UnitCost,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $UnitPrice,
+    [Nullable[Int][]]
+    $AfterHoursWorkType,
 
 # Allocation Code Type
     [Parameter(
@@ -263,19 +158,55 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [string[]]
     $AllocationCodeType,
 
-# Tax Category ID
+# Department ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $TaxCategoryID,
+    $Department,
 
-# Markup Rate
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $MarkupRate,
+    [ValidateLength(0,500)]
+    [string[]]
+    $Description,
+
+# Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $ExternalNumber,
+
+# General Ledger Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity AllocationCode -FieldName GeneralLedgerCode -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity AllocationCode -FieldName GeneralLedgerCode -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $GeneralLedgerCode,
+
+# Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Is Excluded From New Contracts
     [Parameter(
@@ -284,31 +215,100 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Nullable[boolean][]]
     $IsExcludedFromNewContracts,
 
-# After Hours Work Type
+# Markup Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $MarkupRate,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,200)]
+    [string[]]
+    $Name,
+
+# Tax Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $AfterHoursWorkType,
+    $TaxCategoryID,
+
+# Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity AllocationCode -FieldName Type -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity AllocationCode -FieldName Type -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Type,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $UnitCost,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $UnitPrice,
+
+# Use Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $UseType,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'id', 'Type', 'Department', 'TaxCategoryID', 'AfterHoursWorkType', 'GeneralLedgerCode', 'Description', 'UseType', 'AllocationCodeType', 'Taxable', 'Active', 'MarkupRate', 'Name', 'ExternalNumber', 'UnitCost', 'IsExcludedFromNewContracts')]
+    [ValidateSet('id', 'Active', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'MarkupRate', 'TaxCategoryID', 'GeneralLedgerCode', 'Taxable', 'ExternalNumber', 'Department', 'Description', 'Name', 'UnitPrice', 'AllocationCodeType', 'UseType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'id', 'Type', 'Department', 'TaxCategoryID', 'AfterHoursWorkType', 'GeneralLedgerCode', 'Description', 'UseType', 'AllocationCodeType', 'Taxable', 'Active', 'MarkupRate', 'Name', 'ExternalNumber', 'UnitCost', 'IsExcludedFromNewContracts')]
+    [ValidateSet('id', 'Active', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'MarkupRate', 'TaxCategoryID', 'GeneralLedgerCode', 'Taxable', 'ExternalNumber', 'Department', 'Description', 'Name', 'UnitPrice', 'AllocationCodeType', 'UseType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'id', 'Type', 'Department', 'TaxCategoryID', 'AfterHoursWorkType', 'GeneralLedgerCode', 'Description', 'UseType', 'AllocationCodeType', 'Taxable', 'Active', 'MarkupRate', 'Name', 'ExternalNumber', 'UnitCost', 'IsExcludedFromNewContracts')]
+    [ValidateSet('id', 'Active', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'MarkupRate', 'TaxCategoryID', 'GeneralLedgerCode', 'Taxable', 'ExternalNumber', 'Department', 'Description', 'Name', 'UnitPrice', 'AllocationCodeType', 'UseType')]
     [string[]]
     $IsNotNull,
 

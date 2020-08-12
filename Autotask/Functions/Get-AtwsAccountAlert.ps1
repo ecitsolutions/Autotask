@@ -124,21 +124,21 @@ Set-AtwsAccountAlert
     [switch]
     $All,
 
-# Alert ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Client ID
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $AccountID,
+
+# Alert Text
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $AlertText,
 
 # Alert Type ID
     [Parameter(
@@ -160,32 +160,32 @@ Set-AtwsAccountAlert
     [string[]]
     $AlertTypeID,
 
-# Alert Text
+# Alert ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $AlertText,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'id', 'AlertText', 'AlertTypeID')]
+    [ValidateSet('AlertText', 'AccountID', 'id', 'AlertTypeID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'id', 'AlertText', 'AlertTypeID')]
+    [ValidateSet('AlertText', 'AccountID', 'id', 'AlertTypeID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'id', 'AlertText', 'AlertTypeID')]
+    [ValidateSet('AlertText', 'AccountID', 'id', 'AlertTypeID')]
     [string[]]
     $IsNotNull,
 

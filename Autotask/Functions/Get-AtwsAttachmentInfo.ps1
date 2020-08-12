@@ -99,7 +99,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AttachedByContactID', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AttachedByContactID', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
     [string]
     $GetReferenceEntityById,
 
@@ -122,6 +122,44 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [switch]
     $All,
 
+# Attach Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $AttachDate,
+
+# Attached By Contact
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $AttachedByContactID,
+
+# Attached By Resource
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $AttachedByResourceID,
+
+# Content Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $ContentType,
+
+# File Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
+    [string[]]
+    $FullPath,
+
 # Attachment ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -129,6 +167,20 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Opportunity ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $OpportunityID,
 
 # Parent ID
     [Parameter(
@@ -157,65 +209,6 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [string[]]
     $ParentType,
 
-# Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Type,
-
-# Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $Title,
-
-# File Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $FullPath,
-
-# Attach Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $AttachDate,
-
-# Attached By Contact
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $AttachedByContactID,
-
-# Attached By Resource
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $AttachedByResourceID,
-
 # Publish
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -236,46 +229,53 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [string[]]
     $Publish,
 
-# Content Type
+# Title
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,100)]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
     [string[]]
-    $ContentType,
+    $Title,
 
-# Opportunity ID
+# Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
-    $OpportunityID,
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Type,
 
-# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AttachedByResourceID', 'Type', 'ParentID', 'AttachDate', 'FileSize', 'FullPath', 'ContentType', 'ParentType', 'Publish', 'OpportunityID', 'AttachedByContactID', 'Title')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContentType', 'ParentID', 'Title', 'FileSize', 'ParentType', 'OpportunityID', 'Publish', 'AttachedByContactID', 'AttachDate', 'Type', 'AttachedByResourceID', 'FullPath')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AttachedByResourceID', 'Type', 'ParentID', 'AttachDate', 'FileSize', 'FullPath', 'ContentType', 'ParentType', 'Publish', 'OpportunityID', 'AttachedByContactID', 'Title')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContentType', 'ParentID', 'Title', 'FileSize', 'ParentType', 'OpportunityID', 'Publish', 'AttachedByContactID', 'AttachDate', 'Type', 'AttachedByResourceID', 'FullPath')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'id', 'AttachedByResourceID', 'Type', 'ParentID', 'AttachDate', 'FileSize', 'FullPath', 'ContentType', 'ParentType', 'Publish', 'OpportunityID', 'AttachedByContactID', 'Title')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContentType', 'ParentID', 'Title', 'FileSize', 'ParentType', 'OpportunityID', 'Publish', 'AttachedByContactID', 'AttachDate', 'Type', 'AttachedByResourceID', 'FullPath')]
     [string[]]
     $IsNotNull,
 

@@ -109,6 +109,13 @@ Set-AtwsUserDefinedFieldListItem
     [switch]
     $All,
 
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDate,
+
 # ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -125,15 +132,6 @@ Set-AtwsUserDefinedFieldListItem
     [Nullable[long][]]
     $UdfFieldId,
 
-# Value For Export
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,128)]
-    [string[]]
-    $ValueForExport,
-
 # Value For Display
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -143,31 +141,33 @@ Set-AtwsUserDefinedFieldListItem
     [string[]]
     $ValueForDisplay,
 
-# Create Date
+# Value For Export
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $CreateDate,
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,128)]
+    [string[]]
+    $ValueForExport,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForDisplay', 'id', 'CreateDate', 'ValueForExport', 'UdfFieldId')]
+    [ValidateSet('ValueForExport', 'CreateDate', 'ValueForDisplay', 'id', 'UdfFieldId')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForDisplay', 'id', 'CreateDate', 'ValueForExport', 'UdfFieldId')]
+    [ValidateSet('ValueForExport', 'CreateDate', 'ValueForDisplay', 'id', 'UdfFieldId')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForDisplay', 'id', 'CreateDate', 'ValueForExport', 'UdfFieldId')]
+    [ValidateSet('ValueForExport', 'CreateDate', 'ValueForDisplay', 'id', 'UdfFieldId')]
     [string[]]
     $IsNotNull,
 

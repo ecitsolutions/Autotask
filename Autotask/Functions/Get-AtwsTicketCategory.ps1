@@ -122,31 +122,6 @@ Set-AtwsTicketCategory
     [switch]
     $All,
 
-# Ticket Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,30)]
-    [string[]]
-    $Name,
-
-# Nickname
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,3)]
-    [string[]]
-    $Nickname,
-
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -154,6 +129,13 @@ Set-AtwsTicketCategory
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $Active,
+
+# API Only
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ApiOnly,
 
 # Display Color RGB
     [Parameter(
@@ -182,31 +164,49 @@ Set-AtwsTicketCategory
     [Nullable[boolean][]]
     $GlobalDefault,
 
-# API Only
+# Ticket Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $ApiOnly,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,30)]
+    [string[]]
+    $Name,
+
+# Nickname
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,3)]
+    [string[]]
+    $Nickname,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApiOnly', 'Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB')]
+    [ValidateSet('Nickname', 'Active', 'DisplayColorRGB', 'Name', 'id', 'ApiOnly', 'GlobalDefault')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApiOnly', 'Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB')]
+    [ValidateSet('Nickname', 'Active', 'DisplayColorRGB', 'Name', 'id', 'ApiOnly', 'GlobalDefault')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApiOnly', 'Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB')]
+    [ValidateSet('Nickname', 'Active', 'DisplayColorRGB', 'Name', 'id', 'ApiOnly', 'GlobalDefault')]
     [string[]]
     $IsNotNull,
 

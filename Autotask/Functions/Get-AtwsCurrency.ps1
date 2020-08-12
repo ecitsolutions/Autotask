@@ -112,7 +112,7 @@ Set-AtwsCurrency
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ExpenseReport', 'PriceListProduct', 'PriceListProductTier', 'Account', 'PriceListServiceBundle', 'PriceListRole', 'PriceListService', 'PriceListWorkTypeModifier', 'PriceListMaterialCode', 'ExpenseItem')]
+    [ValidateSet('PriceListWorkTypeModifier', 'PriceListProductTier', 'ExpenseReport', 'PriceListServiceBundle', 'PriceListMaterialCode', 'PriceListProduct', 'Account', 'PriceListService', 'PriceListRole', 'ExpenseItem')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -123,22 +123,31 @@ Set-AtwsCurrency
     [switch]
     $All,
 
-# Currency ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[boolean][]]
+    $Active,
 
-# Currency Name
+# Currency Negative Format
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,3)]
+    [ValidateLength(0,10)]
     [string[]]
-    $Name,
+    $CurrencyNegativeFormat,
+
+# Currency Positive Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,10)]
+    [string[]]
+    $CurrencyPositiveFormat,
 
 # Currency Description
     [Parameter(
@@ -177,19 +186,13 @@ Set-AtwsCurrency
     [Nullable[decimal][]]
     $ExchangeRate,
 
-# Last Modified Time
+# Currency ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $LastModifiedDateTime,
-
-# Update Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $UpdateResourceId,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Is Internal Currency
     [Parameter(
@@ -199,50 +202,47 @@ Set-AtwsCurrency
     [Nullable[boolean][]]
     $IsInternalCurrency,
 
-# Active
+# Last Modified Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
+    [Nullable[datetime][]]
+    $LastModifiedDateTime,
 
-# Currency Positive Format
+# Currency Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,10)]
+    [ValidateLength(0,3)]
     [string[]]
-    $CurrencyPositiveFormat,
+    $Name,
 
-# Currency Negative Format
+# Update Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,10)]
-    [string[]]
-    $CurrencyNegativeFormat,
+    [Nullable[Int][]]
+    $UpdateResourceId,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExchangeRate', 'DisplaySymbol', 'Name', 'LastModifiedDateTime', 'id', 'Active', 'Description', 'CurrencyPositiveFormat', 'UpdateResourceId', 'IsInternalCurrency', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyPositiveFormat', 'LastModifiedDateTime', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Description', 'DisplaySymbol', 'id', 'Name', 'UpdateResourceId', 'CurrencyNegativeFormat')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExchangeRate', 'DisplaySymbol', 'Name', 'LastModifiedDateTime', 'id', 'Active', 'Description', 'CurrencyPositiveFormat', 'UpdateResourceId', 'IsInternalCurrency', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyPositiveFormat', 'LastModifiedDateTime', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Description', 'DisplaySymbol', 'id', 'Name', 'UpdateResourceId', 'CurrencyNegativeFormat')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExchangeRate', 'DisplaySymbol', 'Name', 'LastModifiedDateTime', 'id', 'Active', 'Description', 'CurrencyPositiveFormat', 'UpdateResourceId', 'IsInternalCurrency', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyPositiveFormat', 'LastModifiedDateTime', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Description', 'DisplaySymbol', 'id', 'Name', 'UpdateResourceId', 'CurrencyNegativeFormat')]
     [string[]]
     $IsNotNull,
 

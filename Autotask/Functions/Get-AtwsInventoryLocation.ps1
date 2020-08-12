@@ -99,7 +99,7 @@ Set-AtwsInventoryLocation
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InventoryTransfer', 'PurchaseOrderItem', 'InventoryItem')]
+    [ValidateSet('PurchaseOrderItem', 'InventoryItem', 'InventoryTransfer')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -110,6 +110,14 @@ Set-AtwsInventoryLocation
     [switch]
     $All,
 
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
+
 # LocationID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -117,6 +125,20 @@ Set-AtwsInventoryLocation
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# IsDefault
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsDefault,
 
 # Location Name
     [Parameter(
@@ -127,21 +149,6 @@ Set-AtwsInventoryLocation
     [string[]]
     $LocationName,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
-# IsDefault
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsDefault,
-
 # Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -149,31 +156,24 @@ Set-AtwsInventoryLocation
     [Nullable[Int][]]
     $ResourceID,
 
-# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'IsDefault', 'Active', 'id', 'LocationName', 'ResourceID')]
+    [ValidateSet('IsDefault', 'Active', 'ResourceID', 'id', 'LocationName', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'IsDefault', 'Active', 'id', 'LocationName', 'ResourceID')]
+    [ValidateSet('IsDefault', 'Active', 'ResourceID', 'id', 'LocationName', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'IsDefault', 'Active', 'id', 'LocationName', 'ResourceID')]
+    [ValidateSet('IsDefault', 'Active', 'ResourceID', 'id', 'LocationName', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $IsNotNull,
 

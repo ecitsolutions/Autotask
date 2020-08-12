@@ -117,14 +117,6 @@ Remove-AtwsTicketSecondaryResource
     [Nullable[long][]]
     $id,
 
-# Ticket
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $TicketID,
-
 # Resource
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -141,24 +133,32 @@ Remove-AtwsTicketSecondaryResource
     [Nullable[long][]]
     $RoleID,
 
+# Ticket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'RoleID', 'ResourceID')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $TicketID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ResourceID', 'id', 'RoleID', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'RoleID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'id', 'RoleID', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'RoleID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'id', 'RoleID', 'TicketID')]
     [string[]]
     $IsNotNull,
 

@@ -126,22 +126,6 @@ Set-AtwsContactWebhookField
     [switch]
     $All,
 
-# Contact Webhook Field ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Webhook ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $WebhookID,
-
 # Field ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -162,13 +146,13 @@ Set-AtwsContactWebhookField
     [string[]]
     $FieldID,
 
-# Is Subscribed Field
+# Contact Webhook Field ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsSubscribedField,
+    [Nullable[long][]]
+    $id,
 
 # Is Display Always Field
     [Parameter(
@@ -178,24 +162,40 @@ Set-AtwsContactWebhookField
     [Nullable[boolean][]]
     $IsDisplayAlwaysField,
 
+# Is Subscribed Field
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FieldID', 'IsDisplayAlwaysField', 'id', 'IsSubscribedField', 'WebhookID')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsSubscribedField,
+
+# Webhook ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $WebhookID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('IsSubscribedField', 'id', 'IsDisplayAlwaysField', 'FieldID', 'WebhookID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FieldID', 'IsDisplayAlwaysField', 'id', 'IsSubscribedField', 'WebhookID')]
+    [ValidateSet('IsSubscribedField', 'id', 'IsDisplayAlwaysField', 'FieldID', 'WebhookID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FieldID', 'IsDisplayAlwaysField', 'id', 'IsSubscribedField', 'WebhookID')]
+    [ValidateSet('IsSubscribedField', 'id', 'IsDisplayAlwaysField', 'FieldID', 'WebhookID')]
     [string[]]
     $IsNotNull,
 

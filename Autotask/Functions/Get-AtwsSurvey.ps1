@@ -105,6 +105,22 @@ Returns any object with a SurveyName that DOES NOT match the simple pattern 'Som
     [switch]
     $All,
 
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,1000)]
+    [string[]]
+    $Description,
+
+# Display Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $DisplayName,
+
 # Survey ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -122,40 +138,24 @@ Returns any object with a SurveyName that DOES NOT match the simple pattern 'Som
     [string[]]
     $Name,
 
-# Display Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $DisplayName,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1000)]
-    [string[]]
-    $Description,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('Description', 'Name', 'DisplayName', 'id')]
+    [ValidateSet('DisplayName', 'Description', 'id', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'DisplayName', 'id')]
+    [ValidateSet('DisplayName', 'Description', 'id', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'DisplayName', 'id')]
+    [ValidateSet('DisplayName', 'Description', 'id', 'Name')]
     [string[]]
     $IsNotNull,
 

@@ -107,6 +107,21 @@ Set-AtwsPriceListRole
     [switch]
     $All,
 
+# Currency Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $CurrencyID,
+
+# Hourly Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $HourlyRate,
+
 # ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -123,14 +138,6 @@ Set-AtwsPriceListRole
     [Nullable[Int][]]
     $RoleID,
 
-# Currency Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $CurrencyID,
-
 # Uses Internal Currency Price
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -139,31 +146,24 @@ Set-AtwsPriceListRole
     [Nullable[boolean][]]
     $UsesInternalCurrencyPrice,
 
-# Hourly Rate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
-    $HourlyRate,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'HourlyRate', 'RoleID', 'id', 'CurrencyID')]
+    [ValidateSet('CurrencyID', 'UsesInternalCurrencyPrice', 'id', 'RoleID', 'HourlyRate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'HourlyRate', 'RoleID', 'id', 'CurrencyID')]
+    [ValidateSet('CurrencyID', 'UsesInternalCurrencyPrice', 'id', 'RoleID', 'HourlyRate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'HourlyRate', 'RoleID', 'id', 'CurrencyID')]
+    [ValidateSet('CurrencyID', 'UsesInternalCurrencyPrice', 'id', 'RoleID', 'HourlyRate')]
     [string[]]
     $IsNotNull,
 

@@ -111,22 +111,6 @@ Set-AtwsTicketRmaCredit
     [switch]
     $All,
 
-# Ticket RMA Credit ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TicketID,
-
 # Credit Amount
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -134,13 +118,6 @@ Set-AtwsTicketRmaCredit
     [ValidateNotNullOrEmpty()]
     [Nullable[decimal][]]
     $CreditAmount,
-
-# Internal Currency Credit Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $InternalCurrencyCreditAmount,
 
 # Credit Details
     [Parameter(
@@ -150,24 +127,47 @@ Set-AtwsTicketRmaCredit
     [string[]]
     $CreditDetails,
 
+# Ticket RMA Credit ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'CreditAmount', 'InternalCurrencyCreditAmount', 'id', 'CreditDetails')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Internal Currency Credit Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $InternalCurrencyCreditAmount,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TicketID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('CreditAmount', 'id', 'InternalCurrencyCreditAmount', 'CreditDetails', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'CreditAmount', 'InternalCurrencyCreditAmount', 'id', 'CreditDetails')]
+    [ValidateSet('CreditAmount', 'id', 'InternalCurrencyCreditAmount', 'CreditDetails', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'CreditAmount', 'InternalCurrencyCreditAmount', 'id', 'CreditDetails')]
+    [ValidateSet('CreditAmount', 'id', 'InternalCurrencyCreditAmount', 'CreditDetails', 'TicketID')]
     [string[]]
     $IsNotNull,
 

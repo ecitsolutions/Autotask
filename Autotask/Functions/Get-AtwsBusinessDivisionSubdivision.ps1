@@ -86,7 +86,7 @@ Set-AtwsBusinessDivisionSubdivision
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BusinessDivisionID', 'BusinessSubdivisionID')]
+    [ValidateSet('BusinessSubdivisionID', 'BusinessDivisionID')]
     [string]
     $GetReferenceEntityById,
 
@@ -99,7 +99,7 @@ Set-AtwsBusinessDivisionSubdivision
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ChangeOrderCost', 'ExpenseReport', 'Contract', 'ProjectCost', 'ContractMilestone', 'ContractCost', 'TicketCategoryFieldDefaults', 'SalesOrder', 'Project', 'Ticket', 'Subscription', 'BillingItem', 'ContractServiceBundleUnit', 'TicketCost', 'ContractServiceUnit', 'Opportunity', 'BusinessDivisionSubdivisionResource')]
+    [ValidateSet('ChangeOrderCost', 'ExpenseReport', 'ContractServiceBundleUnit', 'BusinessDivisionSubdivisionResource', 'Contract', 'TicketCategoryFieldDefaults', 'Ticket', 'SalesOrder', 'ProjectCost', 'ContractCost', 'BillingItem', 'ContractMilestone', 'Opportunity', 'TicketCost', 'Project', 'Subscription', 'ContractServiceUnit')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -110,13 +110,12 @@ Set-AtwsBusinessDivisionSubdivision
     [switch]
     $All,
 
-# Business Division ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[boolean][]]
+    $Active,
 
 # Business Division ID
     [Parameter(
@@ -134,31 +133,32 @@ Set-AtwsBusinessDivisionSubdivision
     [Nullable[Int][]]
     $BusinessSubdivisionID,
 
-# Active
+# Business Division ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $Active,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessSubdivisionID', 'id', 'Active', 'BusinessDivisionID')]
+    [ValidateSet('BusinessDivisionID', 'id', 'Active', 'BusinessSubdivisionID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessSubdivisionID', 'id', 'Active', 'BusinessDivisionID')]
+    [ValidateSet('BusinessDivisionID', 'id', 'Active', 'BusinessSubdivisionID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessSubdivisionID', 'id', 'Active', 'BusinessDivisionID')]
+    [ValidateSet('BusinessDivisionID', 'id', 'Active', 'BusinessSubdivisionID')]
     [string[]]
     $IsNotNull,
 

@@ -99,7 +99,7 @@ Set-AtwsRole
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractFactor', 'ContractRate', 'Task', 'ResourceRoleDepartment', 'ResourceRole', 'ContractExclusionRole', 'TaskSecondaryResource', 'PriceListRole', 'TicketSecondaryResource', 'Ticket', 'ResourceServiceDeskRole', 'QuoteItem', 'TimeEntry', 'ContractRoleCost', 'ContractExclusionSetExcludedRole', 'BillingItem', 'Resource', 'ResourceRoleQueue')]
+    [ValidateSet('ContractRate', 'ResourceServiceDeskRole', 'TimeEntry', 'ResourceRoleDepartment', 'TaskSecondaryResource', 'Resource', 'Ticket', 'ContractFactor', 'ContractRoleCost', 'BillingItem', 'ResourceRole', 'PriceListRole', 'Task', 'ResourceRoleQueue', 'ContractExclusionSetExcludedRole', 'ContractExclusionRole', 'TicketSecondaryResource', 'QuoteItem')]
     [string]
     $GetExternalEntityByThisEntityId,
 
@@ -110,22 +110,13 @@ Set-AtwsRole
     [switch]
     $All,
 
-# Role ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,200)]
-    [string[]]
-    $Name,
+    [Nullable[boolean][]]
+    $Active,
 
 # Description
     [Parameter(
@@ -134,13 +125,6 @@ Set-AtwsRole
     [ValidateLength(0,200)]
     [string[]]
     $Description,
-
-# System Role
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $SystemRole,
 
 # Hourly Factor
     [Parameter(
@@ -158,20 +142,13 @@ Set-AtwsRole
     [Nullable[decimal][]]
     $HourlyRate,
 
-# Quote Item Default Tax Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $QuoteItemDefaultTaxCategoryId,
-
-# Active
+# Role ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
+    [Nullable[long][]]
+    $id,
 
 # Is Excluded From New Contracts
     [Parameter(
@@ -180,6 +157,22 @@ Set-AtwsRole
     [Nullable[boolean][]]
     $IsExcludedFromNewContracts,
 
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,200)]
+    [string[]]
+    $Name,
+
+# Quote Item Default Tax Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $QuoteItemDefaultTaxCategoryId,
+
 # Role Type
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -187,24 +180,31 @@ Set-AtwsRole
     [Nullable[Int][]]
     $RoleType,
 
+# System Role
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType', 'HourlyRate', 'Active', 'Description', 'SystemRole', 'id', 'IsExcludedFromNewContracts', 'HourlyFactor')]
+    [Nullable[boolean][]]
+    $SystemRole,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('RoleType', 'Active', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'SystemRole', 'id', 'IsExcludedFromNewContracts')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType', 'HourlyRate', 'Active', 'Description', 'SystemRole', 'id', 'IsExcludedFromNewContracts', 'HourlyFactor')]
+    [ValidateSet('RoleType', 'Active', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'SystemRole', 'id', 'IsExcludedFromNewContracts')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType', 'HourlyRate', 'Active', 'Description', 'SystemRole', 'id', 'IsExcludedFromNewContracts', 'HourlyFactor')]
+    [ValidateSet('RoleType', 'Active', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'SystemRole', 'id', 'IsExcludedFromNewContracts')]
     [string[]]
     $IsNotNull,
 

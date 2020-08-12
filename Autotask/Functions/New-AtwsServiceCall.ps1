@@ -64,14 +64,7 @@ Set-AtwsServiceCall
     [Autotask.ServiceCall[]]
     $InputObject,
 
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Client ID
+# Account ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -80,12 +73,54 @@ Set-AtwsServiceCall
     [Int]
     $AccountID,
 
+# Account Physical Location
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $AccountPhysicalLocationID,
+
+# Cancelation Notice Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $CancelationNoticeHours,
+
+# Canceled By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CanceledByResource,
+
+# Canceled Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CanceledDateTime,
+
+# Complete
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int16]
+    $Complete,
+
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
     $CreateDateTime,
+
+# Created By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorResourceID,
 
 # Description
     [Parameter(
@@ -95,19 +130,12 @@ Set-AtwsServiceCall
     [string]
     $Description,
 
-# Account Physical Location
+# Duration
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $AccountPhysicalLocationID,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
+    [double]
+    $Duration,
 
 # End Date
     [Parameter(
@@ -118,12 +146,28 @@ Set-AtwsServiceCall
     [datetime]
     $EndDateTime,
 
-# Complete
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int16]
-    $Complete,
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
+# Last Modified Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastModifiedDateTime,
+
+# Start Date
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $StartDateTime,
 
 # Status
     [Parameter(
@@ -142,51 +186,7 @@ Set-AtwsServiceCall
       }
     })]
     [string]
-    $Status,
-
-# Cancelation Notice Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $CancelationNoticeHours,
-
-# Last Modified Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastModifiedDateTime,
-
-# Canceled By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CanceledByResource,
-
-# Duration
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $Duration,
-
-# Canceled Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CanceledDateTime,
-
-# Start Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDateTime
+    $Status
   )
  
     begin { 
@@ -208,7 +208,7 @@ Set-AtwsServiceCall
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -216,7 +216,7 @@ Set-AtwsServiceCall
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -225,7 +225,7 @@ Set-AtwsServiceCall
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -241,12 +241,12 @@ Set-AtwsServiceCall
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

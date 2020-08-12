@@ -109,6 +109,20 @@ Set-AtwsResourceServiceDeskRole
     [switch]
     $All,
 
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Active,
+
+# Default
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Default,
+
 # ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -133,38 +147,24 @@ Set-AtwsResourceServiceDeskRole
     [Nullable[Int][]]
     $RoleID,
 
-# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $Active,
-
-# Default
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Default,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('Default', 'id', 'Active', 'RoleID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'id', 'Active', 'RoleID', 'Default')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Default', 'id', 'Active', 'RoleID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'id', 'Active', 'RoleID', 'Default')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Default', 'id', 'Active', 'RoleID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'id', 'Active', 'RoleID', 'Default')]
     [string[]]
     $IsNotNull,
 

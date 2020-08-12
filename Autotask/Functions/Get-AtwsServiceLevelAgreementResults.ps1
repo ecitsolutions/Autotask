@@ -105,28 +105,19 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [switch]
     $All,
 
-# Service Level Agreement Results ID
+# Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[datetime][]]
+    $CreateDateTime,
 
-# Ticket ID
+# Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $TicketID,
-
-# Service Level Agreement Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ServiceLevelAgreementName,
+    $CreatorResourceID,
 
 # First Response Elapsed Hours
     [Parameter(
@@ -142,13 +133,6 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [Nullable[Int][]]
     $FirstResponseInitiatingResourceID,
 
-# First Response Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $FirstResponseResourceID,
-
 # First Response Met
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -156,68 +140,20 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [Nullable[boolean][]]
     $FirstResponseMet,
 
-# Resolution Plan Elapsed Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $ResolutionPlanElapsedHours,
-
-# Resolution Plan Resource ID
+# First Response Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $ResolutionPlanResourceID,
+    $FirstResponseResourceID,
 
-# Resolution Plan Met
+# Service Level Agreement Results ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $ResolutionPlanMet,
-
-# Resolution Elapsed Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $ResolutionElapsedHours,
-
-# Resolution Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ResolutionResourceID,
-
-# Resolution Met
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ResolutionMet,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-# Last Modified Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastModifiedDateTime,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Last Modified By Resource ID
     [Parameter(
@@ -226,24 +162,88 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [Nullable[Int][]]
     $LastModifiedByResourceID,
 
+# Last Modified Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionMet', 'LastModifiedByResourceID', 'id', 'ResolutionElapsedHours', 'CreateDateTime', 'ResolutionPlanMet', 'FirstResponseResourceID', 'CreatorResourceID', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'TicketID', 'LastModifiedDateTime', 'FirstResponseMet', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'FirstResponseInitiatingResourceID', 'FirstResponseElapsedHours')]
+    [Nullable[datetime][]]
+    $LastModifiedDateTime,
+
+# Resolution Elapsed Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $ResolutionElapsedHours,
+
+# Resolution Met
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ResolutionMet,
+
+# Resolution Plan Elapsed Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $ResolutionPlanElapsedHours,
+
+# Resolution Plan Met
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ResolutionPlanMet,
+
+# Resolution Plan Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ResolutionPlanResourceID,
+
+# Resolution Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ResolutionResourceID,
+
+# Service Level Agreement Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $ServiceLevelAgreementName,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TicketID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ResolutionPlanResourceID', 'ResolutionMet', 'FirstResponseResourceID', 'TicketID', 'ResolutionElapsedHours', 'FirstResponseInitiatingResourceID', 'ResolutionPlanMet', 'ResolutionPlanElapsedHours', 'LastModifiedDateTime', 'FirstResponseElapsedHours', 'FirstResponseMet', 'ResolutionResourceID', 'CreateDateTime', 'id', 'ServiceLevelAgreementName', 'CreatorResourceID', 'LastModifiedByResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionMet', 'LastModifiedByResourceID', 'id', 'ResolutionElapsedHours', 'CreateDateTime', 'ResolutionPlanMet', 'FirstResponseResourceID', 'CreatorResourceID', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'TicketID', 'LastModifiedDateTime', 'FirstResponseMet', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'FirstResponseInitiatingResourceID', 'FirstResponseElapsedHours')]
+    [ValidateSet('ResolutionPlanResourceID', 'ResolutionMet', 'FirstResponseResourceID', 'TicketID', 'ResolutionElapsedHours', 'FirstResponseInitiatingResourceID', 'ResolutionPlanMet', 'ResolutionPlanElapsedHours', 'LastModifiedDateTime', 'FirstResponseElapsedHours', 'FirstResponseMet', 'ResolutionResourceID', 'CreateDateTime', 'id', 'ServiceLevelAgreementName', 'CreatorResourceID', 'LastModifiedByResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionMet', 'LastModifiedByResourceID', 'id', 'ResolutionElapsedHours', 'CreateDateTime', 'ResolutionPlanMet', 'FirstResponseResourceID', 'CreatorResourceID', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'TicketID', 'LastModifiedDateTime', 'FirstResponseMet', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'FirstResponseInitiatingResourceID', 'FirstResponseElapsedHours')]
+    [ValidateSet('ResolutionPlanResourceID', 'ResolutionMet', 'FirstResponseResourceID', 'TicketID', 'ResolutionElapsedHours', 'FirstResponseInitiatingResourceID', 'ResolutionPlanMet', 'ResolutionPlanElapsedHours', 'LastModifiedDateTime', 'FirstResponseElapsedHours', 'FirstResponseMet', 'ResolutionResourceID', 'CreateDateTime', 'id', 'ServiceLevelAgreementName', 'CreatorResourceID', 'LastModifiedByResourceID')]
     [string[]]
     $IsNotNull,
 

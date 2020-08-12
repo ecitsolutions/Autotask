@@ -111,14 +111,6 @@ Set-AtwsInstalledProductTypeUdfAssociation
     [switch]
     $All,
 
-# Installed Product Type Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $InstalledProductTypeId,
-
 # Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -127,13 +119,13 @@ Set-AtwsInstalledProductTypeUdfAssociation
     [Nullable[long][]]
     $id,
 
-# User Defined Field Definition Id
+# Installed Product Type Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $UserDefinedFieldDefinitionId,
+    $InstalledProductTypeId,
 
 # Required
     [Parameter(
@@ -151,24 +143,32 @@ Set-AtwsInstalledProductTypeUdfAssociation
     [Nullable[Int][]]
     $SortOrder,
 
+# User Defined Field Definition Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserDefinedFieldDefinitionId', 'SortOrder', 'InstalledProductTypeId', 'Required', 'id')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $UserDefinedFieldDefinitionId,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('SortOrder', 'UserDefinedFieldDefinitionId', 'id', 'InstalledProductTypeId', 'Required')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserDefinedFieldDefinitionId', 'SortOrder', 'InstalledProductTypeId', 'Required', 'id')]
+    [ValidateSet('SortOrder', 'UserDefinedFieldDefinitionId', 'id', 'InstalledProductTypeId', 'Required')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserDefinedFieldDefinitionId', 'SortOrder', 'InstalledProductTypeId', 'Required', 'id')]
+    [ValidateSet('SortOrder', 'UserDefinedFieldDefinitionId', 'id', 'InstalledProductTypeId', 'Required')]
     [string[]]
     $IsNotNull,
 

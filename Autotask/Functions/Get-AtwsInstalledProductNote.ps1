@@ -124,14 +124,6 @@ Set-AtwsInstalledProductNote
     [switch]
     $All,
 
-# Installed Product Note ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -154,6 +146,14 @@ Set-AtwsInstalledProductNote
     [ValidateLength(0,32000)]
     [string[]]
     $Description,
+
+# Installed Product Note ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
@@ -216,21 +216,21 @@ Set-AtwsInstalledProductNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
+    [ValidateSet('Description', 'InstalledProductID', 'ImpersonatorCreatorResourceID', 'NoteType', 'CreatorResourceID', 'CreateDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
+    [ValidateSet('Description', 'InstalledProductID', 'ImpersonatorCreatorResourceID', 'NoteType', 'CreatorResourceID', 'CreateDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'NoteType', 'Description', 'CreateDateTime', 'Title', 'id', 'LastActivityDate')]
+    [ValidateSet('Description', 'InstalledProductID', 'ImpersonatorCreatorResourceID', 'NoteType', 'CreatorResourceID', 'CreateDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'Title')]
     [string[]]
     $IsNotNull,
 

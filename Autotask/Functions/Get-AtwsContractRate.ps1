@@ -86,7 +86,7 @@ Set-AtwsContractRate
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('RoleID', 'ContractID')]
+    [ValidateSet('ContractID', 'RoleID')]
     [string]
     $GetReferenceEntityById,
 
@@ -109,21 +109,13 @@ Set-AtwsContractRate
     [switch]
     $All,
 
-# id
+# Rate Offset
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Role ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $RoleID,
+    [Nullable[double][]]
+    $ContractHourlyRate,
 
 # Contract ID
     [Parameter(
@@ -133,13 +125,13 @@ Set-AtwsContractRate
     [Nullable[Int][]]
     $ContractID,
 
-# Rate Offset
+# id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $ContractHourlyRate,
+    [Nullable[long][]]
+    $id,
 
 # Internal Currency Rate Offset
     [Parameter(
@@ -147,6 +139,14 @@ Set-AtwsContractRate
     )]
     [Nullable[double][]]
     $InternalCurrencyContractHourlyRate,
+
+# Role ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $RoleID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

@@ -68,37 +68,6 @@ Set-AtwsContractServiceBundle
     [double]
     $AdjustedPrice,
 
-# Service Bundle ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ServiceBundleID,
-
-# Internal Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $InternalDescription,
-
-# Internal Currency Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyUnitPrice,
-
-# Internal Currency Adjusted Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyAdjustedPrice,
-
 # Contract ID
     [Parameter(
       Mandatory = $true,
@@ -108,19 +77,27 @@ Set-AtwsContractServiceBundle
     [Int]
     $ContractID,
 
-# Quote Item Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $QuoteItemID,
-
-# Unit Price
+# Internal Currency Adjusted Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $UnitPrice,
+    $InternalCurrencyAdjustedPrice,
+
+# Internal Currency Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyUnitPrice,
+
+# Internal Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $InternalDescription,
 
 # Invoice Description
     [Parameter(
@@ -128,7 +105,30 @@ Set-AtwsContractServiceBundle
     )]
     [ValidateLength(0,1000)]
     [string]
-    $InvoiceDescription
+    $InvoiceDescription,
+
+# Quote Item Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $QuoteItemID,
+
+# Service Bundle ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ServiceBundleID,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $UnitPrice
   )
  
     begin { 
@@ -150,7 +150,7 @@ Set-AtwsContractServiceBundle
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -158,7 +158,7 @@ Set-AtwsContractServiceBundle
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -167,7 +167,7 @@ Set-AtwsContractServiceBundle
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -183,12 +183,12 @@ Set-AtwsContractServiceBundle
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

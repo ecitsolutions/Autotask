@@ -86,7 +86,7 @@ Remove-AtwsComanagedAssociation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AccountID')]
     [string]
     $GetReferenceEntityById,
 
@@ -109,14 +109,6 @@ Remove-AtwsComanagedAssociation
     [switch]
     $All,
 
-# ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -124,6 +116,14 @@ Remove-AtwsComanagedAssociation
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $AccountID,
+
+# ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Resource ID
     [Parameter(
@@ -136,21 +136,21 @@ Remove-AtwsComanagedAssociation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'id', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AccountID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'id', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AccountID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'id', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AccountID', 'id')]
     [string[]]
     $IsNotNull,
 

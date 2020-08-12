@@ -86,7 +86,7 @@ Set-AtwsContractFactor
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('RoleID', 'ContractID')]
+    [ValidateSet('ContractID', 'RoleID')]
     [string]
     $GetReferenceEntityById,
 
@@ -109,6 +109,22 @@ Set-AtwsContractFactor
     [switch]
     $All,
 
+# Hourly Offset
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $BlockHourFactor,
+
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ContractID,
+
 # id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -125,40 +141,24 @@ Set-AtwsContractFactor
     [Nullable[Int][]]
     $RoleID,
 
-# Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContractID,
-
-# Hourly Offset
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $BlockHourFactor,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('ContractID', 'BlockHourFactor', 'id', 'RoleID')]
+    [ValidateSet('ContractID', 'id', 'RoleID', 'BlockHourFactor')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'BlockHourFactor', 'id', 'RoleID')]
+    [ValidateSet('ContractID', 'id', 'RoleID', 'BlockHourFactor')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'BlockHourFactor', 'id', 'RoleID')]
+    [ValidateSet('ContractID', 'id', 'RoleID', 'BlockHourFactor')]
     [string[]]
     $IsNotNull,
 

@@ -82,7 +82,7 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT 
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ResourceID', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -105,14 +105,6 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT 
     [switch]
     $All,
 
-# Business Division ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -120,6 +112,14 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT 
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
+
+# Business Division ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Resource ID
     [Parameter(
@@ -132,21 +132,21 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'BusinessDivisionSubdivisionID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'BusinessDivisionSubdivisionID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'BusinessDivisionSubdivisionID', 'id')]
     [string[]]
     $IsNotNull,
 

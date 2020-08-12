@@ -145,21 +145,21 @@ Set-AtwsTaskPredecessor
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SuccessorTaskID', 'id', 'PredecessorTaskID', 'LagDays')]
+    [ValidateSet('PredecessorTaskID', 'LagDays', 'id', 'SuccessorTaskID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SuccessorTaskID', 'id', 'PredecessorTaskID', 'LagDays')]
+    [ValidateSet('PredecessorTaskID', 'LagDays', 'id', 'SuccessorTaskID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SuccessorTaskID', 'id', 'PredecessorTaskID', 'LagDays')]
+    [ValidateSet('PredecessorTaskID', 'LagDays', 'id', 'SuccessorTaskID')]
     [string[]]
     $IsNotNull,
 

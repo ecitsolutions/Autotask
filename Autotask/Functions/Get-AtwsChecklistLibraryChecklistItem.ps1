@@ -126,6 +126,14 @@ Set-AtwsChecklistLibraryChecklistItem
     [switch]
     $All,
 
+# Checklist Library ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ChecklistLibraryID,
+
 # Checklist Library Checklist Item ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -133,6 +141,13 @@ Set-AtwsChecklistLibraryChecklistItem
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
+
+# Important
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Important,
 
 # Name
     [Parameter(
@@ -142,13 +157,6 @@ Set-AtwsChecklistLibraryChecklistItem
     [ValidateLength(0,255)]
     [string[]]
     $ItemName,
-
-# Important
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Important,
 
 # Knowledgebase Article ID
     [Parameter(
@@ -176,32 +184,24 @@ Set-AtwsChecklistLibraryChecklistItem
     [Nullable[Int][]]
     $Position,
 
-# Checklist Library ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ChecklistLibraryID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('Important', 'Position', 'ItemName', 'id', 'KnowledgebaseArticleID', 'ChecklistLibraryID')]
+    [ValidateSet('Important', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID', 'id', 'ItemName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'Position', 'ItemName', 'id', 'KnowledgebaseArticleID', 'ChecklistLibraryID')]
+    [ValidateSet('Important', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID', 'id', 'ItemName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Important', 'Position', 'ItemName', 'id', 'KnowledgebaseArticleID', 'ChecklistLibraryID')]
+    [ValidateSet('Important', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID', 'id', 'ItemName')]
     [string[]]
     $IsNotNull,
 

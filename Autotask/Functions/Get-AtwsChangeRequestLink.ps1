@@ -109,14 +109,6 @@ Remove-AtwsChangeRequestLink
     [switch]
     $All,
 
-# Change Request Problem Incident ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $id,
-
 # Change Request Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -124,6 +116,14 @@ Remove-AtwsChangeRequestLink
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ChangeRequestTicketID,
+
+# Change Request Problem Incident ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
 
 # Problem Or Incident Ticket ID
     [Parameter(
@@ -136,21 +136,21 @@ Remove-AtwsChangeRequestLink
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProblemOrIncidentTicketID', 'id', 'ChangeRequestTicketID')]
+    [ValidateSet('ProblemOrIncidentTicketID', 'ChangeRequestTicketID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProblemOrIncidentTicketID', 'id', 'ChangeRequestTicketID')]
+    [ValidateSet('ProblemOrIncidentTicketID', 'ChangeRequestTicketID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProblemOrIncidentTicketID', 'id', 'ChangeRequestTicketID')]
+    [ValidateSet('ProblemOrIncidentTicketID', 'ChangeRequestTicketID', 'id')]
     [string[]]
     $IsNotNull,
 

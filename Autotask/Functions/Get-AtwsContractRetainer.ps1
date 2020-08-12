@@ -126,13 +126,13 @@ Set-AtwsContractRetainer
     [switch]
     $All,
 
-# id
+# Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $id,
+    [Nullable[double][]]
+    $Amount,
 
 # Contract ID
     [Parameter(
@@ -141,6 +141,99 @@ Set-AtwsContractRetainer
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ContractID,
+
+# Date Purchased
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $DatePurchased,
+
+# EndDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $EndDate,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
+
+# Internal Currency Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyAmount,
+
+# InvoiceNumber
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $InvoiceNumber,
+
+# Paid
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $IsPaid,
+
+# Payment Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $paymentID,
+
+# PaymentNumber
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PaymentNumber,
+
+# StartDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDate,
 
 # Status
     [Parameter(
@@ -162,117 +255,24 @@ Set-AtwsContractRetainer
     [string[]]
     $Status,
 
-# Paid
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $IsPaid,
-
-# Date Purchased
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $DatePurchased,
-
-# StartDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDate,
-
-# EndDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDate,
-
-# Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $Amount,
-
-# InvoiceNumber
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $InvoiceNumber,
-
-# PaymentNumber
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PaymentNumber,
-
-# Payment Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $paymentID,
-
-# Internal Currency Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyAmount,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('StartDate', 'PaymentNumber', 'id', 'DatePurchased', 'EndDate', 'InternalCurrencyAmountApproved', 'Amount', 'AmountApproved', 'Status', 'ContractID', 'InternalCurrencyAmount', 'paymentID', 'IsPaid', 'InvoiceNumber')]
+    [ValidateSet('id', 'InternalCurrencyAmountApproved', 'paymentID', 'ContractID', 'Status', 'StartDate', 'InternalCurrencyAmount', 'PaymentNumber', 'DatePurchased', 'AmountApproved', 'EndDate', 'Amount', 'InvoiceNumber', 'IsPaid')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'PaymentNumber', 'id', 'DatePurchased', 'EndDate', 'InternalCurrencyAmountApproved', 'Amount', 'AmountApproved', 'Status', 'ContractID', 'InternalCurrencyAmount', 'paymentID', 'IsPaid', 'InvoiceNumber')]
+    [ValidateSet('id', 'InternalCurrencyAmountApproved', 'paymentID', 'ContractID', 'Status', 'StartDate', 'InternalCurrencyAmount', 'PaymentNumber', 'DatePurchased', 'AmountApproved', 'EndDate', 'Amount', 'InvoiceNumber', 'IsPaid')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'PaymentNumber', 'id', 'DatePurchased', 'EndDate', 'InternalCurrencyAmountApproved', 'Amount', 'AmountApproved', 'Status', 'ContractID', 'InternalCurrencyAmount', 'paymentID', 'IsPaid', 'InvoiceNumber')]
+    [ValidateSet('id', 'InternalCurrencyAmountApproved', 'paymentID', 'ContractID', 'Status', 'StartDate', 'InternalCurrencyAmount', 'PaymentNumber', 'DatePurchased', 'AmountApproved', 'EndDate', 'Amount', 'InvoiceNumber', 'IsPaid')]
     [string[]]
     $IsNotNull,
 

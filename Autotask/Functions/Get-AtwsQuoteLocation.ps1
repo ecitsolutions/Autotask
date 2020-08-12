@@ -109,14 +109,6 @@ Set-AtwsQuoteLocation
     [switch]
     $All,
 
-# location_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # address_1
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -141,13 +133,13 @@ Set-AtwsQuoteLocation
     [string[]]
     $City,
 
-# state_province
+# location_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $State,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # postal_code
     [Parameter(
@@ -157,24 +149,32 @@ Set-AtwsQuoteLocation
     [string[]]
     $PostalCode,
 
+# state_province
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('City', 'Address2', 'Address1', 'State', 'id', 'PostalCode')]
+    [ValidateLength(0,50)]
+    [string[]]
+    $State,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('City', 'PostalCode', 'Address2', 'Address1', 'id', 'State')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('City', 'Address2', 'Address1', 'State', 'id', 'PostalCode')]
+    [ValidateSet('City', 'PostalCode', 'Address2', 'Address1', 'id', 'State')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('City', 'Address2', 'Address1', 'State', 'id', 'PostalCode')]
+    [ValidateSet('City', 'PostalCode', 'Address2', 'Address1', 'id', 'State')]
     [string[]]
     $IsNotNull,
 

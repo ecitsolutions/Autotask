@@ -136,21 +136,21 @@ Remove-AtwsServiceBundleService
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'id', 'ServiceID')]
+    [ValidateSet('ServiceID', 'id', 'ServiceBundleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'id', 'ServiceID')]
+    [ValidateSet('ServiceID', 'id', 'ServiceBundleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'id', 'ServiceID')]
+    [ValidateSet('ServiceID', 'id', 'ServiceBundleID')]
     [string[]]
     $IsNotNull,
 

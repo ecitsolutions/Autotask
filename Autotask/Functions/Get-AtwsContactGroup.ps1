@@ -111,6 +111,14 @@ Set-AtwsContactGroup
     [switch]
     $All,
 
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
+
 # Contact Group ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -128,32 +136,24 @@ Set-AtwsContactGroup
     [string[]]
     $Name,
 
-# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('Name', 'Active', 'id')]
+    [ValidateSet('id', 'Active', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Active', 'id')]
+    [ValidateSet('id', 'Active', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Active', 'id')]
+    [ValidateSet('id', 'Active', 'Name')]
     [string[]]
     $IsNotNull,
 

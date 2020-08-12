@@ -104,7 +104,7 @@ Set-AtwsContractBillingRule
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProductID', 'ContractID')]
+    [ValidateSet('ContractID', 'ProductID')]
     [string]
     $GetReferenceEntityById,
 
@@ -127,21 +127,13 @@ Set-AtwsContractBillingRule
     [switch]
     $All,
 
-# Contract Billing Rule ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string[]]
-    $InvoiceDescription,
+    [Nullable[boolean][]]
+    $Active,
 
 # Contract ID
     [Parameter(
@@ -151,36 +143,27 @@ Set-AtwsContractBillingRule
     [Nullable[Int][]]
     $ContractID,
 
-# Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ProductID,
-
-# Active
+# Create Charges As Billable
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
-    $Active,
+    $CreateChargesAsBillable,
 
-# Start Date
+# Daily Prorated Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDate,
+    [Nullable[decimal][]]
+    $DailyProratedCost,
 
-# End Date
+# Daily Prorated Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $EndDate,
+    [Nullable[decimal][]]
+    $DailyProratedPrice,
 
 # Determine Units
     [Parameter(
@@ -202,36 +185,6 @@ Set-AtwsContractBillingRule
     [string[]]
     $DetermineUnits,
 
-# Minimum Units
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $MinimumUnits,
-
-# Maximum Units
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $MaximumUnits,
-
-# Create Charges As Billable
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $CreateChargesAsBillable,
-
-# Include Items In Charge Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IncludeItemsInChargeDescription,
-
 # Enable Daily Prorating
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -240,19 +193,12 @@ Set-AtwsContractBillingRule
     [Nullable[boolean][]]
     $EnableDailyProrating,
 
-# Daily Prorated Cost
+# End Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
-    $DailyProratedCost,
-
-# Daily Prorated Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $DailyProratedPrice,
+    [Nullable[datetime][]]
+    $EndDate,
 
 # Execution Method
     [Parameter(
@@ -273,24 +219,78 @@ Set-AtwsContractBillingRule
     [string[]]
     $ExecutionMethod,
 
+# Contract Billing Rule ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'EnableDailyProrating', 'id', 'DailyProratedPrice', 'MinimumUnits', 'EndDate', 'IncludeItemsInChargeDescription', 'InvoiceDescription', 'ContractID', 'Active', 'ExecutionMethod', 'DailyProratedCost', 'MaximumUnits', 'CreateChargesAsBillable', 'ProductID', 'DetermineUnits')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Include Items In Charge Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IncludeItemsInChargeDescription,
+
+# Invoice Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string[]]
+    $InvoiceDescription,
+
+# Maximum Units
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $MaximumUnits,
+
+# Minimum Units
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $MinimumUnits,
+
+# Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ProductID,
+
+# Start Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDate,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'ContractID', 'EnableDailyProrating', 'StartDate', 'Active', 'MaximumUnits', 'ExecutionMethod', 'DailyProratedCost', 'IncludeItemsInChargeDescription', 'CreateChargesAsBillable', 'EndDate', 'MinimumUnits', 'DailyProratedPrice', 'ProductID', 'InvoiceDescription', 'DetermineUnits')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'EnableDailyProrating', 'id', 'DailyProratedPrice', 'MinimumUnits', 'EndDate', 'IncludeItemsInChargeDescription', 'InvoiceDescription', 'ContractID', 'Active', 'ExecutionMethod', 'DailyProratedCost', 'MaximumUnits', 'CreateChargesAsBillable', 'ProductID', 'DetermineUnits')]
+    [ValidateSet('id', 'ContractID', 'EnableDailyProrating', 'StartDate', 'Active', 'MaximumUnits', 'ExecutionMethod', 'DailyProratedCost', 'IncludeItemsInChargeDescription', 'CreateChargesAsBillable', 'EndDate', 'MinimumUnits', 'DailyProratedPrice', 'ProductID', 'InvoiceDescription', 'DetermineUnits')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'EnableDailyProrating', 'id', 'DailyProratedPrice', 'MinimumUnits', 'EndDate', 'IncludeItemsInChargeDescription', 'InvoiceDescription', 'ContractID', 'Active', 'ExecutionMethod', 'DailyProratedCost', 'MaximumUnits', 'CreateChargesAsBillable', 'ProductID', 'DetermineUnits')]
+    [ValidateSet('id', 'ContractID', 'EnableDailyProrating', 'StartDate', 'Active', 'MaximumUnits', 'ExecutionMethod', 'DailyProratedCost', 'IncludeItemsInChargeDescription', 'CreateChargesAsBillable', 'EndDate', 'MinimumUnits', 'DailyProratedPrice', 'ProductID', 'InvoiceDescription', 'DetermineUnits')]
     [string[]]
     $IsNotNull,
 

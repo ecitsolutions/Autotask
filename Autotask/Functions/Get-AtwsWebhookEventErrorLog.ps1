@@ -84,7 +84,7 @@ Remove-AtwsWebhookEventErrorLog
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountWebhookID', 'ContactWebhookID')]
+    [ValidateSet('ContactWebhookID', 'AccountWebhookID')]
     [string]
     $GetReferenceEntityById,
 
@@ -107,14 +107,6 @@ Remove-AtwsWebhookEventErrorLog
     [switch]
     $All,
 
-# Webhook Event Error Log ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Account Webhook ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -129,20 +121,12 @@ Remove-AtwsWebhookEventErrorLog
     [Nullable[Int][]]
     $ContactWebhookID,
 
-# Sequence Number
+# Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $SequenceNumber,
-
-# Payload
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $Payload,
+    [Nullable[datetime][]]
+    $CreateDateTime,
 
 # Error Message
     [Parameter(
@@ -152,31 +136,47 @@ Remove-AtwsWebhookEventErrorLog
     [string[]]
     $ErrorMessage,
 
-# Create Date Time
+# Webhook Event Error Log ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Payload
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $Payload,
+
+# Sequence Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $SequenceNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountWebhookID', 'Payload', 'CreateDateTime', 'SequenceNumber', 'ContactWebhookID', 'id', 'ErrorMessage')]
+    [ValidateSet('CreateDateTime', 'ContactWebhookID', 'AccountWebhookID', 'Payload', 'id', 'ErrorMessage', 'SequenceNumber')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountWebhookID', 'Payload', 'CreateDateTime', 'SequenceNumber', 'ContactWebhookID', 'id', 'ErrorMessage')]
+    [ValidateSet('CreateDateTime', 'ContactWebhookID', 'AccountWebhookID', 'Payload', 'id', 'ErrorMessage', 'SequenceNumber')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountWebhookID', 'Payload', 'CreateDateTime', 'SequenceNumber', 'ContactWebhookID', 'id', 'ErrorMessage')]
+    [ValidateSet('CreateDateTime', 'ContactWebhookID', 'AccountWebhookID', 'Payload', 'id', 'ErrorMessage', 'SequenceNumber')]
     [string[]]
     $IsNotNull,
 

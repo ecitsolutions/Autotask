@@ -57,15 +57,6 @@ Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the W
     [Autotask.TicketChecklistLibrary[]]
     $InputObject,
 
-# Ticket ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $TicketID,
-
 # Checklist Library ID
     [Parameter(
       Mandatory = $true,
@@ -73,7 +64,16 @@ Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the W
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ChecklistLibraryID
+    $ChecklistLibraryID,
+
+# Ticket ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $TicketID
   )
  
     begin { 
@@ -95,7 +95,7 @@ Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the W
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -103,7 +103,7 @@ Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the W
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -112,7 +112,7 @@ Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the W
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -128,12 +128,12 @@ Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the W
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

@@ -82,7 +82,7 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'BusinessDivisionSubdivisionID', 'ServiceBundleID', 'ContractServiceBundleID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'ServiceBundleID', 'ContractID')]
     [string]
     $GetReferenceEntityById,
 
@@ -105,13 +105,19 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [switch]
     $All,
 
-# contract_service_period_id
+# approve_and_post_date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $ApproveAndPostDate,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
     [Nullable[Int][]]
-    $id,
+    $BusinessDivisionSubdivisionID,
 
 # contract_id
     [Parameter(
@@ -120,6 +126,50 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ContractID,
+
+# Contract Service Bundle ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContractServiceBundleID,
+
+# Contract Period Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $Cost,
+
+# contract_period_end_date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $EndDate,
+
+# contract_service_period_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
+
+# InternalCurrencyPrice
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyPrice,
+
+# contract_period_price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $Price,
 
 # service_id
     [Parameter(
@@ -137,28 +187,6 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [Nullable[datetime][]]
     $StartDate,
 
-# contract_period_end_date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDate,
-
-# contract_period_price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $Price,
-
-# approve_and_post_date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $ApproveAndPostDate,
-
 # units
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -167,52 +195,24 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [Nullable[Int][]]
     $Units,
 
-# Contract Period Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $Cost,
-
-# Contract Service Bundle ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContractServiceBundleID,
-
-# InternalCurrencyPrice
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyPrice,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('ContractID', 'ServiceBundleID', 'Cost', 'Units', 'EndDate', 'ContractServiceBundleID', 'StartDate', 'ApproveAndPostDate', 'Price', 'id', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('Cost', 'ContractID', 'ContractServiceBundleID', 'ServiceBundleID', 'EndDate', 'BusinessDivisionSubdivisionID', 'ApproveAndPostDate', 'id', 'Units', 'InternalCurrencyPrice', 'StartDate', 'Price')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'ServiceBundleID', 'Cost', 'Units', 'EndDate', 'ContractServiceBundleID', 'StartDate', 'ApproveAndPostDate', 'Price', 'id', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('Cost', 'ContractID', 'ContractServiceBundleID', 'ServiceBundleID', 'EndDate', 'BusinessDivisionSubdivisionID', 'ApproveAndPostDate', 'id', 'Units', 'InternalCurrencyPrice', 'StartDate', 'Price')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'ServiceBundleID', 'Cost', 'Units', 'EndDate', 'ContractServiceBundleID', 'StartDate', 'ApproveAndPostDate', 'Price', 'id', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('Cost', 'ContractID', 'ContractServiceBundleID', 'ServiceBundleID', 'EndDate', 'BusinessDivisionSubdivisionID', 'ApproveAndPostDate', 'id', 'Units', 'InternalCurrencyPrice', 'StartDate', 'Price')]
     [string[]]
     $IsNotNull,
 

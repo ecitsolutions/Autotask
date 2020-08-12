@@ -104,7 +104,7 @@ Set-AtwsChangeOrderCost
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'AllocationCodeID', 'ContractServiceID', 'ProductID', 'ContractServiceBundleID', 'StatusLastModifiedBy', 'TaskID')]
+    [ValidateSet('ProductID', 'AllocationCodeID', 'StatusLastModifiedBy', 'BusinessDivisionSubdivisionID', 'TaskID', 'ContractServiceBundleID', 'ContractServiceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -126,14 +126,6 @@ Set-AtwsChangeOrderCost
     )]
     [switch]
     $All,
-
-# Change Order Cost ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
 
 # Allocation Code ID
     [Parameter(
@@ -162,6 +154,34 @@ Set-AtwsChangeOrderCost
     )]
     [Nullable[boolean][]]
     $Billed,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
+
+# Change Order Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $ChangeOrderHours,
+
+# Contract Service Bundle ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContractServiceBundleID,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContractServiceID,
 
 # Cost Type
     [Parameter(
@@ -220,6 +240,28 @@ Set-AtwsChangeOrderCost
     [Nullable[decimal][]]
     $ExtendedCost,
 
+# Change Order Cost ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Internal Currency Billable Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $InternalCurrencyBillableAmount,
+
+# Internal Currency Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $InternalCurrencyUnitPrice,
+
 # Internal Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -227,6 +269,23 @@ Set-AtwsChangeOrderCost
     [ValidateLength(0,50)]
     [string[]]
     $InternalPurchaseOrderNumber,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
+
+# Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Notes,
 
 # Product ID
     [Parameter(
@@ -242,29 +301,6 @@ Set-AtwsChangeOrderCost
     [ValidateLength(0,50)]
     [string[]]
     $PurchaseOrderNumber,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContractServiceID,
-
-# Contract Service Bundle ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContractServiceBundleID,
 
 # Status
     [Parameter(
@@ -299,6 +335,14 @@ Set-AtwsChangeOrderCost
     [Nullable[datetime][]]
     $StatusLastModifiedDate,
 
+# Task ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TaskID,
+
 # Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -320,68 +364,24 @@ Set-AtwsChangeOrderCost
     [Nullable[decimal][]]
     $UnitQuantity,
 
-# Internal Currency Billable Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
-    $InternalCurrencyBillableAmount,
-
-# Internal Currency Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $InternalCurrencyUnitPrice,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Task ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TaskID,
-
-# Change Order Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $ChangeOrderHours,
-
-# Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Notes,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('UnitQuantity', 'ExtendedCost', 'UnitPrice', 'BillableAmount', 'DatePurchased', 'TaskID', 'Billed', 'BillableToAccount', 'InternalCurrencyUnitPrice', 'Description', 'ContractServiceBundleID', 'ProductID', 'Status', 'InternalCurrencyBillableAmount', 'CreatorResourceID', 'UnitCost', 'AllocationCodeID', 'CostType', 'ChangeOrderHours', 'PurchaseOrderNumber', 'ContractServiceID', 'StatusLastModifiedDate', 'BusinessDivisionSubdivisionID', 'CreateDate', 'InternalPurchaseOrderNumber', 'Name', 'StatusLastModifiedBy', 'Notes', 'id')]
+    [ValidateSet('PurchaseOrderNumber', 'DatePurchased', 'Billed', 'StatusLastModifiedDate', 'InternalPurchaseOrderNumber', 'UnitQuantity', 'TaskID', 'InternalCurrencyUnitPrice', 'CreatorResourceID', 'Name', 'Notes', 'ExtendedCost', 'ContractServiceBundleID', 'UnitCost', 'CostType', 'BusinessDivisionSubdivisionID', 'id', 'Status', 'UnitPrice', 'BillableAmount', 'ContractServiceID', 'CreateDate', 'Description', 'InternalCurrencyBillableAmount', 'AllocationCodeID', 'BillableToAccount', 'ProductID', 'ChangeOrderHours', 'StatusLastModifiedBy')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitQuantity', 'ExtendedCost', 'UnitPrice', 'BillableAmount', 'DatePurchased', 'TaskID', 'Billed', 'BillableToAccount', 'InternalCurrencyUnitPrice', 'Description', 'ContractServiceBundleID', 'ProductID', 'Status', 'InternalCurrencyBillableAmount', 'CreatorResourceID', 'UnitCost', 'AllocationCodeID', 'CostType', 'ChangeOrderHours', 'PurchaseOrderNumber', 'ContractServiceID', 'StatusLastModifiedDate', 'BusinessDivisionSubdivisionID', 'CreateDate', 'InternalPurchaseOrderNumber', 'Name', 'StatusLastModifiedBy', 'Notes', 'id')]
+    [ValidateSet('PurchaseOrderNumber', 'DatePurchased', 'Billed', 'StatusLastModifiedDate', 'InternalPurchaseOrderNumber', 'UnitQuantity', 'TaskID', 'InternalCurrencyUnitPrice', 'CreatorResourceID', 'Name', 'Notes', 'ExtendedCost', 'ContractServiceBundleID', 'UnitCost', 'CostType', 'BusinessDivisionSubdivisionID', 'id', 'Status', 'UnitPrice', 'BillableAmount', 'ContractServiceID', 'CreateDate', 'Description', 'InternalCurrencyBillableAmount', 'AllocationCodeID', 'BillableToAccount', 'ProductID', 'ChangeOrderHours', 'StatusLastModifiedBy')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitQuantity', 'ExtendedCost', 'UnitPrice', 'BillableAmount', 'DatePurchased', 'TaskID', 'Billed', 'BillableToAccount', 'InternalCurrencyUnitPrice', 'Description', 'ContractServiceBundleID', 'ProductID', 'Status', 'InternalCurrencyBillableAmount', 'CreatorResourceID', 'UnitCost', 'AllocationCodeID', 'CostType', 'ChangeOrderHours', 'PurchaseOrderNumber', 'ContractServiceID', 'StatusLastModifiedDate', 'BusinessDivisionSubdivisionID', 'CreateDate', 'InternalPurchaseOrderNumber', 'Name', 'StatusLastModifiedBy', 'Notes', 'id')]
+    [ValidateSet('PurchaseOrderNumber', 'DatePurchased', 'Billed', 'StatusLastModifiedDate', 'InternalPurchaseOrderNumber', 'UnitQuantity', 'TaskID', 'InternalCurrencyUnitPrice', 'CreatorResourceID', 'Name', 'Notes', 'ExtendedCost', 'ContractServiceBundleID', 'UnitCost', 'CostType', 'BusinessDivisionSubdivisionID', 'id', 'Status', 'UnitPrice', 'BillableAmount', 'ContractServiceID', 'CreateDate', 'Description', 'InternalCurrencyBillableAmount', 'AllocationCodeID', 'BillableToAccount', 'ProductID', 'ChangeOrderHours', 'StatusLastModifiedBy')]
     [string[]]
     $IsNotNull,
 

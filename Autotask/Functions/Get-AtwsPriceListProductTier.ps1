@@ -107,6 +107,14 @@ Set-AtwsPriceListProductTier
     [switch]
     $All,
 
+# Currency ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $CurrencyID,
+
 # Price List Product Tier ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -123,13 +131,12 @@ Set-AtwsPriceListProductTier
     [Nullable[Int][]]
     $ProductTierID,
 
-# Currency ID
+# Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $CurrencyID,
+    [Nullable[decimal][]]
+    $UnitPrice,
 
 # Uses Internal Currency Price
     [Parameter(
@@ -139,31 +146,24 @@ Set-AtwsPriceListProductTier
     [Nullable[boolean][]]
     $UsesInternalCurrencyPrice,
 
-# Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
-    $UnitPrice,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'ProductTierID', 'UnitPrice', 'id', 'CurrencyID')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'ProductTierID', 'id', 'CurrencyID', 'UnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'ProductTierID', 'UnitPrice', 'id', 'CurrencyID')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'ProductTierID', 'id', 'CurrencyID', 'UnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UsesInternalCurrencyPrice', 'ProductTierID', 'UnitPrice', 'id', 'CurrencyID')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'ProductTierID', 'id', 'CurrencyID', 'UnitPrice')]
     [string[]]
     $IsNotNull,
 

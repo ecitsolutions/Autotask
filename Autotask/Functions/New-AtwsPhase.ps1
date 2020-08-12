@@ -61,19 +61,19 @@ Set-AtwsPhase
     [Autotask.Phase[]]
     $InputObject,
 
-# Phase Start Date
+# Phase Creation Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $StartDate,
+    $CreateDate,
 
-# Phase Estimated Hours
+# Phase Creator
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $EstimatedHours,
+    [Int]
+    $CreatorResourceID,
 
 # Phase Description
     [Parameter(
@@ -83,6 +83,28 @@ Set-AtwsPhase
     [string]
     $Description,
 
+# Phase End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $DueDate,
+
+# Phase Estimated Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $EstimatedHours,
+
+# Phase External ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ExternalID,
+
 # Phase Last Activity Date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -90,12 +112,20 @@ Set-AtwsPhase
     [datetime]
     $LastActivityDateTime,
 
-# Phase Creator
+# Parent Phase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $CreatorResourceID,
+    $ParentPhaseID,
+
+# Phase Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PhaseNumber,
 
 # Project
     [Parameter(
@@ -106,49 +136,19 @@ Set-AtwsPhase
     [Int]
     $ProjectID,
 
-# Parent Phase
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ParentPhaseID,
-
-# Phase External ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ExternalID,
-
-# Phase Creation Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDate,
-
-# Phase Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PhaseNumber,
-
-# Phase End Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $DueDate,
-
 # Is Scheduled
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
     $Scheduled,
+
+# Phase Start Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $StartDate,
 
 # Phase Title
     [Parameter(
@@ -180,7 +180,7 @@ Set-AtwsPhase
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -188,7 +188,7 @@ Set-AtwsPhase
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -197,7 +197,7 @@ Set-AtwsPhase
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -213,12 +213,12 @@ Set-AtwsPhase
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

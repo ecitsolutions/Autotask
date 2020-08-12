@@ -86,7 +86,7 @@ Set-AtwsPurchaseOrderItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProjectID', 'OrderID', 'ProductID', 'ContractID', 'InventoryLocationID', 'SalesOrderID', 'TicketID')]
+    [ValidateSet('ProductID', 'OrderID', 'ContractID', 'InventoryLocationID', 'ProjectID', 'TicketID', 'SalesOrderID')]
     [string]
     $GetReferenceEntityById,
 
@@ -110,6 +110,27 @@ Set-AtwsPurchaseOrderItem
     [switch]
     $All,
 
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContractID,
+
+# Cost ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CostID,
+
+# Estimated Arrival Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $EstimatedArrivalDate,
+
 # Inventory Item ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -117,6 +138,29 @@ Set-AtwsPurchaseOrderItem
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
+
+# Internal Currency Product Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyUnitCost,
+
+# Inventory Location ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $InventoryLocationID,
+
+# Memo
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,4000)]
+    [string[]]
+    $Memo,
 
 # Inventory Order ID
     [Parameter(
@@ -133,13 +177,12 @@ Set-AtwsPurchaseOrderItem
     [Nullable[Int][]]
     $ProductID,
 
-# Inventory Location ID
+# Project ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $InventoryLocationID,
+    [Nullable[long][]]
+    $ProjectID,
 
 # Quantity Ordered
     [Parameter(
@@ -149,13 +192,19 @@ Set-AtwsPurchaseOrderItem
     [Nullable[Int][]]
     $Quantity,
 
-# Memo
+# Sales Order ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,4000)]
-    [string[]]
-    $Memo,
+    [Nullable[long][]]
+    $SalesOrderID,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $TicketID,
 
 # Product Unit Cost
     [Parameter(
@@ -165,73 +214,24 @@ Set-AtwsPurchaseOrderItem
     [Nullable[double][]]
     $UnitCost,
 
-# Sales Order ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
-    $SalesOrderID,
-
-# Estimated Arrival Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $EstimatedArrivalDate,
-
-# Cost ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CostID,
-
-# Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ContractID,
-
-# Project ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ProjectID,
-
-# Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $TicketID,
-
-# Internal Currency Product Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyUnitCost,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('EstimatedArrivalDate', 'Quantity', 'id', 'InternalCurrencyUnitCost', 'ProjectID', 'OrderID', 'ContractID', 'TicketID', 'CostID', 'InventoryLocationID', 'SalesOrderID', 'Memo', 'UnitCost', 'ProductID')]
+    [ValidateSet('id', 'CostID', 'ContractID', 'TicketID', 'InternalCurrencyUnitCost', 'EstimatedArrivalDate', 'OrderID', 'Memo', 'Quantity', 'ProjectID', 'SalesOrderID', 'InventoryLocationID', 'ProductID', 'UnitCost')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EstimatedArrivalDate', 'Quantity', 'id', 'InternalCurrencyUnitCost', 'ProjectID', 'OrderID', 'ContractID', 'TicketID', 'CostID', 'InventoryLocationID', 'SalesOrderID', 'Memo', 'UnitCost', 'ProductID')]
+    [ValidateSet('id', 'CostID', 'ContractID', 'TicketID', 'InternalCurrencyUnitCost', 'EstimatedArrivalDate', 'OrderID', 'Memo', 'Quantity', 'ProjectID', 'SalesOrderID', 'InventoryLocationID', 'ProductID', 'UnitCost')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EstimatedArrivalDate', 'Quantity', 'id', 'InternalCurrencyUnitCost', 'ProjectID', 'OrderID', 'ContractID', 'TicketID', 'CostID', 'InventoryLocationID', 'SalesOrderID', 'Memo', 'UnitCost', 'ProductID')]
+    [ValidateSet('id', 'CostID', 'ContractID', 'TicketID', 'InternalCurrencyUnitCost', 'EstimatedArrivalDate', 'OrderID', 'Memo', 'Quantity', 'ProjectID', 'SalesOrderID', 'InventoryLocationID', 'ProductID', 'UnitCost')]
     [string[]]
     $IsNotNull,
 

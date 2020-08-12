@@ -100,7 +100,7 @@ Set-AtwsInvoice
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InvoiceEditorTemplateID', 'VoidedByResourceID', 'AccountID')]
+    [ValidateSet('AccountID', 'InvoiceEditorTemplateID', 'VoidedByResourceID')]
     [string]
     $GetReferenceEntityById,
 
@@ -124,50 +124,19 @@ Set-AtwsInvoice
     [switch]
     $All,
 
-# Invoice ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Client ID
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $AccountID,
 
-# Creator Resource ID
+# Batch ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $CreatorResourceID,
-
-# Invoice Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $InvoiceDateTime,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# Invoice Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $InvoiceNumber,
+    $BatchID,
 
 # Comments
     [Parameter(
@@ -177,19 +146,19 @@ Set-AtwsInvoice
     [string[]]
     $Comments,
 
-# Invoice Total
+# Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $InvoiceTotal,
+    [Nullable[datetime][]]
+    $CreateDateTime,
 
-# Total Tax Value
+# Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $TotalTaxValue,
+    [Nullable[Int][]]
+    $CreatorResourceID,
 
 # From Date
     [Parameter(
@@ -198,12 +167,50 @@ Set-AtwsInvoice
     [Nullable[datetime][]]
     $FromDate,
 
-# To Date
+# Invoice ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Invoice Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[datetime][]]
-    $ToDate,
+    $InvoiceDateTime,
+
+# Invoice Editor Template ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $InvoiceEditorTemplateID,
+
+# Invoice Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $InvoiceNumber,
+
+# Invoice Total
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InvoiceTotal,
+
+# Is Voided
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsVoided,
 
 # Order Number
     [Parameter(
@@ -212,6 +219,13 @@ Set-AtwsInvoice
     [ValidateLength(0,20)]
     [string[]]
     $OrderNumber,
+
+# Paid Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $PaidDate,
 
 # Payment Term ID
     [Parameter(
@@ -232,41 +246,6 @@ Set-AtwsInvoice
     [string[]]
     $PaymentTerm,
 
-# Web Service Use Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $WebServiceDate,
-
-# Is Voided
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsVoided,
-
-# Voided Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $VoidedDate,
-
-# Voided By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $VoidedByResourceID,
-
-# Paid Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $PaidDate,
-
 # Tax Region Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -275,38 +254,59 @@ Set-AtwsInvoice
     [string[]]
     $TaxRegionName,
 
-# Batch ID
+# To Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $ToDate,
+
+# Total Tax Value
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $TotalTaxValue,
+
+# Voided By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $BatchID,
+    $VoidedByResourceID,
 
-# Invoice Editor Template ID
+# Voided Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $InvoiceEditorTemplateID,
+    [Nullable[datetime][]]
+    $VoidedDate,
+
+# Web Service Use Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $WebServiceDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BatchID', 'InvoiceTotal', 'InvoiceEditorTemplateID', 'id', 'TotalTaxValue', 'TaxRegionName', 'AccountID', 'CreateDateTime', 'Comments', 'CreatorResourceID', 'InvoiceNumber', 'OrderNumber', 'InvoiceDateTime', 'PaidDate', 'ToDate', 'VoidedByResourceID', 'VoidedDate', 'FromDate', 'TaxGroup', 'DueDate', 'PaymentTerm', 'IsVoided', 'WebServiceDate')]
+    [ValidateSet('id', 'PaidDate', 'VoidedByResourceID', 'FromDate', 'InvoiceTotal', 'BatchID', 'InvoiceDateTime', 'DueDate', 'PaymentTerm', 'TaxGroup', 'OrderNumber', 'AccountID', 'VoidedDate', 'ToDate', 'TotalTaxValue', 'TaxRegionName', 'CreatorResourceID', 'CreateDateTime', 'Comments', 'WebServiceDate', 'InvoiceEditorTemplateID', 'InvoiceNumber', 'IsVoided')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BatchID', 'InvoiceTotal', 'InvoiceEditorTemplateID', 'id', 'TotalTaxValue', 'TaxRegionName', 'AccountID', 'CreateDateTime', 'Comments', 'CreatorResourceID', 'InvoiceNumber', 'OrderNumber', 'InvoiceDateTime', 'PaidDate', 'ToDate', 'VoidedByResourceID', 'VoidedDate', 'FromDate', 'TaxGroup', 'DueDate', 'PaymentTerm', 'IsVoided', 'WebServiceDate')]
+    [ValidateSet('id', 'PaidDate', 'VoidedByResourceID', 'FromDate', 'InvoiceTotal', 'BatchID', 'InvoiceDateTime', 'DueDate', 'PaymentTerm', 'TaxGroup', 'OrderNumber', 'AccountID', 'VoidedDate', 'ToDate', 'TotalTaxValue', 'TaxRegionName', 'CreatorResourceID', 'CreateDateTime', 'Comments', 'WebServiceDate', 'InvoiceEditorTemplateID', 'InvoiceNumber', 'IsVoided')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BatchID', 'InvoiceTotal', 'InvoiceEditorTemplateID', 'id', 'TotalTaxValue', 'TaxRegionName', 'AccountID', 'CreateDateTime', 'Comments', 'CreatorResourceID', 'InvoiceNumber', 'OrderNumber', 'InvoiceDateTime', 'PaidDate', 'ToDate', 'VoidedByResourceID', 'VoidedDate', 'FromDate', 'TaxGroup', 'DueDate', 'PaymentTerm', 'IsVoided', 'WebServiceDate')]
+    [ValidateSet('id', 'PaidDate', 'VoidedByResourceID', 'FromDate', 'InvoiceTotal', 'BatchID', 'InvoiceDateTime', 'DueDate', 'PaymentTerm', 'TaxGroup', 'OrderNumber', 'AccountID', 'VoidedDate', 'ToDate', 'TotalTaxValue', 'TaxRegionName', 'CreatorResourceID', 'CreateDateTime', 'Comments', 'WebServiceDate', 'InvoiceEditorTemplateID', 'InvoiceNumber', 'IsVoided')]
     [string[]]
     $IsNotNull,
 

@@ -110,6 +110,20 @@ Remove-AtwsServiceCallTicket
     [switch]
     $All,
 
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Created By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatedByResourceID,
+
 # Service Call Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -134,38 +148,24 @@ Remove-AtwsServiceCallTicket
     [Nullable[Int][]]
     $TicketID,
 
-# Created By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $CreatedByResourceID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('ServiceCallID', 'TicketID', 'id', 'CreatedByResourceID', 'CreateDateTime')]
+    [ValidateSet('ServiceCallID', 'CreateDateTime', 'id', 'CreatedByResourceID', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceCallID', 'TicketID', 'id', 'CreatedByResourceID', 'CreateDateTime')]
+    [ValidateSet('ServiceCallID', 'CreateDateTime', 'id', 'CreatedByResourceID', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceCallID', 'TicketID', 'id', 'CreatedByResourceID', 'CreateDateTime')]
+    [ValidateSet('ServiceCallID', 'CreateDateTime', 'id', 'CreatedByResourceID', 'TicketID')]
     [string[]]
     $IsNotNull,
 

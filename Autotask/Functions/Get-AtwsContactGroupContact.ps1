@@ -86,7 +86,7 @@ Remove-AtwsContactGroupContact
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContactGroupID', 'ContactID')]
+    [ValidateSet('ContactID', 'ContactGroupID')]
     [string]
     $GetReferenceEntityById,
 
@@ -114,14 +114,6 @@ Remove-AtwsContactGroupContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Contact Group ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ContactGroupID,
 
@@ -133,24 +125,32 @@ Remove-AtwsContactGroupContact
     [Nullable[Int][]]
     $ContactID,
 
+# Contact Group ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContactGroupID', 'ContactID')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ContactGroupID', 'id', 'ContactID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContactGroupID', 'ContactID')]
+    [ValidateSet('ContactGroupID', 'id', 'ContactID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContactGroupID', 'ContactID')]
+    [ValidateSet('ContactGroupID', 'id', 'ContactID')]
     [string[]]
     $IsNotNull,
 

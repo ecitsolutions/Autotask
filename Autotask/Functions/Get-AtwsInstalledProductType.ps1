@@ -111,14 +111,13 @@ Set-AtwsInstalledProductType
     [switch]
     $All,
 
-# Name
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
+    [Nullable[boolean][]]
+    $Active,
 
 # Id
     [Parameter(
@@ -128,32 +127,33 @@ Set-AtwsInstalledProductType
     [Nullable[long][]]
     $id,
 
-# Active
+# Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Active', 'id')]
+    [ValidateSet('id', 'Active', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Active', 'id')]
+    [ValidateSet('id', 'Active', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Active', 'id')]
+    [ValidateSet('id', 'Active', 'Name')]
     [string[]]
     $IsNotNull,
 

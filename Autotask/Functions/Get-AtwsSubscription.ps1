@@ -104,7 +104,7 @@ Set-AtwsSubscription
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProductID', 'VendorID', 'MaterialCodeID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('VendorID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'MaterialCodeID', 'InstalledProductID')]
     [string]
     $GetReferenceEntityById,
 
@@ -128,21 +128,12 @@ Set-AtwsSubscription
     [switch]
     $All,
 
-# Subscription ID
+# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Material Code Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $MaterialCodeID,
+    $BusinessDivisionSubdivisionID,
 
 # Description
     [Parameter(
@@ -152,15 +143,13 @@ Set-AtwsSubscription
     [string[]]
     $Description,
 
-# Subscription Name
+# Effective Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Alias('Name')]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $SubscriptionName,
+    [Nullable[datetime][]]
+    $EffectiveDate,
 
 # Expiration Date
     [Parameter(
@@ -170,27 +159,20 @@ Set-AtwsSubscription
     [Nullable[datetime][]]
     $ExpirationDate,
 
-# Effective Date
+# Subscription ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EffectiveDate,
+    [Nullable[long][]]
+    $id,
 
-# Total Cost
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
-    $TotalCost,
-
-# Total Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $TotalPrice,
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
 
 # Installed Product ID
     [Parameter(
@@ -200,13 +182,13 @@ Set-AtwsSubscription
     [Nullable[Int][]]
     $InstalledProductID,
 
-# Purchase Order Number
+# Material Code Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $MaterialCodeID,
 
 # Period Type
     [Parameter(
@@ -228,6 +210,14 @@ Set-AtwsSubscription
     [string[]]
     $PeriodType,
 
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
+
 # Type
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -248,6 +238,30 @@ Set-AtwsSubscription
     [string[]]
     $Status,
 
+# Subscription Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('Name')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $SubscriptionName,
+
+# Total Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $TotalCost,
+
+# Total Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $TotalPrice,
+
 # Vendor ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -255,38 +269,24 @@ Set-AtwsSubscription
     [Nullable[Int][]]
     $VendorID,
 
-# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'SubscriptionName', 'Description', 'EffectiveDate', 'PeriodType', 'TotalPrice', 'Status', 'PeriodCost', 'TotalCost', 'InstalledProductID', 'ExpirationDate', 'PurchaseOrderNumber', 'MaterialCodeID', 'VendorID')]
+    [ValidateSet('id', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'Status', 'BusinessDivisionSubdivisionID', 'TotalCost', 'MaterialCodeID', 'VendorID', 'PeriodCost', 'TotalPrice', 'PurchaseOrderNumber', 'Description', 'EffectiveDate', 'PeriodPrice', 'InstalledProductID', 'PeriodType', 'SubscriptionName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'SubscriptionName', 'Description', 'EffectiveDate', 'PeriodType', 'TotalPrice', 'Status', 'PeriodCost', 'TotalCost', 'InstalledProductID', 'ExpirationDate', 'PurchaseOrderNumber', 'MaterialCodeID', 'VendorID')]
+    [ValidateSet('id', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'Status', 'BusinessDivisionSubdivisionID', 'TotalCost', 'MaterialCodeID', 'VendorID', 'PeriodCost', 'TotalPrice', 'PurchaseOrderNumber', 'Description', 'EffectiveDate', 'PeriodPrice', 'InstalledProductID', 'PeriodType', 'SubscriptionName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'SubscriptionName', 'Description', 'EffectiveDate', 'PeriodType', 'TotalPrice', 'Status', 'PeriodCost', 'TotalCost', 'InstalledProductID', 'ExpirationDate', 'PurchaseOrderNumber', 'MaterialCodeID', 'VendorID')]
+    [ValidateSet('id', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'Status', 'BusinessDivisionSubdivisionID', 'TotalCost', 'MaterialCodeID', 'VendorID', 'PeriodCost', 'TotalPrice', 'PurchaseOrderNumber', 'Description', 'EffectiveDate', 'PeriodPrice', 'InstalledProductID', 'PeriodType', 'SubscriptionName')]
     [string[]]
     $IsNotNull,
 

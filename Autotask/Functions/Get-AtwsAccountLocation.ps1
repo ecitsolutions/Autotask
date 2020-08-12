@@ -116,22 +116,6 @@ Set-AtwsAccountLocation
     [Autotask.UserDefinedField]
     $UserDefinedField,
 
-# Client ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Client Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $LocationName,
-
 # AccountID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -139,6 +123,22 @@ Set-AtwsAccountLocation
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $AccountID,
+
+# Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Account Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $LocationName,
 
     [Parameter(
       ParametersetName = 'By_parameters'

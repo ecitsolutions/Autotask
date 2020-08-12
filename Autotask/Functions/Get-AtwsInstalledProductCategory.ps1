@@ -124,31 +124,6 @@ Set-AtwsInstalledProductCategory
     [switch]
     $All,
 
-# Installed Product Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
-# Nickname
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,3)]
-    [string[]]
-    $Nickname,
-
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -156,6 +131,13 @@ Set-AtwsInstalledProductCategory
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $Active,
+
+# Client Portal Default
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ClientPortalDefault,
 
 # Display Color RGB
     [Parameter(
@@ -184,31 +166,49 @@ Set-AtwsInstalledProductCategory
     [Nullable[boolean][]]
     $GlobalDefault,
 
-# Client Portal Default
+# Installed Product Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $ClientPortalDefault,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
+
+# Nickname
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,3)]
+    [string[]]
+    $Nickname,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB', 'ClientPortalDefault')]
+    [ValidateSet('Nickname', 'Active', 'DisplayColorRGB', 'Name', 'id', 'GlobalDefault', 'ClientPortalDefault')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB', 'ClientPortalDefault')]
+    [ValidateSet('Nickname', 'Active', 'DisplayColorRGB', 'Name', 'id', 'GlobalDefault', 'ClientPortalDefault')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Nickname', 'Name', 'GlobalDefault', 'Active', 'id', 'DisplayColorRGB', 'ClientPortalDefault')]
+    [ValidateSet('Nickname', 'Active', 'DisplayColorRGB', 'Name', 'id', 'GlobalDefault', 'ClientPortalDefault')]
     [string[]]
     $IsNotNull,
 

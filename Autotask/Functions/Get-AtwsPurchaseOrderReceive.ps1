@@ -123,12 +123,12 @@ New-AtwsPurchaseOrderReceive
     [Nullable[long][]]
     $PurchaseOrderItemID,
 
-# Quantity Previously Received
+# Quantity Back Ordered
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $QuantityPreviouslyReceived,
+    $QuantityBackOrdered,
 
 # Quantity Now Receiving
     [Parameter(
@@ -138,19 +138,19 @@ New-AtwsPurchaseOrderReceive
     [Nullable[Int][]]
     $QuantityNowReceiving,
 
+# Quantity Previously Received
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $QuantityPreviouslyReceived,
+
 # Receive Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $ReceiveDate,
-
-# Quantity Back Ordered
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $QuantityBackOrdered,
 
 # Transfer By Resource ID
     [Parameter(
@@ -170,21 +170,21 @@ New-AtwsPurchaseOrderReceive
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderItemID', 'QuantityNowReceiving', 'SerialNumber', 'QuantityPreviouslyReceived', 'ReceivedByResourceID', 'ReceiveDate', 'id', 'QuantityBackOrdered')]
+    [ValidateSet('ReceiveDate', 'QuantityBackOrdered', 'QuantityNowReceiving', 'PurchaseOrderItemID', 'SerialNumber', 'QuantityPreviouslyReceived', 'ReceivedByResourceID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderItemID', 'QuantityNowReceiving', 'SerialNumber', 'QuantityPreviouslyReceived', 'ReceivedByResourceID', 'ReceiveDate', 'id', 'QuantityBackOrdered')]
+    [ValidateSet('ReceiveDate', 'QuantityBackOrdered', 'QuantityNowReceiving', 'PurchaseOrderItemID', 'SerialNumber', 'QuantityPreviouslyReceived', 'ReceivedByResourceID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderItemID', 'QuantityNowReceiving', 'SerialNumber', 'QuantityPreviouslyReceived', 'ReceivedByResourceID', 'ReceiveDate', 'id', 'QuantityBackOrdered')]
+    [ValidateSet('ReceiveDate', 'QuantityBackOrdered', 'QuantityNowReceiving', 'PurchaseOrderItemID', 'SerialNumber', 'QuantityPreviouslyReceived', 'ReceivedByResourceID', 'id')]
     [string[]]
     $IsNotNull,
 

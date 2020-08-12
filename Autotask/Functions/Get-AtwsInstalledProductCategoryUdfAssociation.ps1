@@ -88,7 +88,7 @@ Set-AtwsInstalledProductCategoryUdfAssociation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('UserDefinedFieldDefinitionID', 'InstalledProductCategoryID')]
+    [ValidateSet('InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
     [string]
     $GetReferenceEntityById,
 
@@ -127,14 +127,6 @@ Set-AtwsInstalledProductCategoryUdfAssociation
     [Nullable[Int][]]
     $InstalledProductCategoryID,
 
-# User Defined Field Definition ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $UserDefinedFieldDefinitionID,
-
 # Is Required
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -143,24 +135,32 @@ Set-AtwsInstalledProductCategoryUdfAssociation
     [Nullable[boolean][]]
     $IsRequired,
 
+# User Defined Field Definition ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserDefinedFieldDefinitionID', 'IsRequired', 'id', 'InstalledProductCategoryID')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $UserDefinedFieldDefinitionID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('IsRequired', 'UserDefinedFieldDefinitionID', 'id', 'InstalledProductCategoryID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserDefinedFieldDefinitionID', 'IsRequired', 'id', 'InstalledProductCategoryID')]
+    [ValidateSet('IsRequired', 'UserDefinedFieldDefinitionID', 'id', 'InstalledProductCategoryID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserDefinedFieldDefinitionID', 'IsRequired', 'id', 'InstalledProductCategoryID')]
+    [ValidateSet('IsRequired', 'UserDefinedFieldDefinitionID', 'id', 'InstalledProductCategoryID')]
     [string[]]
     $IsNotNull,
 
