@@ -101,7 +101,7 @@ Function ConvertTo-LocalObject {
             # Restore picklist labels
             foreach ($field in $Picklists) {
                 $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field
-                if ($object.$field -in $picklistValues.Keys) { 
+                if ($object.$field -in $picklistValues.Keys -and $picklistValues.count -gt 0) { 
                     $value = $picklistValues[$object.$field]
                     if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) {
                         $object.$field = $value

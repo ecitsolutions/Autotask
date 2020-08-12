@@ -88,7 +88,7 @@ Function ConvertFrom-LocalObject {
             # Revert picklist labels to their values
             foreach ($field in $Picklists) {
                 $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field
-                if ($object.$field -in $picklistValues.Keys) { 
+                if ($object.$field -in $picklistValues.Keys -and $picklistValues.count -gt 0) { 
                     $object.$field = $picklistValues[$object.$field]
                 }
             }
