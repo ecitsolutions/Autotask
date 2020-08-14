@@ -57,8 +57,7 @@
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 
