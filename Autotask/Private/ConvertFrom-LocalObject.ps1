@@ -69,6 +69,22 @@ Function ConvertFrom-LocalObject {
     
         # Adjust TimeZone on all DateTime properties
         foreach ($object in $InputObject) { 
+            # Any userdefined fields?
+            if ($entityInfo.HasUserDefinedFields -and $object.UserDefinedFields.GetType().Name -eq 'Hashtable') { 
+                # Expand User defined fields for easy filtering of collections and readability
+                # and convert array of userdefined fields to hashtable
+                $UserDefinedFields = [Collections.Generic.List[Autotask.UserdefinedField]]::New()
+                foreach ($UDF in $object.UserDefinedFields) {
+                    $AtwsUDF = [Autotask.UserDefinedField]@{
+                        Name = $UDF.Name
+                        Value = $UDF.Value
+                    }
+                    $UserDefinedFields.Add($AtwsUDF)
+                }  
+                # Replace hashtable with array of userdefinedfield
+                Add-Member -InputObject $object -MemberType NoteProperty -Name UserDefinedFields -Value $UserDefinedFields -Force
+            }
+
             foreach ($dateTimeParam in $dateTimeParams) {
     
                 # Get the datetime value
