@@ -83,7 +83,7 @@ Function ConvertTo-LocalObject {
                     $UserDefinedFields[$UDF.Name] = $UDF.Value
                 }  
                 # Replace custom array with hashtable
-                $object.UserDefinedFields = $UserDefinedFields
+                Add-Member -InputObject $object -MemberType NoteProperty -Name UserDefinedFields -Value $UserDefinedFields -Force
             }
 
             # Adjust TimeZone on all DateTime properties
