@@ -85,19 +85,6 @@ Returns any object with a SurveyName that DOES NOT match the simple pattern 'Som
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('SurveyResults')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -141,21 +128,21 @@ Returns any object with a SurveyName that DOES NOT match the simple pattern 'Som
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DisplayName', 'Description', 'id', 'Name')]
+    [ValidateSet('Name', 'DisplayName', 'Description', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DisplayName', 'Description', 'id', 'Name')]
+    [ValidateSet('Name', 'DisplayName', 'Description', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DisplayName', 'Description', 'id', 'Name')]
+    [ValidateSet('Name', 'DisplayName', 'Description', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -287,8 +274,7 @@ Returns any object with a SurveyName that DOES NOT match the simple pattern 'Som
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

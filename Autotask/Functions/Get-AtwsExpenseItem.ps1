@@ -103,22 +103,9 @@ Set-AtwsExpenseItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'ExpenseReportID', 'TaskID', 'ProjectID', 'ExpenseCurrencyID', 'TicketID')]
+    [ValidateSet('AccountID', 'ExpenseCurrencyID', 'ExpenseReportID', 'ProjectID', 'TaskID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -354,21 +341,21 @@ Set-AtwsExpenseItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementAmount', 'PurchaseOrderNumber', 'Origin', 'OdometerStart', 'Destination', 'ExpenseAmount', 'ExpenseReportID', 'ExpenseCategory', 'HaveReceipt', 'PaymentType', 'TaskID', 'GLCode', 'Reimbursable', 'AccountID', 'ReceiptAmount', 'ReimbursementCurrencyReimbursementAmount', 'id', 'EntertainmentLocation', 'ProjectID', 'ExpenseDate', 'ExpenseCurrencyID', 'TicketID', 'WorkType', 'Rejected', 'Miles', 'Description', 'BillableToAccount', 'OdometerEnd')]
+    [ValidateSet('TicketID', 'GLCode', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseReportID', 'ExpenseCurrencyID', 'HaveReceipt', 'Description', 'Destination', 'Miles', 'OdometerEnd', 'BillableToAccount', 'WorkType', 'AccountID', 'Reimbursable', 'ExpenseCategory', 'PaymentType', 'ExpenseAmount', 'Rejected', 'TaskID', 'PurchaseOrderNumber', 'EntertainmentLocation', 'ProjectID', 'OdometerStart', 'ReimbursementAmount', 'ReceiptAmount', 'ExpenseDate', 'Origin', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementAmount', 'PurchaseOrderNumber', 'Origin', 'OdometerStart', 'Destination', 'ExpenseAmount', 'ExpenseReportID', 'ExpenseCategory', 'HaveReceipt', 'PaymentType', 'TaskID', 'GLCode', 'Reimbursable', 'AccountID', 'ReceiptAmount', 'ReimbursementCurrencyReimbursementAmount', 'id', 'EntertainmentLocation', 'ProjectID', 'ExpenseDate', 'ExpenseCurrencyID', 'TicketID', 'WorkType', 'Rejected', 'Miles', 'Description', 'BillableToAccount', 'OdometerEnd')]
+    [ValidateSet('TicketID', 'GLCode', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseReportID', 'ExpenseCurrencyID', 'HaveReceipt', 'Description', 'Destination', 'Miles', 'OdometerEnd', 'BillableToAccount', 'WorkType', 'AccountID', 'Reimbursable', 'ExpenseCategory', 'PaymentType', 'ExpenseAmount', 'Rejected', 'TaskID', 'PurchaseOrderNumber', 'EntertainmentLocation', 'ProjectID', 'OdometerStart', 'ReimbursementAmount', 'ReceiptAmount', 'ExpenseDate', 'Origin', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementAmount', 'PurchaseOrderNumber', 'Origin', 'OdometerStart', 'Destination', 'ExpenseAmount', 'ExpenseReportID', 'ExpenseCategory', 'HaveReceipt', 'PaymentType', 'TaskID', 'GLCode', 'Reimbursable', 'AccountID', 'ReceiptAmount', 'ReimbursementCurrencyReimbursementAmount', 'id', 'EntertainmentLocation', 'ProjectID', 'ExpenseDate', 'ExpenseCurrencyID', 'TicketID', 'WorkType', 'Rejected', 'Miles', 'Description', 'BillableToAccount', 'OdometerEnd')]
+    [ValidateSet('TicketID', 'GLCode', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseReportID', 'ExpenseCurrencyID', 'HaveReceipt', 'Description', 'Destination', 'Miles', 'OdometerEnd', 'BillableToAccount', 'WorkType', 'AccountID', 'Reimbursable', 'ExpenseCategory', 'PaymentType', 'ExpenseAmount', 'Rejected', 'TaskID', 'PurchaseOrderNumber', 'EntertainmentLocation', 'ProjectID', 'OdometerStart', 'ReimbursementAmount', 'ReceiptAmount', 'ExpenseDate', 'Origin', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -501,8 +488,7 @@ Set-AtwsExpenseItem
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

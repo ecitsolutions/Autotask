@@ -85,7 +85,7 @@ Get-AtwsTicket
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Account
+# Client
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

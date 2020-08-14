@@ -86,22 +86,9 @@ Set-AtwsPhase
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProjectID', 'CreatorResourceID', 'ParentPhaseID')]
+    [ValidateSet('CreatorResourceID', 'ParentPhaseID', 'ProjectID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('Phase', 'Task')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -218,21 +205,21 @@ Set-AtwsPhase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LastActivityDateTime', 'EstimatedHours', 'StartDate', 'PhaseNumber', 'Title', 'ParentPhaseID', 'CreateDate', 'DueDate', 'Description', 'ProjectID', 'Scheduled', 'ExternalID', 'CreatorResourceID')]
+    [ValidateSet('LastActivityDateTime', 'ExternalID', 'EstimatedHours', 'ProjectID', 'Description', 'CreatorResourceID', 'PhaseNumber', 'StartDate', 'CreateDate', 'DueDate', 'Scheduled', 'Title', 'id', 'ParentPhaseID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LastActivityDateTime', 'EstimatedHours', 'StartDate', 'PhaseNumber', 'Title', 'ParentPhaseID', 'CreateDate', 'DueDate', 'Description', 'ProjectID', 'Scheduled', 'ExternalID', 'CreatorResourceID')]
+    [ValidateSet('LastActivityDateTime', 'ExternalID', 'EstimatedHours', 'ProjectID', 'Description', 'CreatorResourceID', 'PhaseNumber', 'StartDate', 'CreateDate', 'DueDate', 'Scheduled', 'Title', 'id', 'ParentPhaseID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LastActivityDateTime', 'EstimatedHours', 'StartDate', 'PhaseNumber', 'Title', 'ParentPhaseID', 'CreateDate', 'DueDate', 'Description', 'ProjectID', 'Scheduled', 'ExternalID', 'CreatorResourceID')]
+    [ValidateSet('LastActivityDateTime', 'ExternalID', 'EstimatedHours', 'ProjectID', 'Description', 'CreatorResourceID', 'PhaseNumber', 'StartDate', 'CreateDate', 'DueDate', 'Scheduled', 'Title', 'id', 'ParentPhaseID')]
     [string[]]
     $IsNotNull,
 
@@ -365,8 +352,7 @@ Set-AtwsPhase
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

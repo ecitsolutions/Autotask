@@ -89,19 +89,6 @@ Set-AtwsQuoteLocation
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('Quote')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -160,21 +147,21 @@ Set-AtwsQuoteLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('City', 'PostalCode', 'Address2', 'Address1', 'id', 'State')]
+    [ValidateSet('City', 'Address2', 'PostalCode', 'id', 'State', 'Address1')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('City', 'PostalCode', 'Address2', 'Address1', 'id', 'State')]
+    [ValidateSet('City', 'Address2', 'PostalCode', 'id', 'State', 'Address1')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('City', 'PostalCode', 'Address2', 'Address1', 'id', 'State')]
+    [ValidateSet('City', 'Address2', 'PostalCode', 'id', 'State', 'Address1')]
     [string[]]
     $IsNotNull,
 
@@ -306,8 +293,7 @@ Set-AtwsQuoteLocation
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

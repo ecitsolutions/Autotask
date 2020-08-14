@@ -515,7 +515,7 @@ Get-AtwsContact
     [string]
     $RoomNumber,
 
-# Contact State
+# Contact County
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -557,7 +557,7 @@ Get-AtwsContact
     [string]
     $TwitterUrl,
 
-# Contact Zip Code
+# Contact Postal Code
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

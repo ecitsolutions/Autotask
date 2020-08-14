@@ -74,7 +74,7 @@ Get-AtwsAccountNote
     [switch]
     $PassThru,
 
-# Account
+# Client
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

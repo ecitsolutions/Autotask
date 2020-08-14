@@ -100,22 +100,9 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('TaxCategoryID', 'AfterHoursWorkType')]
+    [ValidateSet('AfterHoursWorkType', 'TaxCategoryID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('ChangeOrderCost', 'Product', 'TimeEntry', 'TicketCategoryFieldDefaults', 'AllocationCode', 'ContractExclusionAllocationCode', 'ServiceBundle', 'Ticket', 'Service', 'ProjectCost', 'ShippingType', 'BillingItem', 'ContractMilestone', 'ContractCost', 'Task', 'ContractExclusionSetExcludedWorkType', 'TicketCost', 'PriceListMaterialCode', 'Subscription', 'QuoteItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -294,21 +281,21 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'MarkupRate', 'TaxCategoryID', 'GeneralLedgerCode', 'Taxable', 'ExternalNumber', 'Department', 'Description', 'Name', 'UnitPrice', 'AllocationCodeType', 'UseType')]
+    [ValidateSet('UnitCost', 'Name', 'Type', 'TaxCategoryID', 'Taxable', 'AllocationCodeType', 'AfterHoursWorkType', 'Department', 'UnitPrice', 'GeneralLedgerCode', 'Description', 'Active', 'UseType', 'IsExcludedFromNewContracts', 'ExternalNumber', 'id', 'MarkupRate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'MarkupRate', 'TaxCategoryID', 'GeneralLedgerCode', 'Taxable', 'ExternalNumber', 'Department', 'Description', 'Name', 'UnitPrice', 'AllocationCodeType', 'UseType')]
+    [ValidateSet('UnitCost', 'Name', 'Type', 'TaxCategoryID', 'Taxable', 'AllocationCodeType', 'AfterHoursWorkType', 'Department', 'UnitPrice', 'GeneralLedgerCode', 'Description', 'Active', 'UseType', 'IsExcludedFromNewContracts', 'ExternalNumber', 'id', 'MarkupRate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'MarkupRate', 'TaxCategoryID', 'GeneralLedgerCode', 'Taxable', 'ExternalNumber', 'Department', 'Description', 'Name', 'UnitPrice', 'AllocationCodeType', 'UseType')]
+    [ValidateSet('UnitCost', 'Name', 'Type', 'TaxCategoryID', 'Taxable', 'AllocationCodeType', 'AfterHoursWorkType', 'Department', 'UnitPrice', 'GeneralLedgerCode', 'Description', 'Active', 'UseType', 'IsExcludedFromNewContracts', 'ExternalNumber', 'id', 'MarkupRate')]
     [string[]]
     $IsNotNull,
 
@@ -440,8 +427,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

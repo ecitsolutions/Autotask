@@ -74,7 +74,7 @@ Set-AtwsContact
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Account
+# Client
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -405,7 +405,7 @@ Set-AtwsContact
     [datetime]
     $SolicitationOptOutTime,
 
-# Contact State
+# Contact County
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -436,7 +436,7 @@ Set-AtwsContact
     [string]
     $TwitterUrl,
 
-# Contact Zip Code
+# Contact Postal Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

@@ -86,22 +86,9 @@ Set-AtwsPurchaseOrderItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProductID', 'OrderID', 'ContractID', 'InventoryLocationID', 'ProjectID', 'TicketID', 'SalesOrderID')]
+    [ValidateSet('ContractID', 'InventoryLocationID', 'OrderID', 'ProductID', 'ProjectID', 'SalesOrderID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('PurchaseOrderReceive')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -217,21 +204,21 @@ Set-AtwsPurchaseOrderItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CostID', 'ContractID', 'TicketID', 'InternalCurrencyUnitCost', 'EstimatedArrivalDate', 'OrderID', 'Memo', 'Quantity', 'ProjectID', 'SalesOrderID', 'InventoryLocationID', 'ProductID', 'UnitCost')]
+    [ValidateSet('CostID', 'ContractID', 'UnitCost', 'ProjectID', 'InternalCurrencyUnitCost', 'OrderID', 'Quantity', 'InventoryLocationID', 'ProductID', 'TicketID', 'SalesOrderID', 'EstimatedArrivalDate', 'Memo', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CostID', 'ContractID', 'TicketID', 'InternalCurrencyUnitCost', 'EstimatedArrivalDate', 'OrderID', 'Memo', 'Quantity', 'ProjectID', 'SalesOrderID', 'InventoryLocationID', 'ProductID', 'UnitCost')]
+    [ValidateSet('CostID', 'ContractID', 'UnitCost', 'ProjectID', 'InternalCurrencyUnitCost', 'OrderID', 'Quantity', 'InventoryLocationID', 'ProductID', 'TicketID', 'SalesOrderID', 'EstimatedArrivalDate', 'Memo', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CostID', 'ContractID', 'TicketID', 'InternalCurrencyUnitCost', 'EstimatedArrivalDate', 'OrderID', 'Memo', 'Quantity', 'ProjectID', 'SalesOrderID', 'InventoryLocationID', 'ProductID', 'UnitCost')]
+    [ValidateSet('CostID', 'ContractID', 'UnitCost', 'ProjectID', 'InternalCurrencyUnitCost', 'OrderID', 'Quantity', 'InventoryLocationID', 'ProductID', 'TicketID', 'SalesOrderID', 'EstimatedArrivalDate', 'Memo', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -364,8 +351,7 @@ Set-AtwsPurchaseOrderItem
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

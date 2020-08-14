@@ -64,7 +64,7 @@ Set-AtwsAccountNote
     [Autotask.AccountNote[]]
     $InputObject,
 
-# Account
+# Client
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'

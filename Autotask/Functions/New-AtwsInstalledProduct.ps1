@@ -71,7 +71,7 @@ Set-AtwsInstalledProduct
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Account
+# Client
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'

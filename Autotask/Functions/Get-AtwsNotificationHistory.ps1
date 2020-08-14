@@ -99,21 +99,9 @@ An example of a more complex query. This command returns any NotificationHistory
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProjectID', 'InitiatingContactID', 'InitiatingResourceID', 'TaskID', 'AccountID', 'TicketID', 'TimeEntryID', 'OpportunityID', 'QuoteID')]
+    [ValidateSet('AccountID', 'InitiatingContactID', 'InitiatingResourceID', 'OpportunityID', 'ProjectID', 'QuoteID', 'TaskID', 'TicketID', 'TimeEntryID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -122,7 +110,7 @@ An example of a more complex query. This command returns any NotificationHistory
     [switch]
     $All,
 
-# Account
+# Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -308,21 +296,21 @@ An example of a more complex query. This command returns any NotificationHistory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InitiatingContactID', 'TemplateName', 'RecipientDisplayName', 'EntityTitle', 'TicketID', 'EntityNumber', 'TimeEntryID', 'NotificationSentTime', 'IsDeleted', 'OpportunityID', 'InitiatingResourceID', 'RecipientEmailAddress', 'IsTemplateJob', 'IsActive', 'ProjectID', 'QuoteID', 'AccountID', 'id', 'NotificationHistoryTypeID', 'TaskID')]
+    [ValidateSet('RecipientDisplayName', 'IsTemplateJob', 'TimeEntryID', 'TemplateName', 'InitiatingContactID', 'InitiatingResourceID', 'EntityTitle', 'AccountID', 'OpportunityID', 'EntityNumber', 'NotificationSentTime', 'QuoteID', 'RecipientEmailAddress', 'ProjectID', 'IsDeleted', 'TicketID', 'id', 'NotificationHistoryTypeID', 'TaskID', 'IsActive')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InitiatingContactID', 'TemplateName', 'RecipientDisplayName', 'EntityTitle', 'TicketID', 'EntityNumber', 'TimeEntryID', 'NotificationSentTime', 'IsDeleted', 'OpportunityID', 'InitiatingResourceID', 'RecipientEmailAddress', 'IsTemplateJob', 'IsActive', 'ProjectID', 'QuoteID', 'AccountID', 'id', 'NotificationHistoryTypeID', 'TaskID')]
+    [ValidateSet('RecipientDisplayName', 'IsTemplateJob', 'TimeEntryID', 'TemplateName', 'InitiatingContactID', 'InitiatingResourceID', 'EntityTitle', 'AccountID', 'OpportunityID', 'EntityNumber', 'NotificationSentTime', 'QuoteID', 'RecipientEmailAddress', 'ProjectID', 'IsDeleted', 'TicketID', 'id', 'NotificationHistoryTypeID', 'TaskID', 'IsActive')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InitiatingContactID', 'TemplateName', 'RecipientDisplayName', 'EntityTitle', 'TicketID', 'EntityNumber', 'TimeEntryID', 'NotificationSentTime', 'IsDeleted', 'OpportunityID', 'InitiatingResourceID', 'RecipientEmailAddress', 'IsTemplateJob', 'IsActive', 'ProjectID', 'QuoteID', 'AccountID', 'id', 'NotificationHistoryTypeID', 'TaskID')]
+    [ValidateSet('RecipientDisplayName', 'IsTemplateJob', 'TimeEntryID', 'TemplateName', 'InitiatingContactID', 'InitiatingResourceID', 'EntityTitle', 'AccountID', 'OpportunityID', 'EntityNumber', 'NotificationSentTime', 'QuoteID', 'RecipientEmailAddress', 'ProjectID', 'IsDeleted', 'TicketID', 'id', 'NotificationHistoryTypeID', 'TaskID', 'IsActive')]
     [string[]]
     $IsNotNull,
 
@@ -455,8 +443,7 @@ An example of a more complex query. This command returns any NotificationHistory
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

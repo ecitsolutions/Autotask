@@ -88,22 +88,9 @@ Set-AtwsAccountPhysicalLocation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'TaxRegionID', 'CountryID')]
+    [ValidateSet('AccountID', 'CountryID', 'TaxRegionID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('Contact', 'ServiceCall', 'InstalledProduct', 'Task', 'Account', 'Ticket')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -269,21 +256,21 @@ Set-AtwsAccountPhysicalLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Primary', 'RoundtripDistance', 'City', 'Phone', 'Active', 'PostalCode', 'id', 'Name', 'Address2', 'Description', 'TaxRegionID', 'CountryID', 'AlternatePhone2', 'Fax', 'AccountID', 'Address1', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'AlternatePhone1', 'State')]
+    [ValidateSet('Name', 'TaxRegionID', 'PostalCode', 'AlternatePhone2', 'Primary', 'AlternatePhone1', 'OverrideAccountTaxSettings', 'Phone', 'AccountID', 'Fax', 'Description', 'Active', 'CountryID', 'Address2', 'IsTaxExempt', 'Address1', 'RoundtripDistance', 'City', 'id', 'State')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Primary', 'RoundtripDistance', 'City', 'Phone', 'Active', 'PostalCode', 'id', 'Name', 'Address2', 'Description', 'TaxRegionID', 'CountryID', 'AlternatePhone2', 'Fax', 'AccountID', 'Address1', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'AlternatePhone1', 'State')]
+    [ValidateSet('Name', 'TaxRegionID', 'PostalCode', 'AlternatePhone2', 'Primary', 'AlternatePhone1', 'OverrideAccountTaxSettings', 'Phone', 'AccountID', 'Fax', 'Description', 'Active', 'CountryID', 'Address2', 'IsTaxExempt', 'Address1', 'RoundtripDistance', 'City', 'id', 'State')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Primary', 'RoundtripDistance', 'City', 'Phone', 'Active', 'PostalCode', 'id', 'Name', 'Address2', 'Description', 'TaxRegionID', 'CountryID', 'AlternatePhone2', 'Fax', 'AccountID', 'Address1', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'AlternatePhone1', 'State')]
+    [ValidateSet('Name', 'TaxRegionID', 'PostalCode', 'AlternatePhone2', 'Primary', 'AlternatePhone1', 'OverrideAccountTaxSettings', 'Phone', 'AccountID', 'Fax', 'Description', 'Active', 'CountryID', 'Address2', 'IsTaxExempt', 'Address1', 'RoundtripDistance', 'City', 'id', 'State')]
     [string[]]
     $IsNotNull,
 
@@ -415,8 +402,7 @@ Set-AtwsAccountPhysicalLocation
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

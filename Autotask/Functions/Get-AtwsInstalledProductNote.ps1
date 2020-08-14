@@ -101,21 +101,9 @@ Set-AtwsInstalledProductNote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ImpersonatorUpdaterResourceID', 'InstalledProductID')]
+    [ValidateSet('CreatorResourceID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -216,21 +204,21 @@ Set-AtwsInstalledProductNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'InstalledProductID', 'ImpersonatorCreatorResourceID', 'NoteType', 'CreatorResourceID', 'CreateDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'Title')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'NoteType', 'Description', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'id', 'CreatorResourceID', 'LastActivityDate', 'InstalledProductID', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'InstalledProductID', 'ImpersonatorCreatorResourceID', 'NoteType', 'CreatorResourceID', 'CreateDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'Title')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'NoteType', 'Description', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'id', 'CreatorResourceID', 'LastActivityDate', 'InstalledProductID', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'InstalledProductID', 'ImpersonatorCreatorResourceID', 'NoteType', 'CreatorResourceID', 'CreateDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'Title')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'NoteType', 'Description', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'id', 'CreatorResourceID', 'LastActivityDate', 'InstalledProductID', 'Title')]
     [string[]]
     $IsNotNull,
 
@@ -363,8 +351,7 @@ Set-AtwsInstalledProductNote
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

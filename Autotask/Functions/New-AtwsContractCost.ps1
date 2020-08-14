@@ -80,7 +80,7 @@ Set-AtwsContractCost
     [double]
     $BillableAmount,
 
-# Billable To Account
+# Billable To Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

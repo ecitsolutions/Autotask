@@ -89,19 +89,6 @@ Set-AtwsPaymentTerm
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('InvoiceTemplate')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -151,21 +138,21 @@ Set-AtwsPaymentTerm
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Name', 'PaymentDueInDays', 'Active')]
+    [ValidateSet('PaymentDueInDays', 'Name', 'Active', 'Description', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Name', 'PaymentDueInDays', 'Active')]
+    [ValidateSet('PaymentDueInDays', 'Name', 'Active', 'Description', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Name', 'PaymentDueInDays', 'Active')]
+    [ValidateSet('PaymentDueInDays', 'Name', 'Active', 'Description', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -297,8 +284,7 @@ Set-AtwsPaymentTerm
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

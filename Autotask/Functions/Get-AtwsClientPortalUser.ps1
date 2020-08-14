@@ -108,18 +108,6 @@ Set-AtwsClientPortalUser
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -243,21 +231,21 @@ Set-AtwsClientPortalUser
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('NumberFormat', 'UserName', 'TimeFormat', 'DateFormat', 'Password', 'id', 'SecurityLevel', 'ClientPortalActive', 'ContactID')]
+    [ValidateSet('Password', 'UserName', 'SecurityLevel', 'NumberFormat', 'id', 'DateFormat', 'TimeFormat', 'ContactID', 'ClientPortalActive')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('NumberFormat', 'UserName', 'TimeFormat', 'DateFormat', 'Password', 'id', 'SecurityLevel', 'ClientPortalActive', 'ContactID')]
+    [ValidateSet('Password', 'UserName', 'SecurityLevel', 'NumberFormat', 'id', 'DateFormat', 'TimeFormat', 'ContactID', 'ClientPortalActive')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('NumberFormat', 'UserName', 'TimeFormat', 'DateFormat', 'Password', 'id', 'SecurityLevel', 'ClientPortalActive', 'ContactID')]
+    [ValidateSet('Password', 'UserName', 'SecurityLevel', 'NumberFormat', 'id', 'DateFormat', 'TimeFormat', 'ContactID', 'ClientPortalActive')]
     [string[]]
     $IsNotNull,
 
@@ -389,8 +377,7 @@ Set-AtwsClientPortalUser
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

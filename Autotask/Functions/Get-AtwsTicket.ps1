@@ -120,22 +120,9 @@ Set-AtwsTicket
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AssignedResourceRoleID', 'ContractID', 'ContractServiceBundleID', 'AllocationCodeID', 'InstalledProductID', 'ProblemTicketId', 'ContractServiceID', 'ContactID', 'BusinessDivisionSubdivisionID', 'OpportunityId', 'AccountPhysicalLocationID', 'ProjectID', 'ImpersonatorCreatorResourceID', 'AccountID')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'BusinessDivisionSubdivisionID', 'CompletedByResourceID', 'ContactID', 'ContractID', 'ContractServiceBundleID', 'ContractServiceID', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'LastActivityResourceID', 'OpportunityId', 'ProblemTicketId', 'ProjectID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('SurveyResults', 'Ticket', 'TicketRmaCredit', 'TimeEntry', 'TicketChangeRequestApproval', 'NotificationHistory', 'TicketChecklistLibrary', 'ServiceLevelAgreementResults', 'ExpenseItem', 'AccountToDo', 'TicketChecklistItem', 'TicketAdditionalContact', 'TicketNote', 'BillingItem', 'TicketAdditionalInstalledProduct', 'PurchaseOrderItem', 'TicketSecondaryResource', 'TicketCost', 'ChangeRequestLink', 'ServiceCallTicket', 'TicketHistory')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -153,7 +140,7 @@ Set-AtwsTicket
     [Autotask.UserDefinedField]
     $UserDefinedField,
 
-# Account
+# Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -883,21 +870,21 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'Source', 'CompletedByResourceID', 'ResolutionPlanDateTime', 'ChangeInfoField4', 'HoursToBeScheduled', 'InstalledProductID', 'CreatorType', 'AccountID', 'FirstResponseAssignedResourceID', 'ContractServiceBundleID', 'ChangeInfoField3', 'CompletedDate', 'DueDateTime', 'AssignedResourceID', 'ServiceLevelAgreementHasBeenMet', 'ImpersonatorCreatorResourceID', 'FirstResponseDueDateTime', 'LastActivityResourceID', 'TicketNumber', 'TicketCategory', 'ChangeApprovalType', 'Priority', 'EstimatedHours', 'ApiVendorID', 'ServiceLevelAgreementID', 'ChangeInfoField2', 'LastCustomerNotificationDateTime', 'PurchaseOrderNumber', 'CreateDate', 'ContactID', 'Status', 'AllocationCodeID', 'ChangeInfoField1', 'Resolution', 'TicketType', 'OpportunityId', 'ProjectID', 'BusinessDivisionSubdivisionID', 'LastActivityPersonType', 'AEMAlertID', 'ResolutionPlanDueDateTime', 'QueueID', 'MonitorTypeID', 'ExternalID', 'ContractID', 'ResolvedDueDateTime', 'FirstResponseInitiatingResourceID', 'ProblemTicketId', 'ServiceThermometerTemperature', 'ContractServiceID', 'AssignedResourceRoleID', 'Description', 'MonitorID', 'RmaType', 'CurrentServiceThermometerRating', 'ChangeInfoField5', 'ChangeApprovalStatus', 'IssueType', 'LastTrackedModificationDateTime', 'PreviousServiceThermometerRating', 'ChangeApprovalBoard', 'Title', 'id', 'LastCustomerVisibleActivityDateTime', 'SubIssueType', 'RmaStatus', 'CreatorResourceID', 'AccountPhysicalLocationID', 'ResolvedDateTime', 'ServiceLevelAgreementPausedNextEventHours', 'FirstResponseDateTime', '')]
+    [ValidateSet('FirstResponseDateTime', 'HoursToBeScheduled', 'LastTrackedModificationDateTime', 'ContractServiceID', 'AccountPhysicalLocationID', 'CompletedByResourceID', 'IssueType', 'ServiceThermometerTemperature', 'ServiceLevelAgreementID', 'ApiVendorID', 'BusinessDivisionSubdivisionID', 'ExternalID', 'ResolvedDateTime', 'PreviousServiceThermometerRating', 'CreateDate', 'ChangeInfoField2', 'SubIssueType', 'OpportunityId', 'ServiceLevelAgreementHasBeenMet', 'LastActivityPersonType', 'QueueID', 'AssignedResourceID', 'EstimatedHours', 'Title', 'LastCustomerVisibleActivityDateTime', 'FirstResponseAssignedResourceID', 'CompletedDate', 'RmaType', 'ChangeInfoField3', 'LastActivityDate', 'ResolutionPlanDateTime', 'Status', 'CurrentServiceThermometerRating', 'AccountID', 'Resolution', 'ProjectID', 'CreatorType', 'ProblemTicketId', 'MonitorTypeID', 'MonitorID', 'TicketCategory', 'ChangeInfoField1', 'FirstResponseInitiatingResourceID', 'InstalledProductID', 'Priority', 'ContactID', 'Source', 'ChangeApprovalStatus', 'AssignedResourceRoleID', 'ServiceLevelAgreementPausedNextEventHours', 'RmaStatus', 'ContractServiceBundleID', 'ImpersonatorCreatorResourceID', 'DueDateTime', 'TicketNumber', 'ChangeInfoField4', 'ChangeApprovalBoard', 'ResolutionPlanDueDateTime', 'FirstResponseDueDateTime', 'ChangeApprovalType', 'TicketType', 'AllocationCodeID', 'ChangeInfoField5', 'PurchaseOrderNumber', 'id', 'ResolvedDueDateTime', 'Description', 'LastActivityResourceID', 'LastCustomerNotificationDateTime', 'AEMAlertID', 'ContractID', 'CreatorResourceID', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'Source', 'CompletedByResourceID', 'ResolutionPlanDateTime', 'ChangeInfoField4', 'HoursToBeScheduled', 'InstalledProductID', 'CreatorType', 'AccountID', 'FirstResponseAssignedResourceID', 'ContractServiceBundleID', 'ChangeInfoField3', 'CompletedDate', 'DueDateTime', 'AssignedResourceID', 'ServiceLevelAgreementHasBeenMet', 'ImpersonatorCreatorResourceID', 'FirstResponseDueDateTime', 'LastActivityResourceID', 'TicketNumber', 'TicketCategory', 'ChangeApprovalType', 'Priority', 'EstimatedHours', 'ApiVendorID', 'ServiceLevelAgreementID', 'ChangeInfoField2', 'LastCustomerNotificationDateTime', 'PurchaseOrderNumber', 'CreateDate', 'ContactID', 'Status', 'AllocationCodeID', 'ChangeInfoField1', 'Resolution', 'TicketType', 'OpportunityId', 'ProjectID', 'BusinessDivisionSubdivisionID', 'LastActivityPersonType', 'AEMAlertID', 'ResolutionPlanDueDateTime', 'QueueID', 'MonitorTypeID', 'ExternalID', 'ContractID', 'ResolvedDueDateTime', 'FirstResponseInitiatingResourceID', 'ProblemTicketId', 'ServiceThermometerTemperature', 'ContractServiceID', 'AssignedResourceRoleID', 'Description', 'MonitorID', 'RmaType', 'CurrentServiceThermometerRating', 'ChangeInfoField5', 'ChangeApprovalStatus', 'IssueType', 'LastTrackedModificationDateTime', 'PreviousServiceThermometerRating', 'ChangeApprovalBoard', 'Title', 'id', 'LastCustomerVisibleActivityDateTime', 'SubIssueType', 'RmaStatus', 'CreatorResourceID', 'AccountPhysicalLocationID', 'ResolvedDateTime', 'ServiceLevelAgreementPausedNextEventHours', 'FirstResponseDateTime', '')]
+    [ValidateSet('FirstResponseDateTime', 'HoursToBeScheduled', 'LastTrackedModificationDateTime', 'ContractServiceID', 'AccountPhysicalLocationID', 'CompletedByResourceID', 'IssueType', 'ServiceThermometerTemperature', 'ServiceLevelAgreementID', 'ApiVendorID', 'BusinessDivisionSubdivisionID', 'ExternalID', 'ResolvedDateTime', 'PreviousServiceThermometerRating', 'CreateDate', 'ChangeInfoField2', 'SubIssueType', 'OpportunityId', 'ServiceLevelAgreementHasBeenMet', 'LastActivityPersonType', 'QueueID', 'AssignedResourceID', 'EstimatedHours', 'Title', 'LastCustomerVisibleActivityDateTime', 'FirstResponseAssignedResourceID', 'CompletedDate', 'RmaType', 'ChangeInfoField3', 'LastActivityDate', 'ResolutionPlanDateTime', 'Status', 'CurrentServiceThermometerRating', 'AccountID', 'Resolution', 'ProjectID', 'CreatorType', 'ProblemTicketId', 'MonitorTypeID', 'MonitorID', 'TicketCategory', 'ChangeInfoField1', 'FirstResponseInitiatingResourceID', 'InstalledProductID', 'Priority', 'ContactID', 'Source', 'ChangeApprovalStatus', 'AssignedResourceRoleID', 'ServiceLevelAgreementPausedNextEventHours', 'RmaStatus', 'ContractServiceBundleID', 'ImpersonatorCreatorResourceID', 'DueDateTime', 'TicketNumber', 'ChangeInfoField4', 'ChangeApprovalBoard', 'ResolutionPlanDueDateTime', 'FirstResponseDueDateTime', 'ChangeApprovalType', 'TicketType', 'AllocationCodeID', 'ChangeInfoField5', 'PurchaseOrderNumber', 'id', 'ResolvedDueDateTime', 'Description', 'LastActivityResourceID', 'LastCustomerNotificationDateTime', 'AEMAlertID', 'ContractID', 'CreatorResourceID', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'Source', 'CompletedByResourceID', 'ResolutionPlanDateTime', 'ChangeInfoField4', 'HoursToBeScheduled', 'InstalledProductID', 'CreatorType', 'AccountID', 'FirstResponseAssignedResourceID', 'ContractServiceBundleID', 'ChangeInfoField3', 'CompletedDate', 'DueDateTime', 'AssignedResourceID', 'ServiceLevelAgreementHasBeenMet', 'ImpersonatorCreatorResourceID', 'FirstResponseDueDateTime', 'LastActivityResourceID', 'TicketNumber', 'TicketCategory', 'ChangeApprovalType', 'Priority', 'EstimatedHours', 'ApiVendorID', 'ServiceLevelAgreementID', 'ChangeInfoField2', 'LastCustomerNotificationDateTime', 'PurchaseOrderNumber', 'CreateDate', 'ContactID', 'Status', 'AllocationCodeID', 'ChangeInfoField1', 'Resolution', 'TicketType', 'OpportunityId', 'ProjectID', 'BusinessDivisionSubdivisionID', 'LastActivityPersonType', 'AEMAlertID', 'ResolutionPlanDueDateTime', 'QueueID', 'MonitorTypeID', 'ExternalID', 'ContractID', 'ResolvedDueDateTime', 'FirstResponseInitiatingResourceID', 'ProblemTicketId', 'ServiceThermometerTemperature', 'ContractServiceID', 'AssignedResourceRoleID', 'Description', 'MonitorID', 'RmaType', 'CurrentServiceThermometerRating', 'ChangeInfoField5', 'ChangeApprovalStatus', 'IssueType', 'LastTrackedModificationDateTime', 'PreviousServiceThermometerRating', 'ChangeApprovalBoard', 'Title', 'id', 'LastCustomerVisibleActivityDateTime', 'SubIssueType', 'RmaStatus', 'CreatorResourceID', 'AccountPhysicalLocationID', 'ResolvedDateTime', 'ServiceLevelAgreementPausedNextEventHours', 'FirstResponseDateTime', '')]
+    [ValidateSet('FirstResponseDateTime', 'HoursToBeScheduled', 'LastTrackedModificationDateTime', 'ContractServiceID', 'AccountPhysicalLocationID', 'CompletedByResourceID', 'IssueType', 'ServiceThermometerTemperature', 'ServiceLevelAgreementID', 'ApiVendorID', 'BusinessDivisionSubdivisionID', 'ExternalID', 'ResolvedDateTime', 'PreviousServiceThermometerRating', 'CreateDate', 'ChangeInfoField2', 'SubIssueType', 'OpportunityId', 'ServiceLevelAgreementHasBeenMet', 'LastActivityPersonType', 'QueueID', 'AssignedResourceID', 'EstimatedHours', 'Title', 'LastCustomerVisibleActivityDateTime', 'FirstResponseAssignedResourceID', 'CompletedDate', 'RmaType', 'ChangeInfoField3', 'LastActivityDate', 'ResolutionPlanDateTime', 'Status', 'CurrentServiceThermometerRating', 'AccountID', 'Resolution', 'ProjectID', 'CreatorType', 'ProblemTicketId', 'MonitorTypeID', 'MonitorID', 'TicketCategory', 'ChangeInfoField1', 'FirstResponseInitiatingResourceID', 'InstalledProductID', 'Priority', 'ContactID', 'Source', 'ChangeApprovalStatus', 'AssignedResourceRoleID', 'ServiceLevelAgreementPausedNextEventHours', 'RmaStatus', 'ContractServiceBundleID', 'ImpersonatorCreatorResourceID', 'DueDateTime', 'TicketNumber', 'ChangeInfoField4', 'ChangeApprovalBoard', 'ResolutionPlanDueDateTime', 'FirstResponseDueDateTime', 'ChangeApprovalType', 'TicketType', 'AllocationCodeID', 'ChangeInfoField5', 'PurchaseOrderNumber', 'id', 'ResolvedDueDateTime', 'Description', 'LastActivityResourceID', 'LastCustomerNotificationDateTime', 'AEMAlertID', 'ContractID', 'CreatorResourceID', '')]
     [string[]]
     $IsNotNull,
 
@@ -1030,8 +1017,7 @@ Set-AtwsTicket
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

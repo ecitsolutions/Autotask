@@ -76,7 +76,7 @@ Get-AtwsAccountToDo
     [switch]
     $PassThru,
 
-# Account
+# Client
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

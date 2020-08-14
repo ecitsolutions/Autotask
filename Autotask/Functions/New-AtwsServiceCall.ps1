@@ -64,7 +64,7 @@ Set-AtwsServiceCall
     [Autotask.ServiceCall[]]
     $InputObject,
 
-# Account ID
+# Client ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'

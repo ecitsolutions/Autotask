@@ -82,21 +82,9 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('LastModifiedByResourceID', 'TicketID')]
+    [ValidateSet('CreatorResourceID', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'LastModifiedByResourceID', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -229,21 +217,21 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionPlanResourceID', 'ResolutionMet', 'FirstResponseResourceID', 'TicketID', 'ResolutionElapsedHours', 'FirstResponseInitiatingResourceID', 'ResolutionPlanMet', 'ResolutionPlanElapsedHours', 'LastModifiedDateTime', 'FirstResponseElapsedHours', 'FirstResponseMet', 'ResolutionResourceID', 'CreateDateTime', 'id', 'ServiceLevelAgreementName', 'CreatorResourceID', 'LastModifiedByResourceID')]
+    [ValidateSet('ResolutionPlanResourceID', 'ResolutionPlanElapsedHours', 'ResolutionMet', 'CreateDateTime', 'FirstResponseElapsedHours', 'ServiceLevelAgreementName', 'CreatorResourceID', 'ResolutionElapsedHours', 'FirstResponseInitiatingResourceID', 'ResolutionResourceID', 'TicketID', 'LastModifiedDateTime', 'LastModifiedByResourceID', 'FirstResponseMet', 'ResolutionPlanMet', 'id', 'FirstResponseResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionPlanResourceID', 'ResolutionMet', 'FirstResponseResourceID', 'TicketID', 'ResolutionElapsedHours', 'FirstResponseInitiatingResourceID', 'ResolutionPlanMet', 'ResolutionPlanElapsedHours', 'LastModifiedDateTime', 'FirstResponseElapsedHours', 'FirstResponseMet', 'ResolutionResourceID', 'CreateDateTime', 'id', 'ServiceLevelAgreementName', 'CreatorResourceID', 'LastModifiedByResourceID')]
+    [ValidateSet('ResolutionPlanResourceID', 'ResolutionPlanElapsedHours', 'ResolutionMet', 'CreateDateTime', 'FirstResponseElapsedHours', 'ServiceLevelAgreementName', 'CreatorResourceID', 'ResolutionElapsedHours', 'FirstResponseInitiatingResourceID', 'ResolutionResourceID', 'TicketID', 'LastModifiedDateTime', 'LastModifiedByResourceID', 'FirstResponseMet', 'ResolutionPlanMet', 'id', 'FirstResponseResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionPlanResourceID', 'ResolutionMet', 'FirstResponseResourceID', 'TicketID', 'ResolutionElapsedHours', 'FirstResponseInitiatingResourceID', 'ResolutionPlanMet', 'ResolutionPlanElapsedHours', 'LastModifiedDateTime', 'FirstResponseElapsedHours', 'FirstResponseMet', 'ResolutionResourceID', 'CreateDateTime', 'id', 'ServiceLevelAgreementName', 'CreatorResourceID', 'LastModifiedByResourceID')]
+    [ValidateSet('ResolutionPlanResourceID', 'ResolutionPlanElapsedHours', 'ResolutionMet', 'CreateDateTime', 'FirstResponseElapsedHours', 'ServiceLevelAgreementName', 'CreatorResourceID', 'ResolutionElapsedHours', 'FirstResponseInitiatingResourceID', 'ResolutionResourceID', 'TicketID', 'LastModifiedDateTime', 'LastModifiedByResourceID', 'FirstResponseMet', 'ResolutionPlanMet', 'id', 'FirstResponseResourceID')]
     [string[]]
     $IsNotNull,
 
@@ -376,8 +364,7 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

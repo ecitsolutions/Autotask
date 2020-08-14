@@ -107,18 +107,6 @@ Set-AtwsContractTicketPurchase
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -259,21 +247,21 @@ Set-AtwsContractTicketPurchase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'IsPaid', 'Status', 'StartDate', 'TicketsPurchased', 'InvoiceNumber', 'PaymentNumber', 'PerTicketRate', 'TicketsUsed', 'DatePurchased', 'ContractID', 'EndDate', 'PaymentType')]
+    [ValidateSet('PerTicketRate', 'TicketsPurchased', 'InvoiceNumber', 'ContractID', 'PaymentNumber', 'EndDate', 'Status', 'IsPaid', 'id', 'StartDate', 'TicketsUsed', 'DatePurchased', 'PaymentType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'IsPaid', 'Status', 'StartDate', 'TicketsPurchased', 'InvoiceNumber', 'PaymentNumber', 'PerTicketRate', 'TicketsUsed', 'DatePurchased', 'ContractID', 'EndDate', 'PaymentType')]
+    [ValidateSet('PerTicketRate', 'TicketsPurchased', 'InvoiceNumber', 'ContractID', 'PaymentNumber', 'EndDate', 'Status', 'IsPaid', 'id', 'StartDate', 'TicketsUsed', 'DatePurchased', 'PaymentType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'IsPaid', 'Status', 'StartDate', 'TicketsPurchased', 'InvoiceNumber', 'PaymentNumber', 'PerTicketRate', 'TicketsUsed', 'DatePurchased', 'ContractID', 'EndDate', 'PaymentType')]
+    [ValidateSet('PerTicketRate', 'TicketsPurchased', 'InvoiceNumber', 'ContractID', 'PaymentNumber', 'EndDate', 'Status', 'IsPaid', 'id', 'StartDate', 'TicketsUsed', 'DatePurchased', 'PaymentType')]
     [string[]]
     $IsNotNull,
 
@@ -406,8 +394,7 @@ Set-AtwsContractTicketPurchase
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

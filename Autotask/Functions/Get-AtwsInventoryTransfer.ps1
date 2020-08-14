@@ -84,21 +84,9 @@ New-AtwsInventoryTransfer
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ToLocationID', 'TransferByResourceID', 'ProductID')]
+    [ValidateSet('FromLocationID', 'ProductID', 'ToLocationID', 'TransferByResourceID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -188,21 +176,21 @@ New-AtwsInventoryTransfer
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ToLocationID', 'TransferByResourceID', 'QuantityTransferred', 'SerialNumber', 'UpdateNote', 'id', 'Notes', 'TransferDate', 'FromLocationID', 'ProductID')]
+    [ValidateSet('SerialNumber', 'TransferByResourceID', 'ProductID', 'QuantityTransferred', 'id', 'Notes', 'TransferDate', 'ToLocationID', 'UpdateNote', 'FromLocationID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ToLocationID', 'TransferByResourceID', 'QuantityTransferred', 'SerialNumber', 'UpdateNote', 'id', 'Notes', 'TransferDate', 'FromLocationID', 'ProductID')]
+    [ValidateSet('SerialNumber', 'TransferByResourceID', 'ProductID', 'QuantityTransferred', 'id', 'Notes', 'TransferDate', 'ToLocationID', 'UpdateNote', 'FromLocationID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ToLocationID', 'TransferByResourceID', 'QuantityTransferred', 'SerialNumber', 'UpdateNote', 'id', 'Notes', 'TransferDate', 'FromLocationID', 'ProductID')]
+    [ValidateSet('SerialNumber', 'TransferByResourceID', 'ProductID', 'QuantityTransferred', 'id', 'Notes', 'TransferDate', 'ToLocationID', 'UpdateNote', 'FromLocationID')]
     [string[]]
     $IsNotNull,
 
@@ -335,8 +323,7 @@ New-AtwsInventoryTransfer
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

@@ -86,22 +86,9 @@ Set-AtwsContractServiceBundle
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('QuoteItemID', 'ServiceBundleID', 'ContractID')]
+    [ValidateSet('ContractID', 'QuoteItemID', 'ServiceBundleID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('TicketCost', 'ContractCost', 'ContractServiceBundleUnit', 'ContractServiceBundleAdjustment', 'InstalledProduct', 'ChangeOrderCost', 'Ticket', 'TimeEntry', 'ProjectCost')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -188,21 +175,21 @@ Set-AtwsContractServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'AdjustedPrice', 'QuoteItemID', 'ServiceBundleID', 'InvoiceDescription', 'InternalCurrencyUnitPrice', 'UnitPrice', 'id', 'InternalDescription', 'InternalCurrencyAdjustedPrice')]
+    [ValidateSet('InternalDescription', 'ServiceBundleID', 'ContractID', 'UnitPrice', 'id', 'AdjustedPrice', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'InvoiceDescription', 'InternalCurrencyAdjustedPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'AdjustedPrice', 'QuoteItemID', 'ServiceBundleID', 'InvoiceDescription', 'InternalCurrencyUnitPrice', 'UnitPrice', 'id', 'InternalDescription', 'InternalCurrencyAdjustedPrice')]
+    [ValidateSet('InternalDescription', 'ServiceBundleID', 'ContractID', 'UnitPrice', 'id', 'AdjustedPrice', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'InvoiceDescription', 'InternalCurrencyAdjustedPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'AdjustedPrice', 'QuoteItemID', 'ServiceBundleID', 'InvoiceDescription', 'InternalCurrencyUnitPrice', 'UnitPrice', 'id', 'InternalDescription', 'InternalCurrencyAdjustedPrice')]
+    [ValidateSet('InternalDescription', 'ServiceBundleID', 'ContractID', 'UnitPrice', 'id', 'AdjustedPrice', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'InvoiceDescription', 'InternalCurrencyAdjustedPrice')]
     [string[]]
     $IsNotNull,
 
@@ -334,8 +321,7 @@ Set-AtwsContractServiceBundle
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

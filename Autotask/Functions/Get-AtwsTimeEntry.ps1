@@ -103,22 +103,9 @@ Set-AtwsTimeEntry
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AllocationCodeID', 'ContractID', 'ImpersonatorUpdaterResourceID', 'RoleID', 'TaskID', 'ContractServiceBundleID', 'TicketID', 'ContractServiceID')]
+    [ValidateSet('AllocationCodeID', 'BillingApprovalResourceID', 'ContractID', 'ContractServiceBundleID', 'ContractServiceID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InternalAllocationCodeID', 'ResourceID', 'RoleID', 'TaskID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('NotificationHistory', 'BillingItemApprovalLevel', 'BillingItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -357,21 +344,21 @@ Set-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalAllocationCodeID', 'OffsetHours', 'RoleID', 'ImpersonatorCreatorResourceID', 'InternalNotes', 'NonBillable', 'EndDateTime', 'BillingApprovalLevelMostRecent', 'BillingApprovalDateTime', 'LastModifiedUserID', 'Type', 'TaskID', 'BillingApprovalResourceID', 'CreatorUserID', 'ImpersonatorUpdaterResourceID', 'HoursToBill', 'ContractID', 'id', 'LastModifiedDateTime', 'ShowOnInvoice', 'HoursWorked', 'CreateDateTime', 'StartDateTime', 'ContractServiceID', 'SummaryNotes', 'ResourceID', 'TicketID', 'ContractServiceBundleID', 'AllocationCodeID', 'DateWorked')]
+    [ValidateSet('CreatorUserID', 'TicketID', 'EndDateTime', 'BillingApprovalResourceID', 'ImpersonatorCreatorResourceID', 'InternalAllocationCodeID', 'ImpersonatorUpdaterResourceID', 'Type', 'AllocationCodeID', 'NonBillable', 'BillingApprovalDateTime', 'RoleID', 'StartDateTime', 'SummaryNotes', 'HoursToBill', 'ContractServiceID', 'OffsetHours', 'LastModifiedUserID', 'TaskID', 'CreateDateTime', 'ShowOnInvoice', 'ContractServiceBundleID', 'DateWorked', 'ContractID', 'ResourceID', 'BillingApprovalLevelMostRecent', 'HoursWorked', 'LastModifiedDateTime', 'id', 'InternalNotes')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalAllocationCodeID', 'OffsetHours', 'RoleID', 'ImpersonatorCreatorResourceID', 'InternalNotes', 'NonBillable', 'EndDateTime', 'BillingApprovalLevelMostRecent', 'BillingApprovalDateTime', 'LastModifiedUserID', 'Type', 'TaskID', 'BillingApprovalResourceID', 'CreatorUserID', 'ImpersonatorUpdaterResourceID', 'HoursToBill', 'ContractID', 'id', 'LastModifiedDateTime', 'ShowOnInvoice', 'HoursWorked', 'CreateDateTime', 'StartDateTime', 'ContractServiceID', 'SummaryNotes', 'ResourceID', 'TicketID', 'ContractServiceBundleID', 'AllocationCodeID', 'DateWorked')]
+    [ValidateSet('CreatorUserID', 'TicketID', 'EndDateTime', 'BillingApprovalResourceID', 'ImpersonatorCreatorResourceID', 'InternalAllocationCodeID', 'ImpersonatorUpdaterResourceID', 'Type', 'AllocationCodeID', 'NonBillable', 'BillingApprovalDateTime', 'RoleID', 'StartDateTime', 'SummaryNotes', 'HoursToBill', 'ContractServiceID', 'OffsetHours', 'LastModifiedUserID', 'TaskID', 'CreateDateTime', 'ShowOnInvoice', 'ContractServiceBundleID', 'DateWorked', 'ContractID', 'ResourceID', 'BillingApprovalLevelMostRecent', 'HoursWorked', 'LastModifiedDateTime', 'id', 'InternalNotes')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalAllocationCodeID', 'OffsetHours', 'RoleID', 'ImpersonatorCreatorResourceID', 'InternalNotes', 'NonBillable', 'EndDateTime', 'BillingApprovalLevelMostRecent', 'BillingApprovalDateTime', 'LastModifiedUserID', 'Type', 'TaskID', 'BillingApprovalResourceID', 'CreatorUserID', 'ImpersonatorUpdaterResourceID', 'HoursToBill', 'ContractID', 'id', 'LastModifiedDateTime', 'ShowOnInvoice', 'HoursWorked', 'CreateDateTime', 'StartDateTime', 'ContractServiceID', 'SummaryNotes', 'ResourceID', 'TicketID', 'ContractServiceBundleID', 'AllocationCodeID', 'DateWorked')]
+    [ValidateSet('CreatorUserID', 'TicketID', 'EndDateTime', 'BillingApprovalResourceID', 'ImpersonatorCreatorResourceID', 'InternalAllocationCodeID', 'ImpersonatorUpdaterResourceID', 'Type', 'AllocationCodeID', 'NonBillable', 'BillingApprovalDateTime', 'RoleID', 'StartDateTime', 'SummaryNotes', 'HoursToBill', 'ContractServiceID', 'OffsetHours', 'LastModifiedUserID', 'TaskID', 'CreateDateTime', 'ShowOnInvoice', 'ContractServiceBundleID', 'DateWorked', 'ContractID', 'ResourceID', 'BillingApprovalLevelMostRecent', 'HoursWorked', 'LastModifiedDateTime', 'id', 'InternalNotes')]
     [string[]]
     $IsNotNull,
 
@@ -504,8 +491,7 @@ Set-AtwsTimeEntry
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

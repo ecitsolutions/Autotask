@@ -82,21 +82,9 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'ServiceBundleID', 'ContractID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceBundleID', 'ServiceBundleID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -198,21 +186,21 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Cost', 'ContractID', 'ContractServiceBundleID', 'ServiceBundleID', 'EndDate', 'BusinessDivisionSubdivisionID', 'ApproveAndPostDate', 'id', 'Units', 'InternalCurrencyPrice', 'StartDate', 'Price')]
+    [ValidateSet('Price', 'ServiceBundleID', 'ContractID', 'ApproveAndPostDate', 'Units', 'InternalCurrencyPrice', 'Cost', 'id', 'EndDate', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'StartDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Cost', 'ContractID', 'ContractServiceBundleID', 'ServiceBundleID', 'EndDate', 'BusinessDivisionSubdivisionID', 'ApproveAndPostDate', 'id', 'Units', 'InternalCurrencyPrice', 'StartDate', 'Price')]
+    [ValidateSet('Price', 'ServiceBundleID', 'ContractID', 'ApproveAndPostDate', 'Units', 'InternalCurrencyPrice', 'Cost', 'id', 'EndDate', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'StartDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Cost', 'ContractID', 'ContractServiceBundleID', 'ServiceBundleID', 'EndDate', 'BusinessDivisionSubdivisionID', 'ApproveAndPostDate', 'id', 'Units', 'InternalCurrencyPrice', 'StartDate', 'Price')]
+    [ValidateSet('Price', 'ServiceBundleID', 'ContractID', 'ApproveAndPostDate', 'Units', 'InternalCurrencyPrice', 'Cost', 'id', 'EndDate', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'StartDate')]
     [string[]]
     $IsNotNull,
 
@@ -340,8 +328,7 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

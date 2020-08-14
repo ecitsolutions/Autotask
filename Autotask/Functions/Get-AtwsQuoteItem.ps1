@@ -104,22 +104,9 @@ Set-AtwsQuoteItem
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProductID', 'ExpenseID', 'TaxCategoryID', 'ServiceID', 'ServiceBundleID', 'LaborID', 'ShippingID', 'QuoteID')]
+    [ValidateSet('CostID', 'ExpenseID', 'LaborID', 'ProductID', 'QuoteID', 'ServiceBundleID', 'ServiceID', 'ShippingID', 'TaxCategoryID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractService', 'ContractServiceBundleAdjustment', 'ContractServiceBundle', 'ContractServiceAdjustment')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -354,21 +341,21 @@ Set-AtwsQuoteItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PercentageDiscount', 'InternalCurrencyUnitPrice', 'QuoteID', 'ExpenseID', 'ShippingID', 'ServiceBundleID', 'Type', 'IsOptional', 'InternalCurrencyUnitDiscount', 'ServiceID', 'Name', 'LineDiscount', 'UnitCost', 'HighestCost', 'id', 'AverageCost', 'Quantity', 'UnitPrice', 'TaxCategoryID', 'CostID', 'UnitDiscount', 'TotalEffectiveTax', 'Description', 'IsTaxable', 'PeriodType', 'MarkupRate', 'LaborID', 'InternalCurrencyLineDiscount', 'ProductID')]
+    [ValidateSet('Quantity', 'LaborID', 'UnitCost', 'Name', 'Description', 'QuoteID', 'ServiceBundleID', 'InternalCurrencyUnitPrice', 'PeriodType', 'IsTaxable', 'IsOptional', 'InternalCurrencyUnitDiscount', 'ExpenseID', 'UnitPrice', 'TotalEffectiveTax', 'AverageCost', 'MarkupRate', 'UnitDiscount', 'CostID', 'TaxCategoryID', 'ProductID', 'PercentageDiscount', 'HighestCost', 'LineDiscount', 'InternalCurrencyLineDiscount', 'Type', 'ServiceID', 'id', 'ShippingID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PercentageDiscount', 'InternalCurrencyUnitPrice', 'QuoteID', 'ExpenseID', 'ShippingID', 'ServiceBundleID', 'Type', 'IsOptional', 'InternalCurrencyUnitDiscount', 'ServiceID', 'Name', 'LineDiscount', 'UnitCost', 'HighestCost', 'id', 'AverageCost', 'Quantity', 'UnitPrice', 'TaxCategoryID', 'CostID', 'UnitDiscount', 'TotalEffectiveTax', 'Description', 'IsTaxable', 'PeriodType', 'MarkupRate', 'LaborID', 'InternalCurrencyLineDiscount', 'ProductID')]
+    [ValidateSet('Quantity', 'LaborID', 'UnitCost', 'Name', 'Description', 'QuoteID', 'ServiceBundleID', 'InternalCurrencyUnitPrice', 'PeriodType', 'IsTaxable', 'IsOptional', 'InternalCurrencyUnitDiscount', 'ExpenseID', 'UnitPrice', 'TotalEffectiveTax', 'AverageCost', 'MarkupRate', 'UnitDiscount', 'CostID', 'TaxCategoryID', 'ProductID', 'PercentageDiscount', 'HighestCost', 'LineDiscount', 'InternalCurrencyLineDiscount', 'Type', 'ServiceID', 'id', 'ShippingID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PercentageDiscount', 'InternalCurrencyUnitPrice', 'QuoteID', 'ExpenseID', 'ShippingID', 'ServiceBundleID', 'Type', 'IsOptional', 'InternalCurrencyUnitDiscount', 'ServiceID', 'Name', 'LineDiscount', 'UnitCost', 'HighestCost', 'id', 'AverageCost', 'Quantity', 'UnitPrice', 'TaxCategoryID', 'CostID', 'UnitDiscount', 'TotalEffectiveTax', 'Description', 'IsTaxable', 'PeriodType', 'MarkupRate', 'LaborID', 'InternalCurrencyLineDiscount', 'ProductID')]
+    [ValidateSet('Quantity', 'LaborID', 'UnitCost', 'Name', 'Description', 'QuoteID', 'ServiceBundleID', 'InternalCurrencyUnitPrice', 'PeriodType', 'IsTaxable', 'IsOptional', 'InternalCurrencyUnitDiscount', 'ExpenseID', 'UnitPrice', 'TotalEffectiveTax', 'AverageCost', 'MarkupRate', 'UnitDiscount', 'CostID', 'TaxCategoryID', 'ProductID', 'PercentageDiscount', 'HighestCost', 'LineDiscount', 'InternalCurrencyLineDiscount', 'Type', 'ServiceID', 'id', 'ShippingID')]
     [string[]]
     $IsNotNull,
 
@@ -500,8 +487,7 @@ Set-AtwsQuoteItem
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

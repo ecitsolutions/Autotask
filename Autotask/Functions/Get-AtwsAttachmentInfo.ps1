@@ -99,21 +99,9 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AttachedByContactID', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
+    [ValidateSet('AttachedByContactID', 'AttachedByResourceID', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -261,21 +249,21 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContentType', 'ParentID', 'Title', 'FileSize', 'ParentType', 'OpportunityID', 'Publish', 'AttachedByContactID', 'AttachDate', 'Type', 'AttachedByResourceID', 'FullPath')]
+    [ValidateSet('Type', 'ParentID', 'AttachDate', 'ParentType', 'FileSize', 'Publish', 'OpportunityID', 'FullPath', 'AttachedByResourceID', 'ImpersonatorCreatorResourceID', 'ContentType', 'Title', 'id', 'AttachedByContactID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContentType', 'ParentID', 'Title', 'FileSize', 'ParentType', 'OpportunityID', 'Publish', 'AttachedByContactID', 'AttachDate', 'Type', 'AttachedByResourceID', 'FullPath')]
+    [ValidateSet('Type', 'ParentID', 'AttachDate', 'ParentType', 'FileSize', 'Publish', 'OpportunityID', 'FullPath', 'AttachedByResourceID', 'ImpersonatorCreatorResourceID', 'ContentType', 'Title', 'id', 'AttachedByContactID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContentType', 'ParentID', 'Title', 'FileSize', 'ParentType', 'OpportunityID', 'Publish', 'AttachedByContactID', 'AttachDate', 'Type', 'AttachedByResourceID', 'FullPath')]
+    [ValidateSet('Type', 'ParentID', 'AttachDate', 'ParentType', 'FileSize', 'Publish', 'OpportunityID', 'FullPath', 'AttachedByResourceID', 'ImpersonatorCreatorResourceID', 'ContentType', 'Title', 'id', 'AttachedByContactID')]
     [string[]]
     $IsNotNull,
 
@@ -408,8 +396,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

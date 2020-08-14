@@ -99,22 +99,9 @@ Set-AtwsCountry
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('InvoiceTemplateID', 'QuoteTemplateID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('Account', 'SalesOrder', 'AccountPhysicalLocation', 'BusinessLocation', 'Contact')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -207,21 +194,21 @@ Set-AtwsCountry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressFormatID', 'IsDefaultCountry', 'Active', 'Name', 'QuoteTemplateID', 'DisplayName', 'id', 'InvoiceTemplateID', 'CountryCode')]
+    [ValidateSet('QuoteTemplateID', 'CountryCode', 'Active', 'DisplayName', 'InvoiceTemplateID', 'AddressFormatID', 'id', 'IsDefaultCountry', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressFormatID', 'IsDefaultCountry', 'Active', 'Name', 'QuoteTemplateID', 'DisplayName', 'id', 'InvoiceTemplateID', 'CountryCode')]
+    [ValidateSet('QuoteTemplateID', 'CountryCode', 'Active', 'DisplayName', 'InvoiceTemplateID', 'AddressFormatID', 'id', 'IsDefaultCountry', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressFormatID', 'IsDefaultCountry', 'Active', 'Name', 'QuoteTemplateID', 'DisplayName', 'id', 'InvoiceTemplateID', 'CountryCode')]
+    [ValidateSet('QuoteTemplateID', 'CountryCode', 'Active', 'DisplayName', 'InvoiceTemplateID', 'AddressFormatID', 'id', 'IsDefaultCountry', 'Name')]
     [string[]]
     $IsNotNull,
 
@@ -353,8 +340,7 @@ Set-AtwsCountry
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

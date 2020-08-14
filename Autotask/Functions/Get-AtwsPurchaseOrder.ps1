@@ -104,22 +104,9 @@ Set-AtwsPurchaseOrder
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('PurchaseForAccountID', 'ShippingType', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('CreatorResourceID', 'ImpersonatorCreatorResourceID', 'PurchaseForAccountID', 'ShippingType', 'VendorID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('PurchaseOrderItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -405,21 +392,21 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Fax', 'SubmitDateTime', 'InternalCurrencyFreight', 'TaxGroup', 'CancelDateTime', 'CreateDateTime', 'Freight', 'ShowEachTaxInGroup', 'ShowTaxCategory', 'ShipToCity', 'ShipToName', 'CreatorResourceID', 'Phone', 'ShipToPostalCode', 'GeneralMemo', 'ShippingDate', 'VendorID', 'id', 'Status', 'ImpersonatorCreatorResourceID', 'ShipToAddress2', 'ShipToAddress1', 'PurchaseForAccountID', 'UseItemDescriptionsFrom', 'PaymentTerm', 'VendorInvoiceNumber', 'ShipToState', 'LatestEstimatedArrivalDate', 'ShippingType', 'ExternalPONumber')]
+    [ValidateSet('ShippingType', 'ShipToAddress2', 'Status', 'UseItemDescriptionsFrom', 'Freight', 'TaxGroup', 'ShippingDate', 'Fax', 'ShipToAddress1', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'CancelDateTime', 'Phone', 'ShipToState', 'CreateDateTime', 'InternalCurrencyFreight', 'SubmitDateTime', 'ShipToPostalCode', 'VendorInvoiceNumber', 'VendorID', 'ShowEachTaxInGroup', 'ShipToName', 'ShowTaxCategory', 'ShipToCity', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'LatestEstimatedArrivalDate', 'id', 'GeneralMemo')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Fax', 'SubmitDateTime', 'InternalCurrencyFreight', 'TaxGroup', 'CancelDateTime', 'CreateDateTime', 'Freight', 'ShowEachTaxInGroup', 'ShowTaxCategory', 'ShipToCity', 'ShipToName', 'CreatorResourceID', 'Phone', 'ShipToPostalCode', 'GeneralMemo', 'ShippingDate', 'VendorID', 'id', 'Status', 'ImpersonatorCreatorResourceID', 'ShipToAddress2', 'ShipToAddress1', 'PurchaseForAccountID', 'UseItemDescriptionsFrom', 'PaymentTerm', 'VendorInvoiceNumber', 'ShipToState', 'LatestEstimatedArrivalDate', 'ShippingType', 'ExternalPONumber')]
+    [ValidateSet('ShippingType', 'ShipToAddress2', 'Status', 'UseItemDescriptionsFrom', 'Freight', 'TaxGroup', 'ShippingDate', 'Fax', 'ShipToAddress1', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'CancelDateTime', 'Phone', 'ShipToState', 'CreateDateTime', 'InternalCurrencyFreight', 'SubmitDateTime', 'ShipToPostalCode', 'VendorInvoiceNumber', 'VendorID', 'ShowEachTaxInGroup', 'ShipToName', 'ShowTaxCategory', 'ShipToCity', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'LatestEstimatedArrivalDate', 'id', 'GeneralMemo')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Fax', 'SubmitDateTime', 'InternalCurrencyFreight', 'TaxGroup', 'CancelDateTime', 'CreateDateTime', 'Freight', 'ShowEachTaxInGroup', 'ShowTaxCategory', 'ShipToCity', 'ShipToName', 'CreatorResourceID', 'Phone', 'ShipToPostalCode', 'GeneralMemo', 'ShippingDate', 'VendorID', 'id', 'Status', 'ImpersonatorCreatorResourceID', 'ShipToAddress2', 'ShipToAddress1', 'PurchaseForAccountID', 'UseItemDescriptionsFrom', 'PaymentTerm', 'VendorInvoiceNumber', 'ShipToState', 'LatestEstimatedArrivalDate', 'ShippingType', 'ExternalPONumber')]
+    [ValidateSet('ShippingType', 'ShipToAddress2', 'Status', 'UseItemDescriptionsFrom', 'Freight', 'TaxGroup', 'ShippingDate', 'Fax', 'ShipToAddress1', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'CancelDateTime', 'Phone', 'ShipToState', 'CreateDateTime', 'InternalCurrencyFreight', 'SubmitDateTime', 'ShipToPostalCode', 'VendorInvoiceNumber', 'VendorID', 'ShowEachTaxInGroup', 'ShipToName', 'ShowTaxCategory', 'ShipToCity', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'LatestEstimatedArrivalDate', 'id', 'GeneralMemo')]
     [string[]]
     $IsNotNull,
 
@@ -552,8 +539,7 @@ Set-AtwsPurchaseOrder
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

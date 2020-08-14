@@ -108,19 +108,6 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('Account', 'Invoice', 'Country')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -438,21 +425,21 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'DisplayFixedPriceContractLabor', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeItemsInEachGroup', 'TimeFormat', 'DisplayTaxCategorySuperscripts', 'SortBy', 'PaymentTerms', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'NonBillableLaborLabel', 'DisplaySeparateLineItemForEachTax', 'GroupBy', 'DisplayTaxCategory', 'DisplayRecurringServiceContractLabor', 'DateFormat', 'Name', 'PageNumberFormat', 'CurrencyNegativeFormat', 'ItemizeServicesAndBundles', 'PageLayout', 'ShowGridHeader', 'CurrencyPositiveFormat', 'RateCostExpression', 'ShowVerticalGridLines', 'CoveredByBlockRetainerContractLabel', 'NumberFormat')]
+    [ValidateSet('RateCostExpression', 'Name', 'ShowVerticalGridLines', 'DateFormat', 'CoveredByBlockRetainerContractLabel', 'PaymentTerms', 'GroupBy', 'ShowGridHeader', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'DisplayFixedPriceContractLabor', 'NonBillableLaborLabel', 'CurrencyPositiveFormat', 'NumberFormat', 'CurrencyNegativeFormat', 'DisplayTaxCategory', 'TimeFormat', 'SortBy', 'ItemizeServicesAndBundles', 'PageLayout', 'DisplaySeparateLineItemForEachTax', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeItemsInEachGroup', 'DisplayRecurringServiceContractLabor', 'id', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'DisplayFixedPriceContractLabor', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeItemsInEachGroup', 'TimeFormat', 'DisplayTaxCategorySuperscripts', 'SortBy', 'PaymentTerms', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'NonBillableLaborLabel', 'DisplaySeparateLineItemForEachTax', 'GroupBy', 'DisplayTaxCategory', 'DisplayRecurringServiceContractLabor', 'DateFormat', 'Name', 'PageNumberFormat', 'CurrencyNegativeFormat', 'ItemizeServicesAndBundles', 'PageLayout', 'ShowGridHeader', 'CurrencyPositiveFormat', 'RateCostExpression', 'ShowVerticalGridLines', 'CoveredByBlockRetainerContractLabel', 'NumberFormat')]
+    [ValidateSet('RateCostExpression', 'Name', 'ShowVerticalGridLines', 'DateFormat', 'CoveredByBlockRetainerContractLabel', 'PaymentTerms', 'GroupBy', 'ShowGridHeader', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'DisplayFixedPriceContractLabor', 'NonBillableLaborLabel', 'CurrencyPositiveFormat', 'NumberFormat', 'CurrencyNegativeFormat', 'DisplayTaxCategory', 'TimeFormat', 'SortBy', 'ItemizeServicesAndBundles', 'PageLayout', 'DisplaySeparateLineItemForEachTax', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeItemsInEachGroup', 'DisplayRecurringServiceContractLabor', 'id', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'DisplayFixedPriceContractLabor', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeItemsInEachGroup', 'TimeFormat', 'DisplayTaxCategorySuperscripts', 'SortBy', 'PaymentTerms', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'NonBillableLaborLabel', 'DisplaySeparateLineItemForEachTax', 'GroupBy', 'DisplayTaxCategory', 'DisplayRecurringServiceContractLabor', 'DateFormat', 'Name', 'PageNumberFormat', 'CurrencyNegativeFormat', 'ItemizeServicesAndBundles', 'PageLayout', 'ShowGridHeader', 'CurrencyPositiveFormat', 'RateCostExpression', 'ShowVerticalGridLines', 'CoveredByBlockRetainerContractLabel', 'NumberFormat')]
+    [ValidateSet('RateCostExpression', 'Name', 'ShowVerticalGridLines', 'DateFormat', 'CoveredByBlockRetainerContractLabel', 'PaymentTerms', 'GroupBy', 'ShowGridHeader', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'DisplayFixedPriceContractLabor', 'NonBillableLaborLabel', 'CurrencyPositiveFormat', 'NumberFormat', 'CurrencyNegativeFormat', 'DisplayTaxCategory', 'TimeFormat', 'SortBy', 'ItemizeServicesAndBundles', 'PageLayout', 'DisplaySeparateLineItemForEachTax', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeItemsInEachGroup', 'DisplayRecurringServiceContractLabor', 'id', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
     [string[]]
     $IsNotNull,
 
@@ -584,8 +571,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

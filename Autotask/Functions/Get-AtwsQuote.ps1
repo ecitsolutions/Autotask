@@ -107,22 +107,9 @@ Set-AtwsQuote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProposalProjectID', 'ContactID', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'AccountID', 'SoldToLocationID', 'QuoteTemplateID')]
+    [ValidateSet('AccountID', 'ApprovalStatusChangedByResourceID', 'BillToLocationID', 'ContactID', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedBy', 'OpportunityID', 'ProposalProjectID', 'QuoteTemplateID', 'ShipToLocationID', 'SoldToLocationID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('NotificationHistory', 'QuoteItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -477,21 +464,21 @@ Set-AtwsQuote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OpportunityID', 'PrimaryQuote', 'ShipToLocationID', 'PurchaseOrderNumber', 'ExternalQuoteNumber', 'ApprovalStatusChangedByResourceID', 'ImpersonatorCreatorResourceID', 'ExtApprovalContactResponse', 'EffectiveDate', 'TaxGroup', 'SoldToLocationID', 'LastActivityDate', 'Comment', 'ContactID', 'ShowEachTaxInGroup', 'ExpirationDate', 'CreatorResourceID', 'Name', 'GroupByID', 'ApprovalStatusChangedDate', 'CalculateTaxSeparately', 'AccountID', 'ProposalProjectID', 'ApprovalStatus', 'id', 'eQuoteActive', 'ExtApprovalResponseSignature', 'ExtApprovalResponseDate', 'GroupByProductCategory', 'CreateDate', 'PaymentTerm', 'Description', 'QuoteNumber', 'QuoteTemplateID', 'LastModifiedBy', 'BillToLocationID', 'PaymentType', 'ShowTaxCategory', 'ShippingType')]
+    [ValidateSet('ExtApprovalResponseDate', 'ShippingType', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'ApprovalStatusChangedDate', 'QuoteNumber', 'QuoteTemplateID', 'LastModifiedBy', 'PrimaryQuote', 'Name', 'Description', 'ExtApprovalResponseSignature', 'TaxGroup', 'ApprovalStatus', 'ExtApprovalContactResponse', 'CreatorResourceID', 'PaymentTerm', 'AccountID', 'OpportunityID', 'Comment', 'GroupByID', 'PaymentType', 'BillToLocationID', 'GroupByProductCategory', 'ShipToLocationID', 'PurchaseOrderNumber', 'ExternalQuoteNumber', 'LastActivityDate', 'ContactID', 'SoldToLocationID', 'EffectiveDate', 'ShowEachTaxInGroup', 'ApprovalStatusChangedByResourceID', 'ShowTaxCategory', 'eQuoteActive', 'CalculateTaxSeparately', 'ProposalProjectID', 'CreateDate', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OpportunityID', 'PrimaryQuote', 'ShipToLocationID', 'PurchaseOrderNumber', 'ExternalQuoteNumber', 'ApprovalStatusChangedByResourceID', 'ImpersonatorCreatorResourceID', 'ExtApprovalContactResponse', 'EffectiveDate', 'TaxGroup', 'SoldToLocationID', 'LastActivityDate', 'Comment', 'ContactID', 'ShowEachTaxInGroup', 'ExpirationDate', 'CreatorResourceID', 'Name', 'GroupByID', 'ApprovalStatusChangedDate', 'CalculateTaxSeparately', 'AccountID', 'ProposalProjectID', 'ApprovalStatus', 'id', 'eQuoteActive', 'ExtApprovalResponseSignature', 'ExtApprovalResponseDate', 'GroupByProductCategory', 'CreateDate', 'PaymentTerm', 'Description', 'QuoteNumber', 'QuoteTemplateID', 'LastModifiedBy', 'BillToLocationID', 'PaymentType', 'ShowTaxCategory', 'ShippingType')]
+    [ValidateSet('ExtApprovalResponseDate', 'ShippingType', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'ApprovalStatusChangedDate', 'QuoteNumber', 'QuoteTemplateID', 'LastModifiedBy', 'PrimaryQuote', 'Name', 'Description', 'ExtApprovalResponseSignature', 'TaxGroup', 'ApprovalStatus', 'ExtApprovalContactResponse', 'CreatorResourceID', 'PaymentTerm', 'AccountID', 'OpportunityID', 'Comment', 'GroupByID', 'PaymentType', 'BillToLocationID', 'GroupByProductCategory', 'ShipToLocationID', 'PurchaseOrderNumber', 'ExternalQuoteNumber', 'LastActivityDate', 'ContactID', 'SoldToLocationID', 'EffectiveDate', 'ShowEachTaxInGroup', 'ApprovalStatusChangedByResourceID', 'ShowTaxCategory', 'eQuoteActive', 'CalculateTaxSeparately', 'ProposalProjectID', 'CreateDate', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OpportunityID', 'PrimaryQuote', 'ShipToLocationID', 'PurchaseOrderNumber', 'ExternalQuoteNumber', 'ApprovalStatusChangedByResourceID', 'ImpersonatorCreatorResourceID', 'ExtApprovalContactResponse', 'EffectiveDate', 'TaxGroup', 'SoldToLocationID', 'LastActivityDate', 'Comment', 'ContactID', 'ShowEachTaxInGroup', 'ExpirationDate', 'CreatorResourceID', 'Name', 'GroupByID', 'ApprovalStatusChangedDate', 'CalculateTaxSeparately', 'AccountID', 'ProposalProjectID', 'ApprovalStatus', 'id', 'eQuoteActive', 'ExtApprovalResponseSignature', 'ExtApprovalResponseDate', 'GroupByProductCategory', 'CreateDate', 'PaymentTerm', 'Description', 'QuoteNumber', 'QuoteTemplateID', 'LastModifiedBy', 'BillToLocationID', 'PaymentType', 'ShowTaxCategory', 'ShippingType')]
+    [ValidateSet('ExtApprovalResponseDate', 'ShippingType', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'ApprovalStatusChangedDate', 'QuoteNumber', 'QuoteTemplateID', 'LastModifiedBy', 'PrimaryQuote', 'Name', 'Description', 'ExtApprovalResponseSignature', 'TaxGroup', 'ApprovalStatus', 'ExtApprovalContactResponse', 'CreatorResourceID', 'PaymentTerm', 'AccountID', 'OpportunityID', 'Comment', 'GroupByID', 'PaymentType', 'BillToLocationID', 'GroupByProductCategory', 'ShipToLocationID', 'PurchaseOrderNumber', 'ExternalQuoteNumber', 'LastActivityDate', 'ContactID', 'SoldToLocationID', 'EffectiveDate', 'ShowEachTaxInGroup', 'ApprovalStatusChangedByResourceID', 'ShowTaxCategory', 'eQuoteActive', 'CalculateTaxSeparately', 'ProposalProjectID', 'CreateDate', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -624,8 +611,7 @@ Set-AtwsQuote
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

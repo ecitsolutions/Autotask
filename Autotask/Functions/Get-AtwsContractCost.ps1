@@ -104,22 +104,9 @@ Set-AtwsContractCost
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProductID', 'AllocationCodeID', 'ContractID', 'CreatorResourceID', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'ContractServiceID')]
+    [ValidateSet('AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceBundleID', 'ContractServiceID', 'CreatorResourceID', 'ProductID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -142,7 +129,7 @@ Set-AtwsContractCost
     [Nullable[double][]]
     $BillableAmount,
 
-# Billable To Account
+# Billable To Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -362,21 +349,21 @@ Set-AtwsContractCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderNumber', 'DatePurchased', 'Billed', 'StatusLastModifiedDate', 'InternalPurchaseOrderNumber', 'UnitQuantity', 'InternalCurrencyUnitPrice', 'CreatorResourceID', 'Name', 'Notes', 'ExtendedCost', 'ContractServiceBundleID', 'UnitCost', 'CostType', 'ContractID', 'BusinessDivisionSubdivisionID', 'id', 'UnitPrice', 'BillableAmount', 'ContractServiceID', 'CreateDate', 'Description', 'InternalCurrencyBillableAmount', 'AllocationCodeID', 'BillableToAccount', 'ProductID', 'Status', 'StatusLastModifiedBy')]
+    [ValidateSet('Notes', 'Status', 'UnitCost', 'Name', 'Description', 'InternalPurchaseOrderNumber', 'InternalCurrencyUnitPrice', 'BusinessDivisionSubdivisionID', 'AllocationCodeID', 'InternalCurrencyBillableAmount', 'ContractServiceID', 'StatusLastModifiedDate', 'UnitPrice', 'BillableAmount', 'BillableToAccount', 'PurchaseOrderNumber', 'CreatorResourceID', 'CostType', 'ContractServiceBundleID', 'Billed', 'ProductID', 'UnitQuantity', 'ContractID', 'StatusLastModifiedBy', 'DatePurchased', 'ExtendedCost', 'CreateDate', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderNumber', 'DatePurchased', 'Billed', 'StatusLastModifiedDate', 'InternalPurchaseOrderNumber', 'UnitQuantity', 'InternalCurrencyUnitPrice', 'CreatorResourceID', 'Name', 'Notes', 'ExtendedCost', 'ContractServiceBundleID', 'UnitCost', 'CostType', 'ContractID', 'BusinessDivisionSubdivisionID', 'id', 'UnitPrice', 'BillableAmount', 'ContractServiceID', 'CreateDate', 'Description', 'InternalCurrencyBillableAmount', 'AllocationCodeID', 'BillableToAccount', 'ProductID', 'Status', 'StatusLastModifiedBy')]
+    [ValidateSet('Notes', 'Status', 'UnitCost', 'Name', 'Description', 'InternalPurchaseOrderNumber', 'InternalCurrencyUnitPrice', 'BusinessDivisionSubdivisionID', 'AllocationCodeID', 'InternalCurrencyBillableAmount', 'ContractServiceID', 'StatusLastModifiedDate', 'UnitPrice', 'BillableAmount', 'BillableToAccount', 'PurchaseOrderNumber', 'CreatorResourceID', 'CostType', 'ContractServiceBundleID', 'Billed', 'ProductID', 'UnitQuantity', 'ContractID', 'StatusLastModifiedBy', 'DatePurchased', 'ExtendedCost', 'CreateDate', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderNumber', 'DatePurchased', 'Billed', 'StatusLastModifiedDate', 'InternalPurchaseOrderNumber', 'UnitQuantity', 'InternalCurrencyUnitPrice', 'CreatorResourceID', 'Name', 'Notes', 'ExtendedCost', 'ContractServiceBundleID', 'UnitCost', 'CostType', 'ContractID', 'BusinessDivisionSubdivisionID', 'id', 'UnitPrice', 'BillableAmount', 'ContractServiceID', 'CreateDate', 'Description', 'InternalCurrencyBillableAmount', 'AllocationCodeID', 'BillableToAccount', 'ProductID', 'Status', 'StatusLastModifiedBy')]
+    [ValidateSet('Notes', 'Status', 'UnitCost', 'Name', 'Description', 'InternalPurchaseOrderNumber', 'InternalCurrencyUnitPrice', 'BusinessDivisionSubdivisionID', 'AllocationCodeID', 'InternalCurrencyBillableAmount', 'ContractServiceID', 'StatusLastModifiedDate', 'UnitPrice', 'BillableAmount', 'BillableToAccount', 'PurchaseOrderNumber', 'CreatorResourceID', 'CostType', 'ContractServiceBundleID', 'Billed', 'ProductID', 'UnitQuantity', 'ContractID', 'StatusLastModifiedBy', 'DatePurchased', 'ExtendedCost', 'CreateDate', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -509,8 +496,7 @@ Set-AtwsContractCost
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

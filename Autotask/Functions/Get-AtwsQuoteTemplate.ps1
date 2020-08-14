@@ -101,22 +101,9 @@ An example of a more complex query. This command returns any QuoteTemplates with
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('LastActivityBy')]
+    [ValidateSet('CreatedBy', 'LastActivityBy')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('Account', 'Quote', 'Country')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -324,21 +311,21 @@ An example of a more complex query. This command returns any QuoteTemplates with
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShowGridHeader', 'CalculateTaxSeparately', 'ShowTaxCategory', 'CreateDate', 'Active', 'DisplayTaxCategorySuperscripts', 'ShowEachTaxInGroup', 'CurrencyNegativeFormat', 'ShowVerticalGridLines', 'Description', 'LastActivityBy', 'PageLayout', 'CreatedBy', 'Name', 'PageNumberFormat', 'LastActivityDate', 'CurrencyPositiveFormat', 'id', 'DisplayCurrencySymbol', 'DateFormat', 'NumberFormat')]
+    [ValidateSet('Name', 'CreateDate', 'CreatedBy', 'DateFormat', 'ShowGridHeader', 'LastActivityDate', 'ShowEachTaxInGroup', 'Description', 'NumberFormat', 'Active', 'ShowVerticalGridLines', 'CurrencyPositiveFormat', 'LastActivityBy', 'CalculateTaxSeparately', 'CurrencyNegativeFormat', 'ShowTaxCategory', 'PageLayout', 'DisplayCurrencySymbol', 'id', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShowGridHeader', 'CalculateTaxSeparately', 'ShowTaxCategory', 'CreateDate', 'Active', 'DisplayTaxCategorySuperscripts', 'ShowEachTaxInGroup', 'CurrencyNegativeFormat', 'ShowVerticalGridLines', 'Description', 'LastActivityBy', 'PageLayout', 'CreatedBy', 'Name', 'PageNumberFormat', 'LastActivityDate', 'CurrencyPositiveFormat', 'id', 'DisplayCurrencySymbol', 'DateFormat', 'NumberFormat')]
+    [ValidateSet('Name', 'CreateDate', 'CreatedBy', 'DateFormat', 'ShowGridHeader', 'LastActivityDate', 'ShowEachTaxInGroup', 'Description', 'NumberFormat', 'Active', 'ShowVerticalGridLines', 'CurrencyPositiveFormat', 'LastActivityBy', 'CalculateTaxSeparately', 'CurrencyNegativeFormat', 'ShowTaxCategory', 'PageLayout', 'DisplayCurrencySymbol', 'id', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShowGridHeader', 'CalculateTaxSeparately', 'ShowTaxCategory', 'CreateDate', 'Active', 'DisplayTaxCategorySuperscripts', 'ShowEachTaxInGroup', 'CurrencyNegativeFormat', 'ShowVerticalGridLines', 'Description', 'LastActivityBy', 'PageLayout', 'CreatedBy', 'Name', 'PageNumberFormat', 'LastActivityDate', 'CurrencyPositiveFormat', 'id', 'DisplayCurrencySymbol', 'DateFormat', 'NumberFormat')]
+    [ValidateSet('Name', 'CreateDate', 'CreatedBy', 'DateFormat', 'ShowGridHeader', 'LastActivityDate', 'ShowEachTaxInGroup', 'Description', 'NumberFormat', 'Active', 'ShowVerticalGridLines', 'CurrencyPositiveFormat', 'LastActivityBy', 'CalculateTaxSeparately', 'CurrencyNegativeFormat', 'ShowTaxCategory', 'PageLayout', 'DisplayCurrencySymbol', 'id', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
     [string[]]
     $IsNotNull,
 
@@ -471,8 +458,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

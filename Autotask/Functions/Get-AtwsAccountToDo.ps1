@@ -103,21 +103,9 @@ Set-AtwsAccountToDo
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContactID', 'ContractID', 'ImpersonatorCreatorResourceID', 'AccountID', 'TicketID', 'OpportunityID')]
+    [ValidateSet('AccountID', 'AssignedToResourceID', 'ContactID', 'ContractID', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -126,7 +114,7 @@ Set-AtwsAccountToDo
     [switch]
     $All,
 
-# Account
+# Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -213,7 +201,7 @@ Set-AtwsAccountToDo
     [Nullable[datetime][]]
     $EndDateTime,
 
-# Account To Do ID
+# Client To Do ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -260,21 +248,21 @@ Set-AtwsAccountToDo
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContractID', 'LastModifiedDate', 'TicketID', 'AssignedToResourceID', 'EndDateTime', 'ActivityDescription', 'StartDateTime', 'CompletedDate', 'OpportunityID', 'AccountID', 'ContactID', 'ActionType', 'CreateDateTime', 'CreatorResourceID')]
+    [ValidateSet('ContractID', 'CreateDateTime', 'ActivityDescription', 'ContactID', 'AccountID', 'StartDateTime', 'OpportunityID', 'EndDateTime', 'ActionType', 'TicketID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDate', 'CreatorResourceID', 'id', 'AssignedToResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContractID', 'LastModifiedDate', 'TicketID', 'AssignedToResourceID', 'EndDateTime', 'ActivityDescription', 'StartDateTime', 'CompletedDate', 'OpportunityID', 'AccountID', 'ContactID', 'ActionType', 'CreateDateTime', 'CreatorResourceID')]
+    [ValidateSet('ContractID', 'CreateDateTime', 'ActivityDescription', 'ContactID', 'AccountID', 'StartDateTime', 'OpportunityID', 'EndDateTime', 'ActionType', 'TicketID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDate', 'CreatorResourceID', 'id', 'AssignedToResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'ContractID', 'LastModifiedDate', 'TicketID', 'AssignedToResourceID', 'EndDateTime', 'ActivityDescription', 'StartDateTime', 'CompletedDate', 'OpportunityID', 'AccountID', 'ContactID', 'ActionType', 'CreateDateTime', 'CreatorResourceID')]
+    [ValidateSet('ContractID', 'CreateDateTime', 'ActivityDescription', 'ContactID', 'AccountID', 'StartDateTime', 'OpportunityID', 'EndDateTime', 'ActionType', 'TicketID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDate', 'CreatorResourceID', 'id', 'AssignedToResourceID')]
     [string[]]
     $IsNotNull,
 
@@ -407,8 +395,7 @@ Set-AtwsAccountToDo
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

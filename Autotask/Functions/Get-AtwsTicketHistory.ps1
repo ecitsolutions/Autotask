@@ -86,18 +86,6 @@ Returns any object with a TicketHistoryName that DOES NOT match the simple patte
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -116,21 +104,21 @@ Returns any object with a TicketHistoryName that DOES NOT match the simple patte
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Date', 'Action', 'ResourceID', 'Detail', 'id', 'TicketID')]
+    [ValidateSet('TicketID', 'Date', 'id', 'Action', 'Detail', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Date', 'Action', 'ResourceID', 'Detail', 'id', 'TicketID')]
+    [ValidateSet('TicketID', 'Date', 'id', 'Action', 'Detail', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Date', 'Action', 'ResourceID', 'Detail', 'id', 'TicketID')]
+    [ValidateSet('TicketID', 'Date', 'id', 'Action', 'Detail', 'ResourceID')]
     [string[]]
     $IsNotNull,
 
@@ -263,8 +251,7 @@ Returns any object with a TicketHistoryName that DOES NOT match the simple patte
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

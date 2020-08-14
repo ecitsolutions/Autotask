@@ -169,7 +169,7 @@ Get-AtwsSalesOrder
     [Nullable[Int]]
     $BillToCountryID,
 
-# Bill to Zip Code
+# Bill to Postal Code
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -183,7 +183,7 @@ Get-AtwsSalesOrder
     [string]
     $BillToPostalCode,
 
-# Bill to State
+# Bill to County
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -337,7 +337,7 @@ Get-AtwsSalesOrder
     [Nullable[Int]]
     $ShipToCountryID,
 
-# Ship to Zip Code
+# Ship to Postal Code
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -351,7 +351,7 @@ Get-AtwsSalesOrder
     [string]
     $ShipToPostalCode,
 
-# Ship to State
+# Ship to County
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

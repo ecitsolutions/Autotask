@@ -72,7 +72,7 @@ Set-AtwsAccount
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Account Name
+# Client Name
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -83,7 +83,7 @@ Set-AtwsAccount
     [string]
     $AccountName,
 
-# Account Number
+# Client Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -91,7 +91,7 @@ Set-AtwsAccount
     [string]
     $AccountNumber,
 
-# Account Type
+# Client Type
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -258,7 +258,7 @@ Set-AtwsAccount
     [Int]
     $BillToCountryID,
 
-# Bill To State
+# Bill To County
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -266,7 +266,7 @@ Set-AtwsAccount
     [string]
     $BillToState,
 
-# Bill To Zip Code
+# Bill To Postal Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -392,7 +392,7 @@ Set-AtwsAccount
     [string]
     $InvoiceMethod,
 
-# Invoice non contract items to Parent Account
+# Invoice non contract items to Parent Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -458,7 +458,7 @@ Set-AtwsAccount
     [string]
     $MarketSegmentID,
 
-# Account Owner
+# Client Owner
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -467,7 +467,7 @@ Set-AtwsAccount
     [Int]
     $OwnerResourceID,
 
-# Parent Account
+# Parent Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -484,7 +484,7 @@ Set-AtwsAccount
     [string]
     $Phone,
 
-# Zip Code
+# Postal Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -514,7 +514,7 @@ Set-AtwsAccount
     [string]
     $SICCode,
 
-# State
+# County
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

@@ -90,19 +90,6 @@ Set-AtwsRole
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractRate', 'ResourceServiceDeskRole', 'TimeEntry', 'ResourceRoleDepartment', 'TaskSecondaryResource', 'Resource', 'Ticket', 'ContractFactor', 'ContractRoleCost', 'BillingItem', 'ResourceRole', 'PriceListRole', 'Task', 'ResourceRoleQueue', 'ContractExclusionSetExcludedRole', 'ContractExclusionRole', 'TicketSecondaryResource', 'QuoteItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -190,21 +177,21 @@ Set-AtwsRole
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleType', 'Active', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'SystemRole', 'id', 'IsExcludedFromNewContracts')]
+    [ValidateSet('Active', 'QuoteItemDefaultTaxCategoryId', 'HourlyFactor', 'Description', 'RoleType', 'IsExcludedFromNewContracts', 'HourlyRate', 'id', 'SystemRole', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleType', 'Active', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'SystemRole', 'id', 'IsExcludedFromNewContracts')]
+    [ValidateSet('Active', 'QuoteItemDefaultTaxCategoryId', 'HourlyFactor', 'Description', 'RoleType', 'IsExcludedFromNewContracts', 'HourlyRate', 'id', 'SystemRole', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleType', 'Active', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'SystemRole', 'id', 'IsExcludedFromNewContracts')]
+    [ValidateSet('Active', 'QuoteItemDefaultTaxCategoryId', 'HourlyFactor', 'Description', 'RoleType', 'IsExcludedFromNewContracts', 'HourlyRate', 'id', 'SystemRole', 'Name')]
     [string[]]
     $IsNotNull,
 
@@ -336,8 +323,7 @@ Set-AtwsRole
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

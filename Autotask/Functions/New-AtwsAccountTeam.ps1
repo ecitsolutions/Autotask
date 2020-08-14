@@ -61,7 +61,7 @@ Get-AtwsAccountTeam
     [Autotask.AccountTeam[]]
     $InputObject,
 
-# Account
+# Client
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'

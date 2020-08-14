@@ -104,22 +104,9 @@ Set-AtwsServiceBundle
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('UpdateResourceID', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'CreatorResourceID', 'UpdateResourceID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('QuoteItem', 'ContractServiceBundleAdjustment', 'ContractServiceBundleUnit', 'PriceListServiceBundle', 'ServiceBundleService', 'InstalledProduct', 'ContractServiceBundle', 'BillingItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -274,21 +261,21 @@ Set-AtwsServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'UpdateResourceID', 'UnitCost', 'LastModifiedDate', 'CreatorResourceID', 'ServiceLevelAgreementID', 'CreateDate', 'AllocationCodeID', 'IsActive', 'UnitDiscount', 'Description', 'Name', 'PercentageDiscount', 'UnitPrice', 'InvoiceDescription', 'PeriodType')]
+    [ValidateSet('UpdateResourceID', 'Name', 'CreateDate', 'UnitCost', 'UnitPrice', 'Description', 'CreatorResourceID', 'PercentageDiscount', 'PeriodType', 'InvoiceDescription', 'UnitDiscount', 'ServiceLevelAgreementID', 'LastModifiedDate', 'AllocationCodeID', 'id', 'IsActive')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'UpdateResourceID', 'UnitCost', 'LastModifiedDate', 'CreatorResourceID', 'ServiceLevelAgreementID', 'CreateDate', 'AllocationCodeID', 'IsActive', 'UnitDiscount', 'Description', 'Name', 'PercentageDiscount', 'UnitPrice', 'InvoiceDescription', 'PeriodType')]
+    [ValidateSet('UpdateResourceID', 'Name', 'CreateDate', 'UnitCost', 'UnitPrice', 'Description', 'CreatorResourceID', 'PercentageDiscount', 'PeriodType', 'InvoiceDescription', 'UnitDiscount', 'ServiceLevelAgreementID', 'LastModifiedDate', 'AllocationCodeID', 'id', 'IsActive')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'UpdateResourceID', 'UnitCost', 'LastModifiedDate', 'CreatorResourceID', 'ServiceLevelAgreementID', 'CreateDate', 'AllocationCodeID', 'IsActive', 'UnitDiscount', 'Description', 'Name', 'PercentageDiscount', 'UnitPrice', 'InvoiceDescription', 'PeriodType')]
+    [ValidateSet('UpdateResourceID', 'Name', 'CreateDate', 'UnitCost', 'UnitPrice', 'Description', 'CreatorResourceID', 'PercentageDiscount', 'PeriodType', 'InvoiceDescription', 'UnitDiscount', 'ServiceLevelAgreementID', 'LastModifiedDate', 'AllocationCodeID', 'id', 'IsActive')]
     [string[]]
     $IsNotNull,
 
@@ -421,8 +408,7 @@ Set-AtwsServiceBundle
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

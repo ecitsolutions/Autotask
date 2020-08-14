@@ -82,21 +82,9 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'TicketID', 'SurveyID', 'ContactID')]
+    [ValidateSet('AccountID', 'ContactID', 'SurveyID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -187,21 +175,21 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompleteDate', 'SendDate', 'CompanyRating', 'ResourceRating', 'ContactRating', 'AccountID', 'id', 'SurveyRating', 'SurveyID', 'TicketID', 'ContactID')]
+    [ValidateSet('TicketID', 'ResourceRating', 'SurveyRating', 'CompanyRating', 'ContactRating', 'SurveyID', 'CompleteDate', 'id', 'SendDate', 'ContactID', 'AccountID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompleteDate', 'SendDate', 'CompanyRating', 'ResourceRating', 'ContactRating', 'AccountID', 'id', 'SurveyRating', 'SurveyID', 'TicketID', 'ContactID')]
+    [ValidateSet('TicketID', 'ResourceRating', 'SurveyRating', 'CompanyRating', 'ContactRating', 'SurveyID', 'CompleteDate', 'id', 'SendDate', 'ContactID', 'AccountID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompleteDate', 'SendDate', 'CompanyRating', 'ResourceRating', 'ContactRating', 'AccountID', 'id', 'SurveyRating', 'SurveyID', 'TicketID', 'ContactID')]
+    [ValidateSet('TicketID', 'ResourceRating', 'SurveyRating', 'CompanyRating', 'ContactRating', 'SurveyID', 'CompleteDate', 'id', 'SendDate', 'ContactID', 'AccountID')]
     [string[]]
     $IsNotNull,
 
@@ -329,8 +317,7 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

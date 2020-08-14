@@ -107,19 +107,6 @@ Set-AtwsServiceCall
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('ServiceCallTicket', 'ServiceCallTask')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -127,7 +114,7 @@ Set-AtwsServiceCall
     [switch]
     $All,
 
-# Account ID
+# Client ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -259,21 +246,21 @@ Set-AtwsServiceCall
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'Status', 'EndDateTime', 'CanceledDateTime', 'CanceledByResource', 'Duration', 'StartDateTime', 'LastModifiedDateTime', 'Description', 'Complete', 'AccountPhysicalLocationID', 'CreateDateTime', 'CancelationNoticeHours', 'CreatorResourceID', 'AccountID')]
+    [ValidateSet('AccountPhysicalLocationID', 'CreateDateTime', 'CancelationNoticeHours', 'AccountID', 'StartDateTime', 'Description', 'EndDateTime', 'Status', 'CanceledByResource', 'CanceledDateTime', 'LastModifiedDateTime', 'ImpersonatorCreatorResourceID', 'Duration', 'CreatorResourceID', 'id', 'Complete')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'Status', 'EndDateTime', 'CanceledDateTime', 'CanceledByResource', 'Duration', 'StartDateTime', 'LastModifiedDateTime', 'Description', 'Complete', 'AccountPhysicalLocationID', 'CreateDateTime', 'CancelationNoticeHours', 'CreatorResourceID', 'AccountID')]
+    [ValidateSet('AccountPhysicalLocationID', 'CreateDateTime', 'CancelationNoticeHours', 'AccountID', 'StartDateTime', 'Description', 'EndDateTime', 'Status', 'CanceledByResource', 'CanceledDateTime', 'LastModifiedDateTime', 'ImpersonatorCreatorResourceID', 'Duration', 'CreatorResourceID', 'id', 'Complete')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'Status', 'EndDateTime', 'CanceledDateTime', 'CanceledByResource', 'Duration', 'StartDateTime', 'LastModifiedDateTime', 'Description', 'Complete', 'AccountPhysicalLocationID', 'CreateDateTime', 'CancelationNoticeHours', 'CreatorResourceID', 'AccountID')]
+    [ValidateSet('AccountPhysicalLocationID', 'CreateDateTime', 'CancelationNoticeHours', 'AccountID', 'StartDateTime', 'Description', 'EndDateTime', 'Status', 'CanceledByResource', 'CanceledDateTime', 'LastModifiedDateTime', 'ImpersonatorCreatorResourceID', 'Duration', 'CreatorResourceID', 'id', 'Complete')]
     [string[]]
     $IsNotNull,
 
@@ -406,8 +393,7 @@ Set-AtwsServiceCall
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

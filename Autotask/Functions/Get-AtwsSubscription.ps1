@@ -104,22 +104,9 @@ Set-AtwsSubscription
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('VendorID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'MaterialCodeID', 'InstalledProductID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'MaterialCodeID', 'VendorID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('SubscriptionPeriod')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -272,21 +259,21 @@ Set-AtwsSubscription
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'Status', 'BusinessDivisionSubdivisionID', 'TotalCost', 'MaterialCodeID', 'VendorID', 'PeriodCost', 'TotalPrice', 'PurchaseOrderNumber', 'Description', 'EffectiveDate', 'PeriodPrice', 'InstalledProductID', 'PeriodType', 'SubscriptionName')]
+    [ValidateSet('TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'ExpirationDate', 'TotalCost', 'Description', 'VendorID', 'InstalledProductID', 'Status', 'PeriodCost', 'PeriodType', 'ImpersonatorCreatorResourceID', 'SubscriptionName', 'BusinessDivisionSubdivisionID', 'EffectiveDate', 'PeriodPrice', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'Status', 'BusinessDivisionSubdivisionID', 'TotalCost', 'MaterialCodeID', 'VendorID', 'PeriodCost', 'TotalPrice', 'PurchaseOrderNumber', 'Description', 'EffectiveDate', 'PeriodPrice', 'InstalledProductID', 'PeriodType', 'SubscriptionName')]
+    [ValidateSet('TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'ExpirationDate', 'TotalCost', 'Description', 'VendorID', 'InstalledProductID', 'Status', 'PeriodCost', 'PeriodType', 'ImpersonatorCreatorResourceID', 'SubscriptionName', 'BusinessDivisionSubdivisionID', 'EffectiveDate', 'PeriodPrice', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'Status', 'BusinessDivisionSubdivisionID', 'TotalCost', 'MaterialCodeID', 'VendorID', 'PeriodCost', 'TotalPrice', 'PurchaseOrderNumber', 'Description', 'EffectiveDate', 'PeriodPrice', 'InstalledProductID', 'PeriodType', 'SubscriptionName')]
+    [ValidateSet('TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'ExpirationDate', 'TotalCost', 'Description', 'VendorID', 'InstalledProductID', 'Status', 'PeriodCost', 'PeriodType', 'ImpersonatorCreatorResourceID', 'SubscriptionName', 'BusinessDivisionSubdivisionID', 'EffectiveDate', 'PeriodPrice', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -419,8 +406,7 @@ Set-AtwsSubscription
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

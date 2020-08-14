@@ -61,7 +61,7 @@ Set-AtwsAccountAlert
     [Autotask.AccountAlert[]]
     $InputObject,
 
-# Account ID
+# Client ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'

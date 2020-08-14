@@ -100,22 +100,9 @@ Set-AtwsInvoice
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountID', 'InvoiceEditorTemplateID', 'VoidedByResourceID')]
+    [ValidateSet('AccountID', 'CreatorResourceID', 'InvoiceEditorTemplateID', 'VoidedByResourceID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -124,7 +111,7 @@ Set-AtwsInvoice
     [switch]
     $All,
 
-# Account ID
+# Client ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -292,21 +279,21 @@ Set-AtwsInvoice
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PaidDate', 'VoidedByResourceID', 'FromDate', 'InvoiceTotal', 'BatchID', 'InvoiceDateTime', 'DueDate', 'PaymentTerm', 'TaxGroup', 'OrderNumber', 'AccountID', 'VoidedDate', 'ToDate', 'TotalTaxValue', 'TaxRegionName', 'CreatorResourceID', 'CreateDateTime', 'Comments', 'WebServiceDate', 'InvoiceEditorTemplateID', 'InvoiceNumber', 'IsVoided')]
+    [ValidateSet('PaymentTerm', 'DueDate', 'OrderNumber', 'TaxRegionName', 'InvoiceNumber', 'CreateDateTime', 'BatchID', 'FromDate', 'AccountID', 'Comments', 'WebServiceDate', 'CreatorResourceID', 'InvoiceDateTime', 'TaxGroup', 'id', 'InvoiceEditorTemplateID', 'PaidDate', 'VoidedDate', 'VoidedByResourceID', 'TotalTaxValue', 'ToDate', 'InvoiceTotal', 'IsVoided')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PaidDate', 'VoidedByResourceID', 'FromDate', 'InvoiceTotal', 'BatchID', 'InvoiceDateTime', 'DueDate', 'PaymentTerm', 'TaxGroup', 'OrderNumber', 'AccountID', 'VoidedDate', 'ToDate', 'TotalTaxValue', 'TaxRegionName', 'CreatorResourceID', 'CreateDateTime', 'Comments', 'WebServiceDate', 'InvoiceEditorTemplateID', 'InvoiceNumber', 'IsVoided')]
+    [ValidateSet('PaymentTerm', 'DueDate', 'OrderNumber', 'TaxRegionName', 'InvoiceNumber', 'CreateDateTime', 'BatchID', 'FromDate', 'AccountID', 'Comments', 'WebServiceDate', 'CreatorResourceID', 'InvoiceDateTime', 'TaxGroup', 'id', 'InvoiceEditorTemplateID', 'PaidDate', 'VoidedDate', 'VoidedByResourceID', 'TotalTaxValue', 'ToDate', 'InvoiceTotal', 'IsVoided')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PaidDate', 'VoidedByResourceID', 'FromDate', 'InvoiceTotal', 'BatchID', 'InvoiceDateTime', 'DueDate', 'PaymentTerm', 'TaxGroup', 'OrderNumber', 'AccountID', 'VoidedDate', 'ToDate', 'TotalTaxValue', 'TaxRegionName', 'CreatorResourceID', 'CreateDateTime', 'Comments', 'WebServiceDate', 'InvoiceEditorTemplateID', 'InvoiceNumber', 'IsVoided')]
+    [ValidateSet('PaymentTerm', 'DueDate', 'OrderNumber', 'TaxRegionName', 'InvoiceNumber', 'CreateDateTime', 'BatchID', 'FromDate', 'AccountID', 'Comments', 'WebServiceDate', 'CreatorResourceID', 'InvoiceDateTime', 'TaxGroup', 'id', 'InvoiceEditorTemplateID', 'PaidDate', 'VoidedDate', 'VoidedByResourceID', 'TotalTaxValue', 'ToDate', 'InvoiceTotal', 'IsVoided')]
     [string[]]
     $IsNotNull,
 
@@ -439,8 +426,7 @@ Set-AtwsInvoice
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

@@ -86,21 +86,9 @@ Remove-AtwsTicketChangeRequestApproval
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContactID', 'TicketID', 'ResourceID')]
+    [ValidateSet('ContactID', 'ResourceID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -164,21 +152,21 @@ Remove-AtwsTicketChangeRequestApproval
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ApproveRejectNote', 'ResourceID', 'id', 'ApproveRejectDateTime', 'IsApproved', 'ContactID')]
+    [ValidateSet('TicketID', 'id', 'ApproveRejectDateTime', 'IsApproved', 'ApproveRejectNote', 'ContactID', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ApproveRejectNote', 'ResourceID', 'id', 'ApproveRejectDateTime', 'IsApproved', 'ContactID')]
+    [ValidateSet('TicketID', 'id', 'ApproveRejectDateTime', 'IsApproved', 'ApproveRejectNote', 'ContactID', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ApproveRejectNote', 'ResourceID', 'id', 'ApproveRejectDateTime', 'IsApproved', 'ContactID')]
+    [ValidateSet('TicketID', 'id', 'ApproveRejectDateTime', 'IsApproved', 'ApproveRejectNote', 'ContactID', 'ResourceID')]
     [string[]]
     $IsNotNull,
 
@@ -311,8 +299,7 @@ Remove-AtwsTicketChangeRequestApproval
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

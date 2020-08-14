@@ -86,21 +86,9 @@ Set-AtwsContractRoleCost
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('RoleID', 'ResourceID', 'ContractID')]
+    [ValidateSet('ContractID', 'ResourceID', 'RoleID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -152,21 +140,21 @@ Set-AtwsContractRoleCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'Rate', 'RoleID', 'ContractID')]
+    [ValidateSet('RoleID', 'Rate', 'ResourceID', 'ContractID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'Rate', 'RoleID', 'ContractID')]
+    [ValidateSet('RoleID', 'Rate', 'ResourceID', 'ContractID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'Rate', 'RoleID', 'ContractID')]
+    [ValidateSet('RoleID', 'Rate', 'ResourceID', 'ContractID', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -293,8 +281,7 @@ Set-AtwsContractRoleCost
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

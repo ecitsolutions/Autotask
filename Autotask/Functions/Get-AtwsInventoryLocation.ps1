@@ -86,22 +86,9 @@ Set-AtwsInventoryLocation
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ImpersonatorCreatorResourceID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'ResourceID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('PurchaseOrderItem', 'InventoryItem', 'InventoryTransfer')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -159,21 +146,21 @@ Set-AtwsInventoryLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDefault', 'Active', 'ResourceID', 'id', 'LocationName', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'Active', 'IsDefault', 'id', 'LocationName', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDefault', 'Active', 'ResourceID', 'id', 'LocationName', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'Active', 'IsDefault', 'id', 'LocationName', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDefault', 'Active', 'ResourceID', 'id', 'LocationName', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('ImpersonatorCreatorResourceID', 'Active', 'IsDefault', 'id', 'LocationName', 'ResourceID')]
     [string[]]
     $IsNotNull,
 
@@ -305,8 +292,7 @@ Set-AtwsInventoryLocation
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

@@ -86,18 +86,6 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT 
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -132,21 +120,21 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'BusinessDivisionSubdivisionID', 'id')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ResourceID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'BusinessDivisionSubdivisionID', 'id')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ResourceID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'BusinessDivisionSubdivisionID', 'id')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ResourceID', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -273,8 +261,7 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT 
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

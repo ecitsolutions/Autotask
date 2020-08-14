@@ -108,22 +108,9 @@ Set-AtwsAccount
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillToAccountPhysicalLocationID', 'ImpersonatorCreatorResourceID', 'InvoiceTemplateID', 'ParentAccountID', 'CurrencyID', 'BillToCountryID', 'QuoteTemplateID', 'TaxRegionID')]
+    [ValidateSet('BillToAccountPhysicalLocationID', 'BillToCountryID', 'CountryID', 'CreatedByResourceID', 'CurrencyID', 'ImpersonatorCreatorResourceID', 'InvoiceTemplateID', 'OwnerResourceID', 'ParentAccountID', 'QuoteTemplateID', 'TaxRegionID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountPhysicalLocation', 'ExpenseItem', 'Project', 'Opportunity', 'Contact', 'AccountToDo', 'Account', 'AccountLocation', 'Quote', 'BillingItem', 'SurveyResults', 'ContractServiceUnit', 'Service', 'SalesOrder', 'Product', 'NotificationHistory', 'Subscription', 'InstalledProduct', 'Contract', 'Ticket', 'ProductVendor', 'AccountTeam', 'ComanagedAssociation', 'AccountAlert', 'AccountNote', 'ServiceCall', 'Invoice', 'PurchaseOrder')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -141,7 +128,7 @@ Set-AtwsAccount
     [Autotask.UserDefinedField]
     $UserDefinedField,
 
-# Account Name
+# Client Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -151,7 +138,7 @@ Set-AtwsAccount
     [string[]]
     $AccountName,
 
-# Account Number
+# Client Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -159,7 +146,7 @@ Set-AtwsAccount
     [string[]]
     $AccountNumber,
 
-# Account Type
+# Client Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -318,7 +305,7 @@ Set-AtwsAccount
     [Nullable[Int][]]
     $BillToCountryID,
 
-# Bill To State
+# Bill To County
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -326,7 +313,7 @@ Set-AtwsAccount
     [string[]]
     $BillToState,
 
-# Bill To Zip Code
+# Bill To Postal Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -419,7 +406,7 @@ Set-AtwsAccount
     [string[]]
     $Fax,
 
-# Account ID
+# Client ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -460,7 +447,7 @@ Set-AtwsAccount
     [string[]]
     $InvoiceMethod,
 
-# Invoice non contract items to Parent Account
+# Invoice non contract items to Parent Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -526,7 +513,7 @@ Set-AtwsAccount
     [string[]]
     $MarketSegmentID,
 
-# Account Owner
+# Client Owner
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -534,7 +521,7 @@ Set-AtwsAccount
     [Nullable[Int][]]
     $OwnerResourceID,
 
-# Parent Account
+# Parent Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -550,7 +537,7 @@ Set-AtwsAccount
     [string[]]
     $Phone,
 
-# Zip Code
+# Postal Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -572,7 +559,7 @@ Set-AtwsAccount
     [Nullable[Int][]]
     $QuoteTemplateID,
 
-# State
+# County
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -646,21 +633,21 @@ Set-AtwsAccount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillToAddressToUse', 'Fax', 'KeyAccountIcon', 'CountryID', 'BillToZipCode', 'AccountType', 'Active', 'ClientPortalActive', 'TaxID', 'AdditionalAddressInformation', 'BillToCountryID', 'BillToAddress2', 'BillToAccountPhysicalLocationID', 'State', 'BillToState', 'MarketSegmentID', 'LastActivityDate', 'WebAddress', 'InvoiceTemplateID', 'TaskFireActive', 'ApiVendorID', 'City', 'BillToAddress1', 'SurveyAccountRating', 'QuoteTemplateID', 'StockMarket', 'OwnerResourceID', 'Phone', 'SICCode', 'InvoiceNonContractItemsToParentAccount', 'BillToAdditionalAddressInformation', 'EnabledForComanaged', 'PostalCode', 'InvoiceMethod', 'id', 'StockSymbol', 'QuoteEmailMessageID', 'ImpersonatorCreatorResourceID', 'BillToCity', 'AccountName', 'AlternatePhone2', 'TaxRegionID', 'Address2', 'LastTrackedModifiedDateTime', 'AccountNumber', 'CreateDate', 'CreatedByResourceID', 'BillToAttention', 'AlternatePhone1', 'TerritoryID', 'CompetitorID', 'Address1', 'ParentAccountID', 'InvoiceEmailMessageID', 'TaxExempt', 'CurrencyID', 'Country', 'AssetValue', '')]
+    [ValidateSet('TaxExempt', 'QuoteEmailMessageID', 'SICCode', 'BillToCountryID', 'BillToAccountPhysicalLocationID', 'Active', 'CountryID', 'CurrencyID', 'BillToZipCode', 'BillToAttention', 'Address1', 'PostalCode', 'Address2', 'AccountName', 'InvoiceNonContractItemsToParentAccount', 'AlternatePhone1', 'StockMarket', 'ApiVendorID', 'AdditionalAddressInformation', 'QuoteTemplateID', 'KeyAccountIcon', 'AccountNumber', 'StockSymbol', 'BillToAddressToUse', 'LastTrackedModifiedDateTime', 'OwnerResourceID', 'BillToAddress1', 'TaskFireActive', 'BillToAdditionalAddressInformation', 'BillToAddress2', 'BillToCity', 'CreatedByResourceID', 'Fax', 'InvoiceEmailMessageID', 'InvoiceMethod', 'State', 'TerritoryID', 'BillToState', 'CompetitorID', 'ClientPortalActive', 'TaxRegionID', 'WebAddress', 'TaxID', 'LastActivityDate', 'SurveyAccountRating', 'City', 'ParentAccountID', 'AssetValue', 'Country', 'EnabledForComanaged', 'MarketSegmentID', 'Phone', 'AlternatePhone2', 'InvoiceTemplateID', 'ImpersonatorCreatorResourceID', 'CreateDate', 'AccountType', 'id', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillToAddressToUse', 'Fax', 'KeyAccountIcon', 'CountryID', 'BillToZipCode', 'AccountType', 'Active', 'ClientPortalActive', 'TaxID', 'AdditionalAddressInformation', 'BillToCountryID', 'BillToAddress2', 'BillToAccountPhysicalLocationID', 'State', 'BillToState', 'MarketSegmentID', 'LastActivityDate', 'WebAddress', 'InvoiceTemplateID', 'TaskFireActive', 'ApiVendorID', 'City', 'BillToAddress1', 'SurveyAccountRating', 'QuoteTemplateID', 'StockMarket', 'OwnerResourceID', 'Phone', 'SICCode', 'InvoiceNonContractItemsToParentAccount', 'BillToAdditionalAddressInformation', 'EnabledForComanaged', 'PostalCode', 'InvoiceMethod', 'id', 'StockSymbol', 'QuoteEmailMessageID', 'ImpersonatorCreatorResourceID', 'BillToCity', 'AccountName', 'AlternatePhone2', 'TaxRegionID', 'Address2', 'LastTrackedModifiedDateTime', 'AccountNumber', 'CreateDate', 'CreatedByResourceID', 'BillToAttention', 'AlternatePhone1', 'TerritoryID', 'CompetitorID', 'Address1', 'ParentAccountID', 'InvoiceEmailMessageID', 'TaxExempt', 'CurrencyID', 'Country', 'AssetValue', '')]
+    [ValidateSet('TaxExempt', 'QuoteEmailMessageID', 'SICCode', 'BillToCountryID', 'BillToAccountPhysicalLocationID', 'Active', 'CountryID', 'CurrencyID', 'BillToZipCode', 'BillToAttention', 'Address1', 'PostalCode', 'Address2', 'AccountName', 'InvoiceNonContractItemsToParentAccount', 'AlternatePhone1', 'StockMarket', 'ApiVendorID', 'AdditionalAddressInformation', 'QuoteTemplateID', 'KeyAccountIcon', 'AccountNumber', 'StockSymbol', 'BillToAddressToUse', 'LastTrackedModifiedDateTime', 'OwnerResourceID', 'BillToAddress1', 'TaskFireActive', 'BillToAdditionalAddressInformation', 'BillToAddress2', 'BillToCity', 'CreatedByResourceID', 'Fax', 'InvoiceEmailMessageID', 'InvoiceMethod', 'State', 'TerritoryID', 'BillToState', 'CompetitorID', 'ClientPortalActive', 'TaxRegionID', 'WebAddress', 'TaxID', 'LastActivityDate', 'SurveyAccountRating', 'City', 'ParentAccountID', 'AssetValue', 'Country', 'EnabledForComanaged', 'MarketSegmentID', 'Phone', 'AlternatePhone2', 'InvoiceTemplateID', 'ImpersonatorCreatorResourceID', 'CreateDate', 'AccountType', 'id', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillToAddressToUse', 'Fax', 'KeyAccountIcon', 'CountryID', 'BillToZipCode', 'AccountType', 'Active', 'ClientPortalActive', 'TaxID', 'AdditionalAddressInformation', 'BillToCountryID', 'BillToAddress2', 'BillToAccountPhysicalLocationID', 'State', 'BillToState', 'MarketSegmentID', 'LastActivityDate', 'WebAddress', 'InvoiceTemplateID', 'TaskFireActive', 'ApiVendorID', 'City', 'BillToAddress1', 'SurveyAccountRating', 'QuoteTemplateID', 'StockMarket', 'OwnerResourceID', 'Phone', 'SICCode', 'InvoiceNonContractItemsToParentAccount', 'BillToAdditionalAddressInformation', 'EnabledForComanaged', 'PostalCode', 'InvoiceMethod', 'id', 'StockSymbol', 'QuoteEmailMessageID', 'ImpersonatorCreatorResourceID', 'BillToCity', 'AccountName', 'AlternatePhone2', 'TaxRegionID', 'Address2', 'LastTrackedModifiedDateTime', 'AccountNumber', 'CreateDate', 'CreatedByResourceID', 'BillToAttention', 'AlternatePhone1', 'TerritoryID', 'CompetitorID', 'Address1', 'ParentAccountID', 'InvoiceEmailMessageID', 'TaxExempt', 'CurrencyID', 'Country', 'AssetValue', '')]
+    [ValidateSet('TaxExempt', 'QuoteEmailMessageID', 'SICCode', 'BillToCountryID', 'BillToAccountPhysicalLocationID', 'Active', 'CountryID', 'CurrencyID', 'BillToZipCode', 'BillToAttention', 'Address1', 'PostalCode', 'Address2', 'AccountName', 'InvoiceNonContractItemsToParentAccount', 'AlternatePhone1', 'StockMarket', 'ApiVendorID', 'AdditionalAddressInformation', 'QuoteTemplateID', 'KeyAccountIcon', 'AccountNumber', 'StockSymbol', 'BillToAddressToUse', 'LastTrackedModifiedDateTime', 'OwnerResourceID', 'BillToAddress1', 'TaskFireActive', 'BillToAdditionalAddressInformation', 'BillToAddress2', 'BillToCity', 'CreatedByResourceID', 'Fax', 'InvoiceEmailMessageID', 'InvoiceMethod', 'State', 'TerritoryID', 'BillToState', 'CompetitorID', 'ClientPortalActive', 'TaxRegionID', 'WebAddress', 'TaxID', 'LastActivityDate', 'SurveyAccountRating', 'City', 'ParentAccountID', 'AssetValue', 'Country', 'EnabledForComanaged', 'MarketSegmentID', 'Phone', 'AlternatePhone2', 'InvoiceTemplateID', 'ImpersonatorCreatorResourceID', 'CreateDate', 'AccountType', 'id', '')]
     [string[]]
     $IsNotNull,
 
@@ -793,8 +780,7 @@ Set-AtwsAccount
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

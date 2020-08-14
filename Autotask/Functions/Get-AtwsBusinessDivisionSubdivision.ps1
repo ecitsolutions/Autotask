@@ -86,22 +86,9 @@ Set-AtwsBusinessDivisionSubdivision
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BusinessSubdivisionID', 'BusinessDivisionID')]
+    [ValidateSet('BusinessDivisionID', 'BusinessSubdivisionID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('ChangeOrderCost', 'ExpenseReport', 'ContractServiceBundleUnit', 'BusinessDivisionSubdivisionResource', 'Contract', 'TicketCategoryFieldDefaults', 'Ticket', 'SalesOrder', 'ProjectCost', 'ContractCost', 'BillingItem', 'ContractMilestone', 'Opportunity', 'TicketCost', 'Project', 'Subscription', 'ContractServiceUnit')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -144,21 +131,21 @@ Set-AtwsBusinessDivisionSubdivision
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionID', 'id', 'Active', 'BusinessSubdivisionID')]
+    [ValidateSet('BusinessDivisionID', 'Active', 'BusinessSubdivisionID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionID', 'id', 'Active', 'BusinessSubdivisionID')]
+    [ValidateSet('BusinessDivisionID', 'Active', 'BusinessSubdivisionID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionID', 'id', 'Active', 'BusinessSubdivisionID')]
+    [ValidateSet('BusinessDivisionID', 'Active', 'BusinessSubdivisionID', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -285,8 +272,7 @@ Set-AtwsBusinessDivisionSubdivision
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

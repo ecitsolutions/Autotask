@@ -92,18 +92,6 @@ Set-AtwsHoliday
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -148,21 +136,21 @@ Set-AtwsHoliday
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidayName', 'id', 'HolidaySetID', 'HolidayDate')]
+    [ValidateSet('HolidayDate', 'HolidaySetID', 'HolidayName', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidayName', 'id', 'HolidaySetID', 'HolidayDate')]
+    [ValidateSet('HolidayDate', 'HolidaySetID', 'HolidayName', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidayName', 'id', 'HolidaySetID', 'HolidayDate')]
+    [ValidateSet('HolidayDate', 'HolidaySetID', 'HolidayName', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -295,8 +283,7 @@ Set-AtwsHoliday
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

@@ -101,22 +101,9 @@ Set-AtwsContractMilestone
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'CreatorResourceID', 'AllocationCodeID', 'ContractID')]
+    [ValidateSet('AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractID', 'CreatorResourceID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -240,21 +227,21 @@ Set-AtwsContractMilestone
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'Status', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID', 'Title', 'IsInitialPayment', 'CreateDate', 'AllocationCodeID', 'Description', 'Amount', 'DateDue', 'CreatorResourceID')]
+    [ValidateSet('CreateDate', 'ContractID', 'InternalCurrencyAmount', 'Description', 'CreatorResourceID', 'DateDue', 'Status', 'Amount', 'BusinessDivisionSubdivisionID', 'AllocationCodeID', 'Title', 'id', 'IsInitialPayment')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'Status', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID', 'Title', 'IsInitialPayment', 'CreateDate', 'AllocationCodeID', 'Description', 'Amount', 'DateDue', 'CreatorResourceID')]
+    [ValidateSet('CreateDate', 'ContractID', 'InternalCurrencyAmount', 'Description', 'CreatorResourceID', 'DateDue', 'Status', 'Amount', 'BusinessDivisionSubdivisionID', 'AllocationCodeID', 'Title', 'id', 'IsInitialPayment')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'Status', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID', 'Title', 'IsInitialPayment', 'CreateDate', 'AllocationCodeID', 'Description', 'Amount', 'DateDue', 'CreatorResourceID')]
+    [ValidateSet('CreateDate', 'ContractID', 'InternalCurrencyAmount', 'Description', 'CreatorResourceID', 'DateDue', 'Status', 'Amount', 'BusinessDivisionSubdivisionID', 'AllocationCodeID', 'Title', 'id', 'IsInitialPayment')]
     [string[]]
     $IsNotNull,
 
@@ -387,8 +374,7 @@ Set-AtwsContractMilestone
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

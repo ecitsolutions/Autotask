@@ -104,19 +104,6 @@ Set-AtwsInstalledProductCategory
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProductCategoryUdfAssociation', 'InstalledProduct')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -194,21 +181,21 @@ Set-AtwsInstalledProductCategory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Nickname', 'Active', 'DisplayColorRGB', 'Name', 'id', 'GlobalDefault', 'ClientPortalDefault')]
+    [ValidateSet('GlobalDefault', 'Nickname', 'Active', 'DisplayColorRGB', 'id', 'ClientPortalDefault', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Nickname', 'Active', 'DisplayColorRGB', 'Name', 'id', 'GlobalDefault', 'ClientPortalDefault')]
+    [ValidateSet('GlobalDefault', 'Nickname', 'Active', 'DisplayColorRGB', 'id', 'ClientPortalDefault', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Nickname', 'Active', 'DisplayColorRGB', 'Name', 'id', 'GlobalDefault', 'ClientPortalDefault')]
+    [ValidateSet('GlobalDefault', 'Nickname', 'Active', 'DisplayColorRGB', 'id', 'ClientPortalDefault', 'Name')]
     [string[]]
     $IsNotNull,
 
@@ -340,8 +327,7 @@ Set-AtwsInstalledProductCategory
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

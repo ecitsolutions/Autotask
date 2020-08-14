@@ -103,19 +103,6 @@ Set-AtwsCurrency
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('PriceListWorkTypeModifier', 'PriceListProductTier', 'ExpenseReport', 'PriceListServiceBundle', 'PriceListMaterialCode', 'PriceListProduct', 'Account', 'PriceListService', 'PriceListRole', 'ExpenseItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -228,21 +215,21 @@ Set-AtwsCurrency
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyPositiveFormat', 'LastModifiedDateTime', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Description', 'DisplaySymbol', 'id', 'Name', 'UpdateResourceId', 'CurrencyNegativeFormat')]
+    [ValidateSet('Active', 'CurrencyNegativeFormat', 'ExchangeRate', 'LastModifiedDateTime', 'Description', 'CurrencyPositiveFormat', 'DisplaySymbol', 'id', 'IsInternalCurrency', 'UpdateResourceId', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyPositiveFormat', 'LastModifiedDateTime', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Description', 'DisplaySymbol', 'id', 'Name', 'UpdateResourceId', 'CurrencyNegativeFormat')]
+    [ValidateSet('Active', 'CurrencyNegativeFormat', 'ExchangeRate', 'LastModifiedDateTime', 'Description', 'CurrencyPositiveFormat', 'DisplaySymbol', 'id', 'IsInternalCurrency', 'UpdateResourceId', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyPositiveFormat', 'LastModifiedDateTime', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Description', 'DisplaySymbol', 'id', 'Name', 'UpdateResourceId', 'CurrencyNegativeFormat')]
+    [ValidateSet('Active', 'CurrencyNegativeFormat', 'ExchangeRate', 'LastModifiedDateTime', 'Description', 'CurrencyPositiveFormat', 'DisplaySymbol', 'id', 'IsInternalCurrency', 'UpdateResourceId', 'Name')]
     [string[]]
     $IsNotNull,
 
@@ -375,8 +362,7 @@ Set-AtwsCurrency
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

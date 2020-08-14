@@ -74,6 +74,17 @@ Get-AtwsContract
     [switch]
     $PassThru,
 
+# User defined fields already setup i Autotask
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [Autotask.UserDefinedField[]]
+    $UserDefinedFields,
+
 # Billing Preference
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -99,7 +110,7 @@ Get-AtwsContract
     [string]
     $BillingPreference,
 
-# Bill To Account Contact ID
+# Bill To Client Contact ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -112,7 +123,7 @@ Get-AtwsContract
     [Nullable[Int]]
     $BillToAccountContactID,
 
-# Bill To Account ID
+# Bill To Client ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

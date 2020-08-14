@@ -92,19 +92,6 @@ Set-AtwsContactWebhook
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContactWebhookUdfField', 'WebhookEventErrorLog', 'ContactWebhookExcludedResource', 'ContactWebhookField')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -226,21 +213,21 @@ Set-AtwsContactWebhook
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Ready', 'SecretKey', 'IsSubscribedToUpdateEvents', 'Active', 'NotificationEmailAddress', 'WebhookUrl', 'WebhookGUID', 'DeactivationUrl', 'IsSubscribedToDeleteEvents', 'SendThresholdExceededNotification', 'Name', 'id', 'OwnerResourceID', 'IsSubscribedToCreateEvents')]
+    [ValidateSet('NotificationEmailAddress', 'Name', 'SecretKey', 'IsSubscribedToCreateEvents', 'Ready', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'Active', 'DeactivationUrl', 'SendThresholdExceededNotification', 'id', 'WebhookGUID', 'OwnerResourceID', 'IsSubscribedToUpdateEvents')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Ready', 'SecretKey', 'IsSubscribedToUpdateEvents', 'Active', 'NotificationEmailAddress', 'WebhookUrl', 'WebhookGUID', 'DeactivationUrl', 'IsSubscribedToDeleteEvents', 'SendThresholdExceededNotification', 'Name', 'id', 'OwnerResourceID', 'IsSubscribedToCreateEvents')]
+    [ValidateSet('NotificationEmailAddress', 'Name', 'SecretKey', 'IsSubscribedToCreateEvents', 'Ready', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'Active', 'DeactivationUrl', 'SendThresholdExceededNotification', 'id', 'WebhookGUID', 'OwnerResourceID', 'IsSubscribedToUpdateEvents')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Ready', 'SecretKey', 'IsSubscribedToUpdateEvents', 'Active', 'NotificationEmailAddress', 'WebhookUrl', 'WebhookGUID', 'DeactivationUrl', 'IsSubscribedToDeleteEvents', 'SendThresholdExceededNotification', 'Name', 'id', 'OwnerResourceID', 'IsSubscribedToCreateEvents')]
+    [ValidateSet('NotificationEmailAddress', 'Name', 'SecretKey', 'IsSubscribedToCreateEvents', 'Ready', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'Active', 'DeactivationUrl', 'SendThresholdExceededNotification', 'id', 'WebhookGUID', 'OwnerResourceID', 'IsSubscribedToUpdateEvents')]
     [string[]]
     $IsNotNull,
 
@@ -372,8 +359,7 @@ Set-AtwsContactWebhook
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

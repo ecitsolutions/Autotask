@@ -117,19 +117,6 @@ Set-AtwsResource
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('TicketHistory', 'ProductNote', 'TicketChecklistItem', 'ResourceRoleQueue', 'ContactWebhook', 'InventoryItem', 'NotificationHistory', 'PurchaseOrder', 'InstalledProductNote', 'Subscription', 'Project', 'Service', 'PurchaseOrderReceive', 'Product', 'ProjectNote', 'ServiceCallTaskResource', 'AccountNote', 'ServiceBundle', 'ResourceRoleDepartment', 'AccountToDo', 'InventoryLocation', 'ResourceServiceDeskRole', 'ServiceCall', 'Task', 'ServiceCallTicket', 'ContractNote', 'TicketSecondaryResource', 'ChangeOrderCost', 'ContractRoleCost', 'ContactWebhookExcludedResource', 'AccountTeam', 'BillingItemApprovalLevel', 'ResourceSkill', 'AttachmentInfo', 'TicketChangeRequestApproval', 'TimeEntry', 'ExpenseReport', 'ProjectCost', 'InstalledProduct', 'Quote', 'ComanagedAssociation', 'Ticket', 'TicketNote', 'TaskSecondaryResource', 'ServiceLevelAgreementResults', 'SalesOrder', 'Opportunity', 'AccountWebhook', 'ContractCost', 'Account', 'ResourceRole', 'BusinessDivisionSubdivisionResource', 'ContractMilestone', 'TicketCost', 'Contact', 'ServiceCallTicketResource', 'TaskNote', 'BillingItem', 'AccountWebhookExcludedResource', 'InventoryTransfer', 'Invoice', 'Currency', 'Phase', 'QuoteTemplate', 'Appointment')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -586,21 +573,21 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OfficeExtension', 'ResourceType', 'HireDate', 'HomePhone', 'Email', 'Password', 'Suffix', 'EmailTypeCode', 'NumberFormat', 'TimeFormat', 'EmailTypeCode3', 'DateFormat', 'AccountingReferenceID', 'Title', 'Email3', 'EmailTypeCode2', 'FirstName', 'UserType', 'MobilePhone', 'LicenseType', 'InternalCost', 'Active', 'UserName', 'Initials', 'LastName', 'SurveyResourceRating', 'Email2', 'id', 'MiddleName', 'Gender', 'DefaultServiceDeskRoleID', 'PayrollType', 'LocationID', 'OfficePhone', 'TravelAvailabilityPct', 'Greeting')]
+    [ValidateSet('InternalCost', 'ResourceType', 'EmailTypeCode', 'UserType', 'Active', 'Email3', 'LocationID', 'OfficePhone', 'TravelAvailabilityPct', 'HomePhone', 'Password', 'PayrollType', 'HireDate', 'UserName', 'EmailTypeCode3', 'FirstName', 'DateFormat', 'LastName', 'Email', 'Initials', 'Greeting', 'AccountingReferenceID', 'MobilePhone', 'MiddleName', 'EmailTypeCode2', 'Suffix', 'DefaultServiceDeskRoleID', 'TimeFormat', 'Gender', 'LicenseType', 'NumberFormat', 'SurveyResourceRating', 'Title', 'OfficeExtension', 'Email2', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OfficeExtension', 'ResourceType', 'HireDate', 'HomePhone', 'Email', 'Password', 'Suffix', 'EmailTypeCode', 'NumberFormat', 'TimeFormat', 'EmailTypeCode3', 'DateFormat', 'AccountingReferenceID', 'Title', 'Email3', 'EmailTypeCode2', 'FirstName', 'UserType', 'MobilePhone', 'LicenseType', 'InternalCost', 'Active', 'UserName', 'Initials', 'LastName', 'SurveyResourceRating', 'Email2', 'id', 'MiddleName', 'Gender', 'DefaultServiceDeskRoleID', 'PayrollType', 'LocationID', 'OfficePhone', 'TravelAvailabilityPct', 'Greeting')]
+    [ValidateSet('InternalCost', 'ResourceType', 'EmailTypeCode', 'UserType', 'Active', 'Email3', 'LocationID', 'OfficePhone', 'TravelAvailabilityPct', 'HomePhone', 'Password', 'PayrollType', 'HireDate', 'UserName', 'EmailTypeCode3', 'FirstName', 'DateFormat', 'LastName', 'Email', 'Initials', 'Greeting', 'AccountingReferenceID', 'MobilePhone', 'MiddleName', 'EmailTypeCode2', 'Suffix', 'DefaultServiceDeskRoleID', 'TimeFormat', 'Gender', 'LicenseType', 'NumberFormat', 'SurveyResourceRating', 'Title', 'OfficeExtension', 'Email2', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OfficeExtension', 'ResourceType', 'HireDate', 'HomePhone', 'Email', 'Password', 'Suffix', 'EmailTypeCode', 'NumberFormat', 'TimeFormat', 'EmailTypeCode3', 'DateFormat', 'AccountingReferenceID', 'Title', 'Email3', 'EmailTypeCode2', 'FirstName', 'UserType', 'MobilePhone', 'LicenseType', 'InternalCost', 'Active', 'UserName', 'Initials', 'LastName', 'SurveyResourceRating', 'Email2', 'id', 'MiddleName', 'Gender', 'DefaultServiceDeskRoleID', 'PayrollType', 'LocationID', 'OfficePhone', 'TravelAvailabilityPct', 'Greeting')]
+    [ValidateSet('InternalCost', 'ResourceType', 'EmailTypeCode', 'UserType', 'Active', 'Email3', 'LocationID', 'OfficePhone', 'TravelAvailabilityPct', 'HomePhone', 'Password', 'PayrollType', 'HireDate', 'UserName', 'EmailTypeCode3', 'FirstName', 'DateFormat', 'LastName', 'Email', 'Initials', 'Greeting', 'AccountingReferenceID', 'MobilePhone', 'MiddleName', 'EmailTypeCode2', 'Suffix', 'DefaultServiceDeskRoleID', 'TimeFormat', 'Gender', 'LicenseType', 'NumberFormat', 'SurveyResourceRating', 'Title', 'OfficeExtension', 'Email2', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -733,8 +720,7 @@ Set-AtwsResource
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

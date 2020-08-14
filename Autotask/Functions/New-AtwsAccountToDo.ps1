@@ -66,7 +66,7 @@ Set-AtwsAccountToDo
     [Autotask.AccountToDo[]]
     $InputObject,
 
-# Account
+# Client
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'

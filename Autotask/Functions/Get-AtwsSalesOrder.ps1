@@ -99,22 +99,9 @@ Set-AtwsSalesOrder
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('Contact', 'ImpersonatorCreatorResourceID', 'BusinessDivisionSubdivisionID', 'AccountID', 'OpportunityID', 'ShipToCountryID')]
+    [ValidateSet('AccountID', 'BillToCountryID', 'BusinessDivisionSubdivisionID', 'Contact', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'OwnerResourceID', 'ShipToCountryID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('PurchaseOrderItem', 'Opportunity')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -123,7 +110,7 @@ Set-AtwsSalesOrder
     [switch]
     $All,
 
-# Account ID
+# Client ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -186,7 +173,7 @@ Set-AtwsSalesOrder
     [Nullable[Int][]]
     $BillToCountryID,
 
-# Bill to Zip Code
+# Bill to Postal Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -194,7 +181,7 @@ Set-AtwsSalesOrder
     [string[]]
     $BillToPostalCode,
 
-# Bill to State
+# Bill to County
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -302,7 +289,7 @@ Set-AtwsSalesOrder
     [Nullable[Int][]]
     $ShipToCountryID,
 
-# Ship to Zip Code
+# Ship to Postal Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -310,7 +297,7 @@ Set-AtwsSalesOrder
     [string[]]
     $ShipToPostalCode,
 
-# Ship to State
+# Ship to County
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -350,21 +337,21 @@ Set-AtwsSalesOrder
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'Contact', 'BillToCountryID', 'BillToAddress2', 'PromisedDueDate', 'BillToState', 'BillToCountry', 'Title', 'BillToAddress1', 'BillToPostalCode', 'OwnerResourceID', 'ShipToPostalCode', 'AdditionalShipToAddressInformation', 'AccountID', 'ShipToCity', 'BusinessDivisionSubdivisionID', 'id', 'BillToCity', 'ShipToCountry', 'ShipToAddress2', 'ShipToAddress1', 'AdditionalBillToAddressInformation', 'OpportunityID', 'ShipToState', 'SalesOrderDate', 'Status', 'ShipToCountryID')]
+    [ValidateSet('Contact', 'ShipToAddress2', 'Status', 'BillToCountryID', 'BusinessDivisionSubdivisionID', 'BillToCountry', 'SalesOrderDate', 'BillToAddress1', 'ShipToCountry', 'ShipToAddress1', 'OwnerResourceID', 'BillToState', 'AccountID', 'OpportunityID', 'BillToCity', 'BillToPostalCode', 'ShipToState', 'AdditionalShipToAddressInformation', 'AdditionalBillToAddressInformation', 'ShipToPostalCode', 'PromisedDueDate', 'ShipToCity', 'BillToAddress2', 'ShipToCountryID', 'Title', 'ImpersonatorCreatorResourceID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'Contact', 'BillToCountryID', 'BillToAddress2', 'PromisedDueDate', 'BillToState', 'BillToCountry', 'Title', 'BillToAddress1', 'BillToPostalCode', 'OwnerResourceID', 'ShipToPostalCode', 'AdditionalShipToAddressInformation', 'AccountID', 'ShipToCity', 'BusinessDivisionSubdivisionID', 'id', 'BillToCity', 'ShipToCountry', 'ShipToAddress2', 'ShipToAddress1', 'AdditionalBillToAddressInformation', 'OpportunityID', 'ShipToState', 'SalesOrderDate', 'Status', 'ShipToCountryID')]
+    [ValidateSet('Contact', 'ShipToAddress2', 'Status', 'BillToCountryID', 'BusinessDivisionSubdivisionID', 'BillToCountry', 'SalesOrderDate', 'BillToAddress1', 'ShipToCountry', 'ShipToAddress1', 'OwnerResourceID', 'BillToState', 'AccountID', 'OpportunityID', 'BillToCity', 'BillToPostalCode', 'ShipToState', 'AdditionalShipToAddressInformation', 'AdditionalBillToAddressInformation', 'ShipToPostalCode', 'PromisedDueDate', 'ShipToCity', 'BillToAddress2', 'ShipToCountryID', 'Title', 'ImpersonatorCreatorResourceID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'Contact', 'BillToCountryID', 'BillToAddress2', 'PromisedDueDate', 'BillToState', 'BillToCountry', 'Title', 'BillToAddress1', 'BillToPostalCode', 'OwnerResourceID', 'ShipToPostalCode', 'AdditionalShipToAddressInformation', 'AccountID', 'ShipToCity', 'BusinessDivisionSubdivisionID', 'id', 'BillToCity', 'ShipToCountry', 'ShipToAddress2', 'ShipToAddress1', 'AdditionalBillToAddressInformation', 'OpportunityID', 'ShipToState', 'SalesOrderDate', 'Status', 'ShipToCountryID')]
+    [ValidateSet('Contact', 'ShipToAddress2', 'Status', 'BillToCountryID', 'BusinessDivisionSubdivisionID', 'BillToCountry', 'SalesOrderDate', 'BillToAddress1', 'ShipToCountry', 'ShipToAddress1', 'OwnerResourceID', 'BillToState', 'AccountID', 'OpportunityID', 'BillToCity', 'BillToPostalCode', 'ShipToState', 'AdditionalShipToAddressInformation', 'AdditionalBillToAddressInformation', 'ShipToPostalCode', 'PromisedDueDate', 'ShipToCity', 'BillToAddress2', 'ShipToCountryID', 'Title', 'ImpersonatorCreatorResourceID', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -497,8 +484,7 @@ Set-AtwsSalesOrder
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

@@ -100,19 +100,6 @@ An example of a more complex query. This command returns any Skills with Id GREA
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('ResourceSkill')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -176,21 +163,21 @@ An example of a more complex query. This command returns any Skills with Id GREA
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Active', 'Name', 'CategoryID')]
+    [ValidateSet('Name', 'CategoryID', 'Active', 'Description', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Active', 'Name', 'CategoryID')]
+    [ValidateSet('Name', 'CategoryID', 'Active', 'Description', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Active', 'Name', 'CategoryID')]
+    [ValidateSet('Name', 'CategoryID', 'Active', 'Description', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -322,8 +309,7 @@ An example of a more complex query. This command returns any Skills with Id GREA
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 

@@ -66,7 +66,16 @@ Set-AtwsContract
     [Autotask.Contract[]]
     $InputObject,
 
-# Account
+# User defined fields already setup i Autotask
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [ValidateNotNullOrEmpty()]
+    [Autotask.UserDefinedField[]]
+    $UserDefinedFields,
+
+# Client
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -94,14 +103,14 @@ Set-AtwsContract
     [string]
     $BillingPreference,
 
-# Bill To Account Contact ID
+# Bill To Client Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $BillToAccountContactID,
 
-# Bill To Account ID
+# Bill To Client ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

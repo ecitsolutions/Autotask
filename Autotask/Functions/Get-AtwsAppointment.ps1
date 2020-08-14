@@ -88,21 +88,9 @@ Set-AtwsAppointment
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CreatorResourceID')]
+    [ValidateSet('CreatorResourceID', 'ResourceID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -184,21 +172,21 @@ Set-AtwsAppointment
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateDateTime', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'ResourceID', 'CreateDateTime', 'id', 'Title')]
+    [ValidateSet('CreateDateTime', 'ResourceID', 'CreatorResourceID', 'Description', 'EndDateTime', 'id', 'UpdateDateTime', 'StartDateTime', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateDateTime', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'ResourceID', 'CreateDateTime', 'id', 'Title')]
+    [ValidateSet('CreateDateTime', 'ResourceID', 'CreatorResourceID', 'Description', 'EndDateTime', 'id', 'UpdateDateTime', 'StartDateTime', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateDateTime', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'ResourceID', 'CreateDateTime', 'id', 'Title')]
+    [ValidateSet('CreateDateTime', 'ResourceID', 'CreatorResourceID', 'Description', 'EndDateTime', 'id', 'UpdateDateTime', 'StartDateTime', 'Title')]
     [string[]]
     $IsNotNull,
 
@@ -331,8 +319,7 @@ Set-AtwsAppointment
             # Make the query and pass the optional parameters to Get-AtwsData
             $result = Get-AtwsData -Entity $entityName -Filter $Filter `
                 -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
+                -GetReferenceEntityById $GetReferenceEntityById
     
             Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
 
