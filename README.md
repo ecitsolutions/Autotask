@@ -25,6 +25,7 @@ From version 2 the module no longer needs to maintain a per tenant disk cache. A
 - UPDATE: Added support for picklist parent fields in `[ArgumentCompleter()]`. Allows for selecting ticket SubIssueType based on value specified by IssueType
 - UPDATE: New cache model based nested hashtables. Allows direct lookup of values without need for where-object filtering
 - UPDATE: Replaced extensive use of array resizing (slow) with ArrayList and generic lists (fast)
+- UPDATE: UserDefinedFields: Converts [Autotask.UserDefinedField[]] to [Hashtable] on Get. Allows direct access to named userdefined fields in your code without cumbersome looping or where clauses
 
 ## Version 2.0.0-beta1
 
