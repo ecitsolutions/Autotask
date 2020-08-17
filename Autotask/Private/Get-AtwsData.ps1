@@ -39,7 +39,7 @@ Function Get-AtwsData {
   #>
   
     [cmdletbinding()]
-    [OutputType([PSObject[]])]
+    [OutputType([Collections.ArrayList])]
     param
     (
         [Parameter(
@@ -118,7 +118,7 @@ Function Get-AtwsData {
 
             # Add all returned objects to the Result - if any
             if ($lastquery.EntityResults.Count -gt 0) { 
-                [void]$result.add((ConvertTo-LocalObject -InputObject $lastquery.EntityResults))
+                [void]$result.AddRange((ConvertTo-LocalObject -InputObject $lastquery.EntityResults))
             }
             
             # Results are sorted by object Id. The Id of the last object is the highest object id in the result
