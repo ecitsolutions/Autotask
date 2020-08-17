@@ -257,27 +257,37 @@ Set-AtwsBusinessDivisionSubdivision
             # Extract the parameter content, sort it ascending (we assume it is an Id field)
             # and deduplicate
             $count = $PSBoundParameters[$param].count
-            [array]$outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
-            $dedup = $outerLoop.Count
 
-            Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $dedup, $param)
-
-            # Make a writable copy of PSBoundParameters
-            $BoundParameters = $PSBoundParameters
-            for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
-                $j = $i + 199
-                if ($j -ge $outerLoop.count) {
-                    $j = $outerLoop.count - 1
-                } 
-
-                # make a selection
-                $BoundParameters[$param] = $outerLoop[$i .. $j]
-                
-                Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
-        
-                # Convert named parameters to a filter definition that can be parsed to QueryXML
-                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
                 [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
             }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
