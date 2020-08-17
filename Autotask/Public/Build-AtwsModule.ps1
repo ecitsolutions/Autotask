@@ -46,12 +46,6 @@ Function Build-AtwsModule {
             $ConfirmPreference = 'none'
         }
 
-        # Prepare parameters for @splatting
-        $ProgressId = 6
-        $ProgressParameters = @{
-            Activity = 'Creating and importing functions for all static Autotask entities (no picklists).'
-            Id       = $ProgressId
-        }
     } 
   
     process {
