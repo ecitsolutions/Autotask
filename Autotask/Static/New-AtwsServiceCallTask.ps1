@@ -1,5 +1,5 @@
-﻿#Requires -Version 4.0
-#Version 1.6.9
+#Requires -Version 4.0
+#Version 1.6.10
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -128,7 +128,7 @@ Get-AtwsServiceCallTask
                     $newObject.$field = $object.$field 
                 }
 
-                if ($newObject -is [Autotask.Ticket]) {
+                if ($newObject -is [Autotask.Ticket] -and $object.id -gt 0) {
                     Write-Verbose -Message ('{0}: Copy Object mode: Object is a Ticket. Title must be modified to avoid duplicate detection.' -F $MyInvocation.MyCommand.Name)  
                     $title = '{0} (Copy {1})' -F $newObject.Title, $CopyNo
                     $copyNo++

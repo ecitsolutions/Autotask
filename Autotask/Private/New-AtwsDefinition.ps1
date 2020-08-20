@@ -45,7 +45,7 @@
                     $newObject.$field = $object.$field 
                 }
 
-                if ($newObject -is [Autotask.Ticket]) {
+                if ($newObject -is [Autotask.Ticket] -and $object.id -gt 0) {
                     Write-Verbose -Message ('{0}: Copy Object mode: Object is a Ticket. Title must be modified to avoid duplicate detection.' -F $MyInvocation.MyCommand.Name)  
                     $title = '{0} (Copy {1})' -F $newObject.Title, $CopyNo
                     $copyNo++
