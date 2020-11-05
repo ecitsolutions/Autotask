@@ -466,21 +466,21 @@ Set-AtwsTask
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EstimatedHours', 'Priority', 'HoursToBeScheduled', 'AccountPhysicalLocationID', 'id', 'LastActivityDateTime', 'AssignedResourceRoleID', 'TaskCategoryID', 'DepartmentID', 'TaskNumber', 'ProjectID', 'TaskIsBillable', 'ExternalID', 'RemainingHours', 'CreateDateTime', 'TaskType', 'AllocationCodeID', 'Title', 'IsVisibleInClientPortal', 'LastActivityResourceID', 'CompletedDateTime', 'CompletedByType', 'LastActivityPersonType', 'CreatorType', 'Status', 'PhaseID', 'Description', 'CompletedByResourceID', 'EndDateTime', 'CreatorResourceID', 'PurchaseOrderNumber', 'AssignedResourceID', 'StartDateTime', 'PriorityLabel', 'CanClientPortalUserCompleteTask')]
+    [ValidateSet('CreateDateTime', 'IsVisibleInClientPortal', 'Title', 'ExternalID', 'Description', 'EndDateTime', 'LastActivityDateTime', 'CreatorResourceID', 'AssignedResourceRoleID', 'TaskNumber', 'CompletedByType', 'DepartmentID', 'LastActivityResourceID', 'PhaseID', 'TaskIsBillable', 'TaskType', 'CompletedByResourceID', 'CompletedDateTime', 'TaskCategoryID', 'HoursToBeScheduled', 'id', 'EstimatedHours', 'Priority', 'ProjectID', 'CreatorType', 'LastActivityPersonType', 'RemainingHours', 'StartDateTime', 'AccountPhysicalLocationID', 'PurchaseOrderNumber', 'Status', 'PriorityLabel', 'CanClientPortalUserCompleteTask', 'AllocationCodeID', 'AssignedResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EstimatedHours', 'Priority', 'HoursToBeScheduled', 'AccountPhysicalLocationID', 'id', 'LastActivityDateTime', 'AssignedResourceRoleID', 'TaskCategoryID', 'DepartmentID', 'TaskNumber', 'ProjectID', 'TaskIsBillable', 'ExternalID', 'RemainingHours', 'CreateDateTime', 'TaskType', 'AllocationCodeID', 'Title', 'IsVisibleInClientPortal', 'LastActivityResourceID', 'CompletedDateTime', 'CompletedByType', 'LastActivityPersonType', 'CreatorType', 'Status', 'PhaseID', 'Description', 'CompletedByResourceID', 'EndDateTime', 'CreatorResourceID', 'PurchaseOrderNumber', 'AssignedResourceID', 'StartDateTime', 'PriorityLabel', 'CanClientPortalUserCompleteTask')]
+    [ValidateSet('CreateDateTime', 'IsVisibleInClientPortal', 'Title', 'ExternalID', 'Description', 'EndDateTime', 'LastActivityDateTime', 'CreatorResourceID', 'AssignedResourceRoleID', 'TaskNumber', 'CompletedByType', 'DepartmentID', 'LastActivityResourceID', 'PhaseID', 'TaskIsBillable', 'TaskType', 'CompletedByResourceID', 'CompletedDateTime', 'TaskCategoryID', 'HoursToBeScheduled', 'id', 'EstimatedHours', 'Priority', 'ProjectID', 'CreatorType', 'LastActivityPersonType', 'RemainingHours', 'StartDateTime', 'AccountPhysicalLocationID', 'PurchaseOrderNumber', 'Status', 'PriorityLabel', 'CanClientPortalUserCompleteTask', 'AllocationCodeID', 'AssignedResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EstimatedHours', 'Priority', 'HoursToBeScheduled', 'AccountPhysicalLocationID', 'id', 'LastActivityDateTime', 'AssignedResourceRoleID', 'TaskCategoryID', 'DepartmentID', 'TaskNumber', 'ProjectID', 'TaskIsBillable', 'ExternalID', 'RemainingHours', 'CreateDateTime', 'TaskType', 'AllocationCodeID', 'Title', 'IsVisibleInClientPortal', 'LastActivityResourceID', 'CompletedDateTime', 'CompletedByType', 'LastActivityPersonType', 'CreatorType', 'Status', 'PhaseID', 'Description', 'CompletedByResourceID', 'EndDateTime', 'CreatorResourceID', 'PurchaseOrderNumber', 'AssignedResourceID', 'StartDateTime', 'PriorityLabel', 'CanClientPortalUserCompleteTask')]
+    [ValidateSet('CreateDateTime', 'IsVisibleInClientPortal', 'Title', 'ExternalID', 'Description', 'EndDateTime', 'LastActivityDateTime', 'CreatorResourceID', 'AssignedResourceRoleID', 'TaskNumber', 'CompletedByType', 'DepartmentID', 'LastActivityResourceID', 'PhaseID', 'TaskIsBillable', 'TaskType', 'CompletedByResourceID', 'CompletedDateTime', 'TaskCategoryID', 'HoursToBeScheduled', 'id', 'EstimatedHours', 'Priority', 'ProjectID', 'CreatorType', 'LastActivityPersonType', 'RemainingHours', 'StartDateTime', 'AccountPhysicalLocationID', 'PurchaseOrderNumber', 'Status', 'PriorityLabel', 'CanClientPortalUserCompleteTask', 'AllocationCodeID', 'AssignedResourceID')]
     [string[]]
     $IsNotNull,
 
@@ -652,11 +652,21 @@ Set-AtwsTask
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

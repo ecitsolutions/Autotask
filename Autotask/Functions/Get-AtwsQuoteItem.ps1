@@ -282,6 +282,13 @@ Set-AtwsQuoteItem
     [Nullable[Int][]]
     $ShippingID,
 
+# sort_order
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $SortOrderID,
+
 # tax_category_id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -341,49 +348,49 @@ Set-AtwsQuoteItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitCost', 'InternalCurrencyUnitDiscount', 'ServiceBundleID', 'UnitPrice', 'IsOptional', 'id', 'LineDiscount', 'IsTaxable', 'ShippingID', 'InternalCurrencyLineDiscount', 'Name', 'QuoteID', 'MarkupRate', 'AverageCost', 'ProductID', 'TotalEffectiveTax', 'ServiceID', 'TaxCategoryID', 'InternalCurrencyUnitPrice', 'PercentageDiscount', 'Description', 'Quantity', 'LaborID', 'PeriodType', 'UnitDiscount', 'ExpenseID', 'CostID', 'HighestCost', 'Type')]
+    [ValidateSet('UnitDiscount', 'LaborID', 'HighestCost', 'IsOptional', 'CostID', 'QuoteID', 'TaxCategoryID', 'ShippingID', 'TotalEffectiveTax', 'Name', 'ProductID', 'ServiceBundleID', 'InternalCurrencyUnitPrice', 'AverageCost', 'InternalCurrencyLineDiscount', 'Description', 'Type', 'UnitPrice', 'Quantity', 'SortOrderID', 'IsTaxable', 'ServiceID', 'PercentageDiscount', 'InternalCurrencyUnitDiscount', 'PeriodType', 'UnitCost', 'ExpenseID', 'MarkupRate', 'id', 'LineDiscount')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitCost', 'InternalCurrencyUnitDiscount', 'ServiceBundleID', 'UnitPrice', 'IsOptional', 'id', 'LineDiscount', 'IsTaxable', 'ShippingID', 'InternalCurrencyLineDiscount', 'Name', 'QuoteID', 'MarkupRate', 'AverageCost', 'ProductID', 'TotalEffectiveTax', 'ServiceID', 'TaxCategoryID', 'InternalCurrencyUnitPrice', 'PercentageDiscount', 'Description', 'Quantity', 'LaborID', 'PeriodType', 'UnitDiscount', 'ExpenseID', 'CostID', 'HighestCost', 'Type')]
+    [ValidateSet('UnitDiscount', 'LaborID', 'HighestCost', 'IsOptional', 'CostID', 'QuoteID', 'TaxCategoryID', 'ShippingID', 'TotalEffectiveTax', 'Name', 'ProductID', 'ServiceBundleID', 'InternalCurrencyUnitPrice', 'AverageCost', 'InternalCurrencyLineDiscount', 'Description', 'Type', 'UnitPrice', 'Quantity', 'SortOrderID', 'IsTaxable', 'ServiceID', 'PercentageDiscount', 'InternalCurrencyUnitDiscount', 'PeriodType', 'UnitCost', 'ExpenseID', 'MarkupRate', 'id', 'LineDiscount')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitCost', 'InternalCurrencyUnitDiscount', 'ServiceBundleID', 'UnitPrice', 'IsOptional', 'id', 'LineDiscount', 'IsTaxable', 'ShippingID', 'InternalCurrencyLineDiscount', 'Name', 'QuoteID', 'MarkupRate', 'AverageCost', 'ProductID', 'TotalEffectiveTax', 'ServiceID', 'TaxCategoryID', 'InternalCurrencyUnitPrice', 'PercentageDiscount', 'Description', 'Quantity', 'LaborID', 'PeriodType', 'UnitDiscount', 'ExpenseID', 'CostID', 'HighestCost', 'Type')]
+    [ValidateSet('UnitDiscount', 'LaborID', 'HighestCost', 'IsOptional', 'CostID', 'QuoteID', 'TaxCategoryID', 'ShippingID', 'TotalEffectiveTax', 'Name', 'ProductID', 'ServiceBundleID', 'InternalCurrencyUnitPrice', 'AverageCost', 'InternalCurrencyLineDiscount', 'Description', 'Type', 'UnitPrice', 'Quantity', 'SortOrderID', 'IsTaxable', 'ServiceID', 'PercentageDiscount', 'InternalCurrencyUnitDiscount', 'PeriodType', 'UnitCost', 'ExpenseID', 'MarkupRate', 'id', 'LineDiscount')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
+    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
+    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
+    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
+    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
     [string[]]
     $LessThanOrEquals,
 
@@ -526,11 +533,21 @@ Set-AtwsQuoteItem
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

@@ -311,21 +311,21 @@ An example of a more complex query. This command returns any QuoteTemplates with
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DisplayTaxCategorySuperscripts', 'NumberFormat', 'PageLayout', 'CalculateTaxSeparately', 'LastActivityBy', 'ShowVerticalGridLines', 'CurrencyNegativeFormat', 'ShowGridHeader', 'DateFormat', 'DisplayCurrencySymbol', 'Description', 'CreateDate', 'CurrencyPositiveFormat', 'CreatedBy', 'id', 'ShowTaxCategory', 'LastActivityDate', 'PageNumberFormat', 'Name', 'Active', 'ShowEachTaxInGroup')]
+    [ValidateSet('DateFormat', 'CurrencyNegativeFormat', 'id', 'ShowVerticalGridLines', 'Description', 'Name', 'ShowGridHeader', 'CreatedBy', 'LastActivityDate', 'NumberFormat', 'DisplayTaxCategorySuperscripts', 'CreateDate', 'PageLayout', 'LastActivityBy', 'PageNumberFormat', 'DisplayCurrencySymbol', 'CalculateTaxSeparately', 'Active', 'CurrencyPositiveFormat', 'ShowEachTaxInGroup', 'ShowTaxCategory')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DisplayTaxCategorySuperscripts', 'NumberFormat', 'PageLayout', 'CalculateTaxSeparately', 'LastActivityBy', 'ShowVerticalGridLines', 'CurrencyNegativeFormat', 'ShowGridHeader', 'DateFormat', 'DisplayCurrencySymbol', 'Description', 'CreateDate', 'CurrencyPositiveFormat', 'CreatedBy', 'id', 'ShowTaxCategory', 'LastActivityDate', 'PageNumberFormat', 'Name', 'Active', 'ShowEachTaxInGroup')]
+    [ValidateSet('DateFormat', 'CurrencyNegativeFormat', 'id', 'ShowVerticalGridLines', 'Description', 'Name', 'ShowGridHeader', 'CreatedBy', 'LastActivityDate', 'NumberFormat', 'DisplayTaxCategorySuperscripts', 'CreateDate', 'PageLayout', 'LastActivityBy', 'PageNumberFormat', 'DisplayCurrencySymbol', 'CalculateTaxSeparately', 'Active', 'CurrencyPositiveFormat', 'ShowEachTaxInGroup', 'ShowTaxCategory')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DisplayTaxCategorySuperscripts', 'NumberFormat', 'PageLayout', 'CalculateTaxSeparately', 'LastActivityBy', 'ShowVerticalGridLines', 'CurrencyNegativeFormat', 'ShowGridHeader', 'DateFormat', 'DisplayCurrencySymbol', 'Description', 'CreateDate', 'CurrencyPositiveFormat', 'CreatedBy', 'id', 'ShowTaxCategory', 'LastActivityDate', 'PageNumberFormat', 'Name', 'Active', 'ShowEachTaxInGroup')]
+    [ValidateSet('DateFormat', 'CurrencyNegativeFormat', 'id', 'ShowVerticalGridLines', 'Description', 'Name', 'ShowGridHeader', 'CreatedBy', 'LastActivityDate', 'NumberFormat', 'DisplayTaxCategorySuperscripts', 'CreateDate', 'PageLayout', 'LastActivityBy', 'PageNumberFormat', 'DisplayCurrencySymbol', 'CalculateTaxSeparately', 'Active', 'CurrencyPositiveFormat', 'ShowEachTaxInGroup', 'ShowTaxCategory')]
     [string[]]
     $IsNotNull,
 
@@ -497,11 +497,21 @@ An example of a more complex query. This command returns any QuoteTemplates with
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

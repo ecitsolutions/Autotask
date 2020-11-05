@@ -215,21 +215,21 @@ Set-AtwsCurrency
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'IsInternalCurrency', 'Description', 'CurrencyPositiveFormat', 'Active', 'UpdateResourceId', 'CurrencyNegativeFormat', 'DisplaySymbol', 'id', 'LastModifiedDateTime', 'ExchangeRate')]
+    [ValidateSet('Description', 'IsInternalCurrency', 'UpdateResourceId', 'ExchangeRate', 'DisplaySymbol', 'Name', 'CurrencyPositiveFormat', 'Active', 'LastModifiedDateTime', 'id', 'CurrencyNegativeFormat')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'IsInternalCurrency', 'Description', 'CurrencyPositiveFormat', 'Active', 'UpdateResourceId', 'CurrencyNegativeFormat', 'DisplaySymbol', 'id', 'LastModifiedDateTime', 'ExchangeRate')]
+    [ValidateSet('Description', 'IsInternalCurrency', 'UpdateResourceId', 'ExchangeRate', 'DisplaySymbol', 'Name', 'CurrencyPositiveFormat', 'Active', 'LastModifiedDateTime', 'id', 'CurrencyNegativeFormat')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'IsInternalCurrency', 'Description', 'CurrencyPositiveFormat', 'Active', 'UpdateResourceId', 'CurrencyNegativeFormat', 'DisplaySymbol', 'id', 'LastModifiedDateTime', 'ExchangeRate')]
+    [ValidateSet('Description', 'IsInternalCurrency', 'UpdateResourceId', 'ExchangeRate', 'DisplaySymbol', 'Name', 'CurrencyPositiveFormat', 'Active', 'LastModifiedDateTime', 'id', 'CurrencyNegativeFormat')]
     [string[]]
     $IsNotNull,
 
@@ -401,11 +401,21 @@ Set-AtwsCurrency
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

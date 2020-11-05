@@ -239,7 +239,7 @@ Set-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,8000)]
+    [ValidateLength(0,32000)]
     [string[]]
     $InternalNotes,
 
@@ -304,7 +304,7 @@ Set-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,8000)]
+    [ValidateLength(0,32000)]
     [string[]]
     $SummaryNotes,
 
@@ -344,21 +344,21 @@ Set-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HoursWorked', 'TicketID', 'ImpersonatorCreatorResourceID', 'ShowOnInvoice', 'id', 'CreatorUserID', 'ResourceID', 'DateWorked', 'LastModifiedUserID', 'LastModifiedDateTime', 'InternalNotes', 'ContractServiceBundleID', 'BillingApprovalLevelMostRecent', 'HoursToBill', 'BillingApprovalDateTime', 'AllocationCodeID', 'RoleID', 'CreateDateTime', 'InternalAllocationCodeID', 'SummaryNotes', 'Type', 'ContractID', 'ContractServiceID', 'NonBillable', 'ImpersonatorUpdaterResourceID', 'EndDateTime', 'TaskID', 'StartDateTime', 'OffsetHours', 'BillingApprovalResourceID')]
+    [ValidateSet('CreateDateTime', 'InternalAllocationCodeID', 'ShowOnInvoice', 'ResourceID', 'HoursWorked', 'EndDateTime', 'RoleID', 'TicketID', 'LastModifiedUserID', 'BillingApprovalResourceID', 'BillingApprovalLevelMostRecent', 'TaskID', 'ContractServiceID', 'InternalNotes', 'SummaryNotes', 'ContractServiceBundleID', 'Type', 'ContractID', 'ImpersonatorCreatorResourceID', 'NonBillable', 'HoursToBill', 'OffsetHours', 'DateWorked', 'CreatorUserID', 'BillingApprovalDateTime', 'StartDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'AllocationCodeID', 'LastModifiedDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HoursWorked', 'TicketID', 'ImpersonatorCreatorResourceID', 'ShowOnInvoice', 'id', 'CreatorUserID', 'ResourceID', 'DateWorked', 'LastModifiedUserID', 'LastModifiedDateTime', 'InternalNotes', 'ContractServiceBundleID', 'BillingApprovalLevelMostRecent', 'HoursToBill', 'BillingApprovalDateTime', 'AllocationCodeID', 'RoleID', 'CreateDateTime', 'InternalAllocationCodeID', 'SummaryNotes', 'Type', 'ContractID', 'ContractServiceID', 'NonBillable', 'ImpersonatorUpdaterResourceID', 'EndDateTime', 'TaskID', 'StartDateTime', 'OffsetHours', 'BillingApprovalResourceID')]
+    [ValidateSet('CreateDateTime', 'InternalAllocationCodeID', 'ShowOnInvoice', 'ResourceID', 'HoursWorked', 'EndDateTime', 'RoleID', 'TicketID', 'LastModifiedUserID', 'BillingApprovalResourceID', 'BillingApprovalLevelMostRecent', 'TaskID', 'ContractServiceID', 'InternalNotes', 'SummaryNotes', 'ContractServiceBundleID', 'Type', 'ContractID', 'ImpersonatorCreatorResourceID', 'NonBillable', 'HoursToBill', 'OffsetHours', 'DateWorked', 'CreatorUserID', 'BillingApprovalDateTime', 'StartDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'AllocationCodeID', 'LastModifiedDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HoursWorked', 'TicketID', 'ImpersonatorCreatorResourceID', 'ShowOnInvoice', 'id', 'CreatorUserID', 'ResourceID', 'DateWorked', 'LastModifiedUserID', 'LastModifiedDateTime', 'InternalNotes', 'ContractServiceBundleID', 'BillingApprovalLevelMostRecent', 'HoursToBill', 'BillingApprovalDateTime', 'AllocationCodeID', 'RoleID', 'CreateDateTime', 'InternalAllocationCodeID', 'SummaryNotes', 'Type', 'ContractID', 'ContractServiceID', 'NonBillable', 'ImpersonatorUpdaterResourceID', 'EndDateTime', 'TaskID', 'StartDateTime', 'OffsetHours', 'BillingApprovalResourceID')]
+    [ValidateSet('CreateDateTime', 'InternalAllocationCodeID', 'ShowOnInvoice', 'ResourceID', 'HoursWorked', 'EndDateTime', 'RoleID', 'TicketID', 'LastModifiedUserID', 'BillingApprovalResourceID', 'BillingApprovalLevelMostRecent', 'TaskID', 'ContractServiceID', 'InternalNotes', 'SummaryNotes', 'ContractServiceBundleID', 'Type', 'ContractID', 'ImpersonatorCreatorResourceID', 'NonBillable', 'HoursToBill', 'OffsetHours', 'DateWorked', 'CreatorUserID', 'BillingApprovalDateTime', 'StartDateTime', 'id', 'ImpersonatorUpdaterResourceID', 'AllocationCodeID', 'LastModifiedDateTime')]
     [string[]]
     $IsNotNull,
 
@@ -530,11 +530,21 @@ Set-AtwsTimeEntry
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

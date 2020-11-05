@@ -446,21 +446,21 @@ Set-AtwsBillingItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'TaxDollars', 'PostedDate', 'ItemApproverID', 'TicketID', 'ServiceBundleID', 'TimeEntryID', 'TicketCostID', 'id', 'WebServiceDate', 'ProjectCostID', 'AccountID', 'InstalledProductID', 'OurCost', 'InvoiceID', 'PurchaseOrderNumber', 'ExtendedPrice', 'InternalCurrencyTotalAmount', 'MilestoneID', 'ContractCostID', 'LineItemGroupDescription', 'ExpenseItemID', 'ServiceID', 'LineItemID', 'Quantity', 'SubType', 'AllocationCodeID', 'RoleID', 'TaskID', 'Description', 'VendorID', 'NonBillable', 'InternalCurrencyExtendedPrice', 'ItemName', 'AccountManagerWhenApprovedID', 'PostedOnTime', 'Rate', 'ItemDate', 'LineItemFullDescription', 'ProjectID', 'InternalCurrencyTaxDollars', 'ContractID', 'TotalAmount', 'InternalCurrencyRate', 'Type')]
+    [ValidateSet('ProjectCostID', 'NonBillable', 'PostedDate', 'SubType', 'Description', 'RoleID', 'MilestoneID', 'TicketID', 'PostedOnTime', 'InternalCurrencyTotalAmount', 'ContractCostID', 'TaskID', 'InstalledProductID', 'ItemApproverID', 'LineItemID', 'VendorID', 'WebServiceDate', 'AccountID', 'Type', 'BusinessDivisionSubdivisionID', 'ContractID', 'ItemDate', 'OurCost', 'TicketCostID', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'ServiceID', 'TimeEntryID', 'ProjectID', 'AccountManagerWhenApprovedID', 'LineItemGroupDescription', 'Quantity', 'ItemName', 'ServiceBundleID', 'TaxDollars', 'Rate', 'LineItemFullDescription', 'ExtendedPrice', 'InvoiceID', 'InternalCurrencyExtendedPrice', 'PurchaseOrderNumber', 'id', 'TotalAmount', 'AllocationCodeID', 'ExpenseItemID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'TaxDollars', 'PostedDate', 'ItemApproverID', 'TicketID', 'ServiceBundleID', 'TimeEntryID', 'TicketCostID', 'id', 'WebServiceDate', 'ProjectCostID', 'AccountID', 'InstalledProductID', 'OurCost', 'InvoiceID', 'PurchaseOrderNumber', 'ExtendedPrice', 'InternalCurrencyTotalAmount', 'MilestoneID', 'ContractCostID', 'LineItemGroupDescription', 'ExpenseItemID', 'ServiceID', 'LineItemID', 'Quantity', 'SubType', 'AllocationCodeID', 'RoleID', 'TaskID', 'Description', 'VendorID', 'NonBillable', 'InternalCurrencyExtendedPrice', 'ItemName', 'AccountManagerWhenApprovedID', 'PostedOnTime', 'Rate', 'ItemDate', 'LineItemFullDescription', 'ProjectID', 'InternalCurrencyTaxDollars', 'ContractID', 'TotalAmount', 'InternalCurrencyRate', 'Type')]
+    [ValidateSet('ProjectCostID', 'NonBillable', 'PostedDate', 'SubType', 'Description', 'RoleID', 'MilestoneID', 'TicketID', 'PostedOnTime', 'InternalCurrencyTotalAmount', 'ContractCostID', 'TaskID', 'InstalledProductID', 'ItemApproverID', 'LineItemID', 'VendorID', 'WebServiceDate', 'AccountID', 'Type', 'BusinessDivisionSubdivisionID', 'ContractID', 'ItemDate', 'OurCost', 'TicketCostID', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'ServiceID', 'TimeEntryID', 'ProjectID', 'AccountManagerWhenApprovedID', 'LineItemGroupDescription', 'Quantity', 'ItemName', 'ServiceBundleID', 'TaxDollars', 'Rate', 'LineItemFullDescription', 'ExtendedPrice', 'InvoiceID', 'InternalCurrencyExtendedPrice', 'PurchaseOrderNumber', 'id', 'TotalAmount', 'AllocationCodeID', 'ExpenseItemID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'TaxDollars', 'PostedDate', 'ItemApproverID', 'TicketID', 'ServiceBundleID', 'TimeEntryID', 'TicketCostID', 'id', 'WebServiceDate', 'ProjectCostID', 'AccountID', 'InstalledProductID', 'OurCost', 'InvoiceID', 'PurchaseOrderNumber', 'ExtendedPrice', 'InternalCurrencyTotalAmount', 'MilestoneID', 'ContractCostID', 'LineItemGroupDescription', 'ExpenseItemID', 'ServiceID', 'LineItemID', 'Quantity', 'SubType', 'AllocationCodeID', 'RoleID', 'TaskID', 'Description', 'VendorID', 'NonBillable', 'InternalCurrencyExtendedPrice', 'ItemName', 'AccountManagerWhenApprovedID', 'PostedOnTime', 'Rate', 'ItemDate', 'LineItemFullDescription', 'ProjectID', 'InternalCurrencyTaxDollars', 'ContractID', 'TotalAmount', 'InternalCurrencyRate', 'Type')]
+    [ValidateSet('ProjectCostID', 'NonBillable', 'PostedDate', 'SubType', 'Description', 'RoleID', 'MilestoneID', 'TicketID', 'PostedOnTime', 'InternalCurrencyTotalAmount', 'ContractCostID', 'TaskID', 'InstalledProductID', 'ItemApproverID', 'LineItemID', 'VendorID', 'WebServiceDate', 'AccountID', 'Type', 'BusinessDivisionSubdivisionID', 'ContractID', 'ItemDate', 'OurCost', 'TicketCostID', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'ServiceID', 'TimeEntryID', 'ProjectID', 'AccountManagerWhenApprovedID', 'LineItemGroupDescription', 'Quantity', 'ItemName', 'ServiceBundleID', 'TaxDollars', 'Rate', 'LineItemFullDescription', 'ExtendedPrice', 'InvoiceID', 'InternalCurrencyExtendedPrice', 'PurchaseOrderNumber', 'id', 'TotalAmount', 'AllocationCodeID', 'ExpenseItemID')]
     [string[]]
     $IsNotNull,
 
@@ -632,11 +632,21 @@ Set-AtwsBillingItem
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

@@ -339,21 +339,21 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'Title', 'TicketTypeID', 'WorkTypeID', 'Resolution', 'EstimatedHours', 'Description', 'ServiceLevelAgreementID', 'IssueTypeID', 'id', 'Priority', 'SourceID', 'PurchaseOrderNumber', 'QueueID', 'SubIssueTypeID', 'Status', 'TicketCategoryID')]
+    [ValidateSet('id', 'Description', 'IssueTypeID', 'Status', 'WorkTypeID', 'EstimatedHours', 'SourceID', 'BusinessDivisionSubdivisionID', 'Title', 'Priority', 'TicketCategoryID', 'Resolution', 'SubIssueTypeID', 'QueueID', 'ServiceLevelAgreementID', 'TicketTypeID', 'PurchaseOrderNumber')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'Title', 'TicketTypeID', 'WorkTypeID', 'Resolution', 'EstimatedHours', 'Description', 'ServiceLevelAgreementID', 'IssueTypeID', 'id', 'Priority', 'SourceID', 'PurchaseOrderNumber', 'QueueID', 'SubIssueTypeID', 'Status', 'TicketCategoryID')]
+    [ValidateSet('id', 'Description', 'IssueTypeID', 'Status', 'WorkTypeID', 'EstimatedHours', 'SourceID', 'BusinessDivisionSubdivisionID', 'Title', 'Priority', 'TicketCategoryID', 'Resolution', 'SubIssueTypeID', 'QueueID', 'ServiceLevelAgreementID', 'TicketTypeID', 'PurchaseOrderNumber')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'Title', 'TicketTypeID', 'WorkTypeID', 'Resolution', 'EstimatedHours', 'Description', 'ServiceLevelAgreementID', 'IssueTypeID', 'id', 'Priority', 'SourceID', 'PurchaseOrderNumber', 'QueueID', 'SubIssueTypeID', 'Status', 'TicketCategoryID')]
+    [ValidateSet('id', 'Description', 'IssueTypeID', 'Status', 'WorkTypeID', 'EstimatedHours', 'SourceID', 'BusinessDivisionSubdivisionID', 'Title', 'Priority', 'TicketCategoryID', 'Resolution', 'SubIssueTypeID', 'QueueID', 'ServiceLevelAgreementID', 'TicketTypeID', 'PurchaseOrderNumber')]
     [string[]]
     $IsNotNull,
 
@@ -524,11 +524,21 @@ An example of a more complex query. This command returns any TicketCategoryField
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

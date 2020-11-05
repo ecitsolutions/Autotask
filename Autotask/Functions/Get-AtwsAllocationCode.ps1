@@ -281,21 +281,21 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'ExternalNumber', 'TaxCategoryID', 'Name', 'IsExcludedFromNewContracts', 'MarkupRate', 'AllocationCodeType', 'Description', 'AfterHoursWorkType', 'UnitCost', 'id', 'GeneralLedgerCode', 'Department', 'Active', 'Type', 'Taxable', 'UseType')]
+    [ValidateSet('AllocationCodeType', 'id', 'ExternalNumber', 'Description', 'Name', 'AfterHoursWorkType', 'Type', 'IsExcludedFromNewContracts', 'UnitPrice', 'UseType', 'GeneralLedgerCode', 'MarkupRate', 'Taxable', 'UnitCost', 'Department', 'TaxCategoryID', 'Active')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'ExternalNumber', 'TaxCategoryID', 'Name', 'IsExcludedFromNewContracts', 'MarkupRate', 'AllocationCodeType', 'Description', 'AfterHoursWorkType', 'UnitCost', 'id', 'GeneralLedgerCode', 'Department', 'Active', 'Type', 'Taxable', 'UseType')]
+    [ValidateSet('AllocationCodeType', 'id', 'ExternalNumber', 'Description', 'Name', 'AfterHoursWorkType', 'Type', 'IsExcludedFromNewContracts', 'UnitPrice', 'UseType', 'GeneralLedgerCode', 'MarkupRate', 'Taxable', 'UnitCost', 'Department', 'TaxCategoryID', 'Active')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'ExternalNumber', 'TaxCategoryID', 'Name', 'IsExcludedFromNewContracts', 'MarkupRate', 'AllocationCodeType', 'Description', 'AfterHoursWorkType', 'UnitCost', 'id', 'GeneralLedgerCode', 'Department', 'Active', 'Type', 'Taxable', 'UseType')]
+    [ValidateSet('AllocationCodeType', 'id', 'ExternalNumber', 'Description', 'Name', 'AfterHoursWorkType', 'Type', 'IsExcludedFromNewContracts', 'UnitPrice', 'UseType', 'GeneralLedgerCode', 'MarkupRate', 'Taxable', 'UnitCost', 'Department', 'TaxCategoryID', 'Active')]
     [string[]]
     $IsNotNull,
 
@@ -466,11 +466,21 @@ An example of a more complex query. This command returns any AllocationCodes wit
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)
