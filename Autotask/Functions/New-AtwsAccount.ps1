@@ -72,7 +72,7 @@ Set-AtwsAccount
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Client Name
+# Account Name
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -83,7 +83,7 @@ Set-AtwsAccount
     [string]
     $AccountName,
 
-# Client Number
+# Account Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -91,7 +91,7 @@ Set-AtwsAccount
     [string]
     $AccountNumber,
 
-# Client Type
+# Account Type
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -258,7 +258,7 @@ Set-AtwsAccount
     [Int]
     $BillToCountryID,
 
-# Bill To County
+# Bill To State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -266,7 +266,7 @@ Set-AtwsAccount
     [string]
     $BillToState,
 
-# Bill To Postal Code
+# Bill To Zip Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -392,7 +392,7 @@ Set-AtwsAccount
     [string]
     $InvoiceMethod,
 
-# Invoice non contract items to Parent Client
+# Invoice non contract items to Parent Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -458,7 +458,7 @@ Set-AtwsAccount
     [string]
     $MarketSegmentID,
 
-# Client Owner
+# Account Owner
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -467,7 +467,7 @@ Set-AtwsAccount
     [Int]
     $OwnerResourceID,
 
-# Parent Client
+# Parent Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -484,7 +484,7 @@ Set-AtwsAccount
     [string]
     $Phone,
 
-# Postal Code
+# Zip Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -514,7 +514,7 @@ Set-AtwsAccount
     [string]
     $SICCode,
 
-# County
+# State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -648,7 +648,7 @@ Set-AtwsAccount
                     $newObject.$field = $object.$field 
                 }
 
-                if ($newObject -is [Autotask.Ticket] -and $object.id -gt 0) {
+                if ($newObject -is [Autotask.Ticket]) {
                     Write-Verbose -Message ('{0}: Copy Object mode: Object is a Ticket. Title must be modified to avoid duplicate detection.' -F $MyInvocation.MyCommand.Name)  
                     $title = '{0} (Copy {1})' -F $newObject.Title, $CopyNo
                     $copyNo++
@@ -673,19 +673,7 @@ Set-AtwsAccount
             # Process parameters and update objects with their values
             $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             
-            try { 
-                # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
-                $result += Set-AtwsData -Entity $processObject -Create
-            }
-            catch {
-                write-host "ERROR: " -ForegroundColor Red -NoNewline
-                write-host $_.Exception.Message
-                write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
-                $_.ScriptStackTrace -split '\n' | ForEach-Object {
-                    Write-host "  |  " -ForegroundColor Cyan -NoNewline
-                    Write-host $_
-                }
-            }
+            $result = Set-AtwsData -Entity $processObject -Create
         }
     }
 

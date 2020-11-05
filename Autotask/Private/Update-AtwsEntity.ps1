@@ -102,7 +102,7 @@ Function Update-AtwsEntity {
 
             # Collect external references
             if ($field.IsReference) {
-                $externalReferences[$field.name] = $field.ReferenceEntityType
+                $externalReferences[$field.ReferenceEntityType] = $field.name
             }
 
             # Collect all fields but boolean for -gt, -ge, -lt and -le queries

@@ -85,7 +85,7 @@ Get-AtwsAccount
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Client Name
+# Account Name
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -102,7 +102,7 @@ Get-AtwsAccount
     [string]
     $AccountName,
 
-# Client Number
+# Account Number
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -116,7 +116,7 @@ Get-AtwsAccount
     [string]
     $AccountNumber,
 
-# Client Type
+# Account Type
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -410,7 +410,7 @@ Get-AtwsAccount
     [string]
     $InvoiceMethod,
 
-# Invoice non contract items to Parent Client
+# Invoice non contract items to Parent Account
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -486,7 +486,7 @@ Get-AtwsAccount
     [string]
     $MarketSegmentID,
 
-# Client Owner
+# Account Owner
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -501,7 +501,7 @@ Get-AtwsAccount
     [Nullable[Int]]
     $OwnerResourceID,
 
-# Parent Client
+# Parent Account
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -530,7 +530,7 @@ Get-AtwsAccount
     [string]
     $Phone,
 
-# Postal Code
+# Zip Code
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -584,7 +584,7 @@ Get-AtwsAccount
     [string]
     $SICCode,
 
-# County
+# State
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -725,7 +725,7 @@ Get-AtwsAccount
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $ModifiedObjects = @()
+        $ModifiedObjects = [Collections.ArrayList]::new()
     }
 
     process {
@@ -760,19 +760,9 @@ Get-AtwsAccount
             # Process parameters and update objects with their values
             $processObject = $InputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             
-            try { 
-                # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
-                [void]$ModifiedObjects.Add((Set-AtwsData -Entity $processObject))
-            }
-            catch {
-                write-host "ERROR: " -ForegroundColor Red -NoNewline
-                write-host $_.Exception.Message
-                write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
-                $_.ScriptStackTrace -split '\n' | ForEach-Object {
-                    Write-host "  |  " -ForegroundColor Cyan -NoNewline
-                    Write-host $_
-                }
-            }
+            # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
+            [void]$ModifiedObjects.Add((Set-AtwsData -Entity $processObject))
+        
         }
     
     }

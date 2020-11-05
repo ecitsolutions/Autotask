@@ -60,10 +60,14 @@ Function Get-AtwsParameterDefinition {
             # -Filter
             $Comment = 'A filter that limits the number of objects that is returned from the API'
             Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'string' -Mandatory -Remaining -NotNull  -Array -Comment $Comment
-            $ReferenceFields = $Entity['ExternalReferences'].Keys | Sort-Object
+            $ReferenceFields = $Entity['ExternalReferences'].Values
             # -GetReferenceEntityById, -GetRef
             $Comment = 'Follow this external ID and return any external objects'            
             Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter', 'By_parameters' -Type 'string' -NotNull -ValidateSet $ReferenceFields -Comment $Comment
+            # -GetExternalEntityByThisEntityId, -External
+            $IncomingReferenceEntities = $Entity['IncomingReferences'].Keys
+            $Comment = 'Return entities of selected type that are referencing to this entity.'
+            Get-AtwsPSParameter -Name 'GetExternalEntityByThisEntityId' -Alias 'External' -SetName 'Filter', 'By_parameters' -Type 'string' -NotNull -ValidateSet $IncomingReferenceEntities -Comment $Comment
             # -All
             $Comment = 'Return all objects in one query'    
             Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'switch' -Comment $Comment

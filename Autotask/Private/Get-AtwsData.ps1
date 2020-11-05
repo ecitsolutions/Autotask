@@ -11,7 +11,7 @@ Function Get-AtwsData {
       This function queries the Autotask Web API for entities matching a specified type and filter.
       .DESCRIPTION
       This function queries the Autotask Web API for entities matching a specified type and filter.
-      Valid operators: 
+      Valid operators:
       -and, -or
 
       Valid comparison operators:
@@ -19,8 +19,8 @@ Function Get-AtwsData {
 
       Valid text comparison operators:
       -contains, -like, -notlike, -beginswith, -endswith, -soundslike
-         
-      Special operators to nest conditions: 
+
+      Special operators to nest conditions:
       -begin, -end
 
       .INPUTS
@@ -37,9 +37,9 @@ Function Get-AtwsData {
       New-AtwsData
       Remove-AtwsData
   #>
-  
+
     [cmdletbinding()]
-    [OutputType([Collections.ArrayList])]
+    [OutputType([PSObject[]])]
     param
     (
         [Parameter(
@@ -48,7 +48,7 @@ Function Get-AtwsData {
         )]
         [string]
         $Entity,
-          
+
         [Parameter(
             Mandatory = $true,
             ValueFromRemainingArguments = $true,
@@ -56,43 +56,46 @@ Function Get-AtwsData {
         )]
         [string[]]
         $Filter,
-    
+
         [string]
         $GetReferenceEntityById,
-    
+
+        [string]
+        $GetExternalEntityByThisEntityId,
+
         [switch]
         $NoPickListLabel
     )
 
-    begin { 
+    begin {
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
-    
+
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-       
+
         if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }
-    
+
         $result = [Collections.ArrayList]::new()
     }
-  
+
     process {
         # $Filter may in some cases be passed as a flat string. Make sure it is formatted properly
-        if ($Filter.Count -eq 1 -and $Filter -match ' ' ) { 
+        if ($Filter.Count -eq 1 -and $Filter -match ' ' ) {
             $Filter = . Update-AtwsFilter -Filterstring $Filter
         }
 
         # Create array with entity as first element
         [Array]$Query = @($Entity) + $Filter
-  
+
         Write-Verbose ('{0}: Converting query string into QueryXml. string as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
         [xml]$QueryXml = ConvertTo-QueryXML @Query
 
         Write-Debug ('{0}: QueryXml looks like: {1}' -F $MyInvocation.MyCommand.Name, $QueryXml.InnerXml.Tostring())
-    
+
         Write-Verbose ('{0}: Adding looping construct to query to handle more than 500 results.' -F $MyInvocation.MyCommand.Name)
-    
+
         # Native XML is rather tedious...
         $field = $QueryXml.CreateElement('field')
         $expression = $QueryXml.CreateElement('expression')
@@ -100,7 +103,7 @@ Function Get-AtwsData {
         $expression.InnerText = 0
         $field.InnerText = 'id'
         [void]$field.AppendChild($expression)
-    
+
         $FirstPass = $true
         Do {
             Write-Verbose ('{0}: Passing QueryXML to Autotask API' -F $MyInvocation.MyCommand.Name)
@@ -117,10 +120,10 @@ Function Get-AtwsData {
             }
 
             # Add all returned objects to the Result - if any
-            if ($lastquery.EntityResults.Count -gt 0) { 
-                [void]$result.AddRange((ConvertTo-LocalObject -InputObject $lastquery.EntityResults))
+            if ($lastquery.EntityResults.Count -gt 0) {
+                [void]$result.add((ConvertTo-LocalObject -InputObject $lastquery.EntityResults))
             }
-            
+
             # Results are sorted by object Id. The Id of the last object is the highest object id in the result
             $upperBound = $lastquery.EntityResults[$lastquery.EntityResults.GetUpperBound(0)].id
 
@@ -131,24 +134,25 @@ Function Get-AtwsData {
             if ($FirstPass) {
                 # Insert looping construct into query
                 [void]$QueryXml.queryxml.query.AppendChild($field)
-                $FirstPass = $false        
+                $FirstPass = $false
             }
         }
         # The last query we have to make will have between 0 and 499 items
         Until ($lastquery.EntityResults.Count -lt 500)
-     
+
     }
-  
-    end { 
+
+    end {
         # Some last minute changes
-        if ($result) { 
+        if ($result) {
             # Should we return an indirect object?
             if ($GetReferenceEntityById) {
                 Write-Verbose ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
-                $field = Get-AtwsFieldInfo -Entity $Entity -FieldName $GetReferenceEntityById
+                $fields = Get-AtwsFieldInfo -Entity $Entity
+                $field = $fields[$GetReferenceEntityById]
                 $resultValues = $result.$GetReferenceEntityById | Where-Object { $null -ne $_ }
                 if ($resultValues.Count -lt $result.Count) {
-                    Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+                    Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name,
                         $resultValues.Count,
                         $Entity,
                         $GetReferenceEntityById) -WarningAction Continue
@@ -156,10 +160,17 @@ Function Get-AtwsData {
                 $Filter = 'id -eq {0}' -F $($resultValues -join ' -or id -eq ')
                 $result = Get-Atwsdata -Entity $field.ReferenceEntityType -Filter $Filter
             }
+            elseif ($GetExternalEntityByThisEntityId) {
+                Write-Verbose ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
+                $entityInfo = Get-AtwsFieldInfo -EntityInfo -Entity $Entity
+                $fieldName = $entityInfo['IncomingReferences'][$GetExternalEntityByThisEntityId]
+                $Filter = '{0} -eq {1}' -F $fieldName, $($result.id -join (' -or {0} -eq ' -F $fieldName))
+                $result = Get-Atwsdata -Entity $GetExternalEntityByThisEntityId -Filter $Filter
+            }
 
             Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
             Return $result
         }
     }
-  
+
 }

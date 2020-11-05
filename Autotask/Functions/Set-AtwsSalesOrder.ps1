@@ -169,7 +169,7 @@ Get-AtwsSalesOrder
     [Nullable[Int]]
     $BillToCountryID,
 
-# Bill to Postal Code
+# Bill to Zip Code
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -183,7 +183,7 @@ Get-AtwsSalesOrder
     [string]
     $BillToPostalCode,
 
-# Bill to County
+# Bill to State
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -337,7 +337,7 @@ Get-AtwsSalesOrder
     [Nullable[Int]]
     $ShipToCountryID,
 
-# Ship to Postal Code
+# Ship to Zip Code
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -351,7 +351,7 @@ Get-AtwsSalesOrder
     [string]
     $ShipToPostalCode,
 
-# Ship to County
+# Ship to State
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -412,7 +412,7 @@ Get-AtwsSalesOrder
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $ModifiedObjects = @()
+        $ModifiedObjects = [Collections.ArrayList]::new()
     }
 
     process {
@@ -447,19 +447,9 @@ Get-AtwsSalesOrder
             # Process parameters and update objects with their values
             $processObject = $InputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             
-            try { 
-                # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
-                [void]$ModifiedObjects.Add((Set-AtwsData -Entity $processObject))
-            }
-            catch {
-                write-host "ERROR: " -ForegroundColor Red -NoNewline
-                write-host $_.Exception.Message
-                write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
-                $_.ScriptStackTrace -split '\n' | ForEach-Object {
-                    Write-host "  |  " -ForegroundColor Cyan -NoNewline
-                    Write-host $_
-                }
-            }
+            # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
+            [void]$ModifiedObjects.Add((Set-AtwsData -Entity $processObject))
+        
         }
     
     }

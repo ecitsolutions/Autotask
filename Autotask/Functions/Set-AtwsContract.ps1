@@ -74,17 +74,6 @@ Get-AtwsContract
     [switch]
     $PassThru,
 
-# User defined fields already setup i Autotask
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('UDF')]
-    [Autotask.UserDefinedField[]]
-    $UserDefinedFields,
-
 # Billing Preference
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -110,7 +99,7 @@ Get-AtwsContract
     [string]
     $BillingPreference,
 
-# Bill To Client Contact ID
+# Bill To Account Contact ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -123,7 +112,7 @@ Get-AtwsContract
     [Nullable[Int]]
     $BillToAccountContactID,
 
-# Bill To Client ID
+# Bill To Account ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -532,7 +521,7 @@ Get-AtwsContract
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $ModifiedObjects = @()
+        $ModifiedObjects = [Collections.ArrayList]::new()
     }
 
     process {
@@ -567,19 +556,9 @@ Get-AtwsContract
             # Process parameters and update objects with their values
             $processObject = $InputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             
-            try { 
-                # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
-                [void]$ModifiedObjects.Add((Set-AtwsData -Entity $processObject))
-            }
-            catch {
-                write-host "ERROR: " -ForegroundColor Red -NoNewline
-                write-host $_.Exception.Message
-                write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
-                $_.ScriptStackTrace -split '\n' | ForEach-Object {
-                    Write-host "  |  " -ForegroundColor Cyan -NoNewline
-                    Write-host $_
-                }
-            }
+            # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
+            [void]$ModifiedObjects.Add((Set-AtwsData -Entity $processObject))
+        
         }
     
     }

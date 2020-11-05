@@ -72,12 +72,6 @@ Function Get-AtwsPicklistValue {
             Position = 0,
             ParameterSetName = 'as_Values'
         )]
-
-        [ValidateNotNullOrEmpty()]
-        [ArgumentCompleter({
-            param($Cmd, $Param, $Word, $Ast, $FakeBound)
-            $script:FieldInfoCache.keys
-        })]
         [string]
         $Entity,
 
@@ -96,16 +90,6 @@ Function Get-AtwsPicklistValue {
             Position = 2,
             ParameterSetName = 'as_Values'
         )]
-        [ValidateNotNullOrEmpty()]
-        [ArgumentCompleter({
-            param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                if ($FakeBound.UserDefinedFields.IsPresent) { 
-                     $script:FieldInfoCache[$fakebound.Entity]['UDFinfo'].keys
-                }
-                else {
-                    $script:FieldInfoCache[$fakebound.Entity]['PickListFields']
-                }
-        })]
         [string]
         $FieldName,
 
@@ -151,26 +135,18 @@ Function Get-AtwsPicklistValue {
         Write-Verbose -Message ('{0}: Looking up detailed Fieldinfo for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity) 
         
         if ($UserDefinedFields.IsPresent -and $script:FieldInfoCache[$Entity].HasUserDefinedFields) {
-            $infoType = 'UDFinfo'
+
+            $picklistValues = (Get-AtwsFieldInfo -Entity $Entity -FieldName $FieldName -UserDefinedFields).PicklistValues
+    
+            Write-Debug -Message ('{0}: Entity {1} has userdefined fields and user defined field {2} has {3} picklist values.' -F $MyInvocation.MyCommand.Name, $Entity, $FieldName, $result.count) 
         }
         elseIf ($script:FieldInfoCache[$Entity].HasPicklist) { 
-            $infoType = 'FieldInfo'
+    
+            $picklistValues = (Get-AtwsFieldInfo -Entity $Entity -FieldName $FieldName).PicklistValues
+    
+            Write-Debug -Message ('{0}: Entity {1} has picklists and field {2} has {3} picklist values.' -F $MyInvocation.MyCommand.Name, $Entity, $FieldName, $result.count) 
         }
-        else {
-            # Nothing to do. Return.
-            return
-        }
-
-        # Refresh picklists if list is empty
-        if ($null -eq $script:FieldInfoCache[$Entity][$infoType][$FieldName]['PicklistValues']) {
-            # The API returns all fields anyway, so we do not need to specify field name, but we 
-            # need to specify userdefinedfields
-            Update-AtwsPicklist -Entity $Entity -UserDefinedFields:$UserDefinedFields.IsPresent
-        }
-
-        $picklistValues = $script:FieldInfoCache[$Entity][$infoType][$FieldName]['PicklistValues']
-
-        Write-Verbose -Message ('{0}: Entity {1} has picklists and field {2} has {3} picklist values.' -F $MyInvocation.MyCommand.Name, $Entity, $FieldName, $result.count) 
+ 
 
         if ($picklistValues.count -gt 0 ) {
             if ($picklistValues.keys -contains 'byValue') {
