@@ -657,6 +657,9 @@ namespace Autotask
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(DeletedTaskActivityLog))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(DeletedTicketActivityLog))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(DeletedTicketLog))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TicketRmaCredit))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(InstalledProductCategoryUdfAssociation))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(InstalledProductCategory))]
@@ -1303,6 +1306,462 @@ namespace Autotask
             set
             {
                 this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class DeletedTaskActivityLog : Entity
+    {
+        
+        private object typeIDField;
+        
+        private object taskIDField;
+        
+        private object taskNumberField;
+        
+        private object noteOrAttachmentTitleField;
+        
+        private object createdByResourceIDField;
+        
+        private object activityDateTimeField;
+        
+        private object startDateTimeField;
+        
+        private object endDateTimeField;
+        
+        private object hoursWorkedField;
+        
+        private object deletedByResourceIDField;
+        
+        private object deletedDateTimeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object TypeID
+        {
+            get
+            {
+                return this.typeIDField;
+            }
+            set
+            {
+                this.typeIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object TaskID
+        {
+            get
+            {
+                return this.taskIDField;
+            }
+            set
+            {
+                this.taskIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object TaskNumber
+        {
+            get
+            {
+                return this.taskNumberField;
+            }
+            set
+            {
+                this.taskNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object NoteOrAttachmentTitle
+        {
+            get
+            {
+                return this.noteOrAttachmentTitleField;
+            }
+            set
+            {
+                this.noteOrAttachmentTitleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public object CreatedByResourceID
+        {
+            get
+            {
+                return this.createdByResourceIDField;
+            }
+            set
+            {
+                this.createdByResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public object ActivityDateTime
+        {
+            get
+            {
+                return this.activityDateTimeField;
+            }
+            set
+            {
+                this.activityDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public object StartDateTime
+        {
+            get
+            {
+                return this.startDateTimeField;
+            }
+            set
+            {
+                this.startDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public object EndDateTime
+        {
+            get
+            {
+                return this.endDateTimeField;
+            }
+            set
+            {
+                this.endDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public object HoursWorked
+        {
+            get
+            {
+                return this.hoursWorkedField;
+            }
+            set
+            {
+                this.hoursWorkedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public object DeletedByResourceID
+        {
+            get
+            {
+                return this.deletedByResourceIDField;
+            }
+            set
+            {
+                this.deletedByResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public object DeletedDateTime
+        {
+            get
+            {
+                return this.deletedDateTimeField;
+            }
+            set
+            {
+                this.deletedDateTimeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class DeletedTicketActivityLog : Entity
+    {
+        
+        private object typeIDField;
+        
+        private object ticketIDField;
+        
+        private object ticketNumberField;
+        
+        private object noteOrAttachmentTitleField;
+        
+        private object createdByResourceIDField;
+        
+        private object activityDateTimeField;
+        
+        private object startDateTimeField;
+        
+        private object endDateTimeField;
+        
+        private object hoursWorkedField;
+        
+        private object deletedByResourceIDField;
+        
+        private object deletedDateTimeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object TypeID
+        {
+            get
+            {
+                return this.typeIDField;
+            }
+            set
+            {
+                this.typeIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object TicketID
+        {
+            get
+            {
+                return this.ticketIDField;
+            }
+            set
+            {
+                this.ticketIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object TicketNumber
+        {
+            get
+            {
+                return this.ticketNumberField;
+            }
+            set
+            {
+                this.ticketNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object NoteOrAttachmentTitle
+        {
+            get
+            {
+                return this.noteOrAttachmentTitleField;
+            }
+            set
+            {
+                this.noteOrAttachmentTitleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public object CreatedByResourceID
+        {
+            get
+            {
+                return this.createdByResourceIDField;
+            }
+            set
+            {
+                this.createdByResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public object ActivityDateTime
+        {
+            get
+            {
+                return this.activityDateTimeField;
+            }
+            set
+            {
+                this.activityDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public object StartDateTime
+        {
+            get
+            {
+                return this.startDateTimeField;
+            }
+            set
+            {
+                this.startDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public object EndDateTime
+        {
+            get
+            {
+                return this.endDateTimeField;
+            }
+            set
+            {
+                this.endDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public object HoursWorked
+        {
+            get
+            {
+                return this.hoursWorkedField;
+            }
+            set
+            {
+                this.hoursWorkedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public object DeletedByResourceID
+        {
+            get
+            {
+                return this.deletedByResourceIDField;
+            }
+            set
+            {
+                this.deletedByResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public object DeletedDateTime
+        {
+            get
+            {
+                return this.deletedDateTimeField;
+            }
+            set
+            {
+                this.deletedDateTimeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class DeletedTicketLog : Entity
+    {
+        
+        private object ticketIDField;
+        
+        private object ticketNumberField;
+        
+        private object ticketTitleField;
+        
+        private object deletedByResourceIDField;
+        
+        private object deletedDateTimeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object TicketID
+        {
+            get
+            {
+                return this.ticketIDField;
+            }
+            set
+            {
+                this.ticketIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object TicketNumber
+        {
+            get
+            {
+                return this.ticketNumberField;
+            }
+            set
+            {
+                this.ticketNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object TicketTitle
+        {
+            get
+            {
+                return this.ticketTitleField;
+            }
+            set
+            {
+                this.ticketTitleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object DeletedByResourceID
+        {
+            get
+            {
+                return this.deletedByResourceIDField;
+            }
+            set
+            {
+                this.deletedByResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public object DeletedDateTime
+        {
+            get
+            {
+                return this.deletedDateTimeField;
+            }
+            set
+            {
+                this.deletedDateTimeField = value;
             }
         }
     }
@@ -11144,6 +11603,8 @@ namespace Autotask
         
         private object createDateTimeField;
         
+        private object createdByContactIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object CreatorResourceID
@@ -11297,6 +11758,20 @@ namespace Autotask
                 this.createDateTimeField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public object CreatedByContactID
+        {
+            get
+            {
+                return this.createdByContactIDField;
+            }
+            set
+            {
+                this.createdByContactIDField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -11325,6 +11800,8 @@ namespace Autotask
         private object impersonatorUpdaterResourceIDField;
         
         private object createDateTimeField;
+        
+        private object createdByContactIDField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -11463,6 +11940,20 @@ namespace Autotask
             set
             {
                 this.createDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public object CreatedByContactID
+        {
+            get
+            {
+                return this.createdByContactIDField;
+            }
+            set
+            {
+                this.createdByContactIDField = value;
             }
         }
     }
@@ -17734,6 +18225,8 @@ namespace Autotask
         
         private object createDateTimeField;
         
+        private object createdByContactIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object CreatorResourceID
@@ -17871,6 +18364,20 @@ namespace Autotask
             set
             {
                 this.createDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public object CreatedByContactID
+        {
+            get
+            {
+                return this.createdByContactIDField;
+            }
+            set
+            {
+                this.createdByContactIDField = value;
             }
         }
     }
@@ -18719,6 +19226,8 @@ namespace Autotask
         private object rmaTypeField;
         
         private object impersonatorCreatorResourceIDField;
+        
+        private object createdByContactIDField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -19711,6 +20220,20 @@ namespace Autotask
             set
             {
                 this.impersonatorCreatorResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=71)]
+        public object CreatedByContactID
+        {
+            get
+            {
+                return this.createdByContactIDField;
+            }
+            set
+            {
+                this.createdByContactIDField = value;
             }
         }
     }
@@ -20798,6 +21321,8 @@ namespace Autotask
         
         private object impersonatorCreatorResourceIDField;
         
+        private object opportunityIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object ProjectName
@@ -21385,6 +21910,20 @@ namespace Autotask
                 this.impersonatorCreatorResourceIDField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=42)]
+        public object OpportunityID
+        {
+            get
+            {
+                return this.opportunityIDField;
+            }
+            set
+            {
+                this.opportunityIDField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -21547,6 +22086,8 @@ namespace Autotask
         private object eligibleForRmaField;
         
         private object impersonatorCreatorResourceIDField;
+        
+        private object defaultInstalledProductCategoryIDField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -21895,6 +22436,20 @@ namespace Autotask
             set
             {
                 this.impersonatorCreatorResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
+        public object DefaultInstalledProductCategoryID
+        {
+            get
+            {
+                return this.defaultInstalledProductCategoryIDField;
+            }
+            set
+            {
+                this.defaultInstalledProductCategoryIDField = value;
             }
         }
     }
@@ -28042,6 +28597,8 @@ namespace Autotask
         
         private object internalCurrencyLineDiscountField;
         
+        private object sortOrderIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object AverageCost
@@ -28431,6 +28988,20 @@ namespace Autotask
             set
             {
                 this.internalCurrencyLineDiscountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
+        public object SortOrderID
+        {
+            get
+            {
+                return this.sortOrderIDField;
+            }
+            set
+            {
+                this.sortOrderIDField = value;
             }
         }
     }
@@ -31100,6 +31671,8 @@ namespace Autotask
         
         private object impersonatorCreatorResourceIDField;
         
+        private object creatorTypeField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object ParentID
@@ -31281,6 +31854,20 @@ namespace Autotask
                 this.impersonatorCreatorResourceIDField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public object CreatorType
+        {
+            get
+            {
+                return this.creatorTypeField;
+            }
+            set
+            {
+                this.creatorTypeField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -31299,13 +31886,13 @@ namespace Autotask
         private bool canCreateField;
         
         private bool canQueryField;
-
+        
         private string userAccessForCreateField;
-
+        
         private string userAccessForQueryField;
-
+        
         private string userAccessForUpdateField;
-
+        
         private string userAccessForDeleteField;
         
         private bool hasUserDefinedFieldsField;
@@ -31383,7 +31970,7 @@ namespace Autotask
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
         public string UserAccessForCreate
         {
             get
@@ -31395,9 +31982,9 @@ namespace Autotask
                 this.userAccessForCreateField = value;
             }
         }
-
+        
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
         public string UserAccessForQuery
         {
             get
@@ -31409,9 +31996,9 @@ namespace Autotask
                 this.userAccessForQueryField = value;
             }
         }
-
+        
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
         public string UserAccessForUpdate
         {
             get
@@ -31423,9 +32010,9 @@ namespace Autotask
                 this.userAccessForUpdateField = value;
             }
         }
-
+        
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
         public string UserAccessForDelete
         {
             get
@@ -31437,7 +32024,7 @@ namespace Autotask
                 this.userAccessForDeleteField = value;
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=9)]
         public bool HasUserDefinedFields
