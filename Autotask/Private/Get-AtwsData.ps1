@@ -111,7 +111,7 @@ Function Get-AtwsData {
             # Handle any errors
             if ($lastquery.Errors.Count -gt 0) {
                 foreach ($atwsError in $lastquery.Errors) {
-                    Write-Error $atwsError.Message
+                    throw $atwsError.Message
                 }
                 return
             }
