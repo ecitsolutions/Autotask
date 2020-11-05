@@ -260,21 +260,21 @@ Set-AtwsService
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'LastModifiedDate', 'UpdateResourceID', 'MarkupRate', 'Description', 'CreateDate', 'IsActive', 'ServiceLevelAgreementID', 'UnitCost', 'id', 'InvoiceDescription', 'VendorAccountID', 'Name', 'CreatorResourceID', 'AllocationCodeID', 'PeriodType')]
+    [ValidateSet('Description', 'Name', 'UnitPrice', 'CreateDate', 'IsActive', 'InvoiceDescription', 'MarkupRate', 'UpdateResourceID', 'id', 'LastModifiedDate', 'CreatorResourceID', 'VendorAccountID', 'ServiceLevelAgreementID', 'AllocationCodeID', 'UnitCost', 'PeriodType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'LastModifiedDate', 'UpdateResourceID', 'MarkupRate', 'Description', 'CreateDate', 'IsActive', 'ServiceLevelAgreementID', 'UnitCost', 'id', 'InvoiceDescription', 'VendorAccountID', 'Name', 'CreatorResourceID', 'AllocationCodeID', 'PeriodType')]
+    [ValidateSet('Description', 'Name', 'UnitPrice', 'CreateDate', 'IsActive', 'InvoiceDescription', 'MarkupRate', 'UpdateResourceID', 'id', 'LastModifiedDate', 'CreatorResourceID', 'VendorAccountID', 'ServiceLevelAgreementID', 'AllocationCodeID', 'UnitCost', 'PeriodType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'LastModifiedDate', 'UpdateResourceID', 'MarkupRate', 'Description', 'CreateDate', 'IsActive', 'ServiceLevelAgreementID', 'UnitCost', 'id', 'InvoiceDescription', 'VendorAccountID', 'Name', 'CreatorResourceID', 'AllocationCodeID', 'PeriodType')]
+    [ValidateSet('Description', 'Name', 'UnitPrice', 'CreateDate', 'IsActive', 'InvoiceDescription', 'MarkupRate', 'UpdateResourceID', 'id', 'LastModifiedDate', 'CreatorResourceID', 'VendorAccountID', 'ServiceLevelAgreementID', 'AllocationCodeID', 'UnitCost', 'PeriodType')]
     [string[]]
     $IsNotNull,
 
@@ -446,11 +446,21 @@ Set-AtwsService
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

@@ -32,6 +32,7 @@ Properties with picklists are:
 ParentType
 Type
 Publish
+CreatorType
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -249,49 +250,49 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ParentID', 'ContentType', 'AttachedByContactID', 'ImpersonatorCreatorResourceID', 'ParentType', 'FullPath', 'id', 'AttachDate', 'Publish', 'AttachedByResourceID', 'Title', 'FileSize', 'Type', 'OpportunityID')]
+    [ValidateSet('CreatorType', 'ContentType', 'Publish', 'ParentID', 'AttachDate', 'FullPath', 'OpportunityID', 'AttachedByResourceID', 'FileSize', 'id', 'ImpersonatorCreatorResourceID', 'Type', 'ParentType', 'AttachedByContactID', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ParentID', 'ContentType', 'AttachedByContactID', 'ImpersonatorCreatorResourceID', 'ParentType', 'FullPath', 'id', 'AttachDate', 'Publish', 'AttachedByResourceID', 'Title', 'FileSize', 'Type', 'OpportunityID')]
+    [ValidateSet('CreatorType', 'ContentType', 'Publish', 'ParentID', 'AttachDate', 'FullPath', 'OpportunityID', 'AttachedByResourceID', 'FileSize', 'id', 'ImpersonatorCreatorResourceID', 'Type', 'ParentType', 'AttachedByContactID', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ParentID', 'ContentType', 'AttachedByContactID', 'ImpersonatorCreatorResourceID', 'ParentType', 'FullPath', 'id', 'AttachDate', 'Publish', 'AttachedByResourceID', 'Title', 'FileSize', 'Type', 'OpportunityID')]
+    [ValidateSet('CreatorType', 'ContentType', 'Publish', 'ParentID', 'AttachDate', 'FullPath', 'OpportunityID', 'AttachedByResourceID', 'FileSize', 'id', 'ImpersonatorCreatorResourceID', 'Type', 'ParentType', 'AttachedByContactID', 'Title')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID', 'CreatorType')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID', 'CreatorType')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID', 'CreatorType')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID', 'CreatorType')]
     [string[]]
     $LessThanOrEquals,
 
@@ -435,11 +436,21 @@ An example of a more complex query. This command returns any AttachmentInfos wit
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

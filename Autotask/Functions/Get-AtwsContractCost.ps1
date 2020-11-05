@@ -349,21 +349,21 @@ Set-AtwsContractCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'UnitCost', 'InternalPurchaseOrderNumber', 'StatusLastModifiedDate', 'Notes', 'UnitPrice', 'id', 'BillableAmount', 'DatePurchased', 'CreateDate', 'ExtendedCost', 'StatusLastModifiedBy', 'Billed', 'AllocationCodeID', 'Name', 'ContractServiceBundleID', 'ProductID', 'InternalCurrencyBillableAmount', 'InternalCurrencyUnitPrice', 'ContractID', 'Status', 'Description', 'UnitQuantity', 'CreatorResourceID', 'PurchaseOrderNumber', 'ContractServiceID', 'BillableToAccount', 'CostType')]
+    [ValidateSet('InternalCurrencyUnitPrice', 'DatePurchased', 'InternalPurchaseOrderNumber', 'StatusLastModifiedDate', 'Name', 'CreatorResourceID', 'BusinessDivisionSubdivisionID', 'StatusLastModifiedBy', 'Status', 'CostType', 'UnitQuantity', 'BillableAmount', 'ProductID', 'ContractServiceID', 'id', 'UnitCost', 'ExtendedCost', 'CreateDate', 'PurchaseOrderNumber', 'AllocationCodeID', 'Notes', 'ContractID', 'Description', 'InternalCurrencyBillableAmount', 'Billed', 'ContractServiceBundleID', 'BillableToAccount', 'UnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'UnitCost', 'InternalPurchaseOrderNumber', 'StatusLastModifiedDate', 'Notes', 'UnitPrice', 'id', 'BillableAmount', 'DatePurchased', 'CreateDate', 'ExtendedCost', 'StatusLastModifiedBy', 'Billed', 'AllocationCodeID', 'Name', 'ContractServiceBundleID', 'ProductID', 'InternalCurrencyBillableAmount', 'InternalCurrencyUnitPrice', 'ContractID', 'Status', 'Description', 'UnitQuantity', 'CreatorResourceID', 'PurchaseOrderNumber', 'ContractServiceID', 'BillableToAccount', 'CostType')]
+    [ValidateSet('InternalCurrencyUnitPrice', 'DatePurchased', 'InternalPurchaseOrderNumber', 'StatusLastModifiedDate', 'Name', 'CreatorResourceID', 'BusinessDivisionSubdivisionID', 'StatusLastModifiedBy', 'Status', 'CostType', 'UnitQuantity', 'BillableAmount', 'ProductID', 'ContractServiceID', 'id', 'UnitCost', 'ExtendedCost', 'CreateDate', 'PurchaseOrderNumber', 'AllocationCodeID', 'Notes', 'ContractID', 'Description', 'InternalCurrencyBillableAmount', 'Billed', 'ContractServiceBundleID', 'BillableToAccount', 'UnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'UnitCost', 'InternalPurchaseOrderNumber', 'StatusLastModifiedDate', 'Notes', 'UnitPrice', 'id', 'BillableAmount', 'DatePurchased', 'CreateDate', 'ExtendedCost', 'StatusLastModifiedBy', 'Billed', 'AllocationCodeID', 'Name', 'ContractServiceBundleID', 'ProductID', 'InternalCurrencyBillableAmount', 'InternalCurrencyUnitPrice', 'ContractID', 'Status', 'Description', 'UnitQuantity', 'CreatorResourceID', 'PurchaseOrderNumber', 'ContractServiceID', 'BillableToAccount', 'CostType')]
+    [ValidateSet('InternalCurrencyUnitPrice', 'DatePurchased', 'InternalPurchaseOrderNumber', 'StatusLastModifiedDate', 'Name', 'CreatorResourceID', 'BusinessDivisionSubdivisionID', 'StatusLastModifiedBy', 'Status', 'CostType', 'UnitQuantity', 'BillableAmount', 'ProductID', 'ContractServiceID', 'id', 'UnitCost', 'ExtendedCost', 'CreateDate', 'PurchaseOrderNumber', 'AllocationCodeID', 'Notes', 'ContractID', 'Description', 'InternalCurrencyBillableAmount', 'Billed', 'ContractServiceBundleID', 'BillableToAccount', 'UnitPrice')]
     [string[]]
     $IsNotNull,
 
@@ -535,11 +535,21 @@ Set-AtwsContractCost
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

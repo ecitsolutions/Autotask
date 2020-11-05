@@ -163,7 +163,7 @@ Set-AtwsTicketCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,2000)]
+    [ValidateLength(0,8000)]
     [string]
     $Description,
 
@@ -341,7 +341,7 @@ Set-AtwsTicketCost
                     $newObject.$field = $object.$field 
                 }
 
-                if ($newObject -is [Autotask.Ticket]) {
+                if ($newObject -is [Autotask.Ticket] -and $object.id -gt 0) {
                     Write-Verbose -Message ('{0}: Copy Object mode: Object is a Ticket. Title must be modified to avoid duplicate detection.' -F $MyInvocation.MyCommand.Name)  
                     $title = '{0} (Copy {1})' -F $newObject.Title, $CopyNo
                     $copyNo++
@@ -366,7 +366,19 @@ Set-AtwsTicketCost
             # Process parameters and update objects with their values
             $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             
-            $result = Set-AtwsData -Entity $processObject -Create
+            try { 
+                # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
+                $result += Set-AtwsData -Entity $processObject -Create
+            }
+            catch {
+                write-host "ERROR: " -ForegroundColor Red -NoNewline
+                write-host $_.Exception.Message
+                write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                    Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                    Write-host $_
+                }
+            }
         }
     }
 

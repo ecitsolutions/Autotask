@@ -248,21 +248,21 @@ Set-AtwsAccountToDo
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ActionType', 'ContractID', 'ActivityDescription', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'AssignedToResourceID', 'AccountID', 'CreateDateTime', 'id', 'TicketID', 'ContactID', 'EndDateTime', 'LastModifiedDate', 'CompletedDate', 'CreatorResourceID', 'OpportunityID')]
+    [ValidateSet('ContactID', 'CreatorResourceID', 'ContractID', 'EndDateTime', 'AccountID', 'ActivityDescription', 'OpportunityID', 'AssignedToResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID', 'ActionType', 'TicketID', 'StartDateTime', 'id', 'CompletedDate', 'CreateDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ActionType', 'ContractID', 'ActivityDescription', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'AssignedToResourceID', 'AccountID', 'CreateDateTime', 'id', 'TicketID', 'ContactID', 'EndDateTime', 'LastModifiedDate', 'CompletedDate', 'CreatorResourceID', 'OpportunityID')]
+    [ValidateSet('ContactID', 'CreatorResourceID', 'ContractID', 'EndDateTime', 'AccountID', 'ActivityDescription', 'OpportunityID', 'AssignedToResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID', 'ActionType', 'TicketID', 'StartDateTime', 'id', 'CompletedDate', 'CreateDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ActionType', 'ContractID', 'ActivityDescription', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'AssignedToResourceID', 'AccountID', 'CreateDateTime', 'id', 'TicketID', 'ContactID', 'EndDateTime', 'LastModifiedDate', 'CompletedDate', 'CreatorResourceID', 'OpportunityID')]
+    [ValidateSet('ContactID', 'CreatorResourceID', 'ContractID', 'EndDateTime', 'AccountID', 'ActivityDescription', 'OpportunityID', 'AssignedToResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID', 'ActionType', 'TicketID', 'StartDateTime', 'id', 'CompletedDate', 'CreateDateTime')]
     [string[]]
     $IsNotNull,
 
@@ -434,11 +434,21 @@ Set-AtwsAccountToDo
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

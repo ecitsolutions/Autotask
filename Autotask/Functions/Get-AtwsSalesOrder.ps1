@@ -337,21 +337,21 @@ Set-AtwsSalesOrder
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'SalesOrderDate', 'BillToState', 'ImpersonatorCreatorResourceID', 'id', 'BillToCountry', 'BillToAddress2', 'ShipToState', 'PromisedDueDate', 'Contact', 'OpportunityID', 'AccountID', 'ShipToCity', 'AdditionalBillToAddressInformation', 'Title', 'ShipToAddress2', 'Status', 'OwnerResourceID', 'ShipToAddress1', 'ShipToCountryID', 'BillToPostalCode', 'BillToAddress1', 'BillToCountryID', 'ShipToCountry', 'ShipToPostalCode', 'AdditionalShipToAddressInformation', 'BillToCity')]
+    [ValidateSet('SalesOrderDate', 'ShipToCountry', 'BillToState', 'BusinessDivisionSubdivisionID', 'AdditionalShipToAddressInformation', 'AccountID', 'ShipToAddress2', 'OwnerResourceID', 'Status', 'PromisedDueDate', 'Title', 'ShipToState', 'BillToCity', 'BillToAddress2', 'id', 'BillToAddress1', 'BillToCountry', 'ShipToCity', 'BillToPostalCode', 'AdditionalBillToAddressInformation', 'ShipToAddress1', 'ShipToCountryID', 'Contact', 'ShipToPostalCode', 'ImpersonatorCreatorResourceID', 'BillToCountryID', 'OpportunityID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'SalesOrderDate', 'BillToState', 'ImpersonatorCreatorResourceID', 'id', 'BillToCountry', 'BillToAddress2', 'ShipToState', 'PromisedDueDate', 'Contact', 'OpportunityID', 'AccountID', 'ShipToCity', 'AdditionalBillToAddressInformation', 'Title', 'ShipToAddress2', 'Status', 'OwnerResourceID', 'ShipToAddress1', 'ShipToCountryID', 'BillToPostalCode', 'BillToAddress1', 'BillToCountryID', 'ShipToCountry', 'ShipToPostalCode', 'AdditionalShipToAddressInformation', 'BillToCity')]
+    [ValidateSet('SalesOrderDate', 'ShipToCountry', 'BillToState', 'BusinessDivisionSubdivisionID', 'AdditionalShipToAddressInformation', 'AccountID', 'ShipToAddress2', 'OwnerResourceID', 'Status', 'PromisedDueDate', 'Title', 'ShipToState', 'BillToCity', 'BillToAddress2', 'id', 'BillToAddress1', 'BillToCountry', 'ShipToCity', 'BillToPostalCode', 'AdditionalBillToAddressInformation', 'ShipToAddress1', 'ShipToCountryID', 'Contact', 'ShipToPostalCode', 'ImpersonatorCreatorResourceID', 'BillToCountryID', 'OpportunityID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'SalesOrderDate', 'BillToState', 'ImpersonatorCreatorResourceID', 'id', 'BillToCountry', 'BillToAddress2', 'ShipToState', 'PromisedDueDate', 'Contact', 'OpportunityID', 'AccountID', 'ShipToCity', 'AdditionalBillToAddressInformation', 'Title', 'ShipToAddress2', 'Status', 'OwnerResourceID', 'ShipToAddress1', 'ShipToCountryID', 'BillToPostalCode', 'BillToAddress1', 'BillToCountryID', 'ShipToCountry', 'ShipToPostalCode', 'AdditionalShipToAddressInformation', 'BillToCity')]
+    [ValidateSet('SalesOrderDate', 'ShipToCountry', 'BillToState', 'BusinessDivisionSubdivisionID', 'AdditionalShipToAddressInformation', 'AccountID', 'ShipToAddress2', 'OwnerResourceID', 'Status', 'PromisedDueDate', 'Title', 'ShipToState', 'BillToCity', 'BillToAddress2', 'id', 'BillToAddress1', 'BillToCountry', 'ShipToCity', 'BillToPostalCode', 'AdditionalBillToAddressInformation', 'ShipToAddress1', 'ShipToCountryID', 'Contact', 'ShipToPostalCode', 'ImpersonatorCreatorResourceID', 'BillToCountryID', 'OpportunityID')]
     [string[]]
     $IsNotNull,
 
@@ -523,11 +523,21 @@ Set-AtwsSalesOrder
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

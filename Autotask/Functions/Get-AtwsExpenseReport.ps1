@@ -246,21 +246,21 @@ Set-AtwsExpenseReport
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementCurrencyAmountDue', 'Submit', 'AmountDue', 'WeekEnding', 'SubmitterID', 'SubmitDate', 'DepartmentNumber', 'BusinessDivisionSubdivisionID', 'ApprovedDate', 'Name', 'CashAdvanceAmount', 'RejectionReason', 'id', 'ReimbursementCurrencyCashAdvanceAmount', 'QuickBooksReferenceNumber', 'ReimbursementCurrencyID', 'ApproverID', 'Status', 'ExpenseTotal')]
+    [ValidateSet('Name', 'BusinessDivisionSubdivisionID', 'SubmitDate', 'RejectionReason', 'CashAdvanceAmount', 'SubmitterID', 'ReimbursementCurrencyID', 'ExpenseTotal', 'Status', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyCashAdvanceAmount', 'id', 'Submit', 'AmountDue', 'QuickBooksReferenceNumber', 'DepartmentNumber', 'ApprovedDate', 'ApproverID', 'WeekEnding')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementCurrencyAmountDue', 'Submit', 'AmountDue', 'WeekEnding', 'SubmitterID', 'SubmitDate', 'DepartmentNumber', 'BusinessDivisionSubdivisionID', 'ApprovedDate', 'Name', 'CashAdvanceAmount', 'RejectionReason', 'id', 'ReimbursementCurrencyCashAdvanceAmount', 'QuickBooksReferenceNumber', 'ReimbursementCurrencyID', 'ApproverID', 'Status', 'ExpenseTotal')]
+    [ValidateSet('Name', 'BusinessDivisionSubdivisionID', 'SubmitDate', 'RejectionReason', 'CashAdvanceAmount', 'SubmitterID', 'ReimbursementCurrencyID', 'ExpenseTotal', 'Status', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyCashAdvanceAmount', 'id', 'Submit', 'AmountDue', 'QuickBooksReferenceNumber', 'DepartmentNumber', 'ApprovedDate', 'ApproverID', 'WeekEnding')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementCurrencyAmountDue', 'Submit', 'AmountDue', 'WeekEnding', 'SubmitterID', 'SubmitDate', 'DepartmentNumber', 'BusinessDivisionSubdivisionID', 'ApprovedDate', 'Name', 'CashAdvanceAmount', 'RejectionReason', 'id', 'ReimbursementCurrencyCashAdvanceAmount', 'QuickBooksReferenceNumber', 'ReimbursementCurrencyID', 'ApproverID', 'Status', 'ExpenseTotal')]
+    [ValidateSet('Name', 'BusinessDivisionSubdivisionID', 'SubmitDate', 'RejectionReason', 'CashAdvanceAmount', 'SubmitterID', 'ReimbursementCurrencyID', 'ExpenseTotal', 'Status', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyCashAdvanceAmount', 'id', 'Submit', 'AmountDue', 'QuickBooksReferenceNumber', 'DepartmentNumber', 'ApprovedDate', 'ApproverID', 'WeekEnding')]
     [string[]]
     $IsNotNull,
 
@@ -432,11 +432,21 @@ Set-AtwsExpenseReport
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

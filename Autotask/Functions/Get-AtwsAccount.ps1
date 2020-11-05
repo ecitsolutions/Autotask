@@ -633,21 +633,21 @@ Set-AtwsAccount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ClientPortalActive', 'AccountNumber', 'ParentAccountID', 'InvoiceTemplateID', 'StockSymbol', 'AlternatePhone1', 'QuoteTemplateID', 'LastTrackedModifiedDateTime', 'ImpersonatorCreatorResourceID', 'MarketSegmentID', 'AdditionalAddressInformation', 'InvoiceEmailMessageID', 'id', 'StockMarket', 'CountryID', 'TerritoryID', 'AssetValue', 'BillToAttention', 'TaxID', 'AlternatePhone2', 'CreateDate', 'Fax', 'BillToAddressToUse', 'Address1', 'SICCode', 'TaxRegionID', 'Country', 'TaxExempt', 'CurrencyID', 'CreatedByResourceID', 'Active', 'BillToState', 'WebAddress', 'BillToAccountPhysicalLocationID', 'QuoteEmailMessageID', 'BillToAdditionalAddressInformation', 'PostalCode', 'Address2', 'CompetitorID', 'AccountType', 'BillToCountryID', 'EnabledForComanaged', 'OwnerResourceID', 'LastActivityDate', 'ApiVendorID', 'BillToAddress2', 'City', 'BillToAddress1', 'TaskFireActive', 'SurveyAccountRating', 'AccountName', 'BillToZipCode', 'Phone', 'BillToCity', 'InvoiceMethod', 'State', 'KeyAccountIcon', 'InvoiceNonContractItemsToParentAccount', '')]
+    [ValidateSet('TaxRegionID', 'TaxExempt', 'BillToAddressToUse', 'BillToAccountPhysicalLocationID', 'AssetValue', 'KeyAccountIcon', 'QuoteTemplateID', 'Active', 'ApiVendorID', 'BillToState', 'MarketSegmentID', 'Fax', 'CreatedByResourceID', 'LastTrackedModifiedDateTime', 'Address2', 'Phone', 'SICCode', 'ParentAccountID', 'State', 'WebAddress', 'BillToZipCode', 'TerritoryID', 'AccountNumber', 'InvoiceEmailMessageID', 'AlternatePhone2', 'StockSymbol', 'BillToAddress2', 'CountryID', 'ImpersonatorCreatorResourceID', 'id', 'AccountType', 'BillToAddress1', 'BillToCity', 'Address1', 'City', 'CreateDate', 'PostalCode', 'BillToAdditionalAddressInformation', 'BillToCountryID', 'TaxID', 'AccountName', 'EnabledForComanaged', 'AlternatePhone1', 'InvoiceMethod', 'TaskFireActive', 'LastActivityDate', 'BillToAttention', 'StockMarket', 'SurveyAccountRating', 'InvoiceNonContractItemsToParentAccount', 'CurrencyID', 'AdditionalAddressInformation', 'QuoteEmailMessageID', 'OwnerResourceID', 'CompetitorID', 'ClientPortalActive', 'InvoiceTemplateID', 'Country', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ClientPortalActive', 'AccountNumber', 'ParentAccountID', 'InvoiceTemplateID', 'StockSymbol', 'AlternatePhone1', 'QuoteTemplateID', 'LastTrackedModifiedDateTime', 'ImpersonatorCreatorResourceID', 'MarketSegmentID', 'AdditionalAddressInformation', 'InvoiceEmailMessageID', 'id', 'StockMarket', 'CountryID', 'TerritoryID', 'AssetValue', 'BillToAttention', 'TaxID', 'AlternatePhone2', 'CreateDate', 'Fax', 'BillToAddressToUse', 'Address1', 'SICCode', 'TaxRegionID', 'Country', 'TaxExempt', 'CurrencyID', 'CreatedByResourceID', 'Active', 'BillToState', 'WebAddress', 'BillToAccountPhysicalLocationID', 'QuoteEmailMessageID', 'BillToAdditionalAddressInformation', 'PostalCode', 'Address2', 'CompetitorID', 'AccountType', 'BillToCountryID', 'EnabledForComanaged', 'OwnerResourceID', 'LastActivityDate', 'ApiVendorID', 'BillToAddress2', 'City', 'BillToAddress1', 'TaskFireActive', 'SurveyAccountRating', 'AccountName', 'BillToZipCode', 'Phone', 'BillToCity', 'InvoiceMethod', 'State', 'KeyAccountIcon', 'InvoiceNonContractItemsToParentAccount', '')]
+    [ValidateSet('TaxRegionID', 'TaxExempt', 'BillToAddressToUse', 'BillToAccountPhysicalLocationID', 'AssetValue', 'KeyAccountIcon', 'QuoteTemplateID', 'Active', 'ApiVendorID', 'BillToState', 'MarketSegmentID', 'Fax', 'CreatedByResourceID', 'LastTrackedModifiedDateTime', 'Address2', 'Phone', 'SICCode', 'ParentAccountID', 'State', 'WebAddress', 'BillToZipCode', 'TerritoryID', 'AccountNumber', 'InvoiceEmailMessageID', 'AlternatePhone2', 'StockSymbol', 'BillToAddress2', 'CountryID', 'ImpersonatorCreatorResourceID', 'id', 'AccountType', 'BillToAddress1', 'BillToCity', 'Address1', 'City', 'CreateDate', 'PostalCode', 'BillToAdditionalAddressInformation', 'BillToCountryID', 'TaxID', 'AccountName', 'EnabledForComanaged', 'AlternatePhone1', 'InvoiceMethod', 'TaskFireActive', 'LastActivityDate', 'BillToAttention', 'StockMarket', 'SurveyAccountRating', 'InvoiceNonContractItemsToParentAccount', 'CurrencyID', 'AdditionalAddressInformation', 'QuoteEmailMessageID', 'OwnerResourceID', 'CompetitorID', 'ClientPortalActive', 'InvoiceTemplateID', 'Country', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ClientPortalActive', 'AccountNumber', 'ParentAccountID', 'InvoiceTemplateID', 'StockSymbol', 'AlternatePhone1', 'QuoteTemplateID', 'LastTrackedModifiedDateTime', 'ImpersonatorCreatorResourceID', 'MarketSegmentID', 'AdditionalAddressInformation', 'InvoiceEmailMessageID', 'id', 'StockMarket', 'CountryID', 'TerritoryID', 'AssetValue', 'BillToAttention', 'TaxID', 'AlternatePhone2', 'CreateDate', 'Fax', 'BillToAddressToUse', 'Address1', 'SICCode', 'TaxRegionID', 'Country', 'TaxExempt', 'CurrencyID', 'CreatedByResourceID', 'Active', 'BillToState', 'WebAddress', 'BillToAccountPhysicalLocationID', 'QuoteEmailMessageID', 'BillToAdditionalAddressInformation', 'PostalCode', 'Address2', 'CompetitorID', 'AccountType', 'BillToCountryID', 'EnabledForComanaged', 'OwnerResourceID', 'LastActivityDate', 'ApiVendorID', 'BillToAddress2', 'City', 'BillToAddress1', 'TaskFireActive', 'SurveyAccountRating', 'AccountName', 'BillToZipCode', 'Phone', 'BillToCity', 'InvoiceMethod', 'State', 'KeyAccountIcon', 'InvoiceNonContractItemsToParentAccount', '')]
+    [ValidateSet('TaxRegionID', 'TaxExempt', 'BillToAddressToUse', 'BillToAccountPhysicalLocationID', 'AssetValue', 'KeyAccountIcon', 'QuoteTemplateID', 'Active', 'ApiVendorID', 'BillToState', 'MarketSegmentID', 'Fax', 'CreatedByResourceID', 'LastTrackedModifiedDateTime', 'Address2', 'Phone', 'SICCode', 'ParentAccountID', 'State', 'WebAddress', 'BillToZipCode', 'TerritoryID', 'AccountNumber', 'InvoiceEmailMessageID', 'AlternatePhone2', 'StockSymbol', 'BillToAddress2', 'CountryID', 'ImpersonatorCreatorResourceID', 'id', 'AccountType', 'BillToAddress1', 'BillToCity', 'Address1', 'City', 'CreateDate', 'PostalCode', 'BillToAdditionalAddressInformation', 'BillToCountryID', 'TaxID', 'AccountName', 'EnabledForComanaged', 'AlternatePhone1', 'InvoiceMethod', 'TaskFireActive', 'LastActivityDate', 'BillToAttention', 'StockMarket', 'SurveyAccountRating', 'InvoiceNonContractItemsToParentAccount', 'CurrencyID', 'AdditionalAddressInformation', 'QuoteEmailMessageID', 'OwnerResourceID', 'CompetitorID', 'ClientPortalActive', 'InvoiceTemplateID', 'Country', '')]
     [string[]]
     $IsNotNull,
 
@@ -819,11 +819,21 @@ Set-AtwsAccount
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

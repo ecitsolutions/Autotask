@@ -104,7 +104,7 @@ Set-AtwsProduct
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CostAllocationCodeID', 'DefaultVendorID', 'ImpersonatorCreatorResourceID', 'ProductAllocationCodeID')]
+    [ValidateSet('CostAllocationCodeID', 'DefaultInstalledProductCategoryID', 'DefaultVendorID', 'ImpersonatorCreatorResourceID', 'ProductAllocationCodeID')]
     [string]
     $GetReferenceEntityById,
 
@@ -148,6 +148,13 @@ Set-AtwsProduct
     )]
     [Nullable[Int][]]
     $CostAllocationCodeID,
+
+# Default Configuration Item Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $DefaultInstalledProductCategoryID,
 
 # Vendor Account ID
     [Parameter(
@@ -362,49 +369,49 @@ Set-AtwsProduct
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PeriodType', 'UnitPrice', 'Link', 'ManufacturerProductName', 'ExternalProductID', 'ManufacturerName', 'DefaultVendorID', 'DoesNotRequireProcurement', 'MSRP', 'VendorProductNumber', 'SKU', 'ImpersonatorCreatorResourceID', 'Serialized', 'BillingType', 'Description', 'ProductAllocationCodeID', 'PriceCostMethod', 'UnitCost', 'CostAllocationCodeID', 'id', 'EligibleForRma', 'Name', 'Active', 'InternalProductID', 'MarkupRate', 'ProductCategory')]
+    [ValidateSet('ManufacturerProductName', 'ExternalProductID', 'Active', 'ManufacturerName', 'MSRP', 'DefaultInstalledProductCategoryID', 'Link', 'CostAllocationCodeID', 'DefaultVendorID', 'ImpersonatorCreatorResourceID', 'id', 'VendorProductNumber', 'UnitCost', 'EligibleForRma', 'BillingType', 'ProductCategory', 'MarkupRate', 'Description', 'Serialized', 'PeriodType', 'Name', 'DoesNotRequireProcurement', 'SKU', 'ProductAllocationCodeID', 'UnitPrice', 'InternalProductID', 'PriceCostMethod')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PeriodType', 'UnitPrice', 'Link', 'ManufacturerProductName', 'ExternalProductID', 'ManufacturerName', 'DefaultVendorID', 'DoesNotRequireProcurement', 'MSRP', 'VendorProductNumber', 'SKU', 'ImpersonatorCreatorResourceID', 'Serialized', 'BillingType', 'Description', 'ProductAllocationCodeID', 'PriceCostMethod', 'UnitCost', 'CostAllocationCodeID', 'id', 'EligibleForRma', 'Name', 'Active', 'InternalProductID', 'MarkupRate', 'ProductCategory')]
+    [ValidateSet('ManufacturerProductName', 'ExternalProductID', 'Active', 'ManufacturerName', 'MSRP', 'DefaultInstalledProductCategoryID', 'Link', 'CostAllocationCodeID', 'DefaultVendorID', 'ImpersonatorCreatorResourceID', 'id', 'VendorProductNumber', 'UnitCost', 'EligibleForRma', 'BillingType', 'ProductCategory', 'MarkupRate', 'Description', 'Serialized', 'PeriodType', 'Name', 'DoesNotRequireProcurement', 'SKU', 'ProductAllocationCodeID', 'UnitPrice', 'InternalProductID', 'PriceCostMethod')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PeriodType', 'UnitPrice', 'Link', 'ManufacturerProductName', 'ExternalProductID', 'ManufacturerName', 'DefaultVendorID', 'DoesNotRequireProcurement', 'MSRP', 'VendorProductNumber', 'SKU', 'ImpersonatorCreatorResourceID', 'Serialized', 'BillingType', 'Description', 'ProductAllocationCodeID', 'PriceCostMethod', 'UnitCost', 'CostAllocationCodeID', 'id', 'EligibleForRma', 'Name', 'Active', 'InternalProductID', 'MarkupRate', 'ProductCategory')]
+    [ValidateSet('ManufacturerProductName', 'ExternalProductID', 'Active', 'ManufacturerName', 'MSRP', 'DefaultInstalledProductCategoryID', 'Link', 'CostAllocationCodeID', 'DefaultVendorID', 'ImpersonatorCreatorResourceID', 'id', 'VendorProductNumber', 'UnitCost', 'EligibleForRma', 'BillingType', 'ProductCategory', 'MarkupRate', 'Description', 'Serialized', 'PeriodType', 'Name', 'DoesNotRequireProcurement', 'SKU', 'ProductAllocationCodeID', 'UnitPrice', 'InternalProductID', 'PriceCostMethod')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID', 'DefaultInstalledProductCategoryID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID', 'DefaultInstalledProductCategoryID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID', 'DefaultInstalledProductCategoryID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID', 'DefaultInstalledProductCategoryID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -547,11 +554,21 @@ Set-AtwsProduct
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

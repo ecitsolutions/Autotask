@@ -102,7 +102,7 @@ Set-AtwsProjectNote
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CreatorResourceID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'ProjectID')]
+    [ValidateSet('CreatedByContactID', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'ProjectID')]
     [string]
     $GetReferenceEntityById,
 
@@ -127,6 +127,13 @@ Set-AtwsProjectNote
     )]
     [Nullable[datetime][]]
     $CreateDateTime,
+
+# Created By Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatedByContactID,
 
 # Creator Resource
     [Parameter(
@@ -233,49 +240,49 @@ Set-AtwsProjectNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Publish', 'Title', 'Announce', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'CreatorResourceID', 'LastActivityDate', 'CreateDateTime', 'ProjectID', 'ImpersonatorUpdaterResourceID', 'NoteType')]
+    [ValidateSet('Description', 'NoteType', 'Publish', 'CreatedByContactID', 'ProjectID', 'id', 'ImpersonatorCreatorResourceID', 'CreatorResourceID', 'Announce', 'ImpersonatorUpdaterResourceID', 'Title', 'LastActivityDate', 'CreateDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Publish', 'Title', 'Announce', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'CreatorResourceID', 'LastActivityDate', 'CreateDateTime', 'ProjectID', 'ImpersonatorUpdaterResourceID', 'NoteType')]
+    [ValidateSet('Description', 'NoteType', 'Publish', 'CreatedByContactID', 'ProjectID', 'id', 'ImpersonatorCreatorResourceID', 'CreatorResourceID', 'Announce', 'ImpersonatorUpdaterResourceID', 'Title', 'LastActivityDate', 'CreateDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Publish', 'Title', 'Announce', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'CreatorResourceID', 'LastActivityDate', 'CreateDateTime', 'ProjectID', 'ImpersonatorUpdaterResourceID', 'NoteType')]
+    [ValidateSet('Description', 'NoteType', 'Publish', 'CreatedByContactID', 'ProjectID', 'id', 'ImpersonatorCreatorResourceID', 'CreatorResourceID', 'Announce', 'ImpersonatorUpdaterResourceID', 'Title', 'LastActivityDate', 'CreateDateTime')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
+    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
+    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
+    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
+    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -419,11 +426,21 @@ Set-AtwsProjectNote
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)

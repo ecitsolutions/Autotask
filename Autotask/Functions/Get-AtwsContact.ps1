@@ -481,21 +481,21 @@ Set-AtwsContact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountPhysicalLocationID', 'AlternatePhone', 'SolicitationOptOutTime', 'EMailAddress2', 'State', 'Extension', 'Country', 'AdditionalAddressInformation', 'AddressLine1', 'RoomNumber', 'id', 'ImpersonatorCreatorResourceID', 'CountryID', 'FaxNumber', 'AccountID', 'NamePrefix', 'PrimaryContact', 'EMailAddress', 'CreateDate', 'Notification', 'LinkedInUrl', 'LastName', 'ExternalID', 'EMailAddress3', 'FacebookUrl', 'Active', 'ZipCode', 'MiddleInitial', 'Title', 'Note', 'BulkEmailOptOutTime', 'MobilePhone', 'BulkEmailOptOut', 'LastActivityDate', 'ApiVendorID', 'FirstName', 'City', 'AddressLine', 'TwitterUrl', 'LastModifiedDate', 'SolicitationOptOut', 'Phone', 'NameSuffix', 'SurveyOptOut', '')]
+    [ValidateSet('TwitterUrl', 'LinkedInUrl', 'EMailAddress3', 'Active', 'FirstName', 'ExternalID', 'FacebookUrl', 'NamePrefix', 'Title', 'AccountID', 'BulkEmailOptOut', 'SurveyOptOut', 'Phone', 'AlternatePhone', 'NameSuffix', 'State', 'LastActivityDate', 'Extension', 'MiddleInitial', 'MobilePhone', 'EMailAddress2', 'CountryID', 'id', 'ZipCode', 'AdditionalAddressInformation', 'AccountPhysicalLocationID', 'City', 'CreateDate', 'SolicitationOptOutTime', 'FaxNumber', 'AddressLine', 'BulkEmailOptOutTime', 'RoomNumber', 'Notification', 'Note', 'ApiVendorID', 'LastModifiedDate', 'EMailAddress', 'LastName', 'AddressLine1', 'ImpersonatorCreatorResourceID', 'PrimaryContact', 'SolicitationOptOut', 'Country', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountPhysicalLocationID', 'AlternatePhone', 'SolicitationOptOutTime', 'EMailAddress2', 'State', 'Extension', 'Country', 'AdditionalAddressInformation', 'AddressLine1', 'RoomNumber', 'id', 'ImpersonatorCreatorResourceID', 'CountryID', 'FaxNumber', 'AccountID', 'NamePrefix', 'PrimaryContact', 'EMailAddress', 'CreateDate', 'Notification', 'LinkedInUrl', 'LastName', 'ExternalID', 'EMailAddress3', 'FacebookUrl', 'Active', 'ZipCode', 'MiddleInitial', 'Title', 'Note', 'BulkEmailOptOutTime', 'MobilePhone', 'BulkEmailOptOut', 'LastActivityDate', 'ApiVendorID', 'FirstName', 'City', 'AddressLine', 'TwitterUrl', 'LastModifiedDate', 'SolicitationOptOut', 'Phone', 'NameSuffix', 'SurveyOptOut', '')]
+    [ValidateSet('TwitterUrl', 'LinkedInUrl', 'EMailAddress3', 'Active', 'FirstName', 'ExternalID', 'FacebookUrl', 'NamePrefix', 'Title', 'AccountID', 'BulkEmailOptOut', 'SurveyOptOut', 'Phone', 'AlternatePhone', 'NameSuffix', 'State', 'LastActivityDate', 'Extension', 'MiddleInitial', 'MobilePhone', 'EMailAddress2', 'CountryID', 'id', 'ZipCode', 'AdditionalAddressInformation', 'AccountPhysicalLocationID', 'City', 'CreateDate', 'SolicitationOptOutTime', 'FaxNumber', 'AddressLine', 'BulkEmailOptOutTime', 'RoomNumber', 'Notification', 'Note', 'ApiVendorID', 'LastModifiedDate', 'EMailAddress', 'LastName', 'AddressLine1', 'ImpersonatorCreatorResourceID', 'PrimaryContact', 'SolicitationOptOut', 'Country', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountPhysicalLocationID', 'AlternatePhone', 'SolicitationOptOutTime', 'EMailAddress2', 'State', 'Extension', 'Country', 'AdditionalAddressInformation', 'AddressLine1', 'RoomNumber', 'id', 'ImpersonatorCreatorResourceID', 'CountryID', 'FaxNumber', 'AccountID', 'NamePrefix', 'PrimaryContact', 'EMailAddress', 'CreateDate', 'Notification', 'LinkedInUrl', 'LastName', 'ExternalID', 'EMailAddress3', 'FacebookUrl', 'Active', 'ZipCode', 'MiddleInitial', 'Title', 'Note', 'BulkEmailOptOutTime', 'MobilePhone', 'BulkEmailOptOut', 'LastActivityDate', 'ApiVendorID', 'FirstName', 'City', 'AddressLine', 'TwitterUrl', 'LastModifiedDate', 'SolicitationOptOut', 'Phone', 'NameSuffix', 'SurveyOptOut', '')]
+    [ValidateSet('TwitterUrl', 'LinkedInUrl', 'EMailAddress3', 'Active', 'FirstName', 'ExternalID', 'FacebookUrl', 'NamePrefix', 'Title', 'AccountID', 'BulkEmailOptOut', 'SurveyOptOut', 'Phone', 'AlternatePhone', 'NameSuffix', 'State', 'LastActivityDate', 'Extension', 'MiddleInitial', 'MobilePhone', 'EMailAddress2', 'CountryID', 'id', 'ZipCode', 'AdditionalAddressInformation', 'AccountPhysicalLocationID', 'City', 'CreateDate', 'SolicitationOptOutTime', 'FaxNumber', 'AddressLine', 'BulkEmailOptOutTime', 'RoomNumber', 'Notification', 'Note', 'ApiVendorID', 'LastModifiedDate', 'EMailAddress', 'LastName', 'AddressLine1', 'ImpersonatorCreatorResourceID', 'PrimaryContact', 'SolicitationOptOut', 'Country', '')]
     [string[]]
     $IsNotNull,
 
@@ -667,11 +667,21 @@ Set-AtwsContact
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             foreach ($Filter in $iterations) { 
 
-                # Make the query and pass the optional parameters to Get-AtwsData
-                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
-                    -NoPickListLabel:$NoPickListLabel.IsPresent `
-                    -GetReferenceEntityById $GetReferenceEntityById
-                
+                try { 
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    write-host "ERROR: " -ForegroundColor Red -NoNewline
+                    write-host $_.Exception.Message
+                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
+                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
+                        Write-host $_
+                    }
+                }
                 # If multiple items use .addrange(). If a single item use .add()
                 if ($response.count -gt 1) { 
                     [void]$result.AddRange($response)
