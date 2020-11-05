@@ -65,26 +65,12 @@ Set-AtwsChangeOrderCost
     [Autotask.ChangeOrderCost[]]
     $InputObject,
 
-# Unit Quantity
+# Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [decimal]
-    $UnitQuantity,
-
-# Extended Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $ExtendedCost,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $UnitPrice,
+    [Int]
+    $AllocationCodeID,
 
 # Billable Amount
     [Parameter(
@@ -93,23 +79,12 @@ Set-AtwsChangeOrderCost
     [decimal]
     $BillableAmount,
 
-# Date Purchased
+# Billable To Account
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $DatePurchased,
-
-# Task ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $TaskID,
+    [boolean]
+    $BillableToAccount,
 
 # Billed
     [Parameter(
@@ -118,27 +93,19 @@ Set-AtwsChangeOrderCost
     [boolean]
     $Billed,
 
-# Billable To Account
+# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $BillableToAccount,
+    [Int]
+    $BusinessDivisionSubdivisionID,
 
-# Internal Currency Unit Price
+# Change Order Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [decimal]
-    $InternalCurrencyUnitPrice,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
+    $ChangeOrderHours,
 
 # Contract Service Bundle ID
     [Parameter(
@@ -147,59 +114,12 @@ Set-AtwsChangeOrderCost
     [Int]
     $ContractServiceBundleID,
 
-# Product ID
+# Contract Service ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ProductID,
-
-# Status
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $Status,
-
-# Internal Currency Billable Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $InternalCurrencyBillableAmount,
-
-# Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $UnitCost,
-
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AllocationCodeID,
+    $ContractServiceID,
 
 # Cost Type
     [Parameter(
@@ -222,48 +142,57 @@ Set-AtwsChangeOrderCost
     [string]
     $CostType,
 
-# Change Order Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $ChangeOrderHours,
-
-# Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PurchaseOrderNumber,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContractServiceID,
-
-# Status Last Modified Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $StatusLastModifiedDate,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BusinessDivisionSubdivisionID,
-
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
     $CreateDate,
+
+# Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatorResourceID,
+
+# Date Purchased
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $DatePurchased,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# Extended Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $ExtendedCost,
+
+# Internal Currency Billable Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $InternalCurrencyBillableAmount,
+
+# Internal Currency Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $InternalCurrencyUnitPrice,
 
 # Internal Purchase Order Number
     [Parameter(
@@ -283,6 +212,48 @@ Set-AtwsChangeOrderCost
     [string]
     $Name,
 
+# Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Notes,
+
+# Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ProductID,
+
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
+
+# Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $Status,
+
 # Status Last Modified By
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -290,13 +261,42 @@ Set-AtwsChangeOrderCost
     [Int]
     $StatusLastModifiedBy,
 
-# Notes
+# Status Last Modified Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Notes
+    [datetime]
+    $StatusLastModifiedDate,
+
+# Task ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $TaskID,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $UnitCost,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $UnitPrice,
+
+# Unit Quantity
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $UnitQuantity
   )
  
     begin { 
@@ -318,7 +318,7 @@ Set-AtwsChangeOrderCost
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -326,7 +326,7 @@ Set-AtwsChangeOrderCost
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -335,7 +335,7 @@ Set-AtwsChangeOrderCost
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -351,12 +351,12 @@ Set-AtwsChangeOrderCost
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

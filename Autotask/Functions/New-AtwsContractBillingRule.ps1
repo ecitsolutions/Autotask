@@ -69,61 +69,14 @@ Set-AtwsContractBillingRule
     [Autotask.ContractBillingRule[]]
     $InputObject,
 
-# Start Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDate,
-
-# Enable Daily Prorating
+# Active
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [boolean]
-    $EnableDailyProrating,
-
-# Daily Prorated Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $DailyProratedPrice,
-
-# Minimum Units
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $MinimumUnits,
-
-# End Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $EndDate,
-
-# Include Items In Charge Description
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $IncludeItemsInChargeDescription,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string]
-    $InvoiceDescription,
+    $Active,
 
 # Contract ID
     [Parameter(
@@ -134,48 +87,6 @@ Set-AtwsContractBillingRule
     [Int]
     $ContractID,
 
-# Active
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
-
-# Execution Method
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $ExecutionMethod,
-
-# Daily Prorated Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $DailyProratedCost,
-
-# Maximum Units
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $MaximumUnits,
-
 # Create Charges As Billable
     [Parameter(
       Mandatory = $true,
@@ -185,14 +96,19 @@ Set-AtwsContractBillingRule
     [boolean]
     $CreateChargesAsBillable,
 
-# Product ID
+# Daily Prorated Cost
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ProductID,
+    [decimal]
+    $DailyProratedCost,
+
+# Daily Prorated Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $DailyProratedPrice,
 
 # Determine Units
     [Parameter(
@@ -213,7 +129,91 @@ Set-AtwsContractBillingRule
       }
     })]
     [string]
-    $DetermineUnits
+    $DetermineUnits,
+
+# Enable Daily Prorating
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $EnableDailyProrating,
+
+# End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $EndDate,
+
+# Execution Method
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ExecutionMethod,
+
+# Include Items In Charge Description
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $IncludeItemsInChargeDescription,
+
+# Invoice Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $InvoiceDescription,
+
+# Maximum Units
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $MaximumUnits,
+
+# Minimum Units
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $MinimumUnits,
+
+# Product ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ProductID,
+
+# Start Date
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $StartDate
   )
  
     begin { 
@@ -235,7 +235,7 @@ Set-AtwsContractBillingRule
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -243,7 +243,7 @@ Set-AtwsContractBillingRule
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -252,7 +252,7 @@ Set-AtwsContractBillingRule
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -268,12 +268,12 @@ Set-AtwsContractBillingRule
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

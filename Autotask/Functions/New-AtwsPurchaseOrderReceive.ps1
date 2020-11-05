@@ -68,6 +68,13 @@ Get-AtwsPurchaseOrderReceive
     [long]
     $PurchaseOrderItemID,
 
+# Quantity Back Ordered
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $QuantityBackOrdered,
+
 # Quantity Now Receiving
     [Parameter(
       Mandatory = $true,
@@ -77,27 +84,12 @@ Get-AtwsPurchaseOrderReceive
     [Int]
     $QuantityNowReceiving,
 
-# Serial Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $SerialNumber,
-
 # Quantity Previously Received
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $QuantityPreviouslyReceived,
-
-# Transfer By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ReceivedByResourceID,
 
 # Receive Date
     [Parameter(
@@ -106,12 +98,20 @@ Get-AtwsPurchaseOrderReceive
     [datetime]
     $ReceiveDate,
 
-# Quantity Back Ordered
+# Transfer By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $QuantityBackOrdered
+    $ReceivedByResourceID,
+
+# Serial Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $SerialNumber
   )
  
     begin { 
@@ -133,7 +133,7 @@ Get-AtwsPurchaseOrderReceive
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -141,7 +141,7 @@ Get-AtwsPurchaseOrderReceive
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -150,7 +150,7 @@ Get-AtwsPurchaseOrderReceive
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -166,12 +166,12 @@ Get-AtwsPurchaseOrderReceive
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

@@ -61,6 +61,20 @@ Get-AtwsServiceCallTicketResource
     [Autotask.ServiceCallTicketResource[]]
     $InputObject,
 
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDateTime,
+
+# Created By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatedByResourceID,
+
 # Last Modified By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -75,19 +89,14 @@ Get-AtwsServiceCallTicketResource
     [datetime]
     $LastModifiedDateTime,
 
-# Created By Resource ID
+# Resource ID
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
     [Int]
-    $CreatedByResourceID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
+    $ResourceID,
 
 # Service Call Ticket ID
     [Parameter(
@@ -96,16 +105,7 @@ Get-AtwsServiceCallTicketResource
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ServiceCallTicketID,
-
-# Resource ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $ResourceID
+    $ServiceCallTicketID
   )
  
     begin { 
@@ -127,7 +127,7 @@ Get-AtwsServiceCallTicketResource
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -135,7 +135,7 @@ Get-AtwsServiceCallTicketResource
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -144,7 +144,7 @@ Get-AtwsServiceCallTicketResource
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -160,12 +160,12 @@ Get-AtwsServiceCallTicketResource
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

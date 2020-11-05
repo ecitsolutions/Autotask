@@ -72,7 +72,61 @@ Get-AtwsContractService
       ParametersetName = 'By_parameters'
     )]
     [switch]
-    $PassThru
+    $PassThru,
+
+# Adjusted Price
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $AdjustedPrice,
+
+# Internal Description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $InternalDescription,
+
+# Invoice Description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,1000)]
+    [string]
+    $InvoiceDescription,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $UnitCost
   )
  
     begin { 
@@ -94,7 +148,7 @@ Get-AtwsContractService
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $ModifiedObjects = @()
+        $ModifiedObjects = [Collections.ArrayList]::new()
     }
 
     process {
@@ -130,7 +184,7 @@ Get-AtwsContractService
             $processObject = $InputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             
             # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
-            $ModifiedObjects += Set-AtwsData -Entity $processObject
+            [void]$ModifiedObjects.Add((Set-AtwsData -Entity $processObject))
         
         }
     

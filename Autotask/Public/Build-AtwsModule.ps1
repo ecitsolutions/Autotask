@@ -28,6 +28,8 @@ Function Build-AtwsModule {
     )]
    
     Param(
+        [switch]    
+        $Force
     )
   
     begin { 
@@ -39,17 +41,16 @@ Function Build-AtwsModule {
         if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }
-    
-        # Prepare parameters for @splatting
-        $ProgressId = 6
-        $ProgressParameters = @{
-            Activity = 'Creating and importing functions for all static Autotask entities (no picklists).'
-            Id       = $ProgressId
+
+        if ($Force.IsPresent -and -not $Confirm) {
+            $ConfirmPreference = 'none'
         }
+
     } 
   
     process {
            
+        
         $RootPath = $MyInvocation.MyCommand.Module.ModuleBase
         $manifest = Join-Path $RootPath -ChildPath 'Autotask.psd1'
         

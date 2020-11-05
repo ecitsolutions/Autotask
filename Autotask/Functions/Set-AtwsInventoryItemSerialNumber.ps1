@@ -72,7 +72,23 @@ Get-AtwsInventoryItemSerialNumber
       ParametersetName = 'By_parameters'
     )]
     [switch]
-    $PassThru
+    $PassThru,
+
+# Serial Number
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $SerialNumber
   )
  
     begin { 
@@ -94,7 +110,7 @@ Get-AtwsInventoryItemSerialNumber
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $ModifiedObjects = @()
+        $ModifiedObjects = [Collections.ArrayList]::new()
     }
 
     process {
@@ -130,7 +146,7 @@ Get-AtwsInventoryItemSerialNumber
             $processObject = $InputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             
             # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
-            $ModifiedObjects += Set-AtwsData -Entity $processObject
+            [void]$ModifiedObjects.Add((Set-AtwsData -Entity $processObject))
         
         }
     

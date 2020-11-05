@@ -63,47 +63,21 @@ Set-AtwsService
     [Autotask.Service[]]
     $InputObject,
 
-# unit_price
+# allocation_code_id
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [double]
-    $UnitPrice,
+    [Int]
+    $AllocationCodeID,
 
-# update_date
+# create_date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $LastModifiedDate,
-
-# Service Level Agreement Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $ServiceLevelAgreementID,
-
-# Vendor Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $VendorAccountID,
+    $CreateDate,
 
 # create_by_id
     [Parameter(
@@ -128,21 +102,36 @@ Set-AtwsService
     [string]
     $InvoiceDescription,
 
-# allocation_code_id
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $AllocationCodeID,
-
 # active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
     $IsActive,
+
+# update_date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastModifiedDate,
+
+# Markup Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $MarkupRate,
+
+# service_name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,150)]
+    [string]
+    $Name,
 
 # period_type
     [Parameter(
@@ -165,29 +154,24 @@ Set-AtwsService
     [string]
     $PeriodType,
 
-# Markup Rate
+# Service Level Agreement Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $MarkupRate,
-
-# create_date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDate,
-
-# service_name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,150)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
-    $Name,
+    $ServiceLevelAgreementID,
 
 # Unit Cost
     [Parameter(
@@ -196,12 +180,28 @@ Set-AtwsService
     [double]
     $UnitCost,
 
+# unit_price
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $UnitPrice,
+
 # update_by_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $UpdateResourceID
+    $UpdateResourceID,
+
+# Vendor Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $VendorAccountID
   )
  
     begin { 
@@ -223,7 +223,7 @@ Set-AtwsService
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -231,7 +231,7 @@ Set-AtwsService
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -240,7 +240,7 @@ Set-AtwsService
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -256,12 +256,12 @@ Set-AtwsService
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

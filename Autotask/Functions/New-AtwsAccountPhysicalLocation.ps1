@@ -63,43 +63,6 @@ Set-AtwsAccountPhysicalLocation
     [Autotask.AccountPhysicalLocation[]]
     $InputObject,
 
-# Country ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CountryID,
-
-# Alternate Phone 2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $AlternatePhone2,
-
-# Tax Region ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $TaxRegionID,
-
-# Round Trip Distance
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $RoundtripDistance,
-
-# Alternate Phone 1
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $AlternatePhone1,
-
 # Account ID
     [Parameter(
       Mandatory = $true,
@@ -109,6 +72,21 @@ Set-AtwsAccountPhysicalLocation
     [Int]
     $AccountID,
 
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Active,
+
+# Address1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $Address1,
+
 # Address2
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -117,21 +95,21 @@ Set-AtwsAccountPhysicalLocation
     [string]
     $Address2,
 
-# State
+# Alternate Phone 1
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
     [string]
-    $State,
+    $AlternatePhone1,
 
-# Fax
+# Alternate Phone 2
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
     [string]
-    $Fax,
+    $AlternatePhone2,
 
 # City
     [Parameter(
@@ -141,6 +119,13 @@ Set-AtwsAccountPhysicalLocation
     [string]
     $City,
 
+# Country ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CountryID,
+
 # Description
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -149,12 +134,13 @@ Set-AtwsAccountPhysicalLocation
     [string]
     $Description,
 
-# Active
+# Fax
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $Active,
+    [ValidateLength(0,25)]
+    [string]
+    $Fax,
 
 # Is Tax Exempt
     [Parameter(
@@ -162,28 +148,6 @@ Set-AtwsAccountPhysicalLocation
     )]
     [boolean]
     $IsTaxExempt,
-
-# Phone
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $Phone,
-
-# Primary
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Primary,
-
-# Override Account Tax Settings
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $OverrideAccountTaxSettings,
 
 # Name
     [Parameter(
@@ -195,6 +159,21 @@ Set-AtwsAccountPhysicalLocation
     [string]
     $Name,
 
+# Override Account Tax Settings
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $OverrideAccountTaxSettings,
+
+# Phone
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string]
+    $Phone,
+
 # Postal Code
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -203,13 +182,34 @@ Set-AtwsAccountPhysicalLocation
     [string]
     $PostalCode,
 
-# Address1
+# Primary
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,128)]
+    [boolean]
+    $Primary,
+
+# Round Trip Distance
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $RoundtripDistance,
+
+# State
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
     [string]
-    $Address1
+    $State,
+
+# Tax Region ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $TaxRegionID
   )
  
     begin { 
@@ -231,7 +231,7 @@ Set-AtwsAccountPhysicalLocation
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -239,7 +239,7 @@ Set-AtwsAccountPhysicalLocation
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -248,7 +248,7 @@ Set-AtwsAccountPhysicalLocation
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -264,12 +264,12 @@ Set-AtwsAccountPhysicalLocation
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

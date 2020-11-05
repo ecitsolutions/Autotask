@@ -104,22 +104,9 @@ Set-AtwsProject
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'AccountID')]
+    [ValidateSet('AccountID', 'BusinessDivisionSubdivisionID', 'CompanyOwnerResourceID', 'ContractID', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'LastActivityResourceID', 'ProjectLeadResourceID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('PurchaseOrderItem', 'Phase', 'ProjectCost', 'ProjectNote', 'Ticket', 'BillingItem', 'NotificationHistory', 'Task', 'ExpenseItem', 'Quote')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -127,24 +114,6 @@ Set-AtwsProject
     )]
     [switch]
     $All,
-
-# id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Project Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('Name')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ProjectName,
 
 # Account ID
     [Parameter(
@@ -154,49 +123,61 @@ Set-AtwsProject
     [Nullable[Int][]]
     $AccountID,
 
-# Type
+# Actual Billed Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Project -FieldName Type -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Project -FieldName Type -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Type,
+    [Nullable[double][]]
+    $ActualBilledHours,
 
-# Ext Project Number
+# Actual Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ExtPNumber,
+    [Nullable[double][]]
+    $ActualHours,
 
-# Project Number
+# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ProjectNumber,
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
 
-# Description
+# Change Orders Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Description,
+    [Nullable[double][]]
+    $ChangeOrdersRevenue,
+
+# Account Owner
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CompanyOwnerResourceID,
+
+# Completed date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CompletedDateTime,
+
+# Completed Percentage
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CompletedPercentage,
+
+# Contract
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContractID,
 
 # Created DateTime
     [Parameter(
@@ -212,13 +193,39 @@ Set-AtwsProject
     [Nullable[Int][]]
     $CreatorResourceID,
 
-# Start Date
+# Department
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDateTime,
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Project -FieldName Department -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Project -FieldName Department -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Department,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
+# Duration
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $Duration,
 
 # End Date
     [Parameter(
@@ -228,26 +235,12 @@ Set-AtwsProject
     [Nullable[datetime][]]
     $EndDateTime,
 
-# Duration
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $Duration,
-
-# Actual Hours
+# Estimated Sales Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $ActualHours,
-
-# Actual Billed Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ActualBilledHours,
+    $EstimatedSalesCost,
 
 # Estimated Time
     [Parameter(
@@ -256,12 +249,28 @@ Set-AtwsProject
     [Nullable[double][]]
     $EstimatedTime,
 
-# Labor Estimated Revenue
+# Ext Project Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $LaborEstimatedRevenue,
+    [ValidateLength(0,50)]
+    [string[]]
+    $ExtPNumber,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
 
 # Labor Estimated Costs
     [Parameter(
@@ -277,40 +286,52 @@ Set-AtwsProject
     [Nullable[double][]]
     $LaborEstimatedMarginPercentage,
 
-# Project Cost Revenue
+# Labor Estimated Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $ProjectCostsRevenue,
+    $LaborEstimatedRevenue,
 
-# Project Estimated costs
+# Last Activity Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $ProjectCostsBudget,
+    [Nullable[datetime][]]
+    $LastActivityDateTime,
 
-# Project Cost Estimated Margin Percentage
+# Last Activity Person Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $ProjectCostEstimatedMarginPercentage,
+    [Nullable[Int][]]
+    $LastActivityPersonType,
 
-# Change Orders Revenue
+# Last Activity By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $ChangeOrdersRevenue,
+    [Nullable[Int][]]
+    $LastActivityResourceID,
 
-# SG&A
+# Line Of Business
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $SGDA,
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $LineOfBusiness,
 
 # Original Estimated Revenue
     [Parameter(
@@ -319,12 +340,74 @@ Set-AtwsProject
     [Nullable[double][]]
     $OriginalEstimatedRevenue,
 
-# Estimated Sales Cost
+# Project Cost Estimated Margin Percentage
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $EstimatedSalesCost,
+    $ProjectCostEstimatedMarginPercentage,
+
+# Project Estimated costs
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ProjectCostsBudget,
+
+# Project Cost Revenue
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ProjectCostsRevenue,
+
+# Project Lead
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ProjectLeadResourceID,
+
+# Project Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('Name')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $ProjectName,
+
+# Project Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ProjectNumber,
+
+# purchase_order_number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
+
+# SG&A
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $SGDA,
+
+# Start Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDateTime,
 
 # Status
     [Parameter(
@@ -346,40 +429,12 @@ Set-AtwsProject
     [string[]]
     $Status,
 
-# Contract
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContractID,
-
-# Project Lead
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ProjectLeadResourceID,
-
-# Account Owner
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CompanyOwnerResourceID,
-
-# Completed Percentage
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CompletedPercentage,
-
-# Completed date
+# Status Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $CompletedDateTime,
+    $StatusDateTime,
 
 # Status Detail
     [Parameter(
@@ -389,23 +444,17 @@ Set-AtwsProject
     [string[]]
     $StatusDetail,
 
-# Status Date
+# Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $StatusDateTime,
-
-# Department
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
+    [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Project -FieldName Department -Label
+      Get-AtwsPicklistValue -Entity Project -FieldName Type -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Project -FieldName Department -Label
+      $set = Get-AtwsPicklistValue -Entity Project -FieldName Type -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -413,88 +462,26 @@ Set-AtwsProject
       }
     })]
     [string[]]
-    $Department,
-
-# Line Of Business
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $LineOfBusiness,
-
-# purchase_order_number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Last Activity By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LastActivityResourceID,
-
-# Last Activity Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivityDateTime,
-
-# Last Activity Person Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LastActivityPersonType,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    $Type,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'Status', 'AccountID', 'LineOfBusiness', 'ProjectCostEstimatedMarginPercentage', 'ExtPNumber', 'ChangeOrdersBudget', 'ExtProjectType', 'PurchaseOrderNumber', 'EndDateTime', 'StatusDateTime', 'ProjectNumber', 'Department', 'Type', 'Description', 'EstimatedSalesCost', 'CompletedDateTime', 'CreatorResourceID', 'OriginalEstimatedRevenue', 'LaborEstimatedCosts', 'LastActivityDateTime', 'SGDA', 'LaborEstimatedRevenue', 'ActualHours', 'ProjectLeadResourceID', 'ContractID', 'ProjectCostsBudget', 'ImpersonatorCreatorResourceID', 'ChangeOrdersRevenue', 'BusinessDivisionSubdivisionID', 'ActualBilledHours', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'id', 'CompanyOwnerResourceID', 'CompletedPercentage', 'LastActivityPersonType', 'CreateDateTime', 'Duration', 'LaborEstimatedMarginPercentage', 'StatusDetail', 'StartDateTime')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'OriginalEstimatedRevenue', 'ProjectCostEstimatedMarginPercentage', 'ImpersonatorCreatorResourceID', 'id', 'Duration', 'Department', 'AccountID', 'EstimatedSalesCost', 'LastActivityDateTime', 'StatusDetail', 'ActualBilledHours', 'ProjectNumber', 'StatusDateTime', 'LaborEstimatedCosts', 'ProjectLeadResourceID', 'LaborEstimatedRevenue', 'SGDA', 'EstimatedTime', 'ProjectCostsRevenue', 'CompletedPercentage', 'ActualHours', 'LineOfBusiness', 'CreateDateTime', 'ChangeOrdersBudget', 'CompletedDateTime', 'LastActivityPersonType', 'ProjectName', 'ContractID', 'Status', 'Description', 'ExtProjectType', 'EndDateTime', 'CreatorResourceID', 'PurchaseOrderNumber', 'LaborEstimatedMarginPercentage', 'LastActivityResourceID', 'ChangeOrdersRevenue', 'StartDateTime', 'ProjectCostsBudget', 'CompanyOwnerResourceID', 'ExtPNumber', 'Type')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'Status', 'AccountID', 'LineOfBusiness', 'ProjectCostEstimatedMarginPercentage', 'ExtPNumber', 'ChangeOrdersBudget', 'ExtProjectType', 'PurchaseOrderNumber', 'EndDateTime', 'StatusDateTime', 'ProjectNumber', 'Department', 'Type', 'Description', 'EstimatedSalesCost', 'CompletedDateTime', 'CreatorResourceID', 'OriginalEstimatedRevenue', 'LaborEstimatedCosts', 'LastActivityDateTime', 'SGDA', 'LaborEstimatedRevenue', 'ActualHours', 'ProjectLeadResourceID', 'ContractID', 'ProjectCostsBudget', 'ImpersonatorCreatorResourceID', 'ChangeOrdersRevenue', 'BusinessDivisionSubdivisionID', 'ActualBilledHours', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'id', 'CompanyOwnerResourceID', 'CompletedPercentage', 'LastActivityPersonType', 'CreateDateTime', 'Duration', 'LaborEstimatedMarginPercentage', 'StatusDetail', 'StartDateTime')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'OriginalEstimatedRevenue', 'ProjectCostEstimatedMarginPercentage', 'ImpersonatorCreatorResourceID', 'id', 'Duration', 'Department', 'AccountID', 'EstimatedSalesCost', 'LastActivityDateTime', 'StatusDetail', 'ActualBilledHours', 'ProjectNumber', 'StatusDateTime', 'LaborEstimatedCosts', 'ProjectLeadResourceID', 'LaborEstimatedRevenue', 'SGDA', 'EstimatedTime', 'ProjectCostsRevenue', 'CompletedPercentage', 'ActualHours', 'LineOfBusiness', 'CreateDateTime', 'ChangeOrdersBudget', 'CompletedDateTime', 'LastActivityPersonType', 'ProjectName', 'ContractID', 'Status', 'Description', 'ExtProjectType', 'EndDateTime', 'CreatorResourceID', 'PurchaseOrderNumber', 'LaborEstimatedMarginPercentage', 'LastActivityResourceID', 'ChangeOrdersRevenue', 'StartDateTime', 'ProjectCostsBudget', 'CompanyOwnerResourceID', 'ExtPNumber', 'Type')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'Status', 'AccountID', 'LineOfBusiness', 'ProjectCostEstimatedMarginPercentage', 'ExtPNumber', 'ChangeOrdersBudget', 'ExtProjectType', 'PurchaseOrderNumber', 'EndDateTime', 'StatusDateTime', 'ProjectNumber', 'Department', 'Type', 'Description', 'EstimatedSalesCost', 'CompletedDateTime', 'CreatorResourceID', 'OriginalEstimatedRevenue', 'LaborEstimatedCosts', 'LastActivityDateTime', 'SGDA', 'LaborEstimatedRevenue', 'ActualHours', 'ProjectLeadResourceID', 'ContractID', 'ProjectCostsBudget', 'ImpersonatorCreatorResourceID', 'ChangeOrdersRevenue', 'BusinessDivisionSubdivisionID', 'ActualBilledHours', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'id', 'CompanyOwnerResourceID', 'CompletedPercentage', 'LastActivityPersonType', 'CreateDateTime', 'Duration', 'LaborEstimatedMarginPercentage', 'StatusDetail', 'StartDateTime')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'OriginalEstimatedRevenue', 'ProjectCostEstimatedMarginPercentage', 'ImpersonatorCreatorResourceID', 'id', 'Duration', 'Department', 'AccountID', 'EstimatedSalesCost', 'LastActivityDateTime', 'StatusDetail', 'ActualBilledHours', 'ProjectNumber', 'StatusDateTime', 'LaborEstimatedCosts', 'ProjectLeadResourceID', 'LaborEstimatedRevenue', 'SGDA', 'EstimatedTime', 'ProjectCostsRevenue', 'CompletedPercentage', 'ActualHours', 'LineOfBusiness', 'CreateDateTime', 'ChangeOrdersBudget', 'CompletedDateTime', 'LastActivityPersonType', 'ProjectName', 'ContractID', 'Status', 'Description', 'ExtProjectType', 'EndDateTime', 'CreatorResourceID', 'PurchaseOrderNumber', 'LaborEstimatedMarginPercentage', 'LastActivityResourceID', 'ChangeOrdersRevenue', 'StartDateTime', 'ProjectCostsBudget', 'CompanyOwnerResourceID', 'ExtPNumber', 'Type')]
     [string[]]
     $IsNotNull,
 
@@ -587,7 +574,9 @@ Set-AtwsProject
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-    
+        
+        $result = [Collections.ArrayList]::new()
+        $iterations = [Collections.Arraylist]::new()
     }
 
 
@@ -596,14 +585,52 @@ Set-AtwsProject
         # Set the Filter manually to get every single object of this type 
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
             $Filter = @('id', '-ge', 0)
+            [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
     
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-      
-            # Convert named parameters to a filter definition that can be parsed to QueryXML
-            [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+            
+            # find parameter with highest count
+            $index = @{}
+            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
+            $param = $index[$max]
+            # Extract the parameter content, sort it ascending (we assume it is an Id field)
+            # and deduplicate
+            $count = $PSBoundParameters[$param].count
+
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
+            }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
@@ -614,6 +641,7 @@ Set-AtwsProject
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
+            [void]$iterations.Add($Filter)
         } 
 
         # Prepare shouldProcess comments
@@ -623,15 +651,22 @@ Set-AtwsProject
     
         # Lets do it and say we didn't!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-    
-            # Make the query and pass the optional parameters to Get-AtwsData
-            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
-                -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
-    
-            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            foreach ($Filter in $iterations) { 
 
+                # Make the query and pass the optional parameters to Get-AtwsData
+                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    -NoPickListLabel:$NoPickListLabel.IsPresent `
+                    -GetReferenceEntityById $GetReferenceEntityById
+                
+                # If multiple items use .addrange(). If a single item use .add()
+                if ($response.count -gt 1) { 
+                    [void]$result.AddRange($response)
+                }
+                else {
+                    [void]$result.Add($response)
+                }
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
         }
     }
 

@@ -61,19 +61,19 @@ Set-AtwsResourceRoleQueue
     [Autotask.ResourceRoleQueue[]]
     $InputObject,
 
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Active,
+
 # Default
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
     $Default,
-
-# Role ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $RoleID,
 
 # Queue ID
     [Parameter(
@@ -96,13 +96,6 @@ Set-AtwsResourceRoleQueue
     [string]
     $QueueID,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Active,
-
 # Resource ID
     [Parameter(
       Mandatory = $true,
@@ -110,7 +103,14 @@ Set-AtwsResourceRoleQueue
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ResourceID
+    $ResourceID,
+
+# Role ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $RoleID
   )
  
     begin { 
@@ -132,7 +132,7 @@ Set-AtwsResourceRoleQueue
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -140,7 +140,7 @@ Set-AtwsResourceRoleQueue
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -149,7 +149,7 @@ Set-AtwsResourceRoleQueue
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -165,12 +165,12 @@ Set-AtwsResourceRoleQueue
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

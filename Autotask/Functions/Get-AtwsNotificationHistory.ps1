@@ -99,21 +99,9 @@ An example of a more complex query. This command returns any NotificationHistory
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ProjectID', 'TimeEntryID', 'QuoteID', 'AccountID', 'OpportunityID', 'InitiatingResourceID', 'InitiatingContactID', 'TaskID', 'TicketID')]
+    [ValidateSet('AccountID', 'InitiatingContactID', 'InitiatingResourceID', 'OpportunityID', 'ProjectID', 'QuoteID', 'TaskID', 'TicketID', 'TimeEntryID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -122,66 +110,12 @@ An example of a more complex query. This command returns any NotificationHistory
     [switch]
     $All,
 
-# ID
+# Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $id,
-
-# Notification Sent Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $NotificationSentTime,
-
-# Template Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $TemplateName,
-
-# Notification History Type Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $NotificationHistoryTypeID,
-
-# Entity Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $EntityTitle,
+    $AccountID,
 
 # Entity Number
     [Parameter(
@@ -202,13 +136,46 @@ An example of a more complex query. This command returns any NotificationHistory
     [string[]]
     $EntityNumber,
 
-# Is Template Deleted
+# Entity Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $EntityTitle,
+
+# ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsDeleted,
+    [Nullable[long][]]
+    $id,
+
+# Initiating Contact
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $InitiatingContactID,
+
+# Initiating Resource
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $InitiatingResourceID,
 
 # Is Template Active
     [Parameter(
@@ -218,6 +185,14 @@ An example of a more complex query. This command returns any NotificationHistory
     [Nullable[boolean][]]
     $IsActive,
 
+# Is Template Deleted
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsDeleted,
+
 # Is Template Job
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -226,49 +201,31 @@ An example of a more complex query. This command returns any NotificationHistory
     [Nullable[boolean][]]
     $IsTemplateJob,
 
-# Initiating Resource
+# Notification History Type Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
-    $InitiatingResourceID,
-
-# Initiating Contact
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $InitiatingContactID,
-
-# Recipient Email Address
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
-    $RecipientEmailAddress,
+    $NotificationHistoryTypeID,
 
-# Recipient Display Name
+# Notification Sent Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,200)]
-    [string[]]
-    $RecipientDisplayName,
-
-# Client
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $AccountID,
-
-# Quote
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $QuoteID,
+    [Nullable[datetime][]]
+    $NotificationSentTime,
 
 # Opportunity
     [Parameter(
@@ -284,12 +241,43 @@ An example of a more complex query. This command returns any NotificationHistory
     [Nullable[long][]]
     $ProjectID,
 
+# Quote
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $QuoteID,
+
+# Recipient Display Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,200)]
+    [string[]]
+    $RecipientDisplayName,
+
+# Recipient Email Address
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $RecipientEmailAddress,
+
 # Task
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
     $TaskID,
+
+# Template Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $TemplateName,
 
 # Ticket
     [Parameter(
@@ -308,21 +296,21 @@ An example of a more complex query. This command returns any NotificationHistory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EntityTitle', 'IsDeleted', 'InitiatingContactID', 'id', 'NotificationSentTime', 'AccountID', 'RecipientDisplayName', 'EntityNumber', 'ProjectID', 'RecipientEmailAddress', 'IsTemplateJob', 'IsActive', 'TicketID', 'InitiatingResourceID', 'TaskID', 'NotificationHistoryTypeID', 'TimeEntryID', 'TemplateName', 'OpportunityID', 'QuoteID')]
+    [ValidateSet('InitiatingResourceID', 'RecipientDisplayName', 'OpportunityID', 'AccountID', 'IsDeleted', 'NotificationSentTime', 'InitiatingContactID', 'RecipientEmailAddress', 'IsActive', 'EntityTitle', 'id', 'IsTemplateJob', 'TicketID', 'ProjectID', 'NotificationHistoryTypeID', 'TaskID', 'EntityNumber', 'TimeEntryID', 'QuoteID', 'TemplateName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EntityTitle', 'IsDeleted', 'InitiatingContactID', 'id', 'NotificationSentTime', 'AccountID', 'RecipientDisplayName', 'EntityNumber', 'ProjectID', 'RecipientEmailAddress', 'IsTemplateJob', 'IsActive', 'TicketID', 'InitiatingResourceID', 'TaskID', 'NotificationHistoryTypeID', 'TimeEntryID', 'TemplateName', 'OpportunityID', 'QuoteID')]
+    [ValidateSet('InitiatingResourceID', 'RecipientDisplayName', 'OpportunityID', 'AccountID', 'IsDeleted', 'NotificationSentTime', 'InitiatingContactID', 'RecipientEmailAddress', 'IsActive', 'EntityTitle', 'id', 'IsTemplateJob', 'TicketID', 'ProjectID', 'NotificationHistoryTypeID', 'TaskID', 'EntityNumber', 'TimeEntryID', 'QuoteID', 'TemplateName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EntityTitle', 'IsDeleted', 'InitiatingContactID', 'id', 'NotificationSentTime', 'AccountID', 'RecipientDisplayName', 'EntityNumber', 'ProjectID', 'RecipientEmailAddress', 'IsTemplateJob', 'IsActive', 'TicketID', 'InitiatingResourceID', 'TaskID', 'NotificationHistoryTypeID', 'TimeEntryID', 'TemplateName', 'OpportunityID', 'QuoteID')]
+    [ValidateSet('InitiatingResourceID', 'RecipientDisplayName', 'OpportunityID', 'AccountID', 'IsDeleted', 'NotificationSentTime', 'InitiatingContactID', 'RecipientEmailAddress', 'IsActive', 'EntityTitle', 'id', 'IsTemplateJob', 'TicketID', 'ProjectID', 'NotificationHistoryTypeID', 'TaskID', 'EntityNumber', 'TimeEntryID', 'QuoteID', 'TemplateName')]
     [string[]]
     $IsNotNull,
 
@@ -415,7 +403,9 @@ An example of a more complex query. This command returns any NotificationHistory
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-    
+        
+        $result = [Collections.ArrayList]::new()
+        $iterations = [Collections.Arraylist]::new()
     }
 
 
@@ -424,14 +414,52 @@ An example of a more complex query. This command returns any NotificationHistory
         # Set the Filter manually to get every single object of this type 
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
             $Filter = @('id', '-ge', 0)
+            [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
     
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-      
-            # Convert named parameters to a filter definition that can be parsed to QueryXML
-            [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+            
+            # find parameter with highest count
+            $index = @{}
+            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
+            $param = $index[$max]
+            # Extract the parameter content, sort it ascending (we assume it is an Id field)
+            # and deduplicate
+            $count = $PSBoundParameters[$param].count
+
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
+            }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
@@ -442,6 +470,7 @@ An example of a more complex query. This command returns any NotificationHistory
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
+            [void]$iterations.Add($Filter)
         } 
 
         # Prepare shouldProcess comments
@@ -451,15 +480,22 @@ An example of a more complex query. This command returns any NotificationHistory
     
         # Lets do it and say we didn't!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-    
-            # Make the query and pass the optional parameters to Get-AtwsData
-            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
-                -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
-    
-            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            foreach ($Filter in $iterations) { 
 
+                # Make the query and pass the optional parameters to Get-AtwsData
+                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    -NoPickListLabel:$NoPickListLabel.IsPresent `
+                    -GetReferenceEntityById $GetReferenceEntityById
+                
+                # If multiple items use .addrange(). If a single item use .add()
+                if ($response.count -gt 1) { 
+                    [void]$result.AddRange($response)
+                }
+                else {
+                    [void]$result.Add($response)
+                }
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
         }
     }
 

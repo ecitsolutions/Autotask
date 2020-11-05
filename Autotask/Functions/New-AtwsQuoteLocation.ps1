@@ -60,13 +60,13 @@ Set-AtwsQuoteLocation
     [Autotask.QuoteLocation[]]
     $InputObject,
 
-# city
+# address_1
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string]
-    $City,
+    $Address1,
 
 # address_2
     [Parameter(
@@ -76,21 +76,13 @@ Set-AtwsQuoteLocation
     [string]
     $Address2,
 
-# address_1
+# city
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string]
-    $Address1,
-
-# state_province
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $State,
+    $City,
 
 # postal_code
     [Parameter(
@@ -98,7 +90,15 @@ Set-AtwsQuoteLocation
     )]
     [ValidateLength(0,20)]
     [string]
-    $PostalCode
+    $PostalCode,
+
+# state_province
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $State
   )
  
     begin { 
@@ -120,7 +120,7 @@ Set-AtwsQuoteLocation
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -128,7 +128,7 @@ Set-AtwsQuoteLocation
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -137,7 +137,7 @@ Set-AtwsQuoteLocation
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -153,12 +153,12 @@ Set-AtwsQuoteLocation
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

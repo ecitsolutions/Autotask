@@ -67,13 +67,63 @@ Set-AtwsContactWebhook
     [Autotask.ContactWebhook[]]
     $InputObject,
 
-# Webhook GUID
+# Active
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active,
+
+# Deactivation URL
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,500)]
+    [string]
+    $DeactivationUrl,
+
+# Is Subscribed To Create Events
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,100)]
+    [boolean]
+    $IsSubscribedToCreateEvents,
+
+# Is Subscribed To Delete Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsSubscribedToDeleteEvents,
+
+# Is Subscribed To Update Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsSubscribedToUpdateEvents,
+
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
     [string]
-    $WebhookGUID,
+    $Name,
+
+# Notification Email Address
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,150)]
+    [string]
+    $NotificationEmailAddress,
 
 # Owner Resource ID
     [Parameter(
@@ -89,23 +139,6 @@ Set-AtwsContactWebhook
     [boolean]
     $Ready,
 
-# Is Subscribed To Update Events
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsSubscribedToUpdateEvents,
-
-# Deactivation URL
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,500)]
-    [string]
-    $DeactivationUrl,
-
 # Secret Key
     [Parameter(
       Mandatory = $true,
@@ -116,50 +149,6 @@ Set-AtwsContactWebhook
     [string]
     $SecretKey,
 
-# Active
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
-
-# Notification Email Address
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,150)]
-    [string]
-    $NotificationEmailAddress,
-
-# Is Subscribed To Delete Events
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsSubscribedToDeleteEvents,
-
-# Webhook Url
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,500)]
-    [string]
-    $WebhookUrl,
-
-# Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string]
-    $Name,
-
 # Send Threshold Exceeded Notification
     [Parameter(
       Mandatory = $true,
@@ -169,12 +158,23 @@ Set-AtwsContactWebhook
     [boolean]
     $SendThresholdExceededNotification,
 
-# Is Subscribed To Create Events
+# Webhook GUID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $IsSubscribedToCreateEvents
+    [ValidateLength(0,100)]
+    [string]
+    $WebhookGUID,
+
+# Webhook Url
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,500)]
+    [string]
+    $WebhookUrl
   )
  
     begin { 
@@ -196,7 +196,7 @@ Set-AtwsContactWebhook
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -204,7 +204,7 @@ Set-AtwsContactWebhook
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -213,7 +213,7 @@ Set-AtwsContactWebhook
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -229,12 +229,12 @@ Set-AtwsContactWebhook
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

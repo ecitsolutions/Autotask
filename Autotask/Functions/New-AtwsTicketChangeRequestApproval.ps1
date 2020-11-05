@@ -60,6 +60,13 @@ Get-AtwsTicketChangeRequestApproval
     [Autotask.TicketChangeRequestApproval[]]
     $InputObject,
 
+# Approve Reject Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $ApproveRejectDateTime,
+
 # Approve Reject Note
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -68,12 +75,12 @@ Get-AtwsTicketChangeRequestApproval
     [string]
     $ApproveRejectNote,
 
-# Approve Reject Date Time
+# Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $ApproveRejectDateTime,
+    [Int]
+    $ContactID,
 
 # Is Approved
     [Parameter(
@@ -82,6 +89,13 @@ Get-AtwsTicketChangeRequestApproval
     [boolean]
     $IsApproved,
 
+# Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ResourceID,
+
 # Ticket ID
     [Parameter(
       Mandatory = $true,
@@ -89,21 +103,7 @@ Get-AtwsTicketChangeRequestApproval
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $TicketID,
-
-# Contact ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContactID,
-
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ResourceID
+    $TicketID
   )
  
     begin { 
@@ -125,7 +125,7 @@ Get-AtwsTicketChangeRequestApproval
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -133,7 +133,7 @@ Get-AtwsTicketChangeRequestApproval
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -142,7 +142,7 @@ Get-AtwsTicketChangeRequestApproval
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -158,12 +158,12 @@ Get-AtwsTicketChangeRequestApproval
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

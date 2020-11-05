@@ -104,22 +104,9 @@ Set-AtwsPurchaseOrder
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('ShippingType', 'ImpersonatorCreatorResourceID', 'PurchaseForAccountID')]
+    [ValidateSet('CreatorResourceID', 'ImpersonatorCreatorResourceID', 'PurchaseForAccountID', 'ShippingType', 'VendorID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('PurchaseOrderItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -127,6 +114,58 @@ Set-AtwsPurchaseOrder
     )]
     [switch]
     $All,
+
+# Cancel Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CancelDateTime,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
+
+# External Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ExternalPONumber,
+
+# Fax
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $Fax,
+
+# Freight Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $Freight,
+
+# General Memo
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,4000)]
+    [string[]]
+    $GeneralMemo,
 
 # Order ID
     [Parameter(
@@ -136,25 +175,37 @@ Set-AtwsPurchaseOrder
     [Nullable[long][]]
     $id,
 
-# Vendor Account ID
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $VendorID,
+    $ImpersonatorCreatorResourceID,
 
-# Order Status ID
+# Internal Currency Freight Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $InternalCurrencyFreight,
+
+# Latest Estimated Arrival Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LatestEstimatedArrivalDate,
+
+# Payment Term ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label
+      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -162,44 +213,36 @@ Set-AtwsPurchaseOrder
       }
     })]
     [string[]]
-    $Status,
+    $PaymentTerm,
 
-# Creator Resource ID
+# Phone
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $Phone,
+
+# Purchase For Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $CreatorResourceID,
+    $PurchaseForAccountID,
 
-# Create Date
+# Expected Ship Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $CreateDateTime,
+    $ShippingDate,
 
-# Submit Date
+# Shipping Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $SubmitDateTime,
-
-# Cancel Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CancelDateTime,
-
-# Addressee Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ShipToName,
+    [Nullable[Int][]]
+    $ShippingType,
 
 # Address Line 1
     [Parameter(
@@ -226,13 +269,14 @@ Set-AtwsPurchaseOrder
     [string[]]
     $ShipToCity,
 
-# State
+# Addressee Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,25)]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
     [string[]]
-    $ShipToState,
+    $ShipToName,
 
 # Postal Code
     [Parameter(
@@ -242,73 +286,54 @@ Set-AtwsPurchaseOrder
     [string[]]
     $ShipToPostalCode,
 
-# General Memo
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,4000)]
-    [string[]]
-    $GeneralMemo,
-
-# Phone
+# State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
     [string[]]
-    $Phone,
+    $ShipToState,
 
-# Fax
+# Show Each Tax In Tax Group
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,25)]
+    [Nullable[boolean][]]
+    $ShowEachTaxInGroup,
+
+# Show Tax Category
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ShowTaxCategory,
+
+# Order Status ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
-    $Fax,
+    $Status,
 
-# Vendor Invoice Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $VendorInvoiceNumber,
-
-# External Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ExternalPONumber,
-
-# Purchase For Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $PurchaseForAccountID,
-
-# Shipping Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ShippingType,
-
-# Expected Ship Date
+# Submit Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $ShippingDate,
-
-# Freight Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $Freight,
+    $SubmitDateTime,
 
 # Tax Group ID
     [Parameter(
@@ -329,46 +354,6 @@ Set-AtwsPurchaseOrder
     [string[]]
     $TaxGroup,
 
-# Payment Term ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $PaymentTerm,
-
-# Show Tax Category
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ShowTaxCategory,
-
-# Show Each Tax In Tax Group
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ShowEachTaxInGroup,
-
-# Latest Estimated Arrival Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LatestEstimatedArrivalDate,
-
 # Use Item Descriptions From
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -388,38 +373,40 @@ Set-AtwsPurchaseOrder
     [string[]]
     $UseItemDescriptionsFrom,
 
-# Internal Currency Freight Cost
+# Vendor Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $InternalCurrencyFreight,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    $VendorID,
+
+# Vendor Invoice Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $VendorInvoiceNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Status', 'ShipToState', 'InternalCurrencyFreight', 'ShippingDate', 'SubmitDateTime', 'LatestEstimatedArrivalDate', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'TaxGroup', 'UseItemDescriptionsFrom', 'ShipToAddress2', 'ShipToAddress1', 'ShippingType', 'ShowTaxCategory', 'ShipToCity', 'VendorID', 'CancelDateTime', 'ImpersonatorCreatorResourceID', 'ShipToName', 'ShipToPostalCode', 'GeneralMemo', 'VendorInvoiceNumber', 'Freight', 'Fax', 'Phone', 'CreatorResourceID', 'CreateDateTime', 'id', 'ShowEachTaxInGroup')]
+    [ValidateSet('GeneralMemo', 'VendorID', 'ImpersonatorCreatorResourceID', 'TaxGroup', 'ExternalPONumber', 'id', 'Freight', 'Fax', 'ShowEachTaxInGroup', 'CancelDateTime', 'PurchaseForAccountID', 'ShipToState', 'ShippingType', 'ShipToCity', 'CreateDateTime', 'ShipToAddress2', 'LatestEstimatedArrivalDate', 'ShipToName', 'Status', 'PaymentTerm', 'ShipToAddress1', 'ShowTaxCategory', 'CreatorResourceID', 'ShippingDate', 'ShipToPostalCode', 'Phone', 'VendorInvoiceNumber', 'SubmitDateTime', 'UseItemDescriptionsFrom', 'InternalCurrencyFreight')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Status', 'ShipToState', 'InternalCurrencyFreight', 'ShippingDate', 'SubmitDateTime', 'LatestEstimatedArrivalDate', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'TaxGroup', 'UseItemDescriptionsFrom', 'ShipToAddress2', 'ShipToAddress1', 'ShippingType', 'ShowTaxCategory', 'ShipToCity', 'VendorID', 'CancelDateTime', 'ImpersonatorCreatorResourceID', 'ShipToName', 'ShipToPostalCode', 'GeneralMemo', 'VendorInvoiceNumber', 'Freight', 'Fax', 'Phone', 'CreatorResourceID', 'CreateDateTime', 'id', 'ShowEachTaxInGroup')]
+    [ValidateSet('GeneralMemo', 'VendorID', 'ImpersonatorCreatorResourceID', 'TaxGroup', 'ExternalPONumber', 'id', 'Freight', 'Fax', 'ShowEachTaxInGroup', 'CancelDateTime', 'PurchaseForAccountID', 'ShipToState', 'ShippingType', 'ShipToCity', 'CreateDateTime', 'ShipToAddress2', 'LatestEstimatedArrivalDate', 'ShipToName', 'Status', 'PaymentTerm', 'ShipToAddress1', 'ShowTaxCategory', 'CreatorResourceID', 'ShippingDate', 'ShipToPostalCode', 'Phone', 'VendorInvoiceNumber', 'SubmitDateTime', 'UseItemDescriptionsFrom', 'InternalCurrencyFreight')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Status', 'ShipToState', 'InternalCurrencyFreight', 'ShippingDate', 'SubmitDateTime', 'LatestEstimatedArrivalDate', 'PaymentTerm', 'PurchaseForAccountID', 'ExternalPONumber', 'TaxGroup', 'UseItemDescriptionsFrom', 'ShipToAddress2', 'ShipToAddress1', 'ShippingType', 'ShowTaxCategory', 'ShipToCity', 'VendorID', 'CancelDateTime', 'ImpersonatorCreatorResourceID', 'ShipToName', 'ShipToPostalCode', 'GeneralMemo', 'VendorInvoiceNumber', 'Freight', 'Fax', 'Phone', 'CreatorResourceID', 'CreateDateTime', 'id', 'ShowEachTaxInGroup')]
+    [ValidateSet('GeneralMemo', 'VendorID', 'ImpersonatorCreatorResourceID', 'TaxGroup', 'ExternalPONumber', 'id', 'Freight', 'Fax', 'ShowEachTaxInGroup', 'CancelDateTime', 'PurchaseForAccountID', 'ShipToState', 'ShippingType', 'ShipToCity', 'CreateDateTime', 'ShipToAddress2', 'LatestEstimatedArrivalDate', 'ShipToName', 'Status', 'PaymentTerm', 'ShipToAddress1', 'ShowTaxCategory', 'CreatorResourceID', 'ShippingDate', 'ShipToPostalCode', 'Phone', 'VendorInvoiceNumber', 'SubmitDateTime', 'UseItemDescriptionsFrom', 'InternalCurrencyFreight')]
     [string[]]
     $IsNotNull,
 
@@ -512,7 +499,9 @@ Set-AtwsPurchaseOrder
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-    
+        
+        $result = [Collections.ArrayList]::new()
+        $iterations = [Collections.Arraylist]::new()
     }
 
 
@@ -521,14 +510,52 @@ Set-AtwsPurchaseOrder
         # Set the Filter manually to get every single object of this type 
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
             $Filter = @('id', '-ge', 0)
+            [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
     
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-      
-            # Convert named parameters to a filter definition that can be parsed to QueryXML
-            [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+            
+            # find parameter with highest count
+            $index = @{}
+            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
+            $param = $index[$max]
+            # Extract the parameter content, sort it ascending (we assume it is an Id field)
+            # and deduplicate
+            $count = $PSBoundParameters[$param].count
+
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
+            }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
@@ -539,6 +566,7 @@ Set-AtwsPurchaseOrder
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
+            [void]$iterations.Add($Filter)
         } 
 
         # Prepare shouldProcess comments
@@ -548,15 +576,22 @@ Set-AtwsPurchaseOrder
     
         # Lets do it and say we didn't!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-    
-            # Make the query and pass the optional parameters to Get-AtwsData
-            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
-                -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
-    
-            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            foreach ($Filter in $iterations) { 
 
+                # Make the query and pass the optional parameters to Get-AtwsData
+                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    -NoPickListLabel:$NoPickListLabel.IsPresent `
+                    -GetReferenceEntityById $GetReferenceEntityById
+                
+                # If multiple items use .addrange(). If a single item use .add()
+                if ($response.count -gt 1) { 
+                    [void]$result.AddRange($response)
+                }
+                else {
+                    [void]$result.Add($response)
+                }
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
         }
     }
 

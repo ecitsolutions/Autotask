@@ -106,19 +106,6 @@ Set-AtwsUserDefinedFieldDefinition
     [string]
     $GetReferenceEntityById,
 
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProductCategoryUdfAssociation', 'UserDefinedFieldListItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
-
 # Return all objects in one query
     [Parameter(
       ParametersetName = 'Get_all'
@@ -126,50 +113,19 @@ Set-AtwsUserDefinedFieldDefinition
     [switch]
     $All,
 
-# ID
+# Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $CreateDate,
+
+# Crm to Project Udf Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
     [Nullable[long][]]
-    $id,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,45)]
-    [string[]]
-    $Name,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $Description,
-
-# Udf Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $UdfType,
+    $CrmToProjectUdfId,
 
 # Data Type
     [Parameter(
@@ -199,55 +155,13 @@ Set-AtwsUserDefinedFieldDefinition
     [string[]]
     $DefaultValue,
 
-# Field Mapping
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $IsFieldMapping,
-
-# Protected
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsProtected,
-
-# Required
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsRequired,
-
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsActive,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDate,
-
-# Merge Variable Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
+    [ValidateLength(0,128)]
     [string[]]
-    $MergeVariableName,
-
-# Crm to Project Udf Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $CrmToProjectUdfId,
+    $Description,
 
 # Display Format
     [Parameter(
@@ -268,26 +182,20 @@ Set-AtwsUserDefinedFieldDefinition
     [string[]]
     $DisplayFormat,
 
-# Sort Order
+# ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $SortOrder,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
-# Number of Decimal Places
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $NumberOfDecimalPlaces,
-
-# Visible to Client Portal
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $IsVisibleToClientPortal,
+    $IsActive,
 
 # Encrypted
     [Parameter(
@@ -296,6 +204,13 @@ Set-AtwsUserDefinedFieldDefinition
     [Nullable[boolean][]]
     $IsEncrypted,
 
+# Field Mapping
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsFieldMapping,
+
 # Is Private
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -303,24 +218,96 @@ Set-AtwsUserDefinedFieldDefinition
     [Nullable[boolean][]]
     $IsPrivate,
 
+# Protected
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'IsActive', 'IsRequired', 'DisplayFormat', 'NumberOfDecimalPlaces', 'DataType', 'IsVisibleToClientPortal', 'MergeVariableName', 'Description', 'IsEncrypted', 'id', 'IsPrivate', 'IsProtected', 'Name', 'UdfType', 'IsFieldMapping', 'SortOrder', 'DefaultValue')]
+    [Nullable[boolean][]]
+    $IsProtected,
+
+# Required
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsRequired,
+
+# Visible to Client Portal
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsVisibleToClientPortal,
+
+# Merge Variable Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $MergeVariableName,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,45)]
+    [string[]]
+    $Name,
+
+# Number of Decimal Places
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $NumberOfDecimalPlaces,
+
+# Sort Order
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $SortOrder,
+
+# Udf Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $UdfType,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('IsRequired', 'UdfType', 'DataType', 'IsFieldMapping', 'SortOrder', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'IsActive', 'Description', 'CreateDate', 'IsPrivate', 'IsEncrypted', 'MergeVariableName', 'id', 'DisplayFormat', 'CrmToProjectUdfId', 'IsProtected', 'Name', 'DefaultValue')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'IsActive', 'IsRequired', 'DisplayFormat', 'NumberOfDecimalPlaces', 'DataType', 'IsVisibleToClientPortal', 'MergeVariableName', 'Description', 'IsEncrypted', 'id', 'IsPrivate', 'IsProtected', 'Name', 'UdfType', 'IsFieldMapping', 'SortOrder', 'DefaultValue')]
+    [ValidateSet('IsRequired', 'UdfType', 'DataType', 'IsFieldMapping', 'SortOrder', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'IsActive', 'Description', 'CreateDate', 'IsPrivate', 'IsEncrypted', 'MergeVariableName', 'id', 'DisplayFormat', 'CrmToProjectUdfId', 'IsProtected', 'Name', 'DefaultValue')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'IsActive', 'IsRequired', 'DisplayFormat', 'NumberOfDecimalPlaces', 'DataType', 'IsVisibleToClientPortal', 'MergeVariableName', 'Description', 'IsEncrypted', 'id', 'IsPrivate', 'IsProtected', 'Name', 'UdfType', 'IsFieldMapping', 'SortOrder', 'DefaultValue')]
+    [ValidateSet('IsRequired', 'UdfType', 'DataType', 'IsFieldMapping', 'SortOrder', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'IsActive', 'Description', 'CreateDate', 'IsPrivate', 'IsEncrypted', 'MergeVariableName', 'id', 'DisplayFormat', 'CrmToProjectUdfId', 'IsProtected', 'Name', 'DefaultValue')]
     [string[]]
     $IsNotNull,
 
@@ -413,7 +400,9 @@ Set-AtwsUserDefinedFieldDefinition
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-    
+        
+        $result = [Collections.ArrayList]::new()
+        $iterations = [Collections.Arraylist]::new()
     }
 
 
@@ -422,14 +411,52 @@ Set-AtwsUserDefinedFieldDefinition
         # Set the Filter manually to get every single object of this type 
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
             $Filter = @('id', '-ge', 0)
+            [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
     
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-      
-            # Convert named parameters to a filter definition that can be parsed to QueryXML
-            [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+            
+            # find parameter with highest count
+            $index = @{}
+            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
+            $param = $index[$max]
+            # Extract the parameter content, sort it ascending (we assume it is an Id field)
+            # and deduplicate
+            $count = $PSBoundParameters[$param].count
+
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
+            }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
@@ -440,6 +467,7 @@ Set-AtwsUserDefinedFieldDefinition
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
+            [void]$iterations.Add($Filter)
         } 
 
         # Prepare shouldProcess comments
@@ -449,15 +477,22 @@ Set-AtwsUserDefinedFieldDefinition
     
         # Lets do it and say we didn't!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-    
-            # Make the query and pass the optional parameters to Get-AtwsData
-            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
-                -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
-    
-            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            foreach ($Filter in $iterations) { 
 
+                # Make the query and pass the optional parameters to Get-AtwsData
+                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    -NoPickListLabel:$NoPickListLabel.IsPresent `
+                    -GetReferenceEntityById $GetReferenceEntityById
+                
+                # If multiple items use .addrange(). If a single item use .add()
+                if ($response.count -gt 1) { 
+                    [void]$result.AddRange($response)
+                }
+                else {
+                    [void]$result.Add($response)
+                }
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
         }
     }
 

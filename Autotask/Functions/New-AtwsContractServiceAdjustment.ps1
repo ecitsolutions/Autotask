@@ -56,12 +56,12 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
     [Autotask.ContractServiceAdjustment[]]
     $InputObject,
 
-# ContractID
+# Adjusted Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $ContractID,
+    [double]
+    $AdjustedUnitCost,
 
 # Adjusted Unit Price
     [Parameter(
@@ -70,19 +70,42 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
     [double]
     $AdjustedUnitPrice,
 
-# Adjusted Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $AdjustedUnitCost,
-
 # Allow Repeat Service
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
     $AllowRepeatService,
+
+# ContractID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContractID,
+
+# Contract Service Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContractServiceID,
+
+# StartDate
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $EffectiveDate,
+
+# Quote Item Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $QuoteItemID,
 
 # ServiceID
     [Parameter(
@@ -96,30 +119,7 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $UnitChange,
-
-# Quote Item Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $QuoteItemID,
-
-# StartDate
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EffectiveDate,
-
-# Contract Service Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContractServiceID
+    $UnitChange
   )
  
     begin { 
@@ -141,7 +141,7 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -149,7 +149,7 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -158,7 +158,7 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -174,12 +174,12 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

@@ -109,22 +109,9 @@ Set-AtwsOpportunity
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'AccountID', 'ProductID', 'CreatorResourceID', 'ContactID', 'SalesOrderID')]
+    [ValidateSet('AccountID', 'BusinessDivisionSubdivisionID', 'ContactID', 'CreatorResourceID', 'ImpersonatorCreatorResourceID', 'OwnerResourceID', 'ProductID', 'SalesOrderID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountToDo', 'Contract', 'AttachmentInfo', 'NotificationHistory', 'Ticket', 'AccountNote', 'SalesOrder', 'Quote')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -132,14 +119,6 @@ Set-AtwsOpportunity
     )]
     [switch]
     $All,
-
-# Opportunity ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
 
 # AccountObjectID
     [Parameter(
@@ -192,6 +171,13 @@ Set-AtwsOpportunity
     [Nullable[decimal][]]
     $Amount,
 
+# Assessment Score
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $AssessmentScore,
+
 # Barriers
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -199,6 +185,20 @@ Set-AtwsOpportunity
     [ValidateLength(0,500)]
     [string[]]
     $Barriers,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
+
+# Closed Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $ClosedDate,
 
 # ContactObjectID
     [Parameter(
@@ -223,6 +223,28 @@ Set-AtwsOpportunity
     [Nullable[datetime][]]
     $CreateDate,
 
+# Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
+
+# Date Stamp
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $DateStamp,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $Description,
+
 # HelpNeeded
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -230,6 +252,28 @@ Set-AtwsOpportunity
     [ValidateLength(0,500)]
     [string[]]
     $HelpNeeded,
+
+# Opportunity ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Last Activity
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastActivity,
 
 # LeadReferralObjectID
     [Parameter(
@@ -250,6 +294,40 @@ Set-AtwsOpportunity
     [string[]]
     $LeadReferral,
 
+# Loss Reason
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $LossReason,
+
+# Loss Reason Detail
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string[]]
+    $LossReasonDetail,
+
+# Lost Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LostDate,
+
 # Market
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -257,6 +335,20 @@ Set-AtwsOpportunity
     [ValidateLength(0,500)]
     [string[]]
     $Market,
+
+# Monthly Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $MonthlyCost,
+
+# Monthly Revenue
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $MonthlyRevenue,
 
 # NextStep
     [Parameter(
@@ -266,6 +358,39 @@ Set-AtwsOpportunity
     [string[]]
     $NextStep,
 
+# One-Time Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $OnetimeCost,
+
+# One-Time Revenue
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $OnetimeRevenue,
+
+# Opportunity Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $OpportunityCategoryID,
+
 # CreatorObjectID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -273,6 +398,33 @@ Set-AtwsOpportunity
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $OwnerResourceID,
+
+# Primary Competitor
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PrimaryCompetitor,
+
+# Probability
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $Probability,
 
 # ProductObjectID
     [Parameter(
@@ -296,6 +448,13 @@ Set-AtwsOpportunity
     [Nullable[datetime][]]
     $ProjectedLiveDate,
 
+# Promised Fulfillment Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $PromisedFulfillmentDate,
+
 # promotion_name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -303,6 +462,53 @@ Set-AtwsOpportunity
     [ValidateLength(0,50)]
     [string[]]
     $PromotionName,
+
+# Quarterly Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $QuarterlyCost,
+
+# Quarterly Revenue
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $QuarterlyRevenue,
+
+# opportunity_rating_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Rating,
+
+# Relationship Assessment Score
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $RelationshipAssessmentScore,
+
+# Revenue Spread
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $RevenueSpread,
 
 # spread_revenue_recognition_unit
     [Parameter(
@@ -322,6 +528,34 @@ Set-AtwsOpportunity
     })]
     [string[]]
     $RevenueSpreadUnit,
+
+# Sales Order ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $SalesOrderID,
+
+# Sales Process Percent Complete
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $SalesProcessPercentComplete,
+
+# Semi-Annual Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $SemiannualCost,
+
+# Semi-Annual Revenue
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $SemiannualRevenue,
 
 # StageObjectID
     [Parameter(
@@ -363,6 +597,13 @@ Set-AtwsOpportunity
     [string[]]
     $Status,
 
+# Technical Assessment Score
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $TechnicalAssessmentScore,
+
 # ThroughDate
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -379,71 +620,20 @@ Set-AtwsOpportunity
     [string[]]
     $Title,
 
-# opportunity_rating_id
+# Total Amount Months
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Rating,
+    [Nullable[Int][]]
+    $TotalAmountMonths,
 
-# Closed Date
+# Use Quote Totals
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $ClosedDate,
-
-# Assessment Score
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $AssessmentScore,
-
-# Technical Assessment Score
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $TechnicalAssessmentScore,
-
-# Relationship Assessment Score
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $RelationshipAssessmentScore,
-
-# Primary Competitor
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $PrimaryCompetitor,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $UseQuoteTotals,
 
 # Win Reason
     [Parameter(
@@ -464,25 +654,6 @@ Set-AtwsOpportunity
     [string[]]
     $WinReason,
 
-# Loss Reason
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $LossReason,
-
 # Win Reason Detail
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -490,128 +661,6 @@ Set-AtwsOpportunity
     [ValidateLength(0,500)]
     [string[]]
     $WinReasonDetail,
-
-# Loss Reason Detail
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string[]]
-    $LossReasonDetail,
-
-# Last Activity
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivity,
-
-# Date Stamp
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $DateStamp,
-
-# Probability
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $Probability,
-
-# Revenue Spread
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $RevenueSpread,
-
-# Use Quote Totals
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $UseQuoteTotals,
-
-# Total Amount Months
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TotalAmountMonths,
-
-# Sales Process Percent Complete
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $SalesProcessPercentComplete,
-
-# Sales Order ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $SalesOrderID,
-
-# One-Time Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $OnetimeCost,
-
-# One-Time Revenue
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $OnetimeRevenue,
-
-# Monthly Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $MonthlyCost,
-
-# Monthly Revenue
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $MonthlyRevenue,
-
-# Quarterly Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $QuarterlyCost,
-
-# Quarterly Revenue
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $QuarterlyRevenue,
-
-# Semi-Annual Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $SemiannualCost,
-
-# Semi-Annual Revenue
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $SemiannualRevenue,
 
 # Yearly Cost
     [Parameter(
@@ -627,86 +676,24 @@ Set-AtwsOpportunity
     [Nullable[decimal][]]
     $YearlyRevenue,
 
-# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Opportunity Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $OpportunityCategoryID,
-
-# Lost Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LostDate,
-
-# Promised Fulfillment Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $PromisedFulfillmentDate,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $Description,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('LossReason', 'Status', 'ClosedDate', 'WinReason', 'LastActivity', 'id', 'ContactID', 'TechnicalAssessmentScore', 'OnetimeCost', 'Amount', 'OwnerResourceID', 'Probability', 'ProjectedLiveDate', 'SalesOrderID', 'ThroughDate', 'RevenueSpread', 'HelpNeeded', 'CreateDate', 'PromisedFulfillmentDate', 'Rating', 'Description', 'QuarterlyCost', 'AdvancedField1', 'DateStamp', 'LossReasonDetail', 'ProductID', 'SalesProcessPercentComplete', 'Barriers', 'AssessmentScore', 'UseQuoteTotals', 'Cost', 'AdvancedField4', 'NextStep', 'Market', 'PrimaryCompetitor', 'LostDate', 'AccountID', 'QuarterlyRevenue', 'MonthlyRevenue', 'OnetimeRevenue', 'RelationshipAssessmentScore', 'ImpersonatorCreatorResourceID', 'YearlyCost', 'SemiannualRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'AdvancedField2', 'AdvancedField3', 'RevenueSpreadUnit', 'Stage', 'MonthlyCost', 'WinReasonDetail', 'PromotionName', 'SemiannualCost', 'Title', 'CreatorResourceID', 'ProjectedCloseDate', 'TotalAmountMonths', 'YearlyRevenue', 'AdvancedField5', 'LeadReferral')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ThroughDate', 'ProductID', 'CreateDate', 'RelationshipAssessmentScore', 'HelpNeeded', 'ImpersonatorCreatorResourceID', 'SalesOrderID', 'PromotionName', 'id', 'Market', 'AdvancedField1', 'OnetimeRevenue', 'AdvancedField3', 'AccountID', 'LastActivity', 'ContactID', 'LossReason', 'QuarterlyCost', 'MonthlyCost', 'SalesProcessPercentComplete', 'SemiannualCost', 'WinReasonDetail', 'SemiannualRevenue', 'LossReasonDetail', 'Cost', 'AdvancedField2', 'AdvancedField5', 'RevenueSpreadUnit', 'YearlyRevenue', 'YearlyCost', 'OpportunityCategoryID', 'Probability', 'MonthlyRevenue', 'ProjectedLiveDate', 'Stage', 'Title', 'LostDate', 'AdvancedField4', 'Status', 'OwnerResourceID', 'PromisedFulfillmentDate', 'Description', 'NextStep', 'ProjectedCloseDate', 'RevenueSpread', 'TotalAmountMonths', 'OnetimeCost', 'CreatorResourceID', 'ClosedDate', 'UseQuoteTotals', 'QuarterlyRevenue', 'LeadReferral', 'DateStamp', 'AssessmentScore', 'PrimaryCompetitor', 'Barriers', 'Amount', 'Rating', 'TechnicalAssessmentScore', 'WinReason')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LossReason', 'Status', 'ClosedDate', 'WinReason', 'LastActivity', 'id', 'ContactID', 'TechnicalAssessmentScore', 'OnetimeCost', 'Amount', 'OwnerResourceID', 'Probability', 'ProjectedLiveDate', 'SalesOrderID', 'ThroughDate', 'RevenueSpread', 'HelpNeeded', 'CreateDate', 'PromisedFulfillmentDate', 'Rating', 'Description', 'QuarterlyCost', 'AdvancedField1', 'DateStamp', 'LossReasonDetail', 'ProductID', 'SalesProcessPercentComplete', 'Barriers', 'AssessmentScore', 'UseQuoteTotals', 'Cost', 'AdvancedField4', 'NextStep', 'Market', 'PrimaryCompetitor', 'LostDate', 'AccountID', 'QuarterlyRevenue', 'MonthlyRevenue', 'OnetimeRevenue', 'RelationshipAssessmentScore', 'ImpersonatorCreatorResourceID', 'YearlyCost', 'SemiannualRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'AdvancedField2', 'AdvancedField3', 'RevenueSpreadUnit', 'Stage', 'MonthlyCost', 'WinReasonDetail', 'PromotionName', 'SemiannualCost', 'Title', 'CreatorResourceID', 'ProjectedCloseDate', 'TotalAmountMonths', 'YearlyRevenue', 'AdvancedField5', 'LeadReferral')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ThroughDate', 'ProductID', 'CreateDate', 'RelationshipAssessmentScore', 'HelpNeeded', 'ImpersonatorCreatorResourceID', 'SalesOrderID', 'PromotionName', 'id', 'Market', 'AdvancedField1', 'OnetimeRevenue', 'AdvancedField3', 'AccountID', 'LastActivity', 'ContactID', 'LossReason', 'QuarterlyCost', 'MonthlyCost', 'SalesProcessPercentComplete', 'SemiannualCost', 'WinReasonDetail', 'SemiannualRevenue', 'LossReasonDetail', 'Cost', 'AdvancedField2', 'AdvancedField5', 'RevenueSpreadUnit', 'YearlyRevenue', 'YearlyCost', 'OpportunityCategoryID', 'Probability', 'MonthlyRevenue', 'ProjectedLiveDate', 'Stage', 'Title', 'LostDate', 'AdvancedField4', 'Status', 'OwnerResourceID', 'PromisedFulfillmentDate', 'Description', 'NextStep', 'ProjectedCloseDate', 'RevenueSpread', 'TotalAmountMonths', 'OnetimeCost', 'CreatorResourceID', 'ClosedDate', 'UseQuoteTotals', 'QuarterlyRevenue', 'LeadReferral', 'DateStamp', 'AssessmentScore', 'PrimaryCompetitor', 'Barriers', 'Amount', 'Rating', 'TechnicalAssessmentScore', 'WinReason')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LossReason', 'Status', 'ClosedDate', 'WinReason', 'LastActivity', 'id', 'ContactID', 'TechnicalAssessmentScore', 'OnetimeCost', 'Amount', 'OwnerResourceID', 'Probability', 'ProjectedLiveDate', 'SalesOrderID', 'ThroughDate', 'RevenueSpread', 'HelpNeeded', 'CreateDate', 'PromisedFulfillmentDate', 'Rating', 'Description', 'QuarterlyCost', 'AdvancedField1', 'DateStamp', 'LossReasonDetail', 'ProductID', 'SalesProcessPercentComplete', 'Barriers', 'AssessmentScore', 'UseQuoteTotals', 'Cost', 'AdvancedField4', 'NextStep', 'Market', 'PrimaryCompetitor', 'LostDate', 'AccountID', 'QuarterlyRevenue', 'MonthlyRevenue', 'OnetimeRevenue', 'RelationshipAssessmentScore', 'ImpersonatorCreatorResourceID', 'YearlyCost', 'SemiannualRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'AdvancedField2', 'AdvancedField3', 'RevenueSpreadUnit', 'Stage', 'MonthlyCost', 'WinReasonDetail', 'PromotionName', 'SemiannualCost', 'Title', 'CreatorResourceID', 'ProjectedCloseDate', 'TotalAmountMonths', 'YearlyRevenue', 'AdvancedField5', 'LeadReferral')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ThroughDate', 'ProductID', 'CreateDate', 'RelationshipAssessmentScore', 'HelpNeeded', 'ImpersonatorCreatorResourceID', 'SalesOrderID', 'PromotionName', 'id', 'Market', 'AdvancedField1', 'OnetimeRevenue', 'AdvancedField3', 'AccountID', 'LastActivity', 'ContactID', 'LossReason', 'QuarterlyCost', 'MonthlyCost', 'SalesProcessPercentComplete', 'SemiannualCost', 'WinReasonDetail', 'SemiannualRevenue', 'LossReasonDetail', 'Cost', 'AdvancedField2', 'AdvancedField5', 'RevenueSpreadUnit', 'YearlyRevenue', 'YearlyCost', 'OpportunityCategoryID', 'Probability', 'MonthlyRevenue', 'ProjectedLiveDate', 'Stage', 'Title', 'LostDate', 'AdvancedField4', 'Status', 'OwnerResourceID', 'PromisedFulfillmentDate', 'Description', 'NextStep', 'ProjectedCloseDate', 'RevenueSpread', 'TotalAmountMonths', 'OnetimeCost', 'CreatorResourceID', 'ClosedDate', 'UseQuoteTotals', 'QuarterlyRevenue', 'LeadReferral', 'DateStamp', 'AssessmentScore', 'PrimaryCompetitor', 'Barriers', 'Amount', 'Rating', 'TechnicalAssessmentScore', 'WinReason')]
     [string[]]
     $IsNotNull,
 
@@ -799,7 +786,9 @@ Set-AtwsOpportunity
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-    
+        
+        $result = [Collections.ArrayList]::new()
+        $iterations = [Collections.Arraylist]::new()
     }
 
 
@@ -808,14 +797,52 @@ Set-AtwsOpportunity
         # Set the Filter manually to get every single object of this type 
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
             $Filter = @('id', '-ge', 0)
+            [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
     
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-      
-            # Convert named parameters to a filter definition that can be parsed to QueryXML
-            [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+            
+            # find parameter with highest count
+            $index = @{}
+            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
+            $param = $index[$max]
+            # Extract the parameter content, sort it ascending (we assume it is an Id field)
+            # and deduplicate
+            $count = $PSBoundParameters[$param].count
+
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
+            }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
@@ -826,6 +853,7 @@ Set-AtwsOpportunity
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
+            [void]$iterations.Add($Filter)
         } 
 
         # Prepare shouldProcess comments
@@ -835,15 +863,22 @@ Set-AtwsOpportunity
     
         # Lets do it and say we didn't!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-    
-            # Make the query and pass the optional parameters to Get-AtwsData
-            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
-                -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
-    
-            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            foreach ($Filter in $iterations) { 
 
+                # Make the query and pass the optional parameters to Get-AtwsData
+                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    -NoPickListLabel:$NoPickListLabel.IsPresent `
+                    -GetReferenceEntityById $GetReferenceEntityById
+                
+                # If multiple items use .addrange(). If a single item use .add()
+                if ($response.count -gt 1) { 
+                    [void]$result.AddRange($response)
+                }
+                else {
+                    [void]$result.Add($response)
+                }
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
         }
     }
 

@@ -104,22 +104,9 @@ Set-AtwsProduct
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CostAllocationCodeID', 'DefaultVendorID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('CostAllocationCodeID', 'DefaultVendorID', 'ImpersonatorCreatorResourceID', 'ProductAllocationCodeID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('ChangeOrderCost', 'PurchaseOrderItem', 'ContractBillingRule', 'ProjectCost', 'InstalledProduct', 'PriceListProduct', 'InventoryTransfer', 'ContractCost', 'InventoryItem', 'InstalledProductBillingProductAssociation', 'ContactBillingProductAssociation', 'QuoteItem', 'ProductTier', 'TicketCost', 'Opportunity', 'ProductVendor')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -128,126 +115,6 @@ Set-AtwsProduct
     [switch]
     $All,
 
-# ProductID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Product Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
-# Product Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Description,
-
-# Product SKU
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $SKU,
-
-# Product Link
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string[]]
-    $Link,
-
-# Product Category
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ProductCategory,
-
-# External ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ExternalProductID,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $UnitCost,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $UnitPrice,
-
-# MSRP
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $MSRP,
-
-# Vendor Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $DefaultVendorID,
-
-# Vendor Product Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $VendorProductNumber,
-
-# Manufacturer Account Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ManufacturerName,
-
-# Manufacturer Product Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ManufacturerProductName,
-
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -255,70 +122,6 @@ Set-AtwsProduct
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $Active,
-
-# Period Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $PeriodType,
-
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ProductAllocationCodeID,
-
-# Is Serialized
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Serialized,
-
-# Cost Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CostAllocationCodeID,
-
-# Does Not Require Procurement
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $DoesNotRequireProcurement,
-
-# markup_rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $MarkupRate,
-
-# Internal Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $InternalProductID,
 
 # Billing Type
     [Parameter(
@@ -339,6 +142,139 @@ Set-AtwsProduct
     [string[]]
     $BillingType,
 
+# Cost Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CostAllocationCodeID,
+
+# Vendor Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $DefaultVendorID,
+
+# Product Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
+# Does Not Require Procurement
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $DoesNotRequireProcurement,
+
+# Eligible For RMA
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $EligibleForRma,
+
+# External ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ExternalProductID,
+
+# ProductID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Internal Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $InternalProductID,
+
+# Product Link
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string[]]
+    $Link,
+
+# Manufacturer Account Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $ManufacturerName,
+
+# Manufacturer Product Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ManufacturerProductName,
+
+# markup_rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $MarkupRate,
+
+# MSRP
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $MSRP,
+
+# Product Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
+
+# Period Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PeriodType,
+
 # Price Cost Method
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -358,38 +294,89 @@ Set-AtwsProduct
     [string[]]
     $PriceCostMethod,
 
-# Eligible For RMA
+# Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $EligibleForRma,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    $ProductAllocationCodeID,
+
+# Product Category
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ProductCategory,
+
+# Is Serialized
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Serialized,
+
+# Product SKU
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $SKU,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $UnitCost,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $UnitPrice,
+
+# Vendor Product Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $VendorProductNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Link', 'ManufacturerProductName', 'ImpersonatorCreatorResourceID', 'id', 'SKU', 'UnitCost', 'UnitPrice', 'Serialized', 'VendorProductNumber', 'PeriodType', 'ProductAllocationCodeID', 'DefaultVendorID', 'ManufacturerName', 'Description', 'PriceCostMethod', 'CostAllocationCodeID', 'InternalProductID', 'MarkupRate', 'BillingType', 'DoesNotRequireProcurement', 'ExternalProductID', 'Name', 'MSRP', 'Active', 'ProductCategory', 'EligibleForRma')]
+    [ValidateSet('PeriodType', 'UnitPrice', 'Link', 'ManufacturerProductName', 'ExternalProductID', 'ManufacturerName', 'DefaultVendorID', 'DoesNotRequireProcurement', 'MSRP', 'VendorProductNumber', 'SKU', 'ImpersonatorCreatorResourceID', 'Serialized', 'BillingType', 'Description', 'ProductAllocationCodeID', 'PriceCostMethod', 'UnitCost', 'CostAllocationCodeID', 'id', 'EligibleForRma', 'Name', 'Active', 'InternalProductID', 'MarkupRate', 'ProductCategory')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Link', 'ManufacturerProductName', 'ImpersonatorCreatorResourceID', 'id', 'SKU', 'UnitCost', 'UnitPrice', 'Serialized', 'VendorProductNumber', 'PeriodType', 'ProductAllocationCodeID', 'DefaultVendorID', 'ManufacturerName', 'Description', 'PriceCostMethod', 'CostAllocationCodeID', 'InternalProductID', 'MarkupRate', 'BillingType', 'DoesNotRequireProcurement', 'ExternalProductID', 'Name', 'MSRP', 'Active', 'ProductCategory', 'EligibleForRma')]
+    [ValidateSet('PeriodType', 'UnitPrice', 'Link', 'ManufacturerProductName', 'ExternalProductID', 'ManufacturerName', 'DefaultVendorID', 'DoesNotRequireProcurement', 'MSRP', 'VendorProductNumber', 'SKU', 'ImpersonatorCreatorResourceID', 'Serialized', 'BillingType', 'Description', 'ProductAllocationCodeID', 'PriceCostMethod', 'UnitCost', 'CostAllocationCodeID', 'id', 'EligibleForRma', 'Name', 'Active', 'InternalProductID', 'MarkupRate', 'ProductCategory')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Link', 'ManufacturerProductName', 'ImpersonatorCreatorResourceID', 'id', 'SKU', 'UnitCost', 'UnitPrice', 'Serialized', 'VendorProductNumber', 'PeriodType', 'ProductAllocationCodeID', 'DefaultVendorID', 'ManufacturerName', 'Description', 'PriceCostMethod', 'CostAllocationCodeID', 'InternalProductID', 'MarkupRate', 'BillingType', 'DoesNotRequireProcurement', 'ExternalProductID', 'Name', 'MSRP', 'Active', 'ProductCategory', 'EligibleForRma')]
+    [ValidateSet('PeriodType', 'UnitPrice', 'Link', 'ManufacturerProductName', 'ExternalProductID', 'ManufacturerName', 'DefaultVendorID', 'DoesNotRequireProcurement', 'MSRP', 'VendorProductNumber', 'SKU', 'ImpersonatorCreatorResourceID', 'Serialized', 'BillingType', 'Description', 'ProductAllocationCodeID', 'PriceCostMethod', 'UnitCost', 'CostAllocationCodeID', 'id', 'EligibleForRma', 'Name', 'Active', 'InternalProductID', 'MarkupRate', 'ProductCategory')]
     [string[]]
     $IsNotNull,
 
@@ -481,7 +468,9 @@ Set-AtwsProduct
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-    
+        
+        $result = [Collections.ArrayList]::new()
+        $iterations = [Collections.Arraylist]::new()
     }
 
 
@@ -490,14 +479,52 @@ Set-AtwsProduct
         # Set the Filter manually to get every single object of this type 
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
             $Filter = @('id', '-ge', 0)
+            [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
     
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-      
-            # Convert named parameters to a filter definition that can be parsed to QueryXML
-            [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+            
+            # find parameter with highest count
+            $index = @{}
+            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
+            $param = $index[$max]
+            # Extract the parameter content, sort it ascending (we assume it is an Id field)
+            # and deduplicate
+            $count = $PSBoundParameters[$param].count
+
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
+            }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
@@ -508,6 +535,7 @@ Set-AtwsProduct
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
+            [void]$iterations.Add($Filter)
         } 
 
         # Prepare shouldProcess comments
@@ -517,15 +545,22 @@ Set-AtwsProduct
     
         # Lets do it and say we didn't!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-    
-            # Make the query and pass the optional parameters to Get-AtwsData
-            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
-                -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
-    
-            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            foreach ($Filter in $iterations) { 
 
+                # Make the query and pass the optional parameters to Get-AtwsData
+                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    -NoPickListLabel:$NoPickListLabel.IsPresent `
+                    -GetReferenceEntityById $GetReferenceEntityById
+                
+                # If multiple items use .addrange(). If a single item use .add()
+                if ($response.count -gt 1) { 
+                    [void]$result.AddRange($response)
+                }
+                else {
+                    [void]$result.Add($response)
+                }
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
         }
     }
 

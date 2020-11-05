@@ -63,22 +63,14 @@ Set-AtwsProductVendor
     [Autotask.ProductVendor[]]
     $InputObject,
 
-# Vendor Part Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $VendorPartNumber,
-
-# Vendor Account ID
+# Is Active
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
-    $VendorID,
+    [boolean]
+    $Active,
 
 # Is Default
     [Parameter(
@@ -89,22 +81,6 @@ Set-AtwsProductVendor
     [boolean]
     $IsDefault,
 
-# Vendor Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $VendorCost,
-
-# Is Active
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Active,
-
 # Product ID
     [Parameter(
       Mandatory = $true,
@@ -112,7 +88,31 @@ Set-AtwsProductVendor
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $ProductID
+    $ProductID,
+
+# Vendor Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $VendorCost,
+
+# Vendor Account ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $VendorID,
+
+# Vendor Part Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $VendorPartNumber
   )
  
     begin { 
@@ -134,7 +134,7 @@ Set-AtwsProductVendor
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -142,7 +142,7 @@ Set-AtwsProductVendor
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -151,7 +151,7 @@ Set-AtwsProductVendor
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -167,12 +167,12 @@ Set-AtwsProductVendor
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

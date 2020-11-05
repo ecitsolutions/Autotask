@@ -17,9 +17,20 @@ From version 2 the module no longer needs to maintain a per tenant disk cache. A
 
 # Release notes
 
+## Version 2.0.0-beta2 - SPEED, SPEED, SPEED; Hashtables all the way down
+
+- NEW: Added function Build-AtwsModule as wrapper for complete refresh of module from API. Can be used when your tenant has received an API upgrade before I have access to the same API version to build an upgrade
+- NEW: Added custom mime mapping function Get-AtwsMindMapping. No access to system.web.mimemapping from powershell 7
+- UPDATE: Substantial speed improvements in almost all use cases
+- UPDATE: Added support for picklist parent fields in `[ArgumentCompleter()]`. Allows for selecting ticket SubIssueType based on value specified by IssueType
+- UPDATE: New cache model based nested hashtables. Allows direct lookup of values without need for where-object filtering
+- UPDATE: Replaced extensive use of array resizing (slow) with ArrayList and generic lists (fast)
+- UPDATE: UserDefinedFields: Converts [Autotask.UserDefinedField[]] to [Hashtable] on Get. Allows direct access to named userdefined fields in your code without cumbersome looping or where clauses
+- DEPRECATED: -GetExternalEntityByThisEntityId. It is easier to do `$accounts = Get-AtwsAccount -AccountName AccountName; Get-AtwsContract -AccountId $accounts.id`. You usually need both entities anyway.
+
 ## Version 2.0.0-beta1
 
-- UPDATE: New function Get-AtwsPicklistValue -Entity $entityName -FieldName $fieldName for easy access to picklist values and labels
+- NEW: New function Get-AtwsPicklistValue -Entity $entityName -FieldName $fieldName for easy access to picklist values and labels
 - UPDATE: Replaced `[ValidateSet()]` with `[ArgumentCompleter()]` for picklist! No longer any need for a personal cache on disk! Just install the module, connect and go!
 - DEPRECATED: There is no longer any need to cache files to disk to support intellisense for picklists. Removed code for personal disk cache.
 - REQUIREMENT: Moved minimum PowerShell requirement up from 4 to 5.

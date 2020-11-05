@@ -61,53 +61,6 @@ Get-AtwsInventoryTransfer
     [Autotask.InventoryTransfer[]]
     $InputObject,
 
-# Transfer Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $TransferDate,
-
-# Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,4000)]
-    [string]
-    $Notes,
-
-# Serial Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $SerialNumber,
-
-# Quantity Transferred
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $QuantityTransferred,
-
-# Transfer By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $TransferByResourceID,
-
-# Update Note
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string]
-    $UpdateNote,
-
 # Transfer From Inventory Location ID
     [Parameter(
       Mandatory = $true,
@@ -116,6 +69,14 @@ Get-AtwsInventoryTransfer
     [ValidateNotNullOrEmpty()]
     [long]
     $FromLocationID,
+
+# Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,4000)]
+    [string]
+    $Notes,
 
 # Product ID
     [Parameter(
@@ -126,6 +87,23 @@ Get-AtwsInventoryTransfer
     [long]
     $ProductID,
 
+# Quantity Transferred
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $QuantityTransferred,
+
+# Serial Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $SerialNumber,
+
 # Transfer To Inventory Location ID
     [Parameter(
       Mandatory = $true,
@@ -133,7 +111,29 @@ Get-AtwsInventoryTransfer
     )]
     [ValidateNotNullOrEmpty()]
     [long]
-    $ToLocationID
+    $ToLocationID,
+
+# Transfer By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $TransferByResourceID,
+
+# Transfer Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $TransferDate,
+
+# Update Note
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $UpdateNote
   )
  
     begin { 
@@ -155,7 +155,7 @@ Get-AtwsInventoryTransfer
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -163,7 +163,7 @@ Get-AtwsInventoryTransfer
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -172,7 +172,7 @@ Get-AtwsInventoryTransfer
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -188,12 +188,12 @@ Get-AtwsInventoryTransfer
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

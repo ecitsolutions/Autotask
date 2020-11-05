@@ -63,19 +63,21 @@ Set-AtwsChecklistLibraryChecklistItem
     [Autotask.ChecklistLibraryChecklistItem[]]
     $InputObject,
 
+# Checklist Library ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ChecklistLibraryID,
+
 # Important
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
     $Important,
-
-# Position
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $Position,
 
 # Name
     [Parameter(
@@ -106,14 +108,12 @@ Set-AtwsChecklistLibraryChecklistItem
     [string]
     $KnowledgebaseArticleID,
 
-# Checklist Library ID
+# Position
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Int]
-    $ChecklistLibraryID
+    $Position
   )
  
     begin { 
@@ -135,7 +135,7 @@ Set-AtwsChecklistLibraryChecklistItem
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -143,7 +143,7 @@ Set-AtwsChecklistLibraryChecklistItem
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -152,7 +152,7 @@ Set-AtwsChecklistLibraryChecklistItem
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -168,12 +168,12 @@ Set-AtwsChecklistLibraryChecklistItem
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

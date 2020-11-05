@@ -66,23 +66,61 @@ Set-AtwsContractTicketPurchase
     [Autotask.ContractTicketPurchase[]]
     $InputObject,
 
-# Rate
+# Contract ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [double]
-    $PerTicketRate,
+    [long]
+    $ContractID,
 
-# Start Date
+# DatePurchased
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
-    $StartDate,
+    $DatePurchased,
+
+# End Date
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $EndDate,
+
+# Invoice Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $InvoiceNumber,
+
+# Paid
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $IsPaid,
 
 # Payment Number
     [Parameter(
@@ -111,23 +149,23 @@ Set-AtwsContractTicketPurchase
     [string]
     $PaymentType,
 
-# DatePurchased
+# Rate
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime]
-    $DatePurchased,
+    [double]
+    $PerTicketRate,
 
-# End Date
+# Start Date
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
-    $EndDate,
+    $StartDate,
 
 # Status
     [Parameter(
@@ -148,43 +186,6 @@ Set-AtwsContractTicketPurchase
     [string]
     $Status,
 
-# Contract ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $ContractID,
-
-# Tickets Used
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $TicketsUsed,
-
-# Paid
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $IsPaid,
-
 # Tickets Purchased
     [Parameter(
       Mandatory = $true,
@@ -194,13 +195,12 @@ Set-AtwsContractTicketPurchase
     [double]
     $TicketsPurchased,
 
-# Invoice Number
+# Tickets Used
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string]
-    $InvoiceNumber
+    [double]
+    $TicketsUsed
   )
  
     begin { 
@@ -222,7 +222,7 @@ Set-AtwsContractTicketPurchase
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -230,7 +230,7 @@ Set-AtwsContractTicketPurchase
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -239,7 +239,7 @@ Set-AtwsContractTicketPurchase
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -255,12 +255,12 @@ Set-AtwsContractTicketPurchase
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

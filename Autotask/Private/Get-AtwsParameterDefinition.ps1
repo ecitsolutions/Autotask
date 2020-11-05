@@ -60,14 +60,10 @@ Function Get-AtwsParameterDefinition {
             # -Filter
             $Comment = 'A filter that limits the number of objects that is returned from the API'
             Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'string' -Mandatory -Remaining -NotNull  -Array -Comment $Comment
-            $ReferenceFields = $Entity['ExternalReferences'].Values
+            $ReferenceFields = $Entity['ExternalReferences'].Keys | Sort-Object
             # -GetReferenceEntityById, -GetRef
             $Comment = 'Follow this external ID and return any external objects'            
             Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter', 'By_parameters' -Type 'string' -NotNull -ValidateSet $ReferenceFields -Comment $Comment
-            # -GetExternalEntityByThisEntityId, -External
-            $IncomingReferenceEntities = $Entity['IncomingReferences'].Keys
-            $Comment = 'Return entities of selected type that are referencing to this entity.'
-            Get-AtwsPSParameter -Name 'GetExternalEntityByThisEntityId' -Alias 'External' -SetName 'Filter', 'By_parameters' -Type 'string' -NotNull -ValidateSet $IncomingReferenceEntities -Comment $Comment
             # -All
             $Comment = 'Return all objects in one query'    
             Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'switch' -Comment $Comment
@@ -123,8 +119,8 @@ Function Get-AtwsParameterDefinition {
                 }
             }
             'Set' { 
-                if (($Entity.ContainsKey('WritableFields'))) {
-                    [array]$fields = $Entity['WritableFields'] | ForEach-Object {
+                if (($Entity.ContainsKey('WriteableFields'))) {
+                    [array]$fields = $Entity['WriteableFields'] | ForEach-Object {
                         $parameterSet[$_] = @('Input_Object', 'By_parameters', 'By_Id')
                         $Entity['FieldInfo'][$_]
                     }
@@ -143,7 +139,7 @@ Function Get-AtwsParameterDefinition {
     
         # Add Name alias for EntityName parameters
         $entityNameParameter = '{0}Name' -f $Entity.Name
-        foreach ($field in $fields ) {
+        foreach ($field in $fields | sort-object -property name) {
             # Start with native field type
             $Type = $field.Type
 

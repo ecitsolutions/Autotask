@@ -34,6 +34,8 @@ Function Update-AtwsFunctions {
     )]
    
     Param(
+        [switch]
+        $Force
     )
   
     begin { 
@@ -44,6 +46,10 @@ Function Update-AtwsFunctions {
     
         if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
+        }
+
+        if ($Force.IsPresent -and -not $Confirm) {
+            $ConfirmPreference = 'none'
         }
     
         # Prepare parameters for @splatting

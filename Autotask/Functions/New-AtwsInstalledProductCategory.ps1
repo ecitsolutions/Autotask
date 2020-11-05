@@ -62,31 +62,6 @@ Set-AtwsInstalledProductCategory
     [Autotask.InstalledProductCategory[]]
     $InputObject,
 
-# Nickname
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,3)]
-    [string]
-    $Nickname,
-
-# Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# Global Default
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $GlobalDefault,
-
 # Active
     [Parameter(
       Mandatory = $true,
@@ -95,6 +70,13 @@ Set-AtwsInstalledProductCategory
     [ValidateNotNullOrEmpty()]
     [boolean]
     $Active,
+
+# Client Portal Default
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $ClientPortalDefault,
 
 # Display Color RGB
     [Parameter(
@@ -117,12 +99,30 @@ Set-AtwsInstalledProductCategory
     [string]
     $DisplayColorRGB,
 
-# Client Portal Default
+# Global Default
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $ClientPortalDefault
+    $GlobalDefault,
+
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
+
+# Nickname
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,3)]
+    [string]
+    $Nickname
   )
  
     begin { 
@@ -144,7 +144,7 @@ Set-AtwsInstalledProductCategory
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = @()
+        $processObject = [Collections.ArrayList]::new()
     }
 
     process {
@@ -152,7 +152,7 @@ Set-AtwsInstalledProductCategory
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $fields = Get-AtwsFieldInfo -Entity $entityName
+            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
       
             $CopyNo = 1
 
@@ -161,7 +161,7 @@ Set-AtwsInstalledProductCategory
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
+                $fieldNames = $entityInfo.WritableFields
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -177,12 +177,12 @@ Set-AtwsInstalledProductCategory
                     $copyNo++
                     $newObject.Title = $title
                 }
-                $processObject += $newObject
+                [void]$processObject.Add($newObject)
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            $processObject += New-Object -TypeName Autotask.$entityName    
+            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
         }
         
         # Prepare shouldProcess comments

@@ -107,22 +107,9 @@ Set-AtwsContract
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'BillToAccountID', 'OpportunityID', 'ExclusionContractID', 'BillToAccountContactID', 'ContractExclusionSetID')]
+    [ValidateSet('AccountID', 'BillToAccountContactID', 'BillToAccountID', 'BusinessDivisionSubdivisionID', 'ContactID', 'ContractExclusionSetID', 'ExclusionContractID', 'OpportunityID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('ContractFactor', 'ContractRate', 'ContractBlock', 'ContractBillingRule', 'ContractTicketPurchase', 'InstalledProduct', 'ContractMilestone', 'ContractCost', 'ContractExclusionRole', 'ContractService', 'PurchaseOrderItem', 'ContractServiceBundle', 'Project', 'ContractNote', 'Ticket', 'ContractExclusionAllocationCode', 'ContractServiceBundleUnit', 'TimeEntry', 'ContractRoleCost', 'Contract', 'ContractRetainer', 'ContractServiceUnit', 'BillingItem', 'AccountToDo', 'ContractServiceAdjustment', 'ContractServiceBundleAdjustment')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -139,14 +126,6 @@ Set-AtwsContract
     [ValidateNotNullOrEmpty()]
     [Autotask.UserDefinedField]
     $UserDefinedField,
-
-# Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
 
 # Client
     [Parameter(
@@ -175,12 +154,40 @@ Set-AtwsContract
     [string[]]
     $BillingPreference,
 
+# Bill To Client Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BillToAccountContactID,
+
+# Bill To Client ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BillToAccountID,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
+
 # Contract Compilance
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
     $Compliance,
+
+# Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContactID,
 
 # Contract Contact
     [Parameter(
@@ -208,6 +215,13 @@ Set-AtwsContract
     })]
     [string[]]
     $ContractCategory,
+
+# Contract Exclusion Set ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContractExclusionSetID,
 
 # Contract Name
     [Parameter(
@@ -266,13 +280,6 @@ Set-AtwsContract
     [string[]]
     $ContractType,
 
-# Default Contract
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsDefaultContract,
-
 # Description
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -310,12 +317,103 @@ Set-AtwsContract
     [Nullable[double][]]
     $EstimatedRevenue,
 
+# Exclusion Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ExclusionContractID,
+
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Internal Currency Contract Overage Billing Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyOverageBillingRate,
+
+# Internal Currency Contract Setup Fee
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencySetupFee,
+
+# Default Contract
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsDefaultContract,
+
+# opportunity_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $OpportunityID,
+
 # Contract Overage Billing Rate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $OverageBillingRate,
+
+# purchase_order_number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
+
+# Renewed Contract Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $RenewedContractID,
+
+# Service Level Agreement ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Contract -FieldName ServiceLevelAgreementID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Contract -FieldName ServiceLevelAgreementID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ServiceLevelAgreementID,
+
+# Contract Setup Fee
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $SetupFee,
+
+# Contract Setup Fee Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $SetupFeeAllocationCodeID,
 
 # Start Date
     [Parameter(
@@ -345,40 +443,6 @@ Set-AtwsContract
     [string[]]
     $Status,
 
-# Service Level Agreement ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contract -FieldName ServiceLevelAgreementID -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Contract -FieldName ServiceLevelAgreementID -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ServiceLevelAgreementID,
-
-# Contract Setup Fee
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $SetupFee,
-
-# purchase_order_number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
-
 # Time Reporting Requires Start and Stop Times
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -399,101 +463,24 @@ Set-AtwsContract
     [string[]]
     $TimeReportingRequiresStartAndStopTimes,
 
-# opportunity_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $OpportunityID,
-
-# Renewed Contract Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $RenewedContractID,
-
-# Contract Setup Fee Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $SetupFeeAllocationCodeID,
-
-# Exclusion Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ExclusionContractID,
-
-# Internal Currency Contract Overage Billing Rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyOverageBillingRate,
-
-# Internal Currency Contract Setup Fee
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencySetupFee,
-
-# Contact ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContactID,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Bill To Client ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BillToAccountID,
-
-# Bill To Client Contact ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BillToAccountContactID,
-
-# Contract Exclusion Set ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContractExclusionSetID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('ContractType', 'Status', 'BillToAccountContactID', 'ExclusionContractID', 'TimeReportingRequiresStartAndStopTimes', 'ContactID', 'ContractNumber', 'OverageBillingRate', 'IsDefaultContract', 'BillingPreference', 'EstimatedRevenue', 'ContractExclusionSetID', 'Compliance', 'SetupFee', 'ContractPeriodType', 'InternalCurrencyOverageBillingRate', 'EstimatedHours', 'ContractName', 'AccountID', 'PurchaseOrderNumber', 'ServiceLevelAgreementID', 'EndDate', 'BusinessDivisionSubdivisionID', 'StartDate', 'OpportunityID', 'ContactName', 'id', 'EstimatedCost', 'Description', 'SetupFeeAllocationCodeID', 'BillToAccountID', 'RenewedContractID', 'ContractCategory', 'InternalCurrencySetupFee', '')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'EstimatedRevenue', 'EstimatedHours', 'StartDate', 'InternalCurrencySetupFee', 'ContractExclusionSetID', 'id', 'Compliance', 'ContractCategory', 'ContactID', 'ExclusionContractID', 'ContractPeriodType', 'BillToAccountID', 'PurchaseOrderNumber', 'IsDefaultContract', 'TimeReportingRequiresStartAndStopTimes', 'OpportunityID', 'AccountID', 'EndDate', 'SetupFee', 'RenewedContractID', 'ServiceLevelAgreementID', 'ContractName', 'EstimatedCost', 'Status', 'ContractNumber', 'Description', 'BillToAccountContactID', 'InternalCurrencyOverageBillingRate', 'OverageBillingRate', 'SetupFeeAllocationCodeID', 'BillingPreference', 'ContactName', 'ContractType', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractType', 'Status', 'BillToAccountContactID', 'ExclusionContractID', 'TimeReportingRequiresStartAndStopTimes', 'ContactID', 'ContractNumber', 'OverageBillingRate', 'IsDefaultContract', 'BillingPreference', 'EstimatedRevenue', 'ContractExclusionSetID', 'Compliance', 'SetupFee', 'ContractPeriodType', 'InternalCurrencyOverageBillingRate', 'EstimatedHours', 'ContractName', 'AccountID', 'PurchaseOrderNumber', 'ServiceLevelAgreementID', 'EndDate', 'BusinessDivisionSubdivisionID', 'StartDate', 'OpportunityID', 'ContactName', 'id', 'EstimatedCost', 'Description', 'SetupFeeAllocationCodeID', 'BillToAccountID', 'RenewedContractID', 'ContractCategory', 'InternalCurrencySetupFee', '')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'EstimatedRevenue', 'EstimatedHours', 'StartDate', 'InternalCurrencySetupFee', 'ContractExclusionSetID', 'id', 'Compliance', 'ContractCategory', 'ContactID', 'ExclusionContractID', 'ContractPeriodType', 'BillToAccountID', 'PurchaseOrderNumber', 'IsDefaultContract', 'TimeReportingRequiresStartAndStopTimes', 'OpportunityID', 'AccountID', 'EndDate', 'SetupFee', 'RenewedContractID', 'ServiceLevelAgreementID', 'ContractName', 'EstimatedCost', 'Status', 'ContractNumber', 'Description', 'BillToAccountContactID', 'InternalCurrencyOverageBillingRate', 'OverageBillingRate', 'SetupFeeAllocationCodeID', 'BillingPreference', 'ContactName', 'ContractType', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractType', 'Status', 'BillToAccountContactID', 'ExclusionContractID', 'TimeReportingRequiresStartAndStopTimes', 'ContactID', 'ContractNumber', 'OverageBillingRate', 'IsDefaultContract', 'BillingPreference', 'EstimatedRevenue', 'ContractExclusionSetID', 'Compliance', 'SetupFee', 'ContractPeriodType', 'InternalCurrencyOverageBillingRate', 'EstimatedHours', 'ContractName', 'AccountID', 'PurchaseOrderNumber', 'ServiceLevelAgreementID', 'EndDate', 'BusinessDivisionSubdivisionID', 'StartDate', 'OpportunityID', 'ContactName', 'id', 'EstimatedCost', 'Description', 'SetupFeeAllocationCodeID', 'BillToAccountID', 'RenewedContractID', 'ContractCategory', 'InternalCurrencySetupFee', '')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'EstimatedRevenue', 'EstimatedHours', 'StartDate', 'InternalCurrencySetupFee', 'ContractExclusionSetID', 'id', 'Compliance', 'ContractCategory', 'ContactID', 'ExclusionContractID', 'ContractPeriodType', 'BillToAccountID', 'PurchaseOrderNumber', 'IsDefaultContract', 'TimeReportingRequiresStartAndStopTimes', 'OpportunityID', 'AccountID', 'EndDate', 'SetupFee', 'RenewedContractID', 'ServiceLevelAgreementID', 'ContractName', 'EstimatedCost', 'Status', 'ContractNumber', 'Description', 'BillToAccountContactID', 'InternalCurrencyOverageBillingRate', 'OverageBillingRate', 'SetupFeeAllocationCodeID', 'BillingPreference', 'ContactName', 'ContractType', '')]
     [string[]]
     $IsNotNull,
 
@@ -586,7 +573,9 @@ Set-AtwsContract
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-    
+        
+        $result = [Collections.ArrayList]::new()
+        $iterations = [Collections.Arraylist]::new()
     }
 
 
@@ -595,14 +584,52 @@ Set-AtwsContract
         # Set the Filter manually to get every single object of this type 
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
             $Filter = @('id', '-ge', 0)
+            [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
     
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-      
-            # Convert named parameters to a filter definition that can be parsed to QueryXML
-            [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+            
+            # find parameter with highest count
+            $index = @{}
+            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
+            $param = $index[$max]
+            # Extract the parameter content, sort it ascending (we assume it is an Id field)
+            # and deduplicate
+            $count = $PSBoundParameters[$param].count
+
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
+            }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
@@ -613,6 +640,7 @@ Set-AtwsContract
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
+            [void]$iterations.Add($Filter)
         } 
 
         # Prepare shouldProcess comments
@@ -622,15 +650,22 @@ Set-AtwsContract
     
         # Lets do it and say we didn't!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-    
-            # Make the query and pass the optional parameters to Get-AtwsData
-            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
-                -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
-    
-            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            foreach ($Filter in $iterations) { 
 
+                # Make the query and pass the optional parameters to Get-AtwsData
+                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    -NoPickListLabel:$NoPickListLabel.IsPresent `
+                    -GetReferenceEntityById $GetReferenceEntityById
+                
+                # If multiple items use .addrange(). If a single item use .add()
+                if ($response.count -gt 1) { 
+                    [void]$result.AddRange($response)
+                }
+                else {
+                    [void]$result.Add($response)
+                }
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
         }
     }
 

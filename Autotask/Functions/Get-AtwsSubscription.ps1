@@ -104,22 +104,9 @@ Set-AtwsSubscription
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InstalledProductID', 'VendorID', 'MaterialCodeID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'MaterialCodeID', 'VendorID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('SubscriptionPeriod')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -128,21 +115,12 @@ Set-AtwsSubscription
     [switch]
     $All,
 
-# Subscription ID
+# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Material Code Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $MaterialCodeID,
+    $BusinessDivisionSubdivisionID,
 
 # Description
     [Parameter(
@@ -152,15 +130,13 @@ Set-AtwsSubscription
     [string[]]
     $Description,
 
-# Subscription Name
+# Effective Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Alias('Name')]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $SubscriptionName,
+    [Nullable[datetime][]]
+    $EffectiveDate,
 
 # Expiration Date
     [Parameter(
@@ -170,27 +146,20 @@ Set-AtwsSubscription
     [Nullable[datetime][]]
     $ExpirationDate,
 
-# Effective Date
+# Subscription ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EffectiveDate,
+    [Nullable[long][]]
+    $id,
 
-# Total Cost
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
-    $TotalCost,
-
-# Total Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $TotalPrice,
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
 
 # Installed Product ID
     [Parameter(
@@ -200,13 +169,13 @@ Set-AtwsSubscription
     [Nullable[Int][]]
     $InstalledProductID,
 
-# Purchase Order Number
+# Material Code Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $MaterialCodeID,
 
 # Period Type
     [Parameter(
@@ -228,6 +197,14 @@ Set-AtwsSubscription
     [string[]]
     $PeriodType,
 
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
+
 # Type
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -248,6 +225,30 @@ Set-AtwsSubscription
     [string[]]
     $Status,
 
+# Subscription Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('Name')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $SubscriptionName,
+
+# Total Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $TotalCost,
+
+# Total Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $TotalPrice,
+
 # Vendor ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -255,38 +256,24 @@ Set-AtwsSubscription
     [Nullable[Int][]]
     $VendorID,
 
-# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'SubscriptionName', 'Description', 'EffectiveDate', 'PeriodType', 'TotalPrice', 'Status', 'PeriodCost', 'TotalCost', 'InstalledProductID', 'ExpirationDate', 'PurchaseOrderNumber', 'MaterialCodeID', 'VendorID')]
+    [ValidateSet('PeriodPrice', 'BusinessDivisionSubdivisionID', 'PeriodCost', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'Description', 'TotalPrice', 'VendorID', 'id', 'InstalledProductID', 'SubscriptionName', 'PurchaseOrderNumber', 'EffectiveDate', 'MaterialCodeID', 'TotalCost', 'Status', 'PeriodType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'SubscriptionName', 'Description', 'EffectiveDate', 'PeriodType', 'TotalPrice', 'Status', 'PeriodCost', 'TotalCost', 'InstalledProductID', 'ExpirationDate', 'PurchaseOrderNumber', 'MaterialCodeID', 'VendorID')]
+    [ValidateSet('PeriodPrice', 'BusinessDivisionSubdivisionID', 'PeriodCost', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'Description', 'TotalPrice', 'VendorID', 'id', 'InstalledProductID', 'SubscriptionName', 'PurchaseOrderNumber', 'EffectiveDate', 'MaterialCodeID', 'TotalCost', 'Status', 'PeriodType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'SubscriptionName', 'Description', 'EffectiveDate', 'PeriodType', 'TotalPrice', 'Status', 'PeriodCost', 'TotalCost', 'InstalledProductID', 'ExpirationDate', 'PurchaseOrderNumber', 'MaterialCodeID', 'VendorID')]
+    [ValidateSet('PeriodPrice', 'BusinessDivisionSubdivisionID', 'PeriodCost', 'ExpirationDate', 'ImpersonatorCreatorResourceID', 'Description', 'TotalPrice', 'VendorID', 'id', 'InstalledProductID', 'SubscriptionName', 'PurchaseOrderNumber', 'EffectiveDate', 'MaterialCodeID', 'TotalCost', 'Status', 'PeriodType')]
     [string[]]
     $IsNotNull,
 
@@ -379,7 +366,9 @@ Set-AtwsSubscription
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-    
+        
+        $result = [Collections.ArrayList]::new()
+        $iterations = [Collections.Arraylist]::new()
     }
 
 
@@ -388,14 +377,52 @@ Set-AtwsSubscription
         # Set the Filter manually to get every single object of this type 
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
             $Filter = @('id', '-ge', 0)
+            [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
     
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-      
-            # Convert named parameters to a filter definition that can be parsed to QueryXML
-            [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+            
+            # find parameter with highest count
+            $index = @{}
+            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
+            $param = $index[$max]
+            # Extract the parameter content, sort it ascending (we assume it is an Id field)
+            # and deduplicate
+            $count = $PSBoundParameters[$param].count
+
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
+            }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
@@ -406,6 +433,7 @@ Set-AtwsSubscription
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
+            [void]$iterations.Add($Filter)
         } 
 
         # Prepare shouldProcess comments
@@ -415,15 +443,22 @@ Set-AtwsSubscription
     
         # Lets do it and say we didn't!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-    
-            # Make the query and pass the optional parameters to Get-AtwsData
-            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
-                -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
-    
-            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            foreach ($Filter in $iterations) { 
 
+                # Make the query and pass the optional parameters to Get-AtwsData
+                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    -NoPickListLabel:$NoPickListLabel.IsPresent `
+                    -GetReferenceEntityById $GetReferenceEntityById
+                
+                # If multiple items use .addrange(). If a single item use .add()
+                if ($response.count -gt 1) { 
+                    [void]$result.AddRange($response)
+                }
+                else {
+                    [void]$result.Add($response)
+                }
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
         }
     }
 

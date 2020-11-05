@@ -39,7 +39,7 @@ Function Get-AtwsData {
   #>
   
     [cmdletbinding()]
-    [OutputType([PSObject[]])]
+    [OutputType([Collections.ArrayList])]
     param
     (
         [Parameter(
@@ -59,9 +59,6 @@ Function Get-AtwsData {
     
         [string]
         $GetReferenceEntityById,
-    
-        [string]
-        $GetExternalEntityByThisEntityId,
     
         [switch]
         $NoPickListLabel
@@ -114,14 +111,14 @@ Function Get-AtwsData {
             # Handle any errors
             if ($lastquery.Errors.Count -gt 0) {
                 foreach ($atwsError in $lastquery.Errors) {
-                    Write-Error $atwsError.Message
+                    throw $atwsError.Message
                 }
                 return
             }
 
             # Add all returned objects to the Result - if any
             if ($lastquery.EntityResults.Count -gt 0) { 
-                [void]$result.add((ConvertTo-LocalObject -InputObject $lastquery.EntityResults))
+                [void]$result.AddRange((ConvertTo-LocalObject -InputObject $lastquery.EntityResults))
             }
             
             # Results are sorted by object Id. The Id of the last object is the highest object id in the result
@@ -148,23 +145,16 @@ Function Get-AtwsData {
             # Should we return an indirect object?
             if ($GetReferenceEntityById) {
                 Write-Verbose ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
-                $fields = Get-AtwsFieldInfo -Entity $result[0].GetType().Name
-                $field = $fields.Where( { $_.Name -eq $GetReferenceEntityById })
-                $resultValues = $result | Where-Object { $null -ne $_.$GetReferenceEntityById }
+                $field = Get-AtwsFieldInfo -Entity $Entity -FieldName $GetReferenceEntityById
+                $resultValues = $result.$GetReferenceEntityById | Where-Object { $null -ne $_ }
                 if ($resultValues.Count -lt $result.Count) {
                     Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
                         $resultValues.Count,
                         $Entity,
                         $GetReferenceEntityById) -WarningAction Continue
                 }
-                $Filter = 'id -eq {0}' -F $($resultValues.$GetReferenceEntityById -join ' -or id -eq ')
+                $Filter = 'id -eq {0}' -F $($resultValues -join ' -or id -eq ')
                 $result = Get-Atwsdata -Entity $field.ReferenceEntityType -Filter $Filter
-            }
-            elseif ($GetExternalEntityByThisEntityId) {
-                Write-Verbose ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
-                $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
-                $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
-                $result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
             }
 
             Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)

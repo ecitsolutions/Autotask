@@ -104,22 +104,9 @@ Set-AtwsProjectCost
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'AllocationCodeID', 'ProductID', 'ContractServiceBundleID', 'CreatorResourceID', 'ContractServiceID', 'ProjectID')]
+    [ValidateSet('AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'ContractServiceID', 'CreatorResourceID', 'ProductID', 'ProjectID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet('BillingItem')]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -128,132 +115,12 @@ Set-AtwsProjectCost
     [switch]
     $All,
 
-# id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Project
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $ProjectID,
-
-# Product
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ProductID,
-
 # Allocation Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
     $AllocationCodeID,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Description,
-
-# Date Purchased
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $DatePurchased,
-
-# Cost Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ProjectCost -FieldName CostType -Label
-    })]
-    [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ProjectCost -FieldName CostType -Label
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $CostType,
-
-# Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
-
-# Internal Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $InternalPurchaseOrderNumber,
-
-# Unit Quantity
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $UnitQuantity,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $UnitCost,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $UnitPrice,
-
-# Extended Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ExtendedCost,
-
-# Estimated Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $EstimatedCost,
 
 # Billable Amount
     [Parameter(
@@ -275,6 +142,161 @@ Set-AtwsProjectCost
     )]
     [Nullable[boolean][]]
     $Billed,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
+
+# Contract Service Bundle ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContractServiceBundleID,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContractServiceID,
+
+# Cost Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ProjectCost -FieldName CostType -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity ProjectCost -FieldName CostType -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $CostType,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDate,
+
+# Created By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $CreatorResourceID,
+
+# Date Purchased
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $DatePurchased,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
+# Estimated Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $EstimatedCost,
+
+# Extended Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ExtendedCost,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Internal Currency Billable Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyBillableAmount,
+
+# Internal Currency Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyUnitPrice,
+
+# Internal Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $InternalPurchaseOrderNumber,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
+
+# Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Notes,
+
+# Product
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ProductID,
+
+# Project
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $ProjectID,
+
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
 
 # Status
     [Parameter(
@@ -309,81 +331,46 @@ Set-AtwsProjectCost
     [Nullable[datetime][]]
     $StatusLastModifiedDate,
 
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDate,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $CreatorResourceID,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ContractServiceID,
-
-# Contract Service Bundle ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ContractServiceBundleID,
-
-# Internal Currency Billable Amount
+# Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $InternalCurrencyBillableAmount,
+    $UnitCost,
 
-# Internal Currency Unit Price
+# Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $InternalCurrencyUnitPrice,
+    $UnitPrice,
 
-# Business Division Subdivision ID
+# Unit Quantity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Notes,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $UnitQuantity,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitQuantity', 'ExtendedCost', 'UnitPrice', 'BillableAmount', 'DatePurchased', 'Billed', 'BillableToAccount', 'InternalCurrencyUnitPrice', 'Description', 'ContractServiceBundleID', 'ProductID', 'Status', 'InternalCurrencyBillableAmount', 'CreatorResourceID', 'UnitCost', 'AllocationCodeID', 'CostType', 'ProjectID', 'PurchaseOrderNumber', 'ContractServiceID', 'StatusLastModifiedDate', 'BusinessDivisionSubdivisionID', 'CreateDate', 'InternalPurchaseOrderNumber', 'Name', 'EstimatedCost', 'StatusLastModifiedBy', 'Notes', 'id')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'UnitCost', 'InternalPurchaseOrderNumber', 'CostType', 'Notes', 'UnitPrice', 'id', 'BillableAmount', 'DatePurchased', 'CreateDate', 'ExtendedCost', 'StatusLastModifiedBy', 'Billed', 'AllocationCodeID', 'Name', 'ContractServiceBundleID', 'ProductID', 'InternalCurrencyBillableAmount', 'EstimatedCost', 'InternalCurrencyUnitPrice', 'StatusLastModifiedDate', 'Status', 'Description', 'UnitQuantity', 'CreatorResourceID', 'PurchaseOrderNumber', 'ProjectID', 'ContractServiceID', 'BillableToAccount')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitQuantity', 'ExtendedCost', 'UnitPrice', 'BillableAmount', 'DatePurchased', 'Billed', 'BillableToAccount', 'InternalCurrencyUnitPrice', 'Description', 'ContractServiceBundleID', 'ProductID', 'Status', 'InternalCurrencyBillableAmount', 'CreatorResourceID', 'UnitCost', 'AllocationCodeID', 'CostType', 'ProjectID', 'PurchaseOrderNumber', 'ContractServiceID', 'StatusLastModifiedDate', 'BusinessDivisionSubdivisionID', 'CreateDate', 'InternalPurchaseOrderNumber', 'Name', 'EstimatedCost', 'StatusLastModifiedBy', 'Notes', 'id')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'UnitCost', 'InternalPurchaseOrderNumber', 'CostType', 'Notes', 'UnitPrice', 'id', 'BillableAmount', 'DatePurchased', 'CreateDate', 'ExtendedCost', 'StatusLastModifiedBy', 'Billed', 'AllocationCodeID', 'Name', 'ContractServiceBundleID', 'ProductID', 'InternalCurrencyBillableAmount', 'EstimatedCost', 'InternalCurrencyUnitPrice', 'StatusLastModifiedDate', 'Status', 'Description', 'UnitQuantity', 'CreatorResourceID', 'PurchaseOrderNumber', 'ProjectID', 'ContractServiceID', 'BillableToAccount')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitQuantity', 'ExtendedCost', 'UnitPrice', 'BillableAmount', 'DatePurchased', 'Billed', 'BillableToAccount', 'InternalCurrencyUnitPrice', 'Description', 'ContractServiceBundleID', 'ProductID', 'Status', 'InternalCurrencyBillableAmount', 'CreatorResourceID', 'UnitCost', 'AllocationCodeID', 'CostType', 'ProjectID', 'PurchaseOrderNumber', 'ContractServiceID', 'StatusLastModifiedDate', 'BusinessDivisionSubdivisionID', 'CreateDate', 'InternalPurchaseOrderNumber', 'Name', 'EstimatedCost', 'StatusLastModifiedBy', 'Notes', 'id')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'UnitCost', 'InternalPurchaseOrderNumber', 'CostType', 'Notes', 'UnitPrice', 'id', 'BillableAmount', 'DatePurchased', 'CreateDate', 'ExtendedCost', 'StatusLastModifiedBy', 'Billed', 'AllocationCodeID', 'Name', 'ContractServiceBundleID', 'ProductID', 'InternalCurrencyBillableAmount', 'EstimatedCost', 'InternalCurrencyUnitPrice', 'StatusLastModifiedDate', 'Status', 'Description', 'UnitQuantity', 'CreatorResourceID', 'PurchaseOrderNumber', 'ProjectID', 'ContractServiceID', 'BillableToAccount')]
     [string[]]
     $IsNotNull,
 
@@ -476,7 +463,9 @@ Set-AtwsProjectCost
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-    
+        
+        $result = [Collections.ArrayList]::new()
+        $iterations = [Collections.Arraylist]::new()
     }
 
 
@@ -485,14 +474,52 @@ Set-AtwsProjectCost
         # Set the Filter manually to get every single object of this type 
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
             $Filter = @('id', '-ge', 0)
+            [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
     
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-      
-            # Convert named parameters to a filter definition that can be parsed to QueryXML
-            [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+            
+            # find parameter with highest count
+            $index = @{}
+            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
+            $param = $index[$max]
+            # Extract the parameter content, sort it ascending (we assume it is an Id field)
+            # and deduplicate
+            $count = $PSBoundParameters[$param].count
+
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
+            }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
@@ -503,6 +530,7 @@ Set-AtwsProjectCost
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
+            [void]$iterations.Add($Filter)
         } 
 
         # Prepare shouldProcess comments
@@ -512,15 +540,22 @@ Set-AtwsProjectCost
     
         # Lets do it and say we didn't!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-    
-            # Make the query and pass the optional parameters to Get-AtwsData
-            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
-                -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
-    
-            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            foreach ($Filter in $iterations) { 
 
+                # Make the query and pass the optional parameters to Get-AtwsData
+                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    -NoPickListLabel:$NoPickListLabel.IsPresent `
+                    -GetReferenceEntityById $GetReferenceEntityById
+                
+                # If multiple items use .addrange(). If a single item use .add()
+                if ($response.count -gt 1) { 
+                    [void]$result.AddRange($response)
+                }
+                else {
+                    [void]$result.Add($response)
+                }
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
         }
     }
 

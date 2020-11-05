@@ -82,21 +82,9 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('LastModifiedByResourceID', 'TicketID')]
+    [ValidateSet('CreatorResourceID', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'LastModifiedByResourceID', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
-
-# Return entities of selected type that are referencing to this entity.
-    [Parameter(
-      ParametersetName = 'Filter'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('External')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $GetExternalEntityByThisEntityId,
 
 # Return all objects in one query
     [Parameter(
@@ -104,99 +92,6 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     )]
     [switch]
     $All,
-
-# Service Level Agreement Results ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TicketID,
-
-# Service Level Agreement Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ServiceLevelAgreementName,
-
-# First Response Elapsed Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $FirstResponseElapsedHours,
-
-# First Response Initiating Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $FirstResponseInitiatingResourceID,
-
-# First Response Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $FirstResponseResourceID,
-
-# First Response Met
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $FirstResponseMet,
-
-# Resolution Plan Elapsed Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $ResolutionPlanElapsedHours,
-
-# Resolution Plan Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ResolutionPlanResourceID,
-
-# Resolution Plan Met
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ResolutionPlanMet,
-
-# Resolution Elapsed Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $ResolutionElapsedHours,
-
-# Resolution Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ResolutionResourceID,
-
-# Resolution Met
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ResolutionMet,
 
 # Create Date Time
     [Parameter(
@@ -212,12 +107,41 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [Nullable[Int][]]
     $CreatorResourceID,
 
-# Last Modified Date Time
+# First Response Elapsed Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $LastModifiedDateTime,
+    [Nullable[decimal][]]
+    $FirstResponseElapsedHours,
+
+# First Response Initiating Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $FirstResponseInitiatingResourceID,
+
+# First Response Met
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $FirstResponseMet,
+
+# First Response Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $FirstResponseResourceID,
+
+# Service Level Agreement Results ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Last Modified By Resource ID
     [Parameter(
@@ -226,24 +150,88 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [Nullable[Int][]]
     $LastModifiedByResourceID,
 
+# Last Modified Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionMet', 'LastModifiedByResourceID', 'id', 'ResolutionElapsedHours', 'CreateDateTime', 'ResolutionPlanMet', 'FirstResponseResourceID', 'CreatorResourceID', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'TicketID', 'LastModifiedDateTime', 'FirstResponseMet', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'FirstResponseInitiatingResourceID', 'FirstResponseElapsedHours')]
+    [Nullable[datetime][]]
+    $LastModifiedDateTime,
+
+# Resolution Elapsed Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $ResolutionElapsedHours,
+
+# Resolution Met
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ResolutionMet,
+
+# Resolution Plan Elapsed Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $ResolutionPlanElapsedHours,
+
+# Resolution Plan Met
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ResolutionPlanMet,
+
+# Resolution Plan Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ResolutionPlanResourceID,
+
+# Resolution Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ResolutionResourceID,
+
+# Service Level Agreement Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $ServiceLevelAgreementName,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TicketID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('FirstResponseResourceID', 'ResolutionElapsedHours', 'ResolutionPlanElapsedHours', 'FirstResponseInitiatingResourceID', 'LastModifiedDateTime', 'FirstResponseElapsedHours', 'ResolutionMet', 'CreateDateTime', 'LastModifiedByResourceID', 'FirstResponseMet', 'id', 'TicketID', 'CreatorResourceID', 'ResolutionPlanResourceID', 'ServiceLevelAgreementName', 'ResolutionPlanMet', 'ResolutionResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionMet', 'LastModifiedByResourceID', 'id', 'ResolutionElapsedHours', 'CreateDateTime', 'ResolutionPlanMet', 'FirstResponseResourceID', 'CreatorResourceID', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'TicketID', 'LastModifiedDateTime', 'FirstResponseMet', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'FirstResponseInitiatingResourceID', 'FirstResponseElapsedHours')]
+    [ValidateSet('FirstResponseResourceID', 'ResolutionElapsedHours', 'ResolutionPlanElapsedHours', 'FirstResponseInitiatingResourceID', 'LastModifiedDateTime', 'FirstResponseElapsedHours', 'ResolutionMet', 'CreateDateTime', 'LastModifiedByResourceID', 'FirstResponseMet', 'id', 'TicketID', 'CreatorResourceID', 'ResolutionPlanResourceID', 'ServiceLevelAgreementName', 'ResolutionPlanMet', 'ResolutionResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionMet', 'LastModifiedByResourceID', 'id', 'ResolutionElapsedHours', 'CreateDateTime', 'ResolutionPlanMet', 'FirstResponseResourceID', 'CreatorResourceID', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'TicketID', 'LastModifiedDateTime', 'FirstResponseMet', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'FirstResponseInitiatingResourceID', 'FirstResponseElapsedHours')]
+    [ValidateSet('FirstResponseResourceID', 'ResolutionElapsedHours', 'ResolutionPlanElapsedHours', 'FirstResponseInitiatingResourceID', 'LastModifiedDateTime', 'FirstResponseElapsedHours', 'ResolutionMet', 'CreateDateTime', 'LastModifiedByResourceID', 'FirstResponseMet', 'id', 'TicketID', 'CreatorResourceID', 'ResolutionPlanResourceID', 'ServiceLevelAgreementName', 'ResolutionPlanMet', 'ResolutionResourceID')]
     [string[]]
     $IsNotNull,
 
@@ -336,7 +324,9 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-    
+        
+        $result = [Collections.ArrayList]::new()
+        $iterations = [Collections.Arraylist]::new()
     }
 
 
@@ -345,14 +335,52 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
         # Set the Filter manually to get every single object of this type 
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
             $Filter = @('id', '-ge', 0)
+            [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
     
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-      
-            # Convert named parameters to a filter definition that can be parsed to QueryXML
-            [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+            
+            # find parameter with highest count
+            $index = @{}
+            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
+            $param = $index[$max]
+            # Extract the parameter content, sort it ascending (we assume it is an Id field)
+            # and deduplicate
+            $count = $PSBoundParameters[$param].count
+
+            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            if ($count -le 200) { 
+                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                [void]$iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+
+                # Make a writable copy of PSBoundParameters
+                $BoundParameters = $PSBoundParameters
+                for ($i = 0; $i -lt $outerLoop.count; $i += 200) {
+                    $j = $i + 199
+                    if ($j -ge $outerLoop.count) {
+                        $j = $outerLoop.count - 1
+                    } 
+
+                    # make a selection
+                    $BoundParameters[$param] = $outerLoop[$i .. $j]
+                    
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
+            
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    [void]$iterations.Add($Filter)
+                }
+            }
         }
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
@@ -363,6 +391,7 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
+            [void]$iterations.Add($Filter)
         } 
 
         # Prepare shouldProcess comments
@@ -372,15 +401,22 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     
         # Lets do it and say we didn't!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-    
-            # Make the query and pass the optional parameters to Get-AtwsData
-            $result = Get-AtwsData -Entity $entityName -Filter $Filter `
-                -NoPickListLabel:$NoPickListLabel.IsPresent `
-                -GetReferenceEntityById $GetReferenceEntityById `
-                -GetExternalEntityByThisEntityId $GetExternalEntityByThisEntityId
-    
-            Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            foreach ($Filter in $iterations) { 
 
+                # Make the query and pass the optional parameters to Get-AtwsData
+                $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    -NoPickListLabel:$NoPickListLabel.IsPresent `
+                    -GetReferenceEntityById $GetReferenceEntityById
+                
+                # If multiple items use .addrange(). If a single item use .add()
+                if ($response.count -gt 1) { 
+                    [void]$result.AddRange($response)
+                }
+                else {
+                    [void]$result.Add($response)
+                }
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
         }
     }
 

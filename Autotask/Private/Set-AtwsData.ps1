@@ -169,8 +169,8 @@ Function Set-AtwsData {
                 }
             }
             else {
-                # Still errors. Post them to the error stream and bail out.
-                Write-Error ($result.errors.Message -join "`n")
+                # Still errors. Throw an exception.
+                throw ($result.errors.Message -join "`n")
                 Break
             }
         }
