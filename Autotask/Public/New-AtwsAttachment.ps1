@@ -38,7 +38,7 @@ Function New-AtwsAttachment {
       Strongly related to Get-AtwsAttachmentInfo
   #>
 
-    [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Ticket', ConfirmImpact = 'None')]
+    [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Task Or Ticket', ConfirmImpact = 'None')]
     Param
     (
 
@@ -112,7 +112,7 @@ Function New-AtwsAttachment {
             ParameterSetName = 'Project'
         )]
         [Parameter(
-            ParameterSetName = 'Ticket'
+            ParameterSetName = 'Task Or Ticket'
         )]
         [Parameter(
             ParameterSetName = 'Account_as_url'
@@ -145,7 +145,7 @@ Function New-AtwsAttachment {
         )]
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Ticket'
+            ParameterSetName = 'Task Or Ticket'
         )]
         [ValidateNotNullOrEmpty()]
         [ValidateScript( {
@@ -280,7 +280,7 @@ Function New-AtwsAttachment {
         # Ticket ID
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Ticket'
+            ParameterSetName = 'Task Or Ticket'
         )]
         [Parameter(
             Mandatory = $true,
