@@ -44,7 +44,8 @@ Function New-AtwsSoapServiceReference {
         $outputDir = Join-Path $location 'Autotask'
         $source = Join-Path $outputDir 'Reference.cs'
         $target = Join-Path $location '../Autotask/Private/Reference.cs'
-        $patch = Join-Path $location 'Missing properties on EntityInfo.patch'
+        # no need for this patch any more
+        #$patch = Join-Path $location 'Missing properties on EntityInfo.patch'
         $uri = 'https://webservices.Autotask.net/atservices/1.6/atws.wsdl'
 
         # Locate command. Should be in .dotnet/tools
@@ -82,7 +83,7 @@ Function New-AtwsSoapServiceReference {
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             Move-Item $source $target -Force
             # Apply patch, ignore errors
-            Get-Content $patch | git am
+            # Get-Content $patch | git am
         }
 
     }
