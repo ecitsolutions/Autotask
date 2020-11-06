@@ -17,6 +17,11 @@ From version 2 the module no longer needs to maintain a per tenant disk cache. A
 
 # Release notes
 
+## Version 2.0.0-beta2 - 2020.3ReleaseNotes - New Reference.cs build from .wsdl updates
+- Pull newest Dev updates
+- Connect to your tenant as usual
+- Run Update-AtwsRamCache, then Build-AtwsModule to get new API Enteties: DeletedTaskActivityLog, DeletedTicketActivityLog, DeletedTicketLog
+
 ## Version 2.0.0-beta2 - SPEED, SPEED, SPEED; Hashtables all the way down
 
 - NEW: Added function Build-AtwsModule as wrapper for complete refresh of module from API. Can be used when your tenant has received an API upgrade before I have access to the same API version to build an upgrade
