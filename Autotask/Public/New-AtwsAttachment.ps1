@@ -38,7 +38,7 @@ Function New-AtwsAttachment {
       Strongly related to Get-AtwsAttachmentInfo
   #>
 
-    [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Ticket', ConfirmImpact = 'None')]
+    [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Task Or Ticket', ConfirmImpact = 'None')]
     Param
     (
 
@@ -112,7 +112,7 @@ Function New-AtwsAttachment {
             ParameterSetName = 'Project'
         )]
         [Parameter(
-            ParameterSetName = 'Ticket'
+            ParameterSetName = 'Task Or Ticket'
         )]
         [Parameter(
             ParameterSetName = 'Account_as_url'
@@ -145,7 +145,7 @@ Function New-AtwsAttachment {
         )]
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Ticket'
+            ParameterSetName = 'Task Or Ticket'
         )]
         [ValidateNotNullOrEmpty()]
         [ValidateScript( {
@@ -280,7 +280,7 @@ Function New-AtwsAttachment {
         # Ticket ID
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Ticket'
+            ParameterSetName = 'Task Or Ticket'
         )]
         [Parameter(
             Mandatory = $true,
@@ -315,7 +315,12 @@ Function New-AtwsAttachment {
         # Dynamic field info
         $fields = Get-AtwsFieldInfo -Entity AttachmentInfo
 
-        $Picklists = $fields.Where{ $_.IsPickList }
+        # $Picklists = $fields.Where{ $_.IsPickList }
+        $Picklists = $fields.GetEnumerator().foreach{
+            if ($_.Value['IsPickList']) {
+                $_
+            }
+        }
 
         # Publish dictionary
         $PublishToIndex = @{
@@ -390,10 +395,13 @@ Function New-AtwsAttachment {
         }
 
         # What are we attaching to?
-        $objectType = ($PSCmdlet.ParameterSetName -split '_')[0]
+        $AttachmentInfo.ParentId = $TicketId + $AccountID + $ProjectID + $OpportunityId # Genious way of using 0 ints and math to store the EntityId we are working with.
+        # Throws if Inexing Hastable is not possible (Empty)
+        try {
+        $ParentType = $Fields['ParentType']['PicklistValues']['byLabel']['Task Or Ticket']
+        } catch {   throw ('Did not get PickListFieldValues for current ParameterSet: {0}' -f ($PSCmdlet.ParameterSetName -split '_')[0] )    }
+        $AttachmentInfo.ParentType = $ParentType
 
-        $AttachmentInfo.ParentId = $TicketId + $AccountID + $ProjectID + $OpportunityId
-        $AttachmentInfo.ParentType = $Picklists.Where{ $_.name -eq 'ParentType' }.PickListValues.Where{ $_.Label -eq $objectType }.Value
 
         # Prepare ShouldProcess
         $caption = $MyInvocation.MyCommand.Name
