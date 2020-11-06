@@ -46,16 +46,19 @@ Function Get-AtwsPicklistValue {
         $Label, 
 
         [Parameter(
-            ParameterSetName = 'as_Labels'
-        )]
-        [switch]
-        $Hashtable, 
-
-        [Parameter(
             ParameterSetName = 'as_Values'
         )]
         [switch]
         $Value, 
+
+        [Parameter(
+            ParameterSetName = 'as_Labels'
+        )]
+        [Parameter(
+            ParameterSetName = 'as_Values'
+        )]
+        [switch]
+        $Hashtable, 
 
         [Parameter(
             Mandatory = $true,
@@ -91,25 +94,7 @@ Function Get-AtwsPicklistValue {
             ParameterSetName = 'as_Values'
         )]
         [string]
-        $FieldName,
-
-        [Parameter(
-            Mandatory = $false,
-            Position = 2,
-            ParameterSetName = 'by_Entity'
-        )]
-        [Parameter(
-            Mandatory = $false,
-            Position = 2,
-            ParameterSetName = 'as_Labels'
-        )]
-        [Parameter(
-            Mandatory = $false,
-            Position = 2,
-            ParameterSetName = 'as_Values'
-        )]
-        [string]
-        $ParentValue
+        $FieldName
     )
     
     begin { 
@@ -134,83 +119,46 @@ Function Get-AtwsPicklistValue {
         
         Write-Verbose -Message ('{0}: Looking up detailed Fieldinfo for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity) 
         
-        if ($UserDefinedFields.IsPresent -and $script:FieldInfoCache[$Entity].HasUserDefinedFields) {
+        if ($UserDefinedFields.IsPresent -and $script:FieldInfoCache[$Entity].EntityInfo.HasUserDefinedFields) {
 
-            $picklistValues = (Get-AtwsFieldInfo -Entity $Entity -FieldName $FieldName -UserDefinedFields).PicklistValues
+            $picklistValues = (Get-AtwsFieldInfo -Entity $Entity -UserDefinedFields).Where{ $_.Name -eq $FieldName }.PicklistValues.where{ $_.IsActive }
     
             Write-Debug -Message ('{0}: Entity {1} has userdefined fields and user defined field {2} has {3} picklist values.' -F $MyInvocation.MyCommand.Name, $Entity, $FieldName, $result.count) 
         }
         elseIf ($script:FieldInfoCache[$Entity].HasPicklist) { 
     
-            $picklistValues = (Get-AtwsFieldInfo -Entity $Entity -FieldName $FieldName).PicklistValues
+            $picklistValues = (Get-AtwsFieldInfo -Entity $Entity).Where{ $_.Name -eq $FieldName }.PicklistValues.where{ $_.IsActive }
     
             Write-Debug -Message ('{0}: Entity {1} has picklists and field {2} has {3} picklist values.' -F $MyInvocation.MyCommand.Name, $Entity, $FieldName, $result.count) 
         }
- 
-
-        if ($picklistValues.count -gt 0 ) {
-            if ($picklistValues.keys -contains 'byValue') {
-                # No parentfieldname
-                $result = switch ($PSCmdlet.ParameterSetName) {
-                    'by_Entity' {
-                        $picklistValues.byValue
+        if ($picklistValues.count -gt 0) {
+            if ($Hashtable.IsPresent) {
+                $result = @{}
+                foreach ($item in $picklistValues) {
+                    if ($Value.IsPresent) {
+                        $result[$item.Value] = $item.Label
                     }
-                    'as_Labels' {
-                        if ($Hashtable.IsPresent) { 
-                            $picklistValues.byLabel
-                        }
-                        else { 
-                            $picklistValues.byLabel.keys | Sort-Object
-                        }
-                    }
-                    'as_Values' {
-                        $picklistValues.byLabel.values | Sort-Object
+                    else {
+                        $result[$item.Label] = $item.Value
                     }
                 }
 
             }
-            # Take parentvalue into account
-            elseIf ($ParentValue) {
-                $result = switch ($PSCmdlet.ParameterSetName) {
-                    'by_Entity' {
-                        $picklistValues[$ParentValue]
-                    }
-                    'as_Labels' {
-                        if ($Hashtable.IsPresent) { 
-                            $picklistValues[$ParentValue].byLabel
-                        }
-                        else { 
-                            $picklistValues[$ParentValue].byLabel.keys | Sort-Object
-                        }
-                    }
-                    'as_Values' {
-                        $picklistValues[$ParentValue].byLabel.values | Sort-Object
-                    }
-                }
-            }
-            # We have a picklist with a parentfield, but no parentvalue. Return 
-            # hashtable for by_entity and all labels or keys if either is requested
-            else {
+            else { 
                 $result = switch ($PSCmdlet.ParameterSetName) {
                     'by_Entity' {
                         $picklistValues
                     }
                     'as_Labels' {
-                        if ($Hashtable.IsPresent) { 
-                            $picklistValues.Values.byLabel
-                        }
-                        else { 
-                            $picklistValues.Values.byLabel.keys | Sort-Object
-                        }
+                        $picklistValues.Label
                     }
                     'as_Values' {
-                        $picklistValues.Values.byLabel.values | Sort-Object
+                        $picklistValues.Value
                     }
                 }
             }
         }
-    } 
-     
+    }  
     end {
 
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)

@@ -25,7 +25,7 @@ Function New-AtwsAttachment {
       New-AtwsAttachment -TicketId 0 -Path C:\Document.docx
       Uploads C:\Document.docx as an attachment to the Ticket with id 0 and sets the attachment title to 'Document.docx'.
       .EXAMPLE
-      New-AtwsAttachment -TicketId 0 -Path C:\Document.docx  -Title 'A title'
+      New-AtwsAttachment -TicketId 0 -Path C:\Document.docx  -Title 'A title' 
       Uploads C:\Document.docx as an attachment to the Ticket with id 0 and sets the attachment title to 'A title'.
       .EXAMPLE
       New-AtwsAttachment -TicketId 0 -Path C:\Document.docx -FileLink
@@ -48,36 +48,36 @@ Function New-AtwsAttachment {
             ParameterSetName = 'Account_as_byte'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Opportunity_as_byte'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Project_as_byte'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Ticket_as_byte'
         )]
         [ValidateNotNullOrEmpty()]
         [Byte[]]
         $Data,
-
+    
         # An object as a byte array that will be attached to an Autotask object
         [Parameter(
             Mandatory = $true,
             ParameterSetName = 'Account_as_byte'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Opportunity_as_byte'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Project_as_byte'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Ticket_as_byte'
         )]
         [ValidateNotNullOrEmpty()]
@@ -91,15 +91,15 @@ Function New-AtwsAttachment {
             ParameterSetName = 'Account_as_byte'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Opportunity_as_byte'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Project_as_byte'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Ticket_as_byte'
         )]
         [Parameter(
@@ -129,22 +129,22 @@ Function New-AtwsAttachment {
         [ValidateNotNullOrEmpty()]
         [string]
         $Title,
-
+    
         # A file path that will be attached to an Autotask object
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Account'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Opportunity'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Project'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Ticket'
         )]
         [ValidateNotNullOrEmpty()]
@@ -159,24 +159,24 @@ Function New-AtwsAttachment {
 
         # URL to attach
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Account_as_url'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Opportunity_as_url'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Project_as_url'
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory = $true, 
             ParameterSetName = 'Ticket_as_url'
         )]
         [URI]
         $URI,
-
+    
         # Attach as a file link, not an attachment
         [Parameter(
             ParameterSetName = 'Account_as_url'
@@ -193,7 +193,7 @@ Function New-AtwsAttachment {
         [Alias('Link')]
         [switch]
         $FileLink,
-
+    
         # Attach as a folder link, not an attachment
         [Parameter(
             ParameterSetName = 'Account_as_url'
@@ -229,7 +229,7 @@ Function New-AtwsAttachment {
                     throw "Account does not exist"
                 }
                 return $true
-            })]
+            })]    
         [long]
         $AccountID,
 
@@ -302,21 +302,21 @@ Function New-AtwsAttachment {
         [ValidateSet('All Autotask Users', 'Internal Users Only')]
         [string]
         $Publish = 'All Autotask Users'
-
+   
     )
 
-    begin {
-
+    begin { 
+   
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
-
+    
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-
+    
         # Dynamic field info
         $fields = Get-AtwsFieldInfo -Entity AttachmentInfo
 
         $Picklists = $fields.Where{ $_.IsPickList }
-
+     
         # Publish dictionary
         $PublishToIndex = @{
             'All Autotask Users'  = '1'
@@ -326,19 +326,19 @@ Function New-AtwsAttachment {
 
 
     process {
-
+    
         # A new Attachment object
         $Attachment = New-Object "Autotask.Attachment"
-
+    
         # A new AttachmentInfo object
         $AttachmentInfo = New-Object "Autotask.AttachmentInfo"
-
+    
         # Attach info object to attachment object
         $Attachment.Info = $AttachmentInfo
 
-        # Publishsettings
+        # Publishsettings 
         $AttachmentInfo.Publish = $PublishToIndex[$Publish]
-
+    
         # Attachment type
         if ($Data) {
             $Attachment.Data = $Data
@@ -353,7 +353,7 @@ Function New-AtwsAttachment {
             elseif ($FileLink.IsPresent) {
                 $AttachmentInfo.Type = 'FILE_LINK'
             }
-            else {
+            else { 
                 $AttachmentInfo.Type = 'URL'
             }
             $ATtachmentInfo.FullPath = $URI.AbsoluteUri
@@ -361,37 +361,28 @@ Function New-AtwsAttachment {
         }
         # It is a file and it is going to be attached.
         else {
-
-            $AsByteStream = @{}
-
-            if ($PSVersionTable.PSVersion.Major -ge 5) {
-                $AsByteStream.AsByteStream = $True
-            }
-            else {
-                $AsByteStream.Encoding = 'Byte'
-            }
-
-            [Byte[]]$Data = Get-Content @AsByteStream -Path $Path.FullName  -ReadCount 0
+            [Byte[]]$Data = Get-Content -Path $Path.FullName -Encoding Byte -ReadCount 0
             $Attachment.Data = $Data
 
             # Type is attachment
             $AttachmentInfo.Type = 'FILE_ATTACHMENT'
             $AttachmentInfo.Title = $Path.BaseName
             $AttachmentInfo.FullPath = $Path.FullName
-
+      
             # Determine content type by file name
-            $AttachmentInfo.ContentType = $Path | Get-AtwsMimeMapping
+            Add-Type -AssemblyName "System.Web"
+            $AttachmentInfo.ContentType = [System.Web.MimeMapping]::GetMimeMapping($Path.FullName)
 
         }
-
+    
         # Overwrite title with $Title if it exists
         if ($Title) {
             $AttachmentInfo.Title = $Title
         }
-
+    
         # What are we attaching to?
         $objectType = ($PSCmdlet.ParameterSetName -split '_')[0]
-
+  
         $AttachmentInfo.ParentId = $TicketId + $AccountID + $ProjectID + $OpportunityId
         $AttachmentInfo.ParentType = $Picklists.Where{ $_.name -eq 'ParentType' }.PickListValues.Where{ $_.Label -eq $objectType }.Value
 
@@ -399,15 +390,15 @@ Function New-AtwsAttachment {
         $caption = $MyInvocation.MyCommand.Name
         $verboseDescription = '{0}: About to create an attachment of type {1} with title {2}.' -F $caption, $AttachmentInfo.Type, $AttachmentInfo.Title
         $verboseWarning = '{0}: About to create an attachment of type {1} with title {2}. Do you want to continue?' -F $caption, $AttachmentInfo.Type, $AttachmentInfo.Title
-
+    
         # Do it, I dare you!
-        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             $AttachmentId = $Script:Atws.CreateAttachment($Script:Atws.integrationsValue, $Attachment)
-
+      
             $result = Get-AtwsAttachmentInfo -id $AttachmentId
-
+      
             Write-Verbose ('{0}: Created attachment with id {1} and title {2}' -F $MyInvocation.MyCommand.Name, $AttachmentId, $result.Title)
-
+    
         }
     }
 

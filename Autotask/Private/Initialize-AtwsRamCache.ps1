@@ -46,27 +46,34 @@ Function Initialize-AtwsRamCache {
         Write-Verbose -Message ('{0}: Initializing memory-only cache with data supplied with module ({1}).' -F $MyInvocation.MyCommand.Name, $centralCache)
         
         # Initialize memory only cache from module directory
-        $Script:FieldInfoCache = Import-Clixml -Path $centralCache 
+        $Script:WebServiceCache = Import-Clixml -Path $centralCache 
 
         # Nested testing to make sure the structure is OK
-        if ($Script:FieldInfoCache -is [Hashtable]) {
-            if (-not ($Script:FieldInfoCache.Count -ge 156)) {
-                Write-Warning ('{0}: RAM cache file is broken! Loading data from API!' -F $MyInvocation.MyCommand.Name)
-                # Restart import
-                Update-AtwsRamCache
-                # Do not process rest of script
-                return
+        if ($Script:WebServiceCache -is [PSCustomObject]) {
+            if ([bool]($Script:WebServiceCache.PSobject.Properties.name -match "FieldInfoCache")) {
+                if (-not ($Script:WebServiceCache.FieldInfoCache.Count -gt 0)) {
+                    Write-Warning ('{0}: RAM cache file is broken! Loading data from API!' -F $MyInvocation.MyCommand.Name)
+                    # Restart import
+                    Update-AtwsRamCache
+                    # Do not process rest of script
+                    return
+                }
             }
-        }   
+        }
+
+        # Initialize the $Script:FieldInfoCache shorthand 
+        $Script:FieldInfoCache = $Script:WebServiceCache.FieldInfoCache    
 
         # We must be connected to know the customer identity number
         if ($Script:Atws.CI) {
             # If the API version has been changed at the Autotask end we unfortunately have to reload all
             # entities from scratch
             $currentApiVersion = $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue)
-            if ($Script:FieldInfoCache.ApiVersion -ne $currentApiVersion) {
+            if ($Script:WebServiceCache.ApiVersion -ne $currentApiVersion -or [Version]$My.ModuleVersion -ne $Script:WebServiceCache.ModuleVersion) {
+        
                 # Call the import-everything function
                 Update-AtwsRamCache
+        
             }
         }
     }

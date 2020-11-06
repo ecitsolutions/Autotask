@@ -32,10 +32,11 @@ Function Update-AtwsFunctions {
         SupportsShouldProcess = $true,
         ConfirmImpact = 'High'
     )]
-   
+    # The function set to generate, either 'Dynamic' or 'Static'
     Param(
-        [switch]
-        $Force
+        [ValidateSet('Dynamic', 'Static')]
+        [string]
+        $FunctionSet = 'Static'
     )
   
     begin { 
@@ -46,10 +47,6 @@ Function Update-AtwsFunctions {
     
         if (-not($Script:Atws.integrationsValue)) {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
-        }
-
-        if ($Force.IsPresent -and -not $Confirm) {
-            $ConfirmPreference = 'none'
         }
     
         # Prepare parameters for @splatting
@@ -69,7 +66,14 @@ Function Update-AtwsFunctions {
             $null = New-Item -Path "$RootPath" -ItemType Directory -Force
         }
         
-        $Entities = $Script:FieldInfoCache.keys | Where-Object {$_ -ne 'APIVersion'}
+        $Entities = switch ($FunctionSet) {
+            'Static' {
+                $FieldInfoCache.GetEnumerator() | Where-Object { -not $_.Value.HasPickList }
+            }
+            'Dynamic' {
+                $FieldInfoCache.GetEnumerator() | Where-Object { $_.Value.HasPickList }
+            }
+        }
       
         # Prepare parameters for @splatting
         $ProgressParameters = @{
@@ -87,10 +91,9 @@ Function Update-AtwsFunctions {
         
             Write-Verbose -Message ('{0}: Creating functions for {1} entities.' -F $MyInvocation.MyCommand.Name, $Entities.count) 
             
-            foreach ($EntityName in $Entities) {
-
+            foreach ($CacheEntry in $Entities) {
                 # EntityInfo()
-                $Entity = $Script:FieldInfoCache[$EntityName]
+                $Entity = $CacheEntry.Value.EntityInfo
       
                 Write-Debug -Message ('{0}: Creating functions for entity {1}' -F $MyInvocation.MyCommand.Name, $Entity.Name) 
       
@@ -109,14 +112,14 @@ Function Update-AtwsFunctions {
                 $verboseDescription = '{0}: Creating and Invoking functions for entity {1}' -F $caption, $Entity.Name
                 $verboseWarning = '{0}: About to create and Invoke functions for entity {1}. Do you want to continue?' -F $caption, $Entity.Name
        
-                $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity
+                $FunctionDefinition = Get-AtwsFunctionDefinition -Entity $Entity -FieldInfo $CacheEntry.Value.FieldInfo
         
         
                 foreach ($Function in $FunctionDefinition.GetEnumerator()) {
   
                     Write-Debug -Message ('{0}: Writing file for function  {1}' -F $MyInvocation.MyCommand.Name, $Function.Key)
                         
-                    $FilePath = '{0}\Functions\{1}.ps1' -F $RootPath, $Function.Key
+                    $FilePath = '{0}\{1}\{2}.ps1' -F $RootPath, $FunctionSet, $Function.Key
           
                     $verboseDescription = '{0}: Overwriting {1}' -F $caption, $FilePath
                     $verboseWarning = '{0}: About to overwrite {1}. Do you want to continue?' -F $caption, $FilePath

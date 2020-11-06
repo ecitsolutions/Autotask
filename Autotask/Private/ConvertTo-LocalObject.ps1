@@ -48,7 +48,7 @@ Function ConvertTo-LocalObject {
         $timezoneid = if ($IsMacOS -or $IsLinux) { 'America/New_York' }
         else { 'Eastern Standard Time' }
         $EST = [System.Timezoneinfo]::FindSystemTimeZoneById($timezoneid)
-        $result = [Collections.Generic.List[PSObject]]::new()
+        $result = @()
     }
 
     process {
@@ -57,14 +57,14 @@ Function ConvertTo-LocalObject {
         $entityName = $InputObject[0].GetType().Name       
         
         # Get updated field info about this entity
-        $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
+        $fields = Get-AtwsFieldInfo -Entity $entityName
     
         # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
         # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-        $DateTimeParams = $entityInfo.DatetimeFields
+        $DateTimeParams = $fields.Where( { $_.Type -eq 'datetime' }).Name
     
         # Prepare picklists
-        $Picklists = $entityInfo.PicklistFields
+        $Picklists = $fields.Where{ $_.IsPickList }
     
         # Loop through all objects and make adjustments
         foreach ($object in $InputObject) { 
@@ -97,25 +97,24 @@ Function ConvertTo-LocalObject {
                 }
             }
     
-             
-            # Restore picklist labels
-            foreach ($field in $Picklists) {
-                $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field
-                if ($object.$field -in $picklistValues.Keys -and $picklistValues.count -gt 0) { 
-                    $value = $picklistValues[$object.$field]
-                    if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) {
-                        $object.$field = $value
+            if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) { 
+                # Restore picklist labels
+                foreach ($field in $Picklists) {
+                    if ($object.$($field.Name) -in $field.PicklistValues.Value) {
+                        $object.$($field.Name) = ($field.PickListValues.Where{ $_.Value -eq $object.$($field.Name) }).Label
                     }
-                    # Add Label property
-                    $fieldName = '{0}Label' -F $field
-                    Add-Member -InputObject $object -MemberType NoteProperty -Name $fieldName -Value $value -Force
-
                 }
+            }
+
+            Foreach ($field in $Picklists) {
+                $fieldName = '{0}Label' -F $field.Name
+                $value = ($field.PickListValues.Where{ $_.Value -eq $object.$($field.Name) }).Label
+                Add-Member -InputObject $object -MemberType NoteProperty -Name $fieldName -Value $value -Force
             }
         }
         
         # If using pipeline the process block will run once per object in pipeline. Store them all
-        $result.Add($InputObject)
+        $result += $InputObject
         
     }
 

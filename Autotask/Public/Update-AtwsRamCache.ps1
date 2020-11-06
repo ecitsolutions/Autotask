@@ -45,7 +45,9 @@ Function Update-AtwsRamCache {
         }
         # Load current API version from API
         $CurrentApiVersion = $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue)
-        $CacheApiVersion = $Script:FieldInfoCache.ApiVersion.Tostring()
+        $CurrentModuleVersion = $My.ModuleVersion
+        $CacheApiVersion = $Script:WebServiceCache.ApiVersion.Tostring()
+        $CacheModuleVersion = $Script:WebServiceCache.ModuleVersion.Tostring()
     }
 
     Process { 
@@ -63,23 +65,13 @@ Function Update-AtwsRamCache {
         $verboseWarning = '{0}: About to post {1} SOAP queries to Autotask Web API for detailed field info for {1} entities. This will take a while. Do you want to continue?' -F $caption, $Entities.count
           
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-            
-            # Prepare two hashtables, 1 for RAM, 1 for disk
-            $script:FieldInfoCache = @{
-                ApiVersion = $CurrentApiVersion
-            }
+                 
+            $script:FieldInfoCache = @{ }
+            $Base = @{}
 
-            # Loop through entities and get fresh info from API
-            $incomingReferences = @{}
             foreach ($object in $Entities) { 
     
                 Write-Verbose -Message ('{0}: Importing detailed information about Entity {1}' -F $MyInvocation.MyCommand.Name, $object.Name) 
-
-
-                # to hashtables, one with picklists (for RAM), 1 for disk
-                # otherwise variable pass by reference may interfere
-                $entityinfo = @{}
-                $baseentity = @{}
 
                 # Calculating progress percentage and displaying it
                 $Index = $Entities.IndexOf($object) + 1
@@ -88,65 +80,67 @@ Function Update-AtwsRamCache {
                 $CurrentOperation = "GetFieldInfo('{0}')" -F $object.Name
       
                 Write-AtwsProgress -Status $Status -PercentComplete $PercentComplete -CurrentOperation $CurrentOperation @ProgressParameters
-                
-                # Create hashtable of entityinfo. Speeds up lookup
-                foreach ($property in $object.psobject.properties) {
-                    $entityinfo[$property.Name] = $property.Value
-                    $baseentity[$property.Name] = $property.Value
-                }
-                $Script:FieldInfoCache[$object.Name] = $entityinfo
-
-                # Lookup FieldInfo from API
-                Update-AtwsEntity -Entity $object.Name
-
-                # Add any external references to meta-table
-                if ($Script:FieldInfoCache[$object.Name]['ExternalReferences'].count -gt 0) {
-                    foreach ($ref in $Script:FieldInfoCache[$object.Name]['ExternalReferences'].GetEnumerator()) {
-                        if ($incomingReferences.keys -notcontains $ref.key) {
-                            $incomingReferences[$ref.key] = @{}
-                        }
-                        # Store reference indexed on entity name
-                        $incomingReferences[$ref.key][$object.Name] = $ref.value
-                    }
-                }
-            }
-
-            # Loop through detailed info and extract cross references
-            foreach ($object in $incomingReferences.GetEnumerator()) {
-                $Script:FieldInfoCache[$object.Key]['IncomingReferences'] = $incomingReferences[$object.Key]
-            }
-
-            # Get a copy of cache that can be used as a basis for a tenant independent cache file
-            # First create a temporary file
-            $tempFile = New-TemporaryFile
-
-            # Export fieldcache to temp file
-            $Script:FieldInfoCache | Export-Clixml -Path $tempFile.FullName
-
-            # Read cache back as new object to avoid pass by reference
-            $base = Import-Clixml -Path $tempFile.FullName
-
-            # Remove temp file
-            Remove-Item $tempFile -Force
+ 
+                # Retrieving FieldInfo for current Entity
+                $fieldInfo = $Script:Atws.GetFieldInfo($Script:Atws.IntegrationsValue, $object.Name)
             
-            # Clean out any picklists and UDF values from base
-            foreach ($entry in $base.GetEnumerator()) {
-                if ($entry.Value.HasUserDefinedFields) {
-                    $base[$entry.Key]['UDFinfo'] = $null
+                # Check if entity has picklists
+                $HasPickList = $false
+                if ($fieldInfo.Where( { $_.IsPicklist })) {
+                    $HasPickList = $true
                 }
-                if($entry.Value.HasPicklist) {
-                    foreach ($field in $entry.Value.FieldInfo.GetEnumerator()) {
-                        if ($field.Value.IsPickList) {
-                            $base[$entry.Key]['FieldInfo'][$field.Name].PicklistValues = $null
-                        }
-                    }
+                       
+                # Create Cache entry
+                $CacheEntry = New-Object -TypeName PSObject -Property @{
+                    HasPickList   = $HasPickList
+                    RetrievalTime = Get-Date
                 }
-            }
+            
+                # Check if entity has userdefined fields
+                if ($object.HasUserDefinedFields) {
+                    $UDF = $Script:Atws.GetUDFInfo($Script:Atws.IntegrationsValue, $object.Name)
+                    Add-Member -InputObject $CacheEntry -MemberType NoteProperty -Name UDFInfo -Value $UDF -Force
+                }
+                        
+                # Add complext objects as properties
+                Add-Member -InputObject $CacheEntry -MemberType NoteProperty -Name EntityInfo -Value $object -Force
+                Add-Member -InputObject $CacheEntry -MemberType NoteProperty -Name FieldInfo -Value $fieldInfo -Force
+            
+                $Script:FieldInfoCache[$object.Name] = $CacheEntry
+                $Base[$object.Name] = $CacheEntry
 
+            }
             if ($CurrentOperation) { 
                 Write-AtwsProgress @progressParameters -PercentComplete 100 -Completed
             }
-       
+        
+            # Add cache to $Cache object and save to disk
+            $Script:WebServiceCache = New-Object -TypeName PSObject -Property @{
+                ApiVersion    = $CurrentApiVersion
+                ModuleVersion = [Version]$My.ModuleVersion
+            }
+            # Use Add-member to store complete object, not its typename
+            Add-Member -InputObject $Script:WebServiceCache -MemberType NoteProperty -Name FieldInfoCache -Value $fieldInfoCache 
+    
+            # Create new base reference
+            $BaseEntityInfo = New-Object -TypeName PSObject -Property @{
+                ApiVersion    = $CurrentApiVersion
+                ModuleVersion = [Version]$My.ModuleVersion
+            }
+        
+            # Clean Instance specific info from Base
+            foreach ($object in $Base.GetEnumerator().Where( { $_.Value.HasPickList -or $_.Value.EntityInfo.HasUserDefinedFields })) {
+                foreach ($PickList in $object.Value.FieldInfo.Where( { $_.IsPickList })) {
+                    $PickList.PicklistValues = $null
+                }
+          
+                if ($object.Value.EntityInfo.HasUserDefinedFields) {
+                    $object.Value.UDFInfo = $null
+                }
+            }
+        
+            # Use Add-member to store complete object, not its typename
+            Add-Member -InputObject $BaseEntityInfo -MemberType NoteProperty -Name FieldInfoCache -Value $Base 
         }
     }
   
@@ -158,7 +152,7 @@ Function Update-AtwsRamCache {
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             # Save updated base info for connection to new tenants.      
             $BaseEntityInfoPath = '{0}\Private\AutotaskFieldInfoCache.xml' -F $MyInvocation.MyCommand.Module.ModuleBase
-            $Base | Export-Clixml -Path $BaseEntityInfoPath -Force
+            $BaseEntityInfo | Export-Clixml -Path $BaseEntityInfoPath -Force
     
             Write-Verbose -Message ('{0}: Updated central module fieldinfocache.' -F $MyInvocation.MyCommand.Name)
         }

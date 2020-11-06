@@ -34,6 +34,10 @@ Function Get-AtwsHelpText {
         [ValidateSet('Get', 'Set', 'New', 'Remove')]
         [string]
         $Verb,
+        
+        [Parameter(Mandatory)]
+        [Autotask.Field[]]
+        $fieldInfo, 
     
         [Parameter(Mandatory)]
         [string]
@@ -42,9 +46,9 @@ Function Get-AtwsHelpText {
 
     begin {
         Write-Verbose ('{0}: Creating help text for {1}, verb "{2}"' -F $MyInvocation.MyCommand.Name, $Entity.Name, $Verb)
-        $RequiredParameters = $Entity.RequiredFields
-        $PickListParameters = $Entity.PicklistFields
-        $IncomingEntities = $Entity.IncomingEntities
+        $RequiredParameters = $fieldInfo.Where( { $_.IsRequired -and $_.Name -ne 'id' }).Name
+        $PickListParameters = $fieldInfo.Where( { $_.IsPickList }).Name
+        $IncomingEntities = ($Script:FieldInfoCache.GetEnumerator() | Where-Object { $_.Value.FieldInfo.ReferenceEntityType -eq $Entity.Name }).Key | Sort-Object
     
         # Get other valid verbs
         $Verbs = @()
@@ -90,7 +94,12 @@ Function Get-AtwsHelpText {
             }
             'Get' {
                 $Synopsis = 'This function get one or more {0} through the Autotask Web Services API.' -F $Entity.Name
-                $Description = "This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.`n`nPossible operators for all parameters are:`n -NotEquals`n -GreaterThan`n -GreaterThanOrEqual`n -LessThan`n -LessThanOrEquals `n`nAdditional operators for [string] parameters are:`n -Like (supports * or % as wildcards)`n -NotLike`n -BeginsWith`n -EndsWith`n -Contains`n`nProperties with picklists are:`n{0}" -F ($PickListParameters -join "`n")
+                $Description = "This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.`n`nPossible operators for all parameters are:`n -NotEquals`n -GreaterThan`n -GreaterThanOrEqual`n -LessThan`n -LessThanOrEquals `n`nAdditional operators for [string] parameters are:`n -Like (supports * or % as wildcards)`n -NotLike`n -BeginsWith`n -EndsWith`n -Contains`n`nProperties with picklists are:`n{0}" -F ($(
+                        foreach ($PickList in $PickListParameters) {
+                            $pickListValues = $fieldInfo.Where( { $_.Name -eq $PickList }).PickListValues | Select-Object Value, Label | ForEach-Object { '{0} - {1}' -F $_.Value, $_.Label }
+                            "`n{0}`n {1}" -F $PickList, $($pickListValues -join "`n ")
+                        } 
+                    ) -join "`n")
        
                 $Inputs = 'Nothing. This function only takes parameters.'
                 $Outputs = '[Autotask.{0}[]]. This function outputs the Autotask.{0} that was returned by the API.' -F $Entity.Name

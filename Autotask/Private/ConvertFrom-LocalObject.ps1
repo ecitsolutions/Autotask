@@ -48,8 +48,9 @@ Function ConvertFrom-LocalObject {
         $timezoneid = if ($IsMacOS -or $IsLinux) { 'America/New_York' }
         else { 'Eastern Standard Time' }
         $EST = [System.Timezoneinfo]::FindSystemTimeZoneById($timezoneid)
-        $result = [Collections.Generic.List[PSObject]]::new()
-
+        $result = @()
+        
+        $result = @()
     }
 
     process {
@@ -58,14 +59,14 @@ Function ConvertFrom-LocalObject {
         $entityName = $InputObject[0].GetType().Name
 
         # Get updated field info about this entity
-        $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
+        $fields = Get-AtwsFieldInfo -Entity $entityName
     
         # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
         # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-        $DateTimeParams = $entityInfo.DatetimeFields
+        $dateTimeParams = $fields.Where( { $_.Type -eq 'datetime' -and -not $_.IsReadOnly }).Name
     
         # Prepare picklists
-        $Picklists = $entityInfo.PicklistFields
+        $Picklists = $fields.Where{ $_.IsPickList }
     
         # Adjust TimeZone on all DateTime properties
         foreach ($object in $InputObject) { 
@@ -87,16 +88,14 @@ Function ConvertFrom-LocalObject {
             
             # Revert picklist labels to their values
             foreach ($field in $Picklists) {
-                # Get an updated picklist as hashtable indexed by label
-                $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field -Label -Hashtable
-                if ($object.$field -in $picklistValues.Keys -and $picklistValues.count -gt 0) { 
-                    $object.$field = $picklistValues[$object.$field]
+                if ($object.$($field.Name) -in $field.PicklistValues.Label) {
+                    $object.$($field.Name) = ($field.PickListValues.Where{ $_.Label -eq $object.$($field.Name) }).Value
                 }
             }
         }
         
         # If using pipeline the process block will run once per object in pipeline. Store them all
-        $result.add($InputObject)
+        $result += $InputObject
         
     }
 

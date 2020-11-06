@@ -74,14 +74,20 @@ Write-Debug ('{0}: Found {1} script files in {2}\Private' -F $MyInvocation.MyCom
 $publicFunction = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue ) 
 Write-Debug ('{0}: Found {1} script files in {2}\Public' -F $MyInvocation.MyCommand.Name, $publicFunction.Count, $PSScriptRoot)
 
-# Entity functions will be exported with Prefix prepended to the Noun of the function name
-$entityFunction = @( Get-ChildItem -Path $PSScriptRoot\Functions\*.ps1 -ErrorAction SilentlyContinue ) 
-Write-Debug ('{0}: Found {1} script files in {2}\Functions' -F $MyInvocation.MyCommand.Name, $entityFunction.Count, $PSScriptRoot)
+# Static functions will be exported with Prefix prepended to the Noun of the function name
 
-Write-Verbose ('{0}: Importing {1} Private, {2} Public functions and {3} entity functions.' -F $MyInvocation.MyCommand.Name, $privateFunction.Count, $publicFunction.Count, $entityFunction.count)
+$staticFunction = @( Get-ChildItem -Path $PSScriptRoot\Static\*.ps1 -ErrorAction SilentlyContinue ) 
+Write-Debug ('{0}: Found {1} script files in {2}\Static' -F $MyInvocation.MyCommand.Name, $staticFunction.Count, $PSScriptRoot)
+
+# Dynamic functions will be exported with Prefix prepended to the Noun of the function name
+
+$dynamicFunction = @( Get-ChildItem -Path $PSScriptRoot\Dynamic\*.ps1 -ErrorAction SilentlyContinue ) 
+Write-Debug ('{0}: Found {1} script files in {2}\Dynamic' -F $MyInvocation.MyCommand.Name, $dynamicFunction.Count, $PSScriptRoot)
+
+Write-Verbose ('{0}: Importing {1} Private and {2} Public functions.' -F $MyInvocation.MyCommand.Name, $privateFunction.Count, $publicFunction.Count)
 
 # Loop through all supporting script files and source them
-foreach ($import in @($privateFunction + $publicFunction + $entityFunction)) {
+foreach ($import in @($privateFunction + $publicFunction + $staticFunction + $dynamicFunction)) {
     Write-Debug ('{0}: Importing {1}' -F $MyInvocation.MyCommand.Name, $import)
     try {
         . $import.fullname
@@ -95,9 +101,13 @@ foreach ($import in @($privateFunction + $publicFunction + $entityFunction)) {
 Write-Verbose ('{0}: Exporting {1} Public functions.' -F $MyInvocation.MyCommand.Name, $publicFunction.Count) 
 Export-ModuleMember -Function $publicFunction.Basename
 
-# Explicitly export entity functions
-Write-Verbose ('{0}: Exporting {1} Entity functions.' -F $MyInvocation.MyCommand.Name, $publicFunction.Count) 
-Export-ModuleMember -Function $entityFunction.Basename
+# Explicitly export static functions
+Write-Verbose ('{0}: Exporting {1} Public functions.' -F $MyInvocation.MyCommand.Name, $publicFunction.Count) 
+Export-ModuleMember -Function $staticFunction.Basename
+
+# Explicitly export dynamic functions
+Write-Verbose ('{0}: Exporting {1} Public functions.' -F $MyInvocation.MyCommand.Name, $publicFunction.Count) 
+Export-ModuleMember -Function $dynamicFunction.Basename
 
 # Set to $true for explicit export of private functions. For debugging purposes only
 if ($false){
@@ -145,9 +155,8 @@ if ($PSVersionTable.PSVersion.Major -ge 6) {
 }
 
 # Compile webserviceinfo (Reference.cs) and instantiate a SOAP client
-if ([appdomain]::CurrentDomain.GetAssemblies().exportedtypes.name -notcontains "ATWSSoap") { 
-    Add-Type -TypeDefinition (Get-Content -raw $code) -ReferencedAssemblies $assemblies
-}
+Add-Type -TypeDefinition (Get-Content -raw $code) -ReferencedAssemblies $assemblies
+
 # Load the cache from disk
 Initialize-AtwsRamCache
 

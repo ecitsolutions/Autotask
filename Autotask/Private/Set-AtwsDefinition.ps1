@@ -18,7 +18,7 @@
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $ModifiedObjects = [Collections.ArrayList]::new()
+        $ModifiedObjects = @()
     }
 
     process {
@@ -54,7 +54,7 @@
             $processObject = $InputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
             
             # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
-            [void]$ModifiedObjects.Add((Set-AtwsData -Entity $processObject))
+            $ModifiedObjects += Set-AtwsData -Entity $processObject
         
         }
     

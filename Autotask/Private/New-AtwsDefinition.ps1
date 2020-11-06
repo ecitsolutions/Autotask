@@ -18,7 +18,7 @@
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
         
-        $processObject = [Collections.ArrayList]::new()
+        $processObject = @()
     }
 
     process {
@@ -26,7 +26,7 @@
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)  
 
-            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
+            $fields = Get-AtwsFieldInfo -Entity $entityName
       
             $CopyNo = 1
 
@@ -35,7 +35,7 @@
                 $newObject = New-Object -TypeName Autotask.$entityName
         
                 # Copy every non readonly property
-                $fieldNames = $entityInfo.WritableFields
+                $fieldNames = $fields.Where( { $_.Name -ne 'id' }).Name
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) { 
                     $fieldNames += 'UserDefinedFields' 
@@ -51,12 +51,12 @@
                     $copyNo++
                     $newObject.Title = $title
                 }
-                [void]$processObject.Add($newObject)
+                $processObject += $newObject
             }   
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName) 
-            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))   
+            $processObject += New-Object -TypeName Autotask.$entityName    
         }
         
         # Prepare shouldProcess comments
