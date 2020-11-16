@@ -151,21 +151,21 @@ Set-AtwsResourceRoleQueue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QueueID', 'Default', 'RoleID', 'id', 'Active', 'ResourceID')]
+    [ValidateSet('Active', 'ResourceID', 'Default', 'QueueID', 'id', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QueueID', 'Default', 'RoleID', 'id', 'Active', 'ResourceID')]
+    [ValidateSet('Active', 'ResourceID', 'Default', 'QueueID', 'id', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QueueID', 'Default', 'RoleID', 'id', 'Active', 'ResourceID')]
+    [ValidateSet('Active', 'ResourceID', 'Default', 'QueueID', 'id', 'RoleID')]
     [string[]]
     $IsNotNull,
 

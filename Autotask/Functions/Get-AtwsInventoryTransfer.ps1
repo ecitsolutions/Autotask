@@ -176,21 +176,21 @@ New-AtwsInventoryTransfer
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SerialNumber', 'FromLocationID', 'UpdateNote', 'id', 'QuantityTransferred', 'ToLocationID', 'TransferDate', 'TransferByResourceID', 'Notes', 'ProductID')]
+    [ValidateSet('FromLocationID', 'QuantityTransferred', 'ProductID', 'ToLocationID', 'TransferByResourceID', 'Notes', 'SerialNumber', 'TransferDate', 'UpdateNote', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SerialNumber', 'FromLocationID', 'UpdateNote', 'id', 'QuantityTransferred', 'ToLocationID', 'TransferDate', 'TransferByResourceID', 'Notes', 'ProductID')]
+    [ValidateSet('FromLocationID', 'QuantityTransferred', 'ProductID', 'ToLocationID', 'TransferByResourceID', 'Notes', 'SerialNumber', 'TransferDate', 'UpdateNote', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SerialNumber', 'FromLocationID', 'UpdateNote', 'id', 'QuantityTransferred', 'ToLocationID', 'TransferDate', 'TransferByResourceID', 'Notes', 'ProductID')]
+    [ValidateSet('FromLocationID', 'QuantityTransferred', 'ProductID', 'ToLocationID', 'TransferByResourceID', 'Notes', 'SerialNumber', 'TransferDate', 'UpdateNote', 'id')]
     [string[]]
     $IsNotNull,
 

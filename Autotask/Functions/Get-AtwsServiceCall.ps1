@@ -246,21 +246,21 @@ Set-AtwsServiceCall
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CancelationNoticeHours', 'Complete', 'EndDateTime', 'Duration', 'CreateDateTime', 'ImpersonatorCreatorResourceID', 'LastModifiedDateTime', 'CanceledByResource', 'CreatorResourceID', 'AccountPhysicalLocationID', 'AccountID', 'StartDateTime', 'CanceledDateTime', 'id', 'Description', 'Status')]
+    [ValidateSet('CancelationNoticeHours', 'StartDateTime', 'Status', 'AccountID', 'CreateDateTime', 'AccountPhysicalLocationID', 'CreatorResourceID', 'id', 'EndDateTime', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'Complete', 'LastModifiedDateTime', 'CanceledByResource', 'CanceledDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CancelationNoticeHours', 'Complete', 'EndDateTime', 'Duration', 'CreateDateTime', 'ImpersonatorCreatorResourceID', 'LastModifiedDateTime', 'CanceledByResource', 'CreatorResourceID', 'AccountPhysicalLocationID', 'AccountID', 'StartDateTime', 'CanceledDateTime', 'id', 'Description', 'Status')]
+    [ValidateSet('CancelationNoticeHours', 'StartDateTime', 'Status', 'AccountID', 'CreateDateTime', 'AccountPhysicalLocationID', 'CreatorResourceID', 'id', 'EndDateTime', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'Complete', 'LastModifiedDateTime', 'CanceledByResource', 'CanceledDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CancelationNoticeHours', 'Complete', 'EndDateTime', 'Duration', 'CreateDateTime', 'ImpersonatorCreatorResourceID', 'LastModifiedDateTime', 'CanceledByResource', 'CreatorResourceID', 'AccountPhysicalLocationID', 'AccountID', 'StartDateTime', 'CanceledDateTime', 'id', 'Description', 'Status')]
+    [ValidateSet('CancelationNoticeHours', 'StartDateTime', 'Status', 'AccountID', 'CreateDateTime', 'AccountPhysicalLocationID', 'CreatorResourceID', 'id', 'EndDateTime', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'Complete', 'LastModifiedDateTime', 'CanceledByResource', 'CanceledDateTime')]
     [string[]]
     $IsNotNull,
 

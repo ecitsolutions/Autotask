@@ -120,21 +120,21 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

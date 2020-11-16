@@ -141,21 +141,21 @@ Set-AtwsDepartment
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'PrimaryLocationID', 'id', 'Description', 'Number')]
+    [ValidateSet('PrimaryLocationID', 'id', 'Description', 'Number', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'PrimaryLocationID', 'id', 'Description', 'Number')]
+    [ValidateSet('PrimaryLocationID', 'id', 'Description', 'Number', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'PrimaryLocationID', 'id', 'Description', 'Number')]
+    [ValidateSet('PrimaryLocationID', 'id', 'Description', 'Number', 'Name')]
     [string[]]
     $IsNotNull,
 

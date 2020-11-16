@@ -169,21 +169,21 @@ Set-AtwsAccountWebhookField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedField', 'IsDisplayAlwaysField', 'id', 'WebhookID', 'FieldID')]
+    [ValidateSet('WebhookID', 'id', 'IsSubscribedField', 'IsDisplayAlwaysField', 'FieldID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedField', 'IsDisplayAlwaysField', 'id', 'WebhookID', 'FieldID')]
+    [ValidateSet('WebhookID', 'id', 'IsSubscribedField', 'IsDisplayAlwaysField', 'FieldID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedField', 'IsDisplayAlwaysField', 'id', 'WebhookID', 'FieldID')]
+    [ValidateSet('WebhookID', 'id', 'IsSubscribedField', 'IsDisplayAlwaysField', 'FieldID')]
     [string[]]
     $IsNotNull,
 

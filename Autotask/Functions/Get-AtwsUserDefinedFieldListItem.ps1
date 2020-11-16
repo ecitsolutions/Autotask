@@ -141,21 +141,21 @@ Set-AtwsUserDefinedFieldListItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForExport', 'UdfFieldId', 'id', 'CreateDate', 'ValueForDisplay')]
+    [ValidateSet('UdfFieldId', 'id', 'ValueForDisplay', 'CreateDate', 'ValueForExport')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForExport', 'UdfFieldId', 'id', 'CreateDate', 'ValueForDisplay')]
+    [ValidateSet('UdfFieldId', 'id', 'ValueForDisplay', 'CreateDate', 'ValueForExport')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForExport', 'UdfFieldId', 'id', 'CreateDate', 'ValueForDisplay')]
+    [ValidateSet('UdfFieldId', 'id', 'ValueForDisplay', 'CreateDate', 'ValueForExport')]
     [string[]]
     $IsNotNull,
 

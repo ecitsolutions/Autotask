@@ -141,21 +141,21 @@ Set-AtwsTicketRmaCredit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalCurrencyCreditAmount', 'TicketID', 'id', 'CreditAmount', 'CreditDetails')]
+    [ValidateSet('CreditDetails', 'id', 'TicketID', 'InternalCurrencyCreditAmount', 'CreditAmount')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalCurrencyCreditAmount', 'TicketID', 'id', 'CreditAmount', 'CreditDetails')]
+    [ValidateSet('CreditDetails', 'id', 'TicketID', 'InternalCurrencyCreditAmount', 'CreditAmount')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalCurrencyCreditAmount', 'TicketID', 'id', 'CreditAmount', 'CreditDetails')]
+    [ValidateSet('CreditDetails', 'id', 'TicketID', 'InternalCurrencyCreditAmount', 'CreditAmount')]
     [string[]]
     $IsNotNull,
 

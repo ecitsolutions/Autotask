@@ -139,21 +139,21 @@ Set-AtwsContractRate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractID', 'InternalCurrencyContractHourlyRate', 'ContractHourlyRate')]
+    [ValidateSet('ContractID', 'id', 'ContractHourlyRate', 'RoleID', 'InternalCurrencyContractHourlyRate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractID', 'InternalCurrencyContractHourlyRate', 'ContractHourlyRate')]
+    [ValidateSet('ContractID', 'id', 'ContractHourlyRate', 'RoleID', 'InternalCurrencyContractHourlyRate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractID', 'InternalCurrencyContractHourlyRate', 'ContractHourlyRate')]
+    [ValidateSet('ContractID', 'id', 'ContractHourlyRate', 'RoleID', 'InternalCurrencyContractHourlyRate')]
     [string[]]
     $IsNotNull,
 

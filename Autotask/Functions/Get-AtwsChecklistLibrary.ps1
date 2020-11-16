@@ -169,21 +169,21 @@ Set-AtwsChecklistLibrary
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Description', 'Name', 'EntityType')]
+    [ValidateSet('EntityType', 'id', 'Active', 'Description', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Description', 'Name', 'EntityType')]
+    [ValidateSet('EntityType', 'id', 'Active', 'Description', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Description', 'Name', 'EntityType')]
+    [ValidateSet('EntityType', 'id', 'Active', 'Description', 'Name')]
     [string[]]
     $IsNotNull,
 

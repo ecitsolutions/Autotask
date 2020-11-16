@@ -231,21 +231,21 @@ Set-AtwsClientPortalUser
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'ClientPortalActive', 'Password', 'id', 'NumberFormat', 'UserName', 'DateFormat', 'SecurityLevel', 'TimeFormat')]
+    [ValidateSet('id', 'TimeFormat', 'SecurityLevel', 'ContactID', 'UserName', 'NumberFormat', 'ClientPortalActive', 'DateFormat', 'Password')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'ClientPortalActive', 'Password', 'id', 'NumberFormat', 'UserName', 'DateFormat', 'SecurityLevel', 'TimeFormat')]
+    [ValidateSet('id', 'TimeFormat', 'SecurityLevel', 'ContactID', 'UserName', 'NumberFormat', 'ClientPortalActive', 'DateFormat', 'Password')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'ClientPortalActive', 'Password', 'id', 'NumberFormat', 'UserName', 'DateFormat', 'SecurityLevel', 'TimeFormat')]
+    [ValidateSet('id', 'TimeFormat', 'SecurityLevel', 'ContactID', 'UserName', 'NumberFormat', 'ClientPortalActive', 'DateFormat', 'Password')]
     [string[]]
     $IsNotNull,
 

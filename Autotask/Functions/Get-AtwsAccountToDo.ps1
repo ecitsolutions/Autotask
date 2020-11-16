@@ -248,21 +248,21 @@ Set-AtwsAccountToDo
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ContractID', 'EndDateTime', 'id', 'AssignedToResourceID', 'CreateDateTime', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'OpportunityID', 'CreatorResourceID', 'ContactID', 'AccountID', 'StartDateTime', 'ActivityDescription', 'ActionType', 'CompletedDate')]
+    [ValidateSet('LastModifiedDate', 'ContractID', 'CompletedDate', 'StartDateTime', 'AccountID', 'ActivityDescription', 'ActionType', 'OpportunityID', 'AssignedToResourceID', 'ContactID', 'TicketID', 'id', 'EndDateTime', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'CreatorResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ContractID', 'EndDateTime', 'id', 'AssignedToResourceID', 'CreateDateTime', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'OpportunityID', 'CreatorResourceID', 'ContactID', 'AccountID', 'StartDateTime', 'ActivityDescription', 'ActionType', 'CompletedDate')]
+    [ValidateSet('LastModifiedDate', 'ContractID', 'CompletedDate', 'StartDateTime', 'AccountID', 'ActivityDescription', 'ActionType', 'OpportunityID', 'AssignedToResourceID', 'ContactID', 'TicketID', 'id', 'EndDateTime', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'CreatorResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ContractID', 'EndDateTime', 'id', 'AssignedToResourceID', 'CreateDateTime', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'OpportunityID', 'CreatorResourceID', 'ContactID', 'AccountID', 'StartDateTime', 'ActivityDescription', 'ActionType', 'CompletedDate')]
+    [ValidateSet('LastModifiedDate', 'ContractID', 'CompletedDate', 'StartDateTime', 'AccountID', 'ActivityDescription', 'ActionType', 'OpportunityID', 'AssignedToResourceID', 'ContactID', 'TicketID', 'id', 'EndDateTime', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'CreatorResourceID')]
     [string[]]
     $IsNotNull,
 

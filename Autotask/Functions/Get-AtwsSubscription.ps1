@@ -259,21 +259,21 @@ Set-AtwsSubscription
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SubscriptionName', 'PeriodPrice', 'PurchaseOrderNumber', 'ExpirationDate', 'InstalledProductID', 'TotalPrice', 'ImpersonatorCreatorResourceID', 'TotalCost', 'PeriodType', 'EffectiveDate', 'VendorID', 'BusinessDivisionSubdivisionID', 'MaterialCodeID', 'PeriodCost', 'Status', 'id', 'Description')]
+    [ValidateSet('ExpirationDate', 'MaterialCodeID', 'InstalledProductID', 'Status', 'TotalCost', 'BusinessDivisionSubdivisionID', 'EffectiveDate', 'VendorID', 'TotalPrice', 'PeriodCost', 'id', 'PurchaseOrderNumber', 'ImpersonatorCreatorResourceID', 'Description', 'SubscriptionName', 'PeriodPrice', 'PeriodType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SubscriptionName', 'PeriodPrice', 'PurchaseOrderNumber', 'ExpirationDate', 'InstalledProductID', 'TotalPrice', 'ImpersonatorCreatorResourceID', 'TotalCost', 'PeriodType', 'EffectiveDate', 'VendorID', 'BusinessDivisionSubdivisionID', 'MaterialCodeID', 'PeriodCost', 'Status', 'id', 'Description')]
+    [ValidateSet('ExpirationDate', 'MaterialCodeID', 'InstalledProductID', 'Status', 'TotalCost', 'BusinessDivisionSubdivisionID', 'EffectiveDate', 'VendorID', 'TotalPrice', 'PeriodCost', 'id', 'PurchaseOrderNumber', 'ImpersonatorCreatorResourceID', 'Description', 'SubscriptionName', 'PeriodPrice', 'PeriodType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SubscriptionName', 'PeriodPrice', 'PurchaseOrderNumber', 'ExpirationDate', 'InstalledProductID', 'TotalPrice', 'ImpersonatorCreatorResourceID', 'TotalCost', 'PeriodType', 'EffectiveDate', 'VendorID', 'BusinessDivisionSubdivisionID', 'MaterialCodeID', 'PeriodCost', 'Status', 'id', 'Description')]
+    [ValidateSet('ExpirationDate', 'MaterialCodeID', 'InstalledProductID', 'Status', 'TotalCost', 'BusinessDivisionSubdivisionID', 'EffectiveDate', 'VendorID', 'TotalPrice', 'PeriodCost', 'id', 'PurchaseOrderNumber', 'ImpersonatorCreatorResourceID', 'Description', 'SubscriptionName', 'PeriodPrice', 'PeriodType')]
     [string[]]
     $IsNotNull,
 

@@ -146,21 +146,21 @@ Set-AtwsInventoryLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDefault', 'LocationName', 'id', 'Active', 'ImpersonatorCreatorResourceID', 'ResourceID')]
+    [ValidateSet('Active', 'ResourceID', 'id', 'ImpersonatorCreatorResourceID', 'IsDefault', 'LocationName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDefault', 'LocationName', 'id', 'Active', 'ImpersonatorCreatorResourceID', 'ResourceID')]
+    [ValidateSet('Active', 'ResourceID', 'id', 'ImpersonatorCreatorResourceID', 'IsDefault', 'LocationName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDefault', 'LocationName', 'id', 'Active', 'ImpersonatorCreatorResourceID', 'ResourceID')]
+    [ValidateSet('Active', 'ResourceID', 'id', 'ImpersonatorCreatorResourceID', 'IsDefault', 'LocationName')]
     [string[]]
     $IsNotNull,
 

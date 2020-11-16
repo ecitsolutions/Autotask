@@ -141,21 +141,21 @@ Set-AtwsContactBillingProductAssociation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'ContactID', 'id', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('EffectiveDate', 'id', 'BillingProductID', 'ExpirationDate', 'ContactID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'ContactID', 'id', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('EffectiveDate', 'id', 'BillingProductID', 'ExpirationDate', 'ContactID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'ContactID', 'id', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('EffectiveDate', 'id', 'BillingProductID', 'ExpirationDate', 'ContactID')]
     [string[]]
     $IsNotNull,
 

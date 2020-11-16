@@ -293,21 +293,21 @@ Set-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SortOrder', 'DefaultValue', 'DataType', 'CreateDate', 'IsEncrypted', 'IsProtected', 'IsRequired', 'MergeVariableName', 'IsPrivate', 'DisplayFormat', 'IsFieldMapping', 'IsActive', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'Name', 'CrmToProjectUdfId', 'UdfType', 'id', 'Description')]
+    [ValidateSet('UdfType', 'IsFieldMapping', 'IsActive', 'IsVisibleToClientPortal', 'CrmToProjectUdfId', 'IsEncrypted', 'Name', 'CreateDate', 'MergeVariableName', 'DataType', 'IsProtected', 'DisplayFormat', 'DefaultValue', 'SortOrder', 'IsRequired', 'id', 'IsPrivate', 'NumberOfDecimalPlaces', 'Description')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SortOrder', 'DefaultValue', 'DataType', 'CreateDate', 'IsEncrypted', 'IsProtected', 'IsRequired', 'MergeVariableName', 'IsPrivate', 'DisplayFormat', 'IsFieldMapping', 'IsActive', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'Name', 'CrmToProjectUdfId', 'UdfType', 'id', 'Description')]
+    [ValidateSet('UdfType', 'IsFieldMapping', 'IsActive', 'IsVisibleToClientPortal', 'CrmToProjectUdfId', 'IsEncrypted', 'Name', 'CreateDate', 'MergeVariableName', 'DataType', 'IsProtected', 'DisplayFormat', 'DefaultValue', 'SortOrder', 'IsRequired', 'id', 'IsPrivate', 'NumberOfDecimalPlaces', 'Description')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SortOrder', 'DefaultValue', 'DataType', 'CreateDate', 'IsEncrypted', 'IsProtected', 'IsRequired', 'MergeVariableName', 'IsPrivate', 'DisplayFormat', 'IsFieldMapping', 'IsActive', 'NumberOfDecimalPlaces', 'IsVisibleToClientPortal', 'Name', 'CrmToProjectUdfId', 'UdfType', 'id', 'Description')]
+    [ValidateSet('UdfType', 'IsFieldMapping', 'IsActive', 'IsVisibleToClientPortal', 'CrmToProjectUdfId', 'IsEncrypted', 'Name', 'CreateDate', 'MergeVariableName', 'DataType', 'IsProtected', 'DisplayFormat', 'DefaultValue', 'SortOrder', 'IsRequired', 'id', 'IsPrivate', 'NumberOfDecimalPlaces', 'Description')]
     [string[]]
     $IsNotNull,
 

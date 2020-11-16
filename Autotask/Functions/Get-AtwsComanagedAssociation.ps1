@@ -124,21 +124,21 @@ Remove-AtwsComanagedAssociation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'AccountID')]
+    [ValidateSet('id', 'AccountID', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'AccountID')]
+    [ValidateSet('id', 'AccountID', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'AccountID')]
+    [ValidateSet('id', 'AccountID', 'ResourceID')]
     [string[]]
     $IsNotNull,
 

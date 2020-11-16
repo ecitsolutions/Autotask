@@ -149,21 +149,21 @@ Set-AtwsTax
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaxRegionID', 'TaxRate', 'id', 'TaxCategoryID', 'TaxName', 'IsCompounded')]
+    [ValidateSet('TaxCategoryID', 'id', 'TaxRegionID', 'TaxRate', 'IsCompounded', 'TaxName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaxRegionID', 'TaxRate', 'id', 'TaxCategoryID', 'TaxName', 'IsCompounded')]
+    [ValidateSet('TaxCategoryID', 'id', 'TaxRegionID', 'TaxRate', 'IsCompounded', 'TaxName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaxRegionID', 'TaxRate', 'id', 'TaxCategoryID', 'TaxName', 'IsCompounded')]
+    [ValidateSet('TaxCategoryID', 'id', 'TaxRegionID', 'TaxRate', 'IsCompounded', 'TaxName')]
     [string[]]
     $IsNotNull,
 

@@ -137,21 +137,21 @@ Set-AtwsPriceListMaterialCode
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'UnitPrice', 'AllocationCodeID', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('CurrencyID', 'id', 'AllocationCodeID', 'UsesInternalCurrencyPrice', 'UnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'UnitPrice', 'AllocationCodeID', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('CurrencyID', 'id', 'AllocationCodeID', 'UsesInternalCurrencyPrice', 'UnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'UnitPrice', 'AllocationCodeID', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('CurrencyID', 'id', 'AllocationCodeID', 'UsesInternalCurrencyPrice', 'UnitPrice')]
     [string[]]
     $IsNotNull,
 

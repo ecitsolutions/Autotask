@@ -150,21 +150,21 @@ Remove-AtwsWebhookEventErrorLog
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ErrorMessage', 'Payload', 'id', 'AccountWebhookID', 'CreateDateTime', 'ContactWebhookID', 'SequenceNumber')]
+    [ValidateSet('SequenceNumber', 'CreateDateTime', 'id', 'AccountWebhookID', 'Payload', 'ErrorMessage', 'ContactWebhookID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ErrorMessage', 'Payload', 'id', 'AccountWebhookID', 'CreateDateTime', 'ContactWebhookID', 'SequenceNumber')]
+    [ValidateSet('SequenceNumber', 'CreateDateTime', 'id', 'AccountWebhookID', 'Payload', 'ErrorMessage', 'ContactWebhookID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ErrorMessage', 'Payload', 'id', 'AccountWebhookID', 'CreateDateTime', 'ContactWebhookID', 'SequenceNumber')]
+    [ValidateSet('SequenceNumber', 'CreateDateTime', 'id', 'AccountWebhookID', 'Payload', 'ErrorMessage', 'ContactWebhookID')]
     [string[]]
     $IsNotNull,
 

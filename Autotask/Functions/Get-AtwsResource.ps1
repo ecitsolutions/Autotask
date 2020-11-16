@@ -573,21 +573,21 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PayrollType', 'Password', 'HomePhone', 'Suffix', 'FirstName', 'id', 'Initials', 'OfficeExtension', 'SurveyResourceRating', 'EmailTypeCode3', 'Email2', 'ResourceType', 'AccountingReferenceID', 'UserName', 'Title', 'Email', 'DateFormat', 'LastName', 'HireDate', 'Active', 'Gender', 'LicenseType', 'Email3', 'MiddleName', 'TravelAvailabilityPct', 'UserType', 'OfficePhone', 'EmailTypeCode', 'TimeFormat', 'EmailTypeCode2', 'DefaultServiceDeskRoleID', 'MobilePhone', 'Greeting', 'InternalCost', 'NumberFormat', 'LocationID')]
+    [ValidateSet('LicenseType', 'EmailTypeCode', 'Email3', 'InternalCost', 'PayrollType', 'UserType', 'EmailTypeCode2', 'OfficeExtension', 'Title', 'LastName', 'FirstName', 'Initials', 'Password', 'Email', 'SurveyResourceRating', 'AccountingReferenceID', 'Suffix', 'MobilePhone', 'OfficePhone', 'TravelAvailabilityPct', 'HireDate', 'Greeting', 'Gender', 'EmailTypeCode3', 'NumberFormat', 'TimeFormat', 'ResourceType', 'HomePhone', 'DateFormat', 'Active', 'LocationID', 'Email2', 'MiddleName', 'UserName', 'DefaultServiceDeskRoleID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PayrollType', 'Password', 'HomePhone', 'Suffix', 'FirstName', 'id', 'Initials', 'OfficeExtension', 'SurveyResourceRating', 'EmailTypeCode3', 'Email2', 'ResourceType', 'AccountingReferenceID', 'UserName', 'Title', 'Email', 'DateFormat', 'LastName', 'HireDate', 'Active', 'Gender', 'LicenseType', 'Email3', 'MiddleName', 'TravelAvailabilityPct', 'UserType', 'OfficePhone', 'EmailTypeCode', 'TimeFormat', 'EmailTypeCode2', 'DefaultServiceDeskRoleID', 'MobilePhone', 'Greeting', 'InternalCost', 'NumberFormat', 'LocationID')]
+    [ValidateSet('LicenseType', 'EmailTypeCode', 'Email3', 'InternalCost', 'PayrollType', 'UserType', 'EmailTypeCode2', 'OfficeExtension', 'Title', 'LastName', 'FirstName', 'Initials', 'Password', 'Email', 'SurveyResourceRating', 'AccountingReferenceID', 'Suffix', 'MobilePhone', 'OfficePhone', 'TravelAvailabilityPct', 'HireDate', 'Greeting', 'Gender', 'EmailTypeCode3', 'NumberFormat', 'TimeFormat', 'ResourceType', 'HomePhone', 'DateFormat', 'Active', 'LocationID', 'Email2', 'MiddleName', 'UserName', 'DefaultServiceDeskRoleID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PayrollType', 'Password', 'HomePhone', 'Suffix', 'FirstName', 'id', 'Initials', 'OfficeExtension', 'SurveyResourceRating', 'EmailTypeCode3', 'Email2', 'ResourceType', 'AccountingReferenceID', 'UserName', 'Title', 'Email', 'DateFormat', 'LastName', 'HireDate', 'Active', 'Gender', 'LicenseType', 'Email3', 'MiddleName', 'TravelAvailabilityPct', 'UserType', 'OfficePhone', 'EmailTypeCode', 'TimeFormat', 'EmailTypeCode2', 'DefaultServiceDeskRoleID', 'MobilePhone', 'Greeting', 'InternalCost', 'NumberFormat', 'LocationID')]
+    [ValidateSet('LicenseType', 'EmailTypeCode', 'Email3', 'InternalCost', 'PayrollType', 'UserType', 'EmailTypeCode2', 'OfficeExtension', 'Title', 'LastName', 'FirstName', 'Initials', 'Password', 'Email', 'SurveyResourceRating', 'AccountingReferenceID', 'Suffix', 'MobilePhone', 'OfficePhone', 'TravelAvailabilityPct', 'HireDate', 'Greeting', 'Gender', 'EmailTypeCode3', 'NumberFormat', 'TimeFormat', 'ResourceType', 'HomePhone', 'DateFormat', 'Active', 'LocationID', 'Email2', 'MiddleName', 'UserName', 'DefaultServiceDeskRoleID', 'id')]
     [string[]]
     $IsNotNull,
 

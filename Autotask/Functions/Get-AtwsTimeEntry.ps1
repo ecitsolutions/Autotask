@@ -344,21 +344,21 @@ Set-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OffsetHours', 'DateWorked', 'InternalNotes', 'RoleID', 'ShowOnInvoice', 'LastModifiedDateTime', 'ContractServiceID', 'BillingApprovalResourceID', 'id', 'CreatorUserID', 'HoursToBill', 'NonBillable', 'ImpersonatorCreatorResourceID', 'TaskID', 'CreateDateTime', 'LastModifiedUserID', 'BillingApprovalDateTime', 'ContractServiceBundleID', 'InternalAllocationCodeID', 'ImpersonatorUpdaterResourceID', 'TicketID', 'ResourceID', 'AllocationCodeID', 'SummaryNotes', 'BillingApprovalLevelMostRecent', 'HoursWorked', 'ContractID', 'StartDateTime', 'Type', 'EndDateTime')]
+    [ValidateSet('EndDateTime', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'ContractServiceID', 'BillingApprovalDateTime', 'LastModifiedDateTime', 'NonBillable', 'HoursToBill', 'AllocationCodeID', 'TicketID', 'RoleID', 'OffsetHours', 'Type', 'InternalNotes', 'ContractID', 'ResourceID', 'SummaryNotes', 'ShowOnInvoice', 'BillingApprovalLevelMostRecent', 'CreatorUserID', 'TaskID', 'HoursWorked', 'LastModifiedUserID', 'BillingApprovalResourceID', 'ContractServiceBundleID', 'InternalAllocationCodeID', 'DateWorked', 'ImpersonatorCreatorResourceID', 'StartDateTime', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OffsetHours', 'DateWorked', 'InternalNotes', 'RoleID', 'ShowOnInvoice', 'LastModifiedDateTime', 'ContractServiceID', 'BillingApprovalResourceID', 'id', 'CreatorUserID', 'HoursToBill', 'NonBillable', 'ImpersonatorCreatorResourceID', 'TaskID', 'CreateDateTime', 'LastModifiedUserID', 'BillingApprovalDateTime', 'ContractServiceBundleID', 'InternalAllocationCodeID', 'ImpersonatorUpdaterResourceID', 'TicketID', 'ResourceID', 'AllocationCodeID', 'SummaryNotes', 'BillingApprovalLevelMostRecent', 'HoursWorked', 'ContractID', 'StartDateTime', 'Type', 'EndDateTime')]
+    [ValidateSet('EndDateTime', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'ContractServiceID', 'BillingApprovalDateTime', 'LastModifiedDateTime', 'NonBillable', 'HoursToBill', 'AllocationCodeID', 'TicketID', 'RoleID', 'OffsetHours', 'Type', 'InternalNotes', 'ContractID', 'ResourceID', 'SummaryNotes', 'ShowOnInvoice', 'BillingApprovalLevelMostRecent', 'CreatorUserID', 'TaskID', 'HoursWorked', 'LastModifiedUserID', 'BillingApprovalResourceID', 'ContractServiceBundleID', 'InternalAllocationCodeID', 'DateWorked', 'ImpersonatorCreatorResourceID', 'StartDateTime', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OffsetHours', 'DateWorked', 'InternalNotes', 'RoleID', 'ShowOnInvoice', 'LastModifiedDateTime', 'ContractServiceID', 'BillingApprovalResourceID', 'id', 'CreatorUserID', 'HoursToBill', 'NonBillable', 'ImpersonatorCreatorResourceID', 'TaskID', 'CreateDateTime', 'LastModifiedUserID', 'BillingApprovalDateTime', 'ContractServiceBundleID', 'InternalAllocationCodeID', 'ImpersonatorUpdaterResourceID', 'TicketID', 'ResourceID', 'AllocationCodeID', 'SummaryNotes', 'BillingApprovalLevelMostRecent', 'HoursWorked', 'ContractID', 'StartDateTime', 'Type', 'EndDateTime')]
+    [ValidateSet('EndDateTime', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'ContractServiceID', 'BillingApprovalDateTime', 'LastModifiedDateTime', 'NonBillable', 'HoursToBill', 'AllocationCodeID', 'TicketID', 'RoleID', 'OffsetHours', 'Type', 'InternalNotes', 'ContractID', 'ResourceID', 'SummaryNotes', 'ShowOnInvoice', 'BillingApprovalLevelMostRecent', 'CreatorUserID', 'TaskID', 'HoursWorked', 'LastModifiedUserID', 'BillingApprovalResourceID', 'ContractServiceBundleID', 'InternalAllocationCodeID', 'DateWorked', 'ImpersonatorCreatorResourceID', 'StartDateTime', 'id')]
     [string[]]
     $IsNotNull,
 

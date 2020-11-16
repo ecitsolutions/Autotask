@@ -141,21 +141,21 @@ Set-AtwsInstalledProductBillingProductAssociation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'id', 'EffectiveDate', 'ExpirationDate', 'InstalledProductID')]
+    [ValidateSet('InstalledProductID', 'EffectiveDate', 'id', 'ExpirationDate', 'BillingProductID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'id', 'EffectiveDate', 'ExpirationDate', 'InstalledProductID')]
+    [ValidateSet('InstalledProductID', 'EffectiveDate', 'id', 'ExpirationDate', 'BillingProductID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingProductID', 'id', 'EffectiveDate', 'ExpirationDate', 'InstalledProductID')]
+    [ValidateSet('InstalledProductID', 'EffectiveDate', 'id', 'ExpirationDate', 'BillingProductID')]
     [string[]]
     $IsNotNull,
 

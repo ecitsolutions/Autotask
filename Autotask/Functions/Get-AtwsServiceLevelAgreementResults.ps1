@@ -217,21 +217,21 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FirstResponseElapsedHours', 'ResolutionResourceID', 'TicketID', 'CreateDateTime', 'FirstResponseMet', 'LastModifiedByResourceID', 'FirstResponseResourceID', 'FirstResponseInitiatingResourceID', 'CreatorResourceID', 'LastModifiedDateTime', 'ResolutionMet', 'ResolutionPlanElapsedHours', 'ResolutionPlanMet', 'ServiceLevelAgreementName', 'id', 'ResolutionPlanResourceID', 'ResolutionElapsedHours')]
+    [ValidateSet('ResolutionMet', 'LastModifiedByResourceID', 'id', 'ResolutionResourceID', 'LastModifiedDateTime', 'FirstResponseInitiatingResourceID', 'CreateDateTime', 'FirstResponseElapsedHours', 'ResolutionElapsedHours', 'ServiceLevelAgreementName', 'TicketID', 'ResolutionPlanElapsedHours', 'FirstResponseResourceID', 'ResolutionPlanMet', 'FirstResponseMet', 'CreatorResourceID', 'ResolutionPlanResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FirstResponseElapsedHours', 'ResolutionResourceID', 'TicketID', 'CreateDateTime', 'FirstResponseMet', 'LastModifiedByResourceID', 'FirstResponseResourceID', 'FirstResponseInitiatingResourceID', 'CreatorResourceID', 'LastModifiedDateTime', 'ResolutionMet', 'ResolutionPlanElapsedHours', 'ResolutionPlanMet', 'ServiceLevelAgreementName', 'id', 'ResolutionPlanResourceID', 'ResolutionElapsedHours')]
+    [ValidateSet('ResolutionMet', 'LastModifiedByResourceID', 'id', 'ResolutionResourceID', 'LastModifiedDateTime', 'FirstResponseInitiatingResourceID', 'CreateDateTime', 'FirstResponseElapsedHours', 'ResolutionElapsedHours', 'ServiceLevelAgreementName', 'TicketID', 'ResolutionPlanElapsedHours', 'FirstResponseResourceID', 'ResolutionPlanMet', 'FirstResponseMet', 'CreatorResourceID', 'ResolutionPlanResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FirstResponseElapsedHours', 'ResolutionResourceID', 'TicketID', 'CreateDateTime', 'FirstResponseMet', 'LastModifiedByResourceID', 'FirstResponseResourceID', 'FirstResponseInitiatingResourceID', 'CreatorResourceID', 'LastModifiedDateTime', 'ResolutionMet', 'ResolutionPlanElapsedHours', 'ResolutionPlanMet', 'ServiceLevelAgreementName', 'id', 'ResolutionPlanResourceID', 'ResolutionElapsedHours')]
+    [ValidateSet('ResolutionMet', 'LastModifiedByResourceID', 'id', 'ResolutionResourceID', 'LastModifiedDateTime', 'FirstResponseInitiatingResourceID', 'CreateDateTime', 'FirstResponseElapsedHours', 'ResolutionElapsedHours', 'ServiceLevelAgreementName', 'TicketID', 'ResolutionPlanElapsedHours', 'FirstResponseResourceID', 'ResolutionPlanMet', 'FirstResponseMet', 'CreatorResourceID', 'ResolutionPlanResourceID')]
     [string[]]
     $IsNotNull,
 

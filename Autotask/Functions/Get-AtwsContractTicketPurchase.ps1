@@ -247,21 +247,21 @@ Set-AtwsContractTicketPurchase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentType', 'IsPaid', 'StartDate', 'DatePurchased', 'TicketsUsed', 'PerTicketRate', 'InvoiceNumber', 'ContractID', 'EndDate', 'PaymentNumber', 'Status', 'id', 'TicketsPurchased')]
+    [ValidateSet('ContractID', 'PaymentType', 'Status', 'StartDate', 'PaymentNumber', 'id', 'InvoiceNumber', 'TicketsUsed', 'EndDate', 'DatePurchased', 'TicketsPurchased', 'IsPaid', 'PerTicketRate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentType', 'IsPaid', 'StartDate', 'DatePurchased', 'TicketsUsed', 'PerTicketRate', 'InvoiceNumber', 'ContractID', 'EndDate', 'PaymentNumber', 'Status', 'id', 'TicketsPurchased')]
+    [ValidateSet('ContractID', 'PaymentType', 'Status', 'StartDate', 'PaymentNumber', 'id', 'InvoiceNumber', 'TicketsUsed', 'EndDate', 'DatePurchased', 'TicketsPurchased', 'IsPaid', 'PerTicketRate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentType', 'IsPaid', 'StartDate', 'DatePurchased', 'TicketsUsed', 'PerTicketRate', 'InvoiceNumber', 'ContractID', 'EndDate', 'PaymentNumber', 'Status', 'id', 'TicketsPurchased')]
+    [ValidateSet('ContractID', 'PaymentType', 'Status', 'StartDate', 'PaymentNumber', 'id', 'InvoiceNumber', 'TicketsUsed', 'EndDate', 'DatePurchased', 'TicketsPurchased', 'IsPaid', 'PerTicketRate')]
     [string[]]
     $IsNotNull,
 

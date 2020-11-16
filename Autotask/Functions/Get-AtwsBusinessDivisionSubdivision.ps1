@@ -131,21 +131,21 @@ Set-AtwsBusinessDivisionSubdivision
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'BusinessSubdivisionID', 'id', 'BusinessDivisionID')]
+    [ValidateSet('id', 'BusinessDivisionID', 'Active', 'BusinessSubdivisionID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'BusinessSubdivisionID', 'id', 'BusinessDivisionID')]
+    [ValidateSet('id', 'BusinessDivisionID', 'Active', 'BusinessSubdivisionID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'BusinessSubdivisionID', 'id', 'BusinessDivisionID')]
+    [ValidateSet('id', 'BusinessDivisionID', 'Active', 'BusinessSubdivisionID')]
     [string[]]
     $IsNotNull,
 

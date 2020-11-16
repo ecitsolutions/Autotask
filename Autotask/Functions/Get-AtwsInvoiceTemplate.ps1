@@ -425,21 +425,21 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SortBy', 'CurrencyNegativeFormat', 'DisplayTaxCategorySuperscripts', 'TimeFormat', 'ItemizeServicesAndBundles', 'PaymentTerms', 'ItemizeItemsInEachGroup', 'PageLayout', 'PageNumberFormat', 'ShowGridHeader', 'DisplayZeroAmountRecurringServicesAndBundles', 'DateFormat', 'DisplayRecurringServiceContractLabor', 'NumberFormat', 'RateCostExpression', 'CurrencyPositiveFormat', 'CoveredByBlockRetainerContractLabel', 'DisplayTaxCategory', 'ShowVerticalGridLines', 'Name', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'DisplayFixedPriceContractLabor', 'DisplaySeparateLineItemForEachTax', 'id', 'NonBillableLaborLabel', 'GroupBy')]
+    [ValidateSet('DisplayTaxCategorySuperscripts', 'SortBy', 'ShowGridHeader', 'NonBillableLaborLabel', 'ItemizeItemsInEachGroup', 'ShowVerticalGridLines', 'DisplayRecurringServiceContractLabor', 'ItemizeServicesAndBundles', 'RateCostExpression', 'DisplayTaxCategory', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'Name', 'TimeFormat', 'DateFormat', 'CurrencyNegativeFormat', 'PaymentTerms', 'PageLayout', 'NumberFormat', 'id', 'GroupBy', 'DisplayFixedPriceContractLabor', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CoveredByBlockRetainerContractLabel', 'DisplaySeparateLineItemForEachTax', 'DisplayZeroAmountRecurringServicesAndBundles')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SortBy', 'CurrencyNegativeFormat', 'DisplayTaxCategorySuperscripts', 'TimeFormat', 'ItemizeServicesAndBundles', 'PaymentTerms', 'ItemizeItemsInEachGroup', 'PageLayout', 'PageNumberFormat', 'ShowGridHeader', 'DisplayZeroAmountRecurringServicesAndBundles', 'DateFormat', 'DisplayRecurringServiceContractLabor', 'NumberFormat', 'RateCostExpression', 'CurrencyPositiveFormat', 'CoveredByBlockRetainerContractLabel', 'DisplayTaxCategory', 'ShowVerticalGridLines', 'Name', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'DisplayFixedPriceContractLabor', 'DisplaySeparateLineItemForEachTax', 'id', 'NonBillableLaborLabel', 'GroupBy')]
+    [ValidateSet('DisplayTaxCategorySuperscripts', 'SortBy', 'ShowGridHeader', 'NonBillableLaborLabel', 'ItemizeItemsInEachGroup', 'ShowVerticalGridLines', 'DisplayRecurringServiceContractLabor', 'ItemizeServicesAndBundles', 'RateCostExpression', 'DisplayTaxCategory', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'Name', 'TimeFormat', 'DateFormat', 'CurrencyNegativeFormat', 'PaymentTerms', 'PageLayout', 'NumberFormat', 'id', 'GroupBy', 'DisplayFixedPriceContractLabor', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CoveredByBlockRetainerContractLabel', 'DisplaySeparateLineItemForEachTax', 'DisplayZeroAmountRecurringServicesAndBundles')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SortBy', 'CurrencyNegativeFormat', 'DisplayTaxCategorySuperscripts', 'TimeFormat', 'ItemizeServicesAndBundles', 'PaymentTerms', 'ItemizeItemsInEachGroup', 'PageLayout', 'PageNumberFormat', 'ShowGridHeader', 'DisplayZeroAmountRecurringServicesAndBundles', 'DateFormat', 'DisplayRecurringServiceContractLabor', 'NumberFormat', 'RateCostExpression', 'CurrencyPositiveFormat', 'CoveredByBlockRetainerContractLabel', 'DisplayTaxCategory', 'ShowVerticalGridLines', 'Name', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'DisplayFixedPriceContractLabor', 'DisplaySeparateLineItemForEachTax', 'id', 'NonBillableLaborLabel', 'GroupBy')]
+    [ValidateSet('DisplayTaxCategorySuperscripts', 'SortBy', 'ShowGridHeader', 'NonBillableLaborLabel', 'ItemizeItemsInEachGroup', 'ShowVerticalGridLines', 'DisplayRecurringServiceContractLabor', 'ItemizeServicesAndBundles', 'RateCostExpression', 'DisplayTaxCategory', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'Name', 'TimeFormat', 'DateFormat', 'CurrencyNegativeFormat', 'PaymentTerms', 'PageLayout', 'NumberFormat', 'id', 'GroupBy', 'DisplayFixedPriceContractLabor', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CoveredByBlockRetainerContractLabel', 'DisplaySeparateLineItemForEachTax', 'DisplayZeroAmountRecurringServicesAndBundles')]
     [string[]]
     $IsNotNull,
 

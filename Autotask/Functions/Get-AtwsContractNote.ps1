@@ -170,21 +170,21 @@ Set-AtwsContractNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'LastActivityDate', 'ContractID', 'ImpersonatorUpdaterResourceID', 'Description', 'id', 'CreatorResourceID', 'CreateDateTime', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('Title', 'ImpersonatorUpdaterResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'ContractID', 'LastActivityDate', 'CreatorResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'LastActivityDate', 'ContractID', 'ImpersonatorUpdaterResourceID', 'Description', 'id', 'CreatorResourceID', 'CreateDateTime', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('Title', 'ImpersonatorUpdaterResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'ContractID', 'LastActivityDate', 'CreatorResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'LastActivityDate', 'ContractID', 'ImpersonatorUpdaterResourceID', 'Description', 'id', 'CreatorResourceID', 'CreateDateTime', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('Title', 'ImpersonatorUpdaterResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'ContractID', 'LastActivityDate', 'CreatorResourceID')]
     [string[]]
     $IsNotNull,
 

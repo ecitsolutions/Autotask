@@ -355,21 +355,21 @@ Set-AtwsChangeOrderCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'InternalPurchaseOrderNumber', 'CostType', 'Billed', 'ContractServiceID', 'Name', 'UnitCost', 'id', 'BusinessDivisionSubdivisionID', 'PurchaseOrderNumber', 'UnitQuantity', 'BillableAmount', 'Notes', 'ProductID', 'TaskID', 'InternalCurrencyBillableAmount', 'StatusLastModifiedBy', 'ContractServiceBundleID', 'StatusLastModifiedDate', 'CreateDate', 'Status', 'DatePurchased', 'ChangeOrderHours', 'CreatorResourceID', 'AllocationCodeID', 'Description', 'InternalCurrencyUnitPrice', 'BillableToAccount', 'ExtendedCost')]
+    [ValidateSet('BillableToAccount', 'CreateDate', 'ExtendedCost', 'StatusLastModifiedDate', 'InternalCurrencyUnitPrice', 'ContractServiceID', 'StatusLastModifiedBy', 'CreatorResourceID', 'AllocationCodeID', 'Billed', 'DatePurchased', 'UnitPrice', 'Status', 'Description', 'BillableAmount', 'CostType', 'PurchaseOrderNumber', 'Name', 'InternalPurchaseOrderNumber', 'ChangeOrderHours', 'InternalCurrencyBillableAmount', 'TaskID', 'Notes', 'UnitQuantity', 'UnitCost', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID', 'ProductID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'InternalPurchaseOrderNumber', 'CostType', 'Billed', 'ContractServiceID', 'Name', 'UnitCost', 'id', 'BusinessDivisionSubdivisionID', 'PurchaseOrderNumber', 'UnitQuantity', 'BillableAmount', 'Notes', 'ProductID', 'TaskID', 'InternalCurrencyBillableAmount', 'StatusLastModifiedBy', 'ContractServiceBundleID', 'StatusLastModifiedDate', 'CreateDate', 'Status', 'DatePurchased', 'ChangeOrderHours', 'CreatorResourceID', 'AllocationCodeID', 'Description', 'InternalCurrencyUnitPrice', 'BillableToAccount', 'ExtendedCost')]
+    [ValidateSet('BillableToAccount', 'CreateDate', 'ExtendedCost', 'StatusLastModifiedDate', 'InternalCurrencyUnitPrice', 'ContractServiceID', 'StatusLastModifiedBy', 'CreatorResourceID', 'AllocationCodeID', 'Billed', 'DatePurchased', 'UnitPrice', 'Status', 'Description', 'BillableAmount', 'CostType', 'PurchaseOrderNumber', 'Name', 'InternalPurchaseOrderNumber', 'ChangeOrderHours', 'InternalCurrencyBillableAmount', 'TaskID', 'Notes', 'UnitQuantity', 'UnitCost', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID', 'ProductID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'InternalPurchaseOrderNumber', 'CostType', 'Billed', 'ContractServiceID', 'Name', 'UnitCost', 'id', 'BusinessDivisionSubdivisionID', 'PurchaseOrderNumber', 'UnitQuantity', 'BillableAmount', 'Notes', 'ProductID', 'TaskID', 'InternalCurrencyBillableAmount', 'StatusLastModifiedBy', 'ContractServiceBundleID', 'StatusLastModifiedDate', 'CreateDate', 'Status', 'DatePurchased', 'ChangeOrderHours', 'CreatorResourceID', 'AllocationCodeID', 'Description', 'InternalCurrencyUnitPrice', 'BillableToAccount', 'ExtendedCost')]
+    [ValidateSet('BillableToAccount', 'CreateDate', 'ExtendedCost', 'StatusLastModifiedDate', 'InternalCurrencyUnitPrice', 'ContractServiceID', 'StatusLastModifiedBy', 'CreatorResourceID', 'AllocationCodeID', 'Billed', 'DatePurchased', 'UnitPrice', 'Status', 'Description', 'BillableAmount', 'CostType', 'PurchaseOrderNumber', 'Name', 'InternalPurchaseOrderNumber', 'ChangeOrderHours', 'InternalCurrencyBillableAmount', 'TaskID', 'Notes', 'UnitQuantity', 'UnitCost', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID', 'ProductID', 'id')]
     [string[]]
     $IsNotNull,
 

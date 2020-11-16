@@ -169,21 +169,21 @@ Set-AtwsContactWebhookUdfField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedField', 'UdfFieldID', 'IsDisplayAlwaysField', 'id', 'WebhookID')]
+    [ValidateSet('UdfFieldID', 'WebhookID', 'id', 'IsSubscribedField', 'IsDisplayAlwaysField')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedField', 'UdfFieldID', 'IsDisplayAlwaysField', 'id', 'WebhookID')]
+    [ValidateSet('UdfFieldID', 'WebhookID', 'id', 'IsSubscribedField', 'IsDisplayAlwaysField')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedField', 'UdfFieldID', 'IsDisplayAlwaysField', 'id', 'WebhookID')]
+    [ValidateSet('UdfFieldID', 'WebhookID', 'id', 'IsSubscribedField', 'IsDisplayAlwaysField')]
     [string[]]
     $IsNotNull,
 

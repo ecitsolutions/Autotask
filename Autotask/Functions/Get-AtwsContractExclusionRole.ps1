@@ -124,21 +124,21 @@ Remove-AtwsContractExclusionRole
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractID')]
+    [ValidateSet('ContractID', 'id', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractID')]
+    [ValidateSet('ContractID', 'id', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractID')]
+    [ValidateSet('ContractID', 'id', 'RoleID')]
     [string[]]
     $IsNotNull,
 

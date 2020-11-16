@@ -132,21 +132,21 @@ Set-AtwsContractFactor
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractID', 'BlockHourFactor')]
+    [ValidateSet('ContractID', 'id', 'BlockHourFactor', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractID', 'BlockHourFactor')]
+    [ValidateSet('ContractID', 'id', 'BlockHourFactor', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractID', 'BlockHourFactor')]
+    [ValidateSet('ContractID', 'id', 'BlockHourFactor', 'RoleID')]
     [string[]]
     $IsNotNull,
 

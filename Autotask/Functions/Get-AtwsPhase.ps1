@@ -205,21 +205,21 @@ Set-AtwsPhase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'CreateDate', 'PhaseNumber', 'LastActivityDateTime', 'Scheduled', 'ParentPhaseID', 'DueDate', 'CreatorResourceID', 'Title', 'ExternalID', 'id', 'EstimatedHours', 'Description', 'ProjectID')]
+    [ValidateSet('PhaseNumber', 'LastActivityDateTime', 'Scheduled', 'StartDate', 'ParentPhaseID', 'Title', 'CreateDate', 'EstimatedHours', 'id', 'DueDate', 'Description', 'CreatorResourceID', 'ProjectID', 'ExternalID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'CreateDate', 'PhaseNumber', 'LastActivityDateTime', 'Scheduled', 'ParentPhaseID', 'DueDate', 'CreatorResourceID', 'Title', 'ExternalID', 'id', 'EstimatedHours', 'Description', 'ProjectID')]
+    [ValidateSet('PhaseNumber', 'LastActivityDateTime', 'Scheduled', 'StartDate', 'ParentPhaseID', 'Title', 'CreateDate', 'EstimatedHours', 'id', 'DueDate', 'Description', 'CreatorResourceID', 'ProjectID', 'ExternalID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'CreateDate', 'PhaseNumber', 'LastActivityDateTime', 'Scheduled', 'ParentPhaseID', 'DueDate', 'CreatorResourceID', 'Title', 'ExternalID', 'id', 'EstimatedHours', 'Description', 'ProjectID')]
+    [ValidateSet('PhaseNumber', 'LastActivityDateTime', 'Scheduled', 'StartDate', 'ParentPhaseID', 'Title', 'CreateDate', 'EstimatedHours', 'id', 'DueDate', 'Description', 'CreatorResourceID', 'ProjectID', 'ExternalID')]
     [string[]]
     $IsNotNull,
 
