@@ -54,7 +54,7 @@ Function ConvertTo-LocalObject {
         $timezoneid = if ($IsMacOS -or $IsLinux) { 'America/New_York' }
         else { 'Eastern Standard Time' }
         $EST = [System.Timezoneinfo]::FindSystemTimeZoneById($timezoneid)
-        $result = [Collections.Generic.List[PSObject]]::new()
+        $result = [Collections.ArrayList]::new()
     }
 
     process {
