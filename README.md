@@ -16,7 +16,10 @@ Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiKey
 From version 2 the module no longer needs to maintain a per tenant disk cache. Any picklists are resolved dynamically using [ArgumentCompleter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-argumentcompleter?view=powershell-7). 
 
 # Release notes
-
+# Version 2.0.0-beta2
+- All pester tests passing
+- fixed issues where returned object was of wrong type, and of multiple arrays.
+- fiexed issues where Set-Atws* did not work as the method .Update reference got an array of wrong type. ArrayLists works, but generic lists of correct type does not.
 ## Version 2.0.0-beta2 - 2020.3ReleaseNotes - New Reference.cs build from .wsdl updates
 - Pull newest Dev updates
 - Connect to your tenant as usual
