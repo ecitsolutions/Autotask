@@ -1051,21 +1051,21 @@ Set-AtwsInstalledProduct
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RMMDeviceAuditMissingPatchCount', 'HourlyCost', 'InstalledByID', 'DattoNICSpeedKilobitsPerSecond', 'RMMDeviceAuditDomainID', 'RMMOpenAlertCount', 'id', 'DailyCost', 'Location', 'ServiceBundleID', 'RMMDeviceAuditDisplayAdaptorID', 'DattoRemoteIP', 'SerialNumber', 'RMMDeviceID', 'InstalledProductCategoryID', 'AccountPhysicalLocationID', 'NumberOfUsers', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditModelID', 'RMMDeviceAuditBackupStatusID', 'ContractServiceBundleID', 'RMMDeviceAuditArchitectureID', 'LastModifiedTime', 'RMMDeviceAuditDeviceTypeID', 'DeviceNetworkingID', 'DattoPercentageUsed', 'DattoDeviceMemoryMegabytes', 'RMMDeviceAuditOperatingSystem', 'SourceCostType', 'DattoHostname', 'AccountID', 'DattoUptimeSeconds', 'RMMDeviceAuditMobileNumber', 'DattoAvailableKilobytes', 'InstalledByContactID', 'DattoSerialNumber', 'ServiceLevelAgreementID', 'RMMDeviceAuditExternalIPAddress', 'MonthlyCost', 'InstallDate', 'ParentInstalledProductID', 'RMMDeviceAuditMacAddress', 'DattoInternalIP', 'ImpersonatorCreatorResourceID', 'RMMDeviceAuditAntivirusStatusID', 'Active', 'ContactID', 'ContractServiceID', 'RMMDeviceAuditHostname', 'DattoDrivesErrors', 'DattoOSVersionID', 'ApiVendorID', 'RMMDeviceAuditProcessorID', 'SetupFee', 'DattoNumberOfAgents', 'DattoUsedKilobytes', 'PerUseCost', 'RMMDeviceAuditMotherboardID', 'DattoOffsiteUsedBytes', 'RMMDeviceAuditMobileNetworkOperatorID', 'VendorID', 'LastActivityPersonType', 'RMMDeviceAuditLastUser', 'DattoNumberOfVolumes', 'ContractID', 'RMMDeviceAuditDescription', 'Notes', 'ReferenceTitle', 'RMMDeviceAuditPatchStatusID', 'DattoLastCheckInDateTime', 'LastActivityPersonID', 'DattoZFSVersionID', 'ReferenceNumber', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMemoryBytes', 'Type', 'CreateDate', 'WarrantyExpirationDate', 'DattoProtectedKilobytes', 'RMMDeviceAuditManufacturerID', 'RMMDeviceUID', 'SourceCostID', 'ProductID', 'CreatedByPersonID', 'DattoKernelVersionID', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditIPAddress', 'DattoNumberOfDrives', 'RMMDeviceAuditSoftwareStatusID', 'ServiceID', '')]
+    [ValidateSet('RMMDeviceAuditSNMPName', 'RMMDeviceAuditManufacturerID', 'DattoUptimeSeconds', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditModelID', 'RMMDeviceAuditMissingPatchCount', 'RMMDeviceAuditSNMPLocation', 'LastModifiedTime', 'RMMDeviceAuditMobileNetworkOperatorID', 'DattoNumberOfVolumes', 'DattoKernelVersionID', 'DailyCost', 'Location', 'RMMDeviceAuditOperatingSystem', 'LastActivityPersonType', 'Notes', 'InstalledByID', 'SerialNumber', 'RMMDeviceAuditDisplayAdaptorID', 'RMMDeviceAuditMacAddress', 'DattoRemoteIP', 'LastActivityPersonID', 'RMMDeviceAuditMobileNumber', 'RMMOpenAlertCount', 'RMMDeviceAuditHostname', 'DeviceNetworkingID', 'InstalledProductCategoryID', 'RMMDeviceAuditExternalIPAddress', 'SourceCostID', 'DattoOSVersionID', 'RMMDeviceAuditBackupStatusID', 'DattoDrivesErrors', 'ServiceLevelAgreementID', 'ReferenceTitle', 'DattoOffsiteUsedBytes', 'CreatedByPersonID', 'RMMDeviceID', 'RMMDeviceAuditMotherboardID', 'CreateDate', 'SetupFee', 'DattoLastCheckInDateTime', 'InstallDate', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditDescription', 'id', 'NumberOfUsers', 'ProductID', 'AccountID', 'RMMDeviceAuditProcessorID', 'DattoProtectedKilobytes', 'DattoNumberOfDrives', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditIPAddress', 'DattoHostname', 'RMMDeviceUID', 'ContractServiceID', 'ParentInstalledProductID', 'InstalledByContactID', 'PerUseCost', 'ApiVendorID', 'DattoUsedKilobytes', 'MonthlyCost', 'AccountPhysicalLocationID', 'ContractServiceBundleID', 'SourceCostType', 'ServiceBundleID', 'HourlyCost', 'ContactID', 'ServiceID', 'RMMDeviceAuditSoftwareStatusID', 'DattoAvailableKilobytes', 'DattoNumberOfAgents', 'DattoSerialNumber', 'Active', 'DattoPercentageUsed', 'DattoZFSVersionID', 'ImpersonatorCreatorResourceID', 'RMMDeviceAuditDeviceTypeID', 'DattoInternalIP', 'RMMDeviceAuditAntivirusStatusID', 'Type', 'VendorID', 'RMMDeviceAuditSNMPContact', 'DattoDeviceMemoryMegabytes', 'ContractID', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditMemoryBytes', 'DattoNICSpeedKilobitsPerSecond', 'RMMDeviceAuditLastUser', 'ReferenceNumber', 'WarrantyExpirationDate', 'RMMDeviceAuditDomainID', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RMMDeviceAuditMissingPatchCount', 'HourlyCost', 'InstalledByID', 'DattoNICSpeedKilobitsPerSecond', 'RMMDeviceAuditDomainID', 'RMMOpenAlertCount', 'id', 'DailyCost', 'Location', 'ServiceBundleID', 'RMMDeviceAuditDisplayAdaptorID', 'DattoRemoteIP', 'SerialNumber', 'RMMDeviceID', 'InstalledProductCategoryID', 'AccountPhysicalLocationID', 'NumberOfUsers', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditModelID', 'RMMDeviceAuditBackupStatusID', 'ContractServiceBundleID', 'RMMDeviceAuditArchitectureID', 'LastModifiedTime', 'RMMDeviceAuditDeviceTypeID', 'DeviceNetworkingID', 'DattoPercentageUsed', 'DattoDeviceMemoryMegabytes', 'RMMDeviceAuditOperatingSystem', 'SourceCostType', 'DattoHostname', 'AccountID', 'DattoUptimeSeconds', 'RMMDeviceAuditMobileNumber', 'DattoAvailableKilobytes', 'InstalledByContactID', 'DattoSerialNumber', 'ServiceLevelAgreementID', 'RMMDeviceAuditExternalIPAddress', 'MonthlyCost', 'InstallDate', 'ParentInstalledProductID', 'RMMDeviceAuditMacAddress', 'DattoInternalIP', 'ImpersonatorCreatorResourceID', 'RMMDeviceAuditAntivirusStatusID', 'Active', 'ContactID', 'ContractServiceID', 'RMMDeviceAuditHostname', 'DattoDrivesErrors', 'DattoOSVersionID', 'ApiVendorID', 'RMMDeviceAuditProcessorID', 'SetupFee', 'DattoNumberOfAgents', 'DattoUsedKilobytes', 'PerUseCost', 'RMMDeviceAuditMotherboardID', 'DattoOffsiteUsedBytes', 'RMMDeviceAuditMobileNetworkOperatorID', 'VendorID', 'LastActivityPersonType', 'RMMDeviceAuditLastUser', 'DattoNumberOfVolumes', 'ContractID', 'RMMDeviceAuditDescription', 'Notes', 'ReferenceTitle', 'RMMDeviceAuditPatchStatusID', 'DattoLastCheckInDateTime', 'LastActivityPersonID', 'DattoZFSVersionID', 'ReferenceNumber', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMemoryBytes', 'Type', 'CreateDate', 'WarrantyExpirationDate', 'DattoProtectedKilobytes', 'RMMDeviceAuditManufacturerID', 'RMMDeviceUID', 'SourceCostID', 'ProductID', 'CreatedByPersonID', 'DattoKernelVersionID', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditIPAddress', 'DattoNumberOfDrives', 'RMMDeviceAuditSoftwareStatusID', 'ServiceID', '')]
+    [ValidateSet('RMMDeviceAuditSNMPName', 'RMMDeviceAuditManufacturerID', 'DattoUptimeSeconds', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditModelID', 'RMMDeviceAuditMissingPatchCount', 'RMMDeviceAuditSNMPLocation', 'LastModifiedTime', 'RMMDeviceAuditMobileNetworkOperatorID', 'DattoNumberOfVolumes', 'DattoKernelVersionID', 'DailyCost', 'Location', 'RMMDeviceAuditOperatingSystem', 'LastActivityPersonType', 'Notes', 'InstalledByID', 'SerialNumber', 'RMMDeviceAuditDisplayAdaptorID', 'RMMDeviceAuditMacAddress', 'DattoRemoteIP', 'LastActivityPersonID', 'RMMDeviceAuditMobileNumber', 'RMMOpenAlertCount', 'RMMDeviceAuditHostname', 'DeviceNetworkingID', 'InstalledProductCategoryID', 'RMMDeviceAuditExternalIPAddress', 'SourceCostID', 'DattoOSVersionID', 'RMMDeviceAuditBackupStatusID', 'DattoDrivesErrors', 'ServiceLevelAgreementID', 'ReferenceTitle', 'DattoOffsiteUsedBytes', 'CreatedByPersonID', 'RMMDeviceID', 'RMMDeviceAuditMotherboardID', 'CreateDate', 'SetupFee', 'DattoLastCheckInDateTime', 'InstallDate', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditDescription', 'id', 'NumberOfUsers', 'ProductID', 'AccountID', 'RMMDeviceAuditProcessorID', 'DattoProtectedKilobytes', 'DattoNumberOfDrives', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditIPAddress', 'DattoHostname', 'RMMDeviceUID', 'ContractServiceID', 'ParentInstalledProductID', 'InstalledByContactID', 'PerUseCost', 'ApiVendorID', 'DattoUsedKilobytes', 'MonthlyCost', 'AccountPhysicalLocationID', 'ContractServiceBundleID', 'SourceCostType', 'ServiceBundleID', 'HourlyCost', 'ContactID', 'ServiceID', 'RMMDeviceAuditSoftwareStatusID', 'DattoAvailableKilobytes', 'DattoNumberOfAgents', 'DattoSerialNumber', 'Active', 'DattoPercentageUsed', 'DattoZFSVersionID', 'ImpersonatorCreatorResourceID', 'RMMDeviceAuditDeviceTypeID', 'DattoInternalIP', 'RMMDeviceAuditAntivirusStatusID', 'Type', 'VendorID', 'RMMDeviceAuditSNMPContact', 'DattoDeviceMemoryMegabytes', 'ContractID', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditMemoryBytes', 'DattoNICSpeedKilobitsPerSecond', 'RMMDeviceAuditLastUser', 'ReferenceNumber', 'WarrantyExpirationDate', 'RMMDeviceAuditDomainID', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RMMDeviceAuditMissingPatchCount', 'HourlyCost', 'InstalledByID', 'DattoNICSpeedKilobitsPerSecond', 'RMMDeviceAuditDomainID', 'RMMOpenAlertCount', 'id', 'DailyCost', 'Location', 'ServiceBundleID', 'RMMDeviceAuditDisplayAdaptorID', 'DattoRemoteIP', 'SerialNumber', 'RMMDeviceID', 'InstalledProductCategoryID', 'AccountPhysicalLocationID', 'NumberOfUsers', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditModelID', 'RMMDeviceAuditBackupStatusID', 'ContractServiceBundleID', 'RMMDeviceAuditArchitectureID', 'LastModifiedTime', 'RMMDeviceAuditDeviceTypeID', 'DeviceNetworkingID', 'DattoPercentageUsed', 'DattoDeviceMemoryMegabytes', 'RMMDeviceAuditOperatingSystem', 'SourceCostType', 'DattoHostname', 'AccountID', 'DattoUptimeSeconds', 'RMMDeviceAuditMobileNumber', 'DattoAvailableKilobytes', 'InstalledByContactID', 'DattoSerialNumber', 'ServiceLevelAgreementID', 'RMMDeviceAuditExternalIPAddress', 'MonthlyCost', 'InstallDate', 'ParentInstalledProductID', 'RMMDeviceAuditMacAddress', 'DattoInternalIP', 'ImpersonatorCreatorResourceID', 'RMMDeviceAuditAntivirusStatusID', 'Active', 'ContactID', 'ContractServiceID', 'RMMDeviceAuditHostname', 'DattoDrivesErrors', 'DattoOSVersionID', 'ApiVendorID', 'RMMDeviceAuditProcessorID', 'SetupFee', 'DattoNumberOfAgents', 'DattoUsedKilobytes', 'PerUseCost', 'RMMDeviceAuditMotherboardID', 'DattoOffsiteUsedBytes', 'RMMDeviceAuditMobileNetworkOperatorID', 'VendorID', 'LastActivityPersonType', 'RMMDeviceAuditLastUser', 'DattoNumberOfVolumes', 'ContractID', 'RMMDeviceAuditDescription', 'Notes', 'ReferenceTitle', 'RMMDeviceAuditPatchStatusID', 'DattoLastCheckInDateTime', 'LastActivityPersonID', 'DattoZFSVersionID', 'ReferenceNumber', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMemoryBytes', 'Type', 'CreateDate', 'WarrantyExpirationDate', 'DattoProtectedKilobytes', 'RMMDeviceAuditManufacturerID', 'RMMDeviceUID', 'SourceCostID', 'ProductID', 'CreatedByPersonID', 'DattoKernelVersionID', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditIPAddress', 'DattoNumberOfDrives', 'RMMDeviceAuditSoftwareStatusID', 'ServiceID', '')]
+    [ValidateSet('RMMDeviceAuditSNMPName', 'RMMDeviceAuditManufacturerID', 'DattoUptimeSeconds', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditModelID', 'RMMDeviceAuditMissingPatchCount', 'RMMDeviceAuditSNMPLocation', 'LastModifiedTime', 'RMMDeviceAuditMobileNetworkOperatorID', 'DattoNumberOfVolumes', 'DattoKernelVersionID', 'DailyCost', 'Location', 'RMMDeviceAuditOperatingSystem', 'LastActivityPersonType', 'Notes', 'InstalledByID', 'SerialNumber', 'RMMDeviceAuditDisplayAdaptorID', 'RMMDeviceAuditMacAddress', 'DattoRemoteIP', 'LastActivityPersonID', 'RMMDeviceAuditMobileNumber', 'RMMOpenAlertCount', 'RMMDeviceAuditHostname', 'DeviceNetworkingID', 'InstalledProductCategoryID', 'RMMDeviceAuditExternalIPAddress', 'SourceCostID', 'DattoOSVersionID', 'RMMDeviceAuditBackupStatusID', 'DattoDrivesErrors', 'ServiceLevelAgreementID', 'ReferenceTitle', 'DattoOffsiteUsedBytes', 'CreatedByPersonID', 'RMMDeviceID', 'RMMDeviceAuditMotherboardID', 'CreateDate', 'SetupFee', 'DattoLastCheckInDateTime', 'InstallDate', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditDescription', 'id', 'NumberOfUsers', 'ProductID', 'AccountID', 'RMMDeviceAuditProcessorID', 'DattoProtectedKilobytes', 'DattoNumberOfDrives', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditIPAddress', 'DattoHostname', 'RMMDeviceUID', 'ContractServiceID', 'ParentInstalledProductID', 'InstalledByContactID', 'PerUseCost', 'ApiVendorID', 'DattoUsedKilobytes', 'MonthlyCost', 'AccountPhysicalLocationID', 'ContractServiceBundleID', 'SourceCostType', 'ServiceBundleID', 'HourlyCost', 'ContactID', 'ServiceID', 'RMMDeviceAuditSoftwareStatusID', 'DattoAvailableKilobytes', 'DattoNumberOfAgents', 'DattoSerialNumber', 'Active', 'DattoPercentageUsed', 'DattoZFSVersionID', 'ImpersonatorCreatorResourceID', 'RMMDeviceAuditDeviceTypeID', 'DattoInternalIP', 'RMMDeviceAuditAntivirusStatusID', 'Type', 'VendorID', 'RMMDeviceAuditSNMPContact', 'DattoDeviceMemoryMegabytes', 'ContractID', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditMemoryBytes', 'DattoNICSpeedKilobitsPerSecond', 'RMMDeviceAuditLastUser', 'ReferenceNumber', 'WarrantyExpirationDate', 'RMMDeviceAuditDomainID', '')]
     [string[]]
     $IsNotNull,
 
@@ -1140,25 +1140,25 @@ Set-AtwsInstalledProduct
     $IsThisDay
   )
 
-    begin { 
+    begin {
         $entityName = 'InstalledProduct'
-    
+
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
-            $DebugPreference = 'Continue' 
+            $DebugPreference = 'Continue'
         }
         else {
             # Respect configured preference
             $DebugPreference = $Script:Atws.Configuration.DebugPref
         }
-    
+
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
         if (!($PSCmdlet.MyInvocation.BoundParameters['Verbose'].IsPresent)) {
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-        
+
         $result = [Collections.ArrayList]::new()
         $iterations = [Collections.Arraylist]::new()
     }
@@ -1166,16 +1166,16 @@ Set-AtwsInstalledProduct
 
     process {
         # Parameterset Get_All has a single parameter: -All
-        # Set the Filter manually to get every single object of this type 
-        if ($PSCmdlet.ParameterSetName -eq 'Get_all') { 
+        # Set the Filter manually to get every single object of this type
+        if ($PSCmdlet.ParameterSetName -eq 'Get_all') {
             $Filter = @('id', '-ge', 0)
             [void]$iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
-    
+
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-            
+
             # find parameter with highest count
             $index = @{}
             $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
@@ -1185,7 +1185,7 @@ Set-AtwsInstalledProduct
             $count = $PSBoundParameters[$param].count
 
             # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
-            if ($count -le 200) { 
+            if ($count -le 200) {
                 [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
                 [void]$iterations.Add($Filter)
             }
@@ -1203,13 +1203,13 @@ Set-AtwsInstalledProduct
                     $j = $i + 199
                     if ($j -ge $outerLoop.count) {
                         $j = $outerLoop.count - 1
-                    } 
+                    }
 
                     # make a selection
                     $BoundParameters[$param] = $outerLoop[$i .. $j]
-                    
+
                     Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
-            
+
                     # Convert named parameters to a filter definition that can be parsed to QueryXML
                     [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
                     [void]$iterations.Add($Filter)
@@ -1219,25 +1219,25 @@ Set-AtwsInstalledProduct
         # Not parameters, nor Get_all. There are only three parameter sets, so now we know
         # that we were passed a Filter
         else {
-      
+
             Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
-            
+
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
             [void]$iterations.Add($Filter)
-        } 
+        }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
         $verboseDescription = '{0}: About to query the Autotask Web API for {1}(s).' -F $caption, $entityName
         $verboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $caption, $entityName
-    
-        # Lets do it and say we didn't!
-        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-            foreach ($Filter in $iterations) { 
 
-                try { 
+        # Lets do it and say we didn't!
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
+            foreach ($Filter in $iterations) {
+
+                try {
                     # Make the query and pass the optional parameters to Get-AtwsData
                     $response = Get-AtwsData -Entity $entityName -Filter $Filter `
                         -NoPickListLabel:$NoPickListLabel.IsPresent `
@@ -1253,7 +1253,7 @@ Set-AtwsInstalledProduct
                     }
                 }
                 # If multiple items use .addrange(). If a single item use .add()
-                if ($response.count -gt 1) { 
+                if ($response.count -gt 1) {
                     [void]$result.AddRange($response)
                 }
                 else {
@@ -1267,7 +1267,7 @@ Set-AtwsInstalledProduct
     end {
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
         if ($result) {
-            Return $result
+            Return [array]$result
         }
     }
 

@@ -13,12 +13,12 @@ Param(
     )]
     [pscustomobject]
     $Credential,
-    
+
     [Parameter(
         Position = 1
     )]
     [string]
-    $ApiTrackingIdentifier, 
+    $ApiTrackingIdentifier,
 
     [Parameter(
         Position = 2,
@@ -64,18 +64,18 @@ Import-LocalizedData -BindingVariable My -FileName $manifestFileName -BaseDirect
 $My['ModuleBase'] = $manifestDirectory
 
 # Get all function files as file objects
-# Private functions can only be called internally in other functions in the module 
+# Private functions can only be called internally in other functions in the module
 
-$privateFunction = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue ) 
+$privateFunction = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
 Write-Debug ('{0}: Found {1} script files in {2}\Private' -F $MyInvocation.MyCommand.Name, $privateFunction.Count, $PSScriptRoot)
 
 # Public functions will be exported with Prefix prepended to the Noun of the function name
 
-$publicFunction = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue ) 
+$publicFunction = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
 Write-Debug ('{0}: Found {1} script files in {2}\Public' -F $MyInvocation.MyCommand.Name, $publicFunction.Count, $PSScriptRoot)
 
 # Entity functions will be exported with Prefix prepended to the Noun of the function name
-$entityFunction = @( Get-ChildItem -Path $PSScriptRoot\Functions\*.ps1 -ErrorAction SilentlyContinue ) 
+$entityFunction = @( Get-ChildItem -Path $PSScriptRoot\Functions\*.ps1 -ErrorAction SilentlyContinue )
 Write-Debug ('{0}: Found {1} script files in {2}\Functions' -F $MyInvocation.MyCommand.Name, $entityFunction.Count, $PSScriptRoot)
 
 Write-Verbose ('{0}: Importing {1} Private, {2} Public functions and {3} entity functions.' -F $MyInvocation.MyCommand.Name, $privateFunction.Count, $publicFunction.Count, $entityFunction.count)
@@ -92,17 +92,17 @@ foreach ($import in @($privateFunction + $publicFunction + $entityFunction)) {
 }
 
 # Explicitly export public functions
-Write-Verbose ('{0}: Exporting {1} Public functions.' -F $MyInvocation.MyCommand.Name, $publicFunction.Count) 
+Write-Verbose ('{0}: Exporting {1} Public functions.' -F $MyInvocation.MyCommand.Name, $publicFunction.Count)
 Export-ModuleMember -Function $publicFunction.Basename
 
 # Explicitly export entity functions
-Write-Verbose ('{0}: Exporting {1} Entity functions.' -F $MyInvocation.MyCommand.Name, $publicFunction.Count) 
+Write-Verbose ('{0}: Exporting {1} Entity functions.' -F $MyInvocation.MyCommand.Name, $publicFunction.Count)
 Export-ModuleMember -Function $entityFunction.Basename
 
 # Set to $true for explicit export of private functions. For debugging purposes only
 if ($false){
     # Explicitly export private functions
-    Write-Verbose ('{0}: Exporting {1} Private functions.' -F $MyInvocation.MyCommand.Name, $privateFunction.Count) 
+    Write-Verbose ('{0}: Exporting {1} Private functions.' -F $MyInvocation.MyCommand.Name, $privateFunction.Count)
     Export-ModuleMember -Function $privateFunction.Basename
 }
 
@@ -113,7 +113,7 @@ Set-Alias -Scope Global -Name 'Connect-AutotaskWebAPI' -Value 'Connect-AtwsWebAP
 # Load support for TLS 1.2 if the Service Point Manager haven't loaded it yet
 # This is now a REQUIREMENT to talk to the API endpoints
 $Protocol = [System.Net.ServicePointManager]::SecurityProtocol
-if ($Protocol.Tostring() -notlike '*Tls12*') { 
+if ($Protocol.Tostring() -notlike '*Tls12*') {
     [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
 }
 
@@ -123,7 +123,7 @@ $code = '{0}\Private\Reference.cs' -f $My['ModuleBase']
 # List of needed assemblies for Powershell 5.1
 $assemblies = @(
     'System.ServiceModel'
-    'System.ServiceModel.Duplex' 
+    'System.ServiceModel.Duplex'
     'System.ServiceModel.Http'
     'System.ServiceModel.NetTcp'
     'System.ServiceModel.Security'
@@ -133,8 +133,8 @@ $assemblies = @(
     'System.Runtime.Serialization'
 )
 # For Powershell versions 6 and higher, add these assemblies
-if ($PSVersionTable.PSVersion.Major -ge 6) { 
-    $assemblies += @( 
+if ($PSVersionTable.PSVersion.Major -ge 6) {
+    $assemblies += @(
         'netstandard'
         'System.Xml.XmlSerializer'
         'System.Runtime.Serialization.Xml'
@@ -145,7 +145,7 @@ if ($PSVersionTable.PSVersion.Major -ge 6) {
 }
 
 # Compile webserviceinfo (Reference.cs) and instantiate a SOAP client
-if ([appdomain]::CurrentDomain.GetAssemblies().exportedtypes.name -notcontains "ATWSSoap") { 
+if ([appdomain]::CurrentDomain.GetAssemblies().exportedtypes.name -notcontains "ATWSSoap") {
     Add-Type -TypeDefinition (Get-Content -raw $code) -ReferencedAssemblies $assemblies
 }
 # Load the cache from disk
@@ -155,7 +155,7 @@ Initialize-AtwsRamCache
 if ($Credential) {
     Write-Verbose ('{0}: Parameters detected. Connecting to Autotask API' -F $MyInvocation.MyCommand.Name)
 
-    Try { 
+    Try {
         if ($Credential -is [pscredential]) {
             ## Legacy
             #  The user passed credentials directly
@@ -186,10 +186,10 @@ if ($Credential) {
     catch {
         $message = "{0}`n`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
         throw (New-Object System.Configuration.Provider.ProviderException $message)
-    
+
         return
     }
-    
+
     # From now on we should have module variable atws available
 }
 else {
@@ -199,11 +199,11 @@ else {
 # Clean out old cache data
 # On Windows we store the cache in the WindowsPowerhell folder in My documents
 # On macOS and Linux we use a dot-folder in the users $HOME folder as is customary
-if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {  
-    $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) 'WindowsPowershell\Cache' 
+if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {
+    $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) 'WindowsPowershell\Cache'
 }
 else {
-    $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) '.config\powershell\atwsCache' 
+    $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) '.config\powershell\atwsCache'
 }
 
 # Restore Previous preference
