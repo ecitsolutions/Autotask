@@ -129,9 +129,9 @@ Function ConvertTo-LocalObject {
 
         # If using pipeline the process block will run once per object in pipeline. Store them all
         if ($InputObject.Count -gt 1) {
-            $result.AddRange($InputObject)
+            [void]$result.AddRange($InputObject)
         }else {
-            $result.Add($InputObject)
+            [void]$result.Add($InputObject)
         }
 
     }
