@@ -147,21 +147,21 @@ Set-AtwsQuoteLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('State', 'City', 'id', 'Address2', 'PostalCode', 'Address1')]
+    [ValidateSet('State', 'Address2', 'Address1', 'id', 'City', 'PostalCode')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('State', 'City', 'id', 'Address2', 'PostalCode', 'Address1')]
+    [ValidateSet('State', 'Address2', 'Address1', 'id', 'City', 'PostalCode')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('State', 'City', 'id', 'Address2', 'PostalCode', 'Address1')]
+    [ValidateSet('State', 'Address2', 'Address1', 'id', 'City', 'PostalCode')]
     [string[]]
     $IsNotNull,
 

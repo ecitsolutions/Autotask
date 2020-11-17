@@ -123,21 +123,21 @@ Set-AtwsTaxRegion
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'Name')]
+    [ValidateSet('Active', 'id', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'Name')]
+    [ValidateSet('Active', 'id', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'Name')]
+    [ValidateSet('Active', 'id', 'Name')]
     [string[]]
     $IsNotNull,
 

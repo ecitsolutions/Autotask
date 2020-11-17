@@ -155,21 +155,21 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'FieldValue', 'AdditionalInvoiceFieldID', 'InvoiceBatchID')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'id', 'InvoiceBatchID', 'FieldValue')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'FieldValue', 'AdditionalInvoiceFieldID', 'InvoiceBatchID')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'id', 'InvoiceBatchID', 'FieldValue')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'FieldValue', 'AdditionalInvoiceFieldID', 'InvoiceBatchID')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'id', 'InvoiceBatchID', 'FieldValue')]
     [string[]]
     $IsNotNull,
 

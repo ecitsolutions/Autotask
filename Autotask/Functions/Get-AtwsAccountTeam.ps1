@@ -131,21 +131,21 @@ Remove-AtwsAccountTeam
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AssociatedAsComanaged', 'id', 'AccountID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AssociatedAsComanaged', 'id', 'AccountID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AssociatedAsComanaged', 'id', 'AccountID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AssociatedAsComanaged', 'id', 'AccountID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AssociatedAsComanaged', 'id', 'AccountID', 'ResourceID')]
+    [ValidateSet('ResourceID', 'AssociatedAsComanaged', 'id', 'AccountID')]
     [string[]]
     $IsNotNull,
 

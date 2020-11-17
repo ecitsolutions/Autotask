@@ -132,21 +132,21 @@ Remove-AtwsTaskSecondaryResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TaskID', 'RoleID', 'ResourceID')]
+    [ValidateSet('TaskID', 'id', 'ResourceID', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TaskID', 'RoleID', 'ResourceID')]
+    [ValidateSet('TaskID', 'id', 'ResourceID', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TaskID', 'RoleID', 'ResourceID')]
+    [ValidateSet('TaskID', 'id', 'ResourceID', 'RoleID')]
     [string[]]
     $IsNotNull,
 

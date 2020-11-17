@@ -138,21 +138,21 @@ Set-AtwsPaymentTerm
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'Description', 'Name', 'PaymentDueInDays')]
+    [ValidateSet('PaymentDueInDays', 'Active', 'id', 'Description', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'Description', 'Name', 'PaymentDueInDays')]
+    [ValidateSet('PaymentDueInDays', 'Active', 'id', 'Description', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'Description', 'Name', 'PaymentDueInDays')]
+    [ValidateSet('PaymentDueInDays', 'Active', 'id', 'Description', 'Name')]
     [string[]]
     $IsNotNull,
 

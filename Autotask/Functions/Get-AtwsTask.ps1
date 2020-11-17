@@ -466,21 +466,21 @@ Set-AtwsTask
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'TaskNumber', 'ProjectID', 'Priority', 'CompletedByResourceID', 'IsVisibleInClientPortal', 'AllocationCodeID', 'TaskCategoryID', 'Title', 'CreatorResourceID', 'EstimatedHours', 'PhaseID', 'LastActivityDateTime', 'DepartmentID', 'TaskType', 'Status', 'Description', 'CreatorType', 'AccountPhysicalLocationID', 'PurchaseOrderNumber', 'TaskIsBillable', 'LastActivityPersonType', 'LastActivityResourceID', 'AssignedResourceRoleID', 'CreateDateTime', 'ExternalID', 'CompletedByType', 'HoursToBeScheduled', 'StartDateTime', 'AssignedResourceID', 'CompletedDateTime', 'CanClientPortalUserCompleteTask', 'RemainingHours', 'PriorityLabel', 'id')]
+    [ValidateSet('CanClientPortalUserCompleteTask', 'id', 'PhaseID', 'ExternalID', 'AssignedResourceID', 'LastActivityResourceID', 'AllocationCodeID', 'LastActivityPersonType', 'IsVisibleInClientPortal', 'DepartmentID', 'EndDateTime', 'AssignedResourceRoleID', 'Description', 'Title', 'CreatorResourceID', 'Status', 'AccountPhysicalLocationID', 'HoursToBeScheduled', 'TaskIsBillable', 'CreateDateTime', 'RemainingHours', 'EstimatedHours', 'ProjectID', 'TaskType', 'PriorityLabel', 'TaskCategoryID', 'CompletedByType', 'LastActivityDateTime', 'CompletedByResourceID', 'Priority', 'TaskNumber', 'PurchaseOrderNumber', 'CreatorType', 'CompletedDateTime', 'StartDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'TaskNumber', 'ProjectID', 'Priority', 'CompletedByResourceID', 'IsVisibleInClientPortal', 'AllocationCodeID', 'TaskCategoryID', 'Title', 'CreatorResourceID', 'EstimatedHours', 'PhaseID', 'LastActivityDateTime', 'DepartmentID', 'TaskType', 'Status', 'Description', 'CreatorType', 'AccountPhysicalLocationID', 'PurchaseOrderNumber', 'TaskIsBillable', 'LastActivityPersonType', 'LastActivityResourceID', 'AssignedResourceRoleID', 'CreateDateTime', 'ExternalID', 'CompletedByType', 'HoursToBeScheduled', 'StartDateTime', 'AssignedResourceID', 'CompletedDateTime', 'CanClientPortalUserCompleteTask', 'RemainingHours', 'PriorityLabel', 'id')]
+    [ValidateSet('CanClientPortalUserCompleteTask', 'id', 'PhaseID', 'ExternalID', 'AssignedResourceID', 'LastActivityResourceID', 'AllocationCodeID', 'LastActivityPersonType', 'IsVisibleInClientPortal', 'DepartmentID', 'EndDateTime', 'AssignedResourceRoleID', 'Description', 'Title', 'CreatorResourceID', 'Status', 'AccountPhysicalLocationID', 'HoursToBeScheduled', 'TaskIsBillable', 'CreateDateTime', 'RemainingHours', 'EstimatedHours', 'ProjectID', 'TaskType', 'PriorityLabel', 'TaskCategoryID', 'CompletedByType', 'LastActivityDateTime', 'CompletedByResourceID', 'Priority', 'TaskNumber', 'PurchaseOrderNumber', 'CreatorType', 'CompletedDateTime', 'StartDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'TaskNumber', 'ProjectID', 'Priority', 'CompletedByResourceID', 'IsVisibleInClientPortal', 'AllocationCodeID', 'TaskCategoryID', 'Title', 'CreatorResourceID', 'EstimatedHours', 'PhaseID', 'LastActivityDateTime', 'DepartmentID', 'TaskType', 'Status', 'Description', 'CreatorType', 'AccountPhysicalLocationID', 'PurchaseOrderNumber', 'TaskIsBillable', 'LastActivityPersonType', 'LastActivityResourceID', 'AssignedResourceRoleID', 'CreateDateTime', 'ExternalID', 'CompletedByType', 'HoursToBeScheduled', 'StartDateTime', 'AssignedResourceID', 'CompletedDateTime', 'CanClientPortalUserCompleteTask', 'RemainingHours', 'PriorityLabel', 'id')]
+    [ValidateSet('CanClientPortalUserCompleteTask', 'id', 'PhaseID', 'ExternalID', 'AssignedResourceID', 'LastActivityResourceID', 'AllocationCodeID', 'LastActivityPersonType', 'IsVisibleInClientPortal', 'DepartmentID', 'EndDateTime', 'AssignedResourceRoleID', 'Description', 'Title', 'CreatorResourceID', 'Status', 'AccountPhysicalLocationID', 'HoursToBeScheduled', 'TaskIsBillable', 'CreateDateTime', 'RemainingHours', 'EstimatedHours', 'ProjectID', 'TaskType', 'PriorityLabel', 'TaskCategoryID', 'CompletedByType', 'LastActivityDateTime', 'CompletedByResourceID', 'Priority', 'TaskNumber', 'PurchaseOrderNumber', 'CreatorType', 'CompletedDateTime', 'StartDateTime')]
     [string[]]
     $IsNotNull,
 

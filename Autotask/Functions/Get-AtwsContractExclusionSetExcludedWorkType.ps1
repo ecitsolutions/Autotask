@@ -124,21 +124,21 @@ Remove-AtwsContractExclusionSetExcludedWorkType
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractExclusionSetID', 'id', 'ExcludedWorkTypeID')]
+    [ValidateSet('ExcludedWorkTypeID', 'id', 'ContractExclusionSetID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractExclusionSetID', 'id', 'ExcludedWorkTypeID')]
+    [ValidateSet('ExcludedWorkTypeID', 'id', 'ContractExclusionSetID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractExclusionSetID', 'id', 'ExcludedWorkTypeID')]
+    [ValidateSet('ExcludedWorkTypeID', 'id', 'ContractExclusionSetID')]
     [string[]]
     $IsNotNull,
 

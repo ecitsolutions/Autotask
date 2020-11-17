@@ -246,21 +246,21 @@ Set-AtwsServiceCall
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CancelationNoticeHours', 'StartDateTime', 'Status', 'AccountID', 'CreateDateTime', 'AccountPhysicalLocationID', 'CreatorResourceID', 'id', 'EndDateTime', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'Complete', 'LastModifiedDateTime', 'CanceledByResource', 'CanceledDateTime')]
+    [ValidateSet('CreatorResourceID', 'CanceledDateTime', 'Duration', 'EndDateTime', 'StartDateTime', 'id', 'LastModifiedDateTime', 'AccountPhysicalLocationID', 'CreateDateTime', 'Status', 'CancelationNoticeHours', 'ImpersonatorCreatorResourceID', 'CanceledByResource', 'Complete', 'Description', 'AccountID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CancelationNoticeHours', 'StartDateTime', 'Status', 'AccountID', 'CreateDateTime', 'AccountPhysicalLocationID', 'CreatorResourceID', 'id', 'EndDateTime', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'Complete', 'LastModifiedDateTime', 'CanceledByResource', 'CanceledDateTime')]
+    [ValidateSet('CreatorResourceID', 'CanceledDateTime', 'Duration', 'EndDateTime', 'StartDateTime', 'id', 'LastModifiedDateTime', 'AccountPhysicalLocationID', 'CreateDateTime', 'Status', 'CancelationNoticeHours', 'ImpersonatorCreatorResourceID', 'CanceledByResource', 'Complete', 'Description', 'AccountID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CancelationNoticeHours', 'StartDateTime', 'Status', 'AccountID', 'CreateDateTime', 'AccountPhysicalLocationID', 'CreatorResourceID', 'id', 'EndDateTime', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'Complete', 'LastModifiedDateTime', 'CanceledByResource', 'CanceledDateTime')]
+    [ValidateSet('CreatorResourceID', 'CanceledDateTime', 'Duration', 'EndDateTime', 'StartDateTime', 'id', 'LastModifiedDateTime', 'AccountPhysicalLocationID', 'CreateDateTime', 'Status', 'CancelationNoticeHours', 'ImpersonatorCreatorResourceID', 'CanceledByResource', 'Complete', 'Description', 'AccountID')]
     [string[]]
     $IsNotNull,
 

@@ -168,21 +168,21 @@ An example of a more complex query. This command returns any ResourceRoles with 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'ResourceID', 'QueueID', 'DepartmentID', 'id', 'RoleID')]
+    [ValidateSet('ResourceID', 'QueueID', 'RoleID', 'DepartmentID', 'Active', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'ResourceID', 'QueueID', 'DepartmentID', 'id', 'RoleID')]
+    [ValidateSet('ResourceID', 'QueueID', 'RoleID', 'DepartmentID', 'Active', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'ResourceID', 'QueueID', 'DepartmentID', 'id', 'RoleID')]
+    [ValidateSet('ResourceID', 'QueueID', 'RoleID', 'DepartmentID', 'Active', 'id')]
     [string[]]
     $IsNotNull,
 

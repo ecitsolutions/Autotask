@@ -141,21 +141,21 @@ Set-AtwsProductTier
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpToUnitCount', 'id', 'UnitPrice', 'UnitCost', 'ProductID')]
+    [ValidateSet('UnitPrice', 'UnitCost', 'id', 'ProductID', 'UpToUnitCount')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpToUnitCount', 'id', 'UnitPrice', 'UnitCost', 'ProductID')]
+    [ValidateSet('UnitPrice', 'UnitCost', 'id', 'ProductID', 'UpToUnitCount')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpToUnitCount', 'id', 'UnitPrice', 'UnitCost', 'ProductID')]
+    [ValidateSet('UnitPrice', 'UnitCost', 'id', 'ProductID', 'UpToUnitCount')]
     [string[]]
     $IsNotNull,
 

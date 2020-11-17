@@ -124,21 +124,21 @@ Remove-AtwsContactGroupContact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContactID', 'ContactGroupID')]
+    [ValidateSet('ContactGroupID', 'id', 'ContactID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContactID', 'ContactGroupID')]
+    [ValidateSet('ContactGroupID', 'id', 'ContactID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContactID', 'ContactGroupID')]
+    [ValidateSet('ContactGroupID', 'id', 'ContactID')]
     [string[]]
     $IsNotNull,
 

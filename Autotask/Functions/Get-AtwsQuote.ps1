@@ -464,21 +464,21 @@ Set-AtwsQuote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteNumber', 'QuoteTemplateID', 'TaxGroup', 'ShowEachTaxInGroup', 'SoldToLocationID', 'BillToLocationID', 'ShowTaxCategory', 'ShippingType', 'EffectiveDate', 'LastModifiedBy', 'CreatorResourceID', 'CalculateTaxSeparately', 'ExternalQuoteNumber', 'ExtApprovalResponseSignature', 'ExtApprovalContactResponse', 'Description', 'ApprovalStatusChangedDate', 'ApprovalStatus', 'ImpersonatorCreatorResourceID', 'PurchaseOrderNumber', 'Name', 'ApprovalStatusChangedByResourceID', 'PaymentType', 'GroupByProductCategory', 'PrimaryQuote', 'ExpirationDate', 'ExtApprovalResponseDate', 'AccountID', 'GroupByID', 'ProposalProjectID', 'ContactID', 'eQuoteActive', 'Comment', 'CreateDate', 'PaymentTerm', 'ShipToLocationID', 'LastActivityDate', 'OpportunityID', 'id')]
+    [ValidateSet('LastActivityDate', 'id', 'SoldToLocationID', 'EffectiveDate', 'QuoteTemplateID', 'ExpirationDate', 'ApprovalStatus', 'PaymentTerm', 'ApprovalStatusChangedByResourceID', 'eQuoteActive', 'ShowTaxCategory', 'LastModifiedBy', 'ShowEachTaxInGroup', 'ProposalProjectID', 'Description', 'BillToLocationID', 'ContactID', 'CalculateTaxSeparately', 'ShippingType', 'CreatorResourceID', 'Comment', 'Name', 'ApprovalStatusChangedDate', 'AccountID', 'ShipToLocationID', 'ExternalQuoteNumber', 'ExtApprovalContactResponse', 'CreateDate', 'ImpersonatorCreatorResourceID', 'PaymentType', 'ExtApprovalResponseDate', 'GroupByProductCategory', 'PrimaryQuote', 'TaxGroup', 'QuoteNumber', 'OpportunityID', 'PurchaseOrderNumber', 'ExtApprovalResponseSignature', 'GroupByID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteNumber', 'QuoteTemplateID', 'TaxGroup', 'ShowEachTaxInGroup', 'SoldToLocationID', 'BillToLocationID', 'ShowTaxCategory', 'ShippingType', 'EffectiveDate', 'LastModifiedBy', 'CreatorResourceID', 'CalculateTaxSeparately', 'ExternalQuoteNumber', 'ExtApprovalResponseSignature', 'ExtApprovalContactResponse', 'Description', 'ApprovalStatusChangedDate', 'ApprovalStatus', 'ImpersonatorCreatorResourceID', 'PurchaseOrderNumber', 'Name', 'ApprovalStatusChangedByResourceID', 'PaymentType', 'GroupByProductCategory', 'PrimaryQuote', 'ExpirationDate', 'ExtApprovalResponseDate', 'AccountID', 'GroupByID', 'ProposalProjectID', 'ContactID', 'eQuoteActive', 'Comment', 'CreateDate', 'PaymentTerm', 'ShipToLocationID', 'LastActivityDate', 'OpportunityID', 'id')]
+    [ValidateSet('LastActivityDate', 'id', 'SoldToLocationID', 'EffectiveDate', 'QuoteTemplateID', 'ExpirationDate', 'ApprovalStatus', 'PaymentTerm', 'ApprovalStatusChangedByResourceID', 'eQuoteActive', 'ShowTaxCategory', 'LastModifiedBy', 'ShowEachTaxInGroup', 'ProposalProjectID', 'Description', 'BillToLocationID', 'ContactID', 'CalculateTaxSeparately', 'ShippingType', 'CreatorResourceID', 'Comment', 'Name', 'ApprovalStatusChangedDate', 'AccountID', 'ShipToLocationID', 'ExternalQuoteNumber', 'ExtApprovalContactResponse', 'CreateDate', 'ImpersonatorCreatorResourceID', 'PaymentType', 'ExtApprovalResponseDate', 'GroupByProductCategory', 'PrimaryQuote', 'TaxGroup', 'QuoteNumber', 'OpportunityID', 'PurchaseOrderNumber', 'ExtApprovalResponseSignature', 'GroupByID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteNumber', 'QuoteTemplateID', 'TaxGroup', 'ShowEachTaxInGroup', 'SoldToLocationID', 'BillToLocationID', 'ShowTaxCategory', 'ShippingType', 'EffectiveDate', 'LastModifiedBy', 'CreatorResourceID', 'CalculateTaxSeparately', 'ExternalQuoteNumber', 'ExtApprovalResponseSignature', 'ExtApprovalContactResponse', 'Description', 'ApprovalStatusChangedDate', 'ApprovalStatus', 'ImpersonatorCreatorResourceID', 'PurchaseOrderNumber', 'Name', 'ApprovalStatusChangedByResourceID', 'PaymentType', 'GroupByProductCategory', 'PrimaryQuote', 'ExpirationDate', 'ExtApprovalResponseDate', 'AccountID', 'GroupByID', 'ProposalProjectID', 'ContactID', 'eQuoteActive', 'Comment', 'CreateDate', 'PaymentTerm', 'ShipToLocationID', 'LastActivityDate', 'OpportunityID', 'id')]
+    [ValidateSet('LastActivityDate', 'id', 'SoldToLocationID', 'EffectiveDate', 'QuoteTemplateID', 'ExpirationDate', 'ApprovalStatus', 'PaymentTerm', 'ApprovalStatusChangedByResourceID', 'eQuoteActive', 'ShowTaxCategory', 'LastModifiedBy', 'ShowEachTaxInGroup', 'ProposalProjectID', 'Description', 'BillToLocationID', 'ContactID', 'CalculateTaxSeparately', 'ShippingType', 'CreatorResourceID', 'Comment', 'Name', 'ApprovalStatusChangedDate', 'AccountID', 'ShipToLocationID', 'ExternalQuoteNumber', 'ExtApprovalContactResponse', 'CreateDate', 'ImpersonatorCreatorResourceID', 'PaymentType', 'ExtApprovalResponseDate', 'GroupByProductCategory', 'PrimaryQuote', 'TaxGroup', 'QuoteNumber', 'OpportunityID', 'PurchaseOrderNumber', 'ExtApprovalResponseSignature', 'GroupByID')]
     [string[]]
     $IsNotNull,
 

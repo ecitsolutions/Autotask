@@ -145,21 +145,21 @@ Set-AtwsPriceListWorkTypeModifier
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ModifierType', 'ModifierValue', 'CurrencyID', 'UsesInternalCurrencyPrice', 'WorkTypeModifierID', 'id')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'ModifierType', 'id', 'CurrencyID', 'ModifierValue', 'WorkTypeModifierID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ModifierType', 'ModifierValue', 'CurrencyID', 'UsesInternalCurrencyPrice', 'WorkTypeModifierID', 'id')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'ModifierType', 'id', 'CurrencyID', 'ModifierValue', 'WorkTypeModifierID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ModifierType', 'ModifierValue', 'CurrencyID', 'UsesInternalCurrencyPrice', 'WorkTypeModifierID', 'id')]
+    [ValidateSet('UsesInternalCurrencyPrice', 'ModifierType', 'id', 'CurrencyID', 'ModifierValue', 'WorkTypeModifierID')]
     [string[]]
     $IsNotNull,
 

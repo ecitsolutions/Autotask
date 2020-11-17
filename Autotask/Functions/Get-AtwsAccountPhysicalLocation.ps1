@@ -256,21 +256,21 @@ Set-AtwsAccountPhysicalLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'AlternatePhone2', 'Address2', 'Fax', 'State', 'Active', 'AccountID', 'City', 'PostalCode', 'Name', 'AlternatePhone1', 'CountryID', 'IsTaxExempt', 'id', 'OverrideAccountTaxSettings', 'Primary', 'TaxRegionID', 'Description', 'RoundtripDistance', 'Phone')]
+    [ValidateSet('Fax', 'Name', 'Description', 'Address2', 'IsTaxExempt', 'PostalCode', 'Primary', 'City', 'id', 'State', 'Phone', 'Address1', 'TaxRegionID', 'AlternatePhone2', 'RoundtripDistance', 'CountryID', 'Active', 'OverrideAccountTaxSettings', 'AlternatePhone1', 'AccountID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'AlternatePhone2', 'Address2', 'Fax', 'State', 'Active', 'AccountID', 'City', 'PostalCode', 'Name', 'AlternatePhone1', 'CountryID', 'IsTaxExempt', 'id', 'OverrideAccountTaxSettings', 'Primary', 'TaxRegionID', 'Description', 'RoundtripDistance', 'Phone')]
+    [ValidateSet('Fax', 'Name', 'Description', 'Address2', 'IsTaxExempt', 'PostalCode', 'Primary', 'City', 'id', 'State', 'Phone', 'Address1', 'TaxRegionID', 'AlternatePhone2', 'RoundtripDistance', 'CountryID', 'Active', 'OverrideAccountTaxSettings', 'AlternatePhone1', 'AccountID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'AlternatePhone2', 'Address2', 'Fax', 'State', 'Active', 'AccountID', 'City', 'PostalCode', 'Name', 'AlternatePhone1', 'CountryID', 'IsTaxExempt', 'id', 'OverrideAccountTaxSettings', 'Primary', 'TaxRegionID', 'Description', 'RoundtripDistance', 'Phone')]
+    [ValidateSet('Fax', 'Name', 'Description', 'Address2', 'IsTaxExempt', 'PostalCode', 'Primary', 'City', 'id', 'State', 'Phone', 'Address1', 'TaxRegionID', 'AlternatePhone2', 'RoundtripDistance', 'CountryID', 'Active', 'OverrideAccountTaxSettings', 'AlternatePhone1', 'AccountID')]
     [string[]]
     $IsNotNull,
 

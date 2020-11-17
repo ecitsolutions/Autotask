@@ -175,21 +175,21 @@ Set-AtwsChecklistLibraryChecklistItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Position', 'KnowledgebaseArticleID', 'Important', 'id', 'ChecklistLibraryID', 'ItemName')]
+    [ValidateSet('ChecklistLibraryID', 'KnowledgebaseArticleID', 'id', 'Position', 'Important', 'ItemName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Position', 'KnowledgebaseArticleID', 'Important', 'id', 'ChecklistLibraryID', 'ItemName')]
+    [ValidateSet('ChecklistLibraryID', 'KnowledgebaseArticleID', 'id', 'Position', 'Important', 'ItemName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Position', 'KnowledgebaseArticleID', 'Important', 'id', 'ChecklistLibraryID', 'ItemName')]
+    [ValidateSet('ChecklistLibraryID', 'KnowledgebaseArticleID', 'id', 'Position', 'Important', 'ItemName')]
     [string[]]
     $IsNotNull,
 

@@ -146,21 +146,21 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'DeletedByResourceID', 'id', 'DeletedDateTime', 'TicketTitle', 'TicketNumber')]
+    [ValidateSet('DeletedDateTime', 'TicketTitle', 'DeletedByResourceID', 'id', 'TicketNumber', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'DeletedByResourceID', 'id', 'DeletedDateTime', 'TicketTitle', 'TicketNumber')]
+    [ValidateSet('DeletedDateTime', 'TicketTitle', 'DeletedByResourceID', 'id', 'TicketNumber', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'DeletedByResourceID', 'id', 'DeletedDateTime', 'TicketTitle', 'TicketNumber')]
+    [ValidateSet('DeletedDateTime', 'TicketTitle', 'DeletedByResourceID', 'id', 'TicketNumber', 'TicketID')]
     [string[]]
     $IsNotNull,
 

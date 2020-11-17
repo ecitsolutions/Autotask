@@ -204,21 +204,21 @@ Set-AtwsPurchaseOrderItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InventoryLocationID', 'ContractID', 'CostID', 'UnitCost', 'TicketID', 'EstimatedArrivalDate', 'ProductID', 'InternalCurrencyUnitCost', 'Quantity', 'Memo', 'SalesOrderID', 'id', 'OrderID', 'ProjectID')]
+    [ValidateSet('ProjectID', 'ProductID', 'EstimatedArrivalDate', 'InventoryLocationID', 'TicketID', 'Memo', 'id', 'SalesOrderID', 'OrderID', 'Quantity', 'UnitCost', 'ContractID', 'CostID', 'InternalCurrencyUnitCost')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InventoryLocationID', 'ContractID', 'CostID', 'UnitCost', 'TicketID', 'EstimatedArrivalDate', 'ProductID', 'InternalCurrencyUnitCost', 'Quantity', 'Memo', 'SalesOrderID', 'id', 'OrderID', 'ProjectID')]
+    [ValidateSet('ProjectID', 'ProductID', 'EstimatedArrivalDate', 'InventoryLocationID', 'TicketID', 'Memo', 'id', 'SalesOrderID', 'OrderID', 'Quantity', 'UnitCost', 'ContractID', 'CostID', 'InternalCurrencyUnitCost')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InventoryLocationID', 'ContractID', 'CostID', 'UnitCost', 'TicketID', 'EstimatedArrivalDate', 'ProductID', 'InternalCurrencyUnitCost', 'Quantity', 'Memo', 'SalesOrderID', 'id', 'OrderID', 'ProjectID')]
+    [ValidateSet('ProjectID', 'ProductID', 'EstimatedArrivalDate', 'InventoryLocationID', 'TicketID', 'Memo', 'id', 'SalesOrderID', 'OrderID', 'Quantity', 'UnitCost', 'ContractID', 'CostID', 'InternalCurrencyUnitCost')]
     [string[]]
     $IsNotNull,
 

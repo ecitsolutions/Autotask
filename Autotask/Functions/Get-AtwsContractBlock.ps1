@@ -246,21 +246,21 @@ Set-AtwsContractBlock
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'PaymentType', 'Status', 'StartDate', 'HoursApproved', 'HourlyRate', 'Hours', 'PaymentNumber', 'id', 'InvoiceNumber', 'EndDate', 'DatePurchased', 'IsPaid')]
+    [ValidateSet('DatePurchased', 'EndDate', 'InvoiceNumber', 'HoursApproved', 'Hours', 'id', 'HourlyRate', 'Status', 'ContractID', 'PaymentType', 'StartDate', 'PaymentNumber', 'IsPaid')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'PaymentType', 'Status', 'StartDate', 'HoursApproved', 'HourlyRate', 'Hours', 'PaymentNumber', 'id', 'InvoiceNumber', 'EndDate', 'DatePurchased', 'IsPaid')]
+    [ValidateSet('DatePurchased', 'EndDate', 'InvoiceNumber', 'HoursApproved', 'Hours', 'id', 'HourlyRate', 'Status', 'ContractID', 'PaymentType', 'StartDate', 'PaymentNumber', 'IsPaid')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'PaymentType', 'Status', 'StartDate', 'HoursApproved', 'HourlyRate', 'Hours', 'PaymentNumber', 'id', 'InvoiceNumber', 'EndDate', 'DatePurchased', 'IsPaid')]
+    [ValidateSet('DatePurchased', 'EndDate', 'InvoiceNumber', 'HoursApproved', 'Hours', 'id', 'HourlyRate', 'Status', 'ContractID', 'PaymentType', 'StartDate', 'PaymentNumber', 'IsPaid')]
     [string[]]
     $IsNotNull,
 

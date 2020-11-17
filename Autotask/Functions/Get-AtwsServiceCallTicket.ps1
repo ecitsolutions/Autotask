@@ -138,21 +138,21 @@ Remove-AtwsServiceCallTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'ServiceCallID', 'CreateDateTime', 'CreatedByResourceID')]
+    [ValidateSet('CreateDateTime', 'TicketID', 'id', 'ServiceCallID', 'CreatedByResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'ServiceCallID', 'CreateDateTime', 'CreatedByResourceID')]
+    [ValidateSet('CreateDateTime', 'TicketID', 'id', 'ServiceCallID', 'CreatedByResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'ServiceCallID', 'CreateDateTime', 'CreatedByResourceID')]
+    [ValidateSet('CreateDateTime', 'TicketID', 'id', 'ServiceCallID', 'CreatedByResourceID')]
     [string[]]
     $IsNotNull,
 

@@ -140,21 +140,21 @@ Set-AtwsContractRoleCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'RoleID', 'Rate', 'ResourceID')]
+    [ValidateSet('id', 'Rate', 'ContractID', 'ResourceID', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'RoleID', 'Rate', 'ResourceID')]
+    [ValidateSet('id', 'Rate', 'ContractID', 'ResourceID', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'RoleID', 'Rate', 'ResourceID')]
+    [ValidateSet('id', 'Rate', 'ContractID', 'ResourceID', 'RoleID')]
     [string[]]
     $IsNotNull,
 

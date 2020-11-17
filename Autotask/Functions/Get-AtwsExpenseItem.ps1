@@ -341,21 +341,21 @@ Set-AtwsExpenseItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillableToAccount', 'HaveReceipt', 'ProjectID', 'TicketID', 'Origin', 'ExpenseCategory', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseCurrencyID', 'ExpenseAmount', 'Rejected', 'OdometerStart', 'Miles', 'Description', 'WorkType', 'PurchaseOrderNumber', 'TaskID', 'PaymentType', 'Destination', 'OdometerEnd', 'EntertainmentLocation', 'ReimbursementAmount', 'AccountID', 'GLCode', 'Reimbursable', 'ReceiptAmount', 'ExpenseDate', 'ExpenseReportID', 'id')]
+    [ValidateSet('Destination', 'OdometerStart', 'Reimbursable', 'id', 'ReimbursementAmount', 'ExpenseDate', 'ReimbursementCurrencyReimbursementAmount', 'TaskID', 'Miles', 'OdometerEnd', 'Origin', 'GLCode', 'Description', 'HaveReceipt', 'PurchaseOrderNumber', 'Rejected', 'BillableToAccount', 'ExpenseCategory', 'ProjectID', 'WorkType', 'AccountID', 'PaymentType', 'TicketID', 'ReceiptAmount', 'EntertainmentLocation', 'ExpenseAmount', 'ExpenseCurrencyID', 'ExpenseReportID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillableToAccount', 'HaveReceipt', 'ProjectID', 'TicketID', 'Origin', 'ExpenseCategory', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseCurrencyID', 'ExpenseAmount', 'Rejected', 'OdometerStart', 'Miles', 'Description', 'WorkType', 'PurchaseOrderNumber', 'TaskID', 'PaymentType', 'Destination', 'OdometerEnd', 'EntertainmentLocation', 'ReimbursementAmount', 'AccountID', 'GLCode', 'Reimbursable', 'ReceiptAmount', 'ExpenseDate', 'ExpenseReportID', 'id')]
+    [ValidateSet('Destination', 'OdometerStart', 'Reimbursable', 'id', 'ReimbursementAmount', 'ExpenseDate', 'ReimbursementCurrencyReimbursementAmount', 'TaskID', 'Miles', 'OdometerEnd', 'Origin', 'GLCode', 'Description', 'HaveReceipt', 'PurchaseOrderNumber', 'Rejected', 'BillableToAccount', 'ExpenseCategory', 'ProjectID', 'WorkType', 'AccountID', 'PaymentType', 'TicketID', 'ReceiptAmount', 'EntertainmentLocation', 'ExpenseAmount', 'ExpenseCurrencyID', 'ExpenseReportID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillableToAccount', 'HaveReceipt', 'ProjectID', 'TicketID', 'Origin', 'ExpenseCategory', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseCurrencyID', 'ExpenseAmount', 'Rejected', 'OdometerStart', 'Miles', 'Description', 'WorkType', 'PurchaseOrderNumber', 'TaskID', 'PaymentType', 'Destination', 'OdometerEnd', 'EntertainmentLocation', 'ReimbursementAmount', 'AccountID', 'GLCode', 'Reimbursable', 'ReceiptAmount', 'ExpenseDate', 'ExpenseReportID', 'id')]
+    [ValidateSet('Destination', 'OdometerStart', 'Reimbursable', 'id', 'ReimbursementAmount', 'ExpenseDate', 'ReimbursementCurrencyReimbursementAmount', 'TaskID', 'Miles', 'OdometerEnd', 'Origin', 'GLCode', 'Description', 'HaveReceipt', 'PurchaseOrderNumber', 'Rejected', 'BillableToAccount', 'ExpenseCategory', 'ProjectID', 'WorkType', 'AccountID', 'PaymentType', 'TicketID', 'ReceiptAmount', 'EntertainmentLocation', 'ExpenseAmount', 'ExpenseCurrencyID', 'ExpenseReportID')]
     [string[]]
     $IsNotNull,
 

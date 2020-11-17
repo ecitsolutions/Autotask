@@ -246,21 +246,21 @@ Set-AtwsContractRetainer
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'Status', 'StartDate', 'paymentID', 'AmountApproved', 'PaymentNumber', 'InternalCurrencyAmountApproved', 'id', 'InvoiceNumber', 'EndDate', 'DatePurchased', 'IsPaid', 'InternalCurrencyAmount', 'Amount')]
+    [ValidateSet('DatePurchased', 'EndDate', 'AmountApproved', 'InvoiceNumber', 'id', 'paymentID', 'Status', 'ContractID', 'InternalCurrencyAmountApproved', 'InternalCurrencyAmount', 'Amount', 'StartDate', 'PaymentNumber', 'IsPaid')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'Status', 'StartDate', 'paymentID', 'AmountApproved', 'PaymentNumber', 'InternalCurrencyAmountApproved', 'id', 'InvoiceNumber', 'EndDate', 'DatePurchased', 'IsPaid', 'InternalCurrencyAmount', 'Amount')]
+    [ValidateSet('DatePurchased', 'EndDate', 'AmountApproved', 'InvoiceNumber', 'id', 'paymentID', 'Status', 'ContractID', 'InternalCurrencyAmountApproved', 'InternalCurrencyAmount', 'Amount', 'StartDate', 'PaymentNumber', 'IsPaid')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'Status', 'StartDate', 'paymentID', 'AmountApproved', 'PaymentNumber', 'InternalCurrencyAmountApproved', 'id', 'InvoiceNumber', 'EndDate', 'DatePurchased', 'IsPaid', 'InternalCurrencyAmount', 'Amount')]
+    [ValidateSet('DatePurchased', 'EndDate', 'AmountApproved', 'InvoiceNumber', 'id', 'paymentID', 'Status', 'ContractID', 'InternalCurrencyAmountApproved', 'InternalCurrencyAmount', 'Amount', 'StartDate', 'PaymentNumber', 'IsPaid')]
     [string[]]
     $IsNotNull,
 

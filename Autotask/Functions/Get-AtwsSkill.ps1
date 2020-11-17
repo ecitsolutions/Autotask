@@ -163,21 +163,21 @@ An example of a more complex query. This command returns any Skills with Id GREA
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CategoryID', 'Active', 'Description', 'Name')]
+    [ValidateSet('Active', 'id', 'CategoryID', 'Name', 'Description')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CategoryID', 'Active', 'Description', 'Name')]
+    [ValidateSet('Active', 'id', 'CategoryID', 'Name', 'Description')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CategoryID', 'Active', 'Description', 'Name')]
+    [ValidateSet('Active', 'id', 'CategoryID', 'Name', 'Description')]
     [string[]]
     $IsNotNull,
 

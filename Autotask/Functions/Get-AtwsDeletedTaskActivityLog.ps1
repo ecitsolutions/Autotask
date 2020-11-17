@@ -221,21 +221,21 @@ An example of a more complex query. This command returns any DeletedTaskActivity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedDateTime', 'id', 'EndDateTime', 'TypeID', 'DeletedByResourceID', 'NoteOrAttachmentTitle', 'TaskID', 'HoursWorked', 'CreatedByResourceID', 'ActivityDateTime', 'TaskNumber', 'StartDateTime')]
+    [ValidateSet('DeletedByResourceID', 'TaskNumber', 'DeletedDateTime', 'StartDateTime', 'TypeID', 'ActivityDateTime', 'id', 'TaskID', 'EndDateTime', 'CreatedByResourceID', 'HoursWorked', 'NoteOrAttachmentTitle')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedDateTime', 'id', 'EndDateTime', 'TypeID', 'DeletedByResourceID', 'NoteOrAttachmentTitle', 'TaskID', 'HoursWorked', 'CreatedByResourceID', 'ActivityDateTime', 'TaskNumber', 'StartDateTime')]
+    [ValidateSet('DeletedByResourceID', 'TaskNumber', 'DeletedDateTime', 'StartDateTime', 'TypeID', 'ActivityDateTime', 'id', 'TaskID', 'EndDateTime', 'CreatedByResourceID', 'HoursWorked', 'NoteOrAttachmentTitle')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedDateTime', 'id', 'EndDateTime', 'TypeID', 'DeletedByResourceID', 'NoteOrAttachmentTitle', 'TaskID', 'HoursWorked', 'CreatedByResourceID', 'ActivityDateTime', 'TaskNumber', 'StartDateTime')]
+    [ValidateSet('DeletedByResourceID', 'TaskNumber', 'DeletedDateTime', 'StartDateTime', 'TypeID', 'ActivityDateTime', 'id', 'TaskID', 'EndDateTime', 'CreatedByResourceID', 'HoursWorked', 'NoteOrAttachmentTitle')]
     [string[]]
     $IsNotNull,
 

@@ -213,21 +213,21 @@ Set-AtwsAccountWebhook
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedToDeleteEvents', 'Ready', 'Active', 'DeactivationUrl', 'Name', 'WebhookUrl', 'OwnerResourceID', 'IsSubscribedToCreateEvents', 'id', 'SecretKey', 'SendThresholdExceededNotification', 'WebhookGUID', 'NotificationEmailAddress', 'IsSubscribedToUpdateEvents')]
+    [ValidateSet('IsSubscribedToUpdateEvents', 'IsSubscribedToCreateEvents', 'Name', 'id', 'SendThresholdExceededNotification', 'Ready', 'WebhookGUID', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey', 'Active', 'OwnerResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedToDeleteEvents', 'Ready', 'Active', 'DeactivationUrl', 'Name', 'WebhookUrl', 'OwnerResourceID', 'IsSubscribedToCreateEvents', 'id', 'SecretKey', 'SendThresholdExceededNotification', 'WebhookGUID', 'NotificationEmailAddress', 'IsSubscribedToUpdateEvents')]
+    [ValidateSet('IsSubscribedToUpdateEvents', 'IsSubscribedToCreateEvents', 'Name', 'id', 'SendThresholdExceededNotification', 'Ready', 'WebhookGUID', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey', 'Active', 'OwnerResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedToDeleteEvents', 'Ready', 'Active', 'DeactivationUrl', 'Name', 'WebhookUrl', 'OwnerResourceID', 'IsSubscribedToCreateEvents', 'id', 'SecretKey', 'SendThresholdExceededNotification', 'WebhookGUID', 'NotificationEmailAddress', 'IsSubscribedToUpdateEvents')]
+    [ValidateSet('IsSubscribedToUpdateEvents', 'IsSubscribedToCreateEvents', 'Name', 'id', 'SendThresholdExceededNotification', 'Ready', 'WebhookGUID', 'IsSubscribedToDeleteEvents', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey', 'Active', 'OwnerResourceID')]
     [string[]]
     $IsNotNull,
 

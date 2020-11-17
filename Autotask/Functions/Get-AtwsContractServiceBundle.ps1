@@ -175,21 +175,21 @@ Set-AtwsContractServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdjustedPrice', 'InternalCurrencyAdjustedPrice', 'ServiceBundleID', 'id', 'InternalDescription', 'ContractID', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'InvoiceDescription', 'UnitPrice')]
+    [ValidateSet('ServiceBundleID', 'UnitPrice', 'InvoiceDescription', 'QuoteItemID', 'id', 'InternalCurrencyAdjustedPrice', 'AdjustedPrice', 'InternalDescription', 'ContractID', 'InternalCurrencyUnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdjustedPrice', 'InternalCurrencyAdjustedPrice', 'ServiceBundleID', 'id', 'InternalDescription', 'ContractID', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'InvoiceDescription', 'UnitPrice')]
+    [ValidateSet('ServiceBundleID', 'UnitPrice', 'InvoiceDescription', 'QuoteItemID', 'id', 'InternalCurrencyAdjustedPrice', 'AdjustedPrice', 'InternalDescription', 'ContractID', 'InternalCurrencyUnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdjustedPrice', 'InternalCurrencyAdjustedPrice', 'ServiceBundleID', 'id', 'InternalDescription', 'ContractID', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'InvoiceDescription', 'UnitPrice')]
+    [ValidateSet('ServiceBundleID', 'UnitPrice', 'InvoiceDescription', 'QuoteItemID', 'id', 'InternalCurrencyAdjustedPrice', 'AdjustedPrice', 'InternalDescription', 'ContractID', 'InternalCurrencyUnitPrice')]
     [string[]]
     $IsNotNull,
 

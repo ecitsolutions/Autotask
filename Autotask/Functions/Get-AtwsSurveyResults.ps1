@@ -175,21 +175,21 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompanyRating', 'ContactRating', 'ResourceRating', 'id', 'SurveyID', 'ContactID', 'TicketID', 'SendDate', 'SurveyRating', 'AccountID', 'CompleteDate')]
+    [ValidateSet('SurveyID', 'SurveyRating', 'ContactRating', 'ResourceRating', 'TicketID', 'CompanyRating', 'AccountID', 'CompleteDate', 'ContactID', 'SendDate', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompanyRating', 'ContactRating', 'ResourceRating', 'id', 'SurveyID', 'ContactID', 'TicketID', 'SendDate', 'SurveyRating', 'AccountID', 'CompleteDate')]
+    [ValidateSet('SurveyID', 'SurveyRating', 'ContactRating', 'ResourceRating', 'TicketID', 'CompanyRating', 'AccountID', 'CompleteDate', 'ContactID', 'SendDate', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompanyRating', 'ContactRating', 'ResourceRating', 'id', 'SurveyID', 'ContactID', 'TicketID', 'SendDate', 'SurveyRating', 'AccountID', 'CompleteDate')]
+    [ValidateSet('SurveyID', 'SurveyRating', 'ContactRating', 'ResourceRating', 'TicketID', 'CompanyRating', 'AccountID', 'CompleteDate', 'ContactID', 'SendDate', 'id')]
     [string[]]
     $IsNotNull,
 

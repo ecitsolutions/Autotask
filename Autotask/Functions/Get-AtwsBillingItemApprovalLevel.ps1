@@ -138,21 +138,21 @@ New-AtwsBillingItemApprovalLevel
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApprovalDateTime', 'id', 'TimeEntryID', 'ApprovalLevel', 'ApprovalResourceID')]
+    [ValidateSet('ApprovalResourceID', 'id', 'ApprovalLevel', 'TimeEntryID', 'ApprovalDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApprovalDateTime', 'id', 'TimeEntryID', 'ApprovalLevel', 'ApprovalResourceID')]
+    [ValidateSet('ApprovalResourceID', 'id', 'ApprovalLevel', 'TimeEntryID', 'ApprovalDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApprovalDateTime', 'id', 'TimeEntryID', 'ApprovalLevel', 'ApprovalResourceID')]
+    [ValidateSet('ApprovalResourceID', 'id', 'ApprovalLevel', 'TimeEntryID', 'ApprovalDateTime')]
     [string[]]
     $IsNotNull,
 

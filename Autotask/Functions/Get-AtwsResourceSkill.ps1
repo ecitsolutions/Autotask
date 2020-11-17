@@ -165,21 +165,21 @@ Set-AtwsResourceSkill
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SkillDescription', 'id', 'SkillLevel', 'SkillID', 'ResourceID')]
+    [ValidateSet('SkillID', 'id', 'SkillDescription', 'ResourceID', 'SkillLevel')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SkillDescription', 'id', 'SkillLevel', 'SkillID', 'ResourceID')]
+    [ValidateSet('SkillID', 'id', 'SkillDescription', 'ResourceID', 'SkillLevel')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SkillDescription', 'id', 'SkillLevel', 'SkillID', 'ResourceID')]
+    [ValidateSet('SkillID', 'id', 'SkillDescription', 'ResourceID', 'SkillLevel')]
     [string[]]
     $IsNotNull,
 

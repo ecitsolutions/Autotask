@@ -293,21 +293,21 @@ Set-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UdfType', 'IsFieldMapping', 'IsActive', 'IsVisibleToClientPortal', 'CrmToProjectUdfId', 'IsEncrypted', 'Name', 'CreateDate', 'MergeVariableName', 'DataType', 'IsProtected', 'DisplayFormat', 'DefaultValue', 'SortOrder', 'IsRequired', 'id', 'IsPrivate', 'NumberOfDecimalPlaces', 'Description')]
+    [ValidateSet('IsPrivate', 'Name', 'IsEncrypted', 'IsVisibleToClientPortal', 'DefaultValue', 'DisplayFormat', 'SortOrder', 'IsActive', 'UdfType', 'id', 'IsFieldMapping', 'IsProtected', 'CreateDate', 'CrmToProjectUdfId', 'NumberOfDecimalPlaces', 'IsRequired', 'MergeVariableName', 'DataType', 'Description')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UdfType', 'IsFieldMapping', 'IsActive', 'IsVisibleToClientPortal', 'CrmToProjectUdfId', 'IsEncrypted', 'Name', 'CreateDate', 'MergeVariableName', 'DataType', 'IsProtected', 'DisplayFormat', 'DefaultValue', 'SortOrder', 'IsRequired', 'id', 'IsPrivate', 'NumberOfDecimalPlaces', 'Description')]
+    [ValidateSet('IsPrivate', 'Name', 'IsEncrypted', 'IsVisibleToClientPortal', 'DefaultValue', 'DisplayFormat', 'SortOrder', 'IsActive', 'UdfType', 'id', 'IsFieldMapping', 'IsProtected', 'CreateDate', 'CrmToProjectUdfId', 'NumberOfDecimalPlaces', 'IsRequired', 'MergeVariableName', 'DataType', 'Description')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UdfType', 'IsFieldMapping', 'IsActive', 'IsVisibleToClientPortal', 'CrmToProjectUdfId', 'IsEncrypted', 'Name', 'CreateDate', 'MergeVariableName', 'DataType', 'IsProtected', 'DisplayFormat', 'DefaultValue', 'SortOrder', 'IsRequired', 'id', 'IsPrivate', 'NumberOfDecimalPlaces', 'Description')]
+    [ValidateSet('IsPrivate', 'Name', 'IsEncrypted', 'IsVisibleToClientPortal', 'DefaultValue', 'DisplayFormat', 'SortOrder', 'IsActive', 'UdfType', 'id', 'IsFieldMapping', 'IsProtected', 'CreateDate', 'CrmToProjectUdfId', 'NumberOfDecimalPlaces', 'IsRequired', 'MergeVariableName', 'DataType', 'Description')]
     [string[]]
     $IsNotNull,
 

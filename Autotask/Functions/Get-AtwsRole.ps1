@@ -177,21 +177,21 @@ Set-AtwsRole
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'Description', 'id', 'IsExcludedFromNewContracts', 'HourlyFactor', 'SystemRole', 'RoleType', 'Name', 'Active')]
+    [ValidateSet('QuoteItemDefaultTaxCategoryId', 'SystemRole', 'Description', 'HourlyFactor', 'IsExcludedFromNewContracts', 'Name', 'id', 'Active', 'HourlyRate', 'RoleType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'Description', 'id', 'IsExcludedFromNewContracts', 'HourlyFactor', 'SystemRole', 'RoleType', 'Name', 'Active')]
+    [ValidateSet('QuoteItemDefaultTaxCategoryId', 'SystemRole', 'Description', 'HourlyFactor', 'IsExcludedFromNewContracts', 'Name', 'id', 'Active', 'HourlyRate', 'RoleType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'Description', 'id', 'IsExcludedFromNewContracts', 'HourlyFactor', 'SystemRole', 'RoleType', 'Name', 'Active')]
+    [ValidateSet('QuoteItemDefaultTaxCategoryId', 'SystemRole', 'Description', 'HourlyFactor', 'IsExcludedFromNewContracts', 'Name', 'id', 'Active', 'HourlyRate', 'RoleType')]
     [string[]]
     $IsNotNull,
 

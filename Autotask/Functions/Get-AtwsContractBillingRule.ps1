@@ -264,21 +264,21 @@ Set-AtwsContractBillingRule
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'DailyProratedCost', 'CreateChargesAsBillable', 'DailyProratedPrice', 'Active', 'DetermineUnits', 'StartDate', 'MaximumUnits', 'ProductID', 'EnableDailyProrating', 'id', 'EndDate', 'IncludeItemsInChargeDescription', 'ExecutionMethod', 'InvoiceDescription', 'MinimumUnits')]
+    [ValidateSet('MaximumUnits', 'CreateChargesAsBillable', 'DetermineUnits', 'ProductID', 'EnableDailyProrating', 'EndDate', 'InvoiceDescription', 'MinimumUnits', 'ExecutionMethod', 'id', 'ContractID', 'StartDate', 'IncludeItemsInChargeDescription', 'DailyProratedCost', 'Active', 'DailyProratedPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'DailyProratedCost', 'CreateChargesAsBillable', 'DailyProratedPrice', 'Active', 'DetermineUnits', 'StartDate', 'MaximumUnits', 'ProductID', 'EnableDailyProrating', 'id', 'EndDate', 'IncludeItemsInChargeDescription', 'ExecutionMethod', 'InvoiceDescription', 'MinimumUnits')]
+    [ValidateSet('MaximumUnits', 'CreateChargesAsBillable', 'DetermineUnits', 'ProductID', 'EnableDailyProrating', 'EndDate', 'InvoiceDescription', 'MinimumUnits', 'ExecutionMethod', 'id', 'ContractID', 'StartDate', 'IncludeItemsInChargeDescription', 'DailyProratedCost', 'Active', 'DailyProratedPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'DailyProratedCost', 'CreateChargesAsBillable', 'DailyProratedPrice', 'Active', 'DetermineUnits', 'StartDate', 'MaximumUnits', 'ProductID', 'EnableDailyProrating', 'id', 'EndDate', 'IncludeItemsInChargeDescription', 'ExecutionMethod', 'InvoiceDescription', 'MinimumUnits')]
+    [ValidateSet('MaximumUnits', 'CreateChargesAsBillable', 'DetermineUnits', 'ProductID', 'EnableDailyProrating', 'EndDate', 'InvoiceDescription', 'MinimumUnits', 'ExecutionMethod', 'id', 'ContractID', 'StartDate', 'IncludeItemsInChargeDescription', 'DailyProratedCost', 'Active', 'DailyProratedPrice')]
     [string[]]
     $IsNotNull,
 

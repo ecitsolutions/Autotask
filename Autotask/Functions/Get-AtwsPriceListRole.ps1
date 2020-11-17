@@ -137,21 +137,21 @@ Set-AtwsPriceListRole
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'HourlyRate', 'RoleID', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('CurrencyID', 'id', 'UsesInternalCurrencyPrice', 'HourlyRate', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'HourlyRate', 'RoleID', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('CurrencyID', 'id', 'UsesInternalCurrencyPrice', 'HourlyRate', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'HourlyRate', 'RoleID', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('CurrencyID', 'id', 'UsesInternalCurrencyPrice', 'HourlyRate', 'RoleID')]
     [string[]]
     $IsNotNull,
 

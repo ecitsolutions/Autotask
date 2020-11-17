@@ -124,21 +124,21 @@ Remove-AtwsServiceCallTask
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallID', 'TaskID')]
+    [ValidateSet('TaskID', 'id', 'ServiceCallID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallID', 'TaskID')]
+    [ValidateSet('TaskID', 'id', 'ServiceCallID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallID', 'TaskID')]
+    [ValidateSet('TaskID', 'id', 'ServiceCallID')]
     [string[]]
     $IsNotNull,
 

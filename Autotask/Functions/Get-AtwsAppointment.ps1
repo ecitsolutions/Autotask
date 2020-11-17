@@ -172,21 +172,21 @@ Set-AtwsAppointment
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'CreateDateTime', 'Description', 'id', 'Title', 'StartDateTime', 'UpdateDateTime', 'EndDateTime', 'CreatorResourceID')]
+    [ValidateSet('ResourceID', 'Description', 'Title', 'CreateDateTime', 'CreatorResourceID', 'id', 'UpdateDateTime', 'EndDateTime', 'StartDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'CreateDateTime', 'Description', 'id', 'Title', 'StartDateTime', 'UpdateDateTime', 'EndDateTime', 'CreatorResourceID')]
+    [ValidateSet('ResourceID', 'Description', 'Title', 'CreateDateTime', 'CreatorResourceID', 'id', 'UpdateDateTime', 'EndDateTime', 'StartDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'CreateDateTime', 'Description', 'id', 'Title', 'StartDateTime', 'UpdateDateTime', 'EndDateTime', 'CreatorResourceID')]
+    [ValidateSet('ResourceID', 'Description', 'Title', 'CreateDateTime', 'CreatorResourceID', 'id', 'UpdateDateTime', 'EndDateTime', 'StartDateTime')]
     [string[]]
     $IsNotNull,
 

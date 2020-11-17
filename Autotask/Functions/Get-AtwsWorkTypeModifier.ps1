@@ -120,21 +120,21 @@ Set-AtwsWorkTypeModifier
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ModifierValue', 'ModifierType')]
+    [ValidateSet('ModifierValue', 'id', 'ModifierType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ModifierValue', 'ModifierType')]
+    [ValidateSet('ModifierValue', 'id', 'ModifierType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ModifierValue', 'ModifierType')]
+    [ValidateSet('ModifierValue', 'id', 'ModifierType')]
     [string[]]
     $IsNotNull,
 

@@ -131,21 +131,21 @@ Set-AtwsAccountLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID', '')]
+    [ValidateSet('LocationName', 'id', 'AccountID', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID', '')]
+    [ValidateSet('LocationName', 'id', 'AccountID', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'AccountID', '')]
+    [ValidateSet('LocationName', 'id', 'AccountID', '')]
     [string[]]
     $IsNotNull,
 

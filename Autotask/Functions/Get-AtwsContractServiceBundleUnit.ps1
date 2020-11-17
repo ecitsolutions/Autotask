@@ -186,21 +186,21 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractServiceBundleID', 'id', 'StartDate', 'EndDate', 'BusinessDivisionSubdivisionID', 'InternalCurrencyPrice', 'ContractID', 'ApproveAndPostDate', 'Units', 'Price', 'Cost', 'ServiceBundleID')]
+    [ValidateSet('StartDate', 'ServiceBundleID', 'Price', 'InternalCurrencyPrice', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID', 'id', 'Cost', 'Units', 'ContractID', 'EndDate', 'ApproveAndPostDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractServiceBundleID', 'id', 'StartDate', 'EndDate', 'BusinessDivisionSubdivisionID', 'InternalCurrencyPrice', 'ContractID', 'ApproveAndPostDate', 'Units', 'Price', 'Cost', 'ServiceBundleID')]
+    [ValidateSet('StartDate', 'ServiceBundleID', 'Price', 'InternalCurrencyPrice', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID', 'id', 'Cost', 'Units', 'ContractID', 'EndDate', 'ApproveAndPostDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractServiceBundleID', 'id', 'StartDate', 'EndDate', 'BusinessDivisionSubdivisionID', 'InternalCurrencyPrice', 'ContractID', 'ApproveAndPostDate', 'Units', 'Price', 'Cost', 'ServiceBundleID')]
+    [ValidateSet('StartDate', 'ServiceBundleID', 'Price', 'InternalCurrencyPrice', 'ContractServiceBundleID', 'BusinessDivisionSubdivisionID', 'id', 'Cost', 'Units', 'ContractID', 'EndDate', 'ApproveAndPostDate')]
     [string[]]
     $IsNotNull,
 

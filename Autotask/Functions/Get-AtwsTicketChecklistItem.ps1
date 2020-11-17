@@ -196,21 +196,21 @@ Set-AtwsTicketChecklistItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Position', 'id', 'Completed', 'Important', 'KnowledgebaseArticleID', 'CompletedByResourceID', 'TicketID', 'CompletedDateTime', 'ItemName')]
+    [ValidateSet('CompletedByResourceID', 'Completed', 'CompletedDateTime', 'KnowledgebaseArticleID', 'id', 'Position', 'Important', 'TicketID', 'ItemName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Position', 'id', 'Completed', 'Important', 'KnowledgebaseArticleID', 'CompletedByResourceID', 'TicketID', 'CompletedDateTime', 'ItemName')]
+    [ValidateSet('CompletedByResourceID', 'Completed', 'CompletedDateTime', 'KnowledgebaseArticleID', 'id', 'Position', 'Important', 'TicketID', 'ItemName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Position', 'id', 'Completed', 'Important', 'KnowledgebaseArticleID', 'CompletedByResourceID', 'TicketID', 'CompletedDateTime', 'ItemName')]
+    [ValidateSet('CompletedByResourceID', 'Completed', 'CompletedDateTime', 'KnowledgebaseArticleID', 'id', 'Position', 'Important', 'TicketID', 'ItemName')]
     [string[]]
     $IsNotNull,
 
