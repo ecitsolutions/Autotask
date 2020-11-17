@@ -153,8 +153,8 @@ Set-AtwsActionType
                 $WriteableFields = $entityInfo.WriteableFields
                 $RequiredFields = $entityInfo.RequiredFields
 
-                if ($WriteableFields.count -gt 1) {   $fieldNames.AddRange($WriteableFields) } else {   $fieldNames.Add($WriteableFields)    }
-                if ($RequiredFields.count -gt 1) {   $fieldNames.AddRange($RequiredFields) } else {   $fieldNames.Add($RequiredFields)    }
+                if ($WriteableFields.count -gt 1) {   [void]$fieldNames.AddRange($WriteableFields) } else {   [void]$fieldNames.Add($WriteableFields)    }
+                if ($RequiredFields.count -gt 1) {   [void]$fieldNames.AddRange($RequiredFields) } else {   [void]$fieldNames.Add($RequiredFields)    }
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) {
                     $fieldNames += 'UserDefinedFields'
