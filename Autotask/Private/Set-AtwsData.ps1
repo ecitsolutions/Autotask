@@ -92,7 +92,12 @@ Function Set-AtwsData {
             Write-Debug -Message ('{0}: Creating chunk from index {1} to index {2}' -F $MyInvocation.MyCommand.Name, $i, $j)
 
             # Explicit selection of list type. ArrayList supports .remove()
-            [Collections.ArrayList]$workingSet = $Entity[$i .. $j]
+            $workingSet = [Collections.ArrayList]::new()
+            if($Entity[$i .. $j].Count -gt 1){
+                [void]$workingSet.AddRange($Entity[$i .. $j])
+            }else {
+                [void]$workingSet.Add($Entity[0])
+            }
 
             # We are going to try multiple times if the first attempt fails
             Do {
