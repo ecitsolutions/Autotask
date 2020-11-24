@@ -296,21 +296,21 @@ An example of a more complex query. This command returns any NotificationHistory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EntityNumber', 'EntityTitle', 'OpportunityID', 'ProjectID', 'AccountID', 'InitiatingResourceID', 'TimeEntryID', 'IsActive', 'NotificationHistoryTypeID', 'NotificationSentTime', 'id', 'RecipientDisplayName', 'IsTemplateJob', 'QuoteID', 'TicketID', 'IsDeleted', 'TaskID', 'TemplateName', 'RecipientEmailAddress', 'InitiatingContactID')]
+    [ValidateSet('OpportunityID', 'InitiatingResourceID', 'id', 'TemplateName', 'IsDeleted', 'IsActive', 'TicketID', 'ProjectID', 'RecipientDisplayName', 'EntityTitle', 'EntityNumber', 'NotificationHistoryTypeID', 'TaskID', 'QuoteID', 'RecipientEmailAddress', 'AccountID', 'TimeEntryID', 'NotificationSentTime', 'IsTemplateJob', 'InitiatingContactID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EntityNumber', 'EntityTitle', 'OpportunityID', 'ProjectID', 'AccountID', 'InitiatingResourceID', 'TimeEntryID', 'IsActive', 'NotificationHistoryTypeID', 'NotificationSentTime', 'id', 'RecipientDisplayName', 'IsTemplateJob', 'QuoteID', 'TicketID', 'IsDeleted', 'TaskID', 'TemplateName', 'RecipientEmailAddress', 'InitiatingContactID')]
+    [ValidateSet('OpportunityID', 'InitiatingResourceID', 'id', 'TemplateName', 'IsDeleted', 'IsActive', 'TicketID', 'ProjectID', 'RecipientDisplayName', 'EntityTitle', 'EntityNumber', 'NotificationHistoryTypeID', 'TaskID', 'QuoteID', 'RecipientEmailAddress', 'AccountID', 'TimeEntryID', 'NotificationSentTime', 'IsTemplateJob', 'InitiatingContactID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EntityNumber', 'EntityTitle', 'OpportunityID', 'ProjectID', 'AccountID', 'InitiatingResourceID', 'TimeEntryID', 'IsActive', 'NotificationHistoryTypeID', 'NotificationSentTime', 'id', 'RecipientDisplayName', 'IsTemplateJob', 'QuoteID', 'TicketID', 'IsDeleted', 'TaskID', 'TemplateName', 'RecipientEmailAddress', 'InitiatingContactID')]
+    [ValidateSet('OpportunityID', 'InitiatingResourceID', 'id', 'TemplateName', 'IsDeleted', 'IsActive', 'TicketID', 'ProjectID', 'RecipientDisplayName', 'EntityTitle', 'EntityNumber', 'NotificationHistoryTypeID', 'TaskID', 'QuoteID', 'RecipientEmailAddress', 'AccountID', 'TimeEntryID', 'NotificationSentTime', 'IsTemplateJob', 'InitiatingContactID')]
     [string[]]
     $IsNotNull,
 

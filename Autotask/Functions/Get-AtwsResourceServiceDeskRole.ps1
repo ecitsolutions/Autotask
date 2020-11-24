@@ -138,21 +138,21 @@ Set-AtwsResourceServiceDeskRole
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Default', 'ResourceID', 'RoleID')]
+    [ValidateSet('Default', 'Active', 'ResourceID', 'RoleID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Default', 'ResourceID', 'RoleID')]
+    [ValidateSet('Default', 'Active', 'ResourceID', 'RoleID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Default', 'ResourceID', 'RoleID')]
+    [ValidateSet('Default', 'Active', 'ResourceID', 'RoleID', 'id')]
     [string[]]
     $IsNotNull,
 

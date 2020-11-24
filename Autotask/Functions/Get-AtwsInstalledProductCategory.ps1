@@ -181,21 +181,21 @@ Set-AtwsInstalledProductCategory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'GlobalDefault', 'ClientPortalDefault', 'id', 'Nickname', 'Active', 'DisplayColorRGB')]
+    [ValidateSet('id', 'ClientPortalDefault', 'GlobalDefault', 'Active', 'Name', 'Nickname', 'DisplayColorRGB')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'GlobalDefault', 'ClientPortalDefault', 'id', 'Nickname', 'Active', 'DisplayColorRGB')]
+    [ValidateSet('id', 'ClientPortalDefault', 'GlobalDefault', 'Active', 'Name', 'Nickname', 'DisplayColorRGB')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'GlobalDefault', 'ClientPortalDefault', 'id', 'Nickname', 'Active', 'DisplayColorRGB')]
+    [ValidateSet('id', 'ClientPortalDefault', 'GlobalDefault', 'Active', 'Name', 'Nickname', 'DisplayColorRGB')]
     [string[]]
     $IsNotNull,
 

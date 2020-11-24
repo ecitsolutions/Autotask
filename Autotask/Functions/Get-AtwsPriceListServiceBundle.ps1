@@ -137,21 +137,21 @@ Set-AtwsPriceListServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'id', 'UsesInternalCurrencyPrice', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'UnitPrice', 'id', 'UsesInternalCurrencyPrice', 'ServiceBundleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'id', 'UsesInternalCurrencyPrice', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'UnitPrice', 'id', 'UsesInternalCurrencyPrice', 'ServiceBundleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'id', 'UsesInternalCurrencyPrice', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'UnitPrice', 'id', 'UsesInternalCurrencyPrice', 'ServiceBundleID')]
     [string[]]
     $IsNotNull,
 

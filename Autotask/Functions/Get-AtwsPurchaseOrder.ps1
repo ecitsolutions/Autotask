@@ -392,21 +392,21 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('GeneralMemo', 'id', 'LatestEstimatedArrivalDate', 'ShipToName', 'VendorID', 'PaymentTerm', 'Freight', 'ShowTaxCategory', 'ShipToPostalCode', 'ShowEachTaxInGroup', 'ShippingDate', 'ShipToAddress1', 'ShippingType', 'CreatorResourceID', 'Status', 'ImpersonatorCreatorResourceID', 'CancelDateTime', 'Phone', 'ShipToState', 'PurchaseForAccountID', 'ShipToAddress2', 'UseItemDescriptionsFrom', 'InternalCurrencyFreight', 'TaxGroup', 'ShipToCity', 'Fax', 'VendorInvoiceNumber', 'CreateDateTime', 'SubmitDateTime', 'ExternalPONumber')]
+    [ValidateSet('ExternalPONumber', 'ShipToAddress1', 'SubmitDateTime', 'ShowTaxCategory', 'id', 'TaxGroup', 'PurchaseForAccountID', 'ShippingType', 'GeneralMemo', 'ShipToState', 'UseItemDescriptionsFrom', 'PaymentTerm', 'VendorInvoiceNumber', 'Freight', 'ShipToPostalCode', 'CreatorResourceID', 'ShipToName', 'Fax', 'CreateDateTime', 'CancelDateTime', 'Phone', 'ShipToCity', 'InternalCurrencyFreight', 'VendorID', 'ShowEachTaxInGroup', 'ShipToAddress2', 'ShippingDate', 'LatestEstimatedArrivalDate', 'Status', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('GeneralMemo', 'id', 'LatestEstimatedArrivalDate', 'ShipToName', 'VendorID', 'PaymentTerm', 'Freight', 'ShowTaxCategory', 'ShipToPostalCode', 'ShowEachTaxInGroup', 'ShippingDate', 'ShipToAddress1', 'ShippingType', 'CreatorResourceID', 'Status', 'ImpersonatorCreatorResourceID', 'CancelDateTime', 'Phone', 'ShipToState', 'PurchaseForAccountID', 'ShipToAddress2', 'UseItemDescriptionsFrom', 'InternalCurrencyFreight', 'TaxGroup', 'ShipToCity', 'Fax', 'VendorInvoiceNumber', 'CreateDateTime', 'SubmitDateTime', 'ExternalPONumber')]
+    [ValidateSet('ExternalPONumber', 'ShipToAddress1', 'SubmitDateTime', 'ShowTaxCategory', 'id', 'TaxGroup', 'PurchaseForAccountID', 'ShippingType', 'GeneralMemo', 'ShipToState', 'UseItemDescriptionsFrom', 'PaymentTerm', 'VendorInvoiceNumber', 'Freight', 'ShipToPostalCode', 'CreatorResourceID', 'ShipToName', 'Fax', 'CreateDateTime', 'CancelDateTime', 'Phone', 'ShipToCity', 'InternalCurrencyFreight', 'VendorID', 'ShowEachTaxInGroup', 'ShipToAddress2', 'ShippingDate', 'LatestEstimatedArrivalDate', 'Status', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('GeneralMemo', 'id', 'LatestEstimatedArrivalDate', 'ShipToName', 'VendorID', 'PaymentTerm', 'Freight', 'ShowTaxCategory', 'ShipToPostalCode', 'ShowEachTaxInGroup', 'ShippingDate', 'ShipToAddress1', 'ShippingType', 'CreatorResourceID', 'Status', 'ImpersonatorCreatorResourceID', 'CancelDateTime', 'Phone', 'ShipToState', 'PurchaseForAccountID', 'ShipToAddress2', 'UseItemDescriptionsFrom', 'InternalCurrencyFreight', 'TaxGroup', 'ShipToCity', 'Fax', 'VendorInvoiceNumber', 'CreateDateTime', 'SubmitDateTime', 'ExternalPONumber')]
+    [ValidateSet('ExternalPONumber', 'ShipToAddress1', 'SubmitDateTime', 'ShowTaxCategory', 'id', 'TaxGroup', 'PurchaseForAccountID', 'ShippingType', 'GeneralMemo', 'ShipToState', 'UseItemDescriptionsFrom', 'PaymentTerm', 'VendorInvoiceNumber', 'Freight', 'ShipToPostalCode', 'CreatorResourceID', 'ShipToName', 'Fax', 'CreateDateTime', 'CancelDateTime', 'Phone', 'ShipToCity', 'InternalCurrencyFreight', 'VendorID', 'ShowEachTaxInGroup', 'ShipToAddress2', 'ShippingDate', 'LatestEstimatedArrivalDate', 'Status', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $IsNotNull,
 

@@ -203,9 +203,9 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
                 # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
                 $Data = Set-AtwsData -Entity $processObject -Create
                 if ($Data.Count -gt 1) {
-                    $result.AddRange($Data)
+                    [void]$result.AddRange($Data)
                 }else {
-                    $result.Add($Data)
+                    [void]$result.Add($Data)
                 }
             }
             catch {

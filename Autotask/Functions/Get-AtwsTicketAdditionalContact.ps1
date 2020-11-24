@@ -124,21 +124,21 @@ Remove-AtwsTicketAdditionalContact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'ContactID')]
+    [ValidateSet('TicketID', 'ContactID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'ContactID')]
+    [ValidateSet('TicketID', 'ContactID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'ContactID')]
+    [ValidateSet('TicketID', 'ContactID', 'id')]
     [string[]]
     $IsNotNull,
 

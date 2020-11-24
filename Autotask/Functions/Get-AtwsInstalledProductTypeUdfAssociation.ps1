@@ -142,21 +142,21 @@ Set-AtwsInstalledProductTypeUdfAssociation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductTypeId', 'id', 'SortOrder', 'Required', 'UserDefinedFieldDefinitionId')]
+    [ValidateSet('Required', 'InstalledProductTypeId', 'SortOrder', 'UserDefinedFieldDefinitionId', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductTypeId', 'id', 'SortOrder', 'Required', 'UserDefinedFieldDefinitionId')]
+    [ValidateSet('Required', 'InstalledProductTypeId', 'SortOrder', 'UserDefinedFieldDefinitionId', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductTypeId', 'id', 'SortOrder', 'Required', 'UserDefinedFieldDefinitionId')]
+    [ValidateSet('Required', 'InstalledProductTypeId', 'SortOrder', 'UserDefinedFieldDefinitionId', 'id')]
     [string[]]
     $IsNotNull,
 

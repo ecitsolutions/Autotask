@@ -124,21 +124,21 @@ Remove-AtwsAccountWebhookExcludedResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookID', 'id', 'ResourceID')]
+    [ValidateSet('ResourceID', 'WebhookID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookID', 'id', 'ResourceID')]
+    [ValidateSet('ResourceID', 'WebhookID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookID', 'id', 'ResourceID')]
+    [ValidateSet('ResourceID', 'WebhookID', 'id')]
     [string[]]
     $IsNotNull,
 

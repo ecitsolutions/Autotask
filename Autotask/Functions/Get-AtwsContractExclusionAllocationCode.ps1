@@ -124,21 +124,21 @@ Remove-AtwsContractExclusionAllocationCode
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeID', 'id', 'ContractID')]
+    [ValidateSet('ContractID', 'AllocationCodeID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeID', 'id', 'ContractID')]
+    [ValidateSet('ContractID', 'AllocationCodeID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeID', 'id', 'ContractID')]
+    [ValidateSet('ContractID', 'AllocationCodeID', 'id')]
     [string[]]
     $IsNotNull,
 

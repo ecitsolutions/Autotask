@@ -293,21 +293,21 @@ Set-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsPrivate', 'Name', 'IsEncrypted', 'IsVisibleToClientPortal', 'DefaultValue', 'DisplayFormat', 'SortOrder', 'IsActive', 'UdfType', 'id', 'IsFieldMapping', 'IsProtected', 'CreateDate', 'CrmToProjectUdfId', 'NumberOfDecimalPlaces', 'IsRequired', 'MergeVariableName', 'DataType', 'Description')]
+    [ValidateSet('DisplayFormat', 'id', 'IsRequired', 'CreateDate', 'IsActive', 'NumberOfDecimalPlaces', 'Name', 'Description', 'DataType', 'UdfType', 'IsFieldMapping', 'IsProtected', 'MergeVariableName', 'IsEncrypted', 'CrmToProjectUdfId', 'IsVisibleToClientPortal', 'SortOrder', 'DefaultValue', 'IsPrivate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsPrivate', 'Name', 'IsEncrypted', 'IsVisibleToClientPortal', 'DefaultValue', 'DisplayFormat', 'SortOrder', 'IsActive', 'UdfType', 'id', 'IsFieldMapping', 'IsProtected', 'CreateDate', 'CrmToProjectUdfId', 'NumberOfDecimalPlaces', 'IsRequired', 'MergeVariableName', 'DataType', 'Description')]
+    [ValidateSet('DisplayFormat', 'id', 'IsRequired', 'CreateDate', 'IsActive', 'NumberOfDecimalPlaces', 'Name', 'Description', 'DataType', 'UdfType', 'IsFieldMapping', 'IsProtected', 'MergeVariableName', 'IsEncrypted', 'CrmToProjectUdfId', 'IsVisibleToClientPortal', 'SortOrder', 'DefaultValue', 'IsPrivate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsPrivate', 'Name', 'IsEncrypted', 'IsVisibleToClientPortal', 'DefaultValue', 'DisplayFormat', 'SortOrder', 'IsActive', 'UdfType', 'id', 'IsFieldMapping', 'IsProtected', 'CreateDate', 'CrmToProjectUdfId', 'NumberOfDecimalPlaces', 'IsRequired', 'MergeVariableName', 'DataType', 'Description')]
+    [ValidateSet('DisplayFormat', 'id', 'IsRequired', 'CreateDate', 'IsActive', 'NumberOfDecimalPlaces', 'Name', 'Description', 'DataType', 'UdfType', 'IsFieldMapping', 'IsProtected', 'MergeVariableName', 'IsEncrypted', 'CrmToProjectUdfId', 'IsVisibleToClientPortal', 'SortOrder', 'DefaultValue', 'IsPrivate')]
     [string[]]
     $IsNotNull,
 

@@ -311,21 +311,21 @@ An example of a more complex query. This command returns any QuoteTemplates with
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyNegativeFormat', 'PageLayout', 'CurrencyPositiveFormat', 'CalculateTaxSeparately', 'PageNumberFormat', 'Name', 'Description', 'ShowEachTaxInGroup', 'NumberFormat', 'LastActivityDate', 'ShowVerticalGridLines', 'id', 'ShowTaxCategory', 'DisplayTaxCategorySuperscripts', 'CreateDate', 'ShowGridHeader', 'CreatedBy', 'LastActivityBy', 'DateFormat', 'DisplayCurrencySymbol', 'Active')]
+    [ValidateSet('NumberFormat', 'CurrencyPositiveFormat', 'id', 'Description', 'CreateDate', 'PageLayout', 'DisplayTaxCategorySuperscripts', 'ShowGridHeader', 'Name', 'CalculateTaxSeparately', 'CurrencyNegativeFormat', 'DisplayCurrencySymbol', 'ShowTaxCategory', 'CreatedBy', 'LastActivityBy', 'Active', 'LastActivityDate', 'DateFormat', 'PageNumberFormat', 'ShowVerticalGridLines', 'ShowEachTaxInGroup')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyNegativeFormat', 'PageLayout', 'CurrencyPositiveFormat', 'CalculateTaxSeparately', 'PageNumberFormat', 'Name', 'Description', 'ShowEachTaxInGroup', 'NumberFormat', 'LastActivityDate', 'ShowVerticalGridLines', 'id', 'ShowTaxCategory', 'DisplayTaxCategorySuperscripts', 'CreateDate', 'ShowGridHeader', 'CreatedBy', 'LastActivityBy', 'DateFormat', 'DisplayCurrencySymbol', 'Active')]
+    [ValidateSet('NumberFormat', 'CurrencyPositiveFormat', 'id', 'Description', 'CreateDate', 'PageLayout', 'DisplayTaxCategorySuperscripts', 'ShowGridHeader', 'Name', 'CalculateTaxSeparately', 'CurrencyNegativeFormat', 'DisplayCurrencySymbol', 'ShowTaxCategory', 'CreatedBy', 'LastActivityBy', 'Active', 'LastActivityDate', 'DateFormat', 'PageNumberFormat', 'ShowVerticalGridLines', 'ShowEachTaxInGroup')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyNegativeFormat', 'PageLayout', 'CurrencyPositiveFormat', 'CalculateTaxSeparately', 'PageNumberFormat', 'Name', 'Description', 'ShowEachTaxInGroup', 'NumberFormat', 'LastActivityDate', 'ShowVerticalGridLines', 'id', 'ShowTaxCategory', 'DisplayTaxCategorySuperscripts', 'CreateDate', 'ShowGridHeader', 'CreatedBy', 'LastActivityBy', 'DateFormat', 'DisplayCurrencySymbol', 'Active')]
+    [ValidateSet('NumberFormat', 'CurrencyPositiveFormat', 'id', 'Description', 'CreateDate', 'PageLayout', 'DisplayTaxCategorySuperscripts', 'ShowGridHeader', 'Name', 'CalculateTaxSeparately', 'CurrencyNegativeFormat', 'DisplayCurrencySymbol', 'ShowTaxCategory', 'CreatedBy', 'LastActivityBy', 'Active', 'LastActivityDate', 'DateFormat', 'PageNumberFormat', 'ShowVerticalGridLines', 'ShowEachTaxInGroup')]
     [string[]]
     $IsNotNull,
 

@@ -246,21 +246,21 @@ Set-AtwsServiceCall
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'CanceledDateTime', 'Duration', 'EndDateTime', 'StartDateTime', 'id', 'LastModifiedDateTime', 'AccountPhysicalLocationID', 'CreateDateTime', 'Status', 'CancelationNoticeHours', 'ImpersonatorCreatorResourceID', 'CanceledByResource', 'Complete', 'Description', 'AccountID')]
+    [ValidateSet('AccountPhysicalLocationID', 'id', 'CreatorResourceID', 'Description', 'Complete', 'CancelationNoticeHours', 'ImpersonatorCreatorResourceID', 'EndDateTime', 'CreateDateTime', 'Status', 'Duration', 'CanceledByResource', 'StartDateTime', 'AccountID', 'LastModifiedDateTime', 'CanceledDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'CanceledDateTime', 'Duration', 'EndDateTime', 'StartDateTime', 'id', 'LastModifiedDateTime', 'AccountPhysicalLocationID', 'CreateDateTime', 'Status', 'CancelationNoticeHours', 'ImpersonatorCreatorResourceID', 'CanceledByResource', 'Complete', 'Description', 'AccountID')]
+    [ValidateSet('AccountPhysicalLocationID', 'id', 'CreatorResourceID', 'Description', 'Complete', 'CancelationNoticeHours', 'ImpersonatorCreatorResourceID', 'EndDateTime', 'CreateDateTime', 'Status', 'Duration', 'CanceledByResource', 'StartDateTime', 'AccountID', 'LastModifiedDateTime', 'CanceledDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'CanceledDateTime', 'Duration', 'EndDateTime', 'StartDateTime', 'id', 'LastModifiedDateTime', 'AccountPhysicalLocationID', 'CreateDateTime', 'Status', 'CancelationNoticeHours', 'ImpersonatorCreatorResourceID', 'CanceledByResource', 'Complete', 'Description', 'AccountID')]
+    [ValidateSet('AccountPhysicalLocationID', 'id', 'CreatorResourceID', 'Description', 'Complete', 'CancelationNoticeHours', 'ImpersonatorCreatorResourceID', 'EndDateTime', 'CreateDateTime', 'Status', 'Duration', 'CanceledByResource', 'StartDateTime', 'AccountID', 'LastModifiedDateTime', 'CanceledDateTime')]
     [string[]]
     $IsNotNull,
 

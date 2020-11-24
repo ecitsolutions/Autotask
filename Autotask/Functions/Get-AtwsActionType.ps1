@@ -168,21 +168,21 @@ Set-AtwsActionType
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('View', 'Active', 'id', 'SystemActionType', 'Name')]
+    [ValidateSet('View', 'SystemActionType', 'Active', 'Name', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('View', 'Active', 'id', 'SystemActionType', 'Name')]
+    [ValidateSet('View', 'SystemActionType', 'Active', 'Name', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('View', 'Active', 'id', 'SystemActionType', 'Name')]
+    [ValidateSet('View', 'SystemActionType', 'Active', 'Name', 'id')]
     [string[]]
     $IsNotNull,
 

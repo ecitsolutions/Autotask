@@ -124,21 +124,21 @@ Remove-AtwsTicketAdditionalInstalledProduct
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'InstalledProductID')]
+    [ValidateSet('TicketID', 'InstalledProductID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'InstalledProductID')]
+    [ValidateSet('TicketID', 'InstalledProductID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'id', 'InstalledProductID')]
+    [ValidateSet('TicketID', 'InstalledProductID', 'id')]
     [string[]]
     $IsNotNull,
 

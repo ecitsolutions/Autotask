@@ -158,21 +158,21 @@ New-AtwsPurchaseOrderReceive
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuantityNowReceiving', 'SerialNumber', 'QuantityBackOrdered', 'QuantityPreviouslyReceived', 'id', 'ReceivedByResourceID', 'ReceiveDate', 'PurchaseOrderItemID')]
+    [ValidateSet('id', 'ReceivedByResourceID', 'QuantityNowReceiving', 'QuantityBackOrdered', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'SerialNumber', 'ReceiveDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuantityNowReceiving', 'SerialNumber', 'QuantityBackOrdered', 'QuantityPreviouslyReceived', 'id', 'ReceivedByResourceID', 'ReceiveDate', 'PurchaseOrderItemID')]
+    [ValidateSet('id', 'ReceivedByResourceID', 'QuantityNowReceiving', 'QuantityBackOrdered', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'SerialNumber', 'ReceiveDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuantityNowReceiving', 'SerialNumber', 'QuantityBackOrdered', 'QuantityPreviouslyReceived', 'id', 'ReceivedByResourceID', 'ReceiveDate', 'PurchaseOrderItemID')]
+    [ValidateSet('id', 'ReceivedByResourceID', 'QuantityNowReceiving', 'QuantityBackOrdered', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'SerialNumber', 'ReceiveDate')]
     [string[]]
     $IsNotNull,
 

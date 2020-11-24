@@ -339,21 +339,21 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Priority', 'Status', 'ServiceLevelAgreementID', 'Description', 'SourceID', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'TicketTypeID', 'id', 'Title', 'Resolution', 'EstimatedHours', 'QueueID', 'WorkTypeID', 'SubIssueTypeID', 'IssueTypeID', 'TicketCategoryID')]
+    [ValidateSet('TicketCategoryID', 'SourceID', 'PurchaseOrderNumber', 'Description', 'Title', 'Priority', 'id', 'EstimatedHours', 'WorkTypeID', 'Status', 'QueueID', 'Resolution', 'IssueTypeID', 'BusinessDivisionSubdivisionID', 'ServiceLevelAgreementID', 'TicketTypeID', 'SubIssueTypeID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Priority', 'Status', 'ServiceLevelAgreementID', 'Description', 'SourceID', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'TicketTypeID', 'id', 'Title', 'Resolution', 'EstimatedHours', 'QueueID', 'WorkTypeID', 'SubIssueTypeID', 'IssueTypeID', 'TicketCategoryID')]
+    [ValidateSet('TicketCategoryID', 'SourceID', 'PurchaseOrderNumber', 'Description', 'Title', 'Priority', 'id', 'EstimatedHours', 'WorkTypeID', 'Status', 'QueueID', 'Resolution', 'IssueTypeID', 'BusinessDivisionSubdivisionID', 'ServiceLevelAgreementID', 'TicketTypeID', 'SubIssueTypeID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Priority', 'Status', 'ServiceLevelAgreementID', 'Description', 'SourceID', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'TicketTypeID', 'id', 'Title', 'Resolution', 'EstimatedHours', 'QueueID', 'WorkTypeID', 'SubIssueTypeID', 'IssueTypeID', 'TicketCategoryID')]
+    [ValidateSet('TicketCategoryID', 'SourceID', 'PurchaseOrderNumber', 'Description', 'Title', 'Priority', 'id', 'EstimatedHours', 'WorkTypeID', 'Status', 'QueueID', 'Resolution', 'IssueTypeID', 'BusinessDivisionSubdivisionID', 'ServiceLevelAgreementID', 'TicketTypeID', 'SubIssueTypeID')]
     [string[]]
     $IsNotNull,
 

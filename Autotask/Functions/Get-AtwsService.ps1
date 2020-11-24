@@ -260,21 +260,21 @@ Set-AtwsService
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'UnitPrice', 'ServiceLevelAgreementID', 'Name', 'UpdateResourceID', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'Description', 'id', 'VendorAccountID', 'CreateDate', 'LastModifiedDate', 'UnitCost', 'MarkupRate', 'PeriodType')]
+    [ValidateSet('MarkupRate', 'UnitPrice', 'CreatorResourceID', 'Description', 'InvoiceDescription', 'IsActive', 'AllocationCodeID', 'id', 'Name', 'UpdateResourceID', 'UnitCost', 'CreateDate', 'LastModifiedDate', 'ServiceLevelAgreementID', 'PeriodType', 'VendorAccountID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'UnitPrice', 'ServiceLevelAgreementID', 'Name', 'UpdateResourceID', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'Description', 'id', 'VendorAccountID', 'CreateDate', 'LastModifiedDate', 'UnitCost', 'MarkupRate', 'PeriodType')]
+    [ValidateSet('MarkupRate', 'UnitPrice', 'CreatorResourceID', 'Description', 'InvoiceDescription', 'IsActive', 'AllocationCodeID', 'id', 'Name', 'UpdateResourceID', 'UnitCost', 'CreateDate', 'LastModifiedDate', 'ServiceLevelAgreementID', 'PeriodType', 'VendorAccountID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'UnitPrice', 'ServiceLevelAgreementID', 'Name', 'UpdateResourceID', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'Description', 'id', 'VendorAccountID', 'CreateDate', 'LastModifiedDate', 'UnitCost', 'MarkupRate', 'PeriodType')]
+    [ValidateSet('MarkupRate', 'UnitPrice', 'CreatorResourceID', 'Description', 'InvoiceDescription', 'IsActive', 'AllocationCodeID', 'id', 'Name', 'UpdateResourceID', 'UnitCost', 'CreateDate', 'LastModifiedDate', 'ServiceLevelAgreementID', 'PeriodType', 'VendorAccountID')]
     [string[]]
     $IsNotNull,
 

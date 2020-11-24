@@ -481,21 +481,21 @@ Set-AtwsContact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'AlternatePhone', 'FacebookUrl', 'EMailAddress', 'FaxNumber', 'BulkEmailOptOut', 'Country', 'City', 'LastName', 'Active', 'EMailAddress2', 'LastModifiedDate', 'PrimaryContact', 'RoomNumber', 'AddressLine1', 'Notification', 'SurveyOptOut', 'Extension', 'CreateDate', 'ZipCode', 'BulkEmailOptOutTime', 'TwitterUrl', 'Title', 'FirstName', 'EMailAddress3', 'MobilePhone', 'ImpersonatorCreatorResourceID', 'NameSuffix', 'AccountPhysicalLocationID', 'Phone', 'NamePrefix', 'CountryID', 'AccountID', 'AddressLine', 'AdditionalAddressInformation', 'id', 'SolicitationOptOutTime', 'LinkedInUrl', 'SolicitationOptOut', 'MiddleInitial', 'Note', 'ApiVendorID', 'State', 'ExternalID', '')]
+    [ValidateSet('LastModifiedDate', 'SolicitationOptOutTime', 'BulkEmailOptOutTime', 'TwitterUrl', 'FacebookUrl', 'id', 'LastActivityDate', 'AccountPhysicalLocationID', 'BulkEmailOptOut', 'CountryID', 'Active', 'Extension', 'AccountID', 'ExternalID', 'LastName', 'Title', 'City', 'State', 'PrimaryContact', 'NameSuffix', 'ImpersonatorCreatorResourceID', 'LinkedInUrl', 'ApiVendorID', 'Notification', 'ZipCode', 'RoomNumber', 'Country', 'EMailAddress3', 'SolicitationOptOut', 'MiddleInitial', 'Phone', 'AddressLine', 'AddressLine1', 'Note', 'MobilePhone', 'AlternatePhone', 'FaxNumber', 'EMailAddress', 'FirstName', 'CreateDate', 'SurveyOptOut', 'EMailAddress2', 'NamePrefix', 'AdditionalAddressInformation', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'AlternatePhone', 'FacebookUrl', 'EMailAddress', 'FaxNumber', 'BulkEmailOptOut', 'Country', 'City', 'LastName', 'Active', 'EMailAddress2', 'LastModifiedDate', 'PrimaryContact', 'RoomNumber', 'AddressLine1', 'Notification', 'SurveyOptOut', 'Extension', 'CreateDate', 'ZipCode', 'BulkEmailOptOutTime', 'TwitterUrl', 'Title', 'FirstName', 'EMailAddress3', 'MobilePhone', 'ImpersonatorCreatorResourceID', 'NameSuffix', 'AccountPhysicalLocationID', 'Phone', 'NamePrefix', 'CountryID', 'AccountID', 'AddressLine', 'AdditionalAddressInformation', 'id', 'SolicitationOptOutTime', 'LinkedInUrl', 'SolicitationOptOut', 'MiddleInitial', 'Note', 'ApiVendorID', 'State', 'ExternalID', '')]
+    [ValidateSet('LastModifiedDate', 'SolicitationOptOutTime', 'BulkEmailOptOutTime', 'TwitterUrl', 'FacebookUrl', 'id', 'LastActivityDate', 'AccountPhysicalLocationID', 'BulkEmailOptOut', 'CountryID', 'Active', 'Extension', 'AccountID', 'ExternalID', 'LastName', 'Title', 'City', 'State', 'PrimaryContact', 'NameSuffix', 'ImpersonatorCreatorResourceID', 'LinkedInUrl', 'ApiVendorID', 'Notification', 'ZipCode', 'RoomNumber', 'Country', 'EMailAddress3', 'SolicitationOptOut', 'MiddleInitial', 'Phone', 'AddressLine', 'AddressLine1', 'Note', 'MobilePhone', 'AlternatePhone', 'FaxNumber', 'EMailAddress', 'FirstName', 'CreateDate', 'SurveyOptOut', 'EMailAddress2', 'NamePrefix', 'AdditionalAddressInformation', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'AlternatePhone', 'FacebookUrl', 'EMailAddress', 'FaxNumber', 'BulkEmailOptOut', 'Country', 'City', 'LastName', 'Active', 'EMailAddress2', 'LastModifiedDate', 'PrimaryContact', 'RoomNumber', 'AddressLine1', 'Notification', 'SurveyOptOut', 'Extension', 'CreateDate', 'ZipCode', 'BulkEmailOptOutTime', 'TwitterUrl', 'Title', 'FirstName', 'EMailAddress3', 'MobilePhone', 'ImpersonatorCreatorResourceID', 'NameSuffix', 'AccountPhysicalLocationID', 'Phone', 'NamePrefix', 'CountryID', 'AccountID', 'AddressLine', 'AdditionalAddressInformation', 'id', 'SolicitationOptOutTime', 'LinkedInUrl', 'SolicitationOptOut', 'MiddleInitial', 'Note', 'ApiVendorID', 'State', 'ExternalID', '')]
+    [ValidateSet('LastModifiedDate', 'SolicitationOptOutTime', 'BulkEmailOptOutTime', 'TwitterUrl', 'FacebookUrl', 'id', 'LastActivityDate', 'AccountPhysicalLocationID', 'BulkEmailOptOut', 'CountryID', 'Active', 'Extension', 'AccountID', 'ExternalID', 'LastName', 'Title', 'City', 'State', 'PrimaryContact', 'NameSuffix', 'ImpersonatorCreatorResourceID', 'LinkedInUrl', 'ApiVendorID', 'Notification', 'ZipCode', 'RoomNumber', 'Country', 'EMailAddress3', 'SolicitationOptOut', 'MiddleInitial', 'Phone', 'AddressLine', 'AddressLine1', 'Note', 'MobilePhone', 'AlternatePhone', 'FaxNumber', 'EMailAddress', 'FirstName', 'CreateDate', 'SurveyOptOut', 'EMailAddress2', 'NamePrefix', 'AdditionalAddressInformation', '')]
     [string[]]
     $IsNotNull,
 

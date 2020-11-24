@@ -246,21 +246,21 @@ Set-AtwsExpenseReport
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementCurrencyAmountDue', 'CashAdvanceAmount', 'ExpenseTotal', 'Name', 'ReimbursementCurrencyCashAdvanceAmount', 'AmountDue', 'QuickBooksReferenceNumber', 'BusinessDivisionSubdivisionID', 'id', 'Submit', 'WeekEnding', 'DepartmentNumber', 'ApproverID', 'Status', 'SubmitDate', 'SubmitterID', 'ApprovedDate', 'ReimbursementCurrencyID', 'RejectionReason')]
+    [ValidateSet('WeekEnding', 'id', 'DepartmentNumber', 'SubmitDate', 'ExpenseTotal', 'ApproverID', 'CashAdvanceAmount', 'ReimbursementCurrencyID', 'Name', 'Status', 'AmountDue', 'Submit', 'BusinessDivisionSubdivisionID', 'SubmitterID', 'ReimbursementCurrencyCashAdvanceAmount', 'RejectionReason', 'ReimbursementCurrencyAmountDue', 'QuickBooksReferenceNumber', 'ApprovedDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementCurrencyAmountDue', 'CashAdvanceAmount', 'ExpenseTotal', 'Name', 'ReimbursementCurrencyCashAdvanceAmount', 'AmountDue', 'QuickBooksReferenceNumber', 'BusinessDivisionSubdivisionID', 'id', 'Submit', 'WeekEnding', 'DepartmentNumber', 'ApproverID', 'Status', 'SubmitDate', 'SubmitterID', 'ApprovedDate', 'ReimbursementCurrencyID', 'RejectionReason')]
+    [ValidateSet('WeekEnding', 'id', 'DepartmentNumber', 'SubmitDate', 'ExpenseTotal', 'ApproverID', 'CashAdvanceAmount', 'ReimbursementCurrencyID', 'Name', 'Status', 'AmountDue', 'Submit', 'BusinessDivisionSubdivisionID', 'SubmitterID', 'ReimbursementCurrencyCashAdvanceAmount', 'RejectionReason', 'ReimbursementCurrencyAmountDue', 'QuickBooksReferenceNumber', 'ApprovedDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementCurrencyAmountDue', 'CashAdvanceAmount', 'ExpenseTotal', 'Name', 'ReimbursementCurrencyCashAdvanceAmount', 'AmountDue', 'QuickBooksReferenceNumber', 'BusinessDivisionSubdivisionID', 'id', 'Submit', 'WeekEnding', 'DepartmentNumber', 'ApproverID', 'Status', 'SubmitDate', 'SubmitterID', 'ApprovedDate', 'ReimbursementCurrencyID', 'RejectionReason')]
+    [ValidateSet('WeekEnding', 'id', 'DepartmentNumber', 'SubmitDate', 'ExpenseTotal', 'ApproverID', 'CashAdvanceAmount', 'ReimbursementCurrencyID', 'Name', 'Status', 'AmountDue', 'Submit', 'BusinessDivisionSubdivisionID', 'SubmitterID', 'ReimbursementCurrencyCashAdvanceAmount', 'RejectionReason', 'ReimbursementCurrencyAmountDue', 'QuickBooksReferenceNumber', 'ApprovedDate')]
     [string[]]
     $IsNotNull,
 

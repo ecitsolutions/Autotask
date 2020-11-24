@@ -281,21 +281,21 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Department', 'GeneralLedgerCode', 'UnitPrice', 'ExternalNumber', 'Name', 'Description', 'TaxCategoryID', 'UseType', 'Taxable', 'id', 'MarkupRate', 'IsExcludedFromNewContracts', 'UnitCost', 'AfterHoursWorkType', 'Type', 'AllocationCodeType', 'Active')]
+    [ValidateSet('AfterHoursWorkType', 'MarkupRate', 'id', 'Description', 'GeneralLedgerCode', 'ExternalNumber', 'IsExcludedFromNewContracts', 'UseType', 'Name', 'Type', 'Active', 'UnitCost', 'Department', 'TaxCategoryID', 'Taxable', 'AllocationCodeType', 'UnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Department', 'GeneralLedgerCode', 'UnitPrice', 'ExternalNumber', 'Name', 'Description', 'TaxCategoryID', 'UseType', 'Taxable', 'id', 'MarkupRate', 'IsExcludedFromNewContracts', 'UnitCost', 'AfterHoursWorkType', 'Type', 'AllocationCodeType', 'Active')]
+    [ValidateSet('AfterHoursWorkType', 'MarkupRate', 'id', 'Description', 'GeneralLedgerCode', 'ExternalNumber', 'IsExcludedFromNewContracts', 'UseType', 'Name', 'Type', 'Active', 'UnitCost', 'Department', 'TaxCategoryID', 'Taxable', 'AllocationCodeType', 'UnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Department', 'GeneralLedgerCode', 'UnitPrice', 'ExternalNumber', 'Name', 'Description', 'TaxCategoryID', 'UseType', 'Taxable', 'id', 'MarkupRate', 'IsExcludedFromNewContracts', 'UnitCost', 'AfterHoursWorkType', 'Type', 'AllocationCodeType', 'Active')]
+    [ValidateSet('AfterHoursWorkType', 'MarkupRate', 'id', 'Description', 'GeneralLedgerCode', 'ExternalNumber', 'IsExcludedFromNewContracts', 'UseType', 'Name', 'Type', 'Active', 'UnitCost', 'Department', 'TaxCategoryID', 'Taxable', 'AllocationCodeType', 'UnitPrice')]
     [string[]]
     $IsNotNull,
 

@@ -152,21 +152,21 @@ Remove-AtwsTicketChangeRequestApproval
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'IsApproved', 'ApproveRejectDateTime', 'ApproveRejectNote', 'id', 'ContactID', 'TicketID')]
+    [ValidateSet('id', 'ApproveRejectNote', 'ApproveRejectDateTime', 'ContactID', 'ResourceID', 'IsApproved', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'IsApproved', 'ApproveRejectDateTime', 'ApproveRejectNote', 'id', 'ContactID', 'TicketID')]
+    [ValidateSet('id', 'ApproveRejectNote', 'ApproveRejectDateTime', 'ContactID', 'ResourceID', 'IsApproved', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'IsApproved', 'ApproveRejectDateTime', 'ApproveRejectNote', 'id', 'ContactID', 'TicketID')]
+    [ValidateSet('id', 'ApproveRejectNote', 'ApproveRejectDateTime', 'ContactID', 'ResourceID', 'IsApproved', 'TicketID')]
     [string[]]
     $IsNotNull,
 

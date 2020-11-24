@@ -179,21 +179,21 @@ Set-AtwsTicketCategory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApiOnly', 'Name', 'GlobalDefault', 'id', 'Nickname', 'Active', 'DisplayColorRGB')]
+    [ValidateSet('id', 'GlobalDefault', 'Active', 'Name', 'Nickname', 'DisplayColorRGB', 'ApiOnly')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApiOnly', 'Name', 'GlobalDefault', 'id', 'Nickname', 'Active', 'DisplayColorRGB')]
+    [ValidateSet('id', 'GlobalDefault', 'Active', 'Name', 'Nickname', 'DisplayColorRGB', 'ApiOnly')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApiOnly', 'Name', 'GlobalDefault', 'id', 'Nickname', 'Active', 'DisplayColorRGB')]
+    [ValidateSet('id', 'GlobalDefault', 'Active', 'Name', 'Nickname', 'DisplayColorRGB', 'ApiOnly')]
     [string[]]
     $IsNotNull,
 

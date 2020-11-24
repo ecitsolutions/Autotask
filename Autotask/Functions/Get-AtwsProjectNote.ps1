@@ -240,21 +240,21 @@ Set-AtwsProjectNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Announce', 'ProjectID', 'CreatorResourceID', 'Publish', 'LastActivityDate', 'id', 'Title', 'NoteType', 'CreateDateTime', 'CreatedByContactID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'Description')]
+    [ValidateSet('ImpersonatorUpdaterResourceID', 'id', 'CreatorResourceID', 'Description', 'ProjectID', 'Announce', 'NoteType', 'Publish', 'CreateDateTime', 'CreatedByContactID', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Announce', 'ProjectID', 'CreatorResourceID', 'Publish', 'LastActivityDate', 'id', 'Title', 'NoteType', 'CreateDateTime', 'CreatedByContactID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'Description')]
+    [ValidateSet('ImpersonatorUpdaterResourceID', 'id', 'CreatorResourceID', 'Description', 'ProjectID', 'Announce', 'NoteType', 'Publish', 'CreateDateTime', 'CreatedByContactID', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Announce', 'ProjectID', 'CreatorResourceID', 'Publish', 'LastActivityDate', 'id', 'Title', 'NoteType', 'CreateDateTime', 'CreatedByContactID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'Description')]
+    [ValidateSet('ImpersonatorUpdaterResourceID', 'id', 'CreatorResourceID', 'Description', 'ProjectID', 'Announce', 'NoteType', 'Publish', 'CreateDateTime', 'CreatedByContactID', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'Title')]
     [string[]]
     $IsNotNull,
 

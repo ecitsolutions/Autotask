@@ -194,21 +194,21 @@ Set-AtwsCountry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressFormatID', 'Name', 'InvoiceTemplateID', 'QuoteTemplateID', 'DisplayName', 'id', 'Active', 'IsDefaultCountry', 'CountryCode')]
+    [ValidateSet('id', 'CountryCode', 'Active', 'DisplayName', 'AddressFormatID', 'Name', 'QuoteTemplateID', 'InvoiceTemplateID', 'IsDefaultCountry')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressFormatID', 'Name', 'InvoiceTemplateID', 'QuoteTemplateID', 'DisplayName', 'id', 'Active', 'IsDefaultCountry', 'CountryCode')]
+    [ValidateSet('id', 'CountryCode', 'Active', 'DisplayName', 'AddressFormatID', 'Name', 'QuoteTemplateID', 'InvoiceTemplateID', 'IsDefaultCountry')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressFormatID', 'Name', 'InvoiceTemplateID', 'QuoteTemplateID', 'DisplayName', 'id', 'Active', 'IsDefaultCountry', 'CountryCode')]
+    [ValidateSet('id', 'CountryCode', 'Active', 'DisplayName', 'AddressFormatID', 'Name', 'QuoteTemplateID', 'InvoiceTemplateID', 'IsDefaultCountry')]
     [string[]]
     $IsNotNull,
 

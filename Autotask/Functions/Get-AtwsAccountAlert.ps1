@@ -159,21 +159,21 @@ Set-AtwsAccountAlert
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AlertText', 'AlertTypeID', 'AccountID')]
+    [ValidateSet('AlertTypeID', 'id', 'AlertText', 'AccountID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AlertText', 'AlertTypeID', 'AccountID')]
+    [ValidateSet('AlertTypeID', 'id', 'AlertText', 'AccountID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AlertText', 'AlertTypeID', 'AccountID')]
+    [ValidateSet('AlertTypeID', 'id', 'AlertText', 'AccountID')]
     [string[]]
     $IsNotNull,
 

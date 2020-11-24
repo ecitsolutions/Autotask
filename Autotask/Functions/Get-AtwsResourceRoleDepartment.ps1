@@ -156,21 +156,21 @@ Set-AtwsResourceRoleDepartment
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'RoleID', 'DepartmentID', 'Default', 'Active', 'DepartmentLead', 'id')]
+    [ValidateSet('id', 'DepartmentLead', 'DepartmentID', 'Default', 'ResourceID', 'RoleID', 'Active')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'RoleID', 'DepartmentID', 'Default', 'Active', 'DepartmentLead', 'id')]
+    [ValidateSet('id', 'DepartmentLead', 'DepartmentID', 'Default', 'ResourceID', 'RoleID', 'Active')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'RoleID', 'DepartmentID', 'Default', 'Active', 'DepartmentLead', 'id')]
+    [ValidateSet('id', 'DepartmentLead', 'DepartmentID', 'Default', 'ResourceID', 'RoleID', 'Active')]
     [string[]]
     $IsNotNull,
 

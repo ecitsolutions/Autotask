@@ -134,21 +134,21 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeID', 'id', 'Description', 'IsActive', 'Name')]
+    [ValidateSet('IsActive', 'Description', 'Name', 'AllocationCodeID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeID', 'id', 'Description', 'IsActive', 'Name')]
+    [ValidateSet('IsActive', 'Description', 'Name', 'AllocationCodeID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeID', 'id', 'Description', 'IsActive', 'Name')]
+    [ValidateSet('IsActive', 'Description', 'Name', 'AllocationCodeID', 'id')]
     [string[]]
     $IsNotNull,
 

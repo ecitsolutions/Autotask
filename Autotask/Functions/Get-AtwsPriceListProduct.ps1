@@ -137,21 +137,21 @@ Set-AtwsPriceListProduct
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'UsesInternalCurrencyPrice', 'ProductID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'ProductID', 'UnitPrice', 'UsesInternalCurrencyPrice', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'UsesInternalCurrencyPrice', 'ProductID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'ProductID', 'UnitPrice', 'UsesInternalCurrencyPrice', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'UsesInternalCurrencyPrice', 'ProductID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'ProductID', 'UnitPrice', 'UsesInternalCurrencyPrice', 'id')]
     [string[]]
     $IsNotNull,
 

@@ -261,21 +261,21 @@ Set-AtwsServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'UnitPrice', 'ServiceLevelAgreementID', 'Name', 'UpdateResourceID', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'Description', 'id', 'UnitDiscount', 'CreateDate', 'LastModifiedDate', 'UnitCost', 'PercentageDiscount', 'PeriodType')]
+    [ValidateSet('ServiceLevelAgreementID', 'id', 'CreatorResourceID', 'Description', 'PercentageDiscount', 'IsActive', 'AllocationCodeID', 'CreateDate', 'UpdateResourceID', 'UnitCost', 'UnitDiscount', 'LastModifiedDate', 'PeriodType', 'Name', 'InvoiceDescription', 'UnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'UnitPrice', 'ServiceLevelAgreementID', 'Name', 'UpdateResourceID', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'Description', 'id', 'UnitDiscount', 'CreateDate', 'LastModifiedDate', 'UnitCost', 'PercentageDiscount', 'PeriodType')]
+    [ValidateSet('ServiceLevelAgreementID', 'id', 'CreatorResourceID', 'Description', 'PercentageDiscount', 'IsActive', 'AllocationCodeID', 'CreateDate', 'UpdateResourceID', 'UnitCost', 'UnitDiscount', 'LastModifiedDate', 'PeriodType', 'Name', 'InvoiceDescription', 'UnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'UnitPrice', 'ServiceLevelAgreementID', 'Name', 'UpdateResourceID', 'InvoiceDescription', 'AllocationCodeID', 'IsActive', 'Description', 'id', 'UnitDiscount', 'CreateDate', 'LastModifiedDate', 'UnitCost', 'PercentageDiscount', 'PeriodType')]
+    [ValidateSet('ServiceLevelAgreementID', 'id', 'CreatorResourceID', 'Description', 'PercentageDiscount', 'IsActive', 'AllocationCodeID', 'CreateDate', 'UpdateResourceID', 'UnitCost', 'UnitDiscount', 'LastModifiedDate', 'PeriodType', 'Name', 'InvoiceDescription', 'UnitPrice')]
     [string[]]
     $IsNotNull,
 

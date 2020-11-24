@@ -127,21 +127,21 @@ Set-AtwsHolidaySet
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidaySetName', 'id', 'HolidaySetDescription')]
+    [ValidateSet('HolidaySetName', 'HolidaySetDescription', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidaySetName', 'id', 'HolidaySetDescription')]
+    [ValidateSet('HolidaySetName', 'HolidaySetDescription', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidaySetName', 'id', 'HolidaySetDescription')]
+    [ValidateSet('HolidaySetName', 'HolidaySetDescription', 'id')]
     [string[]]
     $IsNotNull,
 

@@ -369,21 +369,21 @@ Set-AtwsProduct
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'InternalProductID', 'Name', 'PriceCostMethod', 'PeriodType', 'DefaultVendorID', 'Link', 'Active', 'EligibleForRma', 'ManufacturerName', 'SKU', 'Description', 'ExternalProductID', 'ProductAllocationCodeID', 'BillingType', 'ImpersonatorCreatorResourceID', 'DoesNotRequireProcurement', 'DefaultInstalledProductCategoryID', 'Serialized', 'UnitCost', 'id', 'CostAllocationCodeID', 'ManufacturerProductName', 'VendorProductNumber', 'MarkupRate', 'MSRP', 'ProductCategory')]
+    [ValidateSet('PeriodType', 'UnitPrice', 'InternalProductID', 'id', 'Serialized', 'ManufacturerName', 'ProductAllocationCodeID', 'ExternalProductID', 'Active', 'Name', 'PriceCostMethod', 'SKU', 'DefaultInstalledProductCategoryID', 'ManufacturerProductName', 'VendorProductNumber', 'Link', 'MarkupRate', 'CostAllocationCodeID', 'DefaultVendorID', 'Description', 'UnitCost', 'ProductCategory', 'MSRP', 'BillingType', 'EligibleForRma', 'DoesNotRequireProcurement', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'InternalProductID', 'Name', 'PriceCostMethod', 'PeriodType', 'DefaultVendorID', 'Link', 'Active', 'EligibleForRma', 'ManufacturerName', 'SKU', 'Description', 'ExternalProductID', 'ProductAllocationCodeID', 'BillingType', 'ImpersonatorCreatorResourceID', 'DoesNotRequireProcurement', 'DefaultInstalledProductCategoryID', 'Serialized', 'UnitCost', 'id', 'CostAllocationCodeID', 'ManufacturerProductName', 'VendorProductNumber', 'MarkupRate', 'MSRP', 'ProductCategory')]
+    [ValidateSet('PeriodType', 'UnitPrice', 'InternalProductID', 'id', 'Serialized', 'ManufacturerName', 'ProductAllocationCodeID', 'ExternalProductID', 'Active', 'Name', 'PriceCostMethod', 'SKU', 'DefaultInstalledProductCategoryID', 'ManufacturerProductName', 'VendorProductNumber', 'Link', 'MarkupRate', 'CostAllocationCodeID', 'DefaultVendorID', 'Description', 'UnitCost', 'ProductCategory', 'MSRP', 'BillingType', 'EligibleForRma', 'DoesNotRequireProcurement', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitPrice', 'InternalProductID', 'Name', 'PriceCostMethod', 'PeriodType', 'DefaultVendorID', 'Link', 'Active', 'EligibleForRma', 'ManufacturerName', 'SKU', 'Description', 'ExternalProductID', 'ProductAllocationCodeID', 'BillingType', 'ImpersonatorCreatorResourceID', 'DoesNotRequireProcurement', 'DefaultInstalledProductCategoryID', 'Serialized', 'UnitCost', 'id', 'CostAllocationCodeID', 'ManufacturerProductName', 'VendorProductNumber', 'MarkupRate', 'MSRP', 'ProductCategory')]
+    [ValidateSet('PeriodType', 'UnitPrice', 'InternalProductID', 'id', 'Serialized', 'ManufacturerName', 'ProductAllocationCodeID', 'ExternalProductID', 'Active', 'Name', 'PriceCostMethod', 'SKU', 'DefaultInstalledProductCategoryID', 'ManufacturerProductName', 'VendorProductNumber', 'Link', 'MarkupRate', 'CostAllocationCodeID', 'DefaultVendorID', 'Description', 'UnitCost', 'ProductCategory', 'MSRP', 'BillingType', 'EligibleForRma', 'DoesNotRequireProcurement', 'ImpersonatorCreatorResourceID')]
     [string[]]
     $IsNotNull,
 

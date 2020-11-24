@@ -134,21 +134,21 @@ Set-AtwsInstalledProductCategoryUdfAssociation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsRequired', 'id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
+    [ValidateSet('IsRequired', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsRequired', 'id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
+    [ValidateSet('IsRequired', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsRequired', 'id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
+    [ValidateSet('IsRequired', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID', 'id')]
     [string[]]
     $IsNotNull,
 

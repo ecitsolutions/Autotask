@@ -134,21 +134,21 @@ Set-AtwsContractExclusionSet
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Description', 'Name')]
+    [ValidateSet('Active', 'Description', 'Name', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Description', 'Name')]
+    [ValidateSet('Active', 'Description', 'Name', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Description', 'Name')]
+    [ValidateSet('Active', 'Description', 'Name', 'id')]
     [string[]]
     $IsNotNull,
 

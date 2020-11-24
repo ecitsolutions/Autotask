@@ -145,21 +145,21 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('System', 'Description', 'Name', 'id', 'Active', 'RelativeUrl')]
+    [ValidateSet('id', 'RelativeUrl', 'Active', 'Description', 'Name', 'System')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('System', 'Description', 'Name', 'id', 'Active', 'RelativeUrl')]
+    [ValidateSet('id', 'RelativeUrl', 'Active', 'Description', 'Name', 'System')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('System', 'Description', 'Name', 'id', 'Active', 'RelativeUrl')]
+    [ValidateSet('id', 'RelativeUrl', 'Active', 'Description', 'Name', 'System')]
     [string[]]
     $IsNotNull,
 

@@ -221,21 +221,21 @@ An example of a more complex query. This command returns any DeletedTicketActivi
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedByResourceID', 'HoursWorked', 'DeletedDateTime', 'StartDateTime', 'TypeID', 'ActivityDateTime', 'id', 'TicketID', 'EndDateTime', 'CreatedByResourceID', 'TicketNumber', 'NoteOrAttachmentTitle')]
+    [ValidateSet('id', 'CreatedByResourceID', 'TicketID', 'EndDateTime', 'TicketNumber', 'DeletedByResourceID', 'NoteOrAttachmentTitle', 'DeletedDateTime', 'TypeID', 'StartDateTime', 'HoursWorked', 'ActivityDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedByResourceID', 'HoursWorked', 'DeletedDateTime', 'StartDateTime', 'TypeID', 'ActivityDateTime', 'id', 'TicketID', 'EndDateTime', 'CreatedByResourceID', 'TicketNumber', 'NoteOrAttachmentTitle')]
+    [ValidateSet('id', 'CreatedByResourceID', 'TicketID', 'EndDateTime', 'TicketNumber', 'DeletedByResourceID', 'NoteOrAttachmentTitle', 'DeletedDateTime', 'TypeID', 'StartDateTime', 'HoursWorked', 'ActivityDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedByResourceID', 'HoursWorked', 'DeletedDateTime', 'StartDateTime', 'TypeID', 'ActivityDateTime', 'id', 'TicketID', 'EndDateTime', 'CreatedByResourceID', 'TicketNumber', 'NoteOrAttachmentTitle')]
+    [ValidateSet('id', 'CreatedByResourceID', 'TicketID', 'EndDateTime', 'TicketNumber', 'DeletedByResourceID', 'NoteOrAttachmentTitle', 'DeletedDateTime', 'TypeID', 'StartDateTime', 'HoursWorked', 'ActivityDateTime')]
     [string[]]
     $IsNotNull,
 

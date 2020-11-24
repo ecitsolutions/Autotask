@@ -217,21 +217,21 @@ An example of a more complex query. This command returns any InternalLocations w
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('State', 'IsDefault', 'Name', 'AdditionalAddressInfo', 'Address2', 'Country', 'Address1', 'id', 'City', 'TimeZone', 'HolidaySetId', 'PostalCode')]
+    [ValidateSet('id', 'PostalCode', 'Address1', 'IsDefault', 'HolidaySetId', 'Name', 'AdditionalAddressInfo', 'State', 'Address2', 'Country', 'TimeZone', 'City')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('State', 'IsDefault', 'Name', 'AdditionalAddressInfo', 'Address2', 'Country', 'Address1', 'id', 'City', 'TimeZone', 'HolidaySetId', 'PostalCode')]
+    [ValidateSet('id', 'PostalCode', 'Address1', 'IsDefault', 'HolidaySetId', 'Name', 'AdditionalAddressInfo', 'State', 'Address2', 'Country', 'TimeZone', 'City')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('State', 'IsDefault', 'Name', 'AdditionalAddressInfo', 'Address2', 'Country', 'Address1', 'id', 'City', 'TimeZone', 'HolidaySetId', 'PostalCode')]
+    [ValidateSet('id', 'PostalCode', 'Address1', 'IsDefault', 'HolidaySetId', 'Name', 'AdditionalAddressInfo', 'State', 'Address2', 'Country', 'TimeZone', 'City')]
     [string[]]
     $IsNotNull,
 

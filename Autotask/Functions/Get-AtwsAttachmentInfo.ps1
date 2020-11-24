@@ -250,21 +250,21 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachedByContactID', 'OpportunityID', 'Type', 'Publish', 'ParentType', 'AttachDate', 'Title', 'ParentID', 'id', 'CreatorType', 'FullPath', 'ContentType', 'ImpersonatorCreatorResourceID', 'AttachedByResourceID', 'FileSize')]
+    [ValidateSet('OpportunityID', 'id', 'ParentID', 'FullPath', 'Publish', 'AttachDate', 'Type', 'AttachedByContactID', 'ContentType', 'ImpersonatorCreatorResourceID', 'CreatorType', 'AttachedByResourceID', 'FileSize', 'Title', 'ParentType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachedByContactID', 'OpportunityID', 'Type', 'Publish', 'ParentType', 'AttachDate', 'Title', 'ParentID', 'id', 'CreatorType', 'FullPath', 'ContentType', 'ImpersonatorCreatorResourceID', 'AttachedByResourceID', 'FileSize')]
+    [ValidateSet('OpportunityID', 'id', 'ParentID', 'FullPath', 'Publish', 'AttachDate', 'Type', 'AttachedByContactID', 'ContentType', 'ImpersonatorCreatorResourceID', 'CreatorType', 'AttachedByResourceID', 'FileSize', 'Title', 'ParentType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachedByContactID', 'OpportunityID', 'Type', 'Publish', 'ParentType', 'AttachDate', 'Title', 'ParentID', 'id', 'CreatorType', 'FullPath', 'ContentType', 'ImpersonatorCreatorResourceID', 'AttachedByResourceID', 'FileSize')]
+    [ValidateSet('OpportunityID', 'id', 'ParentID', 'FullPath', 'Publish', 'AttachDate', 'Type', 'AttachedByContactID', 'ContentType', 'ImpersonatorCreatorResourceID', 'CreatorType', 'AttachedByResourceID', 'FileSize', 'Title', 'ParentType')]
     [string[]]
     $IsNotNull,
 
