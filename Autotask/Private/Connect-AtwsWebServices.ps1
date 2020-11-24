@@ -163,7 +163,7 @@ Function Connect-AtwsWebServices {
             Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name Configuration -Value $ConfigurationData -Force
 
             # Sets timeout value of 2 minutes. Helps for bulk action timeouts.
-            $Script:Atws.InnerChannel.OperationTimeout = New-TimeSpan -Minutes 2
+            $Script:Atws.InnerChannel.OperationTimeout = New-TimeSpan -Minutes 3
         }
         catch {
             throw $_
