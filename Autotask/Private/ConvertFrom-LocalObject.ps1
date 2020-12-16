@@ -78,6 +78,7 @@ Function ConvertFrom-LocalObject {
         foreach ($object in $InputObject) {
             # Any userdefined fields?
             if ($entityInfo.HasUserDefinedFields -and $null -ne $object.UserDefinedFields) {
+                #TODO: InputObject is not of this type. Has to change? Check older version to see what this object looks like.
                 if ($object.UserDefinedFields.GetType().Name -eq 'Hashtable') {
                     # Expand User defined fields for easy filtering of collections and readability
                     # and convert array of userdefined fields to hashtable
@@ -106,6 +107,8 @@ Function ConvertFrom-LocalObject {
                 # Convert the datetime from LocalTime unless it is a date
                 If ($object.$DateTimeParam -ne $object.$DateTimeParam.Date) {
                     # Convert the datetime back to CEST
+                    #TODO: the new api update might handle this for us. Do we set timezone to the EST time? or leave it be.
+                    #Has to check if the Autotask api handles timezone for us or not.
                     $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, [TimeZoneInfo]::Local, $EST)
                 }
             }
