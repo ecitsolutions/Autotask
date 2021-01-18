@@ -5,13 +5,13 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function Get-AtwsPriceListProduct
+Function Get-AtwsDeletedTicketLog
 {
 
 
 <#
 .SYNOPSIS
-This function get one or more PriceListProduct through the Autotask Web Services API.
+This function get one or more DeletedTicketLog through the Autotask Web Services API.
 .DESCRIPTION
 This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.
 
@@ -38,28 +38,26 @@ Entities that have fields that refer to the base entity of this CmdLet:
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.PriceListProduct[]]. This function outputs the Autotask.PriceListProduct that was returned by the API.
+[Autotask.DeletedTicketLog[]]. This function outputs the Autotask.DeletedTicketLog that was returned by the API.
 .EXAMPLE
-Get-AtwsPriceListProduct -Id 0
+Get-AtwsDeletedTicketLog -Id 0
 Returns the object with Id 0, if any.
  .EXAMPLE
-Get-AtwsPriceListProduct -PriceListProductName SomeName
-Returns the object with PriceListProductName 'SomeName', if any.
+Get-AtwsDeletedTicketLog -DeletedTicketLogName SomeName
+Returns the object with DeletedTicketLogName 'SomeName', if any.
  .EXAMPLE
-Get-AtwsPriceListProduct -PriceListProductName 'Some Name'
-Returns the object with PriceListProductName 'Some Name', if any.
+Get-AtwsDeletedTicketLog -DeletedTicketLogName 'Some Name'
+Returns the object with DeletedTicketLogName 'Some Name', if any.
  .EXAMPLE
-Get-AtwsPriceListProduct -PriceListProductName 'Some Name' -NotEquals PriceListProductName
-Returns any objects with a PriceListProductName that is NOT equal to 'Some Name', if any.
+Get-AtwsDeletedTicketLog -DeletedTicketLogName 'Some Name' -NotEquals DeletedTicketLogName
+Returns any objects with a DeletedTicketLogName that is NOT equal to 'Some Name', if any.
  .EXAMPLE
-Get-AtwsPriceListProduct -PriceListProductName SomeName* -Like PriceListProductName
-Returns any object with a PriceListProductName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsDeletedTicketLog -DeletedTicketLogName SomeName* -Like DeletedTicketLogName
+Returns any object with a DeletedTicketLogName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsPriceListProduct -PriceListProductName SomeName* -NotLike PriceListProductName
-Returns any object with a PriceListProductName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsDeletedTicketLog -DeletedTicketLogName SomeName* -NotLike DeletedTicketLogName
+Returns any object with a DeletedTicketLogName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
-Set-AtwsPriceListProduct
 
 #>
 
@@ -85,7 +83,7 @@ Set-AtwsPriceListProduct
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('CurrencyID', 'ProductID')]
+    [ValidateSet('DeletedByResourceID', 'TicketID')]
     [string]
     $GetReferenceEntityById,
 
@@ -108,7 +106,7 @@ Set-AtwsPriceListProduct
     [switch]
     $All,
 
-# Product ID
+# Deleted Ticket Log ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -116,125 +114,142 @@ Set-AtwsPriceListProduct
     [Nullable[long][]]
     $id,
 
-# Product ID
+# Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $ProductID,
+    $TicketID,
 
-# Currency ID
+# Ticket Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $TicketNumber,
+
+# Ticket Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
+    [string[]]
+    $TicketTitle,
+
+# Deleted By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $CurrencyID,
+    $DeletedByResourceID,
 
-# Uses Internal Currency Price
+# Deleted Date/Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $UsesInternalCurrencyPrice,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $UnitPrice,
+    [Nullable[datetime][]]
+    $DeletedDateTime,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'CurrencyID', 'UsesInternalCurrencyPrice', 'UnitPrice')]
+    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'CurrencyID', 'UsesInternalCurrencyPrice', 'UnitPrice')]
+    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'CurrencyID', 'UsesInternalCurrencyPrice', 'UnitPrice')]
+    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateSet('TicketNumber', 'TicketTitle')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateSet('TicketNumber', 'TicketTitle')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateSet('TicketNumber', 'TicketTitle')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateSet('TicketNumber', 'TicketTitle')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateSet('TicketNumber', 'TicketTitle')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateSet('DeletedDateTime')]
     [string[]]
     $IsThisDay
   )
 
     begin { 
-        $entityName = 'PriceListProduct'
+        $entityName = 'DeletedTicketLog'
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
