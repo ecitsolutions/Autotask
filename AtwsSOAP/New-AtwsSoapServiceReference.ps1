@@ -82,7 +82,7 @@ Function New-AtwsSoapServiceReference {
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             Move-Item $source $target -Force
             # Apply patch, ignore errors
-            Get-Content $patch | git am
+            # Get-Content $patch | git am
         }
 
     }
