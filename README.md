@@ -36,13 +36,17 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.11
+
+- UPDATE: No code change. Module has been updated with any API changes since last publication
+
 ## Version 1.6.10
 
 - BUGFIX: Fix for issue #54: New Ticket Titles with (Copy 1)
 
 ## Version 1.6.9
 
-- BUGFIX: Updated classes file (Reference.cs). Added missing class ProductNote.
+- BUGFIX: Updated classes file (Reference.cs). Added missing class ProductNote
 
 ## Version 1.6.8
 
