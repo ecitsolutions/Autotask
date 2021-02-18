@@ -38,6 +38,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 ## Version 1.6.12
 
+- BUGFIX: Wrong Reference.cs included with previous upload. 
+
+## Version 1.6.12
+
 - UPDATE: No code change. Module has been updated with any API changes since last publication
  
 ## Version 1.6.11

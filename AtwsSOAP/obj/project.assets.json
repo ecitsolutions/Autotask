@@ -61,7 +61,7 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
-      "System.Private.ServiceModel/4.8.0": {
+      "System.Private.ServiceModel/4.8.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0",
@@ -182,11 +182,11 @@
           }
         }
       },
-      "System.ServiceModel.Duplex/4.8.0": {
+      "System.ServiceModel.Duplex/4.8.1": {
         "type": "package",
         "dependencies": {
-          "System.Private.ServiceModel": "4.8.0",
-          "System.ServiceModel.Primitives": "4.8.0"
+          "System.Private.ServiceModel": "4.8.1",
+          "System.ServiceModel.Primitives": "4.8.1"
         },
         "compile": {
           "ref/netstandard2.0/System.ServiceModel.Duplex.dll": {}
@@ -195,11 +195,11 @@
           "lib/netstandard2.0/System.ServiceModel.Duplex.dll": {}
         }
       },
-      "System.ServiceModel.Http/4.8.0": {
+      "System.ServiceModel.Http/4.8.1": {
         "type": "package",
         "dependencies": {
-          "System.Private.ServiceModel": "4.8.0",
-          "System.ServiceModel.Primitives": "4.8.0"
+          "System.Private.ServiceModel": "4.8.1",
+          "System.ServiceModel.Primitives": "4.8.1"
         },
         "compile": {
           "ref/netstandard2.0/System.ServiceModel.Http.dll": {}
@@ -208,11 +208,11 @@
           "lib/netstandard2.0/System.ServiceModel.Http.dll": {}
         }
       },
-      "System.ServiceModel.NetTcp/4.8.0": {
+      "System.ServiceModel.NetTcp/4.8.1": {
         "type": "package",
         "dependencies": {
-          "System.Private.ServiceModel": "4.8.0",
-          "System.ServiceModel.Primitives": "4.8.0"
+          "System.Private.ServiceModel": "4.8.1",
+          "System.ServiceModel.Primitives": "4.8.1"
         },
         "compile": {
           "ref/netstandard2.0/System.ServiceModel.NetTcp.dll": {}
@@ -221,10 +221,10 @@
           "lib/netstandard2.0/System.ServiceModel.NetTcp.dll": {}
         }
       },
-      "System.ServiceModel.Primitives/4.8.0": {
+      "System.ServiceModel.Primitives/4.8.1": {
         "type": "package",
         "dependencies": {
-          "System.Private.ServiceModel": "4.8.0"
+          "System.Private.ServiceModel": "4.8.1"
         },
         "compile": {
           "ref/netcoreapp2.1/System.ServiceModel.Primitives.dll": {},
@@ -235,11 +235,11 @@
           "lib/netcoreapp2.1/System.ServiceModel.dll": {}
         }
       },
-      "System.ServiceModel.Security/4.8.0": {
+      "System.ServiceModel.Security/4.8.1": {
         "type": "package",
         "dependencies": {
-          "System.Private.ServiceModel": "4.8.0",
-          "System.ServiceModel.Primitives": "4.8.0"
+          "System.Private.ServiceModel": "4.8.1",
+          "System.ServiceModel.Primitives": "4.8.1"
         },
         "compile": {
           "ref/netstandard2.0/System.ServiceModel.Security.dll": {}
@@ -401,10 +401,10 @@
         "version.txt"
       ]
     },
-    "System.Private.ServiceModel/4.8.0": {
-      "sha512": "V21eCo3u2GOzq/BOSD3hxlJQCOp71RHXI0TxzbFp8k5Gtnu/X2bBYETpiRFUsUojJz5MwUNjtW8BdwdUnwP05g==",
+    "System.Private.ServiceModel/4.8.1": {
+      "sha512": "neXeXhKIlCUBCg5rxKpYnae4vQSiMWjhqeTgsMedHvKKUTsmP98je+G8oPmDdY9uZVruvxqRGjcljn1XYNhC+w==",
       "type": "package",
-      "path": "system.private.servicemodel/4.8.0",
+      "path": "system.private.servicemodel/4.8.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -414,7 +414,7 @@
         "lib/netstandard2.0/System.Private.ServiceModel.dll",
         "lib/netstandard2.0/System.Private.ServiceModel.pdb",
         "ref/netstandard2.0/_._",
-        "system.private.servicemodel.4.8.0.nupkg.sha512",
+        "system.private.servicemodel.4.8.1.nupkg.sha512",
         "system.private.servicemodel.nuspec"
       ]
     },
@@ -752,10 +752,10 @@
         "version.txt"
       ]
     },
-    "System.ServiceModel.Duplex/4.8.0": {
-      "sha512": "+LprVYRVD2exSoh4BLo5HJrXUMCoJICxeffYVSwVLhjTalcfUZU3dkGgp5oDtYU82CDV4D8hD8uvaOTNm0IogQ==",
+    "System.ServiceModel.Duplex/4.8.1": {
+      "sha512": "htdZ/71tGUl+Yj/URS2dzK7v4hRR/o1/pH2Vnse9vlqZnChJTz7dV3Wk6GsHDUOuYzcufyCMuM79W6aHmL9v8w==",
       "type": "package",
-      "path": "system.servicemodel.duplex/4.8.0",
+      "path": "system.servicemodel.duplex/4.8.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -790,14 +790,14 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.servicemodel.duplex.4.8.0.nupkg.sha512",
+        "system.servicemodel.duplex.4.8.1.nupkg.sha512",
         "system.servicemodel.duplex.nuspec"
       ]
     },
-    "System.ServiceModel.Http/4.8.0": {
-      "sha512": "+kn7xCZjf/d02SE3OnwyU4wxggrxEhOoGLB+DUACSTXvSIGKZoHPXQ6LhkY0/m7nzdjqxmvc7cJO3UPWgIH/8Q==",
+    "System.ServiceModel.Http/4.8.1": {
+      "sha512": "yrfGQJ5joGXnZx3G340KDfgpmOSYzRMHP3zJkcwiV3CP750AEsvesVIXc+PXYFzU7v3JKLEw6GLrH7kPiZJa/g==",
       "type": "package",
-      "path": "system.servicemodel.http/4.8.0",
+      "path": "system.servicemodel.http/4.8.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -838,14 +838,14 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.servicemodel.http.4.8.0.nupkg.sha512",
+        "system.servicemodel.http.4.8.1.nupkg.sha512",
         "system.servicemodel.http.nuspec"
       ]
     },
-    "System.ServiceModel.NetTcp/4.8.0": {
-      "sha512": "KoeXvhicGSQ0A60AruHWTNN/D17ErLkv90SmWS/sFQ+QUc4Bbb8GDFwmDoUhwsa35khiwpSUWt8OBIcoM/ZabA==",
+    "System.ServiceModel.NetTcp/4.8.1": {
+      "sha512": "2h2Wq1wr/aBj8BwydO8h8AV5HvE7lEhgRyE6sDsftGTOr1rg5us9zxcJGT+WMlJ7pSTPXSTYCOEM/FfqHe0SEQ==",
       "type": "package",
-      "path": "system.servicemodel.nettcp/4.8.0",
+      "path": "system.servicemodel.nettcp/4.8.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -883,14 +883,14 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.servicemodel.nettcp.4.8.0.nupkg.sha512",
+        "system.servicemodel.nettcp.4.8.1.nupkg.sha512",
         "system.servicemodel.nettcp.nuspec"
       ]
     },
-    "System.ServiceModel.Primitives/4.8.0": {
-      "sha512": "akJiBb0EcWTXQ/dgp1a27O7UynZbqQ84M17OY/ssxfb32x5wtQ5zRw6ExsQaPOUQgia4Wl2jy4FWZddQRLLnaA==",
+    "System.ServiceModel.Primitives/4.8.1": {
+      "sha512": "XjzGCqvWZBHnw2ym8t9PVeTm5Tsp7lSDKEwhDZAU4Jnw+6+zEDu/2ZQYQbRqBR0t/KpfNA4Aya/5aONKJnuyEw==",
       "type": "package",
-      "path": "system.servicemodel.primitives/4.8.0",
+      "path": "system.servicemodel.primitives/4.8.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -938,14 +938,14 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.servicemodel.primitives.4.8.0.nupkg.sha512",
+        "system.servicemodel.primitives.4.8.1.nupkg.sha512",
         "system.servicemodel.primitives.nuspec"
       ]
     },
-    "System.ServiceModel.Security/4.8.0": {
-      "sha512": "oeCYY/i2kFgsVsxkuF4+PdepnVjSKNZtwSKb2qD6CCisLeXfmT5g7IuCdlLlbc2Ppq+wI7KsNhf+xnh9ESnVCQ==",
+    "System.ServiceModel.Security/4.8.1": {
+      "sha512": "vCBnopz067lS+7Tn+dvpWPH9Yn5CYvSMd5StRzqa7cFDX4O7jkChRSoFWeMaNNqJCwQjafphaQn9IViwqufHZQ==",
       "type": "package",
-      "path": "system.servicemodel.security/4.8.0",
+      "path": "system.servicemodel.security/4.8.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -983,7 +983,7 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.servicemodel.security.4.8.0.nupkg.sha512",
+        "system.servicemodel.security.4.8.1.nupkg.sha512",
         "system.servicemodel.security.nuspec"
       ]
     },
@@ -1100,7 +1100,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
       }
     }
   }
