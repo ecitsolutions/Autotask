@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -155,7 +155,14 @@ Set-AtwsProjectNote
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $CreateDateTime
+    $CreateDateTime,
+
+# Created By Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatedByContactID
   )
  
     begin { 

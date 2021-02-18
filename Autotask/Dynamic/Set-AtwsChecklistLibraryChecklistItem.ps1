@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -89,7 +89,7 @@ Get-AtwsChecklistLibraryChecklistItem
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
+    [ValidateLength(0,600)]
     [string]
     $ItemName,
 

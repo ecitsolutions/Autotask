@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.11
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -114,21 +114,6 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [Nullable[long][]]
     $id,
 
-# Period Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $PeriodDate,
-
-# Posted Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $PostedDate,
-
 # Subscription Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -136,6 +121,14 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $SubscriptionID,
+
+# Period Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $PeriodDate,
 
 # Period Price
     [Parameter(
@@ -153,6 +146,13 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [Nullable[decimal][]]
     $PeriodCost,
 
+# Posted Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $PostedDate,
+
 # Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -164,49 +164,49 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PeriodDate', 'PostedDate', 'SubscriptionID', 'PeriodPrice', 'PeriodCost', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PeriodDate', 'PostedDate', 'SubscriptionID', 'PeriodPrice', 'PeriodCost', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PeriodDate', 'PostedDate', 'SubscriptionID', 'PeriodPrice', 'PeriodCost', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PeriodDate', 'PostedDate', 'SubscriptionID', 'PeriodPrice', 'PeriodCost', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PeriodDate', 'PostedDate', 'SubscriptionID', 'PeriodPrice', 'PeriodCost', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PeriodDate', 'PostedDate', 'SubscriptionID', 'PeriodPrice', 'PeriodCost', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PeriodDate', 'PostedDate', 'SubscriptionID', 'PeriodPrice', 'PeriodCost', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
     [string[]]
     $LessThanOrEquals,
 

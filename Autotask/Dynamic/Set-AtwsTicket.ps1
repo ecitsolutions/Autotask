@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -20,6 +20,8 @@ Entities that have fields that refer to the base entity of this CmdLet:
 AccountToDo
  BillingItem
  ChangeRequestLink
+ DeletedTicketActivityLog
+ DeletedTicketLog
  ExpenseItem
  NotificationHistory
  PurchaseOrderItem
@@ -37,6 +39,7 @@ AccountToDo
  TicketNote
  TicketRmaCredit
  TicketSecondaryResource
+ TicketTagAssociation
  TimeEntry
 
 .INPUTS
@@ -683,7 +686,20 @@ Get-AtwsTicket
       ParametersetName = 'By_Id'
     )]
     [string]
-    $RmaType
+    $RmaType,
+
+# Created By Contact ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $CreatedByContactID
   )
  
     begin { 

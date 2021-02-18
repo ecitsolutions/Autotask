@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.11
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,14 +115,6 @@ Remove-AtwsTaskSecondaryResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Task ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $TaskID,
 
@@ -142,52 +134,60 @@ Remove-AtwsTaskSecondaryResource
     [Nullable[Int][]]
     $RoleID,
 
+# Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TaskID', 'ResourceID', 'RoleID')]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TaskID', 'ResourceID', 'RoleID')]
+    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TaskID', 'ResourceID', 'RoleID')]
+    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TaskID', 'ResourceID', 'RoleID')]
+    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TaskID', 'ResourceID', 'RoleID')]
+    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TaskID', 'ResourceID', 'RoleID')]
+    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TaskID', 'ResourceID', 'RoleID')]
+    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
     [string[]]
     $LessThanOrEquals,
 

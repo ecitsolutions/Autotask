@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -124,13 +124,11 @@ Get-AtwsTimeEntry
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[datetime]]
     $DateWorked,
 
@@ -196,7 +194,7 @@ Get-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,8000)]
+    [ValidateLength(0,32000)]
     [string]
     $SummaryNotes,
 
@@ -210,7 +208,7 @@ Get-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,8000)]
+    [ValidateLength(0,32000)]
     [string]
     $InternalNotes,
 

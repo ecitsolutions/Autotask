@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.11
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -120,13 +120,6 @@ Set-AtwsTaskPredecessor
     [Nullable[long][]]
     $id,
 
-# Lag Days
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LagDays,
-
 # Predecessor Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -143,52 +136,59 @@ Set-AtwsTaskPredecessor
     [Nullable[Int][]]
     $SuccessorTaskID,
 
+# Lag Days
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
+    [Nullable[Int][]]
+    $LagDays,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
+    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
+    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
+    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
+    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
+    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
+    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
     [string[]]
     $LessThanOrEquals,
 

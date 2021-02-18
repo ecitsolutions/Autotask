@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -38,9 +38,14 @@ Account
  ContractNote
  ContractRoleCost
  Currency
+ DeletedTaskActivityLog
+ DeletedTicketActivityLog
+ DeletedTicketLog
  ExpenseReport
  InstalledProduct
  InstalledProductNote
+ InstalledProductWebhook
+ InstalledProductWebhookExcludedResource
  InventoryItem
  InventoryLocation
  InventoryTransfer

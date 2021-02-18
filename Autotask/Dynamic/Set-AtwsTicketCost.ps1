@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -145,7 +145,7 @@ Get-AtwsTicketCost
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,2000)]
+    [ValidateLength(0,8000)]
     [string]
     $Description,
 

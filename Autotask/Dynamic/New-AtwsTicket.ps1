@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -30,6 +30,8 @@ Entities that have fields that refer to the base entity of this CmdLet:
 AccountToDo
  BillingItem
  ChangeRequestLink
+ DeletedTicketActivityLog
+ DeletedTicketLog
  ExpenseItem
  NotificationHistory
  PurchaseOrderItem
@@ -47,6 +49,7 @@ AccountToDo
  TicketNote
  TicketRmaCredit
  TicketSecondaryResource
+ TicketTagAssociation
  TimeEntry
 
 .INPUTS
@@ -475,7 +478,7 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
+    [decimal]
     $HoursToBeScheduled,
 
 # Ticket Category
@@ -552,7 +555,7 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
+    [decimal]
     $ServiceLevelAgreementPausedNextEventHours,
 
 # Current Service Thermometer Rating
@@ -609,7 +612,14 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ImpersonatorCreatorResourceID
+    $ImpersonatorCreatorResourceID,
+
+# Created By Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatedByContactID
   )
  
     begin { 

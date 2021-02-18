@@ -36,6 +36,10 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.12
+
+- UPDATE: No code change. Module has been updated with any API changes since last publication
+ 
 ## Version 1.6.11
 
 - UPDATE: No code change. Module has been updated with any API changes since last publication

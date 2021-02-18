@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -20,7 +20,6 @@ If you need very complicated queries you can write a filter directly and pass it
 'New-AtwsTimeEntry -Id 0,4' could be written as 'New-AtwsTimeEntry -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
 
 To create a new TimeEntry you need the following required fields:
- -DateWorked
  -ResourceID
 
 Entities that have fields that refer to the base entity of this CmdLet:
@@ -34,7 +33,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.TimeEntry]. This function outputs the Autotask.TimeEntry that was created by the API.
 .EXAMPLE
-$result = New-AtwsTimeEntry -DateWorked [Value] -ResourceID [Value]
+$result = New-AtwsTimeEntry -ResourceID [Value]
 Creates a new [Autotask.TimeEntry] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry 
@@ -97,10 +96,8 @@ Set-AtwsTimeEntry
 
 # Date
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [datetime]
     $DateWorked,
 
@@ -143,7 +140,7 @@ Set-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,8000)]
+    [ValidateLength(0,32000)]
     [string]
     $SummaryNotes,
 
@@ -151,7 +148,7 @@ Set-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,8000)]
+    [ValidateLength(0,32000)]
     [string]
     $InternalNotes,
 

@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -37,12 +37,15 @@ AccountNote
  InstalledProduct
  NotificationHistory
  Opportunity
+ ProjectNote
  Quote
  SalesOrder
  SurveyResults
+ TaskNote
  Ticket
  TicketAdditionalContact
  TicketChangeRequestApproval
+ TicketNote
 
 .INPUTS
 Nothing. This function only takes parameters.

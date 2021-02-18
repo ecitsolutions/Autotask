@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -19,6 +19,7 @@ Entities that have fields that refer to the base entity of this CmdLet:
 
 InstalledProduct
  InstalledProductCategoryUdfAssociation
+ Product
 
 .INPUTS
 [Autotask.InstalledProductCategory[]]. This function takes one or more objects as input. Pipeline is supported.

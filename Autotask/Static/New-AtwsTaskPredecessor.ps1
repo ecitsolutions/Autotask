@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.11
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -64,13 +64,6 @@ Set-AtwsTaskPredecessor
     [Autotask.TaskPredecessor[]]
     $InputObject,
 
-# Lag Days
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $LagDays,
-
 # Predecessor Task ID
     [Parameter(
       Mandatory = $true,
@@ -87,7 +80,14 @@ Set-AtwsTaskPredecessor
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $SuccessorTaskID
+    $SuccessorTaskID,
+
+# Lag Days
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $LagDays
   )
  
     begin { 

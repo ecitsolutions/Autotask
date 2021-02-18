@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -20,14 +20,14 @@ If you need very complicated queries you can write a filter directly and pass it
 'New-AtwsSubscription -Id 0,4' could be written as 'New-AtwsSubscription -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
 
 To create a new Subscription you need the following required fields:
- -MaterialCodeID
  -SubscriptionName
- -ExpirationDate
- -EffectiveDate
- -InstalledProductID
  -PeriodType
- -Status
+ -EffectiveDate
+ -ExpirationDate
  -PeriodPrice
+ -MaterialCodeID
+ -Status
+ -InstalledProductID
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -38,7 +38,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.Subscription]. This function outputs the Autotask.Subscription that was created by the API.
 .EXAMPLE
-$result = New-AtwsSubscription -MaterialCodeID [Value] -SubscriptionName [Value] -ExpirationDate [Value] -EffectiveDate [Value] -InstalledProductID [Value] -PeriodType [Value] -Status [Value] -PeriodPrice [Value]
+$result = New-AtwsSubscription -SubscriptionName [Value] -PeriodType [Value] -EffectiveDate [Value] -ExpirationDate [Value] -PeriodPrice [Value] -MaterialCodeID [Value] -Status [Value] -InstalledProductID [Value]
 Creates a new [Autotask.Subscription] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsSubscription -Id 124 | New-AtwsSubscription 
@@ -71,23 +71,6 @@ Set-AtwsSubscription
     [Autotask.Subscription[]]
     $InputObject,
 
-# Material Code Id
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $MaterialCodeID,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
-
 # Subscription Name
     [Parameter(
       Mandatory = $true,
@@ -99,54 +82,13 @@ Set-AtwsSubscription
     [string]
     $SubscriptionName,
 
-# Expiration Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $ExpirationDate,
-
-# Effective Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EffectiveDate,
-
-# Total Cost
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [decimal]
-    $TotalCost,
-
-# Total Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $TotalPrice,
-
-# Installed Product ID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $InstalledProductID,
-
-# Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,2000)]
     [string]
-    $PurchaseOrderNumber,
+    $Description,
 
 # Period Type
     [Parameter(
@@ -157,21 +99,23 @@ Set-AtwsSubscription
     [string]
     $PeriodType,
 
-# Type
+# Effective Date
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [string]
-    $Status,
+    [datetime]
+    $EffectiveDate,
 
-# Period Cost
+# Expiration Date
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [decimal]
-    $PeriodCost,
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $ExpirationDate,
 
 # Period Price
     [Parameter(
@@ -181,6 +125,62 @@ Set-AtwsSubscription
     [ValidateNotNullOrEmpty()]
     [decimal]
     $PeriodPrice,
+
+# Total Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $TotalPrice,
+
+# Material Code Id
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $MaterialCodeID,
+
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
+
+# Period Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $PeriodCost,
+
+# Total Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $TotalCost,
+
+# Type
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [string]
+    $Status,
+
+# Installed Product ID
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $InstalledProductID,
 
 # Vendor ID
     [Parameter(

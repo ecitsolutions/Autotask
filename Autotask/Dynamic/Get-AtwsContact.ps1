@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -52,12 +52,15 @@ AccountNote
  InstalledProduct
  NotificationHistory
  Opportunity
+ ProjectNote
  Quote
  SalesOrder
  SurveyResults
+ TaskNote
  Ticket
  TicketAdditionalContact
  TicketChangeRequestApproval
+ TicketNote
 
 .INPUTS
 Nothing. This function only takes parameters.
@@ -141,7 +144,7 @@ Set-AtwsContact
     )]
     [Alias('External')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountNote:ContactID', 'AccountToDo:ContactID', 'AttachmentInfo:AttachedByContactID', 'ClientPortalUser:ContactID', 'ContactBillingProductAssociation:ContactID', 'ContactGroupContact:ContactID', 'Contract:BillToAccountContactID', 'Contract:ContactID', 'InstalledProduct:ContactID', 'InstalledProduct:InstalledByContactID', 'NotificationHistory:InitiatingContactID', 'Opportunity:ContactID', 'Quote:ContactID', 'SalesOrder:Contact', 'SurveyResults:ContactID', 'Ticket:ContactID', 'TicketAdditionalContact:ContactID', 'TicketChangeRequestApproval:ContactID')]
+    [ValidateSet('AccountNote:ContactID', 'AccountToDo:ContactID', 'AttachmentInfo:AttachedByContactID', 'ClientPortalUser:ContactID', 'ContactBillingProductAssociation:ContactID', 'ContactGroupContact:ContactID', 'Contract:BillToAccountContactID', 'Contract:ContactID', 'InstalledProduct:ContactID', 'InstalledProduct:InstalledByContactID', 'NotificationHistory:InitiatingContactID', 'Opportunity:ContactID', 'ProjectNote:CreatedByContactID', 'Quote:ContactID', 'SalesOrder:Contact', 'SurveyResults:ContactID', 'TaskNote:CreatedByContactID', 'Ticket:ContactID', 'Ticket:CreatedByContactID', 'TicketAdditionalContact:ContactID', 'TicketChangeRequestApproval:ContactID', 'TicketNote:CreatedByContactID')]
     [string]
     $GetExternalEntityByThisEntityId,
 

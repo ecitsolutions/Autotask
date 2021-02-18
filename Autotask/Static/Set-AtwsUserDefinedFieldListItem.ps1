@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.11
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -120,7 +120,20 @@ Get-AtwsUserDefinedFieldListItem
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,128)]
     [string]
-    $ValueForDisplay
+    $ValueForDisplay,
+
+# Is Active
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $IsActive
   )
  
     begin { 

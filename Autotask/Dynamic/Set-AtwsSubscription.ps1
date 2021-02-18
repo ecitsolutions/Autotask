@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -78,35 +78,6 @@ Get-AtwsSubscription
     [switch]
     $PassThru,
 
-# Material Code Id
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $MaterialCodeID,
-
-# Description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
-
 # Subscription Name
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -124,37 +95,7 @@ Get-AtwsSubscription
     [string]
     $SubscriptionName,
 
-# Expiration Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $ExpirationDate,
-
-# Effective Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $EffectiveDate,
-
-# Purchase Order Number
+# Description
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -164,9 +105,9 @@ Get-AtwsSubscription
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,2000)]
     [string]
-    $PurchaseOrderNumber,
+    $Description,
 
 # Period Type
     [Parameter(
@@ -183,7 +124,7 @@ Get-AtwsSubscription
     [string]
     $PeriodType,
 
-# Type
+# Effective Date
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -195,21 +136,23 @@ Get-AtwsSubscription
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [string]
-    $Status,
+    [Nullable[datetime]]
+    $EffectiveDate,
 
-# Period Cost
+# Expiration Date
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[decimal]]
-    $PeriodCost,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $ExpirationDate,
 
 # Period Price
     [Parameter(
@@ -225,6 +168,63 @@ Get-AtwsSubscription
     [ValidateNotNullOrEmpty()]
     [Nullable[decimal]]
     $PeriodPrice,
+
+# Material Code Id
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int]]
+    $MaterialCodeID,
+
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
+
+# Period Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $PeriodCost,
+
+# Type
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [string]
+    $Status,
 
 # Vendor ID
     [Parameter(

@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -34,6 +34,9 @@ Properties with picklists are:
 AddressFormatID
  
 
+PurchaseOrderTemplateID
+ 
+
 Entities that have fields that refer to the base entity of this CmdLet:
 
 Account
@@ -65,20 +68,20 @@ Returns any object with a CountryName that matches the simple pattern 'SomeName*
 Get-AtwsCountry -CountryName SomeName* -NotLike CountryName
 Returns any object with a CountryName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsCountry -A <PickList Label>
-Returns any Countrys with property A equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsCountry -AddressFormatID <PickList Label>
+Returns any Countrys with property AddressFormatID equal to the <PickList Label>. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsCountry -A <PickList Label> -NotEquals A 
-Returns any Countrys with property A NOT equal to the <PickList Label>.
+Get-AtwsCountry -AddressFormatID <PickList Label> -NotEquals AddressFormatID 
+Returns any Countrys with property AddressFormatID NOT equal to the <PickList Label>.
  .EXAMPLE
-Get-AtwsCountry -A <PickList Label1>, <PickList Label2>
-Returns any Countrys with property A equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsCountry -AddressFormatID <PickList Label1>, <PickList Label2>
+Returns any Countrys with property AddressFormatID equal to EITHER <PickList Label1> OR <PickList Label2>.
  .EXAMPLE
-Get-AtwsCountry -A <PickList Label1>, <PickList Label2> -NotEquals A
-Returns any Countrys with property A NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsCountry -AddressFormatID <PickList Label1>, <PickList Label2> -NotEquals AddressFormatID
+Returns any Countrys with property AddressFormatID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
  .EXAMPLE
-Get-AtwsCountry -Id 1234 -CountryName SomeName* -A <PickList Label1>, <PickList Label2> -Like CountryName -NotEquals A -GreaterThan Id
-An example of a more complex query. This command returns any Countrys with Id GREATER THAN 1234, a CountryName that matches the simple pattern SomeName* AND that has a A that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsCountry -Id 1234 -CountryName SomeName* -AddressFormatID <PickList Label1>, <PickList Label2> -Like CountryName -NotEquals AddressFormatID -GreaterThan Id
+An example of a more complex query. This command returns any Countrys with Id GREATER THAN 1234, a CountryName that matches the simple pattern SomeName* AND that has a AddressFormatID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
 .LINK
 Set-AtwsCountry
@@ -200,52 +203,59 @@ Set-AtwsCountry
     [Nullable[Int][]]
     $InvoiceTemplateID,
 
+# Purchase Order Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'Active', 'IsDefaultCountry', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [string[]]
+    $PurchaseOrderTemplateID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'Active', 'IsDefaultCountry', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'Active', 'IsDefaultCountry', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'Active', 'IsDefaultCountry', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'Active', 'IsDefaultCountry', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'Active', 'IsDefaultCountry', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $LessThanOrEquals,
 

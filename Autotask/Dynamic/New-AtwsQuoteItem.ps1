@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -211,6 +211,13 @@ Set-AtwsQuoteItem
     )]
     [string]
     $PeriodType,
+
+# sort_order
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $SortOrderID,
 
 # quote_item_description
     [Parameter(

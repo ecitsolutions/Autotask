@@ -1,5 +1,5 @@
 #Requires -Version 4.0
-#Version 1.6.10
+#Version 1.6.12
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -73,6 +73,20 @@ Get-AtwsPurchaseApproval
     [switch]
     $PassThru,
 
+# Reject Note
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,5000)]
+    [string]
+    $RejectNote,
+
 # Is Approved
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -86,21 +100,7 @@ Get-AtwsPurchaseApproval
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean]]
-    $IsApproved,
-
-# Reject Note
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,5000)]
-    [string]
-    $RejectNote
+    $IsApproved
   )
  
     begin { 
