@@ -364,7 +364,7 @@ Function New-AtwsAttachment {
 
             $AsByteStream = @{}
 
-            if ($PSVersionTable.PSVersion.Major -ge 5) {
+            if ($PSVersionTable.PSVersion.Major -gt 5) {
                 $AsByteStream.AsByteStream = $True
             }
             else {
