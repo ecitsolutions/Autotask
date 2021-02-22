@@ -36,6 +36,12 @@ Update-AtwsFunctions -FunctionSet Dynamic
 
 # Release notes
 
+## Version 1.6.14
+
+- BUGFIX: New-AtwsAttachment now supports tasks, not only tickets
+- UPDATE: Mime type of attachment is determined automatically
+- UPDATE: New function Get-AtwsMimeMapping, a static table of mimetypes for most common file extensions
+
 ## Version 1.6.13
 
 - BUGFIX: Wrong Reference.cs included with previous upload. 
