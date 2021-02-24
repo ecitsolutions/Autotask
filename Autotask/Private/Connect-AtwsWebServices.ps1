@@ -164,6 +164,9 @@ Function Connect-AtwsWebServices {
             $binding.MaxReceivedMessageSize = 20000000
             $binding.MaxBufferSize = 20000000
             $binding.MaxBufferPoolSize = 20000000
+            $binding.OpenTimeout = New-TimeSpan -Minutes 3
+            $binding.CloseTimeout = New-TimeSpan -Minutes 3
+            $binding.SendTimeout = New-TimeSpan -Minutes 3
 
             # Prepare securestring password to be converted to plaintext
             $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($ConfigurationData.SecurePassword)
@@ -199,7 +202,7 @@ Function Connect-AtwsWebServices {
             # Add empty string as placeholder for cache path - will be populated later
             Add-Member -InputObject $Script:Atws -MemberType NoteProperty -Name DynamicCache -Value '' -Force
 
-        }
+        } 
         catch {
             throw $_   
             return
