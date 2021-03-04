@@ -133,7 +133,7 @@ Function Get-AtwsPSParameter {
         
         # Add picklists expander if present
         if ($isPicklist.IsPresent) { 
-            # for nested picklist. Which is Ticket issue -> subissue only...
+            # for nested picklist. Which is Ticket issue -> subissue only, at least at time of coding
             if ($PickListParentValueField) {
                 $text += @"
     [ArgumentCompleter( {
@@ -144,11 +144,11 @@ Function Get-AtwsPSParameter {
                 `$parentPicklist = Get-AtwsPicklistValue -Entity $EntityName -Field $PickListParentValueField
                 `$parentValue = `$parentPicklist[`$parentValue]
             }      
-            `$picklists = Get-AtwsPicklistValue -Entity $EntityName -FieldName $FieldName
+            `$picklists = Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name
             `$picklists[`$parentValue]['byLabel'].Keys
         }
         else {
-            Get-AtwsPicklistValue -Entity $EntityName -FieldName $FieldName -Label
+            Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label
         }
     })]`n
 "@
