@@ -58,7 +58,15 @@ Function ConvertTo-AtwsDate {
         }
         $value = '{0}{1}' -F $(Get-Date $DateTime -Format s), $Offset
         #>
-        $value = $DateTime.ToString('yyyy-MM-ddTHH:mm:ss.ffffz')
+        if ($DateTime -eq $DateTime.Date) {
+            # It is a date. Do not add timezone info.
+            $value = $DateTime.ToString('yyyy-MM-ddTHH:mm:ss.ffff')
+        } 
+        else { 
+            # It includes timeinfo. Add timezone 
+            $value = $DateTime.ToString('yyyy-MM-ddTHH:mm:ss.ffffz')
+        }
+
 
         Write-Verbose ('{0}: Converting datetime to {1}' -F $MyInvocation.MyCommand.Name, $value)
 
