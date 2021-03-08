@@ -30,6 +30,7 @@ Additional operators for [string] parameters are:
 
 Properties with picklists are:
 AddressFormatID
+PurchaseOrderTemplateID
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -184,6 +185,25 @@ Set-AtwsCountry
     [string[]]
     $Name,
 
+# Purchase Order Template ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PurchaseOrderTemplateID,
+
 # Quote Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -194,49 +214,49 @@ Set-AtwsCountry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Active', 'DisplayName', 'AddressFormatID', 'Name', 'QuoteTemplateID', 'InvoiceTemplateID', 'IsDefaultCountry')]
+    [ValidateSet('InvoiceTemplateID', 'id', 'CountryCode', 'Name', 'QuoteTemplateID', 'PurchaseOrderTemplateID', 'Active', 'DisplayName', 'IsDefaultCountry', 'AddressFormatID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Active', 'DisplayName', 'AddressFormatID', 'Name', 'QuoteTemplateID', 'InvoiceTemplateID', 'IsDefaultCountry')]
+    [ValidateSet('InvoiceTemplateID', 'id', 'CountryCode', 'Name', 'QuoteTemplateID', 'PurchaseOrderTemplateID', 'Active', 'DisplayName', 'IsDefaultCountry', 'AddressFormatID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Active', 'DisplayName', 'AddressFormatID', 'Name', 'QuoteTemplateID', 'InvoiceTemplateID', 'IsDefaultCountry')]
+    [ValidateSet('InvoiceTemplateID', 'id', 'CountryCode', 'Name', 'QuoteTemplateID', 'PurchaseOrderTemplateID', 'Active', 'DisplayName', 'IsDefaultCountry', 'AddressFormatID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID')]
+    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -318,13 +338,10 @@ Set-AtwsCountry
 
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
-            # find parameter with highest count
-            $index = @{}
-            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
-            $param = $index[$max]
+           
             # Extract the parameter content, sort it ascending (we assume it is an Id field)
             # and deduplicate
-            $count = $PSBoundParameters[$param].count
+            $count = $PSBoundParameters.Values[0].count
 
             # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
@@ -335,7 +352,7 @@ Set-AtwsCountry
             # into segments and create multiple queries with max 200 values
             else {
                 # Deduplicate the value list or the same ID may be included in more than 1 query
-                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+                $outerLoop = $PSBoundParameters.Values[0] | Sort-Object -Unique
 
                 Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
 

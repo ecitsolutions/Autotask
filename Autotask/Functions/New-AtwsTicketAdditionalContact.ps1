@@ -19,8 +19,8 @@ If you need very complicated queries you can write a filter directly and pass it
 'New-AtwsTicketAdditionalContact -Id 0,4' could be written as 'New-AtwsTicketAdditionalContact -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
 
 To create a new TicketAdditionalContact you need the following required fields:
- -TicketID
  -ContactID
+ -TicketID
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -30,7 +30,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.TicketAdditionalContact]. This function outputs the Autotask.TicketAdditionalContact that was created by the API.
 .EXAMPLE
-$result = New-AtwsTicketAdditionalContact -TicketID [Value] -ContactID [Value]
+$result = New-AtwsTicketAdditionalContact -ContactID [Value] -TicketID [Value]
 Creates a new [Autotask.TicketAdditionalContact] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsTicketAdditionalContact -Id 124 | New-AtwsTicketAdditionalContact 

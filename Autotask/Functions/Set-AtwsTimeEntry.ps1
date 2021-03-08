@@ -159,13 +159,11 @@ Get-AtwsTimeEntry
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[datetime]]
     $DateWorked,
 

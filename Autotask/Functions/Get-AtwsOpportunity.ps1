@@ -29,12 +29,12 @@ Additional operators for [string] parameters are:
  -Contains
 
 Properties with picklists are:
-LeadReferral
-RevenueSpreadUnit
 Stage
-Status
-Rating
 PrimaryCompetitor
+LeadReferral
+Status
+RevenueSpreadUnit
+Rating
 WinReason
 LossReason
 OpportunityCategoryID
@@ -65,20 +65,20 @@ Returns any object with a OpportunityName that matches the simple pattern 'SomeN
 Get-AtwsOpportunity -OpportunityName SomeName* -NotLike OpportunityName
 Returns any object with a OpportunityName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsOpportunity -LeadReferral <PickList Label>
-Returns any Opportunitys with property LeadReferral equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsOpportunity -Stage <PickList Label>
+Returns any Opportunitys with property Stage equal to the <PickList Label>. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsOpportunity -LeadReferral <PickList Label> -NotEquals LeadReferral 
-Returns any Opportunitys with property LeadReferral NOT equal to the <PickList Label>.
+Get-AtwsOpportunity -Stage <PickList Label> -NotEquals Stage 
+Returns any Opportunitys with property Stage NOT equal to the <PickList Label>.
  .EXAMPLE
-Get-AtwsOpportunity -LeadReferral <PickList Label1>, <PickList Label2>
-Returns any Opportunitys with property LeadReferral equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsOpportunity -Stage <PickList Label1>, <PickList Label2>
+Returns any Opportunitys with property Stage equal to EITHER <PickList Label1> OR <PickList Label2>.
  .EXAMPLE
-Get-AtwsOpportunity -LeadReferral <PickList Label1>, <PickList Label2> -NotEquals LeadReferral
-Returns any Opportunitys with property LeadReferral NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsOpportunity -Stage <PickList Label1>, <PickList Label2> -NotEquals Stage
+Returns any Opportunitys with property Stage NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
  .EXAMPLE
-Get-AtwsOpportunity -Id 1234 -OpportunityName SomeName* -LeadReferral <PickList Label1>, <PickList Label2> -Like OpportunityName -NotEquals LeadReferral -GreaterThan Id
-An example of a more complex query. This command returns any Opportunitys with Id GREATER THAN 1234, a OpportunityName that matches the simple pattern SomeName* AND that has a LeadReferral that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsOpportunity -Id 1234 -OpportunityName SomeName* -Stage <PickList Label1>, <PickList Label2> -Like OpportunityName -NotEquals Stage -GreaterThan Id
+An example of a more complex query. This command returns any Opportunitys with Id GREATER THAN 1234, a OpportunityName that matches the simple pattern SomeName* AND that has a Stage that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
 .LINK
 New-AtwsOpportunity
@@ -540,7 +540,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Nullable[decimal][]]
     $SalesProcessPercentComplete,
 
 # Semi-Annual Cost
@@ -679,91 +679,91 @@ Set-AtwsOpportunity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'Probability', 'ImpersonatorCreatorResourceID', 'LostDate', 'PromotionName', 'id', 'LastActivity', 'RevenueSpreadUnit', 'OpportunityCategoryID', 'DateStamp', 'LossReason', 'MonthlyRevenue', 'Rating', 'BusinessDivisionSubdivisionID', 'QuarterlyCost', 'AccountID', 'TotalAmountMonths', 'OnetimeCost', 'AssessmentScore', 'AdvancedField1', 'Market', 'Title', 'TechnicalAssessmentScore', 'PromisedFulfillmentDate', 'WinReason', 'PrimaryCompetitor', 'SalesOrderID', 'AdvancedField3', 'ProductID', 'AdvancedField5', 'CreatorResourceID', 'Amount', 'UseQuoteTotals', 'AdvancedField4', 'NextStep', 'Barriers', 'YearlyCost', 'YearlyRevenue', 'HelpNeeded', 'RelationshipAssessmentScore', 'SemiannualRevenue', 'Description', 'WinReasonDetail', 'SalesProcessPercentComplete', 'LeadReferral', 'RevenueSpread', 'MonthlyCost', 'Stage', 'OwnerResourceID', 'QuarterlyRevenue', 'ThroughDate', 'AdvancedField2', 'Cost', 'OnetimeRevenue', 'Status', 'CreateDate', 'ProjectedLiveDate', 'ProjectedCloseDate', 'ClosedDate', 'SemiannualCost', 'LossReasonDetail')]
+    [ValidateSet('AdvancedField5', 'LostDate', 'RelationshipAssessmentScore', 'ImpersonatorCreatorResourceID', 'AssessmentScore', 'AdvancedField2', 'Description', 'SemiannualRevenue', 'OnetimeRevenue', 'ContactID', 'MonthlyCost', 'ProjectedCloseDate', 'OwnerResourceID', 'ProductID', 'YearlyCost', 'Barriers', 'HelpNeeded', 'NextStep', 'LastActivity', 'Rating', 'BusinessDivisionSubdivisionID', 'UseQuoteTotals', 'TechnicalAssessmentScore', 'ClosedDate', 'Title', 'OnetimeCost', 'ProjectedLiveDate', 'PromotionName', 'Stage', 'SemiannualCost', 'Market', 'RevenueSpreadUnit', 'LeadReferral', 'AdvancedField4', 'PromisedFulfillmentDate', 'CreateDate', 'Amount', 'DateStamp', 'MonthlyRevenue', 'RevenueSpread', 'LossReasonDetail', 'AccountID', 'WinReason', 'ThroughDate', 'LossReason', 'CreatorResourceID', 'PrimaryCompetitor', 'AdvancedField3', 'SalesProcessPercentComplete', 'QuarterlyCost', 'WinReasonDetail', 'YearlyRevenue', 'AdvancedField1', 'SalesOrderID', 'Status', 'TotalAmountMonths', 'id', 'OpportunityCategoryID', 'Cost', 'Probability', 'QuarterlyRevenue')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'Probability', 'ImpersonatorCreatorResourceID', 'LostDate', 'PromotionName', 'id', 'LastActivity', 'RevenueSpreadUnit', 'OpportunityCategoryID', 'DateStamp', 'LossReason', 'MonthlyRevenue', 'Rating', 'BusinessDivisionSubdivisionID', 'QuarterlyCost', 'AccountID', 'TotalAmountMonths', 'OnetimeCost', 'AssessmentScore', 'AdvancedField1', 'Market', 'Title', 'TechnicalAssessmentScore', 'PromisedFulfillmentDate', 'WinReason', 'PrimaryCompetitor', 'SalesOrderID', 'AdvancedField3', 'ProductID', 'AdvancedField5', 'CreatorResourceID', 'Amount', 'UseQuoteTotals', 'AdvancedField4', 'NextStep', 'Barriers', 'YearlyCost', 'YearlyRevenue', 'HelpNeeded', 'RelationshipAssessmentScore', 'SemiannualRevenue', 'Description', 'WinReasonDetail', 'SalesProcessPercentComplete', 'LeadReferral', 'RevenueSpread', 'MonthlyCost', 'Stage', 'OwnerResourceID', 'QuarterlyRevenue', 'ThroughDate', 'AdvancedField2', 'Cost', 'OnetimeRevenue', 'Status', 'CreateDate', 'ProjectedLiveDate', 'ProjectedCloseDate', 'ClosedDate', 'SemiannualCost', 'LossReasonDetail')]
+    [ValidateSet('AdvancedField5', 'LostDate', 'RelationshipAssessmentScore', 'ImpersonatorCreatorResourceID', 'AssessmentScore', 'AdvancedField2', 'Description', 'SemiannualRevenue', 'OnetimeRevenue', 'ContactID', 'MonthlyCost', 'ProjectedCloseDate', 'OwnerResourceID', 'ProductID', 'YearlyCost', 'Barriers', 'HelpNeeded', 'NextStep', 'LastActivity', 'Rating', 'BusinessDivisionSubdivisionID', 'UseQuoteTotals', 'TechnicalAssessmentScore', 'ClosedDate', 'Title', 'OnetimeCost', 'ProjectedLiveDate', 'PromotionName', 'Stage', 'SemiannualCost', 'Market', 'RevenueSpreadUnit', 'LeadReferral', 'AdvancedField4', 'PromisedFulfillmentDate', 'CreateDate', 'Amount', 'DateStamp', 'MonthlyRevenue', 'RevenueSpread', 'LossReasonDetail', 'AccountID', 'WinReason', 'ThroughDate', 'LossReason', 'CreatorResourceID', 'PrimaryCompetitor', 'AdvancedField3', 'SalesProcessPercentComplete', 'QuarterlyCost', 'WinReasonDetail', 'YearlyRevenue', 'AdvancedField1', 'SalesOrderID', 'Status', 'TotalAmountMonths', 'id', 'OpportunityCategoryID', 'Cost', 'Probability', 'QuarterlyRevenue')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'Probability', 'ImpersonatorCreatorResourceID', 'LostDate', 'PromotionName', 'id', 'LastActivity', 'RevenueSpreadUnit', 'OpportunityCategoryID', 'DateStamp', 'LossReason', 'MonthlyRevenue', 'Rating', 'BusinessDivisionSubdivisionID', 'QuarterlyCost', 'AccountID', 'TotalAmountMonths', 'OnetimeCost', 'AssessmentScore', 'AdvancedField1', 'Market', 'Title', 'TechnicalAssessmentScore', 'PromisedFulfillmentDate', 'WinReason', 'PrimaryCompetitor', 'SalesOrderID', 'AdvancedField3', 'ProductID', 'AdvancedField5', 'CreatorResourceID', 'Amount', 'UseQuoteTotals', 'AdvancedField4', 'NextStep', 'Barriers', 'YearlyCost', 'YearlyRevenue', 'HelpNeeded', 'RelationshipAssessmentScore', 'SemiannualRevenue', 'Description', 'WinReasonDetail', 'SalesProcessPercentComplete', 'LeadReferral', 'RevenueSpread', 'MonthlyCost', 'Stage', 'OwnerResourceID', 'QuarterlyRevenue', 'ThroughDate', 'AdvancedField2', 'Cost', 'OnetimeRevenue', 'Status', 'CreateDate', 'ProjectedLiveDate', 'ProjectedCloseDate', 'ClosedDate', 'SemiannualCost', 'LossReasonDetail')]
+    [ValidateSet('AdvancedField5', 'LostDate', 'RelationshipAssessmentScore', 'ImpersonatorCreatorResourceID', 'AssessmentScore', 'AdvancedField2', 'Description', 'SemiannualRevenue', 'OnetimeRevenue', 'ContactID', 'MonthlyCost', 'ProjectedCloseDate', 'OwnerResourceID', 'ProductID', 'YearlyCost', 'Barriers', 'HelpNeeded', 'NextStep', 'LastActivity', 'Rating', 'BusinessDivisionSubdivisionID', 'UseQuoteTotals', 'TechnicalAssessmentScore', 'ClosedDate', 'Title', 'OnetimeCost', 'ProjectedLiveDate', 'PromotionName', 'Stage', 'SemiannualCost', 'Market', 'RevenueSpreadUnit', 'LeadReferral', 'AdvancedField4', 'PromisedFulfillmentDate', 'CreateDate', 'Amount', 'DateStamp', 'MonthlyRevenue', 'RevenueSpread', 'LossReasonDetail', 'AccountID', 'WinReason', 'ThroughDate', 'LossReason', 'CreatorResourceID', 'PrimaryCompetitor', 'AdvancedField3', 'SalesProcessPercentComplete', 'QuarterlyCost', 'WinReasonDetail', 'YearlyRevenue', 'AdvancedField1', 'SalesOrderID', 'Status', 'TotalAmountMonths', 'id', 'OpportunityCategoryID', 'Cost', 'Probability', 'QuarterlyRevenue')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'AdvancedField1', 'AdvancedField2', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'Amount', 'Barriers', 'ContactID', 'Cost', 'CreateDate', 'HelpNeeded', 'LeadReferral', 'Market', 'NextStep', 'OwnerResourceID', 'ProductID', 'ProjectedCloseDate', 'ProjectedLiveDate', 'PromotionName', 'RevenueSpreadUnit', 'Stage', 'Status', 'ThroughDate', 'Title', 'Rating', 'ClosedDate', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'PrimaryCompetitor', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'Probability', 'RevenueSpread', 'TotalAmountMonths', 'SalesProcessPercentComplete', 'SalesOrderID', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'ProductID', 'Stage', 'PrimaryCompetitor', 'LeadReferral', 'OwnerResourceID', 'Title', 'Status', 'ProjectedCloseDate', 'Probability', 'Amount', 'Cost', 'RevenueSpread', 'RevenueSpreadUnit', 'PromotionName', 'CreateDate', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'ProjectedLiveDate', 'ThroughDate', 'AdvancedField1', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'AdvancedField2', 'Rating', 'TotalAmountMonths', 'ClosedDate', 'SalesOrderID', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'SalesProcessPercentComplete', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'AdvancedField1', 'AdvancedField2', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'Amount', 'Barriers', 'ContactID', 'Cost', 'CreateDate', 'HelpNeeded', 'LeadReferral', 'Market', 'NextStep', 'OwnerResourceID', 'ProductID', 'ProjectedCloseDate', 'ProjectedLiveDate', 'PromotionName', 'RevenueSpreadUnit', 'Stage', 'Status', 'ThroughDate', 'Title', 'Rating', 'ClosedDate', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'PrimaryCompetitor', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'Probability', 'RevenueSpread', 'TotalAmountMonths', 'SalesProcessPercentComplete', 'SalesOrderID', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'ProductID', 'Stage', 'PrimaryCompetitor', 'LeadReferral', 'OwnerResourceID', 'Title', 'Status', 'ProjectedCloseDate', 'Probability', 'Amount', 'Cost', 'RevenueSpread', 'RevenueSpreadUnit', 'PromotionName', 'CreateDate', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'ProjectedLiveDate', 'ThroughDate', 'AdvancedField1', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'AdvancedField2', 'Rating', 'TotalAmountMonths', 'ClosedDate', 'SalesOrderID', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'SalesProcessPercentComplete', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'AdvancedField1', 'AdvancedField2', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'Amount', 'Barriers', 'ContactID', 'Cost', 'CreateDate', 'HelpNeeded', 'LeadReferral', 'Market', 'NextStep', 'OwnerResourceID', 'ProductID', 'ProjectedCloseDate', 'ProjectedLiveDate', 'PromotionName', 'RevenueSpreadUnit', 'Stage', 'Status', 'ThroughDate', 'Title', 'Rating', 'ClosedDate', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'PrimaryCompetitor', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'Probability', 'RevenueSpread', 'TotalAmountMonths', 'SalesProcessPercentComplete', 'SalesOrderID', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'ProductID', 'Stage', 'PrimaryCompetitor', 'LeadReferral', 'OwnerResourceID', 'Title', 'Status', 'ProjectedCloseDate', 'Probability', 'Amount', 'Cost', 'RevenueSpread', 'RevenueSpreadUnit', 'PromotionName', 'CreateDate', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'ProjectedLiveDate', 'ThroughDate', 'AdvancedField1', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'AdvancedField2', 'Rating', 'TotalAmountMonths', 'ClosedDate', 'SalesOrderID', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'SalesProcessPercentComplete', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'AdvancedField1', 'AdvancedField2', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'Amount', 'Barriers', 'ContactID', 'Cost', 'CreateDate', 'HelpNeeded', 'LeadReferral', 'Market', 'NextStep', 'OwnerResourceID', 'ProductID', 'ProjectedCloseDate', 'ProjectedLiveDate', 'PromotionName', 'RevenueSpreadUnit', 'Stage', 'Status', 'ThroughDate', 'Title', 'Rating', 'ClosedDate', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'PrimaryCompetitor', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'Probability', 'RevenueSpread', 'TotalAmountMonths', 'SalesProcessPercentComplete', 'SalesOrderID', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
+    [ValidateSet('id', 'AccountID', 'ContactID', 'ProductID', 'Stage', 'PrimaryCompetitor', 'LeadReferral', 'OwnerResourceID', 'Title', 'Status', 'ProjectedCloseDate', 'Probability', 'Amount', 'Cost', 'RevenueSpread', 'RevenueSpreadUnit', 'PromotionName', 'CreateDate', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'ProjectedLiveDate', 'ThroughDate', 'AdvancedField1', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'AdvancedField2', 'Rating', 'TotalAmountMonths', 'ClosedDate', 'SalesOrderID', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'SalesProcessPercentComplete', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Barriers', 'HelpNeeded', 'Market', 'NextStep', 'PromotionName', 'RevenueSpreadUnit', 'Title', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
+    [ValidateSet('Title', 'RevenueSpreadUnit', 'PromotionName', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Barriers', 'HelpNeeded', 'Market', 'NextStep', 'PromotionName', 'RevenueSpreadUnit', 'Title', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
+    [ValidateSet('Title', 'RevenueSpreadUnit', 'PromotionName', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Barriers', 'HelpNeeded', 'Market', 'NextStep', 'PromotionName', 'RevenueSpreadUnit', 'Title', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
+    [ValidateSet('Title', 'RevenueSpreadUnit', 'PromotionName', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Barriers', 'HelpNeeded', 'Market', 'NextStep', 'PromotionName', 'RevenueSpreadUnit', 'Title', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
+    [ValidateSet('Title', 'RevenueSpreadUnit', 'PromotionName', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Barriers', 'HelpNeeded', 'Market', 'NextStep', 'PromotionName', 'RevenueSpreadUnit', 'Title', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
+    [ValidateSet('Title', 'RevenueSpreadUnit', 'PromotionName', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDate', 'ProjectedCloseDate', 'ProjectedLiveDate', 'ThroughDate', 'ClosedDate', 'LastActivity', 'DateStamp', 'LostDate', 'PromisedFulfillmentDate')]
+    [ValidateSet('ProjectedCloseDate', 'CreateDate', 'ProjectedLiveDate', 'ThroughDate', 'ClosedDate', 'LastActivity', 'DateStamp', 'LostDate', 'PromisedFulfillmentDate')]
     [string[]]
     $IsThisDay
   )
@@ -804,13 +804,10 @@ Set-AtwsOpportunity
 
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
-            # find parameter with highest count
-            $index = @{}
-            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
-            $param = $index[$max]
+           
             # Extract the parameter content, sort it ascending (we assume it is an Id field)
             # and deduplicate
-            $count = $PSBoundParameters[$param].count
+            $count = $PSBoundParameters.Values[0].count
 
             # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
@@ -821,7 +818,7 @@ Set-AtwsOpportunity
             # into segments and create multiple queries with max 200 values
             else {
                 # Deduplicate the value list or the same ID may be included in more than 1 query
-                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+                $outerLoop = $PSBoundParameters.Values[0] | Sort-Object -Unique
 
                 Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
 

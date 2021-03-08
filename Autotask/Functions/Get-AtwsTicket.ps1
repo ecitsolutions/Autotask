@@ -451,7 +451,7 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Nullable[decimal][]]
     $HoursToBeScheduled,
 
 # Ticket ID
@@ -797,15 +797,15 @@ Set-AtwsTicket
         param($Cmd, $Param, $Word, $Ast, $FakeBound)
         if ($fakeBound.IssueType) {
             $parentvalue = $fakeBound.IssueType
-            if ([int]$parentValue -eq $parentValue) {
-                $parentPicklist = Get-AtwsPicklistValue -Entity Ticket -Field IssueType
+            if (!([int]::TryParse($parentvalue, [ref]$null))) {
+                $parentPicklist = Get-AtwsPicklistValue -Entity Ticket -Field IssueType -Label -Hashtable
                 $parentValue = $parentPicklist[$parentValue]
             }      
-            $picklists = Get-AtwsPicklistValue -Entity Ticket -FieldName 
+            $picklists = Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType
             $picklists[$parentValue]['byLabel'].Keys
         }
         else {
-            Get-AtwsPicklistValue -Entity Ticket -FieldName  -Label
+            Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType -Label
         }
     })]
     [ValidateScript({
@@ -877,21 +877,21 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OpportunityId', 'ProjectID', 'HoursToBeScheduled', 'Source', 'ContractServiceID', 'ContactID', 'ResolvedDueDateTime', 'Title', 'PreviousServiceThermometerRating', 'TicketCategory', 'FirstResponseAssignedResourceID', 'LastCustomerVisibleActivityDateTime', 'ChangeApprovalStatus', 'CompletedByResourceID', 'LastTrackedModificationDateTime', 'ServiceLevelAgreementID', 'TicketType', 'TicketNumber', 'EstimatedHours', 'RmaStatus', 'ChangeInfoField3', 'LastActivityDate', 'AEMAlertID', 'IssueType', 'CurrentServiceThermometerRating', 'CreatedByContactID', 'ChangeInfoField1', 'FirstResponseDateTime', 'CompletedDate', 'ResolvedDateTime', 'ResolutionPlanDateTime', 'FirstResponseDueDateTime', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'Description', 'InstalledProductID', 'ChangeApprovalBoard', 'ServiceLevelAgreementPausedNextEventHours', 'AccountID', 'DueDateTime', 'AllocationCodeID', 'ApiVendorID', 'LastCustomerNotificationDateTime', 'ServiceThermometerTemperature', 'id', 'ExternalID', 'AccountPhysicalLocationID', 'Resolution', 'Priority', 'ContractID', 'LastActivityResourceID', 'ProblemTicketId', 'CreateDate', 'ContractServiceBundleID', 'CreatorType', 'MonitorID', 'CreatorResourceID', 'RmaType', 'ResolutionPlanDueDateTime', 'ImpersonatorCreatorResourceID', 'Status', 'MonitorTypeID', 'QueueID', 'AssignedResourceRoleID', 'AssignedResourceID', 'ServiceLevelAgreementHasBeenMet', 'ChangeApprovalType', 'LastActivityPersonType', 'FirstResponseInitiatingResourceID', 'ChangeInfoField4', 'ChangeInfoField2', 'SubIssueType', 'ChangeInfoField5', '')]
+    [ValidateSet('ResolutionPlanDueDateTime', 'Source', 'HoursToBeScheduled', 'TicketCategory', 'ChangeInfoField2', 'ContactID', 'ProblemTicketId', 'Priority', 'LastTrackedModificationDateTime', 'ProjectID', 'Title', 'RmaType', 'CreatorType', 'CompletedByResourceID', 'QueueID', 'ServiceLevelAgreementID', 'ChangeInfoField3', 'LastCustomerVisibleActivityDateTime', 'ExternalID', 'ContractServiceID', 'CreatedByContactID', 'FirstResponseAssignedResourceID', 'LastActivityPersonType', 'ServiceThermometerTemperature', 'ChangeApprovalStatus', 'ChangeInfoField5', 'AccountPhysicalLocationID', 'InstalledProductID', 'OpportunityId', 'LastCustomerNotificationDateTime', 'IssueType', 'ChangeInfoField1', 'MonitorTypeID', 'BusinessDivisionSubdivisionID', 'Status', 'ResolvedDateTime', 'MonitorID', 'ApiVendorID', 'CreateDate', 'AllocationCodeID', 'EstimatedHours', 'AEMAlertID', 'FirstResponseDueDateTime', 'AssignedResourceID', 'CurrentServiceThermometerRating', 'ResolutionPlanDateTime', 'RmaStatus', 'AssignedResourceRoleID', 'SubIssueType', 'CreatorResourceID', 'DueDateTime', 'Resolution', 'LastActivityResourceID', 'ResolvedDueDateTime', 'TicketNumber', 'ContractID', 'LastActivityDate', 'ServiceLevelAgreementPausedNextEventHours', 'Description', 'PreviousServiceThermometerRating', 'FirstResponseInitiatingResourceID', 'ChangeApprovalType', 'ChangeInfoField4', 'ContractServiceBundleID', 'id', 'PurchaseOrderNumber', 'ServiceLevelAgreementHasBeenMet', 'ChangeApprovalBoard', 'AccountID', 'FirstResponseDateTime', 'ImpersonatorCreatorResourceID', 'TicketType', 'CompletedDate', '')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OpportunityId', 'ProjectID', 'HoursToBeScheduled', 'Source', 'ContractServiceID', 'ContactID', 'ResolvedDueDateTime', 'Title', 'PreviousServiceThermometerRating', 'TicketCategory', 'FirstResponseAssignedResourceID', 'LastCustomerVisibleActivityDateTime', 'ChangeApprovalStatus', 'CompletedByResourceID', 'LastTrackedModificationDateTime', 'ServiceLevelAgreementID', 'TicketType', 'TicketNumber', 'EstimatedHours', 'RmaStatus', 'ChangeInfoField3', 'LastActivityDate', 'AEMAlertID', 'IssueType', 'CurrentServiceThermometerRating', 'CreatedByContactID', 'ChangeInfoField1', 'FirstResponseDateTime', 'CompletedDate', 'ResolvedDateTime', 'ResolutionPlanDateTime', 'FirstResponseDueDateTime', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'Description', 'InstalledProductID', 'ChangeApprovalBoard', 'ServiceLevelAgreementPausedNextEventHours', 'AccountID', 'DueDateTime', 'AllocationCodeID', 'ApiVendorID', 'LastCustomerNotificationDateTime', 'ServiceThermometerTemperature', 'id', 'ExternalID', 'AccountPhysicalLocationID', 'Resolution', 'Priority', 'ContractID', 'LastActivityResourceID', 'ProblemTicketId', 'CreateDate', 'ContractServiceBundleID', 'CreatorType', 'MonitorID', 'CreatorResourceID', 'RmaType', 'ResolutionPlanDueDateTime', 'ImpersonatorCreatorResourceID', 'Status', 'MonitorTypeID', 'QueueID', 'AssignedResourceRoleID', 'AssignedResourceID', 'ServiceLevelAgreementHasBeenMet', 'ChangeApprovalType', 'LastActivityPersonType', 'FirstResponseInitiatingResourceID', 'ChangeInfoField4', 'ChangeInfoField2', 'SubIssueType', 'ChangeInfoField5', '')]
+    [ValidateSet('ResolutionPlanDueDateTime', 'Source', 'HoursToBeScheduled', 'TicketCategory', 'ChangeInfoField2', 'ContactID', 'ProblemTicketId', 'Priority', 'LastTrackedModificationDateTime', 'ProjectID', 'Title', 'RmaType', 'CreatorType', 'CompletedByResourceID', 'QueueID', 'ServiceLevelAgreementID', 'ChangeInfoField3', 'LastCustomerVisibleActivityDateTime', 'ExternalID', 'ContractServiceID', 'CreatedByContactID', 'FirstResponseAssignedResourceID', 'LastActivityPersonType', 'ServiceThermometerTemperature', 'ChangeApprovalStatus', 'ChangeInfoField5', 'AccountPhysicalLocationID', 'InstalledProductID', 'OpportunityId', 'LastCustomerNotificationDateTime', 'IssueType', 'ChangeInfoField1', 'MonitorTypeID', 'BusinessDivisionSubdivisionID', 'Status', 'ResolvedDateTime', 'MonitorID', 'ApiVendorID', 'CreateDate', 'AllocationCodeID', 'EstimatedHours', 'AEMAlertID', 'FirstResponseDueDateTime', 'AssignedResourceID', 'CurrentServiceThermometerRating', 'ResolutionPlanDateTime', 'RmaStatus', 'AssignedResourceRoleID', 'SubIssueType', 'CreatorResourceID', 'DueDateTime', 'Resolution', 'LastActivityResourceID', 'ResolvedDueDateTime', 'TicketNumber', 'ContractID', 'LastActivityDate', 'ServiceLevelAgreementPausedNextEventHours', 'Description', 'PreviousServiceThermometerRating', 'FirstResponseInitiatingResourceID', 'ChangeApprovalType', 'ChangeInfoField4', 'ContractServiceBundleID', 'id', 'PurchaseOrderNumber', 'ServiceLevelAgreementHasBeenMet', 'ChangeApprovalBoard', 'AccountID', 'FirstResponseDateTime', 'ImpersonatorCreatorResourceID', 'TicketType', 'CompletedDate', '')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OpportunityId', 'ProjectID', 'HoursToBeScheduled', 'Source', 'ContractServiceID', 'ContactID', 'ResolvedDueDateTime', 'Title', 'PreviousServiceThermometerRating', 'TicketCategory', 'FirstResponseAssignedResourceID', 'LastCustomerVisibleActivityDateTime', 'ChangeApprovalStatus', 'CompletedByResourceID', 'LastTrackedModificationDateTime', 'ServiceLevelAgreementID', 'TicketType', 'TicketNumber', 'EstimatedHours', 'RmaStatus', 'ChangeInfoField3', 'LastActivityDate', 'AEMAlertID', 'IssueType', 'CurrentServiceThermometerRating', 'CreatedByContactID', 'ChangeInfoField1', 'FirstResponseDateTime', 'CompletedDate', 'ResolvedDateTime', 'ResolutionPlanDateTime', 'FirstResponseDueDateTime', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'Description', 'InstalledProductID', 'ChangeApprovalBoard', 'ServiceLevelAgreementPausedNextEventHours', 'AccountID', 'DueDateTime', 'AllocationCodeID', 'ApiVendorID', 'LastCustomerNotificationDateTime', 'ServiceThermometerTemperature', 'id', 'ExternalID', 'AccountPhysicalLocationID', 'Resolution', 'Priority', 'ContractID', 'LastActivityResourceID', 'ProblemTicketId', 'CreateDate', 'ContractServiceBundleID', 'CreatorType', 'MonitorID', 'CreatorResourceID', 'RmaType', 'ResolutionPlanDueDateTime', 'ImpersonatorCreatorResourceID', 'Status', 'MonitorTypeID', 'QueueID', 'AssignedResourceRoleID', 'AssignedResourceID', 'ServiceLevelAgreementHasBeenMet', 'ChangeApprovalType', 'LastActivityPersonType', 'FirstResponseInitiatingResourceID', 'ChangeInfoField4', 'ChangeInfoField2', 'SubIssueType', 'ChangeInfoField5', '')]
+    [ValidateSet('ResolutionPlanDueDateTime', 'Source', 'HoursToBeScheduled', 'TicketCategory', 'ChangeInfoField2', 'ContactID', 'ProblemTicketId', 'Priority', 'LastTrackedModificationDateTime', 'ProjectID', 'Title', 'RmaType', 'CreatorType', 'CompletedByResourceID', 'QueueID', 'ServiceLevelAgreementID', 'ChangeInfoField3', 'LastCustomerVisibleActivityDateTime', 'ExternalID', 'ContractServiceID', 'CreatedByContactID', 'FirstResponseAssignedResourceID', 'LastActivityPersonType', 'ServiceThermometerTemperature', 'ChangeApprovalStatus', 'ChangeInfoField5', 'AccountPhysicalLocationID', 'InstalledProductID', 'OpportunityId', 'LastCustomerNotificationDateTime', 'IssueType', 'ChangeInfoField1', 'MonitorTypeID', 'BusinessDivisionSubdivisionID', 'Status', 'ResolvedDateTime', 'MonitorID', 'ApiVendorID', 'CreateDate', 'AllocationCodeID', 'EstimatedHours', 'AEMAlertID', 'FirstResponseDueDateTime', 'AssignedResourceID', 'CurrentServiceThermometerRating', 'ResolutionPlanDateTime', 'RmaStatus', 'AssignedResourceRoleID', 'SubIssueType', 'CreatorResourceID', 'DueDateTime', 'Resolution', 'LastActivityResourceID', 'ResolvedDueDateTime', 'TicketNumber', 'ContractID', 'LastActivityDate', 'ServiceLevelAgreementPausedNextEventHours', 'Description', 'PreviousServiceThermometerRating', 'FirstResponseInitiatingResourceID', 'ChangeApprovalType', 'ChangeInfoField4', 'ContractServiceBundleID', 'id', 'PurchaseOrderNumber', 'ServiceLevelAgreementHasBeenMet', 'ChangeApprovalBoard', 'AccountID', 'FirstResponseDateTime', 'ImpersonatorCreatorResourceID', 'TicketType', 'CompletedDate', '')]
     [string[]]
     $IsNotNull,
 
@@ -1002,13 +1002,10 @@ Set-AtwsTicket
 
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
-            # find parameter with highest count
-            $index = @{}
-            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
-            $param = $index[$max]
+           
             # Extract the parameter content, sort it ascending (we assume it is an Id field)
             # and deduplicate
-            $count = $PSBoundParameters[$param].count
+            $count = $PSBoundParameters.Values[0].count
 
             # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
@@ -1019,7 +1016,7 @@ Set-AtwsTicket
             # into segments and create multiple queries with max 200 values
             else {
                 # Deduplicate the value list or the same ID may be included in more than 1 query
-                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+                $outerLoop = $PSBoundParameters.Values[0] | Sort-Object -Unique
 
                 Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
 

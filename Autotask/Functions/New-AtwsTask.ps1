@@ -20,9 +20,9 @@ If you need very complicated queries you can write a filter directly and pass it
 
 To create a new Task you need the following required fields:
  -ProjectID
- -Status
- -TaskType
  -Title
+ -TaskType
+ -Status
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -32,7 +32,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.Task]. This function outputs the Autotask.Task that was created by the API.
 .EXAMPLE
-$result = New-AtwsTask -ProjectID [Value] -Status [Value] -TaskType [Value] -Title [Value]
+$result = New-AtwsTask -ProjectID [Value] -Title [Value] -TaskType [Value] -Status [Value]
 Creates a new [Autotask.Task] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsTask -Id 124 | New-AtwsTask 

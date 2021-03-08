@@ -446,21 +446,21 @@ Set-AtwsBillingItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TimeEntryID', 'Quantity', 'PostedDate', 'MilestoneID', 'LineItemID', 'id', 'PurchaseOrderNumber', 'ItemDate', 'InvoiceID', 'ServiceID', 'NonBillable', 'LineItemFullDescription', 'ExpenseItemID', 'AccountID', 'SubType', 'OurCost', 'VendorID', 'TotalAmount', 'AccountManagerWhenApprovedID', 'TaskID', 'TicketCostID', 'WebServiceDate', 'LineItemGroupDescription', 'AllocationCodeID', 'Rate', 'Type', 'RoleID', 'InternalCurrencyRate', 'ItemApproverID', 'ProjectID', 'TicketID', 'PostedOnTime', 'InternalCurrencyExtendedPrice', 'TaxDollars', 'InternalCurrencyTaxDollars', 'Description', 'InternalCurrencyTotalAmount', 'ContractCostID', 'ProjectCostID', 'ContractID', 'InstalledProductID', 'ServiceBundleID', 'BusinessDivisionSubdivisionID', 'ItemName', 'ExtendedPrice')]
+    [ValidateSet('VendorID', 'TimeEntryID', 'ItemDate', 'SubType', 'Type', 'AccountManagerWhenApprovedID', 'InternalCurrencyRate', 'BusinessDivisionSubdivisionID', 'InvoiceID', 'TicketCostID', 'MilestoneID', 'AllocationCodeID', 'ServiceBundleID', 'NonBillable', 'Rate', 'OurCost', 'ContractCostID', 'ProjectCostID', 'InternalCurrencyTaxDollars', 'LineItemFullDescription', 'LineItemID', 'ServiceID', 'TaskID', 'InternalCurrencyExtendedPrice', 'PostedDate', 'TicketID', 'PostedOnTime', 'id', 'Description', 'ItemApproverID', 'ExtendedPrice', 'ContractID', 'ItemName', 'WebServiceDate', 'InternalCurrencyTotalAmount', 'LineItemGroupDescription', 'TotalAmount', 'RoleID', 'PurchaseOrderNumber', 'ExpenseItemID', 'AccountID', 'InstalledProductID', 'ProjectID', 'Quantity', 'TaxDollars')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TimeEntryID', 'Quantity', 'PostedDate', 'MilestoneID', 'LineItemID', 'id', 'PurchaseOrderNumber', 'ItemDate', 'InvoiceID', 'ServiceID', 'NonBillable', 'LineItemFullDescription', 'ExpenseItemID', 'AccountID', 'SubType', 'OurCost', 'VendorID', 'TotalAmount', 'AccountManagerWhenApprovedID', 'TaskID', 'TicketCostID', 'WebServiceDate', 'LineItemGroupDescription', 'AllocationCodeID', 'Rate', 'Type', 'RoleID', 'InternalCurrencyRate', 'ItemApproverID', 'ProjectID', 'TicketID', 'PostedOnTime', 'InternalCurrencyExtendedPrice', 'TaxDollars', 'InternalCurrencyTaxDollars', 'Description', 'InternalCurrencyTotalAmount', 'ContractCostID', 'ProjectCostID', 'ContractID', 'InstalledProductID', 'ServiceBundleID', 'BusinessDivisionSubdivisionID', 'ItemName', 'ExtendedPrice')]
+    [ValidateSet('VendorID', 'TimeEntryID', 'ItemDate', 'SubType', 'Type', 'AccountManagerWhenApprovedID', 'InternalCurrencyRate', 'BusinessDivisionSubdivisionID', 'InvoiceID', 'TicketCostID', 'MilestoneID', 'AllocationCodeID', 'ServiceBundleID', 'NonBillable', 'Rate', 'OurCost', 'ContractCostID', 'ProjectCostID', 'InternalCurrencyTaxDollars', 'LineItemFullDescription', 'LineItemID', 'ServiceID', 'TaskID', 'InternalCurrencyExtendedPrice', 'PostedDate', 'TicketID', 'PostedOnTime', 'id', 'Description', 'ItemApproverID', 'ExtendedPrice', 'ContractID', 'ItemName', 'WebServiceDate', 'InternalCurrencyTotalAmount', 'LineItemGroupDescription', 'TotalAmount', 'RoleID', 'PurchaseOrderNumber', 'ExpenseItemID', 'AccountID', 'InstalledProductID', 'ProjectID', 'Quantity', 'TaxDollars')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TimeEntryID', 'Quantity', 'PostedDate', 'MilestoneID', 'LineItemID', 'id', 'PurchaseOrderNumber', 'ItemDate', 'InvoiceID', 'ServiceID', 'NonBillable', 'LineItemFullDescription', 'ExpenseItemID', 'AccountID', 'SubType', 'OurCost', 'VendorID', 'TotalAmount', 'AccountManagerWhenApprovedID', 'TaskID', 'TicketCostID', 'WebServiceDate', 'LineItemGroupDescription', 'AllocationCodeID', 'Rate', 'Type', 'RoleID', 'InternalCurrencyRate', 'ItemApproverID', 'ProjectID', 'TicketID', 'PostedOnTime', 'InternalCurrencyExtendedPrice', 'TaxDollars', 'InternalCurrencyTaxDollars', 'Description', 'InternalCurrencyTotalAmount', 'ContractCostID', 'ProjectCostID', 'ContractID', 'InstalledProductID', 'ServiceBundleID', 'BusinessDivisionSubdivisionID', 'ItemName', 'ExtendedPrice')]
+    [ValidateSet('VendorID', 'TimeEntryID', 'ItemDate', 'SubType', 'Type', 'AccountManagerWhenApprovedID', 'InternalCurrencyRate', 'BusinessDivisionSubdivisionID', 'InvoiceID', 'TicketCostID', 'MilestoneID', 'AllocationCodeID', 'ServiceBundleID', 'NonBillable', 'Rate', 'OurCost', 'ContractCostID', 'ProjectCostID', 'InternalCurrencyTaxDollars', 'LineItemFullDescription', 'LineItemID', 'ServiceID', 'TaskID', 'InternalCurrencyExtendedPrice', 'PostedDate', 'TicketID', 'PostedOnTime', 'id', 'Description', 'ItemApproverID', 'ExtendedPrice', 'ContractID', 'ItemName', 'WebServiceDate', 'InternalCurrencyTotalAmount', 'LineItemGroupDescription', 'TotalAmount', 'RoleID', 'PurchaseOrderNumber', 'ExpenseItemID', 'AccountID', 'InstalledProductID', 'ProjectID', 'Quantity', 'TaxDollars')]
     [string[]]
     $IsNotNull,
 
@@ -571,13 +571,10 @@ Set-AtwsBillingItem
 
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
-            # find parameter with highest count
-            $index = @{}
-            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
-            $param = $index[$max]
+           
             # Extract the parameter content, sort it ascending (we assume it is an Id field)
             # and deduplicate
-            $count = $PSBoundParameters[$param].count
+            $count = $PSBoundParameters.Values[0].count
 
             # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
@@ -588,7 +585,7 @@ Set-AtwsBillingItem
             # into segments and create multiple queries with max 200 values
             else {
                 # Deduplicate the value list or the same ID may be included in more than 1 query
-                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+                $outerLoop = $PSBoundParameters.Values[0] | Sort-Object -Unique
 
                 Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
 

@@ -177,13 +177,11 @@ Get-AtwsTaskNote
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,250)]
     [string]
     $Title

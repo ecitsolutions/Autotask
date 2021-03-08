@@ -337,21 +337,21 @@ Set-AtwsSalesOrder
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdditionalBillToAddressInformation', 'ShipToAddress1', 'BillToCity', 'id', 'Contact', 'ShipToAddress2', 'ShipToCity', 'BillToCountry', 'AccountID', 'PromisedDueDate', 'AdditionalShipToAddressInformation', 'Status', 'ShipToPostalCode', 'Title', 'BillToPostalCode', 'BillToAddress2', 'OpportunityID', 'BillToState', 'ShipToState', 'SalesOrderDate', 'ShipToCountryID', 'OwnerResourceID', 'BillToCountryID', 'ShipToCountry', 'BusinessDivisionSubdivisionID', 'BillToAddress1', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BillToAddress2', 'ShipToAddress1', 'BillToAddress1', 'BusinessDivisionSubdivisionID', 'ShipToCountry', 'OwnerResourceID', 'BillToCity', 'OpportunityID', 'BillToState', 'ShipToCountryID', 'AdditionalShipToAddressInformation', 'BillToPostalCode', 'Title', 'AdditionalBillToAddressInformation', 'ShipToState', 'ShipToAddress2', 'id', 'BillToCountry', 'Contact', 'ImpersonatorCreatorResourceID', 'Status', 'PromisedDueDate', 'ShipToPostalCode', 'AccountID', 'SalesOrderDate', 'ShipToCity', 'BillToCountryID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdditionalBillToAddressInformation', 'ShipToAddress1', 'BillToCity', 'id', 'Contact', 'ShipToAddress2', 'ShipToCity', 'BillToCountry', 'AccountID', 'PromisedDueDate', 'AdditionalShipToAddressInformation', 'Status', 'ShipToPostalCode', 'Title', 'BillToPostalCode', 'BillToAddress2', 'OpportunityID', 'BillToState', 'ShipToState', 'SalesOrderDate', 'ShipToCountryID', 'OwnerResourceID', 'BillToCountryID', 'ShipToCountry', 'BusinessDivisionSubdivisionID', 'BillToAddress1', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BillToAddress2', 'ShipToAddress1', 'BillToAddress1', 'BusinessDivisionSubdivisionID', 'ShipToCountry', 'OwnerResourceID', 'BillToCity', 'OpportunityID', 'BillToState', 'ShipToCountryID', 'AdditionalShipToAddressInformation', 'BillToPostalCode', 'Title', 'AdditionalBillToAddressInformation', 'ShipToState', 'ShipToAddress2', 'id', 'BillToCountry', 'Contact', 'ImpersonatorCreatorResourceID', 'Status', 'PromisedDueDate', 'ShipToPostalCode', 'AccountID', 'SalesOrderDate', 'ShipToCity', 'BillToCountryID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdditionalBillToAddressInformation', 'ShipToAddress1', 'BillToCity', 'id', 'Contact', 'ShipToAddress2', 'ShipToCity', 'BillToCountry', 'AccountID', 'PromisedDueDate', 'AdditionalShipToAddressInformation', 'Status', 'ShipToPostalCode', 'Title', 'BillToPostalCode', 'BillToAddress2', 'OpportunityID', 'BillToState', 'ShipToState', 'SalesOrderDate', 'ShipToCountryID', 'OwnerResourceID', 'BillToCountryID', 'ShipToCountry', 'BusinessDivisionSubdivisionID', 'BillToAddress1', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BillToAddress2', 'ShipToAddress1', 'BillToAddress1', 'BusinessDivisionSubdivisionID', 'ShipToCountry', 'OwnerResourceID', 'BillToCity', 'OpportunityID', 'BillToState', 'ShipToCountryID', 'AdditionalShipToAddressInformation', 'BillToPostalCode', 'Title', 'AdditionalBillToAddressInformation', 'ShipToState', 'ShipToAddress2', 'id', 'BillToCountry', 'Contact', 'ImpersonatorCreatorResourceID', 'Status', 'PromisedDueDate', 'ShipToPostalCode', 'AccountID', 'SalesOrderDate', 'ShipToCity', 'BillToCountryID')]
     [string[]]
     $IsNotNull,
 
@@ -462,13 +462,10 @@ Set-AtwsSalesOrder
 
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
-            # find parameter with highest count
-            $index = @{}
-            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
-            $param = $index[$max]
+           
             # Extract the parameter content, sort it ascending (we assume it is an Id field)
             # and deduplicate
-            $count = $PSBoundParameters[$param].count
+            $count = $PSBoundParameters.Values[0].count
 
             # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
@@ -479,7 +476,7 @@ Set-AtwsSalesOrder
             # into segments and create multiple queries with max 200 values
             else {
                 # Deduplicate the value list or the same ID may be included in more than 1 query
-                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+                $outerLoop = $PSBoundParameters.Values[0] | Sort-Object -Unique
 
                 Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
 

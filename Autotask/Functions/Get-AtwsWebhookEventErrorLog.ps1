@@ -84,7 +84,7 @@ Remove-AtwsWebhookEventErrorLog
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AccountWebhookID', 'ContactWebhookID')]
+    [ValidateSet('AccountWebhookID', 'ConfigurationItemWebhookID', 'ContactWebhookID')]
     [string]
     $GetReferenceEntityById,
 
@@ -101,6 +101,13 @@ Remove-AtwsWebhookEventErrorLog
     )]
     [Nullable[Int][]]
     $AccountWebhookID,
+
+# Configuration Item Webhook ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ConfigurationItemWebhookID,
 
 # Contact Webhook ID
     [Parameter(
@@ -150,49 +157,49 @@ Remove-AtwsWebhookEventErrorLog
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SequenceNumber', 'ContactWebhookID', 'CreateDateTime', 'Payload', 'AccountWebhookID', 'ErrorMessage')]
+    [ValidateSet('ContactWebhookID', 'id', 'ErrorMessage', 'Payload', 'CreateDateTime', 'SequenceNumber', 'ConfigurationItemWebhookID', 'AccountWebhookID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SequenceNumber', 'ContactWebhookID', 'CreateDateTime', 'Payload', 'AccountWebhookID', 'ErrorMessage')]
+    [ValidateSet('ContactWebhookID', 'id', 'ErrorMessage', 'Payload', 'CreateDateTime', 'SequenceNumber', 'ConfigurationItemWebhookID', 'AccountWebhookID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SequenceNumber', 'ContactWebhookID', 'CreateDateTime', 'Payload', 'AccountWebhookID', 'ErrorMessage')]
+    [ValidateSet('ContactWebhookID', 'id', 'ErrorMessage', 'Payload', 'CreateDateTime', 'SequenceNumber', 'ConfigurationItemWebhookID', 'AccountWebhookID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime')]
+    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -275,13 +282,10 @@ Remove-AtwsWebhookEventErrorLog
 
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
-            # find parameter with highest count
-            $index = @{}
-            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
-            $param = $index[$max]
+           
             # Extract the parameter content, sort it ascending (we assume it is an Id field)
             # and deduplicate
-            $count = $PSBoundParameters[$param].count
+            $count = $PSBoundParameters.Values[0].count
 
             # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
@@ -292,7 +296,7 @@ Remove-AtwsWebhookEventErrorLog
             # into segments and create multiple queries with max 200 values
             else {
                 # Deduplicate the value list or the same ID may be included in more than 1 query
-                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+                $outerLoop = $PSBoundParameters.Values[0] | Sort-Object -Unique
 
                 Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
 

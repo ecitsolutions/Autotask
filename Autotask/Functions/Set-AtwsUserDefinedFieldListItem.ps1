@@ -74,6 +74,19 @@ Get-AtwsUserDefinedFieldListItem
     [switch]
     $PassThru,
 
+# Is Active
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $IsActive,
+
 # User Defined Field Definition
     [Parameter(
       ParametersetName = 'Input_Object'

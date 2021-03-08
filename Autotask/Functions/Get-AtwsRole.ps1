@@ -177,21 +177,21 @@ Set-AtwsRole
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'IsExcludedFromNewContracts', 'Description', 'HourlyFactor', 'QuoteItemDefaultTaxCategoryId', 'Name', 'RoleType', 'SystemRole', 'HourlyRate')]
+    [ValidateSet('Description', 'SystemRole', 'HourlyFactor', 'Name', 'HourlyRate', 'RoleType', 'Active', 'QuoteItemDefaultTaxCategoryId', 'IsExcludedFromNewContracts', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'IsExcludedFromNewContracts', 'Description', 'HourlyFactor', 'QuoteItemDefaultTaxCategoryId', 'Name', 'RoleType', 'SystemRole', 'HourlyRate')]
+    [ValidateSet('Description', 'SystemRole', 'HourlyFactor', 'Name', 'HourlyRate', 'RoleType', 'Active', 'QuoteItemDefaultTaxCategoryId', 'IsExcludedFromNewContracts', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Active', 'IsExcludedFromNewContracts', 'Description', 'HourlyFactor', 'QuoteItemDefaultTaxCategoryId', 'Name', 'RoleType', 'SystemRole', 'HourlyRate')]
+    [ValidateSet('Description', 'SystemRole', 'HourlyFactor', 'Name', 'HourlyRate', 'RoleType', 'Active', 'QuoteItemDefaultTaxCategoryId', 'IsExcludedFromNewContracts', 'id')]
     [string[]]
     $IsNotNull,
 
@@ -301,13 +301,10 @@ Set-AtwsRole
 
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
-            # find parameter with highest count
-            $index = @{}
-            $max = ($PSBoundParameters.getenumerator() | foreach-object { $index[$_.count] = $_.key ; $_.count } | Sort-Object -Descending)[0]
-            $param = $index[$max]
+           
             # Extract the parameter content, sort it ascending (we assume it is an Id field)
             # and deduplicate
-            $count = $PSBoundParameters[$param].count
+            $count = $PSBoundParameters.Values[0].count
 
             # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
@@ -318,7 +315,7 @@ Set-AtwsRole
             # into segments and create multiple queries with max 200 values
             else {
                 # Deduplicate the value list or the same ID may be included in more than 1 query
-                $outerLoop = $PSBoundParameters[$param] | Sort-Object -Unique
+                $outerLoop = $PSBoundParameters.Values[0] | Sort-Object -Unique
 
                 Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
 

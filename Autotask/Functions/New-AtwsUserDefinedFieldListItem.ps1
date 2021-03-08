@@ -69,6 +69,13 @@ Set-AtwsUserDefinedFieldListItem
     [datetime]
     $CreateDate,
 
+# Is Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsActive,
+
 # User Defined Field Definition
     [Parameter(
       Mandatory = $true,

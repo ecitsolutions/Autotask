@@ -20,16 +20,16 @@ If you need very complicated queries you can write a filter directly and pass it
 
 To create a new Opportunity you need the following required fields:
  -AccountID
+ -Stage
+ -OwnerResourceID
+ -Title
+ -Status
+ -ProjectedCloseDate
+ -Probability
  -Amount
  -Cost
- -CreateDate
- -OwnerResourceID
- -ProjectedCloseDate
- -Stage
- -Status
- -Title
- -Probability
  -UseQuoteTotals
+ -CreateDate
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -39,7 +39,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.Opportunity]. This function outputs the Autotask.Opportunity that was created by the API.
 .EXAMPLE
-$result = New-AtwsOpportunity -AccountID [Value] -Amount [Value] -Cost [Value] -CreateDate [Value] -OwnerResourceID [Value] -ProjectedCloseDate [Value] -Stage [Value] -Status [Value] -Title [Value] -Probability [Value] -UseQuoteTotals [Value]
+$result = New-AtwsOpportunity -AccountID [Value] -Stage [Value] -OwnerResourceID [Value] -Title [Value] -Status [Value] -ProjectedCloseDate [Value] -Probability [Value] -Amount [Value] -Cost [Value] -UseQuoteTotals [Value] -CreateDate [Value]
 Creates a new [Autotask.Opportunity] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsOpportunity -Id 124 | New-AtwsOpportunity 
@@ -489,7 +489,7 @@ Set-AtwsOpportunity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
+    [decimal]
     $SalesProcessPercentComplete,
 
 # Semi-Annual Cost

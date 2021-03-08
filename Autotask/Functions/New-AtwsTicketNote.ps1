@@ -23,7 +23,6 @@ To create a new TicketNote you need the following required fields:
  -NoteType
  -Publish
  -TicketID
- -Title
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -33,7 +32,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.TicketNote]. This function outputs the Autotask.TicketNote that was created by the API.
 .EXAMPLE
-$result = New-AtwsTicketNote -Description [Value] -NoteType [Value] -Publish [Value] -TicketID [Value] -Title [Value]
+$result = New-AtwsTicketNote -Description [Value] -NoteType [Value] -Publish [Value] -TicketID [Value]
 Creates a new [Autotask.TicketNote] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsTicketNote -Id 124 | New-AtwsTicketNote 
@@ -169,10 +168,8 @@ Set-AtwsTicketNote
 
 # Title
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,250)]
     [string]
     $Title

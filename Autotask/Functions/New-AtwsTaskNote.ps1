@@ -23,7 +23,6 @@ To create a new TaskNote you need the following required fields:
  -NoteType
  -Publish
  -TaskID
- -Title
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -33,7 +32,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.TaskNote]. This function outputs the Autotask.TaskNote that was created by the API.
 .EXAMPLE
-$result = New-AtwsTaskNote -Description [Value] -NoteType [Value] -Publish [Value] -TaskID [Value] -Title [Value]
+$result = New-AtwsTaskNote -Description [Value] -NoteType [Value] -Publish [Value] -TaskID [Value]
 Creates a new [Autotask.TaskNote] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsTaskNote -Id 124 | New-AtwsTaskNote 
@@ -169,10 +168,8 @@ Set-AtwsTaskNote
 
 # Title
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,250)]
     [string]
     $Title

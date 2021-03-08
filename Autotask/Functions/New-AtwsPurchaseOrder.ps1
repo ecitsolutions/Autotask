@@ -170,6 +170,33 @@ Set-AtwsPurchaseOrder
     [Int]
     $PurchaseForAccountID,
 
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
+
+# Purchase Order Template ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PurchaseOrderTemplateID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PurchaseOrderTemplateID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PurchaseOrderTemplateID,
+
 # Expected Ship Date
     [Parameter(
       ParametersetName = 'By_parameters'

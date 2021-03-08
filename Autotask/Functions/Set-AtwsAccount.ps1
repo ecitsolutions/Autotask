@@ -544,6 +544,31 @@ Get-AtwsAccount
     [string]
     $PostalCode,
 
+# Purchase Order Template ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Label
+    })]
+    [ValidateScript({
+      $set = Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Label
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PurchaseOrderTemplateID,
+
 # Quote Email Message ID
     [Parameter(
       ParametersetName = 'Input_Object'

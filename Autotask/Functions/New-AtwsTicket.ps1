@@ -403,7 +403,7 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
+    [decimal]
     $HoursToBeScheduled,
 
 # Impersonator Creator Resource ID
@@ -711,7 +711,7 @@ Set-AtwsTicket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
+    [decimal]
     $ServiceLevelAgreementPausedNextEventHours,
 
 # Service Thermometer Temperature
@@ -769,15 +769,15 @@ Set-AtwsTicket
         param($Cmd, $Param, $Word, $Ast, $FakeBound)
         if ($fakeBound.IssueType) {
             $parentvalue = $fakeBound.IssueType
-            if ([int]$parentValue -eq $parentValue) {
-                $parentPicklist = Get-AtwsPicklistValue -Entity Ticket -Field IssueType
+            if (!([int]::TryParse($parentvalue, [ref]$null))) {
+                $parentPicklist = Get-AtwsPicklistValue -Entity Ticket -Field IssueType -Label -Hashtable
                 $parentValue = $parentPicklist[$parentValue]
             }      
-            $picklists = Get-AtwsPicklistValue -Entity Ticket -FieldName 
+            $picklists = Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType
             $picklists[$parentValue]['byLabel'].Keys
         }
         else {
-            Get-AtwsPicklistValue -Entity Ticket -FieldName  -Label
+            Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType -Label
         }
     })]
     [ValidateScript({
