@@ -84,8 +84,8 @@ Function ConvertTo-AtwsFilter {
                     if ($field.IsPickList) {
                         if ($field.PickListParentValueField) {
                             $parentField = $fields[$field.PickListParentValueField]
-                            $parentLabel = $PSBoundParameters.$($parentField.Name)
-                            $parentValue = $parentField['PickListValues']['byLabel'][$parentLabel]
+                            $parentLabel = $BoundParameters[$parentField.Name]
+                            $parentValue = $parentField['PickListValues']['byLabel'][$parentLabel][0]
                             $pickListValue = $field['PickListValues'][$parentValue]['byLabel'][$parameterValue]               
                         }
                         else { 
