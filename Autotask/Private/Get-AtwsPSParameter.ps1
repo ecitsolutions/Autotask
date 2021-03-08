@@ -140,8 +140,8 @@ Function Get-AtwsPSParameter {
         param(`$Cmd, `$Param, `$Word, `$Ast, `$FakeBound)
         if (`$fakeBound.$PickListParentValueField) {
             `$parentvalue = `$fakeBound.$PickListParentValueField
-            if ([int]`$parentValue -eq `$parentValue) {
-                `$parentPicklist = Get-AtwsPicklistValue -Entity $EntityName -Field $PickListParentValueField
+            if (!([int]::TryParse(`$parentvalue, [ref]`$null))) {
+                `$parentPicklist = Get-AtwsPicklistValue -Entity $EntityName -Field $PickListParentValueField -Label -Hashtable
                 `$parentValue = `$parentPicklist[`$parentValue]
             }      
             `$picklists = Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name
