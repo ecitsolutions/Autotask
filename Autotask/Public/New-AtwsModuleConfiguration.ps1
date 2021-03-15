@@ -61,7 +61,11 @@ Function New-AtwsModuleConfiguration {
         $DebugPref = $DebugPreference,
 
         [string]
-        $VerbosePref = $VerbosePreference
+        $VerbosePref = $VerbosePreference,
+
+        [ValidateRange(0, 100)]
+        [int]
+        $ErrorLimit = 10
     )
     
     begin { 
@@ -84,6 +88,7 @@ Function New-AtwsModuleConfiguration {
                 RefreshCache             = $RefreshCache.IsPresent
                 DebugPref                = $DebugPreference
                 VerbosePref              = $VerbosePreference
+                ErrorLimit               = $ErrorLimit
             }
         
             if (Test-AtwsModuleConfiguration -Configuration $configuration) {

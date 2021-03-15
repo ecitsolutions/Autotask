@@ -132,7 +132,14 @@ Function Test-AtwsModuleConfiguration {
             )]
             [ValidateSet('Stop', 'Inquire', 'Continue', 'SilentlyContinue')]
             [string]
-            $VerbosePref
+            $VerbosePref,
+
+            [Parameter(
+                ValueFromPipelineByPropertyName = $true
+            )]
+            [ValidateRange(0, 100)]
+            [int]
+            $ErrorLimit
         )
     
         begin { 
