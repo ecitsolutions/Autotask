@@ -18,7 +18,7 @@
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $ModifiedObjects = [Collections.ArrayList]::new()
+        $ModifiedObjects = [collections.generic.list[psobject]]::new()
     }
 
     process {
@@ -57,9 +57,9 @@
                 # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
                 $Data = Set-AtwsData -Entity $processObject
                 if ($Data.Count -gt 1) {
-                    [void]$ModifiedObjects.AddRange($Data)
+                    $ModifiedObjects.AddRange($Data)
                 }else {
-                    [void]$ModifiedObjects.Add($Data)
+                    $ModifiedObjects.Add($Data)
                 }
             }
             catch {

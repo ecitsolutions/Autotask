@@ -24,20 +24,14 @@ Function ConvertTo-LocalObject {
 
     #>
     [cmdletbinding()]
-
+    [OutputType([Collections.Generic.List[psobject]])]
     Param
     (
         [Parameter(
             Mandatory = $true,
             ValueFromPipeline = $true
         )]
-        [validateScript({
-            if($_.GetType().FullName -like 'Autotask*'){
-                $true
-            }else {
-                $False
-            }
-        })]
+        [Collections.Generic.List[psobject]]
         $InputObject
     )
 
@@ -54,7 +48,7 @@ Function ConvertTo-LocalObject {
         $timezoneid = if ($IsMacOS -or $IsLinux) { 'America/New_York' }
         else { 'Eastern Standard Time' }
         $EST = [System.Timezoneinfo]::FindSystemTimeZoneById($timezoneid)
-        $result = [Collections.ArrayList]::new()
+        $result = [collections.generic.list[psobject]]::new()
     }
 
     process {
@@ -128,16 +122,11 @@ Function ConvertTo-LocalObject {
         }
 
         # If using pipeline the process block will run once per object in pipeline. Store them all
-        if ($InputObject.Count -gt 1) {
-            [void]$result.AddRange($InputObject)
-        }else {
-            [void]$result.Add($InputObject)
-        }
-
+        $result.AddRange($InputObject)
     }
 
     end {
         Write-Debug -Message ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $result.count, $entityName)
-        Return [array]$result
+        Return $result
     }
 }

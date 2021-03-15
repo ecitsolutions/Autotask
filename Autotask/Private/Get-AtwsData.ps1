@@ -39,7 +39,7 @@ Function Get-AtwsData {
   #>
 
     [cmdletbinding()]
-    [OutputType([Collections.ArrayList])]
+    [OutputType([collections.generic.list[psobject]])]
     param
     (
         [Parameter(
@@ -74,7 +74,7 @@ Function Get-AtwsData {
             Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }
 
-        $result = [Collections.ArrayList]::new()
+        $result = [collections.generic.list[psobject]]::new()
     }
 
     process {
@@ -118,12 +118,8 @@ Function Get-AtwsData {
 
             # Add all returned objects to the Result - if any
             if ($lastquery.EntityResults.Count -gt 0) {
-                $Data = ConvertTo-LocalObject -InputObject $lastquery.EntityResults
-                if ($Data.Count -gt 1) {
-                    [void]$result.AddRange($Data)
-                }else {
-                    [void]$result.Add($Data)
-                }
+                [collections.generic.list[psobject]]$Data = $lastquery.EntityResults | ConvertTo-LocalObject 
+                $result.AddRange($Data)
             }
 
             # Results are sorted by object Id. The Id of the last object is the highest object id in the result

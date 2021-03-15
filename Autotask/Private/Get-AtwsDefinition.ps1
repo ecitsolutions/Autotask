@@ -18,8 +18,8 @@
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $result = [Collections.ArrayList]::new()
-        $iterations = [Collections.Arraylist]::new()
+        $result = [collections.generic.list[psobject]]::new()
+        $iterations = [collections.generic.list[psobject]]::new()
     }
 
 
@@ -28,7 +28,7 @@
         # Set the Filter manually to get every single object of this type
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') {
             $Filter = @('id', '-ge', 0)
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
@@ -36,14 +36,14 @@
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
            
-            # Extract the parameter content, sort it ascending (we assume it is an Id field)
-            # and deduplicate
+            # Count the values of the first parameter passed. We will not try do to this on more than 1 parameter, nor on any 
+            # other parameter than the first. This is lazy, but efficient.
             $count = $PSBoundParameters.Values[0].count
 
-            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            # If the count is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
-                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
-                [void]$iterations.Add($Filter)
+                [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                $iterations.Add($Filter)
             }
             # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
             # into segments and create multiple queries with max 200 values
@@ -67,8 +67,8 @@
                     Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
 
                     # Convert named parameters to a filter definition that can be parsed to QueryXML
-                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
-                    [void]$iterations.Add($Filter)
+                    [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    $iterations.Add($Filter)
                 }
             }
         }
@@ -81,7 +81,7 @@
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
 
         # Prepare shouldProcess comments
@@ -95,7 +95,8 @@
 
                 try {
                     # Make the query and pass the optional parameters to Get-AtwsData
-                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    # Force list even if result is only 1 object to be compatible with addrange()
+                    [collections.generic.list[psobject]]$response = Get-AtwsData -Entity $entityName -Filter $Filter `
                         -NoPickListLabel:$NoPickListLabel.IsPresent `
                         -GetReferenceEntityById $GetReferenceEntityById
                 }
@@ -108,13 +109,9 @@
                         Write-host $_
                     }
                 }
-                # If multiple items use .addrange(). If a single item use .add()
-                if ($response.count -gt 1) {
-                    [void]$result.AddRange($response)
-                }
-                else {
-                    [void]$result.Add($response)
-                }
+                # Add response to result
+                $result.AddRange($response)
+
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }
         }

@@ -30,7 +30,7 @@ Function Set-AtwsData {
   #>
 
     [cmdletbinding()]
-    [OutputType([PSObject[]])]
+    [OutputType([Collections.Generic.List[psobject]])]
     param
     (
         [Parameter(
@@ -38,13 +38,7 @@ Function Set-AtwsData {
             ValueFromPipeline = $true
         )]
         [ValidateNotNullOrEmpty()]
-        [validateScript({
-            if($_.GetType().FullName -like 'Autotask*'){
-                $true
-            }else {
-                $False
-            }
-        })]
+        [Collections.Generic.List[psobject]]
         $Entity,
 
         [ValidateRange(0, 100)]

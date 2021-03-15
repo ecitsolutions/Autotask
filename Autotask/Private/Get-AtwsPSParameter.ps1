@@ -185,11 +185,15 @@ Function Get-AtwsPSParameter {
         if ($nullable.IsPresent) {
             $type = "Nullable[$type]"
         }
-        $text += "    [$type"
+
         if ($Array.IsPresent) {
-            $text += '[]'
+            $text += "    [Collections.Generic.List[$type]]"
         }
-        $text += "]`n`    `$$Name"
+        else {
+            $text += "    [$type]"
+        }
+        
+        $text += "`n`    `$$Name"
     }
 
     end { 

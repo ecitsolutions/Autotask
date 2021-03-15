@@ -24,20 +24,14 @@ Function ConvertFrom-LocalObject {
 
     #>
     [cmdletbinding()]
+    [OutputType([Collections.Generic.List[psobject]])]
     Param
     (
         [Parameter(
             Mandatory = $true,
             ValueFromPipeline = $true
         )]
-        # [PSObject[]]
-        [validateScript({
-            if($_.GetType().FullName -like 'Autotask*'){
-                $true
-            }else {
-                $False
-            }
-        })]
+        [Collections.Generic.List[psobject]]
         $InputObject
 
     )
@@ -91,7 +85,7 @@ Function ConvertFrom-LocalObject {
                         $UserDefinedFields.Add($AtwsUDF)
                     }
                     # Replace hashtable with array of userdefinedfield
-                    Add-Member -InputObject $object -MemberType NoteProperty -Name UserDefinedFields -Value $UserDefinedFields -Force
+                    Add-Member -InputObject $object -MemberType NoteProperty -Name UserDefinedFields -Value $([array]$UserDefinedFields) -Force
                 }
             }
 
@@ -134,6 +128,6 @@ Function ConvertFrom-LocalObject {
 
     end {
         Write-Debug -Message ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $result.count, $entityName)
-        Return [array]$result
+        Return $result
     }
 }

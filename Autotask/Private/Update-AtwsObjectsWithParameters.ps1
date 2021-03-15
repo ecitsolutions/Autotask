@@ -30,13 +30,7 @@ Function Update-AtwsObjectsWithParameters {
             Mandatory = $true,
             ValueFromPipeline = $true
         )]
-        [validateScript({
-            if($_.GetType().FullName -like 'Autotask*'){
-                $true
-            }else {
-                $False
-            }
-        })]
+        [Collections.Generic.List[psobject]]
         $InputObject,
 
         [Parameter(
