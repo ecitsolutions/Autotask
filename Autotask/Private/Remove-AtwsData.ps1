@@ -33,11 +33,7 @@ Function Remove-AtwsData {
             ValueFromPipeline = $true)]
         [ValidateNotNullOrEmpty()]
         [PSObject[]]
-        $Entity,
-    
-        [ValidateRange(0, 100)]
-        [Int]
-        $ErrorLimit = 10
+        $Entity
     )
     
     begin { 
@@ -116,7 +112,7 @@ Function Remove-AtwsData {
             
                 # Keep on trying until there are no errors, the workingSet is empty (every element failed)
                 # or the error limit has been reached
-            } Until ($result.errors.Count -eq 0 -or $workingSet.Count -eq 0 -or $errorCount -ge $ErrorLimit)
+            } Until ($result.errors.Count -eq 0 -or $workingSet.Count -eq 0 -or $errorCount -ge $Script:Atws.Configuration.ErrorLimit)
         }
     }
   

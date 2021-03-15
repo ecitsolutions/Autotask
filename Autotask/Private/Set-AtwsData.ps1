@@ -41,10 +41,6 @@ Function Set-AtwsData {
         [Collections.Generic.List[psobject]]
         $Entity,
 
-        [ValidateRange(0, 100)]
-        [Int]
-        $ErrorLimit = 10,
-
         [switch]
         $Create
     )
@@ -153,7 +149,7 @@ Function Set-AtwsData {
 
                 # Keep on trying until there are no errors, the workingSet is empty (every element failed)
                 # or the error limit has been reached
-            } Until ($result.errors.Count -eq 0 -or $workingSet.Count -eq 0 -or $errorCount -ge $ErrorLimit)
+            } Until ($result.errors.Count -eq 0 -or $workingSet.Count -eq 0 -or $errorCount -ge $Script:Atws.Configuration.ErrorLimit)
 
 
             # We have tried multiple times! Still errors?
