@@ -42,7 +42,7 @@ Set-AtwsTaskPredecessor
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TaskPredecessor[]]
+    [Collections.Generic.List[Autotask.TaskPredecessor]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsTaskPredecessor
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

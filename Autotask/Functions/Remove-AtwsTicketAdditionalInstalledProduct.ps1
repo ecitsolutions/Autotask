@@ -40,7 +40,7 @@ Get-AtwsTicketAdditionalInstalledProduct
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TicketAdditionalInstalledProduct[]]
+    [Collections.Generic.List[Autotask.TicketAdditionalInstalledProduct]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -49,7 +49,7 @@ Get-AtwsTicketAdditionalInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

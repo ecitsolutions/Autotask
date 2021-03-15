@@ -40,7 +40,7 @@ Get-AtwsAccountTeam
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.AccountTeam[]]
+    [Collections.Generic.List[Autotask.AccountTeam]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -49,7 +49,7 @@ Get-AtwsAccountTeam
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

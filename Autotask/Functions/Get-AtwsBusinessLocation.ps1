@@ -94,7 +94,7 @@ Set-AtwsBusinessLocation
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -122,7 +122,7 @@ Set-AtwsBusinessLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $AdditionalAddressInfo,
 
 # Address1
@@ -130,7 +130,7 @@ Set-AtwsBusinessLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Address1,
 
 # Address2
@@ -138,7 +138,7 @@ Set-AtwsBusinessLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Address2,
 
 # City
@@ -146,14 +146,14 @@ Set-AtwsBusinessLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $City,
 
 # Country ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $CountryID,
 
 # Date Format
@@ -173,14 +173,14 @@ Set-AtwsBusinessLocation
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $DateFormat,
 
 # Default
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $Default,
 
 # First Day Of Week
@@ -199,63 +199,63 @@ Set-AtwsBusinessLocation
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $FirstDayOfWeek,
 
 # FridayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $FridayBusinessHoursEndTime,
 
 # FridayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $FridayBusinessHoursStartTime,
 
 # FridayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $FridayExtendedHoursEndTime,
 
 # FridayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $FridayExtendedHoursStartTime,
 
 # Holiday Extended Hours End Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $HolidayExtendedHoursEndTime,
 
 # Holiday Extended Hours Start Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $HolidayExtendedHoursStartTime,
 
 # Holiday Hours End Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $HolidayHoursEndTime,
 
 # Holiday Hours Start Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $HolidayHoursStartTime,
 
 # Holiday Hours Type
@@ -274,14 +274,14 @@ Set-AtwsBusinessLocation
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $HolidayHoursType,
 
 # Holiday Set ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $HolidaySetID,
 
 # Business Location ID
@@ -289,35 +289,35 @@ Set-AtwsBusinessLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $id,
 
 # MondayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $MondayBusinessHoursEndTime,
 
 # MondayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $MondayBusinessHoursStartTime,
 
 # MondayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $MondayExtendedHoursEndTime,
 
 # MondayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $MondayExtendedHoursStartTime,
 
 # Name
@@ -326,14 +326,14 @@ Set-AtwsBusinessLocation
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Name,
 
 # No Hours On Holidays
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $NoHoursOnHolidays,
 
 # Number Format
@@ -353,7 +353,7 @@ Set-AtwsBusinessLocation
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $NumberFormat,
 
 # Postal Code
@@ -361,35 +361,35 @@ Set-AtwsBusinessLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,20)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $PostalCode,
 
 # SaturdayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $SaturdayBusinessHoursEndTime,
 
 # SaturdayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $SaturdayBusinessHoursStartTime,
 
 # SaturdayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $SaturdayExtendedHoursEndTime,
 
 # SaturdayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $SaturdayExtendedHoursStartTime,
 
 # State
@@ -397,63 +397,63 @@ Set-AtwsBusinessLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $State,
 
 # SundayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $SundayBusinessHoursEndTime,
 
 # SundayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $SundayBusinessHoursStartTime,
 
 # SundayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $SundayExtendedHoursEndTime,
 
 # SundayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $SundayExtendedHoursStartTime,
 
 # ThursdayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $ThursdayBusinessHoursEndTime,
 
 # ThursdayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $ThursdayBusinessHoursStartTime,
 
 # ThursdayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $ThursdayExtendedHoursEndTime,
 
 # ThursdayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $ThursdayExtendedHoursStartTime,
 
 # Time Format
@@ -473,7 +473,7 @@ Set-AtwsBusinessLocation
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $TimeFormat,
 
 # Time Zone ID
@@ -493,154 +493,154 @@ Set-AtwsBusinessLocation
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $TimeZoneID,
 
 # TuesdayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $TuesdayBusinessHoursEndTime,
 
 # TuesdayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $TuesdayBusinessHoursStartTime,
 
 # TuesdayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $TuesdayExtendedHoursEndTime,
 
 # TuesdayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $TuesdayExtendedHoursStartTime,
 
 # WednesdayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $WednesdayBusinessHoursEndTime,
 
 # WednesdayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $WednesdayBusinessHoursStartTime,
 
 # WednesdayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $WednesdayExtendedHoursEndTime,
 
 # WednesdayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $WednesdayExtendedHoursStartTime,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidayHoursStartTime', 'WednesdayExtendedHoursStartTime', 'SaturdayExtendedHoursStartTime', 'City', 'HolidaySetID', 'TimeZoneID', 'HolidayExtendedHoursStartTime', 'TuesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'TuesdayBusinessHoursEndTime', 'FirstDayOfWeek', 'FridayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'HolidayHoursEndTime', 'FridayExtendedHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'ThursdayExtendedHoursStartTime', 'MondayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'State', 'CountryID', 'ThursdayBusinessHoursStartTime', 'NoHoursOnHolidays', 'ThursdayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'HolidayExtendedHoursEndTime', 'MondayBusinessHoursEndTime', 'FridayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'Address2', 'Default', 'AdditionalAddressInfo', 'MondayExtendedHoursEndTime', 'TimeFormat', 'SundayBusinessHoursStartTime', 'HolidayHoursType', 'PostalCode', 'SaturdayExtendedHoursEndTime', 'Name', 'NumberFormat', 'id', 'SundayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'DateFormat', 'Address1')]
-    [string[]]
+    [ValidateSet('ThursdayBusinessHoursStartTime', 'MondayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'FridayBusinessHoursStartTime', 'HolidayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'WednesdayBusinessHoursEndTime', 'NumberFormat', 'id', 'SaturdayBusinessHoursEndTime', 'SundayExtendedHoursEndTime', 'HolidayHoursEndTime', 'TimeFormat', 'State', 'City', 'WednesdayExtendedHoursStartTime', 'Address1', 'FirstDayOfWeek', 'SaturdayExtendedHoursStartTime', 'FridayBusinessHoursEndTime', 'TimeZoneID', 'TuesdayExtendedHoursEndTime', 'DateFormat', 'ThursdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'CountryID', 'AdditionalAddressInfo', 'MondayBusinessHoursEndTime', 'HolidayHoursStartTime', 'TuesdayBusinessHoursEndTime', 'ThursdayBusinessHoursEndTime', 'Default', 'SundayBusinessHoursStartTime', 'MondayExtendedHoursStartTime', 'Name', 'SundayExtendedHoursStartTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursType', 'MondayExtendedHoursEndTime', 'PostalCode', 'Address2', 'HolidaySetID', 'WednesdayBusinessHoursStartTime', 'NoHoursOnHolidays', 'SaturdayExtendedHoursEndTime', 'FridayExtendedHoursStartTime')]
+    [Collections.Generic.List[string]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidayHoursStartTime', 'WednesdayExtendedHoursStartTime', 'SaturdayExtendedHoursStartTime', 'City', 'HolidaySetID', 'TimeZoneID', 'HolidayExtendedHoursStartTime', 'TuesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'TuesdayBusinessHoursEndTime', 'FirstDayOfWeek', 'FridayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'HolidayHoursEndTime', 'FridayExtendedHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'ThursdayExtendedHoursStartTime', 'MondayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'State', 'CountryID', 'ThursdayBusinessHoursStartTime', 'NoHoursOnHolidays', 'ThursdayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'HolidayExtendedHoursEndTime', 'MondayBusinessHoursEndTime', 'FridayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'Address2', 'Default', 'AdditionalAddressInfo', 'MondayExtendedHoursEndTime', 'TimeFormat', 'SundayBusinessHoursStartTime', 'HolidayHoursType', 'PostalCode', 'SaturdayExtendedHoursEndTime', 'Name', 'NumberFormat', 'id', 'SundayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'DateFormat', 'Address1')]
-    [string[]]
+    [ValidateSet('ThursdayBusinessHoursStartTime', 'MondayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'FridayBusinessHoursStartTime', 'HolidayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'WednesdayBusinessHoursEndTime', 'NumberFormat', 'id', 'SaturdayBusinessHoursEndTime', 'SundayExtendedHoursEndTime', 'HolidayHoursEndTime', 'TimeFormat', 'State', 'City', 'WednesdayExtendedHoursStartTime', 'Address1', 'FirstDayOfWeek', 'SaturdayExtendedHoursStartTime', 'FridayBusinessHoursEndTime', 'TimeZoneID', 'TuesdayExtendedHoursEndTime', 'DateFormat', 'ThursdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'CountryID', 'AdditionalAddressInfo', 'MondayBusinessHoursEndTime', 'HolidayHoursStartTime', 'TuesdayBusinessHoursEndTime', 'ThursdayBusinessHoursEndTime', 'Default', 'SundayBusinessHoursStartTime', 'MondayExtendedHoursStartTime', 'Name', 'SundayExtendedHoursStartTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursType', 'MondayExtendedHoursEndTime', 'PostalCode', 'Address2', 'HolidaySetID', 'WednesdayBusinessHoursStartTime', 'NoHoursOnHolidays', 'SaturdayExtendedHoursEndTime', 'FridayExtendedHoursStartTime')]
+    [Collections.Generic.List[string]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidayHoursStartTime', 'WednesdayExtendedHoursStartTime', 'SaturdayExtendedHoursStartTime', 'City', 'HolidaySetID', 'TimeZoneID', 'HolidayExtendedHoursStartTime', 'TuesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'TuesdayBusinessHoursEndTime', 'FirstDayOfWeek', 'FridayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'HolidayHoursEndTime', 'FridayExtendedHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'ThursdayExtendedHoursStartTime', 'MondayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'State', 'CountryID', 'ThursdayBusinessHoursStartTime', 'NoHoursOnHolidays', 'ThursdayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'HolidayExtendedHoursEndTime', 'MondayBusinessHoursEndTime', 'FridayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'Address2', 'Default', 'AdditionalAddressInfo', 'MondayExtendedHoursEndTime', 'TimeFormat', 'SundayBusinessHoursStartTime', 'HolidayHoursType', 'PostalCode', 'SaturdayExtendedHoursEndTime', 'Name', 'NumberFormat', 'id', 'SundayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'DateFormat', 'Address1')]
-    [string[]]
+    [ValidateSet('ThursdayBusinessHoursStartTime', 'MondayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'FridayBusinessHoursStartTime', 'HolidayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'WednesdayBusinessHoursEndTime', 'NumberFormat', 'id', 'SaturdayBusinessHoursEndTime', 'SundayExtendedHoursEndTime', 'HolidayHoursEndTime', 'TimeFormat', 'State', 'City', 'WednesdayExtendedHoursStartTime', 'Address1', 'FirstDayOfWeek', 'SaturdayExtendedHoursStartTime', 'FridayBusinessHoursEndTime', 'TimeZoneID', 'TuesdayExtendedHoursEndTime', 'DateFormat', 'ThursdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'CountryID', 'AdditionalAddressInfo', 'MondayBusinessHoursEndTime', 'HolidayHoursStartTime', 'TuesdayBusinessHoursEndTime', 'ThursdayBusinessHoursEndTime', 'Default', 'SundayBusinessHoursStartTime', 'MondayExtendedHoursStartTime', 'Name', 'SundayExtendedHoursStartTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursType', 'MondayExtendedHoursEndTime', 'PostalCode', 'Address2', 'HolidaySetID', 'WednesdayBusinessHoursStartTime', 'NoHoursOnHolidays', 'SaturdayExtendedHoursEndTime', 'FridayExtendedHoursStartTime')]
+    [Collections.Generic.List[string]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'CountryID', 'HolidaySetID', 'FirstDayOfWeek', 'DateFormat', 'TimeFormat', 'NumberFormat', 'TimeZoneID', 'SundayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursStartTime', 'SundayExtendedHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'MondayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayBusinessHoursEndTime', 'FridayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SaturdayExtendedHoursEndTime', 'HolidayHoursType', 'HolidayHoursStartTime', 'HolidayHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'CountryID', 'HolidaySetID', 'FirstDayOfWeek', 'DateFormat', 'TimeFormat', 'NumberFormat', 'TimeZoneID', 'SundayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursStartTime', 'SundayExtendedHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'MondayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayBusinessHoursEndTime', 'FridayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SaturdayExtendedHoursEndTime', 'HolidayHoursType', 'HolidayHoursStartTime', 'HolidayHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'CountryID', 'HolidaySetID', 'FirstDayOfWeek', 'DateFormat', 'TimeFormat', 'NumberFormat', 'TimeZoneID', 'SundayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursStartTime', 'SundayExtendedHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'MondayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayBusinessHoursEndTime', 'FridayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SaturdayExtendedHoursEndTime', 'HolidayHoursType', 'HolidayHoursStartTime', 'HolidayHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'CountryID', 'HolidaySetID', 'FirstDayOfWeek', 'DateFormat', 'TimeFormat', 'NumberFormat', 'TimeZoneID', 'SundayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursStartTime', 'SundayExtendedHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'MondayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayBusinessHoursEndTime', 'FridayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SaturdayExtendedHoursEndTime', 'HolidayHoursType', 'HolidayHoursStartTime', 'HolidayHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'DateFormat', 'TimeFormat', 'NumberFormat')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'DateFormat', 'TimeFormat', 'NumberFormat')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'DateFormat', 'TimeFormat', 'NumberFormat')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'DateFormat', 'TimeFormat', 'NumberFormat')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'DateFormat', 'TimeFormat', 'NumberFormat')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SundayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursStartTime', 'SundayExtendedHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'MondayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayBusinessHoursEndTime', 'FridayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SaturdayExtendedHoursEndTime', 'HolidayHoursStartTime', 'HolidayHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $IsThisDay
   )
 
@@ -663,8 +663,8 @@ Set-AtwsBusinessLocation
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $result = [Collections.ArrayList]::new()
-        $iterations = [Collections.Arraylist]::new()
+        $result = [collections.generic.list[psobject]]::new()
+        $iterations = [collections.generic.list[psobject]]::new()
     }
 
 
@@ -673,7 +673,7 @@ Set-AtwsBusinessLocation
         # Set the Filter manually to get every single object of this type
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') {
             $Filter = @('id', '-ge', 0)
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
@@ -681,14 +681,14 @@ Set-AtwsBusinessLocation
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
            
-            # Extract the parameter content, sort it ascending (we assume it is an Id field)
-            # and deduplicate
+            # Count the values of the first parameter passed. We will not try do to this on more than 1 parameter, nor on any 
+            # other parameter than the first. This is lazy, but efficient.
             $count = $PSBoundParameters.Values[0].count
 
-            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            # If the count is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
-                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
-                [void]$iterations.Add($Filter)
+                [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                $iterations.Add($Filter)
             }
             # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
             # into segments and create multiple queries with max 200 values
@@ -712,8 +712,8 @@ Set-AtwsBusinessLocation
                     Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
 
                     # Convert named parameters to a filter definition that can be parsed to QueryXML
-                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
-                    [void]$iterations.Add($Filter)
+                    [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    $iterations.Add($Filter)
                 }
             }
         }
@@ -726,7 +726,7 @@ Set-AtwsBusinessLocation
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
 
         # Prepare shouldProcess comments
@@ -740,7 +740,8 @@ Set-AtwsBusinessLocation
 
                 try {
                     # Make the query and pass the optional parameters to Get-AtwsData
-                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    # Force list even if result is only 1 object to be compatible with addrange()
+                    [collections.generic.list[psobject]]$response = Get-AtwsData -Entity $entityName -Filter $Filter `
                         -NoPickListLabel:$NoPickListLabel.IsPresent `
                         -GetReferenceEntityById $GetReferenceEntityById
                 }
@@ -753,13 +754,9 @@ Set-AtwsBusinessLocation
                         Write-host $_
                     }
                 }
-                # If multiple items use .addrange(). If a single item use .add()
-                if ($response.count -gt 1) {
-                    [void]$result.AddRange($response)
-                }
-                else {
-                    [void]$result.Add($response)
-                }
+                # Add response to result
+                $result.AddRange($response)
+
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }
         }

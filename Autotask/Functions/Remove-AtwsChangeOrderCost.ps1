@@ -42,7 +42,7 @@ Set-AtwsChangeOrderCost
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ChangeOrderCost[]]
+    [Collections.Generic.List[Autotask.ChangeOrderCost]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsChangeOrderCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

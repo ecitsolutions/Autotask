@@ -92,7 +92,7 @@ Set-AtwsProduct
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -120,7 +120,7 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $Active,
 
 # Billing Type
@@ -139,28 +139,28 @@ Set-AtwsProduct
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $BillingType,
 
 # Cost Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $CostAllocationCodeID,
 
 # Default Configuration Item Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $DefaultInstalledProductCategoryID,
 
 # Vendor Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $DefaultVendorID,
 
 # Product Description
@@ -168,21 +168,21 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Description,
 
 # Does Not Require Procurement
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $DoesNotRequireProcurement,
 
 # Eligible For RMA
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $EligibleForRma,
 
 # External ID
@@ -190,7 +190,7 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ExternalProductID,
 
 # ProductID
@@ -198,14 +198,14 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ImpersonatorCreatorResourceID,
 
 # Internal Product ID
@@ -213,7 +213,7 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $InternalProductID,
 
 # Product Link
@@ -221,7 +221,7 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Link,
 
 # Manufacturer Account Name
@@ -229,7 +229,7 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ManufacturerName,
 
 # Manufacturer Product Number
@@ -237,21 +237,21 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ManufacturerProductName,
 
 # markup_rate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $MarkupRate,
 
 # MSRP
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $MSRP,
 
 # Product Name
@@ -260,7 +260,7 @@ Set-AtwsProduct
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Name,
 
 # Period Type
@@ -279,7 +279,7 @@ Set-AtwsProduct
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $PeriodType,
 
 # Price Cost Method
@@ -298,7 +298,7 @@ Set-AtwsProduct
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $PriceCostMethod,
 
 # Allocation Code ID
@@ -306,7 +306,7 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ProductAllocationCodeID,
 
 # Product Category
@@ -325,7 +325,7 @@ Set-AtwsProduct
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ProductCategory,
 
 # Is Serialized
@@ -333,7 +333,7 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $Serialized,
 
 # Product SKU
@@ -341,21 +341,21 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $SKU,
 
 # Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $UnitCost,
 
 # Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $UnitPrice,
 
 # Vendor Product Number
@@ -363,97 +363,97 @@ Set-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $VendorProductNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CostAllocationCodeID', 'EligibleForRma', 'SKU', 'ImpersonatorCreatorResourceID', 'ProductCategory', 'ProductAllocationCodeID', 'PeriodType', 'MSRP', 'DoesNotRequireProcurement', 'Serialized', 'DefaultVendorID', 'InternalProductID', 'DefaultInstalledProductCategoryID', 'ManufacturerProductName', 'Active', 'UnitCost', 'Description', 'MarkupRate', 'UnitPrice', 'VendorProductNumber', 'ManufacturerName', 'PriceCostMethod', 'ExternalProductID', 'Name', 'id', 'Link', 'BillingType')]
-    [string[]]
+    [ValidateSet('DoesNotRequireProcurement', 'MarkupRate', 'DefaultInstalledProductCategoryID', 'id', 'BillingType', 'PeriodType', 'InternalProductID', 'ManufacturerProductName', 'ProductAllocationCodeID', 'VendorProductNumber', 'ImpersonatorCreatorResourceID', 'DefaultVendorID', 'CostAllocationCodeID', 'UnitCost', 'MSRP', 'ProductCategory', 'PriceCostMethod', 'Name', 'EligibleForRma', 'Serialized', 'SKU', 'Description', 'UnitPrice', 'Link', 'ExternalProductID', 'Active', 'ManufacturerName')]
+    [Collections.Generic.List[string]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CostAllocationCodeID', 'EligibleForRma', 'SKU', 'ImpersonatorCreatorResourceID', 'ProductCategory', 'ProductAllocationCodeID', 'PeriodType', 'MSRP', 'DoesNotRequireProcurement', 'Serialized', 'DefaultVendorID', 'InternalProductID', 'DefaultInstalledProductCategoryID', 'ManufacturerProductName', 'Active', 'UnitCost', 'Description', 'MarkupRate', 'UnitPrice', 'VendorProductNumber', 'ManufacturerName', 'PriceCostMethod', 'ExternalProductID', 'Name', 'id', 'Link', 'BillingType')]
-    [string[]]
+    [ValidateSet('DoesNotRequireProcurement', 'MarkupRate', 'DefaultInstalledProductCategoryID', 'id', 'BillingType', 'PeriodType', 'InternalProductID', 'ManufacturerProductName', 'ProductAllocationCodeID', 'VendorProductNumber', 'ImpersonatorCreatorResourceID', 'DefaultVendorID', 'CostAllocationCodeID', 'UnitCost', 'MSRP', 'ProductCategory', 'PriceCostMethod', 'Name', 'EligibleForRma', 'Serialized', 'SKU', 'Description', 'UnitPrice', 'Link', 'ExternalProductID', 'Active', 'ManufacturerName')]
+    [Collections.Generic.List[string]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CostAllocationCodeID', 'EligibleForRma', 'SKU', 'ImpersonatorCreatorResourceID', 'ProductCategory', 'ProductAllocationCodeID', 'PeriodType', 'MSRP', 'DoesNotRequireProcurement', 'Serialized', 'DefaultVendorID', 'InternalProductID', 'DefaultInstalledProductCategoryID', 'ManufacturerProductName', 'Active', 'UnitCost', 'Description', 'MarkupRate', 'UnitPrice', 'VendorProductNumber', 'ManufacturerName', 'PriceCostMethod', 'ExternalProductID', 'Name', 'id', 'Link', 'BillingType')]
-    [string[]]
+    [ValidateSet('DoesNotRequireProcurement', 'MarkupRate', 'DefaultInstalledProductCategoryID', 'id', 'BillingType', 'PeriodType', 'InternalProductID', 'ManufacturerProductName', 'ProductAllocationCodeID', 'VendorProductNumber', 'ImpersonatorCreatorResourceID', 'DefaultVendorID', 'CostAllocationCodeID', 'UnitCost', 'MSRP', 'ProductCategory', 'PriceCostMethod', 'Name', 'EligibleForRma', 'Serialized', 'SKU', 'Description', 'UnitPrice', 'Link', 'ExternalProductID', 'Active', 'ManufacturerName')]
+    [Collections.Generic.List[string]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID', 'DefaultInstalledProductCategoryID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID', 'DefaultInstalledProductCategoryID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID', 'DefaultInstalledProductCategoryID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'SKU', 'Link', 'ProductCategory', 'ExternalProductID', 'UnitCost', 'UnitPrice', 'MSRP', 'DefaultVendorID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'ProductAllocationCodeID', 'CostAllocationCodeID', 'MarkupRate', 'InternalProductID', 'BillingType', 'PriceCostMethod', 'ImpersonatorCreatorResourceID', 'DefaultInstalledProductCategoryID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'SKU', 'Link', 'ExternalProductID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'InternalProductID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'SKU', 'Link', 'ExternalProductID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'InternalProductID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'SKU', 'Link', 'ExternalProductID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'InternalProductID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'SKU', 'Link', 'ExternalProductID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'InternalProductID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'SKU', 'Link', 'ExternalProductID', 'VendorProductNumber', 'ManufacturerName', 'ManufacturerProductName', 'PeriodType', 'InternalProductID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [string[]]
+    [Collections.Generic.List[string]]
     $IsThisDay
   )
 
@@ -476,8 +476,8 @@ Set-AtwsProduct
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $result = [Collections.ArrayList]::new()
-        $iterations = [Collections.Arraylist]::new()
+        $result = [collections.generic.list[psobject]]::new()
+        $iterations = [collections.generic.list[psobject]]::new()
     }
 
 
@@ -486,7 +486,7 @@ Set-AtwsProduct
         # Set the Filter manually to get every single object of this type
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') {
             $Filter = @('id', '-ge', 0)
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
@@ -494,14 +494,14 @@ Set-AtwsProduct
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
            
-            # Extract the parameter content, sort it ascending (we assume it is an Id field)
-            # and deduplicate
+            # Count the values of the first parameter passed. We will not try do to this on more than 1 parameter, nor on any 
+            # other parameter than the first. This is lazy, but efficient.
             $count = $PSBoundParameters.Values[0].count
 
-            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            # If the count is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
-                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
-                [void]$iterations.Add($Filter)
+                [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                $iterations.Add($Filter)
             }
             # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
             # into segments and create multiple queries with max 200 values
@@ -525,8 +525,8 @@ Set-AtwsProduct
                     Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
 
                     # Convert named parameters to a filter definition that can be parsed to QueryXML
-                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
-                    [void]$iterations.Add($Filter)
+                    [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    $iterations.Add($Filter)
                 }
             }
         }
@@ -539,7 +539,7 @@ Set-AtwsProduct
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
 
         # Prepare shouldProcess comments
@@ -553,7 +553,8 @@ Set-AtwsProduct
 
                 try {
                     # Make the query and pass the optional parameters to Get-AtwsData
-                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    # Force list even if result is only 1 object to be compatible with addrange()
+                    [collections.generic.list[psobject]]$response = Get-AtwsData -Entity $entityName -Filter $Filter `
                         -NoPickListLabel:$NoPickListLabel.IsPresent `
                         -GetReferenceEntityById $GetReferenceEntityById
                 }
@@ -566,13 +567,9 @@ Set-AtwsProduct
                         Write-host $_
                     }
                 }
-                # If multiple items use .addrange(). If a single item use .add()
-                if ($response.count -gt 1) {
-                    [void]$result.AddRange($response)
-                }
-                else {
-                    [void]$result.Add($response)
-                }
+                # Add response to result
+                $result.AddRange($response)
+
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }
         }

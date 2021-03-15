@@ -38,7 +38,7 @@ Get-AtwsWebhookEventErrorLog
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.WebhookEventErrorLog[]]
+    [Collections.Generic.List[Autotask.WebhookEventErrorLog]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -47,7 +47,7 @@ Get-AtwsWebhookEventErrorLog
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

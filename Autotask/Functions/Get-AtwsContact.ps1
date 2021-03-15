@@ -93,7 +93,7 @@ Set-AtwsContact
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -130,14 +130,14 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $AccountID,
 
 # Account Physical Location
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $AccountPhysicalLocationID,
 
 # Active
@@ -145,7 +145,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $Active,
 
 # Additional Address Information
@@ -153,7 +153,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $AdditionalAddressInformation,
 
 # Contact Address 1
@@ -161,7 +161,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $AddressLine,
 
 # Contact Address 2
@@ -169,7 +169,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $AddressLine1,
 
 # Contact Alternate Phone
@@ -177,7 +177,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,32)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $AlternatePhone,
 
 # API Vendor ID
@@ -196,14 +196,14 @@ Set-AtwsContact
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ApiVendorID,
 
 # Bulk Email Opt Out Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $BulkEmailOptOutTime,
 
 # Contact City
@@ -211,7 +211,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,32)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $City,
 
 # Contact Country
@@ -219,21 +219,21 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Country,
 
 # Contact Country ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $CountryID,
 
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $CreateDate,
 
 # Email
@@ -241,7 +241,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,254)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $EMailAddress,
 
 # Email2
@@ -249,7 +249,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,254)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $EMailAddress2,
 
 # Email3
@@ -257,7 +257,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,254)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $EMailAddress3,
 
 # Contact Phone Ext.
@@ -265,7 +265,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,10)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Extension,
 
 # External ID
@@ -273,7 +273,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ExternalID,
 
 # Facebook URL
@@ -281,7 +281,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,200)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $FacebookUrl,
 
 # Contact Fax
@@ -289,7 +289,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $FaxNumber,
 
 # First Name
@@ -298,7 +298,7 @@ Set-AtwsContact
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $FirstName,
 
 # Contact ID
@@ -306,28 +306,28 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ImpersonatorCreatorResourceID,
 
 # Last Activity Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $LastActivityDate,
 
 # Last Modified Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $LastModifiedDate,
 
 # Last Name
@@ -336,7 +336,7 @@ Set-AtwsContact
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LastName,
 
 # LinkedIn URL
@@ -344,7 +344,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,200)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LinkedInUrl,
 
 # Middle Initial
@@ -352,7 +352,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $MiddleInitial,
 
 # Contact Mobile Phone
@@ -360,7 +360,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $MobilePhone,
 
 # Name Prefix
@@ -379,7 +379,7 @@ Set-AtwsContact
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $NamePrefix,
 
 # Name Suffix
@@ -398,7 +398,7 @@ Set-AtwsContact
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $NameSuffix,
 
 # Note
@@ -406,14 +406,14 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Note,
 
 # Notification
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $Notification,
 
 # Contact Phone
@@ -421,14 +421,14 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Phone,
 
 # Primary Contact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $PrimaryContact,
 
 # Room Number
@@ -436,14 +436,14 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $RoomNumber,
 
 # Solicitation Opt Out Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $SolicitationOptOutTime,
 
 # Contact County
@@ -451,7 +451,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,40)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $State,
 
 # Title
@@ -459,7 +459,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Title,
 
 # Twitter URL
@@ -467,7 +467,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,200)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $TwitterUrl,
 
 # Contact Postal Code
@@ -475,98 +475,98 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,16)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ZipCode,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EMailAddress', 'TwitterUrl', 'Country', 'City', 'ImpersonatorCreatorResourceID', 'Extension', 'LinkedInUrl', 'AdditionalAddressInformation', 'BulkEmailOptOut', 'EMailAddress2', 'EMailAddress3', 'FacebookUrl', 'id', 'AccountPhysicalLocationID', 'AccountID', 'FirstName', 'AddressLine', 'ExternalID', 'Note', 'LastName', 'Title', 'PrimaryContact', 'AddressLine1', 'SolicitationOptOut', 'State', 'CountryID', 'Notification', 'Active', 'CreateDate', 'BulkEmailOptOutTime', 'SurveyOptOut', 'MiddleInitial', 'FaxNumber', 'ApiVendorID', 'MobilePhone', 'ZipCode', 'Phone', 'LastModifiedDate', 'NameSuffix', 'AlternatePhone', 'RoomNumber', 'SolicitationOptOutTime', 'LastActivityDate', 'NamePrefix', '')]
-    [string[]]
+    [ValidateSet('Notification', 'Extension', 'ZipCode', 'AlternatePhone', 'FirstName', 'RoomNumber', 'ApiVendorID', 'Note', 'id', 'SurveyOptOut', 'NamePrefix', 'ImpersonatorCreatorResourceID', 'AddressLine1', 'CreateDate', 'State', 'City', 'NameSuffix', 'LinkedInUrl', 'EMailAddress', 'MiddleInitial', 'Phone', 'LastName', 'BulkEmailOptOut', 'AdditionalAddressInformation', 'FaxNumber', 'BulkEmailOptOutTime', 'CountryID', 'PrimaryContact', 'AccountPhysicalLocationID', 'Title', 'AccountID', 'SolicitationOptOut', 'ExternalID', 'Country', 'SolicitationOptOutTime', 'FacebookUrl', 'LastActivityDate', 'EMailAddress3', 'AddressLine', 'LastModifiedDate', 'EMailAddress2', 'Active', 'TwitterUrl', 'MobilePhone', '')]
+    [Collections.Generic.List[string]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EMailAddress', 'TwitterUrl', 'Country', 'City', 'ImpersonatorCreatorResourceID', 'Extension', 'LinkedInUrl', 'AdditionalAddressInformation', 'BulkEmailOptOut', 'EMailAddress2', 'EMailAddress3', 'FacebookUrl', 'id', 'AccountPhysicalLocationID', 'AccountID', 'FirstName', 'AddressLine', 'ExternalID', 'Note', 'LastName', 'Title', 'PrimaryContact', 'AddressLine1', 'SolicitationOptOut', 'State', 'CountryID', 'Notification', 'Active', 'CreateDate', 'BulkEmailOptOutTime', 'SurveyOptOut', 'MiddleInitial', 'FaxNumber', 'ApiVendorID', 'MobilePhone', 'ZipCode', 'Phone', 'LastModifiedDate', 'NameSuffix', 'AlternatePhone', 'RoomNumber', 'SolicitationOptOutTime', 'LastActivityDate', 'NamePrefix', '')]
-    [string[]]
+    [ValidateSet('Notification', 'Extension', 'ZipCode', 'AlternatePhone', 'FirstName', 'RoomNumber', 'ApiVendorID', 'Note', 'id', 'SurveyOptOut', 'NamePrefix', 'ImpersonatorCreatorResourceID', 'AddressLine1', 'CreateDate', 'State', 'City', 'NameSuffix', 'LinkedInUrl', 'EMailAddress', 'MiddleInitial', 'Phone', 'LastName', 'BulkEmailOptOut', 'AdditionalAddressInformation', 'FaxNumber', 'BulkEmailOptOutTime', 'CountryID', 'PrimaryContact', 'AccountPhysicalLocationID', 'Title', 'AccountID', 'SolicitationOptOut', 'ExternalID', 'Country', 'SolicitationOptOutTime', 'FacebookUrl', 'LastActivityDate', 'EMailAddress3', 'AddressLine', 'LastModifiedDate', 'EMailAddress2', 'Active', 'TwitterUrl', 'MobilePhone', '')]
+    [Collections.Generic.List[string]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EMailAddress', 'TwitterUrl', 'Country', 'City', 'ImpersonatorCreatorResourceID', 'Extension', 'LinkedInUrl', 'AdditionalAddressInformation', 'BulkEmailOptOut', 'EMailAddress2', 'EMailAddress3', 'FacebookUrl', 'id', 'AccountPhysicalLocationID', 'AccountID', 'FirstName', 'AddressLine', 'ExternalID', 'Note', 'LastName', 'Title', 'PrimaryContact', 'AddressLine1', 'SolicitationOptOut', 'State', 'CountryID', 'Notification', 'Active', 'CreateDate', 'BulkEmailOptOutTime', 'SurveyOptOut', 'MiddleInitial', 'FaxNumber', 'ApiVendorID', 'MobilePhone', 'ZipCode', 'Phone', 'LastModifiedDate', 'NameSuffix', 'AlternatePhone', 'RoomNumber', 'SolicitationOptOutTime', 'LastActivityDate', 'NamePrefix', '')]
-    [string[]]
+    [ValidateSet('Notification', 'Extension', 'ZipCode', 'AlternatePhone', 'FirstName', 'RoomNumber', 'ApiVendorID', 'Note', 'id', 'SurveyOptOut', 'NamePrefix', 'ImpersonatorCreatorResourceID', 'AddressLine1', 'CreateDate', 'State', 'City', 'NameSuffix', 'LinkedInUrl', 'EMailAddress', 'MiddleInitial', 'Phone', 'LastName', 'BulkEmailOptOut', 'AdditionalAddressInformation', 'FaxNumber', 'BulkEmailOptOutTime', 'CountryID', 'PrimaryContact', 'AccountPhysicalLocationID', 'Title', 'AccountID', 'SolicitationOptOut', 'ExternalID', 'Country', 'SolicitationOptOutTime', 'FacebookUrl', 'LastActivityDate', 'EMailAddress3', 'AddressLine', 'LastModifiedDate', 'EMailAddress2', 'Active', 'TwitterUrl', 'MobilePhone', '')]
+    [Collections.Generic.List[string]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'LastActivityDate', 'RoomNumber', 'Active', 'CreateDate', 'LastModifiedDate', 'AdditionalAddressInformation', 'ExternalID', 'CountryID', 'BulkEmailOptOutTime', 'NamePrefix', 'NameSuffix', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'AccountPhysicalLocationID', 'SolicitationOptOutTime', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'LastActivityDate', 'RoomNumber', 'Active', 'CreateDate', 'LastModifiedDate', 'AdditionalAddressInformation', 'ExternalID', 'CountryID', 'BulkEmailOptOutTime', 'NamePrefix', 'NameSuffix', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'AccountPhysicalLocationID', 'SolicitationOptOutTime', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'LastActivityDate', 'RoomNumber', 'Active', 'CreateDate', 'LastModifiedDate', 'AdditionalAddressInformation', 'ExternalID', 'CountryID', 'BulkEmailOptOutTime', 'NamePrefix', 'NameSuffix', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'AccountPhysicalLocationID', 'SolicitationOptOutTime', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'LastActivityDate', 'RoomNumber', 'Active', 'CreateDate', 'LastModifiedDate', 'AdditionalAddressInformation', 'ExternalID', 'CountryID', 'BulkEmailOptOutTime', 'NamePrefix', 'NameSuffix', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'AccountPhysicalLocationID', 'SolicitationOptOutTime', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'RoomNumber', 'AdditionalAddressInformation', 'ExternalID', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'RoomNumber', 'AdditionalAddressInformation', 'ExternalID', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'RoomNumber', 'AdditionalAddressInformation', 'ExternalID', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'RoomNumber', 'AdditionalAddressInformation', 'ExternalID', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'RoomNumber', 'AdditionalAddressInformation', 'ExternalID', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('LastActivityDate', 'CreateDate', 'LastModifiedDate', 'BulkEmailOptOutTime', 'SolicitationOptOutTime', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $IsThisDay
   )
 
@@ -589,8 +589,8 @@ Set-AtwsContact
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $result = [Collections.ArrayList]::new()
-        $iterations = [Collections.Arraylist]::new()
+        $result = [collections.generic.list[psobject]]::new()
+        $iterations = [collections.generic.list[psobject]]::new()
     }
 
 
@@ -599,7 +599,7 @@ Set-AtwsContact
         # Set the Filter manually to get every single object of this type
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') {
             $Filter = @('id', '-ge', 0)
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
@@ -607,14 +607,14 @@ Set-AtwsContact
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
            
-            # Extract the parameter content, sort it ascending (we assume it is an Id field)
-            # and deduplicate
+            # Count the values of the first parameter passed. We will not try do to this on more than 1 parameter, nor on any 
+            # other parameter than the first. This is lazy, but efficient.
             $count = $PSBoundParameters.Values[0].count
 
-            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            # If the count is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
-                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
-                [void]$iterations.Add($Filter)
+                [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                $iterations.Add($Filter)
             }
             # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
             # into segments and create multiple queries with max 200 values
@@ -638,8 +638,8 @@ Set-AtwsContact
                     Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
 
                     # Convert named parameters to a filter definition that can be parsed to QueryXML
-                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
-                    [void]$iterations.Add($Filter)
+                    [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    $iterations.Add($Filter)
                 }
             }
         }
@@ -652,7 +652,7 @@ Set-AtwsContact
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
 
         # Prepare shouldProcess comments
@@ -666,7 +666,8 @@ Set-AtwsContact
 
                 try {
                     # Make the query and pass the optional parameters to Get-AtwsData
-                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    # Force list even if result is only 1 object to be compatible with addrange()
+                    [collections.generic.list[psobject]]$response = Get-AtwsData -Entity $entityName -Filter $Filter `
                         -NoPickListLabel:$NoPickListLabel.IsPresent `
                         -GetReferenceEntityById $GetReferenceEntityById
                 }
@@ -679,13 +680,9 @@ Set-AtwsContact
                         Write-host $_
                     }
                 }
-                # If multiple items use .addrange(). If a single item use .add()
-                if ($response.count -gt 1) {
-                    [void]$result.AddRange($response)
-                }
-                else {
-                    [void]$result.Add($response)
-                }
+                # Add response to result
+                $result.AddRange($response)
+
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }
         }

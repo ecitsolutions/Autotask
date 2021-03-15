@@ -53,7 +53,7 @@ Get-AtwsBusinessDivision
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.BusinessDivision[]]
+    [Collections.Generic.List[Autotask.BusinessDivision]]
     $InputObject,
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
@@ -61,7 +61,7 @@ Get-AtwsBusinessDivision
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id,
 
 # Return any updated objects through the pipeline
@@ -137,7 +137,7 @@ Get-AtwsBusinessDivision
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $ModifiedObjects = [Collections.ArrayList]::new()
+        $ModifiedObjects = [collections.generic.list[psobject]]::new()
     }
 
     process {
@@ -176,9 +176,9 @@ Get-AtwsBusinessDivision
                 # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
                 $Data = Set-AtwsData -Entity $processObject
                 if ($Data.Count -gt 1) {
-                    [void]$ModifiedObjects.AddRange($Data)
+                    $ModifiedObjects.AddRange($Data)
                 }else {
-                    [void]$ModifiedObjects.Add($Data)
+                    $ModifiedObjects.Add($Data)
                 }
             }
             catch {

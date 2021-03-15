@@ -40,7 +40,7 @@ Get-AtwsServiceCallTaskResource
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ServiceCallTaskResource[]]
+    [Collections.Generic.List[Autotask.ServiceCallTaskResource]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -49,7 +49,7 @@ Get-AtwsServiceCallTaskResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

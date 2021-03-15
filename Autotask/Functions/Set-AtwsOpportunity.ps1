@@ -53,7 +53,7 @@ Get-AtwsOpportunity
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.Opportunity[]]
+    [Collections.Generic.List[Autotask.Opportunity]]
     $InputObject,
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
@@ -61,7 +61,7 @@ Get-AtwsOpportunity
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id,
 
 # Return any updated objects through the pipeline
@@ -896,7 +896,7 @@ Get-AtwsOpportunity
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $ModifiedObjects = [Collections.ArrayList]::new()
+        $ModifiedObjects = [collections.generic.list[psobject]]::new()
     }
 
     process {
@@ -935,9 +935,9 @@ Get-AtwsOpportunity
                 # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
                 $Data = Set-AtwsData -Entity $processObject
                 if ($Data.Count -gt 1) {
-                    [void]$ModifiedObjects.AddRange($Data)
+                    $ModifiedObjects.AddRange($Data)
                 }else {
-                    [void]$ModifiedObjects.Add($Data)
+                    $ModifiedObjects.Add($Data)
                 }
             }
             catch {

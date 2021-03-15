@@ -42,7 +42,7 @@ Set-AtwsTicketRmaCredit
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TicketRmaCredit[]]
+    [Collections.Generic.List[Autotask.TicketRmaCredit]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsTicketRmaCredit
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

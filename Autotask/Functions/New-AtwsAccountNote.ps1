@@ -61,7 +61,7 @@ Set-AtwsAccountNote
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.AccountNote[]]
+    [Collections.Generic.List[Autotask.AccountNote]]
     $InputObject,
 
 # Client
@@ -206,8 +206,8 @@ Set-AtwsAccountNote
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $processObject = [Collections.ArrayList]::new()
-        $result = [Collections.ArrayList]::new()
+        $processObject = [collections.generic.list[psobject]]::new()
+        $result = [collections.generic.list[psobject]]::new()
     }
 
     process {
@@ -224,12 +224,12 @@ Set-AtwsAccountNote
                 $newObject = New-Object -TypeName Autotask.$entityName
 
                 # Copy every non readonly property
-                $fieldNames = [collections.ArrayList]::new()
+                $fieldNames = [collections.generic.list[psobject]]::new()
                 $WriteableFields = $entityInfo.WriteableFields
                 $RequiredFields = $entityInfo.RequiredFields
 
-                if ($WriteableFields.count -gt 1) {   [void]$fieldNames.AddRange($WriteableFields) } else {   [void]$fieldNames.Add($WriteableFields)    }
-                if ($RequiredFields.count -gt 1) {   [void]$fieldNames.AddRange($RequiredFields) } else {   [void]$fieldNames.Add($RequiredFields)    }
+                if ($WriteableFields.count -gt 1) { $fieldNames.AddRange($WriteableFields) } else { $fieldNames.Add($WriteableFields) }
+                if ($RequiredFields.count -gt 1) { $fieldNames.AddRange($RequiredFields) } else { $fieldNames.Add($RequiredFields) }
 
                 if ($PSBoundParameters.ContainsKey('UserDefinedFields')) {
                     $fieldNames += 'UserDefinedFields'
@@ -245,12 +245,12 @@ Set-AtwsAccountNote
                     $copyNo++
                     $newObject.Title = $title
                 }
-                [void]$processObject.Add($newObject)
+                $processObject.Add($newObject)
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            [void]$processObject.add((New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
@@ -268,15 +268,16 @@ Set-AtwsAccountNote
                 # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
                 $Data = Set-AtwsData -Entity $processObject -Create
                 if ($Data.Count -gt 1) {
-                    [void]$result.AddRange($Data)
-                }else {
-                    [void]$result.Add($Data)
+                    $result.AddRange($Data)
+                }
+                else {
+                    $result.Add($Data)
                 }
             }
             catch {
                 write-host "ERROR: " -ForegroundColor Red -NoNewline
                 write-host $_.Exception.Message
-                write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
+                write-host ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason) -ForegroundColor Cyan
                 $_.ScriptStackTrace -split '\n' | ForEach-Object {
                     Write-host "  |  " -ForegroundColor Cyan -NoNewline
                     Write-host $_

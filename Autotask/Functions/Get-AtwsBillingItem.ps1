@@ -88,7 +88,7 @@ Set-AtwsBillingItem
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -115,42 +115,42 @@ Set-AtwsBillingItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $AccountID,
 
 # AccountManagerWhenApprovedID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $AccountManagerWhenApprovedID,
 
 # AllocationCodeID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $AllocationCodeID,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $BusinessDivisionSubdivisionID,
 
 # Contract Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $ContractCostID,
 
 # ContractID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ContractID,
 
 # Description
@@ -158,21 +158,21 @@ Set-AtwsBillingItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Description,
 
 # Expense Item
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ExpenseItemID,
 
 # ExtendedPrice
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $ExtendedPrice,
 
 # BillingItemID
@@ -180,63 +180,63 @@ Set-AtwsBillingItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $id,
 
 # Installed Product Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $InstalledProductID,
 
 # InternalCurrencyExtendedPrice
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $InternalCurrencyExtendedPrice,
 
 # InternalCurrencyRate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $InternalCurrencyRate,
 
 # InternalCurrencyTaxDollars
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $InternalCurrencyTaxDollars,
 
 # InternalCurrencyTotalAmount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $InternalCurrencyTotalAmount,
 
 # InvoiceID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $InvoiceID,
 
 # ItemApproverID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ItemApproverID,
 
 # ItemDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $ItemDate,
 
 # ItemName
@@ -244,21 +244,21 @@ Set-AtwsBillingItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ItemName,
 
 # Invoice Line Item ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $LineItemID,
 
 # Milestone ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $MilestoneID,
 
 # NonBillable
@@ -266,42 +266,42 @@ Set-AtwsBillingItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $NonBillable,
 
 # OurCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $OurCost,
 
 # Posted Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $PostedDate,
 
 # Posted On Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $PostedOnTime,
 
 # Project Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $ProjectCostID,
 
 # ProjectID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ProjectID,
 
 # purchase_order_number
@@ -309,42 +309,42 @@ Set-AtwsBillingItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $PurchaseOrderNumber,
 
 # Quantity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $Quantity,
 
 # Rate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $Rate,
 
 # RoleID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $RoleID,
 
 # Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $ServiceBundleID,
 
 # Service ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $ServiceID,
 
 # Sub Type
@@ -364,49 +364,49 @@ Set-AtwsBillingItem
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $SubType,
 
 # TaskID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $TaskID,
 
 # TaxDollars
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $TaxDollars,
 
 # Ticket Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $TicketCostID,
 
 # TicketID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $TicketID,
 
 # TimeEntryID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $TimeEntryID,
 
 # TotalAmount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $TotalAmount,
 
 # Type
@@ -426,112 +426,112 @@ Set-AtwsBillingItem
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Type,
 
 # Vendor ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $VendorID,
 
 # WebServiceDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $WebServiceDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorID', 'TimeEntryID', 'ItemDate', 'SubType', 'Type', 'AccountManagerWhenApprovedID', 'InternalCurrencyRate', 'BusinessDivisionSubdivisionID', 'InvoiceID', 'TicketCostID', 'MilestoneID', 'AllocationCodeID', 'ServiceBundleID', 'NonBillable', 'Rate', 'OurCost', 'ContractCostID', 'ProjectCostID', 'InternalCurrencyTaxDollars', 'LineItemFullDescription', 'LineItemID', 'ServiceID', 'TaskID', 'InternalCurrencyExtendedPrice', 'PostedDate', 'TicketID', 'PostedOnTime', 'id', 'Description', 'ItemApproverID', 'ExtendedPrice', 'ContractID', 'ItemName', 'WebServiceDate', 'InternalCurrencyTotalAmount', 'LineItemGroupDescription', 'TotalAmount', 'RoleID', 'PurchaseOrderNumber', 'ExpenseItemID', 'AccountID', 'InstalledProductID', 'ProjectID', 'Quantity', 'TaxDollars')]
-    [string[]]
+    [ValidateSet('InternalCurrencyExtendedPrice', 'TicketID', 'ServiceBundleID', 'RoleID', 'AllocationCodeID', 'PostedDate', 'ServiceID', 'OurCost', 'VendorID', 'AccountManagerWhenApprovedID', 'PurchaseOrderNumber', 'id', 'LineItemID', 'InternalCurrencyTotalAmount', 'Rate', 'InstalledProductID', 'ExtendedPrice', 'ContractID', 'ProjectID', 'ProjectCostID', 'NonBillable', 'InvoiceID', 'WebServiceDate', 'Quantity', 'LineItemGroupDescription', 'TicketCostID', 'TimeEntryID', 'TaskID', 'ItemName', 'AccountID', 'InternalCurrencyTaxDollars', 'Type', 'ItemDate', 'BusinessDivisionSubdivisionID', 'TotalAmount', 'MilestoneID', 'TaxDollars', 'LineItemFullDescription', 'Description', 'PostedOnTime', 'ContractCostID', 'InternalCurrencyRate', 'ExpenseItemID', 'SubType', 'ItemApproverID')]
+    [Collections.Generic.List[string]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorID', 'TimeEntryID', 'ItemDate', 'SubType', 'Type', 'AccountManagerWhenApprovedID', 'InternalCurrencyRate', 'BusinessDivisionSubdivisionID', 'InvoiceID', 'TicketCostID', 'MilestoneID', 'AllocationCodeID', 'ServiceBundleID', 'NonBillable', 'Rate', 'OurCost', 'ContractCostID', 'ProjectCostID', 'InternalCurrencyTaxDollars', 'LineItemFullDescription', 'LineItemID', 'ServiceID', 'TaskID', 'InternalCurrencyExtendedPrice', 'PostedDate', 'TicketID', 'PostedOnTime', 'id', 'Description', 'ItemApproverID', 'ExtendedPrice', 'ContractID', 'ItemName', 'WebServiceDate', 'InternalCurrencyTotalAmount', 'LineItemGroupDescription', 'TotalAmount', 'RoleID', 'PurchaseOrderNumber', 'ExpenseItemID', 'AccountID', 'InstalledProductID', 'ProjectID', 'Quantity', 'TaxDollars')]
-    [string[]]
+    [ValidateSet('InternalCurrencyExtendedPrice', 'TicketID', 'ServiceBundleID', 'RoleID', 'AllocationCodeID', 'PostedDate', 'ServiceID', 'OurCost', 'VendorID', 'AccountManagerWhenApprovedID', 'PurchaseOrderNumber', 'id', 'LineItemID', 'InternalCurrencyTotalAmount', 'Rate', 'InstalledProductID', 'ExtendedPrice', 'ContractID', 'ProjectID', 'ProjectCostID', 'NonBillable', 'InvoiceID', 'WebServiceDate', 'Quantity', 'LineItemGroupDescription', 'TicketCostID', 'TimeEntryID', 'TaskID', 'ItemName', 'AccountID', 'InternalCurrencyTaxDollars', 'Type', 'ItemDate', 'BusinessDivisionSubdivisionID', 'TotalAmount', 'MilestoneID', 'TaxDollars', 'LineItemFullDescription', 'Description', 'PostedOnTime', 'ContractCostID', 'InternalCurrencyRate', 'ExpenseItemID', 'SubType', 'ItemApproverID')]
+    [Collections.Generic.List[string]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorID', 'TimeEntryID', 'ItemDate', 'SubType', 'Type', 'AccountManagerWhenApprovedID', 'InternalCurrencyRate', 'BusinessDivisionSubdivisionID', 'InvoiceID', 'TicketCostID', 'MilestoneID', 'AllocationCodeID', 'ServiceBundleID', 'NonBillable', 'Rate', 'OurCost', 'ContractCostID', 'ProjectCostID', 'InternalCurrencyTaxDollars', 'LineItemFullDescription', 'LineItemID', 'ServiceID', 'TaskID', 'InternalCurrencyExtendedPrice', 'PostedDate', 'TicketID', 'PostedOnTime', 'id', 'Description', 'ItemApproverID', 'ExtendedPrice', 'ContractID', 'ItemName', 'WebServiceDate', 'InternalCurrencyTotalAmount', 'LineItemGroupDescription', 'TotalAmount', 'RoleID', 'PurchaseOrderNumber', 'ExpenseItemID', 'AccountID', 'InstalledProductID', 'ProjectID', 'Quantity', 'TaxDollars')]
-    [string[]]
+    [ValidateSet('InternalCurrencyExtendedPrice', 'TicketID', 'ServiceBundleID', 'RoleID', 'AllocationCodeID', 'PostedDate', 'ServiceID', 'OurCost', 'VendorID', 'AccountManagerWhenApprovedID', 'PurchaseOrderNumber', 'id', 'LineItemID', 'InternalCurrencyTotalAmount', 'Rate', 'InstalledProductID', 'ExtendedPrice', 'ContractID', 'ProjectID', 'ProjectCostID', 'NonBillable', 'InvoiceID', 'WebServiceDate', 'Quantity', 'LineItemGroupDescription', 'TicketCostID', 'TimeEntryID', 'TaskID', 'ItemName', 'AccountID', 'InternalCurrencyTaxDollars', 'Type', 'ItemDate', 'BusinessDivisionSubdivisionID', 'TotalAmount', 'MilestoneID', 'TaxDollars', 'LineItemFullDescription', 'Description', 'PostedOnTime', 'ContractCostID', 'InternalCurrencyRate', 'ExpenseItemID', 'SubType', 'ItemApproverID')]
+    [Collections.Generic.List[string]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Type', 'SubType', 'ItemName', 'Description', 'Quantity', 'Rate', 'TotalAmount', 'OurCost', 'ItemDate', 'InvoiceID', 'ItemApproverID', 'AccountID', 'TicketID', 'TaskID', 'ProjectID', 'AllocationCodeID', 'RoleID', 'TimeEntryID', 'ContractID', 'WebServiceDate', 'NonBillable', 'TaxDollars', 'PurchaseOrderNumber', 'ExtendedPrice', 'ExpenseItemID', 'ContractCostID', 'ProjectCostID', 'TicketCostID', 'LineItemID', 'MilestoneID', 'ServiceID', 'ServiceBundleID', 'VendorID', 'LineItemFullDescription', 'LineItemGroupDescription', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'AccountManagerWhenApprovedID', 'BusinessDivisionSubdivisionID', 'PostedOnTime', 'PostedDate')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Type', 'SubType', 'ItemName', 'Description', 'Quantity', 'Rate', 'TotalAmount', 'OurCost', 'ItemDate', 'InvoiceID', 'ItemApproverID', 'AccountID', 'TicketID', 'TaskID', 'ProjectID', 'AllocationCodeID', 'RoleID', 'TimeEntryID', 'ContractID', 'WebServiceDate', 'NonBillable', 'TaxDollars', 'PurchaseOrderNumber', 'ExtendedPrice', 'ExpenseItemID', 'ContractCostID', 'ProjectCostID', 'TicketCostID', 'LineItemID', 'MilestoneID', 'ServiceID', 'ServiceBundleID', 'VendorID', 'LineItemFullDescription', 'LineItemGroupDescription', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'AccountManagerWhenApprovedID', 'BusinessDivisionSubdivisionID', 'PostedOnTime', 'PostedDate')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Type', 'SubType', 'ItemName', 'Description', 'Quantity', 'Rate', 'TotalAmount', 'OurCost', 'ItemDate', 'InvoiceID', 'ItemApproverID', 'AccountID', 'TicketID', 'TaskID', 'ProjectID', 'AllocationCodeID', 'RoleID', 'TimeEntryID', 'ContractID', 'WebServiceDate', 'NonBillable', 'TaxDollars', 'PurchaseOrderNumber', 'ExtendedPrice', 'ExpenseItemID', 'ContractCostID', 'ProjectCostID', 'TicketCostID', 'LineItemID', 'MilestoneID', 'ServiceID', 'ServiceBundleID', 'VendorID', 'LineItemFullDescription', 'LineItemGroupDescription', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'AccountManagerWhenApprovedID', 'BusinessDivisionSubdivisionID', 'PostedOnTime', 'PostedDate')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Type', 'SubType', 'ItemName', 'Description', 'Quantity', 'Rate', 'TotalAmount', 'OurCost', 'ItemDate', 'InvoiceID', 'ItemApproverID', 'AccountID', 'TicketID', 'TaskID', 'ProjectID', 'AllocationCodeID', 'RoleID', 'TimeEntryID', 'ContractID', 'WebServiceDate', 'NonBillable', 'TaxDollars', 'PurchaseOrderNumber', 'ExtendedPrice', 'ExpenseItemID', 'ContractCostID', 'ProjectCostID', 'TicketCostID', 'LineItemID', 'MilestoneID', 'ServiceID', 'ServiceBundleID', 'VendorID', 'LineItemFullDescription', 'LineItemGroupDescription', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'AccountManagerWhenApprovedID', 'BusinessDivisionSubdivisionID', 'PostedOnTime', 'PostedDate')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName', 'Description', 'PurchaseOrderNumber', 'LineItemFullDescription', 'LineItemGroupDescription')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName', 'Description', 'PurchaseOrderNumber', 'LineItemFullDescription', 'LineItemGroupDescription')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName', 'Description', 'PurchaseOrderNumber', 'LineItemFullDescription', 'LineItemGroupDescription')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName', 'Description', 'PurchaseOrderNumber', 'LineItemFullDescription', 'LineItemGroupDescription')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName', 'Description', 'PurchaseOrderNumber', 'LineItemFullDescription', 'LineItemGroupDescription')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemDate', 'WebServiceDate', 'PostedOnTime', 'PostedDate')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $IsThisDay
   )
 
@@ -554,8 +554,8 @@ Set-AtwsBillingItem
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $result = [Collections.ArrayList]::new()
-        $iterations = [Collections.Arraylist]::new()
+        $result = [collections.generic.list[psobject]]::new()
+        $iterations = [collections.generic.list[psobject]]::new()
     }
 
 
@@ -564,7 +564,7 @@ Set-AtwsBillingItem
         # Set the Filter manually to get every single object of this type
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') {
             $Filter = @('id', '-ge', 0)
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
@@ -572,14 +572,14 @@ Set-AtwsBillingItem
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
            
-            # Extract the parameter content, sort it ascending (we assume it is an Id field)
-            # and deduplicate
+            # Count the values of the first parameter passed. We will not try do to this on more than 1 parameter, nor on any 
+            # other parameter than the first. This is lazy, but efficient.
             $count = $PSBoundParameters.Values[0].count
 
-            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            # If the count is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
-                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
-                [void]$iterations.Add($Filter)
+                [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                $iterations.Add($Filter)
             }
             # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
             # into segments and create multiple queries with max 200 values
@@ -603,8 +603,8 @@ Set-AtwsBillingItem
                     Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
 
                     # Convert named parameters to a filter definition that can be parsed to QueryXML
-                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
-                    [void]$iterations.Add($Filter)
+                    [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    $iterations.Add($Filter)
                 }
             }
         }
@@ -617,7 +617,7 @@ Set-AtwsBillingItem
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
 
         # Prepare shouldProcess comments
@@ -631,7 +631,8 @@ Set-AtwsBillingItem
 
                 try {
                     # Make the query and pass the optional parameters to Get-AtwsData
-                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    # Force list even if result is only 1 object to be compatible with addrange()
+                    [collections.generic.list[psobject]]$response = Get-AtwsData -Entity $entityName -Filter $Filter `
                         -NoPickListLabel:$NoPickListLabel.IsPresent `
                         -GetReferenceEntityById $GetReferenceEntityById
                 }
@@ -644,13 +645,9 @@ Set-AtwsBillingItem
                         Write-host $_
                     }
                 }
-                # If multiple items use .addrange(). If a single item use .add()
-                if ($response.count -gt 1) {
-                    [void]$result.AddRange($response)
-                }
-                else {
-                    [void]$result.Add($response)
-                }
+                # Add response to result
+                $result.AddRange($response)
+
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }
         }

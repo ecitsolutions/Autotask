@@ -95,7 +95,7 @@ Set-AtwsContract
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -132,7 +132,7 @@ Set-AtwsContract
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $AccountID,
 
 # Billing Preference
@@ -151,42 +151,42 @@ Set-AtwsContract
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $BillingPreference,
 
 # Bill To Client Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $BillToAccountContactID,
 
 # Bill To Client ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $BillToAccountID,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $BusinessDivisionSubdivisionID,
 
 # Contract Compilance
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $Compliance,
 
 # Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ContactID,
 
 # Contract Contact
@@ -194,7 +194,7 @@ Set-AtwsContract
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,250)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ContactName,
 
 # Category
@@ -213,14 +213,14 @@ Set-AtwsContract
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ContractCategory,
 
 # Contract Exclusion Set ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ContractExclusionSetID,
 
 # Contract Name
@@ -230,7 +230,7 @@ Set-AtwsContract
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ContractName,
 
 # Contract Number
@@ -238,7 +238,7 @@ Set-AtwsContract
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ContractNumber,
 
 # Contract Period Type
@@ -257,7 +257,7 @@ Set-AtwsContract
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ContractPeriodType,
 
 # Contract Type
@@ -277,7 +277,7 @@ Set-AtwsContract
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ContractType,
 
 # Description
@@ -285,7 +285,7 @@ Set-AtwsContract
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Description,
 
 # End Date
@@ -293,35 +293,35 @@ Set-AtwsContract
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $EndDate,
 
 # Estimated Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $EstimatedCost,
 
 # Estimated Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $EstimatedHours,
 
 # Estimated Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $EstimatedRevenue,
 
 # Exclusion Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $ExclusionContractID,
 
 # Contract ID
@@ -329,42 +329,42 @@ Set-AtwsContract
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $id,
 
 # Internal Currency Contract Overage Billing Rate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $InternalCurrencyOverageBillingRate,
 
 # Internal Currency Contract Setup Fee
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $InternalCurrencySetupFee,
 
 # Default Contract
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $IsDefaultContract,
 
 # opportunity_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $OpportunityID,
 
 # Contract Overage Billing Rate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $OverageBillingRate,
 
 # purchase_order_number
@@ -372,14 +372,14 @@ Set-AtwsContract
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $PurchaseOrderNumber,
 
 # Renewed Contract Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $RenewedContractID,
 
 # Service Level Agreement ID
@@ -398,21 +398,21 @@ Set-AtwsContract
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $ServiceLevelAgreementID,
 
 # Contract Setup Fee
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $SetupFee,
 
 # Contract Setup Fee Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $SetupFeeAllocationCodeID,
 
 # Start Date
@@ -420,7 +420,7 @@ Set-AtwsContract
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $StartDate,
 
 # Status
@@ -440,7 +440,7 @@ Set-AtwsContract
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Status,
 
 # Time Reporting Requires Start and Stop Times
@@ -460,98 +460,98 @@ Set-AtwsContract
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $TimeReportingRequiresStartAndStopTimes,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDefaultContract', 'Compliance', 'ContactName', 'BusinessDivisionSubdivisionID', 'ContactID', 'ContractPeriodType', 'OpportunityID', 'EstimatedRevenue', 'ServiceLevelAgreementID', 'EstimatedCost', 'ExclusionContractID', 'SetupFeeAllocationCodeID', 'OverageBillingRate', 'InternalCurrencySetupFee', 'BillToAccountContactID', 'EstimatedHours', 'SetupFee', 'id', 'BillToAccountID', 'Description', 'BillingPreference', 'TimeReportingRequiresStartAndStopTimes', 'EndDate', 'ContractType', 'StartDate', 'ContractName', 'ContractCategory', 'Status', 'PurchaseOrderNumber', 'ContractNumber', 'AccountID', 'ContractExclusionSetID', 'RenewedContractID', 'InternalCurrencyOverageBillingRate', '')]
-    [string[]]
+    [ValidateSet('PurchaseOrderNumber', 'ContractType', 'BillToAccountContactID', 'ExclusionContractID', 'id', 'ContactID', 'BillToAccountID', 'ServiceLevelAgreementID', 'EstimatedCost', 'ContractExclusionSetID', 'ContractCategory', 'ContractPeriodType', 'EndDate', 'IsDefaultContract', 'Status', 'EstimatedRevenue', 'OverageBillingRate', 'RenewedContractID', 'EstimatedHours', 'OpportunityID', 'TimeReportingRequiresStartAndStopTimes', 'SetupFee', 'SetupFeeAllocationCodeID', 'AccountID', 'BusinessDivisionSubdivisionID', 'ContractNumber', 'ContractName', 'InternalCurrencySetupFee', 'StartDate', 'Description', 'ContactName', 'BillingPreference', 'InternalCurrencyOverageBillingRate', 'Compliance', '')]
+    [Collections.Generic.List[string]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDefaultContract', 'Compliance', 'ContactName', 'BusinessDivisionSubdivisionID', 'ContactID', 'ContractPeriodType', 'OpportunityID', 'EstimatedRevenue', 'ServiceLevelAgreementID', 'EstimatedCost', 'ExclusionContractID', 'SetupFeeAllocationCodeID', 'OverageBillingRate', 'InternalCurrencySetupFee', 'BillToAccountContactID', 'EstimatedHours', 'SetupFee', 'id', 'BillToAccountID', 'Description', 'BillingPreference', 'TimeReportingRequiresStartAndStopTimes', 'EndDate', 'ContractType', 'StartDate', 'ContractName', 'ContractCategory', 'Status', 'PurchaseOrderNumber', 'ContractNumber', 'AccountID', 'ContractExclusionSetID', 'RenewedContractID', 'InternalCurrencyOverageBillingRate', '')]
-    [string[]]
+    [ValidateSet('PurchaseOrderNumber', 'ContractType', 'BillToAccountContactID', 'ExclusionContractID', 'id', 'ContactID', 'BillToAccountID', 'ServiceLevelAgreementID', 'EstimatedCost', 'ContractExclusionSetID', 'ContractCategory', 'ContractPeriodType', 'EndDate', 'IsDefaultContract', 'Status', 'EstimatedRevenue', 'OverageBillingRate', 'RenewedContractID', 'EstimatedHours', 'OpportunityID', 'TimeReportingRequiresStartAndStopTimes', 'SetupFee', 'SetupFeeAllocationCodeID', 'AccountID', 'BusinessDivisionSubdivisionID', 'ContractNumber', 'ContractName', 'InternalCurrencySetupFee', 'StartDate', 'Description', 'ContactName', 'BillingPreference', 'InternalCurrencyOverageBillingRate', 'Compliance', '')]
+    [Collections.Generic.List[string]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsDefaultContract', 'Compliance', 'ContactName', 'BusinessDivisionSubdivisionID', 'ContactID', 'ContractPeriodType', 'OpportunityID', 'EstimatedRevenue', 'ServiceLevelAgreementID', 'EstimatedCost', 'ExclusionContractID', 'SetupFeeAllocationCodeID', 'OverageBillingRate', 'InternalCurrencySetupFee', 'BillToAccountContactID', 'EstimatedHours', 'SetupFee', 'id', 'BillToAccountID', 'Description', 'BillingPreference', 'TimeReportingRequiresStartAndStopTimes', 'EndDate', 'ContractType', 'StartDate', 'ContractName', 'ContractCategory', 'Status', 'PurchaseOrderNumber', 'ContractNumber', 'AccountID', 'ContractExclusionSetID', 'RenewedContractID', 'InternalCurrencyOverageBillingRate', '')]
-    [string[]]
+    [ValidateSet('PurchaseOrderNumber', 'ContractType', 'BillToAccountContactID', 'ExclusionContractID', 'id', 'ContactID', 'BillToAccountID', 'ServiceLevelAgreementID', 'EstimatedCost', 'ContractExclusionSetID', 'ContractCategory', 'ContractPeriodType', 'EndDate', 'IsDefaultContract', 'Status', 'EstimatedRevenue', 'OverageBillingRate', 'RenewedContractID', 'EstimatedHours', 'OpportunityID', 'TimeReportingRequiresStartAndStopTimes', 'SetupFee', 'SetupFeeAllocationCodeID', 'AccountID', 'BusinessDivisionSubdivisionID', 'ContractNumber', 'ContractName', 'InternalCurrencySetupFee', 'StartDate', 'Description', 'ContactName', 'BillingPreference', 'InternalCurrencyOverageBillingRate', 'Compliance', '')]
+    [Collections.Generic.List[string]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'BillingPreference', 'ContactName', 'ContractCategory', 'ContractName', 'ContractNumber', 'ContractPeriodType', 'ContractType', 'Description', 'EndDate', 'EstimatedCost', 'EstimatedHours', 'EstimatedRevenue', 'OverageBillingRate', 'StartDate', 'Status', 'ServiceLevelAgreementID', 'SetupFee', 'PurchaseOrderNumber', 'TimeReportingRequiresStartAndStopTimes', 'OpportunityID', 'RenewedContractID', 'SetupFeeAllocationCodeID', 'ExclusionContractID', 'InternalCurrencyOverageBillingRate', 'InternalCurrencySetupFee', 'ContactID', 'BusinessDivisionSubdivisionID', 'BillToAccountID', 'BillToAccountContactID', 'ContractExclusionSetID', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'BillingPreference', 'ContactName', 'ContractCategory', 'ContractName', 'ContractNumber', 'ContractPeriodType', 'ContractType', 'Description', 'EndDate', 'EstimatedCost', 'EstimatedHours', 'EstimatedRevenue', 'OverageBillingRate', 'StartDate', 'Status', 'ServiceLevelAgreementID', 'SetupFee', 'PurchaseOrderNumber', 'TimeReportingRequiresStartAndStopTimes', 'OpportunityID', 'RenewedContractID', 'SetupFeeAllocationCodeID', 'ExclusionContractID', 'InternalCurrencyOverageBillingRate', 'InternalCurrencySetupFee', 'ContactID', 'BusinessDivisionSubdivisionID', 'BillToAccountID', 'BillToAccountContactID', 'ContractExclusionSetID', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'BillingPreference', 'ContactName', 'ContractCategory', 'ContractName', 'ContractNumber', 'ContractPeriodType', 'ContractType', 'Description', 'EndDate', 'EstimatedCost', 'EstimatedHours', 'EstimatedRevenue', 'OverageBillingRate', 'StartDate', 'Status', 'ServiceLevelAgreementID', 'SetupFee', 'PurchaseOrderNumber', 'TimeReportingRequiresStartAndStopTimes', 'OpportunityID', 'RenewedContractID', 'SetupFeeAllocationCodeID', 'ExclusionContractID', 'InternalCurrencyOverageBillingRate', 'InternalCurrencySetupFee', 'ContactID', 'BusinessDivisionSubdivisionID', 'BillToAccountID', 'BillToAccountContactID', 'ContractExclusionSetID', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'BillingPreference', 'ContactName', 'ContractCategory', 'ContractName', 'ContractNumber', 'ContractPeriodType', 'ContractType', 'Description', 'EndDate', 'EstimatedCost', 'EstimatedHours', 'EstimatedRevenue', 'OverageBillingRate', 'StartDate', 'Status', 'ServiceLevelAgreementID', 'SetupFee', 'PurchaseOrderNumber', 'TimeReportingRequiresStartAndStopTimes', 'OpportunityID', 'RenewedContractID', 'SetupFeeAllocationCodeID', 'ExclusionContractID', 'InternalCurrencyOverageBillingRate', 'InternalCurrencySetupFee', 'ContactID', 'BusinessDivisionSubdivisionID', 'BillToAccountID', 'BillToAccountContactID', 'ContractExclusionSetID', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ContactName', 'ContractName', 'ContractNumber', 'ContractPeriodType', 'Description', 'PurchaseOrderNumber', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ContactName', 'ContractName', 'ContractNumber', 'ContractPeriodType', 'Description', 'PurchaseOrderNumber', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ContactName', 'ContractName', 'ContractNumber', 'ContractPeriodType', 'Description', 'PurchaseOrderNumber', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ContactName', 'ContractName', 'ContractNumber', 'ContractPeriodType', 'Description', 'PurchaseOrderNumber', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ContactName', 'ContractName', 'ContractNumber', 'ContractPeriodType', 'Description', 'PurchaseOrderNumber', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('EndDate', 'StartDate', 'UserDefinedField')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $IsThisDay
   )
 
@@ -574,8 +574,8 @@ Set-AtwsContract
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $result = [Collections.ArrayList]::new()
-        $iterations = [Collections.Arraylist]::new()
+        $result = [collections.generic.list[psobject]]::new()
+        $iterations = [collections.generic.list[psobject]]::new()
     }
 
 
@@ -584,7 +584,7 @@ Set-AtwsContract
         # Set the Filter manually to get every single object of this type
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') {
             $Filter = @('id', '-ge', 0)
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
@@ -592,14 +592,14 @@ Set-AtwsContract
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
            
-            # Extract the parameter content, sort it ascending (we assume it is an Id field)
-            # and deduplicate
+            # Count the values of the first parameter passed. We will not try do to this on more than 1 parameter, nor on any 
+            # other parameter than the first. This is lazy, but efficient.
             $count = $PSBoundParameters.Values[0].count
 
-            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            # If the count is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
-                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
-                [void]$iterations.Add($Filter)
+                [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                $iterations.Add($Filter)
             }
             # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
             # into segments and create multiple queries with max 200 values
@@ -623,8 +623,8 @@ Set-AtwsContract
                     Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
 
                     # Convert named parameters to a filter definition that can be parsed to QueryXML
-                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
-                    [void]$iterations.Add($Filter)
+                    [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    $iterations.Add($Filter)
                 }
             }
         }
@@ -637,7 +637,7 @@ Set-AtwsContract
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
 
         # Prepare shouldProcess comments
@@ -651,7 +651,8 @@ Set-AtwsContract
 
                 try {
                     # Make the query and pass the optional parameters to Get-AtwsData
-                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    # Force list even if result is only 1 object to be compatible with addrange()
+                    [collections.generic.list[psobject]]$response = Get-AtwsData -Entity $entityName -Filter $Filter `
                         -NoPickListLabel:$NoPickListLabel.IsPresent `
                         -GetReferenceEntityById $GetReferenceEntityById
                 }
@@ -664,13 +665,9 @@ Set-AtwsContract
                         Write-host $_
                     }
                 }
-                # If multiple items use .addrange(). If a single item use .add()
-                if ($response.count -gt 1) {
-                    [void]$result.AddRange($response)
-                }
-                else {
-                    [void]$result.Add($response)
-                }
+                # Add response to result
+                $result.AddRange($response)
+
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }
         }

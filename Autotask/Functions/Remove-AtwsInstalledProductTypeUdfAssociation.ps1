@@ -42,7 +42,7 @@ Set-AtwsInstalledProductTypeUdfAssociation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.InstalledProductTypeUdfAssociation[]]
+    [Collections.Generic.List[Autotask.InstalledProductTypeUdfAssociation]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsInstalledProductTypeUdfAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

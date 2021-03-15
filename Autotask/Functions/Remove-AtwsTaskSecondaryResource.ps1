@@ -40,7 +40,7 @@ Get-AtwsTaskSecondaryResource
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TaskSecondaryResource[]]
+    [Collections.Generic.List[Autotask.TaskSecondaryResource]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -49,7 +49,7 @@ Get-AtwsTaskSecondaryResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

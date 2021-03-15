@@ -42,7 +42,7 @@ Set-AtwsContactBillingProductAssociation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ContactBillingProductAssociation[]]
+    [Collections.Generic.List[Autotask.ContactBillingProductAssociation]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsContactBillingProductAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

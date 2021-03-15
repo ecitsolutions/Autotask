@@ -42,7 +42,7 @@ Set-AtwsChecklistLibraryChecklistItem
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ChecklistLibraryChecklistItem[]]
+    [Collections.Generic.List[Autotask.ChecklistLibraryChecklistItem]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsChecklistLibraryChecklistItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

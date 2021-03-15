@@ -51,7 +51,7 @@ Get-AtwsPriceListServiceBundle
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.PriceListServiceBundle[]]
+    [Collections.Generic.List[Autotask.PriceListServiceBundle]]
     $InputObject,
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
@@ -59,7 +59,7 @@ Get-AtwsPriceListServiceBundle
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id,
 
 # Return any updated objects through the pipeline
@@ -120,7 +120,7 @@ Get-AtwsPriceListServiceBundle
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $ModifiedObjects = [Collections.ArrayList]::new()
+        $ModifiedObjects = [collections.generic.list[psobject]]::new()
     }
 
     process {
@@ -159,9 +159,9 @@ Get-AtwsPriceListServiceBundle
                 # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
                 $Data = Set-AtwsData -Entity $processObject
                 if ($Data.Count -gt 1) {
-                    [void]$ModifiedObjects.AddRange($Data)
+                    $ModifiedObjects.AddRange($Data)
                 }else {
-                    [void]$ModifiedObjects.Add($Data)
+                    $ModifiedObjects.Add($Data)
                 }
             }
             catch {

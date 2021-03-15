@@ -42,7 +42,7 @@ Set-AtwsAccountPhysicalLocation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.AccountPhysicalLocation[]]
+    [Collections.Generic.List[Autotask.AccountPhysicalLocation]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long[]]
+    [Collections.Generic.List[long]]
     $Id
   )
  

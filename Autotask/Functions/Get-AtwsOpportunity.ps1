@@ -97,7 +97,7 @@ Set-AtwsOpportunity
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -125,42 +125,42 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $AccountID,
 
 # NumberOfUsers
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $AdvancedField1,
 
 # SetupFee
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $AdvancedField2,
 
 # HourlyCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $AdvancedField3,
 
 # DailyCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $AdvancedField4,
 
 # MonthlyCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $AdvancedField5,
 
 # Amount
@@ -168,14 +168,14 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $Amount,
 
 # Assessment Score
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $AssessmentScore,
 
 # Barriers
@@ -183,28 +183,28 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Barriers,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $BusinessDivisionSubdivisionID,
 
 # Closed Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $ClosedDate,
 
 # ContactObjectID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ContactID,
 
 # Cost
@@ -212,7 +212,7 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $Cost,
 
 # CreateDate
@@ -220,21 +220,21 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $CreateDate,
 
 # Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $CreatorResourceID,
 
 # Date Stamp
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $DateStamp,
 
 # Description
@@ -242,7 +242,7 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Description,
 
 # HelpNeeded
@@ -250,7 +250,7 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $HelpNeeded,
 
 # Opportunity ID
@@ -258,21 +258,21 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
+    [Collections.Generic.List[Nullable[long]]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ImpersonatorCreatorResourceID,
 
 # Last Activity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $LastActivity,
 
 # LeadReferralObjectID
@@ -291,7 +291,7 @@ Set-AtwsOpportunity
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LeadReferral,
 
 # Loss Reason
@@ -310,7 +310,7 @@ Set-AtwsOpportunity
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LossReason,
 
 # Loss Reason Detail
@@ -318,14 +318,14 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LossReasonDetail,
 
 # Lost Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $LostDate,
 
 # Market
@@ -333,21 +333,21 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Market,
 
 # Monthly Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $MonthlyCost,
 
 # Monthly Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $MonthlyRevenue,
 
 # NextStep
@@ -355,21 +355,21 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $NextStep,
 
 # One-Time Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $OnetimeCost,
 
 # One-Time Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $OnetimeRevenue,
 
 # Opportunity Category ID
@@ -388,7 +388,7 @@ Set-AtwsOpportunity
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $OpportunityCategoryID,
 
 # CreatorObjectID
@@ -396,7 +396,7 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $OwnerResourceID,
 
 # Primary Competitor
@@ -415,7 +415,7 @@ Set-AtwsOpportunity
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $PrimaryCompetitor,
 
 # Probability
@@ -423,14 +423,14 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $Probability,
 
 # ProductObjectID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $ProductID,
 
 # ProjClose
@@ -438,21 +438,21 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $ProjectedCloseDate,
 
 # StartDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $ProjectedLiveDate,
 
 # Promised Fulfillment Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $PromisedFulfillmentDate,
 
 # promotion_name
@@ -460,21 +460,21 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $PromotionName,
 
 # Quarterly Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $QuarterlyCost,
 
 # Quarterly Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $QuarterlyRevenue,
 
 # opportunity_rating_id
@@ -493,21 +493,21 @@ Set-AtwsOpportunity
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Rating,
 
 # Relationship Assessment Score
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $RelationshipAssessmentScore,
 
 # Revenue Spread
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $RevenueSpread,
 
 # spread_revenue_recognition_unit
@@ -526,35 +526,35 @@ Set-AtwsOpportunity
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $RevenueSpreadUnit,
 
 # Sales Order ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $SalesOrderID,
 
 # Sales Process Percent Complete
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $SalesProcessPercentComplete,
 
 # Semi-Annual Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $SemiannualCost,
 
 # Semi-Annual Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $SemiannualRevenue,
 
 # StageObjectID
@@ -574,7 +574,7 @@ Set-AtwsOpportunity
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Stage,
 
 # Status
@@ -594,21 +594,21 @@ Set-AtwsOpportunity
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Status,
 
 # Technical Assessment Score
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
+    [Collections.Generic.List[Nullable[double]]]
     $TechnicalAssessmentScore,
 
 # ThroughDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
+    [Collections.Generic.List[Nullable[datetime]]]
     $ThroughDate,
 
 # Name
@@ -617,14 +617,14 @@ Set-AtwsOpportunity
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,128)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Title,
 
 # Total Amount Months
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
+    [Collections.Generic.List[Nullable[Int]]]
     $TotalAmountMonths,
 
 # Use Quote Totals
@@ -632,7 +632,7 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
+    [Collections.Generic.List[Nullable[boolean]]]
     $UseQuoteTotals,
 
 # Win Reason
@@ -651,7 +651,7 @@ Set-AtwsOpportunity
         Return $false
       }
     })]
-    [string[]]
+    [Collections.Generic.List[string]]
     $WinReason,
 
 # Win Reason Detail
@@ -659,112 +659,112 @@ Set-AtwsOpportunity
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [string[]]
+    [Collections.Generic.List[string]]
     $WinReasonDetail,
 
 # Yearly Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $YearlyCost,
 
 # Yearly Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
+    [Collections.Generic.List[Nullable[decimal]]]
     $YearlyRevenue,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdvancedField5', 'LostDate', 'RelationshipAssessmentScore', 'ImpersonatorCreatorResourceID', 'AssessmentScore', 'AdvancedField2', 'Description', 'SemiannualRevenue', 'OnetimeRevenue', 'ContactID', 'MonthlyCost', 'ProjectedCloseDate', 'OwnerResourceID', 'ProductID', 'YearlyCost', 'Barriers', 'HelpNeeded', 'NextStep', 'LastActivity', 'Rating', 'BusinessDivisionSubdivisionID', 'UseQuoteTotals', 'TechnicalAssessmentScore', 'ClosedDate', 'Title', 'OnetimeCost', 'ProjectedLiveDate', 'PromotionName', 'Stage', 'SemiannualCost', 'Market', 'RevenueSpreadUnit', 'LeadReferral', 'AdvancedField4', 'PromisedFulfillmentDate', 'CreateDate', 'Amount', 'DateStamp', 'MonthlyRevenue', 'RevenueSpread', 'LossReasonDetail', 'AccountID', 'WinReason', 'ThroughDate', 'LossReason', 'CreatorResourceID', 'PrimaryCompetitor', 'AdvancedField3', 'SalesProcessPercentComplete', 'QuarterlyCost', 'WinReasonDetail', 'YearlyRevenue', 'AdvancedField1', 'SalesOrderID', 'Status', 'TotalAmountMonths', 'id', 'OpportunityCategoryID', 'Cost', 'Probability', 'QuarterlyRevenue')]
-    [string[]]
+    [ValidateSet('AdvancedField3', 'PromotionName', 'ProjectedCloseDate', 'LossReasonDetail', 'OnetimeRevenue', 'SalesOrderID', 'ClosedDate', 'SemiannualCost', 'YearlyCost', 'CreatorResourceID', 'OwnerResourceID', 'RevenueSpread', 'ContactID', 'AdvancedField5', 'Probability', 'Market', 'CreateDate', 'HelpNeeded', 'LossReason', 'RelationshipAssessmentScore', 'UseQuoteTotals', 'ProductID', 'OpportunityCategoryID', 'QuarterlyCost', 'ImpersonatorCreatorResourceID', 'Status', 'MonthlyRevenue', 'WinReason', 'Barriers', 'PrimaryCompetitor', 'WinReasonDetail', 'AdvancedField4', 'NextStep', 'LastActivity', 'id', 'OnetimeCost', 'PromisedFulfillmentDate', 'SalesProcessPercentComplete', 'SemiannualRevenue', 'ThroughDate', 'Title', 'AccountID', 'DateStamp', 'YearlyRevenue', 'AdvancedField1', 'AdvancedField2', 'Amount', 'AssessmentScore', 'TotalAmountMonths', 'QuarterlyRevenue', 'Description', 'TechnicalAssessmentScore', 'LostDate', 'ProjectedLiveDate', 'BusinessDivisionSubdivisionID', 'Stage', 'MonthlyCost', 'Cost', 'LeadReferral', 'RevenueSpreadUnit', 'Rating')]
+    [Collections.Generic.List[string]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdvancedField5', 'LostDate', 'RelationshipAssessmentScore', 'ImpersonatorCreatorResourceID', 'AssessmentScore', 'AdvancedField2', 'Description', 'SemiannualRevenue', 'OnetimeRevenue', 'ContactID', 'MonthlyCost', 'ProjectedCloseDate', 'OwnerResourceID', 'ProductID', 'YearlyCost', 'Barriers', 'HelpNeeded', 'NextStep', 'LastActivity', 'Rating', 'BusinessDivisionSubdivisionID', 'UseQuoteTotals', 'TechnicalAssessmentScore', 'ClosedDate', 'Title', 'OnetimeCost', 'ProjectedLiveDate', 'PromotionName', 'Stage', 'SemiannualCost', 'Market', 'RevenueSpreadUnit', 'LeadReferral', 'AdvancedField4', 'PromisedFulfillmentDate', 'CreateDate', 'Amount', 'DateStamp', 'MonthlyRevenue', 'RevenueSpread', 'LossReasonDetail', 'AccountID', 'WinReason', 'ThroughDate', 'LossReason', 'CreatorResourceID', 'PrimaryCompetitor', 'AdvancedField3', 'SalesProcessPercentComplete', 'QuarterlyCost', 'WinReasonDetail', 'YearlyRevenue', 'AdvancedField1', 'SalesOrderID', 'Status', 'TotalAmountMonths', 'id', 'OpportunityCategoryID', 'Cost', 'Probability', 'QuarterlyRevenue')]
-    [string[]]
+    [ValidateSet('AdvancedField3', 'PromotionName', 'ProjectedCloseDate', 'LossReasonDetail', 'OnetimeRevenue', 'SalesOrderID', 'ClosedDate', 'SemiannualCost', 'YearlyCost', 'CreatorResourceID', 'OwnerResourceID', 'RevenueSpread', 'ContactID', 'AdvancedField5', 'Probability', 'Market', 'CreateDate', 'HelpNeeded', 'LossReason', 'RelationshipAssessmentScore', 'UseQuoteTotals', 'ProductID', 'OpportunityCategoryID', 'QuarterlyCost', 'ImpersonatorCreatorResourceID', 'Status', 'MonthlyRevenue', 'WinReason', 'Barriers', 'PrimaryCompetitor', 'WinReasonDetail', 'AdvancedField4', 'NextStep', 'LastActivity', 'id', 'OnetimeCost', 'PromisedFulfillmentDate', 'SalesProcessPercentComplete', 'SemiannualRevenue', 'ThroughDate', 'Title', 'AccountID', 'DateStamp', 'YearlyRevenue', 'AdvancedField1', 'AdvancedField2', 'Amount', 'AssessmentScore', 'TotalAmountMonths', 'QuarterlyRevenue', 'Description', 'TechnicalAssessmentScore', 'LostDate', 'ProjectedLiveDate', 'BusinessDivisionSubdivisionID', 'Stage', 'MonthlyCost', 'Cost', 'LeadReferral', 'RevenueSpreadUnit', 'Rating')]
+    [Collections.Generic.List[string]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdvancedField5', 'LostDate', 'RelationshipAssessmentScore', 'ImpersonatorCreatorResourceID', 'AssessmentScore', 'AdvancedField2', 'Description', 'SemiannualRevenue', 'OnetimeRevenue', 'ContactID', 'MonthlyCost', 'ProjectedCloseDate', 'OwnerResourceID', 'ProductID', 'YearlyCost', 'Barriers', 'HelpNeeded', 'NextStep', 'LastActivity', 'Rating', 'BusinessDivisionSubdivisionID', 'UseQuoteTotals', 'TechnicalAssessmentScore', 'ClosedDate', 'Title', 'OnetimeCost', 'ProjectedLiveDate', 'PromotionName', 'Stage', 'SemiannualCost', 'Market', 'RevenueSpreadUnit', 'LeadReferral', 'AdvancedField4', 'PromisedFulfillmentDate', 'CreateDate', 'Amount', 'DateStamp', 'MonthlyRevenue', 'RevenueSpread', 'LossReasonDetail', 'AccountID', 'WinReason', 'ThroughDate', 'LossReason', 'CreatorResourceID', 'PrimaryCompetitor', 'AdvancedField3', 'SalesProcessPercentComplete', 'QuarterlyCost', 'WinReasonDetail', 'YearlyRevenue', 'AdvancedField1', 'SalesOrderID', 'Status', 'TotalAmountMonths', 'id', 'OpportunityCategoryID', 'Cost', 'Probability', 'QuarterlyRevenue')]
-    [string[]]
+    [ValidateSet('AdvancedField3', 'PromotionName', 'ProjectedCloseDate', 'LossReasonDetail', 'OnetimeRevenue', 'SalesOrderID', 'ClosedDate', 'SemiannualCost', 'YearlyCost', 'CreatorResourceID', 'OwnerResourceID', 'RevenueSpread', 'ContactID', 'AdvancedField5', 'Probability', 'Market', 'CreateDate', 'HelpNeeded', 'LossReason', 'RelationshipAssessmentScore', 'UseQuoteTotals', 'ProductID', 'OpportunityCategoryID', 'QuarterlyCost', 'ImpersonatorCreatorResourceID', 'Status', 'MonthlyRevenue', 'WinReason', 'Barriers', 'PrimaryCompetitor', 'WinReasonDetail', 'AdvancedField4', 'NextStep', 'LastActivity', 'id', 'OnetimeCost', 'PromisedFulfillmentDate', 'SalesProcessPercentComplete', 'SemiannualRevenue', 'ThroughDate', 'Title', 'AccountID', 'DateStamp', 'YearlyRevenue', 'AdvancedField1', 'AdvancedField2', 'Amount', 'AssessmentScore', 'TotalAmountMonths', 'QuarterlyRevenue', 'Description', 'TechnicalAssessmentScore', 'LostDate', 'ProjectedLiveDate', 'BusinessDivisionSubdivisionID', 'Stage', 'MonthlyCost', 'Cost', 'LeadReferral', 'RevenueSpreadUnit', 'Rating')]
+    [Collections.Generic.List[string]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'ContactID', 'ProductID', 'Stage', 'PrimaryCompetitor', 'LeadReferral', 'OwnerResourceID', 'Title', 'Status', 'ProjectedCloseDate', 'Probability', 'Amount', 'Cost', 'RevenueSpread', 'RevenueSpreadUnit', 'PromotionName', 'CreateDate', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'ProjectedLiveDate', 'ThroughDate', 'AdvancedField1', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'AdvancedField2', 'Rating', 'TotalAmountMonths', 'ClosedDate', 'SalesOrderID', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'SalesProcessPercentComplete', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'ContactID', 'ProductID', 'Stage', 'PrimaryCompetitor', 'LeadReferral', 'OwnerResourceID', 'Title', 'Status', 'ProjectedCloseDate', 'Probability', 'Amount', 'Cost', 'RevenueSpread', 'RevenueSpreadUnit', 'PromotionName', 'CreateDate', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'ProjectedLiveDate', 'ThroughDate', 'AdvancedField1', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'AdvancedField2', 'Rating', 'TotalAmountMonths', 'ClosedDate', 'SalesOrderID', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'SalesProcessPercentComplete', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'ContactID', 'ProductID', 'Stage', 'PrimaryCompetitor', 'LeadReferral', 'OwnerResourceID', 'Title', 'Status', 'ProjectedCloseDate', 'Probability', 'Amount', 'Cost', 'RevenueSpread', 'RevenueSpreadUnit', 'PromotionName', 'CreateDate', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'ProjectedLiveDate', 'ThroughDate', 'AdvancedField1', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'AdvancedField2', 'Rating', 'TotalAmountMonths', 'ClosedDate', 'SalesOrderID', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'SalesProcessPercentComplete', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'ContactID', 'ProductID', 'Stage', 'PrimaryCompetitor', 'LeadReferral', 'OwnerResourceID', 'Title', 'Status', 'ProjectedCloseDate', 'Probability', 'Amount', 'Cost', 'RevenueSpread', 'RevenueSpreadUnit', 'PromotionName', 'CreateDate', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'ProjectedLiveDate', 'ThroughDate', 'AdvancedField1', 'AdvancedField3', 'AdvancedField4', 'AdvancedField5', 'AdvancedField2', 'Rating', 'TotalAmountMonths', 'ClosedDate', 'SalesOrderID', 'AssessmentScore', 'TechnicalAssessmentScore', 'RelationshipAssessmentScore', 'SalesProcessPercentComplete', 'WinReason', 'LossReason', 'WinReasonDetail', 'LossReasonDetail', 'LastActivity', 'DateStamp', 'OnetimeCost', 'OnetimeRevenue', 'MonthlyCost', 'MonthlyRevenue', 'QuarterlyCost', 'QuarterlyRevenue', 'SemiannualCost', 'SemiannualRevenue', 'YearlyCost', 'YearlyRevenue', 'BusinessDivisionSubdivisionID', 'OpportunityCategoryID', 'LostDate', 'PromisedFulfillmentDate', 'Description', 'ImpersonatorCreatorResourceID', 'CreatorResourceID')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'RevenueSpreadUnit', 'PromotionName', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'RevenueSpreadUnit', 'PromotionName', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'RevenueSpreadUnit', 'PromotionName', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'RevenueSpreadUnit', 'PromotionName', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'RevenueSpreadUnit', 'PromotionName', 'Market', 'Barriers', 'HelpNeeded', 'NextStep', 'WinReasonDetail', 'LossReasonDetail', 'Description')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectedCloseDate', 'CreateDate', 'ProjectedLiveDate', 'ThroughDate', 'ClosedDate', 'LastActivity', 'DateStamp', 'LostDate', 'PromisedFulfillmentDate')]
-    [string[]]
+    [Collections.Generic.List[string]]
     $IsThisDay
   )
 
@@ -787,8 +787,8 @@ Set-AtwsOpportunity
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
-        $result = [Collections.ArrayList]::new()
-        $iterations = [Collections.Arraylist]::new()
+        $result = [collections.generic.list[psobject]]::new()
+        $iterations = [collections.generic.list[psobject]]::new()
     }
 
 
@@ -797,7 +797,7 @@ Set-AtwsOpportunity
         # Set the Filter manually to get every single object of this type
         if ($PSCmdlet.ParameterSetName -eq 'Get_all') {
             $Filter = @('id', '-ge', 0)
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
         # So it is not -All. If Filter does not exist it has to be By_parameters
         elseif (-not ($Filter)) {
@@ -805,14 +805,14 @@ Set-AtwsOpportunity
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
            
-            # Extract the parameter content, sort it ascending (we assume it is an Id field)
-            # and deduplicate
+            # Count the values of the first parameter passed. We will not try do to this on more than 1 parameter, nor on any 
+            # other parameter than the first. This is lazy, but efficient.
             $count = $PSBoundParameters.Values[0].count
 
-            # Check number of values. If it is less than or equal to 200 we pass PSBoundParameters as is
+            # If the count is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
-                [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
-                [void]$iterations.Add($Filter)
+                [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                $iterations.Add($Filter)
             }
             # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
             # into segments and create multiple queries with max 200 values
@@ -836,8 +836,8 @@ Set-AtwsOpportunity
                     Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $i, $j)
 
                     # Convert named parameters to a filter definition that can be parsed to QueryXML
-                    [string[]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
-                    [void]$iterations.Add($Filter)
+                    [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    $iterations.Add($Filter)
                 }
             }
         }
@@ -850,7 +850,7 @@ Set-AtwsOpportunity
             # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
             # or the variables will not be available and expansion will fail
             $Filter = . Update-AtwsFilter -Filterstring $Filter
-            [void]$iterations.Add($Filter)
+            $iterations.Add($Filter)
         }
 
         # Prepare shouldProcess comments
@@ -864,7 +864,8 @@ Set-AtwsOpportunity
 
                 try {
                     # Make the query and pass the optional parameters to Get-AtwsData
-                    $response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                    # Force list even if result is only 1 object to be compatible with addrange()
+                    [collections.generic.list[psobject]]$response = Get-AtwsData -Entity $entityName -Filter $Filter `
                         -NoPickListLabel:$NoPickListLabel.IsPresent `
                         -GetReferenceEntityById $GetReferenceEntityById
                 }
@@ -877,13 +878,9 @@ Set-AtwsOpportunity
                         Write-host $_
                     }
                 }
-                # If multiple items use .addrange(). If a single item use .add()
-                if ($response.count -gt 1) {
-                    [void]$result.AddRange($response)
-                }
-                else {
-                    [void]$result.Add($response)
-                }
+                # Add response to result
+                $result.AddRange($response)
+
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }
         }

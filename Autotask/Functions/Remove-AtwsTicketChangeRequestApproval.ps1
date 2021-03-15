@@ -40,7 +40,7 @@ Get-AtwsTicketChangeRequestApproval
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.TicketChangeRequestApproval[]]
+    [Collections.Generic.List[Autotask.TicketChangeRequestApproval]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -49,7 +49,7 @@ Get-AtwsTicketChangeRequestApproval
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int[]]
+    [Collections.Generic.List[Int]]
     $Id
   )
  
