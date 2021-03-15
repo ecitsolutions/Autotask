@@ -303,7 +303,8 @@ FunctionsToExport = 'Build-AtwsModule', 'Connect-AtwsWebAPI', 'Get-AtwsAccount',
                'Set-AtwsUserDefinedFieldDefinition', 
                'Set-AtwsUserDefinedFieldListItem', 'Set-AtwsWorkTypeModifier', 
                'Test-AtwsModuleConfiguration', 'Uninstall-AtwsOldModuleVersion', 
-               'Update-AtwsFunctions', 'Update-AtwsManifest', 'Update-AtwsRamCache'
+               'Update-AtwsFunctions', 'Update-AtwsManifest', 'Update-AtwsRamCache',
+               'Save-AtwsModuleConfiguration'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()

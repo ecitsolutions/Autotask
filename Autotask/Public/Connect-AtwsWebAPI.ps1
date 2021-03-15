@@ -33,13 +33,13 @@ Function Connect-AtwsWebAPI {
     [cmdletbinding(
         SupportsShouldProcess = $true,
         ConfirmImpact = 'Low',
-        DefaultParameterSetName = 'Default'
+        DefaultParameterSetName = 'ConfigurationFile'
     )]
     Param
     (
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Default'
+            ParameterSetName = 'Parameters'
         )]
         [ValidateNotNullOrEmpty()]    
         [pscredential]
@@ -47,42 +47,42 @@ Function Connect-AtwsWebAPI {
     
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Default'
+            ParameterSetName = 'Parameters'
         )]
         [string]
         $ApiTrackingIdentifier,
     
         [Parameter(
-            ParameterSetName = 'Default'
+            ParameterSetName = 'Parameters'
         )]
-        [Alias('Picklist','UsePickListLabels')]
+        [Alias('Picklist', 'UsePickListLabels')]
         [switch]
         $ConvertPicklistIdToLabel,
     
         [Parameter(
-            ParameterSetName = 'Default'
+            ParameterSetName = 'Parameters'
         )]
         [ValidateScript( {
-            # It can be empty, but if it isn't it should be max 8 characters and only letters and numbers
-            if ($_.length -eq 0 -or ($_ -match '[a-zA-Z0-9]' -and $_.length -gt 0 -and $_.length -le 8)) {
-                $true
-            }
-            else {
-                $false
-            }
-        })]
+                # It can be empty, but if it isn't it should be max 8 characters and only letters and numbers
+                if ($_.length -eq 0 -or ($_ -match '[a-zA-Z0-9]' -and $_.length -gt 0 -and $_.length -le 8)) {
+                    $true
+                }
+                else {
+                    $false
+                }
+            })]
         [string]
         $Prefix,
 
         [Parameter(
-            ParameterSetName = 'Default'
+            ParameterSetName = 'Parameters'
         )]
         [switch]
         $RefreshCache,
 
     
         [Parameter(
-            ParameterSetName = 'Default'
+            ParameterSetName = 'Parameters'
         )]
         [switch]
         $NoDiskCache,
@@ -105,7 +105,20 @@ Function Connect-AtwsWebAPI {
                 }
             })]
         [pscustomobject]
-        $Configuration
+        $Configuration,
+    
+        [Parameter(
+            ParameterSetName = 'ConfigurationFile'
+        )]
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.climxml").FullName
+            })]
+        [ValidateScript( { 
+                Test-Path $_
+            })]
+        [IO.FileInfo]
+        $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
     )
     
     begin { 
@@ -115,21 +128,13 @@ Function Connect-AtwsWebAPI {
     
         Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
-        # the $My hashtable is created by autotask.psm1
-        $importParams = @{
-            Global      = $true
-            Version     = $My.ModuleVersion
-            Force       = $true
-            ErrorAction = 'Stop'
-        }
-
     }
   
     process {
         # Make sure we have a valid configuration before we proceed
         try { 
             # If we didn't get a prepared configuration object, create one from the parameters
-            if ($PSCmdlet.ParameterSetName -ne 'ConfigurationObject') {
+            if ($PSCmdlet.ParameterSetName -eq 'Parameters') {
                 $Parameters = @{
                     Credential               = $Credential
                     SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
@@ -142,6 +147,14 @@ Function Connect-AtwsWebAPI {
                 # We cannot reuse $configuration variable without triggering the validationscript
                 # again
                 $ConfigurationData = New-AtwsModuleConfiguration @Parameters
+            }
+            elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
+                # Read the file. It should exist or parametervalidation should have killed us.
+                $ConfigurationData = Import-Clixml -Path $Path
+                if (-not (Test-AtwsModuleConfiguration -Configuration $ConfigurationData)) {
+                    $message = "Configuration file $Path could not be validated. A connection could not be made."
+                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                }
             }
             elseif (Test-AtwsModuleConfiguration -Configuration $Configuration) {
                 # We got a configuration object and it passed validation
