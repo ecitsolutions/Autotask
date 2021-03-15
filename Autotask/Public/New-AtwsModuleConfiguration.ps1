@@ -9,20 +9,21 @@
 Function New-AtwsModuleConfiguration {
     <#
             .SYNOPSIS
-            This function re-loads the module with the correct parameters for full functionality
+            This function creates an internal configuration object to store all module options.
             .DESCRIPTION
-            This function is a wrapper that is included for backwards compatibility with previous module behavior.
-            These parameters should be passed to Import-Module -Variable directly, but previously the module 
-            consisted of two, nested modules. Now there is a single module with all functionality.
+            This function creates an internal configuration object to store all module options. It 
+            requires a credential object and API key to authenticate to Autotask, all other parameters
+            has default values and are optional.
             .INPUTS
-            A PSCredential object. Required. 
-            A string used as ApiTrackingIdentifier. Required. 
-            .OUTPUTS
             Nothing.
+            .OUTPUTS
+            [PSObject]
             .EXAMPLE
-            Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $string
+            New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $string
             .NOTES
-            NAME: Connect-AtwsWebAPI
+            NAME: New-AtwsModuleConfiguration
+            .LINK
+            Set-AtwsModuleConfiguration
     #>
 	
     [cmdletbinding(

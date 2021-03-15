@@ -22,8 +22,7 @@ Function Set-AtwsModuleConfiguration {
             The parameters Prefix and RefreshCache does not have any effect on the current connection. They must be saved and loaded
             as part of a later connection to have any effect.
         .INPUTS
-            A PSCredential object. Required. 
-            A string used as ApiTrackingIdentifier. Required. 
+            Nothing.
         .OUTPUTS
             Nothing.
         .EXAMPLE

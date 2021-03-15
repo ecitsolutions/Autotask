@@ -9,20 +9,19 @@
 Function Test-AtwsModuleConfiguration {
     <#
             .SYNOPSIS
-            This function re-loads the module with the correct parameters for full functionality
+            This function validates the current module configuration and throws an exception if anything is wrong.
             .DESCRIPTION
-            This function is a wrapper that is included for backwards compatibility with previous module behavior.
-            These parameters should be passed to Import-Module -Variable directly, but previously the module 
-            consisted of two, nested modules. Now there is a single module with all functionality.
+            This function validates the current module configuration and throws an exception if any required properties are missing 
+            or of the wrong type. It uses builtin parameter validation with an internal function to leverage builtin powershell
+            functionality.
             .INPUTS
-            A PSCredential object. Required. 
-            A string used as ApiTrackingIdentifier. Required. 
+            A custom PowerShell object 
             .OUTPUTS
             Nothing.
             .EXAMPLE
-            Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $string
+            Test-AtwsModuleConfiguration -Configuration $ConfigurationObject
             .NOTES
-            NAME: Connect-AtwsWebAPI
+            NAME: Test-AtwsModuleConfiguration
     #>
 	
     [cmdletbinding(
