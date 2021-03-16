@@ -110,6 +110,6 @@ Function Update-AtwsObjectsWithParameters {
 
     end {
         Write-Debug -Message ('{0}: End of function, returning {1} {2}(s)' -F $MyInvocation.MyCommand.Name, $result.count, $entityName)
-        Return [array]$result
+        Return $result
     }
 }
