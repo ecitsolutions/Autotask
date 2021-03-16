@@ -657,6 +657,11 @@ namespace Autotask
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(IntegrationVendorWidget))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TicketTagAssociation))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TagAlias))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Tag))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TagGroup))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DeletedTaskActivityLog))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DeletedTicketActivityLog))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DeletedTicketLog))]
@@ -664,12 +669,16 @@ namespace Autotask
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(InstalledProductCategoryUdfAssociation))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(InstalledProductCategory))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(WebhookEventErrorLog))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(InstalledProductWebhookUdfField))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ContactWebhookUdfField))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AccountWebhookUdfField))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(InstalledProductWebhookField))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ContactWebhookField))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AccountWebhookField))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(InstalledProductWebhookExcludedResource))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ContactWebhookExcludedResource))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AccountWebhookExcludedResource))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(InstalledProductWebhook))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ContactWebhook))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AccountWebhook))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ComanagedAssociation))]
@@ -1306,6 +1315,446 @@ namespace Autotask
             set
             {
                 this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class IntegrationVendorWidget : Entity
+    {
+        
+        private object createDateTimeField;
+        
+        private object descriptionField;
+        
+        private object isActiveField;
+        
+        private object lastModifiedDateTimeField;
+        
+        private object referenceUrlField;
+        
+        private object secretField;
+        
+        private object titleField;
+        
+        private object vendorSuppliedIDField;
+        
+        private object widgetKeyField;
+        
+        private object widthField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object CreateDateTime
+        {
+            get
+            {
+                return this.createDateTimeField;
+            }
+            set
+            {
+                this.createDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object Description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object IsActive
+        {
+            get
+            {
+                return this.isActiveField;
+            }
+            set
+            {
+                this.isActiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object LastModifiedDateTime
+        {
+            get
+            {
+                return this.lastModifiedDateTimeField;
+            }
+            set
+            {
+                this.lastModifiedDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public object ReferenceUrl
+        {
+            get
+            {
+                return this.referenceUrlField;
+            }
+            set
+            {
+                this.referenceUrlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public object Secret
+        {
+            get
+            {
+                return this.secretField;
+            }
+            set
+            {
+                this.secretField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public object Title
+        {
+            get
+            {
+                return this.titleField;
+            }
+            set
+            {
+                this.titleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public object VendorSuppliedID
+        {
+            get
+            {
+                return this.vendorSuppliedIDField;
+            }
+            set
+            {
+                this.vendorSuppliedIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public object WidgetKey
+        {
+            get
+            {
+                return this.widgetKeyField;
+            }
+            set
+            {
+                this.widgetKeyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public object Width
+        {
+            get
+            {
+                return this.widthField;
+            }
+            set
+            {
+                this.widthField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class TicketTagAssociation : Entity
+    {
+        
+        private object tagIDField;
+        
+        private object ticketIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object TagID
+        {
+            get
+            {
+                return this.tagIDField;
+            }
+            set
+            {
+                this.tagIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object TicketID
+        {
+            get
+            {
+                return this.ticketIDField;
+            }
+            set
+            {
+                this.ticketIDField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class TagAlias : Entity
+    {
+        
+        private object aliasField;
+        
+        private object tagIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object Alias
+        {
+            get
+            {
+                return this.aliasField;
+            }
+            set
+            {
+                this.aliasField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object TagID
+        {
+            get
+            {
+                return this.tagIDField;
+            }
+            set
+            {
+                this.tagIDField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class Tag : Entity
+    {
+        
+        private object createDateTimeField;
+        
+        private object isActiveField;
+        
+        private object isExcludedFromAutomaticTaggingField;
+        
+        private object isSystemField;
+        
+        private object labelField;
+        
+        private object lastModifiedDateTimeField;
+        
+        private object tagGroupIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object CreateDateTime
+        {
+            get
+            {
+                return this.createDateTimeField;
+            }
+            set
+            {
+                this.createDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object IsActive
+        {
+            get
+            {
+                return this.isActiveField;
+            }
+            set
+            {
+                this.isActiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object IsExcludedFromAutomaticTagging
+        {
+            get
+            {
+                return this.isExcludedFromAutomaticTaggingField;
+            }
+            set
+            {
+                this.isExcludedFromAutomaticTaggingField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object IsSystem
+        {
+            get
+            {
+                return this.isSystemField;
+            }
+            set
+            {
+                this.isSystemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public object Label
+        {
+            get
+            {
+                return this.labelField;
+            }
+            set
+            {
+                this.labelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public object LastModifiedDateTime
+        {
+            get
+            {
+                return this.lastModifiedDateTimeField;
+            }
+            set
+            {
+                this.lastModifiedDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public object TagGroupID
+        {
+            get
+            {
+                return this.tagGroupIDField;
+            }
+            set
+            {
+                this.tagGroupIDField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class TagGroup : Entity
+    {
+        
+        private object displayColorField;
+        
+        private object isActiveField;
+        
+        private object isSystemField;
+        
+        private object labelField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object DisplayColor
+        {
+            get
+            {
+                return this.displayColorField;
+            }
+            set
+            {
+                this.displayColorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object IsActive
+        {
+            get
+            {
+                return this.isActiveField;
+            }
+            set
+            {
+                this.isActiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object IsSystem
+        {
+            get
+            {
+                return this.isSystemField;
+            }
+            set
+            {
+                this.isSystemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object Label
+        {
+            get
+            {
+                return this.labelField;
+            }
+            set
+            {
+                this.labelField = value;
             }
         }
     }
@@ -2106,6 +2555,78 @@ namespace Autotask
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class InstalledProductWebhookUdfField : Entity
+    {
+        
+        private object isDisplayAlwaysFieldField;
+        
+        private object isSubscribedFieldField;
+        
+        private object udfFieldIDField;
+        
+        private object webhookIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object IsDisplayAlwaysField
+        {
+            get
+            {
+                return this.isDisplayAlwaysFieldField;
+            }
+            set
+            {
+                this.isDisplayAlwaysFieldField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object IsSubscribedField
+        {
+            get
+            {
+                return this.isSubscribedFieldField;
+            }
+            set
+            {
+                this.isSubscribedFieldField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object UdfFieldID
+        {
+            get
+            {
+                return this.udfFieldIDField;
+            }
+            set
+            {
+                this.udfFieldIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object WebhookID
+        {
+            get
+            {
+                return this.webhookIDField;
+            }
+            set
+            {
+                this.webhookIDField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
     public partial class ContactWebhookUdfField : Entity
     {
         
@@ -2242,6 +2763,78 @@ namespace Autotask
             set
             {
                 this.isDisplayAlwaysFieldField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class InstalledProductWebhookField : Entity
+    {
+        
+        private object fieldIDField;
+        
+        private object isDisplayAlwaysFieldField;
+        
+        private object isSubscribedFieldField;
+        
+        private object webhookIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object FieldID
+        {
+            get
+            {
+                return this.fieldIDField;
+            }
+            set
+            {
+                this.fieldIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object IsDisplayAlwaysField
+        {
+            get
+            {
+                return this.isDisplayAlwaysFieldField;
+            }
+            set
+            {
+                this.isDisplayAlwaysFieldField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object IsSubscribedField
+        {
+            get
+            {
+                return this.isSubscribedFieldField;
+            }
+            set
+            {
+                this.isSubscribedFieldField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object WebhookID
+        {
+            get
+            {
+                return this.webhookIDField;
+            }
+            set
+            {
+                this.webhookIDField = value;
             }
         }
     }
@@ -2394,6 +2987,46 @@ namespace Autotask
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class InstalledProductWebhookExcludedResource : Entity
+    {
+        
+        private object resourceIDField;
+        
+        private object webhookIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object ResourceID
+        {
+            get
+            {
+                return this.resourceIDField;
+            }
+            set
+            {
+                this.resourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object WebhookID
+        {
+            get
+            {
+                return this.webhookIDField;
+            }
+            set
+            {
+                this.webhookIDField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
     public partial class ContactWebhookExcludedResource : Entity
     {
         
@@ -2466,6 +3099,222 @@ namespace Autotask
             set
             {
                 this.resourceIDField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://autotask.net/ATWS/v1_6/")]
+    public partial class InstalledProductWebhook : Entity
+    {
+        
+        private object deactivationUrlField;
+        
+        private object activeField;
+        
+        private object readyField;
+        
+        private object isSubscribedToCreateEventsField;
+        
+        private object isSubscribedToDeleteEventsField;
+        
+        private object isSubscribedToUpdateEventsField;
+        
+        private object nameField;
+        
+        private object notificationEmailAddressField;
+        
+        private object ownerResourceIDField;
+        
+        private object secretKeyField;
+        
+        private object sendThresholdExceededNotificationField;
+        
+        private object webhookGUIDField;
+        
+        private object webhookUrlField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public object DeactivationUrl
+        {
+            get
+            {
+                return this.deactivationUrlField;
+            }
+            set
+            {
+                this.deactivationUrlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object Active
+        {
+            get
+            {
+                return this.activeField;
+            }
+            set
+            {
+                this.activeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object Ready
+        {
+            get
+            {
+                return this.readyField;
+            }
+            set
+            {
+                this.readyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public object IsSubscribedToCreateEvents
+        {
+            get
+            {
+                return this.isSubscribedToCreateEventsField;
+            }
+            set
+            {
+                this.isSubscribedToCreateEventsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public object IsSubscribedToDeleteEvents
+        {
+            get
+            {
+                return this.isSubscribedToDeleteEventsField;
+            }
+            set
+            {
+                this.isSubscribedToDeleteEventsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public object IsSubscribedToUpdateEvents
+        {
+            get
+            {
+                return this.isSubscribedToUpdateEventsField;
+            }
+            set
+            {
+                this.isSubscribedToUpdateEventsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public object Name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public object NotificationEmailAddress
+        {
+            get
+            {
+                return this.notificationEmailAddressField;
+            }
+            set
+            {
+                this.notificationEmailAddressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public object OwnerResourceID
+        {
+            get
+            {
+                return this.ownerResourceIDField;
+            }
+            set
+            {
+                this.ownerResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public object SecretKey
+        {
+            get
+            {
+                return this.secretKeyField;
+            }
+            set
+            {
+                this.secretKeyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public object SendThresholdExceededNotification
+        {
+            get
+            {
+                return this.sendThresholdExceededNotificationField;
+            }
+            set
+            {
+                this.sendThresholdExceededNotificationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public object WebhookGUID
+        {
+            get
+            {
+                return this.webhookGUIDField;
+            }
+            set
+            {
+                this.webhookGUIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public object WebhookUrl
+        {
+            get
+            {
+                return this.webhookUrlField;
+            }
+            set
+            {
+                this.webhookUrlField = value;
             }
         }
     }
@@ -9485,6 +10334,8 @@ namespace Autotask
         
         private object createDateField;
         
+        private object isActiveField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object UdfFieldId
@@ -9538,6 +10389,20 @@ namespace Autotask
             set
             {
                 this.createDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public object IsActive
+        {
+            get
+            {
+                return this.isActiveField;
+            }
+            set
+            {
+                this.isActiveField = value;
             }
         }
     }
@@ -16847,6 +17712,8 @@ namespace Autotask
         
         private object lastTrackedModifiedDateTimeField;
         
+        private object purchaseOrderTemplateIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object Address1
@@ -17642,6 +18509,20 @@ namespace Autotask
             set
             {
                 this.lastTrackedModifiedDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=57)]
+        public object PurchaseOrderTemplateID
+        {
+            get
+            {
+                return this.purchaseOrderTemplateIDField;
+            }
+            set
+            {
+                this.purchaseOrderTemplateIDField = value;
             }
         }
     }
@@ -27911,6 +28792,10 @@ namespace Autotask
         
         private object impersonatorCreatorResourceIDField;
         
+        private object purchaseOrderTemplateIDField;
+        
+        private object purchaseOrderNumberField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object VendorID
@@ -28314,6 +29199,34 @@ namespace Autotask
             set
             {
                 this.impersonatorCreatorResourceIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=29)]
+        public object PurchaseOrderTemplateID
+        {
+            get
+            {
+                return this.purchaseOrderTemplateIDField;
+            }
+            set
+            {
+                this.purchaseOrderTemplateIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=30)]
+        public object PurchaseOrderNumber
+        {
+            get
+            {
+                return this.purchaseOrderNumberField;
+            }
+            set
+            {
+                this.purchaseOrderNumberField = value;
             }
         }
     }
@@ -29029,6 +29942,8 @@ namespace Autotask
         
         private object quoteTemplateIDField;
         
+        private object purchaseOrderTemplateIDField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public object AddressFormatID
@@ -29138,6 +30053,20 @@ namespace Autotask
             set
             {
                 this.quoteTemplateIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public object PurchaseOrderTemplateID
+        {
+            get
+            {
+                return this.purchaseOrderTemplateIDField;
+            }
+            set
+            {
+                this.purchaseOrderTemplateIDField = value;
             }
         }
     }
