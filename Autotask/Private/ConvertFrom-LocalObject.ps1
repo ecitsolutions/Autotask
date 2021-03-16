@@ -70,7 +70,7 @@ Function ConvertFrom-LocalObject {
 
         # Adjust TimeZone on all DateTime properties
         foreach ($object in $InputObject) {
-            # Any userdefined fields?
+            <# Any userdefined fields?
             if ($entityInfo.HasUserDefinedFields -and $null -ne $object.UserDefinedFields) {
                 #TODO: InputObject is not of this type. Has to change? Check older version to see what this object looks like.
                 if ($object.UserDefinedFields.GetType().Name -eq 'Hashtable') {
@@ -87,7 +87,7 @@ Function ConvertFrom-LocalObject {
                     # Replace hashtable with array of userdefinedfield
                     Add-Member -InputObject $object -MemberType NoteProperty -Name UserDefinedFields -Value $([array]$UserDefinedFields) -Force
                 }
-            }
+            }#>
 
             foreach ($dateTimeParam in $dateTimeParams) {
 
@@ -118,12 +118,7 @@ Function ConvertFrom-LocalObject {
         }
 
         # If using pipeline the process block will run once per object in pipeline. Store them all
-        if ($InputObject.Count -gt 1) {
-            $result.addRange($InputObject)
-        }else {
-            $result.add($InputObject)
-        }
-
+        $result.addRange($InputObject)
     }
 
     end {
