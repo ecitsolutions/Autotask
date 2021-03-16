@@ -92,7 +92,7 @@ Set-AtwsProject
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -120,77 +120,77 @@ Set-AtwsProject
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Actual Billed Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ActualBilledHours,
 
 # Actual Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ActualHours,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Change Orders Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ChangeOrdersRevenue,
 
 # Account Owner
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CompanyOwnerResourceID,
 
 # Completed date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CompletedDateTime,
 
 # Completed Percentage
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CompletedPercentage,
 
 # Contract
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Created DateTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Created By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Department
@@ -209,7 +209,7 @@ Set-AtwsProject
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Department,
 
 # Description
@@ -217,14 +217,14 @@ Set-AtwsProject
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Duration
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $Duration,
 
 # End Date
@@ -232,21 +232,21 @@ Set-AtwsProject
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDateTime,
 
 # Estimated Sales Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $EstimatedSalesCost,
 
 # Estimated Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $EstimatedTime,
 
 # Ext Project Number
@@ -254,7 +254,7 @@ Set-AtwsProject
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExtPNumber,
 
 # id
@@ -262,56 +262,56 @@ Set-AtwsProject
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Labor Estimated Costs
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $LaborEstimatedCosts,
 
 # Labor Estimated Margin Percentage
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $LaborEstimatedMarginPercentage,
 
 # Labor Estimated Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $LaborEstimatedRevenue,
 
 # Last Activity Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastActivityDateTime,
 
 # Last Activity Person Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LastActivityPersonType,
 
 # Last Activity By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LastActivityResourceID,
 
 # Line Of Business
@@ -330,49 +330,49 @@ Set-AtwsProject
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LineOfBusiness,
 
 # Opportunity ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $OpportunityID,
 
 # Original Estimated Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $OriginalEstimatedRevenue,
 
 # Project Cost Estimated Margin Percentage
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ProjectCostEstimatedMarginPercentage,
 
 # Project Estimated costs
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ProjectCostsBudget,
 
 # Project Cost Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ProjectCostsRevenue,
 
 # Project Lead
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProjectLeadResourceID,
 
 # Project Name
@@ -382,7 +382,7 @@ Set-AtwsProject
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ProjectName,
 
 # Project Number
@@ -390,7 +390,7 @@ Set-AtwsProject
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ProjectNumber,
 
 # purchase_order_number
@@ -398,14 +398,14 @@ Set-AtwsProject
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderNumber,
 
 # SG&A
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $SGDA,
 
 # Start Date
@@ -413,7 +413,7 @@ Set-AtwsProject
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDateTime,
 
 # Status
@@ -433,14 +433,14 @@ Set-AtwsProject
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
 # Status Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StatusDateTime,
 
 # Status Detail
@@ -448,7 +448,7 @@ Set-AtwsProject
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $StatusDetail,
 
 # Type
@@ -468,98 +468,98 @@ Set-AtwsProject
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Type,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'ChangeOrdersRevenue', 'StartDateTime', 'CreatorResourceID', 'SGDA', 'LaborEstimatedMarginPercentage', 'EstimatedSalesCost', 'OriginalEstimatedRevenue', 'Department', 'id', 'CompletedPercentage', 'ImpersonatorCreatorResourceID', 'StatusDetail', 'ExtPNumber', 'PurchaseOrderNumber', 'LaborEstimatedCosts', 'ActualHours', 'ProjectCostsRevenue', 'LastActivityDateTime', 'LineOfBusiness', 'Status', 'LastActivityPersonType', 'StatusDateTime', 'EstimatedTime', 'CreateDateTime', 'CompletedDateTime', 'LastActivityResourceID', 'ProjectCostEstimatedMarginPercentage', 'OpportunityID', 'ProjectCostsBudget', 'ChangeOrdersBudget', 'AccountID', 'ExtProjectType', 'Type', 'ActualBilledHours', 'ProjectNumber', 'BusinessDivisionSubdivisionID', 'CompanyOwnerResourceID', 'EndDateTime', 'Duration', 'Description', 'ContractID', 'LaborEstimatedRevenue', 'ProjectLeadResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ActualBilledHours', 'LastActivityPersonType', 'StatusDetail', 'LaborEstimatedCosts', 'ProjectCostsBudget', 'SGDA', 'ChangeOrdersRevenue', 'ImpersonatorCreatorResourceID', 'OriginalEstimatedRevenue', 'Description', 'CreateDateTime', 'AccountID', 'ProjectNumber', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersBudget', 'CompletedDateTime', 'CompletedPercentage', 'ProjectLeadResourceID', 'ContractID', 'LaborEstimatedMarginPercentage', 'StartDateTime', 'LaborEstimatedRevenue', 'CreatorResourceID', 'ExtPNumber', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'ProjectName', 'Status', 'PurchaseOrderNumber', 'OpportunityID', 'Duration', 'EstimatedSalesCost', 'LineOfBusiness', 'CompanyOwnerResourceID', 'id', 'LastActivityDateTime', 'StatusDateTime', 'Department', 'BusinessDivisionSubdivisionID', 'Type', 'ExtProjectType', 'EndDateTime', 'ActualHours')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'ChangeOrdersRevenue', 'StartDateTime', 'CreatorResourceID', 'SGDA', 'LaborEstimatedMarginPercentage', 'EstimatedSalesCost', 'OriginalEstimatedRevenue', 'Department', 'id', 'CompletedPercentage', 'ImpersonatorCreatorResourceID', 'StatusDetail', 'ExtPNumber', 'PurchaseOrderNumber', 'LaborEstimatedCosts', 'ActualHours', 'ProjectCostsRevenue', 'LastActivityDateTime', 'LineOfBusiness', 'Status', 'LastActivityPersonType', 'StatusDateTime', 'EstimatedTime', 'CreateDateTime', 'CompletedDateTime', 'LastActivityResourceID', 'ProjectCostEstimatedMarginPercentage', 'OpportunityID', 'ProjectCostsBudget', 'ChangeOrdersBudget', 'AccountID', 'ExtProjectType', 'Type', 'ActualBilledHours', 'ProjectNumber', 'BusinessDivisionSubdivisionID', 'CompanyOwnerResourceID', 'EndDateTime', 'Duration', 'Description', 'ContractID', 'LaborEstimatedRevenue', 'ProjectLeadResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ActualBilledHours', 'LastActivityPersonType', 'StatusDetail', 'LaborEstimatedCosts', 'ProjectCostsBudget', 'SGDA', 'ChangeOrdersRevenue', 'ImpersonatorCreatorResourceID', 'OriginalEstimatedRevenue', 'Description', 'CreateDateTime', 'AccountID', 'ProjectNumber', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersBudget', 'CompletedDateTime', 'CompletedPercentage', 'ProjectLeadResourceID', 'ContractID', 'LaborEstimatedMarginPercentage', 'StartDateTime', 'LaborEstimatedRevenue', 'CreatorResourceID', 'ExtPNumber', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'ProjectName', 'Status', 'PurchaseOrderNumber', 'OpportunityID', 'Duration', 'EstimatedSalesCost', 'LineOfBusiness', 'CompanyOwnerResourceID', 'id', 'LastActivityDateTime', 'StatusDateTime', 'Department', 'BusinessDivisionSubdivisionID', 'Type', 'ExtProjectType', 'EndDateTime', 'ActualHours')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'ChangeOrdersRevenue', 'StartDateTime', 'CreatorResourceID', 'SGDA', 'LaborEstimatedMarginPercentage', 'EstimatedSalesCost', 'OriginalEstimatedRevenue', 'Department', 'id', 'CompletedPercentage', 'ImpersonatorCreatorResourceID', 'StatusDetail', 'ExtPNumber', 'PurchaseOrderNumber', 'LaborEstimatedCosts', 'ActualHours', 'ProjectCostsRevenue', 'LastActivityDateTime', 'LineOfBusiness', 'Status', 'LastActivityPersonType', 'StatusDateTime', 'EstimatedTime', 'CreateDateTime', 'CompletedDateTime', 'LastActivityResourceID', 'ProjectCostEstimatedMarginPercentage', 'OpportunityID', 'ProjectCostsBudget', 'ChangeOrdersBudget', 'AccountID', 'ExtProjectType', 'Type', 'ActualBilledHours', 'ProjectNumber', 'BusinessDivisionSubdivisionID', 'CompanyOwnerResourceID', 'EndDateTime', 'Duration', 'Description', 'ContractID', 'LaborEstimatedRevenue', 'ProjectLeadResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ActualBilledHours', 'LastActivityPersonType', 'StatusDetail', 'LaborEstimatedCosts', 'ProjectCostsBudget', 'SGDA', 'ChangeOrdersRevenue', 'ImpersonatorCreatorResourceID', 'OriginalEstimatedRevenue', 'Description', 'CreateDateTime', 'AccountID', 'ProjectNumber', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersBudget', 'CompletedDateTime', 'CompletedPercentage', 'ProjectLeadResourceID', 'ContractID', 'LaborEstimatedMarginPercentage', 'StartDateTime', 'LaborEstimatedRevenue', 'CreatorResourceID', 'ExtPNumber', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'ProjectName', 'Status', 'PurchaseOrderNumber', 'OpportunityID', 'Duration', 'EstimatedSalesCost', 'LineOfBusiness', 'CompanyOwnerResourceID', 'id', 'LastActivityDateTime', 'StatusDateTime', 'Department', 'BusinessDivisionSubdivisionID', 'Type', 'ExtProjectType', 'EndDateTime', 'ActualHours')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtProjectType', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'ChangeOrdersBudget', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtProjectType', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'ChangeOrdersBudget', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtProjectType', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'ChangeOrdersBudget', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtProjectType', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'ChangeOrdersBudget', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDateTime', 'StartDateTime', 'EndDateTime', 'CompletedDateTime', 'StatusDateTime', 'LastActivityDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

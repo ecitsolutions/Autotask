@@ -101,7 +101,7 @@ Set-AtwsResource
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -129,7 +129,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AccountingReferenceID,
 
 # Status
@@ -137,7 +137,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Date Format
@@ -156,7 +156,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DateFormat,
 
 # Email
@@ -165,7 +165,7 @@ Set-AtwsResource
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,254)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Email,
 
 # Add Email 1
@@ -173,7 +173,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,254)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Email2,
 
 # Add Email 2
@@ -181,7 +181,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,254)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Email3,
 
 # Email Type
@@ -201,7 +201,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EmailTypeCode,
 
 # Add Email 1 Type
@@ -220,7 +220,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EmailTypeCode2,
 
 # Add Email 2 Type
@@ -239,7 +239,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EmailTypeCode3,
 
 # First Name
@@ -248,7 +248,7 @@ Set-AtwsResource
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $FirstName,
 
 # Gender
@@ -267,7 +267,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Gender,
 
 # Greeting
@@ -286,7 +286,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Greeting,
 
 # Hire Date
@@ -294,7 +294,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $HireDate,
 
 # Home Phone
@@ -302,7 +302,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $HomePhone,
 
 # Resource ID
@@ -310,7 +310,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Pay Roll Identifier
@@ -318,14 +318,14 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,32)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Initials,
 
 # Interal Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InternalCost,
 
 # Last Name
@@ -334,7 +334,7 @@ Set-AtwsResource
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LastName,
 
 # License Type
@@ -354,7 +354,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LicenseType,
 
 # Pimary Location
@@ -374,7 +374,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LocationID,
 
 # Middle Initial
@@ -382,7 +382,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $MiddleName,
 
 # Mobile Phone
@@ -390,7 +390,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $MobilePhone,
 
 # Number Format
@@ -410,7 +410,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NumberFormat,
 
 # Office Extension
@@ -418,7 +418,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,10)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $OfficeExtension,
 
 # Office Phone
@@ -426,7 +426,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $OfficePhone,
 
 # Payroll Type
@@ -446,7 +446,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PayrollType,
 
 # Resource Type
@@ -466,7 +466,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ResourceType,
 
 # Suffix
@@ -485,14 +485,14 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Suffix,
 
 # Survey Resource Rating
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $SurveyResourceRating,
 
 # Time Format
@@ -511,7 +511,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TimeFormat,
 
 # Title
@@ -519,7 +519,7 @@ Set-AtwsResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
 # Travel Availability Pct
@@ -538,7 +538,7 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TravelAvailabilityPct,
 
 # UserName
@@ -547,7 +547,7 @@ Set-AtwsResource
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,32)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $UserName,
 
 # User Type
@@ -567,98 +567,98 @@ Set-AtwsResource
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $UserType,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationID', 'AccountingReferenceID', 'SurveyResourceRating', 'FirstName', 'EmailTypeCode3', 'InternalCost', 'Email2', 'UserType', 'id', 'MiddleName', 'TimeFormat', 'DefaultServiceDeskRoleID', 'EmailTypeCode', 'OfficeExtension', 'Password', 'LicenseType', 'Initials', 'LastName', 'DateFormat', 'TravelAvailabilityPct', 'PayrollType', 'Gender', 'UserName', 'OfficePhone', 'HomePhone', 'Email3', 'Title', 'Greeting', 'Suffix', 'EmailTypeCode2', 'Email', 'NumberFormat', 'HireDate', 'Active', 'ResourceType', 'MobilePhone')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Greeting', 'NumberFormat', 'id', 'EmailTypeCode2', 'HomePhone', 'FirstName', 'HireDate', 'UserType', 'ResourceType', 'Gender', 'Password', 'Email', 'PayrollType', 'LicenseType', 'MiddleName', 'Title', 'UserName', 'EmailTypeCode3', 'TravelAvailabilityPct', 'DateFormat', 'Email2', 'InternalCost', 'Suffix', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'OfficePhone', 'LocationID', 'TimeFormat', 'MobilePhone', 'EmailTypeCode', 'Email3', 'LastName', 'Active', 'SurveyResourceRating', 'AccountingReferenceID', 'Initials')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationID', 'AccountingReferenceID', 'SurveyResourceRating', 'FirstName', 'EmailTypeCode3', 'InternalCost', 'Email2', 'UserType', 'id', 'MiddleName', 'TimeFormat', 'DefaultServiceDeskRoleID', 'EmailTypeCode', 'OfficeExtension', 'Password', 'LicenseType', 'Initials', 'LastName', 'DateFormat', 'TravelAvailabilityPct', 'PayrollType', 'Gender', 'UserName', 'OfficePhone', 'HomePhone', 'Email3', 'Title', 'Greeting', 'Suffix', 'EmailTypeCode2', 'Email', 'NumberFormat', 'HireDate', 'Active', 'ResourceType', 'MobilePhone')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Greeting', 'NumberFormat', 'id', 'EmailTypeCode2', 'HomePhone', 'FirstName', 'HireDate', 'UserType', 'ResourceType', 'Gender', 'Password', 'Email', 'PayrollType', 'LicenseType', 'MiddleName', 'Title', 'UserName', 'EmailTypeCode3', 'TravelAvailabilityPct', 'DateFormat', 'Email2', 'InternalCost', 'Suffix', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'OfficePhone', 'LocationID', 'TimeFormat', 'MobilePhone', 'EmailTypeCode', 'Email3', 'LastName', 'Active', 'SurveyResourceRating', 'AccountingReferenceID', 'Initials')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LocationID', 'AccountingReferenceID', 'SurveyResourceRating', 'FirstName', 'EmailTypeCode3', 'InternalCost', 'Email2', 'UserType', 'id', 'MiddleName', 'TimeFormat', 'DefaultServiceDeskRoleID', 'EmailTypeCode', 'OfficeExtension', 'Password', 'LicenseType', 'Initials', 'LastName', 'DateFormat', 'TravelAvailabilityPct', 'PayrollType', 'Gender', 'UserName', 'OfficePhone', 'HomePhone', 'Email3', 'Title', 'Greeting', 'Suffix', 'EmailTypeCode2', 'Email', 'NumberFormat', 'HireDate', 'Active', 'ResourceType', 'MobilePhone')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Greeting', 'NumberFormat', 'id', 'EmailTypeCode2', 'HomePhone', 'FirstName', 'HireDate', 'UserType', 'ResourceType', 'Gender', 'Password', 'Email', 'PayrollType', 'LicenseType', 'MiddleName', 'Title', 'UserName', 'EmailTypeCode3', 'TravelAvailabilityPct', 'DateFormat', 'Email2', 'InternalCost', 'Suffix', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'OfficePhone', 'LocationID', 'TimeFormat', 'MobilePhone', 'EmailTypeCode', 'Email3', 'LastName', 'Active', 'SurveyResourceRating', 'AccountingReferenceID', 'Initials')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DefaultServiceDeskRoleID', 'DateFormat', 'TimeFormat', 'Password', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DefaultServiceDeskRoleID', 'DateFormat', 'TimeFormat', 'Password', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DefaultServiceDeskRoleID', 'DateFormat', 'TimeFormat', 'Password', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DefaultServiceDeskRoleID', 'DateFormat', 'TimeFormat', 'Password', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'Password', 'NumberFormat', 'AccountingReferenceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'Password', 'NumberFormat', 'AccountingReferenceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'Password', 'NumberFormat', 'AccountingReferenceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'Password', 'NumberFormat', 'AccountingReferenceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'Password', 'NumberFormat', 'AccountingReferenceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('HireDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

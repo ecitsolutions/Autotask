@@ -89,7 +89,7 @@ Set-AtwsAccountNote
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -117,7 +117,7 @@ Set-AtwsAccountNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # TypeValue
@@ -137,7 +137,7 @@ Set-AtwsAccountNote
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ActionType,
 
 # Assigned Resource
@@ -145,28 +145,28 @@ Set-AtwsAccountNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AssignedResourceID,
 
 # DateCompleted
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CompletedDateTime,
 
 # Contact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContactID,
 
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # EndDate
@@ -174,7 +174,7 @@ Set-AtwsAccountNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDateTime,
 
 # Client Note ID
@@ -182,28 +182,28 @@ Set-AtwsAccountNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Impersonator Updater Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorUpdaterResourceID,
 
 # DateStamp
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedDate,
 
 # Name
@@ -211,7 +211,7 @@ Set-AtwsAccountNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Detail
@@ -219,14 +219,14 @@ Set-AtwsAccountNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,32000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Note,
 
 # ProposalID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $OpportunityID,
 
 # StartDate
@@ -234,98 +234,98 @@ Set-AtwsAccountNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDateTime,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'CompletedDateTime', 'ActionType', 'Note', 'StartDateTime', 'OpportunityID', 'LastModifiedDate', 'AssignedResourceID', 'id', 'AccountID', 'ImpersonatorUpdaterResourceID', 'Name', 'ContactID', 'EndDateTime', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'ContactID', 'Name', 'ImpersonatorUpdaterResourceID', 'AccountID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDateTime', 'id', 'Note', 'AssignedResourceID', 'ActionType', 'StartDateTime')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'CompletedDateTime', 'ActionType', 'Note', 'StartDateTime', 'OpportunityID', 'LastModifiedDate', 'AssignedResourceID', 'id', 'AccountID', 'ImpersonatorUpdaterResourceID', 'Name', 'ContactID', 'EndDateTime', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'ContactID', 'Name', 'ImpersonatorUpdaterResourceID', 'AccountID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDateTime', 'id', 'Note', 'AssignedResourceID', 'ActionType', 'StartDateTime')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'CompletedDateTime', 'ActionType', 'Note', 'StartDateTime', 'OpportunityID', 'LastModifiedDate', 'AssignedResourceID', 'id', 'AccountID', 'ImpersonatorUpdaterResourceID', 'Name', 'ContactID', 'EndDateTime', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'ContactID', 'Name', 'ImpersonatorUpdaterResourceID', 'AccountID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDateTime', 'id', 'Note', 'AssignedResourceID', 'ActionType', 'StartDateTime')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'EndDateTime', 'id', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'EndDateTime', 'id', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'EndDateTime', 'id', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'EndDateTime', 'id', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Note')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Note')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Note')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Note')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Note')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CompletedDateTime', 'EndDateTime', 'LastModifiedDate', 'StartDateTime', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

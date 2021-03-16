@@ -42,7 +42,7 @@ Set-AtwsAccountToDo
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.AccountToDo]]
+    [Autotask.AccountToDo[]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsAccountToDo
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[long]]
+    [long[]]
     $Id
   )
  

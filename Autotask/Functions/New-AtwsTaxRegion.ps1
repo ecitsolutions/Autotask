@@ -57,7 +57,7 @@ Set-AtwsTaxRegion
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TaxRegion]]
+    [Autotask.TaxRegion[]]
     $InputObject,
 
 # Active

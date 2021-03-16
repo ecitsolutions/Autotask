@@ -97,7 +97,7 @@ Set-AtwsAccount
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -136,7 +136,7 @@ Set-AtwsAccount
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AccountName,
 
 # Client Number
@@ -144,7 +144,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AccountNumber,
 
 # Client Type
@@ -164,14 +164,14 @@ Set-AtwsAccount
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AccountType,
 
 # Account Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Additional Address Information
@@ -179,7 +179,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AdditionalAddressInformation,
 
 # Address 1
@@ -187,7 +187,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Address1,
 
 # Address 2
@@ -195,7 +195,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Address2,
 
 # Alternate Phone 1
@@ -203,7 +203,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AlternatePhone1,
 
 # Alternate Phone 2
@@ -211,7 +211,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AlternatePhone2,
 
 # API Vendor ID
@@ -230,14 +230,14 @@ Set-AtwsAccount
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ApiVendorID,
 
 # Bill To Account Physical Location ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BillToAccountPhysicalLocationID,
 
 # Bill To Additional Address Information
@@ -245,7 +245,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToAdditionalAddressInformation,
 
 # Bill To Address Line 1
@@ -253,7 +253,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,150)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToAddress1,
 
 # Bill To Address Line 2
@@ -261,7 +261,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,150)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToAddress2,
 
 # Bill To Address to Use
@@ -280,7 +280,7 @@ Set-AtwsAccount
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToAddressToUse,
 
 # Bill To Attention
@@ -288,7 +288,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToAttention,
 
 # Bill To City
@@ -296,14 +296,14 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToCity,
 
 # Bill To Country ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BillToCountryID,
 
 # Bill To County
@@ -311,7 +311,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToState,
 
 # Bill To Postal Code
@@ -319,7 +319,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToZipCode,
 
 # City
@@ -327,14 +327,14 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,30)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $City,
 
 # Client Portal Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ClientPortalActive,
 
 # Competitor
@@ -353,7 +353,7 @@ Set-AtwsAccount
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CompetitorID,
 
 # Country
@@ -361,42 +361,42 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Country,
 
 # Country ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CountryID,
 
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Created By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatedByResourceID,
 
 # Currency ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CurrencyID,
 
 # Enabled For Comanaged
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $EnabledForComanaged,
 
 # Fax
@@ -404,7 +404,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Fax,
 
 # Client ID
@@ -412,21 +412,21 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Invoice Email Message ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InvoiceEmailMessageID,
 
 # Transmission Method
@@ -445,21 +445,21 @@ Set-AtwsAccount
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $InvoiceMethod,
 
 # Invoice non contract items to Parent Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $InvoiceNonContractItemsToParentAccount,
 
 # Invoice Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InvoiceTemplateID,
 
 # Key Account Icon
@@ -478,21 +478,21 @@ Set-AtwsAccount
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $KeyAccountIcon,
 
 # Last Activity Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastActivityDate,
 
 # Last Modified Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastTrackedModifiedDateTime,
 
 # Market Segment
@@ -511,7 +511,7 @@ Set-AtwsAccount
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $MarketSegmentID,
 
 # Client Owner
@@ -519,14 +519,14 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $OwnerResourceID,
 
 # Parent Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ParentAccountID,
 
 # Phone
@@ -535,7 +535,7 @@ Set-AtwsAccount
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Phone,
 
 # Postal Code
@@ -543,7 +543,7 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,10)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PostalCode,
 
 # Purchase Order Template ID
@@ -562,21 +562,21 @@ Set-AtwsAccount
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderTemplateID,
 
 # Quote Email Message ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuoteEmailMessageID,
 
 # Quote Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuoteTemplateID,
 
 # County
@@ -584,28 +584,28 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,40)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $State,
 
 # Survey Account Rating
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $SurveyAccountRating,
 
 # TaskFire Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $TaskFireActive,
 
 # Tax Exempt
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $TaxExempt,
 
 # Tax ID
@@ -613,14 +613,14 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TaxID,
 
 # Tax Region ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TaxRegionID,
 
 # Territory Name
@@ -639,7 +639,7 @@ Set-AtwsAccount
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TerritoryID,
 
 # Web
@@ -647,98 +647,98 @@ Set-AtwsAccount
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $WebAddress,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillToAttention', 'BillToZipCode', 'InvoiceEmailMessageID', 'AlternatePhone2', 'ParentAccountID', 'StockSymbol', 'ApiVendorID', 'AdditionalAddressInformation', 'SICCode', 'OwnerResourceID', 'id', 'BillToCountryID', 'TaxRegionID', 'InvoiceNonContractItemsToParentAccount', 'CreatedByResourceID', 'BillToAccountPhysicalLocationID', 'CreateDate', 'State', 'City', 'CountryID', 'Address1', 'AccountName', 'BillToAddressToUse', 'CompetitorID', 'LastActivityDate', 'AssetValue', 'Phone', 'WebAddress', 'PurchaseOrderTemplateID', 'MarketSegmentID', 'BillToCity', 'ImpersonatorCreatorResourceID', 'TaxExempt', 'KeyAccountIcon', 'StockMarket', 'TaxID', 'InvoiceTemplateID', 'BillToAddress1', 'SurveyAccountRating', 'EnabledForComanaged', 'TerritoryID', 'ClientPortalActive', 'LastTrackedModifiedDateTime', 'PostalCode', 'AlternatePhone1', 'Country', 'QuoteTemplateID', 'AccountNumber', 'BillToAddress2', 'BillToAdditionalAddressInformation', 'TaskFireActive', 'Address2', 'QuoteEmailMessageID', 'CurrencyID', 'InvoiceMethod', 'Active', 'Fax', 'AccountType', 'BillToState', '')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('AlternatePhone2', 'EnabledForComanaged', 'id', 'AlternatePhone1', 'SurveyAccountRating', 'Address1', 'PurchaseOrderTemplateID', 'PostalCode', 'ImpersonatorCreatorResourceID', 'AccountNumber', 'OwnerResourceID', 'TaskFireActive', 'InvoiceTemplateID', 'TaxID', 'QuoteTemplateID', 'BillToState', 'BillToAddressToUse', 'QuoteEmailMessageID', 'CompetitorID', 'AdditionalAddressInformation', 'BillToAddress2', 'KeyAccountIcon', 'CreatedByResourceID', 'CreateDate', 'BillToAttention', 'SICCode', 'ClientPortalActive', 'StockMarket', 'TaxRegionID', 'CountryID', 'ApiVendorID', 'BillToAccountPhysicalLocationID', 'BillToAddress1', 'Country', 'BillToAdditionalAddressInformation', 'BillToCountryID', 'Address2', 'LastActivityDate', 'Fax', 'MarketSegmentID', 'AssetValue', 'InvoiceNonContractItemsToParentAccount', 'TaxExempt', 'CurrencyID', 'LastTrackedModifiedDateTime', 'WebAddress', 'Phone', 'AccountName', 'Active', 'InvoiceEmailMessageID', 'AccountType', 'BillToCity', 'ParentAccountID', 'BillToZipCode', 'InvoiceMethod', 'TerritoryID', 'State', 'City', 'StockSymbol', '')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillToAttention', 'BillToZipCode', 'InvoiceEmailMessageID', 'AlternatePhone2', 'ParentAccountID', 'StockSymbol', 'ApiVendorID', 'AdditionalAddressInformation', 'SICCode', 'OwnerResourceID', 'id', 'BillToCountryID', 'TaxRegionID', 'InvoiceNonContractItemsToParentAccount', 'CreatedByResourceID', 'BillToAccountPhysicalLocationID', 'CreateDate', 'State', 'City', 'CountryID', 'Address1', 'AccountName', 'BillToAddressToUse', 'CompetitorID', 'LastActivityDate', 'AssetValue', 'Phone', 'WebAddress', 'PurchaseOrderTemplateID', 'MarketSegmentID', 'BillToCity', 'ImpersonatorCreatorResourceID', 'TaxExempt', 'KeyAccountIcon', 'StockMarket', 'TaxID', 'InvoiceTemplateID', 'BillToAddress1', 'SurveyAccountRating', 'EnabledForComanaged', 'TerritoryID', 'ClientPortalActive', 'LastTrackedModifiedDateTime', 'PostalCode', 'AlternatePhone1', 'Country', 'QuoteTemplateID', 'AccountNumber', 'BillToAddress2', 'BillToAdditionalAddressInformation', 'TaskFireActive', 'Address2', 'QuoteEmailMessageID', 'CurrencyID', 'InvoiceMethod', 'Active', 'Fax', 'AccountType', 'BillToState', '')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('AlternatePhone2', 'EnabledForComanaged', 'id', 'AlternatePhone1', 'SurveyAccountRating', 'Address1', 'PurchaseOrderTemplateID', 'PostalCode', 'ImpersonatorCreatorResourceID', 'AccountNumber', 'OwnerResourceID', 'TaskFireActive', 'InvoiceTemplateID', 'TaxID', 'QuoteTemplateID', 'BillToState', 'BillToAddressToUse', 'QuoteEmailMessageID', 'CompetitorID', 'AdditionalAddressInformation', 'BillToAddress2', 'KeyAccountIcon', 'CreatedByResourceID', 'CreateDate', 'BillToAttention', 'SICCode', 'ClientPortalActive', 'StockMarket', 'TaxRegionID', 'CountryID', 'ApiVendorID', 'BillToAccountPhysicalLocationID', 'BillToAddress1', 'Country', 'BillToAdditionalAddressInformation', 'BillToCountryID', 'Address2', 'LastActivityDate', 'Fax', 'MarketSegmentID', 'AssetValue', 'InvoiceNonContractItemsToParentAccount', 'TaxExempt', 'CurrencyID', 'LastTrackedModifiedDateTime', 'WebAddress', 'Phone', 'AccountName', 'Active', 'InvoiceEmailMessageID', 'AccountType', 'BillToCity', 'ParentAccountID', 'BillToZipCode', 'InvoiceMethod', 'TerritoryID', 'State', 'City', 'StockSymbol', '')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillToAttention', 'BillToZipCode', 'InvoiceEmailMessageID', 'AlternatePhone2', 'ParentAccountID', 'StockSymbol', 'ApiVendorID', 'AdditionalAddressInformation', 'SICCode', 'OwnerResourceID', 'id', 'BillToCountryID', 'TaxRegionID', 'InvoiceNonContractItemsToParentAccount', 'CreatedByResourceID', 'BillToAccountPhysicalLocationID', 'CreateDate', 'State', 'City', 'CountryID', 'Address1', 'AccountName', 'BillToAddressToUse', 'CompetitorID', 'LastActivityDate', 'AssetValue', 'Phone', 'WebAddress', 'PurchaseOrderTemplateID', 'MarketSegmentID', 'BillToCity', 'ImpersonatorCreatorResourceID', 'TaxExempt', 'KeyAccountIcon', 'StockMarket', 'TaxID', 'InvoiceTemplateID', 'BillToAddress1', 'SurveyAccountRating', 'EnabledForComanaged', 'TerritoryID', 'ClientPortalActive', 'LastTrackedModifiedDateTime', 'PostalCode', 'AlternatePhone1', 'Country', 'QuoteTemplateID', 'AccountNumber', 'BillToAddress2', 'BillToAdditionalAddressInformation', 'TaskFireActive', 'Address2', 'QuoteEmailMessageID', 'CurrencyID', 'InvoiceMethod', 'Active', 'Fax', 'AccountType', 'BillToState', '')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('AlternatePhone2', 'EnabledForComanaged', 'id', 'AlternatePhone1', 'SurveyAccountRating', 'Address1', 'PurchaseOrderTemplateID', 'PostalCode', 'ImpersonatorCreatorResourceID', 'AccountNumber', 'OwnerResourceID', 'TaskFireActive', 'InvoiceTemplateID', 'TaxID', 'QuoteTemplateID', 'BillToState', 'BillToAddressToUse', 'QuoteEmailMessageID', 'CompetitorID', 'AdditionalAddressInformation', 'BillToAddress2', 'KeyAccountIcon', 'CreatedByResourceID', 'CreateDate', 'BillToAttention', 'SICCode', 'ClientPortalActive', 'StockMarket', 'TaxRegionID', 'CountryID', 'ApiVendorID', 'BillToAccountPhysicalLocationID', 'BillToAddress1', 'Country', 'BillToAdditionalAddressInformation', 'BillToCountryID', 'Address2', 'LastActivityDate', 'Fax', 'MarketSegmentID', 'AssetValue', 'InvoiceNonContractItemsToParentAccount', 'TaxExempt', 'CurrencyID', 'LastTrackedModifiedDateTime', 'WebAddress', 'Phone', 'AccountName', 'Active', 'InvoiceEmailMessageID', 'AccountType', 'BillToCity', 'ParentAccountID', 'BillToZipCode', 'InvoiceMethod', 'TerritoryID', 'State', 'City', 'StockSymbol', '')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'AccountType', 'KeyAccountIcon', 'OwnerResourceID', 'TerritoryID', 'MarketSegmentID', 'CompetitorID', 'ParentAccountID', 'StockSymbol', 'StockMarket', 'SICCode', 'AssetValue', 'AccountNumber', 'CreateDate', 'LastActivityDate', 'TaxRegionID', 'TaxID', 'AdditionalAddressInformation', 'CountryID', 'BillToAddressToUse', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToCountryID', 'BillToAdditionalAddressInformation', 'InvoiceMethod', 'QuoteTemplateID', 'QuoteEmailMessageID', 'InvoiceTemplateID', 'InvoiceEmailMessageID', 'CurrencyID', 'BillToAccountPhysicalLocationID', 'SurveyAccountRating', 'CreatedByResourceID', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'LastTrackedModifiedDateTime', 'PurchaseOrderTemplateID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'AccountType', 'KeyAccountIcon', 'OwnerResourceID', 'TerritoryID', 'MarketSegmentID', 'CompetitorID', 'ParentAccountID', 'StockSymbol', 'StockMarket', 'SICCode', 'AssetValue', 'AccountNumber', 'CreateDate', 'LastActivityDate', 'TaxRegionID', 'TaxID', 'AdditionalAddressInformation', 'CountryID', 'BillToAddressToUse', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToCountryID', 'BillToAdditionalAddressInformation', 'InvoiceMethod', 'QuoteTemplateID', 'QuoteEmailMessageID', 'InvoiceTemplateID', 'InvoiceEmailMessageID', 'CurrencyID', 'BillToAccountPhysicalLocationID', 'SurveyAccountRating', 'CreatedByResourceID', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'LastTrackedModifiedDateTime', 'PurchaseOrderTemplateID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'AccountType', 'KeyAccountIcon', 'OwnerResourceID', 'TerritoryID', 'MarketSegmentID', 'CompetitorID', 'ParentAccountID', 'StockSymbol', 'StockMarket', 'SICCode', 'AssetValue', 'AccountNumber', 'CreateDate', 'LastActivityDate', 'TaxRegionID', 'TaxID', 'AdditionalAddressInformation', 'CountryID', 'BillToAddressToUse', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToCountryID', 'BillToAdditionalAddressInformation', 'InvoiceMethod', 'QuoteTemplateID', 'QuoteEmailMessageID', 'InvoiceTemplateID', 'InvoiceEmailMessageID', 'CurrencyID', 'BillToAccountPhysicalLocationID', 'SurveyAccountRating', 'CreatedByResourceID', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'LastTrackedModifiedDateTime', 'PurchaseOrderTemplateID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'AccountType', 'KeyAccountIcon', 'OwnerResourceID', 'TerritoryID', 'MarketSegmentID', 'CompetitorID', 'ParentAccountID', 'StockSymbol', 'StockMarket', 'SICCode', 'AssetValue', 'AccountNumber', 'CreateDate', 'LastActivityDate', 'TaxRegionID', 'TaxID', 'AdditionalAddressInformation', 'CountryID', 'BillToAddressToUse', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToCountryID', 'BillToAdditionalAddressInformation', 'InvoiceMethod', 'QuoteTemplateID', 'QuoteEmailMessageID', 'InvoiceTemplateID', 'InvoiceEmailMessageID', 'CurrencyID', 'BillToAccountPhysicalLocationID', 'SurveyAccountRating', 'CreatedByResourceID', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'LastTrackedModifiedDateTime', 'PurchaseOrderTemplateID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'StockSymbol', 'StockMarket', 'SICCode', 'AccountNumber', 'TaxID', 'AdditionalAddressInformation', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToAdditionalAddressInformation', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'StockSymbol', 'StockMarket', 'SICCode', 'AccountNumber', 'TaxID', 'AdditionalAddressInformation', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToAdditionalAddressInformation', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'StockSymbol', 'StockMarket', 'SICCode', 'AccountNumber', 'TaxID', 'AdditionalAddressInformation', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToAdditionalAddressInformation', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'StockSymbol', 'StockMarket', 'SICCode', 'AccountNumber', 'TaxID', 'AdditionalAddressInformation', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToAdditionalAddressInformation', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'StockSymbol', 'StockMarket', 'SICCode', 'AccountNumber', 'TaxID', 'AdditionalAddressInformation', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToAdditionalAddressInformation', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate', 'LastActivityDate', 'LastTrackedModifiedDateTime', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

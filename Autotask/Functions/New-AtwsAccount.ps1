@@ -60,7 +60,7 @@ Set-AtwsAccount
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Account]]
+    [Autotask.Account[]]
     $InputObject,
 
 # User defined fields already setup i Autotask
@@ -69,7 +69,7 @@ Set-AtwsAccount
     )]
     [Alias('UDF')]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.UserDefinedField]]
+    [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
 # Client Name

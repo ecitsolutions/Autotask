@@ -58,7 +58,7 @@ Set-AtwsContractService
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractService]]
+    [Autotask.ContractService[]]
     $InputObject,
 
 # Adjusted Price

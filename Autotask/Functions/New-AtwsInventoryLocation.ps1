@@ -58,7 +58,7 @@ Set-AtwsInventoryLocation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.InventoryLocation]]
+    [Autotask.InventoryLocation[]]
     $InputObject,
 
 # Active

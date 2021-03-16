@@ -91,7 +91,7 @@ Set-AtwsChecklistLibrary
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -118,7 +118,7 @@ Set-AtwsChecklistLibrary
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Description
@@ -126,7 +126,7 @@ Set-AtwsChecklistLibrary
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Entity
@@ -146,7 +146,7 @@ Set-AtwsChecklistLibrary
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EntityType,
 
 # Checklist Library ID
@@ -154,7 +154,7 @@ Set-AtwsChecklistLibrary
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Name
@@ -163,97 +163,97 @@ Set-AtwsChecklistLibrary
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'EntityType', 'Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Description', 'id', 'Active', 'Name', 'EntityType')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'EntityType', 'Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Description', 'id', 'Active', 'Name', 'EntityType')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'EntityType', 'Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Description', 'id', 'Active', 'Name', 'EntityType')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'EntityType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'EntityType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'EntityType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'EntityType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

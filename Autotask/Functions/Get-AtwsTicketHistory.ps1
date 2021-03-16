@@ -70,7 +70,7 @@ Returns any object with a TicketHistoryName that DOES NOT match the simple patte
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -98,98 +98,98 @@ Returns any object with a TicketHistoryName that DOES NOT match the simple patte
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TicketID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Date', 'ResourceID', 'id', 'Action', 'Detail', 'TicketID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Detail', 'ResourceID', 'Date', 'TicketID', 'id', 'Action')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Date', 'ResourceID', 'id', 'Action', 'Detail', 'TicketID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Detail', 'ResourceID', 'Date', 'TicketID', 'id', 'Action')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Date', 'ResourceID', 'id', 'Action', 'Detail', 'TicketID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Detail', 'ResourceID', 'Date', 'TicketID', 'id', 'Action')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'Action', 'ResourceID', 'Date', 'Detail')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'Action', 'ResourceID', 'Date', 'Detail')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'Action', 'ResourceID', 'Date', 'Detail')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'Action', 'ResourceID', 'Date', 'Detail')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Action', 'Detail')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Action', 'Detail')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Action', 'Detail')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Action', 'Detail')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Action', 'Detail')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Date')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

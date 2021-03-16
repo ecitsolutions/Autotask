@@ -74,7 +74,7 @@ Set-AtwsContractRoleCost
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -102,7 +102,7 @@ Set-AtwsContractRoleCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # id
@@ -110,7 +110,7 @@ Set-AtwsContractRoleCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Cost
@@ -118,7 +118,7 @@ Set-AtwsContractRoleCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $Rate,
 
 # Resource ID
@@ -126,7 +126,7 @@ Set-AtwsContractRoleCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ResourceID,
 
 # Role ID
@@ -134,92 +134,92 @@ Set-AtwsContractRoleCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $RoleID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'RoleID', 'ResourceID', 'Rate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Rate', 'id', 'ContractID', 'RoleID', 'ResourceID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'RoleID', 'ResourceID', 'Rate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Rate', 'id', 'ContractID', 'RoleID', 'ResourceID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'id', 'RoleID', 'ResourceID', 'Rate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Rate', 'id', 'ContractID', 'RoleID', 'ResourceID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ResourceID', 'RoleID', 'Rate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ResourceID', 'RoleID', 'Rate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ResourceID', 'RoleID', 'Rate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ResourceID', 'RoleID', 'Rate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

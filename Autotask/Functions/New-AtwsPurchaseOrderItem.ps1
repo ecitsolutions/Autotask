@@ -60,7 +60,7 @@ Set-AtwsPurchaseOrderItem
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.PurchaseOrderItem]]
+    [Autotask.PurchaseOrderItem[]]
     $InputObject,
 
 # Contract ID

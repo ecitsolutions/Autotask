@@ -42,7 +42,7 @@ Set-AtwsContact
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Contact]]
+    [Autotask.Contact[]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[long]]
+    [long[]]
     $Id
   )
  

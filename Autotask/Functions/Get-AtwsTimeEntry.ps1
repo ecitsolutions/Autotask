@@ -91,7 +91,7 @@ Set-AtwsTimeEntry
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -118,91 +118,91 @@ Set-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AllocationCodeID,
 
 # Billing Approval Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $BillingApprovalDateTime,
 
 # Billing Approval Level Most Recent
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BillingApprovalLevelMostRecent,
 
 # Billing Approval Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BillingApprovalResourceID,
 
 # Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Contract Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ContractServiceBundleID,
 
 # Contract Service ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ContractServiceID,
 
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Created User ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorUserID,
 
 # Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $DateWorked,
 
 # End Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDateTime,
 
 # Hours To Bill
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $HoursToBill,
 
 # Hours Worked
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $HoursWorked,
 
 # Time Entry ID
@@ -210,28 +210,28 @@ Set-AtwsTimeEntry
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Impersonator Updater Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorUpdaterResourceID,
 
 # Internal Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InternalAllocationCodeID,
 
 # Internal Notes
@@ -239,35 +239,35 @@ Set-AtwsTimeEntry
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,32000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $InternalNotes,
 
 # Last Modified Datetime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedDateTime,
 
 # Last Modified By User ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LastModifiedUserID,
 
 # Non-Billable
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $NonBillable,
 
 # Offset Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $OffsetHours,
 
 # Resource ID
@@ -275,28 +275,28 @@ Set-AtwsTimeEntry
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ResourceID,
 
 # Role ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $RoleID,
 
 # Show On Invoice
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ShowOnInvoice,
 
 # Start Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDateTime,
 
 # Summary Notes
@@ -304,21 +304,21 @@ Set-AtwsTimeEntry
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,32000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SummaryNotes,
 
 # Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TaskID,
 
 # Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TicketID,
 
 # TaskTypeLink
@@ -337,98 +337,98 @@ Set-AtwsTimeEntry
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Type,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorUserID', 'RoleID', 'StartDateTime', 'ImpersonatorUpdaterResourceID', 'OffsetHours', 'id', 'BillingApprovalLevelMostRecent', 'InternalAllocationCodeID', 'DateWorked', 'SummaryNotes', 'ContractID', 'BillingApprovalDateTime', 'NonBillable', 'ImpersonatorCreatorResourceID', 'ContractServiceID', 'LastModifiedUserID', 'CreateDateTime', 'ShowOnInvoice', 'LastModifiedDateTime', 'ResourceID', 'TaskID', 'Type', 'TicketID', 'BillingApprovalResourceID', 'ContractServiceBundleID', 'EndDateTime', 'InternalNotes', 'HoursWorked', 'AllocationCodeID', 'HoursToBill')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('HoursWorked', 'EndDateTime', 'ContractServiceBundleID', 'id', 'AllocationCodeID', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'BillingApprovalResourceID', 'TicketID', 'TaskID', 'ContractServiceID', 'RoleID', 'LastModifiedDateTime', 'ShowOnInvoice', 'StartDateTime', 'LastModifiedUserID', 'BillingApprovalDateTime', 'DateWorked', 'InternalAllocationCodeID', 'SummaryNotes', 'NonBillable', 'InternalNotes', 'HoursToBill', 'ContractID', 'OffsetHours', 'BillingApprovalLevelMostRecent', 'Type', 'ImpersonatorUpdaterResourceID', 'CreatorUserID', 'ResourceID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorUserID', 'RoleID', 'StartDateTime', 'ImpersonatorUpdaterResourceID', 'OffsetHours', 'id', 'BillingApprovalLevelMostRecent', 'InternalAllocationCodeID', 'DateWorked', 'SummaryNotes', 'ContractID', 'BillingApprovalDateTime', 'NonBillable', 'ImpersonatorCreatorResourceID', 'ContractServiceID', 'LastModifiedUserID', 'CreateDateTime', 'ShowOnInvoice', 'LastModifiedDateTime', 'ResourceID', 'TaskID', 'Type', 'TicketID', 'BillingApprovalResourceID', 'ContractServiceBundleID', 'EndDateTime', 'InternalNotes', 'HoursWorked', 'AllocationCodeID', 'HoursToBill')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('HoursWorked', 'EndDateTime', 'ContractServiceBundleID', 'id', 'AllocationCodeID', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'BillingApprovalResourceID', 'TicketID', 'TaskID', 'ContractServiceID', 'RoleID', 'LastModifiedDateTime', 'ShowOnInvoice', 'StartDateTime', 'LastModifiedUserID', 'BillingApprovalDateTime', 'DateWorked', 'InternalAllocationCodeID', 'SummaryNotes', 'NonBillable', 'InternalNotes', 'HoursToBill', 'ContractID', 'OffsetHours', 'BillingApprovalLevelMostRecent', 'Type', 'ImpersonatorUpdaterResourceID', 'CreatorUserID', 'ResourceID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorUserID', 'RoleID', 'StartDateTime', 'ImpersonatorUpdaterResourceID', 'OffsetHours', 'id', 'BillingApprovalLevelMostRecent', 'InternalAllocationCodeID', 'DateWorked', 'SummaryNotes', 'ContractID', 'BillingApprovalDateTime', 'NonBillable', 'ImpersonatorCreatorResourceID', 'ContractServiceID', 'LastModifiedUserID', 'CreateDateTime', 'ShowOnInvoice', 'LastModifiedDateTime', 'ResourceID', 'TaskID', 'Type', 'TicketID', 'BillingApprovalResourceID', 'ContractServiceBundleID', 'EndDateTime', 'InternalNotes', 'HoursWorked', 'AllocationCodeID', 'HoursToBill')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('HoursWorked', 'EndDateTime', 'ContractServiceBundleID', 'id', 'AllocationCodeID', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'BillingApprovalResourceID', 'TicketID', 'TaskID', 'ContractServiceID', 'RoleID', 'LastModifiedDateTime', 'ShowOnInvoice', 'StartDateTime', 'LastModifiedUserID', 'BillingApprovalDateTime', 'DateWorked', 'InternalAllocationCodeID', 'SummaryNotes', 'NonBillable', 'InternalNotes', 'HoursToBill', 'ContractID', 'OffsetHours', 'BillingApprovalLevelMostRecent', 'Type', 'ImpersonatorUpdaterResourceID', 'CreatorUserID', 'ResourceID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TaskID', 'TicketID', 'InternalAllocationCodeID', 'Type', 'DateWorked', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'HoursToBill', 'OffsetHours', 'SummaryNotes', 'InternalNotes', 'RoleID', 'CreateDateTime', 'ResourceID', 'CreatorUserID', 'LastModifiedUserID', 'LastModifiedDateTime', 'AllocationCodeID', 'ContractID', 'BillingApprovalLevelMostRecent', 'BillingApprovalResourceID', 'BillingApprovalDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TaskID', 'TicketID', 'InternalAllocationCodeID', 'Type', 'DateWorked', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'HoursToBill', 'OffsetHours', 'SummaryNotes', 'InternalNotes', 'RoleID', 'CreateDateTime', 'ResourceID', 'CreatorUserID', 'LastModifiedUserID', 'LastModifiedDateTime', 'AllocationCodeID', 'ContractID', 'BillingApprovalLevelMostRecent', 'BillingApprovalResourceID', 'BillingApprovalDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TaskID', 'TicketID', 'InternalAllocationCodeID', 'Type', 'DateWorked', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'HoursToBill', 'OffsetHours', 'SummaryNotes', 'InternalNotes', 'RoleID', 'CreateDateTime', 'ResourceID', 'CreatorUserID', 'LastModifiedUserID', 'LastModifiedDateTime', 'AllocationCodeID', 'ContractID', 'BillingApprovalLevelMostRecent', 'BillingApprovalResourceID', 'BillingApprovalDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TaskID', 'TicketID', 'InternalAllocationCodeID', 'Type', 'DateWorked', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'HoursToBill', 'OffsetHours', 'SummaryNotes', 'InternalNotes', 'RoleID', 'CreateDateTime', 'ResourceID', 'CreatorUserID', 'LastModifiedUserID', 'LastModifiedDateTime', 'AllocationCodeID', 'ContractID', 'BillingApprovalLevelMostRecent', 'BillingApprovalResourceID', 'BillingApprovalDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SummaryNotes', 'InternalNotes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SummaryNotes', 'InternalNotes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SummaryNotes', 'InternalNotes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SummaryNotes', 'InternalNotes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SummaryNotes', 'InternalNotes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('DateWorked', 'StartDateTime', 'EndDateTime', 'CreateDateTime', 'LastModifiedDateTime', 'BillingApprovalDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

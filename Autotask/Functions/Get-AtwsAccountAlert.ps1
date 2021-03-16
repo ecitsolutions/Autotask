@@ -89,7 +89,7 @@ Set-AtwsAccountAlert
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -117,7 +117,7 @@ Set-AtwsAccountAlert
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Alert Text
@@ -125,7 +125,7 @@ Set-AtwsAccountAlert
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AlertText,
 
 # Alert Type ID
@@ -145,7 +145,7 @@ Set-AtwsAccountAlert
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AlertTypeID,
 
 # Alert ID
@@ -153,97 +153,97 @@ Set-AtwsAccountAlert
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AlertText', 'id', 'AccountID', 'AlertTypeID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'AlertTypeID', 'AccountID', 'AlertText')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AlertText', 'id', 'AccountID', 'AlertTypeID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'AlertTypeID', 'AccountID', 'AlertText')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AlertText', 'id', 'AccountID', 'AlertTypeID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'AlertTypeID', 'AccountID', 'AlertText')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'AlertTypeID', 'AlertText')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'AlertTypeID', 'AlertText')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'AlertTypeID', 'AlertText')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'AlertTypeID', 'AlertText')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AlertText')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AlertText')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AlertText')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AlertText')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AlertText')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

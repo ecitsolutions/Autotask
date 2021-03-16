@@ -40,7 +40,7 @@ Get-AtwsContactWebhookExcludedResource
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContactWebhookExcludedResource]]
+    [Autotask.ContactWebhookExcludedResource[]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -49,7 +49,7 @@ Get-AtwsContactWebhookExcludedResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[long]]
+    [long[]]
     $Id
   )
  

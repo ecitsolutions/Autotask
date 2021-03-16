@@ -61,7 +61,7 @@ Set-AtwsServiceCall
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ServiceCall]]
+    [Autotask.ServiceCall[]]
     $InputObject,
 
 # Client ID

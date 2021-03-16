@@ -42,7 +42,7 @@ Set-AtwsInstalledProductWebhookField
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.InstalledProductWebhookField]]
+    [Autotask.InstalledProductWebhookField[]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsInstalledProductWebhookField
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[long]]
+    [long[]]
     $Id
   )
  

@@ -92,7 +92,7 @@ Set-AtwsSubscription
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -119,7 +119,7 @@ Set-AtwsSubscription
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Description
@@ -127,7 +127,7 @@ Set-AtwsSubscription
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Effective Date
@@ -135,7 +135,7 @@ Set-AtwsSubscription
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EffectiveDate,
 
 # Expiration Date
@@ -143,7 +143,7 @@ Set-AtwsSubscription
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ExpirationDate,
 
 # Subscription ID
@@ -151,14 +151,14 @@ Set-AtwsSubscription
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Installed Product ID
@@ -166,7 +166,7 @@ Set-AtwsSubscription
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InstalledProductID,
 
 # Material Code Id
@@ -174,7 +174,7 @@ Set-AtwsSubscription
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $MaterialCodeID,
 
 # Period Type
@@ -194,7 +194,7 @@ Set-AtwsSubscription
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PeriodType,
 
 # Purchase Order Number
@@ -202,7 +202,7 @@ Set-AtwsSubscription
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderNumber,
 
 # Type
@@ -222,7 +222,7 @@ Set-AtwsSubscription
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
 # Subscription Name
@@ -232,119 +232,119 @@ Set-AtwsSubscription
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SubscriptionName,
 
 # Total Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $TotalCost,
 
 # Total Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $TotalPrice,
 
 # Vendor ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $VendorID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpirationDate', 'MaterialCodeID', 'TotalCost', 'SubscriptionName', 'Status', 'EffectiveDate', 'PeriodPrice', 'id', 'ImpersonatorCreatorResourceID', 'PurchaseOrderNumber', 'PeriodType', 'PeriodCost', 'BusinessDivisionSubdivisionID', 'InstalledProductID', 'Description', 'VendorID', 'TotalPrice')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'PeriodType', 'MaterialCodeID', 'TotalPrice', 'ExpirationDate', 'Description', 'Status', 'PurchaseOrderNumber', 'TotalCost', 'VendorID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'EffectiveDate', 'InstalledProductID', 'PeriodCost', 'SubscriptionName')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpirationDate', 'MaterialCodeID', 'TotalCost', 'SubscriptionName', 'Status', 'EffectiveDate', 'PeriodPrice', 'id', 'ImpersonatorCreatorResourceID', 'PurchaseOrderNumber', 'PeriodType', 'PeriodCost', 'BusinessDivisionSubdivisionID', 'InstalledProductID', 'Description', 'VendorID', 'TotalPrice')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'PeriodType', 'MaterialCodeID', 'TotalPrice', 'ExpirationDate', 'Description', 'Status', 'PurchaseOrderNumber', 'TotalCost', 'VendorID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'EffectiveDate', 'InstalledProductID', 'PeriodCost', 'SubscriptionName')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpirationDate', 'MaterialCodeID', 'TotalCost', 'SubscriptionName', 'Status', 'EffectiveDate', 'PeriodPrice', 'id', 'ImpersonatorCreatorResourceID', 'PurchaseOrderNumber', 'PeriodType', 'PeriodCost', 'BusinessDivisionSubdivisionID', 'InstalledProductID', 'Description', 'VendorID', 'TotalPrice')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'PeriodType', 'MaterialCodeID', 'TotalPrice', 'ExpirationDate', 'Description', 'Status', 'PurchaseOrderNumber', 'TotalCost', 'VendorID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'EffectiveDate', 'InstalledProductID', 'PeriodCost', 'SubscriptionName')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SubscriptionName', 'Description', 'PeriodType', 'EffectiveDate', 'ExpirationDate', 'PeriodPrice', 'TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'PeriodCost', 'TotalCost', 'Status', 'InstalledProductID', 'VendorID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SubscriptionName', 'Description', 'PeriodType', 'EffectiveDate', 'ExpirationDate', 'PeriodPrice', 'TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'PeriodCost', 'TotalCost', 'Status', 'InstalledProductID', 'VendorID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SubscriptionName', 'Description', 'PeriodType', 'EffectiveDate', 'ExpirationDate', 'PeriodPrice', 'TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'PeriodCost', 'TotalCost', 'Status', 'InstalledProductID', 'VendorID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SubscriptionName', 'Description', 'PeriodType', 'EffectiveDate', 'ExpirationDate', 'PeriodPrice', 'TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'PeriodCost', 'TotalCost', 'Status', 'InstalledProductID', 'VendorID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SubscriptionName', 'Description', 'PeriodType', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SubscriptionName', 'Description', 'PeriodType', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SubscriptionName', 'Description', 'PeriodType', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SubscriptionName', 'Description', 'PeriodType', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SubscriptionName', 'Description', 'PeriodType', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

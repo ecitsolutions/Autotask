@@ -60,7 +60,7 @@ Set-AtwsPurchaseOrder
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.PurchaseOrder]]
+    [Autotask.PurchaseOrder[]]
     $InputObject,
 
 # Cancel Date

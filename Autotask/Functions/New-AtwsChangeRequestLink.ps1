@@ -58,7 +58,7 @@ Get-AtwsChangeRequestLink
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ChangeRequestLink]]
+    [Autotask.ChangeRequestLink[]]
     $InputObject,
 
 # Change Request Ticket ID

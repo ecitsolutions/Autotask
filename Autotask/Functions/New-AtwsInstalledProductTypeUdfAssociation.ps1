@@ -62,7 +62,7 @@ Set-AtwsInstalledProductTypeUdfAssociation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.InstalledProductTypeUdfAssociation]]
+    [Autotask.InstalledProductTypeUdfAssociation[]]
     $InputObject,
 
 # Installed Product Type Id

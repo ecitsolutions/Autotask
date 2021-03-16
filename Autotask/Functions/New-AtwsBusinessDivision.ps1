@@ -57,7 +57,7 @@ Set-AtwsBusinessDivision
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.BusinessDivision]]
+    [Autotask.BusinessDivision[]]
     $InputObject,
 
 # Active

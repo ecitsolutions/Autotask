@@ -53,7 +53,7 @@ Copies [Autotask.ContractServiceAdjustment] by Id 124 to a new object through th
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractServiceAdjustment]]
+    [Autotask.ContractServiceAdjustment[]]
     $InputObject,
 
 # Adjusted Unit Cost

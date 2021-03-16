@@ -58,7 +58,7 @@ Get-AtwsContactGroupContact
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContactGroupContact]]
+    [Autotask.ContactGroupContact[]]
     $InputObject,
 
 # Contact Group ID

@@ -89,7 +89,7 @@ Set-AtwsExpenseReport
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -116,35 +116,35 @@ Set-AtwsExpenseReport
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ApprovedDate,
 
 # Approver ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ApproverID,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Cash Advance Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $CashAdvanceAmount,
 
 # Expense Total
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ExpenseTotal,
 
 # Expense Report ID
@@ -152,7 +152,7 @@ Set-AtwsExpenseReport
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Name
@@ -161,7 +161,7 @@ Set-AtwsExpenseReport
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Quick Books Reference Number
@@ -169,28 +169,28 @@ Set-AtwsExpenseReport
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $QuickBooksReferenceNumber,
 
 # Reimbursement Currency Amount Due
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ReimbursementCurrencyAmountDue,
 
 # Reimbursement Currency Cash Advance Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ReimbursementCurrencyCashAdvanceAmount,
 
 # Reimbursement Currency ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ReimbursementCurrencyID,
 
 # Rejection Reason
@@ -198,7 +198,7 @@ Set-AtwsExpenseReport
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2048)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RejectionReason,
 
 # Status
@@ -217,14 +217,14 @@ Set-AtwsExpenseReport
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
 # Submit Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $SubmitDate,
 
 # Submitter ID
@@ -232,7 +232,7 @@ Set-AtwsExpenseReport
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $SubmitterID,
 
 # Period Ending
@@ -240,98 +240,98 @@ Set-AtwsExpenseReport
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $WeekEnding,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'Name', 'QuickBooksReferenceNumber', 'ApproverID', 'ReimbursementCurrencyID', 'SubmitterID', 'Submit', 'id', 'DepartmentNumber', 'AmountDue', 'RejectionReason', 'ExpenseTotal', 'BusinessDivisionSubdivisionID', 'WeekEnding', 'Status', 'SubmitDate', 'ApprovedDate', 'CashAdvanceAmount')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ApproverID', 'CashAdvanceAmount', 'SubmitDate', 'Name', 'Status', 'ExpenseTotal', 'ReimbursementCurrencyID', 'ReimbursementCurrencyAmountDue', 'SubmitterID', 'RejectionReason', 'id', 'WeekEnding', 'AmountDue', 'Submit', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyCashAdvanceAmount')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'Name', 'QuickBooksReferenceNumber', 'ApproverID', 'ReimbursementCurrencyID', 'SubmitterID', 'Submit', 'id', 'DepartmentNumber', 'AmountDue', 'RejectionReason', 'ExpenseTotal', 'BusinessDivisionSubdivisionID', 'WeekEnding', 'Status', 'SubmitDate', 'ApprovedDate', 'CashAdvanceAmount')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ApproverID', 'CashAdvanceAmount', 'SubmitDate', 'Name', 'Status', 'ExpenseTotal', 'ReimbursementCurrencyID', 'ReimbursementCurrencyAmountDue', 'SubmitterID', 'RejectionReason', 'id', 'WeekEnding', 'AmountDue', 'Submit', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyCashAdvanceAmount')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'Name', 'QuickBooksReferenceNumber', 'ApproverID', 'ReimbursementCurrencyID', 'SubmitterID', 'Submit', 'id', 'DepartmentNumber', 'AmountDue', 'RejectionReason', 'ExpenseTotal', 'BusinessDivisionSubdivisionID', 'WeekEnding', 'Status', 'SubmitDate', 'ApprovedDate', 'CashAdvanceAmount')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'ApproverID', 'CashAdvanceAmount', 'SubmitDate', 'Name', 'Status', 'ExpenseTotal', 'ReimbursementCurrencyID', 'ReimbursementCurrencyAmountDue', 'SubmitterID', 'RejectionReason', 'id', 'WeekEnding', 'AmountDue', 'Submit', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyCashAdvanceAmount')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Status', 'SubmitDate', 'SubmitterID', 'ApproverID', 'WeekEnding', 'ExpenseTotal', 'CashAdvanceAmount', 'RejectionReason', 'AmountDue', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyID', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Status', 'SubmitDate', 'SubmitterID', 'ApproverID', 'WeekEnding', 'ExpenseTotal', 'CashAdvanceAmount', 'RejectionReason', 'AmountDue', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyID', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Status', 'SubmitDate', 'SubmitterID', 'ApproverID', 'WeekEnding', 'ExpenseTotal', 'CashAdvanceAmount', 'RejectionReason', 'AmountDue', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyID', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Status', 'SubmitDate', 'SubmitterID', 'ApproverID', 'WeekEnding', 'ExpenseTotal', 'CashAdvanceAmount', 'RejectionReason', 'AmountDue', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyID', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'RejectionReason', 'DepartmentNumber', 'QuickBooksReferenceNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'RejectionReason', 'DepartmentNumber', 'QuickBooksReferenceNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'RejectionReason', 'DepartmentNumber', 'QuickBooksReferenceNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'RejectionReason', 'DepartmentNumber', 'QuickBooksReferenceNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'RejectionReason', 'DepartmentNumber', 'QuickBooksReferenceNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SubmitDate', 'WeekEnding', 'ApprovedDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

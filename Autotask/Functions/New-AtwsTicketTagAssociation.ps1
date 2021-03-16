@@ -58,7 +58,7 @@ Get-AtwsTicketTagAssociation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TicketTagAssociation]]
+    [Autotask.TicketTagAssociation[]]
     $InputObject,
 
 # Tag ID

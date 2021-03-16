@@ -61,7 +61,7 @@ Set-AtwsInventoryItem
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.InventoryItem]]
+    [Autotask.InventoryItem[]]
     $InputObject,
 
 # Back Order

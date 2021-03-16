@@ -58,7 +58,7 @@ Get-AtwsServiceCallTaskResource
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ServiceCallTaskResource]]
+    [Autotask.ServiceCallTaskResource[]]
     $InputObject,
 
 # Resource ID

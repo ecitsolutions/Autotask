@@ -76,7 +76,7 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -104,14 +104,14 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Address1
@@ -119,7 +119,7 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Address1,
 
 # Address2
@@ -127,7 +127,7 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Address2,
 
 # Alternate Phone 1
@@ -135,7 +135,7 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AlternatePhone1,
 
 # Alternate Phone 2
@@ -143,7 +143,7 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AlternatePhone2,
 
 # City
@@ -151,14 +151,14 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $City,
 
 # Country ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CountryID,
 
 # Description
@@ -166,7 +166,7 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Fax
@@ -174,7 +174,7 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Fax,
 
 # Account Physical Location ID
@@ -182,14 +182,14 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Tax Exempt
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsTaxExempt,
 
 # Name
@@ -198,14 +198,14 @@ Set-AtwsAccountPhysicalLocation
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Override Account Tax Settings
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $OverrideAccountTaxSettings,
 
 # Phone
@@ -213,7 +213,7 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Phone,
 
 # Postal Code
@@ -221,21 +221,21 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,20)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PostalCode,
 
 # Primary
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Primary,
 
 # Round Trip Distance
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $RoundtripDistance,
 
 # State
@@ -243,104 +243,104 @@ Set-AtwsAccountPhysicalLocation
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $State,
 
 # Tax Region ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TaxRegionID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Fax', 'Name', 'IsTaxExempt', 'Address1', 'OverrideAccountTaxSettings', 'Primary', 'State', 'RoundtripDistance', 'Phone', 'PostalCode', 'Address2', 'id', 'AccountID', 'TaxRegionID', 'Active', 'AlternatePhone2', 'CountryID', 'Description', 'City', 'AlternatePhone1')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Phone', 'Address2', 'City', 'State', 'AlternatePhone1', 'Name', 'PostalCode', 'AccountID', 'Address1', 'Fax', 'AlternatePhone2', 'Description', 'TaxRegionID', 'Active', 'id', 'Primary', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'CountryID', 'RoundtripDistance')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Fax', 'Name', 'IsTaxExempt', 'Address1', 'OverrideAccountTaxSettings', 'Primary', 'State', 'RoundtripDistance', 'Phone', 'PostalCode', 'Address2', 'id', 'AccountID', 'TaxRegionID', 'Active', 'AlternatePhone2', 'CountryID', 'Description', 'City', 'AlternatePhone1')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Phone', 'Address2', 'City', 'State', 'AlternatePhone1', 'Name', 'PostalCode', 'AccountID', 'Address1', 'Fax', 'AlternatePhone2', 'Description', 'TaxRegionID', 'Active', 'id', 'Primary', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'CountryID', 'RoundtripDistance')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Fax', 'Name', 'IsTaxExempt', 'Address1', 'OverrideAccountTaxSettings', 'Primary', 'State', 'RoundtripDistance', 'Phone', 'PostalCode', 'Address2', 'id', 'AccountID', 'TaxRegionID', 'Active', 'AlternatePhone2', 'CountryID', 'Description', 'City', 'AlternatePhone1')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Phone', 'Address2', 'City', 'State', 'AlternatePhone1', 'Name', 'PostalCode', 'AccountID', 'Address1', 'Fax', 'AlternatePhone2', 'Description', 'TaxRegionID', 'Active', 'id', 'Primary', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'CountryID', 'RoundtripDistance')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'CountryID', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'RoundtripDistance', 'TaxRegionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'CountryID', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'RoundtripDistance', 'TaxRegionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'CountryID', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'RoundtripDistance', 'TaxRegionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'CountryID', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'RoundtripDistance', 'TaxRegionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

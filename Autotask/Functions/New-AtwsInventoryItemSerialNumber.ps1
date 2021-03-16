@@ -58,7 +58,7 @@ Set-AtwsInventoryItemSerialNumber
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.InventoryItemSerialNumber]]
+    [Autotask.InventoryItemSerialNumber[]]
     $InputObject,
 
 # Inventory Item ID

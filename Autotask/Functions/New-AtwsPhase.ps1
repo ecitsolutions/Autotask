@@ -58,7 +58,7 @@ Set-AtwsPhase
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Phase]]
+    [Autotask.Phase[]]
     $InputObject,
 
 # Phase Creation Date

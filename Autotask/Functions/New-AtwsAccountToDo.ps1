@@ -63,7 +63,7 @@ Set-AtwsAccountToDo
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.AccountToDo]]
+    [Autotask.AccountToDo[]]
     $InputObject,
 
 # Client

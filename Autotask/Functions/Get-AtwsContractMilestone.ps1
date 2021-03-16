@@ -89,7 +89,7 @@ Set-AtwsContractMilestone
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -116,7 +116,7 @@ Set-AtwsContractMilestone
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AllocationCodeID,
 
 # Amount
@@ -124,14 +124,14 @@ Set-AtwsContractMilestone
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $Amount,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Contract ID
@@ -139,21 +139,21 @@ Set-AtwsContractMilestone
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Date Due
@@ -161,7 +161,7 @@ Set-AtwsContractMilestone
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $DateDue,
 
 # Description
@@ -169,7 +169,7 @@ Set-AtwsContractMilestone
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,250)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # id
@@ -177,14 +177,14 @@ Set-AtwsContractMilestone
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Internal Currency Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InternalCurrencyAmount,
 
 # Is This Initial Payment
@@ -192,7 +192,7 @@ Set-AtwsContractMilestone
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsInitialPayment,
 
 # Status
@@ -212,7 +212,7 @@ Set-AtwsContractMilestone
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
 # Title
@@ -221,98 +221,98 @@ Set-AtwsContractMilestone
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'AllocationCodeID', 'Title', 'CreatorResourceID', 'ContractID', 'DateDue', 'id', 'CreateDate', 'Amount', 'BusinessDivisionSubdivisionID', 'IsInitialPayment', 'Status', 'InternalCurrencyAmount')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Amount', 'InternalCurrencyAmount', 'Description', 'DateDue', 'Title', 'Status', 'ContractID', 'id', 'BusinessDivisionSubdivisionID', 'CreatorResourceID', 'AllocationCodeID', 'CreateDate', 'IsInitialPayment')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'AllocationCodeID', 'Title', 'CreatorResourceID', 'ContractID', 'DateDue', 'id', 'CreateDate', 'Amount', 'BusinessDivisionSubdivisionID', 'IsInitialPayment', 'Status', 'InternalCurrencyAmount')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Amount', 'InternalCurrencyAmount', 'Description', 'DateDue', 'Title', 'Status', 'ContractID', 'id', 'BusinessDivisionSubdivisionID', 'CreatorResourceID', 'AllocationCodeID', 'CreateDate', 'IsInitialPayment')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'AllocationCodeID', 'Title', 'CreatorResourceID', 'ContractID', 'DateDue', 'id', 'CreateDate', 'Amount', 'BusinessDivisionSubdivisionID', 'IsInitialPayment', 'Status', 'InternalCurrencyAmount')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Amount', 'InternalCurrencyAmount', 'Description', 'DateDue', 'Title', 'Status', 'ContractID', 'id', 'BusinessDivisionSubdivisionID', 'CreatorResourceID', 'AllocationCodeID', 'CreateDate', 'IsInitialPayment')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDate', 'CreatorResourceID', 'Status', 'DateDue', 'Amount', 'Title', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDate', 'CreatorResourceID', 'Status', 'DateDue', 'Amount', 'Title', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDate', 'CreatorResourceID', 'Status', 'DateDue', 'Amount', 'Title', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDate', 'CreatorResourceID', 'Status', 'DateDue', 'Amount', 'Title', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate', 'DateDue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

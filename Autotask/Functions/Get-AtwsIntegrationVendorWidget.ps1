@@ -91,7 +91,7 @@ Set-AtwsIntegrationVendorWidget
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -117,7 +117,7 @@ Set-AtwsIntegrationVendorWidget
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Description
@@ -125,7 +125,7 @@ Set-AtwsIntegrationVendorWidget
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Integration Vendor Widget ID
@@ -133,21 +133,21 @@ Set-AtwsIntegrationVendorWidget
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsActive,
 
 # Last Modified Date/Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedDateTime,
 
 # Reference URL
@@ -156,7 +156,7 @@ Set-AtwsIntegrationVendorWidget
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ReferenceUrl,
 
 # Secret
@@ -165,7 +165,7 @@ Set-AtwsIntegrationVendorWidget
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Secret,
 
 # Title
@@ -174,7 +174,7 @@ Set-AtwsIntegrationVendorWidget
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
 # Vendor Supplied ID
@@ -183,7 +183,7 @@ Set-AtwsIntegrationVendorWidget
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $VendorSuppliedID,
 
 # Width
@@ -202,98 +202,98 @@ Set-AtwsIntegrationVendorWidget
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Width,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'VendorSuppliedID', 'CreateDateTime', 'ReferenceUrl', 'Description', 'LastModifiedDateTime', 'Width', 'WidgetKey', 'Secret', 'id', 'Title')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ReferenceUrl', 'IsActive', 'CreateDateTime', 'VendorSuppliedID', 'Width', 'WidgetKey', 'Secret', 'id', 'LastModifiedDateTime', 'Description', 'Title')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'VendorSuppliedID', 'CreateDateTime', 'ReferenceUrl', 'Description', 'LastModifiedDateTime', 'Width', 'WidgetKey', 'Secret', 'id', 'Title')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ReferenceUrl', 'IsActive', 'CreateDateTime', 'VendorSuppliedID', 'Width', 'WidgetKey', 'Secret', 'id', 'LastModifiedDateTime', 'Description', 'Title')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'VendorSuppliedID', 'CreateDateTime', 'ReferenceUrl', 'Description', 'LastModifiedDateTime', 'Width', 'WidgetKey', 'Secret', 'id', 'Title')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ReferenceUrl', 'IsActive', 'CreateDateTime', 'VendorSuppliedID', 'Width', 'WidgetKey', 'Secret', 'id', 'LastModifiedDateTime', 'Description', 'Title')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDateTime', 'Description', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDateTime', 'Description', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDateTime', 'Description', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDateTime', 'Description', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDateTime', 'LastModifiedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

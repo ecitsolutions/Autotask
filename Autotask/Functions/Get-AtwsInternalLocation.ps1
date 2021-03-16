@@ -85,7 +85,7 @@ An example of a more complex query. This command returns any InternalLocations w
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -112,7 +112,7 @@ An example of a more complex query. This command returns any InternalLocations w
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AdditionalAddressInfo,
 
 # Address 1
@@ -120,7 +120,7 @@ An example of a more complex query. This command returns any InternalLocations w
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Address1,
 
 # Address 2
@@ -128,7 +128,7 @@ An example of a more complex query. This command returns any InternalLocations w
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Address2,
 
 # City
@@ -136,7 +136,7 @@ An example of a more complex query. This command returns any InternalLocations w
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $City,
 
 # Country
@@ -144,7 +144,7 @@ An example of a more complex query. This command returns any InternalLocations w
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Country,
 
 # Holiday Set
@@ -163,7 +163,7 @@ An example of a more complex query. This command returns any InternalLocations w
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $HolidaySetId,
 
 # Internal Location ID
@@ -171,14 +171,14 @@ An example of a more complex query. This command returns any InternalLocations w
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Default
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsDefault,
 
 # Name
@@ -187,7 +187,7 @@ An example of a more complex query. This command returns any InternalLocations w
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Postal Code
@@ -195,7 +195,7 @@ An example of a more complex query. This command returns any InternalLocations w
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,20)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PostalCode,
 
 # County
@@ -203,7 +203,7 @@ An example of a more complex query. This command returns any InternalLocations w
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $State,
 
 # Time Zone Code
@@ -211,97 +211,97 @@ An example of a more complex query. This command returns any InternalLocations w
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TimeZone,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address2', 'State', 'IsDefault', 'HolidaySetId', 'id', 'AdditionalAddressInfo', 'TimeZone', 'PostalCode', 'Name', 'Country', 'City', 'Address1')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Country', 'Address1', 'TimeZone', 'City', 'AdditionalAddressInfo', 'HolidaySetId', 'Name', 'id', 'Address2', 'PostalCode', 'IsDefault', 'State')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address2', 'State', 'IsDefault', 'HolidaySetId', 'id', 'AdditionalAddressInfo', 'TimeZone', 'PostalCode', 'Name', 'Country', 'City', 'Address1')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Country', 'Address1', 'TimeZone', 'City', 'AdditionalAddressInfo', 'HolidaySetId', 'Name', 'id', 'Address2', 'PostalCode', 'IsDefault', 'State')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address2', 'State', 'IsDefault', 'HolidaySetId', 'id', 'AdditionalAddressInfo', 'TimeZone', 'PostalCode', 'Name', 'Country', 'City', 'Address1')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Country', 'Address1', 'TimeZone', 'City', 'AdditionalAddressInfo', 'HolidaySetId', 'Name', 'id', 'Address2', 'PostalCode', 'IsDefault', 'State')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone', 'HolidaySetId')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone', 'HolidaySetId')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone', 'HolidaySetId')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone', 'HolidaySetId')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

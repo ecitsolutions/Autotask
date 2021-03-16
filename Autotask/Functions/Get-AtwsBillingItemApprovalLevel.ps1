@@ -72,7 +72,7 @@ New-AtwsBillingItemApprovalLevel
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -100,7 +100,7 @@ New-AtwsBillingItemApprovalLevel
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ApprovalDateTime,
 
 # Approval Level
@@ -108,7 +108,7 @@ New-AtwsBillingItemApprovalLevel
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ApprovalLevel,
 
 # Approval Resource ID
@@ -116,7 +116,7 @@ New-AtwsBillingItemApprovalLevel
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ApprovalResourceID,
 
 # ID
@@ -124,7 +124,7 @@ New-AtwsBillingItemApprovalLevel
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $id,
 
 # Time Entry ID
@@ -132,93 +132,93 @@ New-AtwsBillingItemApprovalLevel
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TimeEntryID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApprovalDateTime', 'id', 'TimeEntryID', 'ApprovalLevel', 'ApprovalResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'ApprovalDateTime', 'ApprovalResourceID', 'ApprovalLevel', 'TimeEntryID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApprovalDateTime', 'id', 'TimeEntryID', 'ApprovalLevel', 'ApprovalResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'ApprovalDateTime', 'ApprovalResourceID', 'ApprovalLevel', 'TimeEntryID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApprovalDateTime', 'id', 'TimeEntryID', 'ApprovalLevel', 'ApprovalResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'ApprovalDateTime', 'ApprovalResourceID', 'ApprovalLevel', 'TimeEntryID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TimeEntryID', 'ApprovalResourceID', 'ApprovalDateTime', 'ApprovalLevel')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TimeEntryID', 'ApprovalResourceID', 'ApprovalDateTime', 'ApprovalLevel')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TimeEntryID', 'ApprovalResourceID', 'ApprovalDateTime', 'ApprovalLevel')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TimeEntryID', 'ApprovalResourceID', 'ApprovalDateTime', 'ApprovalLevel')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ApprovalDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

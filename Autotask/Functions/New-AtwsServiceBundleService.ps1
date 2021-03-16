@@ -58,7 +58,7 @@ Get-AtwsServiceBundleService
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ServiceBundleService]]
+    [Autotask.ServiceBundleService[]]
     $InputObject,
 
 # Service Bundle ID

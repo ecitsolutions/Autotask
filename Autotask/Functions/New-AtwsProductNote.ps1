@@ -59,7 +59,7 @@ Set-AtwsProductNote
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ProductNote]]
+    [Autotask.ProductNote[]]
     $InputObject,
 
 # Create Date Time

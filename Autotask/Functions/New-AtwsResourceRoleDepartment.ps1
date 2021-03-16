@@ -62,7 +62,7 @@ Set-AtwsResourceRoleDepartment
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ResourceRoleDepartment]]
+    [Autotask.ResourceRoleDepartment[]]
     $InputObject,
 
 # Active

@@ -60,7 +60,7 @@ Set-AtwsTicket
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Ticket]]
+    [Autotask.Ticket[]]
     $InputObject,
 
 # User defined fields already setup i Autotask
@@ -69,7 +69,7 @@ Set-AtwsTicket
     )]
     [Alias('UDF')]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.UserDefinedField]]
+    [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
 # Client

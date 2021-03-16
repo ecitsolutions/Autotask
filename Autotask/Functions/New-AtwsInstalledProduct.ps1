@@ -59,7 +59,7 @@ Set-AtwsInstalledProduct
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.InstalledProduct]]
+    [Autotask.InstalledProduct[]]
     $InputObject,
 
 # User defined fields already setup i Autotask
@@ -68,7 +68,7 @@ Set-AtwsInstalledProduct
     )]
     [Alias('UDF')]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.UserDefinedField]]
+    [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
 # Client

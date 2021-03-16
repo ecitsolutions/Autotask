@@ -62,7 +62,7 @@ Set-AtwsContractMilestone
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractMilestone]]
+    [Autotask.ContractMilestone[]]
     $InputObject,
 
 # Allocation Code ID

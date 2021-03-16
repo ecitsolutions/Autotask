@@ -63,7 +63,7 @@ Set-AtwsContract
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Contract]]
+    [Autotask.Contract[]]
     $InputObject,
 
 # User defined fields already setup i Autotask
@@ -72,7 +72,7 @@ Set-AtwsContract
     )]
     [Alias('UDF')]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.UserDefinedField]]
+    [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
 # Client

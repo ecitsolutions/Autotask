@@ -87,7 +87,7 @@ Set-AtwsCurrency
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -115,7 +115,7 @@ Set-AtwsCurrency
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Currency Negative Format
@@ -124,7 +124,7 @@ Set-AtwsCurrency
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,10)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CurrencyNegativeFormat,
 
 # Currency Positive Format
@@ -133,7 +133,7 @@ Set-AtwsCurrency
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,10)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CurrencyPositiveFormat,
 
 # Currency Description
@@ -142,7 +142,7 @@ Set-AtwsCurrency
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Display Symbol
@@ -162,7 +162,7 @@ Set-AtwsCurrency
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DisplaySymbol,
 
 # Exchange Rate
@@ -170,7 +170,7 @@ Set-AtwsCurrency
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $ExchangeRate,
 
 # Currency ID
@@ -178,7 +178,7 @@ Set-AtwsCurrency
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Internal Currency
@@ -186,14 +186,14 @@ Set-AtwsCurrency
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsInternalCurrency,
 
 # Last Modified Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedDateTime,
 
 # Currency Name
@@ -202,105 +202,105 @@ Set-AtwsCurrency
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,3)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Update Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $UpdateResourceId,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'CurrencyNegativeFormat', 'UpdateResourceId', 'IsInternalCurrency', 'Description', 'LastModifiedDateTime', 'Active', 'id', 'CurrencyPositiveFormat', 'DisplaySymbol', 'ExchangeRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UpdateResourceId', 'CurrencyPositiveFormat', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Name', 'CurrencyNegativeFormat', 'id', 'LastModifiedDateTime', 'Description', 'DisplaySymbol')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'CurrencyNegativeFormat', 'UpdateResourceId', 'IsInternalCurrency', 'Description', 'LastModifiedDateTime', 'Active', 'id', 'CurrencyPositiveFormat', 'DisplaySymbol', 'ExchangeRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UpdateResourceId', 'CurrencyPositiveFormat', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Name', 'CurrencyNegativeFormat', 'id', 'LastModifiedDateTime', 'Description', 'DisplaySymbol')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'CurrencyNegativeFormat', 'UpdateResourceId', 'IsInternalCurrency', 'Description', 'LastModifiedDateTime', 'Active', 'id', 'CurrencyPositiveFormat', 'DisplaySymbol', 'ExchangeRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UpdateResourceId', 'CurrencyPositiveFormat', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Name', 'CurrencyNegativeFormat', 'id', 'LastModifiedDateTime', 'Description', 'DisplaySymbol')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'DisplaySymbol', 'ExchangeRate', 'LastModifiedDateTime', 'UpdateResourceId', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'DisplaySymbol', 'ExchangeRate', 'LastModifiedDateTime', 'UpdateResourceId', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'DisplaySymbol', 'ExchangeRate', 'LastModifiedDateTime', 'UpdateResourceId', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'DisplaySymbol', 'ExchangeRate', 'LastModifiedDateTime', 'UpdateResourceId', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('LastModifiedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

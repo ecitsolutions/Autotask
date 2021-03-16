@@ -62,7 +62,7 @@ Set-AtwsAccountWebhookField
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.AccountWebhookField]]
+    [Autotask.AccountWebhookField[]]
     $InputObject,
 
 # Field ID

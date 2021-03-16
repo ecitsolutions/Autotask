@@ -74,7 +74,7 @@ Set-AtwsContractRate
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -102,7 +102,7 @@ Set-AtwsContractRate
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ContractHourlyRate,
 
 # Contract ID
@@ -110,7 +110,7 @@ Set-AtwsContractRate
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # id
@@ -118,14 +118,14 @@ Set-AtwsContractRate
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Internal Currency Rate Offset
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InternalCurrencyContractHourlyRate,
 
 # Role ID
@@ -133,92 +133,92 @@ Set-AtwsContractRate
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $RoleID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractHourlyRate', 'ContractID', 'InternalCurrencyContractHourlyRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ContractHourlyRate', 'id', 'ContractID', 'RoleID', 'InternalCurrencyContractHourlyRate')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractHourlyRate', 'ContractID', 'InternalCurrencyContractHourlyRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ContractHourlyRate', 'id', 'ContractID', 'RoleID', 'InternalCurrencyContractHourlyRate')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'ContractHourlyRate', 'ContractID', 'InternalCurrencyContractHourlyRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ContractHourlyRate', 'id', 'ContractID', 'RoleID', 'InternalCurrencyContractHourlyRate')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'RoleID', 'ContractID', 'ContractHourlyRate', 'InternalCurrencyContractHourlyRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'RoleID', 'ContractID', 'ContractHourlyRate', 'InternalCurrencyContractHourlyRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'RoleID', 'ContractID', 'ContractHourlyRate', 'InternalCurrencyContractHourlyRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'RoleID', 'ContractID', 'ContractHourlyRate', 'InternalCurrencyContractHourlyRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

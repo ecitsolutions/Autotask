@@ -58,7 +58,7 @@ Get-AtwsContractExclusionAllocationCode
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractExclusionAllocationCode]]
+    [Autotask.ContractExclusionAllocationCode[]]
     $InputObject,
 
 # Allocation Code ID

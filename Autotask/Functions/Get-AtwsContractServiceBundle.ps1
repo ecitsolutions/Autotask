@@ -74,7 +74,7 @@ Set-AtwsContractServiceBundle
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -101,7 +101,7 @@ Set-AtwsContractServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $AdjustedPrice,
 
 # Contract ID
@@ -109,7 +109,7 @@ Set-AtwsContractServiceBundle
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Contract Service Bundle ID
@@ -117,21 +117,21 @@ Set-AtwsContractServiceBundle
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Internal Currency Adjusted Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InternalCurrencyAdjustedPrice,
 
 # Internal Currency Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InternalCurrencyUnitPrice,
 
 # Internal Description
@@ -139,7 +139,7 @@ Set-AtwsContractServiceBundle
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $InternalDescription,
 
 # Invoice Description
@@ -147,14 +147,14 @@ Set-AtwsContractServiceBundle
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,1000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $InvoiceDescription,
 
 # Quote Item Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $QuoteItemID,
 
 # Service Bundle ID
@@ -162,104 +162,104 @@ Set-AtwsContractServiceBundle
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ServiceBundleID,
 
 # Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $UnitPrice,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'ContractID', 'id', 'AdjustedPrice', 'UnitPrice', 'InternalCurrencyAdjustedPrice', 'ServiceBundleID', 'InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('InvoiceDescription', 'UnitPrice', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'AdjustedPrice', 'ContractID', 'ServiceBundleID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'ContractID', 'id', 'AdjustedPrice', 'UnitPrice', 'InternalCurrencyAdjustedPrice', 'ServiceBundleID', 'InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('InvoiceDescription', 'UnitPrice', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'AdjustedPrice', 'ContractID', 'ServiceBundleID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'ContractID', 'id', 'AdjustedPrice', 'UnitPrice', 'InternalCurrencyAdjustedPrice', 'ServiceBundleID', 'InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('InvoiceDescription', 'UnitPrice', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'AdjustedPrice', 'ContractID', 'ServiceBundleID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'UnitPrice', 'AdjustedPrice', 'InvoiceDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'UnitPrice', 'AdjustedPrice', 'InvoiceDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'UnitPrice', 'AdjustedPrice', 'InvoiceDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'UnitPrice', 'AdjustedPrice', 'InvoiceDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDescription', 'InternalDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDescription', 'InternalDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDescription', 'InternalDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDescription', 'InternalDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDescription', 'InternalDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

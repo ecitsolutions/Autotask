@@ -58,7 +58,7 @@ Set-AtwsResourceRoleQueue
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ResourceRoleQueue]]
+    [Autotask.ResourceRoleQueue[]]
     $InputObject,
 
 # Active

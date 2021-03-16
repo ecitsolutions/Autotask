@@ -85,7 +85,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -113,7 +113,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ActivityDateTime,
 
 # Created By Resource ID
@@ -121,7 +121,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatedByResourceID,
 
 # Deleted By Resource ID
@@ -129,7 +129,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $DeletedByResourceID,
 
 # Deleted Date/Time
@@ -137,7 +137,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $DeletedDateTime,
 
 # End Date/Time
@@ -145,7 +145,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDateTime,
 
 # Hours Worked
@@ -153,7 +153,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $HoursWorked,
 
 # Deleted Ticket Activity Log ID
@@ -161,7 +161,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Note Or Attachment Title
@@ -170,7 +170,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NoteOrAttachmentTitle,
 
 # Start Date/Time
@@ -178,7 +178,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDateTime,
 
 # Ticket ID
@@ -186,7 +186,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TicketID,
 
 # Ticket Number
@@ -195,7 +195,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TicketNumber,
 
 # Type ID
@@ -215,98 +215,98 @@ An example of a more complex query. This command returns any DeletedTicketActivi
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TypeID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'DeletedByResourceID', 'TypeID', 'EndDateTime', 'DeletedDateTime', 'id', 'ActivityDateTime', 'HoursWorked', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'TicketID', 'TicketNumber')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('DeletedByResourceID', 'HoursWorked', 'ActivityDateTime', 'EndDateTime', 'StartDateTime', 'TicketNumber', 'CreatedByResourceID', 'DeletedDateTime', 'TicketID', 'id', 'NoteOrAttachmentTitle', 'TypeID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'DeletedByResourceID', 'TypeID', 'EndDateTime', 'DeletedDateTime', 'id', 'ActivityDateTime', 'HoursWorked', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'TicketID', 'TicketNumber')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('DeletedByResourceID', 'HoursWorked', 'ActivityDateTime', 'EndDateTime', 'StartDateTime', 'TicketNumber', 'CreatedByResourceID', 'DeletedDateTime', 'TicketID', 'id', 'NoteOrAttachmentTitle', 'TypeID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'DeletedByResourceID', 'TypeID', 'EndDateTime', 'DeletedDateTime', 'id', 'ActivityDateTime', 'HoursWorked', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'TicketID', 'TicketNumber')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('DeletedByResourceID', 'HoursWorked', 'ActivityDateTime', 'EndDateTime', 'StartDateTime', 'TicketNumber', 'CreatedByResourceID', 'DeletedDateTime', 'TicketID', 'id', 'NoteOrAttachmentTitle', 'TypeID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TypeID', 'TicketID', 'TicketNumber', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'ActivityDateTime', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'DeletedByResourceID', 'DeletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TypeID', 'TicketID', 'TicketNumber', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'ActivityDateTime', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'DeletedByResourceID', 'DeletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TypeID', 'TicketID', 'TicketNumber', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'ActivityDateTime', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'DeletedByResourceID', 'DeletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TypeID', 'TicketID', 'TicketNumber', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'ActivityDateTime', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'DeletedByResourceID', 'DeletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TicketNumber', 'NoteOrAttachmentTitle')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TicketNumber', 'NoteOrAttachmentTitle')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TicketNumber', 'NoteOrAttachmentTitle')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TicketNumber', 'NoteOrAttachmentTitle')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TicketNumber', 'NoteOrAttachmentTitle')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ActivityDateTime', 'StartDateTime', 'EndDateTime', 'DeletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

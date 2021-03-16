@@ -70,7 +70,7 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -97,7 +97,7 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AllocationCodeID,
 
 # shipping_type_description
@@ -105,7 +105,7 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # shipping_type_id
@@ -113,14 +113,14 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsActive,
 
 # shipping_type_name
@@ -128,97 +128,97 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'id', 'Name', 'Description', 'AllocationCodeID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Description', 'id', 'AllocationCodeID', 'Name', 'IsActive')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'id', 'Name', 'Description', 'AllocationCodeID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Description', 'id', 'AllocationCodeID', 'Name', 'IsActive')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'id', 'Name', 'Description', 'AllocationCodeID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Description', 'id', 'AllocationCodeID', 'Name', 'IsActive')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'AllocationCodeID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'AllocationCodeID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'AllocationCodeID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'AllocationCodeID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

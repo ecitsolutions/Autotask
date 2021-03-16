@@ -74,7 +74,7 @@ Set-AtwsPhase
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -101,14 +101,14 @@ Set-AtwsPhase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Phase Creator
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Phase Description
@@ -116,21 +116,21 @@ Set-AtwsPhase
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Phase End Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $DueDate,
 
 # Phase Estimated Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $EstimatedHours,
 
 # Phase External ID
@@ -138,7 +138,7 @@ Set-AtwsPhase
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExternalID,
 
 # Phase ID
@@ -146,21 +146,21 @@ Set-AtwsPhase
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Phase Last Activity Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastActivityDateTime,
 
 # Parent Phase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ParentPhaseID,
 
 # Phase Number
@@ -168,7 +168,7 @@ Set-AtwsPhase
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PhaseNumber,
 
 # Project
@@ -176,21 +176,21 @@ Set-AtwsPhase
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProjectID,
 
 # Is Scheduled
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Scheduled,
 
 # Phase Start Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDate,
 
 # Phase Title
@@ -199,98 +199,98 @@ Set-AtwsPhase
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'EstimatedHours', 'ExternalID', 'ProjectID', 'LastActivityDateTime', 'CreatorResourceID', 'DueDate', 'Title', 'Scheduled', 'id', 'CreateDate', 'PhaseNumber', 'ParentPhaseID', 'StartDate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ProjectID', 'Description', 'ExternalID', 'PhaseNumber', 'Title', 'DueDate', 'LastActivityDateTime', 'ParentPhaseID', 'id', 'Scheduled', 'CreatorResourceID', 'EstimatedHours', 'CreateDate', 'StartDate')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'EstimatedHours', 'ExternalID', 'ProjectID', 'LastActivityDateTime', 'CreatorResourceID', 'DueDate', 'Title', 'Scheduled', 'id', 'CreateDate', 'PhaseNumber', 'ParentPhaseID', 'StartDate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ProjectID', 'Description', 'ExternalID', 'PhaseNumber', 'Title', 'DueDate', 'LastActivityDateTime', 'ParentPhaseID', 'id', 'Scheduled', 'CreatorResourceID', 'EstimatedHours', 'CreateDate', 'StartDate')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'EstimatedHours', 'ExternalID', 'ProjectID', 'LastActivityDateTime', 'CreatorResourceID', 'DueDate', 'Title', 'Scheduled', 'id', 'CreateDate', 'PhaseNumber', 'ParentPhaseID', 'StartDate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ProjectID', 'Description', 'ExternalID', 'PhaseNumber', 'Title', 'DueDate', 'LastActivityDateTime', 'ParentPhaseID', 'id', 'Scheduled', 'CreatorResourceID', 'EstimatedHours', 'CreateDate', 'StartDate')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description', 'PhaseNumber', 'ExternalID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description', 'PhaseNumber', 'ExternalID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description', 'PhaseNumber', 'ExternalID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description', 'PhaseNumber', 'ExternalID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description', 'PhaseNumber', 'ExternalID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('StartDate', 'DueDate', 'CreateDate', 'LastActivityDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

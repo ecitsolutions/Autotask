@@ -60,7 +60,7 @@ Set-AtwsService
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Service]]
+    [Autotask.Service[]]
     $InputObject,
 
 # allocation_code_id

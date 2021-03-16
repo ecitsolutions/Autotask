@@ -58,7 +58,7 @@ Get-AtwsTicketAdditionalContact
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TicketAdditionalContact]]
+    [Autotask.TicketAdditionalContact[]]
     $InputObject,
 
 # Contact ID

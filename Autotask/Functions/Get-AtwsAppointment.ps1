@@ -76,7 +76,7 @@ Set-AtwsAppointment
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -103,14 +103,14 @@ Set-AtwsAppointment
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Created By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Description
@@ -118,7 +118,7 @@ Set-AtwsAppointment
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # End Date
@@ -126,7 +126,7 @@ Set-AtwsAppointment
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDateTime,
 
 # Appointment Id
@@ -134,7 +134,7 @@ Set-AtwsAppointment
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Resource
@@ -142,7 +142,7 @@ Set-AtwsAppointment
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ResourceID,
 
 # Start Date
@@ -150,7 +150,7 @@ Set-AtwsAppointment
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDateTime,
 
 # Appointment Title
@@ -159,105 +159,105 @@ Set-AtwsAppointment
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,256)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
 # Update Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $UpdateDateTime,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'Description', 'ResourceID', 'UpdateDateTime', 'id', 'CreatorResourceID', 'EndDateTime', 'CreateDateTime', 'Title')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('CreateDateTime', 'EndDateTime', 'CreatorResourceID', 'ResourceID', 'UpdateDateTime', 'StartDateTime', 'Title', 'id', 'Description')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'Description', 'ResourceID', 'UpdateDateTime', 'id', 'CreatorResourceID', 'EndDateTime', 'CreateDateTime', 'Title')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('CreateDateTime', 'EndDateTime', 'CreatorResourceID', 'ResourceID', 'UpdateDateTime', 'StartDateTime', 'Title', 'id', 'Description')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'Description', 'ResourceID', 'UpdateDateTime', 'id', 'CreatorResourceID', 'EndDateTime', 'CreateDateTime', 'Title')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('CreateDateTime', 'EndDateTime', 'CreatorResourceID', 'ResourceID', 'UpdateDateTime', 'StartDateTime', 'Title', 'id', 'Description')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'Title', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'CreateDateTime', 'UpdateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'Title', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'CreateDateTime', 'UpdateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'Title', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'CreateDateTime', 'UpdateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'Title', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'CreateDateTime', 'UpdateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('StartDateTime', 'EndDateTime', 'CreateDateTime', 'UpdateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

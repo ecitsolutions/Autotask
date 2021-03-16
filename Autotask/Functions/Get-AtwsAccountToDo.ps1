@@ -91,7 +91,7 @@ Set-AtwsAccountToDo
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -119,7 +119,7 @@ Set-AtwsAccountToDo
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $AccountID,
 
 # Action Type
@@ -139,7 +139,7 @@ Set-AtwsAccountToDo
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ActionType,
 
 # Description
@@ -147,7 +147,7 @@ Set-AtwsAccountToDo
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,32000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ActivityDescription,
 
 # Assigned To Resource
@@ -155,42 +155,42 @@ Set-AtwsAccountToDo
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $AssignedToResourceID,
 
 # Completed Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CompletedDate,
 
 # Contact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ContactID,
 
 # Contract
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ContractID,
 
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Creator Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $CreatorResourceID,
 
 # End Date Time
@@ -198,7 +198,7 @@ Set-AtwsAccountToDo
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDateTime,
 
 # Client To Do ID
@@ -206,28 +206,28 @@ Set-AtwsAccountToDo
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Last Modified Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedDate,
 
 # Opportunity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $OpportunityID,
 
 # Start Date Time
@@ -235,105 +235,105 @@ Set-AtwsAccountToDo
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDateTime,
 
 # Ticket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $TicketID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ActionType', 'ActivityDescription', 'CreatorResourceID', 'StartDateTime', 'OpportunityID', 'CompletedDate', 'AccountID', 'id', 'CreateDateTime', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'AssignedToResourceID', 'ContactID', 'EndDateTime', 'ContractID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'CompletedDate', 'ContactID', 'ActivityDescription', 'TicketID', 'ContractID', 'AssignedToResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'id', 'AccountID', 'CreatorResourceID', 'ActionType', 'StartDateTime')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ActionType', 'ActivityDescription', 'CreatorResourceID', 'StartDateTime', 'OpportunityID', 'CompletedDate', 'AccountID', 'id', 'CreateDateTime', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'AssignedToResourceID', 'ContactID', 'EndDateTime', 'ContractID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'CompletedDate', 'ContactID', 'ActivityDescription', 'TicketID', 'ContractID', 'AssignedToResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'id', 'AccountID', 'CreatorResourceID', 'ActionType', 'StartDateTime')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ActionType', 'ActivityDescription', 'CreatorResourceID', 'StartDateTime', 'OpportunityID', 'CompletedDate', 'AccountID', 'id', 'CreateDateTime', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'AssignedToResourceID', 'ContactID', 'EndDateTime', 'ContractID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'CompletedDate', 'ContactID', 'ActivityDescription', 'TicketID', 'ContractID', 'AssignedToResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'id', 'AccountID', 'CreatorResourceID', 'ActionType', 'StartDateTime')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ActivityDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ActivityDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ActivityDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ActivityDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ActivityDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('StartDateTime', 'EndDateTime', 'CompletedDate', 'CreateDateTime', 'LastModifiedDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

@@ -58,7 +58,7 @@ Get-AtwsInventoryTransfer
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.InventoryTransfer]]
+    [Autotask.InventoryTransfer[]]
     $InputObject,
 
 # Transfer From Inventory Location ID

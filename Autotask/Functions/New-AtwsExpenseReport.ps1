@@ -59,7 +59,7 @@ Set-AtwsExpenseReport
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ExpenseReport]]
+    [Autotask.ExpenseReport[]]
     $InputObject,
 
 # Amount Due

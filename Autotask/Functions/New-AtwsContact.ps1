@@ -62,7 +62,7 @@ Set-AtwsContact
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Contact]]
+    [Autotask.Contact[]]
     $InputObject,
 
 # User defined fields already setup i Autotask
@@ -71,7 +71,7 @@ Set-AtwsContact
     )]
     [Alias('UDF')]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.UserDefinedField]]
+    [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
 # Client

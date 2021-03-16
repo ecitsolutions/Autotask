@@ -62,7 +62,7 @@ Set-AtwsChangeOrderCost
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ChangeOrderCost]]
+    [Autotask.ChangeOrderCost[]]
     $InputObject,
 
 # Allocation Code ID

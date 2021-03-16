@@ -60,7 +60,7 @@ Set-AtwsTax
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Tax]]
+    [Autotask.Tax[]]
     $InputObject,
 
 # Compounded

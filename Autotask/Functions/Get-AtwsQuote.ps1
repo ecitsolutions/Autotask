@@ -95,7 +95,7 @@ Set-AtwsQuote
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -122,7 +122,7 @@ Set-AtwsQuote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Approval Status
@@ -141,21 +141,21 @@ Set-AtwsQuote
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ApprovalStatus,
 
 # Approval Status Changed By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ApprovalStatusChangedByResourceID,
 
 # Approval Status Changed Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ApprovalStatusChangedDate,
 
 # bill_to_location_id
@@ -163,7 +163,7 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BillToLocationID,
 
 # quote_comment
@@ -171,28 +171,28 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,1000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Comment,
 
 # contact_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContactID,
 
 # create_date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # create_by_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # quote_description
@@ -200,7 +200,7 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # effective_date
@@ -208,14 +208,14 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EffectiveDate,
 
 # equote_active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $eQuoteActive,
 
 # expiration_date
@@ -223,7 +223,7 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ExpirationDate,
 
 # Ext Approval Contact Response
@@ -242,14 +242,14 @@ Set-AtwsQuote
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExtApprovalContactResponse,
 
 # Ext Approval Response Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ExtApprovalResponseDate,
 
 # Ext Approval Response Signature
@@ -257,7 +257,7 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,250)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExtApprovalResponseSignature,
 
 # external_quote_number
@@ -265,7 +265,7 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExternalQuoteNumber,
 
 # Group By ID
@@ -284,7 +284,7 @@ Set-AtwsQuote
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GroupByID,
 
 # quote_id
@@ -292,28 +292,28 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Last Activity Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastActivityDate,
 
 # Last Modified By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LastModifiedBy,
 
 # quote_name
@@ -322,7 +322,7 @@ Set-AtwsQuote
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # opportunity_id
@@ -330,7 +330,7 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $OpportunityID,
 
 # payment_term_id
@@ -349,7 +349,7 @@ Set-AtwsQuote
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PaymentTerm,
 
 # payment_type_id
@@ -368,21 +368,21 @@ Set-AtwsQuote
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PaymentType,
 
 # is_primary_quote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $PrimaryQuote,
 
 # project_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProposalProjectID,
 
 # purchase_order_number
@@ -390,21 +390,21 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderNumber,
 
 # Quote Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuoteNumber,
 
 # Quote Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuoteTemplateID,
 
 # shipping_type_id
@@ -423,7 +423,7 @@ Set-AtwsQuote
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShippingType,
 
 # ship_to_location_id
@@ -431,7 +431,7 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ShipToLocationID,
 
 # sold_to_location_id
@@ -439,7 +439,7 @@ Set-AtwsQuote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $SoldToLocationID,
 
 # tax_region_id
@@ -458,98 +458,98 @@ Set-AtwsQuote
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TaxGroup,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentTerm', 'PurchaseOrderNumber', 'CreatorResourceID', 'ShowEachTaxInGroup', 'EffectiveDate', 'ExternalQuoteNumber', 'id', 'QuoteNumber', 'ContactID', 'ShippingType', 'CreateDate', 'ApprovalStatus', 'PrimaryQuote', 'LastModifiedBy', 'PaymentType', 'ImpersonatorCreatorResourceID', 'TaxGroup', 'ShowTaxCategory', 'BillToLocationID', 'ExtApprovalResponseSignature', 'eQuoteActive', 'ExtApprovalContactResponse', 'ShipToLocationID', 'ApprovalStatusChangedDate', 'OpportunityID', 'AccountID', 'ExtApprovalResponseDate', 'Name', 'GroupByID', 'QuoteTemplateID', 'Comment', 'SoldToLocationID', 'CalculateTaxSeparately', 'LastActivityDate', 'Description', 'ProposalProjectID', 'ApprovalStatusChangedByResourceID', 'ExpirationDate', 'GroupByProductCategory')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EffectiveDate', 'PrimaryQuote', 'id', 'ApprovalStatus', 'CreateDate', 'BillToLocationID', 'OpportunityID', 'ShowEachTaxInGroup', 'Description', 'SoldToLocationID', 'ProposalProjectID', 'ApprovalStatusChangedByResourceID', 'PurchaseOrderNumber', 'GroupByID', 'GroupByProductCategory', 'QuoteTemplateID', 'ShipToLocationID', 'ContactID', 'ImpersonatorCreatorResourceID', 'Comment', 'PaymentType', 'TaxGroup', 'ExpirationDate', 'CreatorResourceID', 'CalculateTaxSeparately', 'PaymentTerm', 'LastActivityDate', 'AccountID', 'eQuoteActive', 'QuoteNumber', 'ExtApprovalResponseSignature', 'ExtApprovalContactResponse', 'ExternalQuoteNumber', 'ApprovalStatusChangedDate', 'Name', 'ExtApprovalResponseDate', 'ShippingType', 'LastModifiedBy', 'ShowTaxCategory')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentTerm', 'PurchaseOrderNumber', 'CreatorResourceID', 'ShowEachTaxInGroup', 'EffectiveDate', 'ExternalQuoteNumber', 'id', 'QuoteNumber', 'ContactID', 'ShippingType', 'CreateDate', 'ApprovalStatus', 'PrimaryQuote', 'LastModifiedBy', 'PaymentType', 'ImpersonatorCreatorResourceID', 'TaxGroup', 'ShowTaxCategory', 'BillToLocationID', 'ExtApprovalResponseSignature', 'eQuoteActive', 'ExtApprovalContactResponse', 'ShipToLocationID', 'ApprovalStatusChangedDate', 'OpportunityID', 'AccountID', 'ExtApprovalResponseDate', 'Name', 'GroupByID', 'QuoteTemplateID', 'Comment', 'SoldToLocationID', 'CalculateTaxSeparately', 'LastActivityDate', 'Description', 'ProposalProjectID', 'ApprovalStatusChangedByResourceID', 'ExpirationDate', 'GroupByProductCategory')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EffectiveDate', 'PrimaryQuote', 'id', 'ApprovalStatus', 'CreateDate', 'BillToLocationID', 'OpportunityID', 'ShowEachTaxInGroup', 'Description', 'SoldToLocationID', 'ProposalProjectID', 'ApprovalStatusChangedByResourceID', 'PurchaseOrderNumber', 'GroupByID', 'GroupByProductCategory', 'QuoteTemplateID', 'ShipToLocationID', 'ContactID', 'ImpersonatorCreatorResourceID', 'Comment', 'PaymentType', 'TaxGroup', 'ExpirationDate', 'CreatorResourceID', 'CalculateTaxSeparately', 'PaymentTerm', 'LastActivityDate', 'AccountID', 'eQuoteActive', 'QuoteNumber', 'ExtApprovalResponseSignature', 'ExtApprovalContactResponse', 'ExternalQuoteNumber', 'ApprovalStatusChangedDate', 'Name', 'ExtApprovalResponseDate', 'ShippingType', 'LastModifiedBy', 'ShowTaxCategory')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentTerm', 'PurchaseOrderNumber', 'CreatorResourceID', 'ShowEachTaxInGroup', 'EffectiveDate', 'ExternalQuoteNumber', 'id', 'QuoteNumber', 'ContactID', 'ShippingType', 'CreateDate', 'ApprovalStatus', 'PrimaryQuote', 'LastModifiedBy', 'PaymentType', 'ImpersonatorCreatorResourceID', 'TaxGroup', 'ShowTaxCategory', 'BillToLocationID', 'ExtApprovalResponseSignature', 'eQuoteActive', 'ExtApprovalContactResponse', 'ShipToLocationID', 'ApprovalStatusChangedDate', 'OpportunityID', 'AccountID', 'ExtApprovalResponseDate', 'Name', 'GroupByID', 'QuoteTemplateID', 'Comment', 'SoldToLocationID', 'CalculateTaxSeparately', 'LastActivityDate', 'Description', 'ProposalProjectID', 'ApprovalStatusChangedByResourceID', 'ExpirationDate', 'GroupByProductCategory')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EffectiveDate', 'PrimaryQuote', 'id', 'ApprovalStatus', 'CreateDate', 'BillToLocationID', 'OpportunityID', 'ShowEachTaxInGroup', 'Description', 'SoldToLocationID', 'ProposalProjectID', 'ApprovalStatusChangedByResourceID', 'PurchaseOrderNumber', 'GroupByID', 'GroupByProductCategory', 'QuoteTemplateID', 'ShipToLocationID', 'ContactID', 'ImpersonatorCreatorResourceID', 'Comment', 'PaymentType', 'TaxGroup', 'ExpirationDate', 'CreatorResourceID', 'CalculateTaxSeparately', 'PaymentTerm', 'LastActivityDate', 'AccountID', 'eQuoteActive', 'QuoteNumber', 'ExtApprovalResponseSignature', 'ExtApprovalContactResponse', 'ExternalQuoteNumber', 'ApprovalStatusChangedDate', 'Name', 'ExtApprovalResponseDate', 'ShippingType', 'LastModifiedBy', 'ShowTaxCategory')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('OpportunityID', 'id', 'Name', 'EffectiveDate', 'ExpirationDate', 'CreateDate', 'CreatorResourceID', 'ContactID', 'TaxGroup', 'ProposalProjectID', 'BillToLocationID', 'ShipToLocationID', 'SoldToLocationID', 'ShippingType', 'PaymentType', 'PaymentTerm', 'ExternalQuoteNumber', 'PurchaseOrderNumber', 'Comment', 'Description', 'AccountID', 'LastActivityDate', 'LastModifiedBy', 'QuoteTemplateID', 'GroupByID', 'QuoteNumber', 'ExtApprovalContactResponse', 'ExtApprovalResponseSignature', 'ExtApprovalResponseDate', 'ApprovalStatus', 'ApprovalStatusChangedDate', 'ApprovalStatusChangedByResourceID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('OpportunityID', 'id', 'Name', 'EffectiveDate', 'ExpirationDate', 'CreateDate', 'CreatorResourceID', 'ContactID', 'TaxGroup', 'ProposalProjectID', 'BillToLocationID', 'ShipToLocationID', 'SoldToLocationID', 'ShippingType', 'PaymentType', 'PaymentTerm', 'ExternalQuoteNumber', 'PurchaseOrderNumber', 'Comment', 'Description', 'AccountID', 'LastActivityDate', 'LastModifiedBy', 'QuoteTemplateID', 'GroupByID', 'QuoteNumber', 'ExtApprovalContactResponse', 'ExtApprovalResponseSignature', 'ExtApprovalResponseDate', 'ApprovalStatus', 'ApprovalStatusChangedDate', 'ApprovalStatusChangedByResourceID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('OpportunityID', 'id', 'Name', 'EffectiveDate', 'ExpirationDate', 'CreateDate', 'CreatorResourceID', 'ContactID', 'TaxGroup', 'ProposalProjectID', 'BillToLocationID', 'ShipToLocationID', 'SoldToLocationID', 'ShippingType', 'PaymentType', 'PaymentTerm', 'ExternalQuoteNumber', 'PurchaseOrderNumber', 'Comment', 'Description', 'AccountID', 'LastActivityDate', 'LastModifiedBy', 'QuoteTemplateID', 'GroupByID', 'QuoteNumber', 'ExtApprovalContactResponse', 'ExtApprovalResponseSignature', 'ExtApprovalResponseDate', 'ApprovalStatus', 'ApprovalStatusChangedDate', 'ApprovalStatusChangedByResourceID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('OpportunityID', 'id', 'Name', 'EffectiveDate', 'ExpirationDate', 'CreateDate', 'CreatorResourceID', 'ContactID', 'TaxGroup', 'ProposalProjectID', 'BillToLocationID', 'ShipToLocationID', 'SoldToLocationID', 'ShippingType', 'PaymentType', 'PaymentTerm', 'ExternalQuoteNumber', 'PurchaseOrderNumber', 'Comment', 'Description', 'AccountID', 'LastActivityDate', 'LastModifiedBy', 'QuoteTemplateID', 'GroupByID', 'QuoteNumber', 'ExtApprovalContactResponse', 'ExtApprovalResponseSignature', 'ExtApprovalResponseDate', 'ApprovalStatus', 'ApprovalStatusChangedDate', 'ApprovalStatusChangedByResourceID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'ExternalQuoteNumber', 'PurchaseOrderNumber', 'Comment', 'Description', 'ExtApprovalResponseSignature')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'ExternalQuoteNumber', 'PurchaseOrderNumber', 'Comment', 'Description', 'ExtApprovalResponseSignature')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'ExternalQuoteNumber', 'PurchaseOrderNumber', 'Comment', 'Description', 'ExtApprovalResponseSignature')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'ExternalQuoteNumber', 'PurchaseOrderNumber', 'Comment', 'Description', 'ExtApprovalResponseSignature')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'ExternalQuoteNumber', 'PurchaseOrderNumber', 'Comment', 'Description', 'ExtApprovalResponseSignature')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('EffectiveDate', 'ExpirationDate', 'CreateDate', 'LastActivityDate', 'ExtApprovalResponseDate', 'ApprovalStatusChangedDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

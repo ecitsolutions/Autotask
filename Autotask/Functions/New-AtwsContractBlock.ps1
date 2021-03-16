@@ -62,7 +62,7 @@ Set-AtwsContractBlock
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractBlock]]
+    [Autotask.ContractBlock[]]
     $InputObject,
 
 # Contract ID

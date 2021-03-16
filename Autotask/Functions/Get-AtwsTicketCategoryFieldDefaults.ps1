@@ -92,7 +92,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -119,7 +119,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Description
@@ -127,14 +127,14 @@ An example of a more complex query. This command returns any TicketCategoryField
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Estimated Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $EstimatedHours,
 
 # Ticket Category Field Defaults ID
@@ -142,7 +142,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Issue Type ID
@@ -161,7 +161,7 @@ An example of a more complex query. This command returns any TicketCategoryField
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IssueTypeID,
 
 # Priority
@@ -180,7 +180,7 @@ An example of a more complex query. This command returns any TicketCategoryField
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Priority,
 
 # Purchase Order Number
@@ -188,7 +188,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderNumber,
 
 # Queue ID
@@ -207,7 +207,7 @@ An example of a more complex query. This command returns any TicketCategoryField
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $QueueID,
 
 # Resolution
@@ -215,7 +215,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Resolution,
 
 # Service Level Agreement ID
@@ -234,7 +234,7 @@ An example of a more complex query. This command returns any TicketCategoryField
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ServiceLevelAgreementID,
 
 # Source ID
@@ -253,7 +253,7 @@ An example of a more complex query. This command returns any TicketCategoryField
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SourceID,
 
 # Status
@@ -272,7 +272,7 @@ An example of a more complex query. This command returns any TicketCategoryField
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
 # Sub-Issue Type ID
@@ -291,7 +291,7 @@ An example of a more complex query. This command returns any TicketCategoryField
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SubIssueTypeID,
 
 # Ticket Category ID
@@ -299,7 +299,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TicketCategoryID,
 
 # Ticket Type ID
@@ -318,7 +318,7 @@ An example of a more complex query. This command returns any TicketCategoryField
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TicketTypeID,
 
 # Title
@@ -326,104 +326,104 @@ An example of a more complex query. This command returns any TicketCategoryField
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
 # Work Type ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $WorkTypeID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EstimatedHours', 'QueueID', 'Status', 'SourceID', 'TicketTypeID', 'TicketCategoryID', 'Title', 'SubIssueTypeID', 'id', 'IssueTypeID', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'Priority', 'WorkTypeID', 'Description', 'ServiceLevelAgreementID', 'Resolution')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Priority', 'Resolution', 'TicketTypeID', 'Title', 'Status', 'PurchaseOrderNumber', 'EstimatedHours', 'ServiceLevelAgreementID', 'SubIssueTypeID', 'Description', 'TicketCategoryID', 'SourceID', 'id', 'IssueTypeID', 'WorkTypeID', 'QueueID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EstimatedHours', 'QueueID', 'Status', 'SourceID', 'TicketTypeID', 'TicketCategoryID', 'Title', 'SubIssueTypeID', 'id', 'IssueTypeID', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'Priority', 'WorkTypeID', 'Description', 'ServiceLevelAgreementID', 'Resolution')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Priority', 'Resolution', 'TicketTypeID', 'Title', 'Status', 'PurchaseOrderNumber', 'EstimatedHours', 'ServiceLevelAgreementID', 'SubIssueTypeID', 'Description', 'TicketCategoryID', 'SourceID', 'id', 'IssueTypeID', 'WorkTypeID', 'QueueID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EstimatedHours', 'QueueID', 'Status', 'SourceID', 'TicketTypeID', 'TicketCategoryID', 'Title', 'SubIssueTypeID', 'id', 'IssueTypeID', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'Priority', 'WorkTypeID', 'Description', 'ServiceLevelAgreementID', 'Resolution')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Priority', 'Resolution', 'TicketTypeID', 'Title', 'Status', 'PurchaseOrderNumber', 'EstimatedHours', 'ServiceLevelAgreementID', 'SubIssueTypeID', 'Description', 'TicketCategoryID', 'SourceID', 'id', 'IssueTypeID', 'WorkTypeID', 'QueueID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'IssueTypeID', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID', 'Status', 'Priority')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'IssueTypeID', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID', 'Status', 'Priority')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'IssueTypeID', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID', 'Status', 'Priority')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'IssueTypeID', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID', 'Status', 'Priority')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'PurchaseOrderNumber', 'Resolution', 'Title')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'PurchaseOrderNumber', 'Resolution', 'Title')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'PurchaseOrderNumber', 'Resolution', 'Title')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'PurchaseOrderNumber', 'Resolution', 'Title')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'PurchaseOrderNumber', 'Resolution', 'Title')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

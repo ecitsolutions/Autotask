@@ -92,7 +92,7 @@ Set-AtwsServiceBundle
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -120,21 +120,21 @@ Set-AtwsServiceBundle
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AllocationCodeID,
 
 # create_date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # create_by_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # service_bundle_description
@@ -142,7 +142,7 @@ Set-AtwsServiceBundle
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,200)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # service_bundle_id
@@ -150,7 +150,7 @@ Set-AtwsServiceBundle
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Invoice Description
@@ -158,21 +158,21 @@ Set-AtwsServiceBundle
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,1000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $InvoiceDescription,
 
 # active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsActive,
 
 # update_date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedDate,
 
 # service_bundle_name
@@ -181,14 +181,14 @@ Set-AtwsServiceBundle
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,150)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # discount_percent
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $PercentageDiscount,
 
 # period_type
@@ -208,7 +208,7 @@ Set-AtwsServiceBundle
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PeriodType,
 
 # Service Level Agreement Id
@@ -227,126 +227,126 @@ Set-AtwsServiceBundle
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ServiceLevelAgreementID,
 
 # Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $UnitCost,
 
 # discount_dollars
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $UnitDiscount,
 
 # unit_price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $UnitPrice,
 
 # update_by_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $UpdateResourceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeID', 'PercentageDiscount', 'InvoiceDescription', 'Name', 'CreateDate', 'CreatorResourceID', 'UpdateResourceID', 'LastModifiedDate', 'UnitCost', 'id', 'UnitDiscount', 'PeriodType', 'UnitPrice', 'Description', 'ServiceLevelAgreementID', 'IsActive')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UpdateResourceID', 'LastModifiedDate', 'Name', 'ServiceLevelAgreementID', 'IsActive', 'PeriodType', 'PercentageDiscount', 'Description', 'CreatorResourceID', 'UnitPrice', 'id', 'UnitCost', 'AllocationCodeID', 'CreateDate', 'UnitDiscount', 'InvoiceDescription')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeID', 'PercentageDiscount', 'InvoiceDescription', 'Name', 'CreateDate', 'CreatorResourceID', 'UpdateResourceID', 'LastModifiedDate', 'UnitCost', 'id', 'UnitDiscount', 'PeriodType', 'UnitPrice', 'Description', 'ServiceLevelAgreementID', 'IsActive')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UpdateResourceID', 'LastModifiedDate', 'Name', 'ServiceLevelAgreementID', 'IsActive', 'PeriodType', 'PercentageDiscount', 'Description', 'CreatorResourceID', 'UnitPrice', 'id', 'UnitCost', 'AllocationCodeID', 'CreateDate', 'UnitDiscount', 'InvoiceDescription')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeID', 'PercentageDiscount', 'InvoiceDescription', 'Name', 'CreateDate', 'CreatorResourceID', 'UpdateResourceID', 'LastModifiedDate', 'UnitCost', 'id', 'UnitDiscount', 'PeriodType', 'UnitPrice', 'Description', 'ServiceLevelAgreementID', 'IsActive')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UpdateResourceID', 'LastModifiedDate', 'Name', 'ServiceLevelAgreementID', 'IsActive', 'PeriodType', 'PercentageDiscount', 'Description', 'CreatorResourceID', 'UnitPrice', 'id', 'UnitCost', 'AllocationCodeID', 'CreateDate', 'UnitDiscount', 'InvoiceDescription')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'UnitPrice', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'AllocationCodeID', 'CreatorResourceID', 'UpdateResourceID', 'CreateDate', 'InvoiceDescription', 'LastModifiedDate', 'ServiceLevelAgreementID', 'UnitCost')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'UnitPrice', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'AllocationCodeID', 'CreatorResourceID', 'UpdateResourceID', 'CreateDate', 'InvoiceDescription', 'LastModifiedDate', 'ServiceLevelAgreementID', 'UnitCost')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'UnitPrice', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'AllocationCodeID', 'CreatorResourceID', 'UpdateResourceID', 'CreateDate', 'InvoiceDescription', 'LastModifiedDate', 'ServiceLevelAgreementID', 'UnitCost')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'UnitPrice', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'AllocationCodeID', 'CreatorResourceID', 'UpdateResourceID', 'CreateDate', 'InvoiceDescription', 'LastModifiedDate', 'ServiceLevelAgreementID', 'UnitCost')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'PeriodType', 'InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'PeriodType', 'InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'PeriodType', 'InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'PeriodType', 'InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'PeriodType', 'InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate', 'LastModifiedDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

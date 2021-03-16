@@ -61,7 +61,7 @@ Set-AtwsActionType
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ActionType]]
+    [Autotask.ActionType[]]
     $InputObject,
 
 # Active

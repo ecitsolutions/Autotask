@@ -59,7 +59,7 @@ Set-AtwsTagGroup
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TagGroup]]
+    [Autotask.TagGroup[]]
     $InputObject,
 
 # Display Color

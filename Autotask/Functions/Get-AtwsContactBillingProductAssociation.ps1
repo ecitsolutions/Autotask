@@ -76,7 +76,7 @@ Set-AtwsContactBillingProductAssociation
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -104,7 +104,7 @@ Set-AtwsContactBillingProductAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BillingProductID,
 
 # Contact ID
@@ -112,7 +112,7 @@ Set-AtwsContactBillingProductAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContactID,
 
 # Effective Date
@@ -120,14 +120,14 @@ Set-AtwsContactBillingProductAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EffectiveDate,
 
 # Expiration Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ExpirationDate,
 
 # Contact Billing Product Association ID
@@ -135,93 +135,93 @@ Set-AtwsContactBillingProductAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpirationDate', 'id', 'ContactID', 'BillingProductID', 'EffectiveDate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ContactID', 'id', 'BillingProductID', 'ExpirationDate', 'EffectiveDate')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpirationDate', 'id', 'ContactID', 'BillingProductID', 'EffectiveDate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ContactID', 'id', 'BillingProductID', 'ExpirationDate', 'EffectiveDate')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ExpirationDate', 'id', 'ContactID', 'BillingProductID', 'EffectiveDate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ContactID', 'id', 'BillingProductID', 'ExpirationDate', 'EffectiveDate')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContactID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContactID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContactID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContactID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

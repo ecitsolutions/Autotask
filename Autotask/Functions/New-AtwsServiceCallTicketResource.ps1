@@ -58,7 +58,7 @@ Get-AtwsServiceCallTicketResource
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ServiceCallTicketResource]]
+    [Autotask.ServiceCallTicketResource[]]
     $InputObject,
 
 # Create Date Time

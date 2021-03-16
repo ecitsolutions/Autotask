@@ -61,7 +61,7 @@ Set-AtwsBusinessLocation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.BusinessLocation]]
+    [Autotask.BusinessLocation[]]
     $InputObject,
 
 # Additional Address Info

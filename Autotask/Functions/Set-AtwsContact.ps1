@@ -55,7 +55,7 @@ Get-AtwsContact
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Contact]]
+    [Autotask.Contact[]]
     $InputObject,
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
@@ -63,7 +63,7 @@ Get-AtwsContact
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[long]]
+    [long[]]
     $Id,
 
 # Return any updated objects through the pipeline
@@ -84,7 +84,7 @@ Get-AtwsContact
       ParametersetName = 'By_parameters'
     )]
     [Alias('UDF')]
-    [Collections.Generic.List[Autotask.UserDefinedField]]
+    [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
 # Account Physical Location
@@ -628,14 +628,12 @@ Get-AtwsContact
 
             try {
                 # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
-                $Data = Set-AtwsData -Entity $processObject
-                if ($Data.Count -gt 1) {
-                    $ModifiedObjects.AddRange($Data)
-                }else {
-                    $ModifiedObjects.Add($Data)
-                }
+                # Force correct type. Makes sure AddRange() works even if it is a single object returned.
+                [collections.generic.list[psobject]]$Data = Set-AtwsData -Entity $processObject
+                $ModifiedObjects.AddRange($Data)
             }
             catch {
+                # Write-Host?! And no throwing of exceptions? Not sure what I have been thinking here...
                 write-host "ERROR: " -ForegroundColor Red -NoNewline
                 write-host $_.Exception.Message
                 write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan

@@ -76,7 +76,7 @@ Set-AtwsInstalledProductTypeUdfAssociation
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -104,7 +104,7 @@ Set-AtwsInstalledProductTypeUdfAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Installed Product Type Id
@@ -112,7 +112,7 @@ Set-AtwsInstalledProductTypeUdfAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $InstalledProductTypeId,
 
 # Required
@@ -120,7 +120,7 @@ Set-AtwsInstalledProductTypeUdfAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Required,
 
 # Sort Order
@@ -128,7 +128,7 @@ Set-AtwsInstalledProductTypeUdfAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $SortOrder,
 
 # User Defined Field Definition Id
@@ -136,92 +136,92 @@ Set-AtwsInstalledProductTypeUdfAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $UserDefinedFieldDefinitionId,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Required', 'id', 'SortOrder', 'UserDefinedFieldDefinitionId', 'InstalledProductTypeId')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('InstalledProductTypeId', 'id', 'Required', 'SortOrder', 'UserDefinedFieldDefinitionId')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Required', 'id', 'SortOrder', 'UserDefinedFieldDefinitionId', 'InstalledProductTypeId')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('InstalledProductTypeId', 'id', 'Required', 'SortOrder', 'UserDefinedFieldDefinitionId')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Required', 'id', 'SortOrder', 'UserDefinedFieldDefinitionId', 'InstalledProductTypeId')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('InstalledProductTypeId', 'id', 'Required', 'SortOrder', 'UserDefinedFieldDefinitionId')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InstalledProductTypeId', 'id', 'UserDefinedFieldDefinitionId', 'SortOrder')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InstalledProductTypeId', 'id', 'UserDefinedFieldDefinitionId', 'SortOrder')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InstalledProductTypeId', 'id', 'UserDefinedFieldDefinitionId', 'SortOrder')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InstalledProductTypeId', 'id', 'UserDefinedFieldDefinitionId', 'SortOrder')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

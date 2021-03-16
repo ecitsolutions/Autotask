@@ -40,7 +40,7 @@ Get-AtwsChangeRequestLink
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ChangeRequestLink]]
+    [Autotask.ChangeRequestLink[]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -49,7 +49,7 @@ Get-AtwsChangeRequestLink
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Int]]
+    [Int[]]
     $Id
   )
  

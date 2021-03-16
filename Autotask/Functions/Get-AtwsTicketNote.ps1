@@ -90,7 +90,7 @@ Set-AtwsTicketNote
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -117,21 +117,21 @@ Set-AtwsTicketNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Created By Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatedByContactID,
 
 # Creator Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Description
@@ -140,7 +140,7 @@ Set-AtwsTicketNote
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,32000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Ticket Note ID
@@ -148,28 +148,28 @@ Set-AtwsTicketNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Impersonator Updater Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorUpdaterResourceID,
 
 # LastActivityDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastActivityDate,
 
 # Note Type
@@ -189,7 +189,7 @@ Set-AtwsTicketNote
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NoteType,
 
 # Publish
@@ -209,7 +209,7 @@ Set-AtwsTicketNote
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Publish,
 
 # Ticket
@@ -217,7 +217,7 @@ Set-AtwsTicketNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TicketID,
 
 # Title
@@ -225,98 +225,98 @@ Set-AtwsTicketNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,250)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorUpdaterResourceID', 'CreatedByContactID', 'Description', 'CreateDateTime', 'LastActivityDate', 'NoteType', 'Publish', 'CreatorResourceID', 'id', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('CreatedByContactID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'TicketID', 'Publish', 'id', 'LastActivityDate', 'NoteType', 'Title', 'ImpersonatorCreatorResourceID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorUpdaterResourceID', 'CreatedByContactID', 'Description', 'CreateDateTime', 'LastActivityDate', 'NoteType', 'Publish', 'CreatorResourceID', 'id', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('CreatedByContactID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'TicketID', 'Publish', 'id', 'LastActivityDate', 'NoteType', 'Title', 'ImpersonatorCreatorResourceID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorUpdaterResourceID', 'CreatedByContactID', 'Description', 'CreateDateTime', 'LastActivityDate', 'NoteType', 'Publish', 'CreatorResourceID', 'id', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('CreatedByContactID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'TicketID', 'Publish', 'id', 'LastActivityDate', 'NoteType', 'Title', 'ImpersonatorCreatorResourceID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'Title')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'Title')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'Title')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'Title')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'Title')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('LastActivityDate', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

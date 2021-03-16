@@ -58,7 +58,7 @@ Set-AtwsResourceServiceDeskRole
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ResourceServiceDeskRole]]
+    [Autotask.ResourceServiceDeskRole[]]
     $InputObject,
 
 # Active

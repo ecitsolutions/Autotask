@@ -91,7 +91,7 @@ Set-AtwsChecklistLibraryChecklistItem
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -119,7 +119,7 @@ Set-AtwsChecklistLibraryChecklistItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ChecklistLibraryID,
 
 # Checklist Library Checklist Item ID
@@ -127,14 +127,14 @@ Set-AtwsChecklistLibraryChecklistItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Important
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Important,
 
 # Name
@@ -143,7 +143,7 @@ Set-AtwsChecklistLibraryChecklistItem
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,600)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ItemName,
 
 # Knowledgebase Article ID
@@ -162,104 +162,104 @@ Set-AtwsChecklistLibraryChecklistItem
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $KnowledgebaseArticleID,
 
 # Position
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $Position,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('KnowledgebaseArticleID', 'id', 'ChecklistLibraryID', 'Position', 'ItemName', 'Important')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ChecklistLibraryID', 'KnowledgebaseArticleID', 'ItemName', 'Position', 'id', 'Important')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('KnowledgebaseArticleID', 'id', 'ChecklistLibraryID', 'Position', 'ItemName', 'Important')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ChecklistLibraryID', 'KnowledgebaseArticleID', 'ItemName', 'Position', 'id', 'Important')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('KnowledgebaseArticleID', 'id', 'ChecklistLibraryID', 'Position', 'ItemName', 'Important')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ChecklistLibraryID', 'KnowledgebaseArticleID', 'ItemName', 'Position', 'id', 'Important')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

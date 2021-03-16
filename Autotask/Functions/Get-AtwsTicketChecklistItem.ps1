@@ -91,7 +91,7 @@ Set-AtwsTicketChecklistItem
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -118,21 +118,21 @@ Set-AtwsTicketChecklistItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Completed,
 
 # Completed By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CompletedByResourceID,
 
 # Completed date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CompletedDateTime,
 
 # Ticket Checklist Item ID
@@ -140,14 +140,14 @@ Set-AtwsTicketChecklistItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Important
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Important,
 
 # Name
@@ -156,7 +156,7 @@ Set-AtwsTicketChecklistItem
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ItemName,
 
 # Knowledgebase Article ID
@@ -175,14 +175,14 @@ Set-AtwsTicketChecklistItem
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $KnowledgebaseArticleID,
 
 # Position
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $Position,
 
 # Ticket ID
@@ -190,98 +190,98 @@ Set-AtwsTicketChecklistItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TicketID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'CompletedDateTime', 'KnowledgebaseArticleID', 'id', 'Completed', 'Important', 'Position', 'ItemName', 'CompletedByResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('KnowledgebaseArticleID', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'Completed', 'TicketID', 'id', 'Important', 'Position')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'CompletedDateTime', 'KnowledgebaseArticleID', 'id', 'Completed', 'Important', 'Position', 'ItemName', 'CompletedByResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('KnowledgebaseArticleID', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'Completed', 'TicketID', 'id', 'Important', 'Position')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'CompletedDateTime', 'KnowledgebaseArticleID', 'id', 'Completed', 'Important', 'Position', 'ItemName', 'CompletedByResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('KnowledgebaseArticleID', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'Completed', 'TicketID', 'id', 'Important', 'Position')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ItemName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CompletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

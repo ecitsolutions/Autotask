@@ -63,7 +63,7 @@ Set-AtwsQuote
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Quote]]
+    [Autotask.Quote[]]
     $InputObject,
 
 # AccountID

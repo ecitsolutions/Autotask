@@ -59,7 +59,7 @@ Set-AtwsContractFactor
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractFactor]]
+    [Autotask.ContractFactor[]]
     $InputObject,
 
 # Hourly Offset

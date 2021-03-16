@@ -40,7 +40,7 @@ Get-AtwsTicketSecondaryResource
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TicketSecondaryResource]]
+    [Autotask.TicketSecondaryResource[]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -49,7 +49,7 @@ Get-AtwsTicketSecondaryResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[long]]
+    [long[]]
     $Id
   )
  

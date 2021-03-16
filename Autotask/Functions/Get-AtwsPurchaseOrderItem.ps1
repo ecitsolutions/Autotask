@@ -74,7 +74,7 @@ Set-AtwsPurchaseOrderItem
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -101,21 +101,21 @@ Set-AtwsPurchaseOrderItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ContractID,
 
 # Cost ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CostID,
 
 # Estimated Arrival Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EstimatedArrivalDate,
 
 # Inventory Item ID
@@ -123,14 +123,14 @@ Set-AtwsPurchaseOrderItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Internal Currency Product Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InternalCurrencyUnitCost,
 
 # Inventory Location ID
@@ -138,7 +138,7 @@ Set-AtwsPurchaseOrderItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InventoryLocationID,
 
 # Memo
@@ -146,7 +146,7 @@ Set-AtwsPurchaseOrderItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,4000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Memo,
 
 # Inventory Order ID
@@ -154,21 +154,21 @@ Set-AtwsPurchaseOrderItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $OrderID,
 
 # Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProductID,
 
 # Project ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ProjectID,
 
 # Quantity Ordered
@@ -176,21 +176,21 @@ Set-AtwsPurchaseOrderItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $Quantity,
 
 # Sales Order ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $SalesOrderID,
 
 # Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $TicketID,
 
 # Product Unit Cost
@@ -198,98 +198,98 @@ Set-AtwsPurchaseOrderItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $UnitCost,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'OrderID', 'ProjectID', 'SalesOrderID', 'InternalCurrencyUnitCost', 'ContractID', 'UnitCost', 'id', 'CostID', 'EstimatedArrivalDate', 'Memo', 'ProductID', 'InventoryLocationID', 'Quantity')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ProjectID', 'EstimatedArrivalDate', 'InternalCurrencyUnitCost', 'OrderID', 'TicketID', 'ContractID', 'InventoryLocationID', 'id', 'UnitCost', 'ProductID', 'CostID', 'Memo', 'SalesOrderID', 'Quantity')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'OrderID', 'ProjectID', 'SalesOrderID', 'InternalCurrencyUnitCost', 'ContractID', 'UnitCost', 'id', 'CostID', 'EstimatedArrivalDate', 'Memo', 'ProductID', 'InventoryLocationID', 'Quantity')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ProjectID', 'EstimatedArrivalDate', 'InternalCurrencyUnitCost', 'OrderID', 'TicketID', 'ContractID', 'InventoryLocationID', 'id', 'UnitCost', 'ProductID', 'CostID', 'Memo', 'SalesOrderID', 'Quantity')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'OrderID', 'ProjectID', 'SalesOrderID', 'InternalCurrencyUnitCost', 'ContractID', 'UnitCost', 'id', 'CostID', 'EstimatedArrivalDate', 'Memo', 'ProductID', 'InventoryLocationID', 'Quantity')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ProjectID', 'EstimatedArrivalDate', 'InternalCurrencyUnitCost', 'OrderID', 'TicketID', 'ContractID', 'InventoryLocationID', 'id', 'UnitCost', 'ProductID', 'CostID', 'Memo', 'SalesOrderID', 'Quantity')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Memo')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Memo')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Memo')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Memo')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Memo')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('EstimatedArrivalDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

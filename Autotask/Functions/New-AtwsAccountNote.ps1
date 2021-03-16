@@ -61,7 +61,7 @@ Set-AtwsAccountNote
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.AccountNote]]
+    [Autotask.AccountNote[]]
     $InputObject,
 
 # Client

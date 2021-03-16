@@ -56,7 +56,7 @@ Get-AtwsPurchaseOrderReceive
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.PurchaseOrderReceive]]
+    [Autotask.PurchaseOrderReceive[]]
     $InputObject,
 
 # Purchase Order Item ID

@@ -60,7 +60,7 @@ Set-AtwsRole
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Role]]
+    [Autotask.Role[]]
     $InputObject,
 
 # Active

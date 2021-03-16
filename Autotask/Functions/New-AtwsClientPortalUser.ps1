@@ -63,7 +63,7 @@ Set-AtwsClientPortalUser
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ClientPortalUser]]
+    [Autotask.ClientPortalUser[]]
     $InputObject,
 
 # Client Portal Active

@@ -92,7 +92,7 @@ Set-AtwsChangeOrderCost
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -119,56 +119,56 @@ Set-AtwsChangeOrderCost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AllocationCodeID,
 
 # Billable Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $BillableAmount,
 
 # Billable To Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $BillableToAccount,
 
 # Billed
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Billed,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Change Order Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $ChangeOrderHours,
 
 # Contract Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractServiceBundleID,
 
 # Contract Service ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractServiceID,
 
 # Cost Type
@@ -188,21 +188,21 @@ Set-AtwsChangeOrderCost
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CostType,
 
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Date Purchased
@@ -210,7 +210,7 @@ Set-AtwsChangeOrderCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $DatePurchased,
 
 # Description
@@ -218,14 +218,14 @@ Set-AtwsChangeOrderCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Extended Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $ExtendedCost,
 
 # Change Order Cost ID
@@ -233,21 +233,21 @@ Set-AtwsChangeOrderCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Internal Currency Billable Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $InternalCurrencyBillableAmount,
 
 # Internal Currency Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $InternalCurrencyUnitPrice,
 
 # Internal Purchase Order Number
@@ -255,7 +255,7 @@ Set-AtwsChangeOrderCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $InternalPurchaseOrderNumber,
 
 # Name
@@ -264,7 +264,7 @@ Set-AtwsChangeOrderCost
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Notes
@@ -272,14 +272,14 @@ Set-AtwsChangeOrderCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Notes,
 
 # Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProductID,
 
 # Purchase Order Number
@@ -287,7 +287,7 @@ Set-AtwsChangeOrderCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderNumber,
 
 # Status
@@ -306,21 +306,21 @@ Set-AtwsChangeOrderCost
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
 # Status Last Modified By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $StatusLastModifiedBy,
 
 # Status Last Modified Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StatusLastModifiedDate,
 
 # Task ID
@@ -328,119 +328,119 @@ Set-AtwsChangeOrderCost
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TaskID,
 
 # Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $UnitCost,
 
 # Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $UnitPrice,
 
 # Unit Quantity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $UnitQuantity,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalPurchaseOrderNumber', 'PurchaseOrderNumber', 'CreatorResourceID', 'id', 'ChangeOrderHours', 'CostType', 'CreateDate', 'Notes', 'ExtendedCost', 'DatePurchased', 'ProductID', 'Name', 'ContractServiceID', 'Status', 'StatusLastModifiedBy', 'InternalCurrencyBillableAmount', 'StatusLastModifiedDate', 'UnitCost', 'InternalCurrencyUnitPrice', 'TaskID', 'BillableAmount', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'Description', 'Billed', 'UnitPrice', 'BillableToAccount', 'AllocationCodeID', 'UnitQuantity')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UnitCost', 'ContractServiceBundleID', 'id', 'CreateDate', 'AllocationCodeID', 'Description', 'PurchaseOrderNumber', 'ContractServiceID', 'BillableAmount', 'StatusLastModifiedDate', 'BillableToAccount', 'ProductID', 'Name', 'ExtendedCost', 'ChangeOrderHours', 'CreatorResourceID', 'UnitPrice', 'StatusLastModifiedBy', 'DatePurchased', 'Status', 'CostType', 'Notes', 'UnitQuantity', 'Billed', 'InternalCurrencyUnitPrice', 'BusinessDivisionSubdivisionID', 'TaskID', 'InternalPurchaseOrderNumber', 'InternalCurrencyBillableAmount')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalPurchaseOrderNumber', 'PurchaseOrderNumber', 'CreatorResourceID', 'id', 'ChangeOrderHours', 'CostType', 'CreateDate', 'Notes', 'ExtendedCost', 'DatePurchased', 'ProductID', 'Name', 'ContractServiceID', 'Status', 'StatusLastModifiedBy', 'InternalCurrencyBillableAmount', 'StatusLastModifiedDate', 'UnitCost', 'InternalCurrencyUnitPrice', 'TaskID', 'BillableAmount', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'Description', 'Billed', 'UnitPrice', 'BillableToAccount', 'AllocationCodeID', 'UnitQuantity')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UnitCost', 'ContractServiceBundleID', 'id', 'CreateDate', 'AllocationCodeID', 'Description', 'PurchaseOrderNumber', 'ContractServiceID', 'BillableAmount', 'StatusLastModifiedDate', 'BillableToAccount', 'ProductID', 'Name', 'ExtendedCost', 'ChangeOrderHours', 'CreatorResourceID', 'UnitPrice', 'StatusLastModifiedBy', 'DatePurchased', 'Status', 'CostType', 'Notes', 'UnitQuantity', 'Billed', 'InternalCurrencyUnitPrice', 'BusinessDivisionSubdivisionID', 'TaskID', 'InternalPurchaseOrderNumber', 'InternalCurrencyBillableAmount')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InternalPurchaseOrderNumber', 'PurchaseOrderNumber', 'CreatorResourceID', 'id', 'ChangeOrderHours', 'CostType', 'CreateDate', 'Notes', 'ExtendedCost', 'DatePurchased', 'ProductID', 'Name', 'ContractServiceID', 'Status', 'StatusLastModifiedBy', 'InternalCurrencyBillableAmount', 'StatusLastModifiedDate', 'UnitCost', 'InternalCurrencyUnitPrice', 'TaskID', 'BillableAmount', 'BusinessDivisionSubdivisionID', 'ContractServiceBundleID', 'Description', 'Billed', 'UnitPrice', 'BillableToAccount', 'AllocationCodeID', 'UnitQuantity')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UnitCost', 'ContractServiceBundleID', 'id', 'CreateDate', 'AllocationCodeID', 'Description', 'PurchaseOrderNumber', 'ContractServiceID', 'BillableAmount', 'StatusLastModifiedDate', 'BillableToAccount', 'ProductID', 'Name', 'ExtendedCost', 'ChangeOrderHours', 'CreatorResourceID', 'UnitPrice', 'StatusLastModifiedBy', 'DatePurchased', 'Status', 'CostType', 'Notes', 'UnitQuantity', 'Billed', 'InternalCurrencyUnitPrice', 'BusinessDivisionSubdivisionID', 'TaskID', 'InternalPurchaseOrderNumber', 'InternalCurrencyBillableAmount')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AllocationCodeID', 'BillableAmount', 'CostType', 'CreateDate', 'CreatorResourceID', 'DatePurchased', 'Description', 'ExtendedCost', 'InternalPurchaseOrderNumber', 'ProductID', 'PurchaseOrderNumber', 'Name', 'ContractServiceID', 'ContractServiceBundleID', 'Status', 'StatusLastModifiedBy', 'StatusLastModifiedDate', 'UnitCost', 'UnitPrice', 'UnitQuantity', 'InternalCurrencyBillableAmount', 'InternalCurrencyUnitPrice', 'BusinessDivisionSubdivisionID', 'TaskID', 'ChangeOrderHours', 'Notes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AllocationCodeID', 'BillableAmount', 'CostType', 'CreateDate', 'CreatorResourceID', 'DatePurchased', 'Description', 'ExtendedCost', 'InternalPurchaseOrderNumber', 'ProductID', 'PurchaseOrderNumber', 'Name', 'ContractServiceID', 'ContractServiceBundleID', 'Status', 'StatusLastModifiedBy', 'StatusLastModifiedDate', 'UnitCost', 'UnitPrice', 'UnitQuantity', 'InternalCurrencyBillableAmount', 'InternalCurrencyUnitPrice', 'BusinessDivisionSubdivisionID', 'TaskID', 'ChangeOrderHours', 'Notes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AllocationCodeID', 'BillableAmount', 'CostType', 'CreateDate', 'CreatorResourceID', 'DatePurchased', 'Description', 'ExtendedCost', 'InternalPurchaseOrderNumber', 'ProductID', 'PurchaseOrderNumber', 'Name', 'ContractServiceID', 'ContractServiceBundleID', 'Status', 'StatusLastModifiedBy', 'StatusLastModifiedDate', 'UnitCost', 'UnitPrice', 'UnitQuantity', 'InternalCurrencyBillableAmount', 'InternalCurrencyUnitPrice', 'BusinessDivisionSubdivisionID', 'TaskID', 'ChangeOrderHours', 'Notes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AllocationCodeID', 'BillableAmount', 'CostType', 'CreateDate', 'CreatorResourceID', 'DatePurchased', 'Description', 'ExtendedCost', 'InternalPurchaseOrderNumber', 'ProductID', 'PurchaseOrderNumber', 'Name', 'ContractServiceID', 'ContractServiceBundleID', 'Status', 'StatusLastModifiedBy', 'StatusLastModifiedDate', 'UnitCost', 'UnitPrice', 'UnitQuantity', 'InternalCurrencyBillableAmount', 'InternalCurrencyUnitPrice', 'BusinessDivisionSubdivisionID', 'TaskID', 'ChangeOrderHours', 'Notes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'InternalPurchaseOrderNumber', 'PurchaseOrderNumber', 'Name', 'Notes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'InternalPurchaseOrderNumber', 'PurchaseOrderNumber', 'Name', 'Notes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'InternalPurchaseOrderNumber', 'PurchaseOrderNumber', 'Name', 'Notes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'InternalPurchaseOrderNumber', 'PurchaseOrderNumber', 'Name', 'Notes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'InternalPurchaseOrderNumber', 'PurchaseOrderNumber', 'Name', 'Notes')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate', 'DatePurchased', 'StatusLastModifiedDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

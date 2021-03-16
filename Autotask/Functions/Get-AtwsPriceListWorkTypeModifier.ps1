@@ -87,7 +87,7 @@ Set-AtwsPriceListWorkTypeModifier
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -115,7 +115,7 @@ Set-AtwsPriceListWorkTypeModifier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CurrencyID,
 
 # ID
@@ -123,7 +123,7 @@ Set-AtwsPriceListWorkTypeModifier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Uses Internal Currency Price
@@ -131,7 +131,7 @@ Set-AtwsPriceListWorkTypeModifier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $UsesInternalCurrencyPrice,
 
 # Work Type Modifier Id
@@ -139,92 +139,92 @@ Set-AtwsPriceListWorkTypeModifier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $WorkTypeModifierID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WorkTypeModifierID', 'CurrencyID', 'UsesInternalCurrencyPrice', 'id', 'ModifierValue', 'ModifierType')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ModifierType', 'CurrencyID', 'ModifierValue', 'WorkTypeModifierID', 'id', 'UsesInternalCurrencyPrice')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WorkTypeModifierID', 'CurrencyID', 'UsesInternalCurrencyPrice', 'id', 'ModifierValue', 'ModifierType')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ModifierType', 'CurrencyID', 'ModifierValue', 'WorkTypeModifierID', 'id', 'UsesInternalCurrencyPrice')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WorkTypeModifierID', 'CurrencyID', 'UsesInternalCurrencyPrice', 'id', 'ModifierValue', 'ModifierType')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ModifierType', 'CurrencyID', 'ModifierValue', 'WorkTypeModifierID', 'id', 'UsesInternalCurrencyPrice')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierType', 'ModifierValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierType', 'ModifierValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierType', 'ModifierValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierType', 'ModifierValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

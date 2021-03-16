@@ -76,7 +76,7 @@ Set-AtwsInstalledProductCategoryUdfAssociation
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -104,7 +104,7 @@ Set-AtwsInstalledProductCategoryUdfAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Installed Product Category ID
@@ -112,7 +112,7 @@ Set-AtwsInstalledProductCategoryUdfAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InstalledProductCategoryID,
 
 # Is Required
@@ -120,7 +120,7 @@ Set-AtwsInstalledProductCategoryUdfAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsRequired,
 
 # User Defined Field Definition ID
@@ -128,92 +128,92 @@ Set-AtwsInstalledProductCategoryUdfAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $UserDefinedFieldDefinitionID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'IsRequired', 'UserDefinedFieldDefinitionID', 'InstalledProductCategoryID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsRequired', 'id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'IsRequired', 'UserDefinedFieldDefinitionID', 'InstalledProductCategoryID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsRequired', 'id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'IsRequired', 'UserDefinedFieldDefinitionID', 'InstalledProductCategoryID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsRequired', 'id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InstalledProductCategoryID', 'UserDefinedFieldDefinitionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

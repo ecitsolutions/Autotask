@@ -74,7 +74,7 @@ Remove-AtwsServiceCallTicketResource
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -101,35 +101,35 @@ Remove-AtwsServiceCallTicketResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Created By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatedByResourceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Last Modified By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LastModifiedByResourceID,
 
 # Last Modified Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedDateTime,
 
 # Resource ID
@@ -137,7 +137,7 @@ Remove-AtwsServiceCallTicketResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ResourceID,
 
 # Service Call Ticket ID
@@ -145,93 +145,93 @@ Remove-AtwsServiceCallTicketResource
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ServiceCallTicketID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'ServiceCallTicketID', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'CreatedByResourceID', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('CreateDateTime', 'LastModifiedByResourceID', 'ServiceCallTicketID', 'ResourceID', 'id', 'LastModifiedDateTime', 'CreatedByResourceID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'ServiceCallTicketID', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'CreatedByResourceID', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('CreateDateTime', 'LastModifiedByResourceID', 'ServiceCallTicketID', 'ResourceID', 'id', 'LastModifiedDateTime', 'CreatedByResourceID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'id', 'ServiceCallTicketID', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'CreatedByResourceID', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('CreateDateTime', 'LastModifiedByResourceID', 'ServiceCallTicketID', 'ResourceID', 'id', 'LastModifiedDateTime', 'CreatedByResourceID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDateTime', 'LastModifiedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

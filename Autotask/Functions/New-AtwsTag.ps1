@@ -59,7 +59,7 @@ Set-AtwsTag
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Tag]]
+    [Autotask.Tag[]]
     $InputObject,
 
 # Create Date Time

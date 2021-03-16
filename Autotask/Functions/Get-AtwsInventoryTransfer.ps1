@@ -72,7 +72,7 @@ New-AtwsInventoryTransfer
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -100,7 +100,7 @@ New-AtwsInventoryTransfer
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $FromLocationID,
 
 # Inventory Transfer ID
@@ -108,7 +108,7 @@ New-AtwsInventoryTransfer
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Notes
@@ -116,7 +116,7 @@ New-AtwsInventoryTransfer
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,4000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Notes,
 
 # Product ID
@@ -124,7 +124,7 @@ New-AtwsInventoryTransfer
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ProductID,
 
 # Quantity Transferred
@@ -132,7 +132,7 @@ New-AtwsInventoryTransfer
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuantityTransferred,
 
 # Serial Number
@@ -140,7 +140,7 @@ New-AtwsInventoryTransfer
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SerialNumber,
 
 # Transfer To Inventory Location ID
@@ -148,21 +148,21 @@ New-AtwsInventoryTransfer
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ToLocationID,
 
 # Transfer By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TransferByResourceID,
 
 # Transfer Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $TransferDate,
 
 # Update Note
@@ -170,98 +170,98 @@ New-AtwsInventoryTransfer
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $UpdateNote,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProductID', 'ToLocationID', 'UpdateNote', 'FromLocationID', 'id', 'TransferDate', 'SerialNumber', 'TransferByResourceID', 'QuantityTransferred', 'Notes')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UpdateNote', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'ProductID', 'FromLocationID', 'id', 'SerialNumber', 'Notes', 'ToLocationID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProductID', 'ToLocationID', 'UpdateNote', 'FromLocationID', 'id', 'TransferDate', 'SerialNumber', 'TransferByResourceID', 'QuantityTransferred', 'Notes')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UpdateNote', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'ProductID', 'FromLocationID', 'id', 'SerialNumber', 'Notes', 'ToLocationID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProductID', 'ToLocationID', 'UpdateNote', 'FromLocationID', 'id', 'TransferDate', 'SerialNumber', 'TransferByResourceID', 'QuantityTransferred', 'Notes')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UpdateNote', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'ProductID', 'FromLocationID', 'id', 'SerialNumber', 'Notes', 'ToLocationID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'FromLocationID', 'ToLocationID', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'Notes', 'SerialNumber', 'UpdateNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'FromLocationID', 'ToLocationID', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'Notes', 'SerialNumber', 'UpdateNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'FromLocationID', 'ToLocationID', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'Notes', 'SerialNumber', 'UpdateNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'FromLocationID', 'ToLocationID', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'Notes', 'SerialNumber', 'UpdateNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Notes', 'SerialNumber', 'UpdateNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Notes', 'SerialNumber', 'UpdateNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Notes', 'SerialNumber', 'UpdateNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Notes', 'SerialNumber', 'UpdateNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Notes', 'SerialNumber', 'UpdateNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TransferDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

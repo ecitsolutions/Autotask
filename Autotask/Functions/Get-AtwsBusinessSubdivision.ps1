@@ -74,7 +74,7 @@ Set-AtwsBusinessSubdivision
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -100,7 +100,7 @@ Set-AtwsBusinessSubdivision
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Description
@@ -108,7 +108,7 @@ Set-AtwsBusinessSubdivision
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,400)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Business Subdivision ID
@@ -116,7 +116,7 @@ Set-AtwsBusinessSubdivision
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Subdivision Name
@@ -125,97 +125,97 @@ Set-AtwsBusinessSubdivision
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Description', 'id', 'Active', 'Name')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Description', 'id', 'Active', 'Name')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'id', 'Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Description', 'id', 'Active', 'Name')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

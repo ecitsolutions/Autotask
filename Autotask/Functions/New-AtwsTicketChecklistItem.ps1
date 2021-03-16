@@ -60,7 +60,7 @@ Set-AtwsTicketChecklistItem
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TicketChecklistItem]]
+    [Autotask.TicketChecklistItem[]]
     $InputObject,
 
 # Completed

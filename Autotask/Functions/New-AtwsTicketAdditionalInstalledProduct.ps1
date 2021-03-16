@@ -58,7 +58,7 @@ Get-AtwsTicketAdditionalInstalledProduct
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TicketAdditionalInstalledProduct]]
+    [Autotask.TicketAdditionalInstalledProduct[]]
     $InputObject,
 
 # Installed Product ID

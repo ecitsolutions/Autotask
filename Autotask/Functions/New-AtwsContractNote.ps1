@@ -59,7 +59,7 @@ Set-AtwsContractNote
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractNote]]
+    [Autotask.ContractNote[]]
     $InputObject,
 
 # Contract ID

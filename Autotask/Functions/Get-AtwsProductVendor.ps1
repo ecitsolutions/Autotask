@@ -74,7 +74,7 @@ Set-AtwsProductVendor
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -102,7 +102,7 @@ Set-AtwsProductVendor
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # id
@@ -110,7 +110,7 @@ Set-AtwsProductVendor
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Default
@@ -118,7 +118,7 @@ Set-AtwsProductVendor
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsDefault,
 
 # Product ID
@@ -126,14 +126,14 @@ Set-AtwsProductVendor
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProductID,
 
 # Vendor Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $VendorCost,
 
 # Vendor Account ID
@@ -141,7 +141,7 @@ Set-AtwsProductVendor
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $VendorID,
 
 # Vendor Part Number
@@ -149,97 +149,97 @@ Set-AtwsProductVendor
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $VendorPartNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProductID', 'IsDefault', 'VendorID', 'id', 'Active', 'VendorCost', 'VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('VendorPartNumber', 'VendorID', 'Active', 'ProductID', 'VendorCost', 'id', 'IsDefault')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProductID', 'IsDefault', 'VendorID', 'id', 'Active', 'VendorCost', 'VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('VendorPartNumber', 'VendorID', 'Active', 'ProductID', 'VendorCost', 'id', 'IsDefault')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProductID', 'IsDefault', 'VendorID', 'id', 'Active', 'VendorCost', 'VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('VendorPartNumber', 'VendorID', 'Active', 'ProductID', 'VendorCost', 'id', 'IsDefault')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'VendorID', 'VendorCost', 'VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'VendorID', 'VendorCost', 'VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'VendorID', 'VendorCost', 'VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'VendorID', 'VendorCost', 'VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('VendorPartNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

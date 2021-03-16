@@ -91,7 +91,7 @@ Set-AtwsServiceCall
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -119,56 +119,56 @@ Set-AtwsServiceCall
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Account Physical Location
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountPhysicalLocationID,
 
 # Cancelation Notice Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $CancelationNoticeHours,
 
 # Canceled By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CanceledByResource,
 
 # Canceled Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CanceledDateTime,
 
 # Complete
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int16]]]
+    [Nullable[Int16][]]
     $Complete,
 
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Created By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Description
@@ -176,14 +176,14 @@ Set-AtwsServiceCall
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Duration
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $Duration,
 
 # End Date
@@ -191,7 +191,7 @@ Set-AtwsServiceCall
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDateTime,
 
 # Service Call ID
@@ -199,21 +199,21 @@ Set-AtwsServiceCall
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Last Modified Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedDateTime,
 
 # Start Date
@@ -221,7 +221,7 @@ Set-AtwsServiceCall
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDateTime,
 
 # Status
@@ -240,98 +240,98 @@ Set-AtwsServiceCall
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'CancelationNoticeHours', 'StartDateTime', 'CreatorResourceID', 'AccountPhysicalLocationID', 'AccountID', 'CanceledDateTime', 'id', 'LastModifiedDateTime', 'CreateDateTime', 'Complete', 'Status', 'CanceledByResource', 'ImpersonatorCreatorResourceID', 'EndDateTime', 'Duration')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EndDateTime', 'StartDateTime', 'LastModifiedDateTime', 'CreateDateTime', 'CancelationNoticeHours', 'CanceledByResource', 'Status', 'AccountID', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'CreatorResourceID', 'id', 'Complete', 'AccountPhysicalLocationID', 'CanceledDateTime')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'CancelationNoticeHours', 'StartDateTime', 'CreatorResourceID', 'AccountPhysicalLocationID', 'AccountID', 'CanceledDateTime', 'id', 'LastModifiedDateTime', 'CreateDateTime', 'Complete', 'Status', 'CanceledByResource', 'ImpersonatorCreatorResourceID', 'EndDateTime', 'Duration')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EndDateTime', 'StartDateTime', 'LastModifiedDateTime', 'CreateDateTime', 'CancelationNoticeHours', 'CanceledByResource', 'Status', 'AccountID', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'CreatorResourceID', 'id', 'Complete', 'AccountPhysicalLocationID', 'CanceledDateTime')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'CancelationNoticeHours', 'StartDateTime', 'CreatorResourceID', 'AccountPhysicalLocationID', 'AccountID', 'CanceledDateTime', 'id', 'LastModifiedDateTime', 'CreateDateTime', 'Complete', 'Status', 'CanceledByResource', 'ImpersonatorCreatorResourceID', 'EndDateTime', 'Duration')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('EndDateTime', 'StartDateTime', 'LastModifiedDateTime', 'CreateDateTime', 'CancelationNoticeHours', 'CanceledByResource', 'Status', 'AccountID', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'CreatorResourceID', 'id', 'Complete', 'AccountPhysicalLocationID', 'CanceledDateTime')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'StartDateTime', 'EndDateTime', 'Description', 'Complete', 'CreatorResourceID', 'CreateDateTime', 'LastModifiedDateTime', 'Duration', 'Status', 'CanceledByResource', 'CanceledDateTime', 'CancelationNoticeHours', 'AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'StartDateTime', 'EndDateTime', 'Description', 'Complete', 'CreatorResourceID', 'CreateDateTime', 'LastModifiedDateTime', 'Duration', 'Status', 'CanceledByResource', 'CanceledDateTime', 'CancelationNoticeHours', 'AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'StartDateTime', 'EndDateTime', 'Description', 'Complete', 'CreatorResourceID', 'CreateDateTime', 'LastModifiedDateTime', 'Duration', 'Status', 'CanceledByResource', 'CanceledDateTime', 'CancelationNoticeHours', 'AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'StartDateTime', 'EndDateTime', 'Description', 'Complete', 'CreatorResourceID', 'CreateDateTime', 'LastModifiedDateTime', 'Duration', 'Status', 'CanceledByResource', 'CanceledDateTime', 'CancelationNoticeHours', 'AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('StartDateTime', 'EndDateTime', 'CreateDateTime', 'LastModifiedDateTime', 'CanceledDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

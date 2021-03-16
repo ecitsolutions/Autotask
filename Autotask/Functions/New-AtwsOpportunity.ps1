@@ -67,7 +67,7 @@ Set-AtwsOpportunity
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Opportunity]]
+    [Autotask.Opportunity[]]
     $InputObject,
 
 # AccountObjectID

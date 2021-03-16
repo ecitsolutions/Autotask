@@ -63,7 +63,7 @@ Set-AtwsIntegrationVendorWidget
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.IntegrationVendorWidget]]
+    [Autotask.IntegrationVendorWidget[]]
     $InputObject,
 
 # Create Date/Time

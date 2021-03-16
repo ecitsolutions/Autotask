@@ -96,7 +96,7 @@ Set-AtwsTask
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -123,42 +123,42 @@ Set-AtwsTask
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountPhysicalLocationID,
 
 # Allocation Code Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AllocationCodeID,
 
 # Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AssignedResourceID,
 
 # Resource Role Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AssignedResourceRoleID,
 
 # Can Client Portal User Complete Task
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $CanClientPortalUserCompleteTask,
 
 # Task Completed By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CompletedByResourceID,
 
 # Completed By Type
@@ -177,28 +177,28 @@ Set-AtwsTask
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CompletedByType,
 
 # Task Complete Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CompletedDateTime,
 
 # Task Creation Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Task Creator
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Creator Type
@@ -217,7 +217,7 @@ Set-AtwsTask
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CreatorType,
 
 # Task Department Name
@@ -236,7 +236,7 @@ Set-AtwsTask
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DepartmentID,
 
 # Task Description
@@ -244,21 +244,21 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Task End Datetime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDateTime,
 
 # Task Estimated Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $EstimatedHours,
 
 # Task External ID
@@ -266,14 +266,14 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExternalID,
 
 # Hours to be Scheduled
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $HoursToBeScheduled,
 
 # Task ID
@@ -281,21 +281,21 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Visible in Client Portal
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsVisibleInClientPortal,
 
 # Task Last Activity Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastActivityDateTime,
 
 # Last Activity Person Type
@@ -314,28 +314,28 @@ Set-AtwsTask
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LastActivityPersonType,
 
 # Last Activity By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LastActivityResourceID,
 
 # Phase ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $PhaseID,
 
 # Task Priority
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $Priority,
 
 # Priority Label
@@ -354,7 +354,7 @@ Set-AtwsTask
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PriorityLabel,
 
 # Project
@@ -362,7 +362,7 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProjectID,
 
 # Purchase Order Number
@@ -370,14 +370,14 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderNumber,
 
 # Task Start Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDateTime,
 
 # Task Status
@@ -397,7 +397,7 @@ Set-AtwsTask
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
 # Task Category ID
@@ -416,14 +416,14 @@ Set-AtwsTask
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TaskCategoryID,
 
 # Task Billable
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $TaskIsBillable,
 
 # Task Number
@@ -431,7 +431,7 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TaskNumber,
 
 # Task Type
@@ -451,7 +451,7 @@ Set-AtwsTask
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TaskType,
 
 # Task Title
@@ -460,98 +460,98 @@ Set-AtwsTask
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderNumber', 'CreatorResourceID', 'TaskIsBillable', 'CreatorType', 'CompletedDateTime', 'AllocationCodeID', 'id', 'DepartmentID', 'TaskNumber', 'Priority', 'CompletedByResourceID', 'PriorityLabel', 'ProjectID', 'TaskCategoryID', 'IsVisibleInClientPortal', 'LastActivityDateTime', 'LastActivityPersonType', 'Status', 'AssignedResourceRoleID', 'RemainingHours', 'CreateDateTime', 'CanClientPortalUserCompleteTask', 'TaskType', 'AccountPhysicalLocationID', 'Title', 'ExternalID', 'PhaseID', 'CompletedByType', 'EndDateTime', 'EstimatedHours', 'Description', 'HoursToBeScheduled', 'StartDateTime', 'LastActivityResourceID', 'AssignedResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('LastActivityPersonType', 'TaskNumber', 'id', 'AllocationCodeID', 'PhaseID', 'CreateDateTime', 'Description', 'IsVisibleInClientPortal', 'PurchaseOrderNumber', 'CompletedDateTime', 'LastActivityResourceID', 'CanClientPortalUserCompleteTask', 'TaskIsBillable', 'DepartmentID', 'Title', 'StartDateTime', 'PriorityLabel', 'RemainingHours', 'ExternalID', 'CreatorResourceID', 'AccountPhysicalLocationID', 'LastActivityDateTime', 'HoursToBeScheduled', 'AssignedResourceRoleID', 'Status', 'CompletedByType', 'Priority', 'AssignedResourceID', 'EstimatedHours', 'TaskType', 'CreatorType', 'TaskCategoryID', 'CompletedByResourceID', 'EndDateTime', 'ProjectID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderNumber', 'CreatorResourceID', 'TaskIsBillable', 'CreatorType', 'CompletedDateTime', 'AllocationCodeID', 'id', 'DepartmentID', 'TaskNumber', 'Priority', 'CompletedByResourceID', 'PriorityLabel', 'ProjectID', 'TaskCategoryID', 'IsVisibleInClientPortal', 'LastActivityDateTime', 'LastActivityPersonType', 'Status', 'AssignedResourceRoleID', 'RemainingHours', 'CreateDateTime', 'CanClientPortalUserCompleteTask', 'TaskType', 'AccountPhysicalLocationID', 'Title', 'ExternalID', 'PhaseID', 'CompletedByType', 'EndDateTime', 'EstimatedHours', 'Description', 'HoursToBeScheduled', 'StartDateTime', 'LastActivityResourceID', 'AssignedResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('LastActivityPersonType', 'TaskNumber', 'id', 'AllocationCodeID', 'PhaseID', 'CreateDateTime', 'Description', 'IsVisibleInClientPortal', 'PurchaseOrderNumber', 'CompletedDateTime', 'LastActivityResourceID', 'CanClientPortalUserCompleteTask', 'TaskIsBillable', 'DepartmentID', 'Title', 'StartDateTime', 'PriorityLabel', 'RemainingHours', 'ExternalID', 'CreatorResourceID', 'AccountPhysicalLocationID', 'LastActivityDateTime', 'HoursToBeScheduled', 'AssignedResourceRoleID', 'Status', 'CompletedByType', 'Priority', 'AssignedResourceID', 'EstimatedHours', 'TaskType', 'CreatorType', 'TaskCategoryID', 'CompletedByResourceID', 'EndDateTime', 'ProjectID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderNumber', 'CreatorResourceID', 'TaskIsBillable', 'CreatorType', 'CompletedDateTime', 'AllocationCodeID', 'id', 'DepartmentID', 'TaskNumber', 'Priority', 'CompletedByResourceID', 'PriorityLabel', 'ProjectID', 'TaskCategoryID', 'IsVisibleInClientPortal', 'LastActivityDateTime', 'LastActivityPersonType', 'Status', 'AssignedResourceRoleID', 'RemainingHours', 'CreateDateTime', 'CanClientPortalUserCompleteTask', 'TaskType', 'AccountPhysicalLocationID', 'Title', 'ExternalID', 'PhaseID', 'CompletedByType', 'EndDateTime', 'EstimatedHours', 'Description', 'HoursToBeScheduled', 'StartDateTime', 'LastActivityResourceID', 'AssignedResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('LastActivityPersonType', 'TaskNumber', 'id', 'AllocationCodeID', 'PhaseID', 'CreateDateTime', 'Description', 'IsVisibleInClientPortal', 'PurchaseOrderNumber', 'CompletedDateTime', 'LastActivityResourceID', 'CanClientPortalUserCompleteTask', 'TaskIsBillable', 'DepartmentID', 'Title', 'StartDateTime', 'PriorityLabel', 'RemainingHours', 'ExternalID', 'CreatorResourceID', 'AccountPhysicalLocationID', 'LastActivityDateTime', 'HoursToBeScheduled', 'AssignedResourceRoleID', 'Status', 'CompletedByType', 'Priority', 'AssignedResourceID', 'EstimatedHours', 'TaskType', 'CreatorType', 'TaskCategoryID', 'CompletedByResourceID', 'EndDateTime', 'ProjectID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectID', 'PhaseID', 'Title', 'Description', 'StartDateTime', 'EndDateTime', 'DepartmentID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'TaskType', 'Status', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'EstimatedHours', 'id', 'TaskNumber', 'ExternalID', 'LastActivityDateTime', 'Priority', 'PurchaseOrderNumber', 'RemainingHours', 'HoursToBeScheduled', 'PriorityLabel', 'CreatorType', 'CompletedByResourceID', 'CompletedByType', 'LastActivityResourceID', 'LastActivityPersonType', 'AccountPhysicalLocationID', 'TaskCategoryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectID', 'PhaseID', 'Title', 'Description', 'StartDateTime', 'EndDateTime', 'DepartmentID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'TaskType', 'Status', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'EstimatedHours', 'id', 'TaskNumber', 'ExternalID', 'LastActivityDateTime', 'Priority', 'PurchaseOrderNumber', 'RemainingHours', 'HoursToBeScheduled', 'PriorityLabel', 'CreatorType', 'CompletedByResourceID', 'CompletedByType', 'LastActivityResourceID', 'LastActivityPersonType', 'AccountPhysicalLocationID', 'TaskCategoryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectID', 'PhaseID', 'Title', 'Description', 'StartDateTime', 'EndDateTime', 'DepartmentID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'TaskType', 'Status', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'EstimatedHours', 'id', 'TaskNumber', 'ExternalID', 'LastActivityDateTime', 'Priority', 'PurchaseOrderNumber', 'RemainingHours', 'HoursToBeScheduled', 'PriorityLabel', 'CreatorType', 'CompletedByResourceID', 'CompletedByType', 'LastActivityResourceID', 'LastActivityPersonType', 'AccountPhysicalLocationID', 'TaskCategoryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ProjectID', 'PhaseID', 'Title', 'Description', 'StartDateTime', 'EndDateTime', 'DepartmentID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'TaskType', 'Status', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'EstimatedHours', 'id', 'TaskNumber', 'ExternalID', 'LastActivityDateTime', 'Priority', 'PurchaseOrderNumber', 'RemainingHours', 'HoursToBeScheduled', 'PriorityLabel', 'CreatorType', 'CompletedByResourceID', 'CompletedByType', 'LastActivityResourceID', 'LastActivityPersonType', 'AccountPhysicalLocationID', 'TaskCategoryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('StartDateTime', 'EndDateTime', 'CompletedDateTime', 'CreateDateTime', 'LastActivityDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

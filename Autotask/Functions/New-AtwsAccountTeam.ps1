@@ -58,7 +58,7 @@ Get-AtwsAccountTeam
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.AccountTeam]]
+    [Autotask.AccountTeam[]]
     $InputObject,
 
 # Client

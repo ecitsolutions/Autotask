@@ -63,7 +63,7 @@ Set-AtwsContractCost
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractCost]]
+    [Autotask.ContractCost[]]
     $InputObject,
 
 # Allocation Code

@@ -58,7 +58,7 @@ Get-AtwsAccountWebhookExcludedResource
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.AccountWebhookExcludedResource]]
+    [Autotask.AccountWebhookExcludedResource[]]
     $InputObject,
 
 # Resource ID

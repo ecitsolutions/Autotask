@@ -91,7 +91,7 @@ Set-AtwsContractBlock
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -119,7 +119,7 @@ Set-AtwsContractBlock
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # DatePurchased
@@ -127,7 +127,7 @@ Set-AtwsContractBlock
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $DatePurchased,
 
 # EndDate
@@ -135,7 +135,7 @@ Set-AtwsContractBlock
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDate,
 
 # Rate
@@ -143,7 +143,7 @@ Set-AtwsContractBlock
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $HourlyRate,
 
 # Hours
@@ -151,7 +151,7 @@ Set-AtwsContractBlock
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $Hours,
 
 # id
@@ -159,7 +159,7 @@ Set-AtwsContractBlock
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # InvoiceNumber
@@ -167,7 +167,7 @@ Set-AtwsContractBlock
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $InvoiceNumber,
 
 # Paid
@@ -186,7 +186,7 @@ Set-AtwsContractBlock
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsPaid,
 
 # PaymentNumber
@@ -194,7 +194,7 @@ Set-AtwsContractBlock
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PaymentNumber,
 
 # paymentID
@@ -213,7 +213,7 @@ Set-AtwsContractBlock
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PaymentType,
 
 # StartDate
@@ -221,7 +221,7 @@ Set-AtwsContractBlock
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDate,
 
 # Status
@@ -240,98 +240,98 @@ Set-AtwsContractBlock
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentNumber', 'Hours', 'Status', 'DatePurchased', 'PaymentType', 'InvoiceNumber', 'EndDate', 'id', 'HoursApproved', 'IsPaid', 'StartDate', 'HourlyRate', 'ContractID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('PaymentType', 'PaymentNumber', 'Status', 'Hours', 'ContractID', 'InvoiceNumber', 'HourlyRate', 'id', 'DatePurchased', 'HoursApproved', 'IsPaid', 'StartDate', 'EndDate')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentNumber', 'Hours', 'Status', 'DatePurchased', 'PaymentType', 'InvoiceNumber', 'EndDate', 'id', 'HoursApproved', 'IsPaid', 'StartDate', 'HourlyRate', 'ContractID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('PaymentType', 'PaymentNumber', 'Status', 'Hours', 'ContractID', 'InvoiceNumber', 'HourlyRate', 'id', 'DatePurchased', 'HoursApproved', 'IsPaid', 'StartDate', 'EndDate')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentNumber', 'Hours', 'Status', 'DatePurchased', 'PaymentType', 'InvoiceNumber', 'EndDate', 'id', 'HoursApproved', 'IsPaid', 'StartDate', 'HourlyRate', 'ContractID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('PaymentType', 'PaymentNumber', 'Status', 'Hours', 'ContractID', 'InvoiceNumber', 'HourlyRate', 'id', 'DatePurchased', 'HoursApproved', 'IsPaid', 'StartDate', 'EndDate')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'Status', 'IsPaid', 'DatePurchased', 'StartDate', 'EndDate', 'Hours', 'HourlyRate', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'HoursApproved')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'Status', 'IsPaid', 'DatePurchased', 'StartDate', 'EndDate', 'Hours', 'HourlyRate', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'HoursApproved')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'Status', 'IsPaid', 'DatePurchased', 'StartDate', 'EndDate', 'Hours', 'HourlyRate', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'HoursApproved')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'Status', 'IsPaid', 'DatePurchased', 'StartDate', 'EndDate', 'Hours', 'HourlyRate', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'HoursApproved')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('IsPaid', 'InvoiceNumber', 'PaymentNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('IsPaid', 'InvoiceNumber', 'PaymentNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('IsPaid', 'InvoiceNumber', 'PaymentNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('IsPaid', 'InvoiceNumber', 'PaymentNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('IsPaid', 'InvoiceNumber', 'PaymentNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('DatePurchased', 'StartDate', 'EndDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

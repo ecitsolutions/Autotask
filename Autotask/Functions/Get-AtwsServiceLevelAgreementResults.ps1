@@ -70,7 +70,7 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -97,42 +97,42 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # First Response Elapsed Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $FirstResponseElapsedHours,
 
 # First Response Initiating Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $FirstResponseInitiatingResourceID,
 
 # First Response Met
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $FirstResponseMet,
 
 # First Response Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $FirstResponseResourceID,
 
 # Service Level Agreement Results ID
@@ -140,63 +140,63 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Last Modified By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LastModifiedByResourceID,
 
 # Last Modified Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedDateTime,
 
 # Resolution Elapsed Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $ResolutionElapsedHours,
 
 # Resolution Met
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ResolutionMet,
 
 # Resolution Plan Elapsed Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $ResolutionPlanElapsedHours,
 
 # Resolution Plan Met
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ResolutionPlanMet,
 
 # Resolution Plan Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ResolutionPlanResourceID,
 
 # Resolution Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ResolutionResourceID,
 
 # Service Level Agreement Name
@@ -204,105 +204,105 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ServiceLevelAgreementName,
 
 # Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TicketID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ResolutionPlanMet', 'ResolutionPlanResourceID', 'FirstResponseInitiatingResourceID', 'ResolutionPlanElapsedHours', 'ResolutionElapsedHours', 'CreatorResourceID', 'FirstResponseElapsedHours', 'ResolutionResourceID', 'LastModifiedByResourceID', 'FirstResponseResourceID', 'ServiceLevelAgreementName', 'id', 'LastModifiedDateTime', 'FirstResponseMet', 'ResolutionMet', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ResolutionPlanResourceID', 'FirstResponseInitiatingResourceID', 'LastModifiedDateTime', 'CreateDateTime', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'LastModifiedByResourceID', 'ResolutionMet', 'TicketID', 'FirstResponseMet', 'ResolutionElapsedHours', 'ResolutionResourceID', 'FirstResponseResourceID', 'id', 'ResolutionPlanMet', 'CreatorResourceID', 'FirstResponseElapsedHours')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ResolutionPlanMet', 'ResolutionPlanResourceID', 'FirstResponseInitiatingResourceID', 'ResolutionPlanElapsedHours', 'ResolutionElapsedHours', 'CreatorResourceID', 'FirstResponseElapsedHours', 'ResolutionResourceID', 'LastModifiedByResourceID', 'FirstResponseResourceID', 'ServiceLevelAgreementName', 'id', 'LastModifiedDateTime', 'FirstResponseMet', 'ResolutionMet', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ResolutionPlanResourceID', 'FirstResponseInitiatingResourceID', 'LastModifiedDateTime', 'CreateDateTime', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'LastModifiedByResourceID', 'ResolutionMet', 'TicketID', 'FirstResponseMet', 'ResolutionElapsedHours', 'ResolutionResourceID', 'FirstResponseResourceID', 'id', 'ResolutionPlanMet', 'CreatorResourceID', 'FirstResponseElapsedHours')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ResolutionPlanMet', 'ResolutionPlanResourceID', 'FirstResponseInitiatingResourceID', 'ResolutionPlanElapsedHours', 'ResolutionElapsedHours', 'CreatorResourceID', 'FirstResponseElapsedHours', 'ResolutionResourceID', 'LastModifiedByResourceID', 'FirstResponseResourceID', 'ServiceLevelAgreementName', 'id', 'LastModifiedDateTime', 'FirstResponseMet', 'ResolutionMet', 'CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ResolutionPlanResourceID', 'FirstResponseInitiatingResourceID', 'LastModifiedDateTime', 'CreateDateTime', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'LastModifiedByResourceID', 'ResolutionMet', 'TicketID', 'FirstResponseMet', 'ResolutionElapsedHours', 'ResolutionResourceID', 'FirstResponseResourceID', 'id', 'ResolutionPlanMet', 'CreatorResourceID', 'FirstResponseElapsedHours')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'ServiceLevelAgreementName', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionElapsedHours', 'ResolutionResourceID', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDateTime', 'LastModifiedByResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'ServiceLevelAgreementName', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionElapsedHours', 'ResolutionResourceID', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDateTime', 'LastModifiedByResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'ServiceLevelAgreementName', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionElapsedHours', 'ResolutionResourceID', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDateTime', 'LastModifiedByResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'ServiceLevelAgreementName', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionElapsedHours', 'ResolutionResourceID', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDateTime', 'LastModifiedByResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ServiceLevelAgreementName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ServiceLevelAgreementName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ServiceLevelAgreementName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ServiceLevelAgreementName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ServiceLevelAgreementName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDateTime', 'LastModifiedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

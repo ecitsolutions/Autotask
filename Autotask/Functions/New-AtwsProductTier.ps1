@@ -61,7 +61,7 @@ Set-AtwsProductTier
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ProductTier]]
+    [Autotask.ProductTier[]]
     $InputObject,
 
 # Product ID

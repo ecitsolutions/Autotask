@@ -93,7 +93,7 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -120,21 +120,21 @@ Set-AtwsPurchaseOrder
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CancelDateTime,
 
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # External Purchase Order Number
@@ -142,7 +142,7 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExternalPONumber,
 
 # Fax
@@ -150,14 +150,14 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Fax,
 
 # Freight Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $Freight,
 
 # General Memo
@@ -165,7 +165,7 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,4000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GeneralMemo,
 
 # Order ID
@@ -173,28 +173,28 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Internal Currency Freight Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InternalCurrencyFreight,
 
 # Latest Estimated Arrival Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LatestEstimatedArrivalDate,
 
 # Payment Term ID
@@ -213,7 +213,7 @@ Set-AtwsPurchaseOrder
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PaymentTerm,
 
 # Phone
@@ -221,14 +221,14 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Phone,
 
 # Purchase For Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $PurchaseForAccountID,
 
 # Purchase Order Number
@@ -236,7 +236,7 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderNumber,
 
 # Purchase Order Template ID
@@ -255,21 +255,21 @@ Set-AtwsPurchaseOrder
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderTemplateID,
 
 # Expected Ship Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ShippingDate,
 
 # Shipping Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ShippingType,
 
 # Address Line 1
@@ -278,7 +278,7 @@ Set-AtwsPurchaseOrder
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToAddress1,
 
 # Address Line 2
@@ -286,7 +286,7 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToAddress2,
 
 # City
@@ -294,7 +294,7 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,30)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToCity,
 
 # Addressee Name
@@ -303,7 +303,7 @@ Set-AtwsPurchaseOrder
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToName,
 
 # Postal Code
@@ -311,7 +311,7 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,10)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToPostalCode,
 
 # State
@@ -319,21 +319,21 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToState,
 
 # Show Each Tax In Tax Group
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ShowEachTaxInGroup,
 
 # Show Tax Category
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ShowTaxCategory,
 
 # Order Status ID
@@ -353,14 +353,14 @@ Set-AtwsPurchaseOrder
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
 # Submit Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $SubmitDateTime,
 
 # Tax Group ID
@@ -379,7 +379,7 @@ Set-AtwsPurchaseOrder
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TaxGroup,
 
 # Use Item Descriptions From
@@ -398,7 +398,7 @@ Set-AtwsPurchaseOrder
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $UseItemDescriptionsFrom,
 
 # Vendor Account ID
@@ -406,7 +406,7 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $VendorID,
 
 # Vendor Invoice Number
@@ -414,98 +414,98 @@ Set-AtwsPurchaseOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $VendorInvoiceNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentTerm', 'ShipToName', 'PurchaseOrderNumber', 'CreatorResourceID', 'ShowEachTaxInGroup', 'VendorInvoiceNumber', 'CancelDateTime', 'VendorID', 'ShipToState', 'ShippingType', 'GeneralMemo', 'SubmitDateTime', 'Phone', 'ImpersonatorCreatorResourceID', 'Status', 'TaxGroup', 'ShowTaxCategory', 'PurchaseOrderTemplateID', 'ExternalPONumber', 'CreateDateTime', 'ShipToCity', 'PurchaseForAccountID', 'id', 'ShipToPostalCode', 'ShipToAddress1', 'InternalCurrencyFreight', 'LatestEstimatedArrivalDate', 'ShippingDate', 'UseItemDescriptionsFrom', 'Freight', 'Fax', 'ShipToAddress2')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ShowEachTaxInGroup', 'id', 'SubmitDateTime', 'PurchaseOrderTemplateID', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'ShippingDate', 'UseItemDescriptionsFrom', 'PurchaseOrderNumber', 'ShipToName', 'LatestEstimatedArrivalDate', 'TaxGroup', 'ShipToAddress1', 'PurchaseForAccountID', 'CreatorResourceID', 'ShipToPostalCode', 'ShippingType', 'ExternalPONumber', 'GeneralMemo', 'Status', 'PaymentTerm', 'ShipToAddress2', 'Fax', 'CancelDateTime', 'InternalCurrencyFreight', 'Freight', 'Phone', 'VendorInvoiceNumber', 'ShipToState', 'ShipToCity', 'VendorID', 'ShowTaxCategory')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentTerm', 'ShipToName', 'PurchaseOrderNumber', 'CreatorResourceID', 'ShowEachTaxInGroup', 'VendorInvoiceNumber', 'CancelDateTime', 'VendorID', 'ShipToState', 'ShippingType', 'GeneralMemo', 'SubmitDateTime', 'Phone', 'ImpersonatorCreatorResourceID', 'Status', 'TaxGroup', 'ShowTaxCategory', 'PurchaseOrderTemplateID', 'ExternalPONumber', 'CreateDateTime', 'ShipToCity', 'PurchaseForAccountID', 'id', 'ShipToPostalCode', 'ShipToAddress1', 'InternalCurrencyFreight', 'LatestEstimatedArrivalDate', 'ShippingDate', 'UseItemDescriptionsFrom', 'Freight', 'Fax', 'ShipToAddress2')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ShowEachTaxInGroup', 'id', 'SubmitDateTime', 'PurchaseOrderTemplateID', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'ShippingDate', 'UseItemDescriptionsFrom', 'PurchaseOrderNumber', 'ShipToName', 'LatestEstimatedArrivalDate', 'TaxGroup', 'ShipToAddress1', 'PurchaseForAccountID', 'CreatorResourceID', 'ShipToPostalCode', 'ShippingType', 'ExternalPONumber', 'GeneralMemo', 'Status', 'PaymentTerm', 'ShipToAddress2', 'Fax', 'CancelDateTime', 'InternalCurrencyFreight', 'Freight', 'Phone', 'VendorInvoiceNumber', 'ShipToState', 'ShipToCity', 'VendorID', 'ShowTaxCategory')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentTerm', 'ShipToName', 'PurchaseOrderNumber', 'CreatorResourceID', 'ShowEachTaxInGroup', 'VendorInvoiceNumber', 'CancelDateTime', 'VendorID', 'ShipToState', 'ShippingType', 'GeneralMemo', 'SubmitDateTime', 'Phone', 'ImpersonatorCreatorResourceID', 'Status', 'TaxGroup', 'ShowTaxCategory', 'PurchaseOrderTemplateID', 'ExternalPONumber', 'CreateDateTime', 'ShipToCity', 'PurchaseForAccountID', 'id', 'ShipToPostalCode', 'ShipToAddress1', 'InternalCurrencyFreight', 'LatestEstimatedArrivalDate', 'ShippingDate', 'UseItemDescriptionsFrom', 'Freight', 'Fax', 'ShipToAddress2')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ShowEachTaxInGroup', 'id', 'SubmitDateTime', 'PurchaseOrderTemplateID', 'ImpersonatorCreatorResourceID', 'CreateDateTime', 'ShippingDate', 'UseItemDescriptionsFrom', 'PurchaseOrderNumber', 'ShipToName', 'LatestEstimatedArrivalDate', 'TaxGroup', 'ShipToAddress1', 'PurchaseForAccountID', 'CreatorResourceID', 'ShipToPostalCode', 'ShippingType', 'ExternalPONumber', 'GeneralMemo', 'Status', 'PaymentTerm', 'ShipToAddress2', 'Fax', 'CancelDateTime', 'InternalCurrencyFreight', 'Freight', 'Phone', 'VendorInvoiceNumber', 'ShipToState', 'ShipToCity', 'VendorID', 'ShowTaxCategory')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'VendorID', 'Status', 'CreatorResourceID', 'CreateDateTime', 'SubmitDateTime', 'CancelDateTime', 'ShipToName', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'GeneralMemo', 'Phone', 'Fax', 'VendorInvoiceNumber', 'ExternalPONumber', 'PurchaseForAccountID', 'ShippingType', 'ShippingDate', 'Freight', 'TaxGroup', 'PaymentTerm', 'LatestEstimatedArrivalDate', 'UseItemDescriptionsFrom', 'InternalCurrencyFreight', 'ImpersonatorCreatorResourceID', 'PurchaseOrderTemplateID', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'VendorID', 'Status', 'CreatorResourceID', 'CreateDateTime', 'SubmitDateTime', 'CancelDateTime', 'ShipToName', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'GeneralMemo', 'Phone', 'Fax', 'VendorInvoiceNumber', 'ExternalPONumber', 'PurchaseForAccountID', 'ShippingType', 'ShippingDate', 'Freight', 'TaxGroup', 'PaymentTerm', 'LatestEstimatedArrivalDate', 'UseItemDescriptionsFrom', 'InternalCurrencyFreight', 'ImpersonatorCreatorResourceID', 'PurchaseOrderTemplateID', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'VendorID', 'Status', 'CreatorResourceID', 'CreateDateTime', 'SubmitDateTime', 'CancelDateTime', 'ShipToName', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'GeneralMemo', 'Phone', 'Fax', 'VendorInvoiceNumber', 'ExternalPONumber', 'PurchaseForAccountID', 'ShippingType', 'ShippingDate', 'Freight', 'TaxGroup', 'PaymentTerm', 'LatestEstimatedArrivalDate', 'UseItemDescriptionsFrom', 'InternalCurrencyFreight', 'ImpersonatorCreatorResourceID', 'PurchaseOrderTemplateID', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'VendorID', 'Status', 'CreatorResourceID', 'CreateDateTime', 'SubmitDateTime', 'CancelDateTime', 'ShipToName', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'GeneralMemo', 'Phone', 'Fax', 'VendorInvoiceNumber', 'ExternalPONumber', 'PurchaseForAccountID', 'ShippingType', 'ShippingDate', 'Freight', 'TaxGroup', 'PaymentTerm', 'LatestEstimatedArrivalDate', 'UseItemDescriptionsFrom', 'InternalCurrencyFreight', 'ImpersonatorCreatorResourceID', 'PurchaseOrderTemplateID', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ShipToName', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'GeneralMemo', 'Phone', 'Fax', 'VendorInvoiceNumber', 'ExternalPONumber', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ShipToName', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'GeneralMemo', 'Phone', 'Fax', 'VendorInvoiceNumber', 'ExternalPONumber', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ShipToName', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'GeneralMemo', 'Phone', 'Fax', 'VendorInvoiceNumber', 'ExternalPONumber', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ShipToName', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'GeneralMemo', 'Phone', 'Fax', 'VendorInvoiceNumber', 'ExternalPONumber', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ShipToName', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'GeneralMemo', 'Phone', 'Fax', 'VendorInvoiceNumber', 'ExternalPONumber', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDateTime', 'SubmitDateTime', 'CancelDateTime', 'ShippingDate', 'LatestEstimatedArrivalDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

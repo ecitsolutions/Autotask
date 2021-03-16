@@ -89,7 +89,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -116,28 +116,28 @@ An example of a more complex query. This command returns any QuoteTemplates with
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Calculate Tax Separately
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $CalculateTaxSeparately,
 
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Created By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatedBy,
 
 # Currency Negative Pattern
@@ -146,7 +146,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,10)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CurrencyNegativeFormat,
 
 # Currency Positive Pattern
@@ -155,7 +155,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,10)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CurrencyPositiveFormat,
 
 # Date Format
@@ -174,7 +174,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DateFormat,
 
 # Description
@@ -182,14 +182,14 @@ An example of a more complex query. This command returns any QuoteTemplates with
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,200)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Display Tax Category Superscripts
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $DisplayTaxCategorySuperscripts,
 
 # ID
@@ -197,21 +197,21 @@ An example of a more complex query. This command returns any QuoteTemplates with
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Last Activity By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LastActivityBy,
 
 # Last Activity Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastActivityDate,
 
 # Name
@@ -220,7 +220,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Number Format
@@ -239,7 +239,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NumberFormat,
 
 # Page Layout
@@ -258,7 +258,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PageLayout,
 
 # Page Number Format
@@ -277,126 +277,126 @@ An example of a more complex query. This command returns any QuoteTemplates with
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PageNumberFormat,
 
 # Show Each Tax In Group
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ShowEachTaxInGroup,
 
 # Show Grid Header
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ShowGridHeader,
 
 # Show Tax Category
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ShowTaxCategory,
 
 # Show Vertical Grid Lines
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ShowVerticalGridLines,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'ShowTaxCategory', 'DisplayCurrencySymbol', 'PageNumberFormat', 'Name', 'CurrencyNegativeFormat', 'CalculateTaxSeparately', 'LastActivityBy', 'ShowEachTaxInGroup', 'DisplayTaxCategorySuperscripts', 'LastActivityDate', 'NumberFormat', 'PageLayout', 'id', 'CreateDate', 'ShowVerticalGridLines', 'ShowGridHeader', 'CreatedBy', 'Active', 'DateFormat', 'CurrencyPositiveFormat')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ShowTaxCategory', 'ShowVerticalGridLines', 'LastActivityDate', 'ShowGridHeader', 'NumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat', 'Name', 'DisplayCurrencySymbol', 'CreatedBy', 'ShowEachTaxInGroup', 'DateFormat', 'PageLayout', 'Description', 'LastActivityBy', 'CalculateTaxSeparately', 'Active', 'id', 'CreateDate', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'ShowTaxCategory', 'DisplayCurrencySymbol', 'PageNumberFormat', 'Name', 'CurrencyNegativeFormat', 'CalculateTaxSeparately', 'LastActivityBy', 'ShowEachTaxInGroup', 'DisplayTaxCategorySuperscripts', 'LastActivityDate', 'NumberFormat', 'PageLayout', 'id', 'CreateDate', 'ShowVerticalGridLines', 'ShowGridHeader', 'CreatedBy', 'Active', 'DateFormat', 'CurrencyPositiveFormat')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ShowTaxCategory', 'ShowVerticalGridLines', 'LastActivityDate', 'ShowGridHeader', 'NumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat', 'Name', 'DisplayCurrencySymbol', 'CreatedBy', 'ShowEachTaxInGroup', 'DateFormat', 'PageLayout', 'Description', 'LastActivityBy', 'CalculateTaxSeparately', 'Active', 'id', 'CreateDate', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'ShowTaxCategory', 'DisplayCurrencySymbol', 'PageNumberFormat', 'Name', 'CurrencyNegativeFormat', 'CalculateTaxSeparately', 'LastActivityBy', 'ShowEachTaxInGroup', 'DisplayTaxCategorySuperscripts', 'LastActivityDate', 'NumberFormat', 'PageLayout', 'id', 'CreateDate', 'ShowVerticalGridLines', 'ShowGridHeader', 'CreatedBy', 'Active', 'DateFormat', 'CurrencyPositiveFormat')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ShowTaxCategory', 'ShowVerticalGridLines', 'LastActivityDate', 'ShowGridHeader', 'NumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat', 'Name', 'DisplayCurrencySymbol', 'CreatedBy', 'ShowEachTaxInGroup', 'DateFormat', 'PageLayout', 'Description', 'LastActivityBy', 'CalculateTaxSeparately', 'Active', 'id', 'CreateDate', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDate', 'CreatedBy', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDate', 'CreatedBy', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDate', 'CreatedBy', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDate', 'CreatedBy', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate', 'LastActivityDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

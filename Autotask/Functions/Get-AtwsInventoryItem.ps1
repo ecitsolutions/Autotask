@@ -74,7 +74,7 @@ Set-AtwsInventoryItem
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -101,7 +101,7 @@ Set-AtwsInventoryItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BackOrder,
 
 # Bin
@@ -109,7 +109,7 @@ Set-AtwsInventoryItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Bin,
 
 # Inventory Item ID
@@ -117,14 +117,14 @@ Set-AtwsInventoryItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Inventory Location ID
@@ -132,21 +132,21 @@ Set-AtwsInventoryItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InventoryLocationID,
 
 # On Order
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $OnOrder,
 
 # Picked
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $Picked,
 
 # Product ID
@@ -154,7 +154,7 @@ Set-AtwsInventoryItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProductID,
 
 # Quantity Maximum
@@ -162,7 +162,7 @@ Set-AtwsInventoryItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuantityMaximum,
 
 # Quantity Minimum
@@ -170,7 +170,7 @@ Set-AtwsInventoryItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuantityMinimum,
 
 # Quantity On Hand
@@ -178,7 +178,7 @@ Set-AtwsInventoryItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuantityOnHand,
 
 # Reference Number
@@ -186,104 +186,104 @@ Set-AtwsInventoryItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ReferenceNumber,
 
 # Reserved
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $Reserved,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'QuantityMinimum', 'QuantityOnHand', 'ReferenceNumber', 'Reserved', 'id', 'ProductID', 'QuantityMaximum', 'Picked', 'OnOrder', 'Bin', 'InventoryLocationID', 'BackOrder')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Picked', 'QuantityMinimum', 'BackOrder', 'QuantityOnHand', 'ReferenceNumber', 'Reserved', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'QuantityMaximum', 'id', 'Bin', 'ProductID', 'OnOrder')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'QuantityMinimum', 'QuantityOnHand', 'ReferenceNumber', 'Reserved', 'id', 'ProductID', 'QuantityMaximum', 'Picked', 'OnOrder', 'Bin', 'InventoryLocationID', 'BackOrder')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Picked', 'QuantityMinimum', 'BackOrder', 'QuantityOnHand', 'ReferenceNumber', 'Reserved', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'QuantityMaximum', 'id', 'Bin', 'ProductID', 'OnOrder')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'QuantityMinimum', 'QuantityOnHand', 'ReferenceNumber', 'Reserved', 'id', 'ProductID', 'QuantityMaximum', 'Picked', 'OnOrder', 'Bin', 'InventoryLocationID', 'BackOrder')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Picked', 'QuantityMinimum', 'BackOrder', 'QuantityOnHand', 'ReferenceNumber', 'Reserved', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'QuantityMaximum', 'id', 'Bin', 'ProductID', 'OnOrder')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'InventoryLocationID', 'QuantityOnHand', 'QuantityMinimum', 'QuantityMaximum', 'ReferenceNumber', 'Bin', 'OnOrder', 'BackOrder', 'Reserved', 'Picked', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'InventoryLocationID', 'QuantityOnHand', 'QuantityMinimum', 'QuantityMaximum', 'ReferenceNumber', 'Bin', 'OnOrder', 'BackOrder', 'Reserved', 'Picked', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'InventoryLocationID', 'QuantityOnHand', 'QuantityMinimum', 'QuantityMaximum', 'ReferenceNumber', 'Bin', 'OnOrder', 'BackOrder', 'Reserved', 'Picked', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'InventoryLocationID', 'QuantityOnHand', 'QuantityMinimum', 'QuantityMaximum', 'ReferenceNumber', 'Bin', 'OnOrder', 'BackOrder', 'Reserved', 'Picked', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ReferenceNumber', 'Bin')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ReferenceNumber', 'Bin')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ReferenceNumber', 'Bin')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ReferenceNumber', 'Bin')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ReferenceNumber', 'Bin')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

@@ -58,7 +58,7 @@ Get-AtwsTagAlias
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TagAlias]]
+    [Autotask.TagAlias[]]
     $InputObject,
 
 # Alias

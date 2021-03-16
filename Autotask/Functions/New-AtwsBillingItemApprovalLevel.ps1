@@ -58,7 +58,7 @@ Get-AtwsBillingItemApprovalLevel
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.BillingItemApprovalLevel]]
+    [Autotask.BillingItemApprovalLevel[]]
     $InputObject,
 
 # Approval Date Time

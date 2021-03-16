@@ -42,7 +42,7 @@ Set-AtwsIntegrationVendorWidget
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.IntegrationVendorWidget]]
+    [Autotask.IntegrationVendorWidget[]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -51,7 +51,7 @@ Set-AtwsIntegrationVendorWidget
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[long]]
+    [long[]]
     $Id
   )
  

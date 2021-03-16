@@ -76,7 +76,7 @@ Set-AtwsInstalledProductBillingProductAssociation
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -104,7 +104,7 @@ Set-AtwsInstalledProductBillingProductAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BillingProductID,
 
 # Effective Date
@@ -112,14 +112,14 @@ Set-AtwsInstalledProductBillingProductAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EffectiveDate,
 
 # Expiration Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ExpirationDate,
 
 # Installed Product Billing Product Association ID
@@ -127,7 +127,7 @@ Set-AtwsInstalledProductBillingProductAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Installed Product ID
@@ -135,93 +135,93 @@ Set-AtwsInstalledProductBillingProductAssociation
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InstalledProductID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'BillingProductID', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'BillingProductID', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'BillingProductID', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InstalledProductID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InstalledProductID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InstalledProductID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InstalledProductID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('EffectiveDate', 'ExpirationDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

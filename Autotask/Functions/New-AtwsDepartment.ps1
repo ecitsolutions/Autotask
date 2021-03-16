@@ -58,7 +58,7 @@ Set-AtwsDepartment
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Department]]
+    [Autotask.Department[]]
     $InputObject,
 
 # Description

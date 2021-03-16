@@ -62,7 +62,7 @@ Set-AtwsAppointment
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Appointment]]
+    [Autotask.Appointment[]]
     $InputObject,
 
 # Create Date

@@ -58,7 +58,7 @@ Set-AtwsContractServiceBundle
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractServiceBundle]]
+    [Autotask.ContractServiceBundle[]]
     $InputObject,
 
 # Adjusted Price

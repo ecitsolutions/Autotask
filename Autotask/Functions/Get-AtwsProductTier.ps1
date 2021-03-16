@@ -76,7 +76,7 @@ Set-AtwsProductTier
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -104,7 +104,7 @@ Set-AtwsProductTier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Product ID
@@ -112,7 +112,7 @@ Set-AtwsProductTier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProductID,
 
 # Unit Cost
@@ -120,7 +120,7 @@ Set-AtwsProductTier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $UnitCost,
 
 # Unit Price
@@ -128,99 +128,99 @@ Set-AtwsProductTier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $UnitPrice,
 
 # Up To Unit Count
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $UpToUnitCount,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpToUnitCount', 'id', 'UnitPrice', 'UnitCost', 'ProductID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ProductID', 'id', 'UnitCost', 'UnitPrice', 'UpToUnitCount')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpToUnitCount', 'id', 'UnitPrice', 'UnitCost', 'ProductID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ProductID', 'id', 'UnitCost', 'UnitPrice', 'UpToUnitCount')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpToUnitCount', 'id', 'UnitPrice', 'UnitCost', 'ProductID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ProductID', 'id', 'UnitCost', 'UnitPrice', 'UpToUnitCount')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'UpToUnitCount', 'UnitCost', 'UnitPrice')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'UpToUnitCount', 'UnitCost', 'UnitPrice')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'UpToUnitCount', 'UnitCost', 'UnitPrice')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductID', 'UpToUnitCount', 'UnitCost', 'UnitPrice')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

@@ -61,7 +61,7 @@ Set-AtwsContactBillingProductAssociation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContactBillingProductAssociation]]
+    [Autotask.ContactBillingProductAssociation[]]
     $InputObject,
 
 # Billing Product ID

@@ -85,7 +85,7 @@ An example of a more complex query. This command returns any ResourceRoles with 
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -112,14 +112,14 @@ An example of a more complex query. This command returns any ResourceRoles with 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Department
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $DepartmentID,
 
 # ID
@@ -127,7 +127,7 @@ An example of a more complex query. This command returns any ResourceRoles with 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Queue
@@ -146,7 +146,7 @@ An example of a more complex query. This command returns any ResourceRoles with 
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $QueueID,
 
 # Resource
@@ -154,7 +154,7 @@ An example of a more complex query. This command returns any ResourceRoles with 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ResourceID,
 
 # Role
@@ -162,92 +162,92 @@ An example of a more complex query. This command returns any ResourceRoles with 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $RoleID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DepartmentID', 'ResourceID', 'id', 'Active', 'RoleID', 'QueueID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Active', 'DepartmentID', 'ResourceID', 'RoleID', 'QueueID', 'id')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DepartmentID', 'ResourceID', 'id', 'Active', 'RoleID', 'QueueID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Active', 'DepartmentID', 'ResourceID', 'RoleID', 'QueueID', 'id')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DepartmentID', 'ResourceID', 'id', 'Active', 'RoleID', 'QueueID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Active', 'DepartmentID', 'ResourceID', 'RoleID', 'QueueID', 'id')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'DepartmentID', 'QueueID', 'RoleID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'DepartmentID', 'QueueID', 'RoleID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'DepartmentID', 'QueueID', 'RoleID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'DepartmentID', 'QueueID', 'RoleID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

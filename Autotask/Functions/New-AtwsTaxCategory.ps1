@@ -57,7 +57,7 @@ Set-AtwsTaxCategory
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TaxCategory]]
+    [Autotask.TaxCategory[]]
     $InputObject,
 
 # Active

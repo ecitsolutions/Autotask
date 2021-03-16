@@ -70,7 +70,7 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -98,7 +98,7 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $DeletedByResourceID,
 
 # Deleted Date/Time
@@ -106,7 +106,7 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $DeletedDateTime,
 
 # Deleted Ticket Log ID
@@ -114,7 +114,7 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Ticket ID
@@ -122,7 +122,7 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TicketID,
 
 # Ticket Number
@@ -131,7 +131,7 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TicketNumber,
 
 # Ticket Title
@@ -140,98 +140,98 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TicketTitle,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime', 'TicketID', 'TicketNumber')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'TicketTitle', 'TicketNumber', 'TicketID', 'id')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime', 'TicketID', 'TicketNumber')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'TicketTitle', 'TicketNumber', 'TicketID', 'id')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime', 'TicketID', 'TicketNumber')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'TicketTitle', 'TicketNumber', 'TicketID', 'id')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TicketNumber', 'TicketTitle')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TicketNumber', 'TicketTitle')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TicketNumber', 'TicketTitle')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TicketNumber', 'TicketTitle')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TicketNumber', 'TicketTitle')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('DeletedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

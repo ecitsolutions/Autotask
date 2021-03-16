@@ -59,7 +59,7 @@ Set-AtwsInstalledProductCategory
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.InstalledProductCategory]]
+    [Autotask.InstalledProductCategory[]]
     $InputObject,
 
 # Active

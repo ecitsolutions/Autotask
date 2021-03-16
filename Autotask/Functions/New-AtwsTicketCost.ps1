@@ -63,7 +63,7 @@ Set-AtwsTicketCost
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TicketCost]]
+    [Autotask.TicketCost[]]
     $InputObject,
 
 # Allocation Code

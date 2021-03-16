@@ -72,7 +72,7 @@ New-AtwsPurchaseOrderReceive
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -100,7 +100,7 @@ New-AtwsPurchaseOrderReceive
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Purchase Order Item ID
@@ -108,14 +108,14 @@ New-AtwsPurchaseOrderReceive
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $PurchaseOrderItemID,
 
 # Quantity Back Ordered
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuantityBackOrdered,
 
 # Quantity Now Receiving
@@ -123,28 +123,28 @@ New-AtwsPurchaseOrderReceive
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuantityNowReceiving,
 
 # Quantity Previously Received
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuantityPreviouslyReceived,
 
 # Receive Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ReceiveDate,
 
 # Transfer By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ReceivedByResourceID,
 
 # Serial Number
@@ -152,98 +152,98 @@ New-AtwsPurchaseOrderReceive
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SerialNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReceivedByResourceID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'id', 'QuantityBackOrdered', 'SerialNumber', 'ReceiveDate', 'PurchaseOrderItemID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ReceiveDate', 'QuantityNowReceiving', 'QuantityBackOrdered', 'SerialNumber', 'id', 'QuantityPreviouslyReceived', 'PurchaseOrderItemID', 'ReceivedByResourceID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReceivedByResourceID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'id', 'QuantityBackOrdered', 'SerialNumber', 'ReceiveDate', 'PurchaseOrderItemID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ReceiveDate', 'QuantityNowReceiving', 'QuantityBackOrdered', 'SerialNumber', 'id', 'QuantityPreviouslyReceived', 'PurchaseOrderItemID', 'ReceivedByResourceID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReceivedByResourceID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'id', 'QuantityBackOrdered', 'SerialNumber', 'ReceiveDate', 'PurchaseOrderItemID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ReceiveDate', 'QuantityNowReceiving', 'QuantityBackOrdered', 'SerialNumber', 'id', 'QuantityPreviouslyReceived', 'PurchaseOrderItemID', 'ReceivedByResourceID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'ReceiveDate', 'QuantityBackOrdered', 'ReceivedByResourceID', 'SerialNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'ReceiveDate', 'QuantityBackOrdered', 'ReceivedByResourceID', 'SerialNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'ReceiveDate', 'QuantityBackOrdered', 'ReceivedByResourceID', 'SerialNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'ReceiveDate', 'QuantityBackOrdered', 'ReceivedByResourceID', 'SerialNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SerialNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SerialNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SerialNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SerialNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SerialNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ReceiveDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

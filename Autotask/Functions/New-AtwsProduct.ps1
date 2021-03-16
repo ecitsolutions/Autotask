@@ -60,7 +60,7 @@ Set-AtwsProduct
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Product]]
+    [Autotask.Product[]]
     $InputObject,
 
 # Active

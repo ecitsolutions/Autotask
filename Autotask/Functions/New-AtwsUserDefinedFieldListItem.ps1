@@ -59,7 +59,7 @@ Set-AtwsUserDefinedFieldListItem
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.UserDefinedFieldListItem]]
+    [Autotask.UserDefinedFieldListItem[]]
     $InputObject,
 
 # Create Date

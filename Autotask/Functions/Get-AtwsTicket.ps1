@@ -108,7 +108,7 @@ Set-AtwsTicket
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -145,14 +145,14 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Account Physical Location
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountPhysicalLocationID,
 
 # AEM Alert ID
@@ -160,14 +160,14 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AEMAlertID,
 
 # Allocation Code Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AllocationCodeID,
 
 # API Vendor ID
@@ -186,28 +186,28 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ApiVendorID,
 
 # Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AssignedResourceID,
 
 # Resource Role Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AssignedResourceRoleID,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Change Approval Board ID
@@ -226,7 +226,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ChangeApprovalBoard,
 
 # Change Approval Status
@@ -245,7 +245,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ChangeApprovalStatus,
 
 # Change Approval Type
@@ -264,7 +264,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ChangeApprovalType,
 
 # Change Info Field 1
@@ -272,7 +272,7 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ChangeInfoField1,
 
 # Change Info Field 2
@@ -280,7 +280,7 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ChangeInfoField2,
 
 # Change Info Field 3
@@ -288,7 +288,7 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ChangeInfoField3,
 
 # Change Info Field 4
@@ -296,7 +296,7 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ChangeInfoField4,
 
 # Change Info Field 5
@@ -304,70 +304,70 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ChangeInfoField5,
 
 # Ticket Completed By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CompletedByResourceID,
 
 # Ticket Date Completed by Complete Project Wizard
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CompletedDate,
 
 # Ticket Contact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContactID,
 
 # Contract
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Contract Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ContractServiceBundleID,
 
 # Contract Service ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ContractServiceID,
 
 # Ticket Creation Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Created By Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatedByContactID,
 
 # Ticket Creator
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # Current Service Thermometer Rating
@@ -386,7 +386,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CurrentServiceThermometerRating,
 
 # Ticket Description
@@ -394,21 +394,21 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Ticket End Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $DueDateTime,
 
 # Ticket Estimated Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $EstimatedHours,
 
 # Ticket External ID
@@ -416,42 +416,42 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExternalID,
 
 # First Response Assigned Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $FirstResponseAssignedResourceID,
 
 # First Response Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $FirstResponseDateTime,
 
 # First Response Due Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $FirstResponseDueDateTime,
 
 # First Response Initiating Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $FirstResponseInitiatingResourceID,
 
 # Hours to be Scheduled
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $HoursToBeScheduled,
 
 # Ticket ID
@@ -459,21 +459,21 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Configuration Item
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InstalledProductID,
 
 # Ticket Issue
@@ -492,49 +492,49 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IssueType,
 
 # Ticket Last Activity Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastActivityDate,
 
 # Last Edited Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LastActivityResourceID,
 
 # Last Customer Notification
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastCustomerNotificationDateTime,
 
 # Last Customer Visible Activity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastCustomerVisibleActivityDateTime,
 
 # Last Tracked Modification Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastTrackedModificationDateTime,
 
 # Monitor ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $MonitorID,
 
 # Monitor Type ID
@@ -553,14 +553,14 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $MonitorTypeID,
 
 # Opportunity ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $OpportunityId,
 
 # Previous Service Thermometer Rating
@@ -579,7 +579,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PreviousServiceThermometerRating,
 
 # Ticket Priority
@@ -599,21 +599,21 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Priority,
 
 # Problem Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProblemTicketId,
 
 # Project ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProjectID,
 
 # purchase_order_number
@@ -621,7 +621,7 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderNumber,
 
 # Ticket Department Name OR Ticket Queue Name
@@ -640,7 +640,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $QueueID,
 
 # Resolution
@@ -648,35 +648,35 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,32000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Resolution,
 
 # Resolution Plan Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ResolutionPlanDateTime,
 
 # Resolution Plan Due Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ResolutionPlanDueDateTime,
 
 # Resolved Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ResolvedDateTime,
 
 # Resolved Due Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ResolvedDueDateTime,
 
 # RMA Status
@@ -695,7 +695,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RmaStatus,
 
 # RMA Type
@@ -714,14 +714,14 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RmaType,
 
 # Has Met SLA
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ServiceLevelAgreementHasBeenMet,
 
 # Service Level Agreement ID
@@ -740,14 +740,14 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ServiceLevelAgreementID,
 
 # Service Thermometer Temperature
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ServiceThermometerTemperature,
 
 # Ticket Source
@@ -766,7 +766,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Source,
 
 # Ticket Status
@@ -786,7 +786,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
 # Ticket Subissue Type
@@ -816,7 +816,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SubIssueType,
 
 # Ticket Category
@@ -835,7 +835,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TicketCategory,
 
 # Ticket Number
@@ -843,7 +843,7 @@ Set-AtwsTicket
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TicketNumber,
 
 # Ticket Type
@@ -862,7 +862,7 @@ Set-AtwsTicket
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TicketType,
 
 # Ticket Title
@@ -871,98 +871,98 @@ Set-AtwsTicket
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ChangeInfoField3', 'CreatedByContactID', 'MonitorID', 'HoursToBeScheduled', 'CurrentServiceThermometerRating', 'RmaType', 'SubIssueType', 'IssueType', 'Description', 'InstalledProductID', 'FirstResponseDueDateTime', 'ServiceLevelAgreementPausedNextEventHours', 'CreatorResourceID', 'ServiceLevelAgreementHasBeenMet', 'BusinessDivisionSubdivisionID', 'ChangeApprovalBoard', 'Resolution', 'MonitorTypeID', 'ProjectID', 'CreatorType', 'ContractID', 'CreateDate', 'LastCustomerNotificationDateTime', 'TicketCategory', 'ImpersonatorCreatorResourceID', 'AssignedResourceID', 'TicketType', 'ResolvedDueDateTime', 'AccountPhysicalLocationID', 'LastCustomerVisibleActivityDateTime', 'PurchaseOrderNumber', 'RmaStatus', 'AllocationCodeID', 'ChangeInfoField5', 'Source', 'ChangeInfoField2', 'ResolutionPlanDateTime', 'DueDateTime', 'LastActivityResourceID', 'QueueID', 'FirstResponseDateTime', 'ContactID', 'AEMAlertID', 'CompletedByResourceID', 'PreviousServiceThermometerRating', 'LastActivityDate', 'ResolutionPlanDueDateTime', 'ServiceThermometerTemperature', 'ProblemTicketId', 'ApiVendorID', 'ChangeInfoField4', 'LastTrackedModificationDateTime', 'id', 'OpportunityId', 'CompletedDate', 'ContractServiceID', 'ChangeApprovalType', 'ExternalID', 'ResolvedDateTime', 'AccountID', 'ChangeInfoField1', 'Title', 'ServiceLevelAgreementID', 'ContractServiceBundleID', 'Priority', 'ChangeApprovalStatus', 'EstimatedHours', 'FirstResponseInitiatingResourceID', 'AssignedResourceRoleID', 'FirstResponseAssignedResourceID', 'TicketNumber', 'LastActivityPersonType', 'Status', '')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ApiVendorID', 'ChangeInfoField3', 'MonitorID', 'LastTrackedModificationDateTime', 'LastActivityResourceID', 'ResolutionPlanDateTime', 'CreatorResourceID', 'FirstResponseDueDateTime', 'TicketType', 'HoursToBeScheduled', 'OpportunityId', 'RmaStatus', 'Description', 'ChangeInfoField2', 'ResolutionPlanDueDateTime', 'PurchaseOrderNumber', 'AccountPhysicalLocationID', 'ContractServiceBundleID', 'LastCustomerNotificationDateTime', 'CompletedByResourceID', 'ImpersonatorCreatorResourceID', 'AEMAlertID', 'ProjectID', 'CreateDate', 'ContractID', 'AssignedResourceID', 'AllocationCodeID', 'CurrentServiceThermometerRating', 'id', 'ResolvedDueDateTime', 'ContractServiceID', 'ChangeInfoField5', 'DueDateTime', 'Source', 'ChangeApprovalStatus', 'ServiceLevelAgreementHasBeenMet', 'ChangeApprovalType', 'InstalledProductID', 'Priority', 'FirstResponseInitiatingResourceID', 'ContactID', 'PreviousServiceThermometerRating', 'LastActivityPersonType', 'FirstResponseDateTime', 'LastCustomerVisibleActivityDateTime', 'AssignedResourceRoleID', 'TicketCategory', 'FirstResponseAssignedResourceID', 'Status', 'Title', 'BusinessDivisionSubdivisionID', 'Resolution', 'ServiceLevelAgreementID', 'QueueID', 'ChangeInfoField4', 'MonitorTypeID', 'EstimatedHours', 'CreatedByContactID', 'ServiceThermometerTemperature', 'ResolvedDateTime', 'ProblemTicketId', 'CompletedDate', 'IssueType', 'LastActivityDate', 'ExternalID', 'CreatorType', 'AccountID', 'ServiceLevelAgreementPausedNextEventHours', 'ChangeInfoField1', 'ChangeApprovalBoard', 'RmaType', 'SubIssueType', 'TicketNumber', '')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ChangeInfoField3', 'CreatedByContactID', 'MonitorID', 'HoursToBeScheduled', 'CurrentServiceThermometerRating', 'RmaType', 'SubIssueType', 'IssueType', 'Description', 'InstalledProductID', 'FirstResponseDueDateTime', 'ServiceLevelAgreementPausedNextEventHours', 'CreatorResourceID', 'ServiceLevelAgreementHasBeenMet', 'BusinessDivisionSubdivisionID', 'ChangeApprovalBoard', 'Resolution', 'MonitorTypeID', 'ProjectID', 'CreatorType', 'ContractID', 'CreateDate', 'LastCustomerNotificationDateTime', 'TicketCategory', 'ImpersonatorCreatorResourceID', 'AssignedResourceID', 'TicketType', 'ResolvedDueDateTime', 'AccountPhysicalLocationID', 'LastCustomerVisibleActivityDateTime', 'PurchaseOrderNumber', 'RmaStatus', 'AllocationCodeID', 'ChangeInfoField5', 'Source', 'ChangeInfoField2', 'ResolutionPlanDateTime', 'DueDateTime', 'LastActivityResourceID', 'QueueID', 'FirstResponseDateTime', 'ContactID', 'AEMAlertID', 'CompletedByResourceID', 'PreviousServiceThermometerRating', 'LastActivityDate', 'ResolutionPlanDueDateTime', 'ServiceThermometerTemperature', 'ProblemTicketId', 'ApiVendorID', 'ChangeInfoField4', 'LastTrackedModificationDateTime', 'id', 'OpportunityId', 'CompletedDate', 'ContractServiceID', 'ChangeApprovalType', 'ExternalID', 'ResolvedDateTime', 'AccountID', 'ChangeInfoField1', 'Title', 'ServiceLevelAgreementID', 'ContractServiceBundleID', 'Priority', 'ChangeApprovalStatus', 'EstimatedHours', 'FirstResponseInitiatingResourceID', 'AssignedResourceRoleID', 'FirstResponseAssignedResourceID', 'TicketNumber', 'LastActivityPersonType', 'Status', '')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ApiVendorID', 'ChangeInfoField3', 'MonitorID', 'LastTrackedModificationDateTime', 'LastActivityResourceID', 'ResolutionPlanDateTime', 'CreatorResourceID', 'FirstResponseDueDateTime', 'TicketType', 'HoursToBeScheduled', 'OpportunityId', 'RmaStatus', 'Description', 'ChangeInfoField2', 'ResolutionPlanDueDateTime', 'PurchaseOrderNumber', 'AccountPhysicalLocationID', 'ContractServiceBundleID', 'LastCustomerNotificationDateTime', 'CompletedByResourceID', 'ImpersonatorCreatorResourceID', 'AEMAlertID', 'ProjectID', 'CreateDate', 'ContractID', 'AssignedResourceID', 'AllocationCodeID', 'CurrentServiceThermometerRating', 'id', 'ResolvedDueDateTime', 'ContractServiceID', 'ChangeInfoField5', 'DueDateTime', 'Source', 'ChangeApprovalStatus', 'ServiceLevelAgreementHasBeenMet', 'ChangeApprovalType', 'InstalledProductID', 'Priority', 'FirstResponseInitiatingResourceID', 'ContactID', 'PreviousServiceThermometerRating', 'LastActivityPersonType', 'FirstResponseDateTime', 'LastCustomerVisibleActivityDateTime', 'AssignedResourceRoleID', 'TicketCategory', 'FirstResponseAssignedResourceID', 'Status', 'Title', 'BusinessDivisionSubdivisionID', 'Resolution', 'ServiceLevelAgreementID', 'QueueID', 'ChangeInfoField4', 'MonitorTypeID', 'EstimatedHours', 'CreatedByContactID', 'ServiceThermometerTemperature', 'ResolvedDateTime', 'ProblemTicketId', 'CompletedDate', 'IssueType', 'LastActivityDate', 'ExternalID', 'CreatorType', 'AccountID', 'ServiceLevelAgreementPausedNextEventHours', 'ChangeInfoField1', 'ChangeApprovalBoard', 'RmaType', 'SubIssueType', 'TicketNumber', '')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ChangeInfoField3', 'CreatedByContactID', 'MonitorID', 'HoursToBeScheduled', 'CurrentServiceThermometerRating', 'RmaType', 'SubIssueType', 'IssueType', 'Description', 'InstalledProductID', 'FirstResponseDueDateTime', 'ServiceLevelAgreementPausedNextEventHours', 'CreatorResourceID', 'ServiceLevelAgreementHasBeenMet', 'BusinessDivisionSubdivisionID', 'ChangeApprovalBoard', 'Resolution', 'MonitorTypeID', 'ProjectID', 'CreatorType', 'ContractID', 'CreateDate', 'LastCustomerNotificationDateTime', 'TicketCategory', 'ImpersonatorCreatorResourceID', 'AssignedResourceID', 'TicketType', 'ResolvedDueDateTime', 'AccountPhysicalLocationID', 'LastCustomerVisibleActivityDateTime', 'PurchaseOrderNumber', 'RmaStatus', 'AllocationCodeID', 'ChangeInfoField5', 'Source', 'ChangeInfoField2', 'ResolutionPlanDateTime', 'DueDateTime', 'LastActivityResourceID', 'QueueID', 'FirstResponseDateTime', 'ContactID', 'AEMAlertID', 'CompletedByResourceID', 'PreviousServiceThermometerRating', 'LastActivityDate', 'ResolutionPlanDueDateTime', 'ServiceThermometerTemperature', 'ProblemTicketId', 'ApiVendorID', 'ChangeInfoField4', 'LastTrackedModificationDateTime', 'id', 'OpportunityId', 'CompletedDate', 'ContractServiceID', 'ChangeApprovalType', 'ExternalID', 'ResolvedDateTime', 'AccountID', 'ChangeInfoField1', 'Title', 'ServiceLevelAgreementID', 'ContractServiceBundleID', 'Priority', 'ChangeApprovalStatus', 'EstimatedHours', 'FirstResponseInitiatingResourceID', 'AssignedResourceRoleID', 'FirstResponseAssignedResourceID', 'TicketNumber', 'LastActivityPersonType', 'Status', '')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ApiVendorID', 'ChangeInfoField3', 'MonitorID', 'LastTrackedModificationDateTime', 'LastActivityResourceID', 'ResolutionPlanDateTime', 'CreatorResourceID', 'FirstResponseDueDateTime', 'TicketType', 'HoursToBeScheduled', 'OpportunityId', 'RmaStatus', 'Description', 'ChangeInfoField2', 'ResolutionPlanDueDateTime', 'PurchaseOrderNumber', 'AccountPhysicalLocationID', 'ContractServiceBundleID', 'LastCustomerNotificationDateTime', 'CompletedByResourceID', 'ImpersonatorCreatorResourceID', 'AEMAlertID', 'ProjectID', 'CreateDate', 'ContractID', 'AssignedResourceID', 'AllocationCodeID', 'CurrentServiceThermometerRating', 'id', 'ResolvedDueDateTime', 'ContractServiceID', 'ChangeInfoField5', 'DueDateTime', 'Source', 'ChangeApprovalStatus', 'ServiceLevelAgreementHasBeenMet', 'ChangeApprovalType', 'InstalledProductID', 'Priority', 'FirstResponseInitiatingResourceID', 'ContactID', 'PreviousServiceThermometerRating', 'LastActivityPersonType', 'FirstResponseDateTime', 'LastCustomerVisibleActivityDateTime', 'AssignedResourceRoleID', 'TicketCategory', 'FirstResponseAssignedResourceID', 'Status', 'Title', 'BusinessDivisionSubdivisionID', 'Resolution', 'ServiceLevelAgreementID', 'QueueID', 'ChangeInfoField4', 'MonitorTypeID', 'EstimatedHours', 'CreatedByContactID', 'ServiceThermometerTemperature', 'ResolvedDateTime', 'ProblemTicketId', 'CompletedDate', 'IssueType', 'LastActivityDate', 'ExternalID', 'CreatorType', 'AccountID', 'ServiceLevelAgreementPausedNextEventHours', 'ChangeInfoField1', 'ChangeApprovalBoard', 'RmaType', 'SubIssueType', 'TicketNumber', '')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CreatorType', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityPersonType', 'LastActivityResourceID', 'ServiceLevelAgreementPausedNextEventHours', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'LastTrackedModificationDateTime', 'RmaStatus', 'RmaType', 'ImpersonatorCreatorResourceID', 'CreatedByContactID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CreatorType', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityPersonType', 'LastActivityResourceID', 'ServiceLevelAgreementPausedNextEventHours', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'LastTrackedModificationDateTime', 'RmaStatus', 'RmaType', 'ImpersonatorCreatorResourceID', 'CreatedByContactID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CreatorType', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityPersonType', 'LastActivityResourceID', 'ServiceLevelAgreementPausedNextEventHours', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'LastTrackedModificationDateTime', 'RmaStatus', 'RmaType', 'ImpersonatorCreatorResourceID', 'CreatedByContactID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AccountID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'Description', 'DueDateTime', 'EstimatedHours', 'ExternalID', 'id', 'InstalledProductID', 'IssueType', 'LastActivityDate', 'Priority', 'QueueID', 'Source', 'Status', 'SubIssueType', 'TicketNumber', 'Title', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'ServiceLevelAgreementID', 'Resolution', 'PurchaseOrderNumber', 'TicketType', 'ProblemTicketId', 'OpportunityId', 'ChangeApprovalBoard', 'ChangeApprovalType', 'ChangeApprovalStatus', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'ContractServiceID', 'ContractServiceBundleID', 'MonitorTypeID', 'MonitorID', 'AEMAlertID', 'HoursToBeScheduled', 'TicketCategory', 'FirstResponseInitiatingResourceID', 'FirstResponseAssignedResourceID', 'ProjectID', 'BusinessDivisionSubdivisionID', 'CreatorType', 'CompletedByResourceID', 'AccountPhysicalLocationID', 'LastActivityPersonType', 'LastActivityResourceID', 'ServiceLevelAgreementPausedNextEventHours', 'CurrentServiceThermometerRating', 'PreviousServiceThermometerRating', 'ServiceThermometerTemperature', 'ApiVendorID', 'LastTrackedModificationDateTime', 'RmaStatus', 'RmaType', 'ImpersonatorCreatorResourceID', 'CreatedByContactID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ExternalID', 'TicketNumber', 'Title', 'Resolution', 'PurchaseOrderNumber', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'AEMAlertID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ExternalID', 'TicketNumber', 'Title', 'Resolution', 'PurchaseOrderNumber', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'AEMAlertID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ExternalID', 'TicketNumber', 'Title', 'Resolution', 'PurchaseOrderNumber', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'AEMAlertID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ExternalID', 'TicketNumber', 'Title', 'Resolution', 'PurchaseOrderNumber', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'AEMAlertID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'ExternalID', 'TicketNumber', 'Title', 'Resolution', 'PurchaseOrderNumber', 'ChangeInfoField1', 'ChangeInfoField2', 'ChangeInfoField3', 'ChangeInfoField4', 'ChangeInfoField5', 'AEMAlertID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CompletedDate', 'CreateDate', 'DueDateTime', 'LastActivityDate', 'FirstResponseDateTime', 'ResolutionPlanDateTime', 'ResolvedDateTime', 'FirstResponseDueDateTime', 'ResolutionPlanDueDateTime', 'ResolvedDueDateTime', 'LastCustomerNotificationDateTime', 'LastCustomerVisibleActivityDateTime', 'LastTrackedModificationDateTime', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

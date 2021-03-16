@@ -63,7 +63,7 @@ Set-AtwsExpenseItem
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ExpenseItem]]
+    [Autotask.ExpenseItem[]]
     $InputObject,
 
 # Account ID

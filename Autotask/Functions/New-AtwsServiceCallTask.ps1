@@ -58,7 +58,7 @@ Get-AtwsServiceCallTask
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ServiceCallTask]]
+    [Autotask.ServiceCallTask[]]
     $InputObject,
 
 # Service Call ID

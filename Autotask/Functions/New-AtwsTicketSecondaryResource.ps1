@@ -59,7 +59,7 @@ Get-AtwsTicketSecondaryResource
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TicketSecondaryResource]]
+    [Autotask.TicketSecondaryResource[]]
     $InputObject,
 
 # Resource

@@ -57,7 +57,7 @@ Set-AtwsQuoteLocation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.QuoteLocation]]
+    [Autotask.QuoteLocation[]]
     $InputObject,
 
 # address_1

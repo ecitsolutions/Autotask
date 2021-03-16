@@ -92,7 +92,7 @@ Set-AtwsContractBillingRule
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -120,7 +120,7 @@ Set-AtwsContractBillingRule
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Contract ID
@@ -128,7 +128,7 @@ Set-AtwsContractBillingRule
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Create Charges As Billable
@@ -136,21 +136,21 @@ Set-AtwsContractBillingRule
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $CreateChargesAsBillable,
 
 # Daily Prorated Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $DailyProratedCost,
 
 # Daily Prorated Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $DailyProratedPrice,
 
 # Determine Units
@@ -170,7 +170,7 @@ Set-AtwsContractBillingRule
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DetermineUnits,
 
 # Enable Daily Prorating
@@ -178,14 +178,14 @@ Set-AtwsContractBillingRule
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $EnableDailyProrating,
 
 # End Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDate,
 
 # Execution Method
@@ -204,7 +204,7 @@ Set-AtwsContractBillingRule
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExecutionMethod,
 
 # Contract Billing Rule ID
@@ -212,7 +212,7 @@ Set-AtwsContractBillingRule
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Include Items In Charge Description
@@ -220,7 +220,7 @@ Set-AtwsContractBillingRule
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IncludeItemsInChargeDescription,
 
 # Invoice Description
@@ -228,21 +228,21 @@ Set-AtwsContractBillingRule
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $InvoiceDescription,
 
 # Maximum Units
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $MaximumUnits,
 
 # Minimum Units
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $MinimumUnits,
 
 # Product ID
@@ -250,7 +250,7 @@ Set-AtwsContractBillingRule
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProductID,
 
 # Start Date
@@ -258,98 +258,98 @@ Set-AtwsContractBillingRule
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EnableDailyProrating', 'IncludeItemsInChargeDescription', 'DailyProratedCost', 'DailyProratedPrice', 'id', 'ContractID', 'MaximumUnits', 'EndDate', 'InvoiceDescription', 'ProductID', 'CreateChargesAsBillable', 'Active', 'StartDate', 'ExecutionMethod', 'DetermineUnits', 'MinimumUnits')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('DailyProratedPrice', 'MinimumUnits', 'DailyProratedCost', 'MaximumUnits', 'EndDate', 'ContractID', 'EnableDailyProrating', 'IncludeItemsInChargeDescription', 'ExecutionMethod', 'id', 'Active', 'ProductID', 'CreateChargesAsBillable', 'DetermineUnits', 'StartDate', 'InvoiceDescription')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EnableDailyProrating', 'IncludeItemsInChargeDescription', 'DailyProratedCost', 'DailyProratedPrice', 'id', 'ContractID', 'MaximumUnits', 'EndDate', 'InvoiceDescription', 'ProductID', 'CreateChargesAsBillable', 'Active', 'StartDate', 'ExecutionMethod', 'DetermineUnits', 'MinimumUnits')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('DailyProratedPrice', 'MinimumUnits', 'DailyProratedCost', 'MaximumUnits', 'EndDate', 'ContractID', 'EnableDailyProrating', 'IncludeItemsInChargeDescription', 'ExecutionMethod', 'id', 'Active', 'ProductID', 'CreateChargesAsBillable', 'DetermineUnits', 'StartDate', 'InvoiceDescription')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EnableDailyProrating', 'IncludeItemsInChargeDescription', 'DailyProratedCost', 'DailyProratedPrice', 'id', 'ContractID', 'MaximumUnits', 'EndDate', 'InvoiceDescription', 'ProductID', 'CreateChargesAsBillable', 'Active', 'StartDate', 'ExecutionMethod', 'DetermineUnits', 'MinimumUnits')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('DailyProratedPrice', 'MinimumUnits', 'DailyProratedCost', 'MaximumUnits', 'EndDate', 'ContractID', 'EnableDailyProrating', 'IncludeItemsInChargeDescription', 'ExecutionMethod', 'id', 'Active', 'ProductID', 'CreateChargesAsBillable', 'DetermineUnits', 'StartDate', 'InvoiceDescription')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('StartDate', 'EndDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

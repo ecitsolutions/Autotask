@@ -62,7 +62,7 @@ Set-AtwsContractRetainer
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractRetainer]]
+    [Autotask.ContractRetainer[]]
     $InputObject,
 
 # Amount

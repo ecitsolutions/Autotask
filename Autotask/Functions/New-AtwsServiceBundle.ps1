@@ -61,7 +61,7 @@ Set-AtwsServiceBundle
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ServiceBundle]]
+    [Autotask.ServiceBundle[]]
     $InputObject,
 
 # allocation_code_id

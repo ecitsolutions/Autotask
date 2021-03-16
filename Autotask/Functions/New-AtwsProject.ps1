@@ -62,7 +62,7 @@ Set-AtwsProject
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Project]]
+    [Autotask.Project[]]
     $InputObject,
 
 # Account ID

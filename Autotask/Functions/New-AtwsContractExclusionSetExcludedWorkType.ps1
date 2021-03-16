@@ -58,7 +58,7 @@ Get-AtwsContractExclusionSetExcludedWorkType
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractExclusionSetExcludedWorkType]]
+    [Autotask.ContractExclusionSetExcludedWorkType[]]
     $InputObject,
 
 # Contract Exclusion Set ID

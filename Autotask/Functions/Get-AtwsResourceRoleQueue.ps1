@@ -89,7 +89,7 @@ Set-AtwsResourceRoleQueue
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -117,7 +117,7 @@ Set-AtwsResourceRoleQueue
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Queue ID
@@ -137,7 +137,7 @@ Set-AtwsResourceRoleQueue
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $QueueID,
 
 # Resource ID
@@ -145,92 +145,92 @@ Set-AtwsResourceRoleQueue
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ResourceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'Active', 'Default', 'id', 'RoleID', 'QueueID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Default', 'Active', 'ResourceID', 'RoleID', 'QueueID', 'id')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'Active', 'Default', 'id', 'RoleID', 'QueueID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Default', 'Active', 'ResourceID', 'RoleID', 'QueueID', 'id')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResourceID', 'Active', 'Default', 'id', 'RoleID', 'QueueID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Default', 'Active', 'ResourceID', 'RoleID', 'QueueID', 'id')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'RoleID', 'QueueID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'RoleID', 'QueueID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'RoleID', 'QueueID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ResourceID', 'RoleID', 'QueueID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

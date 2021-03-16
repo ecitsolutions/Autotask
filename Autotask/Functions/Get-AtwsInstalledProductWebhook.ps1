@@ -76,7 +76,7 @@ Set-AtwsInstalledProductWebhook
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -103,7 +103,7 @@ Set-AtwsInstalledProductWebhook
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Deactivation URL
@@ -112,7 +112,7 @@ Set-AtwsInstalledProductWebhook
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,500)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DeactivationUrl,
 
 # Configuration Item Webhook Configuration ID
@@ -120,28 +120,28 @@ Set-AtwsInstalledProductWebhook
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Subscribed To Create Events
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsSubscribedToCreateEvents,
 
 # Is Subscribed To Delete Events
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsSubscribedToDeleteEvents,
 
 # Is Subscribed To Update Events
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsSubscribedToUpdateEvents,
 
 # Name
@@ -150,7 +150,7 @@ Set-AtwsInstalledProductWebhook
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Notification Email Address
@@ -158,21 +158,21 @@ Set-AtwsInstalledProductWebhook
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,150)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotificationEmailAddress,
 
 # Owner Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $OwnerResourceID,
 
 # Ready
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Ready,
 
 # Secret Key
@@ -181,14 +181,14 @@ Set-AtwsInstalledProductWebhook
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,64)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SecretKey,
 
 # Send Threshold Exceeded Notification
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $SendThresholdExceededNotification,
 
 # Webhook GUID
@@ -196,7 +196,7 @@ Set-AtwsInstalledProductWebhook
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $WebhookGUID,
 
 # Webhook Url
@@ -205,97 +205,97 @@ Set-AtwsInstalledProductWebhook
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,500)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $WebhookUrl,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeactivationUrl', 'Name', 'SecretKey', 'Ready', 'IsSubscribedToDeleteEvents', 'WebhookGUID', 'WebhookUrl', 'IsSubscribedToCreateEvents', 'id', 'SendThresholdExceededNotification', 'NotificationEmailAddress', 'Active', 'OwnerResourceID', 'IsSubscribedToUpdateEvents')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsSubscribedToCreateEvents', 'SecretKey', 'NotificationEmailAddress', 'SendThresholdExceededNotification', 'OwnerResourceID', 'WebhookGUID', 'IsSubscribedToDeleteEvents', 'Name', 'DeactivationUrl', 'WebhookUrl', 'id', 'Active', 'Ready', 'IsSubscribedToUpdateEvents')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeactivationUrl', 'Name', 'SecretKey', 'Ready', 'IsSubscribedToDeleteEvents', 'WebhookGUID', 'WebhookUrl', 'IsSubscribedToCreateEvents', 'id', 'SendThresholdExceededNotification', 'NotificationEmailAddress', 'Active', 'OwnerResourceID', 'IsSubscribedToUpdateEvents')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsSubscribedToCreateEvents', 'SecretKey', 'NotificationEmailAddress', 'SendThresholdExceededNotification', 'OwnerResourceID', 'WebhookGUID', 'IsSubscribedToDeleteEvents', 'Name', 'DeactivationUrl', 'WebhookUrl', 'id', 'Active', 'Ready', 'IsSubscribedToUpdateEvents')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeactivationUrl', 'Name', 'SecretKey', 'Ready', 'IsSubscribedToDeleteEvents', 'WebhookGUID', 'WebhookUrl', 'IsSubscribedToCreateEvents', 'id', 'SendThresholdExceededNotification', 'NotificationEmailAddress', 'Active', 'OwnerResourceID', 'IsSubscribedToUpdateEvents')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsSubscribedToCreateEvents', 'SecretKey', 'NotificationEmailAddress', 'SendThresholdExceededNotification', 'OwnerResourceID', 'WebhookGUID', 'IsSubscribedToDeleteEvents', 'Name', 'DeactivationUrl', 'WebhookUrl', 'id', 'Active', 'Ready', 'IsSubscribedToUpdateEvents')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

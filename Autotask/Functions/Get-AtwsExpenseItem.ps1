@@ -91,7 +91,7 @@ Set-AtwsExpenseItem
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -118,7 +118,7 @@ Set-AtwsExpenseItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Billable To Account
@@ -126,7 +126,7 @@ Set-AtwsExpenseItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $BillableToAccount,
 
 # Description
@@ -135,7 +135,7 @@ Set-AtwsExpenseItem
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Destination
@@ -143,7 +143,7 @@ Set-AtwsExpenseItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Destination,
 
 # Entertainment Location
@@ -151,14 +151,14 @@ Set-AtwsExpenseItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EntertainmentLocation,
 
 # Expense Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ExpenseAmount,
 
 # Expense Category
@@ -178,14 +178,14 @@ Set-AtwsExpenseItem
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExpenseCategory,
 
 # Currency ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ExpenseCurrencyID,
 
 # Expense Date
@@ -193,7 +193,7 @@ Set-AtwsExpenseItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ExpenseDate,
 
 # Expense Report ID
@@ -201,7 +201,7 @@ Set-AtwsExpenseItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ExpenseReportID,
 
 # Have Receipt
@@ -209,7 +209,7 @@ Set-AtwsExpenseItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $HaveReceipt,
 
 # Expense Item ID
@@ -217,28 +217,28 @@ Set-AtwsExpenseItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Miles
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $Miles,
 
 # Odometer End
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $OdometerEnd,
 
 # Odometer Start
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $OdometerStart,
 
 # Origin
@@ -246,7 +246,7 @@ Set-AtwsExpenseItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Origin,
 
 # Payment Type
@@ -266,14 +266,14 @@ Set-AtwsExpenseItem
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PaymentType,
 
 # Project ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProjectID,
 
 # purchase_order_number
@@ -281,42 +281,42 @@ Set-AtwsExpenseItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderNumber,
 
 # Receipt Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ReceiptAmount,
 
 # Reimbursement Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ReimbursementAmount,
 
 # Reimbursement Currency Reimbursement Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $ReimbursementCurrencyReimbursementAmount,
 
 # Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TaskID,
 
 # Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TicketID,
 
 # Work Type
@@ -335,98 +335,98 @@ Set-AtwsExpenseItem
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $WorkType,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ExpenseDate', 'PurchaseOrderNumber', 'Origin', 'id', 'EntertainmentLocation', 'ReceiptAmount', 'OdometerStart', 'ProjectID', 'PaymentType', 'Rejected', 'ExpenseReportID', 'GLCode', 'HaveReceipt', 'ExpenseCurrencyID', 'ReimbursementAmount', 'ExpenseAmount', 'ExpenseCategory', 'AccountID', 'OdometerEnd', 'Destination', 'Description', 'TaskID', 'Reimbursable', 'WorkType', 'ReimbursementCurrencyReimbursementAmount', 'Miles', 'BillableToAccount')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'GLCode', 'OdometerEnd', 'Description', 'TicketID', 'PurchaseOrderNumber', 'ExpenseCurrencyID', 'OdometerStart', 'PaymentType', 'EntertainmentLocation', 'Destination', 'Reimbursable', 'Rejected', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseReportID', 'ExpenseDate', 'WorkType', 'ExpenseCategory', 'ReceiptAmount', 'AccountID', 'ExpenseAmount', 'HaveReceipt', 'BillableToAccount', 'Miles', 'Origin', 'TaskID', 'ReimbursementAmount', 'ProjectID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ExpenseDate', 'PurchaseOrderNumber', 'Origin', 'id', 'EntertainmentLocation', 'ReceiptAmount', 'OdometerStart', 'ProjectID', 'PaymentType', 'Rejected', 'ExpenseReportID', 'GLCode', 'HaveReceipt', 'ExpenseCurrencyID', 'ReimbursementAmount', 'ExpenseAmount', 'ExpenseCategory', 'AccountID', 'OdometerEnd', 'Destination', 'Description', 'TaskID', 'Reimbursable', 'WorkType', 'ReimbursementCurrencyReimbursementAmount', 'Miles', 'BillableToAccount')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'GLCode', 'OdometerEnd', 'Description', 'TicketID', 'PurchaseOrderNumber', 'ExpenseCurrencyID', 'OdometerStart', 'PaymentType', 'EntertainmentLocation', 'Destination', 'Reimbursable', 'Rejected', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseReportID', 'ExpenseDate', 'WorkType', 'ExpenseCategory', 'ReceiptAmount', 'AccountID', 'ExpenseAmount', 'HaveReceipt', 'BillableToAccount', 'Miles', 'Origin', 'TaskID', 'ReimbursementAmount', 'ProjectID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TicketID', 'ExpenseDate', 'PurchaseOrderNumber', 'Origin', 'id', 'EntertainmentLocation', 'ReceiptAmount', 'OdometerStart', 'ProjectID', 'PaymentType', 'Rejected', 'ExpenseReportID', 'GLCode', 'HaveReceipt', 'ExpenseCurrencyID', 'ReimbursementAmount', 'ExpenseAmount', 'ExpenseCategory', 'AccountID', 'OdometerEnd', 'Destination', 'Description', 'TaskID', 'Reimbursable', 'WorkType', 'ReimbursementCurrencyReimbursementAmount', 'Miles', 'BillableToAccount')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'GLCode', 'OdometerEnd', 'Description', 'TicketID', 'PurchaseOrderNumber', 'ExpenseCurrencyID', 'OdometerStart', 'PaymentType', 'EntertainmentLocation', 'Destination', 'Reimbursable', 'Rejected', 'ReimbursementCurrencyReimbursementAmount', 'ExpenseReportID', 'ExpenseDate', 'WorkType', 'ExpenseCategory', 'ReceiptAmount', 'AccountID', 'ExpenseAmount', 'HaveReceipt', 'BillableToAccount', 'Miles', 'Origin', 'TaskID', 'ReimbursementAmount', 'ProjectID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ExpenseReportID', 'Description', 'ExpenseDate', 'ExpenseCategory', 'GLCode', 'WorkType', 'ExpenseAmount', 'PaymentType', 'AccountID', 'ProjectID', 'TaskID', 'TicketID', 'EntertainmentLocation', 'Miles', 'Origin', 'Destination', 'PurchaseOrderNumber', 'OdometerStart', 'OdometerEnd', 'ExpenseCurrencyID', 'ReceiptAmount', 'ReimbursementAmount', 'ReimbursementCurrencyReimbursementAmount')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ExpenseReportID', 'Description', 'ExpenseDate', 'ExpenseCategory', 'GLCode', 'WorkType', 'ExpenseAmount', 'PaymentType', 'AccountID', 'ProjectID', 'TaskID', 'TicketID', 'EntertainmentLocation', 'Miles', 'Origin', 'Destination', 'PurchaseOrderNumber', 'OdometerStart', 'OdometerEnd', 'ExpenseCurrencyID', 'ReceiptAmount', 'ReimbursementAmount', 'ReimbursementCurrencyReimbursementAmount')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ExpenseReportID', 'Description', 'ExpenseDate', 'ExpenseCategory', 'GLCode', 'WorkType', 'ExpenseAmount', 'PaymentType', 'AccountID', 'ProjectID', 'TaskID', 'TicketID', 'EntertainmentLocation', 'Miles', 'Origin', 'Destination', 'PurchaseOrderNumber', 'OdometerStart', 'OdometerEnd', 'ExpenseCurrencyID', 'ReceiptAmount', 'ReimbursementAmount', 'ReimbursementCurrencyReimbursementAmount')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ExpenseReportID', 'Description', 'ExpenseDate', 'ExpenseCategory', 'GLCode', 'WorkType', 'ExpenseAmount', 'PaymentType', 'AccountID', 'ProjectID', 'TaskID', 'TicketID', 'EntertainmentLocation', 'Miles', 'Origin', 'Destination', 'PurchaseOrderNumber', 'OdometerStart', 'OdometerEnd', 'ExpenseCurrencyID', 'ReceiptAmount', 'ReimbursementAmount', 'ReimbursementCurrencyReimbursementAmount')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'GLCode', 'EntertainmentLocation', 'Origin', 'Destination', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'GLCode', 'EntertainmentLocation', 'Origin', 'Destination', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'GLCode', 'EntertainmentLocation', 'Origin', 'Destination', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'GLCode', 'EntertainmentLocation', 'Origin', 'Destination', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Description', 'GLCode', 'EntertainmentLocation', 'Origin', 'Destination', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ExpenseDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

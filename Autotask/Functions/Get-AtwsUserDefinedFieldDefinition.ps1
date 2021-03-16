@@ -91,7 +91,7 @@ Set-AtwsUserDefinedFieldDefinition
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -117,14 +117,14 @@ Set-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Crm to Project Udf Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $CrmToProjectUdfId,
 
 # Data Type
@@ -144,7 +144,7 @@ Set-AtwsUserDefinedFieldDefinition
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DataType,
 
 # Default Value
@@ -152,7 +152,7 @@ Set-AtwsUserDefinedFieldDefinition
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,1024)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DefaultValue,
 
 # Description
@@ -160,7 +160,7 @@ Set-AtwsUserDefinedFieldDefinition
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Display Format
@@ -179,7 +179,7 @@ Set-AtwsUserDefinedFieldDefinition
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DisplayFormat,
 
 # ID
@@ -187,56 +187,56 @@ Set-AtwsUserDefinedFieldDefinition
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsActive,
 
 # Encrypted
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsEncrypted,
 
 # Field Mapping
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsFieldMapping,
 
 # Is Private
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsPrivate,
 
 # Protected
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsProtected,
 
 # Required
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsRequired,
 
 # Visible to Client Portal
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsVisibleToClientPortal,
 
 # Merge Variable Name
@@ -244,7 +244,7 @@ Set-AtwsUserDefinedFieldDefinition
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $MergeVariableName,
 
 # Name
@@ -253,21 +253,21 @@ Set-AtwsUserDefinedFieldDefinition
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,45)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Number of Decimal Places
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $NumberOfDecimalPlaces,
 
 # Sort Order
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $SortOrder,
 
 # Udf Type
@@ -287,98 +287,98 @@ Set-AtwsUserDefinedFieldDefinition
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $UdfType,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('MergeVariableName', 'IsPrivate', 'Name', 'IsProtected', 'CrmToProjectUdfId', 'IsVisibleToClientPortal', 'IsRequired', 'NumberOfDecimalPlaces', 'IsEncrypted', 'id', 'CreateDate', 'SortOrder', 'DataType', 'IsFieldMapping', 'DisplayFormat', 'DefaultValue', 'Description', 'UdfType', 'IsActive')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsFieldMapping', 'NumberOfDecimalPlaces', 'DefaultValue', 'CrmToProjectUdfId', 'Name', 'Description', 'IsPrivate', 'IsActive', 'DataType', 'UdfType', 'IsProtected', 'MergeVariableName', 'DisplayFormat', 'id', 'CreateDate', 'IsEncrypted', 'SortOrder', 'IsVisibleToClientPortal', 'IsRequired')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('MergeVariableName', 'IsPrivate', 'Name', 'IsProtected', 'CrmToProjectUdfId', 'IsVisibleToClientPortal', 'IsRequired', 'NumberOfDecimalPlaces', 'IsEncrypted', 'id', 'CreateDate', 'SortOrder', 'DataType', 'IsFieldMapping', 'DisplayFormat', 'DefaultValue', 'Description', 'UdfType', 'IsActive')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsFieldMapping', 'NumberOfDecimalPlaces', 'DefaultValue', 'CrmToProjectUdfId', 'Name', 'Description', 'IsPrivate', 'IsActive', 'DataType', 'UdfType', 'IsProtected', 'MergeVariableName', 'DisplayFormat', 'id', 'CreateDate', 'IsEncrypted', 'SortOrder', 'IsVisibleToClientPortal', 'IsRequired')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('MergeVariableName', 'IsPrivate', 'Name', 'IsProtected', 'CrmToProjectUdfId', 'IsVisibleToClientPortal', 'IsRequired', 'NumberOfDecimalPlaces', 'IsEncrypted', 'id', 'CreateDate', 'SortOrder', 'DataType', 'IsFieldMapping', 'DisplayFormat', 'DefaultValue', 'Description', 'UdfType', 'IsActive')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsFieldMapping', 'NumberOfDecimalPlaces', 'DefaultValue', 'CrmToProjectUdfId', 'Name', 'Description', 'IsPrivate', 'IsActive', 'DataType', 'UdfType', 'IsProtected', 'MergeVariableName', 'DisplayFormat', 'id', 'CreateDate', 'IsEncrypted', 'SortOrder', 'IsVisibleToClientPortal', 'IsRequired')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'DefaultValue', 'MergeVariableName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'DefaultValue', 'MergeVariableName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'DefaultValue', 'MergeVariableName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'DefaultValue', 'MergeVariableName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'DefaultValue', 'MergeVariableName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

@@ -59,7 +59,7 @@ Set-AtwsTimeEntry
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TimeEntry]]
+    [Autotask.TimeEntry[]]
     $InputObject,
 
 # Allocation Code ID

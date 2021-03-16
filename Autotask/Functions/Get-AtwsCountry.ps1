@@ -88,7 +88,7 @@ Set-AtwsCountry
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -115,7 +115,7 @@ Set-AtwsCountry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Address Format ID
@@ -135,7 +135,7 @@ Set-AtwsCountry
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AddressFormatID,
 
 # Country Code
@@ -143,7 +143,7 @@ Set-AtwsCountry
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CountryCode,
 
 # Display Name
@@ -152,7 +152,7 @@ Set-AtwsCountry
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DisplayName,
 
 # Country ID
@@ -160,21 +160,21 @@ Set-AtwsCountry
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Invoice Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InvoiceTemplateID,
 
 # Default Country
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsDefaultCountry,
 
 # ISO Standard Name
@@ -182,7 +182,7 @@ Set-AtwsCountry
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Purchase Order Template ID
@@ -201,104 +201,104 @@ Set-AtwsCountry
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderTemplateID,
 
 # Quote Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuoteTemplateID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'AddressFormatID', 'Active', 'IsDefaultCountry', 'InvoiceTemplateID', 'DisplayName', 'QuoteTemplateID', 'id', 'CountryCode', 'PurchaseOrderTemplateID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Active', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'Name', 'IsDefaultCountry', 'PurchaseOrderTemplateID', 'CountryCode', 'id', 'DisplayName')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'AddressFormatID', 'Active', 'IsDefaultCountry', 'InvoiceTemplateID', 'DisplayName', 'QuoteTemplateID', 'id', 'CountryCode', 'PurchaseOrderTemplateID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Active', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'Name', 'IsDefaultCountry', 'PurchaseOrderTemplateID', 'CountryCode', 'id', 'DisplayName')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'AddressFormatID', 'Active', 'IsDefaultCountry', 'InvoiceTemplateID', 'DisplayName', 'QuoteTemplateID', 'id', 'CountryCode', 'PurchaseOrderTemplateID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Active', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'Name', 'IsDefaultCountry', 'PurchaseOrderTemplateID', 'CountryCode', 'id', 'DisplayName')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CountryCode', 'Name', 'DisplayName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CountryCode', 'Name', 'DisplayName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CountryCode', 'Name', 'DisplayName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CountryCode', 'Name', 'DisplayName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CountryCode', 'Name', 'DisplayName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

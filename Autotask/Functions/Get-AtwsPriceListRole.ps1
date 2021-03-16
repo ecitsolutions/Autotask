@@ -72,7 +72,7 @@ Set-AtwsPriceListRole
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -100,14 +100,14 @@ Set-AtwsPriceListRole
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CurrencyID,
 
 # Hourly Rate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $HourlyRate,
 
 # ID
@@ -115,7 +115,7 @@ Set-AtwsPriceListRole
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Role Id
@@ -123,7 +123,7 @@ Set-AtwsPriceListRole
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $RoleID,
 
 # Uses Internal Currency Price
@@ -131,92 +131,92 @@ Set-AtwsPriceListRole
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $UsesInternalCurrencyPrice,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'CurrencyID', 'UsesInternalCurrencyPrice', 'HourlyRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('HourlyRate', 'id', 'UsesInternalCurrencyPrice', 'RoleID', 'CurrencyID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'CurrencyID', 'UsesInternalCurrencyPrice', 'HourlyRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('HourlyRate', 'id', 'UsesInternalCurrencyPrice', 'RoleID', 'CurrencyID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RoleID', 'id', 'CurrencyID', 'UsesInternalCurrencyPrice', 'HourlyRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('HourlyRate', 'id', 'UsesInternalCurrencyPrice', 'RoleID', 'CurrencyID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'RoleID', 'CurrencyID', 'HourlyRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'RoleID', 'CurrencyID', 'HourlyRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'RoleID', 'CurrencyID', 'HourlyRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'RoleID', 'CurrencyID', 'HourlyRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

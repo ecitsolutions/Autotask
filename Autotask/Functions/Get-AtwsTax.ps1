@@ -74,7 +74,7 @@ Set-AtwsTax
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -102,14 +102,14 @@ Set-AtwsTax
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $id,
 
 # Compounded
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsCompounded,
 
 # Tax Category ID
@@ -117,7 +117,7 @@ Set-AtwsTax
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TaxCategoryID,
 
 # Tax Name
@@ -127,7 +127,7 @@ Set-AtwsTax
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TaxName,
 
 # Tax Rate
@@ -135,7 +135,7 @@ Set-AtwsTax
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $TaxRate,
 
 # Tax Region ID
@@ -143,97 +143,97 @@ Set-AtwsTax
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TaxRegionID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaxCategoryID', 'TaxRegionID', 'IsCompounded', 'id', 'TaxName', 'TaxRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('TaxRate', 'IsCompounded', 'TaxRegionID', 'id', 'TaxCategoryID', 'TaxName')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaxCategoryID', 'TaxRegionID', 'IsCompounded', 'id', 'TaxName', 'TaxRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('TaxRate', 'IsCompounded', 'TaxRegionID', 'id', 'TaxCategoryID', 'TaxName')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaxCategoryID', 'TaxRegionID', 'IsCompounded', 'id', 'TaxName', 'TaxRate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('TaxRate', 'IsCompounded', 'TaxRegionID', 'id', 'TaxCategoryID', 'TaxName')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TaxRegionID', 'TaxCategoryID', 'TaxName', 'TaxRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TaxRegionID', 'TaxCategoryID', 'TaxName', 'TaxRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TaxRegionID', 'TaxCategoryID', 'TaxName', 'TaxRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TaxRegionID', 'TaxCategoryID', 'TaxName', 'TaxRate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TaxName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TaxName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TaxName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TaxName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TaxName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

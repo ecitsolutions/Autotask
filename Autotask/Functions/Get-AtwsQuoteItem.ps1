@@ -92,7 +92,7 @@ Set-AtwsQuoteItem
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -119,7 +119,7 @@ Set-AtwsQuoteItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CostID,
 
 # quote_item_description
@@ -127,14 +127,14 @@ Set-AtwsQuoteItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # expense_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ExpenseID,
 
 # quote_item_id
@@ -142,28 +142,28 @@ Set-AtwsQuoteItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # internal_currency_line_discount_dollars
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InternalCurrencyLineDiscount,
 
 # internal_currency_discount_dollars
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InternalCurrencyUnitDiscount,
 
 # internal_currency_unit_price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InternalCurrencyUnitPrice,
 
 # optional
@@ -171,21 +171,21 @@ Set-AtwsQuoteItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsOptional,
 
 # taxable
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsTaxable,
 
 # labor_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LaborID,
 
 # line_discount_dollars
@@ -193,14 +193,14 @@ Set-AtwsQuoteItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $LineDiscount,
 
 # markup_rate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $MarkupRate,
 
 # quote_item_name
@@ -208,7 +208,7 @@ Set-AtwsQuoteItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # discount_percent
@@ -216,7 +216,7 @@ Set-AtwsQuoteItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $PercentageDiscount,
 
 # period_type
@@ -235,14 +235,14 @@ Set-AtwsQuoteItem
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PeriodType,
 
 # product_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProductID,
 
 # quantity
@@ -250,7 +250,7 @@ Set-AtwsQuoteItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $Quantity,
 
 # quote_id
@@ -258,49 +258,49 @@ Set-AtwsQuoteItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuoteID,
 
 # service_bundle_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ServiceBundleID,
 
 # service_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ServiceID,
 
 # shipping_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ShippingID,
 
 # sort_order
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $SortOrderID,
 
 # tax_category_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TaxCategoryID,
 
 # tax_rate_applied
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $TotalEffectiveTax,
 
 # parent_type
@@ -320,14 +320,14 @@ Set-AtwsQuoteItem
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Type,
 
 # unit_cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $UnitCost,
 
 # discount_dollars
@@ -335,104 +335,104 @@ Set-AtwsQuoteItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $UnitDiscount,
 
 # unit_price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $UnitPrice,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsTaxable', 'LineDiscount', 'PercentageDiscount', 'ServiceID', 'InternalCurrencyUnitDiscount', 'HighestCost', 'IsOptional', 'AverageCost', 'id', 'MarkupRate', 'PeriodType', 'LaborID', 'TotalEffectiveTax', 'TaxCategoryID', 'ProductID', 'ShippingID', 'QuoteID', 'Quantity', 'UnitDiscount', 'UnitCost', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitPrice', 'ExpenseID', 'SortOrderID', 'Type', 'Name', 'CostID', 'Description', 'UnitPrice', 'ServiceBundleID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UnitCost', 'id', 'SortOrderID', 'PeriodType', 'Description', 'TotalEffectiveTax', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'IsTaxable', 'ProductID', 'CostID', 'Name', 'ServiceBundleID', 'QuoteID', 'LaborID', 'Quantity', 'UnitPrice', 'PercentageDiscount', 'IsOptional', 'ExpenseID', 'UnitDiscount', 'ServiceID', 'LineDiscount', 'HighestCost', 'MarkupRate', 'Type', 'AverageCost', 'TaxCategoryID', 'ShippingID', 'InternalCurrencyUnitPrice')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsTaxable', 'LineDiscount', 'PercentageDiscount', 'ServiceID', 'InternalCurrencyUnitDiscount', 'HighestCost', 'IsOptional', 'AverageCost', 'id', 'MarkupRate', 'PeriodType', 'LaborID', 'TotalEffectiveTax', 'TaxCategoryID', 'ProductID', 'ShippingID', 'QuoteID', 'Quantity', 'UnitDiscount', 'UnitCost', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitPrice', 'ExpenseID', 'SortOrderID', 'Type', 'Name', 'CostID', 'Description', 'UnitPrice', 'ServiceBundleID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UnitCost', 'id', 'SortOrderID', 'PeriodType', 'Description', 'TotalEffectiveTax', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'IsTaxable', 'ProductID', 'CostID', 'Name', 'ServiceBundleID', 'QuoteID', 'LaborID', 'Quantity', 'UnitPrice', 'PercentageDiscount', 'IsOptional', 'ExpenseID', 'UnitDiscount', 'ServiceID', 'LineDiscount', 'HighestCost', 'MarkupRate', 'Type', 'AverageCost', 'TaxCategoryID', 'ShippingID', 'InternalCurrencyUnitPrice')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsTaxable', 'LineDiscount', 'PercentageDiscount', 'ServiceID', 'InternalCurrencyUnitDiscount', 'HighestCost', 'IsOptional', 'AverageCost', 'id', 'MarkupRate', 'PeriodType', 'LaborID', 'TotalEffectiveTax', 'TaxCategoryID', 'ProductID', 'ShippingID', 'QuoteID', 'Quantity', 'UnitDiscount', 'UnitCost', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitPrice', 'ExpenseID', 'SortOrderID', 'Type', 'Name', 'CostID', 'Description', 'UnitPrice', 'ServiceBundleID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('UnitCost', 'id', 'SortOrderID', 'PeriodType', 'Description', 'TotalEffectiveTax', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'IsTaxable', 'ProductID', 'CostID', 'Name', 'ServiceBundleID', 'QuoteID', 'LaborID', 'Quantity', 'UnitPrice', 'PercentageDiscount', 'IsOptional', 'ExpenseID', 'UnitDiscount', 'ServiceID', 'LineDiscount', 'HighestCost', 'MarkupRate', 'Type', 'AverageCost', 'TaxCategoryID', 'ShippingID', 'InternalCurrencyUnitPrice')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'PeriodType', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'PeriodType', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'PeriodType', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'PeriodType', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'PeriodType', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

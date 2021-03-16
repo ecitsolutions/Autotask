@@ -60,7 +60,7 @@ Set-AtwsAccountPhysicalLocation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.AccountPhysicalLocation]]
+    [Autotask.AccountPhysicalLocation[]]
     $InputObject,
 
 # Account ID

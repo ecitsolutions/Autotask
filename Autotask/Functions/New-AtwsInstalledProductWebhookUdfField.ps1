@@ -62,7 +62,7 @@ Set-AtwsInstalledProductWebhookUdfField
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.InstalledProductWebhookUdfField]]
+    [Autotask.InstalledProductWebhookUdfField[]]
     $InputObject,
 
 # Is Display Always Field

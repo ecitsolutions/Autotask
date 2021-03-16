@@ -62,7 +62,7 @@ Set-AtwsAccountWebhookUdfField
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.AccountWebhookUdfField]]
+    [Autotask.AccountWebhookUdfField[]]
     $InputObject,
 
 # Is Display Always Field

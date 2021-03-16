@@ -63,7 +63,7 @@ Set-AtwsProjectCost
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ProjectCost]]
+    [Autotask.ProjectCost[]]
     $InputObject,
 
 # Allocation Code

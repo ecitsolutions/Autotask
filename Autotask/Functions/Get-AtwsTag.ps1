@@ -76,7 +76,7 @@ Set-AtwsTag
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -103,7 +103,7 @@ Set-AtwsTag
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # ID
@@ -111,28 +111,28 @@ Set-AtwsTag
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsActive,
 
 # Is Excluded From Automatic Tagging
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsExcludedFromAutomaticTagging,
 
 # Is System
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsSystem,
 
 # Label
@@ -141,112 +141,112 @@ Set-AtwsTag
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Label,
 
 # Last Modified Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedDateTime,
 
 # Tag Group ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TagGroupID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'IsExcludedFromAutomaticTagging', 'Label', 'CreateDateTime', 'id', 'LastModifiedDateTime', 'IsSystem', 'TagGroupID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsActive', 'CreateDateTime', 'TagGroupID', 'IsExcludedFromAutomaticTagging', 'id', 'LastModifiedDateTime', 'IsSystem', 'Label')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'IsExcludedFromAutomaticTagging', 'Label', 'CreateDateTime', 'id', 'LastModifiedDateTime', 'IsSystem', 'TagGroupID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsActive', 'CreateDateTime', 'TagGroupID', 'IsExcludedFromAutomaticTagging', 'id', 'LastModifiedDateTime', 'IsSystem', 'Label')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'IsExcludedFromAutomaticTagging', 'Label', 'CreateDateTime', 'id', 'LastModifiedDateTime', 'IsSystem', 'TagGroupID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsActive', 'CreateDateTime', 'TagGroupID', 'IsExcludedFromAutomaticTagging', 'id', 'LastModifiedDateTime', 'IsSystem', 'Label')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDateTime', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDateTime', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDateTime', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'CreateDateTime', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Label')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Label')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Label')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Label')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Label')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDateTime', 'LastModifiedDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

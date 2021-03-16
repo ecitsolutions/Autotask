@@ -70,7 +70,7 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -98,7 +98,7 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Period Cost
@@ -106,7 +106,7 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $PeriodCost,
 
 # Period Date
@@ -114,7 +114,7 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $PeriodDate,
 
 # Period Price
@@ -122,14 +122,14 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $PeriodPrice,
 
 # Posted Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $PostedDate,
 
 # Purchase Order Number
@@ -137,7 +137,7 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PurchaseOrderNumber,
 
 # Subscription Id
@@ -145,98 +145,98 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $SubscriptionID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderNumber', 'PeriodPrice', 'PeriodCost', 'PeriodDate', 'id', 'SubscriptionID', 'PostedDate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('PeriodDate', 'PurchaseOrderNumber', 'PostedDate', 'PeriodPrice', 'PeriodCost', 'id', 'SubscriptionID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderNumber', 'PeriodPrice', 'PeriodCost', 'PeriodDate', 'id', 'SubscriptionID', 'PostedDate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('PeriodDate', 'PurchaseOrderNumber', 'PostedDate', 'PeriodPrice', 'PeriodCost', 'id', 'SubscriptionID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PurchaseOrderNumber', 'PeriodPrice', 'PeriodCost', 'PeriodDate', 'id', 'SubscriptionID', 'PostedDate')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('PeriodDate', 'PurchaseOrderNumber', 'PostedDate', 'PeriodPrice', 'PeriodCost', 'id', 'SubscriptionID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('PurchaseOrderNumber')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('PeriodDate', 'PostedDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

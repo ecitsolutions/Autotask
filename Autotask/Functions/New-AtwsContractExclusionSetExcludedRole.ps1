@@ -58,7 +58,7 @@ Get-AtwsContractExclusionSetExcludedRole
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractExclusionSetExcludedRole]]
+    [Autotask.ContractExclusionSetExcludedRole[]]
     $InputObject,
 
 # Contract Exclusion Set ID

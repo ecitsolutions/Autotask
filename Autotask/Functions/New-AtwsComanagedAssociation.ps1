@@ -58,7 +58,7 @@ Get-AtwsComanagedAssociation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ComanagedAssociation]]
+    [Autotask.ComanagedAssociation[]]
     $InputObject,
 
 # Account ID

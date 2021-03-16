@@ -74,7 +74,7 @@ Remove-AtwsTicketChangeRequestApproval
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -101,7 +101,7 @@ Remove-AtwsTicketChangeRequestApproval
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ApproveRejectDateTime,
 
 # Approve Reject Note
@@ -109,14 +109,14 @@ Remove-AtwsTicketChangeRequestApproval
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ApproveRejectNote,
 
 # Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContactID,
 
 # Change Request Ticket Vote ID
@@ -124,21 +124,21 @@ Remove-AtwsTicketChangeRequestApproval
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $id,
 
 # Is Approved
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsApproved,
 
 # Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ResourceID,
 
 # Ticket ID
@@ -146,98 +146,98 @@ Remove-AtwsTicketChangeRequestApproval
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TicketID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsApproved', 'ApproveRejectNote', 'ResourceID', 'id', 'ContactID', 'TicketID', 'ApproveRejectDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ApproveRejectDateTime', 'ContactID', 'ResourceID', 'TicketID', 'id', 'ApproveRejectNote', 'IsApproved')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsApproved', 'ApproveRejectNote', 'ResourceID', 'id', 'ContactID', 'TicketID', 'ApproveRejectDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ApproveRejectDateTime', 'ContactID', 'ResourceID', 'TicketID', 'id', 'ApproveRejectNote', 'IsApproved')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsApproved', 'ApproveRejectNote', 'ResourceID', 'id', 'ContactID', 'TicketID', 'ApproveRejectDateTime')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ApproveRejectDateTime', 'ContactID', 'ResourceID', 'TicketID', 'id', 'ApproveRejectNote', 'IsApproved')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'ResourceID', 'ContactID', 'ApproveRejectDateTime', 'ApproveRejectNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'ResourceID', 'ContactID', 'ApproveRejectDateTime', 'ApproveRejectNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'ResourceID', 'ContactID', 'ApproveRejectDateTime', 'ApproveRejectNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'TicketID', 'ResourceID', 'ContactID', 'ApproveRejectDateTime', 'ApproveRejectNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ApproveRejectNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ApproveRejectNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ApproveRejectNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ApproveRejectNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ApproveRejectNote')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ApproveRejectDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

@@ -92,7 +92,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -120,7 +120,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CoveredByBlockRetainerContractLabel,
 
 # Covered By Recurring Service Fixed Price Per Ticket Contract Label
@@ -128,7 +128,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CoveredByRecurringServiceFixedPricePerTicketContractLabel,
 
 # Currency Negative Pattern
@@ -137,7 +137,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,10)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CurrencyNegativeFormat,
 
 # Currency Positive Pattern
@@ -146,7 +146,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,10)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $CurrencyPositiveFormat,
 
 # Date Format
@@ -166,7 +166,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DateFormat,
 
 # Display Labor Associated With Fixed Price Contracts
@@ -174,7 +174,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $DisplayFixedPriceContractLabor,
 
 # Display Labor Associated With Recurring Service Contracts
@@ -182,7 +182,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $DisplayRecurringServiceContractLabor,
 
 # Display Separate Line Item For Each Tax
@@ -190,7 +190,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $DisplaySeparateLineItemForEachTax,
 
 # Display Tax Category
@@ -198,7 +198,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $DisplayTaxCategory,
 
 # Display Tax Category Superscripts
@@ -206,7 +206,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $DisplayTaxCategorySuperscripts,
 
 # Display Zero Amount Recurring Services And Bundles
@@ -214,7 +214,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $DisplayZeroAmountRecurringServicesAndBundles,
 
 # Group By
@@ -234,7 +234,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GroupBy,
 
 # Invoice Template ID
@@ -242,7 +242,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Itemize Items In Each Group
@@ -262,7 +262,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ItemizeItemsInEachGroup,
 
 # Itemize Services And Bundles
@@ -270,7 +270,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ItemizeServicesAndBundles,
 
 # Name
@@ -279,7 +279,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Non Billable Labor Label
@@ -287,7 +287,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NonBillableLaborLabel,
 
 # Number Format
@@ -307,7 +307,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NumberFormat,
 
 # Page Layout
@@ -327,7 +327,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PageLayout,
 
 # Display Page Number Format
@@ -347,7 +347,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PageNumberFormat,
 
 # Payment Terms
@@ -355,7 +355,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $PaymentTerms,
 
 # Rate Cost Expression
@@ -363,7 +363,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RateCostExpression,
 
 # Show Grid Header
@@ -371,7 +371,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ShowGridHeader,
 
 # Show Vertical Grid Lines
@@ -379,7 +379,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ShowVerticalGridLines,
 
 # Sort By
@@ -399,7 +399,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SortBy,
 
 # Time Format
@@ -419,97 +419,97 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TimeFormat,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RateCostExpression', 'CurrencyNegativeFormat', 'Name', 'TimeFormat', 'PageNumberFormat', 'id', 'DisplayTaxCategorySuperscripts', 'ItemizeServicesAndBundles', 'ShowGridHeader', 'ItemizeItemsInEachGroup', 'CoveredByBlockRetainerContractLabel', 'ShowVerticalGridLines', 'DisplayZeroAmountRecurringServicesAndBundles', 'CurrencyPositiveFormat', 'GroupBy', 'PageLayout', 'DisplayRecurringServiceContractLabor', 'DisplayTaxCategory', 'DateFormat', 'SortBy', 'DisplayFixedPriceContractLabor', 'NumberFormat', 'PaymentTerms', 'DisplaySeparateLineItemForEachTax', 'NonBillableLaborLabel', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('NonBillableLaborLabel', 'CurrencyPositiveFormat', 'ItemizeItemsInEachGroup', 'CoveredByBlockRetainerContractLabel', 'PageNumberFormat', 'TimeFormat', 'GroupBy', 'Name', 'DisplayTaxCategory', 'ShowGridHeader', 'DisplayFixedPriceContractLabor', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'NumberFormat', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeServicesAndBundles', 'SortBy', 'DateFormat', 'PageLayout', 'id', 'DisplaySeparateLineItemForEachTax', 'RateCostExpression', 'CurrencyNegativeFormat', 'ShowVerticalGridLines', 'PaymentTerms', 'DisplayTaxCategorySuperscripts', 'DisplayRecurringServiceContractLabor')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RateCostExpression', 'CurrencyNegativeFormat', 'Name', 'TimeFormat', 'PageNumberFormat', 'id', 'DisplayTaxCategorySuperscripts', 'ItemizeServicesAndBundles', 'ShowGridHeader', 'ItemizeItemsInEachGroup', 'CoveredByBlockRetainerContractLabel', 'ShowVerticalGridLines', 'DisplayZeroAmountRecurringServicesAndBundles', 'CurrencyPositiveFormat', 'GroupBy', 'PageLayout', 'DisplayRecurringServiceContractLabor', 'DisplayTaxCategory', 'DateFormat', 'SortBy', 'DisplayFixedPriceContractLabor', 'NumberFormat', 'PaymentTerms', 'DisplaySeparateLineItemForEachTax', 'NonBillableLaborLabel', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('NonBillableLaborLabel', 'CurrencyPositiveFormat', 'ItemizeItemsInEachGroup', 'CoveredByBlockRetainerContractLabel', 'PageNumberFormat', 'TimeFormat', 'GroupBy', 'Name', 'DisplayTaxCategory', 'ShowGridHeader', 'DisplayFixedPriceContractLabor', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'NumberFormat', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeServicesAndBundles', 'SortBy', 'DateFormat', 'PageLayout', 'id', 'DisplaySeparateLineItemForEachTax', 'RateCostExpression', 'CurrencyNegativeFormat', 'ShowVerticalGridLines', 'PaymentTerms', 'DisplayTaxCategorySuperscripts', 'DisplayRecurringServiceContractLabor')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RateCostExpression', 'CurrencyNegativeFormat', 'Name', 'TimeFormat', 'PageNumberFormat', 'id', 'DisplayTaxCategorySuperscripts', 'ItemizeServicesAndBundles', 'ShowGridHeader', 'ItemizeItemsInEachGroup', 'CoveredByBlockRetainerContractLabel', 'ShowVerticalGridLines', 'DisplayZeroAmountRecurringServicesAndBundles', 'CurrencyPositiveFormat', 'GroupBy', 'PageLayout', 'DisplayRecurringServiceContractLabor', 'DisplayTaxCategory', 'DateFormat', 'SortBy', 'DisplayFixedPriceContractLabor', 'NumberFormat', 'PaymentTerms', 'DisplaySeparateLineItemForEachTax', 'NonBillableLaborLabel', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('NonBillableLaborLabel', 'CurrencyPositiveFormat', 'ItemizeItemsInEachGroup', 'CoveredByBlockRetainerContractLabel', 'PageNumberFormat', 'TimeFormat', 'GroupBy', 'Name', 'DisplayTaxCategory', 'ShowGridHeader', 'DisplayFixedPriceContractLabor', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'NumberFormat', 'DisplayZeroAmountRecurringServicesAndBundles', 'ItemizeServicesAndBundles', 'SortBy', 'DateFormat', 'PageLayout', 'id', 'DisplaySeparateLineItemForEachTax', 'RateCostExpression', 'CurrencyNegativeFormat', 'ShowVerticalGridLines', 'PaymentTerms', 'DisplayTaxCategorySuperscripts', 'DisplayRecurringServiceContractLabor')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'GroupBy', 'ItemizeItemsInEachGroup', 'SortBy', 'RateCostExpression', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'CoveredByBlockRetainerContractLabel', 'NonBillableLaborLabel', 'PageLayout', 'PaymentTerms', 'PageNumberFormat', 'DateFormat', 'NumberFormat', 'TimeFormat', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'GroupBy', 'ItemizeItemsInEachGroup', 'SortBy', 'RateCostExpression', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'CoveredByBlockRetainerContractLabel', 'NonBillableLaborLabel', 'PageLayout', 'PaymentTerms', 'PageNumberFormat', 'DateFormat', 'NumberFormat', 'TimeFormat', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'GroupBy', 'ItemizeItemsInEachGroup', 'SortBy', 'RateCostExpression', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'CoveredByBlockRetainerContractLabel', 'NonBillableLaborLabel', 'PageLayout', 'PaymentTerms', 'PageNumberFormat', 'DateFormat', 'NumberFormat', 'TimeFormat', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'GroupBy', 'ItemizeItemsInEachGroup', 'SortBy', 'RateCostExpression', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'CoveredByBlockRetainerContractLabel', 'NonBillableLaborLabel', 'PageLayout', 'PaymentTerms', 'PageNumberFormat', 'DateFormat', 'NumberFormat', 'TimeFormat', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('RateCostExpression', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'CoveredByBlockRetainerContractLabel', 'NonBillableLaborLabel', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('RateCostExpression', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'CoveredByBlockRetainerContractLabel', 'NonBillableLaborLabel', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('RateCostExpression', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'CoveredByBlockRetainerContractLabel', 'NonBillableLaborLabel', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('RateCostExpression', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'CoveredByBlockRetainerContractLabel', 'NonBillableLaborLabel', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('RateCostExpression', 'CoveredByRecurringServiceFixedPricePerTicketContractLabel', 'CoveredByBlockRetainerContractLabel', 'NonBillableLaborLabel', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

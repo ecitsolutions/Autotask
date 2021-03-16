@@ -88,7 +88,7 @@ Set-AtwsInvoice
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -115,14 +115,14 @@ Set-AtwsInvoice
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Batch ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BatchID,
 
 # Comments
@@ -130,28 +130,28 @@ Set-AtwsInvoice
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Comments,
 
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatorResourceID,
 
 # From Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $FromDate,
 
 # Invoice ID
@@ -159,7 +159,7 @@ Set-AtwsInvoice
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Invoice Date Time
@@ -167,14 +167,14 @@ Set-AtwsInvoice
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $InvoiceDateTime,
 
 # Invoice Editor Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InvoiceEditorTemplateID,
 
 # Invoice Number
@@ -182,21 +182,21 @@ Set-AtwsInvoice
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $InvoiceNumber,
 
 # Invoice Total
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $InvoiceTotal,
 
 # Is Voided
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsVoided,
 
 # Order Number
@@ -204,14 +204,14 @@ Set-AtwsInvoice
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,20)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $OrderNumber,
 
 # Paid Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $PaidDate,
 
 # Payment Term ID
@@ -230,7 +230,7 @@ Set-AtwsInvoice
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $PaymentTerm,
 
 # Tax Region Name
@@ -238,133 +238,133 @@ Set-AtwsInvoice
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,200)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TaxRegionName,
 
 # To Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ToDate,
 
 # Total Tax Value
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $TotalTaxValue,
 
 # Voided By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $VoidedByResourceID,
 
 # Voided Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $VoidedDate,
 
 # Web Service Use Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $WebServiceDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDateTime', 'PaidDate', 'FromDate', 'OrderNumber', 'ToDate', 'TaxGroup', 'BatchID', 'CreatorResourceID', 'IsVoided', 'InvoiceNumber', 'VoidedDate', 'AccountID', 'PaymentTerm', 'id', 'InvoiceEditorTemplateID', 'CreateDateTime', 'WebServiceDate', 'TotalTaxValue', 'Comments', 'InvoiceTotal', 'DueDate', 'TaxRegionName', 'VoidedByResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('FromDate', 'Comments', 'CreateDateTime', 'BatchID', 'WebServiceDate', 'IsVoided', 'VoidedDate', 'DueDate', 'AccountID', 'InvoiceNumber', 'TaxGroup', 'TaxRegionName', 'InvoiceDateTime', 'id', 'ToDate', 'TotalTaxValue', 'CreatorResourceID', 'InvoiceTotal', 'OrderNumber', 'PaidDate', 'PaymentTerm', 'InvoiceEditorTemplateID', 'VoidedByResourceID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDateTime', 'PaidDate', 'FromDate', 'OrderNumber', 'ToDate', 'TaxGroup', 'BatchID', 'CreatorResourceID', 'IsVoided', 'InvoiceNumber', 'VoidedDate', 'AccountID', 'PaymentTerm', 'id', 'InvoiceEditorTemplateID', 'CreateDateTime', 'WebServiceDate', 'TotalTaxValue', 'Comments', 'InvoiceTotal', 'DueDate', 'TaxRegionName', 'VoidedByResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('FromDate', 'Comments', 'CreateDateTime', 'BatchID', 'WebServiceDate', 'IsVoided', 'VoidedDate', 'DueDate', 'AccountID', 'InvoiceNumber', 'TaxGroup', 'TaxRegionName', 'InvoiceDateTime', 'id', 'ToDate', 'TotalTaxValue', 'CreatorResourceID', 'InvoiceTotal', 'OrderNumber', 'PaidDate', 'PaymentTerm', 'InvoiceEditorTemplateID', 'VoidedByResourceID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDateTime', 'PaidDate', 'FromDate', 'OrderNumber', 'ToDate', 'TaxGroup', 'BatchID', 'CreatorResourceID', 'IsVoided', 'InvoiceNumber', 'VoidedDate', 'AccountID', 'PaymentTerm', 'id', 'InvoiceEditorTemplateID', 'CreateDateTime', 'WebServiceDate', 'TotalTaxValue', 'Comments', 'InvoiceTotal', 'DueDate', 'TaxRegionName', 'VoidedByResourceID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('FromDate', 'Comments', 'CreateDateTime', 'BatchID', 'WebServiceDate', 'IsVoided', 'VoidedDate', 'DueDate', 'AccountID', 'InvoiceNumber', 'TaxGroup', 'TaxRegionName', 'InvoiceDateTime', 'id', 'ToDate', 'TotalTaxValue', 'CreatorResourceID', 'InvoiceTotal', 'OrderNumber', 'PaidDate', 'PaymentTerm', 'InvoiceEditorTemplateID', 'VoidedByResourceID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CreatorResourceID', 'InvoiceDateTime', 'CreateDateTime', 'InvoiceNumber', 'Comments', 'InvoiceTotal', 'TotalTaxValue', 'TaxGroup', 'FromDate', 'ToDate', 'OrderNumber', 'PaymentTerm', 'WebServiceDate', 'VoidedDate', 'VoidedByResourceID', 'PaidDate', 'TaxRegionName', 'DueDate', 'BatchID', 'InvoiceEditorTemplateID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CreatorResourceID', 'InvoiceDateTime', 'CreateDateTime', 'InvoiceNumber', 'Comments', 'InvoiceTotal', 'TotalTaxValue', 'TaxGroup', 'FromDate', 'ToDate', 'OrderNumber', 'PaymentTerm', 'WebServiceDate', 'VoidedDate', 'VoidedByResourceID', 'PaidDate', 'TaxRegionName', 'DueDate', 'BatchID', 'InvoiceEditorTemplateID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CreatorResourceID', 'InvoiceDateTime', 'CreateDateTime', 'InvoiceNumber', 'Comments', 'InvoiceTotal', 'TotalTaxValue', 'TaxGroup', 'FromDate', 'ToDate', 'OrderNumber', 'PaymentTerm', 'WebServiceDate', 'VoidedDate', 'VoidedByResourceID', 'PaidDate', 'TaxRegionName', 'DueDate', 'BatchID', 'InvoiceEditorTemplateID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'CreatorResourceID', 'InvoiceDateTime', 'CreateDateTime', 'InvoiceNumber', 'Comments', 'InvoiceTotal', 'TotalTaxValue', 'TaxGroup', 'FromDate', 'ToDate', 'OrderNumber', 'PaymentTerm', 'WebServiceDate', 'VoidedDate', 'VoidedByResourceID', 'PaidDate', 'TaxRegionName', 'DueDate', 'BatchID', 'InvoiceEditorTemplateID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceNumber', 'Comments', 'OrderNumber', 'TaxRegionName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceNumber', 'Comments', 'OrderNumber', 'TaxRegionName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceNumber', 'Comments', 'OrderNumber', 'TaxRegionName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceNumber', 'Comments', 'OrderNumber', 'TaxRegionName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceNumber', 'Comments', 'OrderNumber', 'TaxRegionName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('InvoiceDateTime', 'CreateDateTime', 'FromDate', 'ToDate', 'WebServiceDate', 'VoidedDate', 'PaidDate', 'DueDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

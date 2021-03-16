@@ -70,7 +70,7 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -97,7 +97,7 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Description
@@ -105,7 +105,7 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Classification Icon ID
@@ -113,7 +113,7 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Name
@@ -122,7 +122,7 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,35)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Relative Url
@@ -131,7 +131,7 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RelativeUrl,
 
 # System
@@ -139,97 +139,97 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $System,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'RelativeUrl', 'Active', 'System', 'id')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('RelativeUrl', 'Active', 'Name', 'id', 'Description', 'System')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'RelativeUrl', 'Active', 'System', 'id')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('RelativeUrl', 'Active', 'Name', 'id', 'Description', 'System')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'RelativeUrl', 'Active', 'System', 'id')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('RelativeUrl', 'Active', 'Name', 'id', 'Description', 'System')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'RelativeUrl')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'RelativeUrl')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'RelativeUrl')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'RelativeUrl')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'RelativeUrl')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'RelativeUrl')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'RelativeUrl')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'RelativeUrl')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description', 'RelativeUrl')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

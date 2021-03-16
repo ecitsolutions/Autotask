@@ -63,7 +63,7 @@ Set-AtwsContractTicketPurchase
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractTicketPurchase]]
+    [Autotask.ContractTicketPurchase[]]
     $InputObject,
 
 # Contract ID

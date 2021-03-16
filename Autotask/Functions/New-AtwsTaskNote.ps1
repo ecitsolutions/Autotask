@@ -60,7 +60,7 @@ Set-AtwsTaskNote
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TaskNote]]
+    [Autotask.TaskNote[]]
     $InputObject,
 
 # Create Date Time

@@ -72,7 +72,7 @@ Remove-AtwsWebhookEventErrorLog
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -99,28 +99,28 @@ Remove-AtwsWebhookEventErrorLog
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountWebhookID,
 
 # Configuration Item Webhook ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ConfigurationItemWebhookID,
 
 # Contact Webhook ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContactWebhookID,
 
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDateTime,
 
 # Error Message
@@ -128,7 +128,7 @@ Remove-AtwsWebhookEventErrorLog
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ErrorMessage,
 
 # Webhook Event Error Log ID
@@ -136,7 +136,7 @@ Remove-AtwsWebhookEventErrorLog
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Payload
@@ -144,105 +144,105 @@ Remove-AtwsWebhookEventErrorLog
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,8000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Payload,
 
 # Sequence Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $SequenceNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountWebhookID', 'CreateDateTime', 'ConfigurationItemWebhookID', 'id', 'Payload', 'SequenceNumber', 'ContactWebhookID', 'ErrorMessage')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('AccountWebhookID', 'CreateDateTime', 'ConfigurationItemWebhookID', 'ErrorMessage', 'SequenceNumber', 'Payload', 'ContactWebhookID', 'id')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountWebhookID', 'CreateDateTime', 'ConfigurationItemWebhookID', 'id', 'Payload', 'SequenceNumber', 'ContactWebhookID', 'ErrorMessage')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('AccountWebhookID', 'CreateDateTime', 'ConfigurationItemWebhookID', 'ErrorMessage', 'SequenceNumber', 'Payload', 'ContactWebhookID', 'id')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountWebhookID', 'CreateDateTime', 'ConfigurationItemWebhookID', 'id', 'Payload', 'SequenceNumber', 'ContactWebhookID', 'ErrorMessage')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('AccountWebhookID', 'CreateDateTime', 'ConfigurationItemWebhookID', 'ErrorMessage', 'SequenceNumber', 'Payload', 'ContactWebhookID', 'id')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Payload', 'ErrorMessage')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Payload', 'ErrorMessage')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Payload', 'ErrorMessage')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Payload', 'ErrorMessage')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Payload', 'ErrorMessage')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDateTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

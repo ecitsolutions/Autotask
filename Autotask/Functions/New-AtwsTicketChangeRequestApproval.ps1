@@ -57,7 +57,7 @@ Get-AtwsTicketChangeRequestApproval
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TicketChangeRequestApproval]]
+    [Autotask.TicketChangeRequestApproval[]]
     $InputObject,
 
 # Approve Reject Date Time

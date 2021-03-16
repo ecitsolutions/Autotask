@@ -54,7 +54,7 @@ Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the W
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TicketChecklistLibrary]]
+    [Autotask.TicketChecklistLibrary[]]
     $InputObject,
 
 # Checklist Library ID

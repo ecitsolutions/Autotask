@@ -60,7 +60,7 @@ Set-AtwsTicketRmaCredit
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TicketRmaCredit]]
+    [Autotask.TicketRmaCredit[]]
     $InputObject,
 
 # Credit Amount

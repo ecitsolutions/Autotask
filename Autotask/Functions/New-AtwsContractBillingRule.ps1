@@ -66,7 +66,7 @@ Set-AtwsContractBillingRule
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractBillingRule]]
+    [Autotask.ContractBillingRule[]]
     $InputObject,
 
 # Active

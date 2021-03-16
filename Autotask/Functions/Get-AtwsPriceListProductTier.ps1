@@ -72,7 +72,7 @@ Set-AtwsPriceListProductTier
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -100,7 +100,7 @@ Set-AtwsPriceListProductTier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CurrencyID,
 
 # Price List Product Tier ID
@@ -108,7 +108,7 @@ Set-AtwsPriceListProductTier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Product Tier ID
@@ -116,14 +116,14 @@ Set-AtwsPriceListProductTier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProductTierID,
 
 # Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $UnitPrice,
 
 # Uses Internal Currency Price
@@ -131,92 +131,92 @@ Set-AtwsPriceListProductTier
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $UsesInternalCurrencyPrice,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'UnitPrice', 'ProductTierID', 'UsesInternalCurrencyPrice')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'UsesInternalCurrencyPrice', 'ProductTierID', 'CurrencyID', 'UnitPrice')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'UnitPrice', 'ProductTierID', 'UsesInternalCurrencyPrice')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'UsesInternalCurrencyPrice', 'ProductTierID', 'CurrencyID', 'UnitPrice')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CurrencyID', 'id', 'UnitPrice', 'ProductTierID', 'UsesInternalCurrencyPrice')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'UsesInternalCurrencyPrice', 'ProductTierID', 'CurrencyID', 'UnitPrice')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductTierID', 'CurrencyID', 'UnitPrice')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductTierID', 'CurrencyID', 'UnitPrice')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductTierID', 'CurrencyID', 'UnitPrice')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ProductTierID', 'CurrencyID', 'UnitPrice')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

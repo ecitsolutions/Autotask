@@ -57,7 +57,7 @@ Set-AtwsPaymentTerm
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.PaymentTerm]]
+    [Autotask.PaymentTerm[]]
     $InputObject,
 
 # Active

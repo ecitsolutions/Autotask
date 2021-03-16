@@ -87,7 +87,7 @@ An example of a more complex query. This command returns any NotificationHistory
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -114,7 +114,7 @@ An example of a more complex query. This command returns any NotificationHistory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $AccountID,
 
 # Entity Number
@@ -133,7 +133,7 @@ An example of a more complex query. This command returns any NotificationHistory
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EntityNumber,
 
 # Entity Title
@@ -152,7 +152,7 @@ An example of a more complex query. This command returns any NotificationHistory
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EntityTitle,
 
 # ID
@@ -160,21 +160,21 @@ An example of a more complex query. This command returns any NotificationHistory
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Initiating Contact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $InitiatingContactID,
 
 # Initiating Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $InitiatingResourceID,
 
 # Is Template Active
@@ -182,7 +182,7 @@ An example of a more complex query. This command returns any NotificationHistory
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsActive,
 
 # Is Template Deleted
@@ -190,7 +190,7 @@ An example of a more complex query. This command returns any NotificationHistory
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsDeleted,
 
 # Is Template Job
@@ -198,7 +198,7 @@ An example of a more complex query. This command returns any NotificationHistory
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsTemplateJob,
 
 # Notification History Type Id
@@ -217,35 +217,35 @@ An example of a more complex query. This command returns any NotificationHistory
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotificationHistoryTypeID,
 
 # Notification Sent Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $NotificationSentTime,
 
 # Opportunity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $OpportunityID,
 
 # Project
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ProjectID,
 
 # Quote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $QuoteID,
 
 # Recipient Display Name
@@ -253,7 +253,7 @@ An example of a more complex query. This command returns any NotificationHistory
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,200)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RecipientDisplayName,
 
 # Recipient Email Address
@@ -261,14 +261,14 @@ An example of a more complex query. This command returns any NotificationHistory
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,2000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RecipientEmailAddress,
 
 # Task
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $TaskID,
 
 # Template Name
@@ -276,112 +276,112 @@ An example of a more complex query. This command returns any NotificationHistory
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TemplateName,
 
 # Ticket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $TicketID,
 
 # Time Entry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $TimeEntryID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'TaskID', 'InitiatingContactID', 'NotificationSentTime', 'ProjectID', 'QuoteID', 'InitiatingResourceID', 'IsTemplateJob', 'RecipientEmailAddress', 'EntityNumber', 'IsDeleted', 'NotificationHistoryTypeID', 'OpportunityID', 'TicketID', 'id', 'RecipientDisplayName', 'AccountID', 'TimeEntryID', 'EntityTitle', 'IsActive')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('OpportunityID', 'ProjectID', 'TaskID', 'RecipientEmailAddress', 'NotificationHistoryTypeID', 'TemplateName', 'RecipientDisplayName', 'InitiatingContactID', 'IsActive', 'NotificationSentTime', 'EntityTitle', 'EntityNumber', 'id', 'InitiatingResourceID', 'TimeEntryID', 'QuoteID', 'IsDeleted', 'TicketID', 'IsTemplateJob', 'AccountID')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'TaskID', 'InitiatingContactID', 'NotificationSentTime', 'ProjectID', 'QuoteID', 'InitiatingResourceID', 'IsTemplateJob', 'RecipientEmailAddress', 'EntityNumber', 'IsDeleted', 'NotificationHistoryTypeID', 'OpportunityID', 'TicketID', 'id', 'RecipientDisplayName', 'AccountID', 'TimeEntryID', 'EntityTitle', 'IsActive')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('OpportunityID', 'ProjectID', 'TaskID', 'RecipientEmailAddress', 'NotificationHistoryTypeID', 'TemplateName', 'RecipientDisplayName', 'InitiatingContactID', 'IsActive', 'NotificationSentTime', 'EntityTitle', 'EntityNumber', 'id', 'InitiatingResourceID', 'TimeEntryID', 'QuoteID', 'IsDeleted', 'TicketID', 'IsTemplateJob', 'AccountID')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'TaskID', 'InitiatingContactID', 'NotificationSentTime', 'ProjectID', 'QuoteID', 'InitiatingResourceID', 'IsTemplateJob', 'RecipientEmailAddress', 'EntityNumber', 'IsDeleted', 'NotificationHistoryTypeID', 'OpportunityID', 'TicketID', 'id', 'RecipientDisplayName', 'AccountID', 'TimeEntryID', 'EntityTitle', 'IsActive')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('OpportunityID', 'ProjectID', 'TaskID', 'RecipientEmailAddress', 'NotificationHistoryTypeID', 'TemplateName', 'RecipientDisplayName', 'InitiatingContactID', 'IsActive', 'NotificationSentTime', 'EntityTitle', 'EntityNumber', 'id', 'InitiatingResourceID', 'TimeEntryID', 'QuoteID', 'IsDeleted', 'TicketID', 'IsTemplateJob', 'AccountID')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'NotificationSentTime', 'TemplateName', 'NotificationHistoryTypeID', 'EntityTitle', 'EntityNumber', 'InitiatingResourceID', 'InitiatingContactID', 'RecipientEmailAddress', 'RecipientDisplayName', 'AccountID', 'QuoteID', 'OpportunityID', 'ProjectID', 'TaskID', 'TicketID', 'TimeEntryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'NotificationSentTime', 'TemplateName', 'NotificationHistoryTypeID', 'EntityTitle', 'EntityNumber', 'InitiatingResourceID', 'InitiatingContactID', 'RecipientEmailAddress', 'RecipientDisplayName', 'AccountID', 'QuoteID', 'OpportunityID', 'ProjectID', 'TaskID', 'TicketID', 'TimeEntryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'NotificationSentTime', 'TemplateName', 'NotificationHistoryTypeID', 'EntityTitle', 'EntityNumber', 'InitiatingResourceID', 'InitiatingContactID', 'RecipientEmailAddress', 'RecipientDisplayName', 'AccountID', 'QuoteID', 'OpportunityID', 'ProjectID', 'TaskID', 'TicketID', 'TimeEntryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'NotificationSentTime', 'TemplateName', 'NotificationHistoryTypeID', 'EntityTitle', 'EntityNumber', 'InitiatingResourceID', 'InitiatingContactID', 'RecipientEmailAddress', 'RecipientDisplayName', 'AccountID', 'QuoteID', 'OpportunityID', 'ProjectID', 'TaskID', 'TicketID', 'TimeEntryID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TemplateName', 'EntityTitle', 'EntityNumber', 'RecipientEmailAddress', 'RecipientDisplayName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TemplateName', 'EntityTitle', 'EntityNumber', 'RecipientEmailAddress', 'RecipientDisplayName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TemplateName', 'EntityTitle', 'EntityNumber', 'RecipientEmailAddress', 'RecipientDisplayName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TemplateName', 'EntityTitle', 'EntityNumber', 'RecipientEmailAddress', 'RecipientDisplayName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('TemplateName', 'EntityTitle', 'EntityNumber', 'RecipientEmailAddress', 'RecipientDisplayName')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('NotificationSentTime')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

@@ -74,7 +74,7 @@ Set-AtwsUserDefinedFieldListItem
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -101,7 +101,7 @@ Set-AtwsUserDefinedFieldListItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # ID
@@ -109,14 +109,14 @@ Set-AtwsUserDefinedFieldListItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsActive,
 
 # User Defined Field Definition
@@ -124,7 +124,7 @@ Set-AtwsUserDefinedFieldListItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $UdfFieldId,
 
 # Value For Display
@@ -133,7 +133,7 @@ Set-AtwsUserDefinedFieldListItem
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ValueForDisplay,
 
 # Value For Export
@@ -142,98 +142,98 @@ Set-AtwsUserDefinedFieldListItem
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ValueForExport,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UdfFieldId', 'ValueForExport', 'CreateDate', 'IsActive', 'id', 'ValueForDisplay')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ValueForDisplay', 'IsActive', 'CreateDate', 'UdfFieldId', 'id', 'ValueForExport')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UdfFieldId', 'ValueForExport', 'CreateDate', 'IsActive', 'id', 'ValueForDisplay')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ValueForDisplay', 'IsActive', 'CreateDate', 'UdfFieldId', 'id', 'ValueForExport')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UdfFieldId', 'ValueForExport', 'CreateDate', 'IsActive', 'id', 'ValueForDisplay')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ValueForDisplay', 'IsActive', 'CreateDate', 'UdfFieldId', 'id', 'ValueForExport')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'UdfFieldId', 'ValueForExport', 'ValueForDisplay', 'CreateDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'UdfFieldId', 'ValueForExport', 'ValueForDisplay', 'CreateDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'UdfFieldId', 'ValueForExport', 'ValueForDisplay', 'CreateDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'UdfFieldId', 'ValueForExport', 'ValueForDisplay', 'CreateDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ValueForExport', 'ValueForDisplay')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ValueForExport', 'ValueForDisplay')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ValueForExport', 'ValueForDisplay')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ValueForExport', 'ValueForDisplay')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('ValueForExport', 'ValueForDisplay')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

@@ -60,7 +60,7 @@ Set-AtwsContactGroup
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContactGroup]]
+    [Autotask.ContactGroup[]]
     $InputObject,
 
 # Active

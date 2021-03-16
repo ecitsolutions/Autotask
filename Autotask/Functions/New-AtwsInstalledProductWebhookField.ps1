@@ -62,7 +62,7 @@ Set-AtwsInstalledProductWebhookField
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.InstalledProductWebhookField]]
+    [Autotask.InstalledProductWebhookField[]]
     $InputObject,
 
 # Field ID

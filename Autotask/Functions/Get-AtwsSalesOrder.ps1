@@ -87,7 +87,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -115,7 +115,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Additional Bill To Address Information
@@ -123,7 +123,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AdditionalBillToAddressInformation,
 
 # Additional Ship To Address Information
@@ -131,7 +131,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AdditionalShipToAddressInformation,
 
 # Bill to Address1
@@ -139,7 +139,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,150)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToAddress1,
 
 # Bill to Address2
@@ -147,7 +147,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,150)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToAddress2,
 
 # Bill to City
@@ -155,7 +155,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToCity,
 
 # Bill to Country
@@ -163,14 +163,14 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToCountry,
 
 # Bill To Country ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BillToCountryID,
 
 # Bill to Postal Code
@@ -178,7 +178,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToPostalCode,
 
 # Bill to County
@@ -186,14 +186,14 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BillToState,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # Contact ID
@@ -201,7 +201,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $Contact,
 
 # Sales Order ID
@@ -209,14 +209,14 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Opportunity ID
@@ -224,7 +224,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $OpportunityID,
 
 # Owner
@@ -232,14 +232,14 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $OwnerResourceID,
 
 # Promised Due Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $PromisedDueDate,
 
 # Sales Order Date
@@ -247,7 +247,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $SalesOrderDate,
 
 # Ship to Address1
@@ -255,7 +255,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,150)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToAddress1,
 
 # Ship to Address2
@@ -263,7 +263,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,150)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToAddress2,
 
 # Ship to City
@@ -271,7 +271,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToCity,
 
 # Ship to Country
@@ -279,14 +279,14 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToCountry,
 
 # Ship To Country ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ShipToCountryID,
 
 # Ship to Postal Code
@@ -294,7 +294,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToPostalCode,
 
 # Ship to County
@@ -302,7 +302,7 @@ Set-AtwsSalesOrder
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ShipToState,
 
 # Status
@@ -322,7 +322,7 @@ Set-AtwsSalesOrder
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Status,
 
 # Title
@@ -331,98 +331,98 @@ Set-AtwsSalesOrder
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,128)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdditionalShipToAddressInformation', 'OwnerResourceID', 'id', 'ShipToCountryID', 'ShipToState', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'BillToCountryID', 'BillToPostalCode', 'ImpersonatorCreatorResourceID', 'Status', 'ShipToPostalCode', 'BillToCity', 'OpportunityID', 'BillToCountry', 'ShipToCity', 'Contact', 'BillToAddress1', 'Title', 'AccountID', 'ShipToAddress1', 'SalesOrderDate', 'BusinessDivisionSubdivisionID', 'PromisedDueDate', 'BillToAddress2', 'ShipToAddress2', 'BillToState')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ShipToCountry', 'id', 'OpportunityID', 'OwnerResourceID', 'AccountID', 'Contact', 'ShipToCountryID', 'BillToCountryID', 'ImpersonatorCreatorResourceID', 'BillToState', 'BillToAddress2', 'Title', 'SalesOrderDate', 'BusinessDivisionSubdivisionID', 'ShipToAddress1', 'ShipToPostalCode', 'ShipToAddress2', 'BillToAddress1', 'AdditionalBillToAddressInformation', 'Status', 'AdditionalShipToAddressInformation', 'ShipToCity', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'ShipToState', 'PromisedDueDate')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdditionalShipToAddressInformation', 'OwnerResourceID', 'id', 'ShipToCountryID', 'ShipToState', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'BillToCountryID', 'BillToPostalCode', 'ImpersonatorCreatorResourceID', 'Status', 'ShipToPostalCode', 'BillToCity', 'OpportunityID', 'BillToCountry', 'ShipToCity', 'Contact', 'BillToAddress1', 'Title', 'AccountID', 'ShipToAddress1', 'SalesOrderDate', 'BusinessDivisionSubdivisionID', 'PromisedDueDate', 'BillToAddress2', 'ShipToAddress2', 'BillToState')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ShipToCountry', 'id', 'OpportunityID', 'OwnerResourceID', 'AccountID', 'Contact', 'ShipToCountryID', 'BillToCountryID', 'ImpersonatorCreatorResourceID', 'BillToState', 'BillToAddress2', 'Title', 'SalesOrderDate', 'BusinessDivisionSubdivisionID', 'ShipToAddress1', 'ShipToPostalCode', 'ShipToAddress2', 'BillToAddress1', 'AdditionalBillToAddressInformation', 'Status', 'AdditionalShipToAddressInformation', 'ShipToCity', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'ShipToState', 'PromisedDueDate')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AdditionalShipToAddressInformation', 'OwnerResourceID', 'id', 'ShipToCountryID', 'ShipToState', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'BillToCountryID', 'BillToPostalCode', 'ImpersonatorCreatorResourceID', 'Status', 'ShipToPostalCode', 'BillToCity', 'OpportunityID', 'BillToCountry', 'ShipToCity', 'Contact', 'BillToAddress1', 'Title', 'AccountID', 'ShipToAddress1', 'SalesOrderDate', 'BusinessDivisionSubdivisionID', 'PromisedDueDate', 'BillToAddress2', 'ShipToAddress2', 'BillToState')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ShipToCountry', 'id', 'OpportunityID', 'OwnerResourceID', 'AccountID', 'Contact', 'ShipToCountryID', 'BillToCountryID', 'ImpersonatorCreatorResourceID', 'BillToState', 'BillToAddress2', 'Title', 'SalesOrderDate', 'BusinessDivisionSubdivisionID', 'ShipToAddress1', 'ShipToPostalCode', 'ShipToAddress2', 'BillToAddress1', 'AdditionalBillToAddressInformation', 'Status', 'AdditionalShipToAddressInformation', 'ShipToCity', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'ShipToState', 'PromisedDueDate')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'Title', 'Status', 'Contact', 'OwnerResourceID', 'SalesOrderDate', 'PromisedDueDate', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'OpportunityID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToCountryID', 'ShipToCountryID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'Title', 'Status', 'Contact', 'OwnerResourceID', 'SalesOrderDate', 'PromisedDueDate', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'OpportunityID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToCountryID', 'ShipToCountryID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'Title', 'Status', 'Contact', 'OwnerResourceID', 'SalesOrderDate', 'PromisedDueDate', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'OpportunityID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToCountryID', 'ShipToCountryID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AccountID', 'Title', 'Status', 'Contact', 'OwnerResourceID', 'SalesOrderDate', 'PromisedDueDate', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'OpportunityID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToCountryID', 'ShipToCountryID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Title', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('SalesOrderDate', 'PromisedDueDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

@@ -60,7 +60,7 @@ Set-AtwsContractRoleCost
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractRoleCost]]
+    [Autotask.ContractRoleCost[]]
     $InputObject,
 
 # Contract ID

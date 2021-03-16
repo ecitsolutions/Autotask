@@ -62,7 +62,7 @@ Set-AtwsContactWebhookField
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContactWebhookField]]
+    [Autotask.ContactWebhookField[]]
     $InputObject,
 
 # Field ID

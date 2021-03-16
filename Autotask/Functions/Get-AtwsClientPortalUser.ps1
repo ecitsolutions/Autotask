@@ -92,7 +92,7 @@ Set-AtwsClientPortalUser
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -120,7 +120,7 @@ Set-AtwsClientPortalUser
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ClientPortalActive,
 
 # Contact ID
@@ -128,7 +128,7 @@ Set-AtwsClientPortalUser
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContactID,
 
 # Date Format
@@ -148,7 +148,7 @@ Set-AtwsClientPortalUser
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DateFormat,
 
 # Client Portal User ID
@@ -156,7 +156,7 @@ Set-AtwsClientPortalUser
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Number Format
@@ -176,7 +176,7 @@ Set-AtwsClientPortalUser
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NumberFormat,
 
 # Security Level
@@ -196,7 +196,7 @@ Set-AtwsClientPortalUser
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SecurityLevel,
 
 # Time Format
@@ -216,7 +216,7 @@ Set-AtwsClientPortalUser
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $TimeFormat,
 
 # User Name
@@ -225,97 +225,97 @@ Set-AtwsClientPortalUser
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,200)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $UserName,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'ClientPortalActive', 'DateFormat', 'id', 'TimeFormat', 'UserName', 'NumberFormat', 'SecurityLevel', 'Password')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('NumberFormat', 'ContactID', 'UserName', 'DateFormat', 'Password', 'ClientPortalActive', 'id', 'SecurityLevel', 'TimeFormat')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'ClientPortalActive', 'DateFormat', 'id', 'TimeFormat', 'UserName', 'NumberFormat', 'SecurityLevel', 'Password')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('NumberFormat', 'ContactID', 'UserName', 'DateFormat', 'Password', 'ClientPortalActive', 'id', 'SecurityLevel', 'TimeFormat')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'ClientPortalActive', 'DateFormat', 'id', 'TimeFormat', 'UserName', 'NumberFormat', 'SecurityLevel', 'Password')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('NumberFormat', 'ContactID', 'UserName', 'DateFormat', 'Password', 'ClientPortalActive', 'id', 'SecurityLevel', 'TimeFormat')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SecurityLevel', 'ContactID', 'DateFormat', 'TimeFormat', 'NumberFormat', 'UserName', 'Password')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SecurityLevel', 'ContactID', 'DateFormat', 'TimeFormat', 'NumberFormat', 'UserName', 'Password')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SecurityLevel', 'ContactID', 'DateFormat', 'TimeFormat', 'NumberFormat', 'UserName', 'Password')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'SecurityLevel', 'ContactID', 'DateFormat', 'TimeFormat', 'NumberFormat', 'UserName', 'Password')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('UserName', 'Password')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('UserName', 'Password')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('UserName', 'Password')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('UserName', 'Password')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('UserName', 'Password')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

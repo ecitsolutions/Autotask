@@ -70,7 +70,7 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -97,14 +97,14 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $ApproveAndPostDate,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
 # ContractID
@@ -112,21 +112,21 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Contract Service Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractServiceID,
 
 # Period Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[float]]]
+    [Nullable[float][]]
     $Cost,
 
 # EndDate
@@ -134,7 +134,7 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $EndDate,
 
 # contract_service_unique_id
@@ -142,21 +142,21 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # InternalCurrencyPrice
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[float]]]
+    [Nullable[float][]]
     $InternalCurrencyPrice,
 
 # Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[float]]]
+    [Nullable[float][]]
     $Price,
 
 # ServiceID
@@ -164,7 +164,7 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ServiceID,
 
 # StartDate
@@ -172,7 +172,7 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $StartDate,
 
 # Units
@@ -180,100 +180,100 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $Units,
 
 # Vendor Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $VendorAccountID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Units', 'ServiceID', 'VendorAccountID', 'Cost', 'ContractServiceID', 'Price', 'EndDate', 'id', 'ApproveAndPostDate', 'BusinessDivisionSubdivisionID', 'InternalCurrencyPrice', 'StartDate', 'ContractID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Price', 'ContractServiceID', 'InternalCurrencyPrice', 'Units', 'EndDate', 'ContractID', 'ApproveAndPostDate', 'ServiceID', 'Cost', 'id', 'VendorAccountID', 'StartDate')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Units', 'ServiceID', 'VendorAccountID', 'Cost', 'ContractServiceID', 'Price', 'EndDate', 'id', 'ApproveAndPostDate', 'BusinessDivisionSubdivisionID', 'InternalCurrencyPrice', 'StartDate', 'ContractID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Price', 'ContractServiceID', 'InternalCurrencyPrice', 'Units', 'EndDate', 'ContractID', 'ApproveAndPostDate', 'ServiceID', 'Cost', 'id', 'VendorAccountID', 'StartDate')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Units', 'ServiceID', 'VendorAccountID', 'Cost', 'ContractServiceID', 'Price', 'EndDate', 'id', 'ApproveAndPostDate', 'BusinessDivisionSubdivisionID', 'InternalCurrencyPrice', 'StartDate', 'ContractID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Price', 'ContractServiceID', 'InternalCurrencyPrice', 'Units', 'EndDate', 'ContractID', 'ApproveAndPostDate', 'ServiceID', 'Cost', 'id', 'VendorAccountID', 'StartDate')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ServiceID', 'StartDate', 'EndDate', 'Units', 'Price', 'ApproveAndPostDate', 'Cost', 'VendorAccountID', 'ContractServiceID', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ServiceID', 'StartDate', 'EndDate', 'Units', 'Price', 'ApproveAndPostDate', 'Cost', 'VendorAccountID', 'ContractServiceID', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ServiceID', 'StartDate', 'EndDate', 'Units', 'Price', 'ApproveAndPostDate', 'Cost', 'VendorAccountID', 'ContractServiceID', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ContractID', 'ServiceID', 'StartDate', 'EndDate', 'Units', 'Price', 'ApproveAndPostDate', 'Cost', 'VendorAccountID', 'ContractServiceID', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('StartDate', 'EndDate', 'ApproveAndPostDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

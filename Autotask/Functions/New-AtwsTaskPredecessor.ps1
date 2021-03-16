@@ -60,7 +60,7 @@ Set-AtwsTaskPredecessor
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.TaskPredecessor]]
+    [Autotask.TaskPredecessor[]]
     $InputObject,
 
 # Lag Days

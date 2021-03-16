@@ -60,7 +60,7 @@ Set-AtwsContractExclusionSet
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractExclusionSet]]
+    [Autotask.ContractExclusionSet[]]
     $InputObject,
 
 # Active

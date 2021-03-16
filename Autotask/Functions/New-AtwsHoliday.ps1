@@ -61,7 +61,7 @@ Set-AtwsHoliday
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Holiday]]
+    [Autotask.Holiday[]]
     $InputObject,
 
 # HolidayDate

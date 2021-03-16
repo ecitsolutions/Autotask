@@ -40,7 +40,7 @@ Get-AtwsContractExclusionSetExcludedRole
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractExclusionSetExcludedRole]]
+    [Autotask.ContractExclusionSetExcludedRole[]]
     $InputObject,
 
 # The unique id of an object to delete
@@ -49,7 +49,7 @@ Get-AtwsContractExclusionSetExcludedRole
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[long]]
+    [long[]]
     $Id
   )
  

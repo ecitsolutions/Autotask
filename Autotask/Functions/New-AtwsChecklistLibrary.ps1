@@ -61,7 +61,7 @@ Set-AtwsChecklistLibrary
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ChecklistLibrary]]
+    [Autotask.ChecklistLibrary[]]
     $InputObject,
 
 # Active

@@ -85,7 +85,7 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -124,7 +124,7 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AdditionalInvoiceFieldID,
 
 # Field Value
@@ -133,7 +133,7 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $FieldValue,
 
 # Additional Invoice Field Value ID
@@ -141,7 +141,7 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Batch ID
@@ -149,97 +149,97 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $InvoiceBatchID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InvoiceBatchID', 'FieldValue', 'AdditionalInvoiceFieldID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InvoiceBatchID', 'FieldValue', 'AdditionalInvoiceFieldID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'InvoiceBatchID', 'FieldValue', 'AdditionalInvoiceFieldID')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AdditionalInvoiceFieldID', 'InvoiceBatchID', 'FieldValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AdditionalInvoiceFieldID', 'InvoiceBatchID', 'FieldValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AdditionalInvoiceFieldID', 'InvoiceBatchID', 'FieldValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'AdditionalInvoiceFieldID', 'InvoiceBatchID', 'FieldValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('FieldValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('FieldValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('FieldValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('FieldValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('FieldValue')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

@@ -88,7 +88,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -116,14 +116,14 @@ An example of a more complex query. This command returns any AllocationCodes wit
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # After Hours Work Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AfterHoursWorkType,
 
 # Allocation Code Type
@@ -142,14 +142,14 @@ An example of a more complex query. This command returns any AllocationCodes wit
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $AllocationCodeType,
 
 # Department ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $Department,
 
 # Description
@@ -157,7 +157,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,500)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Number
@@ -165,7 +165,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ExternalNumber,
 
 # General Ledger Code
@@ -184,7 +184,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GeneralLedgerCode,
 
 # Allocation Code ID
@@ -192,21 +192,21 @@ An example of a more complex query. This command returns any AllocationCodes wit
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Excluded From New Contracts
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsExcludedFromNewContracts,
 
 # Markup Rate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $MarkupRate,
 
 # Name
@@ -214,14 +214,14 @@ An example of a more complex query. This command returns any AllocationCodes wit
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,200)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Tax Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $TaxCategoryID,
 
 # Type
@@ -240,7 +240,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Type,
 
 # Unit Cost
@@ -248,7 +248,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $UnitCost,
 
 # Unit Price
@@ -256,7 +256,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $UnitPrice,
 
 # Use Type
@@ -275,97 +275,97 @@ An example of a more complex query. This command returns any AllocationCodes wit
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $UseType,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeType', 'Department', 'ExternalNumber', 'Name', 'MarkupRate', 'Type', 'UnitPrice', 'Taxable', 'UnitCost', 'id', 'GeneralLedgerCode', 'IsExcludedFromNewContracts', 'Active', 'Description', 'UseType', 'AfterHoursWorkType', 'TaxCategoryID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Taxable', 'TaxCategoryID', 'Department', 'Name', 'Description', 'UseType', 'MarkupRate', 'id', 'Active', 'GeneralLedgerCode', 'UnitPrice', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'ExternalNumber', 'AllocationCodeType')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeType', 'Department', 'ExternalNumber', 'Name', 'MarkupRate', 'Type', 'UnitPrice', 'Taxable', 'UnitCost', 'id', 'GeneralLedgerCode', 'IsExcludedFromNewContracts', 'Active', 'Description', 'UseType', 'AfterHoursWorkType', 'TaxCategoryID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Taxable', 'TaxCategoryID', 'Department', 'Name', 'Description', 'UseType', 'MarkupRate', 'id', 'Active', 'GeneralLedgerCode', 'UnitPrice', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'ExternalNumber', 'AllocationCodeType')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AllocationCodeType', 'Department', 'ExternalNumber', 'Name', 'MarkupRate', 'Type', 'UnitPrice', 'Taxable', 'UnitCost', 'id', 'GeneralLedgerCode', 'IsExcludedFromNewContracts', 'Active', 'Description', 'UseType', 'AfterHoursWorkType', 'TaxCategoryID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('Taxable', 'TaxCategoryID', 'Department', 'Name', 'Description', 'UseType', 'MarkupRate', 'id', 'Active', 'GeneralLedgerCode', 'UnitPrice', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'ExternalNumber', 'AllocationCodeType')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'GeneralLedgerCode', 'Department', 'Name', 'ExternalNumber', 'Type', 'UseType', 'Description', 'UnitCost', 'UnitPrice', 'AllocationCodeType', 'TaxCategoryID', 'MarkupRate', 'AfterHoursWorkType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'GeneralLedgerCode', 'Department', 'Name', 'ExternalNumber', 'Type', 'UseType', 'Description', 'UnitCost', 'UnitPrice', 'AllocationCodeType', 'TaxCategoryID', 'MarkupRate', 'AfterHoursWorkType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'GeneralLedgerCode', 'Department', 'Name', 'ExternalNumber', 'Type', 'UseType', 'Description', 'UnitCost', 'UnitPrice', 'AllocationCodeType', 'TaxCategoryID', 'MarkupRate', 'AfterHoursWorkType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'GeneralLedgerCode', 'Department', 'Name', 'ExternalNumber', 'Type', 'UseType', 'Description', 'UnitCost', 'UnitPrice', 'AllocationCodeType', 'TaxCategoryID', 'MarkupRate', 'AfterHoursWorkType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'ExternalNumber', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'ExternalNumber', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'ExternalNumber', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'ExternalNumber', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'ExternalNumber', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

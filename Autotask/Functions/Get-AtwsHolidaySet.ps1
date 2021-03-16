@@ -76,7 +76,7 @@ Set-AtwsHolidaySet
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -103,7 +103,7 @@ Set-AtwsHolidaySet
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,512)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $HolidaySetDescription,
 
 # Holiday Set Name
@@ -113,7 +113,7 @@ Set-AtwsHolidaySet
     [Alias('Name')]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,64)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $HolidaySetName,
 
 # Holiday Set ID
@@ -121,97 +121,97 @@ Set-AtwsHolidaySet
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'HolidaySetDescription', 'HolidaySetName')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'HolidaySetDescription', 'HolidaySetName')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('id', 'HolidaySetDescription', 'HolidaySetName')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('HolidaySetName', 'HolidaySetDescription')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

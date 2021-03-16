@@ -62,7 +62,7 @@ Set-AtwsProjectNote
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ProjectNote]]
+    [Autotask.ProjectNote[]]
     $InputObject,
 
 # Announce

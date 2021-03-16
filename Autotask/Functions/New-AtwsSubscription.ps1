@@ -66,7 +66,7 @@ Set-AtwsSubscription
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.Subscription]]
+    [Autotask.Subscription[]]
     $InputObject,
 
 # Business Division Subdivision ID

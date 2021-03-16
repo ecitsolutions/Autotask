@@ -59,7 +59,7 @@ Set-AtwsContractRate
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.ContractRate]]
+    [Autotask.ContractRate[]]
     $InputObject,
 
 # Rate Offset

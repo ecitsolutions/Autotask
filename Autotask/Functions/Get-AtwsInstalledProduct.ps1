@@ -110,7 +110,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -147,14 +147,14 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountID,
 
 # Account Physical Location
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $AccountPhysicalLocationID,
 
 # Product Active
@@ -162,7 +162,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # API Vendor ID
@@ -181,76 +181,76 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ApiVendorID,
 
 # Contact Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContactID,
 
 # Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Contract Service Bundle Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractServiceBundleID,
 
 # Contract Service Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ContractServiceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $CreateDate,
 
 # Created By Person ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $CreatedByPersonID,
 
 # Configuration Item Daily Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $DailyCost,
 
 # Datto Available Kilobytes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $DattoAvailableKilobytes,
 
 # Datto Device Memory Megabytes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $DattoDeviceMemoryMegabytes,
 
 # Datto Drives Errors
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $DattoDrivesErrors,
 
 # Datto Hostname
@@ -258,7 +258,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DattoHostname,
 
 # Datto Internal IP
@@ -266,7 +266,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DattoInternalIP,
 
 # Datto Kernel Version ID
@@ -285,49 +285,49 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DattoKernelVersionID,
 
 # Datto Last Check In Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $DattoLastCheckInDateTime,
 
 # Datto NIC Speed Kilobits Per Second
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $DattoNICSpeedKilobitsPerSecond,
 
 # Datto Number Of Agents
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $DattoNumberOfAgents,
 
 # Datto Number Of Drives
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $DattoNumberOfDrives,
 
 # Datto Number Of Volumes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $DattoNumberOfVolumes,
 
 # Datto Offsite Used Bytes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $DattoOffsiteUsedBytes,
 
 # Datto OS Version ID
@@ -346,21 +346,21 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DattoOSVersionID,
 
 # Datto Percentage Used
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $DattoPercentageUsed,
 
 # Datto Protected Kilobytes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $DattoProtectedKilobytes,
 
 # Datto Remote IP
@@ -368,7 +368,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DattoRemoteIP,
 
 # Datto Serial Number
@@ -376,21 +376,21 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DattoSerialNumber,
 
 # Datto Uptime Seconds
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $DattoUptimeSeconds,
 
 # Datto Used Kilobytes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $DattoUsedKilobytes,
 
 # Datto ZFS Version ID
@@ -409,7 +409,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DattoZFSVersionID,
 
 # Device Networking ID
@@ -417,14 +417,14 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DeviceNetworkingID,
 
 # Configuration Item Hourly Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $HourlyCost,
 
 # Configuration Item ID
@@ -432,56 +432,56 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Install Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $InstallDate,
 
 # Installed By Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InstalledByContactID,
 
 # Installed By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InstalledByID,
 
 # Installed Product Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $InstalledProductCategoryID,
 
 # Last Activity Person ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $LastActivityPersonID,
 
 # Last Modified Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $LastModifiedTime,
 
 # Location
@@ -489,14 +489,14 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Location,
 
 # Configuration Item Monthly Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $MonthlyCost,
 
 # Configuration Item Notes
@@ -504,28 +504,28 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,5000)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Notes,
 
 # Configuration Item Number of Users
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $NumberOfUsers,
 
 # Parent Configuration Item
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ParentInstalledProductID,
 
 # Configuration Item Per Use Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $PerUseCost,
 
 # Product ID
@@ -533,7 +533,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ProductID,
 
 # Reference Number
@@ -541,7 +541,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ReferenceNumber,
 
 # Reference Title
@@ -549,7 +549,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,200)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ReferenceTitle,
 
 # RMM Device Audit Antivirus Status ID
@@ -568,7 +568,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditAntivirusStatusID,
 
 # RMM Device Audit Architecture ID
@@ -587,7 +587,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditArchitectureID,
 
 # RMM Device Audit Backup Status ID
@@ -606,7 +606,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditBackupStatusID,
 
 # RMM Device Audit Description
@@ -614,7 +614,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditDescription,
 
 # RMM Device Audit Device Type ID
@@ -633,7 +633,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditDeviceTypeID,
 
 # RMM Device Audit Display Adaptor ID
@@ -652,7 +652,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditDisplayAdaptorID,
 
 # RMM Device Audit Domain ID
@@ -671,7 +671,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditDomainID,
 
 # RMM Device Audit External IP Address
@@ -679,7 +679,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditExternalIPAddress,
 
 # RMM Device Audit Hostname
@@ -687,7 +687,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditHostname,
 
 # RMM Device Audit IP Address
@@ -695,7 +695,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditIPAddress,
 
 # RMM Device Audit Last User
@@ -703,7 +703,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditLastUser,
 
 # RMM Device Audit Mac Address
@@ -711,7 +711,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditMacAddress,
 
 # RMM Device Audit Manufacturer ID
@@ -730,21 +730,21 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditManufacturerID,
 
 # RMM Device Audit Memory Bytes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $RMMDeviceAuditMemoryBytes,
 
 # RMM Device Audit Missing Patch Count
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $RMMDeviceAuditMissingPatchCount,
 
 # RMM Device Audit Mobile Network Operator ID
@@ -763,7 +763,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditMobileNetworkOperatorID,
 
 # RMM Device Audit Mobile Number
@@ -771,7 +771,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditMobileNumber,
 
 # RMM Device Audit Model ID
@@ -790,7 +790,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditModelID,
 
 # RMM Device Audit Motherboard ID
@@ -809,7 +809,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditMotherboardID,
 
 # RMM Device Audit Patch Status ID
@@ -828,7 +828,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditPatchStatusID,
 
 # RMM Device Audit Processor ID
@@ -847,7 +847,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditProcessorID,
 
 # RMM Device Audit Service Pack ID
@@ -866,7 +866,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditServicePackID,
 
 # RMM Device Audit SNMP Contact
@@ -874,7 +874,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditSNMPContact,
 
 # RMM Device Audit SNMP Location
@@ -882,7 +882,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditSNMPLocation,
 
 # RMM Device Audit SNMP Name
@@ -890,7 +890,7 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditSNMPName,
 
 # RMM Device Audit Software Status ID
@@ -909,21 +909,21 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceAuditSoftwareStatusID,
 
 # RMM Device Audit Storage Bytes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $RMMDeviceAuditStorageBytes,
 
 # RMM Device ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $RMMDeviceID,
 
 # RMM Device UID
@@ -931,14 +931,14 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $RMMDeviceUID,
 
 # RMM Open Alert Count
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $RMMOpenAlertCount,
 
 # Serial Number
@@ -946,21 +946,21 @@ Set-AtwsInstalledProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SerialNumber,
 
 # Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ServiceBundleID,
 
 # Service ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ServiceID,
 
 # Service Level Agreement
@@ -979,21 +979,21 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ServiceLevelAgreementID,
 
 # Configuration Item Setup Fee
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[double]]]
+    [Nullable[double][]]
     $SetupFee,
 
 # Source Cost ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $SourceCostID,
 
 # Source Cost Type
@@ -1012,7 +1012,7 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $SourceCostType,
 
 # Configuration Item Type
@@ -1031,112 +1031,112 @@ Set-AtwsInstalledProduct
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Type,
 
 # Vendor Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $VendorID,
 
 # Warranty Expiration Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $WarrantyExpirationDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RMMDeviceAuditSNMPContact', 'RMMDeviceAuditModelID', 'LastActivityPersonID', 'Notes', 'RMMDeviceAuditDisplayAdaptorID', 'ReferenceNumber', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditMobileNetworkOperatorID', 'RMMDeviceAuditIPAddress', 'DattoUsedKilobytes', 'DattoZFSVersionID', 'InstalledProductCategoryID', 'CreatedByPersonID', 'RMMDeviceAuditDomainID', 'RMMDeviceAuditMemoryBytes', 'RMMDeviceAuditBackupStatusID', 'RMMDeviceAuditHostname', 'RMMDeviceAuditPatchStatusID', 'InstalledByID', 'RMMDeviceAuditArchitectureID', 'SerialNumber', 'DattoHostname', 'RMMDeviceAuditAntivirusStatusID', 'ImpersonatorCreatorResourceID', 'RMMDeviceAuditSNMPName', 'HourlyCost', 'RMMDeviceAuditProcessorID', 'ContractID', 'NumberOfUsers', 'DeviceNetworkingID', 'CreateDate', 'RMMDeviceID', 'DattoNumberOfVolumes', 'Active', 'DattoOSVersionID', 'VendorID', 'DattoLastCheckInDateTime', 'DattoUptimeSeconds', 'DattoAvailableKilobytes', 'AccountPhysicalLocationID', 'DattoOffsiteUsedBytes', 'DailyCost', 'InstallDate', 'LastModifiedTime', 'ProductID', 'ServiceBundleID', 'SourceCostType', 'MonthlyCost', 'DattoDrivesErrors', 'DattoNumberOfAgents', 'SetupFee', 'DattoProtectedKilobytes', 'DattoRemoteIP', 'RMMDeviceAuditDescription', 'PerUseCost', 'Location', 'ContactID', 'WarrantyExpirationDate', 'RMMDeviceAuditDeviceTypeID', 'RMMDeviceAuditLastUser', 'RMMDeviceAuditMacAddress', 'DattoInternalIP', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditExternalIPAddress', 'ApiVendorID', 'RMMDeviceAuditMissingPatchCount', 'DattoKernelVersionID', 'id', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditManufacturerID', 'ContractServiceID', 'DattoNumberOfDrives', 'InstalledByContactID', 'DattoNICSpeedKilobitsPerSecond', 'ParentInstalledProductID', 'RMMDeviceAuditOperatingSystem', 'AccountID', 'DattoPercentageUsed', 'DattoSerialNumber', 'ServiceLevelAgreementID', 'ContractServiceBundleID', 'RMMDeviceAuditMotherboardID', 'RMMDeviceUID', 'Type', 'LastActivityPersonType', 'RMMDeviceAuditMobileNumber', 'SourceCostID', 'RMMOpenAlertCount', 'ServiceID', 'RMMDeviceAuditSoftwareStatusID', 'ReferenceTitle', 'DattoDeviceMemoryMegabytes', '')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('RMMDeviceAuditMobileNetworkOperatorID', 'ApiVendorID', 'RMMDeviceAuditBackupStatusID', 'SourceCostType', 'RMMDeviceAuditIPAddress', 'DattoRemoteIP', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditDomainID', 'DattoUptimeSeconds', 'Type', 'ReferenceTitle', 'DattoDrivesErrors', 'InstalledProductCategoryID', 'ProductID', 'RMMDeviceUID', 'LastModifiedTime', 'RMMDeviceID', 'DattoLastCheckInDateTime', 'ContractID', 'AccountPhysicalLocationID', 'ContractServiceBundleID', 'RMMDeviceAuditMissingPatchCount', 'RMMDeviceAuditArchitectureID', 'DattoInternalIP', 'RMMDeviceAuditSNMPLocation', 'ImpersonatorCreatorResourceID', 'CreatedByPersonID', 'WarrantyExpirationDate', 'RMMDeviceAuditDescription', 'RMMDeviceAuditOperatingSystem', 'DattoUsedKilobytes', 'DattoPercentageUsed', 'Notes', 'VendorID', 'RMMDeviceAuditMotherboardID', 'id', 'RMMDeviceAuditServicePackID', 'ContractServiceID', 'CreateDate', 'RMMDeviceAuditProcessorID', 'DattoNICSpeedKilobitsPerSecond', 'InstallDate', 'ReferenceNumber', 'LastActivityPersonID', 'DattoOffsiteUsedBytes', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditExternalIPAddress', 'ContactID', 'DattoZFSVersionID', 'SourceCostID', 'DailyCost', 'LastActivityPersonType', 'DattoKernelVersionID', 'DattoNumberOfVolumes', 'RMMDeviceAuditMemoryBytes', 'DattoAvailableKilobytes', 'RMMDeviceAuditManufacturerID', 'InstalledByID', 'DattoNumberOfAgents', 'DattoOSVersionID', 'SerialNumber', 'NumberOfUsers', 'ServiceLevelAgreementID', 'MonthlyCost', 'DattoProtectedKilobytes', 'RMMDeviceAuditLastUser', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditSNMPContact', 'InstalledByContactID', 'ParentInstalledProductID', 'HourlyCost', 'DeviceNetworkingID', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditDisplayAdaptorID', 'RMMDeviceAuditMacAddress', 'DattoDeviceMemoryMegabytes', 'RMMDeviceAuditMobileNumber', 'Location', 'DattoHostname', 'SetupFee', 'ServiceID', 'AccountID', 'ServiceBundleID', 'DattoNumberOfDrives', 'Active', 'RMMDeviceAuditModelID', 'DattoSerialNumber', 'RMMOpenAlertCount', 'RMMDeviceAuditSoftwareStatusID', 'RMMDeviceAuditHostname', 'RMMDeviceAuditDeviceTypeID', 'PerUseCost', '')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RMMDeviceAuditSNMPContact', 'RMMDeviceAuditModelID', 'LastActivityPersonID', 'Notes', 'RMMDeviceAuditDisplayAdaptorID', 'ReferenceNumber', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditMobileNetworkOperatorID', 'RMMDeviceAuditIPAddress', 'DattoUsedKilobytes', 'DattoZFSVersionID', 'InstalledProductCategoryID', 'CreatedByPersonID', 'RMMDeviceAuditDomainID', 'RMMDeviceAuditMemoryBytes', 'RMMDeviceAuditBackupStatusID', 'RMMDeviceAuditHostname', 'RMMDeviceAuditPatchStatusID', 'InstalledByID', 'RMMDeviceAuditArchitectureID', 'SerialNumber', 'DattoHostname', 'RMMDeviceAuditAntivirusStatusID', 'ImpersonatorCreatorResourceID', 'RMMDeviceAuditSNMPName', 'HourlyCost', 'RMMDeviceAuditProcessorID', 'ContractID', 'NumberOfUsers', 'DeviceNetworkingID', 'CreateDate', 'RMMDeviceID', 'DattoNumberOfVolumes', 'Active', 'DattoOSVersionID', 'VendorID', 'DattoLastCheckInDateTime', 'DattoUptimeSeconds', 'DattoAvailableKilobytes', 'AccountPhysicalLocationID', 'DattoOffsiteUsedBytes', 'DailyCost', 'InstallDate', 'LastModifiedTime', 'ProductID', 'ServiceBundleID', 'SourceCostType', 'MonthlyCost', 'DattoDrivesErrors', 'DattoNumberOfAgents', 'SetupFee', 'DattoProtectedKilobytes', 'DattoRemoteIP', 'RMMDeviceAuditDescription', 'PerUseCost', 'Location', 'ContactID', 'WarrantyExpirationDate', 'RMMDeviceAuditDeviceTypeID', 'RMMDeviceAuditLastUser', 'RMMDeviceAuditMacAddress', 'DattoInternalIP', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditExternalIPAddress', 'ApiVendorID', 'RMMDeviceAuditMissingPatchCount', 'DattoKernelVersionID', 'id', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditManufacturerID', 'ContractServiceID', 'DattoNumberOfDrives', 'InstalledByContactID', 'DattoNICSpeedKilobitsPerSecond', 'ParentInstalledProductID', 'RMMDeviceAuditOperatingSystem', 'AccountID', 'DattoPercentageUsed', 'DattoSerialNumber', 'ServiceLevelAgreementID', 'ContractServiceBundleID', 'RMMDeviceAuditMotherboardID', 'RMMDeviceUID', 'Type', 'LastActivityPersonType', 'RMMDeviceAuditMobileNumber', 'SourceCostID', 'RMMOpenAlertCount', 'ServiceID', 'RMMDeviceAuditSoftwareStatusID', 'ReferenceTitle', 'DattoDeviceMemoryMegabytes', '')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('RMMDeviceAuditMobileNetworkOperatorID', 'ApiVendorID', 'RMMDeviceAuditBackupStatusID', 'SourceCostType', 'RMMDeviceAuditIPAddress', 'DattoRemoteIP', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditDomainID', 'DattoUptimeSeconds', 'Type', 'ReferenceTitle', 'DattoDrivesErrors', 'InstalledProductCategoryID', 'ProductID', 'RMMDeviceUID', 'LastModifiedTime', 'RMMDeviceID', 'DattoLastCheckInDateTime', 'ContractID', 'AccountPhysicalLocationID', 'ContractServiceBundleID', 'RMMDeviceAuditMissingPatchCount', 'RMMDeviceAuditArchitectureID', 'DattoInternalIP', 'RMMDeviceAuditSNMPLocation', 'ImpersonatorCreatorResourceID', 'CreatedByPersonID', 'WarrantyExpirationDate', 'RMMDeviceAuditDescription', 'RMMDeviceAuditOperatingSystem', 'DattoUsedKilobytes', 'DattoPercentageUsed', 'Notes', 'VendorID', 'RMMDeviceAuditMotherboardID', 'id', 'RMMDeviceAuditServicePackID', 'ContractServiceID', 'CreateDate', 'RMMDeviceAuditProcessorID', 'DattoNICSpeedKilobitsPerSecond', 'InstallDate', 'ReferenceNumber', 'LastActivityPersonID', 'DattoOffsiteUsedBytes', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditExternalIPAddress', 'ContactID', 'DattoZFSVersionID', 'SourceCostID', 'DailyCost', 'LastActivityPersonType', 'DattoKernelVersionID', 'DattoNumberOfVolumes', 'RMMDeviceAuditMemoryBytes', 'DattoAvailableKilobytes', 'RMMDeviceAuditManufacturerID', 'InstalledByID', 'DattoNumberOfAgents', 'DattoOSVersionID', 'SerialNumber', 'NumberOfUsers', 'ServiceLevelAgreementID', 'MonthlyCost', 'DattoProtectedKilobytes', 'RMMDeviceAuditLastUser', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditSNMPContact', 'InstalledByContactID', 'ParentInstalledProductID', 'HourlyCost', 'DeviceNetworkingID', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditDisplayAdaptorID', 'RMMDeviceAuditMacAddress', 'DattoDeviceMemoryMegabytes', 'RMMDeviceAuditMobileNumber', 'Location', 'DattoHostname', 'SetupFee', 'ServiceID', 'AccountID', 'ServiceBundleID', 'DattoNumberOfDrives', 'Active', 'RMMDeviceAuditModelID', 'DattoSerialNumber', 'RMMOpenAlertCount', 'RMMDeviceAuditSoftwareStatusID', 'RMMDeviceAuditHostname', 'RMMDeviceAuditDeviceTypeID', 'PerUseCost', '')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RMMDeviceAuditSNMPContact', 'RMMDeviceAuditModelID', 'LastActivityPersonID', 'Notes', 'RMMDeviceAuditDisplayAdaptorID', 'ReferenceNumber', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditMobileNetworkOperatorID', 'RMMDeviceAuditIPAddress', 'DattoUsedKilobytes', 'DattoZFSVersionID', 'InstalledProductCategoryID', 'CreatedByPersonID', 'RMMDeviceAuditDomainID', 'RMMDeviceAuditMemoryBytes', 'RMMDeviceAuditBackupStatusID', 'RMMDeviceAuditHostname', 'RMMDeviceAuditPatchStatusID', 'InstalledByID', 'RMMDeviceAuditArchitectureID', 'SerialNumber', 'DattoHostname', 'RMMDeviceAuditAntivirusStatusID', 'ImpersonatorCreatorResourceID', 'RMMDeviceAuditSNMPName', 'HourlyCost', 'RMMDeviceAuditProcessorID', 'ContractID', 'NumberOfUsers', 'DeviceNetworkingID', 'CreateDate', 'RMMDeviceID', 'DattoNumberOfVolumes', 'Active', 'DattoOSVersionID', 'VendorID', 'DattoLastCheckInDateTime', 'DattoUptimeSeconds', 'DattoAvailableKilobytes', 'AccountPhysicalLocationID', 'DattoOffsiteUsedBytes', 'DailyCost', 'InstallDate', 'LastModifiedTime', 'ProductID', 'ServiceBundleID', 'SourceCostType', 'MonthlyCost', 'DattoDrivesErrors', 'DattoNumberOfAgents', 'SetupFee', 'DattoProtectedKilobytes', 'DattoRemoteIP', 'RMMDeviceAuditDescription', 'PerUseCost', 'Location', 'ContactID', 'WarrantyExpirationDate', 'RMMDeviceAuditDeviceTypeID', 'RMMDeviceAuditLastUser', 'RMMDeviceAuditMacAddress', 'DattoInternalIP', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditExternalIPAddress', 'ApiVendorID', 'RMMDeviceAuditMissingPatchCount', 'DattoKernelVersionID', 'id', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditManufacturerID', 'ContractServiceID', 'DattoNumberOfDrives', 'InstalledByContactID', 'DattoNICSpeedKilobitsPerSecond', 'ParentInstalledProductID', 'RMMDeviceAuditOperatingSystem', 'AccountID', 'DattoPercentageUsed', 'DattoSerialNumber', 'ServiceLevelAgreementID', 'ContractServiceBundleID', 'RMMDeviceAuditMotherboardID', 'RMMDeviceUID', 'Type', 'LastActivityPersonType', 'RMMDeviceAuditMobileNumber', 'SourceCostID', 'RMMOpenAlertCount', 'ServiceID', 'RMMDeviceAuditSoftwareStatusID', 'ReferenceTitle', 'DattoDeviceMemoryMegabytes', '')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('RMMDeviceAuditMobileNetworkOperatorID', 'ApiVendorID', 'RMMDeviceAuditBackupStatusID', 'SourceCostType', 'RMMDeviceAuditIPAddress', 'DattoRemoteIP', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditDomainID', 'DattoUptimeSeconds', 'Type', 'ReferenceTitle', 'DattoDrivesErrors', 'InstalledProductCategoryID', 'ProductID', 'RMMDeviceUID', 'LastModifiedTime', 'RMMDeviceID', 'DattoLastCheckInDateTime', 'ContractID', 'AccountPhysicalLocationID', 'ContractServiceBundleID', 'RMMDeviceAuditMissingPatchCount', 'RMMDeviceAuditArchitectureID', 'DattoInternalIP', 'RMMDeviceAuditSNMPLocation', 'ImpersonatorCreatorResourceID', 'CreatedByPersonID', 'WarrantyExpirationDate', 'RMMDeviceAuditDescription', 'RMMDeviceAuditOperatingSystem', 'DattoUsedKilobytes', 'DattoPercentageUsed', 'Notes', 'VendorID', 'RMMDeviceAuditMotherboardID', 'id', 'RMMDeviceAuditServicePackID', 'ContractServiceID', 'CreateDate', 'RMMDeviceAuditProcessorID', 'DattoNICSpeedKilobitsPerSecond', 'InstallDate', 'ReferenceNumber', 'LastActivityPersonID', 'DattoOffsiteUsedBytes', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditExternalIPAddress', 'ContactID', 'DattoZFSVersionID', 'SourceCostID', 'DailyCost', 'LastActivityPersonType', 'DattoKernelVersionID', 'DattoNumberOfVolumes', 'RMMDeviceAuditMemoryBytes', 'DattoAvailableKilobytes', 'RMMDeviceAuditManufacturerID', 'InstalledByID', 'DattoNumberOfAgents', 'DattoOSVersionID', 'SerialNumber', 'NumberOfUsers', 'ServiceLevelAgreementID', 'MonthlyCost', 'DattoProtectedKilobytes', 'RMMDeviceAuditLastUser', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditSNMPContact', 'InstalledByContactID', 'ParentInstalledProductID', 'HourlyCost', 'DeviceNetworkingID', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditDisplayAdaptorID', 'RMMDeviceAuditMacAddress', 'DattoDeviceMemoryMegabytes', 'RMMDeviceAuditMobileNumber', 'Location', 'DattoHostname', 'SetupFee', 'ServiceID', 'AccountID', 'ServiceBundleID', 'DattoNumberOfDrives', 'Active', 'RMMDeviceAuditModelID', 'DattoSerialNumber', 'RMMOpenAlertCount', 'RMMDeviceAuditSoftwareStatusID', 'RMMDeviceAuditHostname', 'RMMDeviceAuditDeviceTypeID', 'PerUseCost', '')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate', 'AccountID', 'DailyCost', 'HourlyCost', 'id', 'InstallDate', 'MonthlyCost', 'Notes', 'NumberOfUsers', 'PerUseCost', 'ProductID', 'ReferenceNumber', 'ReferenceTitle', 'SerialNumber', 'SetupFee', 'WarrantyExpirationDate', 'ContractID', 'ServiceID', 'ServiceBundleID', 'Type', 'Location', 'ContactID', 'VendorID', 'InstalledByID', 'InstalledByContactID', 'ParentInstalledProductID', 'LastModifiedTime', 'ContractServiceID', 'ContractServiceBundleID', 'ServiceLevelAgreementID', 'AccountPhysicalLocationID', 'RMMDeviceID', 'RMMDeviceUID', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditDisplayAdaptorID', 'RMMDeviceAuditDomainID', 'RMMDeviceAuditExternalIPAddress', 'RMMDeviceAuditHostname', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMacAddress', 'RMMDeviceAuditManufacturerID', 'RMMDeviceAuditMemoryBytes', 'RMMDeviceAuditModelID', 'RMMDeviceAuditMotherboardID', 'RMMDeviceAuditOperatingSystem', 'RMMDeviceAuditProcessorID', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditDeviceTypeID', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMobileNetworkOperatorID', 'RMMDeviceAuditMobileNumber', 'RMMDeviceAuditDescription', 'RMMOpenAlertCount', 'RMMDeviceAuditLastUser', 'RMMDeviceAuditMissingPatchCount', 'DattoSerialNumber', 'DattoInternalIP', 'DattoRemoteIP', 'DattoHostname', 'DattoProtectedKilobytes', 'DattoUsedKilobytes', 'DattoAvailableKilobytes', 'DattoPercentageUsed', 'DattoOffsiteUsedBytes', 'DattoOSVersionID', 'DattoZFSVersionID', 'DattoKernelVersionID', 'DattoNICSpeedKilobitsPerSecond', 'DattoDeviceMemoryMegabytes', 'DattoUptimeSeconds', 'DattoNumberOfAgents', 'DattoNumberOfDrives', 'DattoNumberOfVolumes', 'DattoLastCheckInDateTime', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditBackupStatusID', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditSoftwareStatusID', 'LastActivityPersonID', 'LastActivityPersonType', 'CreatedByPersonID', 'ApiVendorID', 'DeviceNetworkingID', 'InstalledProductCategoryID', 'SourceCostID', 'SourceCostType', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate', 'AccountID', 'DailyCost', 'HourlyCost', 'id', 'InstallDate', 'MonthlyCost', 'Notes', 'NumberOfUsers', 'PerUseCost', 'ProductID', 'ReferenceNumber', 'ReferenceTitle', 'SerialNumber', 'SetupFee', 'WarrantyExpirationDate', 'ContractID', 'ServiceID', 'ServiceBundleID', 'Type', 'Location', 'ContactID', 'VendorID', 'InstalledByID', 'InstalledByContactID', 'ParentInstalledProductID', 'LastModifiedTime', 'ContractServiceID', 'ContractServiceBundleID', 'ServiceLevelAgreementID', 'AccountPhysicalLocationID', 'RMMDeviceID', 'RMMDeviceUID', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditDisplayAdaptorID', 'RMMDeviceAuditDomainID', 'RMMDeviceAuditExternalIPAddress', 'RMMDeviceAuditHostname', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMacAddress', 'RMMDeviceAuditManufacturerID', 'RMMDeviceAuditMemoryBytes', 'RMMDeviceAuditModelID', 'RMMDeviceAuditMotherboardID', 'RMMDeviceAuditOperatingSystem', 'RMMDeviceAuditProcessorID', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditDeviceTypeID', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMobileNetworkOperatorID', 'RMMDeviceAuditMobileNumber', 'RMMDeviceAuditDescription', 'RMMOpenAlertCount', 'RMMDeviceAuditLastUser', 'RMMDeviceAuditMissingPatchCount', 'DattoSerialNumber', 'DattoInternalIP', 'DattoRemoteIP', 'DattoHostname', 'DattoProtectedKilobytes', 'DattoUsedKilobytes', 'DattoAvailableKilobytes', 'DattoPercentageUsed', 'DattoOffsiteUsedBytes', 'DattoOSVersionID', 'DattoZFSVersionID', 'DattoKernelVersionID', 'DattoNICSpeedKilobitsPerSecond', 'DattoDeviceMemoryMegabytes', 'DattoUptimeSeconds', 'DattoNumberOfAgents', 'DattoNumberOfDrives', 'DattoNumberOfVolumes', 'DattoLastCheckInDateTime', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditBackupStatusID', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditSoftwareStatusID', 'LastActivityPersonID', 'LastActivityPersonType', 'CreatedByPersonID', 'ApiVendorID', 'DeviceNetworkingID', 'InstalledProductCategoryID', 'SourceCostID', 'SourceCostType', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate', 'AccountID', 'DailyCost', 'HourlyCost', 'id', 'InstallDate', 'MonthlyCost', 'Notes', 'NumberOfUsers', 'PerUseCost', 'ProductID', 'ReferenceNumber', 'ReferenceTitle', 'SerialNumber', 'SetupFee', 'WarrantyExpirationDate', 'ContractID', 'ServiceID', 'ServiceBundleID', 'Type', 'Location', 'ContactID', 'VendorID', 'InstalledByID', 'InstalledByContactID', 'ParentInstalledProductID', 'LastModifiedTime', 'ContractServiceID', 'ContractServiceBundleID', 'ServiceLevelAgreementID', 'AccountPhysicalLocationID', 'RMMDeviceID', 'RMMDeviceUID', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditDisplayAdaptorID', 'RMMDeviceAuditDomainID', 'RMMDeviceAuditExternalIPAddress', 'RMMDeviceAuditHostname', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMacAddress', 'RMMDeviceAuditManufacturerID', 'RMMDeviceAuditMemoryBytes', 'RMMDeviceAuditModelID', 'RMMDeviceAuditMotherboardID', 'RMMDeviceAuditOperatingSystem', 'RMMDeviceAuditProcessorID', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditDeviceTypeID', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMobileNetworkOperatorID', 'RMMDeviceAuditMobileNumber', 'RMMDeviceAuditDescription', 'RMMOpenAlertCount', 'RMMDeviceAuditLastUser', 'RMMDeviceAuditMissingPatchCount', 'DattoSerialNumber', 'DattoInternalIP', 'DattoRemoteIP', 'DattoHostname', 'DattoProtectedKilobytes', 'DattoUsedKilobytes', 'DattoAvailableKilobytes', 'DattoPercentageUsed', 'DattoOffsiteUsedBytes', 'DattoOSVersionID', 'DattoZFSVersionID', 'DattoKernelVersionID', 'DattoNICSpeedKilobitsPerSecond', 'DattoDeviceMemoryMegabytes', 'DattoUptimeSeconds', 'DattoNumberOfAgents', 'DattoNumberOfDrives', 'DattoNumberOfVolumes', 'DattoLastCheckInDateTime', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditBackupStatusID', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditSoftwareStatusID', 'LastActivityPersonID', 'LastActivityPersonType', 'CreatedByPersonID', 'ApiVendorID', 'DeviceNetworkingID', 'InstalledProductCategoryID', 'SourceCostID', 'SourceCostType', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate', 'AccountID', 'DailyCost', 'HourlyCost', 'id', 'InstallDate', 'MonthlyCost', 'Notes', 'NumberOfUsers', 'PerUseCost', 'ProductID', 'ReferenceNumber', 'ReferenceTitle', 'SerialNumber', 'SetupFee', 'WarrantyExpirationDate', 'ContractID', 'ServiceID', 'ServiceBundleID', 'Type', 'Location', 'ContactID', 'VendorID', 'InstalledByID', 'InstalledByContactID', 'ParentInstalledProductID', 'LastModifiedTime', 'ContractServiceID', 'ContractServiceBundleID', 'ServiceLevelAgreementID', 'AccountPhysicalLocationID', 'RMMDeviceID', 'RMMDeviceUID', 'RMMDeviceAuditArchitectureID', 'RMMDeviceAuditDisplayAdaptorID', 'RMMDeviceAuditDomainID', 'RMMDeviceAuditExternalIPAddress', 'RMMDeviceAuditHostname', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMacAddress', 'RMMDeviceAuditManufacturerID', 'RMMDeviceAuditMemoryBytes', 'RMMDeviceAuditModelID', 'RMMDeviceAuditMotherboardID', 'RMMDeviceAuditOperatingSystem', 'RMMDeviceAuditProcessorID', 'RMMDeviceAuditServicePackID', 'RMMDeviceAuditStorageBytes', 'RMMDeviceAuditDeviceTypeID', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMobileNetworkOperatorID', 'RMMDeviceAuditMobileNumber', 'RMMDeviceAuditDescription', 'RMMOpenAlertCount', 'RMMDeviceAuditLastUser', 'RMMDeviceAuditMissingPatchCount', 'DattoSerialNumber', 'DattoInternalIP', 'DattoRemoteIP', 'DattoHostname', 'DattoProtectedKilobytes', 'DattoUsedKilobytes', 'DattoAvailableKilobytes', 'DattoPercentageUsed', 'DattoOffsiteUsedBytes', 'DattoOSVersionID', 'DattoZFSVersionID', 'DattoKernelVersionID', 'DattoNICSpeedKilobitsPerSecond', 'DattoDeviceMemoryMegabytes', 'DattoUptimeSeconds', 'DattoNumberOfAgents', 'DattoNumberOfDrives', 'DattoNumberOfVolumes', 'DattoLastCheckInDateTime', 'RMMDeviceAuditAntivirusStatusID', 'RMMDeviceAuditBackupStatusID', 'RMMDeviceAuditPatchStatusID', 'RMMDeviceAuditSoftwareStatusID', 'LastActivityPersonID', 'LastActivityPersonType', 'CreatedByPersonID', 'ApiVendorID', 'DeviceNetworkingID', 'InstalledProductCategoryID', 'SourceCostID', 'SourceCostType', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Notes', 'ReferenceNumber', 'ReferenceTitle', 'SerialNumber', 'Location', 'RMMDeviceUID', 'RMMDeviceAuditExternalIPAddress', 'RMMDeviceAuditHostname', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMacAddress', 'RMMDeviceAuditOperatingSystem', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMobileNumber', 'RMMDeviceAuditDescription', 'RMMDeviceAuditLastUser', 'DattoSerialNumber', 'DattoInternalIP', 'DattoRemoteIP', 'DattoHostname', 'DeviceNetworkingID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Notes', 'ReferenceNumber', 'ReferenceTitle', 'SerialNumber', 'Location', 'RMMDeviceUID', 'RMMDeviceAuditExternalIPAddress', 'RMMDeviceAuditHostname', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMacAddress', 'RMMDeviceAuditOperatingSystem', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMobileNumber', 'RMMDeviceAuditDescription', 'RMMDeviceAuditLastUser', 'DattoSerialNumber', 'DattoInternalIP', 'DattoRemoteIP', 'DattoHostname', 'DeviceNetworkingID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Notes', 'ReferenceNumber', 'ReferenceTitle', 'SerialNumber', 'Location', 'RMMDeviceUID', 'RMMDeviceAuditExternalIPAddress', 'RMMDeviceAuditHostname', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMacAddress', 'RMMDeviceAuditOperatingSystem', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMobileNumber', 'RMMDeviceAuditDescription', 'RMMDeviceAuditLastUser', 'DattoSerialNumber', 'DattoInternalIP', 'DattoRemoteIP', 'DattoHostname', 'DeviceNetworkingID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Notes', 'ReferenceNumber', 'ReferenceTitle', 'SerialNumber', 'Location', 'RMMDeviceUID', 'RMMDeviceAuditExternalIPAddress', 'RMMDeviceAuditHostname', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMacAddress', 'RMMDeviceAuditOperatingSystem', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMobileNumber', 'RMMDeviceAuditDescription', 'RMMDeviceAuditLastUser', 'DattoSerialNumber', 'DattoInternalIP', 'DattoRemoteIP', 'DattoHostname', 'DeviceNetworkingID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Notes', 'ReferenceNumber', 'ReferenceTitle', 'SerialNumber', 'Location', 'RMMDeviceUID', 'RMMDeviceAuditExternalIPAddress', 'RMMDeviceAuditHostname', 'RMMDeviceAuditIPAddress', 'RMMDeviceAuditMacAddress', 'RMMDeviceAuditOperatingSystem', 'RMMDeviceAuditSNMPLocation', 'RMMDeviceAuditSNMPName', 'RMMDeviceAuditSNMPContact', 'RMMDeviceAuditMobileNumber', 'RMMDeviceAuditDescription', 'RMMDeviceAuditLastUser', 'DattoSerialNumber', 'DattoInternalIP', 'DattoRemoteIP', 'DattoHostname', 'DeviceNetworkingID', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('CreateDate', 'InstallDate', 'WarrantyExpirationDate', 'LastModifiedTime', 'DattoLastCheckInDateTime', 'UserDefinedField')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

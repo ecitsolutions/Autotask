@@ -88,7 +88,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -115,21 +115,21 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[datetime]]]
+    [Nullable[datetime][]]
     $AttachDate,
 
 # Attached By Contact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $AttachedByContactID,
 
 # Attached By Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $AttachedByResourceID,
 
 # Content Type
@@ -137,7 +137,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ContentType,
 
 # File Name
@@ -146,7 +146,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $FullPath,
 
 # Attachment ID
@@ -154,28 +154,28 @@ An example of a more complex query. This command returns any AttachmentInfos wit
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
 # Opportunity ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $OpportunityID,
 
 # Parent ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $ParentID,
 
 # Parent Type
@@ -195,7 +195,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $ParentType,
 
 # Publish
@@ -215,7 +215,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Publish,
 
 # Title
@@ -224,7 +224,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Title,
 
 # Type
@@ -244,98 +244,98 @@ An example of a more complex query. This command returns any AttachmentInfos wit
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Type,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'AttachDate', 'AttachedByResourceID', 'OpportunityID', 'id', 'Type', 'Title', 'FullPath', 'Publish', 'ContentType', 'ParentID', 'CreatorType', 'FileSize', 'ParentType', 'AttachedByContactID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('OpportunityID', 'FullPath', 'Publish', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'ImpersonatorCreatorResourceID', 'Title', 'id', 'ParentType', 'CreatorType', 'Type', 'AttachDate', 'ParentID', 'ContentType')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'AttachDate', 'AttachedByResourceID', 'OpportunityID', 'id', 'Type', 'Title', 'FullPath', 'Publish', 'ContentType', 'ParentID', 'CreatorType', 'FileSize', 'ParentType', 'AttachedByContactID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('OpportunityID', 'FullPath', 'Publish', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'ImpersonatorCreatorResourceID', 'Title', 'id', 'ParentType', 'CreatorType', 'Type', 'AttachDate', 'ParentID', 'ContentType')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ImpersonatorCreatorResourceID', 'AttachDate', 'AttachedByResourceID', 'OpportunityID', 'id', 'Type', 'Title', 'FullPath', 'Publish', 'ContentType', 'ParentID', 'CreatorType', 'FileSize', 'ParentType', 'AttachedByContactID')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('OpportunityID', 'FullPath', 'Publish', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'ImpersonatorCreatorResourceID', 'Title', 'id', 'ParentType', 'CreatorType', 'Type', 'AttachDate', 'ParentID', 'ContentType')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID', 'CreatorType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID', 'CreatorType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID', 'CreatorType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'ParentID', 'ParentType', 'Type', 'Title', 'FullPath', 'AttachDate', 'FileSize', 'AttachedByContactID', 'AttachedByResourceID', 'Publish', 'ContentType', 'OpportunityID', 'ImpersonatorCreatorResourceID', 'CreatorType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Type', 'Title', 'FullPath', 'ContentType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Type', 'Title', 'FullPath', 'ContentType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Type', 'Title', 'FullPath', 'ContentType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Type', 'Title', 'FullPath', 'ContentType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Type', 'Title', 'FullPath', 'ContentType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('AttachDate')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

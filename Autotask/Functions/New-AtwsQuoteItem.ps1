@@ -65,7 +65,7 @@ Set-AtwsQuoteItem
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.QuoteItem]]
+    [Autotask.QuoteItem[]]
     $InputObject,
 
 # average_cost

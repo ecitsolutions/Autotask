@@ -58,7 +58,7 @@ Set-AtwsAccountAlert
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Autotask.AccountAlert]]
+    [Autotask.AccountAlert[]]
     $InputObject,
 
 # Client ID

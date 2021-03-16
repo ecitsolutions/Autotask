@@ -87,7 +87,7 @@ Set-AtwsTicketCategory
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -114,14 +114,14 @@ Set-AtwsTicketCategory
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # API Only
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $ApiOnly,
 
 # Display Color RGB
@@ -141,14 +141,14 @@ Set-AtwsTicketCategory
         Return $false
       }
     })]
-    [Collections.Generic.List[string]]
+    [string[]]
     $DisplayColorRGB,
 
 # Global Default
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $GlobalDefault,
 
 # Ticket Category ID
@@ -156,7 +156,7 @@ Set-AtwsTicketCategory
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Name
@@ -165,7 +165,7 @@ Set-AtwsTicketCategory
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,30)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Nickname
@@ -173,97 +173,97 @@ Set-AtwsTicketCategory
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,3)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Nickname,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Nickname', 'id', 'Active', 'ApiOnly', 'DisplayColorRGB', 'GlobalDefault')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ApiOnly', 'Active', 'Name', 'DisplayColorRGB', 'Nickname', 'GlobalDefault', 'id')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Nickname', 'id', 'Active', 'ApiOnly', 'DisplayColorRGB', 'GlobalDefault')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ApiOnly', 'Active', 'Name', 'DisplayColorRGB', 'Nickname', 'GlobalDefault', 'id')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Nickname', 'id', 'Active', 'ApiOnly', 'DisplayColorRGB', 'GlobalDefault')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('ApiOnly', 'Active', 'Name', 'DisplayColorRGB', 'Nickname', 'GlobalDefault', 'id')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Nickname', 'DisplayColorRGB')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Nickname', 'DisplayColorRGB')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Nickname', 'DisplayColorRGB')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Nickname', 'DisplayColorRGB')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Nickname')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Nickname')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Nickname')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Nickname')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Nickname')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 

@@ -74,7 +74,7 @@ Set-AtwsRole
       ParametersetName = 'Filter'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Filter,
 
 # Follow this external ID and return any external objects
@@ -102,7 +102,7 @@ Set-AtwsRole
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $Active,
 
 # Description
@@ -110,7 +110,7 @@ Set-AtwsRole
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,200)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Description,
 
 # Hourly Factor
@@ -118,7 +118,7 @@ Set-AtwsRole
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $HourlyFactor,
 
 # Hourly Rate
@@ -126,7 +126,7 @@ Set-AtwsRole
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[decimal]]]
+    [Nullable[decimal][]]
     $HourlyRate,
 
 # Role ID
@@ -134,14 +134,14 @@ Set-AtwsRole
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Collections.Generic.List[Nullable[long]]]
+    [Nullable[long][]]
     $id,
 
 # Is Excluded From New Contracts
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $IsExcludedFromNewContracts,
 
 # Name
@@ -150,118 +150,118 @@ Set-AtwsRole
     )]
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,200)]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Name,
 
 # Quote Item Default Tax Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $QuoteItemDefaultTaxCategoryId,
 
 # Role Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[Int]]]
+    [Nullable[Int][]]
     $RoleType,
 
 # System Role
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[Nullable[boolean]]]
+    [Nullable[boolean][]]
     $SystemRole,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'id', 'RoleType', 'SystemRole', 'IsExcludedFromNewContracts', 'Description', 'QuoteItemDefaultTaxCategoryId', 'HourlyRate', 'HourlyFactor', 'Active')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsExcludedFromNewContracts', 'SystemRole', 'HourlyRate', 'Active', 'Name', 'QuoteItemDefaultTaxCategoryId', 'id', 'HourlyFactor', 'Description', 'RoleType')]
+    [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'id', 'RoleType', 'SystemRole', 'IsExcludedFromNewContracts', 'Description', 'QuoteItemDefaultTaxCategoryId', 'HourlyRate', 'HourlyFactor', 'Active')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsExcludedFromNewContracts', 'SystemRole', 'HourlyRate', 'Active', 'Name', 'QuoteItemDefaultTaxCategoryId', 'id', 'HourlyFactor', 'Description', 'RoleType')]
+    [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'id', 'RoleType', 'SystemRole', 'IsExcludedFromNewContracts', 'Description', 'QuoteItemDefaultTaxCategoryId', 'HourlyRate', 'HourlyFactor', 'Active')]
-    [Collections.Generic.List[string]]
+    [ValidateSet('IsExcludedFromNewContracts', 'SystemRole', 'HourlyRate', 'Active', 'Name', 'QuoteItemDefaultTaxCategoryId', 'id', 'HourlyFactor', 'Description', 'RoleType')]
+    [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('id', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateSet('Name', 'Description')]
-    [Collections.Generic.List[string]]
+    [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Collections.Generic.List[string]]
+    [string[]]
     $IsThisDay
   )
 
