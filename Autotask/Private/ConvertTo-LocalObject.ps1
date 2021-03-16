@@ -69,23 +69,6 @@ Function ConvertTo-LocalObject {
         # Loop through all objects and make adjustments
         foreach ($object in $InputObject) {
 
-            # Any userdefined fields?
-            if ($object.UserDefinedFields.Count -gt 0) {
-                # Expand User defined fields for easy filtering of collections and readability
-                # and convert array of userdefined fields to hashtable
-                $UserDefinedFields = @{}
-                foreach ($UDF in $object.UserDefinedFields) {
-                    # Make names you HAVE TO escape...
-                    $UDFName = '#{0}' -F $UDF.Name
-                    Add-Member -InputObject $object -MemberType NoteProperty -Name $UDFName -Value $UDF.Value -Force
-
-                    # Add to hashtable
-                    $UserDefinedFields[$UDF.Name] = $UDF.Value
-                }
-                # Replace custom array with hashtable
-                Add-Member -InputObject $object -MemberType NoteProperty -Name UserDefinedFields -Value $UserDefinedFields -Force
-            }
-
             # Adjust TimeZone on all DateTime properties
             foreach ($DateTimeParam in $DateTimeParams) {
 
