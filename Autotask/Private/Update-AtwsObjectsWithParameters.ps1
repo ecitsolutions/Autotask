@@ -58,7 +58,7 @@ Function Update-AtwsObjectsWithParameters {
         # Get updated field info about this entity
         $fields = Get-AtwsFieldInfo -Entity $entityName
 
-        $result = [Collections.ArrayList]::new()
+        $result = [Collections.Generic.List[psobject]]::new()
 
     }
 
