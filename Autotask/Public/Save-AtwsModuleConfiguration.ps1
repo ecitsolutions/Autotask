@@ -26,6 +26,7 @@ Function Save-AtwsModuleConfiguration {
     #>
 	
     [cmdletbinding(
+        SupportsShouldProcess = $true,
         ConfirmImpact = 'Low'
     )]
     Param
@@ -51,19 +52,33 @@ Function Save-AtwsModuleConfiguration {
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-    
+
+        if (!($PSCmdlet.MyInvocation.BoundParameters['Verbose'].IsPresent)) {
+            # No local override of central preference. Load central preference
+            $VerbosePreference = $Script:Atws.Configuration.VerbosePref
+        }
+
+        if (-not($Script:Atws.integrationsValue)) {
+            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
+        }
     }
   
     process {
-        Try { 
-            # Try to save to the path
-            Export-Clixml -InputObject $Configuration -Path $Path.Fullname
-        }
-        catch {
-            $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
-            throw (New-Object System.Configuration.Provider.ProviderException $message)
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: Saving current configuration to {1} as requested.' -F $caption, $path.FullName
+        $verboseWarning = '{0}: About to save current configuration to {1}. Do you want to continue?' -F $caption, $path.FullName
+
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
+            Try { 
+                # Try to save to the path
+                Export-Clixml -InputObject $Configuration -Path $Path.Fullname
+            }
+            catch {
+                $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
+                throw (New-Object System.Configuration.Provider.ProviderException $message)
         
-            return
+                return
+            }
         }
     }
   
