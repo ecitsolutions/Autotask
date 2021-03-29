@@ -174,8 +174,8 @@ Function Set-AtwsModuleConfiguration {
         foreach ($parameter in $PSBoundParameters.GetEnumerator()) { 
 
             $caption = $MyInvocation.MyCommand.Name
-            $verboseDescription = '{0}: Saving new {1} as requested.' -F $caption, $parameter.key
-            $verboseWarning = '{0}: About to save new {1}. Do you want to continue?' -F $caption, $parameter.key
+            $verboseDescription = '{0}: Setting {1} to {2} as requested.' -F $caption, $parameter.key, $parameter.value
+            $verboseWarning = '{0}: About to set {1} to {2}. Do you want to continue?' -F $caption, $parameter.key, $parameter.value
 
             if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
                 # Only run code if parameter has been use
