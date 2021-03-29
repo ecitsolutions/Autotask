@@ -118,7 +118,13 @@ Function Connect-AtwsWebAPI {
                 Test-Path $_
             })]
         [IO.FileInfo]
-        $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
+        $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml),
+
+        [Parameter(
+            ParameterSetName = 'ConfigurationFile'
+        )]
+        [string]
+        $Name = 'Default'
     )
     
     begin { 
@@ -150,7 +156,8 @@ Function Connect-AtwsWebAPI {
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
                 # Read the file. It should exist or parametervalidation should have killed us.
-                $ConfigurationData = Import-Clixml -Path $Path
+                $settings = Import-Clixml -Path $Path
+                $ConfigurationData = $settings[$Name]
                 if (-not (Test-AtwsModuleConfiguration -Configuration $ConfigurationData)) {
                     $message = "Configuration file $Path could not be validated. A connection could not be made."
                     throw (New-Object System.Configuration.Provider.ProviderException $message) 
