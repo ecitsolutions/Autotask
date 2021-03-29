@@ -78,18 +78,14 @@ Describe 'Issue #75' -Tag 'Issues' {
     }
 }
 
-
+<# Not relevant anymore 
 Describe 'Issue #74' -Tag 'Issues' {
 
     Context 'Issue #74: Updating Disc Cache on every Import' {
 
-        It 'Boolean parameters should not throw an exception' {
-            # Placeholder
-        }
-
     }
 }
-
+#>
 
 describe 'Issue #63' -Tag 'Issues' {
 
@@ -99,6 +95,37 @@ describe 'Issue #63' -Tag 'Issues' {
           {$null = Get-AtwsTicketCost -TicketID 0 -BillableToAccount $true -Billed $false} | Should -Not -Throw
         }
 
+    }
+}
+#>
+
+Describe 'Issue #61' -Tag 'Issues' {
+    # The root cause was a mistake in ConvertTo-AtwsFilter
+    # We'll check this by mocking Get-AtwsData and verifying the -Filter
+    InModuleScope Autotask { 
+        
+        Mock 'Get-AtwsData' {
+            [PSCustomObject]@{
+                PSTypeName = 'Autotask.ContractServiceUnit'
+                StartDate  = Get-Date
+                EndDate    = Get-Date
+            }
+        }
+        
+        Context 'Issue #61: Date queries with multiple date values should not be expanded to date filters ' {
+            $dates = @('2019.01.01', '2019.12.31')
+            $result = Get-AtwsContractServiceUnit -ContractID 0 -StartDate $dates
+            
+            It 'should pass -eq as the last operator' { 
+                $assertParams = @{
+                    CommandName     = 'Get-AtwsData'
+                    ParameterFilter = {
+                        $Filter[-2] -eq '-eq' 
+                    }
+                }
+                Assert-MockCalled @assertParams
+            }
+        }
     }
 }
 
@@ -234,9 +261,8 @@ describe 'Issue #37' -Tag 'Issues' {
     }
 }
 
-describe 'Issue #36' -Tag 'Issues' {
-    # The root cause was a mistake in ConvertTo-AtwsFilter
-    # We'll check this by mocking Get-AtwsData and verifying the -Filter
+describe 'Issue #36' -Tag '    # The root cause was a mistake in ConvertTo-AtwsFilter
+eck this by mocking Get-AtwsData and verifying the -Filter
     InModuleScope Autotask { 
         
         Mock 'Get-AtwsData' {
@@ -249,7 +275,7 @@ describe 'Issue #36' -Tag 'Issues' {
         
         context 'Issue #36: Date queries with multiple date fields return 0 objects ' {
         
-            $null = Get-AtwsContractServiceUnit -ContractID 0 -StartDate '2019.01.01' -EndDate '2019.12.31'
+            $result = Get-AtwsContractServiceUnit -ContractID 0 -StartDate '2019.01.01' -EndDate '2019.12.31'
             
             it 'should pass -le as the last operator' { 
                 $assertParams = @{
@@ -267,11 +293,10 @@ describe 'Issue #36' -Tag 'Issues' {
 # Issue #35 is a duplicate of issue #38. Or vice versa. But it is already tested...
 # Issue #34 does not exist 
 
-<# Deprecated 
-describe 'Issue #33' -Tag 'Issues' {
+<# Deprecated describe 'Issue #33' -Tag 'Issues' {
     
     # Get creation time of current file
-    $atws = Get-AtwsConnectionObject -Confirm:$false
+  $atws = Get-AtwsConnectionObject -Confirm:$false
     [IO.FileInfo]$functionFile = Join-Path $atws.DynamicCache 'Get-AtwsTicket.ps1'
     $lastWriteTime = $functionFile.LastWriteTime
     
@@ -301,8 +326,8 @@ describe 'Issue #33' -Tag 'Issues' {
         }
     }
 }
-#>
 
+#>
 describe 'Issue #32' -Tag 'Issues' {
     context 'Issue #32: Suppress DATE and TIME warning enhancement ' {
  
