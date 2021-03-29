@@ -65,6 +65,22 @@ If (-not ($loadedModule)) {
     Import-Module $modulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
 }
 
+Describe 'Issue #95' -Tag 'Issues' {
+
+    Context 'Issue #94: TimeZone issues' {
+        # Get entityinfo for Account and force a lookup through the API
+        $Now = (Get-Date -day 1).Date
+        $contractId = 30390716 # Internal service contract
+        $result = Get-AtwsContractServiceUnit -ContractID $contractId -StartDate $Now -LessThanOrEquals StartDate -EndDate $Now -GreaterThanOrEquals EndDate
+
+        It 'There should be more than 0 ContractServiceUnits' {
+            $result.count  | Should -BeGreaterThan 0
+        }
+
+    }
+}
+
+
 Describe 'Issue #75' -Tag 'Issues' {
 
     Context 'Issue #75: ATWSSoap returns wrong value on EntityInfo.HasUserDefinedFields' {
@@ -263,11 +279,10 @@ describe 'Issue #37' -Tag 'Issues' {
 
 describe 'Issue #36' -Tag '    # The root cause was a mistake in ConvertTo-AtwsFilter
 eck this by mocking Get-AtwsData and verifying the -Filter
-    InModuleScope Autotask { 
-        
+    InModuleSc        
         Mock 'Get-AtwsData' {
             [PSCustomObject]@{
-                PSTypeName = 'Autotask.ContractServiceUnit'
+              PSTypeName = 'Autotask.ContractServiceUnit'
                 StartDate = Get-Date
                 EndDate = Get-Date
             }
@@ -296,9 +311,9 @@ eck this by mocking Get-AtwsData and verifying the -Filter
 <# Deprecated describe 'Issue #33' -Tag 'Issues' {
     
     # Get creation time of current file
-  $atws = Get-AtwsConnectionObject -Confirm:$false
-    [IO.FileInfo]$functionFile = Join-Path $atws.DynamicCache 'Get-AtwsTicket.ps1'
-    $lastWriteTime = $functionFile.LastWriteTime
+ 
+ $atws = Get-AtwsConnectionObject -Confirm:$false
+      $lastWriteTime = $functionFile.LastWriteTime
     
     # Remove any loaded modules before trying to load it again
     Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
@@ -498,4 +513,5 @@ describe 'Issue #1' -Tag 'Issues' {
             $accountWithNull | Should -BeOfType Autotask.Account
         }
     }
+}  }}
 }
