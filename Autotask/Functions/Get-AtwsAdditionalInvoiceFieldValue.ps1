@@ -155,49 +155,49 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceBatchID', 'FieldValue', 'AdditionalInvoiceFieldID')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'FieldValue', 'id', 'InvoiceBatchID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceBatchID', 'FieldValue', 'AdditionalInvoiceFieldID')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'FieldValue', 'id', 'InvoiceBatchID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceBatchID', 'FieldValue', 'AdditionalInvoiceFieldID')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'FieldValue', 'id', 'InvoiceBatchID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AdditionalInvoiceFieldID', 'InvoiceBatchID', 'FieldValue')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'FieldValue', 'id', 'InvoiceBatchID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AdditionalInvoiceFieldID', 'InvoiceBatchID', 'FieldValue')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'FieldValue', 'id', 'InvoiceBatchID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AdditionalInvoiceFieldID', 'InvoiceBatchID', 'FieldValue')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'FieldValue', 'id', 'InvoiceBatchID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AdditionalInvoiceFieldID', 'InvoiceBatchID', 'FieldValue')]
+    [ValidateSet('AdditionalInvoiceFieldID', 'FieldValue', 'id', 'InvoiceBatchID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -353,8 +353,10 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

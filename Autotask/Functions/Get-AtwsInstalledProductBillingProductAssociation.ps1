@@ -141,49 +141,49 @@ Set-AtwsInstalledProductBillingProductAssociation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'BillingProductID', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
+    [ValidateSet('BillingProductID', 'EffectiveDate', 'ExpirationDate', 'id', 'InstalledProductID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'BillingProductID', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
+    [ValidateSet('BillingProductID', 'EffectiveDate', 'ExpirationDate', 'id', 'InstalledProductID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'BillingProductID', 'ExpirationDate', 'InstalledProductID', 'EffectiveDate')]
+    [ValidateSet('BillingProductID', 'EffectiveDate', 'ExpirationDate', 'id', 'InstalledProductID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InstalledProductID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('BillingProductID', 'EffectiveDate', 'ExpirationDate', 'id', 'InstalledProductID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InstalledProductID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('BillingProductID', 'EffectiveDate', 'ExpirationDate', 'id', 'InstalledProductID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InstalledProductID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('BillingProductID', 'EffectiveDate', 'ExpirationDate', 'id', 'InstalledProductID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InstalledProductID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('BillingProductID', 'EffectiveDate', 'ExpirationDate', 'id', 'InstalledProductID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -335,8 +335,10 @@ Set-AtwsInstalledProductBillingProductAssociation
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

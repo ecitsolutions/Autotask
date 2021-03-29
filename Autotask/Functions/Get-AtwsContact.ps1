@@ -481,91 +481,91 @@ Set-AtwsContact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressLine', 'EMailAddress', 'id', 'LastName', 'CreateDate', 'FirstName', 'EMailAddress2', 'AdditionalAddressInformation', 'AccountID', 'BulkEmailOptOut', 'LinkedInUrl', 'ImpersonatorCreatorResourceID', 'RoomNumber', 'PrimaryContact', 'ZipCode', 'LastModifiedDate', 'BulkEmailOptOutTime', 'Title', 'AddressLine1', 'ApiVendorID', 'ExternalID', 'MobilePhone', 'AccountPhysicalLocationID', 'EMailAddress3', 'SolicitationOptOutTime', 'Country', 'FaxNumber', 'Notification', 'SolicitationOptOut', 'LastActivityDate', 'SurveyOptOut', 'MiddleInitial', 'NamePrefix', 'Extension', 'CountryID', 'NameSuffix', 'FacebookUrl', 'Phone', 'Active', 'Note', 'TwitterUrl', 'AlternatePhone', 'State', 'City', '')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'Active', 'AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'ApiVendorID', 'BulkEmailOptOut', 'BulkEmailOptOutTime', 'City', 'Country', 'CountryID', 'CreateDate', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'id', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'LastModifiedDate', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'NamePrefix', 'NameSuffix', 'Note', 'Notification', 'Phone', 'PrimaryContact', 'RoomNumber', 'SolicitationOptOut', 'SolicitationOptOutTime', 'State', 'SurveyOptOut', 'Title', 'TwitterUrl', 'ZipCode')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressLine', 'EMailAddress', 'id', 'LastName', 'CreateDate', 'FirstName', 'EMailAddress2', 'AdditionalAddressInformation', 'AccountID', 'BulkEmailOptOut', 'LinkedInUrl', 'ImpersonatorCreatorResourceID', 'RoomNumber', 'PrimaryContact', 'ZipCode', 'LastModifiedDate', 'BulkEmailOptOutTime', 'Title', 'AddressLine1', 'ApiVendorID', 'ExternalID', 'MobilePhone', 'AccountPhysicalLocationID', 'EMailAddress3', 'SolicitationOptOutTime', 'Country', 'FaxNumber', 'Notification', 'SolicitationOptOut', 'LastActivityDate', 'SurveyOptOut', 'MiddleInitial', 'NamePrefix', 'Extension', 'CountryID', 'NameSuffix', 'FacebookUrl', 'Phone', 'Active', 'Note', 'TwitterUrl', 'AlternatePhone', 'State', 'City', '')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'Active', 'AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'ApiVendorID', 'BulkEmailOptOut', 'BulkEmailOptOutTime', 'City', 'Country', 'CountryID', 'CreateDate', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'id', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'LastModifiedDate', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'NamePrefix', 'NameSuffix', 'Note', 'Notification', 'Phone', 'PrimaryContact', 'RoomNumber', 'SolicitationOptOut', 'SolicitationOptOutTime', 'State', 'SurveyOptOut', 'Title', 'TwitterUrl', 'ZipCode')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AddressLine', 'EMailAddress', 'id', 'LastName', 'CreateDate', 'FirstName', 'EMailAddress2', 'AdditionalAddressInformation', 'AccountID', 'BulkEmailOptOut', 'LinkedInUrl', 'ImpersonatorCreatorResourceID', 'RoomNumber', 'PrimaryContact', 'ZipCode', 'LastModifiedDate', 'BulkEmailOptOutTime', 'Title', 'AddressLine1', 'ApiVendorID', 'ExternalID', 'MobilePhone', 'AccountPhysicalLocationID', 'EMailAddress3', 'SolicitationOptOutTime', 'Country', 'FaxNumber', 'Notification', 'SolicitationOptOut', 'LastActivityDate', 'SurveyOptOut', 'MiddleInitial', 'NamePrefix', 'Extension', 'CountryID', 'NameSuffix', 'FacebookUrl', 'Phone', 'Active', 'Note', 'TwitterUrl', 'AlternatePhone', 'State', 'City', '')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'Active', 'AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'ApiVendorID', 'BulkEmailOptOut', 'BulkEmailOptOutTime', 'City', 'Country', 'CountryID', 'CreateDate', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'id', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'LastModifiedDate', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'NamePrefix', 'NameSuffix', 'Note', 'Notification', 'Phone', 'PrimaryContact', 'RoomNumber', 'SolicitationOptOut', 'SolicitationOptOutTime', 'State', 'SurveyOptOut', 'Title', 'TwitterUrl', 'ZipCode')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'LastActivityDate', 'RoomNumber', 'Active', 'CreateDate', 'LastModifiedDate', 'AdditionalAddressInformation', 'ExternalID', 'CountryID', 'BulkEmailOptOutTime', 'NamePrefix', 'NameSuffix', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'AccountPhysicalLocationID', 'SolicitationOptOutTime', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'Active', 'AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'ApiVendorID', 'BulkEmailOptOutTime', 'City', 'Country', 'CountryID', 'CreateDate', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'id', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'LastModifiedDate', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'NamePrefix', 'NameSuffix', 'Note', 'Phone', 'RoomNumber', 'SolicitationOptOutTime', 'State', 'Title', 'TwitterUrl', 'UserDefinedField', 'ZipCode')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'LastActivityDate', 'RoomNumber', 'Active', 'CreateDate', 'LastModifiedDate', 'AdditionalAddressInformation', 'ExternalID', 'CountryID', 'BulkEmailOptOutTime', 'NamePrefix', 'NameSuffix', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'AccountPhysicalLocationID', 'SolicitationOptOutTime', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'Active', 'AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'ApiVendorID', 'BulkEmailOptOutTime', 'City', 'Country', 'CountryID', 'CreateDate', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'id', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'LastModifiedDate', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'NamePrefix', 'NameSuffix', 'Note', 'Phone', 'RoomNumber', 'SolicitationOptOutTime', 'State', 'Title', 'TwitterUrl', 'UserDefinedField', 'ZipCode')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'LastActivityDate', 'RoomNumber', 'Active', 'CreateDate', 'LastModifiedDate', 'AdditionalAddressInformation', 'ExternalID', 'CountryID', 'BulkEmailOptOutTime', 'NamePrefix', 'NameSuffix', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'AccountPhysicalLocationID', 'SolicitationOptOutTime', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'Active', 'AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'ApiVendorID', 'BulkEmailOptOutTime', 'City', 'Country', 'CountryID', 'CreateDate', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'id', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'LastModifiedDate', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'NamePrefix', 'NameSuffix', 'Note', 'Phone', 'RoomNumber', 'SolicitationOptOutTime', 'State', 'Title', 'TwitterUrl', 'UserDefinedField', 'ZipCode')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'LastActivityDate', 'RoomNumber', 'Active', 'CreateDate', 'LastModifiedDate', 'AdditionalAddressInformation', 'ExternalID', 'CountryID', 'BulkEmailOptOutTime', 'NamePrefix', 'NameSuffix', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'AccountPhysicalLocationID', 'SolicitationOptOutTime', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'UserDefinedField')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'Active', 'AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'ApiVendorID', 'BulkEmailOptOutTime', 'City', 'Country', 'CountryID', 'CreateDate', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'id', 'ImpersonatorCreatorResourceID', 'LastActivityDate', 'LastModifiedDate', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'NamePrefix', 'NameSuffix', 'Note', 'Phone', 'RoomNumber', 'SolicitationOptOutTime', 'State', 'Title', 'TwitterUrl', 'UserDefinedField', 'ZipCode')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'RoomNumber', 'AdditionalAddressInformation', 'ExternalID', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'UserDefinedField')]
+    [ValidateSet('AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'City', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'Note', 'Phone', 'RoomNumber', 'State', 'Title', 'TwitterUrl', 'UserDefinedField', 'ZipCode')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'RoomNumber', 'AdditionalAddressInformation', 'ExternalID', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'UserDefinedField')]
+    [ValidateSet('AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'City', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'Note', 'Phone', 'RoomNumber', 'State', 'Title', 'TwitterUrl', 'UserDefinedField', 'ZipCode')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'RoomNumber', 'AdditionalAddressInformation', 'ExternalID', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'UserDefinedField')]
+    [ValidateSet('AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'City', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'Note', 'Phone', 'RoomNumber', 'State', 'Title', 'TwitterUrl', 'UserDefinedField', 'ZipCode')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'RoomNumber', 'AdditionalAddressInformation', 'ExternalID', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'UserDefinedField')]
+    [ValidateSet('AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'City', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'Note', 'Phone', 'RoomNumber', 'State', 'Title', 'TwitterUrl', 'UserDefinedField', 'ZipCode')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('FirstName', 'LastName', 'MiddleInitial', 'Title', 'AddressLine', 'AddressLine1', 'City', 'State', 'ZipCode', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Phone', 'Extension', 'AlternatePhone', 'MobilePhone', 'FaxNumber', 'Note', 'RoomNumber', 'AdditionalAddressInformation', 'ExternalID', 'FacebookUrl', 'TwitterUrl', 'LinkedInUrl', 'UserDefinedField')]
+    [ValidateSet('AdditionalAddressInformation', 'AddressLine', 'AddressLine1', 'AlternatePhone', 'City', 'Country', 'EMailAddress', 'EMailAddress2', 'EMailAddress3', 'Extension', 'ExternalID', 'FacebookUrl', 'FaxNumber', 'FirstName', 'LastName', 'LinkedInUrl', 'MiddleInitial', 'MobilePhone', 'Note', 'Phone', 'RoomNumber', 'State', 'Title', 'TwitterUrl', 'UserDefinedField', 'ZipCode')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'CreateDate', 'LastModifiedDate', 'BulkEmailOptOutTime', 'SolicitationOptOutTime', 'UserDefinedField')]
+    [ValidateSet('BulkEmailOptOutTime', 'CreateDate', 'LastActivityDate', 'LastModifiedDate', 'SolicitationOptOutTime', 'UserDefinedField')]
     [string[]]
     $IsThisDay
   )
@@ -680,8 +680,10 @@ Set-AtwsContact
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

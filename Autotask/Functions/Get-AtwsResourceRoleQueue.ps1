@@ -151,49 +151,49 @@ Set-AtwsResourceRoleQueue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Default', 'Active', 'ResourceID', 'RoleID', 'QueueID', 'id')]
+    [ValidateSet('Active', 'Default', 'id', 'QueueID', 'ResourceID', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Default', 'Active', 'ResourceID', 'RoleID', 'QueueID', 'id')]
+    [ValidateSet('Active', 'Default', 'id', 'QueueID', 'ResourceID', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Default', 'Active', 'ResourceID', 'RoleID', 'QueueID', 'id')]
+    [ValidateSet('Active', 'Default', 'id', 'QueueID', 'ResourceID', 'RoleID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'RoleID', 'QueueID')]
+    [ValidateSet('id', 'QueueID', 'ResourceID', 'RoleID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'RoleID', 'QueueID')]
+    [ValidateSet('id', 'QueueID', 'ResourceID', 'RoleID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'RoleID', 'QueueID')]
+    [ValidateSet('id', 'QueueID', 'ResourceID', 'RoleID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'RoleID', 'QueueID')]
+    [ValidateSet('id', 'QueueID', 'ResourceID', 'RoleID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -344,8 +344,10 @@ Set-AtwsResourceRoleQueue
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

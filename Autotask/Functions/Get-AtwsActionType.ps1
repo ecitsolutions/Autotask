@@ -168,21 +168,21 @@ Set-AtwsActionType
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SystemActionType', 'View', 'Name', 'Active')]
+    [ValidateSet('Active', 'id', 'Name', 'SystemActionType', 'View')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SystemActionType', 'View', 'Name', 'Active')]
+    [ValidateSet('Active', 'id', 'Name', 'SystemActionType', 'View')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SystemActionType', 'View', 'Name', 'Active')]
+    [ValidateSet('Active', 'id', 'Name', 'SystemActionType', 'View')]
     [string[]]
     $IsNotNull,
 
@@ -366,8 +366,10 @@ Set-AtwsActionType
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

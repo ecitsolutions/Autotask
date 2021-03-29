@@ -199,84 +199,84 @@ Set-AtwsInventoryItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Picked', 'QuantityMinimum', 'BackOrder', 'QuantityOnHand', 'ReferenceNumber', 'Reserved', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'QuantityMaximum', 'id', 'Bin', 'ProductID', 'OnOrder')]
+    [ValidateSet('BackOrder', 'Bin', 'id', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'OnOrder', 'Picked', 'ProductID', 'QuantityMaximum', 'QuantityMinimum', 'QuantityOnHand', 'ReferenceNumber', 'Reserved')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Picked', 'QuantityMinimum', 'BackOrder', 'QuantityOnHand', 'ReferenceNumber', 'Reserved', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'QuantityMaximum', 'id', 'Bin', 'ProductID', 'OnOrder')]
+    [ValidateSet('BackOrder', 'Bin', 'id', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'OnOrder', 'Picked', 'ProductID', 'QuantityMaximum', 'QuantityMinimum', 'QuantityOnHand', 'ReferenceNumber', 'Reserved')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Picked', 'QuantityMinimum', 'BackOrder', 'QuantityOnHand', 'ReferenceNumber', 'Reserved', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'QuantityMaximum', 'id', 'Bin', 'ProductID', 'OnOrder')]
+    [ValidateSet('BackOrder', 'Bin', 'id', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'OnOrder', 'Picked', 'ProductID', 'QuantityMaximum', 'QuantityMinimum', 'QuantityOnHand', 'ReferenceNumber', 'Reserved')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'InventoryLocationID', 'QuantityOnHand', 'QuantityMinimum', 'QuantityMaximum', 'ReferenceNumber', 'Bin', 'OnOrder', 'BackOrder', 'Reserved', 'Picked', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BackOrder', 'Bin', 'id', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'OnOrder', 'Picked', 'ProductID', 'QuantityMaximum', 'QuantityMinimum', 'QuantityOnHand', 'ReferenceNumber', 'Reserved')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'InventoryLocationID', 'QuantityOnHand', 'QuantityMinimum', 'QuantityMaximum', 'ReferenceNumber', 'Bin', 'OnOrder', 'BackOrder', 'Reserved', 'Picked', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BackOrder', 'Bin', 'id', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'OnOrder', 'Picked', 'ProductID', 'QuantityMaximum', 'QuantityMinimum', 'QuantityOnHand', 'ReferenceNumber', 'Reserved')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'InventoryLocationID', 'QuantityOnHand', 'QuantityMinimum', 'QuantityMaximum', 'ReferenceNumber', 'Bin', 'OnOrder', 'BackOrder', 'Reserved', 'Picked', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BackOrder', 'Bin', 'id', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'OnOrder', 'Picked', 'ProductID', 'QuantityMaximum', 'QuantityMinimum', 'QuantityOnHand', 'ReferenceNumber', 'Reserved')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'InventoryLocationID', 'QuantityOnHand', 'QuantityMinimum', 'QuantityMaximum', 'ReferenceNumber', 'Bin', 'OnOrder', 'BackOrder', 'Reserved', 'Picked', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BackOrder', 'Bin', 'id', 'ImpersonatorCreatorResourceID', 'InventoryLocationID', 'OnOrder', 'Picked', 'ProductID', 'QuantityMaximum', 'QuantityMinimum', 'QuantityOnHand', 'ReferenceNumber', 'Reserved')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReferenceNumber', 'Bin')]
+    [ValidateSet('Bin', 'ReferenceNumber')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReferenceNumber', 'Bin')]
+    [ValidateSet('Bin', 'ReferenceNumber')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReferenceNumber', 'Bin')]
+    [ValidateSet('Bin', 'ReferenceNumber')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReferenceNumber', 'Bin')]
+    [ValidateSet('Bin', 'ReferenceNumber')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReferenceNumber', 'Bin')]
+    [ValidateSet('Bin', 'ReferenceNumber')]
     [string[]]
     $Contains,
 
@@ -397,8 +397,10 @@ Set-AtwsInventoryItem
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

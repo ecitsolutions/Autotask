@@ -259,84 +259,84 @@ Set-AtwsSubscription
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'PeriodType', 'MaterialCodeID', 'TotalPrice', 'ExpirationDate', 'Description', 'Status', 'PurchaseOrderNumber', 'TotalCost', 'VendorID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'EffectiveDate', 'InstalledProductID', 'PeriodCost', 'SubscriptionName')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EffectiveDate', 'ExpirationDate', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'MaterialCodeID', 'PeriodCost', 'PeriodPrice', 'PeriodType', 'PurchaseOrderNumber', 'Status', 'SubscriptionName', 'TotalCost', 'TotalPrice', 'VendorID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'PeriodType', 'MaterialCodeID', 'TotalPrice', 'ExpirationDate', 'Description', 'Status', 'PurchaseOrderNumber', 'TotalCost', 'VendorID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'EffectiveDate', 'InstalledProductID', 'PeriodCost', 'SubscriptionName')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EffectiveDate', 'ExpirationDate', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'MaterialCodeID', 'PeriodCost', 'PeriodPrice', 'PeriodType', 'PurchaseOrderNumber', 'Status', 'SubscriptionName', 'TotalCost', 'TotalPrice', 'VendorID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'PeriodType', 'MaterialCodeID', 'TotalPrice', 'ExpirationDate', 'Description', 'Status', 'PurchaseOrderNumber', 'TotalCost', 'VendorID', 'ImpersonatorCreatorResourceID', 'id', 'PeriodPrice', 'EffectiveDate', 'InstalledProductID', 'PeriodCost', 'SubscriptionName')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EffectiveDate', 'ExpirationDate', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'MaterialCodeID', 'PeriodCost', 'PeriodPrice', 'PeriodType', 'PurchaseOrderNumber', 'Status', 'SubscriptionName', 'TotalCost', 'TotalPrice', 'VendorID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SubscriptionName', 'Description', 'PeriodType', 'EffectiveDate', 'ExpirationDate', 'PeriodPrice', 'TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'PeriodCost', 'TotalCost', 'Status', 'InstalledProductID', 'VendorID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EffectiveDate', 'ExpirationDate', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'MaterialCodeID', 'PeriodCost', 'PeriodPrice', 'PeriodType', 'PurchaseOrderNumber', 'Status', 'SubscriptionName', 'TotalCost', 'TotalPrice', 'VendorID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SubscriptionName', 'Description', 'PeriodType', 'EffectiveDate', 'ExpirationDate', 'PeriodPrice', 'TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'PeriodCost', 'TotalCost', 'Status', 'InstalledProductID', 'VendorID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EffectiveDate', 'ExpirationDate', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'MaterialCodeID', 'PeriodCost', 'PeriodPrice', 'PeriodType', 'PurchaseOrderNumber', 'Status', 'SubscriptionName', 'TotalCost', 'TotalPrice', 'VendorID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SubscriptionName', 'Description', 'PeriodType', 'EffectiveDate', 'ExpirationDate', 'PeriodPrice', 'TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'PeriodCost', 'TotalCost', 'Status', 'InstalledProductID', 'VendorID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EffectiveDate', 'ExpirationDate', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'MaterialCodeID', 'PeriodCost', 'PeriodPrice', 'PeriodType', 'PurchaseOrderNumber', 'Status', 'SubscriptionName', 'TotalCost', 'TotalPrice', 'VendorID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SubscriptionName', 'Description', 'PeriodType', 'EffectiveDate', 'ExpirationDate', 'PeriodPrice', 'TotalPrice', 'MaterialCodeID', 'PurchaseOrderNumber', 'PeriodCost', 'TotalCost', 'Status', 'InstalledProductID', 'VendorID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EffectiveDate', 'ExpirationDate', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'MaterialCodeID', 'PeriodCost', 'PeriodPrice', 'PeriodType', 'PurchaseOrderNumber', 'Status', 'SubscriptionName', 'TotalCost', 'TotalPrice', 'VendorID')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SubscriptionName', 'Description', 'PeriodType', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'PeriodType', 'PurchaseOrderNumber', 'SubscriptionName')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SubscriptionName', 'Description', 'PeriodType', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'PeriodType', 'PurchaseOrderNumber', 'SubscriptionName')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SubscriptionName', 'Description', 'PeriodType', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'PeriodType', 'PurchaseOrderNumber', 'SubscriptionName')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SubscriptionName', 'Description', 'PeriodType', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'PeriodType', 'PurchaseOrderNumber', 'SubscriptionName')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SubscriptionName', 'Description', 'PeriodType', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'PeriodType', 'PurchaseOrderNumber', 'SubscriptionName')]
     [string[]]
     $Contains,
 
@@ -458,8 +458,10 @@ Set-AtwsSubscription
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

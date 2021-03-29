@@ -177,84 +177,84 @@ Set-AtwsRole
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsExcludedFromNewContracts', 'SystemRole', 'HourlyRate', 'Active', 'Name', 'QuoteItemDefaultTaxCategoryId', 'id', 'HourlyFactor', 'Description', 'RoleType')]
+    [ValidateSet('Active', 'Description', 'HourlyFactor', 'HourlyRate', 'id', 'IsExcludedFromNewContracts', 'Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType', 'SystemRole')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsExcludedFromNewContracts', 'SystemRole', 'HourlyRate', 'Active', 'Name', 'QuoteItemDefaultTaxCategoryId', 'id', 'HourlyFactor', 'Description', 'RoleType')]
+    [ValidateSet('Active', 'Description', 'HourlyFactor', 'HourlyRate', 'id', 'IsExcludedFromNewContracts', 'Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType', 'SystemRole')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsExcludedFromNewContracts', 'SystemRole', 'HourlyRate', 'Active', 'Name', 'QuoteItemDefaultTaxCategoryId', 'id', 'HourlyFactor', 'Description', 'RoleType')]
+    [ValidateSet('Active', 'Description', 'HourlyFactor', 'HourlyRate', 'id', 'IsExcludedFromNewContracts', 'Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType', 'SystemRole')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
+    [ValidateSet('Description', 'HourlyFactor', 'HourlyRate', 'id', 'Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
+    [ValidateSet('Description', 'HourlyFactor', 'HourlyRate', 'id', 'Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
+    [ValidateSet('Description', 'HourlyFactor', 'HourlyRate', 'id', 'Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'HourlyFactor', 'HourlyRate', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
+    [ValidateSet('Description', 'HourlyFactor', 'HourlyRate', 'id', 'Name', 'QuoteItemDefaultTaxCategoryId', 'RoleType')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $Contains,
 
@@ -375,8 +375,10 @@ Set-AtwsRole
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

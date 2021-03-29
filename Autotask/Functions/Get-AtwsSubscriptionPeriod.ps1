@@ -151,49 +151,49 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PeriodDate', 'PurchaseOrderNumber', 'PostedDate', 'PeriodPrice', 'PeriodCost', 'id', 'SubscriptionID')]
+    [ValidateSet('id', 'PeriodCost', 'PeriodDate', 'PeriodPrice', 'PostedDate', 'PurchaseOrderNumber', 'SubscriptionID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PeriodDate', 'PurchaseOrderNumber', 'PostedDate', 'PeriodPrice', 'PeriodCost', 'id', 'SubscriptionID')]
+    [ValidateSet('id', 'PeriodCost', 'PeriodDate', 'PeriodPrice', 'PostedDate', 'PurchaseOrderNumber', 'SubscriptionID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PeriodDate', 'PurchaseOrderNumber', 'PostedDate', 'PeriodPrice', 'PeriodCost', 'id', 'SubscriptionID')]
+    [ValidateSet('id', 'PeriodCost', 'PeriodDate', 'PeriodPrice', 'PostedDate', 'PurchaseOrderNumber', 'SubscriptionID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'PeriodCost', 'PeriodDate', 'PeriodPrice', 'PostedDate', 'PurchaseOrderNumber', 'SubscriptionID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'PeriodCost', 'PeriodDate', 'PeriodPrice', 'PostedDate', 'PurchaseOrderNumber', 'SubscriptionID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'PeriodCost', 'PeriodDate', 'PeriodPrice', 'PostedDate', 'PurchaseOrderNumber', 'SubscriptionID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SubscriptionID', 'PeriodDate', 'PeriodPrice', 'PeriodCost', 'PostedDate', 'PurchaseOrderNumber')]
+    [ValidateSet('id', 'PeriodCost', 'PeriodDate', 'PeriodPrice', 'PostedDate', 'PurchaseOrderNumber', 'SubscriptionID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -350,8 +350,10 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

@@ -311,84 +311,84 @@ An example of a more complex query. This command returns any QuoteTemplates with
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShowTaxCategory', 'ShowVerticalGridLines', 'LastActivityDate', 'ShowGridHeader', 'NumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat', 'Name', 'DisplayCurrencySymbol', 'CreatedBy', 'ShowEachTaxInGroup', 'DateFormat', 'PageLayout', 'Description', 'LastActivityBy', 'CalculateTaxSeparately', 'Active', 'id', 'CreateDate', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
+    [ValidateSet('Active', 'CalculateTaxSeparately', 'CreateDate', 'CreatedBy', 'CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'DisplayTaxCategorySuperscripts', 'id', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'ShowEachTaxInGroup', 'ShowGridHeader', 'ShowTaxCategory', 'ShowVerticalGridLines')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShowTaxCategory', 'ShowVerticalGridLines', 'LastActivityDate', 'ShowGridHeader', 'NumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat', 'Name', 'DisplayCurrencySymbol', 'CreatedBy', 'ShowEachTaxInGroup', 'DateFormat', 'PageLayout', 'Description', 'LastActivityBy', 'CalculateTaxSeparately', 'Active', 'id', 'CreateDate', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
+    [ValidateSet('Active', 'CalculateTaxSeparately', 'CreateDate', 'CreatedBy', 'CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'DisplayTaxCategorySuperscripts', 'id', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'ShowEachTaxInGroup', 'ShowGridHeader', 'ShowTaxCategory', 'ShowVerticalGridLines')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShowTaxCategory', 'ShowVerticalGridLines', 'LastActivityDate', 'ShowGridHeader', 'NumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat', 'Name', 'DisplayCurrencySymbol', 'CreatedBy', 'ShowEachTaxInGroup', 'DateFormat', 'PageLayout', 'Description', 'LastActivityBy', 'CalculateTaxSeparately', 'Active', 'id', 'CreateDate', 'PageNumberFormat', 'DisplayTaxCategorySuperscripts')]
+    [ValidateSet('Active', 'CalculateTaxSeparately', 'CreateDate', 'CreatedBy', 'CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'DisplayTaxCategorySuperscripts', 'id', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'ShowEachTaxInGroup', 'ShowGridHeader', 'ShowTaxCategory', 'ShowVerticalGridLines')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDate', 'CreatedBy', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CreateDate', 'CreatedBy', 'CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'id', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDate', 'CreatedBy', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CreateDate', 'CreatedBy', 'CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'id', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDate', 'CreatedBy', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CreateDate', 'CreatedBy', 'CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'id', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDate', 'CreatedBy', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CreateDate', 'CreatedBy', 'CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'DateFormat', 'Description', 'DisplayCurrencySymbol', 'id', 'LastActivityBy', 'LastActivityDate', 'Name', 'NumberFormat', 'PageLayout', 'PageNumberFormat')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'Name')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'Name')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'Name')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'Name')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'Name', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'Name')]
     [string[]]
     $Contains,
 
@@ -510,8 +510,10 @@ An example of a more complex query. This command returns any QuoteTemplates with
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

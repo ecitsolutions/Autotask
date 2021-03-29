@@ -248,49 +248,49 @@ Set-AtwsAccountToDo
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'CompletedDate', 'ContactID', 'ActivityDescription', 'TicketID', 'ContractID', 'AssignedToResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'id', 'AccountID', 'CreatorResourceID', 'ActionType', 'StartDateTime')]
+    [ValidateSet('AccountID', 'ActionType', 'ActivityDescription', 'AssignedToResourceID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'OpportunityID', 'StartDateTime', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'CompletedDate', 'ContactID', 'ActivityDescription', 'TicketID', 'ContractID', 'AssignedToResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'id', 'AccountID', 'CreatorResourceID', 'ActionType', 'StartDateTime')]
+    [ValidateSet('AccountID', 'ActionType', 'ActivityDescription', 'AssignedToResourceID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'OpportunityID', 'StartDateTime', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'CompletedDate', 'ContactID', 'ActivityDescription', 'TicketID', 'ContractID', 'AssignedToResourceID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'id', 'AccountID', 'CreatorResourceID', 'ActionType', 'StartDateTime')]
+    [ValidateSet('AccountID', 'ActionType', 'ActivityDescription', 'AssignedToResourceID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'OpportunityID', 'StartDateTime', 'TicketID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'ActionType', 'ActivityDescription', 'AssignedToResourceID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'OpportunityID', 'StartDateTime', 'TicketID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'ActionType', 'ActivityDescription', 'AssignedToResourceID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'OpportunityID', 'StartDateTime', 'TicketID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'ActionType', 'ActivityDescription', 'AssignedToResourceID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'OpportunityID', 'StartDateTime', 'TicketID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'ContactID', 'OpportunityID', 'TicketID', 'ContractID', 'AssignedToResourceID', 'StartDateTime', 'EndDateTime', 'ActionType', 'ActivityDescription', 'CompletedDate', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDate', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'ActionType', 'ActivityDescription', 'AssignedToResourceID', 'CompletedDate', 'ContactID', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'OpportunityID', 'StartDateTime', 'TicketID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -332,7 +332,7 @@ Set-AtwsAccountToDo
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'EndDateTime', 'CompletedDate', 'CreateDateTime', 'LastModifiedDate')]
+    [ValidateSet('CompletedDate', 'CreateDateTime', 'EndDateTime', 'LastModifiedDate', 'StartDateTime')]
     [string[]]
     $IsThisDay
   )
@@ -447,8 +447,10 @@ Set-AtwsAccountToDo
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

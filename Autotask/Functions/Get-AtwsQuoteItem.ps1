@@ -348,84 +348,84 @@ Set-AtwsQuoteItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitCost', 'id', 'SortOrderID', 'PeriodType', 'Description', 'TotalEffectiveTax', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'IsTaxable', 'ProductID', 'CostID', 'Name', 'ServiceBundleID', 'QuoteID', 'LaborID', 'Quantity', 'UnitPrice', 'PercentageDiscount', 'IsOptional', 'ExpenseID', 'UnitDiscount', 'ServiceID', 'LineDiscount', 'HighestCost', 'MarkupRate', 'Type', 'AverageCost', 'TaxCategoryID', 'ShippingID', 'InternalCurrencyUnitPrice')]
+    [ValidateSet('AverageCost', 'CostID', 'Description', 'ExpenseID', 'HighestCost', 'id', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'InternalCurrencyUnitPrice', 'IsOptional', 'IsTaxable', 'LaborID', 'LineDiscount', 'MarkupRate', 'Name', 'PercentageDiscount', 'PeriodType', 'ProductID', 'Quantity', 'QuoteID', 'ServiceBundleID', 'ServiceID', 'ShippingID', 'SortOrderID', 'TaxCategoryID', 'TotalEffectiveTax', 'Type', 'UnitCost', 'UnitDiscount', 'UnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitCost', 'id', 'SortOrderID', 'PeriodType', 'Description', 'TotalEffectiveTax', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'IsTaxable', 'ProductID', 'CostID', 'Name', 'ServiceBundleID', 'QuoteID', 'LaborID', 'Quantity', 'UnitPrice', 'PercentageDiscount', 'IsOptional', 'ExpenseID', 'UnitDiscount', 'ServiceID', 'LineDiscount', 'HighestCost', 'MarkupRate', 'Type', 'AverageCost', 'TaxCategoryID', 'ShippingID', 'InternalCurrencyUnitPrice')]
+    [ValidateSet('AverageCost', 'CostID', 'Description', 'ExpenseID', 'HighestCost', 'id', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'InternalCurrencyUnitPrice', 'IsOptional', 'IsTaxable', 'LaborID', 'LineDiscount', 'MarkupRate', 'Name', 'PercentageDiscount', 'PeriodType', 'ProductID', 'Quantity', 'QuoteID', 'ServiceBundleID', 'ServiceID', 'ShippingID', 'SortOrderID', 'TaxCategoryID', 'TotalEffectiveTax', 'Type', 'UnitCost', 'UnitDiscount', 'UnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UnitCost', 'id', 'SortOrderID', 'PeriodType', 'Description', 'TotalEffectiveTax', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'IsTaxable', 'ProductID', 'CostID', 'Name', 'ServiceBundleID', 'QuoteID', 'LaborID', 'Quantity', 'UnitPrice', 'PercentageDiscount', 'IsOptional', 'ExpenseID', 'UnitDiscount', 'ServiceID', 'LineDiscount', 'HighestCost', 'MarkupRate', 'Type', 'AverageCost', 'TaxCategoryID', 'ShippingID', 'InternalCurrencyUnitPrice')]
+    [ValidateSet('AverageCost', 'CostID', 'Description', 'ExpenseID', 'HighestCost', 'id', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'InternalCurrencyUnitPrice', 'IsOptional', 'IsTaxable', 'LaborID', 'LineDiscount', 'MarkupRate', 'Name', 'PercentageDiscount', 'PeriodType', 'ProductID', 'Quantity', 'QuoteID', 'ServiceBundleID', 'ServiceID', 'ShippingID', 'SortOrderID', 'TaxCategoryID', 'TotalEffectiveTax', 'Type', 'UnitCost', 'UnitDiscount', 'UnitPrice')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
+    [ValidateSet('AverageCost', 'CostID', 'Description', 'ExpenseID', 'HighestCost', 'id', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'InternalCurrencyUnitPrice', 'LaborID', 'LineDiscount', 'MarkupRate', 'Name', 'PercentageDiscount', 'PeriodType', 'ProductID', 'Quantity', 'QuoteID', 'ServiceBundleID', 'ServiceID', 'ShippingID', 'SortOrderID', 'TaxCategoryID', 'TotalEffectiveTax', 'Type', 'UnitCost', 'UnitDiscount', 'UnitPrice')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
+    [ValidateSet('AverageCost', 'CostID', 'Description', 'ExpenseID', 'HighestCost', 'id', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'InternalCurrencyUnitPrice', 'LaborID', 'LineDiscount', 'MarkupRate', 'Name', 'PercentageDiscount', 'PeriodType', 'ProductID', 'Quantity', 'QuoteID', 'ServiceBundleID', 'ServiceID', 'ShippingID', 'SortOrderID', 'TaxCategoryID', 'TotalEffectiveTax', 'Type', 'UnitCost', 'UnitDiscount', 'UnitPrice')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
+    [ValidateSet('AverageCost', 'CostID', 'Description', 'ExpenseID', 'HighestCost', 'id', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'InternalCurrencyUnitPrice', 'LaborID', 'LineDiscount', 'MarkupRate', 'Name', 'PercentageDiscount', 'PeriodType', 'ProductID', 'Quantity', 'QuoteID', 'ServiceBundleID', 'ServiceID', 'ShippingID', 'SortOrderID', 'TaxCategoryID', 'TotalEffectiveTax', 'Type', 'UnitCost', 'UnitDiscount', 'UnitPrice')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('QuoteID', 'id', 'Type', 'ProductID', 'CostID', 'LaborID', 'ExpenseID', 'ShippingID', 'ServiceID', 'ServiceBundleID', 'Name', 'UnitPrice', 'UnitCost', 'Quantity', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'SortOrderID', 'Description', 'LineDiscount', 'AverageCost', 'HighestCost', 'TaxCategoryID', 'TotalEffectiveTax', 'MarkupRate', 'InternalCurrencyUnitPrice', 'InternalCurrencyUnitDiscount', 'InternalCurrencyLineDiscount')]
+    [ValidateSet('AverageCost', 'CostID', 'Description', 'ExpenseID', 'HighestCost', 'id', 'InternalCurrencyLineDiscount', 'InternalCurrencyUnitDiscount', 'InternalCurrencyUnitPrice', 'LaborID', 'LineDiscount', 'MarkupRate', 'Name', 'PercentageDiscount', 'PeriodType', 'ProductID', 'Quantity', 'QuoteID', 'ServiceBundleID', 'ServiceID', 'ShippingID', 'SortOrderID', 'TaxCategoryID', 'TotalEffectiveTax', 'Type', 'UnitCost', 'UnitDiscount', 'UnitPrice')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'PeriodType', 'Description')]
+    [ValidateSet('Description', 'Name', 'PeriodType')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'PeriodType', 'Description')]
+    [ValidateSet('Description', 'Name', 'PeriodType')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'PeriodType', 'Description')]
+    [ValidateSet('Description', 'Name', 'PeriodType')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'PeriodType', 'Description')]
+    [ValidateSet('Description', 'Name', 'PeriodType')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'PeriodType', 'Description')]
+    [ValidateSet('Description', 'Name', 'PeriodType')]
     [string[]]
     $Contains,
 
@@ -546,8 +546,10 @@ Set-AtwsQuoteItem
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

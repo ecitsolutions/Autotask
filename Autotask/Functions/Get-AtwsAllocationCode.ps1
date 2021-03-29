@@ -281,84 +281,84 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Taxable', 'TaxCategoryID', 'Department', 'Name', 'Description', 'UseType', 'MarkupRate', 'id', 'Active', 'GeneralLedgerCode', 'UnitPrice', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'ExternalNumber', 'AllocationCodeType')]
+    [ValidateSet('Active', 'AfterHoursWorkType', 'AllocationCodeType', 'Department', 'Description', 'ExternalNumber', 'GeneralLedgerCode', 'id', 'IsExcludedFromNewContracts', 'MarkupRate', 'Name', 'Taxable', 'TaxCategoryID', 'Type', 'UnitCost', 'UnitPrice', 'UseType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Taxable', 'TaxCategoryID', 'Department', 'Name', 'Description', 'UseType', 'MarkupRate', 'id', 'Active', 'GeneralLedgerCode', 'UnitPrice', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'ExternalNumber', 'AllocationCodeType')]
+    [ValidateSet('Active', 'AfterHoursWorkType', 'AllocationCodeType', 'Department', 'Description', 'ExternalNumber', 'GeneralLedgerCode', 'id', 'IsExcludedFromNewContracts', 'MarkupRate', 'Name', 'Taxable', 'TaxCategoryID', 'Type', 'UnitCost', 'UnitPrice', 'UseType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Taxable', 'TaxCategoryID', 'Department', 'Name', 'Description', 'UseType', 'MarkupRate', 'id', 'Active', 'GeneralLedgerCode', 'UnitPrice', 'IsExcludedFromNewContracts', 'UnitCost', 'Type', 'AfterHoursWorkType', 'ExternalNumber', 'AllocationCodeType')]
+    [ValidateSet('Active', 'AfterHoursWorkType', 'AllocationCodeType', 'Department', 'Description', 'ExternalNumber', 'GeneralLedgerCode', 'id', 'IsExcludedFromNewContracts', 'MarkupRate', 'Name', 'Taxable', 'TaxCategoryID', 'Type', 'UnitCost', 'UnitPrice', 'UseType')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'GeneralLedgerCode', 'Department', 'Name', 'ExternalNumber', 'Type', 'UseType', 'Description', 'UnitCost', 'UnitPrice', 'AllocationCodeType', 'TaxCategoryID', 'MarkupRate', 'AfterHoursWorkType')]
+    [ValidateSet('AfterHoursWorkType', 'AllocationCodeType', 'Department', 'Description', 'ExternalNumber', 'GeneralLedgerCode', 'id', 'MarkupRate', 'Name', 'TaxCategoryID', 'Type', 'UnitCost', 'UnitPrice', 'UseType')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'GeneralLedgerCode', 'Department', 'Name', 'ExternalNumber', 'Type', 'UseType', 'Description', 'UnitCost', 'UnitPrice', 'AllocationCodeType', 'TaxCategoryID', 'MarkupRate', 'AfterHoursWorkType')]
+    [ValidateSet('AfterHoursWorkType', 'AllocationCodeType', 'Department', 'Description', 'ExternalNumber', 'GeneralLedgerCode', 'id', 'MarkupRate', 'Name', 'TaxCategoryID', 'Type', 'UnitCost', 'UnitPrice', 'UseType')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'GeneralLedgerCode', 'Department', 'Name', 'ExternalNumber', 'Type', 'UseType', 'Description', 'UnitCost', 'UnitPrice', 'AllocationCodeType', 'TaxCategoryID', 'MarkupRate', 'AfterHoursWorkType')]
+    [ValidateSet('AfterHoursWorkType', 'AllocationCodeType', 'Department', 'Description', 'ExternalNumber', 'GeneralLedgerCode', 'id', 'MarkupRate', 'Name', 'TaxCategoryID', 'Type', 'UnitCost', 'UnitPrice', 'UseType')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'GeneralLedgerCode', 'Department', 'Name', 'ExternalNumber', 'Type', 'UseType', 'Description', 'UnitCost', 'UnitPrice', 'AllocationCodeType', 'TaxCategoryID', 'MarkupRate', 'AfterHoursWorkType')]
+    [ValidateSet('AfterHoursWorkType', 'AllocationCodeType', 'Department', 'Description', 'ExternalNumber', 'GeneralLedgerCode', 'id', 'MarkupRate', 'Name', 'TaxCategoryID', 'Type', 'UnitCost', 'UnitPrice', 'UseType')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'ExternalNumber', 'Description')]
+    [ValidateSet('Description', 'ExternalNumber', 'Name')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'ExternalNumber', 'Description')]
+    [ValidateSet('Description', 'ExternalNumber', 'Name')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'ExternalNumber', 'Description')]
+    [ValidateSet('Description', 'ExternalNumber', 'Name')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'ExternalNumber', 'Description')]
+    [ValidateSet('Description', 'ExternalNumber', 'Name')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'ExternalNumber', 'Description')]
+    [ValidateSet('Description', 'ExternalNumber', 'Name')]
     [string[]]
     $Contains,
 
@@ -479,8 +479,10 @@ An example of a more complex query. This command returns any AllocationCodes wit
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

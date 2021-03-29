@@ -217,84 +217,84 @@ An example of a more complex query. This command returns any InternalLocations w
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Country', 'Address1', 'TimeZone', 'City', 'AdditionalAddressInfo', 'HolidaySetId', 'Name', 'id', 'Address2', 'PostalCode', 'IsDefault', 'State')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'HolidaySetId', 'id', 'IsDefault', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Country', 'Address1', 'TimeZone', 'City', 'AdditionalAddressInfo', 'HolidaySetId', 'Name', 'id', 'Address2', 'PostalCode', 'IsDefault', 'State')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'HolidaySetId', 'id', 'IsDefault', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Country', 'Address1', 'TimeZone', 'City', 'AdditionalAddressInfo', 'HolidaySetId', 'Name', 'id', 'Address2', 'PostalCode', 'IsDefault', 'State')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'HolidaySetId', 'id', 'IsDefault', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone', 'HolidaySetId')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'HolidaySetId', 'id', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone', 'HolidaySetId')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'HolidaySetId', 'id', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone', 'HolidaySetId')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'HolidaySetId', 'id', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone', 'HolidaySetId')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'HolidaySetId', 'id', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'AdditionalAddressInfo', 'TimeZone')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'Country', 'Name', 'PostalCode', 'State', 'TimeZone')]
     [string[]]
     $Contains,
 
@@ -415,8 +415,10 @@ An example of a more complex query. This command returns any InternalLocations w
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

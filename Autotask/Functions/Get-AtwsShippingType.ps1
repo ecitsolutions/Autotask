@@ -134,84 +134,84 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'AllocationCodeID', 'Name', 'IsActive')]
+    [ValidateSet('AllocationCodeID', 'Description', 'id', 'IsActive', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'AllocationCodeID', 'Name', 'IsActive')]
+    [ValidateSet('AllocationCodeID', 'Description', 'id', 'IsActive', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'AllocationCodeID', 'Name', 'IsActive')]
+    [ValidateSet('AllocationCodeID', 'Description', 'id', 'IsActive', 'Name')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'Description', 'id', 'Name')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'Description', 'id', 'Name')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'Description', 'id', 'Name')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'Description', 'id', 'Name')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $Contains,
 
@@ -332,8 +332,10 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

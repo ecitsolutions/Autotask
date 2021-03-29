@@ -142,49 +142,49 @@ Set-AtwsInstalledProductTypeUdfAssociation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductTypeId', 'id', 'Required', 'SortOrder', 'UserDefinedFieldDefinitionId')]
+    [ValidateSet('id', 'InstalledProductTypeId', 'Required', 'SortOrder', 'UserDefinedFieldDefinitionId')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductTypeId', 'id', 'Required', 'SortOrder', 'UserDefinedFieldDefinitionId')]
+    [ValidateSet('id', 'InstalledProductTypeId', 'Required', 'SortOrder', 'UserDefinedFieldDefinitionId')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductTypeId', 'id', 'Required', 'SortOrder', 'UserDefinedFieldDefinitionId')]
+    [ValidateSet('id', 'InstalledProductTypeId', 'Required', 'SortOrder', 'UserDefinedFieldDefinitionId')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductTypeId', 'id', 'UserDefinedFieldDefinitionId', 'SortOrder')]
+    [ValidateSet('id', 'InstalledProductTypeId', 'SortOrder', 'UserDefinedFieldDefinitionId')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductTypeId', 'id', 'UserDefinedFieldDefinitionId', 'SortOrder')]
+    [ValidateSet('id', 'InstalledProductTypeId', 'SortOrder', 'UserDefinedFieldDefinitionId')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductTypeId', 'id', 'UserDefinedFieldDefinitionId', 'SortOrder')]
+    [ValidateSet('id', 'InstalledProductTypeId', 'SortOrder', 'UserDefinedFieldDefinitionId')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InstalledProductTypeId', 'id', 'UserDefinedFieldDefinitionId', 'SortOrder')]
+    [ValidateSet('id', 'InstalledProductTypeId', 'SortOrder', 'UserDefinedFieldDefinitionId')]
     [string[]]
     $LessThanOrEquals,
 
@@ -335,8 +335,10 @@ Set-AtwsInstalledProductTypeUdfAssociation
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

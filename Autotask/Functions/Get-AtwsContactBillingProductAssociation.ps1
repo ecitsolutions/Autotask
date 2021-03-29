@@ -141,49 +141,49 @@ Set-AtwsContactBillingProductAssociation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'id', 'BillingProductID', 'ExpirationDate', 'EffectiveDate')]
+    [ValidateSet('BillingProductID', 'ContactID', 'EffectiveDate', 'ExpirationDate', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'id', 'BillingProductID', 'ExpirationDate', 'EffectiveDate')]
+    [ValidateSet('BillingProductID', 'ContactID', 'EffectiveDate', 'ExpirationDate', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactID', 'id', 'BillingProductID', 'ExpirationDate', 'EffectiveDate')]
+    [ValidateSet('BillingProductID', 'ContactID', 'EffectiveDate', 'ExpirationDate', 'id')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContactID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('BillingProductID', 'ContactID', 'EffectiveDate', 'ExpirationDate', 'id')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContactID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('BillingProductID', 'ContactID', 'EffectiveDate', 'ExpirationDate', 'id')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContactID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('BillingProductID', 'ContactID', 'EffectiveDate', 'ExpirationDate', 'id')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContactID', 'BillingProductID', 'EffectiveDate', 'ExpirationDate')]
+    [ValidateSet('BillingProductID', 'ContactID', 'EffectiveDate', 'ExpirationDate', 'id')]
     [string[]]
     $LessThanOrEquals,
 
@@ -335,8 +335,10 @@ Set-AtwsContactBillingProductAssociation
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

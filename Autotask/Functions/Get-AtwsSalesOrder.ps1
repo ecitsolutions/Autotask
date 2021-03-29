@@ -337,91 +337,91 @@ Set-AtwsSalesOrder
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShipToCountry', 'id', 'OpportunityID', 'OwnerResourceID', 'AccountID', 'Contact', 'ShipToCountryID', 'BillToCountryID', 'ImpersonatorCreatorResourceID', 'BillToState', 'BillToAddress2', 'Title', 'SalesOrderDate', 'BusinessDivisionSubdivisionID', 'ShipToAddress1', 'ShipToPostalCode', 'ShipToAddress2', 'BillToAddress1', 'AdditionalBillToAddressInformation', 'Status', 'AdditionalShipToAddressInformation', 'ShipToCity', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'ShipToState', 'PromisedDueDate')]
+    [ValidateSet('AccountID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToCountryID', 'BillToPostalCode', 'BillToState', 'BusinessDivisionSubdivisionID', 'Contact', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'OwnerResourceID', 'PromisedDueDate', 'SalesOrderDate', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToCountryID', 'ShipToPostalCode', 'ShipToState', 'Status', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShipToCountry', 'id', 'OpportunityID', 'OwnerResourceID', 'AccountID', 'Contact', 'ShipToCountryID', 'BillToCountryID', 'ImpersonatorCreatorResourceID', 'BillToState', 'BillToAddress2', 'Title', 'SalesOrderDate', 'BusinessDivisionSubdivisionID', 'ShipToAddress1', 'ShipToPostalCode', 'ShipToAddress2', 'BillToAddress1', 'AdditionalBillToAddressInformation', 'Status', 'AdditionalShipToAddressInformation', 'ShipToCity', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'ShipToState', 'PromisedDueDate')]
+    [ValidateSet('AccountID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToCountryID', 'BillToPostalCode', 'BillToState', 'BusinessDivisionSubdivisionID', 'Contact', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'OwnerResourceID', 'PromisedDueDate', 'SalesOrderDate', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToCountryID', 'ShipToPostalCode', 'ShipToState', 'Status', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ShipToCountry', 'id', 'OpportunityID', 'OwnerResourceID', 'AccountID', 'Contact', 'ShipToCountryID', 'BillToCountryID', 'ImpersonatorCreatorResourceID', 'BillToState', 'BillToAddress2', 'Title', 'SalesOrderDate', 'BusinessDivisionSubdivisionID', 'ShipToAddress1', 'ShipToPostalCode', 'ShipToAddress2', 'BillToAddress1', 'AdditionalBillToAddressInformation', 'Status', 'AdditionalShipToAddressInformation', 'ShipToCity', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'ShipToState', 'PromisedDueDate')]
+    [ValidateSet('AccountID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToCountryID', 'BillToPostalCode', 'BillToState', 'BusinessDivisionSubdivisionID', 'Contact', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'OwnerResourceID', 'PromisedDueDate', 'SalesOrderDate', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToCountryID', 'ShipToPostalCode', 'ShipToState', 'Status', 'Title')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'Title', 'Status', 'Contact', 'OwnerResourceID', 'SalesOrderDate', 'PromisedDueDate', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'OpportunityID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToCountryID', 'ShipToCountryID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToCountryID', 'BillToPostalCode', 'BillToState', 'BusinessDivisionSubdivisionID', 'Contact', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'OwnerResourceID', 'PromisedDueDate', 'SalesOrderDate', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToCountryID', 'ShipToPostalCode', 'ShipToState', 'Status', 'Title')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'Title', 'Status', 'Contact', 'OwnerResourceID', 'SalesOrderDate', 'PromisedDueDate', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'OpportunityID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToCountryID', 'ShipToCountryID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToCountryID', 'BillToPostalCode', 'BillToState', 'BusinessDivisionSubdivisionID', 'Contact', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'OwnerResourceID', 'PromisedDueDate', 'SalesOrderDate', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToCountryID', 'ShipToPostalCode', 'ShipToState', 'Status', 'Title')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'Title', 'Status', 'Contact', 'OwnerResourceID', 'SalesOrderDate', 'PromisedDueDate', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'OpportunityID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToCountryID', 'ShipToCountryID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToCountryID', 'BillToPostalCode', 'BillToState', 'BusinessDivisionSubdivisionID', 'Contact', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'OwnerResourceID', 'PromisedDueDate', 'SalesOrderDate', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToCountryID', 'ShipToPostalCode', 'ShipToState', 'Status', 'Title')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'Title', 'Status', 'Contact', 'OwnerResourceID', 'SalesOrderDate', 'PromisedDueDate', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'OpportunityID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToCountryID', 'ShipToCountryID', 'BusinessDivisionSubdivisionID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToCountryID', 'BillToPostalCode', 'BillToState', 'BusinessDivisionSubdivisionID', 'Contact', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'OwnerResourceID', 'PromisedDueDate', 'SalesOrderDate', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToCountryID', 'ShipToPostalCode', 'ShipToState', 'Status', 'Title')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation')]
+    [ValidateSet('AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'BillToState', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToPostalCode', 'ShipToState', 'Title')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation')]
+    [ValidateSet('AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'BillToState', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToPostalCode', 'ShipToState', 'Title')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation')]
+    [ValidateSet('AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'BillToState', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToPostalCode', 'ShipToState', 'Title')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation')]
+    [ValidateSet('AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'BillToState', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToPostalCode', 'ShipToState', 'Title')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToPostalCode', 'BillToCountry', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToState', 'ShipToPostalCode', 'ShipToCountry', 'AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation')]
+    [ValidateSet('AdditionalBillToAddressInformation', 'AdditionalShipToAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToCountry', 'BillToPostalCode', 'BillToState', 'ShipToAddress1', 'ShipToAddress2', 'ShipToCity', 'ShipToCountry', 'ShipToPostalCode', 'ShipToState', 'Title')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SalesOrderDate', 'PromisedDueDate')]
+    [ValidateSet('PromisedDueDate', 'SalesOrderDate')]
     [string[]]
     $IsThisDay
   )
@@ -536,8 +536,10 @@ Set-AtwsSalesOrder
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

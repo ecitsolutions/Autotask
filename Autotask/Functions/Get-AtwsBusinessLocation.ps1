@@ -555,91 +555,91 @@ Set-AtwsBusinessLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SundayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'NumberFormat', 'id', 'SundayExtendedHoursStartTime', 'Address1', 'DateFormat', 'ThursdayBusinessHoursEndTime', 'PostalCode', 'FirstDayOfWeek', 'WednesdayExtendedHoursStartTime', 'SundayBusinessHoursEndTime', 'SaturdayBusinessHoursEndTime', 'MondayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'ThursdayExtendedHoursStartTime', 'FridayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'Name', 'FridayExtendedHoursEndTime', 'SaturdayExtendedHoursEndTime', 'CountryID', 'SaturdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'MondayExtendedHoursEndTime', 'SundayExtendedHoursEndTime', 'HolidayHoursType', 'MondayBusinessHoursStartTime', 'HolidayExtendedHoursEndTime', 'TimeZoneID', 'TuesdayExtendedHoursStartTime', 'NoHoursOnHolidays', 'TimeFormat', 'AdditionalAddressInfo', 'Default', 'HolidayExtendedHoursStartTime', 'SaturdayExtendedHoursStartTime', 'HolidayHoursEndTime', 'ThursdayBusinessHoursStartTime', 'HolidayHoursStartTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursStartTime', 'HolidaySetID', 'TuesdayBusinessHoursEndTime', 'WednesdayBusinessHoursEndTime', 'State', 'City', 'Address2')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'CountryID', 'DateFormat', 'Default', 'FirstDayOfWeek', 'FridayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursEndTime', 'FridayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursEndTime', 'HolidayHoursStartTime', 'HolidayHoursType', 'HolidaySetID', 'id', 'MondayBusinessHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'Name', 'NoHoursOnHolidays', 'NumberFormat', 'PostalCode', 'SaturdayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayExtendedHoursEndTime', 'SaturdayExtendedHoursStartTime', 'State', 'SundayBusinessHoursEndTime', 'SundayBusinessHoursStartTime', 'SundayExtendedHoursEndTime', 'SundayExtendedHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'ThursdayExtendedHoursStartTime', 'TimeFormat', 'TimeZoneID', 'TuesdayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'WednesdayExtendedHoursStartTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SundayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'NumberFormat', 'id', 'SundayExtendedHoursStartTime', 'Address1', 'DateFormat', 'ThursdayBusinessHoursEndTime', 'PostalCode', 'FirstDayOfWeek', 'WednesdayExtendedHoursStartTime', 'SundayBusinessHoursEndTime', 'SaturdayBusinessHoursEndTime', 'MondayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'ThursdayExtendedHoursStartTime', 'FridayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'Name', 'FridayExtendedHoursEndTime', 'SaturdayExtendedHoursEndTime', 'CountryID', 'SaturdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'MondayExtendedHoursEndTime', 'SundayExtendedHoursEndTime', 'HolidayHoursType', 'MondayBusinessHoursStartTime', 'HolidayExtendedHoursEndTime', 'TimeZoneID', 'TuesdayExtendedHoursStartTime', 'NoHoursOnHolidays', 'TimeFormat', 'AdditionalAddressInfo', 'Default', 'HolidayExtendedHoursStartTime', 'SaturdayExtendedHoursStartTime', 'HolidayHoursEndTime', 'ThursdayBusinessHoursStartTime', 'HolidayHoursStartTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursStartTime', 'HolidaySetID', 'TuesdayBusinessHoursEndTime', 'WednesdayBusinessHoursEndTime', 'State', 'City', 'Address2')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'CountryID', 'DateFormat', 'Default', 'FirstDayOfWeek', 'FridayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursEndTime', 'FridayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursEndTime', 'HolidayHoursStartTime', 'HolidayHoursType', 'HolidaySetID', 'id', 'MondayBusinessHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'Name', 'NoHoursOnHolidays', 'NumberFormat', 'PostalCode', 'SaturdayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayExtendedHoursEndTime', 'SaturdayExtendedHoursStartTime', 'State', 'SundayBusinessHoursEndTime', 'SundayBusinessHoursStartTime', 'SundayExtendedHoursEndTime', 'SundayExtendedHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'ThursdayExtendedHoursStartTime', 'TimeFormat', 'TimeZoneID', 'TuesdayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'WednesdayExtendedHoursStartTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SundayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'NumberFormat', 'id', 'SundayExtendedHoursStartTime', 'Address1', 'DateFormat', 'ThursdayBusinessHoursEndTime', 'PostalCode', 'FirstDayOfWeek', 'WednesdayExtendedHoursStartTime', 'SundayBusinessHoursEndTime', 'SaturdayBusinessHoursEndTime', 'MondayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'ThursdayExtendedHoursStartTime', 'FridayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'Name', 'FridayExtendedHoursEndTime', 'SaturdayExtendedHoursEndTime', 'CountryID', 'SaturdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'MondayExtendedHoursEndTime', 'SundayExtendedHoursEndTime', 'HolidayHoursType', 'MondayBusinessHoursStartTime', 'HolidayExtendedHoursEndTime', 'TimeZoneID', 'TuesdayExtendedHoursStartTime', 'NoHoursOnHolidays', 'TimeFormat', 'AdditionalAddressInfo', 'Default', 'HolidayExtendedHoursStartTime', 'SaturdayExtendedHoursStartTime', 'HolidayHoursEndTime', 'ThursdayBusinessHoursStartTime', 'HolidayHoursStartTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursStartTime', 'HolidaySetID', 'TuesdayBusinessHoursEndTime', 'WednesdayBusinessHoursEndTime', 'State', 'City', 'Address2')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'CountryID', 'DateFormat', 'Default', 'FirstDayOfWeek', 'FridayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursEndTime', 'FridayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursEndTime', 'HolidayHoursStartTime', 'HolidayHoursType', 'HolidaySetID', 'id', 'MondayBusinessHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'Name', 'NoHoursOnHolidays', 'NumberFormat', 'PostalCode', 'SaturdayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayExtendedHoursEndTime', 'SaturdayExtendedHoursStartTime', 'State', 'SundayBusinessHoursEndTime', 'SundayBusinessHoursStartTime', 'SundayExtendedHoursEndTime', 'SundayExtendedHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'ThursdayExtendedHoursStartTime', 'TimeFormat', 'TimeZoneID', 'TuesdayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'WednesdayExtendedHoursStartTime')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'CountryID', 'HolidaySetID', 'FirstDayOfWeek', 'DateFormat', 'TimeFormat', 'NumberFormat', 'TimeZoneID', 'SundayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursStartTime', 'SundayExtendedHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'MondayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayBusinessHoursEndTime', 'FridayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SaturdayExtendedHoursEndTime', 'HolidayHoursType', 'HolidayHoursStartTime', 'HolidayHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'CountryID', 'DateFormat', 'FirstDayOfWeek', 'FridayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursEndTime', 'FridayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursEndTime', 'HolidayHoursStartTime', 'HolidayHoursType', 'HolidaySetID', 'id', 'MondayBusinessHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'Name', 'NumberFormat', 'PostalCode', 'SaturdayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayExtendedHoursEndTime', 'SaturdayExtendedHoursStartTime', 'State', 'SundayBusinessHoursEndTime', 'SundayBusinessHoursStartTime', 'SundayExtendedHoursEndTime', 'SundayExtendedHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'ThursdayExtendedHoursStartTime', 'TimeFormat', 'TimeZoneID', 'TuesdayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'WednesdayExtendedHoursStartTime')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'CountryID', 'HolidaySetID', 'FirstDayOfWeek', 'DateFormat', 'TimeFormat', 'NumberFormat', 'TimeZoneID', 'SundayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursStartTime', 'SundayExtendedHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'MondayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayBusinessHoursEndTime', 'FridayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SaturdayExtendedHoursEndTime', 'HolidayHoursType', 'HolidayHoursStartTime', 'HolidayHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'CountryID', 'DateFormat', 'FirstDayOfWeek', 'FridayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursEndTime', 'FridayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursEndTime', 'HolidayHoursStartTime', 'HolidayHoursType', 'HolidaySetID', 'id', 'MondayBusinessHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'Name', 'NumberFormat', 'PostalCode', 'SaturdayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayExtendedHoursEndTime', 'SaturdayExtendedHoursStartTime', 'State', 'SundayBusinessHoursEndTime', 'SundayBusinessHoursStartTime', 'SundayExtendedHoursEndTime', 'SundayExtendedHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'ThursdayExtendedHoursStartTime', 'TimeFormat', 'TimeZoneID', 'TuesdayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'WednesdayExtendedHoursStartTime')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'CountryID', 'HolidaySetID', 'FirstDayOfWeek', 'DateFormat', 'TimeFormat', 'NumberFormat', 'TimeZoneID', 'SundayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursStartTime', 'SundayExtendedHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'MondayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayBusinessHoursEndTime', 'FridayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SaturdayExtendedHoursEndTime', 'HolidayHoursType', 'HolidayHoursStartTime', 'HolidayHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'CountryID', 'DateFormat', 'FirstDayOfWeek', 'FridayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursEndTime', 'FridayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursEndTime', 'HolidayHoursStartTime', 'HolidayHoursType', 'HolidaySetID', 'id', 'MondayBusinessHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'Name', 'NumberFormat', 'PostalCode', 'SaturdayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayExtendedHoursEndTime', 'SaturdayExtendedHoursStartTime', 'State', 'SundayBusinessHoursEndTime', 'SundayBusinessHoursStartTime', 'SundayExtendedHoursEndTime', 'SundayExtendedHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'ThursdayExtendedHoursStartTime', 'TimeFormat', 'TimeZoneID', 'TuesdayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'WednesdayExtendedHoursStartTime')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'CountryID', 'HolidaySetID', 'FirstDayOfWeek', 'DateFormat', 'TimeFormat', 'NumberFormat', 'TimeZoneID', 'SundayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursStartTime', 'SundayExtendedHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'MondayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayBusinessHoursEndTime', 'FridayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SaturdayExtendedHoursEndTime', 'HolidayHoursType', 'HolidayHoursStartTime', 'HolidayHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'CountryID', 'DateFormat', 'FirstDayOfWeek', 'FridayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursEndTime', 'FridayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursEndTime', 'HolidayHoursStartTime', 'HolidayHoursType', 'HolidaySetID', 'id', 'MondayBusinessHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'Name', 'NumberFormat', 'PostalCode', 'SaturdayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayExtendedHoursEndTime', 'SaturdayExtendedHoursStartTime', 'State', 'SundayBusinessHoursEndTime', 'SundayBusinessHoursStartTime', 'SundayExtendedHoursEndTime', 'SundayExtendedHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'ThursdayExtendedHoursStartTime', 'TimeFormat', 'TimeZoneID', 'TuesdayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'WednesdayExtendedHoursStartTime')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'DateFormat', 'TimeFormat', 'NumberFormat')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'DateFormat', 'Name', 'NumberFormat', 'PostalCode', 'State', 'TimeFormat')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'DateFormat', 'TimeFormat', 'NumberFormat')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'DateFormat', 'Name', 'NumberFormat', 'PostalCode', 'State', 'TimeFormat')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'DateFormat', 'TimeFormat', 'NumberFormat')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'DateFormat', 'Name', 'NumberFormat', 'PostalCode', 'State', 'TimeFormat')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'DateFormat', 'TimeFormat', 'NumberFormat')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'DateFormat', 'Name', 'NumberFormat', 'PostalCode', 'State', 'TimeFormat')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'AdditionalAddressInfo', 'DateFormat', 'TimeFormat', 'NumberFormat')]
+    [ValidateSet('AdditionalAddressInfo', 'Address1', 'Address2', 'City', 'DateFormat', 'Name', 'NumberFormat', 'PostalCode', 'State', 'TimeFormat')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SundayBusinessHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayExtendedHoursStartTime', 'SundayExtendedHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayExtendedHoursStartTime', 'MondayExtendedHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayExtendedHoursStartTime', 'TuesdayExtendedHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayExtendedHoursStartTime', 'WednesdayExtendedHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayExtendedHoursStartTime', 'ThursdayExtendedHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayBusinessHoursEndTime', 'FridayExtendedHoursStartTime', 'FridayExtendedHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SaturdayExtendedHoursEndTime', 'HolidayHoursStartTime', 'HolidayHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime')]
+    [ValidateSet('FridayBusinessHoursEndTime', 'FridayBusinessHoursStartTime', 'FridayExtendedHoursEndTime', 'FridayExtendedHoursStartTime', 'HolidayExtendedHoursEndTime', 'HolidayExtendedHoursStartTime', 'HolidayHoursEndTime', 'HolidayHoursStartTime', 'MondayBusinessHoursEndTime', 'MondayBusinessHoursStartTime', 'MondayExtendedHoursEndTime', 'MondayExtendedHoursStartTime', 'SaturdayBusinessHoursEndTime', 'SaturdayBusinessHoursStartTime', 'SaturdayExtendedHoursEndTime', 'SaturdayExtendedHoursStartTime', 'SundayBusinessHoursEndTime', 'SundayBusinessHoursStartTime', 'SundayExtendedHoursEndTime', 'SundayExtendedHoursStartTime', 'ThursdayBusinessHoursEndTime', 'ThursdayBusinessHoursStartTime', 'ThursdayExtendedHoursEndTime', 'ThursdayExtendedHoursStartTime', 'TuesdayBusinessHoursEndTime', 'TuesdayBusinessHoursStartTime', 'TuesdayExtendedHoursEndTime', 'TuesdayExtendedHoursStartTime', 'WednesdayBusinessHoursEndTime', 'WednesdayBusinessHoursStartTime', 'WednesdayExtendedHoursEndTime', 'WednesdayExtendedHoursStartTime')]
     [string[]]
     $IsThisDay
   )
@@ -754,8 +754,10 @@ Set-AtwsBusinessLocation
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

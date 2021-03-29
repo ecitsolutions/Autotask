@@ -256,84 +256,84 @@ Set-AtwsAccountPhysicalLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Phone', 'Address2', 'City', 'State', 'AlternatePhone1', 'Name', 'PostalCode', 'AccountID', 'Address1', 'Fax', 'AlternatePhone2', 'Description', 'TaxRegionID', 'Active', 'id', 'Primary', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'CountryID', 'RoundtripDistance')]
+    [ValidateSet('AccountID', 'Active', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'CountryID', 'Description', 'Fax', 'id', 'IsTaxExempt', 'Name', 'OverrideAccountTaxSettings', 'Phone', 'PostalCode', 'Primary', 'RoundtripDistance', 'State', 'TaxRegionID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Phone', 'Address2', 'City', 'State', 'AlternatePhone1', 'Name', 'PostalCode', 'AccountID', 'Address1', 'Fax', 'AlternatePhone2', 'Description', 'TaxRegionID', 'Active', 'id', 'Primary', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'CountryID', 'RoundtripDistance')]
+    [ValidateSet('AccountID', 'Active', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'CountryID', 'Description', 'Fax', 'id', 'IsTaxExempt', 'Name', 'OverrideAccountTaxSettings', 'Phone', 'PostalCode', 'Primary', 'RoundtripDistance', 'State', 'TaxRegionID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Phone', 'Address2', 'City', 'State', 'AlternatePhone1', 'Name', 'PostalCode', 'AccountID', 'Address1', 'Fax', 'AlternatePhone2', 'Description', 'TaxRegionID', 'Active', 'id', 'Primary', 'OverrideAccountTaxSettings', 'IsTaxExempt', 'CountryID', 'RoundtripDistance')]
+    [ValidateSet('AccountID', 'Active', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'CountryID', 'Description', 'Fax', 'id', 'IsTaxExempt', 'Name', 'OverrideAccountTaxSettings', 'Phone', 'PostalCode', 'Primary', 'RoundtripDistance', 'State', 'TaxRegionID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'CountryID', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'RoundtripDistance', 'TaxRegionID')]
+    [ValidateSet('AccountID', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'CountryID', 'Description', 'Fax', 'id', 'Name', 'Phone', 'PostalCode', 'RoundtripDistance', 'State', 'TaxRegionID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'CountryID', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'RoundtripDistance', 'TaxRegionID')]
+    [ValidateSet('AccountID', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'CountryID', 'Description', 'Fax', 'id', 'Name', 'Phone', 'PostalCode', 'RoundtripDistance', 'State', 'TaxRegionID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'CountryID', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'RoundtripDistance', 'TaxRegionID')]
+    [ValidateSet('AccountID', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'CountryID', 'Description', 'Fax', 'id', 'Name', 'Phone', 'PostalCode', 'RoundtripDistance', 'State', 'TaxRegionID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'CountryID', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'RoundtripDistance', 'TaxRegionID')]
+    [ValidateSet('AccountID', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'CountryID', 'Description', 'Fax', 'id', 'Name', 'Phone', 'PostalCode', 'RoundtripDistance', 'State', 'TaxRegionID')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax')]
+    [ValidateSet('Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'Description', 'Fax', 'Name', 'Phone', 'PostalCode', 'State')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax')]
+    [ValidateSet('Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'Description', 'Fax', 'Name', 'Phone', 'PostalCode', 'State')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax')]
+    [ValidateSet('Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'Description', 'Fax', 'Name', 'Phone', 'PostalCode', 'State')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax')]
+    [ValidateSet('Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'Description', 'Fax', 'Name', 'Phone', 'PostalCode', 'State')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax')]
+    [ValidateSet('Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'City', 'Description', 'Fax', 'Name', 'Phone', 'PostalCode', 'State')]
     [string[]]
     $Contains,
 
@@ -454,8 +454,10 @@ Set-AtwsAccountPhysicalLocation
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

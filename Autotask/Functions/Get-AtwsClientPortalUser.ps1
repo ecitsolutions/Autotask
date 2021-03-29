@@ -231,84 +231,84 @@ Set-AtwsClientPortalUser
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('NumberFormat', 'ContactID', 'UserName', 'DateFormat', 'Password', 'ClientPortalActive', 'id', 'SecurityLevel', 'TimeFormat')]
+    [ValidateSet('ClientPortalActive', 'ContactID', 'DateFormat', 'id', 'NumberFormat', 'Password', 'SecurityLevel', 'TimeFormat', 'UserName')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('NumberFormat', 'ContactID', 'UserName', 'DateFormat', 'Password', 'ClientPortalActive', 'id', 'SecurityLevel', 'TimeFormat')]
+    [ValidateSet('ClientPortalActive', 'ContactID', 'DateFormat', 'id', 'NumberFormat', 'Password', 'SecurityLevel', 'TimeFormat', 'UserName')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('NumberFormat', 'ContactID', 'UserName', 'DateFormat', 'Password', 'ClientPortalActive', 'id', 'SecurityLevel', 'TimeFormat')]
+    [ValidateSet('ClientPortalActive', 'ContactID', 'DateFormat', 'id', 'NumberFormat', 'Password', 'SecurityLevel', 'TimeFormat', 'UserName')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SecurityLevel', 'ContactID', 'DateFormat', 'TimeFormat', 'NumberFormat', 'UserName', 'Password')]
+    [ValidateSet('ContactID', 'DateFormat', 'id', 'NumberFormat', 'Password', 'SecurityLevel', 'TimeFormat', 'UserName')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SecurityLevel', 'ContactID', 'DateFormat', 'TimeFormat', 'NumberFormat', 'UserName', 'Password')]
+    [ValidateSet('ContactID', 'DateFormat', 'id', 'NumberFormat', 'Password', 'SecurityLevel', 'TimeFormat', 'UserName')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SecurityLevel', 'ContactID', 'DateFormat', 'TimeFormat', 'NumberFormat', 'UserName', 'Password')]
+    [ValidateSet('ContactID', 'DateFormat', 'id', 'NumberFormat', 'Password', 'SecurityLevel', 'TimeFormat', 'UserName')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'SecurityLevel', 'ContactID', 'DateFormat', 'TimeFormat', 'NumberFormat', 'UserName', 'Password')]
+    [ValidateSet('ContactID', 'DateFormat', 'id', 'NumberFormat', 'Password', 'SecurityLevel', 'TimeFormat', 'UserName')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserName', 'Password')]
+    [ValidateSet('Password', 'UserName')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserName', 'Password')]
+    [ValidateSet('Password', 'UserName')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserName', 'Password')]
+    [ValidateSet('Password', 'UserName')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserName', 'Password')]
+    [ValidateSet('Password', 'UserName')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UserName', 'Password')]
+    [ValidateSet('Password', 'UserName')]
     [string[]]
     $Contains,
 
@@ -429,8 +429,10 @@ Set-AtwsClientPortalUser
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

@@ -221,91 +221,91 @@ An example of a more complex query. This command returns any DeletedTaskActivity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedByResourceID', 'EndDateTime', 'NoteOrAttachmentTitle', 'TaskID', 'ActivityDateTime', 'StartDateTime', 'CreatedByResourceID', 'TaskNumber', 'id', 'TypeID', 'HoursWorked', 'DeletedDateTime')]
+    [ValidateSet('ActivityDateTime', 'CreatedByResourceID', 'DeletedByResourceID', 'DeletedDateTime', 'EndDateTime', 'HoursWorked', 'id', 'NoteOrAttachmentTitle', 'StartDateTime', 'TaskID', 'TaskNumber', 'TypeID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedByResourceID', 'EndDateTime', 'NoteOrAttachmentTitle', 'TaskID', 'ActivityDateTime', 'StartDateTime', 'CreatedByResourceID', 'TaskNumber', 'id', 'TypeID', 'HoursWorked', 'DeletedDateTime')]
+    [ValidateSet('ActivityDateTime', 'CreatedByResourceID', 'DeletedByResourceID', 'DeletedDateTime', 'EndDateTime', 'HoursWorked', 'id', 'NoteOrAttachmentTitle', 'StartDateTime', 'TaskID', 'TaskNumber', 'TypeID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedByResourceID', 'EndDateTime', 'NoteOrAttachmentTitle', 'TaskID', 'ActivityDateTime', 'StartDateTime', 'CreatedByResourceID', 'TaskNumber', 'id', 'TypeID', 'HoursWorked', 'DeletedDateTime')]
+    [ValidateSet('ActivityDateTime', 'CreatedByResourceID', 'DeletedByResourceID', 'DeletedDateTime', 'EndDateTime', 'HoursWorked', 'id', 'NoteOrAttachmentTitle', 'StartDateTime', 'TaskID', 'TaskNumber', 'TypeID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TypeID', 'TaskID', 'TaskNumber', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'ActivityDateTime', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'DeletedByResourceID', 'DeletedDateTime')]
+    [ValidateSet('ActivityDateTime', 'CreatedByResourceID', 'DeletedByResourceID', 'DeletedDateTime', 'EndDateTime', 'HoursWorked', 'id', 'NoteOrAttachmentTitle', 'StartDateTime', 'TaskID', 'TaskNumber', 'TypeID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TypeID', 'TaskID', 'TaskNumber', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'ActivityDateTime', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'DeletedByResourceID', 'DeletedDateTime')]
+    [ValidateSet('ActivityDateTime', 'CreatedByResourceID', 'DeletedByResourceID', 'DeletedDateTime', 'EndDateTime', 'HoursWorked', 'id', 'NoteOrAttachmentTitle', 'StartDateTime', 'TaskID', 'TaskNumber', 'TypeID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TypeID', 'TaskID', 'TaskNumber', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'ActivityDateTime', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'DeletedByResourceID', 'DeletedDateTime')]
+    [ValidateSet('ActivityDateTime', 'CreatedByResourceID', 'DeletedByResourceID', 'DeletedDateTime', 'EndDateTime', 'HoursWorked', 'id', 'NoteOrAttachmentTitle', 'StartDateTime', 'TaskID', 'TaskNumber', 'TypeID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TypeID', 'TaskID', 'TaskNumber', 'NoteOrAttachmentTitle', 'CreatedByResourceID', 'ActivityDateTime', 'StartDateTime', 'EndDateTime', 'HoursWorked', 'DeletedByResourceID', 'DeletedDateTime')]
+    [ValidateSet('ActivityDateTime', 'CreatedByResourceID', 'DeletedByResourceID', 'DeletedDateTime', 'EndDateTime', 'HoursWorked', 'id', 'NoteOrAttachmentTitle', 'StartDateTime', 'TaskID', 'TaskNumber', 'TypeID')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskNumber', 'NoteOrAttachmentTitle')]
+    [ValidateSet('NoteOrAttachmentTitle', 'TaskNumber')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskNumber', 'NoteOrAttachmentTitle')]
+    [ValidateSet('NoteOrAttachmentTitle', 'TaskNumber')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskNumber', 'NoteOrAttachmentTitle')]
+    [ValidateSet('NoteOrAttachmentTitle', 'TaskNumber')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskNumber', 'NoteOrAttachmentTitle')]
+    [ValidateSet('NoteOrAttachmentTitle', 'TaskNumber')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskNumber', 'NoteOrAttachmentTitle')]
+    [ValidateSet('NoteOrAttachmentTitle', 'TaskNumber')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ActivityDateTime', 'StartDateTime', 'EndDateTime', 'DeletedDateTime')]
+    [ValidateSet('ActivityDateTime', 'DeletedDateTime', 'EndDateTime', 'StartDateTime')]
     [string[]]
     $IsThisDay
   )
@@ -420,8 +420,10 @@ An example of a more complex query. This command returns any DeletedTaskActivity
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

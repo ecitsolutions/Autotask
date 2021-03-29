@@ -240,49 +240,49 @@ Set-AtwsProjectNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectID', 'Description', 'CreateDateTime', 'LastActivityDate', 'Publish', 'NoteType', 'Title', 'ImpersonatorCreatorResourceID', 'id', 'CreatedByContactID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Announce')]
+    [ValidateSet('Announce', 'CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'ProjectID', 'Publish', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectID', 'Description', 'CreateDateTime', 'LastActivityDate', 'Publish', 'NoteType', 'Title', 'ImpersonatorCreatorResourceID', 'id', 'CreatedByContactID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Announce')]
+    [ValidateSet('Announce', 'CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'ProjectID', 'Publish', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectID', 'Description', 'CreateDateTime', 'LastActivityDate', 'Publish', 'NoteType', 'Title', 'ImpersonatorCreatorResourceID', 'id', 'CreatedByContactID', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Announce')]
+    [ValidateSet('Announce', 'CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'ProjectID', 'Publish', 'Title')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'ProjectID', 'Publish', 'Title')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'ProjectID', 'Publish', 'Title')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'ProjectID', 'Publish', 'Title')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'ProjectID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'ProjectID', 'Publish', 'Title')]
     [string[]]
     $LessThanOrEquals,
 
@@ -324,7 +324,7 @@ Set-AtwsProjectNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'CreateDateTime')]
+    [ValidateSet('CreateDateTime', 'LastActivityDate')]
     [string[]]
     $IsThisDay
   )
@@ -439,8 +439,10 @@ Set-AtwsProjectNote
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

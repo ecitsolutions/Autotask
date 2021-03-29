@@ -446,91 +446,91 @@ Set-AtwsBillingItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceID', 'Quantity', 'PostedOnTime', 'InternalCurrencyRate', 'AllocationCodeID', 'TotalAmount', 'PostedDate', 'Description', 'InternalCurrencyExtendedPrice', 'TicketID', 'TaxDollars', 'PurchaseOrderNumber', 'OurCost', 'TicketCostID', 'InstalledProductID', 'LineItemFullDescription', 'ContractID', 'TimeEntryID', 'ExtendedPrice', 'Rate', 'ServiceBundleID', 'AccountManagerWhenApprovedID', 'InternalCurrencyTaxDollars', 'ContractCostID', 'ItemName', 'NonBillable', 'AccountID', 'ExpenseItemID', 'ProjectCostID', 'InvoiceID', 'MilestoneID', 'InternalCurrencyTotalAmount', 'SubType', 'LineItemGroupDescription', 'id', 'LineItemID', 'ItemDate', 'VendorID', 'BusinessDivisionSubdivisionID', 'Type', 'TaskID', 'ItemApproverID', 'RoleID', 'WebServiceDate', 'ProjectID')]
+    [ValidateSet('AccountID', 'AccountManagerWhenApprovedID', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractCostID', 'ContractID', 'Description', 'ExpenseItemID', 'ExtendedPrice', 'id', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'InvoiceID', 'ItemApproverID', 'ItemDate', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'LineItemID', 'MilestoneID', 'NonBillable', 'OurCost', 'PostedDate', 'PostedOnTime', 'ProjectCostID', 'ProjectID', 'PurchaseOrderNumber', 'Quantity', 'Rate', 'RoleID', 'ServiceBundleID', 'ServiceID', 'SubType', 'TaskID', 'TaxDollars', 'TicketCostID', 'TicketID', 'TimeEntryID', 'TotalAmount', 'Type', 'VendorID', 'WebServiceDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceID', 'Quantity', 'PostedOnTime', 'InternalCurrencyRate', 'AllocationCodeID', 'TotalAmount', 'PostedDate', 'Description', 'InternalCurrencyExtendedPrice', 'TicketID', 'TaxDollars', 'PurchaseOrderNumber', 'OurCost', 'TicketCostID', 'InstalledProductID', 'LineItemFullDescription', 'ContractID', 'TimeEntryID', 'ExtendedPrice', 'Rate', 'ServiceBundleID', 'AccountManagerWhenApprovedID', 'InternalCurrencyTaxDollars', 'ContractCostID', 'ItemName', 'NonBillable', 'AccountID', 'ExpenseItemID', 'ProjectCostID', 'InvoiceID', 'MilestoneID', 'InternalCurrencyTotalAmount', 'SubType', 'LineItemGroupDescription', 'id', 'LineItemID', 'ItemDate', 'VendorID', 'BusinessDivisionSubdivisionID', 'Type', 'TaskID', 'ItemApproverID', 'RoleID', 'WebServiceDate', 'ProjectID')]
+    [ValidateSet('AccountID', 'AccountManagerWhenApprovedID', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractCostID', 'ContractID', 'Description', 'ExpenseItemID', 'ExtendedPrice', 'id', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'InvoiceID', 'ItemApproverID', 'ItemDate', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'LineItemID', 'MilestoneID', 'NonBillable', 'OurCost', 'PostedDate', 'PostedOnTime', 'ProjectCostID', 'ProjectID', 'PurchaseOrderNumber', 'Quantity', 'Rate', 'RoleID', 'ServiceBundleID', 'ServiceID', 'SubType', 'TaskID', 'TaxDollars', 'TicketCostID', 'TicketID', 'TimeEntryID', 'TotalAmount', 'Type', 'VendorID', 'WebServiceDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceID', 'Quantity', 'PostedOnTime', 'InternalCurrencyRate', 'AllocationCodeID', 'TotalAmount', 'PostedDate', 'Description', 'InternalCurrencyExtendedPrice', 'TicketID', 'TaxDollars', 'PurchaseOrderNumber', 'OurCost', 'TicketCostID', 'InstalledProductID', 'LineItemFullDescription', 'ContractID', 'TimeEntryID', 'ExtendedPrice', 'Rate', 'ServiceBundleID', 'AccountManagerWhenApprovedID', 'InternalCurrencyTaxDollars', 'ContractCostID', 'ItemName', 'NonBillable', 'AccountID', 'ExpenseItemID', 'ProjectCostID', 'InvoiceID', 'MilestoneID', 'InternalCurrencyTotalAmount', 'SubType', 'LineItemGroupDescription', 'id', 'LineItemID', 'ItemDate', 'VendorID', 'BusinessDivisionSubdivisionID', 'Type', 'TaskID', 'ItemApproverID', 'RoleID', 'WebServiceDate', 'ProjectID')]
+    [ValidateSet('AccountID', 'AccountManagerWhenApprovedID', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractCostID', 'ContractID', 'Description', 'ExpenseItemID', 'ExtendedPrice', 'id', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'InvoiceID', 'ItemApproverID', 'ItemDate', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'LineItemID', 'MilestoneID', 'NonBillable', 'OurCost', 'PostedDate', 'PostedOnTime', 'ProjectCostID', 'ProjectID', 'PurchaseOrderNumber', 'Quantity', 'Rate', 'RoleID', 'ServiceBundleID', 'ServiceID', 'SubType', 'TaskID', 'TaxDollars', 'TicketCostID', 'TicketID', 'TimeEntryID', 'TotalAmount', 'Type', 'VendorID', 'WebServiceDate')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Type', 'SubType', 'ItemName', 'Description', 'Quantity', 'Rate', 'TotalAmount', 'OurCost', 'ItemDate', 'InvoiceID', 'ItemApproverID', 'AccountID', 'TicketID', 'TaskID', 'ProjectID', 'AllocationCodeID', 'RoleID', 'TimeEntryID', 'ContractID', 'WebServiceDate', 'NonBillable', 'TaxDollars', 'PurchaseOrderNumber', 'ExtendedPrice', 'ExpenseItemID', 'ContractCostID', 'ProjectCostID', 'TicketCostID', 'LineItemID', 'MilestoneID', 'ServiceID', 'ServiceBundleID', 'VendorID', 'LineItemFullDescription', 'LineItemGroupDescription', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'AccountManagerWhenApprovedID', 'BusinessDivisionSubdivisionID', 'PostedOnTime', 'PostedDate')]
+    [ValidateSet('AccountID', 'AccountManagerWhenApprovedID', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractCostID', 'ContractID', 'Description', 'ExpenseItemID', 'ExtendedPrice', 'id', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'InvoiceID', 'ItemApproverID', 'ItemDate', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'LineItemID', 'MilestoneID', 'NonBillable', 'OurCost', 'PostedDate', 'PostedOnTime', 'ProjectCostID', 'ProjectID', 'PurchaseOrderNumber', 'Quantity', 'Rate', 'RoleID', 'ServiceBundleID', 'ServiceID', 'SubType', 'TaskID', 'TaxDollars', 'TicketCostID', 'TicketID', 'TimeEntryID', 'TotalAmount', 'Type', 'VendorID', 'WebServiceDate')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Type', 'SubType', 'ItemName', 'Description', 'Quantity', 'Rate', 'TotalAmount', 'OurCost', 'ItemDate', 'InvoiceID', 'ItemApproverID', 'AccountID', 'TicketID', 'TaskID', 'ProjectID', 'AllocationCodeID', 'RoleID', 'TimeEntryID', 'ContractID', 'WebServiceDate', 'NonBillable', 'TaxDollars', 'PurchaseOrderNumber', 'ExtendedPrice', 'ExpenseItemID', 'ContractCostID', 'ProjectCostID', 'TicketCostID', 'LineItemID', 'MilestoneID', 'ServiceID', 'ServiceBundleID', 'VendorID', 'LineItemFullDescription', 'LineItemGroupDescription', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'AccountManagerWhenApprovedID', 'BusinessDivisionSubdivisionID', 'PostedOnTime', 'PostedDate')]
+    [ValidateSet('AccountID', 'AccountManagerWhenApprovedID', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractCostID', 'ContractID', 'Description', 'ExpenseItemID', 'ExtendedPrice', 'id', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'InvoiceID', 'ItemApproverID', 'ItemDate', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'LineItemID', 'MilestoneID', 'NonBillable', 'OurCost', 'PostedDate', 'PostedOnTime', 'ProjectCostID', 'ProjectID', 'PurchaseOrderNumber', 'Quantity', 'Rate', 'RoleID', 'ServiceBundleID', 'ServiceID', 'SubType', 'TaskID', 'TaxDollars', 'TicketCostID', 'TicketID', 'TimeEntryID', 'TotalAmount', 'Type', 'VendorID', 'WebServiceDate')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Type', 'SubType', 'ItemName', 'Description', 'Quantity', 'Rate', 'TotalAmount', 'OurCost', 'ItemDate', 'InvoiceID', 'ItemApproverID', 'AccountID', 'TicketID', 'TaskID', 'ProjectID', 'AllocationCodeID', 'RoleID', 'TimeEntryID', 'ContractID', 'WebServiceDate', 'NonBillable', 'TaxDollars', 'PurchaseOrderNumber', 'ExtendedPrice', 'ExpenseItemID', 'ContractCostID', 'ProjectCostID', 'TicketCostID', 'LineItemID', 'MilestoneID', 'ServiceID', 'ServiceBundleID', 'VendorID', 'LineItemFullDescription', 'LineItemGroupDescription', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'AccountManagerWhenApprovedID', 'BusinessDivisionSubdivisionID', 'PostedOnTime', 'PostedDate')]
+    [ValidateSet('AccountID', 'AccountManagerWhenApprovedID', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractCostID', 'ContractID', 'Description', 'ExpenseItemID', 'ExtendedPrice', 'id', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'InvoiceID', 'ItemApproverID', 'ItemDate', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'LineItemID', 'MilestoneID', 'NonBillable', 'OurCost', 'PostedDate', 'PostedOnTime', 'ProjectCostID', 'ProjectID', 'PurchaseOrderNumber', 'Quantity', 'Rate', 'RoleID', 'ServiceBundleID', 'ServiceID', 'SubType', 'TaskID', 'TaxDollars', 'TicketCostID', 'TicketID', 'TimeEntryID', 'TotalAmount', 'Type', 'VendorID', 'WebServiceDate')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Type', 'SubType', 'ItemName', 'Description', 'Quantity', 'Rate', 'TotalAmount', 'OurCost', 'ItemDate', 'InvoiceID', 'ItemApproverID', 'AccountID', 'TicketID', 'TaskID', 'ProjectID', 'AllocationCodeID', 'RoleID', 'TimeEntryID', 'ContractID', 'WebServiceDate', 'NonBillable', 'TaxDollars', 'PurchaseOrderNumber', 'ExtendedPrice', 'ExpenseItemID', 'ContractCostID', 'ProjectCostID', 'TicketCostID', 'LineItemID', 'MilestoneID', 'ServiceID', 'ServiceBundleID', 'VendorID', 'LineItemFullDescription', 'LineItemGroupDescription', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'AccountManagerWhenApprovedID', 'BusinessDivisionSubdivisionID', 'PostedOnTime', 'PostedDate')]
+    [ValidateSet('AccountID', 'AccountManagerWhenApprovedID', 'AllocationCodeID', 'BusinessDivisionSubdivisionID', 'ContractCostID', 'ContractID', 'Description', 'ExpenseItemID', 'ExtendedPrice', 'id', 'InstalledProductID', 'InternalCurrencyExtendedPrice', 'InternalCurrencyRate', 'InternalCurrencyTaxDollars', 'InternalCurrencyTotalAmount', 'InvoiceID', 'ItemApproverID', 'ItemDate', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'LineItemID', 'MilestoneID', 'NonBillable', 'OurCost', 'PostedDate', 'PostedOnTime', 'ProjectCostID', 'ProjectID', 'PurchaseOrderNumber', 'Quantity', 'Rate', 'RoleID', 'ServiceBundleID', 'ServiceID', 'SubType', 'TaskID', 'TaxDollars', 'TicketCostID', 'TicketID', 'TimeEntryID', 'TotalAmount', 'Type', 'VendorID', 'WebServiceDate')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ItemName', 'Description', 'PurchaseOrderNumber', 'LineItemFullDescription', 'LineItemGroupDescription')]
+    [ValidateSet('Description', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'PurchaseOrderNumber')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ItemName', 'Description', 'PurchaseOrderNumber', 'LineItemFullDescription', 'LineItemGroupDescription')]
+    [ValidateSet('Description', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'PurchaseOrderNumber')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ItemName', 'Description', 'PurchaseOrderNumber', 'LineItemFullDescription', 'LineItemGroupDescription')]
+    [ValidateSet('Description', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'PurchaseOrderNumber')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ItemName', 'Description', 'PurchaseOrderNumber', 'LineItemFullDescription', 'LineItemGroupDescription')]
+    [ValidateSet('Description', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'PurchaseOrderNumber')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ItemName', 'Description', 'PurchaseOrderNumber', 'LineItemFullDescription', 'LineItemGroupDescription')]
+    [ValidateSet('Description', 'ItemName', 'LineItemFullDescription', 'LineItemGroupDescription', 'PurchaseOrderNumber')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ItemDate', 'WebServiceDate', 'PostedOnTime', 'PostedDate')]
+    [ValidateSet('ItemDate', 'PostedDate', 'PostedOnTime', 'WebServiceDate')]
     [string[]]
     $IsThisDay
   )
@@ -645,8 +645,10 @@ Set-AtwsBillingItem
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

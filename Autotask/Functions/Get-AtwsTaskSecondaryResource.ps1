@@ -153,28 +153,28 @@ Remove-AtwsTaskSecondaryResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
+    [ValidateSet('id', 'ResourceID', 'RoleID', 'TaskID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
+    [ValidateSet('id', 'ResourceID', 'RoleID', 'TaskID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
+    [ValidateSet('id', 'ResourceID', 'RoleID', 'TaskID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TaskID', 'ResourceID', 'RoleID', 'id')]
+    [ValidateSet('id', 'ResourceID', 'RoleID', 'TaskID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -325,8 +325,10 @@ Remove-AtwsTaskSecondaryResource
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

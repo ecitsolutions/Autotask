@@ -175,49 +175,49 @@ Set-AtwsChecklistLibraryChecklistItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ChecklistLibraryID', 'KnowledgebaseArticleID', 'ItemName', 'Position', 'id', 'Important')]
+    [ValidateSet('ChecklistLibraryID', 'id', 'Important', 'ItemName', 'KnowledgebaseArticleID', 'Position')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ChecklistLibraryID', 'KnowledgebaseArticleID', 'ItemName', 'Position', 'id', 'Important')]
+    [ValidateSet('ChecklistLibraryID', 'id', 'Important', 'ItemName', 'KnowledgebaseArticleID', 'Position')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ChecklistLibraryID', 'KnowledgebaseArticleID', 'ItemName', 'Position', 'id', 'Important')]
+    [ValidateSet('ChecklistLibraryID', 'id', 'Important', 'ItemName', 'KnowledgebaseArticleID', 'Position')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID')]
+    [ValidateSet('ChecklistLibraryID', 'id', 'ItemName', 'KnowledgebaseArticleID', 'Position')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID')]
+    [ValidateSet('ChecklistLibraryID', 'id', 'ItemName', 'KnowledgebaseArticleID', 'Position')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID')]
+    [ValidateSet('ChecklistLibraryID', 'id', 'ItemName', 'KnowledgebaseArticleID', 'Position')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'ChecklistLibraryID')]
+    [ValidateSet('ChecklistLibraryID', 'id', 'ItemName', 'KnowledgebaseArticleID', 'Position')]
     [string[]]
     $LessThanOrEquals,
 
@@ -373,8 +373,10 @@ Set-AtwsChecklistLibraryChecklistItem
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

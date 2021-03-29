@@ -159,49 +159,49 @@ Set-AtwsAccountAlert
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AlertTypeID', 'AccountID', 'AlertText')]
+    [ValidateSet('AccountID', 'AlertText', 'AlertTypeID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AlertTypeID', 'AccountID', 'AlertText')]
+    [ValidateSet('AccountID', 'AlertText', 'AlertTypeID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AlertTypeID', 'AccountID', 'AlertText')]
+    [ValidateSet('AccountID', 'AlertText', 'AlertTypeID', 'id')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'AlertTypeID', 'AlertText')]
+    [ValidateSet('AccountID', 'AlertText', 'AlertTypeID', 'id')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'AlertTypeID', 'AlertText')]
+    [ValidateSet('AccountID', 'AlertText', 'AlertTypeID', 'id')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'AlertTypeID', 'AlertText')]
+    [ValidateSet('AccountID', 'AlertText', 'AlertTypeID', 'id')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'AlertTypeID', 'AlertText')]
+    [ValidateSet('AccountID', 'AlertText', 'AlertTypeID', 'id')]
     [string[]]
     $LessThanOrEquals,
 
@@ -357,8 +357,10 @@ Set-AtwsAccountAlert
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

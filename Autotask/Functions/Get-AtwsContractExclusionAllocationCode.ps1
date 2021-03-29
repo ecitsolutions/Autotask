@@ -124,49 +124,49 @@ Remove-AtwsContractExclusionAllocationCode
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'ContractID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'ContractID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'ContractID', 'id')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'ContractID', 'id')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'ContractID', 'id')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'ContractID', 'id')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'AllocationCodeID')]
+    [ValidateSet('AllocationCodeID', 'ContractID', 'id')]
     [string[]]
     $LessThanOrEquals,
 
@@ -317,8 +317,10 @@ Remove-AtwsContractExclusionAllocationCode
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

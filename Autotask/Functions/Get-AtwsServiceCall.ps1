@@ -246,49 +246,49 @@ Set-AtwsServiceCall
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'StartDateTime', 'LastModifiedDateTime', 'CreateDateTime', 'CancelationNoticeHours', 'CanceledByResource', 'Status', 'AccountID', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'CreatorResourceID', 'id', 'Complete', 'AccountPhysicalLocationID', 'CanceledDateTime')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'CancelationNoticeHours', 'CanceledByResource', 'CanceledDateTime', 'Complete', 'CreateDateTime', 'CreatorResourceID', 'Description', 'Duration', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDateTime', 'StartDateTime', 'Status')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'StartDateTime', 'LastModifiedDateTime', 'CreateDateTime', 'CancelationNoticeHours', 'CanceledByResource', 'Status', 'AccountID', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'CreatorResourceID', 'id', 'Complete', 'AccountPhysicalLocationID', 'CanceledDateTime')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'CancelationNoticeHours', 'CanceledByResource', 'CanceledDateTime', 'Complete', 'CreateDateTime', 'CreatorResourceID', 'Description', 'Duration', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDateTime', 'StartDateTime', 'Status')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'StartDateTime', 'LastModifiedDateTime', 'CreateDateTime', 'CancelationNoticeHours', 'CanceledByResource', 'Status', 'AccountID', 'ImpersonatorCreatorResourceID', 'Duration', 'Description', 'CreatorResourceID', 'id', 'Complete', 'AccountPhysicalLocationID', 'CanceledDateTime')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'CancelationNoticeHours', 'CanceledByResource', 'CanceledDateTime', 'Complete', 'CreateDateTime', 'CreatorResourceID', 'Description', 'Duration', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDateTime', 'StartDateTime', 'Status')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'StartDateTime', 'EndDateTime', 'Description', 'Complete', 'CreatorResourceID', 'CreateDateTime', 'LastModifiedDateTime', 'Duration', 'Status', 'CanceledByResource', 'CanceledDateTime', 'CancelationNoticeHours', 'AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'CancelationNoticeHours', 'CanceledByResource', 'CanceledDateTime', 'Complete', 'CreateDateTime', 'CreatorResourceID', 'Description', 'Duration', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDateTime', 'StartDateTime', 'Status')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'StartDateTime', 'EndDateTime', 'Description', 'Complete', 'CreatorResourceID', 'CreateDateTime', 'LastModifiedDateTime', 'Duration', 'Status', 'CanceledByResource', 'CanceledDateTime', 'CancelationNoticeHours', 'AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'CancelationNoticeHours', 'CanceledByResource', 'CanceledDateTime', 'Complete', 'CreateDateTime', 'CreatorResourceID', 'Description', 'Duration', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDateTime', 'StartDateTime', 'Status')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'StartDateTime', 'EndDateTime', 'Description', 'Complete', 'CreatorResourceID', 'CreateDateTime', 'LastModifiedDateTime', 'Duration', 'Status', 'CanceledByResource', 'CanceledDateTime', 'CancelationNoticeHours', 'AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'CancelationNoticeHours', 'CanceledByResource', 'CanceledDateTime', 'Complete', 'CreateDateTime', 'CreatorResourceID', 'Description', 'Duration', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDateTime', 'StartDateTime', 'Status')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'StartDateTime', 'EndDateTime', 'Description', 'Complete', 'CreatorResourceID', 'CreateDateTime', 'LastModifiedDateTime', 'Duration', 'Status', 'CanceledByResource', 'CanceledDateTime', 'CancelationNoticeHours', 'AccountPhysicalLocationID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('AccountID', 'AccountPhysicalLocationID', 'CancelationNoticeHours', 'CanceledByResource', 'CanceledDateTime', 'Complete', 'CreateDateTime', 'CreatorResourceID', 'Description', 'Duration', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'LastModifiedDateTime', 'StartDateTime', 'Status')]
     [string[]]
     $LessThanOrEquals,
 
@@ -330,7 +330,7 @@ Set-AtwsServiceCall
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'EndDateTime', 'CreateDateTime', 'LastModifiedDateTime', 'CanceledDateTime')]
+    [ValidateSet('CanceledDateTime', 'CreateDateTime', 'EndDateTime', 'LastModifiedDateTime', 'StartDateTime')]
     [string[]]
     $IsThisDay
   )
@@ -445,8 +445,10 @@ Set-AtwsServiceCall
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

@@ -161,49 +161,49 @@ Set-AtwsTag
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'CreateDateTime', 'TagGroupID', 'IsExcludedFromAutomaticTagging', 'id', 'LastModifiedDateTime', 'IsSystem', 'Label')]
+    [ValidateSet('CreateDateTime', 'id', 'IsActive', 'IsExcludedFromAutomaticTagging', 'IsSystem', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'CreateDateTime', 'TagGroupID', 'IsExcludedFromAutomaticTagging', 'id', 'LastModifiedDateTime', 'IsSystem', 'Label')]
+    [ValidateSet('CreateDateTime', 'id', 'IsActive', 'IsExcludedFromAutomaticTagging', 'IsSystem', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsActive', 'CreateDateTime', 'TagGroupID', 'IsExcludedFromAutomaticTagging', 'id', 'LastModifiedDateTime', 'IsSystem', 'Label')]
+    [ValidateSet('CreateDateTime', 'id', 'IsActive', 'IsExcludedFromAutomaticTagging', 'IsSystem', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
+    [ValidateSet('CreateDateTime', 'id', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
+    [ValidateSet('CreateDateTime', 'id', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
+    [ValidateSet('CreateDateTime', 'id', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
+    [ValidateSet('CreateDateTime', 'id', 'Label', 'LastModifiedDateTime', 'TagGroupID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -360,8 +360,10 @@ Set-AtwsTag
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

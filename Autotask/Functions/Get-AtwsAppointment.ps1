@@ -172,91 +172,91 @@ Set-AtwsAppointment
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'EndDateTime', 'CreatorResourceID', 'ResourceID', 'UpdateDateTime', 'StartDateTime', 'Title', 'id', 'Description')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'EndDateTime', 'id', 'ResourceID', 'StartDateTime', 'Title', 'UpdateDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'EndDateTime', 'CreatorResourceID', 'ResourceID', 'UpdateDateTime', 'StartDateTime', 'Title', 'id', 'Description')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'EndDateTime', 'id', 'ResourceID', 'StartDateTime', 'Title', 'UpdateDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'EndDateTime', 'CreatorResourceID', 'ResourceID', 'UpdateDateTime', 'StartDateTime', 'Title', 'id', 'Description')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'EndDateTime', 'id', 'ResourceID', 'StartDateTime', 'Title', 'UpdateDateTime')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'Title', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'CreateDateTime', 'UpdateDateTime')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'EndDateTime', 'id', 'ResourceID', 'StartDateTime', 'Title', 'UpdateDateTime')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'Title', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'CreateDateTime', 'UpdateDateTime')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'EndDateTime', 'id', 'ResourceID', 'StartDateTime', 'Title', 'UpdateDateTime')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'Title', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'CreateDateTime', 'UpdateDateTime')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'EndDateTime', 'id', 'ResourceID', 'StartDateTime', 'Title', 'UpdateDateTime')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'Title', 'StartDateTime', 'EndDateTime', 'Description', 'CreatorResourceID', 'CreateDateTime', 'UpdateDateTime')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'EndDateTime', 'id', 'ResourceID', 'StartDateTime', 'Title', 'UpdateDateTime')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'EndDateTime', 'CreateDateTime', 'UpdateDateTime')]
+    [ValidateSet('CreateDateTime', 'EndDateTime', 'StartDateTime', 'UpdateDateTime')]
     [string[]]
     $IsThisDay
   )
@@ -371,8 +371,10 @@ Set-AtwsAppointment
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

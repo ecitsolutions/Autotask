@@ -231,49 +231,49 @@ Set-AtwsTicketNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatedByContactID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'TicketID', 'Publish', 'id', 'LastActivityDate', 'NoteType', 'Title', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatedByContactID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'TicketID', 'Publish', 'id', 'LastActivityDate', 'NoteType', 'Title', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatedByContactID', 'CreateDateTime', 'ImpersonatorUpdaterResourceID', 'CreatorResourceID', 'Description', 'TicketID', 'Publish', 'id', 'LastActivityDate', 'NoteType', 'Title', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreatorResourceID', 'Description', 'id', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime', 'CreatedByContactID')]
+    [ValidateSet('CreateDateTime', 'CreatedByContactID', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastActivityDate', 'NoteType', 'Publish', 'TicketID', 'Title')]
     [string[]]
     $LessThanOrEquals,
 
@@ -315,7 +315,7 @@ Set-AtwsTicketNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'CreateDateTime')]
+    [ValidateSet('CreateDateTime', 'LastActivityDate')]
     [string[]]
     $IsThisDay
   )
@@ -430,8 +430,10 @@ Set-AtwsTicketNote
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

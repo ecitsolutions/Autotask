@@ -240,49 +240,49 @@ Set-AtwsAccountNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'ContactID', 'Name', 'ImpersonatorUpdaterResourceID', 'AccountID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDateTime', 'id', 'Note', 'AssignedResourceID', 'ActionType', 'StartDateTime')]
+    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'CreateDateTime', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'ContactID', 'Name', 'ImpersonatorUpdaterResourceID', 'AccountID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDateTime', 'id', 'Note', 'AssignedResourceID', 'ActionType', 'StartDateTime')]
+    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'CreateDateTime', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('EndDateTime', 'OpportunityID', 'CreateDateTime', 'ContactID', 'Name', 'ImpersonatorUpdaterResourceID', 'AccountID', 'ImpersonatorCreatorResourceID', 'LastModifiedDate', 'CompletedDateTime', 'id', 'Note', 'AssignedResourceID', 'ActionType', 'StartDateTime')]
+    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'CreateDateTime', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'EndDateTime', 'id', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
+    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'CreateDateTime', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'EndDateTime', 'id', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
+    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'CreateDateTime', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'EndDateTime', 'id', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
+    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'CreateDateTime', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'EndDateTime', 'id', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'CreateDateTime')]
+    [ValidateSet('AccountID', 'ActionType', 'AssignedResourceID', 'CompletedDateTime', 'ContactID', 'CreateDateTime', 'EndDateTime', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'LastModifiedDate', 'Name', 'Note', 'OpportunityID', 'StartDateTime')]
     [string[]]
     $LessThanOrEquals,
 
@@ -324,7 +324,7 @@ Set-AtwsAccountNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CompletedDateTime', 'EndDateTime', 'LastModifiedDate', 'StartDateTime', 'CreateDateTime')]
+    [ValidateSet('CompletedDateTime', 'CreateDateTime', 'EndDateTime', 'LastModifiedDate', 'StartDateTime')]
     [string[]]
     $IsThisDay
   )
@@ -439,8 +439,10 @@ Set-AtwsAccountNote
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

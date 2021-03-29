@@ -261,84 +261,84 @@ Set-AtwsServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateResourceID', 'LastModifiedDate', 'Name', 'ServiceLevelAgreementID', 'IsActive', 'PeriodType', 'PercentageDiscount', 'Description', 'CreatorResourceID', 'UnitPrice', 'id', 'UnitCost', 'AllocationCodeID', 'CreateDate', 'UnitDiscount', 'InvoiceDescription')]
+    [ValidateSet('AllocationCodeID', 'CreateDate', 'CreatorResourceID', 'Description', 'id', 'InvoiceDescription', 'IsActive', 'LastModifiedDate', 'Name', 'PercentageDiscount', 'PeriodType', 'ServiceLevelAgreementID', 'UnitCost', 'UnitDiscount', 'UnitPrice', 'UpdateResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateResourceID', 'LastModifiedDate', 'Name', 'ServiceLevelAgreementID', 'IsActive', 'PeriodType', 'PercentageDiscount', 'Description', 'CreatorResourceID', 'UnitPrice', 'id', 'UnitCost', 'AllocationCodeID', 'CreateDate', 'UnitDiscount', 'InvoiceDescription')]
+    [ValidateSet('AllocationCodeID', 'CreateDate', 'CreatorResourceID', 'Description', 'id', 'InvoiceDescription', 'IsActive', 'LastModifiedDate', 'Name', 'PercentageDiscount', 'PeriodType', 'ServiceLevelAgreementID', 'UnitCost', 'UnitDiscount', 'UnitPrice', 'UpdateResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateResourceID', 'LastModifiedDate', 'Name', 'ServiceLevelAgreementID', 'IsActive', 'PeriodType', 'PercentageDiscount', 'Description', 'CreatorResourceID', 'UnitPrice', 'id', 'UnitCost', 'AllocationCodeID', 'CreateDate', 'UnitDiscount', 'InvoiceDescription')]
+    [ValidateSet('AllocationCodeID', 'CreateDate', 'CreatorResourceID', 'Description', 'id', 'InvoiceDescription', 'IsActive', 'LastModifiedDate', 'Name', 'PercentageDiscount', 'PeriodType', 'ServiceLevelAgreementID', 'UnitCost', 'UnitDiscount', 'UnitPrice', 'UpdateResourceID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UnitPrice', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'AllocationCodeID', 'CreatorResourceID', 'UpdateResourceID', 'CreateDate', 'InvoiceDescription', 'LastModifiedDate', 'ServiceLevelAgreementID', 'UnitCost')]
+    [ValidateSet('AllocationCodeID', 'CreateDate', 'CreatorResourceID', 'Description', 'id', 'InvoiceDescription', 'LastModifiedDate', 'Name', 'PercentageDiscount', 'PeriodType', 'ServiceLevelAgreementID', 'UnitCost', 'UnitDiscount', 'UnitPrice', 'UpdateResourceID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UnitPrice', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'AllocationCodeID', 'CreatorResourceID', 'UpdateResourceID', 'CreateDate', 'InvoiceDescription', 'LastModifiedDate', 'ServiceLevelAgreementID', 'UnitCost')]
+    [ValidateSet('AllocationCodeID', 'CreateDate', 'CreatorResourceID', 'Description', 'id', 'InvoiceDescription', 'LastModifiedDate', 'Name', 'PercentageDiscount', 'PeriodType', 'ServiceLevelAgreementID', 'UnitCost', 'UnitDiscount', 'UnitPrice', 'UpdateResourceID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UnitPrice', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'AllocationCodeID', 'CreatorResourceID', 'UpdateResourceID', 'CreateDate', 'InvoiceDescription', 'LastModifiedDate', 'ServiceLevelAgreementID', 'UnitCost')]
+    [ValidateSet('AllocationCodeID', 'CreateDate', 'CreatorResourceID', 'Description', 'id', 'InvoiceDescription', 'LastModifiedDate', 'Name', 'PercentageDiscount', 'PeriodType', 'ServiceLevelAgreementID', 'UnitCost', 'UnitDiscount', 'UnitPrice', 'UpdateResourceID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UnitPrice', 'UnitDiscount', 'PercentageDiscount', 'PeriodType', 'AllocationCodeID', 'CreatorResourceID', 'UpdateResourceID', 'CreateDate', 'InvoiceDescription', 'LastModifiedDate', 'ServiceLevelAgreementID', 'UnitCost')]
+    [ValidateSet('AllocationCodeID', 'CreateDate', 'CreatorResourceID', 'Description', 'id', 'InvoiceDescription', 'LastModifiedDate', 'Name', 'PercentageDiscount', 'PeriodType', 'ServiceLevelAgreementID', 'UnitCost', 'UnitDiscount', 'UnitPrice', 'UpdateResourceID')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'PeriodType', 'InvoiceDescription')]
+    [ValidateSet('Description', 'InvoiceDescription', 'Name', 'PeriodType')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'PeriodType', 'InvoiceDescription')]
+    [ValidateSet('Description', 'InvoiceDescription', 'Name', 'PeriodType')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'PeriodType', 'InvoiceDescription')]
+    [ValidateSet('Description', 'InvoiceDescription', 'Name', 'PeriodType')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'PeriodType', 'InvoiceDescription')]
+    [ValidateSet('Description', 'InvoiceDescription', 'Name', 'PeriodType')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'PeriodType', 'InvoiceDescription')]
+    [ValidateSet('Description', 'InvoiceDescription', 'Name', 'PeriodType')]
     [string[]]
     $Contains,
 
@@ -460,8 +460,10 @@ Set-AtwsServiceBundle
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

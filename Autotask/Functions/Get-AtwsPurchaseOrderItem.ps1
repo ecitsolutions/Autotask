@@ -204,49 +204,49 @@ Set-AtwsPurchaseOrderItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectID', 'EstimatedArrivalDate', 'InternalCurrencyUnitCost', 'OrderID', 'TicketID', 'ContractID', 'InventoryLocationID', 'id', 'UnitCost', 'ProductID', 'CostID', 'Memo', 'SalesOrderID', 'Quantity')]
+    [ValidateSet('ContractID', 'CostID', 'EstimatedArrivalDate', 'id', 'InternalCurrencyUnitCost', 'InventoryLocationID', 'Memo', 'OrderID', 'ProductID', 'ProjectID', 'Quantity', 'SalesOrderID', 'TicketID', 'UnitCost')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectID', 'EstimatedArrivalDate', 'InternalCurrencyUnitCost', 'OrderID', 'TicketID', 'ContractID', 'InventoryLocationID', 'id', 'UnitCost', 'ProductID', 'CostID', 'Memo', 'SalesOrderID', 'Quantity')]
+    [ValidateSet('ContractID', 'CostID', 'EstimatedArrivalDate', 'id', 'InternalCurrencyUnitCost', 'InventoryLocationID', 'Memo', 'OrderID', 'ProductID', 'ProjectID', 'Quantity', 'SalesOrderID', 'TicketID', 'UnitCost')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectID', 'EstimatedArrivalDate', 'InternalCurrencyUnitCost', 'OrderID', 'TicketID', 'ContractID', 'InventoryLocationID', 'id', 'UnitCost', 'ProductID', 'CostID', 'Memo', 'SalesOrderID', 'Quantity')]
+    [ValidateSet('ContractID', 'CostID', 'EstimatedArrivalDate', 'id', 'InternalCurrencyUnitCost', 'InventoryLocationID', 'Memo', 'OrderID', 'ProductID', 'ProjectID', 'Quantity', 'SalesOrderID', 'TicketID', 'UnitCost')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
+    [ValidateSet('ContractID', 'CostID', 'EstimatedArrivalDate', 'id', 'InternalCurrencyUnitCost', 'InventoryLocationID', 'Memo', 'OrderID', 'ProductID', 'ProjectID', 'Quantity', 'SalesOrderID', 'TicketID', 'UnitCost')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
+    [ValidateSet('ContractID', 'CostID', 'EstimatedArrivalDate', 'id', 'InternalCurrencyUnitCost', 'InventoryLocationID', 'Memo', 'OrderID', 'ProductID', 'ProjectID', 'Quantity', 'SalesOrderID', 'TicketID', 'UnitCost')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
+    [ValidateSet('ContractID', 'CostID', 'EstimatedArrivalDate', 'id', 'InternalCurrencyUnitCost', 'InventoryLocationID', 'Memo', 'OrderID', 'ProductID', 'ProjectID', 'Quantity', 'SalesOrderID', 'TicketID', 'UnitCost')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'OrderID', 'ProductID', 'InventoryLocationID', 'Quantity', 'Memo', 'UnitCost', 'SalesOrderID', 'EstimatedArrivalDate', 'CostID', 'ContractID', 'ProjectID', 'TicketID', 'InternalCurrencyUnitCost')]
+    [ValidateSet('ContractID', 'CostID', 'EstimatedArrivalDate', 'id', 'InternalCurrencyUnitCost', 'InventoryLocationID', 'Memo', 'OrderID', 'ProductID', 'ProjectID', 'Quantity', 'SalesOrderID', 'TicketID', 'UnitCost')]
     [string[]]
     $LessThanOrEquals,
 
@@ -403,8 +403,10 @@ Set-AtwsPurchaseOrderItem
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

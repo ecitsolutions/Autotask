@@ -128,84 +128,84 @@ Returns any object with a SurveyName that DOES NOT match the simple pattern 'Som
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Name', 'DisplayName')]
+    [ValidateSet('Description', 'DisplayName', 'id', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Name', 'DisplayName')]
+    [ValidateSet('Description', 'DisplayName', 'id', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Name', 'DisplayName')]
+    [ValidateSet('Description', 'DisplayName', 'id', 'Name')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'DisplayName', 'Description')]
+    [ValidateSet('Description', 'DisplayName', 'id', 'Name')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'DisplayName', 'Description')]
+    [ValidateSet('Description', 'DisplayName', 'id', 'Name')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'DisplayName', 'Description')]
+    [ValidateSet('Description', 'DisplayName', 'id', 'Name')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'DisplayName', 'Description')]
+    [ValidateSet('Description', 'DisplayName', 'id', 'Name')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'DisplayName', 'Description')]
+    [ValidateSet('Description', 'DisplayName', 'Name')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'DisplayName', 'Description')]
+    [ValidateSet('Description', 'DisplayName', 'Name')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'DisplayName', 'Description')]
+    [ValidateSet('Description', 'DisplayName', 'Name')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'DisplayName', 'Description')]
+    [ValidateSet('Description', 'DisplayName', 'Name')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'DisplayName', 'Description')]
+    [ValidateSet('Description', 'DisplayName', 'Name')]
     [string[]]
     $Contains,
 
@@ -326,8 +326,10 @@ Returns any object with a SurveyName that DOES NOT match the simple pattern 'Som
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

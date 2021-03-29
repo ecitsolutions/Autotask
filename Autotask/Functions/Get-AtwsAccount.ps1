@@ -653,84 +653,84 @@ Set-AtwsAccount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AlternatePhone2', 'EnabledForComanaged', 'id', 'AlternatePhone1', 'SurveyAccountRating', 'Address1', 'PurchaseOrderTemplateID', 'PostalCode', 'ImpersonatorCreatorResourceID', 'AccountNumber', 'OwnerResourceID', 'TaskFireActive', 'InvoiceTemplateID', 'TaxID', 'QuoteTemplateID', 'BillToState', 'BillToAddressToUse', 'QuoteEmailMessageID', 'CompetitorID', 'AdditionalAddressInformation', 'BillToAddress2', 'KeyAccountIcon', 'CreatedByResourceID', 'CreateDate', 'BillToAttention', 'SICCode', 'ClientPortalActive', 'StockMarket', 'TaxRegionID', 'CountryID', 'ApiVendorID', 'BillToAccountPhysicalLocationID', 'BillToAddress1', 'Country', 'BillToAdditionalAddressInformation', 'BillToCountryID', 'Address2', 'LastActivityDate', 'Fax', 'MarketSegmentID', 'AssetValue', 'InvoiceNonContractItemsToParentAccount', 'TaxExempt', 'CurrencyID', 'LastTrackedModifiedDateTime', 'WebAddress', 'Phone', 'AccountName', 'Active', 'InvoiceEmailMessageID', 'AccountType', 'BillToCity', 'ParentAccountID', 'BillToZipCode', 'InvoiceMethod', 'TerritoryID', 'State', 'City', 'StockSymbol', '')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AccountType', 'Active', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'ApiVendorID', 'AssetValue', 'BillToAccountPhysicalLocationID', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAddressToUse', 'BillToAttention', 'BillToCity', 'BillToCountryID', 'BillToState', 'BillToZipCode', 'City', 'ClientPortalActive', 'CompetitorID', 'Country', 'CountryID', 'CreateDate', 'CreatedByResourceID', 'CurrencyID', 'EnabledForComanaged', 'Fax', 'id', 'ImpersonatorCreatorResourceID', 'InvoiceEmailMessageID', 'InvoiceMethod', 'InvoiceNonContractItemsToParentAccount', 'InvoiceTemplateID', 'KeyAccountIcon', 'LastActivityDate', 'LastTrackedModifiedDateTime', 'MarketSegmentID', 'OwnerResourceID', 'ParentAccountID', 'Phone', 'PostalCode', 'PurchaseOrderTemplateID', 'QuoteEmailMessageID', 'QuoteTemplateID', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'SurveyAccountRating', 'TaskFireActive', 'TaxExempt', 'TaxID', 'TaxRegionID', 'TerritoryID', 'WebAddress')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AlternatePhone2', 'EnabledForComanaged', 'id', 'AlternatePhone1', 'SurveyAccountRating', 'Address1', 'PurchaseOrderTemplateID', 'PostalCode', 'ImpersonatorCreatorResourceID', 'AccountNumber', 'OwnerResourceID', 'TaskFireActive', 'InvoiceTemplateID', 'TaxID', 'QuoteTemplateID', 'BillToState', 'BillToAddressToUse', 'QuoteEmailMessageID', 'CompetitorID', 'AdditionalAddressInformation', 'BillToAddress2', 'KeyAccountIcon', 'CreatedByResourceID', 'CreateDate', 'BillToAttention', 'SICCode', 'ClientPortalActive', 'StockMarket', 'TaxRegionID', 'CountryID', 'ApiVendorID', 'BillToAccountPhysicalLocationID', 'BillToAddress1', 'Country', 'BillToAdditionalAddressInformation', 'BillToCountryID', 'Address2', 'LastActivityDate', 'Fax', 'MarketSegmentID', 'AssetValue', 'InvoiceNonContractItemsToParentAccount', 'TaxExempt', 'CurrencyID', 'LastTrackedModifiedDateTime', 'WebAddress', 'Phone', 'AccountName', 'Active', 'InvoiceEmailMessageID', 'AccountType', 'BillToCity', 'ParentAccountID', 'BillToZipCode', 'InvoiceMethod', 'TerritoryID', 'State', 'City', 'StockSymbol', '')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AccountType', 'Active', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'ApiVendorID', 'AssetValue', 'BillToAccountPhysicalLocationID', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAddressToUse', 'BillToAttention', 'BillToCity', 'BillToCountryID', 'BillToState', 'BillToZipCode', 'City', 'ClientPortalActive', 'CompetitorID', 'Country', 'CountryID', 'CreateDate', 'CreatedByResourceID', 'CurrencyID', 'EnabledForComanaged', 'Fax', 'id', 'ImpersonatorCreatorResourceID', 'InvoiceEmailMessageID', 'InvoiceMethod', 'InvoiceNonContractItemsToParentAccount', 'InvoiceTemplateID', 'KeyAccountIcon', 'LastActivityDate', 'LastTrackedModifiedDateTime', 'MarketSegmentID', 'OwnerResourceID', 'ParentAccountID', 'Phone', 'PostalCode', 'PurchaseOrderTemplateID', 'QuoteEmailMessageID', 'QuoteTemplateID', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'SurveyAccountRating', 'TaskFireActive', 'TaxExempt', 'TaxID', 'TaxRegionID', 'TerritoryID', 'WebAddress')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AlternatePhone2', 'EnabledForComanaged', 'id', 'AlternatePhone1', 'SurveyAccountRating', 'Address1', 'PurchaseOrderTemplateID', 'PostalCode', 'ImpersonatorCreatorResourceID', 'AccountNumber', 'OwnerResourceID', 'TaskFireActive', 'InvoiceTemplateID', 'TaxID', 'QuoteTemplateID', 'BillToState', 'BillToAddressToUse', 'QuoteEmailMessageID', 'CompetitorID', 'AdditionalAddressInformation', 'BillToAddress2', 'KeyAccountIcon', 'CreatedByResourceID', 'CreateDate', 'BillToAttention', 'SICCode', 'ClientPortalActive', 'StockMarket', 'TaxRegionID', 'CountryID', 'ApiVendorID', 'BillToAccountPhysicalLocationID', 'BillToAddress1', 'Country', 'BillToAdditionalAddressInformation', 'BillToCountryID', 'Address2', 'LastActivityDate', 'Fax', 'MarketSegmentID', 'AssetValue', 'InvoiceNonContractItemsToParentAccount', 'TaxExempt', 'CurrencyID', 'LastTrackedModifiedDateTime', 'WebAddress', 'Phone', 'AccountName', 'Active', 'InvoiceEmailMessageID', 'AccountType', 'BillToCity', 'ParentAccountID', 'BillToZipCode', 'InvoiceMethod', 'TerritoryID', 'State', 'City', 'StockSymbol', '')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AccountType', 'Active', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'ApiVendorID', 'AssetValue', 'BillToAccountPhysicalLocationID', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAddressToUse', 'BillToAttention', 'BillToCity', 'BillToCountryID', 'BillToState', 'BillToZipCode', 'City', 'ClientPortalActive', 'CompetitorID', 'Country', 'CountryID', 'CreateDate', 'CreatedByResourceID', 'CurrencyID', 'EnabledForComanaged', 'Fax', 'id', 'ImpersonatorCreatorResourceID', 'InvoiceEmailMessageID', 'InvoiceMethod', 'InvoiceNonContractItemsToParentAccount', 'InvoiceTemplateID', 'KeyAccountIcon', 'LastActivityDate', 'LastTrackedModifiedDateTime', 'MarketSegmentID', 'OwnerResourceID', 'ParentAccountID', 'Phone', 'PostalCode', 'PurchaseOrderTemplateID', 'QuoteEmailMessageID', 'QuoteTemplateID', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'SurveyAccountRating', 'TaskFireActive', 'TaxExempt', 'TaxID', 'TaxRegionID', 'TerritoryID', 'WebAddress')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'AccountType', 'KeyAccountIcon', 'OwnerResourceID', 'TerritoryID', 'MarketSegmentID', 'CompetitorID', 'ParentAccountID', 'StockSymbol', 'StockMarket', 'SICCode', 'AssetValue', 'AccountNumber', 'CreateDate', 'LastActivityDate', 'TaxRegionID', 'TaxID', 'AdditionalAddressInformation', 'CountryID', 'BillToAddressToUse', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToCountryID', 'BillToAdditionalAddressInformation', 'InvoiceMethod', 'QuoteTemplateID', 'QuoteEmailMessageID', 'InvoiceTemplateID', 'InvoiceEmailMessageID', 'CurrencyID', 'BillToAccountPhysicalLocationID', 'SurveyAccountRating', 'CreatedByResourceID', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'LastTrackedModifiedDateTime', 'PurchaseOrderTemplateID', 'UserDefinedField')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AccountType', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'ApiVendorID', 'AssetValue', 'BillToAccountPhysicalLocationID', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAddressToUse', 'BillToAttention', 'BillToCity', 'BillToCountryID', 'BillToState', 'BillToZipCode', 'City', 'CompetitorID', 'Country', 'CountryID', 'CreateDate', 'CreatedByResourceID', 'CurrencyID', 'Fax', 'id', 'ImpersonatorCreatorResourceID', 'InvoiceEmailMessageID', 'InvoiceMethod', 'InvoiceTemplateID', 'KeyAccountIcon', 'LastActivityDate', 'LastTrackedModifiedDateTime', 'MarketSegmentID', 'OwnerResourceID', 'ParentAccountID', 'Phone', 'PostalCode', 'PurchaseOrderTemplateID', 'QuoteEmailMessageID', 'QuoteTemplateID', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'SurveyAccountRating', 'TaxID', 'TaxRegionID', 'TerritoryID', 'UserDefinedField', 'WebAddress')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'AccountType', 'KeyAccountIcon', 'OwnerResourceID', 'TerritoryID', 'MarketSegmentID', 'CompetitorID', 'ParentAccountID', 'StockSymbol', 'StockMarket', 'SICCode', 'AssetValue', 'AccountNumber', 'CreateDate', 'LastActivityDate', 'TaxRegionID', 'TaxID', 'AdditionalAddressInformation', 'CountryID', 'BillToAddressToUse', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToCountryID', 'BillToAdditionalAddressInformation', 'InvoiceMethod', 'QuoteTemplateID', 'QuoteEmailMessageID', 'InvoiceTemplateID', 'InvoiceEmailMessageID', 'CurrencyID', 'BillToAccountPhysicalLocationID', 'SurveyAccountRating', 'CreatedByResourceID', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'LastTrackedModifiedDateTime', 'PurchaseOrderTemplateID', 'UserDefinedField')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AccountType', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'ApiVendorID', 'AssetValue', 'BillToAccountPhysicalLocationID', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAddressToUse', 'BillToAttention', 'BillToCity', 'BillToCountryID', 'BillToState', 'BillToZipCode', 'City', 'CompetitorID', 'Country', 'CountryID', 'CreateDate', 'CreatedByResourceID', 'CurrencyID', 'Fax', 'id', 'ImpersonatorCreatorResourceID', 'InvoiceEmailMessageID', 'InvoiceMethod', 'InvoiceTemplateID', 'KeyAccountIcon', 'LastActivityDate', 'LastTrackedModifiedDateTime', 'MarketSegmentID', 'OwnerResourceID', 'ParentAccountID', 'Phone', 'PostalCode', 'PurchaseOrderTemplateID', 'QuoteEmailMessageID', 'QuoteTemplateID', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'SurveyAccountRating', 'TaxID', 'TaxRegionID', 'TerritoryID', 'UserDefinedField', 'WebAddress')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'AccountType', 'KeyAccountIcon', 'OwnerResourceID', 'TerritoryID', 'MarketSegmentID', 'CompetitorID', 'ParentAccountID', 'StockSymbol', 'StockMarket', 'SICCode', 'AssetValue', 'AccountNumber', 'CreateDate', 'LastActivityDate', 'TaxRegionID', 'TaxID', 'AdditionalAddressInformation', 'CountryID', 'BillToAddressToUse', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToCountryID', 'BillToAdditionalAddressInformation', 'InvoiceMethod', 'QuoteTemplateID', 'QuoteEmailMessageID', 'InvoiceTemplateID', 'InvoiceEmailMessageID', 'CurrencyID', 'BillToAccountPhysicalLocationID', 'SurveyAccountRating', 'CreatedByResourceID', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'LastTrackedModifiedDateTime', 'PurchaseOrderTemplateID', 'UserDefinedField')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AccountType', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'ApiVendorID', 'AssetValue', 'BillToAccountPhysicalLocationID', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAddressToUse', 'BillToAttention', 'BillToCity', 'BillToCountryID', 'BillToState', 'BillToZipCode', 'City', 'CompetitorID', 'Country', 'CountryID', 'CreateDate', 'CreatedByResourceID', 'CurrencyID', 'Fax', 'id', 'ImpersonatorCreatorResourceID', 'InvoiceEmailMessageID', 'InvoiceMethod', 'InvoiceTemplateID', 'KeyAccountIcon', 'LastActivityDate', 'LastTrackedModifiedDateTime', 'MarketSegmentID', 'OwnerResourceID', 'ParentAccountID', 'Phone', 'PostalCode', 'PurchaseOrderTemplateID', 'QuoteEmailMessageID', 'QuoteTemplateID', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'SurveyAccountRating', 'TaxID', 'TaxRegionID', 'TerritoryID', 'UserDefinedField', 'WebAddress')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'AccountType', 'KeyAccountIcon', 'OwnerResourceID', 'TerritoryID', 'MarketSegmentID', 'CompetitorID', 'ParentAccountID', 'StockSymbol', 'StockMarket', 'SICCode', 'AssetValue', 'AccountNumber', 'CreateDate', 'LastActivityDate', 'TaxRegionID', 'TaxID', 'AdditionalAddressInformation', 'CountryID', 'BillToAddressToUse', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToCountryID', 'BillToAdditionalAddressInformation', 'InvoiceMethod', 'QuoteTemplateID', 'QuoteEmailMessageID', 'InvoiceTemplateID', 'InvoiceEmailMessageID', 'CurrencyID', 'BillToAccountPhysicalLocationID', 'SurveyAccountRating', 'CreatedByResourceID', 'ApiVendorID', 'ImpersonatorCreatorResourceID', 'LastTrackedModifiedDateTime', 'PurchaseOrderTemplateID', 'UserDefinedField')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AccountType', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'ApiVendorID', 'AssetValue', 'BillToAccountPhysicalLocationID', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAddressToUse', 'BillToAttention', 'BillToCity', 'BillToCountryID', 'BillToState', 'BillToZipCode', 'City', 'CompetitorID', 'Country', 'CountryID', 'CreateDate', 'CreatedByResourceID', 'CurrencyID', 'Fax', 'id', 'ImpersonatorCreatorResourceID', 'InvoiceEmailMessageID', 'InvoiceMethod', 'InvoiceTemplateID', 'KeyAccountIcon', 'LastActivityDate', 'LastTrackedModifiedDateTime', 'MarketSegmentID', 'OwnerResourceID', 'ParentAccountID', 'Phone', 'PostalCode', 'PurchaseOrderTemplateID', 'QuoteEmailMessageID', 'QuoteTemplateID', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'SurveyAccountRating', 'TaxID', 'TaxRegionID', 'TerritoryID', 'UserDefinedField', 'WebAddress')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'StockSymbol', 'StockMarket', 'SICCode', 'AccountNumber', 'TaxID', 'AdditionalAddressInformation', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToAdditionalAddressInformation', 'UserDefinedField')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAttention', 'BillToCity', 'BillToState', 'BillToZipCode', 'City', 'Country', 'Fax', 'Phone', 'PostalCode', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'TaxID', 'UserDefinedField', 'WebAddress')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'StockSymbol', 'StockMarket', 'SICCode', 'AccountNumber', 'TaxID', 'AdditionalAddressInformation', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToAdditionalAddressInformation', 'UserDefinedField')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAttention', 'BillToCity', 'BillToState', 'BillToZipCode', 'City', 'Country', 'Fax', 'Phone', 'PostalCode', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'TaxID', 'UserDefinedField', 'WebAddress')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'StockSymbol', 'StockMarket', 'SICCode', 'AccountNumber', 'TaxID', 'AdditionalAddressInformation', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToAdditionalAddressInformation', 'UserDefinedField')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAttention', 'BillToCity', 'BillToState', 'BillToZipCode', 'City', 'Country', 'Fax', 'Phone', 'PostalCode', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'TaxID', 'UserDefinedField', 'WebAddress')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'StockSymbol', 'StockMarket', 'SICCode', 'AccountNumber', 'TaxID', 'AdditionalAddressInformation', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToAdditionalAddressInformation', 'UserDefinedField')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAttention', 'BillToCity', 'BillToState', 'BillToZipCode', 'City', 'Country', 'Fax', 'Phone', 'PostalCode', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'TaxID', 'UserDefinedField', 'WebAddress')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountName', 'Address1', 'Address2', 'City', 'State', 'PostalCode', 'Country', 'Phone', 'AlternatePhone1', 'AlternatePhone2', 'Fax', 'WebAddress', 'StockSymbol', 'StockMarket', 'SICCode', 'AccountNumber', 'TaxID', 'AdditionalAddressInformation', 'BillToAttention', 'BillToAddress1', 'BillToAddress2', 'BillToCity', 'BillToState', 'BillToZipCode', 'BillToAdditionalAddressInformation', 'UserDefinedField')]
+    [ValidateSet('AccountName', 'AccountNumber', 'AdditionalAddressInformation', 'Address1', 'Address2', 'AlternatePhone1', 'AlternatePhone2', 'BillToAdditionalAddressInformation', 'BillToAddress1', 'BillToAddress2', 'BillToAttention', 'BillToCity', 'BillToState', 'BillToZipCode', 'City', 'Country', 'Fax', 'Phone', 'PostalCode', 'SICCode', 'State', 'StockMarket', 'StockSymbol', 'TaxID', 'UserDefinedField', 'WebAddress')]
     [string[]]
     $Contains,
 
@@ -852,8 +852,10 @@ Set-AtwsAccount
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

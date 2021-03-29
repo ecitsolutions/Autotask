@@ -214,84 +214,84 @@ Set-AtwsCountry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'Name', 'IsDefaultCountry', 'PurchaseOrderTemplateID', 'CountryCode', 'id', 'DisplayName')]
+    [ValidateSet('Active', 'AddressFormatID', 'CountryCode', 'DisplayName', 'id', 'InvoiceTemplateID', 'IsDefaultCountry', 'Name', 'PurchaseOrderTemplateID', 'QuoteTemplateID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'Name', 'IsDefaultCountry', 'PurchaseOrderTemplateID', 'CountryCode', 'id', 'DisplayName')]
+    [ValidateSet('Active', 'AddressFormatID', 'CountryCode', 'DisplayName', 'id', 'InvoiceTemplateID', 'IsDefaultCountry', 'Name', 'PurchaseOrderTemplateID', 'QuoteTemplateID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'Name', 'IsDefaultCountry', 'PurchaseOrderTemplateID', 'CountryCode', 'id', 'DisplayName')]
+    [ValidateSet('Active', 'AddressFormatID', 'CountryCode', 'DisplayName', 'id', 'InvoiceTemplateID', 'IsDefaultCountry', 'Name', 'PurchaseOrderTemplateID', 'QuoteTemplateID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
+    [ValidateSet('AddressFormatID', 'CountryCode', 'DisplayName', 'id', 'InvoiceTemplateID', 'Name', 'PurchaseOrderTemplateID', 'QuoteTemplateID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
+    [ValidateSet('AddressFormatID', 'CountryCode', 'DisplayName', 'id', 'InvoiceTemplateID', 'Name', 'PurchaseOrderTemplateID', 'QuoteTemplateID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
+    [ValidateSet('AddressFormatID', 'CountryCode', 'DisplayName', 'id', 'InvoiceTemplateID', 'Name', 'PurchaseOrderTemplateID', 'QuoteTemplateID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CountryCode', 'Name', 'DisplayName', 'AddressFormatID', 'QuoteTemplateID', 'InvoiceTemplateID', 'PurchaseOrderTemplateID')]
+    [ValidateSet('AddressFormatID', 'CountryCode', 'DisplayName', 'id', 'InvoiceTemplateID', 'Name', 'PurchaseOrderTemplateID', 'QuoteTemplateID')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CountryCode', 'Name', 'DisplayName')]
+    [ValidateSet('CountryCode', 'DisplayName', 'Name')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CountryCode', 'Name', 'DisplayName')]
+    [ValidateSet('CountryCode', 'DisplayName', 'Name')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CountryCode', 'Name', 'DisplayName')]
+    [ValidateSet('CountryCode', 'DisplayName', 'Name')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CountryCode', 'Name', 'DisplayName')]
+    [ValidateSet('CountryCode', 'DisplayName', 'Name')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CountryCode', 'Name', 'DisplayName')]
+    [ValidateSet('CountryCode', 'DisplayName', 'Name')]
     [string[]]
     $Contains,
 
@@ -412,8 +412,10 @@ Set-AtwsCountry
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

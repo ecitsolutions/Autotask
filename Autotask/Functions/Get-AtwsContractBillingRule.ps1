@@ -264,49 +264,49 @@ Set-AtwsContractBillingRule
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DailyProratedPrice', 'MinimumUnits', 'DailyProratedCost', 'MaximumUnits', 'EndDate', 'ContractID', 'EnableDailyProrating', 'IncludeItemsInChargeDescription', 'ExecutionMethod', 'id', 'Active', 'ProductID', 'CreateChargesAsBillable', 'DetermineUnits', 'StartDate', 'InvoiceDescription')]
+    [ValidateSet('Active', 'ContractID', 'CreateChargesAsBillable', 'DailyProratedCost', 'DailyProratedPrice', 'DetermineUnits', 'EnableDailyProrating', 'EndDate', 'ExecutionMethod', 'id', 'IncludeItemsInChargeDescription', 'InvoiceDescription', 'MaximumUnits', 'MinimumUnits', 'ProductID', 'StartDate')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DailyProratedPrice', 'MinimumUnits', 'DailyProratedCost', 'MaximumUnits', 'EndDate', 'ContractID', 'EnableDailyProrating', 'IncludeItemsInChargeDescription', 'ExecutionMethod', 'id', 'Active', 'ProductID', 'CreateChargesAsBillable', 'DetermineUnits', 'StartDate', 'InvoiceDescription')]
+    [ValidateSet('Active', 'ContractID', 'CreateChargesAsBillable', 'DailyProratedCost', 'DailyProratedPrice', 'DetermineUnits', 'EnableDailyProrating', 'EndDate', 'ExecutionMethod', 'id', 'IncludeItemsInChargeDescription', 'InvoiceDescription', 'MaximumUnits', 'MinimumUnits', 'ProductID', 'StartDate')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DailyProratedPrice', 'MinimumUnits', 'DailyProratedCost', 'MaximumUnits', 'EndDate', 'ContractID', 'EnableDailyProrating', 'IncludeItemsInChargeDescription', 'ExecutionMethod', 'id', 'Active', 'ProductID', 'CreateChargesAsBillable', 'DetermineUnits', 'StartDate', 'InvoiceDescription')]
+    [ValidateSet('Active', 'ContractID', 'CreateChargesAsBillable', 'DailyProratedCost', 'DailyProratedPrice', 'DetermineUnits', 'EnableDailyProrating', 'EndDate', 'ExecutionMethod', 'id', 'IncludeItemsInChargeDescription', 'InvoiceDescription', 'MaximumUnits', 'MinimumUnits', 'ProductID', 'StartDate')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
+    [ValidateSet('ContractID', 'DailyProratedCost', 'DailyProratedPrice', 'DetermineUnits', 'EndDate', 'ExecutionMethod', 'id', 'InvoiceDescription', 'MaximumUnits', 'MinimumUnits', 'ProductID', 'StartDate')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
+    [ValidateSet('ContractID', 'DailyProratedCost', 'DailyProratedPrice', 'DetermineUnits', 'EndDate', 'ExecutionMethod', 'id', 'InvoiceDescription', 'MaximumUnits', 'MinimumUnits', 'ProductID', 'StartDate')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
+    [ValidateSet('ContractID', 'DailyProratedCost', 'DailyProratedPrice', 'DetermineUnits', 'EndDate', 'ExecutionMethod', 'id', 'InvoiceDescription', 'MaximumUnits', 'MinimumUnits', 'ProductID', 'StartDate')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InvoiceDescription', 'ContractID', 'ProductID', 'StartDate', 'EndDate', 'DetermineUnits', 'MinimumUnits', 'MaximumUnits', 'DailyProratedCost', 'DailyProratedPrice', 'ExecutionMethod')]
+    [ValidateSet('ContractID', 'DailyProratedCost', 'DailyProratedPrice', 'DetermineUnits', 'EndDate', 'ExecutionMethod', 'id', 'InvoiceDescription', 'MaximumUnits', 'MinimumUnits', 'ProductID', 'StartDate')]
     [string[]]
     $LessThanOrEquals,
 
@@ -348,7 +348,7 @@ Set-AtwsContractBillingRule
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'EndDate')]
+    [ValidateSet('EndDate', 'StartDate')]
     [string[]]
     $IsThisDay
   )
@@ -463,8 +463,10 @@ Set-AtwsContractBillingRule
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

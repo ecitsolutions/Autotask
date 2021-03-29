@@ -466,91 +466,91 @@ Set-AtwsTask
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityPersonType', 'TaskNumber', 'id', 'AllocationCodeID', 'PhaseID', 'CreateDateTime', 'Description', 'IsVisibleInClientPortal', 'PurchaseOrderNumber', 'CompletedDateTime', 'LastActivityResourceID', 'CanClientPortalUserCompleteTask', 'TaskIsBillable', 'DepartmentID', 'Title', 'StartDateTime', 'PriorityLabel', 'RemainingHours', 'ExternalID', 'CreatorResourceID', 'AccountPhysicalLocationID', 'LastActivityDateTime', 'HoursToBeScheduled', 'AssignedResourceRoleID', 'Status', 'CompletedByType', 'Priority', 'AssignedResourceID', 'EstimatedHours', 'TaskType', 'CreatorType', 'TaskCategoryID', 'CompletedByResourceID', 'EndDateTime', 'ProjectID')]
+    [ValidateSet('AccountPhysicalLocationID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CanClientPortalUserCompleteTask', 'CompletedByResourceID', 'CompletedByType', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'CreatorType', 'DepartmentID', 'Description', 'EndDateTime', 'EstimatedHours', 'ExternalID', 'HoursToBeScheduled', 'id', 'IsVisibleInClientPortal', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'PhaseID', 'Priority', 'PriorityLabel', 'ProjectID', 'PurchaseOrderNumber', 'RemainingHours', 'StartDateTime', 'Status', 'TaskCategoryID', 'TaskIsBillable', 'TaskNumber', 'TaskType', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityPersonType', 'TaskNumber', 'id', 'AllocationCodeID', 'PhaseID', 'CreateDateTime', 'Description', 'IsVisibleInClientPortal', 'PurchaseOrderNumber', 'CompletedDateTime', 'LastActivityResourceID', 'CanClientPortalUserCompleteTask', 'TaskIsBillable', 'DepartmentID', 'Title', 'StartDateTime', 'PriorityLabel', 'RemainingHours', 'ExternalID', 'CreatorResourceID', 'AccountPhysicalLocationID', 'LastActivityDateTime', 'HoursToBeScheduled', 'AssignedResourceRoleID', 'Status', 'CompletedByType', 'Priority', 'AssignedResourceID', 'EstimatedHours', 'TaskType', 'CreatorType', 'TaskCategoryID', 'CompletedByResourceID', 'EndDateTime', 'ProjectID')]
+    [ValidateSet('AccountPhysicalLocationID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CanClientPortalUserCompleteTask', 'CompletedByResourceID', 'CompletedByType', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'CreatorType', 'DepartmentID', 'Description', 'EndDateTime', 'EstimatedHours', 'ExternalID', 'HoursToBeScheduled', 'id', 'IsVisibleInClientPortal', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'PhaseID', 'Priority', 'PriorityLabel', 'ProjectID', 'PurchaseOrderNumber', 'RemainingHours', 'StartDateTime', 'Status', 'TaskCategoryID', 'TaskIsBillable', 'TaskNumber', 'TaskType', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityPersonType', 'TaskNumber', 'id', 'AllocationCodeID', 'PhaseID', 'CreateDateTime', 'Description', 'IsVisibleInClientPortal', 'PurchaseOrderNumber', 'CompletedDateTime', 'LastActivityResourceID', 'CanClientPortalUserCompleteTask', 'TaskIsBillable', 'DepartmentID', 'Title', 'StartDateTime', 'PriorityLabel', 'RemainingHours', 'ExternalID', 'CreatorResourceID', 'AccountPhysicalLocationID', 'LastActivityDateTime', 'HoursToBeScheduled', 'AssignedResourceRoleID', 'Status', 'CompletedByType', 'Priority', 'AssignedResourceID', 'EstimatedHours', 'TaskType', 'CreatorType', 'TaskCategoryID', 'CompletedByResourceID', 'EndDateTime', 'ProjectID')]
+    [ValidateSet('AccountPhysicalLocationID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CanClientPortalUserCompleteTask', 'CompletedByResourceID', 'CompletedByType', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'CreatorType', 'DepartmentID', 'Description', 'EndDateTime', 'EstimatedHours', 'ExternalID', 'HoursToBeScheduled', 'id', 'IsVisibleInClientPortal', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'PhaseID', 'Priority', 'PriorityLabel', 'ProjectID', 'PurchaseOrderNumber', 'RemainingHours', 'StartDateTime', 'Status', 'TaskCategoryID', 'TaskIsBillable', 'TaskNumber', 'TaskType', 'Title')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectID', 'PhaseID', 'Title', 'Description', 'StartDateTime', 'EndDateTime', 'DepartmentID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'TaskType', 'Status', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'EstimatedHours', 'id', 'TaskNumber', 'ExternalID', 'LastActivityDateTime', 'Priority', 'PurchaseOrderNumber', 'RemainingHours', 'HoursToBeScheduled', 'PriorityLabel', 'CreatorType', 'CompletedByResourceID', 'CompletedByType', 'LastActivityResourceID', 'LastActivityPersonType', 'AccountPhysicalLocationID', 'TaskCategoryID')]
+    [ValidateSet('AccountPhysicalLocationID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedByResourceID', 'CompletedByType', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'CreatorType', 'DepartmentID', 'Description', 'EndDateTime', 'EstimatedHours', 'ExternalID', 'HoursToBeScheduled', 'id', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'PhaseID', 'Priority', 'PriorityLabel', 'ProjectID', 'PurchaseOrderNumber', 'RemainingHours', 'StartDateTime', 'Status', 'TaskCategoryID', 'TaskNumber', 'TaskType', 'Title')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectID', 'PhaseID', 'Title', 'Description', 'StartDateTime', 'EndDateTime', 'DepartmentID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'TaskType', 'Status', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'EstimatedHours', 'id', 'TaskNumber', 'ExternalID', 'LastActivityDateTime', 'Priority', 'PurchaseOrderNumber', 'RemainingHours', 'HoursToBeScheduled', 'PriorityLabel', 'CreatorType', 'CompletedByResourceID', 'CompletedByType', 'LastActivityResourceID', 'LastActivityPersonType', 'AccountPhysicalLocationID', 'TaskCategoryID')]
+    [ValidateSet('AccountPhysicalLocationID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedByResourceID', 'CompletedByType', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'CreatorType', 'DepartmentID', 'Description', 'EndDateTime', 'EstimatedHours', 'ExternalID', 'HoursToBeScheduled', 'id', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'PhaseID', 'Priority', 'PriorityLabel', 'ProjectID', 'PurchaseOrderNumber', 'RemainingHours', 'StartDateTime', 'Status', 'TaskCategoryID', 'TaskNumber', 'TaskType', 'Title')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectID', 'PhaseID', 'Title', 'Description', 'StartDateTime', 'EndDateTime', 'DepartmentID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'TaskType', 'Status', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'EstimatedHours', 'id', 'TaskNumber', 'ExternalID', 'LastActivityDateTime', 'Priority', 'PurchaseOrderNumber', 'RemainingHours', 'HoursToBeScheduled', 'PriorityLabel', 'CreatorType', 'CompletedByResourceID', 'CompletedByType', 'LastActivityResourceID', 'LastActivityPersonType', 'AccountPhysicalLocationID', 'TaskCategoryID')]
+    [ValidateSet('AccountPhysicalLocationID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedByResourceID', 'CompletedByType', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'CreatorType', 'DepartmentID', 'Description', 'EndDateTime', 'EstimatedHours', 'ExternalID', 'HoursToBeScheduled', 'id', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'PhaseID', 'Priority', 'PriorityLabel', 'ProjectID', 'PurchaseOrderNumber', 'RemainingHours', 'StartDateTime', 'Status', 'TaskCategoryID', 'TaskNumber', 'TaskType', 'Title')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectID', 'PhaseID', 'Title', 'Description', 'StartDateTime', 'EndDateTime', 'DepartmentID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'TaskType', 'Status', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'EstimatedHours', 'id', 'TaskNumber', 'ExternalID', 'LastActivityDateTime', 'Priority', 'PurchaseOrderNumber', 'RemainingHours', 'HoursToBeScheduled', 'PriorityLabel', 'CreatorType', 'CompletedByResourceID', 'CompletedByType', 'LastActivityResourceID', 'LastActivityPersonType', 'AccountPhysicalLocationID', 'TaskCategoryID')]
+    [ValidateSet('AccountPhysicalLocationID', 'AllocationCodeID', 'AssignedResourceID', 'AssignedResourceRoleID', 'CompletedByResourceID', 'CompletedByType', 'CompletedDateTime', 'CreateDateTime', 'CreatorResourceID', 'CreatorType', 'DepartmentID', 'Description', 'EndDateTime', 'EstimatedHours', 'ExternalID', 'HoursToBeScheduled', 'id', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'PhaseID', 'Priority', 'PriorityLabel', 'ProjectID', 'PurchaseOrderNumber', 'RemainingHours', 'StartDateTime', 'Status', 'TaskCategoryID', 'TaskNumber', 'TaskType', 'Title')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExternalID', 'PurchaseOrderNumber', 'TaskNumber', 'Title')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExternalID', 'PurchaseOrderNumber', 'TaskNumber', 'Title')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExternalID', 'PurchaseOrderNumber', 'TaskNumber', 'Title')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExternalID', 'PurchaseOrderNumber', 'TaskNumber', 'Title')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExternalID', 'PurchaseOrderNumber', 'TaskNumber', 'Title')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'EndDateTime', 'CompletedDateTime', 'CreateDateTime', 'LastActivityDateTime')]
+    [ValidateSet('CompletedDateTime', 'CreateDateTime', 'EndDateTime', 'LastActivityDateTime', 'StartDateTime')]
     [string[]]
     $IsThisDay
   )
@@ -665,8 +665,10 @@ Set-AtwsTask
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

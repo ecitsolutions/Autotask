@@ -176,49 +176,49 @@ New-AtwsInventoryTransfer
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateNote', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'ProductID', 'FromLocationID', 'id', 'SerialNumber', 'Notes', 'ToLocationID')]
+    [ValidateSet('FromLocationID', 'id', 'Notes', 'ProductID', 'QuantityTransferred', 'SerialNumber', 'ToLocationID', 'TransferByResourceID', 'TransferDate', 'UpdateNote')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateNote', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'ProductID', 'FromLocationID', 'id', 'SerialNumber', 'Notes', 'ToLocationID')]
+    [ValidateSet('FromLocationID', 'id', 'Notes', 'ProductID', 'QuantityTransferred', 'SerialNumber', 'ToLocationID', 'TransferByResourceID', 'TransferDate', 'UpdateNote')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateNote', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'ProductID', 'FromLocationID', 'id', 'SerialNumber', 'Notes', 'ToLocationID')]
+    [ValidateSet('FromLocationID', 'id', 'Notes', 'ProductID', 'QuantityTransferred', 'SerialNumber', 'ToLocationID', 'TransferByResourceID', 'TransferDate', 'UpdateNote')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'FromLocationID', 'ToLocationID', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'Notes', 'SerialNumber', 'UpdateNote')]
+    [ValidateSet('FromLocationID', 'id', 'Notes', 'ProductID', 'QuantityTransferred', 'SerialNumber', 'ToLocationID', 'TransferByResourceID', 'TransferDate', 'UpdateNote')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'FromLocationID', 'ToLocationID', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'Notes', 'SerialNumber', 'UpdateNote')]
+    [ValidateSet('FromLocationID', 'id', 'Notes', 'ProductID', 'QuantityTransferred', 'SerialNumber', 'ToLocationID', 'TransferByResourceID', 'TransferDate', 'UpdateNote')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'FromLocationID', 'ToLocationID', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'Notes', 'SerialNumber', 'UpdateNote')]
+    [ValidateSet('FromLocationID', 'id', 'Notes', 'ProductID', 'QuantityTransferred', 'SerialNumber', 'ToLocationID', 'TransferByResourceID', 'TransferDate', 'UpdateNote')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'FromLocationID', 'ToLocationID', 'QuantityTransferred', 'TransferByResourceID', 'TransferDate', 'Notes', 'SerialNumber', 'UpdateNote')]
+    [ValidateSet('FromLocationID', 'id', 'Notes', 'ProductID', 'QuantityTransferred', 'SerialNumber', 'ToLocationID', 'TransferByResourceID', 'TransferDate', 'UpdateNote')]
     [string[]]
     $LessThanOrEquals,
 
@@ -375,8 +375,10 @@ New-AtwsInventoryTransfer
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

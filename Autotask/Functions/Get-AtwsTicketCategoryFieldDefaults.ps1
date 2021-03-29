@@ -339,49 +339,49 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'Priority', 'Resolution', 'TicketTypeID', 'Title', 'Status', 'PurchaseOrderNumber', 'EstimatedHours', 'ServiceLevelAgreementID', 'SubIssueTypeID', 'Description', 'TicketCategoryID', 'SourceID', 'id', 'IssueTypeID', 'WorkTypeID', 'QueueID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'id', 'IssueTypeID', 'Priority', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'Status', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'Priority', 'Resolution', 'TicketTypeID', 'Title', 'Status', 'PurchaseOrderNumber', 'EstimatedHours', 'ServiceLevelAgreementID', 'SubIssueTypeID', 'Description', 'TicketCategoryID', 'SourceID', 'id', 'IssueTypeID', 'WorkTypeID', 'QueueID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'id', 'IssueTypeID', 'Priority', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'Status', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'Priority', 'Resolution', 'TicketTypeID', 'Title', 'Status', 'PurchaseOrderNumber', 'EstimatedHours', 'ServiceLevelAgreementID', 'SubIssueTypeID', 'Description', 'TicketCategoryID', 'SourceID', 'id', 'IssueTypeID', 'WorkTypeID', 'QueueID')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'id', 'IssueTypeID', 'Priority', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'Status', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'IssueTypeID', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID', 'Status', 'Priority')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'id', 'IssueTypeID', 'Priority', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'Status', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'IssueTypeID', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID', 'Status', 'Priority')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'id', 'IssueTypeID', 'Priority', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'Status', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'IssueTypeID', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID', 'Status', 'Priority')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'id', 'IssueTypeID', 'Priority', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'Status', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'IssueTypeID', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID', 'Status', 'Priority')]
+    [ValidateSet('BusinessDivisionSubdivisionID', 'Description', 'EstimatedHours', 'id', 'IssueTypeID', 'Priority', 'PurchaseOrderNumber', 'QueueID', 'Resolution', 'ServiceLevelAgreementID', 'SourceID', 'Status', 'SubIssueTypeID', 'TicketCategoryID', 'TicketTypeID', 'Title', 'WorkTypeID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -537,8 +537,10 @@ An example of a more complex query. This command returns any TicketCategoryField
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

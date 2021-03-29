@@ -137,49 +137,49 @@ Set-AtwsPriceListRole
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HourlyRate', 'id', 'UsesInternalCurrencyPrice', 'RoleID', 'CurrencyID')]
+    [ValidateSet('CurrencyID', 'HourlyRate', 'id', 'RoleID', 'UsesInternalCurrencyPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HourlyRate', 'id', 'UsesInternalCurrencyPrice', 'RoleID', 'CurrencyID')]
+    [ValidateSet('CurrencyID', 'HourlyRate', 'id', 'RoleID', 'UsesInternalCurrencyPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HourlyRate', 'id', 'UsesInternalCurrencyPrice', 'RoleID', 'CurrencyID')]
+    [ValidateSet('CurrencyID', 'HourlyRate', 'id', 'RoleID', 'UsesInternalCurrencyPrice')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'RoleID', 'CurrencyID', 'HourlyRate')]
+    [ValidateSet('CurrencyID', 'HourlyRate', 'id', 'RoleID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'RoleID', 'CurrencyID', 'HourlyRate')]
+    [ValidateSet('CurrencyID', 'HourlyRate', 'id', 'RoleID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'RoleID', 'CurrencyID', 'HourlyRate')]
+    [ValidateSet('CurrencyID', 'HourlyRate', 'id', 'RoleID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'RoleID', 'CurrencyID', 'HourlyRate')]
+    [ValidateSet('CurrencyID', 'HourlyRate', 'id', 'RoleID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -330,8 +330,10 @@ Set-AtwsPriceListRole
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

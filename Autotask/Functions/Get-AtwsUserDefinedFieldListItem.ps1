@@ -148,84 +148,84 @@ Set-AtwsUserDefinedFieldListItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForDisplay', 'IsActive', 'CreateDate', 'UdfFieldId', 'id', 'ValueForExport')]
+    [ValidateSet('CreateDate', 'id', 'IsActive', 'UdfFieldId', 'ValueForDisplay', 'ValueForExport')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForDisplay', 'IsActive', 'CreateDate', 'UdfFieldId', 'id', 'ValueForExport')]
+    [ValidateSet('CreateDate', 'id', 'IsActive', 'UdfFieldId', 'ValueForDisplay', 'ValueForExport')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForDisplay', 'IsActive', 'CreateDate', 'UdfFieldId', 'id', 'ValueForExport')]
+    [ValidateSet('CreateDate', 'id', 'IsActive', 'UdfFieldId', 'ValueForDisplay', 'ValueForExport')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'UdfFieldId', 'ValueForExport', 'ValueForDisplay', 'CreateDate')]
+    [ValidateSet('CreateDate', 'id', 'UdfFieldId', 'ValueForDisplay', 'ValueForExport')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'UdfFieldId', 'ValueForExport', 'ValueForDisplay', 'CreateDate')]
+    [ValidateSet('CreateDate', 'id', 'UdfFieldId', 'ValueForDisplay', 'ValueForExport')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'UdfFieldId', 'ValueForExport', 'ValueForDisplay', 'CreateDate')]
+    [ValidateSet('CreateDate', 'id', 'UdfFieldId', 'ValueForDisplay', 'ValueForExport')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'UdfFieldId', 'ValueForExport', 'ValueForDisplay', 'CreateDate')]
+    [ValidateSet('CreateDate', 'id', 'UdfFieldId', 'ValueForDisplay', 'ValueForExport')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForExport', 'ValueForDisplay')]
+    [ValidateSet('ValueForDisplay', 'ValueForExport')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForExport', 'ValueForDisplay')]
+    [ValidateSet('ValueForDisplay', 'ValueForExport')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForExport', 'ValueForDisplay')]
+    [ValidateSet('ValueForDisplay', 'ValueForExport')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForExport', 'ValueForDisplay')]
+    [ValidateSet('ValueForDisplay', 'ValueForExport')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ValueForExport', 'ValueForDisplay')]
+    [ValidateSet('ValueForDisplay', 'ValueForExport')]
     [string[]]
     $Contains,
 
@@ -347,8 +347,10 @@ Set-AtwsUserDefinedFieldListItem
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

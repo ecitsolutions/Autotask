@@ -145,49 +145,49 @@ Set-AtwsPriceListWorkTypeModifier
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ModifierType', 'CurrencyID', 'ModifierValue', 'WorkTypeModifierID', 'id', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('CurrencyID', 'id', 'ModifierType', 'ModifierValue', 'UsesInternalCurrencyPrice', 'WorkTypeModifierID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ModifierType', 'CurrencyID', 'ModifierValue', 'WorkTypeModifierID', 'id', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('CurrencyID', 'id', 'ModifierType', 'ModifierValue', 'UsesInternalCurrencyPrice', 'WorkTypeModifierID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ModifierType', 'CurrencyID', 'ModifierValue', 'WorkTypeModifierID', 'id', 'UsesInternalCurrencyPrice')]
+    [ValidateSet('CurrencyID', 'id', 'ModifierType', 'ModifierValue', 'UsesInternalCurrencyPrice', 'WorkTypeModifierID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierType', 'ModifierValue')]
+    [ValidateSet('CurrencyID', 'id', 'ModifierType', 'ModifierValue', 'WorkTypeModifierID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierType', 'ModifierValue')]
+    [ValidateSet('CurrencyID', 'id', 'ModifierType', 'ModifierValue', 'WorkTypeModifierID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierType', 'ModifierValue')]
+    [ValidateSet('CurrencyID', 'id', 'ModifierType', 'ModifierValue', 'WorkTypeModifierID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WorkTypeModifierID', 'CurrencyID', 'ModifierType', 'ModifierValue')]
+    [ValidateSet('CurrencyID', 'id', 'ModifierType', 'ModifierValue', 'WorkTypeModifierID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -338,8 +338,10 @@ Set-AtwsPriceListWorkTypeModifier
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

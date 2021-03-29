@@ -169,84 +169,84 @@ Set-AtwsChecklistLibrary
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Active', 'Name', 'EntityType')]
+    [ValidateSet('Active', 'Description', 'EntityType', 'id', 'Name')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Active', 'Name', 'EntityType')]
+    [ValidateSet('Active', 'Description', 'EntityType', 'id', 'Name')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'id', 'Active', 'Name', 'EntityType')]
+    [ValidateSet('Active', 'Description', 'EntityType', 'id', 'Name')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'EntityType')]
+    [ValidateSet('Description', 'EntityType', 'id', 'Name')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'EntityType')]
+    [ValidateSet('Description', 'EntityType', 'id', 'Name')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'EntityType')]
+    [ValidateSet('Description', 'EntityType', 'id', 'Name')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'EntityType')]
+    [ValidateSet('Description', 'EntityType', 'id', 'Name')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description')]
+    [ValidateSet('Description', 'Name')]
     [string[]]
     $Contains,
 
@@ -367,8 +367,10 @@ Set-AtwsChecklistLibrary
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

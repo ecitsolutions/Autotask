@@ -296,84 +296,84 @@ An example of a more complex query. This command returns any NotificationHistory
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OpportunityID', 'ProjectID', 'TaskID', 'RecipientEmailAddress', 'NotificationHistoryTypeID', 'TemplateName', 'RecipientDisplayName', 'InitiatingContactID', 'IsActive', 'NotificationSentTime', 'EntityTitle', 'EntityNumber', 'id', 'InitiatingResourceID', 'TimeEntryID', 'QuoteID', 'IsDeleted', 'TicketID', 'IsTemplateJob', 'AccountID')]
+    [ValidateSet('AccountID', 'EntityNumber', 'EntityTitle', 'id', 'InitiatingContactID', 'InitiatingResourceID', 'IsActive', 'IsDeleted', 'IsTemplateJob', 'NotificationHistoryTypeID', 'NotificationSentTime', 'OpportunityID', 'ProjectID', 'QuoteID', 'RecipientDisplayName', 'RecipientEmailAddress', 'TaskID', 'TemplateName', 'TicketID', 'TimeEntryID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OpportunityID', 'ProjectID', 'TaskID', 'RecipientEmailAddress', 'NotificationHistoryTypeID', 'TemplateName', 'RecipientDisplayName', 'InitiatingContactID', 'IsActive', 'NotificationSentTime', 'EntityTitle', 'EntityNumber', 'id', 'InitiatingResourceID', 'TimeEntryID', 'QuoteID', 'IsDeleted', 'TicketID', 'IsTemplateJob', 'AccountID')]
+    [ValidateSet('AccountID', 'EntityNumber', 'EntityTitle', 'id', 'InitiatingContactID', 'InitiatingResourceID', 'IsActive', 'IsDeleted', 'IsTemplateJob', 'NotificationHistoryTypeID', 'NotificationSentTime', 'OpportunityID', 'ProjectID', 'QuoteID', 'RecipientDisplayName', 'RecipientEmailAddress', 'TaskID', 'TemplateName', 'TicketID', 'TimeEntryID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('OpportunityID', 'ProjectID', 'TaskID', 'RecipientEmailAddress', 'NotificationHistoryTypeID', 'TemplateName', 'RecipientDisplayName', 'InitiatingContactID', 'IsActive', 'NotificationSentTime', 'EntityTitle', 'EntityNumber', 'id', 'InitiatingResourceID', 'TimeEntryID', 'QuoteID', 'IsDeleted', 'TicketID', 'IsTemplateJob', 'AccountID')]
+    [ValidateSet('AccountID', 'EntityNumber', 'EntityTitle', 'id', 'InitiatingContactID', 'InitiatingResourceID', 'IsActive', 'IsDeleted', 'IsTemplateJob', 'NotificationHistoryTypeID', 'NotificationSentTime', 'OpportunityID', 'ProjectID', 'QuoteID', 'RecipientDisplayName', 'RecipientEmailAddress', 'TaskID', 'TemplateName', 'TicketID', 'TimeEntryID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'NotificationSentTime', 'TemplateName', 'NotificationHistoryTypeID', 'EntityTitle', 'EntityNumber', 'InitiatingResourceID', 'InitiatingContactID', 'RecipientEmailAddress', 'RecipientDisplayName', 'AccountID', 'QuoteID', 'OpportunityID', 'ProjectID', 'TaskID', 'TicketID', 'TimeEntryID')]
+    [ValidateSet('AccountID', 'EntityNumber', 'EntityTitle', 'id', 'InitiatingContactID', 'InitiatingResourceID', 'NotificationHistoryTypeID', 'NotificationSentTime', 'OpportunityID', 'ProjectID', 'QuoteID', 'RecipientDisplayName', 'RecipientEmailAddress', 'TaskID', 'TemplateName', 'TicketID', 'TimeEntryID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'NotificationSentTime', 'TemplateName', 'NotificationHistoryTypeID', 'EntityTitle', 'EntityNumber', 'InitiatingResourceID', 'InitiatingContactID', 'RecipientEmailAddress', 'RecipientDisplayName', 'AccountID', 'QuoteID', 'OpportunityID', 'ProjectID', 'TaskID', 'TicketID', 'TimeEntryID')]
+    [ValidateSet('AccountID', 'EntityNumber', 'EntityTitle', 'id', 'InitiatingContactID', 'InitiatingResourceID', 'NotificationHistoryTypeID', 'NotificationSentTime', 'OpportunityID', 'ProjectID', 'QuoteID', 'RecipientDisplayName', 'RecipientEmailAddress', 'TaskID', 'TemplateName', 'TicketID', 'TimeEntryID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'NotificationSentTime', 'TemplateName', 'NotificationHistoryTypeID', 'EntityTitle', 'EntityNumber', 'InitiatingResourceID', 'InitiatingContactID', 'RecipientEmailAddress', 'RecipientDisplayName', 'AccountID', 'QuoteID', 'OpportunityID', 'ProjectID', 'TaskID', 'TicketID', 'TimeEntryID')]
+    [ValidateSet('AccountID', 'EntityNumber', 'EntityTitle', 'id', 'InitiatingContactID', 'InitiatingResourceID', 'NotificationHistoryTypeID', 'NotificationSentTime', 'OpportunityID', 'ProjectID', 'QuoteID', 'RecipientDisplayName', 'RecipientEmailAddress', 'TaskID', 'TemplateName', 'TicketID', 'TimeEntryID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'NotificationSentTime', 'TemplateName', 'NotificationHistoryTypeID', 'EntityTitle', 'EntityNumber', 'InitiatingResourceID', 'InitiatingContactID', 'RecipientEmailAddress', 'RecipientDisplayName', 'AccountID', 'QuoteID', 'OpportunityID', 'ProjectID', 'TaskID', 'TicketID', 'TimeEntryID')]
+    [ValidateSet('AccountID', 'EntityNumber', 'EntityTitle', 'id', 'InitiatingContactID', 'InitiatingResourceID', 'NotificationHistoryTypeID', 'NotificationSentTime', 'OpportunityID', 'ProjectID', 'QuoteID', 'RecipientDisplayName', 'RecipientEmailAddress', 'TaskID', 'TemplateName', 'TicketID', 'TimeEntryID')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'EntityTitle', 'EntityNumber', 'RecipientEmailAddress', 'RecipientDisplayName')]
+    [ValidateSet('EntityNumber', 'EntityTitle', 'RecipientDisplayName', 'RecipientEmailAddress', 'TemplateName')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'EntityTitle', 'EntityNumber', 'RecipientEmailAddress', 'RecipientDisplayName')]
+    [ValidateSet('EntityNumber', 'EntityTitle', 'RecipientDisplayName', 'RecipientEmailAddress', 'TemplateName')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'EntityTitle', 'EntityNumber', 'RecipientEmailAddress', 'RecipientDisplayName')]
+    [ValidateSet('EntityNumber', 'EntityTitle', 'RecipientDisplayName', 'RecipientEmailAddress', 'TemplateName')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'EntityTitle', 'EntityNumber', 'RecipientEmailAddress', 'RecipientDisplayName')]
+    [ValidateSet('EntityNumber', 'EntityTitle', 'RecipientDisplayName', 'RecipientEmailAddress', 'TemplateName')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('TemplateName', 'EntityTitle', 'EntityNumber', 'RecipientEmailAddress', 'RecipientDisplayName')]
+    [ValidateSet('EntityNumber', 'EntityTitle', 'RecipientDisplayName', 'RecipientEmailAddress', 'TemplateName')]
     [string[]]
     $Contains,
 
@@ -495,8 +495,10 @@ An example of a more complex query. This command returns any NotificationHistory
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

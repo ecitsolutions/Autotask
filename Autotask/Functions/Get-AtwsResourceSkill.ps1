@@ -165,49 +165,49 @@ Set-AtwsResourceSkill
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SkillLevel', 'id', 'SkillID', 'ResourceID', 'SkillDescription')]
+    [ValidateSet('id', 'ResourceID', 'SkillDescription', 'SkillID', 'SkillLevel')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SkillLevel', 'id', 'SkillID', 'ResourceID', 'SkillDescription')]
+    [ValidateSet('id', 'ResourceID', 'SkillDescription', 'SkillID', 'SkillLevel')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SkillLevel', 'id', 'SkillID', 'ResourceID', 'SkillDescription')]
+    [ValidateSet('id', 'ResourceID', 'SkillDescription', 'SkillID', 'SkillLevel')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'SkillID', 'SkillLevel', 'SkillDescription')]
+    [ValidateSet('id', 'ResourceID', 'SkillDescription', 'SkillID', 'SkillLevel')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'SkillID', 'SkillLevel', 'SkillDescription')]
+    [ValidateSet('id', 'ResourceID', 'SkillDescription', 'SkillID', 'SkillLevel')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'SkillID', 'SkillLevel', 'SkillDescription')]
+    [ValidateSet('id', 'ResourceID', 'SkillDescription', 'SkillID', 'SkillLevel')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ResourceID', 'SkillID', 'SkillLevel', 'SkillDescription')]
+    [ValidateSet('id', 'ResourceID', 'SkillDescription', 'SkillID', 'SkillLevel')]
     [string[]]
     $LessThanOrEquals,
 
@@ -363,8 +363,10 @@ Set-AtwsResourceSkill
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

@@ -247,49 +247,49 @@ Set-AtwsContractTicketPurchase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentType', 'PerTicketRate', 'TicketsUsed', 'PaymentNumber', 'Status', 'ContractID', 'InvoiceNumber', 'DatePurchased', 'TicketsPurchased', 'id', 'IsPaid', 'StartDate', 'EndDate')]
+    [ValidateSet('ContractID', 'DatePurchased', 'EndDate', 'id', 'InvoiceNumber', 'IsPaid', 'PaymentNumber', 'PaymentType', 'PerTicketRate', 'StartDate', 'Status', 'TicketsPurchased', 'TicketsUsed')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentType', 'PerTicketRate', 'TicketsUsed', 'PaymentNumber', 'Status', 'ContractID', 'InvoiceNumber', 'DatePurchased', 'TicketsPurchased', 'id', 'IsPaid', 'StartDate', 'EndDate')]
+    [ValidateSet('ContractID', 'DatePurchased', 'EndDate', 'id', 'InvoiceNumber', 'IsPaid', 'PaymentNumber', 'PaymentType', 'PerTicketRate', 'StartDate', 'Status', 'TicketsPurchased', 'TicketsUsed')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PaymentType', 'PerTicketRate', 'TicketsUsed', 'PaymentNumber', 'Status', 'ContractID', 'InvoiceNumber', 'DatePurchased', 'TicketsPurchased', 'id', 'IsPaid', 'StartDate', 'EndDate')]
+    [ValidateSet('ContractID', 'DatePurchased', 'EndDate', 'id', 'InvoiceNumber', 'IsPaid', 'PaymentNumber', 'PaymentType', 'PerTicketRate', 'StartDate', 'Status', 'TicketsPurchased', 'TicketsUsed')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'DatePurchased', 'StartDate', 'EndDate', 'TicketsPurchased', 'PerTicketRate', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'TicketsUsed', 'Status')]
+    [ValidateSet('ContractID', 'DatePurchased', 'EndDate', 'id', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'PerTicketRate', 'StartDate', 'Status', 'TicketsPurchased', 'TicketsUsed')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'DatePurchased', 'StartDate', 'EndDate', 'TicketsPurchased', 'PerTicketRate', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'TicketsUsed', 'Status')]
+    [ValidateSet('ContractID', 'DatePurchased', 'EndDate', 'id', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'PerTicketRate', 'StartDate', 'Status', 'TicketsPurchased', 'TicketsUsed')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'DatePurchased', 'StartDate', 'EndDate', 'TicketsPurchased', 'PerTicketRate', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'TicketsUsed', 'Status')]
+    [ValidateSet('ContractID', 'DatePurchased', 'EndDate', 'id', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'PerTicketRate', 'StartDate', 'Status', 'TicketsPurchased', 'TicketsUsed')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'DatePurchased', 'StartDate', 'EndDate', 'TicketsPurchased', 'PerTicketRate', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'TicketsUsed', 'Status')]
+    [ValidateSet('ContractID', 'DatePurchased', 'EndDate', 'id', 'InvoiceNumber', 'PaymentNumber', 'PaymentType', 'PerTicketRate', 'StartDate', 'Status', 'TicketsPurchased', 'TicketsUsed')]
     [string[]]
     $LessThanOrEquals,
 
@@ -331,7 +331,7 @@ Set-AtwsContractTicketPurchase
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DatePurchased', 'StartDate', 'EndDate')]
+    [ValidateSet('DatePurchased', 'EndDate', 'StartDate')]
     [string[]]
     $IsThisDay
   )
@@ -446,8 +446,10 @@ Set-AtwsContractTicketPurchase
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

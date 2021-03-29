@@ -474,91 +474,91 @@ Set-AtwsProject
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ActualBilledHours', 'LastActivityPersonType', 'StatusDetail', 'LaborEstimatedCosts', 'ProjectCostsBudget', 'SGDA', 'ChangeOrdersRevenue', 'ImpersonatorCreatorResourceID', 'OriginalEstimatedRevenue', 'Description', 'CreateDateTime', 'AccountID', 'ProjectNumber', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersBudget', 'CompletedDateTime', 'CompletedPercentage', 'ProjectLeadResourceID', 'ContractID', 'LaborEstimatedMarginPercentage', 'StartDateTime', 'LaborEstimatedRevenue', 'CreatorResourceID', 'ExtPNumber', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'ProjectName', 'Status', 'PurchaseOrderNumber', 'OpportunityID', 'Duration', 'EstimatedSalesCost', 'LineOfBusiness', 'CompanyOwnerResourceID', 'id', 'LastActivityDateTime', 'StatusDateTime', 'Department', 'BusinessDivisionSubdivisionID', 'Type', 'ExtProjectType', 'EndDateTime', 'ActualHours')]
+    [ValidateSet('AccountID', 'ActualBilledHours', 'ActualHours', 'BusinessDivisionSubdivisionID', 'ChangeOrdersBudget', 'ChangeOrdersRevenue', 'CompanyOwnerResourceID', 'CompletedDateTime', 'CompletedPercentage', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'Department', 'Description', 'Duration', 'EndDateTime', 'EstimatedSalesCost', 'EstimatedTime', 'ExtPNumber', 'ExtProjectType', 'id', 'ImpersonatorCreatorResourceID', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'LaborEstimatedRevenue', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'LineOfBusiness', 'OpportunityID', 'OriginalEstimatedRevenue', 'ProjectCostEstimatedMarginPercentage', 'ProjectCostsBudget', 'ProjectCostsRevenue', 'ProjectLeadResourceID', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'SGDA', 'StartDateTime', 'Status', 'StatusDateTime', 'StatusDetail', 'Type')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ActualBilledHours', 'LastActivityPersonType', 'StatusDetail', 'LaborEstimatedCosts', 'ProjectCostsBudget', 'SGDA', 'ChangeOrdersRevenue', 'ImpersonatorCreatorResourceID', 'OriginalEstimatedRevenue', 'Description', 'CreateDateTime', 'AccountID', 'ProjectNumber', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersBudget', 'CompletedDateTime', 'CompletedPercentage', 'ProjectLeadResourceID', 'ContractID', 'LaborEstimatedMarginPercentage', 'StartDateTime', 'LaborEstimatedRevenue', 'CreatorResourceID', 'ExtPNumber', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'ProjectName', 'Status', 'PurchaseOrderNumber', 'OpportunityID', 'Duration', 'EstimatedSalesCost', 'LineOfBusiness', 'CompanyOwnerResourceID', 'id', 'LastActivityDateTime', 'StatusDateTime', 'Department', 'BusinessDivisionSubdivisionID', 'Type', 'ExtProjectType', 'EndDateTime', 'ActualHours')]
+    [ValidateSet('AccountID', 'ActualBilledHours', 'ActualHours', 'BusinessDivisionSubdivisionID', 'ChangeOrdersBudget', 'ChangeOrdersRevenue', 'CompanyOwnerResourceID', 'CompletedDateTime', 'CompletedPercentage', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'Department', 'Description', 'Duration', 'EndDateTime', 'EstimatedSalesCost', 'EstimatedTime', 'ExtPNumber', 'ExtProjectType', 'id', 'ImpersonatorCreatorResourceID', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'LaborEstimatedRevenue', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'LineOfBusiness', 'OpportunityID', 'OriginalEstimatedRevenue', 'ProjectCostEstimatedMarginPercentage', 'ProjectCostsBudget', 'ProjectCostsRevenue', 'ProjectLeadResourceID', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'SGDA', 'StartDateTime', 'Status', 'StatusDateTime', 'StatusDetail', 'Type')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ActualBilledHours', 'LastActivityPersonType', 'StatusDetail', 'LaborEstimatedCosts', 'ProjectCostsBudget', 'SGDA', 'ChangeOrdersRevenue', 'ImpersonatorCreatorResourceID', 'OriginalEstimatedRevenue', 'Description', 'CreateDateTime', 'AccountID', 'ProjectNumber', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersBudget', 'CompletedDateTime', 'CompletedPercentage', 'ProjectLeadResourceID', 'ContractID', 'LaborEstimatedMarginPercentage', 'StartDateTime', 'LaborEstimatedRevenue', 'CreatorResourceID', 'ExtPNumber', 'EstimatedTime', 'ProjectCostsRevenue', 'LastActivityResourceID', 'ProjectName', 'Status', 'PurchaseOrderNumber', 'OpportunityID', 'Duration', 'EstimatedSalesCost', 'LineOfBusiness', 'CompanyOwnerResourceID', 'id', 'LastActivityDateTime', 'StatusDateTime', 'Department', 'BusinessDivisionSubdivisionID', 'Type', 'ExtProjectType', 'EndDateTime', 'ActualHours')]
+    [ValidateSet('AccountID', 'ActualBilledHours', 'ActualHours', 'BusinessDivisionSubdivisionID', 'ChangeOrdersBudget', 'ChangeOrdersRevenue', 'CompanyOwnerResourceID', 'CompletedDateTime', 'CompletedPercentage', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'Department', 'Description', 'Duration', 'EndDateTime', 'EstimatedSalesCost', 'EstimatedTime', 'ExtPNumber', 'ExtProjectType', 'id', 'ImpersonatorCreatorResourceID', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'LaborEstimatedRevenue', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'LineOfBusiness', 'OpportunityID', 'OriginalEstimatedRevenue', 'ProjectCostEstimatedMarginPercentage', 'ProjectCostsBudget', 'ProjectCostsRevenue', 'ProjectLeadResourceID', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'SGDA', 'StartDateTime', 'Status', 'StatusDateTime', 'StatusDetail', 'Type')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtProjectType', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'ChangeOrdersBudget', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
+    [ValidateSet('AccountID', 'ActualBilledHours', 'ActualHours', 'BusinessDivisionSubdivisionID', 'ChangeOrdersBudget', 'ChangeOrdersRevenue', 'CompanyOwnerResourceID', 'CompletedDateTime', 'CompletedPercentage', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'Department', 'Description', 'Duration', 'EndDateTime', 'EstimatedSalesCost', 'EstimatedTime', 'ExtPNumber', 'ExtProjectType', 'id', 'ImpersonatorCreatorResourceID', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'LaborEstimatedRevenue', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'LineOfBusiness', 'OpportunityID', 'OriginalEstimatedRevenue', 'ProjectCostEstimatedMarginPercentage', 'ProjectCostsBudget', 'ProjectCostsRevenue', 'ProjectLeadResourceID', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'SGDA', 'StartDateTime', 'Status', 'StatusDateTime', 'StatusDetail', 'Type')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtProjectType', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'ChangeOrdersBudget', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
+    [ValidateSet('AccountID', 'ActualBilledHours', 'ActualHours', 'BusinessDivisionSubdivisionID', 'ChangeOrdersBudget', 'ChangeOrdersRevenue', 'CompanyOwnerResourceID', 'CompletedDateTime', 'CompletedPercentage', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'Department', 'Description', 'Duration', 'EndDateTime', 'EstimatedSalesCost', 'EstimatedTime', 'ExtPNumber', 'ExtProjectType', 'id', 'ImpersonatorCreatorResourceID', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'LaborEstimatedRevenue', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'LineOfBusiness', 'OpportunityID', 'OriginalEstimatedRevenue', 'ProjectCostEstimatedMarginPercentage', 'ProjectCostsBudget', 'ProjectCostsRevenue', 'ProjectLeadResourceID', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'SGDA', 'StartDateTime', 'Status', 'StatusDateTime', 'StatusDetail', 'Type')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtProjectType', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'ChangeOrdersBudget', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
+    [ValidateSet('AccountID', 'ActualBilledHours', 'ActualHours', 'BusinessDivisionSubdivisionID', 'ChangeOrdersBudget', 'ChangeOrdersRevenue', 'CompanyOwnerResourceID', 'CompletedDateTime', 'CompletedPercentage', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'Department', 'Description', 'Duration', 'EndDateTime', 'EstimatedSalesCost', 'EstimatedTime', 'ExtPNumber', 'ExtProjectType', 'id', 'ImpersonatorCreatorResourceID', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'LaborEstimatedRevenue', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'LineOfBusiness', 'OpportunityID', 'OriginalEstimatedRevenue', 'ProjectCostEstimatedMarginPercentage', 'ProjectCostsBudget', 'ProjectCostsRevenue', 'ProjectLeadResourceID', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'SGDA', 'StartDateTime', 'Status', 'StatusDateTime', 'StatusDetail', 'Type')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProjectName', 'AccountID', 'Type', 'ExtProjectType', 'ExtPNumber', 'ProjectNumber', 'Description', 'CreateDateTime', 'CreatorResourceID', 'StartDateTime', 'EndDateTime', 'Duration', 'ActualHours', 'ActualBilledHours', 'EstimatedTime', 'LaborEstimatedRevenue', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'ProjectCostsRevenue', 'ProjectCostsBudget', 'ProjectCostEstimatedMarginPercentage', 'ChangeOrdersRevenue', 'ChangeOrdersBudget', 'SGDA', 'OriginalEstimatedRevenue', 'EstimatedSalesCost', 'Status', 'ContractID', 'ProjectLeadResourceID', 'CompanyOwnerResourceID', 'CompletedPercentage', 'CompletedDateTime', 'StatusDetail', 'StatusDateTime', 'Department', 'LineOfBusiness', 'PurchaseOrderNumber', 'BusinessDivisionSubdivisionID', 'LastActivityResourceID', 'LastActivityDateTime', 'LastActivityPersonType', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
+    [ValidateSet('AccountID', 'ActualBilledHours', 'ActualHours', 'BusinessDivisionSubdivisionID', 'ChangeOrdersBudget', 'ChangeOrdersRevenue', 'CompanyOwnerResourceID', 'CompletedDateTime', 'CompletedPercentage', 'ContractID', 'CreateDateTime', 'CreatorResourceID', 'Department', 'Description', 'Duration', 'EndDateTime', 'EstimatedSalesCost', 'EstimatedTime', 'ExtPNumber', 'ExtProjectType', 'id', 'ImpersonatorCreatorResourceID', 'LaborEstimatedCosts', 'LaborEstimatedMarginPercentage', 'LaborEstimatedRevenue', 'LastActivityDateTime', 'LastActivityPersonType', 'LastActivityResourceID', 'LineOfBusiness', 'OpportunityID', 'OriginalEstimatedRevenue', 'ProjectCostEstimatedMarginPercentage', 'ProjectCostsBudget', 'ProjectCostsRevenue', 'ProjectLeadResourceID', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'SGDA', 'StartDateTime', 'Status', 'StatusDateTime', 'StatusDetail', 'Type')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExtPNumber', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'StatusDetail')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExtPNumber', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'StatusDetail')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExtPNumber', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'StatusDetail')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExtPNumber', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'StatusDetail')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ProjectName', 'ExtPNumber', 'ProjectNumber', 'Description', 'StatusDetail', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExtPNumber', 'ProjectName', 'ProjectNumber', 'PurchaseOrderNumber', 'StatusDetail')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'StartDateTime', 'EndDateTime', 'CompletedDateTime', 'StatusDateTime', 'LastActivityDateTime')]
+    [ValidateSet('CompletedDateTime', 'CreateDateTime', 'EndDateTime', 'LastActivityDateTime', 'StartDateTime', 'StatusDateTime')]
     [string[]]
     $IsThisDay
   )
@@ -673,8 +673,10 @@ Set-AtwsProject
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

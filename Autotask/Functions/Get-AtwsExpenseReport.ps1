@@ -246,91 +246,91 @@ Set-AtwsExpenseReport
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ApproverID', 'CashAdvanceAmount', 'SubmitDate', 'Name', 'Status', 'ExpenseTotal', 'ReimbursementCurrencyID', 'ReimbursementCurrencyAmountDue', 'SubmitterID', 'RejectionReason', 'id', 'WeekEnding', 'AmountDue', 'Submit', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyCashAdvanceAmount')]
+    [ValidateSet('AmountDue', 'ApprovedDate', 'ApproverID', 'BusinessDivisionSubdivisionID', 'CashAdvanceAmount', 'DepartmentNumber', 'ExpenseTotal', 'id', 'Name', 'QuickBooksReferenceNumber', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyID', 'RejectionReason', 'Status', 'Submit', 'SubmitDate', 'SubmitterID', 'WeekEnding')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ApproverID', 'CashAdvanceAmount', 'SubmitDate', 'Name', 'Status', 'ExpenseTotal', 'ReimbursementCurrencyID', 'ReimbursementCurrencyAmountDue', 'SubmitterID', 'RejectionReason', 'id', 'WeekEnding', 'AmountDue', 'Submit', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyCashAdvanceAmount')]
+    [ValidateSet('AmountDue', 'ApprovedDate', 'ApproverID', 'BusinessDivisionSubdivisionID', 'CashAdvanceAmount', 'DepartmentNumber', 'ExpenseTotal', 'id', 'Name', 'QuickBooksReferenceNumber', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyID', 'RejectionReason', 'Status', 'Submit', 'SubmitDate', 'SubmitterID', 'WeekEnding')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ApproverID', 'CashAdvanceAmount', 'SubmitDate', 'Name', 'Status', 'ExpenseTotal', 'ReimbursementCurrencyID', 'ReimbursementCurrencyAmountDue', 'SubmitterID', 'RejectionReason', 'id', 'WeekEnding', 'AmountDue', 'Submit', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyCashAdvanceAmount')]
+    [ValidateSet('AmountDue', 'ApprovedDate', 'ApproverID', 'BusinessDivisionSubdivisionID', 'CashAdvanceAmount', 'DepartmentNumber', 'ExpenseTotal', 'id', 'Name', 'QuickBooksReferenceNumber', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyID', 'RejectionReason', 'Status', 'Submit', 'SubmitDate', 'SubmitterID', 'WeekEnding')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Status', 'SubmitDate', 'SubmitterID', 'ApproverID', 'WeekEnding', 'ExpenseTotal', 'CashAdvanceAmount', 'RejectionReason', 'AmountDue', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyID', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AmountDue', 'ApprovedDate', 'ApproverID', 'BusinessDivisionSubdivisionID', 'CashAdvanceAmount', 'DepartmentNumber', 'ExpenseTotal', 'id', 'Name', 'QuickBooksReferenceNumber', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyID', 'RejectionReason', 'Status', 'SubmitDate', 'SubmitterID', 'WeekEnding')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Status', 'SubmitDate', 'SubmitterID', 'ApproverID', 'WeekEnding', 'ExpenseTotal', 'CashAdvanceAmount', 'RejectionReason', 'AmountDue', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyID', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AmountDue', 'ApprovedDate', 'ApproverID', 'BusinessDivisionSubdivisionID', 'CashAdvanceAmount', 'DepartmentNumber', 'ExpenseTotal', 'id', 'Name', 'QuickBooksReferenceNumber', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyID', 'RejectionReason', 'Status', 'SubmitDate', 'SubmitterID', 'WeekEnding')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Status', 'SubmitDate', 'SubmitterID', 'ApproverID', 'WeekEnding', 'ExpenseTotal', 'CashAdvanceAmount', 'RejectionReason', 'AmountDue', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyID', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AmountDue', 'ApprovedDate', 'ApproverID', 'BusinessDivisionSubdivisionID', 'CashAdvanceAmount', 'DepartmentNumber', 'ExpenseTotal', 'id', 'Name', 'QuickBooksReferenceNumber', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyID', 'RejectionReason', 'Status', 'SubmitDate', 'SubmitterID', 'WeekEnding')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Status', 'SubmitDate', 'SubmitterID', 'ApproverID', 'WeekEnding', 'ExpenseTotal', 'CashAdvanceAmount', 'RejectionReason', 'AmountDue', 'DepartmentNumber', 'QuickBooksReferenceNumber', 'ApprovedDate', 'ReimbursementCurrencyID', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyAmountDue', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AmountDue', 'ApprovedDate', 'ApproverID', 'BusinessDivisionSubdivisionID', 'CashAdvanceAmount', 'DepartmentNumber', 'ExpenseTotal', 'id', 'Name', 'QuickBooksReferenceNumber', 'ReimbursementCurrencyAmountDue', 'ReimbursementCurrencyCashAdvanceAmount', 'ReimbursementCurrencyID', 'RejectionReason', 'Status', 'SubmitDate', 'SubmitterID', 'WeekEnding')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'RejectionReason', 'DepartmentNumber', 'QuickBooksReferenceNumber')]
+    [ValidateSet('DepartmentNumber', 'Name', 'QuickBooksReferenceNumber', 'RejectionReason')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'RejectionReason', 'DepartmentNumber', 'QuickBooksReferenceNumber')]
+    [ValidateSet('DepartmentNumber', 'Name', 'QuickBooksReferenceNumber', 'RejectionReason')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'RejectionReason', 'DepartmentNumber', 'QuickBooksReferenceNumber')]
+    [ValidateSet('DepartmentNumber', 'Name', 'QuickBooksReferenceNumber', 'RejectionReason')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'RejectionReason', 'DepartmentNumber', 'QuickBooksReferenceNumber')]
+    [ValidateSet('DepartmentNumber', 'Name', 'QuickBooksReferenceNumber', 'RejectionReason')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'RejectionReason', 'DepartmentNumber', 'QuickBooksReferenceNumber')]
+    [ValidateSet('DepartmentNumber', 'Name', 'QuickBooksReferenceNumber', 'RejectionReason')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SubmitDate', 'WeekEnding', 'ApprovedDate')]
+    [ValidateSet('ApprovedDate', 'SubmitDate', 'WeekEnding')]
     [string[]]
     $IsThisDay
   )
@@ -445,8 +445,10 @@ Set-AtwsExpenseReport
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

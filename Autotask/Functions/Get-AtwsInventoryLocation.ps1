@@ -146,49 +146,49 @@ Set-AtwsInventoryLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'IsDefault', 'ResourceID', 'id', 'ImpersonatorCreatorResourceID', 'LocationName')]
+    [ValidateSet('Active', 'id', 'ImpersonatorCreatorResourceID', 'IsDefault', 'LocationName', 'ResourceID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'IsDefault', 'ResourceID', 'id', 'ImpersonatorCreatorResourceID', 'LocationName')]
+    [ValidateSet('Active', 'id', 'ImpersonatorCreatorResourceID', 'IsDefault', 'LocationName', 'ResourceID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Active', 'IsDefault', 'ResourceID', 'id', 'ImpersonatorCreatorResourceID', 'LocationName')]
+    [ValidateSet('Active', 'id', 'ImpersonatorCreatorResourceID', 'IsDefault', 'LocationName', 'ResourceID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'LocationName', 'ResourceID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'LocationName', 'ResourceID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'LocationName', 'ResourceID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'LocationName', 'ResourceID', 'ImpersonatorCreatorResourceID')]
+    [ValidateSet('id', 'ImpersonatorCreatorResourceID', 'LocationName', 'ResourceID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -344,8 +344,10 @@ Set-AtwsInventoryLocation
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

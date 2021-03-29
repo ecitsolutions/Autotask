@@ -136,49 +136,49 @@ Set-AtwsHoliday
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidayName', 'id', 'HolidayDate', 'HolidaySetID')]
+    [ValidateSet('HolidayDate', 'HolidayName', 'HolidaySetID', 'id')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidayName', 'id', 'HolidayDate', 'HolidaySetID')]
+    [ValidateSet('HolidayDate', 'HolidayName', 'HolidaySetID', 'id')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('HolidayName', 'id', 'HolidayDate', 'HolidaySetID')]
+    [ValidateSet('HolidayDate', 'HolidayName', 'HolidaySetID', 'id')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'HolidayName', 'HolidayDate', 'HolidaySetID')]
+    [ValidateSet('HolidayDate', 'HolidayName', 'HolidaySetID', 'id')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'HolidayName', 'HolidayDate', 'HolidaySetID')]
+    [ValidateSet('HolidayDate', 'HolidayName', 'HolidaySetID', 'id')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'HolidayName', 'HolidayDate', 'HolidaySetID')]
+    [ValidateSet('HolidayDate', 'HolidayName', 'HolidaySetID', 'id')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'HolidayName', 'HolidayDate', 'HolidaySetID')]
+    [ValidateSet('HolidayDate', 'HolidayName', 'HolidaySetID', 'id')]
     [string[]]
     $LessThanOrEquals,
 
@@ -335,8 +335,10 @@ Set-AtwsHoliday
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

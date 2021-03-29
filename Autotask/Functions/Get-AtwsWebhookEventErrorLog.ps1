@@ -157,84 +157,84 @@ Remove-AtwsWebhookEventErrorLog
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountWebhookID', 'CreateDateTime', 'ConfigurationItemWebhookID', 'ErrorMessage', 'SequenceNumber', 'Payload', 'ContactWebhookID', 'id')]
+    [ValidateSet('AccountWebhookID', 'ConfigurationItemWebhookID', 'ContactWebhookID', 'CreateDateTime', 'ErrorMessage', 'id', 'Payload', 'SequenceNumber')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountWebhookID', 'CreateDateTime', 'ConfigurationItemWebhookID', 'ErrorMessage', 'SequenceNumber', 'Payload', 'ContactWebhookID', 'id')]
+    [ValidateSet('AccountWebhookID', 'ConfigurationItemWebhookID', 'ContactWebhookID', 'CreateDateTime', 'ErrorMessage', 'id', 'Payload', 'SequenceNumber')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AccountWebhookID', 'CreateDateTime', 'ConfigurationItemWebhookID', 'ErrorMessage', 'SequenceNumber', 'Payload', 'ContactWebhookID', 'id')]
+    [ValidateSet('AccountWebhookID', 'ConfigurationItemWebhookID', 'ContactWebhookID', 'CreateDateTime', 'ErrorMessage', 'id', 'Payload', 'SequenceNumber')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
+    [ValidateSet('AccountWebhookID', 'ConfigurationItemWebhookID', 'ContactWebhookID', 'CreateDateTime', 'ErrorMessage', 'id', 'Payload', 'SequenceNumber')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
+    [ValidateSet('AccountWebhookID', 'ConfigurationItemWebhookID', 'ContactWebhookID', 'CreateDateTime', 'ErrorMessage', 'id', 'Payload', 'SequenceNumber')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
+    [ValidateSet('AccountWebhookID', 'ConfigurationItemWebhookID', 'ContactWebhookID', 'CreateDateTime', 'ErrorMessage', 'id', 'Payload', 'SequenceNumber')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountWebhookID', 'ContactWebhookID', 'SequenceNumber', 'Payload', 'ErrorMessage', 'CreateDateTime', 'ConfigurationItemWebhookID')]
+    [ValidateSet('AccountWebhookID', 'ConfigurationItemWebhookID', 'ContactWebhookID', 'CreateDateTime', 'ErrorMessage', 'id', 'Payload', 'SequenceNumber')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Payload', 'ErrorMessage')]
+    [ValidateSet('ErrorMessage', 'Payload')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Payload', 'ErrorMessage')]
+    [ValidateSet('ErrorMessage', 'Payload')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Payload', 'ErrorMessage')]
+    [ValidateSet('ErrorMessage', 'Payload')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Payload', 'ErrorMessage')]
+    [ValidateSet('ErrorMessage', 'Payload')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Payload', 'ErrorMessage')]
+    [ValidateSet('ErrorMessage', 'Payload')]
     [string[]]
     $Contains,
 
@@ -356,8 +356,10 @@ Remove-AtwsWebhookEventErrorLog
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

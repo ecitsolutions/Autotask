@@ -147,84 +147,84 @@ Set-AtwsQuoteLocation
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'City', 'id', 'Address2', 'PostalCode', 'State')]
+    [ValidateSet('Address1', 'Address2', 'City', 'id', 'PostalCode', 'State')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'City', 'id', 'Address2', 'PostalCode', 'State')]
+    [ValidateSet('Address1', 'Address2', 'City', 'id', 'PostalCode', 'State')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'City', 'id', 'Address2', 'PostalCode', 'State')]
+    [ValidateSet('Address1', 'Address2', 'City', 'id', 'PostalCode', 'State')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Address1', 'Address2', 'City', 'State', 'PostalCode')]
+    [ValidateSet('Address1', 'Address2', 'City', 'id', 'PostalCode', 'State')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Address1', 'Address2', 'City', 'State', 'PostalCode')]
+    [ValidateSet('Address1', 'Address2', 'City', 'id', 'PostalCode', 'State')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Address1', 'Address2', 'City', 'State', 'PostalCode')]
+    [ValidateSet('Address1', 'Address2', 'City', 'id', 'PostalCode', 'State')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Address1', 'Address2', 'City', 'State', 'PostalCode')]
+    [ValidateSet('Address1', 'Address2', 'City', 'id', 'PostalCode', 'State')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'Address2', 'City', 'State', 'PostalCode')]
+    [ValidateSet('Address1', 'Address2', 'City', 'PostalCode', 'State')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'Address2', 'City', 'State', 'PostalCode')]
+    [ValidateSet('Address1', 'Address2', 'City', 'PostalCode', 'State')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'Address2', 'City', 'State', 'PostalCode')]
+    [ValidateSet('Address1', 'Address2', 'City', 'PostalCode', 'State')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'Address2', 'City', 'State', 'PostalCode')]
+    [ValidateSet('Address1', 'Address2', 'City', 'PostalCode', 'State')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Address1', 'Address2', 'City', 'State', 'PostalCode')]
+    [ValidateSet('Address1', 'Address2', 'City', 'PostalCode', 'State')]
     [string[]]
     $Contains,
 
@@ -345,8 +345,10 @@ Set-AtwsQuoteLocation
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

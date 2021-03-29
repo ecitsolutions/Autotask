@@ -104,49 +104,49 @@ Returns any object with a TicketHistoryName that DOES NOT match the simple patte
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Detail', 'ResourceID', 'Date', 'TicketID', 'id', 'Action')]
+    [ValidateSet('Action', 'Date', 'Detail', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Detail', 'ResourceID', 'Date', 'TicketID', 'id', 'Action')]
+    [ValidateSet('Action', 'Date', 'Detail', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Detail', 'ResourceID', 'Date', 'TicketID', 'id', 'Action')]
+    [ValidateSet('Action', 'Date', 'Detail', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'Action', 'ResourceID', 'Date', 'Detail')]
+    [ValidateSet('Action', 'Date', 'Detail', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'Action', 'ResourceID', 'Date', 'Detail')]
+    [ValidateSet('Action', 'Date', 'Detail', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'Action', 'ResourceID', 'Date', 'Detail')]
+    [ValidateSet('Action', 'Date', 'Detail', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'Action', 'ResourceID', 'Date', 'Detail')]
+    [ValidateSet('Action', 'Date', 'Detail', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -303,8 +303,10 @@ Returns any object with a TicketHistoryName that DOES NOT match the simple patte
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

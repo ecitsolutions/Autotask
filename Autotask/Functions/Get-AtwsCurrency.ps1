@@ -215,84 +215,84 @@ Set-AtwsCurrency
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateResourceId', 'CurrencyPositiveFormat', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Name', 'CurrencyNegativeFormat', 'id', 'LastModifiedDateTime', 'Description', 'DisplaySymbol')]
+    [ValidateSet('Active', 'CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'DisplaySymbol', 'ExchangeRate', 'id', 'IsInternalCurrency', 'LastModifiedDateTime', 'Name', 'UpdateResourceId')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateResourceId', 'CurrencyPositiveFormat', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Name', 'CurrencyNegativeFormat', 'id', 'LastModifiedDateTime', 'Description', 'DisplaySymbol')]
+    [ValidateSet('Active', 'CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'DisplaySymbol', 'ExchangeRate', 'id', 'IsInternalCurrency', 'LastModifiedDateTime', 'Name', 'UpdateResourceId')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('UpdateResourceId', 'CurrencyPositiveFormat', 'Active', 'ExchangeRate', 'IsInternalCurrency', 'Name', 'CurrencyNegativeFormat', 'id', 'LastModifiedDateTime', 'Description', 'DisplaySymbol')]
+    [ValidateSet('Active', 'CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'DisplaySymbol', 'ExchangeRate', 'id', 'IsInternalCurrency', 'LastModifiedDateTime', 'Name', 'UpdateResourceId')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'DisplaySymbol', 'ExchangeRate', 'LastModifiedDateTime', 'UpdateResourceId', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'DisplaySymbol', 'ExchangeRate', 'id', 'LastModifiedDateTime', 'Name', 'UpdateResourceId')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'DisplaySymbol', 'ExchangeRate', 'LastModifiedDateTime', 'UpdateResourceId', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'DisplaySymbol', 'ExchangeRate', 'id', 'LastModifiedDateTime', 'Name', 'UpdateResourceId')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'DisplaySymbol', 'ExchangeRate', 'LastModifiedDateTime', 'UpdateResourceId', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'DisplaySymbol', 'ExchangeRate', 'id', 'LastModifiedDateTime', 'Name', 'UpdateResourceId')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'DisplaySymbol', 'ExchangeRate', 'LastModifiedDateTime', 'UpdateResourceId', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'DisplaySymbol', 'ExchangeRate', 'id', 'LastModifiedDateTime', 'Name', 'UpdateResourceId')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'Name')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'Name')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'Name')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'Name')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'CurrencyPositiveFormat', 'CurrencyNegativeFormat')]
+    [ValidateSet('CurrencyNegativeFormat', 'CurrencyPositiveFormat', 'Description', 'Name')]
     [string[]]
     $Contains,
 
@@ -414,8 +414,10 @@ Set-AtwsCurrency
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

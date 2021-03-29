@@ -186,49 +186,49 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ServiceBundleID', 'ApproveAndPostDate', 'InternalCurrencyPrice', 'ContractServiceBundleID', 'ContractID', 'StartDate', 'EndDate', 'id', 'Price', 'Cost', 'Units')]
+    [ValidateSet('ApproveAndPostDate', 'BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceBundleID', 'Cost', 'EndDate', 'id', 'InternalCurrencyPrice', 'Price', 'ServiceBundleID', 'StartDate', 'Units')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ServiceBundleID', 'ApproveAndPostDate', 'InternalCurrencyPrice', 'ContractServiceBundleID', 'ContractID', 'StartDate', 'EndDate', 'id', 'Price', 'Cost', 'Units')]
+    [ValidateSet('ApproveAndPostDate', 'BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceBundleID', 'Cost', 'EndDate', 'id', 'InternalCurrencyPrice', 'Price', 'ServiceBundleID', 'StartDate', 'Units')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BusinessDivisionSubdivisionID', 'ServiceBundleID', 'ApproveAndPostDate', 'InternalCurrencyPrice', 'ContractServiceBundleID', 'ContractID', 'StartDate', 'EndDate', 'id', 'Price', 'Cost', 'Units')]
+    [ValidateSet('ApproveAndPostDate', 'BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceBundleID', 'Cost', 'EndDate', 'id', 'InternalCurrencyPrice', 'Price', 'ServiceBundleID', 'StartDate', 'Units')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'StartDate', 'EndDate', 'Price', 'ApproveAndPostDate', 'Units', 'Cost', 'ContractServiceBundleID', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('ApproveAndPostDate', 'BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceBundleID', 'Cost', 'EndDate', 'id', 'InternalCurrencyPrice', 'Price', 'ServiceBundleID', 'StartDate', 'Units')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'StartDate', 'EndDate', 'Price', 'ApproveAndPostDate', 'Units', 'Cost', 'ContractServiceBundleID', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('ApproveAndPostDate', 'BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceBundleID', 'Cost', 'EndDate', 'id', 'InternalCurrencyPrice', 'Price', 'ServiceBundleID', 'StartDate', 'Units')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'StartDate', 'EndDate', 'Price', 'ApproveAndPostDate', 'Units', 'Cost', 'ContractServiceBundleID', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('ApproveAndPostDate', 'BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceBundleID', 'Cost', 'EndDate', 'id', 'InternalCurrencyPrice', 'Price', 'ServiceBundleID', 'StartDate', 'Units')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'StartDate', 'EndDate', 'Price', 'ApproveAndPostDate', 'Units', 'Cost', 'ContractServiceBundleID', 'InternalCurrencyPrice', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('ApproveAndPostDate', 'BusinessDivisionSubdivisionID', 'ContractID', 'ContractServiceBundleID', 'Cost', 'EndDate', 'id', 'InternalCurrencyPrice', 'Price', 'ServiceBundleID', 'StartDate', 'Units')]
     [string[]]
     $LessThanOrEquals,
 
@@ -265,7 +265,7 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDate', 'EndDate', 'ApproveAndPostDate')]
+    [ValidateSet('ApproveAndPostDate', 'EndDate', 'StartDate')]
     [string[]]
     $IsThisDay
   )
@@ -380,8 +380,10 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

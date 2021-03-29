@@ -175,84 +175,84 @@ Set-AtwsContractServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDescription', 'UnitPrice', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'AdjustedPrice', 'ContractID', 'ServiceBundleID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
+    [ValidateSet('AdjustedPrice', 'ContractID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalCurrencyUnitPrice', 'InternalDescription', 'InvoiceDescription', 'QuoteItemID', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDescription', 'UnitPrice', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'AdjustedPrice', 'ContractID', 'ServiceBundleID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
+    [ValidateSet('AdjustedPrice', 'ContractID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalCurrencyUnitPrice', 'InternalDescription', 'InvoiceDescription', 'QuoteItemID', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDescription', 'UnitPrice', 'InternalCurrencyUnitPrice', 'QuoteItemID', 'AdjustedPrice', 'ContractID', 'ServiceBundleID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
+    [ValidateSet('AdjustedPrice', 'ContractID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalCurrencyUnitPrice', 'InternalDescription', 'InvoiceDescription', 'QuoteItemID', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'UnitPrice', 'AdjustedPrice', 'InvoiceDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
+    [ValidateSet('AdjustedPrice', 'ContractID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalCurrencyUnitPrice', 'InternalDescription', 'InvoiceDescription', 'QuoteItemID', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'UnitPrice', 'AdjustedPrice', 'InvoiceDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
+    [ValidateSet('AdjustedPrice', 'ContractID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalCurrencyUnitPrice', 'InternalDescription', 'InvoiceDescription', 'QuoteItemID', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'UnitPrice', 'AdjustedPrice', 'InvoiceDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
+    [ValidateSet('AdjustedPrice', 'ContractID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalCurrencyUnitPrice', 'InternalDescription', 'InvoiceDescription', 'QuoteItemID', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ContractID', 'ServiceBundleID', 'UnitPrice', 'AdjustedPrice', 'InvoiceDescription', 'QuoteItemID', 'InternalCurrencyUnitPrice', 'InternalCurrencyAdjustedPrice', 'InternalDescription')]
+    [ValidateSet('AdjustedPrice', 'ContractID', 'id', 'InternalCurrencyAdjustedPrice', 'InternalCurrencyUnitPrice', 'InternalDescription', 'InvoiceDescription', 'QuoteItemID', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDescription', 'InternalDescription')]
+    [ValidateSet('InternalDescription', 'InvoiceDescription')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDescription', 'InternalDescription')]
+    [ValidateSet('InternalDescription', 'InvoiceDescription')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDescription', 'InternalDescription')]
+    [ValidateSet('InternalDescription', 'InvoiceDescription')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDescription', 'InternalDescription')]
+    [ValidateSet('InternalDescription', 'InvoiceDescription')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('InvoiceDescription', 'InternalDescription')]
+    [ValidateSet('InternalDescription', 'InvoiceDescription')]
     [string[]]
     $Contains,
 
@@ -373,8 +373,10 @@ Set-AtwsContractServiceBundle
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

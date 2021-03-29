@@ -124,49 +124,49 @@ Remove-AtwsInstalledProductWebhookExcludedResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookID', 'ResourceID')]
+    [ValidateSet('id', 'ResourceID', 'WebhookID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookID', 'ResourceID')]
+    [ValidateSet('id', 'ResourceID', 'WebhookID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookID', 'ResourceID')]
+    [ValidateSet('id', 'ResourceID', 'WebhookID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookID', 'ResourceID')]
+    [ValidateSet('id', 'ResourceID', 'WebhookID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookID', 'ResourceID')]
+    [ValidateSet('id', 'ResourceID', 'WebhookID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookID', 'ResourceID')]
+    [ValidateSet('id', 'ResourceID', 'WebhookID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookID', 'ResourceID')]
+    [ValidateSet('id', 'ResourceID', 'WebhookID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -317,8 +317,10 @@ Remove-AtwsInstalledProductWebhookExcludedResource
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

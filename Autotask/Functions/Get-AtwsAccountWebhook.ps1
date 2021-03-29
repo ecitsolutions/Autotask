@@ -213,84 +213,84 @@ Set-AtwsAccountWebhook
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedToCreateEvents', 'SecretKey', 'NotificationEmailAddress', 'SendThresholdExceededNotification', 'OwnerResourceID', 'WebhookGUID', 'IsSubscribedToDeleteEvents', 'Name', 'DeactivationUrl', 'WebhookUrl', 'id', 'Active', 'Ready', 'IsSubscribedToUpdateEvents')]
+    [ValidateSet('Active', 'DeactivationUrl', 'id', 'IsSubscribedToCreateEvents', 'IsSubscribedToDeleteEvents', 'IsSubscribedToUpdateEvents', 'Name', 'NotificationEmailAddress', 'OwnerResourceID', 'Ready', 'SecretKey', 'SendThresholdExceededNotification', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedToCreateEvents', 'SecretKey', 'NotificationEmailAddress', 'SendThresholdExceededNotification', 'OwnerResourceID', 'WebhookGUID', 'IsSubscribedToDeleteEvents', 'Name', 'DeactivationUrl', 'WebhookUrl', 'id', 'Active', 'Ready', 'IsSubscribedToUpdateEvents')]
+    [ValidateSet('Active', 'DeactivationUrl', 'id', 'IsSubscribedToCreateEvents', 'IsSubscribedToDeleteEvents', 'IsSubscribedToUpdateEvents', 'Name', 'NotificationEmailAddress', 'OwnerResourceID', 'Ready', 'SecretKey', 'SendThresholdExceededNotification', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSubscribedToCreateEvents', 'SecretKey', 'NotificationEmailAddress', 'SendThresholdExceededNotification', 'OwnerResourceID', 'WebhookGUID', 'IsSubscribedToDeleteEvents', 'Name', 'DeactivationUrl', 'WebhookUrl', 'id', 'Active', 'Ready', 'IsSubscribedToUpdateEvents')]
+    [ValidateSet('Active', 'DeactivationUrl', 'id', 'IsSubscribedToCreateEvents', 'IsSubscribedToDeleteEvents', 'IsSubscribedToUpdateEvents', 'Name', 'NotificationEmailAddress', 'OwnerResourceID', 'Ready', 'SecretKey', 'SendThresholdExceededNotification', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
+    [ValidateSet('DeactivationUrl', 'id', 'Name', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
+    [ValidateSet('DeactivationUrl', 'id', 'Name', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
+    [ValidateSet('DeactivationUrl', 'id', 'Name', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey')]
+    [ValidateSet('DeactivationUrl', 'id', 'Name', 'NotificationEmailAddress', 'OwnerResourceID', 'SecretKey', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
+    [ValidateSet('DeactivationUrl', 'Name', 'NotificationEmailAddress', 'SecretKey', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
+    [ValidateSet('DeactivationUrl', 'Name', 'NotificationEmailAddress', 'SecretKey', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
+    [ValidateSet('DeactivationUrl', 'Name', 'NotificationEmailAddress', 'SecretKey', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
+    [ValidateSet('DeactivationUrl', 'Name', 'NotificationEmailAddress', 'SecretKey', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('WebhookGUID', 'Name', 'WebhookUrl', 'DeactivationUrl', 'NotificationEmailAddress', 'SecretKey')]
+    [ValidateSet('DeactivationUrl', 'Name', 'NotificationEmailAddress', 'SecretKey', 'WebhookGUID', 'WebhookUrl')]
     [string[]]
     $Contains,
 
@@ -411,8 +411,10 @@ Set-AtwsAccountWebhook
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

@@ -204,49 +204,49 @@ Set-AtwsInstalledProductNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'InstalledProductID', 'CreateDateTime', 'CreatorResourceID', 'Title', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'Description', 'NoteType')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'InstalledProductID', 'CreateDateTime', 'CreatorResourceID', 'Title', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'Description', 'NoteType')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('LastActivityDate', 'InstalledProductID', 'CreateDateTime', 'CreatorResourceID', 'Title', 'ImpersonatorUpdaterResourceID', 'ImpersonatorCreatorResourceID', 'id', 'Description', 'NoteType')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'CreatorResourceID', 'Description', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'CreatorResourceID', 'Description', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'CreatorResourceID', 'Description', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'CreatorResourceID', 'Description', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'Description', 'id', 'ImpersonatorCreatorResourceID', 'ImpersonatorUpdaterResourceID', 'InstalledProductID', 'LastActivityDate', 'NoteType', 'Title')]
     [string[]]
     $LessThanOrEquals,
 
@@ -403,8 +403,10 @@ Set-AtwsInstalledProductNote
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

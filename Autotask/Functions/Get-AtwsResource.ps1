@@ -573,84 +573,84 @@ Set-AtwsResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Greeting', 'NumberFormat', 'id', 'EmailTypeCode2', 'HomePhone', 'FirstName', 'HireDate', 'UserType', 'ResourceType', 'Gender', 'Password', 'Email', 'PayrollType', 'LicenseType', 'MiddleName', 'Title', 'UserName', 'EmailTypeCode3', 'TravelAvailabilityPct', 'DateFormat', 'Email2', 'InternalCost', 'Suffix', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'OfficePhone', 'LocationID', 'TimeFormat', 'MobilePhone', 'EmailTypeCode', 'Email3', 'LastName', 'Active', 'SurveyResourceRating', 'AccountingReferenceID', 'Initials')]
+    [ValidateSet('AccountingReferenceID', 'Active', 'DateFormat', 'DefaultServiceDeskRoleID', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HireDate', 'HomePhone', 'id', 'Initials', 'InternalCost', 'LastName', 'LicenseType', 'LocationID', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'PayrollType', 'ResourceType', 'Suffix', 'SurveyResourceRating', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Greeting', 'NumberFormat', 'id', 'EmailTypeCode2', 'HomePhone', 'FirstName', 'HireDate', 'UserType', 'ResourceType', 'Gender', 'Password', 'Email', 'PayrollType', 'LicenseType', 'MiddleName', 'Title', 'UserName', 'EmailTypeCode3', 'TravelAvailabilityPct', 'DateFormat', 'Email2', 'InternalCost', 'Suffix', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'OfficePhone', 'LocationID', 'TimeFormat', 'MobilePhone', 'EmailTypeCode', 'Email3', 'LastName', 'Active', 'SurveyResourceRating', 'AccountingReferenceID', 'Initials')]
+    [ValidateSet('AccountingReferenceID', 'Active', 'DateFormat', 'DefaultServiceDeskRoleID', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HireDate', 'HomePhone', 'id', 'Initials', 'InternalCost', 'LastName', 'LicenseType', 'LocationID', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'PayrollType', 'ResourceType', 'Suffix', 'SurveyResourceRating', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Greeting', 'NumberFormat', 'id', 'EmailTypeCode2', 'HomePhone', 'FirstName', 'HireDate', 'UserType', 'ResourceType', 'Gender', 'Password', 'Email', 'PayrollType', 'LicenseType', 'MiddleName', 'Title', 'UserName', 'EmailTypeCode3', 'TravelAvailabilityPct', 'DateFormat', 'Email2', 'InternalCost', 'Suffix', 'OfficeExtension', 'DefaultServiceDeskRoleID', 'OfficePhone', 'LocationID', 'TimeFormat', 'MobilePhone', 'EmailTypeCode', 'Email3', 'LastName', 'Active', 'SurveyResourceRating', 'AccountingReferenceID', 'Initials')]
+    [ValidateSet('AccountingReferenceID', 'Active', 'DateFormat', 'DefaultServiceDeskRoleID', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HireDate', 'HomePhone', 'id', 'Initials', 'InternalCost', 'LastName', 'LicenseType', 'LocationID', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'PayrollType', 'ResourceType', 'Suffix', 'SurveyResourceRating', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DefaultServiceDeskRoleID', 'DateFormat', 'TimeFormat', 'Password', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
+    [ValidateSet('AccountingReferenceID', 'DateFormat', 'DefaultServiceDeskRoleID', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HireDate', 'HomePhone', 'id', 'Initials', 'InternalCost', 'LastName', 'LicenseType', 'LocationID', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'PayrollType', 'ResourceType', 'Suffix', 'SurveyResourceRating', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DefaultServiceDeskRoleID', 'DateFormat', 'TimeFormat', 'Password', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
+    [ValidateSet('AccountingReferenceID', 'DateFormat', 'DefaultServiceDeskRoleID', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HireDate', 'HomePhone', 'id', 'Initials', 'InternalCost', 'LastName', 'LicenseType', 'LocationID', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'PayrollType', 'ResourceType', 'Suffix', 'SurveyResourceRating', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DefaultServiceDeskRoleID', 'DateFormat', 'TimeFormat', 'Password', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
+    [ValidateSet('AccountingReferenceID', 'DateFormat', 'DefaultServiceDeskRoleID', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HireDate', 'HomePhone', 'id', 'Initials', 'InternalCost', 'LastName', 'LicenseType', 'LocationID', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'PayrollType', 'ResourceType', 'Suffix', 'SurveyResourceRating', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HomePhone', 'id', 'Initials', 'LastName', 'LocationID', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType', 'DefaultServiceDeskRoleID', 'DateFormat', 'TimeFormat', 'Password', 'PayrollType', 'NumberFormat', 'AccountingReferenceID', 'InternalCost', 'HireDate', 'SurveyResourceRating', 'LicenseType')]
+    [ValidateSet('AccountingReferenceID', 'DateFormat', 'DefaultServiceDeskRoleID', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'Greeting', 'HireDate', 'HomePhone', 'id', 'Initials', 'InternalCost', 'LastName', 'LicenseType', 'LocationID', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'PayrollType', 'ResourceType', 'Suffix', 'SurveyResourceRating', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName', 'UserType')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'Password', 'NumberFormat', 'AccountingReferenceID')]
+    [ValidateSet('AccountingReferenceID', 'DateFormat', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'ResourceType', 'Suffix', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'Password', 'NumberFormat', 'AccountingReferenceID')]
+    [ValidateSet('AccountingReferenceID', 'DateFormat', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'ResourceType', 'Suffix', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'Password', 'NumberFormat', 'AccountingReferenceID')]
+    [ValidateSet('AccountingReferenceID', 'DateFormat', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'ResourceType', 'Suffix', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'Password', 'NumberFormat', 'AccountingReferenceID')]
+    [ValidateSet('AccountingReferenceID', 'DateFormat', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'ResourceType', 'Suffix', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'OfficeExtension', 'OfficePhone', 'ResourceType', 'Suffix', 'Title', 'TravelAvailabilityPct', 'UserName', 'DateFormat', 'TimeFormat', 'Password', 'NumberFormat', 'AccountingReferenceID')]
+    [ValidateSet('AccountingReferenceID', 'DateFormat', 'Email', 'Email2', 'Email3', 'EmailTypeCode', 'EmailTypeCode2', 'EmailTypeCode3', 'FirstName', 'Gender', 'HomePhone', 'Initials', 'LastName', 'MiddleName', 'MobilePhone', 'NumberFormat', 'OfficeExtension', 'OfficePhone', 'Password', 'ResourceType', 'Suffix', 'TimeFormat', 'Title', 'TravelAvailabilityPct', 'UserName')]
     [string[]]
     $Contains,
 
@@ -772,8 +772,10 @@ Set-AtwsResource
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

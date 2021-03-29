@@ -208,49 +208,49 @@ Set-AtwsIntegrationVendorWidget
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReferenceUrl', 'IsActive', 'CreateDateTime', 'VendorSuppliedID', 'Width', 'WidgetKey', 'Secret', 'id', 'LastModifiedDateTime', 'Description', 'Title')]
+    [ValidateSet('CreateDateTime', 'Description', 'id', 'IsActive', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReferenceUrl', 'IsActive', 'CreateDateTime', 'VendorSuppliedID', 'Width', 'WidgetKey', 'Secret', 'id', 'LastModifiedDateTime', 'Description', 'Title')]
+    [ValidateSet('CreateDateTime', 'Description', 'id', 'IsActive', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReferenceUrl', 'IsActive', 'CreateDateTime', 'VendorSuppliedID', 'Width', 'WidgetKey', 'Secret', 'id', 'LastModifiedDateTime', 'Description', 'Title')]
+    [ValidateSet('CreateDateTime', 'Description', 'id', 'IsActive', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'Description', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
+    [ValidateSet('CreateDateTime', 'Description', 'id', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'Description', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
+    [ValidateSet('CreateDateTime', 'Description', 'id', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'Description', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
+    [ValidateSet('CreateDateTime', 'Description', 'id', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDateTime', 'Description', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
+    [ValidateSet('CreateDateTime', 'Description', 'id', 'LastModifiedDateTime', 'ReferenceUrl', 'Secret', 'Title', 'VendorSuppliedID', 'WidgetKey', 'Width')]
     [string[]]
     $LessThanOrEquals,
 
@@ -407,8 +407,10 @@ Set-AtwsIntegrationVendorWidget
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

@@ -151,49 +151,49 @@ Remove-AtwsServiceCallTicketResource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'LastModifiedByResourceID', 'ServiceCallTicketID', 'ResourceID', 'id', 'LastModifiedDateTime', 'CreatedByResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatedByResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResourceID', 'ServiceCallTicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'LastModifiedByResourceID', 'ServiceCallTicketID', 'ResourceID', 'id', 'LastModifiedDateTime', 'CreatedByResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatedByResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResourceID', 'ServiceCallTicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('CreateDateTime', 'LastModifiedByResourceID', 'ServiceCallTicketID', 'ResourceID', 'id', 'LastModifiedDateTime', 'CreatedByResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatedByResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResourceID', 'ServiceCallTicketID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('CreateDateTime', 'CreatedByResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResourceID', 'ServiceCallTicketID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('CreateDateTime', 'CreatedByResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResourceID', 'ServiceCallTicketID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('CreateDateTime', 'CreatedByResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResourceID', 'ServiceCallTicketID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceCallTicketID', 'ResourceID', 'CreatedByResourceID', 'CreateDateTime', 'LastModifiedByResourceID', 'LastModifiedDateTime')]
+    [ValidateSet('CreateDateTime', 'CreatedByResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResourceID', 'ServiceCallTicketID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -345,8 +345,10 @@ Remove-AtwsServiceCallTicketResource
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

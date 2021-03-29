@@ -145,84 +145,84 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RelativeUrl', 'Active', 'Name', 'id', 'Description', 'System')]
+    [ValidateSet('Active', 'Description', 'id', 'Name', 'RelativeUrl', 'System')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RelativeUrl', 'Active', 'Name', 'id', 'Description', 'System')]
+    [ValidateSet('Active', 'Description', 'id', 'Name', 'RelativeUrl', 'System')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('RelativeUrl', 'Active', 'Name', 'id', 'Description', 'System')]
+    [ValidateSet('Active', 'Description', 'id', 'Name', 'RelativeUrl', 'System')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'RelativeUrl')]
+    [ValidateSet('Description', 'id', 'Name', 'RelativeUrl')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'RelativeUrl')]
+    [ValidateSet('Description', 'id', 'Name', 'RelativeUrl')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'RelativeUrl')]
+    [ValidateSet('Description', 'id', 'Name', 'RelativeUrl')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'RelativeUrl')]
+    [ValidateSet('Description', 'id', 'Name', 'RelativeUrl')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'RelativeUrl')]
+    [ValidateSet('Description', 'Name', 'RelativeUrl')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'RelativeUrl')]
+    [ValidateSet('Description', 'Name', 'RelativeUrl')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'RelativeUrl')]
+    [ValidateSet('Description', 'Name', 'RelativeUrl')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'RelativeUrl')]
+    [ValidateSet('Description', 'Name', 'RelativeUrl')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'RelativeUrl')]
+    [ValidateSet('Description', 'Name', 'RelativeUrl')]
     [string[]]
     $Contains,
 
@@ -343,8 +343,10 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

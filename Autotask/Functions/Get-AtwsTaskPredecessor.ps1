@@ -133,49 +133,49 @@ Set-AtwsTaskPredecessor
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PredecessorTaskID', 'id', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PredecessorTaskID', 'id', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('PredecessorTaskID', 'id', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -326,8 +326,10 @@ Set-AtwsTaskPredecessor
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

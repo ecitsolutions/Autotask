@@ -175,49 +175,49 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactRating', 'ContactID', 'SurveyRating', 'CompanyRating', 'ResourceRating', 'AccountID', 'SurveyID', 'TicketID', 'id', 'CompleteDate', 'SendDate')]
+    [ValidateSet('AccountID', 'CompanyRating', 'CompleteDate', 'ContactID', 'ContactRating', 'id', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactRating', 'ContactID', 'SurveyRating', 'CompanyRating', 'ResourceRating', 'AccountID', 'SurveyID', 'TicketID', 'id', 'CompleteDate', 'SendDate')]
+    [ValidateSet('AccountID', 'CompanyRating', 'CompleteDate', 'ContactID', 'ContactRating', 'id', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContactRating', 'ContactID', 'SurveyRating', 'CompanyRating', 'ResourceRating', 'AccountID', 'SurveyID', 'TicketID', 'id', 'CompleteDate', 'SendDate')]
+    [ValidateSet('AccountID', 'CompanyRating', 'CompleteDate', 'ContactID', 'ContactRating', 'id', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
+    [ValidateSet('AccountID', 'CompanyRating', 'CompleteDate', 'ContactID', 'ContactRating', 'id', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
+    [ValidateSet('AccountID', 'CompanyRating', 'CompleteDate', 'ContactID', 'ContactRating', 'id', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
+    [ValidateSet('AccountID', 'CompanyRating', 'CompleteDate', 'ContactID', 'ContactRating', 'id', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'AccountID', 'CompanyRating', 'ContactID', 'ContactRating', 'CompleteDate', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
+    [ValidateSet('AccountID', 'CompanyRating', 'CompleteDate', 'ContactID', 'ContactRating', 'id', 'ResourceRating', 'SendDate', 'SurveyID', 'SurveyRating', 'TicketID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -369,8 +369,10 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

@@ -196,49 +196,49 @@ Set-AtwsTicketChecklistItem
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('KnowledgebaseArticleID', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'Completed', 'TicketID', 'id', 'Important', 'Position')]
+    [ValidateSet('Completed', 'CompletedByResourceID', 'CompletedDateTime', 'id', 'Important', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('KnowledgebaseArticleID', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'Completed', 'TicketID', 'id', 'Important', 'Position')]
+    [ValidateSet('Completed', 'CompletedByResourceID', 'CompletedDateTime', 'id', 'Important', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('KnowledgebaseArticleID', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'Completed', 'TicketID', 'id', 'Important', 'Position')]
+    [ValidateSet('Completed', 'CompletedByResourceID', 'CompletedDateTime', 'id', 'Important', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
+    [ValidateSet('CompletedByResourceID', 'CompletedDateTime', 'id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
+    [ValidateSet('CompletedByResourceID', 'CompletedDateTime', 'id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
+    [ValidateSet('CompletedByResourceID', 'CompletedDateTime', 'id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CompletedByResourceID', 'CompletedDateTime', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
+    [ValidateSet('CompletedByResourceID', 'CompletedDateTime', 'id', 'ItemName', 'KnowledgebaseArticleID', 'Position', 'TicketID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -395,8 +395,10 @@ Set-AtwsTicketChecklistItem
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

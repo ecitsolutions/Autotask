@@ -227,84 +227,84 @@ Set-AtwsContractMilestone
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Amount', 'InternalCurrencyAmount', 'Description', 'DateDue', 'Title', 'Status', 'ContractID', 'id', 'BusinessDivisionSubdivisionID', 'CreatorResourceID', 'AllocationCodeID', 'CreateDate', 'IsInitialPayment')]
+    [ValidateSet('AllocationCodeID', 'Amount', 'BusinessDivisionSubdivisionID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'DateDue', 'Description', 'id', 'InternalCurrencyAmount', 'IsInitialPayment', 'Status', 'Title')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Amount', 'InternalCurrencyAmount', 'Description', 'DateDue', 'Title', 'Status', 'ContractID', 'id', 'BusinessDivisionSubdivisionID', 'CreatorResourceID', 'AllocationCodeID', 'CreateDate', 'IsInitialPayment')]
+    [ValidateSet('AllocationCodeID', 'Amount', 'BusinessDivisionSubdivisionID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'DateDue', 'Description', 'id', 'InternalCurrencyAmount', 'IsInitialPayment', 'Status', 'Title')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Amount', 'InternalCurrencyAmount', 'Description', 'DateDue', 'Title', 'Status', 'ContractID', 'id', 'BusinessDivisionSubdivisionID', 'CreatorResourceID', 'AllocationCodeID', 'CreateDate', 'IsInitialPayment')]
+    [ValidateSet('AllocationCodeID', 'Amount', 'BusinessDivisionSubdivisionID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'DateDue', 'Description', 'id', 'InternalCurrencyAmount', 'IsInitialPayment', 'Status', 'Title')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDate', 'CreatorResourceID', 'Status', 'DateDue', 'Amount', 'Title', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AllocationCodeID', 'Amount', 'BusinessDivisionSubdivisionID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'DateDue', 'Description', 'id', 'InternalCurrencyAmount', 'Status', 'Title')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDate', 'CreatorResourceID', 'Status', 'DateDue', 'Amount', 'Title', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AllocationCodeID', 'Amount', 'BusinessDivisionSubdivisionID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'DateDue', 'Description', 'id', 'InternalCurrencyAmount', 'Status', 'Title')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDate', 'CreatorResourceID', 'Status', 'DateDue', 'Amount', 'Title', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AllocationCodeID', 'Amount', 'BusinessDivisionSubdivisionID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'DateDue', 'Description', 'id', 'InternalCurrencyAmount', 'Status', 'Title')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'CreateDate', 'CreatorResourceID', 'Status', 'DateDue', 'Amount', 'Title', 'Description', 'ContractID', 'AllocationCodeID', 'InternalCurrencyAmount', 'BusinessDivisionSubdivisionID')]
+    [ValidateSet('AllocationCodeID', 'Amount', 'BusinessDivisionSubdivisionID', 'ContractID', 'CreateDate', 'CreatorResourceID', 'DateDue', 'Description', 'id', 'InternalCurrencyAmount', 'Status', 'Title')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $Contains,
 
@@ -426,8 +426,10 @@ Set-AtwsContractMilestone
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

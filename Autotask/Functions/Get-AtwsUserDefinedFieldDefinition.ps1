@@ -293,84 +293,84 @@ Set-AtwsUserDefinedFieldDefinition
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsFieldMapping', 'NumberOfDecimalPlaces', 'DefaultValue', 'CrmToProjectUdfId', 'Name', 'Description', 'IsPrivate', 'IsActive', 'DataType', 'UdfType', 'IsProtected', 'MergeVariableName', 'DisplayFormat', 'id', 'CreateDate', 'IsEncrypted', 'SortOrder', 'IsVisibleToClientPortal', 'IsRequired')]
+    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'DataType', 'DefaultValue', 'Description', 'DisplayFormat', 'id', 'IsActive', 'IsEncrypted', 'IsFieldMapping', 'IsPrivate', 'IsProtected', 'IsRequired', 'IsVisibleToClientPortal', 'MergeVariableName', 'Name', 'NumberOfDecimalPlaces', 'SortOrder', 'UdfType')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsFieldMapping', 'NumberOfDecimalPlaces', 'DefaultValue', 'CrmToProjectUdfId', 'Name', 'Description', 'IsPrivate', 'IsActive', 'DataType', 'UdfType', 'IsProtected', 'MergeVariableName', 'DisplayFormat', 'id', 'CreateDate', 'IsEncrypted', 'SortOrder', 'IsVisibleToClientPortal', 'IsRequired')]
+    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'DataType', 'DefaultValue', 'Description', 'DisplayFormat', 'id', 'IsActive', 'IsEncrypted', 'IsFieldMapping', 'IsPrivate', 'IsProtected', 'IsRequired', 'IsVisibleToClientPortal', 'MergeVariableName', 'Name', 'NumberOfDecimalPlaces', 'SortOrder', 'UdfType')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsFieldMapping', 'NumberOfDecimalPlaces', 'DefaultValue', 'CrmToProjectUdfId', 'Name', 'Description', 'IsPrivate', 'IsActive', 'DataType', 'UdfType', 'IsProtected', 'MergeVariableName', 'DisplayFormat', 'id', 'CreateDate', 'IsEncrypted', 'SortOrder', 'IsVisibleToClientPortal', 'IsRequired')]
+    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'DataType', 'DefaultValue', 'Description', 'DisplayFormat', 'id', 'IsActive', 'IsEncrypted', 'IsFieldMapping', 'IsPrivate', 'IsProtected', 'IsRequired', 'IsVisibleToClientPortal', 'MergeVariableName', 'Name', 'NumberOfDecimalPlaces', 'SortOrder', 'UdfType')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces')]
+    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'DataType', 'DefaultValue', 'Description', 'DisplayFormat', 'id', 'MergeVariableName', 'Name', 'NumberOfDecimalPlaces', 'SortOrder', 'UdfType')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces')]
+    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'DataType', 'DefaultValue', 'Description', 'DisplayFormat', 'id', 'MergeVariableName', 'Name', 'NumberOfDecimalPlaces', 'SortOrder', 'UdfType')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces')]
+    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'DataType', 'DefaultValue', 'Description', 'DisplayFormat', 'id', 'MergeVariableName', 'Name', 'NumberOfDecimalPlaces', 'SortOrder', 'UdfType')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'Name', 'Description', 'UdfType', 'DataType', 'DefaultValue', 'CreateDate', 'MergeVariableName', 'CrmToProjectUdfId', 'DisplayFormat', 'SortOrder', 'NumberOfDecimalPlaces')]
+    [ValidateSet('CreateDate', 'CrmToProjectUdfId', 'DataType', 'DefaultValue', 'Description', 'DisplayFormat', 'id', 'MergeVariableName', 'Name', 'NumberOfDecimalPlaces', 'SortOrder', 'UdfType')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'DefaultValue', 'MergeVariableName')]
+    [ValidateSet('DefaultValue', 'Description', 'MergeVariableName', 'Name')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'DefaultValue', 'MergeVariableName')]
+    [ValidateSet('DefaultValue', 'Description', 'MergeVariableName', 'Name')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'DefaultValue', 'MergeVariableName')]
+    [ValidateSet('DefaultValue', 'Description', 'MergeVariableName', 'Name')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'DefaultValue', 'MergeVariableName')]
+    [ValidateSet('DefaultValue', 'Description', 'MergeVariableName', 'Name')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Name', 'Description', 'DefaultValue', 'MergeVariableName')]
+    [ValidateSet('DefaultValue', 'Description', 'MergeVariableName', 'Name')]
     [string[]]
     $Contains,
 
@@ -492,8 +492,10 @@ Set-AtwsUserDefinedFieldDefinition
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

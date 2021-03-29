@@ -137,49 +137,49 @@ Set-AtwsPriceListServiceBundle
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'id', 'UsesInternalCurrencyPrice', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'id', 'ServiceBundleID', 'UnitPrice', 'UsesInternalCurrencyPrice')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'id', 'UsesInternalCurrencyPrice', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'id', 'ServiceBundleID', 'UnitPrice', 'UsesInternalCurrencyPrice')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ServiceBundleID', 'id', 'UsesInternalCurrencyPrice', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'id', 'ServiceBundleID', 'UnitPrice', 'UsesInternalCurrencyPrice')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceBundleID', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'id', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceBundleID', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'id', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceBundleID', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'id', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ServiceBundleID', 'CurrencyID', 'UnitPrice')]
+    [ValidateSet('CurrencyID', 'id', 'ServiceBundleID', 'UnitPrice')]
     [string[]]
     $LessThanOrEquals,
 
@@ -330,8 +330,10 @@ Set-AtwsPriceListServiceBundle
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

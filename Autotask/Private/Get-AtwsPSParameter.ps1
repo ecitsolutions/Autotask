@@ -164,10 +164,13 @@ Function Get-AtwsPSParameter {
         elseIf ($ValidateSet.Count -gt 0) { 
             # Fix quote characters for labels
             $labels = foreach ($Label in  $ValidateSet) {
-                # Use literal string with escaped literal quotes, both straight and curly
-                "'{0}'" -F $($Label -replace "'", "''" -replace $pattern, $replacement) 
+                # Leave out empty labels
+                if ($Label) {
+                    # Use literal string with escaped literal quotes, both straight and curly
+                    "'{0}'" -F $($Label -replace "'", "''" -replace $pattern, $replacement) 
+                }
             }          
-            $text += "    [ValidateSet($($labels -join ', '))]`n" 
+            $text += "    [ValidateSet($(($labels | sort-object) -join ', '))]`n" 
         }
 
         # Add the correct variable type for the parameter

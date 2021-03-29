@@ -152,49 +152,49 @@ Remove-AtwsTicketChangeRequestApproval
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApproveRejectDateTime', 'ContactID', 'ResourceID', 'TicketID', 'id', 'ApproveRejectNote', 'IsApproved')]
+    [ValidateSet('ApproveRejectDateTime', 'ApproveRejectNote', 'ContactID', 'id', 'IsApproved', 'ResourceID', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApproveRejectDateTime', 'ContactID', 'ResourceID', 'TicketID', 'id', 'ApproveRejectNote', 'IsApproved')]
+    [ValidateSet('ApproveRejectDateTime', 'ApproveRejectNote', 'ContactID', 'id', 'IsApproved', 'ResourceID', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ApproveRejectDateTime', 'ContactID', 'ResourceID', 'TicketID', 'id', 'ApproveRejectNote', 'IsApproved')]
+    [ValidateSet('ApproveRejectDateTime', 'ApproveRejectNote', 'ContactID', 'id', 'IsApproved', 'ResourceID', 'TicketID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'ResourceID', 'ContactID', 'ApproveRejectDateTime', 'ApproveRejectNote')]
+    [ValidateSet('ApproveRejectDateTime', 'ApproveRejectNote', 'ContactID', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'ResourceID', 'ContactID', 'ApproveRejectDateTime', 'ApproveRejectNote')]
+    [ValidateSet('ApproveRejectDateTime', 'ApproveRejectNote', 'ContactID', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'ResourceID', 'ContactID', 'ApproveRejectDateTime', 'ApproveRejectNote')]
+    [ValidateSet('ApproveRejectDateTime', 'ApproveRejectNote', 'ContactID', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'ResourceID', 'ContactID', 'ApproveRejectDateTime', 'ApproveRejectNote')]
+    [ValidateSet('ApproveRejectDateTime', 'ApproveRejectNote', 'ContactID', 'id', 'ResourceID', 'TicketID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -351,8 +351,10 @@ Remove-AtwsTicketChangeRequestApproval
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

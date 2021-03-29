@@ -166,49 +166,49 @@ Set-AtwsTagGroup
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSystem', 'id', 'Label', 'IsActive', 'DisplayColor')]
+    [ValidateSet('DisplayColor', 'id', 'IsActive', 'IsSystem', 'Label')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSystem', 'id', 'Label', 'IsActive', 'DisplayColor')]
+    [ValidateSet('DisplayColor', 'id', 'IsActive', 'IsSystem', 'Label')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('IsSystem', 'id', 'Label', 'IsActive', 'DisplayColor')]
+    [ValidateSet('DisplayColor', 'id', 'IsActive', 'IsSystem', 'Label')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'DisplayColor', 'Label')]
+    [ValidateSet('DisplayColor', 'id', 'Label')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'DisplayColor', 'Label')]
+    [ValidateSet('DisplayColor', 'id', 'Label')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'DisplayColor', 'Label')]
+    [ValidateSet('DisplayColor', 'id', 'Label')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'DisplayColor', 'Label')]
+    [ValidateSet('DisplayColor', 'id', 'Label')]
     [string[]]
     $LessThanOrEquals,
 
@@ -364,8 +364,10 @@ Set-AtwsTagGroup
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

@@ -138,49 +138,49 @@ New-AtwsBillingItemApprovalLevel
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ApprovalDateTime', 'ApprovalResourceID', 'ApprovalLevel', 'TimeEntryID')]
+    [ValidateSet('ApprovalDateTime', 'ApprovalLevel', 'ApprovalResourceID', 'id', 'TimeEntryID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ApprovalDateTime', 'ApprovalResourceID', 'ApprovalLevel', 'TimeEntryID')]
+    [ValidateSet('ApprovalDateTime', 'ApprovalLevel', 'ApprovalResourceID', 'id', 'TimeEntryID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ApprovalDateTime', 'ApprovalResourceID', 'ApprovalLevel', 'TimeEntryID')]
+    [ValidateSet('ApprovalDateTime', 'ApprovalLevel', 'ApprovalResourceID', 'id', 'TimeEntryID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TimeEntryID', 'ApprovalResourceID', 'ApprovalDateTime', 'ApprovalLevel')]
+    [ValidateSet('ApprovalDateTime', 'ApprovalLevel', 'ApprovalResourceID', 'id', 'TimeEntryID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TimeEntryID', 'ApprovalResourceID', 'ApprovalDateTime', 'ApprovalLevel')]
+    [ValidateSet('ApprovalDateTime', 'ApprovalLevel', 'ApprovalResourceID', 'id', 'TimeEntryID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TimeEntryID', 'ApprovalResourceID', 'ApprovalDateTime', 'ApprovalLevel')]
+    [ValidateSet('ApprovalDateTime', 'ApprovalLevel', 'ApprovalResourceID', 'id', 'TimeEntryID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TimeEntryID', 'ApprovalResourceID', 'ApprovalDateTime', 'ApprovalLevel')]
+    [ValidateSet('ApprovalDateTime', 'ApprovalLevel', 'ApprovalResourceID', 'id', 'TimeEntryID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -332,8 +332,10 @@ New-AtwsBillingItemApprovalLevel
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

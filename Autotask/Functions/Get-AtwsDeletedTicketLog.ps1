@@ -146,49 +146,49 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'TicketTitle', 'TicketNumber', 'TicketID', 'id')]
+    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'id', 'TicketID', 'TicketNumber', 'TicketTitle')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'TicketTitle', 'TicketNumber', 'TicketID', 'id')]
+    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'id', 'TicketID', 'TicketNumber', 'TicketTitle')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'TicketTitle', 'TicketNumber', 'TicketID', 'id')]
+    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'id', 'TicketID', 'TicketNumber', 'TicketTitle')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
+    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'id', 'TicketID', 'TicketNumber', 'TicketTitle')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
+    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'id', 'TicketID', 'TicketNumber', 'TicketTitle')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
+    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'id', 'TicketID', 'TicketNumber', 'TicketTitle')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'TicketNumber', 'TicketTitle', 'DeletedByResourceID', 'DeletedDateTime')]
+    [ValidateSet('DeletedByResourceID', 'DeletedDateTime', 'id', 'TicketID', 'TicketNumber', 'TicketTitle')]
     [string[]]
     $LessThanOrEquals,
 
@@ -345,8 +345,10 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

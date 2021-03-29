@@ -155,49 +155,49 @@ Set-AtwsProductVendor
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorPartNumber', 'VendorID', 'Active', 'ProductID', 'VendorCost', 'id', 'IsDefault')]
+    [ValidateSet('Active', 'id', 'IsDefault', 'ProductID', 'VendorCost', 'VendorID', 'VendorPartNumber')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorPartNumber', 'VendorID', 'Active', 'ProductID', 'VendorCost', 'id', 'IsDefault')]
+    [ValidateSet('Active', 'id', 'IsDefault', 'ProductID', 'VendorCost', 'VendorID', 'VendorPartNumber')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('VendorPartNumber', 'VendorID', 'Active', 'ProductID', 'VendorCost', 'id', 'IsDefault')]
+    [ValidateSet('Active', 'id', 'IsDefault', 'ProductID', 'VendorCost', 'VendorID', 'VendorPartNumber')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'VendorID', 'VendorCost', 'VendorPartNumber')]
+    [ValidateSet('id', 'ProductID', 'VendorCost', 'VendorID', 'VendorPartNumber')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'VendorID', 'VendorCost', 'VendorPartNumber')]
+    [ValidateSet('id', 'ProductID', 'VendorCost', 'VendorID', 'VendorPartNumber')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'VendorID', 'VendorCost', 'VendorPartNumber')]
+    [ValidateSet('id', 'ProductID', 'VendorCost', 'VendorID', 'VendorPartNumber')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'ProductID', 'VendorID', 'VendorCost', 'VendorPartNumber')]
+    [ValidateSet('id', 'ProductID', 'VendorCost', 'VendorID', 'VendorPartNumber')]
     [string[]]
     $LessThanOrEquals,
 
@@ -353,8 +353,10 @@ Set-AtwsProductVendor
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

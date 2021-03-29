@@ -217,49 +217,49 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionPlanResourceID', 'FirstResponseInitiatingResourceID', 'LastModifiedDateTime', 'CreateDateTime', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'LastModifiedByResourceID', 'ResolutionMet', 'TicketID', 'FirstResponseMet', 'ResolutionElapsedHours', 'ResolutionResourceID', 'FirstResponseResourceID', 'id', 'ResolutionPlanMet', 'CreatorResourceID', 'FirstResponseElapsedHours')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseMet', 'FirstResponseResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResolutionElapsedHours', 'ResolutionMet', 'ResolutionPlanElapsedHours', 'ResolutionPlanMet', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'ServiceLevelAgreementName', 'TicketID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionPlanResourceID', 'FirstResponseInitiatingResourceID', 'LastModifiedDateTime', 'CreateDateTime', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'LastModifiedByResourceID', 'ResolutionMet', 'TicketID', 'FirstResponseMet', 'ResolutionElapsedHours', 'ResolutionResourceID', 'FirstResponseResourceID', 'id', 'ResolutionPlanMet', 'CreatorResourceID', 'FirstResponseElapsedHours')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseMet', 'FirstResponseResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResolutionElapsedHours', 'ResolutionMet', 'ResolutionPlanElapsedHours', 'ResolutionPlanMet', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'ServiceLevelAgreementName', 'TicketID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ResolutionPlanResourceID', 'FirstResponseInitiatingResourceID', 'LastModifiedDateTime', 'CreateDateTime', 'ResolutionPlanElapsedHours', 'ServiceLevelAgreementName', 'LastModifiedByResourceID', 'ResolutionMet', 'TicketID', 'FirstResponseMet', 'ResolutionElapsedHours', 'ResolutionResourceID', 'FirstResponseResourceID', 'id', 'ResolutionPlanMet', 'CreatorResourceID', 'FirstResponseElapsedHours')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseMet', 'FirstResponseResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResolutionElapsedHours', 'ResolutionMet', 'ResolutionPlanElapsedHours', 'ResolutionPlanMet', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'ServiceLevelAgreementName', 'TicketID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'ServiceLevelAgreementName', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionElapsedHours', 'ResolutionResourceID', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDateTime', 'LastModifiedByResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResolutionElapsedHours', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'ServiceLevelAgreementName', 'TicketID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'ServiceLevelAgreementName', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionElapsedHours', 'ResolutionResourceID', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDateTime', 'LastModifiedByResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResolutionElapsedHours', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'ServiceLevelAgreementName', 'TicketID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'ServiceLevelAgreementName', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionElapsedHours', 'ResolutionResourceID', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDateTime', 'LastModifiedByResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResolutionElapsedHours', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'ServiceLevelAgreementName', 'TicketID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'TicketID', 'ServiceLevelAgreementName', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionElapsedHours', 'ResolutionResourceID', 'CreateDateTime', 'CreatorResourceID', 'LastModifiedDateTime', 'LastModifiedByResourceID')]
+    [ValidateSet('CreateDateTime', 'CreatorResourceID', 'FirstResponseElapsedHours', 'FirstResponseInitiatingResourceID', 'FirstResponseResourceID', 'id', 'LastModifiedByResourceID', 'LastModifiedDateTime', 'ResolutionElapsedHours', 'ResolutionPlanElapsedHours', 'ResolutionPlanResourceID', 'ResolutionResourceID', 'ServiceLevelAgreementName', 'TicketID')]
     [string[]]
     $LessThanOrEquals,
 
@@ -416,8 +416,10 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }

@@ -158,49 +158,49 @@ New-AtwsPurchaseOrderReceive
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReceiveDate', 'QuantityNowReceiving', 'QuantityBackOrdered', 'SerialNumber', 'id', 'QuantityPreviouslyReceived', 'PurchaseOrderItemID', 'ReceivedByResourceID')]
+    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityBackOrdered', 'QuantityNowReceiving', 'QuantityPreviouslyReceived', 'ReceiveDate', 'ReceivedByResourceID', 'SerialNumber')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReceiveDate', 'QuantityNowReceiving', 'QuantityBackOrdered', 'SerialNumber', 'id', 'QuantityPreviouslyReceived', 'PurchaseOrderItemID', 'ReceivedByResourceID')]
+    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityBackOrdered', 'QuantityNowReceiving', 'QuantityPreviouslyReceived', 'ReceiveDate', 'ReceivedByResourceID', 'SerialNumber')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ReceiveDate', 'QuantityNowReceiving', 'QuantityBackOrdered', 'SerialNumber', 'id', 'QuantityPreviouslyReceived', 'PurchaseOrderItemID', 'ReceivedByResourceID')]
+    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityBackOrdered', 'QuantityNowReceiving', 'QuantityPreviouslyReceived', 'ReceiveDate', 'ReceivedByResourceID', 'SerialNumber')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'ReceiveDate', 'QuantityBackOrdered', 'ReceivedByResourceID', 'SerialNumber')]
+    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityBackOrdered', 'QuantityNowReceiving', 'QuantityPreviouslyReceived', 'ReceiveDate', 'ReceivedByResourceID', 'SerialNumber')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'ReceiveDate', 'QuantityBackOrdered', 'ReceivedByResourceID', 'SerialNumber')]
+    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityBackOrdered', 'QuantityNowReceiving', 'QuantityPreviouslyReceived', 'ReceiveDate', 'ReceivedByResourceID', 'SerialNumber')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'ReceiveDate', 'QuantityBackOrdered', 'ReceivedByResourceID', 'SerialNumber')]
+    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityBackOrdered', 'QuantityNowReceiving', 'QuantityPreviouslyReceived', 'ReceiveDate', 'ReceivedByResourceID', 'SerialNumber')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityPreviouslyReceived', 'QuantityNowReceiving', 'ReceiveDate', 'QuantityBackOrdered', 'ReceivedByResourceID', 'SerialNumber')]
+    [ValidateSet('id', 'PurchaseOrderItemID', 'QuantityBackOrdered', 'QuantityNowReceiving', 'QuantityPreviouslyReceived', 'ReceiveDate', 'ReceivedByResourceID', 'SerialNumber')]
     [string[]]
     $LessThanOrEquals,
 
@@ -357,8 +357,10 @@ New-AtwsPurchaseOrderReceive
                         Write-host $_
                     }
                 }
-                # Add response to result
-                $result.AddRange($response)
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
 
                 Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
             }
