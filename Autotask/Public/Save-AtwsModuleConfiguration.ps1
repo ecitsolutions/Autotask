@@ -26,7 +26,6 @@ Function Save-AtwsModuleConfiguration {
     #>
 	
     [cmdletbinding(
-        SupportsShouldProcess = $true,
         ConfirmImpact = 'Low'
     )]
     Param
@@ -41,6 +40,10 @@ Function Save-AtwsModuleConfiguration {
         [PSObject]
         $Configuration = $Script:Atws.Configuration,
     
+
+        [String]
+        $Name = 'Default',
+        
         [ValidateNotNullOrEmpty()]    
         [IO.FileInfo]
         $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
@@ -53,22 +56,47 @@ Function Save-AtwsModuleConfiguration {
     
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
-        if (!($PSCmdlet.MyInvocation.BoundParameters['Verbose'].IsPresent)) {
-            # No local override of central preference. Load central preference
-            $VerbosePreference = $Script:Atws.Configuration.VerbosePref
+        # Read existing configuration from disk
+        if (Test-Path $Path) {
+            Try { 
+                # Try to save to the path
+                $settings = Import-Clixml -Path $Path.Fullname
+            }
+            catch {
+                $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
+                throw (New-Object System.Configuration.Provider.ProviderException $message)
+        
+                return
+            }
         }
 
-        if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
+        # Create an empty setting table
+        if (-not ($settings -is [hashtable])) {
+            $settings = @{}
         }
+    
     }
   
     process {
-        $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: Saving current configuration to {1} as requested.' -F $caption, $path.FullName
-        $verboseWarning = '{0}: About to save current configuration to {1}. Do you want to continue?' -F $caption, $path.FullName
-
-        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
+        Try { 
+            # Save settings in correct slot
+            $settings[$Name] = $Configuration
+            # Try to save to the path
+            Export-Clixml -InputObject $settings -Path $Path.Fullname
+        }
+        catch {
+            $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
+            throw (New-Object System.Configuration.Provider.ProviderException $message)
+        
+            return
+        }
+    }
+  
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+    }
+ 
+}
             Try { 
                 # Try to save to the path
                 Export-Clixml -InputObject $Configuration -Path $Path.Fullname
