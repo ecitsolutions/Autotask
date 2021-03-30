@@ -142,7 +142,48 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ValidateRange(0, 100)]
         [int]
-        $ErrorLimit
+        $ErrorLimit,
+
+        [Parameter(
+            ValueFromPipelineByPropertyName = $true,
+            ParameterSetName = 'Username_and_password'
+        )]
+        [Parameter(
+            ParameterSetName = 'Credentials'
+        )]
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName
+            })]
+        [ValidateScript( { 
+                Test-Path $_
+            })]
+        [IO.FileInfo]
+        $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml),
+
+        [Parameter(
+            ValueFromPipelineByPropertyName = $true,
+            ParameterSetName = 'Username_and_password'
+        )]
+        [Parameter(
+            ParameterSetName = 'Credentials'
+        )]
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                if (Test-Path $FakeBound.Path) {
+                    [IO.FileInfo]$filepath = $FakeBound.Path
+                }
+                else {
+                    [IO.FileInfo]$filepath = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
+                }
+                $tempsettings = Import-Clixml -Path $filepath.Fullname
+                if ($tempsettings -is [hashtable]) {
+                    $tempsettings.keys
+                }
+            })]
+        [ValidateNotNullOrEmpty()] 
+        [String]
+        $Name = 'Default'
     )
     
     begin { 
@@ -162,14 +203,46 @@ Function Set-AtwsModuleConfiguration {
             # No local override of central preference. Load central preference
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
-
-        if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
-        }
     
     }
   
     process {
+
+        # Read existing configuration from disk
+        if (Test-Path $Path) {
+            Try { 
+                # Try to save to the path
+                $settings = Import-Clixml -Path $Path.Fullname
+            }
+            catch {
+                $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
+                throw (New-Object System.Configuration.Provider.ProviderException $message)
+        
+                return
+            }
+        }
+
+        # Create an empty setting table
+        if (-not ($settings -is [hashtable])) {
+            $settings = @{}
+        }
+
+        # Get current configuration
+        if ($Script:Atws.integrationsValue) {
+            # We are connected. Use active configuration.
+            $configuration = $Script:Atws.Configuration
+        }
+        # Not connected. Do we have an existing configuration from disk with this name?
+        elseIf ($settings.containskey($Name)) {
+            # Use saved configuration
+            $configuration = $settings[$Name]
+        }
+        else {
+            $message = "Not connected and no configuration by name '{0}' exists. Create a new configuration with New-AtwsModuleConfiguration. You may save it using Save-AtwsModuleConfiuguration." -f $Name
+            throw (New-Object System.Configuration.Provider.ProviderException $message)
+        
+            return           
+        }
 
         foreach ($parameter in $PSBoundParameters.GetEnumerator()) { 
 
@@ -178,42 +251,65 @@ Function Set-AtwsModuleConfiguration {
             $verboseWarning = '{0}: About to set {1} to {2}. Do you want to continue?' -F $caption, $parameter.key, $parameter.value
 
             if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
-                # Only run code if parameter has been use
+                # Only run code if parameter has been used
                 switch ($parameter.key) { 
                     'Credential' {
-                        $Script:Atws.Configuration.Username = $Credential.UserName
-                        $Script:Atws.Configuration.SecurePassword = $Credential.Password
-                        $Script:Atws.ClientCredentials.UserName.UserName = $Credential.UserName
-                        $Script:Atws.ClientCredentials.UserName.Password = $Credential.GetNetworkCredential().Password
+                        $configuration.Username = $Credential.UserName
+                        $configuration.SecurePassword = $Credential.Password
+                    }
+                    'Username' {
+                        $configuration.Username = $UserName
+
+                    }
+                    'SecurePassword' {
+                        $configuration.SecurePassword = $SecurePassword
                     }
                     'ApiTrackingIdentifier' { 
-                        $Script:Atws.integrationsValue.IntegrationCode = $ApiTrackingIdentifier
+                        $configuration.SecureTrackingIdentifier = $SecureTrackingIdentifier
                     }
                     'ConvertPicklistIdToLabel' {
-                        $Script:Atws.Configuration.ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
+                        $configuration.ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
                     }
                     'Prefix' { 
                         if ($Prefix -ne $Script:Atws.Configuration.Prefix) { 
                             Write-Warning "The module prefix cannot be changed while the module is loaded. A module reload is necessary."
-                            $Script:Atws.Configuration.Prefix = $Prefix
+                            $Script:configuration.Prefix = $Prefix
                         }
                     }
                     'RefreshCache' { 
-                        $Script:Atws.Configuration.RefreshCache = $RefreshCache.IsPresent           
+                        $Script:configuration.RefreshCache = $RefreshCache.IsPresent           
                     }
                     'DebugPref' { 
                         $DebugPreference = $DebugPref
-                        $Script:Atws.Configuration.DebugPref = $DebugPref
+                        $Script:configuration.DebugPref = $DebugPref
                     }
                     'VerbosePref' {
                         $VerbosePreference = $VerbosePref
-                        $Script:Atws.Configuration.VerbosePref = $VerbosePref
+                        $Script:configuration.VerbosePref = $VerbosePref
                     }
                     'ErrorLimit' {
-                        $Script:Atws.Configuration.ErrorLimit = $ErrorLimit
+                        $Script:configuration.ErrorLimit = $ErrorLimit
                     }
                 }
             }
+        }
+
+        # Are we connected? Update current settings
+        if ($Script:Atws.integrationsValue) {
+            $Script.Atws.Configuration = $configuration
+
+            # Prepare securestring password to be converted to plaintext
+            $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($configuration.SecurePassword)
+            $Script:Atws.ClientCredentials.UserName.UserName = $configuration.Username
+            $Script:Atws.ClientCredentials.UserName.Password = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($BSTR)
+
+            # Set the integrationcode property to the API tracking identifier provided by the user
+            $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($ConfigurationData.SecureTrackingIdentifier)
+            $AutotaskIntegrationsValue.IntegrationCode = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($BSTR)
+        }
+        else {
+            # We loaded these settings from disk. Save to disk again.
+            Save-AtwsModuleConfiguration -Name $Name -Configuration $configuration
         }
     }
   
