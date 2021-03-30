@@ -40,11 +40,17 @@ Function Save-AtwsModuleConfiguration {
         [PSObject]
         $Configuration = $Script:Atws.Configuration,
     
-
+        [ValidateNotNullOrEmpty()] 
         [String]
         $Name = 'Default',
         
-        [ValidateNotNullOrEmpty()]    
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName
+            })]
+        [ValidateScript( { 
+                Test-Path $_
+            })]           
         [IO.FileInfo]
         $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
     )
@@ -57,7 +63,7 @@ Function Save-AtwsModuleConfiguration {
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
         # Read existing configuration from disk
-        if (Test-Path $Path) {
+        if ($Path.Exists) {
             Try { 
                 # Try to save to the path
                 $settings = Import-Clixml -Path $Path.Fullname
