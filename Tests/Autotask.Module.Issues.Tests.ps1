@@ -65,6 +65,12 @@ If (-not ($loadedModule)) {
     Import-Module $modulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
 }
 
+<#
+    TODO: Create missing tests:
+        1. Tests for Save- and Set-AtwsModuleConfiguration.ps1
+        2. Tests for setting UDF properties on 500+ devices : Ensure connected to our sandbox.
+#>
+
 Describe 'Issue #95' -Tag 'Issues' {
 
     Context 'Issue #94: TimeZone issues' {
