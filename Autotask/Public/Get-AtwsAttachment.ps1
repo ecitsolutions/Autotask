@@ -134,7 +134,10 @@ Function Get-AtwsAttachment {
     begin {
 
         if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
+            # Not connected. Try to connect, prompt for credentials if necessary
+            Connect-AtwsWebAPI
+            
+            #Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }
 
         # Enable modern -Debug behavior

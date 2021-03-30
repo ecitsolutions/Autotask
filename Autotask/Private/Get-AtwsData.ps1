@@ -71,7 +71,10 @@ Function Get-AtwsData {
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
         if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
+            # Not connected. Try to connect, prompt for credentials if necessary
+            Connect-AtwsWebAPI
+            
+            #Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }
 
         $result = [collections.generic.list[psobject]]::new()
