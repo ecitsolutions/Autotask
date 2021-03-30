@@ -112,7 +112,7 @@ Function Connect-AtwsWebAPI {
         )]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.climxml").FullName
+                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName
             })]
         [ValidateScript( { 
                 Test-Path $_
@@ -154,7 +154,45 @@ Function Connect-AtwsWebAPI {
                 # again
                 $ConfigurationData = New-AtwsModuleConfiguration @Parameters
             }
+            elseif ($env:AtwsDefaultCredential) {
+                # We are probably on Azure and in an azure function to boot.
+                # Can be used locally, too, but that is a secret...
+                if (-not ($env:AtwsDefaultSecureIdentifier)) {
+                    # We really need that secure identifier...
+                    $message = "Could not a variable with name 'AtwsDefaultSecureIdentifier'. Create and run again."
+                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                    return
+                }
+
+                $ConfigurationData = New-AtwsModuleConfiguration -Credential $env:AtwsDefaultCredential -SecureTrackingIdentifier $env:AtwsDefaultSecureIdentifier
+
+            }
+            elseif ($env:AUTOMATION_ASSET_ACCOUNTID ) {
+                # We are on Azure. Try to get credentials and api key
+                try {
+                    $Credential = Get-AutomationPSCredential -Name 'AtwsDefaultCredential'
+                }
+                catch {
+                    $message = "Could not find credentials with name 'AtwsDefaultCredential'. Create and run again."
+                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                    return
+                }
+                # Now try for API key
+                try {
+                    $SecureIdentifier = Get-AutomationVariable -Name 'AtwsDefaultSecureIdentifier'
+                }
+                catch {
+                    $message = "Could not a variable with name 'AtwsDefaultSecureIdentifier'. Create and run again."
+                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                    return
+                }
+
+                $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureIdentifier
+
+            }
             elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
+                
+                
                 # Read the file. It should exist or parametervalidation should have killed us.
                 $settings = Import-Clixml -Path $Path
                 $ConfigurationData = $settings[$Name]
