@@ -69,6 +69,7 @@ If (-not ($loadedModule)) {
     TODO: Create missing tests:
         1. Tests for Save- and Set-AtwsModuleConfiguration.ps1
         2. Tests for setting UDF properties on 500+ devices : Ensure connected to our sandbox.
+        3. Test that we can input numeric value instedd of StringLabel to parameters like New-AtwsTicket -IssueType 'SomeLabel'
 #>
 
 Describe 'Issue #95' -Tag 'Issues' {
