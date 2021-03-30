@@ -284,9 +284,10 @@ describe 'Issue #37' -Tag 'Issues' {
     }
 }
 
-describe 'Issue #36' -Tag '    # The root cause was a mistake in ConvertTo-AtwsFilter
-eck this by mocking Get-AtwsData and verifying the -Filter
-    InModuleSc        
+describe 'Issue #36' -Tag 'Issues'  {
+    # The root cause was a mistake in ConvertTo-AtwsFilter
+    # We'll check this by mocking Get-AtwsData and verifying the -Filter
+    InModuleScope Autotask {       
         Mock 'Get-AtwsData' {
             [PSCustomObject]@{
               PSTypeName = 'Autotask.ContractServiceUnit'
