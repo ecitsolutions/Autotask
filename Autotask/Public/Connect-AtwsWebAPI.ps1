@@ -105,7 +105,8 @@ Function Connect-AtwsWebAPI {
                 }
             })]
         [pscustomobject]
-        $Configuration,
+        [alias('Configuration')]
+        $AtwsModuleConfiguration,
     
         [Parameter(
             ParameterSetName = 'ConfigurationFile'
@@ -117,14 +118,16 @@ Function Connect-AtwsWebAPI {
         [ValidateScript( { 
                 Test-Path $_
             })]
+        [Alias('Path')]
         [IO.FileInfo]
-        $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml),
+        $AtwsModuleConfigurationPath = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml),
 
         [Parameter(
             ParameterSetName = 'ConfigurationFile'
         )]
+        [alias('Name')]
         [string]
-        $Name = 'Default'
+        $AtwsModuleConfigurationName = 'Default'
     )
     
     begin { 
@@ -194,16 +197,16 @@ Function Connect-AtwsWebAPI {
                 
                 
                 # Read the file. It should exist or parametervalidation should have killed us.
-                $settings = Import-Clixml -Path $Path
+                $settings = Import-Clixml -Path $AtwsModuleConfigurationPath
                 $ConfigurationData = $settings[$Name]
                 if (-not (Test-AtwsModuleConfiguration -Configuration $ConfigurationData)) {
                     $message = "Configuration file $Path could not be validated. A connection could not be made."
                     throw (New-Object System.Configuration.Provider.ProviderException $message) 
                 }
             }
-            elseif (Test-AtwsModuleConfiguration -Configuration $Configuration) {
+            elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
                 # We got a configuration object and it passed validation
-                $ConfigurationData = $Configuration
+                $ConfigurationData = $AtwsModuleConfiguration
             }
         }
         catch {
