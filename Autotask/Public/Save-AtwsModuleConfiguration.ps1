@@ -81,6 +81,7 @@ Function Save-AtwsModuleConfiguration {
         Try { 
             # Save settings in correct slot
             $settings[$Name] = $Configuration
+            
             # Try to save to the path
             Export-Clixml -InputObject $settings -Path $Path.Fullname
         }
@@ -89,24 +90,6 @@ Function Save-AtwsModuleConfiguration {
             throw (New-Object System.Configuration.Provider.ProviderException $message)
         
             return
-        }
-    }
-  
-    end {
-        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-    }
- 
-}
-            Try { 
-                # Try to save to the path
-                Export-Clixml -InputObject $Configuration -Path $Path.Fullname
-            }
-            catch {
-                $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
-                throw (New-Object System.Configuration.Provider.ProviderException $message)
-        
-                return
-            }
         }
     }
   
