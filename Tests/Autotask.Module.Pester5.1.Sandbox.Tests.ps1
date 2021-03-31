@@ -80,7 +80,7 @@ Describe "Module connects properly" {
             Mock Get-Content { Throw [System.Management.Automation.ItemNotFoundException]::new('Item Not Found Mock') }
         }
         It "Connect-AtwsWebAPI does not throw" {
-            Write-Host "input not working credentials / TI" -ForegroundColor Red
+            # Write-Host "input not working credentials / TI" -ForegroundColor Red
             { Connect-AtwsWebAPI } | Should -Throw
         }
         It "Get-Item Does Throw" {
@@ -94,8 +94,12 @@ Describe "Save-AtwsModuleConfig" {
         BeforeEach{
             $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
             $File = Get-Content -Path $Path -ErrorAction SilentlyContinue
+
+            Import-Module $modulePath -Force -ErrorAction Stop
+            $loadedModule = Get-Module $moduleName
         }
         It "Does not throw" {
+            { Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $TI } | Should -Not -Throw
             { Save-AtwsModuleConfiguration } | Should -Not -Throw
         }
         It "Path resolves to existing item" {
@@ -108,6 +112,7 @@ Describe "Save-AtwsModuleConfig" {
         It "Default - is a valid Configuration" {
             $Settings = Import-Clixml -Path $Path
             $Settings | Should -Not -BeNullOrEmpty
+            Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $TI
             { Test-AtwsModuleConfiguration -Configuration $Settings.Default } | Should -Not -Throw
             $result = Test-AtwsModuleConfiguration -Configuration $Settings.Default
             $result | Should -Be $true
@@ -119,23 +124,42 @@ Describe "Save-AtwsModuleConfig" {
             $Settings = Import-Clixml -Path $Path
             $OldSettings = $Settings.psobject.Copy()
             $OldCliXMLFiles = Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter '*.clixml'
+
+            Import-Module $modulePath -Force -ErrorAction Stop
+            $loadedModule = Get-Module $moduleName
         }
         It "BeforeEach validation" {
             $Path | Should -Exist
             $Settings.Default | Should -Not -BeNullOrEmpty
         }
-        It "Contains same abount of Profiles" {
+        It "Contains same amount of Profiles" {
             $OldSettings.Keys.Count | Should -BeExactly $OldSettings.Keys.Count
         }
         It "Does not throw to add another settings" {
             $NewSettings = $OldSettings.psobject.Copy()
             $OldSettings.Keys.Count | Should -Be 1
             $NewSettings.Keys.Count | Should -Be 1
-            
+
+            { Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $TI } | Should -Not -Throw
+
             #Increases Error Limit with one from default.
-            {Set-AtwsModuleConfiguration -ErrorLimit ($OldSettings.Default.ErrorLimit + 1)} | Should -Not -Throw
+            # {Set-AtwsModuleConfiguration -ErrorLimit ($OldSettings.Default.ErrorLimit + 1)} | Should -Not -Throw
+            
+            #Changes username to sandbox
+            $NewSettings = @{}
+            $NewSettings.UserName = 'bautomation@ECITSOLUTIONSSB12032021.NO'
+            $NewSettings.SecurePassword = $Settings.Default.SecurePassword
+            $NewSettings.SecureTrackingIdentifier = $Settings.Default.SecureTrackingIdentifier
+            $NewSettings.ConvertPicklistIdToLabel = $Settings.Default.ConvertPicklistIdToLabel
+            $NewSettings.Prefix = $Settings.Default.Prefix
+            $NewSettings.RefreshCache = $Settings.Default.RefreshCache
+            $NewSettings.DebugPref = $Settings.Default.DebugPref
+            $NewSettings.VerbosePref = $Settings.Default.VerbosePref
+            $NewSettings.ErrorLimit = $Settings.Default.ErrorLimit
+
+            { Set-AtwsModuleConfiguration -Username 'bautomation@ECITSOLUTIONSSB12032021.NO' } | Should -Not -Throw
             #Creates new profile, Sandbox
-            {Save-AtwsModuleConfiguration -Name 'SandboxTests'} | Should -Not -Throw
+            { Save-AtwsModuleConfiguration -Name 'SandboxTests' } | Should -Not -Throw
         }
         It "Hastable contains saved configName" {
             $Settings = Import-Clixml -Path $Path
@@ -146,6 +170,13 @@ Describe "Save-AtwsModuleConfig" {
             $NewCliXMLFiles = Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter '*.clixml'
             $OldCliXMLFiles.Count | Should -Be $NewCliXMLFiles.Count
         }
+
+        It "NewProfile is valid config" {
+            $Settings = Import-Clixml -Path $Path
+            { Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $TI } | Should -Not -Throw
+            { Test-AtwsModuleConfiguration $Settings.SandboxTests } | Should -Not -Throw
+        }
+
         It "Removes Created test profile" {
             $NewSettings = Import-Clixml -Path $Path
             $Settings = @{}
@@ -154,6 +185,5 @@ Describe "Save-AtwsModuleConfig" {
             }
             $Settings | Export-Clixml -Path $Path
         }
-
     }
 }
