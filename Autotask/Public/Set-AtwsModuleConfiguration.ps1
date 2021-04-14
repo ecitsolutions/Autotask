@@ -278,18 +278,18 @@ Function Set-AtwsModuleConfiguration {
                         }
                     }
                     'RefreshCache' { 
-                        $Script:configuration.RefreshCache = $RefreshCache.IsPresent           
+                        $Script:Atws.configuration.RefreshCache = $RefreshCache.IsPresent           
                     }
                     'DebugPref' { 
                         $DebugPreference = $DebugPref
-                        $Script:configuration.DebugPref = $DebugPref
+                        $Script:Atws.configuration.DebugPref = $DebugPref
                     }
                     'VerbosePref' {
                         $VerbosePreference = $VerbosePref
-                        $Script:configuration.VerbosePref = $VerbosePref
+                        $Script:Atws.configuration.VerbosePref = $VerbosePref
                     }
                     'ErrorLimit' {
-                        $Script:configuration.ErrorLimit = $ErrorLimit
+                        $configuration.ErrorLimit = $ErrorLimit
                     }
                 }
             }
@@ -319,6 +319,10 @@ Function Set-AtwsModuleConfiguration {
   
     end {
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        #TODO: Introduce PipelineSupport from Get-, -Set, -New, and Save-AtwsModuleConfiguration. Not doing this for now as it works as it is, jsut requires a few more lines.
+        # #Returning object so it can be passed to Save-AtwsModuleConfiguration
+        # Write-Verbose ("You may use Save-AtwsModuleConfiguration to seve this configuration to disk.")
+        # return $configuration
     }
  
 }

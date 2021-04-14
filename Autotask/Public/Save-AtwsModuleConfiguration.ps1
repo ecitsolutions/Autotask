@@ -40,7 +40,16 @@ Function Save-AtwsModuleConfiguration {
         [PSObject]
         $Configuration = $Script:Atws.Configuration,
     
-        [ValidateNotNullOrEmpty()] 
+        [ValidateNotNullOrEmpty()]
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName | ForEach-Object {
+                    $Imp = Import-Clixml $_ -ErrorAction SilentlyContinue
+                    if ($Imp) {
+                        $Imp.keys
+                    }
+                }
+        })]
         [String]
         $Name = 'Default',
         
