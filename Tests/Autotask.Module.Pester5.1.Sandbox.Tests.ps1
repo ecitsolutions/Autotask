@@ -1,4 +1,5 @@
 ﻿
+
 BeforeAll {
     Import-Module Pester -RequiredVersion 5.1.0 -ErrorAction Stop
     $PesterModule = Get-Module -Name Pester
@@ -11,8 +12,16 @@ BeforeAll {
         [pscredential]$Global:Credential = Get-Credential -UserName 'bautomation@ECITSOLUTIONS.no'
         $Global:TI = Read-Host -Prompt 'API TrackingIdentifier'
     }
+    
+    $Path = Join-Path (Split-Path -Path $profile -Parent) -ChildPath 'AtwsConfig.clixml'
+    if (Test-Path $Path ) {
+        $Path | rm
+    }
 }
-
+<#
+    TOdos
+    TODO: New-AtwsAttachment. Mime errors, psversion tester
+#>
 
 Describe "Pester 5.1 Module Requirement" {
     Context "Pester module is installed" {
@@ -113,6 +122,10 @@ Describe "Save-AtwsModuleConfig" {
             $Settings = Import-Clixml -Path $Path
             $Settings | Should -Not -BeNullOrEmpty
             Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $TI
+            
+            #Imports function to test moduleconfiguration.
+            . (Join-Path $loadedModule.ModuleBase -ChildPath 'private\Test-AtwsModuleConfiguration.ps1')
+            
             { Test-AtwsModuleConfiguration -Configuration $Settings.Default } | Should -Not -Throw
             $result = Test-AtwsModuleConfiguration -Configuration $Settings.Default
             $result | Should -Be $true
@@ -156,7 +169,13 @@ Describe "Save-AtwsModuleConfig" {
             $NewSettings.DebugPref = $Settings.Default.DebugPref
             $NewSettings.VerbosePref = $Settings.Default.VerbosePref
             $NewSettings.ErrorLimit = $Settings.Default.ErrorLimit
+            $NewConfig = @{}
+            $NewConfig.SandboxTests = $NewSettings
+            
+            #Imports function to test moduleconfiguration.
+            . (Join-Path $loadedModule.ModuleBase -ChildPath 'private\Test-AtwsModuleConfiguration.ps1')
 
+            { Test-AtwsModuleConfiguration -Configuration $NewConfig } | Should -Not -Throw
             { Set-AtwsModuleConfiguration -Username 'bautomation@ECITSOLUTIONSSB12032021.NO' } | Should -Not -Throw
             #Creates new profile, Sandbox
             { Save-AtwsModuleConfiguration -Name 'SandboxTests' } | Should -Not -Throw
@@ -172,6 +191,9 @@ Describe "Save-AtwsModuleConfig" {
         }
 
         It "NewProfile is valid config" {
+            #Imports function to test moduleconfiguration.
+            . (Join-Path $loadedModule.ModuleBase -ChildPath 'private\Test-AtwsModuleConfiguration.ps1')
+
             $Settings = Import-Clixml -Path $Path
             { Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $TI } | Should -Not -Throw
             { Test-AtwsModuleConfiguration $Settings.SandboxTests } | Should -Not -Throw
