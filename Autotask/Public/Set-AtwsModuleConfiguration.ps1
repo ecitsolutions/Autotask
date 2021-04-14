@@ -161,6 +161,7 @@ Function Set-AtwsModuleConfiguration {
         [IO.FileInfo]
         $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml),
 
+        # Use this paramter to save to another configuration name.
         [Parameter(
             ValueFromPipelineByPropertyName = $true,
             ParameterSetName = 'Username_and_password'
@@ -296,16 +297,19 @@ Function Set-AtwsModuleConfiguration {
 
         # Are we connected? Update current settings
         if ($Script:Atws.integrationsValue) {
-            $Script.Atws.Configuration = $configuration
+            $Script:Atws.Configuration = $configuration
 
             # Prepare securestring password to be converted to plaintext
-            $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($configuration.SecurePassword)
-            $Script:Atws.ClientCredentials.UserName.UserName = $configuration.Username
-            $Script:Atws.ClientCredentials.UserName.Password = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($BSTR)
+            $SecurePasswordString = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($configuration.SecurePassword)
+            
+            $Script:Atws.ClientCredentials.UserName | Add-Member -Force -NotePropertyName UserName -NotePropertyValue $configuration.Username
+            
+            $BSTRstring = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($SecurePasswordString)
+            $Script:Atws.ClientCredentials.UserName | Add-Member -Force -NotePropertyName Password -NotePropertyValue $BSTRstring
 
             # Set the integrationcode property to the API tracking identifier provided by the user
-            $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($ConfigurationData.SecureTrackingIdentifier)
-            $AutotaskIntegrationsValue.IntegrationCode = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($BSTR)
+            $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Configuration.SecureTrackingIdentifier)
+            $Script:Atws.IntegrationsValue.IntegrationCode = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($BSTR)
         }
         else {
             # We loaded these settings from disk. Save to disk again.
