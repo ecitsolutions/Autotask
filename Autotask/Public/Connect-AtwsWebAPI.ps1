@@ -126,7 +126,16 @@ Function Connect-AtwsWebAPI {
         [Parameter(
             ParameterSetName = 'ConfigurationFile'
         )]
-        [alias('Name')]
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName | ForEach-Object {
+                    $Imp = Import-Clixml $_ -ErrorAction SilentlyContinue
+                    if ($Imp) {
+                        $Imp.keys
+                    }
+                }
+            })]
+        [alias('ProfileName')]
         [string]
         $AtwsModuleConfigurationName = 'Default'
     )
@@ -199,6 +208,11 @@ Function Connect-AtwsWebAPI {
                 if (Test-Path $AtwsModuleConfigurationPath) {
                     # Read the file.
                     $settings = Import-Clixml -Path $AtwsModuleConfigurationPath
+                    if (-not $settings.ContainsKey($AtwsModuleConfigurationName)) {
+                        $message = "Configuration file with path: $Path could not be validated. A profile with name: $AtwsModuleConfigurationName does not exist."
+                        throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                    }
+
                     $ConfigurationData = $settings[$AtwsModuleConfigurationName]
                     
                     if (-not (Test-AtwsModuleConfiguration -Configuration $ConfigurationData )) {
