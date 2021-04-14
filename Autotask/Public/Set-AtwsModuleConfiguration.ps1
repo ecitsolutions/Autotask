@@ -278,15 +278,21 @@ Function Set-AtwsModuleConfiguration {
                         }
                     }
                     'RefreshCache' { 
-                        $Script:Atws.configuration.RefreshCache = $RefreshCache.IsPresent           
+                        if ($Script:Atws.configuration) {
+                            $Script:Atws.configuration.RefreshCache = $RefreshCache.IsPresent
+                        }
                     }
                     'DebugPref' { 
                         $DebugPreference = $DebugPref
-                        $Script:Atws.configuration.DebugPref = $DebugPref
+                        if ($Script:Atws.configuration) {
+                            $Script:Atws.configuration.DebugPref = $DebugPref
+                        }
                     }
                     'VerbosePref' {
                         $VerbosePreference = $VerbosePref
-                        $Script:Atws.configuration.VerbosePref = $VerbosePref
+                        if ($Script:Atws.configuration) {
+                            $Script:Atws.configuration.VerbosePref = $VerbosePref
+                        }
                     }
                     'ErrorLimit' {
                         $configuration.ErrorLimit = $ErrorLimit
