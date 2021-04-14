@@ -15,7 +15,16 @@ BeforeAll {
     
     $Path = Join-Path (Split-Path -Path $profile -Parent) -ChildPath 'AtwsConfig.clixml'
     if (Test-Path $Path ) {
-        $Path | rm
+        Write-Warning "Will Modify current stored profile. Create backup?. Full pester test is dependant on allowing profile modifications."
+        $r = Read-Host -Prompt 'Y = yes'
+        if ($r -eq 'y') {
+            $Folder = Split-Path $Path -Parent
+            $Date = Get-Date -Format 'dd-MM-yyyy'
+            $Path | Copy-Item -Destination (Join-Path $Folder -ChildPath "AtwsConfig-pesterback-$date.clixml" ) -Force
+            $Path | Remove-Item
+        }else {
+            break
+        }
     }
 }
 <#
@@ -77,25 +86,25 @@ Describe "Module connects properly" {
             {Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $TI} | Should -not -Throw
         }
     }
-    Context "Connects ok without any parameters and config file." {
-        BeforeEach{
-            Import-Module $modulePath -Force -ErrorAction Stop
-            $loadedModule = Get-Module $moduleName
+    # Context "Connects ok without any parameters and config file." {
+    #     BeforeEach{
+    #         Import-Module $modulePath -Force -ErrorAction Stop
+    #         $loadedModule = Get-Module $moduleName
 
             
-            $Path = $(Join-Path -Path $(Split-Path -Parent $global:profile) -ChildPath AtwsConfig.clixml)
+    #         $Path = $(Join-Path -Path $(Split-Path -Parent $global:profile) -ChildPath AtwsConfig.clixml)
             
-            Mock Get-Item { Throw [System.Management.Automation.ItemNotFoundException]::new('Item Not Found Mock') }
-            Mock Get-Content { Throw [System.Management.Automation.ItemNotFoundException]::new('Item Not Found Mock') }
-        }
-        It "Connect-AtwsWebAPI does not throw" {
-            # Write-Host "input not working credentials / TI" -ForegroundColor Red
-            { Connect-AtwsWebAPI } | Should -Throw
-        }
-        It "Get-Item Does Throw" {
-            { Get-Item -Path $Path } | Should -Throw
-        }
-    }
+    #         Mock Get-Item { Throw [System.Management.Automation.ItemNotFoundException]::new('Item Not Found Mock') }
+    #         Mock Get-Content { Throw [System.Management.Automation.ItemNotFoundException]::new('Item Not Found Mock') }
+    #     }
+    #     It "Connect-AtwsWebAPI does not throw" {
+    #         # Write-Host "input not working credentials / TI" -ForegroundColor Red
+    #         { Connect-AtwsWebAPI -ProfileName Default } | Should -Not -Throw
+    #     }
+    #     It "Get-Item Does Throw" {
+    #         { Get-Item -Path $Path } | Should -Throw
+    #     }
+    # }
 }
 
 Describe "Save-AtwsModuleConfig" {
@@ -170,7 +179,7 @@ Describe "Save-AtwsModuleConfig" {
             $NewSettings.VerbosePref = $Settings.Default.VerbosePref
             $NewSettings.ErrorLimit = $Settings.Default.ErrorLimit
             $NewConfig = @{}
-            $NewConfig.SandboxTests = $NewSettings
+            $NewConfig.Pester = $NewSettings
             
             #Imports function to test moduleconfiguration.
             . (Join-Path $loadedModule.ModuleBase -ChildPath 'private\Test-AtwsModuleConfiguration.ps1')
@@ -178,12 +187,12 @@ Describe "Save-AtwsModuleConfig" {
             { Test-AtwsModuleConfiguration -Configuration $NewConfig } | Should -Not -Throw
             { Set-AtwsModuleConfiguration -Username 'bautomation@ECITSOLUTIONSSB12032021.NO' } | Should -Not -Throw
             #Creates new profile, Sandbox
-            { Save-AtwsModuleConfiguration -Name 'SandboxTests' } | Should -Not -Throw
+            { Save-AtwsModuleConfiguration -Name 'Pester' } | Should -Not -Throw
         }
         It "Hastable contains saved configName" {
             $Settings = Import-Clixml -Path $Path
-            $Settings.SandboxTests | Should -Not -BeNullOrEmpty
-            $Settings.SandboxTests.ErrorLimit | Should -Be ($Settings.Default.ErrorLimit + 1)
+            $Settings.Pester | Should -Not -BeNullOrEmpty
+            # $Settings.Pester.ErrorLimit | Should -Be ($Settings.Default.ErrorLimit + 1)
         }
         It "FileCount has not increased after profile creation." {
             $NewCliXMLFiles = Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter '*.clixml'
@@ -196,16 +205,92 @@ Describe "Save-AtwsModuleConfig" {
 
             $Settings = Import-Clixml -Path $Path
             { Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $TI } | Should -Not -Throw
-            { Test-AtwsModuleConfiguration $Settings.SandboxTests } | Should -Not -Throw
+            { Test-AtwsModuleConfiguration $Settings.Pester } | Should -Not -Throw
         }
 
         It "Removes Created test profile" {
             $NewSettings = Import-Clixml -Path $Path
             $Settings = @{}
-            $NewSettings.GetEnumerator() | Where-Object { $_.Key -ne 'SandboxTests' } | ForEach-Object {
+            $NewSettings.GetEnumerator() | Where-Object { $_.Key -ne 'Pester' } | ForEach-Object {
                 $Settings.$($_.Key) = $_.Value
             }
             $Settings | Export-Clixml -Path $Path
         }
     }
 }
+
+Describe "Connect to Autotask using stored profiles" {
+    BeforeAll{
+        $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
+        $File = Get-Content -Path $Path -ErrorAction SilentlyContinue
+
+        Import-Module $modulePath -Force -ErrorAction Stop
+        $loadedModule = Get-Module $moduleName
+    }
+    Context "Default profile" {
+        BeforeEach{
+            $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
+            $File = Get-Content -Path $Path -ErrorAction SilentlyContinue
+
+            Import-Module $modulePath -Force -ErrorAction Stop
+            $loadedModule = Get-Module $moduleName
+        }
+        It "Retrieves our accountName with default profile" {
+            {$Null = Get-AtwsAccount -id 0} | Should -Not -Throw
+            Get-AtwsAccount -id 0 | Select-Object -ExpandProperty AccountName | Should -BeExactly 'ECIT CLOUD'
+        }
+    }
+
+    Context "Throws when using profileName that does not exist." {
+        It "Retrieves our SandBox AccountName" {
+            {Connect-AtwsWebAPI -ProfileName Pester} | Should -Throw
+        }
+    }
+
+    Context "Throws when using profileName that does not exist." {
+        It "Throws when using wrong profileName" {
+            {Connect-AtwsWebAPI -ProfileName 'hjkdfgjkhebygabkjh'} | Should -Throw
+        }
+    }
+
+    Context "Creates missing Pester profile." {
+        It "Does not throw whilst creating" {
+            Connect-AtwsWebAPI -ProfileName Default
+            { Set-AtwsModuleConfiguration -Username 'bautomation@ECITSOLUTIONSSB12032021.NO' -ErrorLimit 20 } | Should -Not -Throw
+            Set-AtwsModuleConfiguration -Username 'bautomation@ECITSOLUTIONSSB12032021.NO' -ErrorLimit 20
+            {Save-AtwsModuleConfiguration -Name Pester} | Should -Not -Throw
+        }
+        It "Exists in file after creation" {
+            $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
+            $Imp = Import-Clixml $Path -ErrorAction SilentlyContinue
+            $Imp.ContainsKey('Pester') | Should -Be $true
+        }
+    }
+
+    Context "With the new profile, it connects successfully." {
+        It "Does not throw" {
+            { Connect-AtwsWebAPI -ProfileName Pester } | Should -Not -Throw
+            Connect-AtwsWebAPI -ProfileName Pester
+        }
+        It "Returns correct name" {
+            Get-AtwsAccount -id 0 | Select-Object -ExpandProperty AccountName | Should -BeExactly 'ECIT Solutions AS Sandbox'
+        }
+    }
+    
+    # Just a block, acting as a script block to restore
+    Context "If whole test was run, restore config file" {
+        BeforeEach{
+            $items = Split-Path $profile -Parent | Get-ChildItem -Filter '*pester**.clixml' | Sort-Object LastAccessTime -Descending
+            $BeforeContent = Get-Content $items[0].FullName
+            if ($items) {
+                $items.Delete()
+            }
+            $Path = Join-Path (Split-Path -Path $profile -Parent) -ChildPath 'AtwsConfig.clixml'
+            Set-Content $Path -Value $BeforeContent
+        }
+        It "is true" {
+            $true | Should -Be $true
+        }
+    }
+}
+
