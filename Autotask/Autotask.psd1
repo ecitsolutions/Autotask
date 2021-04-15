@@ -331,7 +331,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'Autotask', 'Function', 'SOAP'
+        Tags = 'Autotask','Function','SOAP'
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md'
@@ -346,7 +346,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/ecitsolutions/Autotask/blob/master/README.md'
 
         # Prerelease string of this module
-        # Prerelease = ''
+        Prerelease = 'beta4'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         # RequireLicenseAcceptance = $false
@@ -356,7 +356,7 @@ PrivateData = @{
 
     } # End of PSData hashtable
 
-} # End of PrivateData hashtable
+ } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
 # HelpInfoURI = ''
