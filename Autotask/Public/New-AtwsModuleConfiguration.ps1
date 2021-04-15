@@ -91,12 +91,7 @@ Function New-AtwsModuleConfiguration {
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
                 $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName
-<<<<<<< Updated upstream
-            })]  
-        [Alias('AtwsModuleConfigurationPath', 'ProfilePath')]
-=======
             })]
->>>>>>> Stashed changes
         [IO.FileInfo]
         $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
     )
