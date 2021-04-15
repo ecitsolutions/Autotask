@@ -84,6 +84,7 @@ Function New-AtwsModuleConfiguration {
                     }
                 }
             })]
+        [alias('ProfileName', 'AtwsModuleConfigurationName')]
         [String]
         $Name,
         
@@ -93,7 +94,8 @@ Function New-AtwsModuleConfiguration {
             })]
         [ValidateScript( { 
                 Test-Path $_
-            })]           
+            })]   
+        [Alias('AtwsModuleConfigurationPath', 'ProfilePath')]
         [IO.FileInfo]
         $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
     )
