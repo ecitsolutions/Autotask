@@ -91,8 +91,12 @@ Function New-AtwsModuleConfiguration {
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
                 $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName
+<<<<<<< Updated upstream
             })]  
         [Alias('AtwsModuleConfigurationPath', 'ProfilePath')]
+=======
+            })]
+>>>>>>> Stashed changes
         [IO.FileInfo]
         $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
     )
@@ -137,8 +141,14 @@ Function New-AtwsModuleConfiguration {
   
     end {
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        
         if ($Name) {
-            Save-AtwsModuleConfiguration -Name $Name -Configuration $configuration -Path $Path
+            if (-not (Test-Path $Path)) {
+                $Splat = @{Path = $Path}
+            }else{ $Splat = @{} }
+
+            Save-AtwsModuleConfiguration -Name $Name -Configuration $configuration @Splat
+
         }
         else { 
             return $configuration
