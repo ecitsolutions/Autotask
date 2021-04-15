@@ -61,10 +61,7 @@ Function Save-AtwsModuleConfiguration {
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
                 $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName
-            })]
-        [ValidateScript( { 
-                Test-Path $_
-            })]           
+            })]         
         [IO.FileInfo]
         $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
     )
