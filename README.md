@@ -10,12 +10,33 @@ Install-Module Autotask
 $Credential = Get-Credential # Your Autotask API user and password
 $ApiKey = "<the API identifier from your resource in Autotask>"
 Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiKey
+
+# Save your credentials locally (NB! Will be exported as SecureString in CliXML)
+New-AtwsModuleConfiguration -Credential $Credential -ApiTrackingIdentifier $ApiKey -ProfileName Default
+
+# Module can now load and connect automatically, so you can run any command directly
+Get-AtwsAccount -id 0
 ```
 
 # Important upgrade! 
 From version 2 the module no longer needs to maintain a per tenant disk cache. Any picklists are resolved dynamically using [ArgumentCompleter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-argumentcompleter?view=powershell-7). 
 
 # Release notes
+
+# Version 2.0.0-beta4
+
+- NEW: Support for named configurations. You can save different credentials to disk (NB! Credentials are only encrypted using SecureString!)
+- NEW: Connect-AtwsWebApi can now run without parameters, provided you have saved a Default connection profile
+- UPDATE: New parameters for Connect-AtwsWebApi are AtwsModuleConfiguration, AtwsModuleConfigurationName and AtwsModuleConfigurationPath (with short aliases)
+- NEW: New function New-AtwsModuleConfiguration, required parameters are Credential and SecureTrackingIdentifier, ProfileName is optional (see Get-Help New-AtwsModuleConfiguration)
+- NEW: New function Get-AtwsModuleConfiguration, required parameter is Name (ProfileName)
+- NEW: New function Save-AtwsModuleConfiguration, required parameters are none (will save current credentials and settings to disk as Default profile)
+- NEW: New function Set-AtwsModuleConfiguration, required parameters are at least one (no point in running it if you don't want to change anything)
+- NEW: New function Remove-AtwsModuleConfiguration, required parameter is Name (ProfileName)
+- NEW: Errorlimit for bulk updates (default 10) has been exposed 
+- DEPRECATED: UserDefinedFields as hashtables has been axed. Broke Update(). 
+- UPDATE: New Pester test have been added
+- BUGFIX: Numerous bugs have been located and squashed
 
 # Version 2.0.0-beta3
 
