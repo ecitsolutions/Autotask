@@ -50,10 +50,13 @@ Param
     $RootPath =  $(Split-Path -Parent -Path (Split-Path -Parent -Path $MyInvocation.MyCommand.Path))
 )
 
-$modulePath = '{0}\{1}' -F $RootPath, $ModuleName
+BeforeAll { 
+    $modulePath = '{0}\{1}' -F $RootPath, $ModuleName
 
-# Remove any loaded modules before trying to load it again
-Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
+    # Remove any loaded modules before trying to load it again
+    Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
+
+}
 
 Describe -Name 'Import module without any parameters' -Tag 'Import-Module' -Fixture {
 
@@ -73,6 +76,50 @@ Describe -Name 'Import module without any parameters' -Tag 'Import-Module' -Fixt
     It -Name 'Get-AtwsAccount should have parameters with picklists' -Test {
         $loadedModule.ExportedCommands['Get-AtwsAccount'].Parameters.Accounttype.Attributes.TypeId.Name | Should -Contain 'ArgumentCompleterAttribute'
     }
+}
+
+Describe -Name 'Connect using explicit credentials' -Tag 'Connect-AtwsWebApi' -Fixture {
+
+    BeforeAll { 
+        # Call the connect command
+        Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiTrackingIdentifier
+
+        # Get an account object to verify the connection
+        $account = Get-AtwsAccount -id 0
+    }
+
+    It -Name 'should return a single account' -Test {
+        $account.count | Should -Be 1
+    }
+
+    It -Name 'should be account with id 0' -Test {
+        $account.id | Should -Be 0
+    }
+
+}
+
+Describe -Name 'Connect using named configuration profile' -Tag 'Connect-AtwsWebApi' -Fixture {
+
+    BeforeAll { 
+        # Call the connect command
+        Connect-AtwsWebAPI -name Pester
+
+        # Get an account object to verify the connection
+        $account = Get-AtwsAccount -id 0
+    }
+
+    It -Name 'should return a single account' -Test {
+        $account.count | Should -Be 1
+    }
+
+    It -Name 'should be account with id 0' -Test {
+        $account.id | Should -Be 0
+    }
+
+    It -Name 'should be a connection to a sandbox' -Test {
+        $account.accountname | Should -Match "*Sandbox"
+    }
+
 }
 
 # Remove any loaded modules before trying to load it again
