@@ -139,10 +139,11 @@ Function Update-AtwsManifest {
         $ManifestParams['GUID'] = $GUID
     
         # Information to export
-  
-        $Functions = @()
-        $Moduleinfo.ExportedFunctions.Keys | ForEach-Object { $Functions += $_ } #-replace $ModuleInfo.Prefix, '')}
-  
+        Push-Location
+        Set-Location $ModuleInfo.ModuleBase
+        $Functions = Get-ChildItem -Path ./Public/*.ps1, ./Functions/*.ps1 | Select-Object -ExpandProperty BaseName
+        Pop-Location
+        
     <# 
         if ($Beta.IsPresent) {
         # Make sure the beta version does not clobber the release version through 

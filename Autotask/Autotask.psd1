@@ -238,10 +238,11 @@ FunctionsToExport = 'Build-AtwsModule', 'Connect-AtwsWebAPI', 'Get-AtwsAccount',
                'Remove-AtwsInstalledProductCategoryUdfAssociation', 
                'Remove-AtwsInstalledProductType', 
                'Remove-AtwsInstalledProductTypeUdfAssociation', 
-               'Remove-AtwsProductTier', 'Remove-AtwsProjectCost', 
-               'Remove-AtwsQuoteItem', 'Remove-AtwsServiceBundle', 
-               'Remove-AtwsServiceBundleService', 'Remove-AtwsServiceCall', 
-               'Remove-AtwsServiceCallTask', 'Remove-AtwsServiceCallTaskResource', 
+               'Remove-AtwsModuleConfiguration', 'Remove-AtwsProductTier', 
+               'Remove-AtwsProjectCost', 'Remove-AtwsQuoteItem', 
+               'Remove-AtwsServiceBundle', 'Remove-AtwsServiceBundleService', 
+               'Remove-AtwsServiceCall', 'Remove-AtwsServiceCallTask', 
+               'Remove-AtwsServiceCallTaskResource', 
                'Remove-AtwsServiceCallTicket', 
                'Remove-AtwsServiceCallTicketResource', 'Remove-AtwsSubscription', 
                'Remove-AtwsTaskPredecessor', 'Remove-AtwsTaskSecondaryResource', 
@@ -304,7 +305,7 @@ FunctionsToExport = 'Build-AtwsModule', 'Connect-AtwsWebAPI', 'Get-AtwsAccount',
                'Set-AtwsUserDefinedFieldDefinition', 
                'Set-AtwsUserDefinedFieldListItem', 'Set-AtwsWorkTypeModifier', 
                'Uninstall-AtwsOldModuleVersion', 'Update-AtwsFunctions', 
-               'Update-AtwsManifest', 'Update-AtwsRamCache', 'Remove-AtwsModuleConfiguration'
+               'Update-AtwsManifest', 'Update-AtwsRamCache'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
