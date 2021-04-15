@@ -215,6 +215,9 @@ Function Connect-AtwsWebAPI {
                     if (-not $settings.ContainsKey($AtwsModuleConfigurationName)) {
                         $message = "Configuration file with path: $Path could not be validated. A profile with name: $AtwsModuleConfigurationName does not exist."
                         throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                    }elseif($settings.keys.count -eq 0){
+                        $message = "Configuration file with path: $Path could not be validated. There are no profiles in this file. Delete it."
+                        throw (New-Object System.Configuration.Provider.ProviderException $message) 
                     }
 
                     $ConfigurationData = $settings[$AtwsModuleConfigurationName]
