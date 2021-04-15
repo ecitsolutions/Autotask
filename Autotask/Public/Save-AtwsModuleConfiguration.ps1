@@ -23,6 +23,11 @@ Function Save-AtwsModuleConfiguration {
             Save-AtwsModuleConfiguration -Path AtwsConfig.clixml
             .NOTES
             NAME: Save-AtwsModuleConfiguration
+            .LINK
+            Get-AtwsModuleConfiguration
+            Set-AtwsModuleConfiguration
+            New-AtwsModuleConfiguration
+            Remove-AtwsModuleConfiguration
     #>
 	
     [cmdletbinding(

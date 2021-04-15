@@ -22,7 +22,12 @@ Function Remove-AtwsModuleConfiguration {
             .EXAMPLE
             Remove-AtwsModuleConfiguration -Name Default -Path AtwsConfig.clixml
             .NOTES
-            NAME: Save-AtwsModuleConfiguration
+            NAME: Remove-AtwsModuleConfiguration
+            .LINK
+            Get-AtwsModuleConfiguration
+            Set-AtwsModuleConfiguration
+            New-AtwsModuleConfiguration
+            Save-AtwsModuleConfiguration
     #>
 	
     [cmdletbinding(

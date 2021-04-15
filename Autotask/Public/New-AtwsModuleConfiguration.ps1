@@ -9,21 +9,28 @@
 Function New-AtwsModuleConfiguration {
     <#
             .SYNOPSIS
-            This function creates an internal configuration object to store all module options.
+            This function creates an internal configuration object to store all module options. If 
+            given a profile name the configuration object will be saved to disk, not returned.
             .DESCRIPTION
             This function creates an internal configuration object to store all module options. It 
             requires a credential object and API key to authenticate to Autotask, all other parameters
-            has default values and are optional.
+            has default values and are optional. If you pass an optional profile name the 
+            configuration object will be saved to disk, not returned.
             .INPUTS
             Nothing.
             .OUTPUTS
             [PSObject]
             .EXAMPLE
             New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $string
+            .EXAMPLE
+            New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $string -Name ProfileName
             .NOTES
             NAME: New-AtwsModuleConfiguration
             .LINK
+            Get-AtwsModuleConfiguration
             Set-AtwsModuleConfiguration
+            Remove-AtwsModuleConfiguration
+            Save-AtwsModuleConfiguration
     #>
 	
     [cmdletbinding(
@@ -66,7 +73,29 @@ Function New-AtwsModuleConfiguration {
 
         [ValidateRange(0, 100)]
         [int]
-        $ErrorLimit = 10
+        $ErrorLimit = 10,
+    
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName | ForEach-Object {
+                    $Imp = Import-Clixml $_ -ErrorAction SilentlyContinue
+                    if ($Imp) {
+                        $Imp.keys
+                    }
+                }
+            })]
+        [String]
+        $Name,
+        
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName
+            })]
+        [ValidateScript( { 
+                Test-Path $_
+            })]           
+        [IO.FileInfo]
+        $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
     )
     
     begin { 
@@ -109,7 +138,12 @@ Function New-AtwsModuleConfiguration {
   
     end {
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-        return $configuration
+        if ($Name) {
+            Save-AtwsModuleConfiguration -Name $Name -Configuration $configuration
+        }
+        else { 
+            return $configuration
+        }
     }
  
 }

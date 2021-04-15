@@ -29,6 +29,12 @@ Function Set-AtwsModuleConfiguration {
             Set-AtwsModuleConfiguration -Credential $Credential -ApiTrackingIdentifier $string
         .NOTES
             NAME: Set-AtwsModuleConfiguration
+            .LINK
+            Get-AtwsModuleConfiguration
+            New-AtwsModuleConfiguration
+            Remove-AtwsModuleConfiguration
+            Save-AtwsModuleConfiguration
+
     #>
 	
     [cmdletbinding(
