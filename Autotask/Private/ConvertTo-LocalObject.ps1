@@ -87,6 +87,16 @@ Function ConvertTo-LocalObject {
                 }
             }
 
+            # Any userdefined fields?
+            if ($object.UserDefinedFields.Count -gt 0) {
+                # Expand User defined fields for easy filtering of collections and readability
+                foreach ($UDF in $object.UserDefinedFields) {
+                    # Make names you HAVE TO escape...
+                    $UDFName = '#{0}' -F $UDF.Name
+                    Add-Member -InputObject $object -MemberType NoteProperty -Name $UDFName -Value $UDF.Value -Force
+
+                }
+            }
 
             # Restore picklist labels
             foreach ($field in $Picklists) {
