@@ -38,7 +38,7 @@
            
             # Count the values of the first parameter passed. We will not try do to this on more than 1 parameter, nor on any 
             # other parameter than the first. This is lazy, but efficient.
-            $count = $PSBoundParameters.Values[0].count
+            $count = $PSBoundParameters.Values[0].length
 
             # If the count is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
