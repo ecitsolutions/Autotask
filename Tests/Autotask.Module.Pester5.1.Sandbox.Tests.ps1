@@ -1,4 +1,4 @@
-﻿
+
 
 BeforeAll {
     Import-Module Pester  -ErrorAction Stop
@@ -291,7 +291,7 @@ Describe "Know Issues in 1.6.14" {
             $Products = Get-AtwsInstalledProduct -Type Server -Active $true
             $Products.Count | Should -BeGreaterThan 800
             
-            { $Req = Get-AtwsInstalledProduct -id $Products.id[0..1550] } | Should -Not -Throw
+            { $Req = Get-AtwsInstalledProduct -id $Products.id } | Should -Not -Throw
         }
     }
 }
