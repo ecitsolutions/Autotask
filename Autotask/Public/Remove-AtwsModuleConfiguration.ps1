@@ -34,6 +34,7 @@ Function Remove-AtwsModuleConfiguration {
         ConfirmImpact = 'High',
         SupportsShouldProcess = $True
     )]
+    [Alias('Remove-AtwsProfile')]
     Param
     (
         [ArgumentCompleter( {

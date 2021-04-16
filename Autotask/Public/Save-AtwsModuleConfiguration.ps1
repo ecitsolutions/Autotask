@@ -33,6 +33,7 @@ Function Save-AtwsModuleConfiguration {
     [cmdletbinding(
         ConfirmImpact = 'Low'
     )]
+    [Alias('Save-AtwsProfile')]
     Param
     (
         [Parameter(

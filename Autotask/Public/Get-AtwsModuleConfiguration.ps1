@@ -27,6 +27,7 @@ Function Get-AtwsModuleConfiguration {
             NAME: Save-AtwsModuleConfiguration
     #>
 	
+    [Alias('Get-AtwsProfile')]
     [cmdletbinding(
         ConfirmImpact = 'Low'
     )]

@@ -105,7 +105,7 @@ Function Connect-AtwsWebAPI {
                 }
             })]
         [pscustomobject]
-        [alias('Configuration')]
+        [alias('Configuration', 'Profile')]
         $AtwsModuleConfiguration,
     
         [Parameter(

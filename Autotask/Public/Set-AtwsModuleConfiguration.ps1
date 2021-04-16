@@ -42,6 +42,7 @@ Function Set-AtwsModuleConfiguration {
         ConfirmImpact = 'Medium',
         DefaultParameterSetName = 'Username_and_password'
     )]
+    [Alias('Set-AtwsProfile')]
     Param
     ( 
         [Parameter(
