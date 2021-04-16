@@ -114,8 +114,8 @@ Function Get-AtwsData {
             # Handle any errors
             if ($lastquery.Errors.Count -gt 0) {
                 foreach ($atwsError in $lastquery.Errors) {
-                    $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
-                    $message = "Autotask API Responded with error:`r`n`r`n{0}`r`n`r`n{1} {2}" -f $_.Exception.Message, $reason, $_.ScriptStackTrace
+                    $reason = ("{0}" -f $lastquery.Errors.Message)
+                    $message = "Autotask API Responded with error:`r`n{0}" -f $reason 
                     throw [System.Configuration.Provider.ProviderException]::new($message)
                 }
                 return
