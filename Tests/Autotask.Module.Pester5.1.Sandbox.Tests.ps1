@@ -201,8 +201,6 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
     }
 }
 
-#Region ########### TESTS THAT FAILS ################
-
 Describe "UserDefinedField tests" {
     BeforeEach {
         Import-Module $modulePath -Force -ErrorAction Stop
@@ -215,6 +213,8 @@ Describe "UserDefinedField tests" {
         }
     }
 }
+
+#Region ########### TESTS THAT FAILS ################
 
 Describe "UserDefinedField tests" {
     BeforeEach{
