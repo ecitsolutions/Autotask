@@ -259,7 +259,7 @@ Set-AtwsPriceListMaterialCode
            
             # Count the values of the first parameter passed. We will not try do to this on more than 1 parameter, nor on any 
             # other parameter than the first. This is lazy, but efficient.
-            $count = $PSBoundParameters.Values[0].count
+            $count = $PSBoundParameters.Values[0].length
 
             # If the count is less than or equal to 200 we pass PSBoundParameters as is
             if ($count -le 200) {
@@ -322,13 +322,9 @@ Set-AtwsPriceListMaterialCode
                         -GetReferenceEntityById $GetReferenceEntityById
                 }
                 catch {
-                    write-host "ERROR: " -ForegroundColor Red -NoNewline
-                    write-host $_.Exception.Message
-                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
-                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
-                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
-                        Write-host $_
-                    }
+                    $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
+                    $message = "Autotask API Responded with error:`r`n`r`n{0}`r`n`r`n{1} {2}" -f $_.Exception.Message, $reason, $_.ScriptStackTrace
+                    throw [System.Configuration.Provider.ProviderException]::new($message)
                 }
                 # Add response to result - if there are any response to add
                 if ($response.count -gt 0) { 
