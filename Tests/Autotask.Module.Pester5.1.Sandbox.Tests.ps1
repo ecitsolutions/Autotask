@@ -227,10 +227,11 @@ Describe "Auto connect works on moast get commands." {
     BeforeAll {
         Import-Module $modulePath -Force -ErrorAction Stop
         $loadedModule = Get-Module $moduleName
-        $GetCmdLets = 'Get-AtwsAccount', 'Get-AtwsAccountLocation', 'Get-AtwsAccountNote', 'Get-AtwsAccountPhysicalLocation', 'Get-AtwsAccountTeam', 'Get-AtwsAccountToDo', 'Get-AtwsAccountWebhook', 'Get-AtwsAccountWebhookExcludedResource', 'Get-AtwsAccountWebhookField', 'Get-AtwsAccountWebhookUdfField', 'Get-AtwsActionType', 'Get-AtwsAdditionalInvoiceFieldValue', 'Get-AtwsAllocationCode', 'Get-AtwsAppointment', 'Get-AtwsAttachmentInfo', 'Get-AtwsBillingItem', 'Get-AtwsBillingItemApprovalLevel', 'Get-AtwsBusinessDivision', 'Get-AtwsBusinessDivisionSubdivision', 'Get-AtwsBusinessDivisionSubdivisionResource', 'Get-AtwsBusinessLocation', 'Get-AtwsBusinessSubdivision', 'Get-AtwsChangeOrderCost'
+        $GetCmdLets = 'Get-AtwsAccount', 'Get-AtwsAccountLocation', 'Get-AtwsAccountNote', 'Get-AtwsAccountPhysicalLocation', 'Get-AtwsAccountTeam', 'Get-AtwsAccountToDo', 'Get-AtwsActionType', 'Get-AtwsAdditionalInvoiceFieldValue', 'Get-AtwsAllocationCode', 'Get-AtwsAppointment', 'Get-AtwsAttachmentInfo', 'Get-AtwsBillingItem', 'Get-AtwsBillingItemApprovalLevel', 'Get-AtwsBusinessDivision', 'Get-AtwsBusinessDivisionSubdivision', 'Get-AtwsBusinessDivisionSubdivisionResource', 'Get-AtwsBusinessLocation', 'Get-AtwsBusinessSubdivision', 'Get-AtwsChangeOrderCost'
     }
     Context "Get-Commands should be able to autoconnect without cmdlet throwing" -ForEach $GetCmdLets {
-        It "<_> does not throw when calling command with id 0" {
+        It "(<_>) does not throw when calling command with id 0" {
+            $loadedModule.ExportedCommands.Keys | Should -Contain $_
             { &$_ -id 0 } | Should -Not -Throw
         }
     }
@@ -244,7 +245,6 @@ Describe "Returned Autotask error messages are exceptions" {
     }
 }
 
-#Region ########### TESTS THAT FAILS ################
 
 #COnfimr test logic.
 Describe "UserDefinedField tests" {
@@ -296,6 +296,8 @@ Describe "Know Issues in 1.6.14" {
     }
 }
 
-#EndRegion
 
+#Region ########### TESTS THAT FAILS ################
+# There are no failing tests atm.
+#EndRegion
 #TODO: InModuleScope tests for the module?
