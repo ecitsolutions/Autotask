@@ -92,7 +92,7 @@ Function Connect-AtwsWebAPI {
             ParameterSetName = 'ConfigurationObject'
         )]
         [ValidateScript( { 
-                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'DebugPref', 'VerbosePref')
+                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'DebugPref', 'VerbosePref', 'ErrorLimit')
                 $members = Get-Member -InputObject $_ -MemberType NoteProperty
                 $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
                 if (-not($missingProperties)) {
