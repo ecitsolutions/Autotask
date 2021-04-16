@@ -5,7 +5,7 @@ BeforeAll {
     $PesterModule = Get-Module -Name Pester
     
     $moduleName = 'Autotask'
-    $RootPath = 'C:\Git\Autotask'
+    $RootPath = '{0}\Git\Autotask' -f $env:SystemDrive
     $modulePath = '{0}\{1}' -F $RootPath, $ModuleName
     $SandBoxDomain = '@ECITSOLUTIONSSB12032021.NO'
 
@@ -32,9 +32,25 @@ BeforeAll {
     if (Test-Path $PesterConfigPath) {
         Remove-Item $PesterConfigPath
     }
+
+    Import-Module $modulePath -Force -ErrorAction Stop
+    $loadedModule = Get-Module $moduleName
+    
+    $PesterModuleConfig = Get-AtwsModuleConfiguration -Name Sandbox
+    Connect-AtwsWebAPI -AtwsModuleConfigurationName Sandbox
+
+    #Modifies default config to be sandbox
+    $DefaultModuleConfig = Get-AtwsModuleConfiguration -Name Default
+    Save-AtwsModuleConfiguration -Configuration $PesterModuleConfig -Name Default
 }
+
+AfterAll{
+    #Reverts default config back to prod
+    Save-AtwsModuleConfiguration -Configuration $DefaultModuleConfig -Name Default
+}
+
 <#
-    TOdos
+    Todos / Tests to add.
     TODO: New-AtwsAttachment. Mime errors, psversion tester in module scope.
 #>
 
@@ -51,11 +67,6 @@ Describe "Pester 5.1 Module Requirement" {
 
 Describe "Autotask immediate import tests" {
     Context "Autotask module is importable with commands" {
-        BeforeAll {
-            Import-Module $modulePath -Force -ErrorAction Stop
-            $loadedModule = Get-Module $moduleName
-        }
-
         It "Is exported with expected Name" {
             $loadedModule.Name | Should -Be $moduleName
         }
@@ -72,16 +83,12 @@ Describe "Autotask immediate import tests" {
 }
 
 Describe "Autotask module connects ok when passing credential parameters (legacy connection)" {
-    BeforeEach {
-        Import-Module $modulePath -Force -ErrorAction Stop
-        $loadedModule = Get-Module $moduleName
-    }
     Context "Legacy connection works" {
         It "Should not throw" {
-            { Connect-AtwsWebAPI -Credential $Global:Credential -ApiTrackingIdentifier $Global:TI } | Should -not -Throw
+            { Connect-AtwsWebAPI -Credential $Global:SandboxCredential -ApiTrackingIdentifier $Global:TI } | Should -not -Throw
         }
         It "Does return useful value and type" {
-            Connect-AtwsWebAPI -Credential $Global:Credential -ApiTrackingIdentifier $Global:TI
+            Connect-AtwsWebAPI -Credential $Global:SandboxCredential -ApiTrackingIdentifier $Global:TI
             $Req = Get-AtwsAccount -id 0
             $Req | Should -BeOfType [Autotask.Account]
             $Req.AccountName.Length | Should -BeGreaterThan 5
@@ -90,10 +97,6 @@ Describe "Autotask module connects ok when passing credential parameters (legacy
 }
 
 Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
-    BeforeEach {
-        Import-Module $modulePath -Force -ErrorAction Stop
-        $loadedModule = Get-Module $moduleName
-    }
     Context "New-, Save-, and import and test default config" {
 
         It "Get-AtwsModuleConfiguration should return config even if we are not connected." {
@@ -196,16 +199,12 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
     Context "Default profile" {
         It "Retrieves our accountName with default profile" {
             { $Null = Get-AtwsAccount -id 0 } | Should -Not -Throw
-            Get-AtwsAccount -id 0 | Select-Object -ExpandProperty AccountName | Should -BeExactly 'ECIT CLOUD'
+            Get-AtwsAccount -id 0 | Select-Object -ExpandProperty AccountName | Should -BeExactly 'ECIT Solutions AS Sandbox'
         }
     }
 }
 
 Describe "UserDefinedField tests" {
-    BeforeEach {
-        Import-Module $modulePath -Force -ErrorAction Stop
-        $loadedModule = Get-Module $moduleName
-    }
     Context "this needs to be addressed" {
         It "Should not throw." {
             $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
@@ -214,37 +213,43 @@ Describe "UserDefinedField tests" {
     }
 }
 
-#Region ########### TESTS THAT FAILS ################
-
 Describe "UserDefinedField tests" {
-    BeforeEach{
-        Import-Module $modulePath -Force -ErrorAction Stop
-        $loadedModule = Get-Module $moduleName
-    }
     Context "UDF Properties are expanded from its hastable." {
         It "Has properties with name like '#'" {
             $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
-            
             Connect-AtwsWebAPI -AtwsModuleConfigurationName Pester
 
             $Products = Get-AtwsInstalledProduct -Type Firewall
-            $cont = $false
-            $Products[0].psobject.Properties.name.ForEach{
-                if ($_ -match '#') {
-                    $cont = $true
-                }
-            }
-            $cont | Should -Be $true
-
+            $Products[0].psobject.Properties.where{$_.Name -match '#'}.Count | Should -BeGreaterThan 40
         }
     }
+}
 
+Describe "Auto connect works on all get commands" {
+    BeforeAll {
+        Import-Module $modulePath -Force -ErrorAction Stop
+        $loadedModule = Get-Module $moduleName
+        $GetCmdLets = 'Get-AtwsAccount', 'Get-AtwsAccountLocation', 'Get-AtwsAccountNote', 'Get-AtwsAccountPhysicalLocation', 'Get-AtwsAccountTeam', 'Get-AtwsAccountToDo', 'Get-AtwsAccountWebhook', 'Get-AtwsAccountWebhookExcludedResource', 'Get-AtwsAccountWebhookField', 'Get-AtwsAccountWebhookUdfField', 'Get-AtwsActionType', 'Get-AtwsAdditionalInvoiceFieldValue', 'Get-AtwsAllocationCode', 'Get-AtwsAppointment', 'Get-AtwsAttachmentInfo', 'Get-AtwsBillingItem', 'Get-AtwsBillingItemApprovalLevel', 'Get-AtwsBusinessDivision', 'Get-AtwsBusinessDivisionSubdivision', 'Get-AtwsBusinessDivisionSubdivisionResource', 'Get-AtwsBusinessLocation', 'Get-AtwsBusinessSubdivision', 'Get-AtwsChangeOrderCost'
+    }
+    Context "Get-Commands should be able to autoconnect without cmdlet throwing" -ForEach $GetCmdLets {
+        It "(<_>) does not throw when calling command wiht id 0" {
+            { &$_ -id 0 -ErrorAction SilentlyContinue } | Should -Not -Throw
+        }
+    }
+}
+
+#Region ########### TESTS THAT FAILS ################
+
+Describe "UserDefinedField tests" {
     Context "Can update 500+ UDF values" {
         BeforeEach{
             Import-Module $modulePath -Force -ErrorAction Stop
             $loadedModule = Get-Module $moduleName
+            $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
+            Connect-AtwsWebAPI -AtwsModuleConfigurationName Pester
         }
         It "Should get a big number of devices" {
+
             $Devices = Get-AtwsInstalledProduct -Type Server -Active $true
             $Devices.Count | Should -BeGreaterThan 600
 
@@ -259,6 +264,7 @@ Describe "UserDefinedField tests" {
     }
 }
 
+
 Describe "Know Issues in 1.6.14" {
     BeforeEach{
         Import-Module $modulePath -Force -ErrorAction Stop
@@ -268,8 +274,8 @@ Describe "Know Issues in 1.6.14" {
         
         It "Does not throw when inputting 1000 ids to cmdlets" {
             
-            $Products = { Get-AtwsInstalledProduct -Type Workstation -Active $true } | Should -Not -Throw -PassThru
-            $Products = Get-AtwsInstalledProduct -Type Workstation -Active $true
+            $Products = { Get-AtwsInstalledProduct -Type Server -Active $true } | Should -Not -Throw -PassThru
+            $Products = Get-AtwsInstalledProduct -Type Server -Active $true
             $Products.Count | Should -BeGreaterThan 4000
             
             { $Req = Get-AtwsInstalledProduct -id $Products.id[0..1550] } | Should -Not -Throw
