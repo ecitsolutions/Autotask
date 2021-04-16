@@ -101,13 +101,9 @@
                         -GetReferenceEntityById $GetReferenceEntityById
                 }
                 catch {
-                    write-host "ERROR: " -ForegroundColor Red -NoNewline
-                    write-host $_.Exception.Message
-                    write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
-                    $_.ScriptStackTrace -split '\n' | ForEach-Object {
-                        Write-host "  |  " -ForegroundColor Cyan -NoNewline
-                        Write-host $_
-                    }
+                    $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
+                    $message = "Autotask API Responded with error:`r`n`r`n{0}`r`n`r`n{1} {2}" -f $_.Exception.Message, $reason, $_.ScriptStackTrace
+                    throw [System.Configuration.Provider.ProviderException]::new($message)
                 }
                 # Add response to result - if there are any response to add
                 if ($response.count -gt 0) { 

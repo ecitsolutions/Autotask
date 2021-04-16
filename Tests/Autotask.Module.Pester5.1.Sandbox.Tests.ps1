@@ -8,6 +8,7 @@ BeforeAll {
     $RootPath = '{0}\Git\Autotask' -f $env:SystemDrive
     $modulePath = '{0}\{1}' -F $RootPath, $ModuleName
     $SandBoxDomain = '@ECITSOLUTIONSSB12032021.NO'
+    $RunGUID = New-Guid
 
     if (-not $Global:Credential -or -not $Global:TI) {
         Write-Warning "Running pester tests based on defaultconfig."
@@ -225,41 +226,56 @@ Describe "UserDefinedField tests" {
     }
 }
 
-Describe "Auto connect works on all get commands" {
+Describe "Auto connect works on moast get commands." {
     BeforeAll {
         Import-Module $modulePath -Force -ErrorAction Stop
         $loadedModule = Get-Module $moduleName
         $GetCmdLets = 'Get-AtwsAccount', 'Get-AtwsAccountLocation', 'Get-AtwsAccountNote', 'Get-AtwsAccountPhysicalLocation', 'Get-AtwsAccountTeam', 'Get-AtwsAccountToDo', 'Get-AtwsAccountWebhook', 'Get-AtwsAccountWebhookExcludedResource', 'Get-AtwsAccountWebhookField', 'Get-AtwsAccountWebhookUdfField', 'Get-AtwsActionType', 'Get-AtwsAdditionalInvoiceFieldValue', 'Get-AtwsAllocationCode', 'Get-AtwsAppointment', 'Get-AtwsAttachmentInfo', 'Get-AtwsBillingItem', 'Get-AtwsBillingItemApprovalLevel', 'Get-AtwsBusinessDivision', 'Get-AtwsBusinessDivisionSubdivision', 'Get-AtwsBusinessDivisionSubdivisionResource', 'Get-AtwsBusinessLocation', 'Get-AtwsBusinessSubdivision', 'Get-AtwsChangeOrderCost'
     }
     Context "Get-Commands should be able to autoconnect without cmdlet throwing" -ForEach $GetCmdLets {
-        It "(<_>) does not throw when calling command wiht id 0" {
-            { &$_ -id 0 -ErrorAction SilentlyContinue } | Should -Not -Throw
+        It "<_> does not throw when calling command with id 0" {
+            { &$_ -id 0 } | Should -Not -Throw
+        }
+    }
+}
+
+Describe "Returned Autotask error messages are exceptions" {
+    Context "Be sure we get an exception, not write error/host" {
+        It "Throws" {
+            { Get-AtwsInventoryLocation -id 0 } | Should -Throw
         }
     }
 }
 
 #Region ########### TESTS THAT FAILS ################
 
+#COnfimr test logic.
 Describe "UserDefinedField tests" {
     Context "Can update 500+ UDF values" {
-        BeforeEach{
+        BeforeAll{
             Import-Module $modulePath -Force -ErrorAction Stop
             $loadedModule = Get-Module $moduleName
             $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
             Connect-AtwsWebAPI -AtwsModuleConfigurationName Pester
-        }
-        It "Should get a big number of devices" {
 
             $Devices = Get-AtwsInstalledProduct -Type Server -Active $true
-            $Devices.Count | Should -BeGreaterThan 600
+        }
+        It "Should get a big number of devices" {
+            $Devices.Count | Should -BeGreaterThan 900
 
-            { Set-AtwsInstalledProduct -InputObject $Devices -UserDefinedFields @{Name = 'Sist logget inn'; Value = 'Pester UDF test var her.' } } | Should -Not -Throw
-            
-            { Set-AtwsInstalledProduct -InputObject $Devices } | Should -Not -Throw
+            { Set-AtwsInstalledProduct -InputObject $Devices -UserDefinedFields @{Name = 'Sist logget inn'; Value = $RunGUID } } | Should -Not -Throw
+            # TODO: UseCase: now restore old data. Should be able to run Set-AtwsInstalledProduct -InputObject $Devices right? Maybe Not. Group updating on old values are needed.
+        }
 
-            $AfterModifications = Get-AtwsInstalledProduct -id $Devices.id
+        It "Values are updated and returnable with correct new values" {
+            $Req = Get-AtwsInstalledProduct -Type Server -Active $true
+            $NewValues = $Req | Group-Object '#Sist logget inn' | Select-Object -ExpandProperty Name
+            $NewValues | Should -HaveCount 1
+            $NewValues | Should -BeExactly $RunGUID
+        }
 
-            # TODO: UseCase: now restore old data. Should be able to run Set-AtwsInstalledProduct -InputObject $Devices right?
+        It "Reverts back to previous values" -Foreach ($Devices | Group-Object '#Sist logget inn') {
+            { Set-AtwsInstalledProduct -InputObject $_.Group -UserDefinedFields @{Name = 'Sist logget inn' ; Value = $_.Name } } | Should -Not -Throw
         }
     }
 }
@@ -276,7 +292,7 @@ Describe "Know Issues in 1.6.14" {
             
             $Products = { Get-AtwsInstalledProduct -Type Server -Active $true } | Should -Not -Throw -PassThru
             $Products = Get-AtwsInstalledProduct -Type Server -Active $true
-            $Products.Count | Should -BeGreaterThan 4000
+            $Products.Count | Should -BeGreaterThan 800
             
             { $Req = Get-AtwsInstalledProduct -id $Products.id[0..1550] } | Should -Not -Throw
         }
