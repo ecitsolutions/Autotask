@@ -87,7 +87,7 @@ Function Set-AtwsData {
             # Explicit selection of list type. Generic lists supports .remove()
             $workingSet = [Collections.Generic.List[psobject]]::new()
             if($Entity[$i .. $j].Count -gt 1){
-                $workingSet.AddRange($Entity[$i .. $j])
+                $Entity[$i .. $j].Foreach{$workingSet.Add($_)}
             }else {
                 $workingSet.Add($Entity[0])
             }
