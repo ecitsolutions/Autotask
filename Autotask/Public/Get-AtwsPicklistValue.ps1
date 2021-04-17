@@ -171,7 +171,7 @@ Function Get-AtwsPicklistValue {
 
         $picklistValues = $script:FieldInfoCache[$Entity][$infoType][$FieldName]['PicklistValues']
 
-        Write-Verbose -Message ('{0}: Entity {1} has picklists and field {2} has {3} picklist values.' -F $MyInvocation.MyCommand.Name, $Entity, $FieldName, $result.count) 
+        Write-Verbose -Message ('{0}: Entity {1} has picklists and field {2} has {3} picklist values.' -F $MyInvocation.MyCommand.Name, $Entity, $FieldName, $picklistValues.byLabel.count) 
 
         if ($picklistValues.count -gt 0 ) {
             if ($picklistValues.keys -contains 'byValue') {
