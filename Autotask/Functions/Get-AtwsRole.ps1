@@ -301,35 +301,29 @@ Set-AtwsRole
 
             Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
 
-           
-            # Count the values of the first parameter passed. We will not try do to this on more than 1 parameter, nor on any 
-            # other parameter than the first. This is lazy, but efficient.
-            $count = $count = $PSCmdlet.MyInvocation.BoundParameters.Values[0].Length[0]
-
+            # What is the highest number of values for a parameter and is it higher than 200?
+            $max = $PSBoundParameters.Values[0].length | Measure-Object -Maximum
 
             # If the count is less than or equal to 200 we pass PSBoundParameters as is
-            if ($count -le 200) {
+            if ($max.Maximum -le 200) {
                 [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
                 $iterations.Add($Filter)
             }
-            # More than 200 values. This will cause a SQL query nested too much. Break a single parameter
+            # More than 200 values. This will cause a SQL query nested too much error. Break a single parameter
             # into segments and create multiple queries with max 200 values
             else {
-                #Workaround as normal Array indexing does not work on bound parameter keys.
-                $f = $false
-                $Param = $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator().ForEach{
-                    if (-not $f) {
-                        $_.Key
-                        $f = $true
-                    }
-                }[0]
-        
+                
+                # Find the parameter with the $max.Maximum number of items
+                foreach ($param in $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator() ) {
+                    # When we have found the right parameter, stop iterating
+                    if ($param.Value.length -eq $max.Maximum) { break }
+                }
+     
                 # Deduplicate the value list or the same ID may be included in more than 1 query
-                $outerLoop = $PSCmdlet.MyInvocation.BoundParameters.$($Param) | Sort-Object -Unique
+                $outerLoop = $PSCmdlet.MyInvocation.BoundParameters.$($param.key) | Sort-Object -Unique
 
-                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param)
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param.key)
                   
-                $iterated = [System.Collections.Generic.List[psobject]]::new()
                 for ($s = 0; $s -lt $outerLoop.count; $s += 200) {
                     $e = $s + 199
                     if ($e -ge $outerLoop.count) {
@@ -340,8 +334,7 @@ Set-AtwsRole
                     $BoundParameters = $PSCmdlet.MyInvocation.BoundParameters
 
                     # make a selection
-                    $BoundParameters.$($param) = $outerLoop[$s .. $e]
-                    $BoundParameters.$($param).ForEach{ $iterated.Add($_) }
+                    $BoundParameters.$($param.key) = $outerLoop[$s .. $e]
 
                     Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $s, $e)
 
