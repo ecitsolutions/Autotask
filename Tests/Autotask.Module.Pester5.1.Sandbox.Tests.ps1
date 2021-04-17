@@ -246,8 +246,6 @@ Describe "Returned Autotask error messages are exceptions" {
     }
 }
 
-
-#COnfimr test logic.
 Describe "UserDefinedField tests" {
     Context "Can update 500+ UDF values" {
         BeforeAll{
@@ -278,7 +276,6 @@ Describe "UserDefinedField tests" {
     }
 }
 
-
 Describe "SQL Query nested too deep error" {
     BeforeEach{
         Import-Module $modulePath -Force -ErrorAction Stop
@@ -301,6 +298,15 @@ Describe "SQL Query nested too deep error" {
     }
 }
 
+Describe "Parameter value can be LabelID and LabelTekst" {
+    Context "LabelID and LabelText can be sent to ticket" {
+        
+        It "ItName" {
+            { New-AtwsTicket -IssueType 'Network/Firewall/AP' } | Should -Not -Throw
+            { New-AtwsTicket -IssueType '22' } | Should -Not -Throw
+        }
+    }
+}
 
 #Region ########### TESTS THAT FAILS ################
 # There are no failing tests atm.
