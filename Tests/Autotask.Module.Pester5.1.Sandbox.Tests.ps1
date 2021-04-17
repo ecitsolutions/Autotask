@@ -55,6 +55,7 @@ AfterAll{
 <#
     Todos / Tests to add.
     TODO: New-AtwsAttachment. Mime errors, psversion tester in module scope.
+    TODO: Tests for picklist id as parameter values
 #>
 
 Describe "Pester 5.1 Module Requirement" {
