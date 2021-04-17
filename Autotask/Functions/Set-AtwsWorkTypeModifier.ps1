@@ -89,7 +89,7 @@ Get-AtwsWorkTypeModifier
       Get-AtwsPicklistValue -Entity WorkTypeModifier -FieldName ModifierType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity WorkTypeModifier -FieldName ModifierType -Label
+      $set = (Get-AtwsPicklistValue -Entity WorkTypeModifier -FieldName ModifierType -Label) + (Get-AtwsPicklistValue -Entity WorkTypeModifier -FieldName ModifierType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

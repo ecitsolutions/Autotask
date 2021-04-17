@@ -330,7 +330,7 @@ Set-AtwsTimeEntry
       Get-AtwsPicklistValue -Entity TimeEntry -FieldName Type -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TimeEntry -FieldName Type -Label
+      $set = (Get-AtwsPicklistValue -Entity TimeEntry -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity TimeEntry -FieldName Type -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

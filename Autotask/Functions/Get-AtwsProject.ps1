@@ -202,7 +202,7 @@ Set-AtwsProject
       Get-AtwsPicklistValue -Entity Project -FieldName Department -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Project -FieldName Department -Label
+      $set = (Get-AtwsPicklistValue -Entity Project -FieldName Department -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName Department -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -323,7 +323,7 @@ Set-AtwsProject
       Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label
+      $set = (Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -426,7 +426,7 @@ Set-AtwsProject
       Get-AtwsPicklistValue -Entity Project -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Project -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity Project -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -461,7 +461,7 @@ Set-AtwsProject
       Get-AtwsPicklistValue -Entity Project -FieldName Type -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Project -FieldName Type -Label
+      $set = (Get-AtwsPicklistValue -Entity Project -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName Type -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

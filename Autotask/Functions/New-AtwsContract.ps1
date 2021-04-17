@@ -93,7 +93,7 @@ Set-AtwsContract
       Get-AtwsPicklistValue -Entity Contract -FieldName BillingPreference -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Contract -FieldName BillingPreference -Label
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName BillingPreference -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName BillingPreference -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -155,7 +155,7 @@ Set-AtwsContract
       Get-AtwsPicklistValue -Entity Contract -FieldName ContractCategory -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Contract -FieldName ContractCategory -Label
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName ContractCategory -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName ContractCategory -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -200,7 +200,7 @@ Set-AtwsContract
       Get-AtwsPicklistValue -Entity Contract -FieldName ContractPeriodType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Contract -FieldName ContractPeriodType -Label
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName ContractPeriodType -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName ContractPeriodType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -221,7 +221,7 @@ Set-AtwsContract
       Get-AtwsPicklistValue -Entity Contract -FieldName ContractType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Contract -FieldName ContractType -Label
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName ContractType -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName ContractType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -335,7 +335,7 @@ Set-AtwsContract
       Get-AtwsPicklistValue -Entity Contract -FieldName ServiceLevelAgreementID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Contract -FieldName ServiceLevelAgreementID -Label
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName ServiceLevelAgreementID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -379,7 +379,7 @@ Set-AtwsContract
       Get-AtwsPicklistValue -Entity Contract -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Contract -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -400,7 +400,7 @@ Set-AtwsContract
       Get-AtwsPicklistValue -Entity Contract -FieldName TimeReportingRequiresStartAndStopTimes -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Contract -FieldName TimeReportingRequiresStartAndStopTimes -Label
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName TimeReportingRequiresStartAndStopTimes -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName TimeReportingRequiresStartAndStopTimes -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

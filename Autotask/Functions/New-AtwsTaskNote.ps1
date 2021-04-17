@@ -126,7 +126,7 @@ Set-AtwsTaskNote
       Get-AtwsPicklistValue -Entity TaskNote -FieldName NoteType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TaskNote -FieldName NoteType -Label
+      $set = (Get-AtwsPicklistValue -Entity TaskNote -FieldName NoteType -Label) + (Get-AtwsPicklistValue -Entity TaskNote -FieldName NoteType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -147,7 +147,7 @@ Set-AtwsTaskNote
       Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Label
+      $set = (Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Label) + (Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

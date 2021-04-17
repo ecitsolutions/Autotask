@@ -91,7 +91,7 @@ Get-AtwsTagGroup
       Get-AtwsPicklistValue -Entity TagGroup -FieldName DisplayColor -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TagGroup -FieldName DisplayColor -Label
+      $set = (Get-AtwsPicklistValue -Entity TagGroup -FieldName DisplayColor -Label) + (Get-AtwsPicklistValue -Entity TagGroup -FieldName DisplayColor -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

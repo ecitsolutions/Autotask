@@ -167,7 +167,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
       Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -232,7 +232,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
       Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName NumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName NumberFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName NumberFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -251,7 +251,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
       Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label
+      $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -270,7 +270,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
       Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

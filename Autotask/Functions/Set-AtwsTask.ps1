@@ -154,7 +154,7 @@ Get-AtwsTask
       Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label
+      $set = (Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -272,7 +272,7 @@ Get-AtwsTask
       Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label
+      $set = (Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -354,7 +354,7 @@ Get-AtwsTask
       Get-AtwsPicklistValue -Entity Task -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Task -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity Task -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -379,7 +379,7 @@ Get-AtwsTask
       Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label
+      $set = (Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -406,7 +406,7 @@ Get-AtwsTask
       Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Label
+      $set = (Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

@@ -81,7 +81,7 @@ Set-AtwsProduct
       Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label
+      $set = (Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label) + (Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -214,7 +214,7 @@ Set-AtwsProduct
       Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
+      $set = (Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -233,7 +233,7 @@ Set-AtwsProduct
       Get-AtwsPicklistValue -Entity Product -FieldName PriceCostMethod -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Product -FieldName PriceCostMethod -Label
+      $set = (Get-AtwsPicklistValue -Entity Product -FieldName PriceCostMethod -Label) + (Get-AtwsPicklistValue -Entity Product -FieldName PriceCostMethod -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -261,7 +261,7 @@ Set-AtwsProduct
       Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
+      $set = (Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label) + (Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

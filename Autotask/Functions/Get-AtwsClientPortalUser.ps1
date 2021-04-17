@@ -141,7 +141,7 @@ Set-AtwsClientPortalUser
       Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -169,7 +169,7 @@ Set-AtwsClientPortalUser
       Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName NumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName NumberFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName NumberFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -189,7 +189,7 @@ Set-AtwsClientPortalUser
       Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
+      $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -209,7 +209,7 @@ Set-AtwsClientPortalUser
       Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

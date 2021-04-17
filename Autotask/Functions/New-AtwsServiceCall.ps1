@@ -178,7 +178,7 @@ Set-AtwsServiceCall
       Get-AtwsPicklistValue -Entity ServiceCall -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ServiceCall -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity ServiceCall -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ServiceCall -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

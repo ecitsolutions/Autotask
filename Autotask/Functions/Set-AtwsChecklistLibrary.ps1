@@ -122,7 +122,7 @@ Get-AtwsChecklistLibrary
       Get-AtwsPicklistValue -Entity ChecklistLibrary -FieldName EntityType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ChecklistLibrary -FieldName EntityType -Label
+      $set = (Get-AtwsPicklistValue -Entity ChecklistLibrary -FieldName EntityType -Label) + (Get-AtwsPicklistValue -Entity ChecklistLibrary -FieldName EntityType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

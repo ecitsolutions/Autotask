@@ -395,7 +395,7 @@ Get-AtwsInstalledProduct
       Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label
+      $set = (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -433,7 +433,7 @@ Get-AtwsInstalledProduct
       Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label
+      $set = (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

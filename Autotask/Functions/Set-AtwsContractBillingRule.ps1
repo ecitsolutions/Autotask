@@ -149,7 +149,7 @@ Get-AtwsContractBillingRule
       Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label) + (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -202,7 +202,7 @@ Get-AtwsContractBillingRule
       Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label) + (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

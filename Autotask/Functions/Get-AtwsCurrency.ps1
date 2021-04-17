@@ -155,7 +155,7 @@ Set-AtwsCurrency
       Get-AtwsPicklistValue -Entity Currency -FieldName DisplaySymbol -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Currency -FieldName DisplaySymbol -Label
+      $set = (Get-AtwsPicklistValue -Entity Currency -FieldName DisplaySymbol -Label) + (Get-AtwsPicklistValue -Entity Currency -FieldName DisplaySymbol -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

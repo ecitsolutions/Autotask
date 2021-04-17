@@ -102,7 +102,7 @@ Get-AtwsCountry
       Get-AtwsPicklistValue -Entity Country -FieldName AddressFormatID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Country -FieldName AddressFormatID -Label
+      $set = (Get-AtwsPicklistValue -Entity Country -FieldName AddressFormatID -Label) + (Get-AtwsPicklistValue -Entity Country -FieldName AddressFormatID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -169,7 +169,7 @@ Get-AtwsCountry
       Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label
+      $set = (Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label) + (Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

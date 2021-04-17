@@ -124,7 +124,7 @@ Get-AtwsActionType
       Get-AtwsPicklistValue -Entity ActionType -FieldName View -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ActionType -FieldName View -Label
+      $set = (Get-AtwsPicklistValue -Entity ActionType -FieldName View -Label) + (Get-AtwsPicklistValue -Entity ActionType -FieldName View -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

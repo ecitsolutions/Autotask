@@ -175,7 +175,7 @@ Get-AtwsResource
       Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -200,7 +200,7 @@ Get-AtwsResource
       Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -225,7 +225,7 @@ Get-AtwsResource
       Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -266,7 +266,7 @@ Get-AtwsResource
       Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -291,7 +291,7 @@ Get-AtwsResource
       Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -390,7 +390,7 @@ Get-AtwsResource
       Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -459,7 +459,7 @@ Get-AtwsResource
       Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -486,7 +486,7 @@ Get-AtwsResource
       Get-AtwsPicklistValue -Entity Resource -FieldName ResourceType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName ResourceType -Label
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName ResourceType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName ResourceType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -511,7 +511,7 @@ Get-AtwsResource
       Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -550,7 +550,7 @@ Get-AtwsResource
       Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

@@ -159,7 +159,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -227,7 +227,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -255,7 +255,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -300,7 +300,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -320,7 +320,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -340,7 +340,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -392,7 +392,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -412,7 +412,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
       Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

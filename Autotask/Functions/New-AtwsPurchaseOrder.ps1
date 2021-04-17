@@ -145,7 +145,7 @@ Set-AtwsPurchaseOrder
       Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label
+      $set = (Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Label) + (Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PaymentTerm -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -187,7 +187,7 @@ Set-AtwsPurchaseOrder
       Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PurchaseOrderTemplateID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PurchaseOrderTemplateID -Label
+      $set = (Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PurchaseOrderTemplateID -Label) + (Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName PurchaseOrderTemplateID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -288,7 +288,7 @@ Set-AtwsPurchaseOrder
       Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -314,7 +314,7 @@ Set-AtwsPurchaseOrder
       Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName TaxGroup -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName TaxGroup -Label
+      $set = (Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName TaxGroup -Label) + (Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName TaxGroup -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -333,7 +333,7 @@ Set-AtwsPurchaseOrder
       Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName UseItemDescriptionsFrom -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName UseItemDescriptionsFrom -Label
+      $set = (Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName UseItemDescriptionsFrom -Label) + (Get-AtwsPicklistValue -Entity PurchaseOrder -FieldName UseItemDescriptionsFrom -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

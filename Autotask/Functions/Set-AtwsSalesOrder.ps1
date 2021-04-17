@@ -382,7 +382,7 @@ Get-AtwsSalesOrder
       Get-AtwsPicklistValue -Entity SalesOrder -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity SalesOrder -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity SalesOrder -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity SalesOrder -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

@@ -130,7 +130,7 @@ Set-AtwsAccountNote
       Get-AtwsPicklistValue -Entity AccountNote -FieldName ActionType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity AccountNote -FieldName ActionType -Label
+      $set = (Get-AtwsPicklistValue -Entity AccountNote -FieldName ActionType -Label) + (Get-AtwsPicklistValue -Entity AccountNote -FieldName ActionType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

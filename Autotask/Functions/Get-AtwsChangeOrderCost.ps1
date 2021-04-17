@@ -181,7 +181,7 @@ Set-AtwsChangeOrderCost
       Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName CostType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName CostType -Label
+      $set = (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName CostType -Label) + (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName CostType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -299,7 +299,7 @@ Set-AtwsChangeOrderCost
       Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

@@ -102,7 +102,7 @@ Get-AtwsQuote
       Get-AtwsPicklistValue -Entity Quote -FieldName ApprovalStatus -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName ApprovalStatus -Label
+      $set = (Get-AtwsPicklistValue -Entity Quote -FieldName ApprovalStatus -Label) + (Get-AtwsPicklistValue -Entity Quote -FieldName ApprovalStatus -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -253,7 +253,7 @@ Get-AtwsQuote
       Get-AtwsPicklistValue -Entity Quote -FieldName GroupByID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName GroupByID -Label
+      $set = (Get-AtwsPicklistValue -Entity Quote -FieldName GroupByID -Label) + (Get-AtwsPicklistValue -Entity Quote -FieldName GroupByID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -307,7 +307,7 @@ Get-AtwsQuote
       Get-AtwsPicklistValue -Entity Quote -FieldName PaymentTerm -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName PaymentTerm -Label
+      $set = (Get-AtwsPicklistValue -Entity Quote -FieldName PaymentTerm -Label) + (Get-AtwsPicklistValue -Entity Quote -FieldName PaymentTerm -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -332,7 +332,7 @@ Get-AtwsQuote
       Get-AtwsPicklistValue -Entity Quote -FieldName PaymentType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName PaymentType -Label
+      $set = (Get-AtwsPicklistValue -Entity Quote -FieldName PaymentType -Label) + (Get-AtwsPicklistValue -Entity Quote -FieldName PaymentType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -410,7 +410,7 @@ Get-AtwsQuote
       Get-AtwsPicklistValue -Entity Quote -FieldName ShippingType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName ShippingType -Label
+      $set = (Get-AtwsPicklistValue -Entity Quote -FieldName ShippingType -Label) + (Get-AtwsPicklistValue -Entity Quote -FieldName ShippingType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -491,7 +491,7 @@ Get-AtwsQuote
       Get-AtwsPicklistValue -Entity Quote -FieldName TaxGroup -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Quote -FieldName TaxGroup -Label
+      $set = (Get-AtwsPicklistValue -Entity Quote -FieldName TaxGroup -Label) + (Get-AtwsPicklistValue -Entity Quote -FieldName TaxGroup -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

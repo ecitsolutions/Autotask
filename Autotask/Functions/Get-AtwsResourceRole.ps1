@@ -139,7 +139,7 @@ An example of a more complex query. This command returns any ResourceRoles with 
       Get-AtwsPicklistValue -Entity ResourceRole -FieldName QueueID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ResourceRole -FieldName QueueID -Label
+      $set = (Get-AtwsPicklistValue -Entity ResourceRole -FieldName QueueID -Label) + (Get-AtwsPicklistValue -Entity ResourceRole -FieldName QueueID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

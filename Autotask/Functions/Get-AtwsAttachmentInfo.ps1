@@ -188,7 +188,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
       Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName ParentType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName ParentType -Label
+      $set = (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName ParentType -Label) + (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName ParentType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -208,7 +208,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
       Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Label
+      $set = (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Label) + (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -237,7 +237,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
       Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Label
+      $set = (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

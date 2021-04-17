@@ -137,7 +137,7 @@ Set-AtwsUserDefinedFieldDefinition
       Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DataType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DataType -Label
+      $set = (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DataType -Label) + (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DataType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -172,7 +172,7 @@ Set-AtwsUserDefinedFieldDefinition
       Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label
+      $set = (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label) + (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -280,7 +280,7 @@ Set-AtwsUserDefinedFieldDefinition
       Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label
+      $set = (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label) + (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

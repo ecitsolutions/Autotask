@@ -126,7 +126,7 @@ An example of a more complex query. This command returns any NotificationHistory
       Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label
+      $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -145,7 +145,7 @@ An example of a more complex query. This command returns any NotificationHistory
       Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label
+      $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -210,7 +210,7 @@ An example of a more complex query. This command returns any NotificationHistory
       Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label
+      $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

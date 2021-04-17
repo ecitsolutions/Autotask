@@ -125,7 +125,7 @@ An example of a more complex query. This command returns any Skills with Id GREA
       Get-AtwsPicklistValue -Entity Skill -FieldName CategoryID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Skill -FieldName CategoryID -Label
+      $set = (Get-AtwsPicklistValue -Entity Skill -FieldName CategoryID -Label) + (Get-AtwsPicklistValue -Entity Skill -FieldName CategoryID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

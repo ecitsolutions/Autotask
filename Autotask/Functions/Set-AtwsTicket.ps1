@@ -180,7 +180,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -205,7 +205,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -230,7 +230,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -457,7 +457,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName IssueType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName IssueType -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName IssueType -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName IssueType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -495,7 +495,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -535,7 +535,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName Priority -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName Priority -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName Priority -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName Priority -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -600,7 +600,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName QueueID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName QueueID -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName QueueID -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName QueueID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -639,7 +639,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -664,7 +664,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -689,7 +689,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -714,7 +714,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName Source -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName Source -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName Source -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName Source -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -741,7 +741,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -777,7 +777,7 @@ Get-AtwsTicket
         }
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -802,7 +802,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -841,7 +841,7 @@ Get-AtwsTicket
       Get-AtwsPicklistValue -Entity Ticket -FieldName TicketType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Ticket -FieldName TicketType -Label
+      $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName TicketType -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName TicketType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

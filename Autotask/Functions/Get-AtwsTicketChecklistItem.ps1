@@ -168,7 +168,7 @@ Set-AtwsTicketChecklistItem
       Get-AtwsPicklistValue -Entity TicketChecklistItem -FieldName KnowledgebaseArticleID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketChecklistItem -FieldName KnowledgebaseArticleID -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketChecklistItem -FieldName KnowledgebaseArticleID -Label) + (Get-AtwsPicklistValue -Entity TicketChecklistItem -FieldName KnowledgebaseArticleID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

@@ -117,7 +117,7 @@ Get-AtwsTicketCategory
       Get-AtwsPicklistValue -Entity TicketCategory -FieldName DisplayColorRGB -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCategory -FieldName DisplayColorRGB -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCategory -FieldName DisplayColorRGB -Label) + (Get-AtwsPicklistValue -Entity TicketCategory -FieldName DisplayColorRGB -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

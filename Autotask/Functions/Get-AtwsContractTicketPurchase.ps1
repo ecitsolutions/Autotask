@@ -164,7 +164,7 @@ Set-AtwsContractTicketPurchase
       Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Label) + (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -191,7 +191,7 @@ Set-AtwsContractTicketPurchase
       Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Label) + (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -226,7 +226,7 @@ Set-AtwsContractTicketPurchase
       Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

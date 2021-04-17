@@ -120,7 +120,7 @@ Get-AtwsTicketNote
       Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Label) + (Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -147,7 +147,7 @@ Get-AtwsTicketNote
       Get-AtwsPicklistValue -Entity TicketNote -FieldName Publish -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketNote -FieldName Publish -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketNote -FieldName Publish -Label) + (Get-AtwsPicklistValue -Entity TicketNote -FieldName Publish -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

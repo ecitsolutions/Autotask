@@ -148,7 +148,7 @@ Get-AtwsContractRetainer
       Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Label) + (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -204,7 +204,7 @@ Get-AtwsContractRetainer
       Get-AtwsPicklistValue -Entity ContractRetainer -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractRetainer -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

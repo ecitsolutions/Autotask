@@ -124,7 +124,7 @@ Set-AtwsInstalledProductWebhookField
       Get-AtwsPicklistValue -Entity InstalledProductWebhookField -FieldName FieldID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProductWebhookField -FieldName FieldID -Label
+      $set = (Get-AtwsPicklistValue -Entity InstalledProductWebhookField -FieldName FieldID -Label) + (Get-AtwsPicklistValue -Entity InstalledProductWebhookField -FieldName FieldID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

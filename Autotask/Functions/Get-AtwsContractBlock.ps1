@@ -179,7 +179,7 @@ Set-AtwsContractBlock
       Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label) + (Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -206,7 +206,7 @@ Set-AtwsContractBlock
       Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Label) + (Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -233,7 +233,7 @@ Set-AtwsContractBlock
       Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

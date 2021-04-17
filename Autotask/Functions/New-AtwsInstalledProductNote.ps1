@@ -128,7 +128,7 @@ Set-AtwsInstalledProductNote
       Get-AtwsPicklistValue -Entity InstalledProductNote -FieldName NoteType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity InstalledProductNote -FieldName NoteType -Label
+      $set = (Get-AtwsPicklistValue -Entity InstalledProductNote -FieldName NoteType -Label) + (Get-AtwsPicklistValue -Entity InstalledProductNote -FieldName NoteType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

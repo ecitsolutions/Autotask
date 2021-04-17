@@ -154,7 +154,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -173,7 +173,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -200,7 +200,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName QueueID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName QueueID -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName QueueID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName QueueID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -227,7 +227,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -246,7 +246,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -265,7 +265,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -284,7 +284,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -311,7 +311,7 @@ An example of a more complex query. This command returns any TicketCategoryField
       Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

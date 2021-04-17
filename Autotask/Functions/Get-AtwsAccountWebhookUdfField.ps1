@@ -148,7 +148,7 @@ Set-AtwsAccountWebhookUdfField
       Get-AtwsPicklistValue -Entity AccountWebhookUdfField -FieldName UdfFieldID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity AccountWebhookUdfField -FieldName UdfFieldID -Label
+      $set = (Get-AtwsPicklistValue -Entity AccountWebhookUdfField -FieldName UdfFieldID -Label) + (Get-AtwsPicklistValue -Entity AccountWebhookUdfField -FieldName UdfFieldID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

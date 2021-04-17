@@ -208,7 +208,7 @@ An example of a more complex query. This command returns any DeletedTicketActivi
       Get-AtwsPicklistValue -Entity DeletedTicketActivityLog -FieldName TypeID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity DeletedTicketActivityLog -FieldName TypeID -Label
+      $set = (Get-AtwsPicklistValue -Entity DeletedTicketActivityLog -FieldName TypeID -Label) + (Get-AtwsPicklistValue -Entity DeletedTicketActivityLog -FieldName TypeID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

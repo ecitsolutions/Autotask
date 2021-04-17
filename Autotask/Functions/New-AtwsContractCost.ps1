@@ -135,7 +135,7 @@ Set-AtwsContractCost
       Get-AtwsPicklistValue -Entity ContractCost -FieldName CostType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractCost -FieldName CostType -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractCost -FieldName CostType -Label) + (Get-AtwsPicklistValue -Entity ContractCost -FieldName CostType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -247,7 +247,7 @@ Set-AtwsContractCost
       Get-AtwsPicklistValue -Entity ContractCost -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ContractCost -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity ContractCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ContractCost -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

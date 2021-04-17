@@ -126,7 +126,7 @@ Set-AtwsTicketCost
       Get-AtwsPicklistValue -Entity TicketCost -FieldName CostType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCost -FieldName CostType -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCost -FieldName CostType -Label) + (Get-AtwsPicklistValue -Entity TicketCost -FieldName CostType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -238,7 +238,7 @@ Set-AtwsTicketCost
       Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

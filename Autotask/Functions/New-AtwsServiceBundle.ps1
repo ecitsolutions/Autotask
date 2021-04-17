@@ -145,7 +145,7 @@ Set-AtwsServiceBundle
       Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Label
+      $set = (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -164,7 +164,7 @@ Set-AtwsServiceBundle
       Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label
+      $set = (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

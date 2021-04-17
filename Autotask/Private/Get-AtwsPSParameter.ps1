@@ -158,7 +158,7 @@ Function Get-AtwsPSParameter {
                 $text += "    [ArgumentCompleter({`n      param(`$Cmd, `$Param, `$Word, `$Ast, `$FakeBound)`n      Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label`n    })]`n"
             }
             # Validate that label exists
-            $text += "    [ValidateScript({`n      `$set = Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label`n      if (`$_ -in `$set) { return `$true}`n      else {`n        Write-Warning ('{0} is not one of {1}' -f `$_, (`$set -join ', '))`n        Return `$false`n      }`n    })]`n"
+            $text += "    [ValidateScript({`n      `$set = (Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label) + (Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Value)`n      if (`$_ -in `$set) { return `$true}`n      else {`n        Write-Warning ('{0} is not one of {1}' -f `$_, (`$set -join ', '))`n        Return `$false`n      }`n    })]`n"
         }
         # Add Validateset if present
         elseIf ($ValidateSet.Count -gt 0) { 

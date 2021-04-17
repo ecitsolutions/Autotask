@@ -89,7 +89,7 @@ Set-AtwsAccountAlert
       Get-AtwsPicklistValue -Entity AccountAlert -FieldName AlertTypeID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity AccountAlert -FieldName AlertTypeID -Label
+      $set = (Get-AtwsPicklistValue -Entity AccountAlert -FieldName AlertTypeID -Label) + (Get-AtwsPicklistValue -Entity AccountAlert -FieldName AlertTypeID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

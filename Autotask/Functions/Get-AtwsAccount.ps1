@@ -157,7 +157,7 @@ Set-AtwsAccount
       Get-AtwsPicklistValue -Entity Account -FieldName AccountType -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName AccountType -Label
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName AccountType -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName AccountType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -223,7 +223,7 @@ Set-AtwsAccount
       Get-AtwsPicklistValue -Entity Account -FieldName ApiVendorID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName ApiVendorID -Label
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName ApiVendorID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName ApiVendorID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -273,7 +273,7 @@ Set-AtwsAccount
       Get-AtwsPicklistValue -Entity Account -FieldName BillToAddressToUse -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName BillToAddressToUse -Label
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName BillToAddressToUse -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName BillToAddressToUse -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -346,7 +346,7 @@ Set-AtwsAccount
       Get-AtwsPicklistValue -Entity Account -FieldName CompetitorID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName CompetitorID -Label
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName CompetitorID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName CompetitorID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -438,7 +438,7 @@ Set-AtwsAccount
       Get-AtwsPicklistValue -Entity Account -FieldName InvoiceMethod -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName InvoiceMethod -Label
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName InvoiceMethod -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName InvoiceMethod -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -471,7 +471,7 @@ Set-AtwsAccount
       Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName KeyAccountIcon -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -504,7 +504,7 @@ Set-AtwsAccount
       Get-AtwsPicklistValue -Entity Account -FieldName MarketSegmentID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName MarketSegmentID -Label
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName MarketSegmentID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName MarketSegmentID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -555,7 +555,7 @@ Set-AtwsAccount
       Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Label
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -632,7 +632,7 @@ Set-AtwsAccount
       Get-AtwsPicklistValue -Entity Account -FieldName TerritoryID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Account -FieldName TerritoryID -Label
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName TerritoryID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName TerritoryID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

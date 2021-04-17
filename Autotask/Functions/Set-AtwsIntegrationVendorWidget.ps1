@@ -166,7 +166,7 @@ Get-AtwsIntegrationVendorWidget
       Get-AtwsPicklistValue -Entity IntegrationVendorWidget -FieldName Width -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity IntegrationVendorWidget -FieldName Width -Label
+      $set = (Get-AtwsPicklistValue -Entity IntegrationVendorWidget -FieldName Width -Label) + (Get-AtwsPicklistValue -Entity IntegrationVendorWidget -FieldName Width -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))

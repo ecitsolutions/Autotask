@@ -230,7 +230,7 @@ Set-AtwsOpportunity
       Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Label
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -249,7 +249,7 @@ Set-AtwsOpportunity
       Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Label
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -327,7 +327,7 @@ Set-AtwsOpportunity
       Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -355,7 +355,7 @@ Set-AtwsOpportunity
       Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -435,7 +435,7 @@ Set-AtwsOpportunity
       Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Label
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -468,7 +468,7 @@ Set-AtwsOpportunity
       Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Label
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -517,7 +517,7 @@ Set-AtwsOpportunity
       Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Label
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -538,7 +538,7 @@ Set-AtwsOpportunity
       Get-AtwsPicklistValue -Entity Opportunity -FieldName Status -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName Status -Label
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName Status -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -597,7 +597,7 @@ Set-AtwsOpportunity
       Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Label
     })]
     [ValidateScript({
-      $set = Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Label
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
