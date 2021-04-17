@@ -171,17 +171,27 @@ Function Connect-AtwsWebAPI {
                 # again
                 $ConfigurationData = New-AtwsModuleConfiguration @Parameters
             }
-            elseif ($env:AtwsDefaultCredential) {
-                # We are probably on Azure and in an azure function to boot.
+            elseif ($ENV:FUNCTIONS_WORKER_RUNTIME) {
+                # We are probably on Azure and in an azure function to boot.    
                 # Can be used locally, too, but that is a secret...
-                if (-not ($env:AtwsDefaultSecureIdentifier)) {
-                    # We really need that secure identifier...
-                    $message = "Could not a variable with name 'AtwsDefaultSecureIdentifier'. Create and run again."
-                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                    return
-                }
 
-                $ConfigurationData = New-AtwsModuleConfiguration -Credential $env:AtwsDefaultCredential -SecureTrackingIdentifier $env:AtwsDefaultSecureIdentifier
+                try {
+                    $UserName = $ENV:AtwsUserName
+                    $PassWord = $ENV:AtwsPassword
+                    $SecurePass = $PassWord | ConvertTo-SecureString -AsPlainText -Force
+                    $Credential = [System.Management.Automation.PSCredential]::new($UserName, $SecurePass )
+                    
+                    $TrackingIdentifier = $ENV:AtwsTrackingIdentifier
+                    $SecureTrackingIdentifier = $TrackingIdentifier | ConvertTo-SecureString -AsPlainText -Force
+
+                }
+                catch {
+                    $message = 'Unable to get needed variables and convert them from Azure Function Application Settings. Fix and try again.'
+                    throw (New-Object System.Configuration.Provider.ProviderException $message)
+                }
+                Write-Verbose "We are ettempting to call New-AtwsModuleConfiguration as we now have needed variables from Azure Functions application settings."
+                
+                $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureTrackingIdentifier 
 
             }
             elseif ($env:AUTOMATION_ASSET_ACCOUNTID ) {
@@ -197,6 +207,7 @@ Function Connect-AtwsWebAPI {
                 # Now try for API key
                 try {
                     $SecureIdentifier = Get-AutomationVariable -Name 'AtwsDefaultSecureIdentifier'
+                    $SecureIdentifier = $SecureIdentifier | ConvertTo-SecureString -AsPlainText -Force
                 }
                 catch {
                     $message = "Could not a variable with name 'AtwsDefaultSecureIdentifier'. Create and run again."
