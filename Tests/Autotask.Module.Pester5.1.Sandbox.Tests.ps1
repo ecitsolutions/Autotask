@@ -154,8 +154,6 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
             $PesterConfigPath | Should -Exist
             $settings = Import-Clixml -Path $PesterConfigPath
             $settings.Keys | Should -Contain 'PesterTempConfig'
-            Remove-AtwsModuleConfiguration -Path $PesterConfigPath -Name Default -Confirm:$false -ErrorAction SilentlyContinue
-            Remove-AtwsModuleConfiguration -Path $PesterConfigPath -Name Pester -Confirm:$false -ErrorAction SilentlyContinue
         }
 
         It "Get-AtwsModuleConfiguration works when indexing two different paths." {
@@ -203,11 +201,13 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
 }
 
 Describe "Connect using connection object" {
-    Context "this needs to be addressed" {
-        It "Should not throw." {
-            $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
-            { Connect-AtwsWebAPI -AtwsModuleConfiguration $Config } | Should -Not -Throw
-        }
+
+    It "Should not throw." {
+        $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
+        { Connect-AtwsWebAPI -AtwsModuleConfiguration $Config } | Should -Not -Throw
+        $Acc = Get-AtwsAccount -id 0
+        $Acc | Should -BeOfType [Autotask.Account]
+        $Acc.AccountName | Should -BeExactly 'ECIT Solutions AS Sandbox'
     }
 }
 
@@ -278,20 +278,24 @@ Describe "UserDefinedField tests" {
 }
 
 
-Describe "Know Issues in 1.6.14" {
+Describe "SQL Query nested too deep error" {
     BeforeEach{
         Import-Module $modulePath -Force -ErrorAction Stop
         $loadedModule = Get-Module $moduleName
     }
-    Context "SQL Query nested too deep error" {
+    Context "Does not throw when inputting 1000 ids to cmdlets" {
         
-        It "Does not throw when inputting 1000 ids to cmdlets" {
-            
-            $Products = { Get-AtwsInstalledProduct -Type Server -Active $true } | Should -Not -Throw -PassThru
+        BeforeAll {
             $Products = Get-AtwsInstalledProduct -Type Server -Active $true
+        }
+
+        It "Should get 800+ objects" {
             $Products.Count | Should -BeGreaterThan 800
-            
-            { $Req = Get-AtwsInstalledProduct -id $Products.id } | Should -Not -Throw
+        }
+
+        It "Should accept 800+ Ids as input and return the correct number of objects" { 
+            $Req = Get-AtwsInstalledProduct -id $Products.id -verbose
+            $Req.count | Should -Be $Products.count
         }
     }
 }
