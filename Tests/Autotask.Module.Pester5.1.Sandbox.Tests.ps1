@@ -302,8 +302,8 @@ Describe "Parameter value can be LabelID and LabelTekst" {
     Context "LabelID and LabelText can be sent to ticket" {
         
         It "ItName" {
-            { New-AtwsTicket -IssueType 'Network/Firewall/AP' } | Should -Not -Throw
-            { New-AtwsTicket -IssueType '22' } | Should -Not -Throw
+            { New-AtwsTicket -IssueType Network/Firewall/AP -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling' } | Should -Not -Throw
+            { New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling' } | Should -Not -Throw
         }
     }
 }
