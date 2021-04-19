@@ -181,7 +181,7 @@ Function Set-AtwsModuleConfiguration {
                     [IO.FileInfo]$filepath = $FakeBound.Path
                 }
                 else {
-                    [IO.FileInfo]$filepath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
+                    [IO.FileInfo]$filepath = $Script:AtwsModuleConfigurationPath
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {

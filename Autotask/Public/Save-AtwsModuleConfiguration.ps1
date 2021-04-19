@@ -64,7 +64,7 @@ Function Save-AtwsModuleConfiguration {
                 $(Get-ChildItem -Path $Script:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [IO.FileInfo]
-        $Path = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
+        $Path = $Script:AtwsModuleConfigurationPath
     )
     
     begin { 
