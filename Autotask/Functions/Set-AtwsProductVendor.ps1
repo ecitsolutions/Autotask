@@ -208,14 +208,14 @@ Get-AtwsProductVendor
                 $ModifiedObjects.AddRange($Data)
             }
             catch {
-                # Write-Host?! And no throwing of exceptions? Not sure what I have been thinking here...
-                write-host "ERROR: " -ForegroundColor Red -NoNewline
-                write-host $_.Exception.Message
-                write-host ("{0}: {1}" -f $_.CategoryInfo.Category,$_.CategoryInfo.Reason) -ForegroundColor Cyan
-                $_.ScriptStackTrace -split '\n' | ForEach-Object {
-                    Write-host "  |  " -ForegroundColor Cyan -NoNewline
-                    Write-host $_
-                }
+                # Write a debug message with detailed information to developers
+                $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
+                $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                Write-Debug $message
+
+                # Pass on the error
+                $PSCmdlet.ThrowTerminatingError($_)
+                return
             }
         }
 

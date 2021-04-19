@@ -373,23 +373,22 @@ Set-AtwsContractCost
             $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
-                # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
-                $Data = Set-AtwsData -Entity $processObject -Create
-                if ($Data.Count -gt 1) {
-                    $result.AddRange($Data)
-                }
-                else {
-                    $result.Add($Data)
-                }
+                # Force list even if result is only 1 object to be compatible with addrange()
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
-                write-host "ERROR: " -ForegroundColor Red -NoNewline
-                write-host $_.Exception.Message
-                write-host ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason) -ForegroundColor Cyan
-                $_.ScriptStackTrace -split '\n' | ForEach-Object {
-                    Write-host "  |  " -ForegroundColor Cyan -NoNewline
-                    Write-host $_
-                }
+                # Write a debug message with detailed information to developers
+                $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
+                $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                Write-Debug $message
+
+                # Pass on the error
+                $PSCmdlet.ThrowTerminatingError($_)
+                return
+            }
+            # If using pipeline this block (process) will run once pr item in the pipeline. make sure to return them all
+            if ($response.Count -gt 0) {
+                $result.AddRange($response)
             }
         }
     }

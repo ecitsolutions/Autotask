@@ -444,9 +444,14 @@ Set-AtwsContractTicketPurchase
                         -GetReferenceEntityById $GetReferenceEntityById
                 }
                 catch {
+                    # Write a debug message with detailed information to developers
                     $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
-                    $message = "Autotask API Responded with error:`r`n`r`n{0}`r`n`r`n{1} {2}" -f $_.Exception.Message, $reason, $_.ScriptStackTrace
-                    throw [System.Configuration.Provider.ProviderException]::new($message)
+                    $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                    Write-Debug $message
+
+                    # Pass on the error
+                    $PSCmdlet.ThrowTerminatingError($_)
+                    return
                 }
                 # Add response to result - if there are any response to add
                 if ($response.count -gt 0) { 
