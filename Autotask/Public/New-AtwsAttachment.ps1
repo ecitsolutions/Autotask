@@ -396,11 +396,9 @@ Function New-AtwsAttachment {
 
         # What are we attaching to?
         $AttachmentInfo.ParentId = $TicketId + $AccountID + $ProjectID + $OpportunityId # Genious way of using 0 ints and math to store the EntityId we are working with.
-        # Throws if Inexing Hastable is not possible (Empty)
-        try {
-        $ParentType = $Fields['ParentType']['PicklistValues']['byLabel']['Task Or Ticket']
-        } catch {   throw ('Did not get PickListFieldValues for current ParameterSet: {0}' -f ($PSCmdlet.ParameterSetName -split '_')[0] )    }
-        $AttachmentInfo.ParentType = $ParentType
+        # Throws if Indexing Hastable is not possible (Empty)
+        $PicklistValues = Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName ParentType -Label -Hashtable
+        $AttachmentInfo.ParentType = $PicklistValues[$(($PSCmdlet.ParameterSetName -split '_')[0])]
 
 
         # Prepare ShouldProcess
