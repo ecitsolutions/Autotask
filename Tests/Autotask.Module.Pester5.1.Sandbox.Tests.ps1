@@ -5,8 +5,7 @@ BeforeAll {
     $PesterModule = Get-Module -Name Pester
     
     $moduleName = 'Autotask'
-    # $RootPath = $(Split-Path -Parent -Path (Split-Path -Parent -Path $ENV:SystemDrive))
-    $RootPath = 'C:\Git\Autotask'
+    $RootPath = $(Split-Path -Parent -Path (Split-Path -Parent -Path $PSCommandPath))
     $modulePath = '{0}\{1}' -F $RootPath, $ModuleName
     $SandBoxDomain = '@ECITSOLUTIONSSB12032021.NO'
     $RunGUID = New-Guid
