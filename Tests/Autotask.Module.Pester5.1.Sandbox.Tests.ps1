@@ -1,4 +1,4 @@
-
+﻿
 
 BeforeAll {
     Import-Module Pester  -ErrorAction Stop
@@ -212,18 +212,6 @@ Describe "Connect using connection object" {
     }
 }
 
-Describe "UserDefinedField tests" {
-    Context "UDF Properties are expanded from its array." {
-        It "Has properties with name like '#'" {
-            $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
-            Connect-AtwsWebAPI -AtwsModuleConfigurationName Pester
-
-            $Products = Get-AtwsInstalledProduct -Type Firewall
-            $Products[0].psobject.Properties.where{$_.Name -match '#'}.Count | Should -BeGreaterThan 40
-        }
-    }
-}
-
 Describe "Auto connect works on moast get commands." {
     BeforeAll {
         Import-Module $modulePath -Force -ErrorAction Stop
@@ -247,6 +235,16 @@ Describe "Returned Autotask error messages are exceptions" {
 }
 
 Describe "UserDefinedField tests" {
+    Context "UDF Properties are expanded from its array." {
+        It "Has properties with name like '#'" {
+            $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
+            Connect-AtwsWebAPI -AtwsModuleConfigurationName Pester
+
+            $Products = Get-AtwsInstalledProduct -Type Firewall
+            $Products[0].psobject.Properties.where{ $_.Name -match '#' }.Count | Should -BeGreaterThan 40
+        }
+    }
+
     Context "Can update 500+ UDF values" {
         BeforeAll{
             Import-Module $modulePath -Force -ErrorAction Stop
