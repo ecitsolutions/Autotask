@@ -214,7 +214,8 @@ Function Connect-AtwsWebAPI {
                 return
             }
             Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with variables from Azure Automation resources.' -F $MyInvocation.MyCommand.Name)
-            $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureIdentifier
+            # There are no $DebugPreferences on Azure Automation. Set explicitly to SlientlyContinue to avoid validation error
+            $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureIdentifier -DebugPref SilentlyContinue
 
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
