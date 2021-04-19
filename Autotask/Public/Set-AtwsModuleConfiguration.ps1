@@ -42,7 +42,6 @@ Function Set-AtwsModuleConfiguration {
         ConfirmImpact = 'Medium',
         DefaultParameterSetName = 'Username_and_password'
     )]
-    [Alias('Set-AtwsProfile')]
     Param
     ( 
         [Parameter(
@@ -182,7 +181,7 @@ Function Set-AtwsModuleConfiguration {
                     [IO.FileInfo]$filepath = $FakeBound.Path
                 }
                 else {
-                    [IO.FileInfo]$filepath = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
+                    [IO.FileInfo]$filepath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {

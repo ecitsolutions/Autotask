@@ -77,7 +77,7 @@ Function New-AtwsModuleConfiguration {
     
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName | ForEach-Object {
+                $(Get-ChildItem -Path $Script:AtwsModuleConfigurationPath -Filter "*.clixml").FullName | ForEach-Object {
                     $Imp = Import-Clixml $_ -ErrorAction SilentlyContinue
                     if ($Imp) {
                         $Imp.keys
@@ -90,10 +90,10 @@ Function New-AtwsModuleConfiguration {
         
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName
+                $(Get-ChildItem -Path $Script:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [IO.FileInfo]
-        $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
+        $Path = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
     )
     
     begin { 
@@ -139,8 +139,9 @@ Function New-AtwsModuleConfiguration {
         
         if ($Name) {
             if (-not (Test-Path $Path)) {
-                $Splat = @{Path = $Path}
-            }else{ $Splat = @{} }
+                $Splat = @{Path = $Path }
+            }
+            else { $Splat = @{} }
 
             Save-AtwsModuleConfiguration -Name $Name -Configuration $configuration @Splat
 
