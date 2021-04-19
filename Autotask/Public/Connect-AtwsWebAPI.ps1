@@ -120,7 +120,7 @@ Function Connect-AtwsWebAPI {
             })]
         [Alias('Path', 'ProfilePath')]
         [IO.FileInfo]
-        $AtwsModuleConfigurationPath = $Script:AtwsModuleConfigurationPath,
+        $AtwsModuleConfigurationPath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
         # Name of the Configuration inside the Config file.
         [Parameter(
@@ -155,104 +155,99 @@ Function Connect-AtwsWebAPI {
   
     process {
         # Make sure we have a valid configuration before we proceed
-        try { 
-            # If we didn't get a prepared configuration object, create one from the parameters
-            if ($PSCmdlet.ParameterSetName -eq 'Parameters') {
-                $Parameters = @{
-                    Credential               = $Credential
-                    SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
-                    ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
-                    Prefix                   = $Prefix
-                    RefreshCache             = $RefreshCache.IsPresent
-                    DebugPref                = $DebugPreference
-                    VerbosePref              = $VerbosePreference
-                }
-                # We cannot reuse $configuration variable without triggering the validationscript
-                # again
-                $ConfigurationData = New-AtwsModuleConfiguration @Parameters
+        # If we didn't get a prepared configuration object, create one from the parameters
+        if ($PSCmdlet.ParameterSetName -eq 'Parameters') {
+            $Parameters = @{
+                Credential               = $Credential
+                SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
+                ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
+                Prefix                   = $Prefix
+                RefreshCache             = $RefreshCache.IsPresent
+                DebugPref                = $DebugPreference
+                VerbosePref              = $VerbosePreference
             }
-            elseif ($ENV:FUNCTIONS_WORKER_RUNTIME) {
-                # We are probably on Azure and in an azure function to boot.    
-                # Can be used locally, too, but that is a secret...
+            # We cannot reuse $configuration variable without triggering the validationscript
+            # again
+            $ConfigurationData = New-AtwsModuleConfiguration @Parameters
+        }
+        elseif ($ENV:FUNCTIONS_WORKER_RUNTIME) {
+            # We are probably on Azure and in an azure function to boot.    
+            # Can be used locally, too, but that is a secret...
 
-                try {
-                    $UserName = $ENV:AtwsUserName
-                    $PassWord = $ENV:AtwsPassword
-                    $SecurePass = $PassWord | ConvertTo-SecureString -AsPlainText -Force
-                    $Credential = [System.Management.Automation.PSCredential]::new($UserName, $SecurePass )
+            try {
+                $UserName = $ENV:AtwsUserName
+                $PassWord = $ENV:AtwsPassword
+                $SecurePass = $PassWord | ConvertTo-SecureString -AsPlainText -Force
+                $Credential = [System.Management.Automation.PSCredential]::new($UserName, $SecurePass )
                     
-                    $TrackingIdentifier = $ENV:AtwsTrackingIdentifier
-                    $SecureTrackingIdentifier = $TrackingIdentifier | ConvertTo-SecureString -AsPlainText -Force
-
-                }
-                catch {
-                    $message = 'Unable to get needed variables and convert them from Azure Function Application Settings. Fix and try again.'
-                    throw (New-Object System.Configuration.Provider.ProviderException $message)
-                }
-                Write-Verbose "We are ettempting to call New-AtwsModuleConfiguration as we now have needed variables from Azure Functions application settings."
-                
-                $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureTrackingIdentifier 
+                $TrackingIdentifier = $ENV:AtwsTrackingIdentifier
+                $SecureTrackingIdentifier = $TrackingIdentifier | ConvertTo-SecureString -AsPlainText -Force
 
             }
-            elseif ($env:AUTOMATION_ASSET_ACCOUNTID ) {
-                # We are on Azure. Try to get credentials and api key
-                try {
-                    $Credential = Get-AutomationPSCredential -Name 'AtwsDefaultCredential'
-                }
-                catch {
-                    $message = "Could not find credentials with name 'AtwsDefaultCredential'. Create and run again."
-                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                    return
-                }
-                # Now try for API key
-                try {
-                    $SecureIdentifier = Get-AutomationVariable -Name 'AtwsDefaultSecureIdentifier'
-                    $SecureIdentifier = $SecureIdentifier | ConvertTo-SecureString -AsPlainText -Force
-                }
-                catch {
-                    $message = "Could not a variable with name 'AtwsDefaultSecureIdentifier'. Create and run again."
-                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                    return
-                }
-
-                $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureIdentifier
-
+            catch {
+                $message = 'Unable to get needed variables and convert them from Azure Function Application Settings. Fix and try again.'
+                throw (New-Object System.Configuration.Provider.ProviderException $message)
             }
-            elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
+            Write-Verbose "We are ettempting to call New-AtwsModuleConfiguration as we now have needed variables from Azure Functions application settings."
                 
-                if (Test-Path $AtwsModuleConfigurationPath) {
-                    # Read the file.
-                    $settings = Import-Clixml -Path $AtwsModuleConfigurationPath
-                    if (-not $settings.ContainsKey($AtwsModuleConfigurationName)) {
-                        $message = "Configuration file with path: $Path could not be validated. A profile with name: $AtwsModuleConfigurationName does not exist."
-                        throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                    }elseif($settings.keys.count -eq 0){
-                        $message = "Configuration file with path: $Path could not be validated. There are no profiles in this file. Delete it."
-                        throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                    }
+            $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureTrackingIdentifier 
 
-                    $ConfigurationData = $settings[$AtwsModuleConfigurationName]
+        }
+        elseif ($env:AUTOMATION_ASSET_ACCOUNTID ) {
+            # We are on Azure. Try to get credentials and api key
+            try {
+                $Credential = Get-AutomationPSCredential -Name 'AtwsDefaultCredential'
+            }
+            catch {
+                $message = "Could not find credentials with name 'AtwsDefaultCredential'. Create and run again."
+                throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                return
+            }
+            # Now try for API key
+            try {
+                $SecureIdentifier = Get-AutomationVariable -Name 'AtwsDefaultSecureIdentifier'
+                $SecureIdentifier = $SecureIdentifier | ConvertTo-SecureString -AsPlainText -Force
+            }
+            catch {
+                $message = "Could not a variable with name 'AtwsDefaultSecureIdentifier'. Create and run again."
+                throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                return
+            }
+
+            $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureIdentifier
+
+        }
+        elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
+                
+            if (Test-Path $AtwsModuleConfigurationPath) {
+                # Read the file.
+                $settings = Import-Clixml -Path $AtwsModuleConfigurationPath
+                if (-not $settings.ContainsKey($AtwsModuleConfigurationName)) {
+                    $message = "Configuration file with path: $Path could not be validated. A profile with name: $AtwsModuleConfigurationName does not exist."
+                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                }
+                elseif ($settings.keys.count -eq 0) {
+                    $message = "Configuration file with path: $Path could not be validated. There are no profiles in this file. Delete it."
+                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                }
+
+                $ConfigurationData = $settings[$AtwsModuleConfigurationName]
                     
-                    if (-not (Test-AtwsModuleConfiguration -Configuration $ConfigurationData )) {
-                        $message = "Configuration file $Path could not be validated. A connection could not be made."
-                        throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                    }
-                }else {
-                    $message = "Configuration file with path: $Path could not be validated. A connection could not be made. Run Connect-AtwsWebAPI First!!"
+                if (-not (Test-AtwsModuleConfiguration -Configuration $ConfigurationData )) {
+                    $message = "Configuration file $Path could not be validated. A connection could not be made."
                     throw (New-Object System.Configuration.Provider.ProviderException $message) 
                 }
             }
-            elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
-                # We got a configuration object and it passed validation
-                $ConfigurationData = $AtwsModuleConfiguration
+            else {
+                $message = "Configuration file with path: $Path could not be validated. A connection could not be made. Run Connect-AtwsWebAPI First!!"
+                throw (New-Object System.Configuration.Provider.ProviderException $message) 
             }
         }
-        catch {
-            $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
-            throw (New-Object System.Configuration.Provider.ProviderException $message)
-            
-            return
+        elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
+            # We got a configuration object and it passed validation
+            $ConfigurationData = $AtwsModuleConfiguration
         }
+
 
         ## Connect to the API
         #  or die trying
