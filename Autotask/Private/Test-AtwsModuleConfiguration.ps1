@@ -165,6 +165,9 @@ Function Test-AtwsModuleConfiguration {
     }
     catch {
         # Any parameter validation error will land us here
+        $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
+        $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+        Write-Verbose $message
         return $false
     }
 
