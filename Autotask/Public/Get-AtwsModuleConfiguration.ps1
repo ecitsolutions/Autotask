@@ -96,11 +96,14 @@ Function Get-AtwsModuleConfiguration {
             if (-not(Test-AtwsModuleConfiguration -Configuration $configuration)) {
                 $message = "Configuration named '$Name' was successfully read from disk, but the configuration settings did not validate OK. The configuration will be deleted."
 
+                Remove-AtwsModuleConfiguration -Path $Path -Name $Name -Force
+
                 throw (New-Object System.Configuration.Provider.ProviderException $message)
             }
         }
         else {
-            $configuration = New-AtwsModuleConfiguration
+            $message = "There are no configuration profiles named '$Name'."
+            throw (New-Object System.Configuration.Provider.ProviderException $message)
         }
 
     }
