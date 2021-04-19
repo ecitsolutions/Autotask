@@ -113,14 +113,14 @@ Function Connect-AtwsWebAPI {
         )]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName
+                $(Get-ChildItem -Path $Script:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [ValidateScript( { 
                 Test-Path $_
             })]
         [Alias('Path', 'ProfilePath')]
         [IO.FileInfo]
-        $AtwsModuleConfigurationPath = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml),
+        $AtwsModuleConfigurationPath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
         # Name of the Configuration inside the Config file.
         [Parameter(
@@ -132,7 +132,7 @@ Function Connect-AtwsWebAPI {
                     [IO.FileInfo]$filepath = $FakeBound.AtwsModuleConfigurationPath
                 }
                 else {
-                    [IO.FileInfo]$filepath = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
+                    [IO.FileInfo]$filepath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {

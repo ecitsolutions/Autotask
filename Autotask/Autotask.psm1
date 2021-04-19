@@ -30,10 +30,6 @@ Param(
 
 Write-Debug ('{0}: Start of module import' -F $MyInvocation.MyCommand.Name)
 
-# Explicit loading of namespace
-#$namespace = 'Autotask'
-#. ([scriptblock]::Create("using namespace $namespace"))
-
 # Special consideration for -Verbose, as there is no $PSCmdLet context to check if Import-Module was called using -Verbose
 # and $VerbosePreference is not inherited from Import-Module for some reason.
 
@@ -62,6 +58,25 @@ Import-LocalizedData -BindingVariable My -FileName $manifestFileName -BaseDirect
 
 # Add module path to manifest variable
 $My['ModuleBase'] = $manifestDirectory
+
+# The location $profile is only available on desktop and possibly Azure Runbooks. Not on 
+# Azure Functions. Find a valid location for a configuration profile 
+if ($profile) {
+    # Use $profile if it exsist
+    $Script:AtwsModuleConfigurationPath = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
+}
+elseIf ($env:TEMP) {
+    # Use $temp. The file will most likely never be used if not on desktop anyway
+    $Script:AtwsModuleConfigurationPath = $(Join-Path -Path $env:TEMP -ChildPath AtwsConfig.clixml)
+}
+elseIf ($env:TMPDIR) {
+    # Use $temp. The file will most likely never be used if not on desktop anyway
+    $Script:AtwsModuleConfigurationPath = $(Join-Path -Path $env:TMPDIR -ChildPath AtwsConfig.clixml)
+}
+else {
+    # Use $temp. The file will most likely never be used if not on desktop anyway
+    $Script:AtwsModuleConfigurationPath = $(Join-Path -Path $env:PWD -ChildPath AtwsConfig.clixml)
+}
 
 # Get all function files as file objects
 # Private functions can only be called internally in other functions in the module
