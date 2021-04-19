@@ -341,6 +341,17 @@ Describe "Static Function tests" {
     }
 }
 
+Describe "InvoiceInfo function tests" {
+    Context "Invoice Info tests" {
+        It "Get-AtwsInvoiceInfo does value" {
+            $Invoice = Get-AtwsInvoice -BatchID 1
+
+            $InvoiceInfo = Get-AtwsInvoiceInfo -InvoiceId $Invoice[0].id
+            $InvoiceInfo | Should -Not -BeNullOrEmpty
+        }
+    }
+}
+
 #Region ########### TESTS THAT FAILS ################
 # There are no failing tests atm.
 #EndRegion
