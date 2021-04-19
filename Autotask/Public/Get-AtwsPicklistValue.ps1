@@ -138,6 +138,7 @@ Function Get-AtwsPicklistValue {
         # Check if we are connected before trying anything
         if (-not($Script:Atws.integrationsValue)) {
             # Not connected. Try to connect, prompt for credentials if necessary
+            Write-Verbose ('{0}: Not connected. Calling Connect-AtwsWebApi without parameters for possible autoload of default connection profile.' -F $MyInvocation.MyCommand.Name)
             Connect-AtwsWebAPI
         }
 

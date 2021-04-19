@@ -45,9 +45,8 @@ Function Get-AtwsThresholdAndUsageInfo {
     
         if (-not($Script:Atws.integrationsValue)) {
             # Not connected. Try to connect, prompt for credentials if necessary
+            Write-Verbose ('{0}: Not connected. Calling Connect-AtwsWebApi without parameters for possible autoload of default connection profile.' -F $MyInvocation.MyCommand.Name)
             Connect-AtwsWebAPI
-            
-            #Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }    
     }
 

@@ -168,6 +168,7 @@ Function Connect-AtwsWebAPI {
             }
             # We cannot reuse $configuration variable without triggering the validationscript
             # again
+            Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with $parameters splatting' -F $MyInvocation.MyCommand.Name)
             $ConfigurationData = New-AtwsModuleConfiguration @Parameters
         }
         elseif ($ENV:FUNCTIONS_WORKER_RUNTIME) {
@@ -188,8 +189,7 @@ Function Connect-AtwsWebAPI {
                 $message = 'Unable to get needed variables and convert them from Azure Function Application Settings. Fix and try again.'
                 throw (New-Object System.Configuration.Provider.ProviderException $message)
             }
-            Write-Verbose "We are ettempting to call New-AtwsModuleConfiguration as we now have needed variables from Azure Functions application settings."
-                
+            Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with variables from Azure Functions application settings.' -F $MyInvocation.MyCommand.Name)
             $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureTrackingIdentifier 
 
         }
@@ -213,7 +213,7 @@ Function Connect-AtwsWebAPI {
                 throw (New-Object System.Configuration.Provider.ProviderException $message) 
                 return
             }
-
+            Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with variables from Azure Automation resources.' -F $MyInvocation.MyCommand.Name)
             $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureIdentifier
 
         }
@@ -245,7 +245,13 @@ Function Connect-AtwsWebAPI {
         }
         elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
             # We got a configuration object and it passed validation
+            Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with a configuration object passed on the command line.' -F $MyInvocation.MyCommand.Name)
+
             $ConfigurationData = $AtwsModuleConfiguration
+        }
+        else {
+            Write-Warning ('{0}: Tried to call New-AtwsModuleConfiguration with a configuration object passed on the command line, but the configuration did not validate properly.' -F $MyInvocation.MyCommand.Name)
+
         }
 
 

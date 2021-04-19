@@ -118,8 +118,6 @@ Function Get-AtwsInvoiceInfo {
         if (-not($Script:Atws.integrationsValue)) {
             # Not connected. Try to connect, prompt for credentials if necessary
             Connect-AtwsWebAPI
-            
-            #Throw [ApplicationException] 'Not connected to Autotask WebAPI. Connect with Connect-AtwsWebAPI. For help use "get-help Connect-AtwsWebAPI".'
         }    
     
         # Empty container to return with results
