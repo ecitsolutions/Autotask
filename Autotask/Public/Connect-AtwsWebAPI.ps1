@@ -132,7 +132,7 @@ Function Connect-AtwsWebAPI {
                     [IO.FileInfo]$filepath = $FakeBound.AtwsModuleConfigurationPath
                 }
                 else {
-                    [IO.FileInfo]$filepath = $Script:AtwsModuleConfigurationPath
+                    [IO.FileInfo]$filepath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {
