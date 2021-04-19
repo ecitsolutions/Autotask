@@ -10,7 +10,7 @@ BeforeAll {
     $SandBoxDomain = '@ECITSOLUTIONSSB12032021.NO'
     $RunGUID = New-Guid
 
-    
+    #Region Vars
     if (-not $Global:Credential -or -not $Global:TI) {
         Write-Warning "Running pester tests based on Pester config."
         $P = Join-Path (Split-Path -Path $profile -Parent) -ChildPath 'AtwsConfig.clixml'
@@ -29,7 +29,24 @@ BeforeAll {
             throw (New-Object System.Configuration.Provider.ProviderException $message)
         }
     }
+    if ($profile) {
+        # Use $profile if it exsist
+        $AtwsModuleConfigurationPath = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
+    }
+    elseIf ($env:TEMP) {
+        # Use $temp. The file will most likely never be used if not on desktop anyway
+        $AtwsModuleConfigurationPath = $(Join-Path -Path $env:TEMP -ChildPath AtwsConfig.clixml)
+    }
+    elseIf ($env:TMPDIR) {
+        # Use $temp. The file will most likely never be used if not on desktop anyway
+        $AtwsModuleConfigurationPath = $(Join-Path -Path $env:TMPDIR -ChildPath AtwsConfig.clixml)
+    }
+    else {
+        # Use $temp. The file will most likely never be used if not on desktop anyway
+        $AtwsModuleConfigurationPath = $(Join-Path -Path $env:PWD -ChildPath AtwsConfig.clixml)
+    }
 
+    #EndRegion
 
     $PesterConfigPath = Join-Path (Split-Path -Path $profile -Parent) -ChildPath 'AtwsPesterConfig.clixml'
     if (Test-Path $PesterConfigPath) {
@@ -239,7 +256,6 @@ Describe "UserDefinedField tests" {
     Context "UDF Properties are expanded from its array." {
         It "Has properties with name like '#'" {
             $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
-            Connect-AtwsWebAPI -AtwsModuleConfigurationName Pester
 
             $Products = Get-AtwsInstalledProduct -Type Firewall
             $Products[0].psobject.Properties.where{ $_.Name -match '#' }.Count | Should -BeGreaterThan 40
@@ -251,7 +267,6 @@ Describe "UserDefinedField tests" {
             Import-Module $modulePath -Force -ErrorAction Stop
             $loadedModule = Get-Module $moduleName
             $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
-            Connect-AtwsWebAPI -AtwsModuleConfigurationName Pester
 
             $Devices = Get-AtwsInstalledProduct -Type Server -Active $true
         }
@@ -317,7 +332,7 @@ Describe "Static Function tests" {
         It "Creating new does not throw" {
             $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
             $Data = @{Name='hello';Value='world'}
-            $p = (Join-Path $env:TEMP -ChildPath "$RunGUID`_tempdata.exlx")
+            $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.exlx")
             $Data | Export-Excel $p
             $Return = New-AtwsAttachment -TicketID $Ticket.id -Path $p
             $Return | Should -Not -BeNullOrEmpty
@@ -326,7 +341,7 @@ Describe "Static Function tests" {
         It "Can Get without throwing, also returns multiple attachments if applicable." {
             $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
             $Data = @{Name = 'hello'; Value = 'world' }
-            $p = (Join-Path $env:TEMP -ChildPath "$RunGUID`_tempdata.exlx")
+            $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.exlx")
             $Data | Export-Excel $p
             $Return = New-AtwsAttachment -TicketID $Ticket.id -Path $p
             $Return = New-AtwsAttachment -TicketID $Ticket.id -Path $p
