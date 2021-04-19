@@ -230,7 +230,7 @@ Describe "Connect using connection object" {
     }
 }
 
-Describe "Auto connect works on moast get commands." {
+Describe "Auto connect works on most get commands." {
     BeforeAll {
         Import-Module $modulePath -Force -ErrorAction Stop
         $loadedModule = Get-Module $moduleName
@@ -306,7 +306,8 @@ Describe "SQL Query nested too deep error" {
         }
 
         It "Should accept 800+ Ids as input and return the correct number of objects" { 
-            $Req = Get-AtwsInstalledProduct -id $Products.id
+            # This should work even if there are multiple parameters and the ID parameter is not the first or last
+            $Req = Get-AtwsInstalledProduct -Type Server -id $Products.id -Active $true
             $Req.count | Should -Be $Products.count
         }
     }
