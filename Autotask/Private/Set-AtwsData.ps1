@@ -174,8 +174,14 @@ Function Set-AtwsData {
             }
             else {
                 # Still errors. Throw an exception.
-                throw ($result.errors.Message -join "`n")
-                Break
+                foreach ($atwsError in $result.Errors) {
+                    $message = 'Number of errors exceeds configured errorlimit ({0}). Last errormessage: {1}' -f $Script:Atws.Configuration.ErrorLimit, $atwsError.Message
+                    $exception = New-Object System.Configuration.Provider.ProviderException $message
+                    $errorCategory = [System.Management.Automation.ErrorCategory]::NotSpecified
+                    $errorRecord = [System.Management.Automation.ErrorRecord]::new($exception, 'TooManyErrors', $errorCategory, $atwsError)
+                    $PSCmdlet.ThrowTerminatingError($errorRecord)
+                }
+                return
             }
         }
     }

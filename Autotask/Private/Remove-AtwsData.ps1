@@ -116,6 +116,19 @@ Function Remove-AtwsData {
                 # Keep on trying until there are no errors, the workingSet is empty (every element failed)
                 # or the error limit has been reached
             } Until ($result.errors.Count -eq 0 -or $workingSet.Count -eq 0 -or $errorCount -ge $Script:Atws.Configuration.ErrorLimit)
+
+            # We have tried multiple times! Still errors?
+            if ($result.errors.Count -gt 0) {
+                # Still errors. Throw an exception.
+                foreach ($atwsError in $result.Errors) {
+                    $message = 'Number of errors exceeds configured errorlimit ({0}). Last errormessage: {1}' -f $Script:Atws.Configuration.ErrorLimit, $atwsError.Message
+                    $exception = New-Object System.Configuration.Provider.ProviderException $message
+                    $errorCategory = [System.Management.Automation.ErrorCategory]::NotSpecified
+                    $errorRecord = [System.Management.Automation.ErrorRecord]::new($exception, 'TooManyErrors', $errorCategory, $atwsError)
+                    $PSCmdlet.ThrowTerminatingError($errorRecord)
+                }
+                return
+            }
         }
     }
   
