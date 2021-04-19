@@ -352,6 +352,14 @@ Describe "InvoiceInfo function tests" {
     }
 }
 
+Describe "Threshold and usage info" {
+    Context "Get-AtwsThresholdAndUsageInfo" {
+        It "Does not throw" {
+            { Get-AtwsThresholdAndUsageInfo } | Should -Not -Throw
+        }
+    }
+}
+
 #Region ########### TESTS THAT FAILS ################
 # There are no failing tests atm.
 #EndRegion
