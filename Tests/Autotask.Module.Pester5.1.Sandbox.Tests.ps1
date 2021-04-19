@@ -5,7 +5,8 @@ BeforeAll {
     $PesterModule = Get-Module -Name Pester
     
     $moduleName = 'Autotask'
-    $RootPath = $(Split-Path -Parent -Path (Split-Path -Parent -Path $PSCommandPath))
+    # $RootPath = $(Split-Path -Parent -Path (Split-Path -Parent -Path $ENV:SystemDrive))
+    $RootPath = 'C:\Git\Autotask'
     $modulePath = '{0}\{1}' -F $RootPath, $ModuleName
     $SandBoxDomain = '@ECITSOLUTIONSSB12032021.NO'
     $RunGUID = New-Guid
@@ -302,6 +303,40 @@ Describe "Parameter value can be LabelID and LabelTekst" {
         It "ItName" {
             { New-AtwsTicket -IssueType Network/Firewall/AP -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling' } | Should -Not -Throw
             { New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling' } | Should -Not -Throw
+        }
+    }
+}
+
+Describe "Static Function tests" {
+    Context "New-AtwsAttachment" {
+        It "is exported" {
+            $loadedmodule.ExportedCommands.ContainsKey('New-AtwsAttachment') | Should -Be $true
+            $loadedmodule.ExportedCommands.ContainsKey('Get-AtwsAttachment') | Should -Be $true
+            $loadedmodule.ExportedCommands.ContainsKey('Remove-AtwsAttachment') | Should -Be $true
+        }
+        It "Creating new does not throw" {
+            $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
+            $Data = @{Name='hello';Value='world'}
+            $p = (Join-Path $env:TEMP -ChildPath "$RunGUID`_tempdata.exlx")
+            $Data | Export-Excel $p
+            $Return = New-AtwsAttachment -TicketID $Ticket.id -Path $p
+            $Return | Should -Not -BeNullOrEmpty
+
+        }
+        It "Can Get without throwing, also returns multiple attachments if applicable." {
+            $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
+            $Data = @{Name = 'hello'; Value = 'world' }
+            $p = (Join-Path $env:TEMP -ChildPath "$RunGUID`_tempdata.exlx")
+            $Data | Export-Excel $p
+            $Return = New-AtwsAttachment -TicketID $Ticket.id -Path $p
+            $Return = New-AtwsAttachment -TicketID $Ticket.id -Path $p
+            $Return | Should -Not -BeNullOrEmpty
+            Get-AtwsAttachment -TicketID $Ticket.id
+        }
+        It "Can remove created attachment" {
+            $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
+            $Attachments = Get-AtwsAttachment -TicketID $Ticket.id
+            { Remove-AtwsAttachment -id $Attachments.Info[0].id } | Should -Not -Throw
         }
     }
 }
