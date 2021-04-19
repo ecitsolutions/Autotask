@@ -213,7 +213,7 @@ Describe "Connect using connection object" {
     }
 }
 
-Describe "Auto connect works on moast get commands." {
+Describe "Auto connect works on most get commands." {
     BeforeAll {
         Import-Module $modulePath -Force -ErrorAction Stop
         $loadedModule = Get-Module $moduleName
@@ -239,7 +239,6 @@ Describe "UserDefinedField tests" {
     Context "UDF Properties are expanded from its array." {
         It "Has properties with name like '#'" {
             $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
-            Connect-AtwsWebAPI -AtwsModuleConfigurationName Pester
 
             $Products = Get-AtwsInstalledProduct -Type Firewall
             $Products[0].psobject.Properties.where{ $_.Name -match '#' }.Count | Should -BeGreaterThan 40
@@ -251,7 +250,6 @@ Describe "UserDefinedField tests" {
             Import-Module $modulePath -Force -ErrorAction Stop
             $loadedModule = Get-Module $moduleName
             $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
-            Connect-AtwsWebAPI -AtwsModuleConfigurationName Pester
 
             $Devices = Get-AtwsInstalledProduct -Type Server -Active $true
         }
@@ -291,7 +289,8 @@ Describe "SQL Query nested too deep error" {
         }
 
         It "Should accept 800+ Ids as input and return the correct number of objects" { 
-            $Req = Get-AtwsInstalledProduct -id $Products.id
+            # This should work even if there are multiple parameters and the ID parameter is not the first or last
+            $Req = Get-AtwsInstalledProduct -Type Server -id $Products.id -Active $true
             $Req.count | Should -Be $Products.count
         }
     }
