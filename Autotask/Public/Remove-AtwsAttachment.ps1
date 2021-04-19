@@ -160,7 +160,7 @@ Function Remove-AtwsAttachment {
                         'Account' { $AccountID }
                         'Opportunity' { $OpportunityID }
                         'Project' { $ProjectID }
-                        'Ticket' { $TicketID }
+                        'Task Or Ticket' { $TicketID }
                     }
                 }
             }

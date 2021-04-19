@@ -118,7 +118,7 @@ Function Get-AtwsAttachment {
         # Ticket ID
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Ticket'
+            ParameterSetName = 'Task Or Ticket'
         )]
         [ValidateScript( {
                 if ( -Not (Get-AtwsTicket -id $_) ) {
@@ -171,7 +171,7 @@ Function Get-AtwsAttachment {
                         'Account' { $AccountID }
                         'Opportunity' { $OpportunityID }
                         'Project' { $ProjectID }
-                        'Ticket' { $TicketID }
+                        'Task Or Ticket' { $TicketID }
                     }
                 }
             }
@@ -205,7 +205,7 @@ Function Get-AtwsAttachment {
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
             $result = @()
             foreach ($attachmentId in $id) {
-                $result += $Script:Atws.GetAttachment($Script:AutotaskIntegrationsValue, $attachmentId)
+                $result += $Script:Atws.GetAttachment($Script:ATWS.IntegrationsValue, $attachmentId)
             }
 
             Write-Verbose ('{0}: Number of attachments downloaded: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
