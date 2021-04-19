@@ -93,7 +93,7 @@ Function New-AtwsModuleConfiguration {
                 $(Get-ChildItem -Path $Script:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [IO.FileInfo]
-        $Path = $Script:AtwsModuleConfigurationPath
+        $Path = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
     )
     
     begin { 

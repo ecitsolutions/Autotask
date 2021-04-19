@@ -41,7 +41,7 @@ Function Get-AtwsModuleConfiguration {
                 Test-Path $_
             })]
         [IO.FileInfo]
-        $Path = $Script:AtwsModuleConfigurationPath,
+        $Path = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
@@ -49,7 +49,7 @@ Function Get-AtwsModuleConfiguration {
                     [IO.FileInfo]$filepath = $FakeBound.Path
                 }
                 else {
-                    [IO.FileInfo]$filepath = $Script:AtwsModuleConfigurationPath
+                    [IO.FileInfo]$filepath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {
