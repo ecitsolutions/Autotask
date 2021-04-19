@@ -77,11 +77,15 @@ Function New-AtwsModuleConfiguration {
     
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                $(Get-ChildItem -Path $Script:AtwsModuleConfigurationPath -Filter "*.clixml").FullName | ForEach-Object {
-                    $Imp = Import-Clixml $_ -ErrorAction SilentlyContinue
-                    if ($Imp) {
-                        $Imp.keys
-                    }
+                if (Test-Path $FakeBound.AtwsModuleConfigurationPath) {
+                    [IO.FileInfo]$filepath = $FakeBound.AtwsModuleConfigurationPath
+                }
+                else {
+                    [IO.FileInfo]$filepath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
+                }
+                $tempsettings = Import-Clixml -Path $filepath.Fullname
+                if ($tempsettings -is [hashtable]) {
+                    $tempsettings.keys
                 }
             })]
         [alias('ProfileName', 'AtwsModuleConfigurationName')]
@@ -138,13 +142,7 @@ Function New-AtwsModuleConfiguration {
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
         
         if ($Name) {
-            if (-not (Test-Path $Path)) {
-                $Splat = @{Path = $Path }
-            }
-            else { $Splat = @{} }
-
-            Save-AtwsModuleConfiguration -Name $Name -Configuration $configuration @Splat
-
+            Save-AtwsModuleConfiguration -Name $Name -Configuration $configuration -Path $Path
         }
         else { 
             return $configuration
