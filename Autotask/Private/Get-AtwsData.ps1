@@ -123,7 +123,7 @@ Function Get-AtwsData {
 
             # Add all returned objects to the Result - if any
             if ($lastquery.EntityResults.Count -gt 0) {
-                [collections.generic.list[psobject]]$Data = $lastquery.EntityResults | ConvertTo-LocalObject 
+                [collections.generic.list[psobject]]$Data = ConvertTo-LocalObject -InputObject $lastquery.EntityResults
                 $result.AddRange($Data)
             }
 
