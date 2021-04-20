@@ -92,7 +92,7 @@ Function Connect-AtwsWebAPI {
             ParameterSetName = 'ConfigurationObject'
         )]
         [ValidateScript( { 
-                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'DebugPref', 'VerbosePref', 'ErrorLimit')
+                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'DebugPref', 'VerbosePref', 'ErrorLimit', 'DateConversion', 'PicklistExpansion', 'UdfExpansion')
                 $members = Get-Member -InputObject $_ -MemberType NoteProperty
                 $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
                 if (-not($missingProperties)) {
@@ -219,9 +219,9 @@ Function Connect-AtwsWebAPI {
 
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
-            Write-Verbose ('{0}: Calling Get-AtwsModuleConfiguration with profilename {1} and path {2}.' -F $MyInvocation.MyCommand.Name, $AtwsModuleConfigurationName, $AtwsModuleConfigurationPath)
+            Write-Verbose ('{0}: Calling Get-AtwsModuleConfiguration with profilename {1} and path {2}.' -F $MyInvocation.MyCommand.Name, $ProfileName, $ProfilePath)
             
-            $ConfigurationData = Get-AtwsModuleConfiguration -Name $AtwsModuleConfigurationName -Path $AtwsModuleConfigurationPath
+            $ConfigurationData = Get-AtwsModuleConfiguration -Name $ProfileName -Path $ProfilePath
         }
         elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
             # We got a configuration object and it passed validation
