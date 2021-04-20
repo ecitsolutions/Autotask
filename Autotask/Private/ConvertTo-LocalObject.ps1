@@ -123,7 +123,7 @@ Function ConvertTo-LocalObject {
                     if ($object.$field) {
                         $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field
                         if ($object.$field -in $picklistValues.Keys -and $picklistValues.count -gt 0) {
-                            $value = $picklistValues[$object.$field]
+                            $value = $picklistValues[$object.$field.tostring()]
                             if ($Script:Atws.Configuration.PickListExpansion -eq 'Inline') {
                                 $object.$field = $value
                             }
