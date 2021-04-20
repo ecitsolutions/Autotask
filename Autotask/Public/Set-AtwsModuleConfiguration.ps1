@@ -42,6 +42,7 @@ Function Set-AtwsModuleConfiguration {
         ConfirmImpact = 'Medium',
         DefaultParameterSetName = 'Username_and_password'
     )]
+    [Alias('Set-AtwsProfile')]
     Param
     ( 
         [Parameter(
@@ -167,7 +168,7 @@ Function Set-AtwsModuleConfiguration {
         [IO.FileInfo]
         $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml),
 
-        # Use this paramter to save to another configuration name.
+        # Use this parameter to save to another configuration name.
         [Parameter(
             ValueFromPipelineByPropertyName = $true,
             ParameterSetName = 'Username_and_password'
@@ -190,7 +191,49 @@ Function Set-AtwsModuleConfiguration {
             })]
         [ValidateNotNullOrEmpty()] 
         [String]
-        $Name = 'Default'
+        $Name = 'Default',
+
+        [Parameter(
+            ValueFromPipelineByPropertyName = $true,
+            ParameterSetName = 'Username_and_password'
+        )]
+        [Parameter(
+            ParameterSetName = 'Credentials'
+        )]
+        [ValidateSet('Disabled', 'Inline', 'LabelField')]
+        [string]
+        $PickListExpansion = 'LabelField',
+
+        [Parameter(
+            ValueFromPipelineByPropertyName = $true,
+            ParameterSetName = 'Username_and_password'
+        )]
+        [Parameter(
+            ParameterSetName = 'Credentials'
+        )]
+        [ValidateSet('Disabled', 'Inline', 'Hashtable')]
+        [string]
+        $UdfExpansion = 'Inline',
+
+        [Parameter(
+            ValueFromPipelineByPropertyName = $true,
+            ParameterSetName = 'Username_and_password'
+        )]
+        [Parameter(
+            ParameterSetName = 'Credentials'
+        )]
+        [ValidateScript( {
+                # Allow disabled and local before testing timezone conversion
+                if ($_ -in 'Disabled'. 'Local') { return $true }
+                # Allow any valid TimeZone on current system
+                try { $null = [System.Timezoneinfo]::FindSystemTimeZoneById($_) }
+                catch { return $false }
+            })]
+        [string]
+        $DateConversion = 'Local', 
+
+        [switch]
+        $PassThru
     )
     
     begin { 
@@ -251,6 +294,7 @@ Function Set-AtwsModuleConfiguration {
             return           
         }
 
+        # Only run code if parameter has been used
         foreach ($parameter in $PSBoundParameters.GetEnumerator()) { 
 
             $caption = $MyInvocation.MyCommand.Name
@@ -266,7 +310,6 @@ Function Set-AtwsModuleConfiguration {
                     }
                     'Username' {
                         $configuration.Username = $UserName
-
                     }
                     'SecurePassword' {
                         $configuration.SecurePassword = $SecurePassword
@@ -276,34 +319,43 @@ Function Set-AtwsModuleConfiguration {
                     }
                     'ConvertPicklistIdToLabel' {
                         $configuration.ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
-                    }
-                    'Prefix' { 
-                        if ($Prefix -ne $Script:Atws.Configuration.Prefix) { 
-                            Write-Warning "The module prefix cannot be changed while the module is loaded. A module reload is necessary."
-                            $Script:configuration.Prefix = $Prefix
+                        if ($ConvertPicklistIdToLabel.IsPresent) {
+                            Add-Member -InputObject $configuration -MemberType NoteProperty -Name PicklistExpansion -Value 'Inline' -Force
                         }
                     }
                     'RefreshCache' { 
-                        if ($Script:Atws.configuration) {
-                            $Script:Atws.configuration.RefreshCache = $RefreshCache.IsPresent
-                        }
+                        $configuration.RefreshCache = $RefreshCache.IsPresent
                     }
                     'DebugPref' { 
-                        $DebugPreference = $DebugPref
-                        if ($Script:Atws.configuration) {
-                            $Script:Atws.configuration.DebugPref = $DebugPref
-                        }
+                        $configuration.DebugPref = $DebugPref
                     }
                     'VerbosePref' {
-                        $VerbosePreference = $VerbosePref
-                        if ($Script:Atws.configuration) {
-                            $Script:Atws.configuration.VerbosePref = $VerbosePref
-                        }
+                        $configuration.VerbosePref = $VerbosePref
                     }
                     'ErrorLimit' {
                         $configuration.ErrorLimit = $ErrorLimit
                     }
+                    'PicklistExpansion' {
+                        Add-Member -InputObject $configuration -MemberType NoteProperty -Name PicklistExpansion -Value $PicklistExpansion -Force
+                    }
+                    'UdfExpansion' {
+                        Add-Member -InputObject $configuration -MemberType NoteProperty -Name UdfExpansion -Value $UdfExpansion -Force
+                    }
+                    'DateConversion' {
+                        Add-Member -InputObject $configuration -MemberType NoteProperty -Name DateConversion -Value $DateConversion -Force
+                    }
                 }
+            }
+        }
+
+        # Are there any required properties where we have default values that does not have a value? 
+        $requiredProperties = @(
+            'DebugPref', 'VerbosePref', 'ErrorLimit', 'PicklistExpansion', 'UdfExpansion', 'DateConversion'
+        )
+        foreach ($p in $requiredProperties) {
+            if ($configuration.PSObject.Properties.name -notcontains $p) {
+                $value = Get-Variable -Name $p -ValueOnly
+                Add-Member -InputObject $configuration -MemberType NoteProperty -Name $p -Value $value -Force
             }
         }
 
@@ -332,9 +384,9 @@ Function Set-AtwsModuleConfiguration {
     end {
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
         #TODO: Introduce PipelineSupport from Get-, -Set, -New, and Save-AtwsModuleConfiguration. Not doing this for now as it works as it is, jsut requires a few more lines.
-        # #Returning object so it can be passed to Save-AtwsModuleConfiguration
-        # Write-Verbose ("You may use Save-AtwsModuleConfiguration to seve this configuration to disk.")
-        # return $configuration
+        if ($PassThru.IsPresent) { 
+            return $configuration
+        }
     }
  
 }

@@ -94,11 +94,19 @@ Function Get-AtwsModuleConfiguration {
         if ($settings.ContainsKey($Name)) {
             $configuration = $settings[$Name]
             if (-not(Test-AtwsModuleConfiguration -Configuration $configuration)) {
-                $message = "Configuration named '$Name' was successfully read from disk, but the configuration settings did not validate OK. The configuration will be deleted."
+                Write-Verbose ("{0}: Configuration named '{1}' was successfully read from disk, but the configuration settings did not validate OK. Trying to fix it." -f $MyInvocation.MyCommand.Name, $Name)
 
-                Remove-AtwsModuleConfiguration -Path $Path -Name $Name -Force
+                # Maybe some idiot has added new configuration options. Try to add default values to any missing properties
+                try {
+                    $configuration = $configuration | Set-AtwsModuleConfiguration -Name $Name -Path $Path -PassThru
+                }
+                catch { 
+                    $message = "Configuration named '$Name' was successfully read from disk, but the configuration settings did not validate OK, nor could it be fixed. The configuration will be deleted."
 
-                throw (New-Object System.Configuration.Provider.ProviderException $message)
+                    Remove-AtwsModuleConfiguration -Path $Path -Name $Name 
+
+                    throw (New-Object System.Configuration.Provider.ProviderException $message)
+                }
             }
         }
         else {

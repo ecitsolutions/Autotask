@@ -138,7 +138,38 @@ Function Test-AtwsModuleConfiguration {
             )]
             [ValidateRange(0, 100)]
             [int]
-            $ErrorLimit
+            $ErrorLimit,
+
+            [Parameter(
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
+            )]
+            [ValidateSet('Disabled', 'Inline', 'LabelField')]
+            [string]
+            $PickListExpansion,
+
+            [Parameter(
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
+            )]
+            [ValidateSet('Disabled', 'Inline', 'Hashtable')]
+            [string]
+            $UdfExpansion,
+
+            [Parameter(
+                Mandatory = $true,
+                ValueFromPipelineByPropertyName = $true
+            )]
+            [ValidateScript( {
+                    # Allow disabled and local before testing timezone conversion
+                    if ($_ -in 'Disabled', 'Local') { return $true }
+                    # Allow any valid TimeZone on current system
+                    try { $null = [System.Timezoneinfo]::FindSystemTimeZoneById($_) }
+                    catch { return $false }
+                    return $true
+                })]
+            [string]
+            $DateConversion
         )
     
         begin { 

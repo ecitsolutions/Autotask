@@ -255,8 +255,7 @@ Describe "Returned Autotask error messages are exceptions" {
 Describe "UserDefinedField tests" {
     Context "UDF Properties are expanded from its array." {
         It "Has properties with name like '#'" {
-            $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
-
+            
             $Products = Get-AtwsInstalledProduct -Type Firewall
             $Products[0].psobject.Properties.where{ $_.Name -match '#' }.Count | Should -BeGreaterThan 40
         }
@@ -266,8 +265,7 @@ Describe "UserDefinedField tests" {
         BeforeAll{
             Import-Module $modulePath -Force -ErrorAction Stop
             $loadedModule = Get-Module $moduleName
-            $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
-
+            
             $Devices = Get-AtwsInstalledProduct -Type Server -Active $true
         }
         It "Should get a big number of devices" {
