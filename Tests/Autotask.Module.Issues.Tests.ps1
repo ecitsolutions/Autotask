@@ -521,5 +521,4 @@ describe 'Issue #1' -Tag 'Issues' {
             $accountWithNull | Should -BeOfType Autotask.Account
         }
     }
-}  }}
-}
+}  
