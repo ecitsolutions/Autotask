@@ -29,6 +29,7 @@ BeforeAll {
             throw (New-Object System.Configuration.Provider.ProviderException $message)
         }
     }
+ 
     if ($profile) {
         # Use $profile if it exsist
         $AtwsModuleConfigurationPath = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
@@ -57,7 +58,7 @@ BeforeAll {
     $loadedModule = Get-Module $moduleName
     
     $PesterModuleConfig = Get-AtwsModuleConfiguration -Name Sandbox
-    Connect-AtwsWebAPI -AtwsModuleConfigurationName Sandbox
+    Connect-AtwsWebAPI -ProfileName Sandbox
 
     #Modifies default config to be sandbox
     $DefaultModuleConfig = Get-AtwsModuleConfiguration -Name Default
@@ -138,7 +139,7 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
             { New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20 } | Should -Not -Throw
             $ModuleConfig = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20 
             $ModuleConfig | Should -Not -BeNullOrEmpty
-            ($ModuleConfig.psobject.Properties).Name | Should -HaveCount 9
+            ($ModuleConfig.psobject.Properties).Name | Should -HaveCount 12
         }
 
         It "New-AtwsModuleConfiguration is able to save to default config filepath." {
@@ -180,7 +181,7 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
         }
 
         It "Querying autotask account returns correct temp profile connection expected result." {
-            Connect-AtwsWebAPI -AtwsModuleConfigurationPath $PesterConfigPath -AtwsModuleConfigurationName 'PesterTempConfig'
+            Connect-AtwsWebAPI -ProfilePath $PesterConfigPath -ProfileName 'PesterTempConfig'
             $Acc = Get-AtwsAccount -id 0
             $Acc | Should -BeOfType [Autotask.Account]
             $Acc.AccountName | Should -BeExactly 'ECIT Solutions AS Sandbox'
@@ -207,7 +208,7 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
 
         #TODO: Should this throw now?
         # It "Throws when using a path that does not exist" {
-        #     { Connect-AtwsWebAPI -AtwsModuleConfigurationPath $PesterConfigPath } | Should -Throw
+        #     { Connect-AtwsWebAPI -ProfilePath $PesterConfigPath } | Should -Throw
         # }
     }
 
@@ -265,7 +266,10 @@ Describe "UserDefinedField tests" {
         BeforeAll{
             Import-Module $modulePath -Force -ErrorAction Stop
             $loadedModule = Get-Module $moduleName
-            
+
+            # Disable UDF and picklist expansion - saves a lot of time!
+            Set-AtwsModuleConfiguration -PickListExpansion Disabled -UdfExpansion Disabled
+
             $Devices = Get-AtwsInstalledProduct -Type Server -Active $true
         }
         It "Should get a big number of devices" {
@@ -292,6 +296,9 @@ Describe "SQL Query nested too deep error" {
     BeforeEach{
         Import-Module $modulePath -Force -ErrorAction Stop
         $loadedModule = Get-Module $moduleName
+
+        # Disable UDF and picklist expansion
+        Set-AtwsModuleConfiguration -PickListExpansion Disabled -UdfExpansion Disabled -DateConversion Disabled
     }
     Context "Does not throw when inputting 1000 ids to cmdlets" {
         
