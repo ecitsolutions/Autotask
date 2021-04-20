@@ -222,6 +222,12 @@ Function Set-AtwsModuleConfiguration {
         [Parameter(
             ParameterSetName = 'Credentials'
         )]
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                'Disabled'
+                'Local'
+                (Get-TimeZone -ListAvailable).Id | Sort-Object
+            })]
         [ValidateScript( {
                 # Allow disabled and local before testing timezone conversion
                 if ($_ -in 'Disabled', 'Local') { return $true }
