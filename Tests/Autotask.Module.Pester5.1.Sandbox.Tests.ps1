@@ -65,7 +65,7 @@ BeforeAll {
     Save-AtwsModuleConfiguration -Configuration $PesterModuleConfig -Name Default
 }
 
-AfterAll{
+AfterAll {
     #Reverts default config back to prod
     Save-AtwsModuleConfiguration -Configuration $DefaultModuleConfig -Name Default
 }
@@ -107,7 +107,7 @@ Describe "Autotask immediate import tests" {
 Describe "Autotask module connects ok when passing credential parameters (legacy connection)" {
     Context "Legacy connection works" {
         It "Should not throw" {
-            { Connect-AtwsWebAPI -Credential $Global:SandboxCredential -ApiTrackingIdentifier $Global:TI } | Should -not -Throw
+            { Connect-AtwsWebAPI -Credential $Global:SandboxCredential -ApiTrackingIdentifier $Global:TI } | Should -Not -Throw
         }
         It "Does return useful value and type" {
             Connect-AtwsWebAPI -Credential $Global:SandboxCredential -ApiTrackingIdentifier $Global:TI
@@ -237,7 +237,7 @@ Describe "Auto connect works on most get commands." {
         $loadedModule = Get-Module $moduleName
         $GetCmdLets = 'Get-AtwsAccount', 'Get-AtwsAccountLocation', 'Get-AtwsAccountNote', 'Get-AtwsAccountPhysicalLocation', 'Get-AtwsAccountTeam', 'Get-AtwsAccountToDo', 'Get-AtwsActionType', 'Get-AtwsAdditionalInvoiceFieldValue', 'Get-AtwsAllocationCode', 'Get-AtwsAppointment', 'Get-AtwsAttachmentInfo', 'Get-AtwsBillingItem', 'Get-AtwsBillingItemApprovalLevel', 'Get-AtwsBusinessDivision', 'Get-AtwsBusinessDivisionSubdivision', 'Get-AtwsBusinessDivisionSubdivisionResource', 'Get-AtwsBusinessLocation', 'Get-AtwsBusinessSubdivision', 'Get-AtwsChangeOrderCost'
     }
-    Context "Get-Commands should be able to autoconnect without cmdlet throwing" -ForEach $GetCmdLets {
+    Context "Get-Commands should be able to autoconnect without cmdlet throwing" -Foreach $GetCmdLets {
         It "(<_>) does not throw when calling command with id 0" {
             $loadedModule.ExportedCommands.Keys | Should -Contain $_
             { &$_ -id 0 } | Should -Not -Throw
@@ -263,7 +263,7 @@ Describe "UserDefinedField tests" {
     }
 
     Context "Can update 500+ UDF values" {
-        BeforeAll{
+        BeforeAll {
             Import-Module $modulePath -Force -ErrorAction Stop
             $loadedModule = Get-Module $moduleName
 
@@ -288,14 +288,14 @@ Describe "UserDefinedField tests" {
             $NewValues | Should -BeExactly $RunGUID
         }
 
-        It "Reverts back to previous values" -Foreach ($Devices | Group-Object '#Sist logget inn') {
+        It "Reverts back to previous values" -ForEach ($Devices | Group-Object '#Sist logget inn') {
             { Set-AtwsInstalledProduct -InputObject $_.Group -UserDefinedFields @{Name = 'Sist logget inn' ; Value = $_.Name } } | Should -Not -Throw
         }
     }
 }
 
 Describe "SQL Query nested too deep error" {
-    BeforeEach{
+    BeforeEach {
         Import-Module $modulePath -Force -ErrorAction Stop
         $loadedModule = Get-Module $moduleName
 
@@ -339,7 +339,7 @@ Describe "Static Function tests" {
         }
         It "Creating new does not throw" {
             $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
-            $Data = @{Name='hello';Value='world'}
+            $Data = @{Name = 'hello'; Value = 'world' }
             $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.exlx")
             $Data | Export-Excel $p
             $Return = New-AtwsAttachment -TicketID $Ticket.id -Path $p
@@ -383,6 +383,203 @@ Describe "Threshold and usage info" {
     }
 }
 
+Describe "GitHub issues regression tests" {
+
+    Context 'Issue #1: Account where a certain field (int) is empty' {
+        BeforeAll { 
+            $account = Get-AtwsAccount -id 0
+        }
+
+        It 'should exist an Account with id 0' {
+            $account | Should -BeOfType Autotask.Account
+        }
+        
+        It 'should not throw an exception when using -IsNull' { 
+            { $null = Get-AtwsAccount -id 0 -IsNull KeyAccountIcon } | Should -Not -Throw
+        }
+        
+        It 'should NOT return anything with -IsNull KeyAccountIcon' {
+            $accountWithPicklistNull = Get-AtwsAccount -id 0 -IsNull KeyAccountIcon
+            $accountWithPicklistNull | Should -BeNullOrEmpty
+        }
+
+        It 'should throw an exception when using $null with a validateset parameter' { 
+            { $null = Get-AtwsAccount -id 0 -KeyAccountIcon $null } | Should -Throw
+        }
+        
+        It 'should NOT throw an exception when using $null with an integer parameter' { 
+            { $null = Get-AtwsAccount -id 0 -ParentAccountID $null } | Should -Not -Throw
+        }
+        
+        
+        It 'should exist an Account with id 0 and a ParentAccountId of $null' {
+            $accountWithNull = Get-AtwsAccount -id 0 -ParentAccountID $null
+            $accountWithNull | Should -BeOfType Autotask.Account
+        }
+    }
+
+    # The root cause was a mistake in ConvertTo-AtwsFilter
+    # We'll check this by mocking Get-AtwsData and verifying the -Filter
+    Context 'Issue #36: Date queries with multiple date fields return 0 objects ' {
+        
+        It 'should pass -le as the last operator' { 
+            
+            InModuleScope $ModuleName {
+        
+                Mock 'Get-AtwsData' {
+                    [PSCustomObject]@{
+                        PSTypeName = 'Autotask.ContractServiceUnit'
+                        StartDate  = Get-Date
+                        EndDate    = Get-Date
+                    }
+                }
+
+                $result = Get-AtwsContractServiceUnit -ContractID 0 -StartDate '2019.01.01' -EndDate '2019.12.31'
+                Should -Invoke Get-AtwsData -Times 1 -Exactly -ParameterFilter { $Filter[-2] -eq '-le' }
+
+            }
+        }
+        
+    }
+
+    Context 'Issue #38: Feature request: Make connection object available to advanced users duplicate enhancement ' {
+        
+        It 'should be loaded' {
+            $loadedModule.Name | Should -Be $ModuleName
+        }
+
+        It 'should export Get-AtwsConnectionObject' {
+            $loadedModule.ExportedCommands['Get-AtwsConnectionObject'].Name | Should -Be 'Get-AtwsConnectionObject'
+        }
+
+        $result = Get-AtwsConnectionObject -Confirm:$false
+
+        It 'should return an Autotask web proxy object' {
+            $result = Get-AtwsConnectionObject -Confirm:$false
+            $result.GetType() | Should -Be 'Autotask.ATWSSoapClient'
+        }
+    }
+
+    Context 'Issue #43: New-AtwsAttachment adds timezone difference twice ' {
+        It 'should call with mocked AttachmentId and return date unchanged' {
+
+            InModuleScope $moduleName {
+        
+                # Get a datetime object
+                $createDate = Get-Date
+                $atws = Get-AtwsConnectionObject -Confirm:$false
+
+                Mock 'Get-AtwsAttachmentInfo' {
+                    [PSCustomObject]@{
+                        PSTypeName = 'Autotask.AttachmentInfo'
+                        CreateDate = $createDate
+                    }
+                }
+
+                Mock 'Get-AtwsTicket' {
+                    Return $True
+                }
+
+                # Mock CreateAttachment()
+                $createAttachmentMethod = @{
+                    Type  = 'ScriptMethod'
+                    Name  = 'CreateAttachment'
+                    Value = {
+                        1234 
+                    }
+                    Force = $True
+                }
+                $atws | Add-Member @createAttachmentMethod 
+
+                $result = New-AtwsAttachment -URI https://google.com -TicketID 0
+   
+                Should -Invoke Get-AtwsAttachmentInfo -Times 1 -Exactly -ParameterFilter { $id -eq 1234 }
+
+                $result.CreateDate | Should -Be $createDate
+            }
+        }
+    }
+
+    Context 'Issue #44: GetEntityByReferenceId documentation ' {
+
+        BeforeAll { 
+            $contract = Get-AtwsContract -AccountID 0 -IsDefaultContract $True
+            $account = Get-AtwsContract -id $contract.Id -GetReferenceEntityById AccountID
+        }
+
+        It 'Account 0 should have a default contract' {
+            $contract.Count | Should -Be 1
+        }
+
+        It '$contract should be a contract' {
+            $contract | Should -BeOfType Autotask.Contract
+        }
+
+        It '-GetReferenceEntityById AccountID should return a single account' {
+            $account.Count | Should -Be 1
+        }
+
+        It 'should be an Account and have id 0' {
+            $account | Should -BeOfType Autotask.Account
+            $account.id | Should -Be 0
+        }
+    }
+
+    # The root cause was a mistake in ConvertTo-AtwsFilter
+    # We'll check this by mocking Get-AtwsData and verifying the -Filter
+    Context 'Issue #61: Date queries with multiple date values should not be expanded to date filters ' {
+
+        It 'should pass -eq as the last operator' { 
+
+            InModuleScope $ModuleName { 
+
+                $dates = @('2019.01.01', '2019.12.31')
+
+                Mock 'Get-AtwsData' {
+                    [PSCustomObject]@{
+                        PSTypeName = 'Autotask.ContractServiceUnit'
+                        StartDate  = Get-Date
+                        EndDate    = Get-Date
+                    }
+                }
+
+                $result = Get-AtwsContractServiceUnit -ContractID 0 -StartDate $dates
+                Should -Invoke Get-AtwsData -Times 1 -Exactly -ParameterFilter { $Filter[-3] -eq '-eq' }
+            }
+        }
+        
+    }
+
+    Context 'Issue #63: Data type convertion error on Get-AtwsTicketCost ' {
+
+        It 'Boolean parameters should not throw an exception' {
+            { $null = Get-AtwsTicketCost -TicketID 0 -BillableToAccount $true -Billed $false } | Should -Not -Throw
+        }
+
+    }
+
+    Context 'Issue #75: ATWSSoap returns wrong value on EntityInfo.HasUserDefinedFields' {
+        # Get entityinfo for Account and force a lookup through the API
+        It 'Account should have Userdefined fields' {
+            $result = Get-AtwsFieldInfo -Entity Account -EntityInfo -UpdateCache
+            $result.HasUserDefinedFields  | Should -Be $true
+        }
+
+    }
+
+    Context 'Issue #94: TimeZone issues' {
+        # Get entityinfo for Account and force a lookup through the API
+        It 'There should be more than 0 ContractServiceUnits' {
+            $Now = (Get-Date -Day 1).Date
+            $contractId = 30390716 # Internal service contract
+            $result = Get-AtwsContractServiceUnit -ContractID $contractId -StartDate $Now -LessThanOrEquals StartDate -EndDate $Now -GreaterThanOrEquals EndDate
+
+            $result.count  | Should -BeGreaterThan 0
+        }
+
+    }
+    
+}
 #Region ########### TESTS THAT FAILS ################
 # There are no failing tests atm.
 #EndRegion
