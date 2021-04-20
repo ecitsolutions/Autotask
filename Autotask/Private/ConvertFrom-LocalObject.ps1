@@ -49,6 +49,10 @@ Function ConvertFrom-LocalObject {
         $timezoneid = if ($IsMacOS -or $IsLinux) { 'America/New_York' }
         else { 'Eastern Standard Time' }
         $EST = [System.Timezoneinfo]::FindSystemTimeZoneById($timezoneid)
+        $timezone = [TimeZoneInfo]::Local
+        if ($Script:Atws.configuration.DateConversion -notin 'Disabled', 'Local') {
+            $timezone = [System.Timezoneinfo]::FindSystemTimeZoneById($Script:Atws.configuration.DateConversion)
+        }
         $result = [Collections.Generic.List[PSObject]]::new()
 
     }
@@ -71,30 +75,32 @@ Function ConvertFrom-LocalObject {
         # Adjust TimeZone on all DateTime properties
         foreach ($object in $InputObject) {
 
-            foreach ($dateTimeParam in $dateTimeParams) {
+            # Adjust TimeZone on all DateTime properties
+            if ($Script:Atws.configuration.DateConversion -ne 'Disabled') { 
+                foreach ($dateTimeParam in $dateTimeParams) {
 
-                # Get the datetime value
-                $value = $object.$dateTimeParam
+                    # Get the datetime value
+                    $value = $object.$dateTimeParam
 
-                # Skip if parameter is empty
-                if (-not ($value)) {
-                    Continue
-                }
-                # Convert the datetime from LocalTime unless it is a date
-                If ($object.$DateTimeParam -ne $object.$DateTimeParam.Date) {
-                    # Convert the datetime back to CEST
-                    #TODO: the new api update might handle this for us. Do we set timezone to the EST time? or leave it be.
-                    #Has to check if the Autotask api handles timezone for us or not.
-                    $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, [TimeZoneInfo]::Local, $EST)
+                    # Skip if parameter is empty
+                    if (-not ($value)) {
+                        Continue
+                    }
+                    # Convert the datetime from LocalTime unless it is a date
+                    If ($object.$DateTimeParam -ne $object.$DateTimeParam.Date) {
+                        # Convert the datetime back to EST
+                        $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, $timezone, $EST)
+                    }
                 }
             }
-
-            # Revert picklist labels to their values
-            foreach ($field in $Picklists) {
-                # Get an updated picklist as hashtable indexed by label
-                $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field -Label -Hashtable
-                if ($object.$field -in $picklistValues.Keys -and $picklistValues.count -gt 0) {
-                    $object.$field = $picklistValues[$object.$field]
+            if ($Script:Atws.configuration.PickListExpansion -eq 'Inline') { 
+                # Revert picklist labels to their values
+                foreach ($field in $Picklists) {
+                    # Get an updated picklist as hashtable indexed by label
+                    $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field -Label -Hashtable
+                    if ($object.$field -in $picklistValues.Keys -and $picklistValues.count -gt 0) {
+                        $object.$field = $picklistValues[$object.$field]
+                    }
                 }
             }
         }
