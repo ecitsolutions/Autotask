@@ -156,84 +156,95 @@ Function Connect-AtwsWebAPI {
     process {
         # Make sure we have a valid configuration before we proceed
         # If we didn't get a prepared configuration object, create one from the parameters
-        if ($PSCmdlet.ParameterSetName -eq 'Parameters') {
-            $Parameters = @{
-                Credential               = $Credential
-                SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
-                ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
-                Prefix                   = $Prefix
-                RefreshCache             = $RefreshCache.IsPresent
-                DebugPref                = $DebugPreference
-                VerbosePref              = $VerbosePreference
+        try {
+            if ($PSCmdlet.ParameterSetName -eq 'Parameters') {
+                $Parameters = @{
+                    Credential               = $Credential
+                    SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
+                    ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
+                    Prefix                   = $Prefix
+                    RefreshCache             = $RefreshCache.IsPresent
+                    DebugPref                = $DebugPreference
+                    VerbosePref              = $VerbosePreference
+                }
+                # We cannot reuse $configuration variable without triggering the validationscript
+                # again
+                Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with $parameters splatting' -F $MyInvocation.MyCommand.Name)
+                $ConfigurationData = New-AtwsModuleConfiguration @Parameters
             }
-            # We cannot reuse $configuration variable without triggering the validationscript
-            # again
-            Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with $parameters splatting' -F $MyInvocation.MyCommand.Name)
-            $ConfigurationData = New-AtwsModuleConfiguration @Parameters
-        }
-        elseif ($ENV:FUNCTIONS_WORKER_RUNTIME) {
-            # We are probably on Azure and in an azure function to boot.    
-            # Can be used locally, too, but that is a secret...
+            elseif ($ENV:FUNCTIONS_WORKER_RUNTIME) {
+                # We are probably on Azure and in an azure function to boot.    
+                # Can be used locally, too, but that is a secret...
 
-            try {
-                $UserName = $ENV:AtwsUserName
-                $PassWord = $ENV:AtwsPassword
-                $SecurePass = $PassWord | ConvertTo-SecureString -AsPlainText -Force
-                $Credential = [System.Management.Automation.PSCredential]::new($UserName, $SecurePass )
+                try {
+                    $UserName = $ENV:AtwsUserName
+                    $PassWord = $ENV:AtwsPassword
+                    $SecurePass = $PassWord | ConvertTo-SecureString -AsPlainText -Force
+                    $Credential = [System.Management.Automation.PSCredential]::new($UserName, $SecurePass )
                     
-                $TrackingIdentifier = $ENV:AtwsTrackingIdentifier
-                $SecureTrackingIdentifier = $TrackingIdentifier | ConvertTo-SecureString -AsPlainText -Force
+                    $TrackingIdentifier = $ENV:AtwsTrackingIdentifier
+                    $SecureTrackingIdentifier = $TrackingIdentifier | ConvertTo-SecureString -AsPlainText -Force
+
+                }
+                catch {
+                    $message = 'Unable to get needed variables and convert them from Azure Function Application Settings. Fix and try again.'
+                    throw (New-Object System.Configuration.Provider.ProviderException $message)
+                }
+                Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with variables from Azure Functions application settings.' -F $MyInvocation.MyCommand.Name)
+                $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureTrackingIdentifier 
 
             }
-            catch {
-                $message = 'Unable to get needed variables and convert them from Azure Function Application Settings. Fix and try again.'
-                throw (New-Object System.Configuration.Provider.ProviderException $message)
-            }
-            Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with variables from Azure Functions application settings.' -F $MyInvocation.MyCommand.Name)
-            $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureTrackingIdentifier 
+            elseif ($env:AUTOMATION_ASSET_ACCOUNTID ) {
+                # We are on Azure. Try to get credentials and api key
+                try {
+                    $Credential = Get-AutomationPSCredential -Name 'AtwsDefaultCredential'
+                }
+                catch {
+                    $message = "Could not find credentials with name 'AtwsDefaultCredential'. Create and run again."
+                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                    return
+                }
+                # Now try for API key
+                try {
+                    $SecureIdentifier = Get-AutomationVariable -Name 'AtwsDefaultSecureIdentifier'
+                    $SecureIdentifier = $SecureIdentifier | ConvertTo-SecureString -AsPlainText -Force
+                }
+                catch {
+                    $message = "Could not a variable with name 'AtwsDefaultSecureIdentifier'. Create and run again."
+                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                    return
+                }
+                Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with variables from Azure Automation resources.' -F $MyInvocation.MyCommand.Name)
+                # There are no $DebugPreferences on Azure Automation. Set explicitly to SlientlyContinue to avoid validation error
+                $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureIdentifier -DebugPref SilentlyContinue
 
-        }
-        elseif ($env:AUTOMATION_ASSET_ACCOUNTID ) {
-            # We are on Azure. Try to get credentials and api key
-            try {
-                $Credential = Get-AutomationPSCredential -Name 'AtwsDefaultCredential'
             }
-            catch {
-                $message = "Could not find credentials with name 'AtwsDefaultCredential'. Create and run again."
-                throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                return
-            }
-            # Now try for API key
-            try {
-                $SecureIdentifier = Get-AutomationVariable -Name 'AtwsDefaultSecureIdentifier'
-                $SecureIdentifier = $SecureIdentifier | ConvertTo-SecureString -AsPlainText -Force
-            }
-            catch {
-                $message = "Could not a variable with name 'AtwsDefaultSecureIdentifier'. Create and run again."
-                throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                return
-            }
-            Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with variables from Azure Automation resources.' -F $MyInvocation.MyCommand.Name)
-            # There are no $DebugPreferences on Azure Automation. Set explicitly to SlientlyContinue to avoid validation error
-            $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureIdentifier -DebugPref SilentlyContinue
-
-        }
-        elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
-            Write-Verbose ('{0}: Calling Get-AtwsModuleConfiguration with profilename {1} and path {2}.' -F $MyInvocation.MyCommand.Name, $ProfileName, $ProfilePath)
+            elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
+                Write-Verbose ('{0}: Calling Get-AtwsModuleConfiguration with profilename {1} and path {2}.' -F $MyInvocation.MyCommand.Name, $ProfileName, $ProfilePath)
             
-            $ConfigurationData = Get-AtwsModuleConfiguration -Name $ProfileName -Path $ProfilePath
-        }
-        elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
-            # We got a configuration object and it passed validation
-            Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with a configuration object passed on the command line.' -F $MyInvocation.MyCommand.Name)
+                $ConfigurationData = Get-AtwsModuleConfiguration -Name $ProfileName -Path $ProfilePath
+            }
+            elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
+                # We got a configuration object and it passed validation
+                Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with a configuration object passed on the command line.' -F $MyInvocation.MyCommand.Name)
 
-            $ConfigurationData = $AtwsModuleConfiguration
-        }
-        else {
-            Write-Warning ('{0}: Tried to call New-AtwsModuleConfiguration with a configuration object passed on the command line, but the configuration did not validate properly.' -F $MyInvocation.MyCommand.Name)
+                $ConfigurationData = $AtwsModuleConfiguration
+            }
+            else {
+                Write-Warning ('{0}: Tried to call New-AtwsModuleConfiguration with a configuration object passed on the command line, but the configuration did not validate properly.' -F $MyInvocation.MyCommand.Name)
 
+            }
         }
+        catch {
+            # Write a debug message with detailed information to developers
+            $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
+            $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+            Write-Debug $message
 
+            # Pass on the error
+            $PSCmdlet.ThrowTerminatingError($_)
+            return
+        }
 
         ## Connect to the API
         #  or die trying
