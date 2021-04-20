@@ -219,30 +219,9 @@ Function Connect-AtwsWebAPI {
 
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
-                
-            if (Test-Path $AtwsModuleConfigurationPath) {
-                # Read the file.
-                $settings = Import-Clixml -Path $AtwsModuleConfigurationPath
-                if (-not $settings.ContainsKey($AtwsModuleConfigurationName)) {
-                    $message = "Configuration file with path: $Path could not be validated. A profile with name: $AtwsModuleConfigurationName does not exist."
-                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                }
-                elseif ($settings.keys.count -eq 0) {
-                    $message = "Configuration file with path: $Path could not be validated. There are no profiles in this file. Delete it."
-                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                }
-
-                $ConfigurationData = $settings[$AtwsModuleConfigurationName]
-                    
-                if (-not (Test-AtwsModuleConfiguration -Configuration $ConfigurationData )) {
-                    $message = "Configuration file $Path could not be validated. A connection could not be made."
-                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
-                }
-            }
-            else {
-                $message = "Configuration file with path: $Path could not be validated. A connection could not be made. Run Connect-AtwsWebAPI First!!"
-                throw (New-Object System.Configuration.Provider.ProviderException $message) 
-            }
+            Write-Verbose ('{0}: Calling Get-AtwsModuleConfiguration with profilename {1} and path {2}.' -F $MyInvocation.MyCommand.Name, $AtwsModuleConfigurationName, $AtwsModuleConfigurationPath)
+            
+            $ConfigurationData = Get-AtwsModuleConfiguration -Name $AtwsModuleConfigurationName -Path $AtwsModuleConfigurationPath
         }
         elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
             # We got a configuration object and it passed validation
