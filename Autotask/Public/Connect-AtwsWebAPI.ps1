@@ -113,14 +113,14 @@ Function Connect-AtwsWebAPI {
         )]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                $(Get-ChildItem -Path $Script:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
+                $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [ValidateScript( { 
                 Test-Path $_
             })]
-        [Alias('Path', 'ProfilePath')]
+        [Alias('Path')]
         [IO.FileInfo]
-        $AtwsModuleConfigurationPath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
+        $ProfilePath = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
         # Name of the Configuration inside the Config file.
         [Parameter(
@@ -128,20 +128,20 @@ Function Connect-AtwsWebAPI {
         )]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                if (Test-Path $FakeBound.AtwsModuleConfigurationPath) {
-                    [IO.FileInfo]$filepath = $FakeBound.AtwsModuleConfigurationPath
+                if (Test-Path $FakeBound.ProfilePath) {
+                    [IO.FileInfo]$filepath = $FakeBound.ProfilePath
                 }
                 else {
-                    [IO.FileInfo]$filepath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
+                    [IO.FileInfo]$filepath = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {
                     $tempsettings.keys
                 }
             })]
-        [alias('ProfileName', 'Name')]
+        [alias('Name')]
         [string]
-        $AtwsModuleConfigurationName = 'Default'
+        $ProfileName = 'Default'
     )
     
     begin { 

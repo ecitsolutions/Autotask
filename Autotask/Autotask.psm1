@@ -63,19 +63,20 @@ $My['ModuleBase'] = $manifestDirectory
 # Azure Functions. Find a valid location for a configuration profile 
 if ($profile) {
     # Use $profile if it exsist
-    $Script:AtwsModuleConfigurationPath = $(Split-Path -Parent $profile)
+    $Global:AtwsModuleConfigurationPath = $(Split-Path -Parent $profile)
+    New-Variable -Name AtwsModuleTest -Value $(Split-Path -Parent $profile) -Option Constant
 }
 elseIf ($env:TEMP) {
     # Use $temp. The file will most likely never be used if not on desktop anyway
-    $Script:AtwsModuleConfigurationPath = $env:TEMP 
+    $Global:AtwsModuleConfigurationPath = $env:TEMP 
 }
 elseIf ($env:TMPDIR) {
     # Use $temp. The file will most likely never be used if not on desktop anyway
-    $Script:AtwsModuleConfigurationPath = $env:TMPDIR
+    $Global:AtwsModuleConfigurationPath = $env:TMPDIR
 }
 else {
     # Use $temp. The file will most likely never be used if not on desktop anyway
-    $Script:AtwsModuleConfigurationPath = $env:PWD
+    $Global:AtwsModuleConfigurationPath = $env:PWD
 }
 
 # Get all function files as file objects

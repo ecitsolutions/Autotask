@@ -53,7 +53,7 @@ Function Save-AtwsModuleConfiguration {
                     [IO.FileInfo]$filepath = $FakeBound.AtwsModuleConfigurationPath
                 }
                 else {
-                    [IO.FileInfo]$filepath = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
+                    [IO.FileInfo]$filepath = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {
@@ -65,10 +65,10 @@ Function Save-AtwsModuleConfiguration {
         
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                $(Get-ChildItem -Path $Script:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
+                $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [IO.FileInfo]
-        $Path = $(Join-Path -Path $Script:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
+        $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
         [ValidateSet('Disabled', 'Inline', 'LabelField')]
         [string]
@@ -80,10 +80,11 @@ Function Save-AtwsModuleConfiguration {
 
         [ValidateScript( {
                 # Allow disabled and local before testing timezone conversion
-                if ($_ -in 'Disabled'. 'Local') { return $true }
+                if ($_ -in 'Disabled', 'Local') { return $true }
                 # Allow any valid TimeZone on current system
                 try { $null = [System.Timezoneinfo]::FindSystemTimeZoneById($_) }
                 catch { return $false }
+                return $true
             })]
         [string]
         $DateConversion = 'Local'
