@@ -68,7 +68,7 @@ Function ConvertTo-LocalObject {
 
         # Loop through all objects and make adjustments
         foreach ($object in $InputObject) {
-
+            
             # Any userdefined fields?
             if ($object.UserDefinedFields.Count -gt 0) { 
                 # Expand User defined fields for easy filtering of collections and readability
@@ -78,7 +78,7 @@ Function ConvertTo-LocalObject {
                     Add-Member -InputObject $object -MemberType NoteProperty -Name $UDFName -Value $UDF.Value -Force
                 }  
             }
-
+            
             # Adjust TimeZone on all DateTime properties
             foreach ($DateTimeParam in $DateTimeParams) {
 
@@ -96,23 +96,26 @@ Function ConvertTo-LocalObject {
                     $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, $EST, [TimeZoneInfo]::Local)
                 }
             }
-
+            
             # Restore picklist labels
             foreach ($field in $Picklists) {
-                $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field
-                if ($object.$field -in $picklistValues.Keys -and $picklistValues.count -gt 0) {
-                    $value = $picklistValues[$object.$field]
-                    if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) {
-                        $object.$field = $value
-                    }
-                    # Add Label property
-                    $fieldName = '{0}Label' -F $field
-                    Add-Member -InputObject $object -MemberType NoteProperty -Name $fieldName -Value $value -Force
+                if ($object.$field) {
+                    $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field
+                    if ($object.$field -in $picklistValues.Keys -and $picklistValues.count -gt 0) {
+                        $value = $picklistValues[$object.$field]
+                        if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) {
+                            $object.$field = $value
+                        }
+                        # Add Label property
+                        $fieldName = '{0}Label' -F $field
+                        Add-Member -InputObject $object -MemberType NoteProperty -Name $fieldName -Value $value -Force
 
+                    }
                 }
             }
+            
         }
-
+        
         # If using pipeline the process block will run once per object in pipeline. Store them all
         $result.AddRange($InputObject)
     }
