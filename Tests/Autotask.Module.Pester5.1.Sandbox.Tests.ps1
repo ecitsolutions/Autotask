@@ -280,6 +280,8 @@ Describe "UserDefinedField tests" {
         }
 
         It "Values are updated and returnable with correct new values" {
+            # Enable UDF expansion, need it for group-object
+            Set-AtwsModuleConfiguration -UdfExpansion Inline
             $Req = Get-AtwsInstalledProduct -Type Server -Active $true
             $NewValues = $Req | Group-Object '#Sist logget inn' | Select-Object -ExpandProperty Name
             $NewValues | Should -HaveCount 1
