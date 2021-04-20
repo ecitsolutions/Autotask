@@ -68,26 +68,7 @@ Function Save-AtwsModuleConfiguration {
                 $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [IO.FileInfo]
-        $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
-
-        [ValidateSet('Disabled', 'Inline', 'LabelField')]
-        [string]
-        $PickListExpansion = 'LabelField',
-
-        [ValidateSet('Disabled', 'Inline', 'Hashtable')]
-        [string]
-        $UdfExpansion = 'Inline',
-
-        [ValidateScript( {
-                # Allow disabled and local before testing timezone conversion
-                if ($_ -in 'Disabled', 'Local') { return $true }
-                # Allow any valid TimeZone on current system
-                try { $null = [System.Timezoneinfo]::FindSystemTimeZoneById($_) }
-                catch { return $false }
-                return $true
-            })]
-        [string]
-        $DateConversion = 'Local'
+        $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
     )
     
     begin { 
