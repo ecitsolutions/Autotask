@@ -223,11 +223,20 @@ Function Connect-AtwsWebAPI {
                 Write-Verbose ('{0}: Calling Get-AtwsModuleConfiguration with profilename {1} and path {2}.' -F $MyInvocation.MyCommand.Name, $ProfileName, $ProfilePath)
             
                 if (-not (Test-Path $ProfilePath)) {
-                    $message = "There are no saved connection profiles. Create one and try again."
-                    throw (New-Object System.Configuration.Provider.ProviderException $message)
+                    # Create a new configuration. Prompt for credentials
+                    $ConfigurationData = New-AtwsModuleConfiguration 
+
+                    # Prepare shouldProcess comments
+                    $caption = $MyInvocation.MyCommand.Name
+                    $verboseWarning = '{0}: Do you want to save these credentials as your Default connection profile?. It will be encrypted using SecureString and encoded in CliXML. See Get-Help Set-AtwsModuleConfiguration for how to modify it.' -F $caption
+                    # Lets do it and say we didn't!
+                    if ($PSCmdlet.ShouldContinue($verboseWarning, $caption)) {
+                        Save-AtwsModuleConfiguration -Configuration $ConfigurationData
+                    }
                 }
-                
-                $ConfigurationData = Get-AtwsModuleConfiguration -Name $ProfileName -Path $ProfilePath
+                else { 
+                    $ConfigurationData = Get-AtwsModuleConfiguration -Name $ProfileName -Path $ProfilePath
+                }
             }
             elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
                 # We got a configuration object and it passed validation
