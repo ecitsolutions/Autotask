@@ -44,7 +44,7 @@ Function New-AtwsModuleConfiguration {
         $Credential = $(Get-Credential -Message 'Your Autotask API user'),
     
         [securestring]
-        $SecureTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier:'),
+        $SecureTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier'),
     
         [Alias('Picklist', 'UsePickListLabel')]
         [switch]
