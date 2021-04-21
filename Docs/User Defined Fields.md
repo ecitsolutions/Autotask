@@ -46,7 +46,16 @@ Get-AtwsInstalledProduct -Filter {-udf 'udf_name' -eq 'udf_value'}
 
 ## Filtering on UDFs
 
-Working with an array of name/value pairs is a lot of work in code. So to make things easier we expand all UDFs on returned queries. All UDFs are added as extra properties with a hashtag in front of the field name to mark it clearly as an UDF. It is necessary to separate UDFs from ordinary fields because you are entirely free to create an UDF with the same name as an ordinary field. Another reason is that UDF names are entirely free form. You may use spaces and special characters in their names, so we figured we'd better make it impossible to refer to UDFs in your code without using quotes or escape characters.
+Working with an array of name/value pairs is a lot of work in code. So to make things easier we expand all UDFs on returned queries. See `Get-Help Set-AtwsModuleConfiguration` UDFs can be added to the original object in two ways: 
+
+1. Added as extra properties with a hashtag in front of the field name
+2. Added as a hashtable in a separate property .UDF
+
+### Adding UDFs as extra properties with a hashtag in front of the fieldname
+
+`Set-AtwsModuleConfiguration -UdfExpansion Labelfield` (Default)
+
+All UDFs are added as extra properties with a hashtag in front of the field name to mark it clearly as an UDF. It is necessary to separate UDFs from ordinary fields because you are entirely free to create an UDF with the same name as an ordinary field. Another reason is that UDF names are entirely free form. You may use spaces and special characters in their names, so we figured we'd better make it impossible to refer to UDFs in your code without using quotes or escape characters.
 
 ```powershell
 # Genuine example from our own tenant. Note the horrid UDF name!
@@ -75,6 +84,23 @@ To filter on more than one UDF you may use one for the query and then use a stan
 # Genuine example from our own tenant. Note the horrid UDF name!
 $ConfigurationItems = Get-AtwsInstalledProduct -UserDefinedField @{name='Klikkpris sort/hvitt (øre)';value=0} | 
   Where-Object {[int]$_.'#Tellerverk sort/hvitt' -gt 0}
+```
+
+### Adding UDFs as a hashtable in a new property .UDF (speed tip)
+
+`Set-AtwsModuleConfiguration -UdfExpansion Hashtable` (optional)
+
+A hashtable will be created from all UDFs with a value on an object. Hashtables are fast so this will speed up your code a bit. If you are working with objects with a lot of UDFs (InstalledProduct, for instance), this may be a good move. You do all the normal hashtable stuff directly on the .UDF property. However, the .UDF property only works one way. You can only read UDF values through it. You must still use Set-Atws* -UserDefinedFields (changed UDF) to update or modify.
+
+```powershell
+# Genuine example from our own tenant. Note the horrid UDF name!
+$product = Get-AtwsInstalledProduct -UserDefinedField @{name='Klikkpris sort/hvitt (øre)';value=0}
+
+$product.UDF.Faktureringsintervall
+12
+
+$product.UDF.Containskey('Kontraktstatus')
+True
 ```
 
 ## Modifiers and wildcards (Version >= 1.6.1.0)
