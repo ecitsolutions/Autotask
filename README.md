@@ -24,7 +24,7 @@ New-AtwsModuleConfiguration [[-Credential] <PSCredential>] [[-SecureTrackingIden
 [[-UdfExpansion] <String>] [[-DateConversion] <String>] [<CommonParameters>]
 ```
 
-**See Get-Help New-AtwsModuleConfiguration** with module loaded.
+See **`Get-Help New-AtwsModuleConfiguration`** with module loaded.
 
 # Important upgrade! 
 From version 2 the module no longer needs to maintain a per tenant disk cache. Any picklists are resolved dynamically using [ArgumentCompleter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-argumentcompleter?view=powershell-7). 
