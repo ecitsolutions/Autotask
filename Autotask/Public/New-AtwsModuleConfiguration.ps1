@@ -66,10 +66,10 @@ Function New-AtwsModuleConfiguration {
         $RefreshCache = $false,
 
         [string]
-        $DebugPref = $DebugPreference,
+        $DebugPref = $Global:DebugPreference,
 
         [string]
-        $VerbosePref = $VerbosePreference,
+        $VerbosePref = $Global:VerbosePreference,
 
         [ValidateRange(0, 100)]
         [int]
@@ -143,8 +143,8 @@ Function New-AtwsModuleConfiguration {
                 ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
                 Prefix                   = $Prefix
                 RefreshCache             = $RefreshCache.IsPresent
-                DebugPref                = $DebugPreference
-                VerbosePref              = $VerbosePreference
+                DebugPref                = $DebugPref
+                VerbosePref              = $VerbosePref
                 ErrorLimit               = $ErrorLimit
                 PickListExpansion        = $PickListExpansion
                 UdfExpansion             = $UdfExpansion
