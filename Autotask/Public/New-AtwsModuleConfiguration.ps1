@@ -41,13 +41,16 @@ Function New-AtwsModuleConfiguration {
     (
         [ValidateNotNullOrEmpty()]    
         [pscredential]
+        # An API user to Autotask. If you do not supply a value you will be prompted interactively.
         $Credential = $(Get-Credential -Message 'Your Autotask API user'),
     
         [securestring]
+        # The API identifier from your resource in Autotask. If you do not supply a value you will be prompted.
         $SecureTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier'),
     
         [Alias('Picklist', 'UsePickListLabel')]
         [switch]
+        # Please ignore. It is only here for backwards compatibility.
         $ConvertPicklistIdToLabel = $false,
     
         [ValidateScript( {
@@ -63,16 +66,22 @@ Function New-AtwsModuleConfiguration {
         $Prefix,
 
         [switch]
+        # Please ignore. It is only here for backwards compatibility.
         $RefreshCache = $false,
 
         [string]
+        # You may save a default debug preference so you may have a separate profile for debugging
         $DebugPref = $Global:DebugPreference,
 
         [string]
+        # You may save a default verbose preference so you may have a separate profile for debugging
         $VerbosePref = $Global:VerbosePreference,
 
         [ValidateRange(0, 100)]
         [int]
+        # For bulk operations. When you post 100+ objects with changes to the API it is annoying if the operation
+        # fails on all of them just because 1 of them could not be updated. How many such errors can you live with
+        # before the whole operation should fail?
         $ErrorLimit = 10,
     
         [ArgumentCompleter( {
@@ -90,6 +99,7 @@ Function New-AtwsModuleConfiguration {
             })]
         [alias('ProfileName', 'AtwsModuleConfigurationName')]
         [String]
+        # The name you want to use on the connection profile
         $Name,
         
         [ArgumentCompleter( {
@@ -97,14 +107,19 @@ Function New-AtwsModuleConfiguration {
                 $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [IO.FileInfo]
+        # Full path to an alternate configuration file you want the profile to be saved to
         $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
         [ValidateSet('Disabled', 'Inline', 'LabelField')]
         [string]
+        # How do you want picklist items to be expanded: Not at all (Disabled), have the text label
+        # replace the index value (Inline) or a separate property with "Label" as suffix (LabelField)
         $PickListExpansion = 'LabelField',
 
         [ValidateSet('Disabled', 'Inline', 'Hashtable')]
         [string]
+        # How do you want UDFs to be expanded: Not at all (Disabled), as new properties with
+        # a hashtag as prefix (Inline) or as a hashtable on a single property .UDF (Hashtable)
         $UdfExpansion = 'Inline',
 
         [ArgumentCompleter( {
