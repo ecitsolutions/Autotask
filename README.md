@@ -16,7 +16,15 @@ New-AtwsModuleConfiguration -Credential $Credential -ApiTrackingIdentifier $ApiK
 
 # Module can now load and connect automatically, so you can run any command directly
 Get-AtwsAccount -id 0
+
+# Other parameters to New-AtwsModuleConfiguration
+New-AtwsModuleConfiguration [[-Credential] <PSCredential>] [[-SecureTrackingIdentifier] <SecureString>] 
+[-ConvertPicklistIdToLabel] [[-Prefix] <String>] [-RefreshCache] [[-DebugPref] <String>] [[-VerbosePref] <String>] 
+[[-ErrorLimit] <Int32>] [[-Name] <String>] [[-Path] <FileInfo>] [[-PickListExpansion] <String>] 
+[[-UdfExpansion] <String>] [[-DateConversion] <String>] [<CommonParameters>]
 ```
+
+**See Get-Help New-AtwsModuleConfiguration** with module loaded.
 
 # Important upgrade! 
 From version 2 the module no longer needs to maintain a per tenant disk cache. Any picklists are resolved dynamically using [ArgumentCompleter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-argumentcompleter?view=powershell-7). 

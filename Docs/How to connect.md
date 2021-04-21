@@ -52,11 +52,9 @@ Get-AtwsAccount -id 0 | Select-Object AccountName
 
 Connect-AtwsWebAPI -Name Sandbox
 Get-AtwsAccount -id 0 | Select-Object AccountName
+
+AccountName
+-----------
+Company Name
+Company Name Sandbox
 ```
-
-Which gives the following output (depending on your Autotask tenants name, of course)
-
-> AccountName
-> -----------
-> Company Name
-> Company Name Sandbox
