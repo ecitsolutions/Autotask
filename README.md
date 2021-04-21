@@ -23,6 +23,24 @@ From version 2 the module no longer needs to maintain a per tenant disk cache. A
 
 # Release notes
 
+# Version 2.0.0-beta6 - Release candidate 2 (not released yet)
+
+- UPDATE: Running Connect-AtwsWebApi without parameters or a saved profile will prompt for credentials and offer to save them
+- BUGFIX: A few more bugs was found and fixed
+
+# Version 2.0.0-beta5 - Release candidate 1
+
+- NEW: Module finally supports automatic loading - just install module and run a command to automatically connect (if you do not have a saved profile yet you will be prompted for credentials interactively)
+- NEW: Support automatic connection on Azure Automation (runbooks) and Azure Functions without separate connection code
+- NEW: A fix for the 'SQL too nested' error has been found that cover most use cases
+- NEW: Conversion of datetime to/from local time is now configurable `Set-AtwsModuleConfiguration -DateConversion (Disabled|Local|'specific/timezone')`
+- NEW: UserDefinedFields can now be added to return object as separate properties or a hashtable (object.UDF) `Set-AtwsModuleConfiguration -UdfExpansion (Disabled|Inline|Hashtable)`
+- NEW: Properties with picklists can now have index values replaced with text labels or have text labels added as extra property `Set-AtwsModuleConfiguration -PicklistExpansion (Disabled|Inline|LabelField)`
+- UPDATE: A lot of Pester tests have been added to make sure the new module version still work with old scripts and connection methods
+- UPDATE: Pester tests have been added to make sure new features work as advertised
+- UPDATE: Better errormessages with more details if you use -verbose
+- BUGFIX: Even more bugs have been located and squashed
+
 # Version 2.0.0-beta4
 
 - NEW: Support for named configurations. You can save different credentials to disk (NB! Credentials are only encrypted using SecureString!)
