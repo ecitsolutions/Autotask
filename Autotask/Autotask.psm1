@@ -215,12 +215,12 @@ else {
 # Clean out old cache data
 # On Windows we store the cache in the WindowsPowerhell folder in My documents
 # On macOS and Linux we use a dot-folder in the users $HOME folder as is customary
-if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {
-    $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) 'WindowsPowershell\Cache'
-}
-else {
-    $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) '.config\powershell\atwsCache'
-}
+# if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {
+#     $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) 'WindowsPowershell\Cache'
+# }
+# else {
+#     $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) '.config\powershell\atwsCache'
+# }
 
 # Restore Previous preference
 if ($oldVerbosePreference -ne $VerbosePreference) {
