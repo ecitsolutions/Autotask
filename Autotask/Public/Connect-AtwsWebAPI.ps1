@@ -227,10 +227,13 @@ Function Connect-AtwsWebAPI {
                     $ConfigurationData = New-AtwsModuleConfiguration 
 
                     # Prepare shouldProcess comments
-                    $caption = $MyInvocation.MyCommand.Name
-                    $verboseWarning = '{0}: Do you want to save these credentials as your Default connection profile?. It will be encrypted using SecureString and encoded in CliXML. See Get-Help Set-AtwsModuleConfiguration for how to modify it.' -F $caption
+                    $caption = 'Save connection credentials'
+                    $warning = 'Do you want to save these credentials as your Default connection profile? It will be encrypted using SecureString and encoded in CliXML. See Get-Help Set-AtwsModuleConfiguration for how to modify it.'
+                    $question = 'Is it OK to save your credentials to your $Profile folder?'
+
+                    Write-Warning $warning 
                     # Lets do it and say we didn't!
-                    if ($PSCmdlet.ShouldContinue($verboseWarning, $caption)) {
+                    if ($PSCmdlet.ShouldContinue($question, $caption)) {
                         Save-AtwsModuleConfiguration -Configuration $ConfigurationData
                     }
                 }
