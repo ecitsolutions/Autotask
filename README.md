@@ -12,6 +12,7 @@
 * [How to create *New* entities through the API][5]
 * [How to make changes to entities][6]
 * [How to delete entities][7]
+* [Best Practices][9]
   
 ## Basics
 
@@ -315,3 +316,4 @@ We didn't pay enough attention to changes between releases before this.
 [6]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20make%20changes%20to%20entities.md
 [7]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20delete%20entities.md
 [8]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20connect.md
+[9]: https://github.com/officecenter/Autotask/blob/master/Docs/Best%20Practice.md
