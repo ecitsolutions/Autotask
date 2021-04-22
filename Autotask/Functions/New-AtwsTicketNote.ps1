@@ -212,7 +212,7 @@ Set-AtwsTicketNote
                 $newObject = New-Object -TypeName Autotask.$entityName
 
                 # Copy every non readonly property
-                $fieldNames = [collections.generic.list[psobject]]::new()
+                $fieldNames = [collections.generic.list[string]]::new()
                 $WriteableFields = $entityInfo.WriteableFields
                 $RequiredFields = $entityInfo.RequiredFields
 
