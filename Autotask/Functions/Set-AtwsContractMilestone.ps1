@@ -160,7 +160,7 @@ Get-AtwsContractMilestone
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractMilestone -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity ContractMilestone -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractMilestone -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ContractMilestone -FieldName Status -Value)

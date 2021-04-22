@@ -146,7 +146,7 @@ Set-AtwsResource
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Value)
@@ -191,7 +191,7 @@ Set-AtwsResource
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Value)
@@ -210,7 +210,7 @@ Set-AtwsResource
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Value)
@@ -229,7 +229,7 @@ Set-AtwsResource
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Value)
@@ -257,7 +257,7 @@ Set-AtwsResource
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Value)
@@ -276,7 +276,7 @@ Set-AtwsResource
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Value)
@@ -344,7 +344,7 @@ Set-AtwsResource
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Value)
@@ -364,7 +364,7 @@ Set-AtwsResource
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Value)
@@ -400,7 +400,7 @@ Set-AtwsResource
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Value)
@@ -436,7 +436,7 @@ Set-AtwsResource
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Value)
@@ -456,7 +456,7 @@ Set-AtwsResource
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName ResourceType -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName ResourceType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName ResourceType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName ResourceType -Value)
@@ -475,7 +475,7 @@ Set-AtwsResource
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Value)
@@ -501,7 +501,7 @@ Set-AtwsResource
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName TimeFormat -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName TimeFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName TimeFormat -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName TimeFormat -Value)
@@ -528,7 +528,7 @@ Set-AtwsResource
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Value)
@@ -557,7 +557,7 @@ Set-AtwsResource
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Label
+      Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Value)

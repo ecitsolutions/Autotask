@@ -132,7 +132,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AllocationCode -FieldName AllocationCodeType -Label
+      Get-AtwsPicklistValue -Entity AllocationCode -FieldName AllocationCodeType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AllocationCode -FieldName AllocationCodeType -Label) + (Get-AtwsPicklistValue -Entity AllocationCode -FieldName AllocationCodeType -Value)
@@ -174,7 +174,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AllocationCode -FieldName GeneralLedgerCode -Label
+      Get-AtwsPicklistValue -Entity AllocationCode -FieldName GeneralLedgerCode -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AllocationCode -FieldName GeneralLedgerCode -Label) + (Get-AtwsPicklistValue -Entity AllocationCode -FieldName GeneralLedgerCode -Value)
@@ -230,7 +230,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AllocationCode -FieldName Type -Label
+      Get-AtwsPicklistValue -Entity AllocationCode -FieldName Type -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AllocationCode -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity AllocationCode -FieldName Type -Value)
@@ -265,7 +265,7 @@ An example of a more complex query. This command returns any AllocationCodes wit
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label
+      Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label) + (Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Value)

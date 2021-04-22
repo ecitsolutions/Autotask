@@ -175,7 +175,7 @@ Set-AtwsServiceCall
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ServiceCall -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity ServiceCall -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ServiceCall -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ServiceCall -FieldName Status -Value)

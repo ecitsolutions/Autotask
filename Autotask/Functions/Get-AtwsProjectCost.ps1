@@ -171,7 +171,7 @@ Set-AtwsProjectCost
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ProjectCost -FieldName CostType -Label
+      Get-AtwsPicklistValue -Entity ProjectCost -FieldName CostType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ProjectCost -FieldName CostType -Label) + (Get-AtwsPicklistValue -Entity ProjectCost -FieldName CostType -Value)
@@ -304,7 +304,7 @@ Set-AtwsProjectCost
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Value)

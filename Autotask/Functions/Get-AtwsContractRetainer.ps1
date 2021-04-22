@@ -175,7 +175,7 @@ Set-AtwsContractRetainer
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label
+      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label) + (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Value)
@@ -194,7 +194,7 @@ Set-AtwsContractRetainer
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Label
+      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Label) + (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName paymentID -Value)
@@ -230,7 +230,7 @@ Set-AtwsContractRetainer
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName Status -Value)

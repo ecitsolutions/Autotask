@@ -135,7 +135,7 @@ Set-AtwsAccountAlert
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AccountAlert -FieldName AlertTypeID -Label
+      Get-AtwsPicklistValue -Entity AccountAlert -FieldName AlertTypeID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AccountAlert -FieldName AlertTypeID -Label) + (Get-AtwsPicklistValue -Entity AccountAlert -FieldName AlertTypeID -Value)

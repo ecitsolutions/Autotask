@@ -95,7 +95,7 @@ Set-AtwsChecklistLibraryChecklistItem
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ChecklistLibraryChecklistItem -FieldName KnowledgebaseArticleID -Label
+      Get-AtwsPicklistValue -Entity ChecklistLibraryChecklistItem -FieldName KnowledgebaseArticleID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ChecklistLibraryChecklistItem -FieldName KnowledgebaseArticleID -Label) + (Get-AtwsPicklistValue -Entity ChecklistLibraryChecklistItem -FieldName KnowledgebaseArticleID -Value)

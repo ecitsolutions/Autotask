@@ -125,7 +125,7 @@ Set-AtwsCountry
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Country -FieldName AddressFormatID -Label
+      Get-AtwsPicklistValue -Entity Country -FieldName AddressFormatID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Country -FieldName AddressFormatID -Label) + (Get-AtwsPicklistValue -Entity Country -FieldName AddressFormatID -Value)
@@ -191,7 +191,7 @@ Set-AtwsCountry
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label
+      Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label) + (Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Value)

@@ -151,7 +151,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Value)
@@ -170,7 +170,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Value)
@@ -197,7 +197,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName QueueID -Label
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName QueueID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName QueueID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName QueueID -Value)
@@ -224,7 +224,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Value)
@@ -243,7 +243,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Value)
@@ -262,7 +262,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Value)
@@ -281,7 +281,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Value)
@@ -308,7 +308,7 @@ An example of a more complex query. This command returns any TicketCategoryField
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Value)

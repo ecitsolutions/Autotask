@@ -173,7 +173,7 @@ Get-AtwsExpenseItem
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Label
+      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Label) + (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Value)
@@ -311,7 +311,7 @@ Get-AtwsExpenseItem
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Label
+      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Label) + (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Value)
@@ -428,7 +428,7 @@ Get-AtwsExpenseItem
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label
+      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Label) + (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName WorkType -Value)

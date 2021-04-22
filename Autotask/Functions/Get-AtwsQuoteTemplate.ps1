@@ -164,7 +164,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label
+      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Value)
@@ -229,7 +229,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName NumberFormat -Label
+      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName NumberFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName NumberFormat -Value)
@@ -248,7 +248,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label
+      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Value)
@@ -267,7 +267,7 @@ An example of a more complex query. This command returns any QuoteTemplates with
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label
+      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Value)

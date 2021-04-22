@@ -119,7 +119,7 @@ Set-AtwsTagGroup
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TagGroup -FieldName DisplayColor -Label
+      Get-AtwsPicklistValue -Entity TagGroup -FieldName DisplayColor -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TagGroup -FieldName DisplayColor -Label) + (Get-AtwsPicklistValue -Entity TagGroup -FieldName DisplayColor -Value)

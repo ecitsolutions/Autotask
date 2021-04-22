@@ -327,7 +327,7 @@ Set-AtwsTimeEntry
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TimeEntry -FieldName Type -Label
+      Get-AtwsPicklistValue -Entity TimeEntry -FieldName Type -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TimeEntry -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity TimeEntry -FieldName Type -Value)

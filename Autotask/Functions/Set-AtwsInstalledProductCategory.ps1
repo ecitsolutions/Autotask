@@ -103,7 +103,7 @@ Get-AtwsInstalledProductCategory
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProductCategory -FieldName DisplayColorRGB -Label
+      Get-AtwsPicklistValue -Entity InstalledProductCategory -FieldName DisplayColorRGB -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InstalledProductCategory -FieldName DisplayColorRGB -Label) + (Get-AtwsPicklistValue -Entity InstalledProductCategory -FieldName DisplayColorRGB -Value)

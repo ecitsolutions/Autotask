@@ -118,7 +118,7 @@ Set-AtwsContractBillingRule
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label
+      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Label) + (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName DetermineUnits -Value)
@@ -153,7 +153,7 @@ Set-AtwsContractBillingRule
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label
+      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label) + (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Value)

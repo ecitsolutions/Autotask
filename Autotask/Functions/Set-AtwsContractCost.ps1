@@ -157,7 +157,7 @@ Get-AtwsContractCost
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractCost -FieldName CostType -Label
+      Get-AtwsPicklistValue -Entity ContractCost -FieldName CostType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractCost -FieldName CostType -Label) + (Get-AtwsPicklistValue -Entity ContractCost -FieldName CostType -Value)

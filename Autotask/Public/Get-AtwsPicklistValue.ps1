@@ -210,26 +210,29 @@ Function Get-AtwsPicklistValue {
 
             }
             # Take parentvalue into account
-            elseIf ($ParentValue) {
+            elseIf ($ParentValue -and ($script:FieldInfoCache[$Entity][$infoType][$FieldName]['PicklistParentValueField'])) {
+                $ParentPicklistValues = Get-AtwsPicklistValue -Entity $Entity -FieldName $script:FieldInfoCache[$Entity][$infoType][$FieldName]['PicklistParentValueField'] -Label -Hashtable
+                $ParentIndex = $ParentPicklistValues[$ParentValue]
+
                 $result = switch ($PSCmdlet.ParameterSetName) {
                     'by_Entity' {
-                        $picklistValues[$ParentValue]
+                        $picklistValues[$ParentIndex]
                     }
                     'as_Labels' {
                         if ($Hashtable.IsPresent) { 
-                            $picklistValues[$ParentValue].byLabel
+                            $picklistValues[$ParentIndex].byLabel
                         }
                         elseIf ($Quoted.IsPresent) { 
-                            foreach ($item in ($picklistValues[$ParentValue].byLabel.keys | Sort-Object)) {
+                            foreach ($item in ($picklistValues[$ParentIndex].byLabel.keys | Sort-Object)) {
                                 "'{0}'" -F $($item -replace "'", "''" -replace $pattern, $replacement)
                             }
                         }
                         else { 
-                            $picklistValues[$ParentValue].byLabel.keys | Sort-Object
+                            $picklistValues[$ParentIndex].byLabel.keys | Sort-Object
                         }
                     }
                     'as_Values' {
-                        $picklistValues[$ParentValue].byLabel.values | Sort-Object
+                        $picklistValues[$ParentIndex].byLabel.values | Sort-Object
                     }
                 }
             }

@@ -115,7 +115,7 @@ Set-AtwsPurchaseApproval
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity PurchaseApproval -FieldName CostType -Label
+      Get-AtwsPicklistValue -Entity PurchaseApproval -FieldName CostType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity PurchaseApproval -FieldName CostType -Label) + (Get-AtwsPicklistValue -Entity PurchaseApproval -FieldName CostType -Value)

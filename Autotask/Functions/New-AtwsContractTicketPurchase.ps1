@@ -109,7 +109,7 @@ Set-AtwsContractTicketPurchase
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Label
+      Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Label) + (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName IsPaid -Value)
@@ -136,7 +136,7 @@ Set-AtwsContractTicketPurchase
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Label
+      Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Label) + (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName PaymentType -Value)
@@ -173,7 +173,7 @@ Set-AtwsContractTicketPurchase
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ContractTicketPurchase -FieldName Status -Value)

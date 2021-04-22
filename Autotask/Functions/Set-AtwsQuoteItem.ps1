@@ -213,7 +213,7 @@ Get-AtwsQuoteItem
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label
+      Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Value)
@@ -320,7 +320,7 @@ Get-AtwsQuoteItem
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteItem -FieldName Type -Label
+      Get-AtwsPicklistValue -Entity QuoteItem -FieldName Type -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity QuoteItem -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity QuoteItem -FieldName Type -Value)

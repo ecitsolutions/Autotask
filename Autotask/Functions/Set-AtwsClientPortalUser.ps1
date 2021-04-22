@@ -103,7 +103,7 @@ Get-AtwsClientPortalUser
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Value)
@@ -130,7 +130,7 @@ Get-AtwsClientPortalUser
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName NumberFormat -Label
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName NumberFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName NumberFormat -Value)
@@ -171,7 +171,7 @@ Get-AtwsClientPortalUser
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Value)
@@ -198,7 +198,7 @@ Get-AtwsClientPortalUser
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName TimeFormat -Value)

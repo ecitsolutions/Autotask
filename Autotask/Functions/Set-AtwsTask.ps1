@@ -151,7 +151,7 @@ Get-AtwsTask
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Value)
@@ -269,7 +269,7 @@ Get-AtwsTask
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Value)
@@ -351,7 +351,7 @@ Get-AtwsTask
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName Status -Value)
@@ -376,7 +376,7 @@ Get-AtwsTask
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Value)
@@ -403,7 +403,7 @@ Get-AtwsTask
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Value)

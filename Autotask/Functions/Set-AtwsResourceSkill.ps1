@@ -100,7 +100,7 @@ Get-AtwsResourceSkill
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ResourceSkill -FieldName SkillLevel -Label
+      Get-AtwsPicklistValue -Entity ResourceSkill -FieldName SkillLevel -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ResourceSkill -FieldName SkillLevel -Label) + (Get-AtwsPicklistValue -Entity ResourceSkill -FieldName SkillLevel -Value)

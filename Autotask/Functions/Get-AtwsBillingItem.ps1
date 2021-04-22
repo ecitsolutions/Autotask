@@ -354,7 +354,7 @@ Set-AtwsBillingItem
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Label
+      Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Label) + (Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Value)
@@ -416,7 +416,7 @@ Set-AtwsBillingItem
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BillingItem -FieldName Type -Label
+      Get-AtwsPicklistValue -Entity BillingItem -FieldName Type -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity BillingItem -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity BillingItem -FieldName Type -Value)

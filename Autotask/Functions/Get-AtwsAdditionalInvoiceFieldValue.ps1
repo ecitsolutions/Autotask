@@ -114,7 +114,7 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AdditionalInvoiceFieldValue -FieldName AdditionalInvoiceFieldID -Label
+      Get-AtwsPicklistValue -Entity AdditionalInvoiceFieldValue -FieldName AdditionalInvoiceFieldID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AdditionalInvoiceFieldValue -FieldName AdditionalInvoiceFieldID -Label) + (Get-AtwsPicklistValue -Entity AdditionalInvoiceFieldValue -FieldName AdditionalInvoiceFieldID -Value)

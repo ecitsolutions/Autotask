@@ -185,7 +185,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName ParentType -Label
+      Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName ParentType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName ParentType -Label) + (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName ParentType -Value)
@@ -205,7 +205,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Label
+      Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Label) + (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Value)
@@ -234,7 +234,7 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Label
+      Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Type -Value)

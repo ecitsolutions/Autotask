@@ -156,7 +156,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Value)
@@ -224,7 +224,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Value)
@@ -252,7 +252,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Value)
@@ -297,7 +297,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Value)
@@ -317,7 +317,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Value)
@@ -337,7 +337,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageNumberFormat -Value)
@@ -389,7 +389,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName SortBy -Value)
@@ -409,7 +409,7 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Value)

@@ -129,7 +129,7 @@ Set-AtwsChangeOrderCost
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName CostType -Label
+      Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName CostType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName CostType -Label) + (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName CostType -Value)
@@ -241,7 +241,7 @@ Set-AtwsChangeOrderCost
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Value)

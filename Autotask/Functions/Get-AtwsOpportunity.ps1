@@ -281,7 +281,7 @@ Set-AtwsOpportunity
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Label
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Value)
@@ -300,7 +300,7 @@ Set-AtwsOpportunity
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Label
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName LossReason -Value)
@@ -378,7 +378,7 @@ Set-AtwsOpportunity
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Value)
@@ -405,7 +405,7 @@ Set-AtwsOpportunity
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Value)
@@ -483,7 +483,7 @@ Set-AtwsOpportunity
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Label
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName Rating -Value)
@@ -516,7 +516,7 @@ Set-AtwsOpportunity
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Label
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Value)
@@ -564,7 +564,7 @@ Set-AtwsOpportunity
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Label
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Value)
@@ -584,7 +584,7 @@ Set-AtwsOpportunity
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName Status -Value)
@@ -641,7 +641,7 @@ Set-AtwsOpportunity
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Label
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Value)

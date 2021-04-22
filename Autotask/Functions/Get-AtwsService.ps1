@@ -196,7 +196,7 @@ Set-AtwsService
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Service -FieldName PeriodType -Label
+      Get-AtwsPicklistValue -Entity Service -FieldName PeriodType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Service -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity Service -FieldName PeriodType -Value)
@@ -215,7 +215,7 @@ Set-AtwsService
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label
+      Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Value)

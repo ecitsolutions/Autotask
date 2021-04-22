@@ -78,7 +78,7 @@ Set-AtwsProduct
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label
+      Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Label) + (Get-AtwsPicklistValue -Entity Product -FieldName BillingType -Value)
@@ -211,7 +211,7 @@ Set-AtwsProduct
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label
+      Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Value)
@@ -230,7 +230,7 @@ Set-AtwsProduct
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName PriceCostMethod -Label
+      Get-AtwsPicklistValue -Entity Product -FieldName PriceCostMethod -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Product -FieldName PriceCostMethod -Label) + (Get-AtwsPicklistValue -Entity Product -FieldName PriceCostMethod -Value)
@@ -258,7 +258,7 @@ Set-AtwsProduct
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label
+      Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Label) + (Get-AtwsPicklistValue -Entity Product -FieldName ProductCategory -Value)

@@ -157,7 +157,7 @@ Get-AtwsBusinessLocation
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Value)
@@ -195,7 +195,7 @@ Get-AtwsBusinessLocation
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Label
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Value)
@@ -324,7 +324,7 @@ Get-AtwsBusinessLocation
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Value)
@@ -445,7 +445,7 @@ Get-AtwsBusinessLocation
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Label
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Value)
@@ -656,7 +656,7 @@ Get-AtwsBusinessLocation
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeFormat -Label
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeFormat -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeFormat -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeFormat -Value)
@@ -683,7 +683,7 @@ Get-AtwsBusinessLocation
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeZoneID -Label
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeZoneID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeZoneID -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName TimeZoneID -Value)

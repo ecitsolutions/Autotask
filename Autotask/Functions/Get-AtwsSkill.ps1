@@ -122,7 +122,7 @@ An example of a more complex query. This command returns any Skills with Id GREA
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Skill -FieldName CategoryID -Label
+      Get-AtwsPicklistValue -Entity Skill -FieldName CategoryID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Skill -FieldName CategoryID -Label) + (Get-AtwsPicklistValue -Entity Skill -FieldName CategoryID -Value)

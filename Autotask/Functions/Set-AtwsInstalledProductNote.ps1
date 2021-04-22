@@ -104,7 +104,7 @@ Get-AtwsInstalledProductNote
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProductNote -FieldName NoteType -Label
+      Get-AtwsPicklistValue -Entity InstalledProductNote -FieldName NoteType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InstalledProductNote -FieldName NoteType -Label) + (Get-AtwsPicklistValue -Entity InstalledProductNote -FieldName NoteType -Value)

@@ -137,7 +137,7 @@ Set-AtwsContact
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contact -FieldName ApiVendorID -Label
+      Get-AtwsPicklistValue -Entity Contact -FieldName ApiVendorID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Contact -FieldName ApiVendorID -Label) + (Get-AtwsPicklistValue -Entity Contact -FieldName ApiVendorID -Value)
@@ -321,7 +321,7 @@ Set-AtwsContact
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Label
+      Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Label) + (Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Value)
@@ -340,7 +340,7 @@ Set-AtwsContact
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label
+      Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label) + (Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Value)

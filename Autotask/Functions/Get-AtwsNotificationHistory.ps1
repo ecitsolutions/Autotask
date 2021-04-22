@@ -123,7 +123,7 @@ An example of a more complex query. This command returns any NotificationHistory
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label
+      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Value)
@@ -142,7 +142,7 @@ An example of a more complex query. This command returns any NotificationHistory
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label
+      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Value)
@@ -207,7 +207,7 @@ An example of a more complex query. This command returns any NotificationHistory
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label
+      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName NotificationHistoryTypeID -Value)

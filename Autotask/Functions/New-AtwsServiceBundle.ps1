@@ -142,7 +142,7 @@ Set-AtwsServiceBundle
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Label
+      Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Value)
@@ -161,7 +161,7 @@ Set-AtwsServiceBundle
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label
+      Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Value)

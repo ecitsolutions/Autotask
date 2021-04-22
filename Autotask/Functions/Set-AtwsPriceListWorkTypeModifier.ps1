@@ -84,7 +84,7 @@ Get-AtwsPriceListWorkTypeModifier
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity PriceListWorkTypeModifier -FieldName ModifierType -Label
+      Get-AtwsPicklistValue -Entity PriceListWorkTypeModifier -FieldName ModifierType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity PriceListWorkTypeModifier -FieldName ModifierType -Label) + (Get-AtwsPicklistValue -Entity PriceListWorkTypeModifier -FieldName ModifierType -Value)

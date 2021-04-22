@@ -176,7 +176,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName ApiVendorID -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ApiVendorID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName ApiVendorID -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName ApiVendorID -Value)
@@ -216,7 +216,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalBoard -Value)
@@ -235,7 +235,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalStatus -Value)
@@ -254,7 +254,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName ChangeApprovalType -Value)
@@ -376,7 +376,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName CurrentServiceThermometerRating -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName CurrentServiceThermometerRating -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName CurrentServiceThermometerRating -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName CurrentServiceThermometerRating -Value)
@@ -482,7 +482,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName IssueType -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName IssueType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName IssueType -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName IssueType -Value)
@@ -543,7 +543,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName MonitorTypeID -Value)
@@ -569,7 +569,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName PreviousServiceThermometerRating -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName PreviousServiceThermometerRating -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName PreviousServiceThermometerRating -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName PreviousServiceThermometerRating -Value)
@@ -589,7 +589,7 @@ Set-AtwsTicket
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName Priority -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName Priority -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName Priority -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName Priority -Value)
@@ -630,7 +630,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName QueueID -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName QueueID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName QueueID -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName QueueID -Value)
@@ -685,7 +685,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName RmaStatus -Value)
@@ -704,7 +704,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName RmaType -Value)
@@ -730,7 +730,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName ServiceLevelAgreementID -Value)
@@ -756,7 +756,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName Source -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName Source -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName Source -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName Source -Value)
@@ -776,7 +776,7 @@ Set-AtwsTicket
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName Status -Value)
@@ -795,17 +795,11 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter( {
         param($Cmd, $Param, $Word, $Ast, $FakeBound)
-        if ($fakeBound.IssueType) {
-            $parentvalue = $fakeBound.IssueType
-            if (!([int]::TryParse($parentvalue, [ref]$null))) {
-                $parentPicklist = Get-AtwsPicklistValue -Entity Ticket -Field IssueType -Label -Hashtable
-                $parentValue = $parentPicklist[$parentValue]
-            }      
-            $picklists = Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType
-            $picklists[$parentValue]['byLabel'].Keys
+        if ($fakeBound.IssueType) {    
+            Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType -ParentValue $fakeBound.IssueType -Label -Quoted
         }
         else {
-            Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType -Label
+            Get-AtwsPicklistValue -Entity Ticket -FieldName SubIssueType -Label -Quoted
         }
     })]
     [ValidateScript({
@@ -825,7 +819,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName TicketCategory -Value)
@@ -852,7 +846,7 @@ Set-AtwsTicket
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Ticket -FieldName TicketType -Label
+      Get-AtwsPicklistValue -Entity Ticket -FieldName TicketType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Ticket -FieldName TicketType -Label) + (Get-AtwsPicklistValue -Entity Ticket -FieldName TicketType -Value)

@@ -163,7 +163,7 @@ Get-AtwsIntegrationVendorWidget
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity IntegrationVendorWidget -FieldName Width -Label
+      Get-AtwsPicklistValue -Entity IntegrationVendorWidget -FieldName Width -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity IntegrationVendorWidget -FieldName Width -Label) + (Get-AtwsPicklistValue -Entity IntegrationVendorWidget -FieldName Width -Value)

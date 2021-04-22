@@ -173,7 +173,7 @@ Get-AtwsServiceBundle
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label
+      Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName ServiceLevelAgreementID -Value)

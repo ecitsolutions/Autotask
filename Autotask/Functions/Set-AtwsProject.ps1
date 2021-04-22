@@ -125,7 +125,7 @@ Get-AtwsProject
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Project -FieldName Department -Label
+      Get-AtwsPicklistValue -Entity Project -FieldName Department -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Project -FieldName Department -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName Department -Value)
@@ -245,7 +245,7 @@ Get-AtwsProject
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label
+      Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Value)
@@ -396,7 +396,7 @@ Get-AtwsProject
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Project -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity Project -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Project -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName Status -Value)
@@ -450,7 +450,7 @@ Get-AtwsProject
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Project -FieldName Type -Label
+      Get-AtwsPicklistValue -Entity Project -FieldName Type -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Project -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName Type -Value)

@@ -73,7 +73,7 @@ Set-AtwsAccountWebhookField
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AccountWebhookField -FieldName FieldID -Label
+      Get-AtwsPicklistValue -Entity AccountWebhookField -FieldName FieldID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AccountWebhookField -FieldName FieldID -Label) + (Get-AtwsPicklistValue -Entity AccountWebhookField -FieldName FieldID -Value)

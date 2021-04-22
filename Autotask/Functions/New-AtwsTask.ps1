@@ -111,7 +111,7 @@ Set-AtwsTask
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Value)
@@ -151,7 +151,7 @@ Set-AtwsTask
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Value)
@@ -170,7 +170,7 @@ Set-AtwsTask
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Value)
@@ -240,7 +240,7 @@ Set-AtwsTask
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName LastActivityPersonType -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName LastActivityPersonType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName LastActivityPersonType -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName LastActivityPersonType -Value)
@@ -280,7 +280,7 @@ Set-AtwsTask
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName PriorityLabel -Value)
@@ -332,7 +332,7 @@ Set-AtwsTask
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName Status -Value)
@@ -351,7 +351,7 @@ Set-AtwsTask
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Value)
@@ -387,7 +387,7 @@ Set-AtwsTask
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Label
+      Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName TaskType -Value)

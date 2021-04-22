@@ -205,7 +205,7 @@ An example of a more complex query. This command returns any DeletedTaskActivity
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity DeletedTaskActivityLog -FieldName TypeID -Label
+      Get-AtwsPicklistValue -Entity DeletedTaskActivityLog -FieldName TypeID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity DeletedTaskActivityLog -FieldName TypeID -Label) + (Get-AtwsPicklistValue -Entity DeletedTaskActivityLog -FieldName TypeID -Value)

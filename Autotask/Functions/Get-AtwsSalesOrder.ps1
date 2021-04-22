@@ -312,7 +312,7 @@ Set-AtwsSalesOrder
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity SalesOrder -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity SalesOrder -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity SalesOrder -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity SalesOrder -FieldName Status -Value)

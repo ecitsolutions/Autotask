@@ -121,7 +121,7 @@ Get-AtwsActionType
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ActionType -FieldName View -Label
+      Get-AtwsPicklistValue -Entity ActionType -FieldName View -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ActionType -FieldName View -Label) + (Get-AtwsPicklistValue -Entity ActionType -FieldName View -Value)

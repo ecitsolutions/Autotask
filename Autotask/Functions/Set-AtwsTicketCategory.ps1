@@ -114,7 +114,7 @@ Get-AtwsTicketCategory
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategory -FieldName DisplayColorRGB -Label
+      Get-AtwsPicklistValue -Entity TicketCategory -FieldName DisplayColorRGB -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCategory -FieldName DisplayColorRGB -Label) + (Get-AtwsPicklistValue -Entity TicketCategory -FieldName DisplayColorRGB -Value)

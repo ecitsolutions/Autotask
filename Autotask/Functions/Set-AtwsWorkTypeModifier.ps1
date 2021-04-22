@@ -86,7 +86,7 @@ Get-AtwsWorkTypeModifier
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity WorkTypeModifier -FieldName ModifierType -Label
+      Get-AtwsPicklistValue -Entity WorkTypeModifier -FieldName ModifierType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity WorkTypeModifier -FieldName ModifierType -Label) + (Get-AtwsPicklistValue -Entity WorkTypeModifier -FieldName ModifierType -Value)

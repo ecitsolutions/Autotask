@@ -123,7 +123,7 @@ Set-AtwsTaskNote
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TaskNote -FieldName NoteType -Label
+      Get-AtwsPicklistValue -Entity TaskNote -FieldName NoteType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TaskNote -FieldName NoteType -Label) + (Get-AtwsPicklistValue -Entity TaskNote -FieldName NoteType -Value)
@@ -144,7 +144,7 @@ Set-AtwsTaskNote
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Label
+      Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Label) + (Get-AtwsPicklistValue -Entity TaskNote -FieldName Publish -Value)

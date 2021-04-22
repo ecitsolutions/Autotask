@@ -105,7 +105,7 @@ Get-AtwsAccountToDo
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AccountToDo -FieldName ActionType -Label
+      Get-AtwsPicklistValue -Entity AccountToDo -FieldName ActionType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AccountToDo -FieldName ActionType -Label) + (Get-AtwsPicklistValue -Entity AccountToDo -FieldName ActionType -Value)

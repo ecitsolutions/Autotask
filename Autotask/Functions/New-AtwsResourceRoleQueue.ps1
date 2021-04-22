@@ -83,7 +83,7 @@ Set-AtwsResourceRoleQueue
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ResourceRoleQueue -FieldName QueueID -Label
+      Get-AtwsPicklistValue -Entity ResourceRoleQueue -FieldName QueueID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ResourceRoleQueue -FieldName QueueID -Label) + (Get-AtwsPicklistValue -Entity ResourceRoleQueue -FieldName QueueID -Value)

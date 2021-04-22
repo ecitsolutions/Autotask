@@ -153,7 +153,7 @@ An example of a more complex query. This command returns any InternalLocations w
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InternalLocation -FieldName HolidaySetId -Label
+      Get-AtwsPicklistValue -Entity InternalLocation -FieldName HolidaySetId -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity InternalLocation -FieldName HolidaySetId -Label) + (Get-AtwsPicklistValue -Entity InternalLocation -FieldName HolidaySetId -Value)

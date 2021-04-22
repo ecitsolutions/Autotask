@@ -184,7 +184,7 @@ Set-AtwsSubscription
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Subscription -FieldName PeriodType -Label
+      Get-AtwsPicklistValue -Entity Subscription -FieldName PeriodType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Subscription -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity Subscription -FieldName PeriodType -Value)
@@ -212,7 +212,7 @@ Set-AtwsSubscription
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Value)

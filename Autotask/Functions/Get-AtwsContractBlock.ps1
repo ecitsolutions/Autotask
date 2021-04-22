@@ -176,7 +176,7 @@ Set-AtwsContractBlock
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label
+      Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label) + (Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Value)
@@ -203,7 +203,7 @@ Set-AtwsContractBlock
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Label
+      Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Label) + (Get-AtwsPicklistValue -Entity ContractBlock -FieldName PaymentType -Value)
@@ -230,7 +230,7 @@ Set-AtwsContractBlock
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ContractBlock -FieldName Status -Value)

@@ -123,7 +123,7 @@ Set-AtwsTicketCost
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCost -FieldName CostType -Label
+      Get-AtwsPicklistValue -Entity TicketCost -FieldName CostType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCost -FieldName CostType -Label) + (Get-AtwsPicklistValue -Entity TicketCost -FieldName CostType -Value)
@@ -235,7 +235,7 @@ Set-AtwsTicketCost
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Value)

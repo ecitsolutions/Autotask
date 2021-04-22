@@ -117,7 +117,7 @@ Get-AtwsTicketNote
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Label
+      Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Label) + (Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Value)
@@ -144,7 +144,7 @@ Get-AtwsTicketNote
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketNote -FieldName Publish -Label
+      Get-AtwsPicklistValue -Entity TicketNote -FieldName Publish -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity TicketNote -FieldName Publish -Label) + (Get-AtwsPicklistValue -Entity TicketNote -FieldName Publish -Value)

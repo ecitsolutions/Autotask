@@ -207,7 +207,7 @@ Set-AtwsExpenseReport
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ExpenseReport -FieldName Status -Label
+      Get-AtwsPicklistValue -Entity ExpenseReport -FieldName Status -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ExpenseReport -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ExpenseReport -FieldName Status -Value)

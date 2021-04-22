@@ -145,7 +145,7 @@ Set-AtwsAccountWebhookUdfField
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AccountWebhookUdfField -FieldName UdfFieldID -Label
+      Get-AtwsPicklistValue -Entity AccountWebhookUdfField -FieldName UdfFieldID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AccountWebhookUdfField -FieldName UdfFieldID -Label) + (Get-AtwsPicklistValue -Entity AccountWebhookUdfField -FieldName UdfFieldID -Value)

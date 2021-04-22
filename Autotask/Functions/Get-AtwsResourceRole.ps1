@@ -136,7 +136,7 @@ An example of a more complex query. This command returns any ResourceRoles with 
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ResourceRole -FieldName QueueID -Label
+      Get-AtwsPicklistValue -Entity ResourceRole -FieldName QueueID -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity ResourceRole -FieldName QueueID -Label) + (Get-AtwsPicklistValue -Entity ResourceRole -FieldName QueueID -Value)

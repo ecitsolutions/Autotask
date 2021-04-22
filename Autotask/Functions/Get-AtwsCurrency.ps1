@@ -152,7 +152,7 @@ Set-AtwsCurrency
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Currency -FieldName DisplaySymbol -Label
+      Get-AtwsPicklistValue -Entity Currency -FieldName DisplaySymbol -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Currency -FieldName DisplaySymbol -Label) + (Get-AtwsPicklistValue -Entity Currency -FieldName DisplaySymbol -Value)

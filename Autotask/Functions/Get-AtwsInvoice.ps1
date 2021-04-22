@@ -220,7 +220,7 @@ Set-AtwsInvoice
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Invoice -FieldName PaymentTerm -Label
+      Get-AtwsPicklistValue -Entity Invoice -FieldName PaymentTerm -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity Invoice -FieldName PaymentTerm -Label) + (Get-AtwsPicklistValue -Entity Invoice -FieldName PaymentTerm -Value)

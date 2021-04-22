@@ -103,7 +103,7 @@ Get-AtwsAccountNote
     [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AccountNote -FieldName ActionType -Label
+      Get-AtwsPicklistValue -Entity AccountNote -FieldName ActionType -Label -Quoted
     })]
     [ValidateScript({
       $set = (Get-AtwsPicklistValue -Entity AccountNote -FieldName ActionType -Label) + (Get-AtwsPicklistValue -Entity AccountNote -FieldName ActionType -Value)
