@@ -316,4 +316,4 @@ We didn't pay enough attention to changes between releases before this.
 [6]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20make%20changes%20to%20entities.md
 [7]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20delete%20entities.md
 [8]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20connect.md
-[9]: https://github.com/officecenter/Autotask/blob/master/Docs/Best%20Practice.md
+[9]: https://github.com/officecenter/Autotask/blob/master/Docs/Best%20Practices.md
