@@ -13,6 +13,8 @@
 * [How to make changes to entities][6]
 * [How to delete entities][7]
 * [Best Practices][9]
+* [Null values][10]
+* [User Defined Fields][11]
   
 ## Basics
 
@@ -311,9 +313,11 @@ We didn't pay enough attention to changes between releases before this.
 [1]: https://www.autotask.com
 [2]: https://ww4.autotask.net/help/Content/LinkedDOCUMENTS/WSAPI/T_WebServicesAPIv1_5.pdf
 [3]: https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md
-[4]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20Query.md
-[5]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20create%20new%20entities.md
-[6]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20make%20changes%20to%20entities.md
-[7]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20delete%20entities.md
-[8]: https://github.com/officecenter/Autotask/blob/master/Docs/How%20to%20connect.md
-[9]: https://github.com/officecenter/Autotask/blob/master/Docs/Best%20Practices.md
+[4]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/How%20to%20Query.md
+[5]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/How%20to%20create%20new%20entities.md
+[6]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/How%20to%20make%20changes%20to%20entities.md
+[7]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/How%20to%20delete%20entities.md
+[8]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/How%20to%20connect.md
+[9]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/Best%20Practices.md
+[10]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/Null%values.md
+[11]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/User%Defined%20Fields.md
