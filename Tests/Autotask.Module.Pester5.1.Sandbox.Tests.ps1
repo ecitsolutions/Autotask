@@ -669,16 +669,16 @@ Describe "New- Entities tests." {
                 UserDefinedFields = [Autotask.UserDefinedField]@{ Name = 'Maskin navn'; Value = $_ }, [Autotask.UserDefinedField]@{ Name = 'Sist logget inn'; Value = (Get-Date -Format 'dd-MM-yyyy') }
             }
 
-            $NewItems += $Item
+            $NewTypedVariant.add($Item)
         }
 
     }
     Context "New-AtwsInstalledProduct" {
         It "Should not throw when creating one or more new installedProducts." {
-            { New-AtwsInstalledProduct -InputObject $NewItems -Verbose } | Should -Not -Throw
+            { New-AtwsInstalledProduct -InputObject $NewItems } | Should -Not -Throw
         }
         It "Should not throw if the colletion is typed either." {
-            { New-AtwsInstalledProduct -InputObject $NewTypedVariant -Verbose } | Should -Not -Throw
+            { New-AtwsInstalledProduct -InputObject $NewTypedVariant } | Should -Not -Throw
         }
     }
 }
