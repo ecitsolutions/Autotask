@@ -672,7 +672,7 @@ Describe "New- Entities tests." {
             $NewTypedVariant.add($Item)
         }
 
-        $Contacts = Get-AtwsContact -FirstName 'Bjørn' -Like FirstName
+        $Contacts = Get-AtwsContact -FirstName 'Bjørn' -Like FirstName -Active $true
         $ContactGroup = New-AtwsContactGroup -Active $true -Name ("All Bears in the hood {0}" -f (New-Guid).Guid.Substring(0,7))
 
         $ContactSelection = [System.Collections.Generic.List[Autotask.ContactGroupContact]]::new()
@@ -683,6 +683,8 @@ Describe "New- Entities tests." {
             }
             $ContactSelection.add($tmp)
         }
+
+        Set-AtwsModuleConfiguration -ErrorLimit 30
     }
 
     AfterAll{
