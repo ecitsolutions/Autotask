@@ -138,24 +138,18 @@ Function Get-AtwsPSParameter {
                 $text += @"
     [ArgumentCompleter( {
         param(`$Cmd, `$Param, `$Word, `$Ast, `$FakeBound)
-        if (`$fakeBound.$PickListParentValueField) {
-            `$parentvalue = `$fakeBound.$PickListParentValueField
-            if (!([int]::TryParse(`$parentvalue, [ref]`$null))) {
-                `$parentPicklist = Get-AtwsPicklistValue -Entity $EntityName -Field $PickListParentValueField -Label -Hashtable
-                `$parentValue = `$parentPicklist[`$parentValue]
-            }      
-            `$picklists = Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name
-            `$picklists[`$parentValue]['byLabel'].Keys
+        if (`$fakeBound.$PickListParentValueField) {    
+            Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -ParentValue `$fakeBound.$PickListParentValueField -Label -Quoted
         }
         else {
-            Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label
+            Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label -Quoted
         }
     })]`n
 "@
             }
             else { 
                 # Add dynamic intellisense help 
-                $text += "    [ArgumentCompleter({`n      param(`$Cmd, `$Param, `$Word, `$Ast, `$FakeBound)`n      Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label`n    })]`n"
+                $text += "    [ArgumentCompleter({`n      param(`$Cmd, `$Param, `$Word, `$Ast, `$FakeBound)`n      Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label -Quoted`n    })]`n"
             }
             # Validate that label exists
             $text += "    [ValidateScript({`n      `$set = (Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label) + (Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Value)`n      if (`$_ -in `$set) { return `$true}`n      else {`n        Write-Warning ('{0} is not one of {1}' -f `$_, (`$set -join ', '))`n        Return `$false`n      }`n    })]`n"

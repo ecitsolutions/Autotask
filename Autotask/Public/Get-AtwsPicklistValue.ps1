@@ -49,6 +49,12 @@ Function Get-AtwsPicklistValue {
             ParameterSetName = 'as_Labels'
         )]
         [switch]
+        $Quoted, 
+
+        [Parameter(
+            ParameterSetName = 'as_Labels'
+        )]
+        [switch]
         $Hashtable, 
 
         [Parameter(
@@ -142,6 +148,9 @@ Function Get-AtwsPicklistValue {
             Connect-AtwsWebAPI
         }
 
+        # Set up regex and replacement variables for curly single quote
+        $pattern = [Char]8217
+        $replacement = [Char]8217, [Char]8217 -join ''
 
         # Prepare an empty container for a result
         $picklistValues = @()
@@ -185,6 +194,11 @@ Function Get-AtwsPicklistValue {
                         if ($Hashtable.IsPresent) { 
                             $picklistValues.byLabel
                         }
+                        elseIf ($Quoted.IsPresent) { 
+                            foreach ($item in ($picklistValues.byLabel.keys | Sort-Object)) {
+                                "'{0}'" -F $($item -replace "'", "''" -replace $pattern, $replacement)
+                            }
+                        }
                         else { 
                             $picklistValues.byLabel.keys | Sort-Object
                         }
@@ -205,6 +219,11 @@ Function Get-AtwsPicklistValue {
                         if ($Hashtable.IsPresent) { 
                             $picklistValues[$ParentValue].byLabel
                         }
+                        elseIf ($Quoted.IsPresent) { 
+                            foreach ($item in ($picklistValues[$ParentValue].byLabel.keys | Sort-Object)) {
+                                "'{0}'" -F $($item -replace "'", "''" -replace $pattern, $replacement)
+                            }
+                        }
                         else { 
                             $picklistValues[$ParentValue].byLabel.keys | Sort-Object
                         }
@@ -224,6 +243,11 @@ Function Get-AtwsPicklistValue {
                     'as_Labels' {
                         if ($Hashtable.IsPresent) { 
                             $picklistValues.Values.byLabel
+                        }
+                        elseIf ($Quoted.IsPresent) { 
+                            foreach ($item in ($picklistValues.Values.byLabel.keys | Sort-Object)) {
+                                 "'{0}'" -F $($item -replace "'", "''" -replace $pattern, $replacement)
+                            }
                         }
                         else { 
                             $picklistValues.Values.byLabel.keys | Sort-Object
