@@ -639,6 +639,7 @@ Describe "GitHub issues regression tests" {
     
 }
 
+#Region ########### TESTS THAT FAILS ################
 Describe "New- Entities tests." {
     BeforeAll {
         # Initiates collection of typed installedproducts for later use.
@@ -706,5 +707,4 @@ Describe "New- Entities tests." {
     }
 }
 
-#Region ########### TESTS THAT FAILS ################
 #EndRegion
