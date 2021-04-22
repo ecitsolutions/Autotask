@@ -73,7 +73,9 @@ Function Set-AtwsData {
         }
 
         # Convert from local time and label settings
-        $Entity = $Entity | ConvertFrom-LocalObject
+        # PSObjects are always passed by reference, no need to copy arrays in any way
+        $null = ConvertFrom-LocalObject -InputObject $Entity
+        #$Entity = $Entity | ConvertFrom-LocalObject
 
         # update() function can take up to 200 objects at a time
         for ($i = 0; $i -lt $Entity.count; $i += 200) {
@@ -185,8 +187,13 @@ Function Set-AtwsData {
         }
     }
     end {
-        if ($endResult.count -gt 0) {
 
+        # Clean up
+        # Reverse changes to inputobject
+        $null = ConvertTo-LocalObject -InputObject $Entity
+
+
+        if ($endResult.count -gt 0) {
             Write-Debug ('{0}: End of function, returning {1} updated {2}(s)' -F $MyInvocation.MyCommand.Name, $result.count, $result[0].GetType().Name)
             Return $endResult
         }
