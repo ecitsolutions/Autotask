@@ -671,13 +671,37 @@ Describe "New- Entities tests." {
             $NewTypedVariant.add($Item)
         }
 
+        $Contacts = Get-AtwsContact -FirstName 'Bjørn' -Like FirstName
+        $ContactGroup = New-AtwsContactGroup -Active $true -Name ("All Bears in the hood {0}" -f (New-Guid).Guid.Substring(0,7))
+
+        $ContactSelection = [System.Collections.Generic.List[Autotask.ContactGroupContact]]::new()
+        $Contacts.foreach{
+            $tmp = [Autotask.ContactGroupContact]@{
+                ContactGroupID = $ContactGroup.id;
+                ContactID = $_.id;
+            }
+            $ContactSelection.add($tmp)
+        }
     }
+
+    AfterAll{
+        Set-AtwsContactGroup -InputObject $ContactGroup -Active $false
+        Remove-AtwsContactGroup -InputObject $ContactGroup
+    }
+
     Context "New-AtwsInstalledProduct" {
         It "Should not throw when creating one or more new installedProducts." {
             { New-AtwsInstalledProduct -InputObject $NewItems } | Should -Not -Throw
         }
         It "Should not throw if the colletion is typed either." {
             { New-AtwsInstalledProduct -InputObject $NewTypedVariant } | Should -Not -Throw
+        }
+    }
+
+    Context "ContactGroup tests. New group, add/create members, delete group again." {
+        
+        It "Should not throw when creating/adding contacts to a group" {
+            { New-AtwsContactGroupContact -InputObject $ContactSelection -Verbose } | Should -Not -Throw
         }
     }
 }
