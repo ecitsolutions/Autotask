@@ -237,7 +237,7 @@ Describe "Auto connect works on most get commands." {
         $loadedModule = Get-Module $moduleName
         $GetCmdLets = 'Get-AtwsAccount', 'Get-AtwsAccountLocation', 'Get-AtwsAccountNote', 'Get-AtwsAccountPhysicalLocation', 'Get-AtwsAccountTeam', 'Get-AtwsAccountToDo', 'Get-AtwsActionType', 'Get-AtwsAdditionalInvoiceFieldValue', 'Get-AtwsAllocationCode', 'Get-AtwsAppointment', 'Get-AtwsAttachmentInfo', 'Get-AtwsBillingItem', 'Get-AtwsBillingItemApprovalLevel', 'Get-AtwsBusinessDivision', 'Get-AtwsBusinessDivisionSubdivision', 'Get-AtwsBusinessDivisionSubdivisionResource', 'Get-AtwsBusinessLocation', 'Get-AtwsBusinessSubdivision', 'Get-AtwsChangeOrderCost'
     }
-    Context "Get-Commands should be able to autoconnect without cmdlet throwing" -Foreach $GetCmdLets {
+    Context "Get-Commands should be able to autoconnect without cmdlet throwing" -ForEach $GetCmdLets {
         It "(<_>) does not throw when calling command with id 0" {
             $loadedModule.ExportedCommands.Keys | Should -Contain $_
             { &$_ -id 0 } | Should -Not -Throw
@@ -288,7 +288,7 @@ Describe "UserDefinedField tests" {
             $NewValues | Should -BeExactly $RunGUID
         }
 
-        It "Reverts back to previous values" -ForEach ($Devices | Group-Object '#Sist logget inn') {
+        It "Reverts back to previous values" -Foreach ($Devices | Group-Object '#Sist logget inn') {
             { Set-AtwsInstalledProduct -InputObject $_.Group -UserDefinedFields @{Name = 'Sist logget inn' ; Value = $_.Name } } | Should -Not -Throw
         }
     }
@@ -381,6 +381,64 @@ Describe "Threshold and usage info" {
             { Get-AtwsThresholdAndUsageInfo } | Should -Not -Throw
         }
     }
+}
+
+Describe "DateTime tests" {
+
+    Context 'RoundTrip - A date returned by the API is encoded correctly when used in a query' {
+
+        It 'should be an account' {
+            $account0 = Get-AtwsAccount -id 0
+            $account = Get-AtwsAccount -id 0 -CreateDate $account0.CreateDate 
+            
+            $account | Should -BeOfType Autotask.Account
+        }
+
+    } # context 'Module Setup'
+
+    Context 'DateTime' {
+        BeforeAll { 
+            # Make sure dateconversion is on
+            Set-AtwsModuleConfiguration -DateConversion Local
+
+            $resource = Get-AtwsResource -UserType 'Full Access (system)' | Select-Object -First 1 # There should be at least 1
+            $startDate = Get-Date 2030.01.01 -Hour 8
+            $endDate = Get-Date 2030.12.31 -Hour 16
+            $newEndDate = Get-Date 2030.12.01 -Hour 16
+            $todoParams = @{
+                AccountId            = 0 # Use system account
+                AssignedToResourceId = $resource.id
+                StartDateTime        = $startDate
+                EndDateTime          = $endDate
+                ActionType           = 'Quick Note'
+            }
+        
+            $todo = New-AtwsAccountToDo @todoParams
+        }
+
+        AfterAll {
+            # Clean up
+            $todo | Remove-AtwsAccountToDo
+        } 
+
+        It 'should have the same dates in the return object as specified' {
+            $todo.StartDateTime | Should -Be $startDate
+            $todo.EndDateTime | Should -Be $endDate
+        }
+        
+        It 'should only change a modified date' {
+            $newTodo = Set-AtwsAccountToDo -InputObject $todo -EndDateTime $newEndDate -PassThru
+            $newTodo.StartDateTime | Should -Be $startDate
+            $newTodo.EndDateTime | Should -Be $newEndDate
+        }
+        
+        It 'should get an object filtered with the same date as original was created' {
+            $getTodo = Get-AtwsAccountToDo -StartDateTime $startDate -id $todo.id
+            $getTodo | Should -BeOfType Autotask.AccountTodo
+        } 
+        
+    }
+    
 }
 
 Describe "GitHub issues regression tests" {
