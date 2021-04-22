@@ -27,7 +27,7 @@
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)
 
-            $sum = (Measure-Object -InputObject $InputObject -Property Id -Sum).Sum
+            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {

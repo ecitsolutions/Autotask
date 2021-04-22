@@ -340,37 +340,13 @@ Set-AtwsExpenseItem
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)
 
-            $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
+            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
 
-            $CopyNo = 1
-
-            foreach ($object in $InputObject) {
-                # Create a new object and copy properties
-                $newObject = New-Object -TypeName Autotask.$entityName
-
-                # Copy every non readonly property
-                $fieldNames = [collections.generic.list[string]]::new()
-                $WriteableFields = $entityInfo.WriteableFields
-                $RequiredFields = $entityInfo.RequiredFields
-
-                if ($WriteableFields.count -gt 1) { $fieldNames.AddRange($WriteableFields) } else { $fieldNames.Add($WriteableFields) }
-                if ($RequiredFields.count -gt 1) { $fieldNames.AddRange($RequiredFields) } else { $fieldNames.Add($RequiredFields) }
-
-                if ($PSBoundParameters.ContainsKey('UserDefinedFields')) {
-                    $fieldNames += 'UserDefinedFields'
+            # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
+            if ($sum -gt 0) {
+                foreach ($object in $InputObject) {
+                    $object.Id = $null
                 }
-
-                foreach ($field in $fieldNames) {
-                    $newObject.$field = $object.$field
-                }
-
-                if ($newObject -is [Autotask.Ticket] -and $object.id -gt 0) {
-                    Write-Verbose -Message ('{0}: Copy Object mode: Object is a Ticket. Title must be modified to avoid duplicate detection.' -F $MyInvocation.MyCommand.Name)
-                    $title = '{0} (Copy {1})' -F $newObject.Title, $CopyNo
-                    $copyNo++
-                    $newObject.Title = $title
-                }
-                $processObject.Add($newObject)
             }
         }
         else {
