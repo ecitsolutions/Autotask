@@ -638,7 +638,49 @@ Describe "GitHub issues regression tests" {
     }
     
 }
+
 #Region ########### TESTS THAT FAILS ################
-# There are no failing tests atm.
+Describe "New- Entities tests." {
+    BeforeAll {
+        # Initiates collection of typed installedproducts for later use.
+        $NewItems = @()
+        0..1 | ForEach-Object {
+            $Item = [Autotask.InstalledProduct]@{
+                AccountID      = 0;
+                Active         = $true
+                ProductID      = 29682875
+                ReferenceTitle = $_
+                NumberOfUsers  = 1337
+            }
+
+            $Item.UserDefinedFields = @{ Name  = 'Maskin navn'; Value = $_ }
+
+            $NewItems += $Item
+        }
+
+        $NewTypedVariant = [System.Collections.Generic.List[Autotask.InstalledProduct]]::new()
+        0..1 | ForEach-Object {
+            $Item = [Autotask.InstalledProduct]@{
+                AccountID      = 0;
+                Active         = $true
+                ProductID      = 29682875
+                ReferenceTitle = $_
+                NumberOfUsers  = 1337
+                UserDefinedFields = [Autotask.UserDefinedField]@{ Name = 'Maskin navn'; Value = $_ }, [Autotask.UserDefinedField]@{ Name = 'Sist logget inn'; Value = (Get-Date -Format 'dd-MM-yyyy') }
+            }
+
+            $NewItems += $Item
+        }
+
+    }
+    Context "New-AtwsInstalledProduct" {
+        It "Should not throw when creating one or more new installedProducts." {
+            { New-AtwsInstalledProduct -InputObject $NewItems -Verbose } | Should -Not -Throw
+        }
+        It "Should not throw if the colletion is typed either." {
+            { New-AtwsInstalledProduct -InputObject $NewTypedVariant -Verbose } | Should -Not -Throw
+        }
+    }
+}
+
 #EndRegion
-#TODO: InModuleScope tests for the module?
