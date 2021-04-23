@@ -50,6 +50,7 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ValidateNotNullOrEmpty()] 
         [pscredential]
+        # An API user to Autotask. Optional.
         $Credential,
 
         [Parameter(
@@ -58,6 +59,7 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ValidateNotNullOrEmpty()] 
         [string]
+        # A new username to use for the connection. Optional.
         $Username,
     
         [Parameter(
@@ -66,6 +68,7 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ValidateNotNullOrEmpty()]
         [securestring]
+        # A new password for this connection. Must be encrypted as SecureString. Optional.
         $SecurePassword,
     
         [Parameter(
@@ -77,6 +80,7 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ValidateNotNullOrEmpty()]
         [securestring]
+        # The API identifier from your resource in Autotask. Must be encrypted as SecureString. Optional.
         $SecureTrackingIdentifier,
     
         [Parameter(
@@ -87,6 +91,7 @@ Function Set-AtwsModuleConfiguration {
             ParameterSetName = 'Credentials'
         )]
         [switch]
+        # Please ignore. It is only here for backwards compatibility. Use -PicklistConversion
         $ConvertPicklistIdToLabel,
     
         [Parameter(
@@ -106,6 +111,7 @@ Function Set-AtwsModuleConfiguration {
                 }
             })]
         [string]
+        # Please ignore. It is only here for backwards functionality. Will be removed soon.
         $Prefix,
 
         [Parameter(
@@ -116,6 +122,7 @@ Function Set-AtwsModuleConfiguration {
             ParameterSetName = 'Credentials'
         )]
         [switch]
+        # Please ignore. It is only here for backwards compatibility. Will be removed soon.
         $RefreshCache,
 
         [Parameter(
@@ -127,6 +134,7 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ValidateSet('Stop', 'Inquire', 'Continue', 'SilentlyContinue')]
         [string]
+        # You may save a default debug preference so you may have a separate profile for debugging.
         $DebugPref,
 
         [Parameter(
@@ -138,6 +146,7 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ValidateSet('Stop', 'Inquire', 'Continue', 'SilentlyContinue')]
         [string]
+        # You may save a default verbose preference so you may have a separate profile for debugging.
         $VerbosePref,
 
         [Parameter(
@@ -149,6 +158,9 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ValidateRange(0, 100)]
         [int]
+        # For bulk operations. When you post 100+ objects with changes to the API it is annoying if the operation
+        # fails on all of them just because 1 of them could not be updated. How many such errors can you live with
+        # before the whole operation should fail? Default = 10. Optional.
         $ErrorLimit,
 
         [Parameter(
@@ -166,6 +178,7 @@ Function Set-AtwsModuleConfiguration {
                 Test-Path $_
             })]
         [IO.FileInfo]
+        # Full path to an alternate configuration file you want the profile to be saved to. Optional.
         $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml),
 
         # Use this parameter to save to another configuration name.
@@ -191,6 +204,7 @@ Function Set-AtwsModuleConfiguration {
             })]
         [ValidateNotNullOrEmpty()] 
         [String]
+        # The name you want to use on the connection profile. Default name is 'Default'. 
         $Name = 'Default',
 
         [Parameter(
@@ -202,6 +216,8 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ValidateSet('Disabled', 'Inline', 'LabelField')]
         [string]
+        # How do you want picklist items to be expanded: Not at all (Disabled), have the text label
+        # replace the index value (Inline) or a separate property with "Label" as suffix (LabelField)
         $PickListExpansion = 'LabelField',
 
         [Parameter(
@@ -213,6 +229,8 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ValidateSet('Disabled', 'Inline', 'Hashtable')]
         [string]
+        # How do you want UDFs to be expanded: Not at all (Disabled), as new properties with
+        # a hashtag as prefix (Inline) or as a hashtable on a single property .UDF ()
         $UdfExpansion = 'Inline',
 
         [Parameter(
@@ -237,9 +255,19 @@ Function Set-AtwsModuleConfiguration {
                 return $true
             })]
         [string]
+        # The Autotask API always uses Eastern Standard Time for all DateTime objects. This option
+        # controls which timezone DateTime objects will be converted to when they are retrieved. The
+        # default setting is 'Local', which imply that all DateTime objects will be converted to 
+        # the current, local timezone setting on the system where the code runs. Other options are
+        # 'Disabled' - do not perform any timezone conversion at all; and 'specific/timezone', i.e.
+        # any timezone your local system supports. Useful if your companys locations span multiple
+        # timezones.
         $DateConversion = 'Local', 
 
         [switch]
+        # Return the changed configuration as a new configuration object. Useful if you want to change
+        # an option (or more) in the current running configuration and save it to a new profile name
+        # in one go.
         $PassThru
     )
     

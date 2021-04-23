@@ -44,6 +44,7 @@ Function Save-AtwsModuleConfiguration {
                 Test-AtwsModuleConfiguration -Configuration $_
             })]
         [PSObject]
+        # A configuration object created with New-AtwsModuleConfiguration. Defaults to currently active configuration settings, if any.
         $Configuration = $Script:Atws.Configuration,
     
         [ValidateNotNullOrEmpty()]
@@ -61,6 +62,8 @@ Function Save-AtwsModuleConfiguration {
                 }
             })]
         [String]
+        # A name for your configuration profile. You can specify this name to Connect-AtwsWebApi and swich to
+        # another configuration set at runtime, any time you like.
         $Name = 'Default',
         
         [ArgumentCompleter( {

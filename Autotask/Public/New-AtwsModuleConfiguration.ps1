@@ -45,12 +45,12 @@ Function New-AtwsModuleConfiguration {
         $Credential = $(Get-Credential -Message 'Your Autotask API user'),
     
         [securestring]
-        # The API identifier from your resource in Autotask. If you do not supply a value you will be prompted.
+        # The API identifier from your resource in Autotask. Must be encrypted as SecureString. If you do not supply a value you will be prompted for a cleartext password.
         $SecureTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier'),
     
         [Alias('Picklist', 'UsePickListLabel')]
         [switch]
-        # Please ignore. It is only here for backwards compatibility.
+        # Please ignore. It is only here for backwards compatibility. Use -PicklistConversion.
         $ConvertPicklistIdToLabel = $false,
     
         [ValidateScript( {
@@ -63,18 +63,19 @@ Function New-AtwsModuleConfiguration {
                 }
             })]
         [string]
+        # Please ignore. It is only here for backwards compatibility. Will be removed soon.
         $Prefix,
 
         [switch]
-        # Please ignore. It is only here for backwards compatibility.
+        # Please ignore. It is only here for backwards compatibility. Will be removed soon.
         $RefreshCache = $false,
 
         [string]
-        # You may save a default debug preference so you may have a separate profile for debugging
+        # You may save a default debug preference so you may have a separate profile for debugging.
         $DebugPref = $Global:DebugPreference,
 
         [string]
-        # You may save a default verbose preference so you may have a separate profile for debugging
+        # You may save a default verbose preference so you may have a separate profile for debugging.
         $VerbosePref = $Global:VerbosePreference,
 
         [ValidateRange(0, 100)]
@@ -99,7 +100,7 @@ Function New-AtwsModuleConfiguration {
             })]
         [alias('ProfileName', 'AtwsModuleConfigurationName')]
         [String]
-        # The name you want to use on the connection profile
+        # The name you want to use on the connection profile. Default name is 'Default'. 
         $Name,
         
         [ArgumentCompleter( {
@@ -107,7 +108,7 @@ Function New-AtwsModuleConfiguration {
                 $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [IO.FileInfo]
-        # Full path to an alternate configuration file you want the profile to be saved to
+        # Full path to an alternate configuration file you want the profile to be saved to. Optional.
         $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
         [ValidateSet('Disabled', 'Inline', 'LabelField')]
@@ -119,7 +120,7 @@ Function New-AtwsModuleConfiguration {
         [ValidateSet('Disabled', 'Inline', 'Hashtable')]
         [string]
         # How do you want UDFs to be expanded: Not at all (Disabled), as new properties with
-        # a hashtag as prefix (Inline) or as a hashtable on a single property .UDF (Hashtable)
+        # a hashtag as prefix (Inline) or as a hashtable on a single property .UDF ()
         $UdfExpansion = 'Inline',
 
         [ArgumentCompleter( {
@@ -137,6 +138,13 @@ Function New-AtwsModuleConfiguration {
                 return $true
             })]
         [string]
+        # The Autotask API always uses Eastern Standard Time for all DateTime objects. This option
+        # controls which timezone DateTime objects will be converted to when they are retrieved. The
+        # default setting is 'Local', which imply that all DateTime objects will be converted to 
+        # the current, local timezone setting on the system where the code runs. Other options are
+        # 'Disabled' - do not perform any timezone conversion at all; and 'specific/timezone', i.e.
+        # any timezone your local system supports. Useful if your companys locations span multiple
+        # timezones.
         $DateConversion = 'Local'
     )
     
