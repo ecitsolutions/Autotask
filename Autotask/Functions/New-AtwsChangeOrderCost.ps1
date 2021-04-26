@@ -327,12 +327,15 @@ Set-AtwsChangeOrderCost
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)
 
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            #Measure-Object should work here, but returns 0 as Count/Sum. 
+            #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
