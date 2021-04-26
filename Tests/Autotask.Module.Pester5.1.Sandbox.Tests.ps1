@@ -704,7 +704,7 @@ Describe "New- Entities tests." {
     Context "ContactGroup tests. New group, add/create members, delete group again." {
         
         It "Should not throw when creating/adding contacts to a group" {
-            { New-AtwsContactGroupContact -InputObject $ContactSelection -Verbose } | Should -Not -Throw
+            { New-AtwsContactGroupContact -InputObject $ContactSelection } | Should -Not -Throw
         }
     }
 }
