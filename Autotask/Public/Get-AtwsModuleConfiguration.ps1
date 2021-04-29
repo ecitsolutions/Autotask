@@ -33,6 +33,7 @@ Function Get-AtwsModuleConfiguration {
     )]
     Param
     (
+        [Parameter(Position = 1)]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
                 $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
@@ -44,6 +45,7 @@ Function Get-AtwsModuleConfiguration {
         [IO.FileInfo]
         $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
+        [Parameter(Position = 0)]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
                 if ($FakeBound.Path) {
@@ -99,9 +101,7 @@ Function Get-AtwsModuleConfiguration {
         }
 
         if ($all.IsPresent) {
-            foreach ($item in ($settings.keys | Sort-Object)) {
-                "'{0}'" -F $($item -replace "'", "''")
-            }
+            $configuration = $settings
         }
         elseIf ($settings.ContainsKey($Name)) {
             $configuration = $settings[$Name]
