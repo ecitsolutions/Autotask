@@ -87,15 +87,17 @@ Function New-AtwsModuleConfiguration {
     
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                # if (Test-Path $FakeBound.AtwsModuleConfigurationPath) {
-                #     [IO.FileInfo]$filepath = $FakeBound.AtwsModuleConfigurationPath
-                # }
-                # else {
+                if ($FakeBound.Path) {
+                    [IO.FileInfo]$filepath = $FakeBound.Path
+                }
+                else {
                     [IO.FileInfo]$filepath = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
-                # }
+                }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {
-                    $tempsettings.keys
+                    foreach ($item in ($tempsettings.keys | Sort-Object)) {
+                        "'{0}'" -F $($item -replace "'", "''")
+                    }
                 }
             })]
         [alias('ProfileName', 'AtwsModuleConfigurationName')]
@@ -108,6 +110,7 @@ Function New-AtwsModuleConfiguration {
                 $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [IO.FileInfo]
+        [alias('ProfilePath')]
         # Full path to an alternate configuration file you want the profile to be saved to. Optional.
         $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 

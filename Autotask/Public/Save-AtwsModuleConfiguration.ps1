@@ -50,18 +50,21 @@ Function Save-AtwsModuleConfiguration {
         [ValidateNotNullOrEmpty()]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                if (Test-Path $FakeBound.AtwsModuleConfigurationPath) {
-                    [IO.FileInfo]$filepath = $FakeBound.AtwsModuleConfigurationPath
+                if ($FakeBound.Path) {
+                    [IO.FileInfo]$filepath = $FakeBound.Path
                 }
                 else {
                     [IO.FileInfo]$filepath = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {
-                    $tempsettings.keys
+                    foreach ($item in ($tempsettings.keys | Sort-Object)) {
+                        "'{0}'" -F $($item -replace "'", "''")
+                    }
                 }
             })]
         [String]
+        [alias('ProfileName')]
         # A name for your configuration profile. You can specify this name to Connect-AtwsWebApi and swich to
         # another configuration set at runtime, any time you like.
         $Name = 'Default',
@@ -71,6 +74,7 @@ Function Save-AtwsModuleConfiguration {
                 $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [IO.FileInfo]
+        [alias('ProfilePath')]
         $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
     )
     

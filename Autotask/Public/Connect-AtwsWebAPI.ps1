@@ -128,7 +128,7 @@ Function Connect-AtwsWebAPI {
         )]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                if (Test-Path $FakeBound.ProfilePath) {
+                if ($FakeBound.ProfilePath) {
                     [IO.FileInfo]$filepath = $FakeBound.ProfilePath
                 }
                 else {
@@ -136,7 +136,9 @@ Function Connect-AtwsWebAPI {
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {
-                    $tempsettings.keys
+                    foreach ($item in ($tempsettings.keys | Sort-Object)) {
+                        "'{0}'" -F $($item -replace "'", "''")
+                    }
                 }
             })]
         [alias('Name')]

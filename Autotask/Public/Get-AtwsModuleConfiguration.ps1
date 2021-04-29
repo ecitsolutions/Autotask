@@ -40,25 +40,32 @@ Function Get-AtwsModuleConfiguration {
         [ValidateScript( { 
                 Test-Path $_
             })]
+        [Alias('ProfilePath')]
         [IO.FileInfo]
         $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                # if (Test-Path $FakeBound.Path) {
-                #     [IO.FileInfo]$filepath = $FakeBound.Path
-                # }
-                # else {
+                if ($FakeBound.Path) {
+                    [IO.FileInfo]$filepath = $FakeBound.Path
+                }
+                else {
                     [IO.FileInfo]$filepath = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
-                # }
+                }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {
-                    $tempsettings.keys
+                    foreach ($item in ($tempsettings.keys | Sort-Object)) {
+                        "'{0}'" -F $($item -replace "'", "''")
+                    }
                 }
             })]
         [ValidateNotNullOrEmpty()] 
+        [Alias('ProfileName')]
         [String]
-        $Name = 'Default'
+        $Name = 'Default',
+
+        [switch]
+        $All
     )
     
     begin { 
@@ -91,7 +98,12 @@ Function Get-AtwsModuleConfiguration {
             $settings = @{}
         }
 
-        if ($settings.ContainsKey($Name)) {
+        if ($all.IsPresent) {
+            foreach ($item in ($settings.keys | Sort-Object)) {
+                "'{0}'" -F $($item -replace "'", "''")
+            }
+        }
+        elseIf ($settings.ContainsKey($Name)) {
             $configuration = $settings[$Name]
             if (-not(Test-AtwsModuleConfiguration -Configuration $configuration)) {
                 Write-Verbose ("{0}: Configuration named '{1}' was successfully read from disk, but the configuration settings did not validate OK. Trying to fix it." -f $MyInvocation.MyCommand.Name, $Name)

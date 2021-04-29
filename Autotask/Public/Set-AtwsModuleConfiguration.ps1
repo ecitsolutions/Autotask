@@ -178,6 +178,7 @@ Function Set-AtwsModuleConfiguration {
                 Test-Path $_
             })]
         [IO.FileInfo]
+        [alias('ProfilePath')]
         # Full path to an alternate configuration file you want the profile to be saved to. Optional.
         $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml),
 
@@ -191,7 +192,7 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                if (Test-Path $FakeBound.Path) {
+                if ($FakeBound.Path) {
                     [IO.FileInfo]$filepath = $FakeBound.Path
                 }
                 else {
@@ -199,11 +200,14 @@ Function Set-AtwsModuleConfiguration {
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {
-                    $tempsettings.keys
+                    foreach ($item in ($tempsettings.keys | Sort-Object)) {
+                        "'{0}'" -F $($item -replace "'", "''")
+                    }
                 }
             })]
         [ValidateNotNullOrEmpty()] 
         [String]
+        [alias('ProfileName')]
         # The name you want to use on the connection profile. Default name is 'Default'. 
         $Name = 'Default',
 

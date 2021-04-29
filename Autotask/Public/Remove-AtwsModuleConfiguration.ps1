@@ -49,7 +49,7 @@ Function Remove-AtwsModuleConfiguration {
 
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                if (Test-Path $FakeBound.Path) {
+                if ($FakeBound.Path) {
                     [IO.FileInfo]$filepath = $FakeBound.Path
                 }
                 else {
@@ -57,7 +57,9 @@ Function Remove-AtwsModuleConfiguration {
                 }
                 $tempsettings = Import-Clixml -Path $filepath.Fullname
                 if ($tempsettings -is [hashtable]) {
-                    $tempsettings.keys
+                    foreach ($item in ($tempsettings.keys | Sort-Object)) {
+                        "'{0}'" -F $($item -replace "'", "''")
+                    }
                 }
             })]
         [ValidateNotNullOrEmpty()] 
