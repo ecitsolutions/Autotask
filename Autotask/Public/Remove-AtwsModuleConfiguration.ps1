@@ -37,6 +37,7 @@ Function Remove-AtwsModuleConfiguration {
     [Alias('Remove-AtwsProfile')]
     Param
     (
+        [Parameter(Position = 1)]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
                 $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
@@ -47,6 +48,7 @@ Function Remove-AtwsModuleConfiguration {
         [IO.FileInfo]
         $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
+        [Parameter(Position = 0)]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
                 if ($FakeBound.Path) {
