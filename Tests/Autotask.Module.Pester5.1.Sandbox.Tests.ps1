@@ -342,7 +342,7 @@ Describe "Static Function tests" {
     Context "New-AtwsAttachment" {
         BeforeAll {
             $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
-            $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.exlx")
+            $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.xlsx")
         }
         AfterAll {
             Remove-Item -Path $p -Force
@@ -354,7 +354,7 @@ Describe "Static Function tests" {
         }
         It "Creating new does not throw" {
             $Data = @{Name = 'hello'; Value = 'world' }
-            $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.exlx")
+            $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.xlsx")
             $Data | Export-Excel $p
             $Return = New-AtwsAttachment -TicketID $Ticket.id -Path $p
             $Return | Should -Not -BeNullOrEmpty
