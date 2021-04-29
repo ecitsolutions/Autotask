@@ -123,8 +123,16 @@ Function Get-AtwsData {
 
             # Add all returned objects to the Result - if any
             if ($lastquery.EntityResults.Count -gt 0) {
-                [collections.generic.list[psobject]]$Data = ConvertTo-LocalObject -InputObject $lastquery.EntityResults
-                $result.AddRange($Data)
+                # Powershell 5.1 adaption
+                # On 5.1 the cast ends up as a nested list with 1 item - an array with a single member...
+                if ($lastquery.EntityResults.Count -gt 1) {
+                    # Use addrange for an array of objects
+                    $result.AddRange([collections.generic.list[psobject]]$lastquery.EntityResults)
+                }
+                else {
+                  # Add a single item
+                  $result.Add($lastquery.EntityResults[0])
+                }
             }
 
             # Results are sorted by object Id. The Id of the last object is the highest object id in the result
@@ -161,6 +169,10 @@ Function Get-AtwsData {
                 }
                 $Filter = 'id -eq {0}' -F $($resultValues -join ' -or id -eq ')
                 $result = Get-Atwsdata -Entity $field.ReferenceEntityType -Filter $Filter
+            }
+            else {
+              # Expand UDFs and/or picklists and/or convert dates according to user settings
+              $null = ConvertTo-LocalObject -InputObject $result
             }
 
             Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
