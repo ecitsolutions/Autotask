@@ -37,7 +37,8 @@ Function Save-AtwsModuleConfiguration {
     Param
     (
         [Parameter(
-            ValueFromPipeline = $true
+            ValueFromPipeline = $true,
+            Position = 2
         )]
         [ValidateScript( {
                 # Validate the configuration object before accepting it
@@ -45,8 +46,16 @@ Function Save-AtwsModuleConfiguration {
             })]
         [PSObject]
         # A configuration object created with New-AtwsModuleConfiguration. Defaults to currently active configuration settings, if any.
-        $Configuration = $Script:Atws.Configuration,
+        $Configuration = $(
+            if ($script.Atws.integrationsValue) {
+                $Script:Atws.Configuration
+            }
+            else {
+                Get-AtwsModuleConfiguration
+            }
+        ),
     
+        [Parameter(Position = 0)]
         [ValidateNotNullOrEmpty()]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
@@ -69,6 +78,7 @@ Function Save-AtwsModuleConfiguration {
         # another configuration set at runtime, any time you like.
         $Name = 'Default',
         
+        [Parameter(Position = 1)]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
                 $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
