@@ -10,8 +10,8 @@
 * [How to connect][8]
 * [How to *Get* data from the API][4]
 * [How to create *New* entities through the API][5]
-* [How to make changes to entities][6]
-* [How to delete entities][7]
+* [How to *Update* (make changes) to entities][6]
+* [How to *Remove* entities][7]
 * [Best Practices][9]
 * [Null values][10]
 * [User Defined Fields][11]
@@ -49,9 +49,11 @@ Get-Help New-AtwsModuleConfiguration
 
 ## Release notes
 
-### Version 2.0.0-beta6 - Release candidate 2 (not released yet)
+### Version 2.0.0-beta6 - Release candidate 2
 
 * UPDATE: Running Connect-AtwsWebApi without parameters or a saved profile will prompt for credentials and offer to save them
+* UPDATE: Better documentation for configuration profiles (`Get-Help (New|Set|Save|Get)-AtwsModuleConfiguration`)
+* UPDATE: Automatic quoting for PickLists from ArgumentCompleter sections
 * BUGFIX: A few more bugs was found and fixed
   
 ### Version 2.0.0-beta5 - Release candidate 1
