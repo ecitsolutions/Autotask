@@ -7,29 +7,8 @@ BeforeAll {
     $moduleName = 'Autotask'
     $RootPath = $(Split-Path -Parent -Path (Split-Path -Parent -Path $PSCommandPath))
     $modulePath = '{0}\{1}' -F $RootPath, $ModuleName
-    $SandBoxDomain = '@ECITSOLUTIONSSB12032021.NO'
     $RunGUID = New-Guid
 
-    #Region Vars
-    if (-not $Global:Credential -or -not $Global:TI) {
-        Write-Warning "Running pester tests based on Pester config."
-        $P = Join-Path (Split-Path -Path $profile -Parent) -ChildPath 'AtwsConfig.clixml'
-        $Settings = Import-Clixml -Path $P -ErrorAction Stop
-        try {
-            $Global:Credential = [pscredential]::new($Settings.Default.Username, $Settings.Default.SecurePassword)
-            $SBUname = $Settings.Default.Username.Split('@')[0] + $SandBoxDomain
-            $Global:SandboxCredential = [pscredential]::new($SBUname, $Settings.Default.SecurePassword)
-            $Global:SecureTI = $Settings.Default.SecureTrackingIdentifier
-    
-            $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Global:SecureTI)
-            $Global:TI = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($BSTR)
-        }
-        catch {
-            $message = "Cannot read default moduleconfig file for pester tests. set this up before running pester test."
-            throw (New-Object System.Configuration.Provider.ProviderException $message)
-        }
-    }
- 
     if ($profile) {
         # Use $profile if it exsist
         $AtwsModuleConfigurationPath = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml)
@@ -47,18 +26,35 @@ BeforeAll {
         $AtwsModuleConfigurationPath = $(Join-Path -Path $env:PWD -ChildPath AtwsConfig.clixml)
     }
 
+    # Load module 
+    Import-Module $modulePath -Force -ErrorAction Stop
+    $loadedModule = Get-Module $moduleName
+
+    $PesterModuleConfig = Get-AtwsModuleConfiguration -Name Sandbox
+    Connect-AtwsWebAPI -ProfileName Sandbox
+
+    #Region Vars
+    if (-not $TI -or -not $SandboxCredential) {
+        Write-Warning "Running pester tests based on Pester config."
+        try {
+            $SandboxCredential = [pscredential]::new($PesterModuleConfig.Username, $PesterModuleConfig.SecurePassword)
+            $SecureTI = $PesterModuleConfig.SecureTrackingIdentifier
+    
+            $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecureTI)
+            $TI = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($BSTR)
+        }
+        catch {
+            $message = "Cannot read default Sandbox config from configfile for pester tests. set this up before running pester test."
+            throw (New-Object System.Configuration.Provider.ProviderException $message)
+        }
+    }
+
     #EndRegion
 
     $PesterConfigPath = Join-Path (Split-Path -Path $profile -Parent) -ChildPath 'AtwsPesterConfig.clixml'
     if (Test-Path $PesterConfigPath) {
         Remove-Item $PesterConfigPath
     }
-
-    Import-Module $modulePath -Force -ErrorAction Stop
-    $loadedModule = Get-Module $moduleName
-    
-    $PesterModuleConfig = Get-AtwsModuleConfiguration -Name Sandbox
-    Connect-AtwsWebAPI -ProfileName Sandbox
 
     #Modifies default config to be sandbox
     $DefaultModuleConfig = Get-AtwsModuleConfiguration -Name Default
@@ -107,10 +103,10 @@ Describe "Autotask immediate import tests" {
 Describe "Autotask module connects ok when passing credential parameters (legacy connection)" {
     Context "Legacy connection works" {
         It "Should not throw" {
-            { Connect-AtwsWebAPI -Credential $Global:SandboxCredential -ApiTrackingIdentifier $Global:TI } | Should -Not -Throw
+            { Connect-AtwsWebAPI -Credential $SandboxCredential -ApiTrackingIdentifier $TI } | Should -Not -Throw
         }
         It "Does return useful value and type" {
-            Connect-AtwsWebAPI -Credential $Global:SandboxCredential -ApiTrackingIdentifier $Global:TI
+            Connect-AtwsWebAPI -Credential $SandboxCredential -ApiTrackingIdentifier $TI
             $Req = Get-AtwsAccount -id 0
             $Req | Should -BeOfType [Autotask.Account]
             $Req.AccountName.Length | Should -BeGreaterThan 5
@@ -136,14 +132,14 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
         }
 
         It "New-AtwsModuleConfiguration should work config even if we are not connected." {
-            { New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20 } | Should -Not -Throw
-            $ModuleConfig = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20 
+            { New-AtwsModuleConfiguration -Credential $SandboxCredential -SecureTrackingIdentifier $SecureTI -ErrorLimit 20 } | Should -Not -Throw
+            $ModuleConfig = New-AtwsModuleConfiguration -Credential $SandboxCredential -SecureTrackingIdentifier $SecureTI -ErrorLimit 20 
             $ModuleConfig | Should -Not -BeNullOrEmpty
             ($ModuleConfig.psobject.Properties).Name | Should -HaveCount 12
         }
 
         It "New-AtwsModuleConfiguration is able to save to default config filepath." {
-            $ModuleConfig = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20 
+            $ModuleConfig = New-AtwsModuleConfiguration -Credential $SandboxCredential -SecureTrackingIdentifier $SecureTI -ErrorLimit 20 
             $ModuleConfig | Should -Not -BeNullOrEmpty
             { Save-AtwsModuleConfiguration -Configuration $ModuleConfig -Name 'PesterTempConfig' } | Should -Not -Throw
             $settings = Import-Clixml -Path $(Join-Path (Split-Path -Path $profile -Parent) -ChildPath 'AtwsConfig.clixml')
@@ -167,7 +163,7 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
         }
 
         It "New-AtwsModuleConfiguration creates new config profile file in user directory if -Path is any other than default." {
-            $ModuleConfig = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20 
+            $ModuleConfig = New-AtwsModuleConfiguration -Credential $SandboxCredential -SecureTrackingIdentifier $SecureTI -ErrorLimit 20 
             $ModuleConfig | Should -Not -BeNullOrEmpty
             Save-AtwsModuleConfiguration -Configuration $ModuleConfig -Path $PesterConfigPath -Name 'PesterTempConfig'
             $PesterConfigPath | Should -Exist
@@ -223,7 +219,7 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
 Describe "Connect using connection object" {
 
     It "Should not throw." {
-        $Config = New-AtwsModuleConfiguration -Credential $Global:SandboxCredential -SecureTrackingIdentifier $Global:SecureTI -ErrorLimit 20
+        $Config = New-AtwsModuleConfiguration -Credential $SandboxCredential -SecureTrackingIdentifier $SecureTI -ErrorLimit 20
         { Connect-AtwsWebAPI -AtwsModuleConfiguration $Config } | Should -Not -Throw
         $Acc = Get-AtwsAccount -id 0
         $Acc | Should -BeOfType [Autotask.Account]
@@ -237,7 +233,7 @@ Describe "Auto connect works on most get commands." {
         $loadedModule = Get-Module $moduleName
         $GetCmdLets = 'Get-AtwsAccount', 'Get-AtwsAccountLocation', 'Get-AtwsAccountNote', 'Get-AtwsAccountPhysicalLocation', 'Get-AtwsAccountTeam', 'Get-AtwsAccountToDo', 'Get-AtwsActionType', 'Get-AtwsAdditionalInvoiceFieldValue', 'Get-AtwsAllocationCode', 'Get-AtwsAppointment', 'Get-AtwsAttachmentInfo', 'Get-AtwsBillingItem', 'Get-AtwsBillingItemApprovalLevel', 'Get-AtwsBusinessDivision', 'Get-AtwsBusinessDivisionSubdivision', 'Get-AtwsBusinessDivisionSubdivisionResource', 'Get-AtwsBusinessLocation', 'Get-AtwsBusinessSubdivision', 'Get-AtwsChangeOrderCost'
     }
-    Context "Get-Commands should be able to autoconnect without cmdlet throwing" -ForEach $GetCmdLets {
+    Context "Get-Commands should be able to autoconnect without cmdlet throwing" -Foreach $GetCmdLets {
         It "(<_>) does not throw when calling command with id 0" {
             $loadedModule.ExportedCommands.Keys | Should -Contain $_
             { &$_ -id 0 } | Should -Not -Throw
@@ -268,9 +264,13 @@ Describe "UserDefinedField tests" {
             $loadedModule = Get-Module $moduleName
 
             # Disable UDF and picklist expansion - saves a lot of time!
+            $CurrentConfig = Get-AtwsModuleConfiguration
             Set-AtwsModuleConfiguration -PickListExpansion Disabled -UdfExpansion Disabled
 
             $Devices = Get-AtwsInstalledProduct -Type Server -Active $true
+        }
+        AfterAll {
+            $CurrentConfig | Set-AtwsModuleConfiguration
         }
         It "Should get a big number of devices" {
             $Devices.Count | Should -BeGreaterThan 900
@@ -288,20 +288,28 @@ Describe "UserDefinedField tests" {
             $NewValues | Should -BeExactly $RunGUID
         }
 
-        It "Reverts back to previous values" -Foreach ($Devices | Group-Object '#Sist logget inn') {
+        It "Reverts back to previous values" -ForEach ($Devices | Group-Object '#Sist logget inn') {
             { Set-AtwsInstalledProduct -InputObject $_.Group -UserDefinedFields @{Name = 'Sist logget inn' ; Value = $_.Name } } | Should -Not -Throw
         }
     }
 }
 
 Describe "SQL Query nested too deep error" {
+    BeforeAll {
+        $CurrentConfig = Get-AtwsModuleConfiguration
+    }
     BeforeEach {
         Import-Module $modulePath -Force -ErrorAction Stop
         $loadedModule = Get-Module $moduleName
 
-        # Disable UDF and picklist expansion
+        # Disable UDF and picklist expansion on in memory config
         Set-AtwsModuleConfiguration -PickListExpansion Disabled -UdfExpansion Disabled -DateConversion Disabled
     }
+
+    AfterAll {
+        $CurrentConfig | Set-AtwsModuleConfiguration
+    }
+
     Context "Does not throw when inputting 1000 ids to cmdlets" {
         
         BeforeAll {
@@ -332,13 +340,19 @@ Describe "Parameter value can be LabelID and LabelTekst" {
 
 Describe "Static Function tests" {
     Context "New-AtwsAttachment" {
+        BeforeAll {
+            $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
+            $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.exlx")
+        }
+        AfterAll {
+            Remove-Item -Path $p -Force
+        }
         It "is exported" {
             $loadedmodule.ExportedCommands.ContainsKey('New-AtwsAttachment') | Should -Be $true
             $loadedmodule.ExportedCommands.ContainsKey('Get-AtwsAttachment') | Should -Be $true
             $loadedmodule.ExportedCommands.ContainsKey('Remove-AtwsAttachment') | Should -Be $true
         }
         It "Creating new does not throw" {
-            $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
             $Data = @{Name = 'hello'; Value = 'world' }
             $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.exlx")
             $Data | Export-Excel $p
@@ -347,9 +361,7 @@ Describe "Static Function tests" {
 
         }
         It "Can Get without throwing, also returns multiple attachments if applicable." {
-            $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
             $Data = @{Name = 'hello'; Value = 'world' }
-            $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.exlx")
             $Data | Export-Excel $p
             $Return = New-AtwsAttachment -TicketID $Ticket.id -Path $p
             $Return = New-AtwsAttachment -TicketID $Ticket.id -Path $p
@@ -357,7 +369,6 @@ Describe "Static Function tests" {
             Get-AtwsAttachment -TicketID $Ticket.id
         }
         It "Can remove created attachment" {
-            $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
             $Attachments = Get-AtwsAttachment -TicketID $Ticket.id
             { Remove-AtwsAttachment -id $Attachments.Info[0].id } | Should -Not -Throw
         }
@@ -385,6 +396,11 @@ Describe "Threshold and usage info" {
 
 Describe "DateTime tests" {
 
+    BeforeAll {
+        # Make sure dateconversion is on
+        Set-AtwsModuleConfiguration -DateConversion Local
+    }
+
     Context 'RoundTrip - A date returned by the API is encoded correctly when used in a query' {
 
         It 'should be an account' {
@@ -398,9 +414,6 @@ Describe "DateTime tests" {
 
     Context 'DateTime' {
         BeforeAll { 
-            # Make sure dateconversion is on
-            Set-AtwsModuleConfiguration -DateConversion Local
-
             $resource = Get-AtwsResource -UserType 'Full Access (system)' | Select-Object -First 1 # There should be at least 1
             $startDate = Get-Date 2030.01.01 -Hour 8
             $endDate = Get-Date 2030.12.31 -Hour 16
@@ -653,7 +666,7 @@ Describe "New- Entities tests." {
                 NumberOfUsers  = 1337
             }
 
-            $Item.UserDefinedFields = @{ Name  = 'Maskin navn'; Value = $_ }
+            $Item.UserDefinedFields = @{ Name = 'Maskin navn'; Value = $_ }
 
             $NewItems += $Item
         }
@@ -661,11 +674,11 @@ Describe "New- Entities tests." {
         $NewTypedVariant = [System.Collections.Generic.List[Autotask.InstalledProduct]]::new()
         0..1 | ForEach-Object {
             $Item = [Autotask.InstalledProduct]@{
-                AccountID      = 0;
-                Active         = $true
-                ProductID      = 29682875
-                ReferenceTitle = $_
-                NumberOfUsers  = 1337
+                AccountID         = 0;
+                Active            = $true
+                ProductID         = 29682875
+                ReferenceTitle    = $_
+                NumberOfUsers     = 1337
                 UserDefinedFields = [Autotask.UserDefinedField]@{ Name = 'Maskin navn'; Value = $_ }, [Autotask.UserDefinedField]@{ Name = 'Sist logget inn'; Value = (Get-Date -Format 'dd-MM-yyyy') }
             }
 
@@ -673,13 +686,13 @@ Describe "New- Entities tests." {
         }
 
         $Contacts = Get-AtwsContact -FirstName 'Bjørn' -Like FirstName -Active $true
-        $ContactGroup = New-AtwsContactGroup -Active $true -Name ("All Bears in the hood {0}" -f (New-Guid).Guid.Substring(0,7))
+        $ContactGroup = New-AtwsContactGroup -Active $true -Name ("All Bears in the hood {0}" -f (New-Guid).Guid.Substring(0, 7))
 
         $ContactSelection = [System.Collections.Generic.List[Autotask.ContactGroupContact]]::new()
         $Contacts.foreach{
             $tmp = [Autotask.ContactGroupContact]@{
                 ContactGroupID = $ContactGroup.id;
-                ContactID = $_.id;
+                ContactID      = $_.id;
             }
             $ContactSelection.add($tmp)
         }
@@ -687,7 +700,7 @@ Describe "New- Entities tests." {
         Set-AtwsModuleConfiguration -ErrorLimit 30
     }
 
-    AfterAll{
+    AfterAll {
         Set-AtwsContactGroup -InputObject $ContactGroup -Active $false
         Remove-AtwsContactGroup -InputObject $ContactGroup
     }
