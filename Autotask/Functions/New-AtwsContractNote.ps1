@@ -156,9 +156,9 @@ Set-AtwsContractNote
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)
 
-            #Measure-Object should work here, but returns 0 as Count/Sum. 
-            #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject).Count
+            # Check if any objects already has value in its ID property. All IDs must be zero, or the API will update
+            # the existing object. Will only happen if you try to clone an existing object by passing it to New-*
+            $sum = ($InputObject | Measure-Object -Property id).sum
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
