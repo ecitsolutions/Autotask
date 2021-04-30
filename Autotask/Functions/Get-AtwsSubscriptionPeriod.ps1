@@ -132,13 +132,6 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [Nullable[datetime][]]
     $PostedDate,
 
-# Posted Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $PostedDate,
-
 # Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'

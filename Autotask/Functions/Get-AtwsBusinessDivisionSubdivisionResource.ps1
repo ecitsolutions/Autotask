@@ -19,7 +19,7 @@ Possible operators for all parameters are:
  -GreaterThan
  -GreaterThanOrEqual
  -LessThan
- -LessThanOrEquals 
+ -LessThanOrEquals
 
 Additional operators for [string] parameters are:
  -Like (supports * or % as wildcards)

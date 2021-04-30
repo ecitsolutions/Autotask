@@ -145,7 +145,6 @@ Set-AtwsUserDefinedFieldListItem
     [string[]]
     $ValueForExport,
 
-# Is Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

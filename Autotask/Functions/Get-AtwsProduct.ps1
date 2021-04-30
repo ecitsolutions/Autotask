@@ -366,7 +366,6 @@ Set-AtwsProduct
     [string[]]
     $VendorProductNumber,
 
-# Default Configuration Item Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

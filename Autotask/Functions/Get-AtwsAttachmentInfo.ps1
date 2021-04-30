@@ -34,9 +34,6 @@ Type
 Publish
 CreatorType
 
-CreatorType
- 
-
 Entities that have fields that refer to the base entity of this CmdLet:
 
 

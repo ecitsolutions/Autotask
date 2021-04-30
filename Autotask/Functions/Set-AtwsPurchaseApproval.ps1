@@ -72,20 +72,6 @@ Get-AtwsPurchaseApproval
     [switch]
     $PassThru,
 
-# Reject Note
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,5000)]
-    [string]
-    $RejectNote,
-
 # Is Approved
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -99,7 +85,21 @@ Get-AtwsPurchaseApproval
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean]]
-    $IsApproved
+    $IsApproved,
+
+# Reject Note
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,5000)]
+    [string]
+    $RejectNote
   )
 
     begin {

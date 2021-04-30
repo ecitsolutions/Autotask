@@ -184,20 +184,7 @@ Get-AtwsTicketNote
     )]
     [ValidateLength(0,250)]
     [string]
-    $Title,
-
-# Created By Contact ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $CreatedByContactID
+    $Title
   )
 
     begin {

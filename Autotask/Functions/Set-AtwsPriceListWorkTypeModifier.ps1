@@ -72,12 +72,11 @@ Get-AtwsPriceListWorkTypeModifier
     [switch]
     $PassThru,
 
-# Uses Internal Currency Price
+# Modifier Type
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
@@ -98,19 +97,6 @@ Get-AtwsPriceListWorkTypeModifier
     [string]
     $ModifierType,
 
-# Modifier Type
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [string]
-    $ModifierType,
-
 # Value
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -122,7 +108,22 @@ Get-AtwsPriceListWorkTypeModifier
       ParametersetName = 'By_Id'
     )]
     [Nullable[decimal]]
-    $ModifierValue
+    $ModifierValue,
+
+# Uses Internal Currency Price
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean]]
+    $UsesInternalCurrencyPrice
   )
 
     begin {

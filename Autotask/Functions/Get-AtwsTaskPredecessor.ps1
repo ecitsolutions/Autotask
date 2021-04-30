@@ -107,6 +107,13 @@ Set-AtwsTaskPredecessor
     [Nullable[long][]]
     $id,
 
+# Lag Days
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $LagDays,
+
 # Predecessor Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -123,59 +130,52 @@ Set-AtwsTaskPredecessor
     [Nullable[Int][]]
     $SuccessorTaskID,
 
-# Lag Days
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $LagDays,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'PredecessorTaskID', 'SuccessorTaskID', 'LagDays')]
+    [ValidateSet('id', 'LagDays', 'PredecessorTaskID', 'SuccessorTaskID')]
     [string[]]
     $LessThanOrEquals,
 

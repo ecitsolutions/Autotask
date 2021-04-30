@@ -237,7 +237,6 @@ Set-AtwsProjectNote
     [string[]]
     $Title,
 
-# Created By Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

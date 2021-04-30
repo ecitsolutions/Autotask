@@ -72,37 +72,31 @@ Set-AtwsTask
 
 # Allocation Code Name
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Int]
-    $ProjectID,
+    $AllocationCodeID,
 
-# Phase ID
+# Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $PhaseID,
+    $AssignedResourceID,
 
-# Task Title
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string]
-    $Title,
-
-# Task Description
+# Resource Role Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,8000)]
-    [string]
-    $Description,
+    [Int]
+    $AssignedResourceRoleID,
+
+# Can Client Portal User Complete Task
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $CanClientPortalUserCompleteTask,
 
 # Task Completed By
     [Parameter(
@@ -135,21 +129,21 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $StartDateTime,
+    $CompletedDateTime,
 
-# Task End Datetime
+# Task Creation Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $EndDateTime,
+    $CreateDateTime,
 
-# Task Department Name
+# Task Creator
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [string]
-    $DepartmentID,
+    [Int]
+    $CreatorResourceID,
 
 # Creator Type
     [Parameter(
@@ -189,58 +183,56 @@ Set-AtwsTask
     [string]
     $DepartmentID,
 
-# Resource
+# Task Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $AssignedResourceID,
+    [ValidateLength(0,8000)]
+    [string]
+    $Description,
 
-# Resource Role Name
+# Task End Datetime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $AssignedResourceRoleID,
+    [datetime]
+    $EndDateTime,
 
-# Task Billable
+# Task Estimated Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $EstimatedHours,
+
+# Task External ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ExternalID,
+
+# Hours to be Scheduled
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $HoursToBeScheduled,
+
+# Is Visible in Client Portal
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $TaskIsBillable,
+    $IsVisibleInClientPortal,
 
-# Task Type
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $TaskType,
-
-# Task Status
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $Status,
-
-# Task Complete Date
+# Task Last Activity Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $CompletedDateTime,
-
-# Task Creation Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
+    $LastActivityDateTime,
 
 # Last Activity Person Type
     [Parameter(
@@ -273,14 +265,14 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $CreatorResourceID,
+    $PhaseID,
 
-# Task Estimated Hours
+# Task Priority
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $EstimatedHours,
+    [Int]
+    $Priority,
 
 # Priority Label
     [Parameter(
@@ -303,36 +295,38 @@ Set-AtwsTask
 
 # Project
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string]
-    $TaskNumber,
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $ProjectID,
 
-# Task External ID
+# Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string]
-    $ExternalID,
+    $PurchaseOrderNumber,
 
-# Task Last Activity Date Time
+# Remaining Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $RemainingHours,
+
+# Task Start Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $LastActivityDateTime,
+    $StartDateTime,
 
-# Task Priority
+# Task Status
     [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $Priority,
-
-# Purchase Order Number
-    [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
@@ -349,7 +343,7 @@ Set-AtwsTask
       }
     })]
     [string]
-    $PurchaseOrderNumber,
+    $Status,
 
 # Task Category ID
     [Parameter(
@@ -370,22 +364,24 @@ Set-AtwsTask
     [string]
     $TaskCategoryID,
 
-# Can Client Portal User Complete Task
+# Task Billable
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $CanClientPortalUserCompleteTask,
+    $TaskIsBillable,
 
-# Remaining Hours
+# Task Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $RemainingHours,
+    [ValidateLength(0,50)]
+    [string]
+    $TaskNumber,
 
-# Hours to be Scheduled
+# Task Type
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
@@ -404,10 +400,13 @@ Set-AtwsTask
     [string]
     $TaskType,
 
-# Priority Label
+# Task Title
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
     [string]
     $Title
   )

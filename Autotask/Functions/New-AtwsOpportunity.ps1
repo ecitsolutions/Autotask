@@ -79,51 +79,49 @@ Set-AtwsOpportunity
     [Int]
     $AccountID,
 
-# ContactObjectID
+# NumberOfUsers
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $ContactID,
+    [decimal]
+    $AdvancedField1,
 
-# ProductObjectID
+# SetupFee
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $ProductID,
+    [decimal]
+    $AdvancedField2,
 
-# StageObjectID
+# HourlyCost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $AdvancedField3,
+
+# DailyCost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $AdvancedField4,
+
+# MonthlyCost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $AdvancedField5,
+
+# Amount
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [string]
-    $Stage,
-
-# Primary Competitor
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [string]
-    $PrimaryCompetitor,
-
-# LeadReferralObjectID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [string]
-    $LeadReferral,
-
-# CreatorObjectID
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $OwnerResourceID,
+    [decimal]
+    $Amount,
 
 # Assessment Score
     [Parameter(
@@ -134,13 +132,11 @@ Set-AtwsOpportunity
 
 # Barriers
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,128)]
+    [ValidateLength(0,500)]
     [string]
-    $Title,
+    $Barriers,
 
 # Business Division Subdivision ID
     [Parameter(
@@ -158,30 +154,10 @@ Set-AtwsOpportunity
 
 # ContactObjectID
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $ProjectedCloseDate,
-
-# Probability
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [Int]
-    $Probability,
-
-# Amount
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [decimal]
-    $Amount,
+    $ContactID,
 
 # Cost
     [Parameter(
@@ -192,14 +168,14 @@ Set-AtwsOpportunity
     [decimal]
     $Cost,
 
-# Use Quote Totals
+# CreateDate
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [boolean]
-    $UseQuoteTotals,
+    [datetime]
+    $CreateDate,
 
 # Creator Resource ID
     [Parameter(
@@ -370,7 +346,7 @@ Set-AtwsOpportunity
     [Int]
     $OwnerResourceID,
 
-# Sales Process Percent Complete
+# Primary Competitor
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

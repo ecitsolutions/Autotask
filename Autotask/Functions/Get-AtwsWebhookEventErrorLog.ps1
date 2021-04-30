@@ -154,7 +154,6 @@ Remove-AtwsWebhookEventErrorLog
     [Nullable[Int][]]
     $SequenceNumber,
 
-# Configuration Item Webhook ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

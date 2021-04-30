@@ -129,14 +129,6 @@ Remove-AtwsTaskSecondaryResource
     [Nullable[Int][]]
     $TaskID,
 
-# Task ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

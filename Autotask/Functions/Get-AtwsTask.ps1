@@ -130,33 +130,29 @@ Set-AtwsTask
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $ProjectID,
+    $AllocationCodeID,
 
-# Phase ID
+# Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $PhaseID,
+    $AssignedResourceID,
 
-# Task Title
+# Resource Role Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $Title,
+    [Nullable[Int][]]
+    $AssignedResourceRoleID,
 
-# Task Description
+# Can Client Portal User Complete Task
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $Description,
+    [Nullable[boolean][]]
+    $CanClientPortalUserCompleteTask,
 
 # Task Completed By
     [Parameter(
@@ -189,14 +185,21 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $StartDateTime,
+    $CompletedDateTime,
 
-# Task End Datetime
+# Task Creation Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $EndDateTime,
+    $CreateDateTime,
+
+# Task Creator
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
 
 # Creator Type
     [Parameter(
@@ -236,63 +239,64 @@ Set-AtwsTask
     [string[]]
     $DepartmentID,
 
-# Allocation Code Name
+# Task Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $AllocationCodeID,
+    [ValidateLength(0,8000)]
+    [string[]]
+    $Description,
 
-# Resource
+# Task End Datetime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $AssignedResourceID,
+    [Nullable[datetime][]]
+    $EndDateTime,
 
-# Resource Role Name
+# Task Estimated Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $AssignedResourceRoleID,
+    [Nullable[double][]]
+    $EstimatedHours,
 
-# Task Billable
+# Task External ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ExternalID,
+
+# Hours to be Scheduled
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $HoursToBeScheduled,
+
+# Task ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Is Visible in Client Portal
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $TaskIsBillable,
+    $IsVisibleInClientPortal,
 
-# Task Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [string[]]
-    $TaskType,
-
-# Task Status
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [string[]]
-    $Status,
-
-# Task Complete Date
+# Task Last Activity Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $CompletedDateTime,
-
-# Task Creation Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
+    $LastActivityDateTime,
 
 # Last Activity Person Type
     [Parameter(
@@ -325,14 +329,14 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $CreatorResourceID,
+    $PhaseID,
 
-# Task Estimated Hours
+# Task Priority
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $EstimatedHours,
+    [Nullable[Int][]]
+    $Priority,
 
 # Priority Label
     [Parameter(
@@ -358,33 +362,25 @@ Set-AtwsTask
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $ProjectID,
 
-# Task Number
+# Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
-    $TaskNumber,
+    $PurchaseOrderNumber,
 
-# Task External ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ExternalID,
-
-# Task Last Activity Date Time
+# Task Start Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $LastActivityDateTime,
+    $StartDateTime,
 
-# Task Priority
+# Task Status
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -423,21 +419,22 @@ Set-AtwsTask
     [string[]]
     $TaskCategoryID,
 
-# Is Visible in Client Portal
+# Task Billable
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $IsVisibleInClientPortal,
+    $TaskIsBillable,
 
-# Can Client Portal User Complete Task
+# Task Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $CanClientPortalUserCompleteTask,
+    [ValidateLength(0,50)]
+    [string[]]
+    $TaskNumber,
 
-# Hours to be Scheduled
+# Task Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -457,12 +454,14 @@ Set-AtwsTask
     [string[]]
     $TaskType,
 
-# Priority Label
+# Task Title
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
     [string[]]
-    $PriorityLabel,
+    $Title,
 
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -516,42 +515,42 @@ Set-AtwsTask
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExternalID', 'PurchaseOrderNumber', 'TaskNumber', 'Title')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExternalID', 'PurchaseOrderNumber', 'TaskNumber', 'Title')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExternalID', 'PurchaseOrderNumber', 'TaskNumber', 'Title')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExternalID', 'PurchaseOrderNumber', 'TaskNumber', 'Title')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Title', 'Description', 'TaskNumber', 'ExternalID', 'PurchaseOrderNumber')]
+    [ValidateSet('Description', 'ExternalID', 'PurchaseOrderNumber', 'TaskNumber', 'Title')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('StartDateTime', 'EndDateTime', 'CompletedDateTime', 'CreateDateTime', 'LastActivityDateTime')]
+    [ValidateSet('CompletedDateTime', 'CreateDateTime', 'EndDateTime', 'LastActivityDateTime', 'StartDateTime')]
     [string[]]
     $IsThisDay
   )

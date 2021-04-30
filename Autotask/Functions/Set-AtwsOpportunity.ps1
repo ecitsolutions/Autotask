@@ -89,7 +89,7 @@ Get-AtwsOpportunity
     [Nullable[Int]]
     $AccountID,
 
-# ContactObjectID
+# NumberOfUsers
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -99,10 +99,10 @@ Get-AtwsOpportunity
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $ContactID,
+    [Nullable[decimal]]
+    $AdvancedField1,
 
-# ProductObjectID
+# SetupFee
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -112,10 +112,49 @@ Get-AtwsOpportunity
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $ProductID,
+    [Nullable[decimal]]
+    $AdvancedField2,
 
-# StageObjectID
+# HourlyCost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $AdvancedField3,
+
+# DailyCost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $AdvancedField4,
+
+# MonthlyCost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $AdvancedField5,
+
+# Amount
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -127,10 +166,10 @@ Get-AtwsOpportunity
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [string]
-    $Stage,
+    [Nullable[decimal]]
+    $Amount,
 
-# Primary Competitor
+# Barriers
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -140,59 +179,15 @@ Get-AtwsOpportunity
     [Parameter(
       ParametersetName = 'By_Id'
     )]
+    [ValidateLength(0,500)]
     [string]
-    $PrimaryCompetitor,
-
-# LeadReferralObjectID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [string]
-    $LeadReferral,
-
-# CreatorObjectID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $OwnerResourceID,
-
-# Name
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,128)]
-    [string]
-    $Title,
+    $Barriers,
 
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
@@ -262,7 +257,6 @@ Get-AtwsOpportunity
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
@@ -483,7 +477,7 @@ Get-AtwsOpportunity
     [Nullable[Int]]
     $OwnerResourceID,
 
-# MonthlyCost
+# Primary Competitor
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

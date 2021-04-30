@@ -93,14 +93,14 @@ Set-AtwsSubscription
     [datetime]
     $EffectiveDate,
 
-# Effective Date
+# Expiration Date
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [datetime]
-    $EffectiveDate,
+    $ExpirationDate,
 
 # Impersonator Creator Resource ID
     [Parameter(
@@ -129,10 +129,8 @@ Set-AtwsSubscription
 
 # Period Cost
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [decimal]
     $PeriodCost,
 
@@ -176,6 +174,7 @@ Set-AtwsSubscription
 
 # Type
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]

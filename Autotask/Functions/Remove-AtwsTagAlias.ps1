@@ -1,5 +1,4 @@
-#Requires -Version 4.0
-#Version 1.6.14
+#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -104,7 +103,19 @@ Get-AtwsTagAlias
             $verboseWarning = '{0}: About to delete {1} {2}(s). This action cannot be undone. Do you want to continue?' -F $caption, $InputObject.Count, $entityName
 
             if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
-                Remove-AtwsData -Entity $InputObject
+                try {
+                    Remove-AtwsData -Entity $InputObject
+                }
+                catch {
+                    # Write a debug message with detailed information to developers
+                    $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
+                    $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                    Write-Debug $message
+
+                    # Pass on the error, but locate it to this function
+                    $PSCmdlet.ThrowTerminatingError($_)
+                    return
+                }
             }
         }
     }

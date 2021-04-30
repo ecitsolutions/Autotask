@@ -163,7 +163,7 @@ Get-AtwsSubscription
     [Nullable[decimal]]
     $PeriodPrice,
 
-# Material Code Id
+# Period Type
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

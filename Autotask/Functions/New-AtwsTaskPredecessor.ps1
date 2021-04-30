@@ -63,6 +63,13 @@ Set-AtwsTaskPredecessor
     [Autotask.TaskPredecessor[]]
     $InputObject,
 
+# Lag Days
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $LagDays,
+
 # Predecessor Task ID
     [Parameter(
       Mandatory = $true,
@@ -79,14 +86,7 @@ Set-AtwsTaskPredecessor
     )]
     [ValidateNotNullOrEmpty()]
     [Int]
-    $SuccessorTaskID,
-
-# Lag Days
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $LagDays
+    $SuccessorTaskID
   )
 
     begin {

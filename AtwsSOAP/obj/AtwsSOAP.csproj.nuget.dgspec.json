@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/Users/hugo/source/Autotask/AtwsSOAP/AtwsSOAP.csproj": {}
+    "/Users/Hugo/source/Autotask/AtwsSOAP/AtwsSOAP.csproj": {}
   },
   "projects": {
-    "/Users/hugo/source/Autotask/AtwsSOAP/AtwsSOAP.csproj": {
+    "/Users/Hugo/source/Autotask/AtwsSOAP/AtwsSOAP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/hugo/source/Autotask/AtwsSOAP/AtwsSOAP.csproj",
+        "projectUniqueName": "/Users/Hugo/source/Autotask/AtwsSOAP/AtwsSOAP.csproj",
         "projectName": "AtwsSOAP",
-        "projectPath": "/Users/hugo/source/Autotask/AtwsSOAP/AtwsSOAP.csproj",
-        "packagesPath": "/Users/hugo/.nuget/packages/",
-        "outputPath": "/Users/hugo/source/Autotask/AtwsSOAP/obj/",
+        "projectPath": "/Users/Hugo/source/Autotask/AtwsSOAP/AtwsSOAP.csproj",
+        "packagesPath": "/Users/Hugo/.nuget/packages/",
+        "outputPath": "/Users/Hugo/source/Autotask/AtwsSOAP/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/hugo/.nuget/NuGet/NuGet.Config"
+          "/Users/Hugo/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -27,7 +27,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -39,7 +38,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "System.ServiceModel.Duplex": {
               "target": "Package",
@@ -68,22 +66,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.10, 3.1.10]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[3.1.0, 3.1.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.201/RuntimeIdentifierGraph.json"
         }
       }
     }
