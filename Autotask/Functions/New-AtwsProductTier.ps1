@@ -128,13 +128,12 @@ Set-AtwsProductTier
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject).Count
+            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
-                    $inputObject.add($object)
                 }
             }
         }
