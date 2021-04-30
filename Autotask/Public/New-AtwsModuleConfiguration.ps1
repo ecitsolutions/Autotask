@@ -9,20 +9,28 @@
 Function New-AtwsModuleConfiguration {
     <#
             .SYNOPSIS
-            This function re-loads the module with the correct parameters for full functionality
+            This function creates an internal configuration object to store all module options. If 
+            given a profile name the configuration object will be saved to disk, not returned.
             .DESCRIPTION
-            This function is a wrapper that is included for backwards compatibility with previous module behavior.
-            These parameters should be passed to Import-Module -Variable directly, but previously the module 
-            consisted of two, nested modules. Now there is a single module with all functionality.
+            This function creates an internal configuration object to store all module options. It 
+            requires a credential object and API key to authenticate to Autotask, all other parameters
+            has default values and are optional. If you pass an optional profile name the 
+            configuration object will be saved to disk, not returned.
             .INPUTS
-            A PSCredential object. Required. 
-            A string used as ApiTrackingIdentifier. Required. 
-            .OUTPUTS
             Nothing.
+            .OUTPUTS
+            [PSObject]
             .EXAMPLE
-            Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $string
+            New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $string
+            .EXAMPLE
+            New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $string -Name ProfileName
             .NOTES
-            NAME: Connect-AtwsWebAPI
+            NAME: New-AtwsModuleConfiguration
+            .LINK
+            Get-AtwsModuleConfiguration
+            Set-AtwsModuleConfiguration
+            Remove-AtwsModuleConfiguration
+            Save-AtwsModuleConfiguration
     #>
 	
     [cmdletbinding(
@@ -33,13 +41,16 @@ Function New-AtwsModuleConfiguration {
     (
         [ValidateNotNullOrEmpty()]    
         [pscredential]
+        # An API user to Autotask. If you do not supply a value you will be prompted interactively.
         $Credential = $(Get-Credential -Message 'Your Autotask API user'),
     
         [securestring]
-        $SecureTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier:'),
+        # The API identifier from your resource in Autotask. Must be encrypted as SecureString. If you do not supply a value you will be prompted for a cleartext password.
+        $SecureTrackingIdentifier = $(Read-Host -AsSecureString -Prompt 'API Tracking Identifier'),
     
         [Alias('Picklist', 'UsePickListLabel')]
         [switch]
+        # Please ignore. It is only here for backwards compatibility. Use -PicklistConversion.
         $ConvertPicklistIdToLabel = $false,
     
         [ValidateScript( {
@@ -52,19 +63,92 @@ Function New-AtwsModuleConfiguration {
                 }
             })]
         [string]
+        # Please ignore. It is only here for backwards compatibility. Will be removed soon.
         $Prefix,
 
         [switch]
+        # Please ignore. It is only here for backwards compatibility. Will be removed soon.
         $RefreshCache = $false,
 
-        [switch]
-        $NoDiskCache = $false,
+        [string]
+        # You may save a default debug preference so you may have a separate profile for debugging.
+        $DebugPref = $Global:DebugPreference,
 
         [string]
-        $DebugPref = $DebugPreference,
+        # You may save a default verbose preference so you may have a separate profile for debugging.
+        $VerbosePref = $Global:VerbosePreference,
 
+        [ValidateRange(0, 100)]
+        [int]
+        # For bulk operations. When you post 100+ objects with changes to the API it is annoying if the operation
+        # fails on all of them just because 1 of them could not be updated. How many such errors can you live with
+        # before the whole operation should fail?
+        $ErrorLimit = 10,
+    
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                if ($FakeBound.Path) {
+                    [IO.FileInfo]$filepath = $FakeBound.Path
+                }
+                else {
+                    [IO.FileInfo]$filepath = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
+                }
+                $tempsettings = Import-Clixml -Path $filepath.Fullname
+                if ($tempsettings -is [hashtable]) {
+                    foreach ($item in ($tempsettings.keys | Sort-Object)) {
+                        "'{0}'" -F $($item -replace "'", "''")
+                    }
+                }
+            })]
+        [alias('ProfileName', 'AtwsModuleConfigurationName')]
+        [String]
+        # The name you want to use on the connection profile. Default name is 'Default'. 
+        $Name,
+        
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
+            })]
+        [IO.FileInfo]
+        [alias('ProfilePath')]
+        # Full path to an alternate configuration file you want the profile to be saved to. Optional.
+        $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
+
+        [ValidateSet('Disabled', 'Inline', 'LabelField')]
         [string]
-        $VerbosePref = $VerbosePreference
+        # How do you want picklist items to be expanded: Not at all (Disabled), have the text label
+        # replace the index value (Inline) or a separate property with "Label" as suffix (LabelField)
+        $PickListExpansion = 'LabelField',
+
+        [ValidateSet('Disabled', 'Inline', 'Hashtable')]
+        [string]
+        # How do you want UDFs to be expanded: Not at all (Disabled), as new properties with
+        # a hashtag as prefix (Inline) or as a hashtable on a single property .UDF ()
+        $UdfExpansion = 'Inline',
+
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                'Disabled'
+                'Local'
+                (Get-TimeZone -ListAvailable).Id | Sort-Object
+            })]
+        [ValidateScript( {
+                # Allow disabled and local before testing timezone conversion
+                if ($_ -in 'Disabled', 'Local') { return $true }
+                # Allow any valid TimeZone on current system
+                try { $null = [System.Timezoneinfo]::FindSystemTimeZoneById($_) }
+                catch { return $false }
+                return $true
+            })]
+        [string]
+        # The Autotask API always uses Eastern Standard Time for all DateTime objects. This option
+        # controls which timezone DateTime objects will be converted to when they are retrieved. The
+        # default setting is 'Local', which imply that all DateTime objects will be converted to 
+        # the current, local timezone setting on the system where the code runs. Other options are
+        # 'Disabled' - do not perform any timezone conversion at all; and 'specific/timezone', i.e.
+        # any timezone your local system supports. Useful if your companys locations span multiple
+        # timezones.
+        $DateConversion = 'Local'
     )
     
     begin { 
@@ -85,9 +169,12 @@ Function New-AtwsModuleConfiguration {
                 ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
                 Prefix                   = $Prefix
                 RefreshCache             = $RefreshCache.IsPresent
-                UseDiskCache             = $NoDiskCache.IsPresent -xor $true
-                DebugPref                = $DebugPreference
-                VerbosePref              = $VerbosePreference
+                DebugPref                = $DebugPref
+                VerbosePref              = $VerbosePref
+                ErrorLimit               = $ErrorLimit
+                PickListExpansion        = $PickListExpansion
+                UdfExpansion             = $UdfExpansion
+                DateConversion           = $DateConversion
             }
         
             if (Test-AtwsModuleConfiguration -Configuration $configuration) {
@@ -107,7 +194,13 @@ Function New-AtwsModuleConfiguration {
   
     end {
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
-        return $configuration
+        
+        if ($Name) {
+            Save-AtwsModuleConfiguration -Name $Name -Configuration $configuration -Path $Path
+        }
+        else { 
+            return $configuration
+        }
     }
  
 }

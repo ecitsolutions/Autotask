@@ -21,16 +21,17 @@ Function ConvertFrom-LocalObject {
             Updates the properties of object $Element with the values of any parameter with the same name as a property-
             .NOTES
             NAME: Update-AtwsObjectsWithParameters
-      
+
     #>
     [cmdletbinding()]
+    [OutputType([Collections.Generic.List[psobject]])]
     Param
     (
         [Parameter(
             Mandatory = $true,
             ValueFromPipeline = $true
         )]
-        [PSObject[]]
+        [Collections.Generic.List[psobject]]
         $InputObject
 
     )
@@ -40,17 +41,20 @@ Function ConvertFrom-LocalObject {
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
             $DebugPreference = 'Continue'
         }
-    
+
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-        
+
         # Set up TimeZone offset handling and make sure the if statement will
         # default to Windows if platform information is not available
         $timezoneid = if ($IsMacOS -or $IsLinux) { 'America/New_York' }
         else { 'Eastern Standard Time' }
         $EST = [System.Timezoneinfo]::FindSystemTimeZoneById($timezoneid)
-        $result = @()
-        
-        $result = @()
+        $timezone = [TimeZoneInfo]::Local
+        if ($Script:Atws.configuration.DateConversion -notin 'Disabled', 'Local') {
+            $timezone = [System.Timezoneinfo]::FindSystemTimeZoneById($Script:Atws.configuration.DateConversion)
+        }
+        $result = [Collections.Generic.List[PSObject]]::new()
+
     }
 
     process {
@@ -59,44 +63,50 @@ Function ConvertFrom-LocalObject {
         $entityName = $InputObject[0].GetType().Name
 
         # Get updated field info about this entity
-        $fields = Get-AtwsFieldInfo -Entity $entityName
-    
+        $entityInfo = Get-AtwsFieldInfo -Entity $entityName -EntityInfo
+
         # Normalize dates, i.e. set them to CEST. The .Update() method of the API reads all datetime fields as CEST
         # We can safely ignore readonly fields, even if we have modified them previously. The API ignores them.
-        $dateTimeParams = $fields.Where( { $_.Type -eq 'datetime' -and -not $_.IsReadOnly }).Name
-    
+        $DateTimeParams = $entityInfo.DatetimeFields
+
         # Prepare picklists
-        $Picklists = $fields.Where{ $_.IsPickList }
-    
+        $Picklists = $entityInfo.PicklistFields
+
         # Adjust TimeZone on all DateTime properties
-        foreach ($object in $InputObject) { 
-            foreach ($dateTimeParam in $dateTimeParams) {
-    
-                # Get the datetime value
-                $value = $object.$dateTimeParam
-                
-                # Skip if parameter is empty
-                if (-not ($value)) {
-                    Continue
-                }
-                # Convert the datetime from LocalTime unless it is a date
-                If ($object.$DateTimeParam -ne $object.$DateTimeParam.Date) { 
-                    # Convert the datetime back to CEST
-                    $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, [TimeZoneInfo]::Local, $EST)
+        foreach ($object in $InputObject) {
+
+            # Adjust TimeZone on all DateTime properties
+            if ($Script:Atws.configuration.DateConversion -ne 'Disabled') { 
+                foreach ($dateTimeParam in $dateTimeParams) {
+
+                    # Get the datetime value
+                    $value = $object.$dateTimeParam
+
+                    # Skip if parameter is empty
+                    if (-not ($value)) {
+                        Continue
+                    }
+                    # Convert the datetime from LocalTime unless it is a date
+                    If ($object.$DateTimeParam -ne $object.$DateTimeParam.Date) {
+                        # Convert the datetime back to EST
+                        $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, $timezone, $EST)
+                    }
                 }
             }
-            
-            # Revert picklist labels to their values
-            foreach ($field in $Picklists) {
-                if ($object.$($field.Name) -in $field.PicklistValues.Label) {
-                    $object.$($field.Name) = ($field.PickListValues.Where{ $_.Label -eq $object.$($field.Name) }).Value
+            if ($Script:Atws.configuration.PickListExpansion -eq 'Inline') { 
+                # Revert picklist labels to their values
+                foreach ($field in $Picklists) {
+                    # Get an updated picklist as hashtable indexed by label
+                    $picklistValues = Get-AtwsPicklistValue -Entity $entityName -FieldName $field -Label -Hashtable
+                    if ($object.$field -in $picklistValues.Keys -and $picklistValues.count -gt 0) {
+                        $object.$field = $picklistValues[$object.$field]
+                    }
                 }
             }
         }
-        
+
         # If using pipeline the process block will run once per object in pipeline. Store them all
-        $result += $InputObject
-        
+        $result.addRange($InputObject)
     }
 
     end {

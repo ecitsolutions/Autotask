@@ -34,9 +34,10 @@ Function Update-AtwsManifest {
     )]
     Param(
         # Optional flag that causes the function to increase the version number a single increment.
-        [switch]
+        [ValidateSet('Major','Minor','Build')]
+        [string]
         $UpdateVersion,
-    
+
         # Optional flag that causes the function to save the manifest files with suffix "Beta".
         [switch]
         $Beta
@@ -49,7 +50,9 @@ Function Update-AtwsManifest {
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
        
         if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            # Not connected. Try to connect, prompt for credentials if necessary
+            Write-Verbose ('{0}: Not connected. Calling Connect-AtwsWebApi without parameters for possible autoload of default connection profile.' -F $MyInvocation.MyCommand.Name)
+            Connect-AtwsWebAPI
         }
     
         # Get info from current module
@@ -70,12 +73,6 @@ Function Update-AtwsManifest {
                 $ManifestParams[$Name] = $ModuleInfo.$Name
             }
         }
-    
-        # Read the nuspec
-        $Nuspec = New-Object -TypeName XML
-        $NuspecSourcePath = Join-Path $ModuleInfo.ModuleBase ('{0}.nuspec' -F $ModuleInfo.Name)
-        $NuspecPath = Join-Path $ModuleInfo.ModuleBase ('{0}.nuspec' -F $ModuleName)
-        $Nuspec.Load($NuspecSourcePath)
     } 
   
     process {
@@ -83,51 +80,46 @@ Function Update-AtwsManifest {
         # Overwrite parameters that need new values
         $ManifestParams['Path'] = Join-Path $ModuleInfo.ModuleBase ('{0}.psd1' -F $ModuleName)
     
-        if ($UpdateVersion.IsPresent -or $Beta.IsPresent) { 
+        if (($UpdateVersion) -or $Beta.IsPresent) { 
     
             # Figure out the new module version number
-            [Version]$ApiVersion = $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue)
             [Version]$Moduleversion = $ModuleInfo.Version
             $Major = $Moduleversion.Major
             $Minor = $Moduleversion.Minor
             $Build = $Moduleversion.Build
 
-
-            if ($ApiVersion.Major -gt $Moduleversion.Major) {
-                $Major = $ApiVersion.Major 
+            switch ($UpdateVersion) {
+                'Major' {$Major++}
+                'Minor' {$Minor++}
+                'Build' {$Build++}
             }
-            if ($ApiVersion.Minor -gt $Moduleversion.Minor) {
-                $Minor = $ApiVersion.Minor 
+
+            if ($Major -gt $Moduleversion.Major) {
+                $Minor = 0
+                $Build = 0
+            }
+            elseif ($Minor -gt $Moduleversion.Minor) {
+                $Build = 0
             }
     
             if ([Version]::new($Major, $Minor, $Build) -eq $ModuleInfo.Version) {
-                # It is the same major, minor number. Increase the build or prerelease
-                $Build = $ModuleInfo.Version.Build
+                # It is the same version number. Increase the prerelease if applicable
                 if ($ModuleInfo.PrivateData.PSData.Prerelease) {
                     # This is already a prerelease. Beta-revision is everthing after 'beta'
                     [int]$BetaRevision = $ModuleInfo.PrivateData.PSData.Prerelease -replace 'beta', ''
                 }
-                else { 
-                    # Previous manifest was not a prerelease. Build number must be increased whether
-                    # beta or not
-                    $Build++
-                }
-
-                if ($Beta.IsPresent) {
-                    # If there is a betarevision, increase it. Else it is 1
-                    if ($BetaRevision) {
-                        $BetaRevision++
-                    }
-                    else {
-                        $BetaRevision = 1
-                    }
-                    # Save prerelease text for Update-Manifest
-                    $Prerelease = 'beta{0}' -f $BetaRevision
-                }
             }
-            else {
-                # New API version. Then this is the first revision of the new API version
-                $Build = 0
+            
+            if ($Beta.IsPresent) {
+                # If there is a betarevision, increase it. Else it is 1
+                if ($BetaRevision) {
+                    $BetaRevision++
+                }
+                else {
+                    $BetaRevision = 1
+                }
+                # Save prerelease text for Update-Manifest
+                $Prerelease = 'beta{0}' -f $BetaRevision
             }
     
             # Save the new version number to the parameter set
@@ -146,19 +138,21 @@ Function Update-AtwsManifest {
         $ManifestParams['GUID'] = $GUID
     
         # Information to export
-        <# 
-        $Functions = @()
-        $Moduleinfo.ExportedFunctions.Keys | ForEach-Object { $Functions += $_ }#-replace $ModuleInfo.Prefix, '')}
+        Push-Location
+        Set-Location $ModuleInfo.ModuleBase
+        $Functions = Get-ChildItem -Path ./Public/*.ps1, ./Functions/*.ps1 | Select-Object -ExpandProperty BaseName
+        Pop-Location
+        
+    <# 
         if ($Beta.IsPresent) {
         # Make sure the beta version does not clobber the release version through 
         # automatic module import
         $ManifestParams['FunctionsToExport'] = '*'
         }
         else { 
-        $ManifestParams['FunctionsToExport'] = $Functions
         }
     #>
-        $ManifestParams['FunctionsToExport'] = '*'
+        $ManifestParams['FunctionsToExport'] = $Functions
         $ManifestParams['CmdletsToExport'] = @()
         $ManifestParams['VariablesToExport'] = @()
         $ManifestParams['AliasesToExport'] = @()
@@ -178,15 +172,6 @@ Function Update-AtwsManifest {
         }
     
         Write-Verbose ('{0}: New manifest prepared' -F $MyInvocation.MyCommand.Name)
-     
-    
-        # Update nuspec
-        $Nuspec.DocumentElement.metadata.id = $ModuleName
-        $Nuspec.DocumentElement.metadata.version = $ManifestParams['Moduleversion'].Tostring()
-        $Nuspec.DocumentElement.metadata.description = $ManifestParams['Description']
-        $Nuspec.DocumentElement.metadata.authors = $ManifestParams['Author']
-        $Nuspec.DocumentElement.metadata.tags = $ManifestParams['Tags'] -join ', '
-        $Nuspec.DocumentElement.metadata.releasenotes = $ManifestParams['ReleaseNotes']
     }
     end {
         $caption = $MyInvocation.MyCommand.Name
@@ -201,8 +186,6 @@ Function Update-AtwsManifest {
                 Update-ModuleManifest -Path $ManifestParams['Path'] -Prerelease $Prerelease
             }
     
-            # Save the nuspec
-            $Nuspec.Save($NuspecPath)
         }
     
         Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)

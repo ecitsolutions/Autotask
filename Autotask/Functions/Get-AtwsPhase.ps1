@@ -1,0 +1,432 @@
+#Requires -Version 5.0
+<#
+    .COPYRIGHT
+    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
+#>
+Function Get-AtwsPhase
+{
+
+
+<#
+.SYNOPSIS
+This function get one or more Phase through the Autotask Web Services API.
+.DESCRIPTION
+This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.
+
+Possible operators for all parameters are:
+ -NotEquals
+ -GreaterThan
+ -GreaterThanOrEqual
+ -LessThan
+ -LessThanOrEquals 
+
+Additional operators for [string] parameters are:
+ -Like (supports * or % as wildcards)
+ -NotLike
+ -BeginsWith
+ -EndsWith
+ -Contains
+
+Properties with picklists are:
+
+
+Entities that have fields that refer to the base entity of this CmdLet:
+
+
+.INPUTS
+Nothing. This function only takes parameters.
+.OUTPUTS
+[Autotask.Phase[]]. This function outputs the Autotask.Phase that was returned by the API.
+.EXAMPLE
+Get-AtwsPhase -Id 0
+Returns the object with Id 0, if any.
+ .EXAMPLE
+Get-AtwsPhase -PhaseName SomeName
+Returns the object with PhaseName 'SomeName', if any.
+ .EXAMPLE
+Get-AtwsPhase -PhaseName 'Some Name'
+Returns the object with PhaseName 'Some Name', if any.
+ .EXAMPLE
+Get-AtwsPhase -PhaseName 'Some Name' -NotEquals PhaseName
+Returns any objects with a PhaseName that is NOT equal to 'Some Name', if any.
+ .EXAMPLE
+Get-AtwsPhase -PhaseName SomeName* -Like PhaseName
+Returns any object with a PhaseName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
+ .EXAMPLE
+Get-AtwsPhase -PhaseName SomeName* -NotLike PhaseName
+Returns any object with a PhaseName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
+
+.LINK
+New-AtwsPhase
+ .LINK
+Set-AtwsPhase
+
+#>
+
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  Param
+  (
+# A filter that limits the number of objects that is returned from the API
+    [Parameter(
+      Mandatory = $true,
+      ValueFromRemainingArguments = $true,
+      ParametersetName = 'Filter'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [string[]]
+    $Filter,
+
+# Follow this external ID and return any external objects
+    [Parameter(
+      ParametersetName = 'Filter'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('GetRef')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateSet('CreatorResourceID', 'ParentPhaseID', 'ProjectID')]
+    [string]
+    $GetReferenceEntityById,
+
+# Return all objects in one query
+    [Parameter(
+      ParametersetName = 'Get_all'
+    )]
+    [switch]
+    $All,
+
+# Parent Phase
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ParentPhaseID,
+
+# Project
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ProjectID,
+
+# Phase Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
+    [string[]]
+    $Title,
+
+# Phase Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $Description,
+
+# Phase Start Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $StartDate,
+
+# Phase End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $DueDate,
+
+# Is Scheduled
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Scheduled,
+
+# Phase Creation Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDate,
+
+# Phase Creator
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
+
+# Phase Estimated Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $EstimatedHours,
+
+# Phase ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Phase Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PhaseNumber,
+
+# Phase External ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ExternalID,
+
+# Phase Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastActivityDateTime,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'Scheduled', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
+    [string[]]
+    $NotEquals,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'Scheduled', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
+    [string[]]
+    $IsNull,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'Scheduled', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
+    [string[]]
+    $IsNotNull,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
+    [string[]]
+    $GreaterThan,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
+    [string[]]
+    $GreaterThanOrEquals,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
+    [string[]]
+    $LessThan,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('ParentPhaseID', 'ProjectID', 'Title', 'Description', 'StartDate', 'DueDate', 'CreateDate', 'CreatorResourceID', 'EstimatedHours', 'id', 'PhaseNumber', 'ExternalID', 'LastActivityDateTime')]
+    [string[]]
+    $LessThanOrEquals,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('Title', 'Description', 'PhaseNumber', 'ExternalID')]
+    [string[]]
+    $Like,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('Title', 'Description', 'PhaseNumber', 'ExternalID')]
+    [string[]]
+    $NotLike,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('Title', 'Description', 'PhaseNumber', 'ExternalID')]
+    [string[]]
+    $BeginsWith,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('Title', 'Description', 'PhaseNumber', 'ExternalID')]
+    [string[]]
+    $EndsWith,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('Title', 'Description', 'PhaseNumber', 'ExternalID')]
+    [string[]]
+    $Contains,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateSet('StartDate', 'DueDate', 'CreateDate', 'LastActivityDateTime')]
+    [string[]]
+    $IsThisDay
+  )
+
+    begin {
+        $entityName = 'Phase'
+
+        # Enable modern -Debug behavior
+        if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
+            $DebugPreference = 'Continue'
+        }
+        else {
+            # Respect configured preference
+            $DebugPreference = $Script:Atws.Configuration.DebugPref
+        }
+
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+
+        if (!($PSCmdlet.MyInvocation.BoundParameters['Verbose'].IsPresent)) {
+            # No local override of central preference. Load central preference
+            $VerbosePreference = $Script:Atws.Configuration.VerbosePref
+        }
+
+        $result = [collections.generic.list[psobject]]::new()
+        $iterations = [collections.generic.list[psobject]]::new()
+    }
+
+
+    process {
+        # Parameterset Get_All has a single parameter: -All
+        # Set the Filter manually to get every single object of this type
+        if ($PSCmdlet.ParameterSetName -eq 'Get_all') {
+            $Filter = @('id', '-ge', 0)
+            $iterations.Add($Filter)
+        }
+        # So it is not -All. If Filter does not exist it has to be By_parameters
+        elseif (-not ($Filter)) {
+
+            Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
+
+            # What is the highest number of values for a parameter and is it higher than 200?
+            $max = $PSBoundParameters.Values[0].length | Measure-Object -Maximum
+
+            # If the count is less than or equal to 200 we pass PSBoundParameters as is
+            if ($max.Maximum -le 200) {
+                [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $PSBoundParameters -EntityName $entityName
+                $iterations.Add($Filter)
+            }
+            # More than 200 values. This will cause a SQL query nested too much error. Break a single parameter
+            # into segments and create multiple queries with max 200 values
+            else {
+                
+                # Find the parameter with the $max.Maximum number of items
+                foreach ($param in $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator() ) {
+                    # When we have found the right parameter, stop iterating
+                    if ($param.Value.length -eq $max.Maximum) { break }
+                }
+     
+                # Deduplicate the value list or the same ID may be included in more than 1 query
+                $outerLoop = $PSCmdlet.MyInvocation.BoundParameters.$($param.key) | Sort-Object -Unique
+
+                Write-Verbose ('{0}: Received {1} objects containing {2} unique values for parameter {3}' -f $MyInvocation.MyCommand.Name, $count, $outerLoop.Count, $param.key)
+                  
+                for ($s = 0; $s -lt $outerLoop.count; $s += 200) {
+                    $e = $s + 199
+                    if ($e -ge $outerLoop.count) {
+                        $e = $outerLoop.count - 1
+                    }
+                  
+                    # Make writable of BoundParameters
+                    $BoundParameters = $PSCmdlet.MyInvocation.BoundParameters
+
+                    # make a selection
+                    $BoundParameters.$($param.key) = $outerLoop[$s .. $e]
+
+                    Write-Verbose ('{0}: Asking for {1} values {2} to {3}' -f $MyInvocation.MyCommand.Name, $param, $s, $e)
+
+                    # Convert named parameters to a filter definition that can be parsed to QueryXML
+                    [collections.generic.list[string]]$Filter = ConvertTo-AtwsFilter -BoundParameters $BoundParameters -EntityName $entityName
+                    $iterations.Add($Filter)
+                }
+            }
+        }
+        # Not parameters, nor Get_all. There are only three parameter sets, so now we know
+        # that we were passed a Filter
+        else {
+
+            Write-Debug ('{0}: Query based on manual filter, parsing' -F $MyInvocation.MyCommand.Name)
+
+            # Parse the filter string and expand variables in _this_ scope (dot-sourcing)
+            # or the variables will not be available and expansion will fail
+            $Filter = . Update-AtwsFilter -Filterstring $Filter
+            $iterations.Add($Filter)
+        }
+
+        # Prepare shouldProcess comments
+        $caption = $MyInvocation.MyCommand.Name
+        $verboseDescription = '{0}: About to query the Autotask Web API for {1}(s).' -F $caption, $entityName
+        $verboseWarning = '{0}: About to query the Autotask Web API for {1}(s). Do you want to continue?' -F $caption, $entityName
+
+        # Lets do it and say we didn't!
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
+            foreach ($Filter in $iterations) {
+
+                try {
+                    # Make the query and pass the optional parameters to Get-AtwsData
+                    # Force list even if result is only 1 object to be compatible with addrange()
+                    [collections.generic.list[psobject]]$response = Get-AtwsData -Entity $entityName -Filter $Filter `
+                        -NoPickListLabel:$NoPickListLabel.IsPresent `
+                        -GetReferenceEntityById $GetReferenceEntityById
+                }
+                catch {
+                    # Write a debug message with detailed information to developers
+                    $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
+                    $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                    Write-Debug $message
+
+                    # Pass on the error
+                    $PSCmdlet.ThrowTerminatingError($_)
+                    return
+                }
+                # Add response to result - if there are any response to add
+                if ($response.count -gt 0) { 
+                    $result.AddRange($response)
+                }
+
+                Write-Verbose ('{0}: Number of entities returned by base query: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
+            }
+        }
+    }
+
+    end {
+        Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
+        if ($result) {
+            Return [array]$result
+        }
+    }
+
+
+}

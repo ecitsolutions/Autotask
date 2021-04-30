@@ -8,36 +8,38 @@
 Function Connect-AtwsWebAPI {
     <#
         .SYNOPSIS
-            This function re-loads the module with the correct parameters for full functionality
+            This function connects to the Autotask Web Services API, authenticates a user and creates a 
+            SOAP webservices proxy object. 
         .DESCRIPTION
-            This function is a wrapper that is included for backwards compatibility with previous module behavior.
-            These parameters should be passed to Import-Module -Variable directly, but previously the module 
-            consisted of two, nested modules. Now there is a single module with all functionality.
+            The function takes a credential object and uses it to authenticate and connect to the Autotask
+            Web Services API. This is done by creating a webservices proxy. The proxy object imports the SOAP 
+            WSDL definition file, creates all entity classes in PowerShell and exposes the basic methods
+            (query(), create(), update(), remove(), GetEntityInfo(), GetFieldInfo() and a few more). 
         .INPUTS
-            A PSCredential object. Required. 
-            A string used as ApiTrackingIdentifier. Required. 
+            A PSCredential object. Required. It will prompt for credentials if the object is not provided.
         .OUTPUTS
-            Nothing.
+            A webserviceproxy object is created.
         .EXAMPLE
-            Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $string
+            Connect-AtwsWebAPI
+            Prompts for a username and password and authenticates to Autotask
+        .EXAMPLE
+            Connect-AtwsWebAPI
         .NOTES
             NAME: Connect-AtwsWebAPI
-    #>
+        .LINK
+            Get-AtwsData
+  #>
 	
     [cmdletbinding(
         SupportsShouldProcess = $true,
         ConfirmImpact = 'Low',
-        DefaultParameterSetName = 'Default'
+        DefaultParameterSetName = 'ConfigurationFile'
     )]
     Param
     (
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Default'
-        )]
-        [Parameter(
-            Mandatory = $true,
-            ParameterSetName = 'NoDiskCache'
+            ParameterSetName = 'Parameters'
         )]
         [ValidateNotNullOrEmpty()]    
         [pscredential]
@@ -45,52 +47,42 @@ Function Connect-AtwsWebAPI {
     
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Default'
-        )]
-        [Parameter(
-            Mandatory = $true,
-            ParameterSetName = 'NoDiskCache'
+            ParameterSetName = 'Parameters'
         )]
         [string]
         $ApiTrackingIdentifier,
     
         [Parameter(
-            ParameterSetName = 'Default'
+            ParameterSetName = 'Parameters'
         )]
-        [Parameter(
-            ParameterSetName = 'NoDiskCache'
-        )]
-        [Alias('Picklist','UsePickListLabels')]
+        [Alias('Picklist', 'UsePickListLabels')]
         [switch]
         $ConvertPicklistIdToLabel,
     
         [Parameter(
-            ParameterSetName = 'Default'
-        )]
-        [Parameter(
-            ParameterSetName = 'NoDiskCache'
+            ParameterSetName = 'Parameters'
         )]
         [ValidateScript( {
-            # It can be empty, but if it isn't it should be max 8 characters and only letters and numbers
-            if ($_.length -eq 0 -or ($_ -match '[a-zA-Z0-9]' -and $_.length -gt 0 -and $_.length -le 8)) {
-                $true
-            }
-            else {
-                $false
-            }
-        })]
+                # It can be empty, but if it isn't it should be max 8 characters and only letters and numbers
+                if ($_.length -eq 0 -or ($_ -match '[a-zA-Z0-9]' -and $_.length -gt 0 -and $_.length -le 8)) {
+                    $true
+                }
+                else {
+                    $false
+                }
+            })]
         [string]
         $Prefix,
 
         [Parameter(
-            ParameterSetName = 'Default'
+            ParameterSetName = 'Parameters'
         )]
         [switch]
         $RefreshCache,
 
     
         [Parameter(
-            ParameterSetName = 'NoDiskCache'
+            ParameterSetName = 'Parameters'
         )]
         [switch]
         $NoDiskCache,
@@ -100,7 +92,7 @@ Function Connect-AtwsWebAPI {
             ParameterSetName = 'ConfigurationObject'
         )]
         [ValidateScript( { 
-                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'NoDiskCache', 'DebugPref', 'VerbosePref')
+                $requiredProperties = @('Username', 'Securepassword', 'SecureTrackingIdentifier', 'ConvertPicklistIdToLabel', 'Prefix', 'RefreshCache', 'DebugPref', 'VerbosePref', 'ErrorLimit', 'DateConversion', 'PicklistExpansion', 'UdfExpansion')
                 $members = Get-Member -InputObject $_ -MemberType NoteProperty
                 $missingProperties = Compare-Object -ReferenceObject $requiredProperties -DifferenceObject $members.Name -PassThru -ErrorAction SilentlyContinue
                 if (-not($missingProperties)) {
@@ -113,7 +105,45 @@ Function Connect-AtwsWebAPI {
                 }
             })]
         [pscustomobject]
-        $Configuration
+        [alias('Configuration', 'Profile')]
+        $AtwsModuleConfiguration,
+    
+        [Parameter(
+            ParameterSetName = 'ConfigurationFile'
+        )]
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
+            })]
+        [ValidateScript( { 
+                Test-Path $_
+            })]
+        [Alias('Path')]
+        [IO.FileInfo]
+        $ProfilePath = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
+
+        # Name of the Configuration inside the Config file.
+        [Parameter(
+            ParameterSetName = 'ConfigurationFile'
+        )]
+        [ArgumentCompleter( {
+                param($Cmd, $Param, $Word, $Ast, $FakeBound)
+                if ($FakeBound.ProfilePath) {
+                    [IO.FileInfo]$filepath = $FakeBound.ProfilePath
+                }
+                else {
+                    [IO.FileInfo]$filepath = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml)
+                }
+                $tempsettings = Import-Clixml -Path $filepath.Fullname
+                if ($tempsettings -is [hashtable]) {
+                    foreach ($item in ($tempsettings.keys | Sort-Object)) {
+                        "'{0}'" -F $($item -replace "'", "''")
+                    }
+                }
+            })]
+        [alias('Name')]
+        [string]
+        $ProfileName = 'Default'
     )
     
     begin { 
@@ -123,72 +153,121 @@ Function Connect-AtwsWebAPI {
     
         Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
-        # the $My hashtable is created by autotask.psm1
-        $importParams = @{
-            Global      = $true
-            Version     = $My.ModuleVersion
-            Force       = $true
-            ErrorAction = 'Stop'
-        }
-
     }
   
     process {
         # Make sure we have a valid configuration before we proceed
-        try { 
-            # If we didn't get a prepared configuration object, create one from the parameters
-            if ($PSCmdlet.ParameterSetName -ne 'ConfigurationObject') {
+        # If we didn't get a prepared configuration object, create one from the parameters
+        try {
+            if ($PSCmdlet.ParameterSetName -eq 'Parameters') {
                 $Parameters = @{
                     Credential               = $Credential
                     SecureTrackingIdentifier = ConvertTo-SecureString $ApiTrackingIdentifier -AsPlainText -Force
                     ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
                     Prefix                   = $Prefix
                     RefreshCache             = $RefreshCache.IsPresent
-                    NoDiskCache              = $NoDiskCache.IsPresent
                     DebugPref                = $DebugPreference
                     VerbosePref              = $VerbosePreference
                 }
                 # We cannot reuse $configuration variable without triggering the validationscript
                 # again
+                Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with $parameters splatting' -F $MyInvocation.MyCommand.Name)
                 $ConfigurationData = New-AtwsModuleConfiguration @Parameters
             }
-            elseif (Test-AtwsModuleConfiguration -Configuration $Configuration) {
+            elseif ($ENV:FUNCTIONS_WORKER_RUNTIME) {
+                # We are probably on Azure and in an azure function to boot.    
+                # Can be used locally, too, but that is a secret...
+
+                try {
+                    $UserName = $ENV:AtwsUserName
+                    $PassWord = $ENV:AtwsPassword
+                    $SecurePass = $PassWord | ConvertTo-SecureString -AsPlainText -Force
+                    $Credential = [System.Management.Automation.PSCredential]::new($UserName, $SecurePass )
+                    
+                    $TrackingIdentifier = $ENV:AtwsTrackingIdentifier
+                    $SecureTrackingIdentifier = $TrackingIdentifier | ConvertTo-SecureString -AsPlainText -Force
+
+                }
+                catch {
+                    $message = 'Unable to get needed variables and convert them from Azure Function Application Settings. Fix and try again.'
+                    throw (New-Object System.Configuration.Provider.ProviderException $message)
+                }
+                Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with variables from Azure Functions application settings.' -F $MyInvocation.MyCommand.Name)
+                $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureTrackingIdentifier 
+
+            }
+            elseif ($env:AUTOMATION_ASSET_ACCOUNTID ) {
+                # We are on Azure. Try to get credentials and api key
+                try {
+                    $Credential = Get-AutomationPSCredential -Name 'AtwsDefaultCredential'
+                }
+                catch {
+                    $message = "Could not find credentials with name 'AtwsDefaultCredential'. Create and run again."
+                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                    return
+                }
+                # Now try for API key
+                try {
+                    $SecureIdentifier = Get-AutomationVariable -Name 'AtwsDefaultSecureIdentifier'
+                    $SecureIdentifier = $SecureIdentifier | ConvertTo-SecureString -AsPlainText -Force
+                }
+                catch {
+                    $message = "Could not a variable with name 'AtwsDefaultSecureIdentifier'. Create and run again."
+                    throw (New-Object System.Configuration.Provider.ProviderException $message) 
+                    return
+                }
+                Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with variables from Azure Automation resources.' -F $MyInvocation.MyCommand.Name)
+                # There are no $DebugPreferences on Azure Automation. Set explicitly to SlientlyContinue to avoid validation error
+                $ConfigurationData = New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $SecureIdentifier -DebugPref SilentlyContinue
+
+            }
+            elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
+                Write-Verbose ('{0}: Calling Get-AtwsModuleConfiguration with profilename {1} and path {2}.' -F $MyInvocation.MyCommand.Name, $ProfileName, $ProfilePath)
+            
+                if (-not (Test-Path $ProfilePath)) {
+                    # Create a new configuration. Prompt for credentials
+                    $ConfigurationData = New-AtwsModuleConfiguration 
+
+                    # Prepare shouldProcess comments
+                    $caption = 'Save connection credentials'
+                    $warning = 'Do you want to save these credentials as your Default connection profile? It will be encrypted using SecureString and encoded in CliXML. See Get-Help Set-AtwsModuleConfiguration for how to modify it.'
+                    $question = 'Is it OK to save your credentials to your $Profile folder?'
+
+                    Write-Warning $warning 
+                    # Lets do it and say we didn't!
+                    if ($PSCmdlet.ShouldContinue($question, $caption)) {
+                        Save-AtwsModuleConfiguration -Configuration $ConfigurationData
+                    }
+                }
+                else { 
+                    $ConfigurationData = Get-AtwsModuleConfiguration -Name $ProfileName -Path $ProfilePath
+                }
+            }
+            elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
                 # We got a configuration object and it passed validation
-                $ConfigurationData = $Configuration
+                Write-Verbose ('{0}: Calling New-AtwsModuleConfiguration with a configuration object passed on the command line.' -F $MyInvocation.MyCommand.Name)
+
+                $ConfigurationData = $AtwsModuleConfiguration
+            }
+            else {
+                Write-Warning ('{0}: Tried to call New-AtwsModuleConfiguration with a configuration object passed on the command line, but the configuration did not validate properly.' -F $MyInvocation.MyCommand.Name)
+
             }
         }
         catch {
-            $message = "{0}`nStacktrace:`n{1}" -f $_, $_.ScriptStackTrace
-            throw (New-Object System.Configuration.Provider.ProviderException $message)
-            
+            # Write a debug message with detailed information to developers
+            $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
+            $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+            Write-Debug $message
+
+            # Pass on the error
+            $PSCmdlet.ThrowTerminatingError($_)
             return
         }
 
-        # Question 1: Is the current module in $env:PSModulePath
-        $notInPath = $true
-        $separator = if ($IsMacOS -or $IsLinux) { ':' } else { ';' }
-        foreach ($dir in $env:PSModulePath -split $separator) { # Separator can be both ; and : depending on platform
-            if ($My.ModuleBase -like "$dir*") {
-                $notInPath = $false
-            }
-        }
-  
-        if ($notInPath) { 
-            # Import the module from its base directory
-            $moduleName = $My.ModuleBase
-        }
-        else {
-            # Import by module name
-            $moduleName = $MyInvocation.MyCommand.ModuleName
-        }
-      
-        # Reload the module with configuration 
-        Try { 
-            Import-Module -Name $moduleName @importParams -ArgumentList $ConfigurationData
-        }
-        catch { 
-            Write-Host ('ERROR: {0}' -f $_.Exception.Message) -ForegroundColor Red
-        }
+        ## Connect to the API
+        #  or die trying
+        . Connect-AtwsWebServices -Configuration $ConfigurationData -Erroraction Stop
         
     }
   

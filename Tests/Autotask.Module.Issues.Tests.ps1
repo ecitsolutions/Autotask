@@ -65,6 +65,29 @@ If (-not ($loadedModule)) {
     Import-Module $modulePath -Force -ArgumentList $Credential, $ApiTrackingIdentifier
 }
 
+<#
+    TODO: Create missing tests:
+        1. Tests for Save- and Set-AtwsModuleConfiguration.ps1
+        2. Tests for setting UDF properties on 500+ devices : Ensure connected to our sandbox.
+        3. Test that we can input numeric value instedd of StringLabel to parameters like New-AtwsTicket -IssueType 'SomeLabel'
+#>
+
+Describe 'Issue #95' -Tag 'Issues' {
+
+    Context 'Issue #94: TimeZone issues' {
+        # Get entityinfo for Account and force a lookup through the API
+        $Now = (Get-Date -day 1).Date
+        $contractId = 30390716 # Internal service contract
+        $result = Get-AtwsContractServiceUnit -ContractID $contractId -StartDate $Now -LessThanOrEquals StartDate -EndDate $Now -GreaterThanOrEquals EndDate
+
+        It 'There should be more than 0 ContractServiceUnits' {
+            $result.count  | Should -BeGreaterThan 0
+        }
+
+    }
+}
+
+
 Describe 'Issue #75' -Tag 'Issues' {
 
     Context 'Issue #75: ATWSSoap returns wrong value on EntityInfo.HasUserDefinedFields' {
@@ -78,18 +101,14 @@ Describe 'Issue #75' -Tag 'Issues' {
     }
 }
 
-
+<# Not relevant anymore 
 Describe 'Issue #74' -Tag 'Issues' {
 
     Context 'Issue #74: Updating Disc Cache on every Import' {
 
-        It 'Boolean parameters should not throw an exception' {
-            # Placeholder
-        }
-
     }
 }
-
+#>
 
 describe 'Issue #63' -Tag 'Issues' {
 
@@ -101,7 +120,7 @@ describe 'Issue #63' -Tag 'Issues' {
 
     }
 }
-
+#>
 
 Describe 'Issue #61' -Tag 'Issues' {
     # The root cause was a mistake in ConvertTo-AtwsFilter
@@ -265,14 +284,13 @@ describe 'Issue #37' -Tag 'Issues' {
     }
 }
 
-describe 'Issue #36' -Tag 'Issues' {
+describe 'Issue #36' -Tag 'Issues'  {
     # The root cause was a mistake in ConvertTo-AtwsFilter
     # We'll check this by mocking Get-AtwsData and verifying the -Filter
-    InModuleScope Autotask { 
-        
+    InModuleScope Autotask {       
         Mock 'Get-AtwsData' {
             [PSCustomObject]@{
-                PSTypeName = 'Autotask.ContractServiceUnit'
+              PSTypeName = 'Autotask.ContractServiceUnit'
                 StartDate = Get-Date
                 EndDate = Get-Date
             }
@@ -298,12 +316,12 @@ describe 'Issue #36' -Tag 'Issues' {
 # Issue #35 is a duplicate of issue #38. Or vice versa. But it is already tested...
 # Issue #34 does not exist 
 
-describe 'Issue #33' -Tag 'Issues' {
+<# Deprecated describe 'Issue #33' -Tag 'Issues' {
     
     # Get creation time of current file
-    $atws = Get-AtwsConnectionObject -Confirm:$false
-    [IO.FileInfo]$functionFile = Join-Path $atws.DynamicCache 'Get-AtwsTicket.ps1'
-    $lastWriteTime = $functionFile.LastWriteTime
+ 
+ $atws = Get-AtwsConnectionObject -Confirm:$false
+      $lastWriteTime = $functionFile.LastWriteTime
     
     # Remove any loaded modules before trying to load it again
     Remove-Module -Name $ModuleName -Force -ErrorAction SilentlyContinue
@@ -332,7 +350,7 @@ describe 'Issue #33' -Tag 'Issues' {
     }
 }
 
-
+#>
 describe 'Issue #32' -Tag 'Issues' {
     context 'Issue #32: Suppress DATE and TIME warning enhancement ' {
  
@@ -503,4 +521,4 @@ describe 'Issue #1' -Tag 'Issues' {
             $accountWithNull | Should -BeOfType Autotask.Account
         }
     }
-}
+}  

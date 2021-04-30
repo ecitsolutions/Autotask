@@ -312,11 +312,6 @@ Function New-AtwsAttachment {
 
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
 
-        # Dynamic field info
-        $fields = Get-AtwsFieldInfo -Entity AttachmentInfo
-
-        $Picklists = $fields.Where{ $_.IsPickList }
-
         # Publish dictionary
         $PublishToIndex = @{
             'All Autotask Users'  = '1'
@@ -390,10 +385,11 @@ Function New-AtwsAttachment {
         }
 
         # What are we attaching to?
-        $objectType = ($PSCmdlet.ParameterSetName -split '_')[0]
+        $AttachmentInfo.ParentId = $TicketId + $AccountID + $ProjectID + $OpportunityId # Genious way of using 0 ints and math to store the EntityId we are working with.
+        # Throws if Indexing Hastable is not possible (Empty)
+        $PicklistValues = Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName ParentType -Label -Hashtable
+        $AttachmentInfo.ParentType = $PicklistValues[$(($PSCmdlet.ParameterSetName -split '_')[0])]
 
-        $AttachmentInfo.ParentId = $TicketId + $AccountID + $ProjectID + $OpportunityId
-        $AttachmentInfo.ParentType = $Picklists.Where{ $_.name -eq 'ParentType' }.PickListValues.Where{ $_.Label -eq $objectType }.Value
 
         # Prepare ShouldProcess
         $caption = $MyInvocation.MyCommand.Name

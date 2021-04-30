@@ -15,7 +15,6 @@ Function Get-AtwsParameterDefinition {
             correct type and help texts.
         .INPUTS
             Autotask.EntityInfo
-            Autotask.FieldInfo[]
             String, validateset get, set, new, remove
         .OUTPUTS
             Text
@@ -37,11 +36,7 @@ Function Get-AtwsParameterDefinition {
         [Parameter(Mandatory)]
         [ValidateSet('Get', 'Set', 'New', 'Remove')]
         [string]
-        $Verb,
-        
-        [Parameter(Mandatory)]
-        [Autotask.Field[]]
-        $FieldInfo
+        $Verb
     )
     
     begin {
@@ -50,29 +45,25 @@ Function Get-AtwsParameterDefinition {
         
         $Mandatory = @{ }
         $parameterSet = @{ }
-    
-        # Add Default PSParameter info to Fields
-        foreach ($field in $fieldInfo) {
-            $Mandatory[$field.Name] = $field.IsRequired
-            $parameterSet[$field.Name] = @('By_parameters')
-        }
     }
 
     process { 
         $TypeName = 'Autotask.{0}' -F $Entity.Name
-      
+
+        # Add Default PSParameter info to Fields
+        foreach ($field in $Entity['FieldInfo'].GetEnumerator()) {
+            $Mandatory[$field.key] = $field.Value.IsRequired
+            $parameterSet[$field.key] = @('By_parameters')
+        }
+
         if ($Verb -eq 'Get') {
             # -Filter
             $Comment = 'A filter that limits the number of objects that is returned from the API'
             Get-AtwsPSParameter -Name 'Filter' -SetName 'Filter' -Type 'string' -Mandatory -Remaining -NotNull  -Array -Comment $Comment
-            $ReferenceFields = $fieldInfo.Where( { $_.IsReference }).Name | Sort-Object
+            $ReferenceFields = $Entity['ExternalReferences'].Keys | Sort-Object
             # -GetReferenceEntityById, -GetRef
             $Comment = 'Follow this external ID and return any external objects'            
             Get-AtwsPSParameter -Name 'GetReferenceEntityById' -Alias 'GetRef' -SetName 'Filter', 'By_parameters' -Type 'string' -NotNull -ValidateSet $ReferenceFields -Comment $Comment
-            # -GetExternalEntityByThisEntityId, -External
-            $IncomingReferenceEntities = Get-AtwsFieldInfo -Entity $Entity.Name -ReferencingEntity | Sort-Object
-            $Comment = 'Return entities of selected type that are referencing to this entity.'
-            Get-AtwsPSParameter -Name 'GetExternalEntityByThisEntityId' -Alias 'External' -SetName 'Filter', 'By_parameters' -Type 'string' -NotNull -ValidateSet $IncomingReferenceEntities -Comment $Comment
             # -All
             $Comment = 'Return all objects in one query'    
             Get-AtwsPSParameter -Name 'All' -SetName 'Get_all' -Type 'switch' -Comment $Comment
@@ -87,7 +78,7 @@ Function Get-AtwsParameterDefinition {
             $Comment = 'An object that will be modified by any parameters and updated in Autotask'
             Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
             # -Id
-            $field = $fieldInfo.Where( { $_.Name -eq 'Id' })
+            $field = $Entity['FieldInfo']['Id']
             $Comment = 'The object.ids of objects that should be modified by any parameters and updated in Autotask'
             Get-AtwsPSParameter -Name 'Id' -SetName 'By_Id' -Type $field.Type -Mandatory -NotNull -Array -Comment $Comment
             # -PassThru
@@ -114,7 +105,7 @@ Function Get-AtwsParameterDefinition {
             $Comment = 'Any objects that should be deleted'          
             Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
             # -Id
-            $field = $fieldInfo.Where( { $_.Name -eq 'Id' })
+            $field = $Entity['FieldInfo']['Id']
             $Comment = 'The unique id of an object to delete'
             Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $field.Type -Mandatory  -NotNull -Array -Comment $Comment
         }
@@ -122,20 +113,22 @@ Function Get-AtwsParameterDefinition {
 
         switch ($Verb) {
             'Get' { 
-                [array]$fields = $fieldInfo.Where{ $_.IsQueryable } | ForEach-Object {
-                    $Mandatory[$_.Name] = $false
-                    $_
+                [array]$fields = $Entity['QueryableFields'] | ForEach-Object {
+                    $Mandatory[$_] = $false
+                    $Entity['FieldInfo'][$_]
                 }
             }
             'Set' { 
-                [array]$fields = $fieldInfo.Where{ -Not $_.IsReadOnly } | ForEach-Object {
-                    $parameterSet[$_.Name] = @('Input_Object', 'By_parameters', 'By_Id')
-                    $_
+                if (($Entity.ContainsKey('WriteableFields'))) {
+                    [array]$fields = $Entity['WriteableFields'] | ForEach-Object {
+                        $parameterSet[$_] = @('Input_Object', 'By_parameters', 'By_Id')
+                        $Entity['FieldInfo'][$_]
+                    }
                 }
             }
             'New' {
-                [array]$fields = $fieldInfo.Where{
-                    $_.Name -ne 'Id'
+                [array]$fields = $Entity['FieldInfo'].GetEnumerator()  | ForEach-Object {
+                    if ($_.Key -ne 'id') { $_.Value }
                 }
             }
             default {
@@ -146,7 +139,7 @@ Function Get-AtwsParameterDefinition {
     
         # Add Name alias for EntityName parameters
         $entityNameParameter = '{0}Name' -f $Entity.Name
-        foreach ($field in $fields ) {
+        foreach ($field in $fields | sort-object -property name) {
             # Start with native field type
             $Type = $field.Type
 
@@ -170,9 +163,12 @@ Function Get-AtwsParameterDefinition {
                 ParameterSetName       = $parameterSet[$field.Name]
                 ValidateNotNullOrEmpty = $field.IsRequired
                 ValidateLength         = $ValidateLength
-                ValidateSet            = $field.PickListValues | Where-Object { $_.IsActive } | Select-Object -ExpandProperty Label | Sort-Object -Unique
+                ValidateSet            = @()
+                isPicklist             = $field.IsPickList
+                PickListParentValueField = $field.PickListParentValueField
                 Array                  = $(($Verb -eq 'Get'))
                 Name                   = $field.Name
+                EntityName             = $Entity.Name
                 Alias                  = $Alias
                 Type                   = $Type
                 Comment                = $field.Label
@@ -186,28 +182,28 @@ Function Get-AtwsParameterDefinition {
         # Make modifying operators possible
         if ($Verb -eq 'Get') {
             # These operators work for all fields (add quote characters here)
-            [array]$Labels = $fields | Select-Object -ExpandProperty Name
-            if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
+            [array]$Labels = $Entity['FieldInfo'].keys
+            if ($Entity.HasUserDefinedFields) { $Labels += $Entity['UserDefinedFields'].keys }
             foreach ($Operator in 'NotEquals', 'IsNull', 'IsNotNull') {
                 Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
             }
 
             # These operators work for all fields except boolean (add quote characters here)
-            [array]$Labels = $fields | Where-Object { $_.Type -ne 'boolean' } | Select-Object -ExpandProperty Name
+            [array]$Labels = $Entity['NotBooleanFields']
             if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
             foreach ($Operator in 'GreaterThan', 'GreaterThanOrEquals', 'LessThan', 'LessThanOrEquals') {
                 Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
             }
 
             # These operators only work for strings (add quote characters here)
-            [array]$Labels = $fields | Where-Object { $_.Type -eq 'string' } | Select-Object -ExpandProperty Name
+            [array]$Labels = $Entity['StringFields']
             if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
             foreach ($Operator in 'Like', 'NotLike', 'BeginsWith', 'EndsWith', 'Contains') {
                 Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels
             }
       
             # This operator only work for datetime (add quote characters here)
-            [array]$Labels = $fields | Where-Object { $_.Type -eq 'datetime' } | Select-Object -ExpandProperty Name
+            [array]$Labels = $Entity['DateTimeFields']
             if ($Entity.HasUserDefinedFields) { $Labels += 'UserDefinedField' }
             foreach ($Operator in 'IsThisDay') {
                 Get-AtwsPSParameter -Name $Operator -SetName 'By_parameters' -Type 'string' -Array -ValidateSet $Labels

@@ -44,7 +44,7 @@ Function Write-AtwsProgress {
 
         # Progress bar length in characters
         $size = 30
-        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+        Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
     }
 
     process {
@@ -69,7 +69,6 @@ Function Write-AtwsProgress {
             # Write-Progress should be supported. Pass all parameters to Write-Progress
             Write-Progress @PSBoundParameters
         }
-        Write-Verbose ('{0}: Converting datetime to {1}' -F $MyInvocation.MyCommand.Name, $value)
         
     }
 

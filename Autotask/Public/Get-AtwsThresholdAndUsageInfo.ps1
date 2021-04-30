@@ -44,7 +44,9 @@ Function Get-AtwsThresholdAndUsageInfo {
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
     
         if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            # Not connected. Try to connect, prompt for credentials if necessary
+            Write-Verbose ('{0}: Not connected. Calling Connect-AtwsWebApi without parameters for possible autoload of default connection profile.' -F $MyInvocation.MyCommand.Name)
+            Connect-AtwsWebAPI
         }    
     }
 

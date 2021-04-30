@@ -65,11 +65,8 @@ describe "$ModuleName Module Manifest tests" -Tag 'Manifest' {
       "$modulePath\$moduleName.psd1" | Should -FileContentMatch "$moduleName.psm1"
     }
     
-    it "$modulePath\Dynamic folder has functions" {
-      "$modulePath\Dynamic\*.ps1" | Should -Exist
-    }
-    it "$modulePath\Static folder has functions" {
-      "$modulePath\Static\*.ps1" | Should -Exist
+    it "$modulePath\Functions folder has functions" {
+      "$modulePath\Functions\*.ps1" | Should -Exist
     }
     it "$modulePath\Private folder has functions" {
       "$modulePath\Private\*.ps1" | Should -Exist
@@ -92,7 +89,7 @@ describe "$ModuleName Module Manifest tests" -Tag 'Manifest' {
 
 describe "$ModuleName Module function tests" -Tag 'Functions' { 
 
-    foreach ($directory in 'Dynamic', 'Static', 'Public') { 
+    foreach ($directory in 'Functions', 'Public') { 
     
     $subdir = '{0}\{1}' -F $modulePath, $directory 
 

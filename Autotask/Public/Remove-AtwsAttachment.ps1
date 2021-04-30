@@ -16,7 +16,7 @@ Function Remove-AtwsAttachment {
       .DESCRIPTION
       Based on your parameters this function either deletes an attachment directly (by attachment id) or
       uses your parameters to get any attachment information about the objects you provide (by object or
-      by object id) through Get-AtwsAttachmentInfo. The function then uses the AttachmentInfo objects to 
+      by object id) through Get-AtwsAttachmentInfo. The function then uses the AttachmentInfo objects to
       delete any attachments.
       .INPUTS
       Either Nothing, Account, Ticket, Opportunity or Project
@@ -55,9 +55,9 @@ Function Remove-AtwsAttachment {
             ValueFromPipeline = $true
         )]
         [ValidateNotNullOrEmpty()]
-        [ValidateScript( { 
+        [ValidateScript( {
                 # InputObject must be one of these four types
-                $_[0].GetType().Name -in 'Account', 'Ticket', 'Opportunity', 'Project' 
+                $_[0].GetType().Name -in 'Account', 'Ticket', 'Opportunity', 'Project'
             })]
         [PSObject[]]
         $InputObject,
@@ -116,7 +116,7 @@ Function Remove-AtwsAttachment {
         # Ticket ID
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Ticket'
+            ParameterSetName = 'Task Or Ticket'
         )]
         [ValidateScript( {
                 if ( -Not (Get-AtwsTicket -id $_) ) {
@@ -126,41 +126,41 @@ Function Remove-AtwsAttachment {
             })]
         [long[]]
         $TicketID
-   
+
     )
 
-    begin { 
-   
+    begin {
+
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
-    
+
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-    
+
     }
 
 
     process {
 
         # Do we have to look up attachment Id by another object Id
-        if ($PSCmdlet.ParameterSetName -ne 'By_id') { 
-      
-            # Yes, we have to get the attachment Id ourselves. So, what kind of object 
+        if ($PSCmdlet.ParameterSetName -ne 'By_id') {
+
+            # Yes, we have to get the attachment Id ourselves. So, what kind of object
             # are we looking for?
 
-            $AttachmentInfoParams = @{ } 
+            $AttachmentInfoParams = @{ }
 
             $objectType = switch ($PSCmdlet.ParameterSetName) {
-                'Input_Object' { 
-                    $InputObject[0].GetType().Name 
+                'Input_Object' {
+                    $InputObject[0].GetType().Name
                     $objectId = $InputObject.Id
                 }
-                default { 
-                    $PSCmdlet.ParameterSetName 
+                default {
+                    $PSCmdlet.ParameterSetName
                     $objectId = switch ($PSCmdlet.ParameterSetName) {
                         'Account' { $AccountID }
                         'Opportunity' { $OpportunityID }
                         'Project' { $ProjectID }
-                        'Ticket' { $TicketID }
+                        'Task Or Ticket' { $TicketID }
                     }
                 }
             }
@@ -174,7 +174,7 @@ Function Remove-AtwsAttachment {
                     $AttachmentInfoParams['ParentType'] = $objectType
                 }
             }
-      
+
             $AttachmentInfo = Get-AtwsAttachmentInfo @AttachmentInfoParams
 
             if ($AttachmentInfo.Count -gt 0) {
@@ -185,20 +185,20 @@ Function Remove-AtwsAttachment {
                 Return
             }
         }
-    
+
 
         $caption = $MyInvocation.MyCommand.Name
         $verboseDescription = '{0}: About to delete {1} attatchment(s).' -F $caption, $id.count
         $verboseWarning = '{0}: About to delete {1} attatchment(s). Do you want to continue?' -F $caption, $id.count
-    
-        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
             $result = @()
             foreach ($AttachmentId in $id) {
                 $result += $Script:Atws.DeleteAttachment($Script:Atws.integrationsValue, $AttachmentId)
             }
 
             Write-Verbose ('{0}: Number of attachment(s) deleted: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
-    
+
         }
     }
 

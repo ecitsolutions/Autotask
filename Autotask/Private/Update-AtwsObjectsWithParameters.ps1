@@ -21,7 +21,7 @@ Function Update-AtwsObjectsWithParameters {
             Updates the properties of object $Element with the values of any parameter with the same name as a property-
             .NOTES
             NAME: Update-AtwsObjectsWithParameters
-      
+
     #>
     [cmdletbinding()]
     Param
@@ -30,7 +30,7 @@ Function Update-AtwsObjectsWithParameters {
             Mandatory = $true,
             ValueFromPipeline = $true
         )]
-        [PSObject[]]
+        [Collections.Generic.List[psobject]]
         $InputObject,
 
         [Parameter(
@@ -52,60 +52,60 @@ Function Update-AtwsObjectsWithParameters {
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {
             $DebugPreference = 'Continue'
         }
-    
+
         Write-Verbose ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-        
+
         # Get updated field info about this entity
         $fields = Get-AtwsFieldInfo -Entity $entityName
-        
-        $result = @()
-    
+
+        $result = [Collections.Generic.List[psobject]]::new()
+
     }
 
     process {
         Write-Debug ('{0}: Query based on parameters, parsing' -F $MyInvocation.MyCommand.Name)
-        
-    
-        # Loop through parameters and update any inputobjects with the given parameter values    
+
+
+        # Loop through parameters and update any inputobjects with the given parameter values
         foreach ($parameter in $BoundParameters.GetEnumerator()) {
             # Get field info for the field with the same name as the parameter
-            $field = $fields | Where-Object { $_.Name -eq $parameter.Key }
+            $field = $fields[$parameter.Key]
 
             # Limit processing to parameter that match an existing field
-            if (($field) -or $parameter.Key -eq 'UserDefinedFields') { 
+            if (($field) -or $parameter.Key -eq 'UserDefinedFields') {
                 if ($field.IsPickList) {
                     if ($field.PickListParentValueField) {
                         # There is a parent field. The selection of this field depends on parent
-                        $parentField = $fields.Where{ $_.Name -eq $field.PickListParentValueField }
+                        $parentField = $fields[$field.PickListParentValueField]
 
                         # Get the Parent label and value
                         $parentLabel = $BoundParameters.$($parentField.Name)
-                        $parentValue = $parentField.PickListValues | Where-Object { $_.Label -eq $parentLabel -and $_.IsActive }
+                        $parentValue = $parentField['PickListValues']['byLabel'][$parentLabel]
 
                         # Select pickListValue based on label -and parentValue
-                        $pickListValue = $field.PickListValues | Where-Object { $_.Label -eq $parameter.Value -and $_.ParentValue -eq $parentValue.Value -and $_.IsActive }   
+                        $pickListValue = $field['PickListValues'][$parentValue]['byLabel'][$parameter.Value]
                     }
-                    else { 
+                    else {
                         # No parent field. Select pickListValue based on value
-                        $pickListValue = $field.PickListValues | Where-Object { $_.Label -eq $parameter.Value -and $_.IsActive } 
+                        $pickListValue = $field['PickListValues']['byLabel'][$parameter.Value]
                     }
                     # Set value to the picklist index value, not the label
-                    $value = $pickListValue.Value
+                    $value = $pickListValue
                 }
                 else {
                     # It isn't a picklist. Use the value of the parameter unmodified
                     $value = $parameter.Value
-                }  
-            
-                foreach ($object in $InputObject) { 
+                }
+
+                foreach ($object in $InputObject) {
                     $object.$($parameter.Key) = $value
                 }
             }
- 
+
         }
-        
+
         $result += $InputObject
-        
+
     }
 
     end {

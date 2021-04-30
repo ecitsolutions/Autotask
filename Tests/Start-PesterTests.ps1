@@ -16,24 +16,24 @@
 #>
 
 [cmdletbinding(
-        SupportsShouldProcess = $True,
-        ConfirmImpact = 'Low',
-        DefaultParameterSetName = 'Default'
+    SupportsShouldProcess = $True,
+    ConfirmImpact = 'Low',
+    DefaultParameterSetName = 'Default'
 )]
 
 Param
 (
     [Parameter(
-            Mandatory = $True,
-            ParameterSetName = 'Default'
+        Mandatory = $True,
+        ParameterSetName = 'Default'
     )]
     [ValidateNotNullOrEmpty()]    
     [pscredential]
     $Credential,
     
     [Parameter(
-            Mandatory = $True,
-            ParameterSetName = 'Default'
+        Mandatory = $True,
+        ParameterSetName = 'Default'
     )]
     [String]
     $ApiTrackingIdentifier
@@ -41,8 +41,6 @@ Param
 
 
 Import-Module -Name Pester
-
-
 
 # Move to the folder with your module code and tests
 
@@ -56,19 +54,21 @@ $moduleName = 'Autotask'
 # Store its path
 $rootPath = Split-Path -Parent $TestsFolder
 
-
 # Run the structure test
 
+$pesterConfig = [PesterConfiguration]::Default
+$pesterConfig.Run.Path = "$TestsFolder\Autotask.Module.Validation.Tests.ps1"
+
 foreach ($tag in 'Manifest', 'Functions') {
-    $TestResult = Invoke-Pester -Script @{
-        Path       = "$TestsFolder\Autotask.Module.Validation.Tests.ps1"
+    $pesterConfig.Filter.Tag = $tag
+    $TestResult = Invoke-Pester -Configuration $pesterConfig
         Parameters = @{
             Credential            = $Credential
             ApiTrackingIdentifier = $ApiTrackingIdentifier
             ModuleName            = $moduleName
             RootPath              = $rootPath 
         }
-    } -Show Fails -Tag $tag -PassThru
+
 
     If ($TestResult.PassedCount -ne $TestResult.PassedCount) { Throw 'Manifest did not validate, execution stopped' }
 }

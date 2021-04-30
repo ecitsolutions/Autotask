@@ -11,7 +11,7 @@ Function Get-AtwsData {
       This function queries the Autotask Web API for entities matching a specified type and filter.
       .DESCRIPTION
       This function queries the Autotask Web API for entities matching a specified type and filter.
-      Valid operators: 
+      Valid operators:
       -and, -or
 
       Valid comparison operators:
@@ -19,8 +19,8 @@ Function Get-AtwsData {
 
       Valid text comparison operators:
       -contains, -like, -notlike, -beginswith, -endswith, -soundslike
-         
-      Special operators to nest conditions: 
+
+      Special operators to nest conditions:
       -begin, -end
 
       .INPUTS
@@ -37,9 +37,9 @@ Function Get-AtwsData {
       New-AtwsData
       Remove-AtwsData
   #>
-  
+
     [cmdletbinding()]
-    [OutputType([PSObject[]])]
+    [OutputType([collections.generic.list[psobject]])]
     param
     (
         [Parameter(
@@ -48,7 +48,7 @@ Function Get-AtwsData {
         )]
         [string]
         $Entity,
-          
+
         [Parameter(
             Mandatory = $true,
             ValueFromRemainingArguments = $true,
@@ -56,46 +56,45 @@ Function Get-AtwsData {
         )]
         [string[]]
         $Filter,
-    
+
         [string]
         $GetReferenceEntityById,
-    
-        [string]
-        $GetExternalEntityByThisEntityId,
-    
+
         [switch]
         $NoPickListLabel
     )
 
-    begin { 
+    begin {
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
-    
+
         Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-       
+
         if (-not($Script:Atws.integrationsValue)) {
-            Throw [ApplicationException] 'Not connected to Autotask WebAPI. Re-import module with valid credentials.'
+            # Not connected. Try to connect, prompt for credentials if necessary
+            Write-Verbose ('{0}: Not connected. Calling Connect-AtwsWebApi without parameters for possible autoload of default connection profile.' -F $MyInvocation.MyCommand.Name)
+            Connect-AtwsWebAPI
         }
-    
-        $result = @()
+
+        $result = [collections.generic.list[psobject]]::new()
     }
-  
+
     process {
-        # $Filter is usually passed as a flat string. Make sure it is formatted properly
-        if ($Filter.Count -eq 1 -and $Filter -match ' ' ) { 
+        # $Filter may in some cases be passed as a flat string. Make sure it is formatted properly
+        if ($Filter.Count -eq 1 -and $Filter -match ' ' ) {
             $Filter = . Update-AtwsFilter -Filterstring $Filter
         }
-    
-        # Squash into a flat array with entity first
+
+        # Create array with entity as first element
         [Array]$Query = @($Entity) + $Filter
-  
+
         Write-Verbose ('{0}: Converting query string into QueryXml. string as array looks like: {1}' -F $MyInvocation.MyCommand.Name, $($Query -join ', '))
         [xml]$QueryXml = ConvertTo-QueryXML @Query
 
         Write-Debug ('{0}: QueryXml looks like: {1}' -F $MyInvocation.MyCommand.Name, $QueryXml.InnerXml.Tostring())
-    
+
         Write-Verbose ('{0}: Adding looping construct to query to handle more than 500 results.' -F $MyInvocation.MyCommand.Name)
-    
+
         # Native XML is rather tedious...
         $field = $QueryXml.CreateElement('field')
         $expression = $QueryXml.CreateElement('expression')
@@ -103,7 +102,7 @@ Function Get-AtwsData {
         $expression.InnerText = 0
         $field.InnerText = 'id'
         [void]$field.AppendChild($expression)
-    
+
         $FirstPass = $true
         Do {
             Write-Verbose ('{0}: Passing QueryXML to Autotask API' -F $MyInvocation.MyCommand.Name)
@@ -114,16 +113,28 @@ Function Get-AtwsData {
             # Handle any errors
             if ($lastquery.Errors.Count -gt 0) {
                 foreach ($atwsError in $lastquery.Errors) {
-                    Write-Error $atwsError.Message
+                    $exception = New-Object System.Configuration.Provider.ProviderException $atwsError.Message
+                    $errorCategory = [System.Management.Automation.ErrorCategory]::NotSpecified
+                    $errorRecord = [System.Management.Automation.ErrorRecord]::new($exception, 'AutotaskError', $errorCategory, $atwsError)
+                    $PSCmdlet.ThrowTerminatingError($errorRecord)
                 }
                 return
             }
 
             # Add all returned objects to the Result - if any
-            if ($lastquery.EntityResults.Count -gt 0) { 
-                $result += ConvertTo-LocalObject -InputObject $lastquery.EntityResults
+            if ($lastquery.EntityResults.Count -gt 0) {
+                # Powershell 5.1 adaption
+                # On 5.1 the cast ends up as a nested list with 1 item - an array with a single member...
+                if ($lastquery.EntityResults.Count -gt 1) {
+                    # Use addrange for an array of objects
+                    $result.AddRange([collections.generic.list[psobject]]$lastquery.EntityResults)
+                }
+                else {
+                  # Add a single item
+                  $result.Add($lastquery.EntityResults[0])
+                }
             }
-            
+
             # Results are sorted by object Id. The Id of the last object is the highest object id in the result
             $upperBound = $lastquery.EntityResults[$lastquery.EntityResults.GetUpperBound(0)].id
 
@@ -134,42 +145,39 @@ Function Get-AtwsData {
             if ($FirstPass) {
                 # Insert looping construct into query
                 [void]$QueryXml.queryxml.query.AppendChild($field)
-                $FirstPass = $false        
+                $FirstPass = $false
             }
         }
         # The last query we have to make will have between 0 and 499 items
         Until ($lastquery.EntityResults.Count -lt 500)
-     
+
     }
-  
-    end { 
+
+    end {
         # Some last minute changes
-        if ($result) { 
+        if ($result) {
             # Should we return an indirect object?
             if ($GetReferenceEntityById) {
                 Write-Verbose ('{0}: User has asked for external reference objects by {1}' -F $MyInvocation.MyCommand.Name, $GetReferenceEntityById)
-                $fields = Get-AtwsFieldInfo -Entity $result[0].GetType().Name
-                $field = $fields.Where( { $_.Name -eq $GetReferenceEntityById })
-                $resultValues = $result | Where-Object { $null -ne $_.$GetReferenceEntityById }
+                $field = Get-AtwsFieldInfo -Entity $Entity -FieldName $GetReferenceEntityById
+                $resultValues = $result.$GetReferenceEntityById | Where-Object { $null -ne $_ }
                 if ($resultValues.Count -lt $result.Count) {
-                    Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name, 
+                    Write-Warning ('{0}: Only {1} of the {2}s in the primary query had a value in the property {3}.' -F $MyInvocation.MyCommand.Name,
                         $resultValues.Count,
                         $Entity,
                         $GetReferenceEntityById) -WarningAction Continue
                 }
-                $Filter = 'id -eq {0}' -F $($resultValues.$GetReferenceEntityById -join ' -or id -eq ')
+                $Filter = 'id -eq {0}' -F $($resultValues -join ' -or id -eq ')
                 $result = Get-Atwsdata -Entity $field.ReferenceEntityType -Filter $Filter
             }
-            elseif ($GetExternalEntityByThisEntityId) {
-                Write-Verbose ('{0}: User has asked for {1} that are referencing this result' -F $MyInvocation.MyCommand.Name, $GetExternalEntityByThisEntityId)
-                $ReferenceInfo = $GetExternalEntityByThisEntityId -Split ':'
-                $Filter = '{0} -eq {1}' -F $ReferenceInfo[1], $($result.id -join (' -or {0}id -eq ' -F $ReferenceInfo[1]))
-                $result = Get-Atwsdata -Entity $ReferenceInfo[0] -Filter $Filter
+            else {
+              # Expand UDFs and/or picklists and/or convert dates according to user settings
+              $null = ConvertTo-LocalObject -InputObject $result
             }
 
             Write-Debug ('{0}: End of function' -F $MyInvocation.MyCommand.Name)
             Return $result
         }
     }
-  
+
 }

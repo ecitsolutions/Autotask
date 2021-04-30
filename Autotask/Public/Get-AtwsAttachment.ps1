@@ -15,9 +15,9 @@ Function Get-AtwsAttachment {
       .DESCRIPTION
       Based on your parameters this function either gets an attachment directly (by attachment id) or
       uses your parameters to get any attachment information about the objects you provide (by object or
-      by object id) through Get-AtwsAttachmentInfo. The function then uses the AttachmentInfo objects to 
+      by object id) through Get-AtwsAttachmentInfo. The function then uses the AttachmentInfo objects to
       get any attachment ids and then the attachments are downloaded and returned.
-      
+
       .INPUTS
       Either Nothing, Account, Ticket, Opportunity or Project
       .OUTPUTS
@@ -55,11 +55,13 @@ Function Get-AtwsAttachment {
             ValueFromPipeline = $true
         )]
         [ValidateNotNullOrEmpty()]
-        [ValidateScript( { 
+        [ValidateScript( {
                 # InputObject must be one of these four types
-                $_[0].GetType().Name -in 'Account', 'Ticket', 'Opportunity', 'Project' 
+                if( $_[0].GetType().Name -in 'Account', 'Ticket', 'Opportunity', 'Project' ){
+                    return $true
+                }
             })]
-        [PSObject[]]
+        # [PSObject[]]
         $InputObject,
 
         # Attachment ID
@@ -116,7 +118,7 @@ Function Get-AtwsAttachment {
         # Ticket ID
         [Parameter(
             Mandatory = $true,
-            ParameterSetName = 'Ticket'
+            ParameterSetName = 'Task Or Ticket'
         )]
         [ValidateScript( {
                 if ( -Not (Get-AtwsTicket -id $_) ) {
@@ -126,58 +128,49 @@ Function Get-AtwsAttachment {
             })]
         [long[]]
         $TicketID
-   
+
     )
 
-    begin { 
-   
+    begin {
+
+        if (-not($Script:Atws.integrationsValue)) {
+            # Not connected. Try to connect, prompt for credentials if necessary
+            Write-Verbose ('{0}: Not connected. Calling Connect-AtwsWebApi without parameters for possible autoload of default connection profile.' -F $MyInvocation.MyCommand.Name)
+            Connect-AtwsWebAPI
+        }
+
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) { $DebugPreference = 'Continue' }
-    
-        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
-    
-        # Dynamic field info
-        $fields = Get-AtwsFieldInfo -Entity AttachmentInfo
-        $dateTimeParams = $fields.Where( { $_.Type -eq 'datetime' }).Name
-        $picklists = $fields.Where{ $_.IsPickList }
-    
-        # Set up TimeZone offset handling
-        if (-not($script:ESTzone)) {
-            $script:ESTzone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Eastern Standard Time")
-        }
-    
-        if (-not($script:ESToffset)) {
-            $now = Get-Date
-            $ESTtime = [System.TimeZoneInfo]::ConvertTimeFromUtc($now.ToUniversalTime(), $ESTzone)
 
-            $script:ESToffset = (New-TimeSpan -Start $ESTtime -End $now).TotalHours
-        }
-    
+        Write-Debug ('{0}: Begin of function' -F $MyInvocation.MyCommand.Name)
+
     }
 
 
     process {
 
         # Do we have to look up attachment Id by another object Id
-        if ($PSCmdlet.ParameterSetName -ne 'By_id') { 
-      
-            # Yes, we have to get the attachment Id ourselves. So, what kind of object 
+        if ($PSCmdlet.ParameterSetName -ne 'By_id') {
+
+            # Yes, we have to get the attachment Id ourselves. So, what kind of object
             # are we looking for?
 
-            $attachmentInfoParams = @{ } 
+            $attachmentInfoParams = @{ }
 
             $objectType = switch ($PSCmdlet.ParameterSetName) {
-                'Input_Object' { 
-                    $InputObject[0].GetType().Name 
+                'Input_Object' {
+                    switch ($InputObject[0].GetType().Name) {
+                        'Ticket' { 'Task Or Ticket' }
+                    }
                     $objectId = $InputObject.Id
                 }
-                default { 
-                    $PSCmdlet.ParameterSetName 
+                default {
+                    $PSCmdlet.ParameterSetName
                     $objectId = switch ($PSCmdlet.ParameterSetName) {
                         'Account' { $AccountID }
                         'Opportunity' { $OpportunityID }
                         'Project' { $ProjectID }
-                        'Ticket' { $TicketID }
+                        'Task Or Ticket' { $TicketID }
                     }
                 }
             }
@@ -191,7 +184,7 @@ Function Get-AtwsAttachment {
                     $attachmentInfoParams['ParentType'] = $objectType
                 }
             }
-      
+
             $attachmentInfo = Get-AtwsAttachmentInfo @attachmentInfoParams
 
             if ($attachmentInfo.Count -gt 0) {
@@ -202,60 +195,23 @@ Function Get-AtwsAttachment {
                 return
             }
         }
-    
+
 
         $caption = $MyInvocation.MyCommand.Name
         $verboseDescription = '{0}: About to query the Autotask Web API for attatchment(s).' -F $caption
         $verboseWarning = '{0}: About to query the Autotask Web API for attatchment(s). Do you want to continue?' -F $caption
-    
-        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
+
+        if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
             $result = @()
             foreach ($attachmentId in $id) {
-                $result += $Script:Atws.GetAttachment($attachmentId)
+                $result += $Script:Atws.GetAttachment($Script:ATWS.IntegrationsValue, $attachmentId)
             }
 
             Write-Verbose ('{0}: Number of attachments downloaded: {1}' -F $MyInvocation.MyCommand.Name, $result.Count)
-    
 
-            # Expand UDFs by default
-            # Normalize dates (convert to local time). EVery datetime field ever returned
-            # By the API is in CEST.
-            foreach ($item in $result) {
-                # Any userdefined fields?
-                if ($item.UserDefinedFields.Count -gt 0) { 
-                    # Expand User defined fields for easy filtering of collections and readability
-                    foreach ($UDF in $item.UserDefinedFields) {
-                        # Make names you HAVE TO escape...
-                        $UDFName = '#{0}' -F $UDF.Name
-                        Add-Member -InputObject $item -MemberType NoteProperty -Name $UDFName -Value $UDF.Value -Force
-                    }  
-                }
-      
-                # Adjust TimeZone on all DateTime properties
-                # Dates RETURNED by the API are always in CEST. Add timezone difference
-                # to get local time
-                foreach ($dateTimeParam in $dateTimeParams) {
-      
-                    # Get the datetime value
-                    $value = $item.$dateTimeParam
-                
-                    # Skip if parameter is empty
-                    if (-not ($value)) {
-                        Continue
-                    }
-                    # Yes, you really have to ADD the difference
-                    $item.$dateTimeParam = $value.AddHours($script:ESToffset)
-                }
+            # Has to run this to convert DateTime back to local time.
+            $result = $result | ConvertTo-LocalObject
 
-                if ($Script:Atws.Configuration.ConvertPicklistIdToLabel) { 
-                    # Restore picklist labels
-                    foreach ($field in $picklists) {
-                        if ($item.$($field.Name) -in $field.PicklistValues.Value) {
-                            $item.$($field.Name) = ($field.PickListValues.Where{ $_.Value -eq $item.$($field.Name) }).Label
-                        }
-                    }
-                }
-            }
         }
     }
 

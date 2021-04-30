@@ -40,6 +40,8 @@ Function Get-AtwsPSParameter {
         [Parameter(Mandatory = $true)]
         [string]$Name,
 
+        [string]$EntityName,
+
         [string[]]$Alias,
     
         [Parameter(Mandatory = $true)]
@@ -61,6 +63,10 @@ Function Get-AtwsPSParameter {
 
         [string[]]$ValidateSet,
 
+        [switch]$isPicklist,
+
+        [string]$PickListParentValueField,
+
         [Alias('Length')]
         [int]$ValidateLength,
 
@@ -70,8 +76,6 @@ Function Get-AtwsPSParameter {
         
         [switch]$nullable
 
-
-          
     )
   
     begin { 
@@ -127,14 +131,40 @@ Function Get-AtwsPSParameter {
             $text += "    [ValidateLength(0,$ValidateLength)]`n" 
         }
         
+        # Add picklists expander if present
+        if ($isPicklist.IsPresent) { 
+            # for nested picklist. Which is Ticket issue -> subissue only, at least at time of coding
+            if ($PickListParentValueField) {
+                $text += @"
+    [ArgumentCompleter( {
+        param(`$Cmd, `$Param, `$Word, `$Ast, `$FakeBound)
+        if (`$fakeBound.$PickListParentValueField) {    
+            Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -ParentValue `$fakeBound.$PickListParentValueField -Label -Quoted
+        }
+        else {
+            Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label -Quoted
+        }
+    })]`n
+"@
+            }
+            else { 
+                # Add dynamic intellisense help 
+                $text += "    [ArgumentCompleter({`n      param(`$Cmd, `$Param, `$Word, `$Ast, `$FakeBound)`n      Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label -Quoted`n    })]`n"
+            }
+            # Validate that label exists
+            $text += "    [ValidateScript({`n      `$set = (Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Label) + (Get-AtwsPicklistValue -Entity $EntityName -FieldName $Name -Value)`n      if (`$_ -in `$set) { return `$true}`n      else {`n        Write-Warning ('{0} is not one of {1}' -f `$_, (`$set -join ', '))`n        Return `$false`n      }`n    })]`n"
+        }
         # Add Validateset if present
-        if ($ValidateSet.Count -gt 0) { 
+        elseIf ($ValidateSet.Count -gt 0) { 
             # Fix quote characters for labels
             $labels = foreach ($Label in  $ValidateSet) {
-                # Use literal string with escaped literal quotes, both straight and curly
-                "'{0}'" -F $($Label -replace "'", "''" -replace $pattern, $replacement) 
+                # Leave out empty labels
+                if ($Label) {
+                    # Use literal string with escaped literal quotes, both straight and curly
+                    "'{0}'" -F $($Label -replace "'", "''" -replace $pattern, $replacement) 
+                }
             }          
-            $text += "    [ValidateSet($($labels -join ', '))]`n" 
+            $text += "    [ValidateSet($(($labels | sort-object) -join ', '))]`n" 
         }
 
         # Add the correct variable type for the parameter
