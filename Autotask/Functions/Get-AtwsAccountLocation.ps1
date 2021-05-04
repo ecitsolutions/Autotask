@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -112,14 +112,6 @@ Set-AtwsAccountLocation
     [Nullable[Int][]]
     $AccountID,
 
-# Client ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Client Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -127,6 +119,14 @@ Set-AtwsAccountLocation
     [ValidateLength(0,100)]
     [string[]]
     $LocationName,
+
+# Client ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

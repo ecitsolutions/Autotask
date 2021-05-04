@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -113,14 +113,6 @@ Set-AtwsResourceRoleDepartment
     [Nullable[boolean][]]
     $Default,
 
-# Department ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $DepartmentID,
-
 # Department Lead
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -128,6 +120,14 @@ Set-AtwsResourceRoleDepartment
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $DepartmentLead,
+
+# Role ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $RoleID,
 
 # Resource Role Department ID
     [Parameter(
@@ -137,6 +137,14 @@ Set-AtwsResourceRoleDepartment
     [Nullable[long][]]
     $id,
 
+# Department ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $DepartmentID,
+
 # Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -144,14 +152,6 @@ Set-AtwsResourceRoleDepartment
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ResourceID,
-
-# Role ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $RoleID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

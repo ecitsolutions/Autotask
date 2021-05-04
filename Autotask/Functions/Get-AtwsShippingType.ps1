@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -93,13 +93,6 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     [switch]
     $All,
 
-# AllocationCodeID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AllocationCodeID,
-
 # shipping_type_description
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -108,13 +101,12 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     [string[]]
     $Description,
 
-# shipping_type_id
+# AllocationCodeID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $AllocationCodeID,
 
 # active
     [Parameter(
@@ -122,6 +114,14 @@ Returns any object with a ShippingTypeName that DOES NOT match the simple patter
     )]
     [Nullable[boolean][]]
     $IsActive,
+
+# shipping_type_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # shipping_type_name
     [Parameter(

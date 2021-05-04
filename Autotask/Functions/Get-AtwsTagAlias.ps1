@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,6 +97,14 @@ Remove-AtwsTagAlias
     [switch]
     $All,
 
+# Tag ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TagID,
+
 # Alias
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -113,14 +121,6 @@ Remove-AtwsTagAlias
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
-
-# Tag ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TagID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

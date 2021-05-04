@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -99,44 +99,20 @@ Set-AtwsAccountPhysicalLocation
     [switch]
     $All,
 
-# Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $AccountID,
-
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Active,
-
-# Address1
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $Address1,
-
-# Address2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $Address2,
-
-# Alternate Phone 1
+# Fax
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,25)]
     [string[]]
-    $AlternatePhone1,
+    $Fax,
+
+# Round Trip Distance
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $RoundtripDistance,
 
 # Alternate Phone 2
     [Parameter(
@@ -146,20 +122,56 @@ Set-AtwsAccountPhysicalLocation
     [string[]]
     $AlternatePhone2,
 
-# City
+# Phone
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,25)]
     [string[]]
-    $City,
+    $Phone,
 
-# Country ID
+# Alternate Phone 1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $AlternatePhone1,
+
+# Is Tax Exempt
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsTaxExempt,
+
+# Tax Region ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $CountryID,
+    $TaxRegionID,
+
+# Override Account Tax Settings
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $OverrideAccountTaxSettings,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Active,
+
+# Primary
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Primary,
 
 # Description
     [Parameter(
@@ -169,28 +181,13 @@ Set-AtwsAccountPhysicalLocation
     [string[]]
     $Description,
 
-# Fax
+# Address1
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,25)]
+    [ValidateLength(0,128)]
     [string[]]
-    $Fax,
-
-# Account Physical Location ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Is Tax Exempt
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsTaxExempt,
+    $Address1,
 
 # Name
     [Parameter(
@@ -201,20 +198,21 @@ Set-AtwsAccountPhysicalLocation
     [string[]]
     $Name,
 
-# Override Account Tax Settings
+# Account Physical Location ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $OverrideAccountTaxSettings,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
-# Phone
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,25)]
-    [string[]]
-    $Phone,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $AccountID,
 
 # Postal Code
     [Parameter(
@@ -224,19 +222,12 @@ Set-AtwsAccountPhysicalLocation
     [string[]]
     $PostalCode,
 
-# Primary
+# Country ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $Primary,
-
-# Round Trip Distance
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $RoundtripDistance,
+    [Nullable[Int][]]
+    $CountryID,
 
 # State
     [Parameter(
@@ -246,12 +237,21 @@ Set-AtwsAccountPhysicalLocation
     [string[]]
     $State,
 
-# Tax Region ID
+# Address2
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $TaxRegionID,
+    [ValidateLength(0,128)]
+    [string[]]
+    $Address2,
+
+# City
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $City,
 
     [Parameter(
       ParametersetName = 'By_parameters'

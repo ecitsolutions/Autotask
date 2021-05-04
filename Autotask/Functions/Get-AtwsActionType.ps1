@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -121,23 +121,6 @@ Set-AtwsActionType
     [Nullable[boolean][]]
     $Active,
 
-# Action Type ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,32)]
-    [string[]]
-    $Name,
-
 # System Action Type
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -164,6 +147,23 @@ Set-AtwsActionType
     })]
     [string[]]
     $View,
+
+# Action Type ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,32)]
+    [string[]]
+    $Name,
 
     [Parameter(
       ParametersetName = 'By_parameters'

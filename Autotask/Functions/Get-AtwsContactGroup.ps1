@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -106,14 +106,6 @@ Set-AtwsContactGroup
     [Nullable[boolean][]]
     $Active,
 
-# Contact Group ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -122,6 +114,14 @@ Set-AtwsContactGroup
     [ValidateLength(0,100)]
     [string[]]
     $Name,
+
+# Contact Group ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

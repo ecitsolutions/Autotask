@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -112,13 +112,72 @@ Set-AtwsAccountNote
     [switch]
     $All,
 
-# Client
+# ProposalID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $OpportunityID,
+
+# Detail
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,32000)]
+    [string[]]
+    $Note,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string[]]
+    $Name,
+
+# StartDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDateTime,
+
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Impersonator Updater Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorUpdaterResourceID,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# DateStamp
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastModifiedDate,
+
+# Assigned Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $AccountID,
+    $AssignedResourceID,
 
 # TypeValue
     [Parameter(
@@ -140,13 +199,13 @@ Set-AtwsAccountNote
     [string[]]
     $ActionType,
 
-# Assigned Resource
+# Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $AssignedResourceID,
+    $AccountID,
 
 # DateCompleted
     [Parameter(
@@ -154,28 +213,6 @@ Set-AtwsAccountNote
     )]
     [Nullable[datetime][]]
     $CompletedDateTime,
-
-# Contact
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContactID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# EndDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDateTime,
 
 # Client Note ID
     [Parameter(
@@ -185,57 +222,20 @@ Set-AtwsAccountNote
     [Nullable[long][]]
     $id,
 
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorUpdaterResourceID,
-
-# DateStamp
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastModifiedDate,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $Name,
-
-# Detail
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,32000)]
-    [string[]]
-    $Note,
-
-# ProposalID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $OpportunityID,
-
-# StartDate
+# EndDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[datetime][]]
-    $StartDateTime,
+    $EndDateTime,
+
+# Contact
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContactID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

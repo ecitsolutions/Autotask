@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,18 +74,20 @@ Get-AtwsPurchaseOrderItem
     [switch]
     $PassThru,
 
-# Cost ID
+# Product Unit Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $CostID,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double]]
+    $UnitCost,
 
 # Estimated Arrival Date
     [Parameter(
@@ -100,20 +102,18 @@ Get-AtwsPurchaseOrderItem
     [Nullable[datetime]]
     $EstimatedArrivalDate,
 
-# Inventory Location ID
+# Cost ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int]]
-    $InventoryLocationID,
+    $CostID,
 
 # Memo
     [Parameter(
@@ -142,6 +142,21 @@ Get-AtwsPurchaseOrderItem
     [Nullable[Int]]
     $ProductID,
 
+# Inventory Location ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int]]
+    $InventoryLocationID,
+
 # Quantity Ordered
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -155,22 +170,7 @@ Get-AtwsPurchaseOrderItem
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int]]
-    $Quantity,
-
-# Product Unit Cost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double]]
-    $UnitCost
+    $Quantity
   )
 
     begin {

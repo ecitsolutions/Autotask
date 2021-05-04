@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -63,21 +63,40 @@ Set-AtwsService
     [Autotask.Service[]]
     $InputObject,
 
-# allocation_code_id
+# unit_price
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Int]
-    $AllocationCodeID,
+    [double]
+    $UnitPrice,
 
-# create_date
+# Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CreateDate,
+    [double]
+    $UnitCost,
+
+# Service Level Agreement Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ServiceLevelAgreementID,
 
 # create_by_id
     [Parameter(
@@ -85,53 +104,6 @@ Set-AtwsService
     )]
     [Int]
     $CreatorResourceID,
-
-# service_description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,400)]
-    [string]
-    $Description,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1000)]
-    [string]
-    $InvoiceDescription,
-
-# active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsActive,
-
-# update_date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastModifiedDate,
-
-# Markup Rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $MarkupRate,
-
-# service_name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,150)]
-    [string]
-    $Name,
 
 # period_type
     [Parameter(
@@ -154,40 +126,20 @@ Set-AtwsService
     [string]
     $PeriodType,
 
-# Service Level Agreement Id
+# update_date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [datetime]
+    $LastModifiedDate,
+
+# service_description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,400)]
     [string]
-    $ServiceLevelAgreementID,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $UnitCost,
-
-# unit_price
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $UnitPrice,
+    $Description,
 
 # update_by_id
     [Parameter(
@@ -195,6 +147,54 @@ Set-AtwsService
     )]
     [Int]
     $UpdateResourceID,
+
+# service_name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,150)]
+    [string]
+    $Name,
+
+# create_date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
+
+# allocation_code_id
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $AllocationCodeID,
+
+# active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsActive,
+
+# Invoice Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,1000)]
+    [string]
+    $InvoiceDescription,
+
+# Markup Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $MarkupRate,
 
 # Vendor Account ID
     [Parameter(
@@ -223,6 +223,7 @@ Set-AtwsService
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -233,34 +234,35 @@ Set-AtwsService
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

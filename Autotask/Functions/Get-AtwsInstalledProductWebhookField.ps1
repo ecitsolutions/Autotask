@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -114,6 +114,22 @@ Set-AtwsInstalledProductWebhookField
     [switch]
     $All,
 
+# Is Subscribed Field
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsSubscribedField,
+
+# Is Display Always Field
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsDisplayAlwaysField,
+
 # Field ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -141,22 +157,6 @@ Set-AtwsInstalledProductWebhookField
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
-
-# Is Display Always Field
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsDisplayAlwaysField,
-
-# Is Subscribed Field
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsSubscribedField,
 
 # Webhook ID
     [Parameter(

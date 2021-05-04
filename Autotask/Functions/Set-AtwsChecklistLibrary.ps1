@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,35 +76,6 @@ Get-AtwsChecklistLibrary
     [switch]
     $PassThru,
 
-# Active
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean]]
-    $Active,
-
-# Description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,500)]
-    [string]
-    $Description,
-
 # Entity
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -132,6 +103,21 @@ Get-AtwsChecklistLibrary
     [string]
     $EntityType,
 
+# Active
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean]]
+    $Active,
+
 # Name
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -146,7 +132,21 @@ Get-AtwsChecklistLibrary
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
     [string]
-    $Name
+    $Name,
+
+# Description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $Description
   )
 
     begin {

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -66,14 +66,82 @@ Set-AtwsAccountToDo
     [Autotask.AccountToDo[]]
     $InputObject,
 
-# Client
+# Creator Resource
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $CreatorResourceID,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,32000)]
+    [string]
+    $ActivityDescription,
+
+# Contact
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $ContactID,
+
+# Opportunity
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $OpportunityID,
+
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDateTime,
+
+# Last Modified Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastModifiedDate,
+
+# End Date Time
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $EndDateTime,
+
+# Ticket
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $TicketID,
+
+# Assigned To Resource
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [long]
-    $AccountID,
+    $AssignedToResourceID,
+
+# Start Date Time
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $StartDateTime,
 
 # Action Type
     [Parameter(
@@ -96,36 +164,12 @@ Set-AtwsAccountToDo
     [string]
     $ActionType,
 
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,32000)]
-    [string]
-    $ActivityDescription,
-
-# Assigned To Resource
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $AssignedToResourceID,
-
 # Completed Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
     $CompletedDate,
-
-# Contact
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $ContactID,
 
 # Contract
     [Parameter(
@@ -134,29 +178,6 @@ Set-AtwsAccountToDo
     [long]
     $ContractID,
 
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
-
-# Creator Resource
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $CreatorResourceID,
-
-# End Date Time
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EndDateTime,
-
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -164,35 +185,14 @@ Set-AtwsAccountToDo
     [Int]
     $ImpersonatorCreatorResourceID,
 
-# Last Modified Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastModifiedDate,
-
-# Opportunity
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $OpportunityID,
-
-# Start Date Time
+# Client
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDateTime,
-
-# Ticket
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
     [long]
-    $TicketID
+    $AccountID
   )
 
     begin {
@@ -214,6 +214,7 @@ Set-AtwsAccountToDo
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -224,34 +225,35 @@ Set-AtwsAccountToDo
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

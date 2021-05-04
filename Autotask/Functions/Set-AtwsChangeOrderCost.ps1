@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,7 +76,7 @@ Get-AtwsChangeOrderCost
     [switch]
     $PassThru,
 
-# Allocation Code ID
+# Contract Service Bundle ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -87,9 +87,9 @@ Get-AtwsChangeOrderCost
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $AllocationCodeID,
+    $ContractServiceBundleID,
 
-# Billable To Account
+# Unit Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -99,8 +99,37 @@ Get-AtwsChangeOrderCost
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[boolean]]
-    $BillableToAccount,
+    [Nullable[decimal]]
+    $UnitCost,
+
+# Name
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $ContractServiceID,
 
 # Change Order Hours
     [Parameter(
@@ -115,7 +144,7 @@ Get-AtwsChangeOrderCost
     [Nullable[decimal]]
     $ChangeOrderHours,
 
-# Contract Service Bundle ID
+# Notes
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -125,10 +154,11 @@ Get-AtwsChangeOrderCost
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $ContractServiceBundleID,
+    [ValidateLength(0,2000)]
+    [string]
+    $Notes,
 
-# Contract Service ID
+# Unit Price
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -138,8 +168,23 @@ Get-AtwsChangeOrderCost
     [Parameter(
       ParametersetName = 'By_Id'
     )]
+    [Nullable[decimal]]
+    $UnitPrice,
+
+# Task ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[Int]]
-    $ContractServiceID,
+    $TaskID,
 
 # Cost Type
     [Parameter(
@@ -183,7 +228,7 @@ Get-AtwsChangeOrderCost
     [Nullable[datetime]]
     $DatePurchased,
 
-# Description
+# Allocation Code ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -193,11 +238,10 @@ Get-AtwsChangeOrderCost
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
+    [Nullable[Int]]
+    $AllocationCodeID,
 
-# Internal Purchase Order Number
+# Billable To Account
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -207,39 +251,8 @@ Get-AtwsChangeOrderCost
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,50)]
-    [string]
-    $InternalPurchaseOrderNumber,
-
-# Name
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# Notes
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Notes,
+    [Nullable[boolean]]
+    $BillableToAccount,
 
 # Product ID
     [Parameter(
@@ -268,22 +281,21 @@ Get-AtwsChangeOrderCost
     [string]
     $PurchaseOrderNumber,
 
-# Task ID
+# Description
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $TaskID,
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
 
-# Unit Cost
+# Internal Purchase Order Number
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -293,21 +305,9 @@ Get-AtwsChangeOrderCost
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[decimal]]
-    $UnitCost,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $UnitPrice
+    [ValidateLength(0,50)]
+    [string]
+    $InternalPurchaseOrderNumber
   )
 
     begin {

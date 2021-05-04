@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -117,51 +117,20 @@ An example of a more complex query. This command returns any NotificationHistory
     [Nullable[long][]]
     $AccountID,
 
-# Entity Number
+# Quote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $EntityNumber,
-
-# Entity Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $EntityTitle,
-
-# ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $id,
+    $QuoteID,
+
+# Recipient Display Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,200)]
+    [string[]]
+    $RecipientDisplayName,
 
 # Initiating Contact
     [Parameter(
@@ -170,36 +139,48 @@ An example of a more complex query. This command returns any NotificationHistory
     [Nullable[long][]]
     $InitiatingContactID,
 
-# Initiating Resource
+# Recipient Email Address
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $RecipientEmailAddress,
+
+# Ticket
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
-    $InitiatingResourceID,
+    $TicketID,
 
-# Is Template Active
+# Time Entry
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsActive,
+    [Nullable[long][]]
+    $TimeEntryID,
 
-# Is Template Deleted
+# Task
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsDeleted,
+    [Nullable[long][]]
+    $TaskID,
 
-# Is Template Job
+# Opportunity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsTemplateJob,
+    [Nullable[long][]]
+    $OpportunityID,
+
+# Project
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ProjectID,
 
 # Notification History Type Id
     [Parameter(
@@ -220,56 +201,24 @@ An example of a more complex query. This command returns any NotificationHistory
     [string[]]
     $NotificationHistoryTypeID,
 
-# Notification Sent Time
+# Entity Title
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $NotificationSentTime,
-
-# Opportunity
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $OpportunityID,
-
-# Project
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ProjectID,
-
-# Quote
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $QuoteID,
-
-# Recipient Display Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,200)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
-    $RecipientDisplayName,
-
-# Recipient Email Address
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $RecipientEmailAddress,
-
-# Task
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $TaskID,
+    $EntityTitle,
 
 # Template Name
     [Parameter(
@@ -279,19 +228,70 @@ An example of a more complex query. This command returns any NotificationHistory
     [string[]]
     $TemplateName,
 
-# Ticket
+# ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $TicketID,
+    $id,
 
-# Time Entry
+# Notification Sent Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $NotificationSentTime,
+
+# Is Template Job
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsTemplateJob,
+
+# Initiating Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
-    $TimeEntryID,
+    $InitiatingResourceID,
+
+# Is Template Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsActive,
+
+# Entity Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $EntityNumber,
+
+# Is Template Deleted
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsDeleted,
 
     [Parameter(
       ParametersetName = 'By_parameters'

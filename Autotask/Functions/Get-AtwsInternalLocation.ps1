@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,30 +115,6 @@ An example of a more complex query. This command returns any InternalLocations w
     [string[]]
     $AdditionalAddressInfo,
 
-# Address 1
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Address1,
-
-# Address 2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Address2,
-
-# City
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $City,
-
 # Country
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -146,6 +122,21 @@ An example of a more complex query. This command returns any InternalLocations w
     [ValidateLength(0,100)]
     [string[]]
     $Country,
+
+# Postal Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,20)]
+    [string[]]
+    $PostalCode,
+
+# Is Default
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsDefault,
 
 # Holiday Set
     [Parameter(
@@ -166,20 +157,21 @@ An example of a more complex query. This command returns any InternalLocations w
     [string[]]
     $HolidaySetId,
 
-# Internal Location ID
+# Time Zone Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [ValidateLength(0,100)]
+    [string[]]
+    $TimeZone,
 
-# Is Default
+# Address 1
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $IsDefault,
+    [ValidateLength(0,100)]
+    [string[]]
+    $Address1,
 
 # Name
     [Parameter(
@@ -190,13 +182,13 @@ An example of a more complex query. This command returns any InternalLocations w
     [string[]]
     $Name,
 
-# Postal Code
+# Internal Location ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,20)]
-    [string[]]
-    $PostalCode,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # County
     [Parameter(
@@ -206,13 +198,21 @@ An example of a more complex query. This command returns any InternalLocations w
     [string[]]
     $State,
 
-# Time Zone Code
+# City
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $City,
+
+# Address 2
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
     [string[]]
-    $TimeZone,
+    $Address2,
 
     [Parameter(
       ParametersetName = 'By_parameters'

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -114,51 +114,6 @@ Set-AtwsTicketChecklistItem
     [switch]
     $All,
 
-# Completed
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Completed,
-
-# Completed By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CompletedByResourceID,
-
-# Completed date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CompletedDateTime,
-
-# Ticket Checklist Item ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Important
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Important,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $ItemName,
-
 # Knowledgebase Article ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -178,12 +133,14 @@ Set-AtwsTicketChecklistItem
     [string[]]
     $KnowledgebaseArticleID,
 
-# Position
+# Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $Position,
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
+    [string[]]
+    $ItemName,
 
 # Ticket ID
     [Parameter(
@@ -192,6 +149,49 @@ Set-AtwsTicketChecklistItem
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $TicketID,
+
+# Position
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $Position,
+
+# Important
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Important,
+
+# Completed
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Completed,
+
+# Ticket Checklist Item ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Completed date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CompletedDateTime,
+
+# Completed By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CompletedByResourceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

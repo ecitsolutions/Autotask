@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,13 +97,13 @@ Remove-AtwsTicketTagAssociation
     [switch]
     $All,
 
-# ID
+# Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $TicketID,
 
 # Tag ID
     [Parameter(
@@ -113,13 +113,13 @@ Remove-AtwsTicketTagAssociation
     [Nullable[Int][]]
     $TagID,
 
-# Ticket ID
+# ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TicketID,
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

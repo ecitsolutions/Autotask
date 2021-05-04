@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,6 +97,14 @@ Remove-AtwsTicketAdditionalContact
     [switch]
     $All,
 
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TicketID,
+
 # Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -112,14 +120,6 @@ Remove-AtwsTicketAdditionalContact
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
-
-# Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TicketID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

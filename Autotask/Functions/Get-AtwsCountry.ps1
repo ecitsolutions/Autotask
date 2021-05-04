@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -111,13 +111,6 @@ Set-AtwsCountry
     [switch]
     $All,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Active,
-
 # Address Format ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -138,38 +131,6 @@ Set-AtwsCountry
     [string[]]
     $AddressFormatID,
 
-# Country Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2)]
-    [string[]]
-    $CountryCode,
-
-# Display Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $DisplayName,
-
-# Country ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Invoice Template ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $InvoiceTemplateID,
-
 # Default Country
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -177,13 +138,12 @@ Set-AtwsCountry
     [Nullable[boolean][]]
     $IsDefaultCountry,
 
-# ISO Standard Name
+# Quote Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $Name,
+    [Nullable[Int][]]
+    $QuoteTemplateID,
 
 # Purchase Order Template ID
     [Parameter(
@@ -204,12 +164,52 @@ Set-AtwsCountry
     [string[]]
     $PurchaseOrderTemplateID,
 
-# Quote Template ID
+# Invoice Template ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $QuoteTemplateID,
+    $InvoiceTemplateID,
+
+# Country Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2)]
+    [string[]]
+    $CountryCode,
+
+# Country ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# ISO Standard Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Name,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Active,
+
+# Display Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $DisplayName,
 
     [Parameter(
       ParametersetName = 'By_parameters'

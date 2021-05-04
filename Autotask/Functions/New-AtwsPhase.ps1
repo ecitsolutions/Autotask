@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -61,12 +61,12 @@ Set-AtwsPhase
     [Autotask.Phase[]]
     $InputObject,
 
-# Phase Creation Date
+# Is Scheduled
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CreateDate,
+    [boolean]
+    $Scheduled,
 
 # Phase Creator
     [Parameter(
@@ -74,6 +74,27 @@ Set-AtwsPhase
     )]
     [Int]
     $CreatorResourceID,
+
+# Parent Phase
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ParentPhaseID,
+
+# Phase Estimated Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $EstimatedHours,
+
+# Phase Start Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $StartDate,
 
 # Phase Description
     [Parameter(
@@ -83,41 +104,15 @@ Set-AtwsPhase
     [string]
     $Description,
 
-# Phase End Date
+# Phase Title
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $DueDate,
-
-# Phase Estimated Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $EstimatedHours,
-
-# Phase External ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
     [string]
-    $ExternalID,
-
-# Phase Last Activity Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastActivityDateTime,
-
-# Parent Phase
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ParentPhaseID,
+    $Title,
 
 # Phase Number
     [Parameter(
@@ -126,6 +121,20 @@ Set-AtwsPhase
     [ValidateLength(0,50)]
     [string]
     $PhaseNumber,
+
+# Phase Creation Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
+
+# Phase Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastActivityDateTime,
 
 # Project
     [Parameter(
@@ -136,29 +145,20 @@ Set-AtwsPhase
     [Int]
     $ProjectID,
 
-# Is Scheduled
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Scheduled,
-
-# Phase Start Date
+# Phase End Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $StartDate,
+    $DueDate,
 
-# Phase Title
+# Phase External ID
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
+    [ValidateLength(0,50)]
     [string]
-    $Title
+    $ExternalID
   )
 
     begin {
@@ -180,6 +180,7 @@ Set-AtwsPhase
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -190,34 +191,35 @@ Set-AtwsPhase
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

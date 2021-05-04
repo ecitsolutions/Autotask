@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,20 +76,6 @@ Get-AtwsAppointment
     [switch]
     $PassThru,
 
-# Description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,8000)]
-    [string]
-    $Description,
-
 # End Date
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -105,20 +91,19 @@ Get-AtwsAppointment
     [Nullable[datetime]]
     $EndDateTime,
 
-# Resource
+# Description
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $ResourceID,
+    [ValidateLength(0,8000)]
+    [string]
+    $Description,
 
 # Start Date
     [Parameter(
@@ -134,6 +119,21 @@ Get-AtwsAppointment
     [ValidateNotNullOrEmpty()]
     [Nullable[datetime]]
     $StartDateTime,
+
+# Resource
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int]]
+    $ResourceID,
 
 # Appointment Title
     [Parameter(

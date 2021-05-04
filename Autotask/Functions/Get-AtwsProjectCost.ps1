@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,12 +115,45 @@ Set-AtwsProjectCost
     [switch]
     $All,
 
-# Allocation Code
+# Last Modified By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
-    $AllocationCodeID,
+    $StatusLastModifiedBy,
+
+# Last Modified Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $StatusLastModifiedDate,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDate,
+
+# Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Status,
 
 # Billable Amount
     [Parameter(
@@ -143,12 +176,48 @@ Set-AtwsProjectCost
     [Nullable[boolean][]]
     $Billed,
 
+# Internal Currency Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyUnitPrice,
+
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
+
+# Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Notes,
+
+# Internal Currency Billable Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyBillableAmount,
+
+# Created By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $CreatorResourceID,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContractServiceID,
 
 # Contract Service Bundle ID
     [Parameter(
@@ -157,12 +226,96 @@ Set-AtwsProjectCost
     [Nullable[long][]]
     $ContractServiceBundleID,
 
-# Contract Service ID
+# Estimated Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $EstimatedCost,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
+# Date Purchased
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $DatePurchased,
+
+# Allocation Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
-    $ContractServiceID,
+    $AllocationCodeID,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Project
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $ProjectID,
+
+# Product
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ProductID,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $UnitCost,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $UnitPrice,
+
+# Extended Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ExtendedCost,
+
+# Unit Quantity
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $UnitQuantity,
 
 # Cost Type
     [Parameter(
@@ -184,112 +337,6 @@ Set-AtwsProjectCost
     [string[]]
     $CostType,
 
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDate,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $CreatorResourceID,
-
-# Date Purchased
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $DatePurchased,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Description,
-
-# Estimated Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $EstimatedCost,
-
-# Extended Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ExtendedCost,
-
-# id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Internal Currency Billable Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyBillableAmount,
-
-# Internal Currency Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyUnitPrice,
-
-# Internal Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $InternalPurchaseOrderNumber,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
-# Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Notes,
-
-# Product
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ProductID,
-
-# Project
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $ProjectID,
-
 # Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -298,60 +345,13 @@ Set-AtwsProjectCost
     [string[]]
     $PurchaseOrderNumber,
 
-# Status
+# Internal Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ProjectCost -FieldName Status -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,50)]
     [string[]]
-    $Status,
-
-# Last Modified By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $StatusLastModifiedBy,
-
-# Last Modified Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $StatusLastModifiedDate,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $UnitCost,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $UnitPrice,
-
-# Unit Quantity
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $UnitQuantity,
+    $InternalPurchaseOrderNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'

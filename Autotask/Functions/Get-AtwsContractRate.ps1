@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -105,6 +105,13 @@ Set-AtwsContractRate
     [Nullable[double][]]
     $ContractHourlyRate,
 
+# Internal Currency Rate Offset
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyContractHourlyRate,
+
 # Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -120,13 +127,6 @@ Set-AtwsContractRate
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
-
-# Internal Currency Rate Offset
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyContractHourlyRate,
 
 # Role ID
     [Parameter(

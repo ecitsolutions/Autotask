@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -75,6 +75,75 @@ Set-AtwsContract
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
+# Status
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Contract -FieldName Status -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName Status -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $Status,
+
+# Contract Overage Billing Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $OverageBillingRate,
+
+# Contract Period Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Contract -FieldName ContractPeriodType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName ContractPeriodType -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName ContractPeriodType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ContractPeriodType,
+
+# Exclusion Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $ExclusionContractID,
+
+# Contract Contact
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,250)]
+    [string]
+    $ContactName,
+
+# Contract Compilance
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Compliance,
+
 # Client
     [Parameter(
       Mandatory = $true,
@@ -84,25 +153,6 @@ Set-AtwsContract
     [Int]
     $AccountID,
 
-# Billing Preference
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contract -FieldName BillingPreference -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName BillingPreference -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName BillingPreference -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $BillingPreference,
-
 # Bill To Client Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -110,26 +160,35 @@ Set-AtwsContract
     [Int]
     $BillToAccountContactID,
 
-# Bill To Client ID
+# Time Reporting Requires Start and Stop Times
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $BillToAccountID,
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Contract -FieldName TimeReportingRequiresStartAndStopTimes -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName TimeReportingRequiresStartAndStopTimes -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName TimeReportingRequiresStartAndStopTimes -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $TimeReportingRequiresStartAndStopTimes,
 
-# Business Division Subdivision ID
+# End Date
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $BusinessDivisionSubdivisionID,
-
-# Contract Compilance
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Compliance,
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $EndDate,
 
 # Contact ID
     [Parameter(
@@ -137,14 +196,6 @@ Set-AtwsContract
     )]
     [Int]
     $ContactID,
-
-# Contract Contact
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,250)]
-    [string]
-    $ContactName,
 
 # Category
     [Parameter(
@@ -165,42 +216,25 @@ Set-AtwsContract
     [string]
     $ContractCategory,
 
-# Contract Exclusion Set ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContractExclusionSetID,
-
-# Contract Name
+# Start Date
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [Alias('Name')]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $ContractName,
+    [datetime]
+    $StartDate,
 
-# Contract Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ContractNumber,
-
-# Contract Period Type
+# Billing Preference
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contract -FieldName ContractPeriodType -Label -Quoted
+      Get-AtwsPicklistValue -Entity Contract -FieldName BillingPreference -Label -Quoted
     })]
     [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName ContractPeriodType -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName ContractPeriodType -Value)
+      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName BillingPreference -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName BillingPreference -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -208,7 +242,14 @@ Set-AtwsContract
       }
     })]
     [string]
-    $ContractPeriodType,
+    $BillingPreference,
+
+# Renewed Contract Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $RenewedContractID,
 
 # Contract Type
     [Parameter(
@@ -231,36 +272,19 @@ Set-AtwsContract
     [string]
     $ContractType,
 
-# Description
+# opportunity_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
+    [Int]
+    $OpportunityID,
 
-# End Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $EndDate,
-
-# Estimated Cost
+# Contract Setup Fee Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $EstimatedCost,
-
-# Estimated Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $EstimatedHours,
+    [long]
+    $SetupFeeAllocationCodeID,
 
 # Estimated Revenue
     [Parameter(
@@ -269,62 +293,27 @@ Set-AtwsContract
     [double]
     $EstimatedRevenue,
 
-# Exclusion Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $ExclusionContractID,
-
-# Internal Currency Contract Overage Billing Rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyOverageBillingRate,
-
-# Internal Currency Contract Setup Fee
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencySetupFee,
-
-# Default Contract
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsDefaultContract,
-
-# opportunity_id
+# Bill To Client ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $OpportunityID,
+    $BillToAccountID,
 
-# Contract Overage Billing Rate
+# Contract Setup Fee
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $OverageBillingRate,
+    $SetupFee,
 
-# purchase_order_number
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,2000)]
     [string]
-    $PurchaseOrderNumber,
-
-# Renewed Contract Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $RenewedContractID,
+    $Description,
 
 # Service Level Agreement ID
     [Parameter(
@@ -345,70 +334,81 @@ Set-AtwsContract
     [string]
     $ServiceLevelAgreementID,
 
-# Contract Setup Fee
+# Default Contract
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsDefaultContract,
+
+# Contract Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ContractNumber,
+
+# Contract Exclusion Set ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContractExclusionSetID,
+
+# Estimated Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $SetupFee,
+    $EstimatedHours,
 
-# Contract Setup Fee Allocation Code ID
+# purchase_order_number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [long]
-    $SetupFeeAllocationCodeID,
-
-# Start Date
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $StartDate,
-
-# Status
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contract -FieldName Status -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName Status -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,50)]
     [string]
-    $Status,
+    $PurchaseOrderNumber,
 
-# Time Reporting Requires Start and Stop Times
+# Contract Name
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
+    [Alias('Name')]
     [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contract -FieldName TimeReportingRequiresStartAndStopTimes -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Contract -FieldName TimeReportingRequiresStartAndStopTimes -Label) + (Get-AtwsPicklistValue -Entity Contract -FieldName TimeReportingRequiresStartAndStopTimes -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,100)]
     [string]
-    $TimeReportingRequiresStartAndStopTimes
+    $ContractName,
+
+# Internal Currency Contract Overage Billing Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyOverageBillingRate,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BusinessDivisionSubdivisionID,
+
+# Internal Currency Contract Setup Fee
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencySetupFee,
+
+# Estimated Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $EstimatedCost
   )
 
     begin {
@@ -430,6 +430,7 @@ Set-AtwsContract
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -440,34 +441,35 @@ Set-AtwsContract
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

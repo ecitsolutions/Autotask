@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,12 +97,42 @@ Set-AtwsContractServiceBundle
     [switch]
     $All,
 
-# Adjusted Price
+# Quote Item Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $QuoteItemID,
+
+# Invoice Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,1000)]
+    [string[]]
+    $InvoiceDescription,
+
+# Internal Currency Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $AdjustedPrice,
+    $InternalCurrencyUnitPrice,
+
+# Internal Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $InternalDescription,
+
+# Internal Currency Adjusted Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyAdjustedPrice,
 
 # Contract ID
     [Parameter(
@@ -120,43 +150,6 @@ Set-AtwsContractServiceBundle
     [Nullable[long][]]
     $id,
 
-# Internal Currency Adjusted Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyAdjustedPrice,
-
-# Internal Currency Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyUnitPrice,
-
-# Internal Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $InternalDescription,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1000)]
-    [string[]]
-    $InvoiceDescription,
-
-# Quote Item Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $QuoteItemID,
-
 # Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -164,6 +157,13 @@ Set-AtwsContractServiceBundle
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ServiceBundleID,
+
+# Adjusted Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $AdjustedPrice,
 
 # Unit Price
     [Parameter(

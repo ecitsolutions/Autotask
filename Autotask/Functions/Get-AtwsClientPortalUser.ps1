@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,50 +115,6 @@ Set-AtwsClientPortalUser
     [switch]
     $All,
 
-# Client Portal Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $ClientPortalActive,
-
-# Contact ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContactID,
-
-# Date Format
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $DateFormat,
-
-# Client Portal User ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Number Format
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -178,26 +134,6 @@ Set-AtwsClientPortalUser
     })]
     [string[]]
     $NumberFormat,
-
-# Security Level
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $SecurityLevel,
 
 # Time Format
     [Parameter(
@@ -219,6 +155,14 @@ Set-AtwsClientPortalUser
     [string[]]
     $TimeFormat,
 
+# Client Portal Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $ClientPortalActive,
+
 # User Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -227,6 +171,62 @@ Set-AtwsClientPortalUser
     [ValidateLength(0,200)]
     [string[]]
     $UserName,
+
+# Security Level
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName SecurityLevel -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $SecurityLevel,
+
+# Client Portal User ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Date Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $DateFormat,
+
+# Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ContactID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

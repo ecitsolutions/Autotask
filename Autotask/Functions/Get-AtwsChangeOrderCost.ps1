@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,47 +115,40 @@ Set-AtwsChangeOrderCost
     [switch]
     $All,
 
-# Allocation Code ID
+# Status Last Modified Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $AllocationCodeID,
+    [Nullable[datetime][]]
+    $StatusLastModifiedDate,
 
-# Billable Amount
+# Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[decimal][]]
-    $BillableAmount,
+    $UnitCost,
 
-# Billable To Account
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $BillableToAccount,
-
-# Billed
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Billed,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Change Order Hours
+# Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[decimal][]]
-    $ChangeOrderHours,
+    $UnitPrice,
+
+# Status Last Modified By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $StatusLastModifiedBy,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContractServiceID,
 
 # Contract Service Bundle ID
     [Parameter(
@@ -164,12 +157,91 @@ Set-AtwsChangeOrderCost
     [Nullable[Int][]]
     $ContractServiceBundleID,
 
-# Contract Service ID
+# Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Status,
+
+# Task ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TaskID,
+
+# Change Order Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $ChangeOrderHours,
+
+# Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Notes,
+
+# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $ContractServiceID,
+    $BusinessDivisionSubdivisionID,
+
+# Unit Quantity
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $UnitQuantity,
+
+# Internal Currency Billable Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $InternalCurrencyBillableAmount,
+
+# Internal Currency Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $InternalCurrencyUnitPrice,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
+
+# Billed
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Billed,
 
 # Cost Type
     [Parameter(
@@ -198,6 +270,65 @@ Set-AtwsChangeOrderCost
     [Nullable[datetime][]]
     $CreateDate,
 
+# Billable To Account
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $BillableToAccount,
+
+# Change Order Cost ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AllocationCodeID,
+
+# Billable Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $BillableAmount,
+
+# Internal Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $InternalPurchaseOrderNumber,
+
+# Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ProductID,
+
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
+
+# Extended Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $ExtendedCost,
+
 # Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -220,137 +351,6 @@ Set-AtwsChangeOrderCost
     [ValidateLength(0,2000)]
     [string[]]
     $Description,
-
-# Extended Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $ExtendedCost,
-
-# Change Order Cost ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Internal Currency Billable Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $InternalCurrencyBillableAmount,
-
-# Internal Currency Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $InternalCurrencyUnitPrice,
-
-# Internal Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $InternalPurchaseOrderNumber,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
-# Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Notes,
-
-# Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ProductID,
-
-# Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
-
-# Status
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity ChangeOrderCost -FieldName Status -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Status,
-
-# Status Last Modified By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $StatusLastModifiedBy,
-
-# Status Last Modified Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $StatusLastModifiedDate,
-
-# Task ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TaskID,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $UnitCost,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $UnitPrice,
-
-# Unit Quantity
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $UnitQuantity,
 
     [Parameter(
       ParametersetName = 'By_parameters'

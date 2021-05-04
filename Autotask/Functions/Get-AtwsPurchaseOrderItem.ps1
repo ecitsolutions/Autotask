@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,13 +97,6 @@ Set-AtwsPurchaseOrderItem
     [switch]
     $All,
 
-# Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ContractID,
-
 # Cost ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -118,13 +111,19 @@ Set-AtwsPurchaseOrderItem
     [Nullable[datetime][]]
     $EstimatedArrivalDate,
 
-# Inventory Item ID
+# Sales Order ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $id,
+    $SalesOrderID,
+
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContractID,
 
 # Internal Currency Product Unit Cost
     [Parameter(
@@ -133,21 +132,26 @@ Set-AtwsPurchaseOrderItem
     [Nullable[double][]]
     $InternalCurrencyUnitCost,
 
-# Inventory Location ID
+# Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $InventoryLocationID,
+    [Nullable[long][]]
+    $TicketID,
 
-# Memo
+# Project ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,4000)]
-    [string[]]
-    $Memo,
+    [Nullable[long][]]
+    $ProjectID,
+
+# Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ProductID,
 
 # Inventory Order ID
     [Parameter(
@@ -157,41 +161,21 @@ Set-AtwsPurchaseOrderItem
     [Nullable[Int][]]
     $OrderID,
 
-# Product ID
+# Inventory Item ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ProductID,
-
-# Project ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $ProjectID,
+    $id,
 
-# Quantity Ordered
+# Inventory Location ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $Quantity,
-
-# Sales Order ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $SalesOrderID,
-
-# Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $TicketID,
+    $InventoryLocationID,
 
 # Product Unit Cost
     [Parameter(
@@ -200,6 +184,22 @@ Set-AtwsPurchaseOrderItem
     [ValidateNotNullOrEmpty()]
     [Nullable[double][]]
     $UnitCost,
+
+# Memo
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,4000)]
+    [string[]]
+    $Memo,
+
+# Quantity Ordered
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $Quantity,
 
     [Parameter(
       ParametersetName = 'By_parameters'

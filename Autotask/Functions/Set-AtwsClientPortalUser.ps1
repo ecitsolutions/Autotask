@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,6 +74,36 @@ Get-AtwsClientPortalUser
     [switch]
     $PassThru,
 
+# User Name
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,200)]
+    [string]
+    $UserName,
+
+# Password
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $Password,
+
 # Client Portal Active
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -88,33 +118,6 @@ Get-AtwsClientPortalUser
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean]]
     $ClientPortalActive,
-
-# Date Format
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $DateFormat,
 
 # Number Format
     [Parameter(
@@ -143,20 +146,6 @@ Get-AtwsClientPortalUser
     [string]
     $NumberFormat,
 
-# Password
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $Password,
-
 # Security Level
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -184,6 +173,33 @@ Get-AtwsClientPortalUser
     [string]
     $SecurityLevel,
 
+# Date Format
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity ClientPortalUser -FieldName DateFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $DateFormat,
+
 # Time Format
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -209,23 +225,7 @@ Get-AtwsClientPortalUser
       }
     })]
     [string]
-    $TimeFormat,
-
-# User Name
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,200)]
-    [string]
-    $UserName
+    $TimeFormat
   )
 
     begin {

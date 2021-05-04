@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -112,58 +112,6 @@ Set-AtwsExpenseReport
     [switch]
     $All,
 
-# Approved Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $ApprovedDate,
-
-# Approver ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ApproverID,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Cash Advance Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $CashAdvanceAmount,
-
-# Expense Total
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ExpenseTotal,
-
-# Expense Report ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
 # Quick Books Reference Number
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -172,26 +120,19 @@ Set-AtwsExpenseReport
     [string[]]
     $QuickBooksReferenceNumber,
 
-# Reimbursement Currency Amount Due
+# Approved Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $ApprovedDate,
+
+# Cash Advance Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $ReimbursementCurrencyAmountDue,
-
-# Reimbursement Currency Cash Advance Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ReimbursementCurrencyCashAdvanceAmount,
-
-# Reimbursement Currency ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ReimbursementCurrencyID,
+    $CashAdvanceAmount,
 
 # Rejection Reason
     [Parameter(
@@ -200,6 +141,34 @@ Set-AtwsExpenseReport
     [ValidateLength(0,2048)]
     [string[]]
     $RejectionReason,
+
+# Reimbursement Currency Amount Due
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ReimbursementCurrencyAmountDue,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
+
+# Reimbursement Currency ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ReimbursementCurrencyID,
+
+# Reimbursement Currency Cash Advance Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ReimbursementCurrencyCashAdvanceAmount,
 
 # Status
     [Parameter(
@@ -227,13 +196,22 @@ Set-AtwsExpenseReport
     [Nullable[datetime][]]
     $SubmitDate,
 
-# Submitter ID
+# Expense Report ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $SubmitterID,
+    [Nullable[long][]]
+    $id,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
 
 # Period Ending
     [Parameter(
@@ -242,6 +220,28 @@ Set-AtwsExpenseReport
     [ValidateNotNullOrEmpty()]
     [Nullable[datetime][]]
     $WeekEnding,
+
+# Expense Total
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ExpenseTotal,
+
+# Submitter ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $SubmitterID,
+
+# Approver ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ApproverID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

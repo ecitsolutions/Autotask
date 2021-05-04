@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,220 +115,13 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [switch]
     $All,
 
-# Covered By Block Retainer Contract Label
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $CoveredByBlockRetainerContractLabel,
-
-# Covered By Recurring Service Fixed Price Per Ticket Contract Label
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $CoveredByRecurringServiceFixedPricePerTicketContractLabel,
-
-# Currency Negative Pattern
+# Payment Terms
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,10)]
-    [string[]]
-    $CurrencyNegativeFormat,
-
-# Currency Positive Pattern
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,10)]
-    [string[]]
-    $CurrencyPositiveFormat,
-
-# Date Format
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $DateFormat,
-
-# Display Labor Associated With Fixed Price Contracts
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplayFixedPriceContractLabor,
-
-# Display Labor Associated With Recurring Service Contracts
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplayRecurringServiceContractLabor,
-
-# Display Separate Line Item For Each Tax
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplaySeparateLineItemForEachTax,
-
-# Display Tax Category
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplayTaxCategory,
-
-# Display Tax Category Superscripts
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplayTaxCategorySuperscripts,
-
-# Display Zero Amount Recurring Services And Bundles
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $DisplayZeroAmountRecurringServicesAndBundles,
-
-# Group By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $GroupBy,
-
-# Invoice Template ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Itemize Items In Each Group
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ItemizeItemsInEachGroup,
-
-# Itemize Services And Bundles
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $ItemizeServicesAndBundles,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $Name,
-
-# Non Billable Labor Label
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $NonBillableLaborLabel,
-
-# Number Format
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $NumberFormat,
-
-# Page Layout
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $PageLayout,
+    [Nullable[Int][]]
+    $PaymentTerms,
 
 # Display Page Number Format
     [Parameter(
@@ -350,21 +143,136 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [string[]]
     $PageNumberFormat,
 
-# Payment Terms
+# Date Format
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $PaymentTerms,
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName DateFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $DateFormat,
 
-# Rate Cost Expression
+# Covered By Block Retainer Contract Label
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
-    $RateCostExpression,
+    $CoveredByBlockRetainerContractLabel,
+
+# Non Billable Labor Label
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $NonBillableLaborLabel,
+
+# Page Layout
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName PageLayout -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PageLayout,
+
+# Number Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName NumberFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $NumberFormat,
+
+# Show Vertical Grid Lines
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $ShowVerticalGridLines,
+
+# Currency Positive Pattern
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,10)]
+    [string[]]
+    $CurrencyPositiveFormat,
+
+# Currency Negative Pattern
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,10)]
+    [string[]]
+    $CurrencyNegativeFormat,
+
+# Time Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $TimeFormat,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Name,
 
 # Show Grid Header
     [Parameter(
@@ -374,13 +282,77 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [Nullable[boolean][]]
     $ShowGridHeader,
 
-# Show Vertical Grid Lines
+# Display Separate Line Item For Each Tax
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
-    $ShowVerticalGridLines,
+    $DisplaySeparateLineItemForEachTax,
+
+# Group By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName GroupBy -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $GroupBy,
+
+# Itemize Items In Each Group
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName ItemizeItemsInEachGroup -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ItemizeItemsInEachGroup,
+
+# Invoice Template ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Display Tax Category
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DisplayTaxCategory,
+
+# Display Tax Category Superscripts
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DisplayTaxCategorySuperscripts,
 
 # Sort By
     [Parameter(
@@ -402,25 +374,53 @@ An example of a more complex query. This command returns any InvoiceTemplates wi
     [string[]]
     $SortBy,
 
-# Time Format
+# Display Labor Associated With Fixed Price Contracts
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Label) + (Get-AtwsPicklistValue -Entity InvoiceTemplate -FieldName TimeFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [Nullable[boolean][]]
+    $DisplayFixedPriceContractLabor,
+
+# Rate Cost Expression
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
     [string[]]
-    $TimeFormat,
+    $RateCostExpression,
+
+# Covered By Recurring Service Fixed Price Per Ticket Contract Label
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $CoveredByRecurringServiceFixedPricePerTicketContractLabel,
+
+# Itemize Services And Bundles
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $ItemizeServicesAndBundles,
+
+# Display Zero Amount Recurring Services And Bundles
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DisplayZeroAmountRecurringServicesAndBundles,
+
+# Display Labor Associated With Recurring Service Contracts
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $DisplayRecurringServiceContractLabor,
 
     [Parameter(
       ParametersetName = 'By_parameters'

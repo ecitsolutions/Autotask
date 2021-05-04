@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,45 +76,6 @@ Get-AtwsTimeEntry
     [switch]
     $PassThru,
 
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $AllocationCodeID,
-
-# Billing Approval Date Time
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $BillingApprovalDateTime,
-
-# Billing Approval Resource ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $BillingApprovalResourceID,
-
 # Contract ID
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -128,99 +89,7 @@ Get-AtwsTimeEntry
     [Nullable[Int]]
     $ContractID,
 
-# Contract Service Bundle ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[long]]
-    $ContractServiceBundleID,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[long]]
-    $ContractServiceID,
-
-# Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $DateWorked,
-
-# End Date Time
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $EndDateTime,
-
-# Hours Worked
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[double]]
-    $HoursWorked,
-
-# Internal Allocation Code ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $InternalAllocationCodeID,
-
-# Internal Notes
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,32000)]
-    [string]
-    $InternalNotes,
-
-# Non-Billable
+# Show On Invoice
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -231,9 +100,9 @@ Get-AtwsTimeEntry
       ParametersetName = 'By_Id'
     )]
     [Nullable[boolean]]
-    $NonBillable,
+    $ShowOnInvoice,
 
-# Offset Hours
+# Allocation Code ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -243,8 +112,21 @@ Get-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[double]]
-    $OffsetHours,
+    [Nullable[Int]]
+    $AllocationCodeID,
+
+# Role ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $RoleID,
 
 # Resource ID
     [Parameter(
@@ -261,7 +143,7 @@ Get-AtwsTimeEntry
     [Nullable[Int]]
     $ResourceID,
 
-# Role ID
+# Contract Service ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -271,10 +153,36 @@ Get-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $RoleID,
+    [Nullable[long]]
+    $ContractServiceID,
 
-# Show On Invoice
+# Contract Service Bundle ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[long]]
+    $ContractServiceBundleID,
+
+# Billing Approval Date Time
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $BillingApprovalDateTime,
+
+# Non-Billable
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -285,7 +193,33 @@ Get-AtwsTimeEntry
       ParametersetName = 'By_Id'
     )]
     [Nullable[boolean]]
-    $ShowOnInvoice,
+    $NonBillable,
+
+# Billing Approval Resource ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $BillingApprovalResourceID,
+
+# Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $DateWorked,
 
 # Start Date Time
     [Parameter(
@@ -300,7 +234,7 @@ Get-AtwsTimeEntry
     [Nullable[datetime]]
     $StartDateTime,
 
-# Summary Notes
+# Internal Allocation Code ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -310,9 +244,8 @@ Get-AtwsTimeEntry
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,32000)]
-    [string]
-    $SummaryNotes,
+    [Nullable[Int]]
+    $InternalAllocationCodeID,
 
 # Task ID
     [Parameter(
@@ -338,7 +271,74 @@ Get-AtwsTimeEntry
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $TicketID
+    $TicketID,
+
+# Summary Notes
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,32000)]
+    [string]
+    $SummaryNotes,
+
+# Internal Notes
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,32000)]
+    [string]
+    $InternalNotes,
+
+# Offset Hours
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $OffsetHours,
+
+# End Date Time
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $EndDateTime,
+
+# Hours Worked
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $HoursWorked
   )
 
     begin {

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -103,6 +103,13 @@ Set-AtwsPaymentTerm
     [Nullable[boolean][]]
     $Active,
 
+# Payment Due In Days
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $PaymentDueInDays,
+
 # Description
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -127,13 +134,6 @@ Set-AtwsPaymentTerm
     [ValidateLength(0,100)]
     [string[]]
     $Name,
-
-# Payment Due In Days
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $PaymentDueInDays,
 
     [Parameter(
       ParametersetName = 'By_parameters'

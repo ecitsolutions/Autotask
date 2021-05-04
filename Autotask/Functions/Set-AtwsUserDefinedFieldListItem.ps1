@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,6 +74,22 @@ Get-AtwsUserDefinedFieldListItem
     [switch]
     $PassThru,
 
+# Value For Display
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,128)]
+    [string]
+    $ValueForDisplay,
+
 # Is Active
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -101,22 +117,6 @@ Get-AtwsUserDefinedFieldListItem
     [ValidateNotNullOrEmpty()]
     [Nullable[long]]
     $UdfFieldId,
-
-# Value For Display
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,128)]
-    [string]
-    $ValueForDisplay,
 
 # Value For Export
     [Parameter(

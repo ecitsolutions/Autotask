@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -93,6 +93,14 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT 
     [switch]
     $All,
 
+# Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ResourceID,
+
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -108,14 +116,6 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT 
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
-
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ResourceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

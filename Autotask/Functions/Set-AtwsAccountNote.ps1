@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,7 +74,35 @@ Get-AtwsAccountNote
     [switch]
     $PassThru,
 
-# Client
+# Detail
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,32000)]
+    [string]
+    $Note,
+
+# Name
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $Name,
+
+# StartDate
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -86,8 +114,36 @@ Get-AtwsAccountNote
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $StartDateTime,
+
+# ProposalID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
     [Nullable[Int]]
-    $AccountID,
+    $OpportunityID,
+
+# EndDate
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $EndDateTime,
 
 # TypeValue
     [Parameter(
@@ -116,7 +172,7 @@ Get-AtwsAccountNote
     [string]
     $ActionType,
 
-# Assigned Resource
+# Client
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -129,7 +185,7 @@ Get-AtwsAccountNote
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int]]
-    $AssignedResourceID,
+    $AccountID,
 
 # Contact
     [Parameter(
@@ -144,7 +200,7 @@ Get-AtwsAccountNote
     [Nullable[Int]]
     $ContactID,
 
-# EndDate
+# Assigned Resource
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -156,64 +212,8 @@ Get-AtwsAccountNote
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $EndDateTime,
-
-# Name
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,128)]
-    [string]
-    $Name,
-
-# Detail
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,32000)]
-    [string]
-    $Note,
-
-# ProposalID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
     [Nullable[Int]]
-    $OpportunityID,
-
-# StartDate
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $StartDateTime
+    $AssignedResourceID
   )
 
     begin {

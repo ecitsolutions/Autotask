@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,7 +74,7 @@ Get-AtwsPhase
     [switch]
     $PassThru,
 
-# Phase Description
+# Phase Start Date
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -84,9 +84,8 @@ Get-AtwsPhase
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,8000)]
-    [string]
-    $Description,
+    [Nullable[datetime]]
+    $StartDate,
 
 # Phase End Date
     [Parameter(
@@ -128,19 +127,6 @@ Get-AtwsPhase
     [Nullable[Int]]
     $ParentPhaseID,
 
-# Phase Start Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $StartDate,
-
 # Phase Title
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -155,7 +141,21 @@ Get-AtwsPhase
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,255)]
     [string]
-    $Title
+    $Title,
+
+# Phase Description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,8000)]
+    [string]
+    $Description
   )
 
     begin {

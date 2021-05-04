@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -99,14 +99,6 @@ Set-AtwsInstalledProductBillingProductAssociation
     [switch]
     $All,
 
-# Billing Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $BillingProductID,
-
 # Effective Date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -121,6 +113,14 @@ Set-AtwsInstalledProductBillingProductAssociation
     )]
     [Nullable[datetime][]]
     $ExpirationDate,
+
+# Billing Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $BillingProductID,
 
 # Installed Product Billing Product Association ID
     [Parameter(

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -113,13 +113,26 @@ Set-AtwsService
     [switch]
     $All,
 
-# allocation_code_id
+# update_date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $LastModifiedDate,
+
+# Vendor Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
     [Nullable[Int][]]
-    $AllocationCodeID,
+    $VendorAccountID,
+
+# update_by_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $UpdateResourceID,
 
 # create_date
     [Parameter(
@@ -128,28 +141,38 @@ Set-AtwsService
     [Nullable[datetime][]]
     $CreateDate,
 
-# create_by_id
+# Service Level Agreement Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-# service_description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,400)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
-    $Description,
+    $ServiceLevelAgreementID,
 
-# service_id
+# Markup Rate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[double][]]
+    $MarkupRate,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $UnitCost,
 
 # Invoice Description
     [Parameter(
@@ -159,26 +182,29 @@ Set-AtwsService
     [string[]]
     $InvoiceDescription,
 
-# active
+# service_description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $IsActive,
+    [ValidateLength(0,400)]
+    [string[]]
+    $Description,
 
-# update_date
+# unit_price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $LastModifiedDate,
-
-# Markup Rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[double][]]
-    $MarkupRate,
+    $UnitPrice,
+
+# service_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # service_name
     [Parameter(
@@ -188,6 +214,20 @@ Set-AtwsService
     [ValidateLength(0,150)]
     [string[]]
     $Name,
+
+# active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsActive,
+
+# create_by_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
 
 # period_type
     [Parameter(
@@ -209,53 +249,13 @@ Set-AtwsService
     [string[]]
     $PeriodType,
 
-# Service Level Agreement Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity Service -FieldName ServiceLevelAgreementID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ServiceLevelAgreementID,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $UnitCost,
-
-# unit_price
+# allocation_code_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $UnitPrice,
-
-# update_by_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
     [Nullable[Int][]]
-    $UpdateResourceID,
-
-# Vendor Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $VendorAccountID,
+    $AllocationCodeID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

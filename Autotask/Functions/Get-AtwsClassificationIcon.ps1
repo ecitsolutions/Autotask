@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -100,13 +100,22 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
     [Nullable[boolean][]]
     $Active,
 
-# Description
+# System
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $System,
+
+# Relative Url
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
     [string[]]
-    $Description,
+    $RelativeUrl,
 
 # Classification Icon ID
     [Parameter(
@@ -125,22 +134,13 @@ Returns any object with a ClassificationIconName that DOES NOT match the simple 
     [string[]]
     $Name,
 
-# Relative Url
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
     [string[]]
-    $RelativeUrl,
-
-# System
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $System,
+    $Description,
 
     [Parameter(
       ParametersetName = 'By_parameters'

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -107,6 +107,14 @@ An example of a more complex query. This command returns any Skills with Id GREA
     [switch]
     $All,
 
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -134,14 +142,6 @@ An example of a more complex query. This command returns any Skills with Id GREA
     })]
     [string[]]
     $CategoryID,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Description,
 
 # Skill ID
     [Parameter(

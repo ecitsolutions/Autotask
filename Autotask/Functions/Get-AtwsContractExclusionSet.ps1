@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -98,14 +98,6 @@ Set-AtwsContractExclusionSet
     [switch]
     $All,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
 # Description
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -113,6 +105,14 @@ Set-AtwsContractExclusionSet
     [ValidateLength(0,500)]
     [string[]]
     $Description,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
 
 # Contract Exclusion Set ID
     [Parameter(

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -93,48 +93,12 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     [switch]
     $All,
 
-# Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AccountID,
-
-# Company Rating
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $CompanyRating,
-
-# Complete Date
+# Send Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $CompleteDate,
-
-# Contact ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContactID,
-
-# Contact Rating
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $ContactRating,
-
-# Survey Results ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    $SendDate,
 
 # Resource Rating
     [Parameter(
@@ -142,13 +106,6 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     )]
     [Nullable[decimal][]]
     $ResourceRating,
-
-# Send Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $SendDate,
 
 # Survey ID
     [Parameter(
@@ -158,6 +115,13 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     [Nullable[Int][]]
     $SurveyID,
 
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TicketID,
+
 # Survey Rating
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -165,12 +129,48 @@ Returns any object with a SurveyResultsName that DOES NOT match the simple patte
     [Nullable[decimal][]]
     $SurveyRating,
 
-# Ticket ID
+# Complete Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CompleteDate,
+
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $TicketID,
+    $AccountID,
+
+# Survey Results ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Company Rating
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $CompanyRating,
+
+# Contact Rating
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $ContactRating,
+
+# Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContactID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,6 +97,14 @@ Set-AtwsDepartment
     [switch]
     $All,
 
+# Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Number,
+
 # Description
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -104,6 +112,14 @@ Set-AtwsDepartment
     [ValidateLength(0,1000)]
     [string[]]
     $Description,
+
+# Primary Location ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $PrimaryLocationID,
 
 # Department ID
     [Parameter(
@@ -121,22 +137,6 @@ Set-AtwsDepartment
     [ValidateLength(0,100)]
     [string[]]
     $Name,
-
-# Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $Number,
-
-# Primary Location ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $PrimaryLocationID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

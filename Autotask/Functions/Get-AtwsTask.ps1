@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -119,33 +119,20 @@ Set-AtwsTask
     [switch]
     $All,
 
-# Account Physical Location ID
+# Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $AccountPhysicalLocationID,
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
 
-# Allocation Code Name
+# Task Priority
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $AllocationCodeID,
-
-# Resource
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AssignedResourceID,
-
-# Resource Role Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AssignedResourceRoleID,
+    $Priority,
 
 # Can Client Portal User Complete Task
     [Parameter(
@@ -154,112 +141,35 @@ Set-AtwsTask
     [Nullable[boolean][]]
     $CanClientPortalUserCompleteTask,
 
-# Task Completed By
+# Is Visible in Client Portal
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $CompletedByResourceID,
+    [Nullable[boolean][]]
+    $IsVisibleInClientPortal,
 
-# Completed By Type
+# Task Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,50)]
     [string[]]
-    $CompletedByType,
+    $TaskNumber,
 
-# Task Complete Date
+# Task ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Task Last Activity Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $CompletedDateTime,
-
-# Task Creation Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# Task Creator
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-# Creator Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $CreatorType,
-
-# Task Department Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $DepartmentID,
-
-# Task Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $Description,
-
-# Task End Datetime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $EndDateTime,
-
-# Task Estimated Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $EstimatedHours,
+    $LastActivityDateTime,
 
 # Task External ID
     [Parameter(
@@ -275,28 +185,6 @@ Set-AtwsTask
     )]
     [Nullable[double][]]
     $HoursToBeScheduled,
-
-# Task ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Is Visible in Client Portal
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsVisibleInClientPortal,
-
-# Task Last Activity Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivityDateTime,
 
 # Last Activity Person Type
     [Parameter(
@@ -324,19 +212,50 @@ Set-AtwsTask
     [Nullable[Int][]]
     $LastActivityResourceID,
 
-# Phase ID
+# Task Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $PhaseID,
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $TaskCategoryID,
 
-# Task Priority
+# Account Physical Location ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $Priority,
+    $AccountPhysicalLocationID,
+
+# Creator Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName CreatorType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $CreatorType,
 
 # Priority Label
     [Parameter(
@@ -357,6 +276,79 @@ Set-AtwsTask
     [string[]]
     $PriorityLabel,
 
+# Completed By Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName CompletedByType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $CompletedByType,
+
+# Task Completed By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CompletedByResourceID,
+
+# Task End Datetime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $EndDateTime,
+
+# Task Start Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $StartDateTime,
+
+# Allocation Code Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AllocationCodeID,
+
+# Task Department Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName DepartmentID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $DepartmentID,
+
+# Phase ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $PhaseID,
+
 # Project
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -365,20 +357,71 @@ Set-AtwsTask
     [Nullable[Int][]]
     $ProjectID,
 
-# Purchase Order Number
+# Task Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,8000)]
     [string[]]
-    $PurchaseOrderNumber,
+    $Description,
 
-# Task Start Date
+# Task Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
+    [string[]]
+    $Title,
+
+# Resource
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AssignedResourceID,
+
+# Task Creation Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $StartDateTime,
+    $CreateDateTime,
+
+# Task Complete Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CompletedDateTime,
+
+# Task Estimated Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $EstimatedHours,
+
+# Task Creator
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
+
+# Task Billable
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $TaskIsBillable,
+
+# Resource Role Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AssignedResourceRoleID,
 
 # Task Status
     [Parameter(
@@ -400,40 +443,6 @@ Set-AtwsTask
     [string[]]
     $Status,
 
-# Task Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Label) + (Get-AtwsPicklistValue -Entity Task -FieldName TaskCategoryID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $TaskCategoryID,
-
-# Task Billable
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $TaskIsBillable,
-
-# Task Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $TaskNumber,
-
 # Task Type
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -453,15 +462,6 @@ Set-AtwsTask
     })]
     [string[]]
     $TaskType,
-
-# Task Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $Title,
 
     [Parameter(
       ParametersetName = 'By_parameters'

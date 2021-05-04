@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,14 +97,6 @@ Remove-AtwsTicketAdditionalInstalledProduct
     [switch]
     $All,
 
-# Ticket Additional Installed Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Installed Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -120,6 +112,14 @@ Remove-AtwsTicketAdditionalInstalledProduct
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $TicketID,
+
+# Ticket Additional Installed Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

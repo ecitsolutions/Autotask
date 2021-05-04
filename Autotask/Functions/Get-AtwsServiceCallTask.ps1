@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,13 +97,13 @@ Remove-AtwsServiceCallTask
     [switch]
     $All,
 
-# Service Call Task ID
+# Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $TaskID,
 
 # Service Call ID
     [Parameter(
@@ -113,13 +113,13 @@ Remove-AtwsServiceCallTask
     [Nullable[Int][]]
     $ServiceCallID,
 
-# Task ID
+# Service Call Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TaskID,
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

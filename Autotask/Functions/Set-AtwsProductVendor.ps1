@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -104,7 +104,7 @@ Get-AtwsProductVendor
     [Nullable[boolean]]
     $IsDefault,
 
-# Vendor Cost
+# Vendor Part Number
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -114,8 +114,9 @@ Get-AtwsProductVendor
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[double]]
-    $VendorCost,
+    [ValidateLength(0,50)]
+    [string]
+    $VendorPartNumber,
 
 # Vendor Account ID
     [Parameter(
@@ -132,7 +133,7 @@ Get-AtwsProductVendor
     [Nullable[Int]]
     $VendorID,
 
-# Vendor Part Number
+# Vendor Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -142,9 +143,8 @@ Get-AtwsProductVendor
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,50)]
-    [string]
-    $VendorPartNumber
+    [Nullable[double]]
+    $VendorCost
   )
 
     begin {

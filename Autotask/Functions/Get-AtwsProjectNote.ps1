@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -113,6 +113,13 @@ Set-AtwsProjectNote
     [switch]
     $All,
 
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
 # Announce
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -121,12 +128,14 @@ Set-AtwsProjectNote
     [Nullable[boolean][]]
     $Announce,
 
-# Create Date Time
+# Title
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,250)]
+    [string[]]
+    $Title,
 
 # Created By Contact ID
     [Parameter(
@@ -135,12 +144,35 @@ Set-AtwsProjectNote
     [Nullable[Int][]]
     $CreatedByContactID,
 
-# Creator Resource
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Impersonator Updater Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $CreatorResourceID,
+    $ImpersonatorUpdaterResourceID,
+
+# Project
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ProjectID,
+
+# Task Note ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Description
     [Parameter(
@@ -151,62 +183,12 @@ Set-AtwsProjectNote
     [string[]]
     $Description,
 
-# Task Note ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Impersonator Creator Resource ID
+# Creator Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorUpdaterResourceID,
-
-# LastActivityDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivityDate,
-
-# Note Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ProjectNote -FieldName NoteType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ProjectNote -FieldName NoteType -Label) + (Get-AtwsPicklistValue -Entity ProjectNote -FieldName NoteType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $NoteType,
-
-# Project
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ProjectID,
+    $CreatorResourceID,
 
 # Publish
     [Parameter(
@@ -228,14 +210,32 @@ Set-AtwsProjectNote
     [string[]]
     $Publish,
 
-# Title
+# Note Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,250)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ProjectNote -FieldName NoteType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ProjectNote -FieldName NoteType -Label) + (Get-AtwsPicklistValue -Entity ProjectNote -FieldName NoteType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
-    $Title,
+    $NoteType,
+
+# LastActivityDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastActivityDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'

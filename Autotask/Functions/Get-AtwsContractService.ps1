@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,28 +97,19 @@ Set-AtwsContractService
     [switch]
     $All,
 
-# Adjusted Price
+# Internal Currency Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $AdjustedPrice,
+    $InternalCurrencyUnitPrice,
 
-# Contract ID
+# Quote Item Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContractID,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $id,
+    $QuoteItemID,
 
 # Internal Currency Adjusted Price
     [Parameter(
@@ -127,12 +118,12 @@ Set-AtwsContractService
     [Nullable[double][]]
     $InternalCurrencyAdjustedPrice,
 
-# Internal Currency Unit Price
+# Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $InternalCurrencyUnitPrice,
+    $UnitCost,
 
 # Internal Description
     [Parameter(
@@ -150,12 +141,21 @@ Set-AtwsContractService
     [string[]]
     $InvoiceDescription,
 
-# Quote Item Id
+# Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ContractID,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $QuoteItemID,
+    $id,
 
 # Service ID
     [Parameter(
@@ -165,12 +165,12 @@ Set-AtwsContractService
     [Nullable[Int][]]
     $ServiceID,
 
-# Unit Cost
+# Adjusted Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $UnitCost,
+    $AdjustedPrice,
 
 # Unit Price
     [Parameter(

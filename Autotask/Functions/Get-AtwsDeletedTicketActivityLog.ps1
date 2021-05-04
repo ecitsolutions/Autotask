@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -108,38 +108,6 @@ An example of a more complex query. This command returns any DeletedTicketActivi
     [switch]
     $All,
 
-# Activity Date/Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $ActivityDateTime,
-
-# Created By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $CreatedByResourceID,
-
-# Deleted By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $DeletedByResourceID,
-
-# Deleted Date/Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $DeletedDateTime,
-
 # End Date/Time
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -147,31 +115,6 @@ An example of a more complex query. This command returns any DeletedTicketActivi
     [ValidateNotNullOrEmpty()]
     [Nullable[datetime][]]
     $EndDateTime,
-
-# Hours Worked
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[decimal][]]
-    $HoursWorked,
-
-# Deleted Ticket Activity Log ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Note Or Attachment Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $NoteOrAttachmentTitle,
 
 # Start Date/Time
     [Parameter(
@@ -181,6 +124,38 @@ An example of a more complex query. This command returns any DeletedTicketActivi
     [Nullable[datetime][]]
     $StartDateTime,
 
+# Activity Date/Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $ActivityDateTime,
+
+# Deleted Date/Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $DeletedDateTime,
+
+# Deleted By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $DeletedByResourceID,
+
+# Hours Worked
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[decimal][]]
+    $HoursWorked,
+
 # Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -188,15 +163,6 @@ An example of a more complex query. This command returns any DeletedTicketActivi
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $TicketID,
-
-# Ticket Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $TicketNumber,
 
 # Type ID
     [Parameter(
@@ -217,6 +183,40 @@ An example of a more complex query. This command returns any DeletedTicketActivi
     })]
     [string[]]
     $TypeID,
+
+# Deleted Ticket Activity Log ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Created By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $CreatedByResourceID,
+
+# Note Or Attachment Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
+    [string[]]
+    $NoteOrAttachmentTitle,
+
+# Ticket Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $TicketNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'

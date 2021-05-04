@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -112,6 +112,13 @@ Remove-AtwsTicketChangeRequestApproval
     [string[]]
     $ApproveRejectNote,
 
+# Is Approved
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsApproved,
+
 # Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -127,20 +134,6 @@ Remove-AtwsTicketChangeRequestApproval
     [Nullable[Int][]]
     $id,
 
-# Is Approved
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsApproved,
-
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ResourceID,
-
 # Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -148,6 +141,13 @@ Remove-AtwsTicketChangeRequestApproval
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $TicketID,
+
+# Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ResourceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

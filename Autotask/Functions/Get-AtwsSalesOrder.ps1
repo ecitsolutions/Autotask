@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -110,145 +110,29 @@ Set-AtwsSalesOrder
     [switch]
     $All,
 
-# Client ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $AccountID,
-
-# Additional Bill To Address Information
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $AdditionalBillToAddressInformation,
-
-# Additional Ship To Address Information
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $AdditionalShipToAddressInformation,
-
-# Bill to Address1
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,150)]
-    [string[]]
-    $BillToAddress1,
-
-# Bill to Address2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,150)]
-    [string[]]
-    $BillToAddress2,
-
-# Bill to City
+# Ship to County
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
-    $BillToCity,
+    $ShipToState,
 
-# Bill to Country
+# Ship to Postal Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ShipToPostalCode,
+
+# Ship to Country
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,100)]
     [string[]]
-    $BillToCountry,
-
-# Bill To Country ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BillToCountryID,
-
-# Bill to Postal Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $BillToPostalCode,
-
-# Bill to County
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $BillToState,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Contact ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $Contact,
-
-# Sales Order ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $id,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Opportunity ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $OpportunityID,
-
-# Owner
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $OwnerResourceID,
-
-# Promised Due Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $PromisedDueDate,
-
-# Sales Order Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $SalesOrderDate,
+    $ShipToCountry,
 
 # Ship to Address1
     [Parameter(
@@ -274,13 +158,13 @@ Set-AtwsSalesOrder
     [string[]]
     $ShipToCity,
 
-# Ship to Country
+# Opportunity ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ShipToCountry,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $OpportunityID,
 
 # Ship To Country ID
     [Parameter(
@@ -289,21 +173,50 @@ Set-AtwsSalesOrder
     [Nullable[Int][]]
     $ShipToCountryID,
 
-# Ship to Postal Code
+# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ShipToPostalCode,
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
 
-# Ship to County
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Additional Bill To Address Information
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
     [string[]]
-    $ShipToState,
+    $AdditionalBillToAddressInformation,
+
+# Additional Ship To Address Information
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $AdditionalShipToAddressInformation,
+
+# Bill To Country ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BillToCountryID,
+
+# Bill to Country
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $BillToCountry,
 
 # Status
     [Parameter(
@@ -325,6 +238,38 @@ Set-AtwsSalesOrder
     [string[]]
     $Status,
 
+# Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $Contact,
+
+# Owner
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $OwnerResourceID,
+
+# Sales Order ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
+
+# Client ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $AccountID,
+
 # Title
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -333,6 +278,61 @@ Set-AtwsSalesOrder
     [ValidateLength(0,128)]
     [string[]]
     $Title,
+
+# Sales Order Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $SalesOrderDate,
+
+# Bill to City
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $BillToCity,
+
+# Bill to County
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $BillToState,
+
+# Bill to Postal Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $BillToPostalCode,
+
+# Promised Due Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $PromisedDueDate,
+
+# Bill to Address1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,150)]
+    [string[]]
+    $BillToAddress1,
+
+# Bill to Address2
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,150)]
+    [string[]]
+    $BillToAddress2,
 
     [Parameter(
       ParametersetName = 'By_parameters'

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -72,6 +72,19 @@ Get-AtwsPriceListWorkTypeModifier
     [switch]
     $PassThru,
 
+# Value
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $ModifierValue,
+
 # Modifier Type
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -96,19 +109,6 @@ Get-AtwsPriceListWorkTypeModifier
     })]
     [string]
     $ModifierType,
-
-# Value
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $ModifierValue,
 
 # Uses Internal Currency Price
     [Parameter(

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -93,14 +93,6 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [switch]
     $All,
 
-# Subscription Period ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Period Cost
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -108,22 +100,6 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [ValidateNotNullOrEmpty()]
     [Nullable[decimal][]]
     $PeriodCost,
-
-# Period Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $PeriodDate,
-
-# Period Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[decimal][]]
-    $PeriodPrice,
 
 # Posted Date
     [Parameter(
@@ -140,6 +116,22 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [string[]]
     $PurchaseOrderNumber,
 
+# Period Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[decimal][]]
+    $PeriodPrice,
+
+# Subscription Period ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
 # Subscription Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -147,6 +139,14 @@ Returns any object with a SubscriptionPeriodName that DOES NOT match the simple 
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $SubscriptionID,
+
+# Period Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $PeriodDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'

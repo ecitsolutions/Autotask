@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -112,51 +112,6 @@ Set-AtwsInstalledProductNote
     [switch]
     $All,
 
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,32000)]
-    [string[]]
-    $Description,
-
-# Installed Product Note ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorUpdaterResourceID,
-
 # Installed Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -165,12 +120,28 @@ Set-AtwsInstalledProductNote
     [Nullable[Int][]]
     $InstalledProductID,
 
+# Impersonator Updater Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorUpdaterResourceID,
+
 # Last Activity Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $LastActivityDate,
+
+# Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,250)]
+    [string[]]
+    $Title,
 
 # Note Type
     [Parameter(
@@ -192,14 +163,43 @@ Set-AtwsInstalledProductNote
     [string[]]
     $NoteType,
 
-# Title
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Installed Product Note ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,250)]
+    [Nullable[long][]]
+    $id,
+
+# Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,32000)]
     [string[]]
-    $Title,
+    $Description,
 
     [Parameter(
       ParametersetName = 'By_parameters'

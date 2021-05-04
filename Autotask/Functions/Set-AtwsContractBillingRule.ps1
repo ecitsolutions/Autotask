@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,7 +76,7 @@ Get-AtwsContractBillingRule
     [switch]
     $PassThru,
 
-# Active
+# Enable Daily Prorating
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -89,7 +89,22 @@ Get-AtwsContractBillingRule
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean]]
-    $Active,
+    $EnableDailyProrating,
+
+# Include Items In Charge Description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean]]
+    $IncludeItemsInChargeDescription,
 
 # Create Charges As Billable
     [Parameter(
@@ -106,7 +121,7 @@ Get-AtwsContractBillingRule
     [Nullable[boolean]]
     $CreateChargesAsBillable,
 
-# Daily Prorated Cost
+# Execution Method
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -116,8 +131,20 @@ Get-AtwsContractBillingRule
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[decimal]]
-    $DailyProratedCost,
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label) + (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ExecutionMethod,
 
 # Daily Prorated Price
     [Parameter(
@@ -131,6 +158,89 @@ Get-AtwsContractBillingRule
     )]
     [Nullable[decimal]]
     $DailyProratedPrice,
+
+# Daily Prorated Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $DailyProratedCost,
+
+# Maximum Units
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $MaximumUnits,
+
+# Start Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $StartDate,
+
+# Active
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean]]
+    $Active,
+
+# Invoice Description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $InvoiceDescription,
+
+# Minimum Units
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $MinimumUnits,
 
 # Determine Units
     [Parameter(
@@ -159,21 +269,6 @@ Get-AtwsContractBillingRule
     [string]
     $DetermineUnits,
 
-# Enable Daily Prorating
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean]]
-    $EnableDailyProrating,
-
 # End Date
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -185,102 +280,7 @@ Get-AtwsContractBillingRule
       ParametersetName = 'By_Id'
     )]
     [Nullable[datetime]]
-    $EndDate,
-
-# Execution Method
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label) + (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $ExecutionMethod,
-
-# Include Items In Charge Description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean]]
-    $IncludeItemsInChargeDescription,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,500)]
-    [string]
-    $InvoiceDescription,
-
-# Maximum Units
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $MaximumUnits,
-
-# Minimum Units
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $MinimumUnits,
-
-# Start Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $StartDate
+    $EndDate
   )
 
     begin {

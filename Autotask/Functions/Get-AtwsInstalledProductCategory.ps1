@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -111,21 +111,6 @@ Set-AtwsInstalledProductCategory
     [switch]
     $All,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
-# Client Portal Default
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ClientPortalDefault,
-
 # Display Color RGB
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -152,6 +137,21 @@ Set-AtwsInstalledProductCategory
     )]
     [Nullable[boolean][]]
     $GlobalDefault,
+
+# Client Portal Default
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ClientPortalDefault,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
 
 # Installed Product Category ID
     [Parameter(

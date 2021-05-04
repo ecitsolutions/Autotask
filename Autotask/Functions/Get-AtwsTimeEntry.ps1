@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -121,27 +121,6 @@ Set-AtwsTimeEntry
     [Nullable[Int][]]
     $AllocationCodeID,
 
-# Billing Approval Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $BillingApprovalDateTime,
-
-# Billing Approval Level Most Recent
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BillingApprovalLevelMostRecent,
-
-# Billing Approval Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BillingApprovalResourceID,
-
 # Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -149,98 +128,12 @@ Set-AtwsTimeEntry
     [Nullable[Int][]]
     $ContractID,
 
-# Contract Service Bundle ID
+# Show On Invoice
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
-    $ContractServiceBundleID,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ContractServiceID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# Created User ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorUserID,
-
-# Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $DateWorked,
-
-# End Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $EndDateTime,
-
-# Hours To Bill
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $HoursToBill,
-
-# Hours Worked
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $HoursWorked,
-
-# Time Entry ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorUpdaterResourceID,
-
-# Internal Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $InternalAllocationCodeID,
-
-# Internal Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,32000)]
-    [string[]]
-    $InternalNotes,
+    [Nullable[boolean][]]
+    $ShowOnInvoice,
 
 # Last Modified Datetime
     [Parameter(
@@ -248,6 +141,21 @@ Set-AtwsTimeEntry
     )]
     [Nullable[datetime][]]
     $LastModifiedDateTime,
+
+# Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ResourceID,
+
+# Created User ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorUserID,
 
 # Last Modified By User ID
     [Parameter(
@@ -263,63 +171,54 @@ Set-AtwsTimeEntry
     [Nullable[boolean][]]
     $NonBillable,
 
-# Offset Hours
+# Contract Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $OffsetHours,
+    [Nullable[long][]]
+    $ContractServiceBundleID,
 
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ResourceID,
-
-# Role ID
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $RoleID,
+    $ImpersonatorCreatorResourceID,
 
-# Show On Invoice
+# Impersonator Updater Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $ShowOnInvoice,
+    [Nullable[Int][]]
+    $ImpersonatorUpdaterResourceID,
 
-# Start Date Time
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContractServiceID,
+
+# Billing Approval Level Most Recent
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BillingApprovalLevelMostRecent,
+
+# Billing Approval Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BillingApprovalResourceID,
+
+# Billing Approval Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $StartDateTime,
-
-# Summary Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,32000)]
-    [string[]]
-    $SummaryNotes,
-
-# Task ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TaskID,
-
-# Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TicketID,
+    $BillingApprovalDateTime,
 
 # TaskTypeLink
     [Parameter(
@@ -339,6 +238,107 @@ Set-AtwsTimeEntry
     })]
     [string[]]
     $Type,
+
+# Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $DateWorked,
+
+# Start Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $StartDateTime,
+
+# Internal Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $InternalAllocationCodeID,
+
+# Time Entry ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Task ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TaskID,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TicketID,
+
+# End Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $EndDateTime,
+
+# Internal Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,32000)]
+    [string[]]
+    $InternalNotes,
+
+# Role ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $RoleID,
+
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Summary Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,32000)]
+    [string[]]
+    $SummaryNotes,
+
+# Hours Worked
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $HoursWorked,
+
+# Hours To Bill
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $HoursToBill,
+
+# Offset Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $OffsetHours,
 
     [Parameter(
       ParametersetName = 'By_parameters'

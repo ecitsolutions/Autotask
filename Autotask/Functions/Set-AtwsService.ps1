@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,48 +74,18 @@ Get-AtwsService
     [switch]
     $PassThru,
 
-# allocation_code_id
+# Vendor Account ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int]]
-    $AllocationCodeID,
-
-# service_description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,400)]
-    [string]
-    $Description,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,1000)]
-    [string]
-    $InvoiceDescription,
+    $VendorAccountID,
 
 # active
     [Parameter(
@@ -130,48 +100,18 @@ Get-AtwsService
     [Nullable[boolean]]
     $IsActive,
 
-# service_name
+# Unit Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,150)]
-    [string]
-    $Name,
-
-# period_type
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Service -FieldName PeriodType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Service -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity Service -FieldName PeriodType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PeriodType,
+    [Nullable[double]]
+    $UnitCost,
 
 # Service Level Agreement Id
     [Parameter(
@@ -198,7 +138,7 @@ Get-AtwsService
     [string]
     $ServiceLevelAgreementID,
 
-# Unit Cost
+# Invoice Description
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -208,8 +148,39 @@ Get-AtwsService
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[double]]
-    $UnitCost,
+    [ValidateLength(0,1000)]
+    [string]
+    $InvoiceDescription,
+
+# service_description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,400)]
+    [string]
+    $Description,
+
+# service_name
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,150)]
+    [string]
+    $Name,
 
 # unit_price
     [Parameter(
@@ -226,18 +197,47 @@ Get-AtwsService
     [Nullable[double]]
     $UnitPrice,
 
-# Vendor Account ID
+# allocation_code_id
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[Int]]
-    $VendorAccountID
+    $AllocationCodeID,
+
+# period_type
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Service -FieldName PeriodType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Service -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity Service -FieldName PeriodType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PeriodType
   )
 
     begin {

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -124,32 +124,16 @@ Set-AtwsResource
     [switch]
     $All,
 
-# Accounting Reference ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $AccountingReferenceID,
-
-# Status
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
-# Date Format
+# Travel Availability Pct
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label -Quoted
+      Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label -Quoted
     })]
     [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Value)
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -157,110 +141,27 @@ Set-AtwsResource
       }
     })]
     [string[]]
-    $DateFormat,
+    $TravelAvailabilityPct,
 
-# Email
+# Title
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,254)]
-    [string[]]
-    $Email,
-
-# Add Email 1
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,254)]
-    [string[]]
-    $Email2,
-
-# Add Email 2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,254)]
-    [string[]]
-    $Email3,
-
-# Email Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $EmailTypeCode,
-
-# Add Email 1 Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $EmailTypeCode2,
-
-# Add Email 2 Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $EmailTypeCode3,
-
-# First Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,50)]
     [string[]]
-    $FirstName,
+    $Title,
 
-# Gender
+# User Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label -Quoted
+      Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Label -Quoted
     })]
     [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Value)
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -268,158 +169,16 @@ Set-AtwsResource
       }
     })]
     [string[]]
-    $Gender,
+    $UserType,
 
-# Greeting
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Greeting,
-
-# Hire Date
+# UserName
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $HireDate,
-
-# Home Phone
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string[]]
-    $HomePhone,
-
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Pay Roll Identifier
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
     [ValidateLength(0,32)]
     [string[]]
-    $Initials,
-
-# Interal Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCost,
-
-# Last Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $LastName,
-
-# License Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $LicenseType,
-
-# Pimary Location
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $LocationID,
-
-# Middle Initial
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $MiddleName,
-
-# Mobile Phone
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string[]]
-    $MobilePhone,
-
-# Number Format
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $NumberFormat,
-
-# Office Extension
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,10)]
-    [string[]]
-    $OfficeExtension,
+    $UserName,
 
 # Office Phone
     [Parameter(
@@ -429,17 +188,24 @@ Set-AtwsResource
     [string[]]
     $OfficePhone,
 
-# Payroll Type
+# Office Extension
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,10)]
+    [string[]]
+    $OfficeExtension,
+
+# Suffix
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label -Quoted
+      Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label -Quoted
     })]
     [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Value)
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -447,7 +213,7 @@ Set-AtwsResource
       }
     })]
     [string[]]
-    $PayrollType,
+    $Suffix,
 
 # Resource Type
     [Parameter(
@@ -469,16 +235,16 @@ Set-AtwsResource
     [string[]]
     $ResourceType,
 
-# Suffix
+# Date Format
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label -Quoted
+      Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label -Quoted
     })]
     [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Suffix -Value)
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName DateFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -486,7 +252,42 @@ Set-AtwsResource
       }
     })]
     [string[]]
-    $Suffix,
+    $DateFormat,
+
+# Hire Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $HireDate,
+
+# Interal Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCost,
+
+# License Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName LicenseType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $LicenseType,
 
 # Survey Resource Rating
     [Parameter(
@@ -494,6 +295,26 @@ Set-AtwsResource
     )]
     [Nullable[double][]]
     $SurveyResourceRating,
+
+# Payroll Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName PayrollType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PayrollType,
 
 # Time Format
     [Parameter(
@@ -514,24 +335,216 @@ Set-AtwsResource
     [string[]]
     $TimeFormat,
 
-# Title
+# Accounting Reference ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $AccountingReferenceID,
+
+# Number Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName NumberFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $NumberFormat,
+
+# Add Email 1 Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode2 -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $EmailTypeCode2,
+
+# Email Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $EmailTypeCode,
+
+# First Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $FirstName,
+
+# Add Email 2 Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName EmailTypeCode3 -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $EmailTypeCode3,
+
+# Email
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,254)]
+    [string[]]
+    $Email,
+
+# Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
+
+# Add Email 2
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,254)]
+    [string[]]
+    $Email3,
+
+# Add Email 1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,254)]
+    [string[]]
+    $Email2,
+
+# Gender
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Gender -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Gender,
+
+# Pimary Location
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName LocationID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $LocationID,
+
+# Last Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $LastName,
+
+# Mobile Phone
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $MobilePhone,
+
+# Middle Initial
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string[]]
-    $Title,
+    $MiddleName,
 
-# Travel Availability Pct
+# Home Phone
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $HomePhone,
+
+# Greeting
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label -Quoted
+      Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label -Quoted
     })]
     [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName TravelAvailabilityPct -Value)
+      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName Greeting -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -539,36 +552,23 @@ Set-AtwsResource
       }
     })]
     [string[]]
-    $TravelAvailabilityPct,
+    $Greeting,
 
-# UserName
+# Pay Roll Identifier
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,32)]
     [string[]]
-    $UserName,
+    $Initials,
 
-# User Type
+# Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Label) + (Get-AtwsPicklistValue -Entity Resource -FieldName UserType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $UserType,
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

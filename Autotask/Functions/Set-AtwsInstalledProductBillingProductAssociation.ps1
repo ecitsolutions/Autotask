@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,6 +76,19 @@ Get-AtwsInstalledProductBillingProductAssociation
     [switch]
     $PassThru,
 
+# Expiration Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $ExpirationDate,
+
 # Effective Date
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -89,20 +102,7 @@ Get-AtwsInstalledProductBillingProductAssociation
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[datetime]]
-    $EffectiveDate,
-
-# Expiration Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $ExpirationDate
+    $EffectiveDate
   )
 
     begin {

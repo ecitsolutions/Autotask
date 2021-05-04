@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,110 +115,6 @@ Set-AtwsQuoteItem
     [switch]
     $All,
 
-# cost_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CostID,
-
-# quote_item_description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Description,
-
-# expense_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ExpenseID,
-
-# quote_item_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# internal_currency_line_discount_dollars
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyLineDiscount,
-
-# internal_currency_discount_dollars
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyUnitDiscount,
-
-# internal_currency_unit_price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyUnitPrice,
-
-# optional
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsOptional,
-
-# taxable
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsTaxable,
-
-# labor_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LaborID,
-
-# line_discount_dollars
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $LineDiscount,
-
-# markup_rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $MarkupRate,
-
-# quote_item_name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Name,
-
-# discount_percent
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $PercentageDiscount,
-
 # period_type
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -238,56 +134,87 @@ Set-AtwsQuoteItem
     [string[]]
     $PeriodType,
 
-# product_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ProductID,
-
-# quantity
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $Quantity,
-
-# quote_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $QuoteID,
-
-# service_bundle_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ServiceBundleID,
-
-# service_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ServiceID,
-
-# shipping_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ShippingID,
-
 # sort_order
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $SortOrderID,
+
+# quote_item_description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
+# optional
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsOptional,
+
+# discount_dollars
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $UnitDiscount,
+
+# discount_percent
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $PercentageDiscount,
+
+# taxable
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsTaxable,
+
+# internal_currency_unit_price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyUnitPrice,
+
+# internal_currency_discount_dollars
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyUnitDiscount,
+
+# internal_currency_line_discount_dollars
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyLineDiscount,
+
+# markup_rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $MarkupRate,
+
+# line_discount_dollars
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $LineDiscount,
 
 # tax_category_id
     [Parameter(
@@ -302,6 +229,50 @@ Set-AtwsQuoteItem
     )]
     [Nullable[double][]]
     $TotalEffectiveTax,
+
+# cost_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CostID,
+
+# labor_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $LaborID,
+
+# expense_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ExpenseID,
+
+# product_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ProductID,
+
+# quote_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $QuoteID,
+
+# quote_item_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # parent_type
     [Parameter(
@@ -323,6 +294,13 @@ Set-AtwsQuoteItem
     [string[]]
     $Type,
 
+# unit_price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $UnitPrice,
+
 # unit_cost
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -330,20 +308,42 @@ Set-AtwsQuoteItem
     [Nullable[double][]]
     $UnitCost,
 
-# discount_dollars
+# quantity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[double][]]
-    $UnitDiscount,
+    $Quantity,
 
-# unit_price
+# quote_item_name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $UnitPrice,
+    [ValidateLength(0,100)]
+    [string[]]
+    $Name,
+
+# shipping_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ShippingID,
+
+# service_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ServiceID,
+
+# service_bundle_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ServiceBundleID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

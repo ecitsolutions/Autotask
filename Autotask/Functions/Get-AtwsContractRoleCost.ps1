@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,21 +97,13 @@ Set-AtwsContractRoleCost
     [switch]
     $All,
 
-# Contract ID
+# Role ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $ContractID,
-
-# id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    $RoleID,
 
 # Cost
     [Parameter(
@@ -129,13 +121,21 @@ Set-AtwsContractRoleCost
     [Nullable[Int][]]
     $ResourceID,
 
-# Role ID
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $RoleID,
+    $ContractID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

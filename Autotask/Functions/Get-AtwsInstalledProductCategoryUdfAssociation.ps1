@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -99,6 +99,22 @@ Set-AtwsInstalledProductCategoryUdfAssociation
     [switch]
     $All,
 
+# User Defined Field Definition ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $UserDefinedFieldDefinitionID,
+
+# Is Required
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsRequired,
+
 # Installed Product Category Udf Association ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -114,22 +130,6 @@ Set-AtwsInstalledProductCategoryUdfAssociation
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $InstalledProductCategoryID,
-
-# Is Required
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsRequired,
-
-# User Defined Field Definition ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $UserDefinedFieldDefinitionID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

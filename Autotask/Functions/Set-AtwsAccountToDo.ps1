@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,7 +76,7 @@ Get-AtwsAccountToDo
     [switch]
     $PassThru,
 
-# Client
+# End Date Time
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -88,8 +88,23 @@ Get-AtwsAccountToDo
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long]]
-    $AccountID,
+    [Nullable[datetime]]
+    $EndDateTime,
+
+# Start Date Time
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $StartDateTime,
 
 # Action Type
     [Parameter(
@@ -117,6 +132,19 @@ Get-AtwsAccountToDo
     })]
     [string]
     $ActionType,
+
+# Completed Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $CompletedDate,
 
 # Description
     [Parameter(
@@ -147,19 +175,6 @@ Get-AtwsAccountToDo
     [Nullable[long]]
     $AssignedToResourceID,
 
-# Completed Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $CompletedDate,
-
 # Contact
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -173,20 +188,7 @@ Get-AtwsAccountToDo
     [Nullable[long]]
     $ContactID,
 
-# Contract
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[long]]
-    $ContractID,
-
-# End Date Time
+# Client
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -198,8 +200,8 @@ Get-AtwsAccountToDo
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $EndDateTime,
+    [Nullable[long]]
+    $AccountID,
 
 # Opportunity
     [Parameter(
@@ -214,20 +216,18 @@ Get-AtwsAccountToDo
     [Nullable[long]]
     $OpportunityID,
 
-# Start Date Time
+# Contract
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $StartDateTime,
+    [Nullable[long]]
+    $ContractID,
 
 # Ticket
     [Parameter(

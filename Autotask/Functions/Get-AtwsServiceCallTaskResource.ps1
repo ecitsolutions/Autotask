@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,13 +97,6 @@ Remove-AtwsServiceCallTaskResource
     [switch]
     $All,
 
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -119,6 +112,13 @@ Remove-AtwsServiceCallTaskResource
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ServiceCallTaskID,
+
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

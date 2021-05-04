@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,22 +74,6 @@ Get-AtwsProductNote
     [switch]
     $PassThru,
 
-# Description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,32000)]
-    [string]
-    $Description,
-
 # Title
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -104,7 +88,23 @@ Get-AtwsProductNote
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,250)]
     [string]
-    $Title
+    $Title,
+
+# Description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,32000)]
+    [string]
+    $Description
   )
 
     begin {

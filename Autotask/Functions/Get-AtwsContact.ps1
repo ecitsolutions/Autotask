@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -125,20 +125,72 @@ Set-AtwsContact
     [Autotask.UserDefinedField]
     $UserDefinedField,
 
-# Client
+# Additional Address Information
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $AccountID,
+    [ValidateLength(0,100)]
+    [string[]]
+    $AdditionalAddressInformation,
 
-# Account Physical Location
+# Last Modified Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastModifiedDate,
+
+# External ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ExternalID,
+
+# Bulk Email Opt Out Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $BulkEmailOptOutTime,
+
+# Contact Country ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $AccountPhysicalLocationID,
+    $CountryID,
+
+# Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastActivityDate,
+
+# Note
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Note,
+
+# Room Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $RoomNumber,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDate,
 
 # Active
     [Parameter(
@@ -148,37 +200,33 @@ Set-AtwsContact
     [Nullable[Int][]]
     $Active,
 
-# Additional Address Information
+# Account Physical Location
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $AdditionalAddressInformation,
+    [Nullable[Int][]]
+    $AccountPhysicalLocationID,
 
-# Contact Address 1
+# Primary Contact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $AddressLine,
+    [Nullable[boolean][]]
+    $PrimaryContact,
 
-# Contact Address 2
+# Solicitation Opt Out Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $AddressLine1,
+    [Nullable[datetime][]]
+    $SolicitationOptOutTime,
 
-# Contact Alternate Phone
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,32)]
-    [string[]]
-    $AlternatePhone,
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
 
 # API Vendor ID
     [Parameter(
@@ -199,169 +247,24 @@ Set-AtwsContact
     [string[]]
     $ApiVendorID,
 
-# Bulk Email Opt Out Time
+# Name Suffix
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $BulkEmailOptOutTime,
-
-# Contact City
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,32)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label) + (Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
-    $City,
-
-# Contact Country
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Country,
-
-# Contact Country ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CountryID,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDate,
-
-# Email
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,254)]
-    [string[]]
-    $EMailAddress,
-
-# Email2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,254)]
-    [string[]]
-    $EMailAddress2,
-
-# Email3
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,254)]
-    [string[]]
-    $EMailAddress3,
-
-# Contact Phone Ext.
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,10)]
-    [string[]]
-    $Extension,
-
-# External ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ExternalID,
-
-# Facebook URL
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,200)]
-    [string[]]
-    $FacebookUrl,
-
-# Contact Fax
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string[]]
-    $FaxNumber,
-
-# First Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $FirstName,
-
-# Contact ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Last Activity Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivityDate,
-
-# Last Modified Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastModifiedDate,
-
-# Last Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $LastName,
-
-# LinkedIn URL
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,200)]
-    [string[]]
-    $LinkedInUrl,
-
-# Middle Initial
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $MiddleInitial,
-
-# Contact Mobile Phone
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string[]]
-    $MobilePhone,
+    $NameSuffix,
 
 # Name Prefix
     [Parameter(
@@ -382,85 +285,21 @@ Set-AtwsContact
     [string[]]
     $NamePrefix,
 
-# Name Suffix
+# Facebook URL
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label) + (Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,200)]
     [string[]]
-    $NameSuffix,
+    $FacebookUrl,
 
-# Note
+# LinkedIn URL
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,200)]
     [string[]]
-    $Note,
-
-# Notification
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Notification,
-
-# Contact Phone
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string[]]
-    $Phone,
-
-# Primary Contact
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $PrimaryContact,
-
-# Room Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $RoomNumber,
-
-# Solicitation Opt Out Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $SolicitationOptOutTime,
-
-# Contact County
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,40)]
-    [string[]]
-    $State,
-
-# Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $Title,
+    $LinkedInUrl,
 
 # Twitter URL
     [Parameter(
@@ -470,6 +309,143 @@ Set-AtwsContact
     [string[]]
     $TwitterUrl,
 
+# Contact Fax
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $FaxNumber,
+
+# Contact Address 1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string[]]
+    $AddressLine,
+
+# Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Title,
+
+# Contact Address 2
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string[]]
+    $AddressLine1,
+
+# Contact County
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,40)]
+    [string[]]
+    $State,
+
+# Contact City
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,32)]
+    [string[]]
+    $City,
+
+# Client
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $AccountID,
+
+# Contact ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# First Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $FirstName,
+
+# Middle Initial
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $MiddleInitial,
+
+# Last Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $LastName,
+
+# Contact Phone
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $Phone,
+
+# Notification
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Notification,
+
+# Contact Phone Ext.
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,10)]
+    [string[]]
+    $Extension,
+
+# Contact Mobile Phone
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string[]]
+    $MobilePhone,
+
+# Contact Alternate Phone
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,32)]
+    [string[]]
+    $AlternatePhone,
+
+# Contact Country
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $Country,
+
 # Contact Postal Code
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -477,6 +453,30 @@ Set-AtwsContact
     [ValidateLength(0,16)]
     [string[]]
     $ZipCode,
+
+# Email
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,254)]
+    [string[]]
+    $EMailAddress,
+
+# Email3
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,254)]
+    [string[]]
+    $EMailAddress3,
+
+# Email2
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,254)]
+    [string[]]
+    $EMailAddress2,
 
     [Parameter(
       ParametersetName = 'By_parameters'

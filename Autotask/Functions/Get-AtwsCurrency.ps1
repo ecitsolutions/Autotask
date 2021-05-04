@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -110,6 +110,21 @@ Set-AtwsCurrency
     [switch]
     $All,
 
+# Is Internal Currency
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IsInternalCurrency,
+
+# Update Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $UpdateResourceId,
+
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -136,6 +151,30 @@ Set-AtwsCurrency
     [string[]]
     $CurrencyPositiveFormat,
 
+# Last Modified Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastModifiedDateTime,
+
+# Currency Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,3)]
+    [string[]]
+    $Name,
+
+# Currency ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
 # Currency Description
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -144,6 +183,14 @@ Set-AtwsCurrency
     [ValidateLength(0,100)]
     [string[]]
     $Description,
+
+# Exchange Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[decimal][]]
+    $ExchangeRate,
 
 # Display Symbol
     [Parameter(
@@ -164,53 +211,6 @@ Set-AtwsCurrency
     })]
     [string[]]
     $DisplaySymbol,
-
-# Exchange Rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[decimal][]]
-    $ExchangeRate,
-
-# Currency ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Is Internal Currency
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsInternalCurrency,
-
-# Last Modified Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastModifiedDateTime,
-
-# Currency Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,3)]
-    [string[]]
-    $Name,
-
-# Update Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $UpdateResourceId,
 
     [Parameter(
       ParametersetName = 'By_parameters'

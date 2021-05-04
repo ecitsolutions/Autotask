@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -95,34 +95,6 @@ Remove-AtwsWebhookEventErrorLog
     [switch]
     $All,
 
-# Account Webhook ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AccountWebhookID,
-
-# Configuration Item Webhook ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ConfigurationItemWebhookID,
-
-# Contact Webhook ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContactWebhookID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
 # Error Message
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -130,14 +102,6 @@ Remove-AtwsWebhookEventErrorLog
     [ValidateLength(0,8000)]
     [string[]]
     $ErrorMessage,
-
-# Webhook Event Error Log ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
 
 # Payload
     [Parameter(
@@ -147,12 +111,48 @@ Remove-AtwsWebhookEventErrorLog
     [string[]]
     $Payload,
 
+# Configuration Item Webhook ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ConfigurationItemWebhookID,
+
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Account Webhook ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AccountWebhookID,
+
+# Webhook Event Error Log ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
 # Sequence Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $SequenceNumber,
+
+# Contact Webhook ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContactWebhookID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

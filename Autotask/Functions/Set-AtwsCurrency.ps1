@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -72,6 +72,19 @@ Get-AtwsCurrency
     [switch]
     $PassThru,
 
+# Last Modified Time
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $LastModifiedDateTime,
+
 # Exchange Rate
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -85,20 +98,7 @@ Get-AtwsCurrency
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[decimal]]
-    $ExchangeRate,
-
-# Last Modified Time
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $LastModifiedDateTime
+    $ExchangeRate
   )
 
     begin {

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -93,6 +93,48 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [switch]
     $All,
 
+# Resolution Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ResolutionResourceID,
+
+# Resolution Met
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ResolutionMet,
+
+# Resolution Plan Met
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ResolutionPlanMet,
+
+# Resolution Elapsed Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $ResolutionElapsedHours,
+
+# Last Modified Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastModifiedDateTime,
+
+# Last Modified By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $LastModifiedByResourceID,
+
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -107,97 +149,12 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [Nullable[Int][]]
     $CreatorResourceID,
 
-# First Response Elapsed Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $FirstResponseElapsedHours,
-
-# First Response Initiating Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $FirstResponseInitiatingResourceID,
-
-# First Response Met
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $FirstResponseMet,
-
-# First Response Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $FirstResponseResourceID,
-
-# Service Level Agreement Results ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Last Modified By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LastModifiedByResourceID,
-
-# Last Modified Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastModifiedDateTime,
-
-# Resolution Elapsed Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $ResolutionElapsedHours,
-
-# Resolution Met
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ResolutionMet,
-
-# Resolution Plan Elapsed Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $ResolutionPlanElapsedHours,
-
-# Resolution Plan Met
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ResolutionPlanMet,
-
 # Resolution Plan Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ResolutionPlanResourceID,
-
-# Resolution Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ResolutionResourceID,
 
 # Service Level Agreement Name
     [Parameter(
@@ -207,12 +164,55 @@ Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match t
     [string[]]
     $ServiceLevelAgreementName,
 
+# First Response Elapsed Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $FirstResponseElapsedHours,
+
+# Service Level Agreement Results ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
 # Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $TicketID,
+
+# First Response Met
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $FirstResponseMet,
+
+# Resolution Plan Elapsed Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $ResolutionPlanElapsedHours,
+
+# First Response Initiating Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $FirstResponseInitiatingResourceID,
+
+# First Response Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $FirstResponseResourceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

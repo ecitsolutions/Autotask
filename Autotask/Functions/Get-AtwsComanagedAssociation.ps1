@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,6 +97,14 @@ Remove-AtwsComanagedAssociation
     [switch]
     $All,
 
+# Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ResourceID,
+
 # Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -112,14 +120,6 @@ Remove-AtwsComanagedAssociation
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
-
-# Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ResourceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

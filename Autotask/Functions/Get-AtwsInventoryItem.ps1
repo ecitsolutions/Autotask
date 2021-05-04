@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -104,6 +104,13 @@ Set-AtwsInventoryItem
     [Nullable[Int][]]
     $BackOrder,
 
+# On Order
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $OnOrder,
+
 # Bin
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -112,20 +119,34 @@ Set-AtwsInventoryItem
     [string[]]
     $Bin,
 
-# Inventory Item ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
+
+# Picked
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $Picked,
+
+# Reserved
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $Reserved,
+
+# Reference Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ReferenceNumber,
 
 # Inventory Location ID
     [Parameter(
@@ -135,20 +156,6 @@ Set-AtwsInventoryItem
     [Nullable[Int][]]
     $InventoryLocationID,
 
-# On Order
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $OnOrder,
-
-# Picked
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $Picked,
-
 # Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -156,6 +163,14 @@ Set-AtwsInventoryItem
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ProductID,
+
+# Inventory Item ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Quantity Maximum
     [Parameter(
@@ -180,21 +195,6 @@ Set-AtwsInventoryItem
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $QuantityOnHand,
-
-# Reference Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ReferenceNumber,
-
-# Reserved
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $Reserved,
 
     [Parameter(
       ParametersetName = 'By_parameters'

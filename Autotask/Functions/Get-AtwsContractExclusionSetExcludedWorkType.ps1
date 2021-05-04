@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,14 +97,6 @@ Remove-AtwsContractExclusionSetExcludedWorkType
     [switch]
     $All,
 
-# Contract Exclusion Set ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContractExclusionSetID,
-
 # Excluded Work Type ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -112,6 +104,14 @@ Remove-AtwsContractExclusionSetExcludedWorkType
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ExcludedWorkTypeID,
+
+# Contract Exclusion Set ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ContractExclusionSetID,
 
 # Contract Exclusion Set Excluded Work Type ID
     [Parameter(

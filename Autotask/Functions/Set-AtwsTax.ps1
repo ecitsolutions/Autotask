@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -87,6 +87,21 @@ Get-AtwsTax
     [Nullable[boolean]]
     $IsCompounded,
 
+# Tax Rate
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double]]
+    $TaxRate,
+
 # Tax Name
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -102,22 +117,7 @@ Get-AtwsTax
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,100)]
     [string]
-    $TaxName,
-
-# Tax Rate
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double]]
-    $TaxRate
+    $TaxName
   )
 
     begin {

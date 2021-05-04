@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,6 +97,44 @@ Set-AtwsProductNote
     [switch]
     $All,
 
+# Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ProductID,
+
+# Impersonator Updater Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorUpdaterResourceID,
+
+# Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,250)]
+    [string[]]
+    $Title,
+
+# Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastActivityDate,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -104,12 +142,13 @@ Set-AtwsProductNote
     [Nullable[datetime][]]
     $CreateDateTime,
 
-# Creator Resource ID
+# Product Note ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Description
     [Parameter(
@@ -120,51 +159,12 @@ Set-AtwsProductNote
     [string[]]
     $Description,
 
-# Product Note ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Impersonator Creator Resource ID
+# Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorUpdaterResourceID,
-
-# Last Activity Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivityDate,
-
-# Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ProductID,
-
-# Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,250)]
-    [string[]]
-    $Title,
+    $CreatorResourceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

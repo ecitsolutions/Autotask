@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,6 +97,14 @@ Remove-AtwsChangeRequestLink
     [switch]
     $All,
 
+# Problem Or Incident Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ProblemOrIncidentTicketID,
+
 # Change Request Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -112,14 +120,6 @@ Remove-AtwsChangeRequestLink
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $id,
-
-# Problem Or Incident Ticket ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ProblemOrIncidentTicketID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

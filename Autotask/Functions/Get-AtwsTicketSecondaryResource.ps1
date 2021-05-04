@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,14 +97,6 @@ Remove-AtwsTicketSecondaryResource
     [switch]
     $All,
 
-# ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Resource
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -120,6 +112,14 @@ Remove-AtwsTicketSecondaryResource
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $RoleID,
+
+# ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Ticket
     [Parameter(

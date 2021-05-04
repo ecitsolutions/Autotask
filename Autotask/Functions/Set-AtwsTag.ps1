@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,32 +76,6 @@ Get-AtwsTag
     [switch]
     $PassThru,
 
-# Is Active
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[boolean]]
-    $IsActive,
-
-# Is Excluded From Automatic Tagging
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[boolean]]
-    $IsExcludedFromAutomaticTagging,
-
 # Label
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -129,7 +103,33 @@ Get-AtwsTag
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $TagGroupID
+    $TagGroupID,
+
+# Is Active
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $IsActive,
+
+# Is Excluded From Automatic Tagging
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $IsExcludedFromAutomaticTagging
   )
 
     begin {

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,12 +115,142 @@ An example of a more complex query. This command returns any TicketCategoryField
     [switch]
     $All,
 
-# Business Division Subdivision ID
+# Ticket Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TicketCategoryID,
+
+# Ticket Type ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $TicketTypeID,
+
+# Source ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $SourceID,
+
+# Sub-Issue Type ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $SubIssueTypeID,
+
+# Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Status,
+
+# Priority
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Priority,
+
+# Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string[]]
+    $Title,
+
+# Work Type ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
+    $WorkTypeID,
+
+# Service Level Agreement ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ServiceLevelAgreementID,
 
 # Description
     [Parameter(
@@ -145,51 +275,12 @@ An example of a more complex query. This command returns any TicketCategoryField
     [Nullable[long][]]
     $id,
 
-# Issue Type ID
+# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $IssueTypeID,
-
-# Priority
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Priority -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Priority,
-
-# Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
 
 # Queue ID
     [Parameter(
@@ -218,16 +309,16 @@ An example of a more complex query. This command returns any TicketCategoryField
     [string[]]
     $Resolution,
 
-# Service Level Agreement ID
+# Issue Type ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label -Quoted
+      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label -Quoted
     })]
     [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName ServiceLevelAgreementID -Value)
+      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName IssueTypeID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -235,106 +326,15 @@ An example of a more complex query. This command returns any TicketCategoryField
       }
     })]
     [string[]]
-    $ServiceLevelAgreementID,
+    $IssueTypeID,
 
-# Source ID
+# Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SourceID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,50)]
     [string[]]
-    $SourceID,
-
-# Status
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName Status -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Status,
-
-# Sub-Issue Type ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName SubIssueTypeID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $SubIssueTypeID,
-
-# Ticket Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TicketCategoryID,
-
-# Ticket Type ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Label) + (Get-AtwsPicklistValue -Entity TicketCategoryFieldDefaults -FieldName TicketTypeID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $TicketTypeID,
-
-# Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string[]]
-    $Title,
-
-# Work Type ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $WorkTypeID,
+    $PurchaseOrderNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'

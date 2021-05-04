@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,21 +76,6 @@ Get-AtwsAccountWebhook
     [switch]
     $PassThru,
 
-# Active
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean]]
-    $Active,
-
 # Deactivation URL
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -107,19 +92,6 @@ Get-AtwsAccountWebhook
     [string]
     $DeactivationUrl,
 
-# Is Subscribed To Create Events
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[boolean]]
-    $IsSubscribedToCreateEvents,
-
 # Is Subscribed To Delete Events
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -132,35 +104,6 @@ Get-AtwsAccountWebhook
     )]
     [Nullable[boolean]]
     $IsSubscribedToDeleteEvents,
-
-# Is Subscribed To Update Events
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[boolean]]
-    $IsSubscribedToUpdateEvents,
-
-# Name
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string]
-    $Name,
 
 # Notification Email Address
     [Parameter(
@@ -207,6 +150,37 @@ Get-AtwsAccountWebhook
     [Nullable[boolean]]
     $SendThresholdExceededNotification,
 
+# Name
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string]
+    $Name,
+
+# Active
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean]]
+    $Active,
+
 # Webhook Url
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -221,7 +195,33 @@ Get-AtwsAccountWebhook
     [ValidateNotNullOrEmpty()]
     [ValidateLength(0,500)]
     [string]
-    $WebhookUrl
+    $WebhookUrl,
+
+# Is Subscribed To Update Events
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $IsSubscribedToUpdateEvents,
+
+# Is Subscribed To Create Events
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $IsSubscribedToCreateEvents
   )
 
     begin {

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -95,21 +95,19 @@ New-AtwsInventoryTransfer
     [switch]
     $All,
 
-# Transfer From Inventory Location ID
+# Transfer Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $FromLocationID,
+    [Nullable[datetime][]]
+    $TransferDate,
 
-# Inventory Transfer ID
+# Transfer By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $TransferByResourceID,
 
 # Notes
     [Parameter(
@@ -119,21 +117,13 @@ New-AtwsInventoryTransfer
     [string[]]
     $Notes,
 
-# Product ID
+# Update Note
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $ProductID,
-
-# Quantity Transferred
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $QuantityTransferred,
+    [ValidateLength(0,500)]
+    [string[]]
+    $UpdateNote,
 
 # Serial Number
     [Parameter(
@@ -143,6 +133,38 @@ New-AtwsInventoryTransfer
     [string[]]
     $SerialNumber,
 
+# Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $ProductID,
+
+# Inventory Transfer ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Transfer From Inventory Location ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $FromLocationID,
+
+# Quantity Transferred
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $QuantityTransferred,
+
 # Transfer To Inventory Location ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -150,28 +172,6 @@ New-AtwsInventoryTransfer
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $ToLocationID,
-
-# Transfer By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TransferByResourceID,
-
-# Transfer Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $TransferDate,
-
-# Update Note
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string[]]
-    $UpdateNote,
 
     [Parameter(
       ParametersetName = 'By_parameters'

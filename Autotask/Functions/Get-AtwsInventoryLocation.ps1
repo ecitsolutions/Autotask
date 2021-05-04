@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,21 +97,19 @@ Set-AtwsInventoryLocation
     [switch]
     $All,
 
-# Active
+# IsDefault
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
-    $Active,
+    $IsDefault,
 
-# LocationID
+# Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $ResourceID,
 
 # Impersonator Creator Resource ID
     [Parameter(
@@ -120,12 +118,13 @@ Set-AtwsInventoryLocation
     [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
-# IsDefault
+# LocationID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $IsDefault,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Location Name
     [Parameter(
@@ -136,12 +135,13 @@ Set-AtwsInventoryLocation
     [string[]]
     $LocationName,
 
-# Resource ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ResourceID,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
 
     [Parameter(
       ParametersetName = 'By_parameters'

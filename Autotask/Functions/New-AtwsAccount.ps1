@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -72,6 +72,50 @@ Set-AtwsAccount
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
+# Country ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CountryID,
+
+# Web
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string]
+    $WebAddress,
+
+# Account Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Active,
+
+# Last Modified Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastTrackedModifiedDateTime,
+
+# Quote Email Message ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $QuoteEmailMessageID,
+
+# Alternate Phone 1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string]
+    $AlternatePhone1,
+
 # Client Name
     [Parameter(
       Mandatory = $true,
@@ -83,6 +127,254 @@ Set-AtwsAccount
     [string]
     $AccountName,
 
+# Asset Value
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $AssetValue,
+
+# Phone
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,25)]
+    [string]
+    $Phone,
+
+# Bill To Address Line 2
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,150)]
+    [string]
+    $BillToAddress2,
+
+# Stock Symbol
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,10)]
+    [string]
+    $StockSymbol,
+
+# Bill To Address to Use
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Account -FieldName BillToAddressToUse -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName BillToAddressToUse -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName BillToAddressToUse -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $BillToAddressToUse,
+
+# API Vendor ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Account -FieldName ApiVendorID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName ApiVendorID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName ApiVendorID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ApiVendorID,
+
+# Currency ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CurrencyID,
+
+# Client Owner
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $OwnerResourceID,
+
+# Quote Template ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $QuoteTemplateID,
+
+# Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastActivityDate,
+
+# Stock Market
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,10)]
+    [string]
+    $StockMarket,
+
+# Parent Client
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ParentAccountID,
+
+# Transmission Method
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Account -FieldName InvoiceMethod -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName InvoiceMethod -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName InvoiceMethod -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $InvoiceMethod,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
+# Bill To County
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $BillToState,
+
+# Bill To Country ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BillToCountryID,
+
+# TaskFire Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $TaskFireActive,
+
+# SIC Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,32)]
+    [string]
+    $SICCode,
+
+# Competitor
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Account -FieldName CompetitorID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName CompetitorID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName CompetitorID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $CompetitorID,
+
+# Tax Exempt
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $TaxExempt,
+
+# Invoice Template ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $InvoiceTemplateID,
+
+# Purchase Order Template ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PurchaseOrderTemplateID,
+
+# Bill To Additional Address Information
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $BillToAdditionalAddressInformation,
+
+# Alternate Phone 2
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string]
+    $AlternatePhone2,
+
+# Bill To Postal Code
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $BillToZipCode,
+
 # Client Number
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -90,6 +382,20 @@ Set-AtwsAccount
     [ValidateLength(0,50)]
     [string]
     $AccountNumber,
+
+# Client Portal Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $ClientPortalActive,
+
+# Bill To Account Physical Location ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BillToAccountPhysicalLocationID,
 
 # Client Type
     [Parameter(
@@ -112,94 +418,6 @@ Set-AtwsAccount
     [string]
     $AccountType,
 
-# Account Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Active,
-
-# Additional Address Information
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $AdditionalAddressInformation,
-
-# Address 1
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string]
-    $Address1,
-
-# Address 2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string]
-    $Address2,
-
-# Alternate Phone 1
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $AlternatePhone1,
-
-# Alternate Phone 2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $AlternatePhone2,
-
-# API Vendor ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Account -FieldName ApiVendorID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Account -FieldName ApiVendorID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName ApiVendorID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $ApiVendorID,
-
-# Asset Value
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $AssetValue,
-
-# Bill To Account Physical Location ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BillToAccountPhysicalLocationID,
-
-# Bill To Additional Address Information
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $BillToAdditionalAddressInformation,
-
 # Bill To Address Line 1
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -207,204 +425,6 @@ Set-AtwsAccount
     [ValidateLength(0,150)]
     [string]
     $BillToAddress1,
-
-# Bill To Address Line 2
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,150)]
-    [string]
-    $BillToAddress2,
-
-# Bill To Address to Use
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Account -FieldName BillToAddressToUse -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Account -FieldName BillToAddressToUse -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName BillToAddressToUse -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $BillToAddressToUse,
-
-# Bill To Attention
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $BillToAttention,
-
-# Bill To City
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $BillToCity,
-
-# Bill To Country ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BillToCountryID,
-
-# Bill To County
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string]
-    $BillToState,
-
-# Bill To Postal Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $BillToZipCode,
-
-# City
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,30)]
-    [string]
-    $City,
-
-# Client Portal Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $ClientPortalActive,
-
-# Competitor
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Account -FieldName CompetitorID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Account -FieldName CompetitorID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName CompetitorID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $CompetitorID,
-
-# Country
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $Country,
-
-# Country ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CountryID,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDate,
-
-# Created By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatedByResourceID,
-
-# Currency ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CurrencyID,
-
-# Enabled For Comanaged
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $EnabledForComanaged,
-
-# Fax
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $Fax,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Invoice Email Message ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $InvoiceEmailMessageID,
-
-# Transmission Method
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Account -FieldName InvoiceMethod -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Account -FieldName InvoiceMethod -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName InvoiceMethod -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $InvoiceMethod,
-
-# Invoice non contract items to Parent Client
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $InvoiceNonContractItemsToParentAccount,
-
-# Invoice Template ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $InvoiceTemplateID,
 
 # Key Account Icon
     [Parameter(
@@ -425,19 +445,51 @@ Set-AtwsAccount
     [string]
     $KeyAccountIcon,
 
-# Last Activity Date
+# Postal Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $LastActivityDate,
+    [ValidateLength(0,10)]
+    [string]
+    $PostalCode,
 
-# Last Modified Date
+# Bill To City
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $BillToCity,
+
+# Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $LastTrackedModifiedDateTime,
+    $CreateDate,
+
+# Bill To Attention
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $BillToAttention,
+
+# Address 2
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $Address2,
+
+# Tax Region ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $TaxRegionID,
 
 # Market Segment
     [Parameter(
@@ -458,140 +510,12 @@ Set-AtwsAccount
     [string]
     $MarketSegmentID,
 
-# Client Owner
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $OwnerResourceID,
-
-# Parent Client
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ParentAccountID,
-
-# Phone
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,25)]
-    [string]
-    $Phone,
-
-# Postal Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,10)]
-    [string]
-    $PostalCode,
-
-# Purchase Order Template ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Label) + (Get-AtwsPicklistValue -Entity Account -FieldName PurchaseOrderTemplateID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PurchaseOrderTemplateID,
-
-# Quote Email Message ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $QuoteEmailMessageID,
-
-# Quote Template ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $QuoteTemplateID,
-
-# SIC Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,32)]
-    [string]
-    $SICCode,
-
-# County
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,40)]
-    [string]
-    $State,
-
-# Stock Market
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,10)]
-    [string]
-    $StockMarket,
-
-# Stock Symbol
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,10)]
-    [string]
-    $StockSymbol,
-
 # Survey Account Rating
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
     $SurveyAccountRating,
-
-# TaskFire Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $TaskFireActive,
-
-# Tax Exempt
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $TaxExempt,
-
-# Tax ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $TaxID,
-
-# Tax Region ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $TaxRegionID,
 
 # Territory Name
     [Parameter(
@@ -612,13 +536,89 @@ Set-AtwsAccount
     [string]
     $TerritoryID,
 
-# Web
+# Enabled For Comanaged
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,255)]
+    [boolean]
+    $EnabledForComanaged,
+
+# City
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,30)]
     [string]
-    $WebAddress
+    $City,
+
+# County
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,40)]
+    [string]
+    $State,
+
+# Additional Address Information
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $AdditionalAddressInformation,
+
+# Fax
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string]
+    $Fax,
+
+# Created By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CreatedByResourceID,
+
+# Tax ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $TaxID,
+
+# Country
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $Country,
+
+# Invoice non contract items to Parent Client
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $InvoiceNonContractItemsToParentAccount,
+
+# Invoice Email Message ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $InvoiceEmailMessageID,
+
+# Address 1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $Address1
   )
 
     begin {
@@ -640,6 +640,7 @@ Set-AtwsAccount
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -650,34 +651,35 @@ Set-AtwsAccount
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

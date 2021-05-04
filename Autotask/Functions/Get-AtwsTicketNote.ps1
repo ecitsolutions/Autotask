@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -113,12 +113,28 @@ Set-AtwsTicketNote
     [switch]
     $All,
 
-# Create Date Time
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,250)]
+    [string[]]
+    $Title,
+
+# Ticket
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TicketID,
 
 # Created By Contact ID
     [Parameter(
@@ -127,12 +143,27 @@ Set-AtwsTicketNote
     [Nullable[Int][]]
     $CreatedByContactID,
 
-# Creator Resource
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Impersonator Updater Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $CreatorResourceID,
+    $ImpersonatorUpdaterResourceID,
+
+# Ticket Note ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Description
     [Parameter(
@@ -143,54 +174,12 @@ Set-AtwsTicketNote
     [string[]]
     $Description,
 
-# Ticket Note ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Impersonator Creator Resource ID
+# Creator Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorUpdaterResourceID,
-
-# LastActivityDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivityDate,
-
-# Note Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Label) + (Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $NoteType,
+    $CreatorResourceID,
 
 # Publish
     [Parameter(
@@ -212,21 +201,32 @@ Set-AtwsTicketNote
     [string[]]
     $Publish,
 
-# Ticket
+# Note Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TicketID,
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Label) + (Get-AtwsPicklistValue -Entity TicketNote -FieldName NoteType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $NoteType,
 
-# Title
+# LastActivityDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,250)]
-    [string[]]
-    $Title,
+    [Nullable[datetime][]]
+    $LastActivityDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'

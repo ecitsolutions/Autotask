@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -68,19 +68,28 @@ Set-AtwsQuoteItem
     [Autotask.QuoteItem[]]
     $InputObject,
 
-# average_cost
+# quantity
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
     [double]
-    $AverageCost,
+    $Quantity,
 
-# cost_id
+# service_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $CostID,
+    $ServiceID,
+
+# internal_currency_line_discount_dollars
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyLineDiscount,
 
 # quote_item_description
     [Parameter(
@@ -90,63 +99,12 @@ Set-AtwsQuoteItem
     [string]
     $Description,
 
-# expense_id
+# shipping_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ExpenseID,
-
-# highest_cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $HighestCost,
-
-# internal_currency_line_discount_dollars
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyLineDiscount,
-
-# internal_currency_discount_dollars
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyUnitDiscount,
-
-# internal_currency_unit_price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyUnitPrice,
-
-# optional
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $IsOptional,
-
-# taxable
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsTaxable,
-
-# labor_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $LaborID,
+    $ShippingID,
 
 # line_discount_dollars
     [Parameter(
@@ -157,12 +115,21 @@ Set-AtwsQuoteItem
     [double]
     $LineDiscount,
 
-# markup_rate
+# optional
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $IsOptional,
+
+# average_cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $MarkupRate,
+    $AverageCost,
 
 # quote_item_name
     [Parameter(
@@ -172,34 +139,6 @@ Set-AtwsQuoteItem
     [string]
     $Name,
 
-# discount_percent
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $PercentageDiscount,
-
-# period_type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PeriodType,
-
 # product_id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -207,65 +146,19 @@ Set-AtwsQuoteItem
     [Int]
     $ProductID,
 
-# quantity
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [double]
-    $Quantity,
-
-# quote_id
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $QuoteID,
-
-# service_bundle_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ServiceBundleID,
-
-# service_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ServiceID,
-
-# shipping_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ShippingID,
-
-# sort_order
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $SortOrderID,
-
-# tax_category_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $TaxCategoryID,
-
-# tax_rate_applied
+# internal_currency_unit_price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $TotalEffectiveTax,
+    $InternalCurrencyUnitPrice,
+
+# highest_cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $HighestCost,
 
 # parent_type
     [Parameter(
@@ -288,12 +181,33 @@ Set-AtwsQuoteItem
     [string]
     $Type,
 
+# unit_price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $UnitPrice,
+
 # unit_cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
     $UnitCost,
+
+# expense_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ExpenseID,
+
+# service_bundle_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ServiceBundleID,
 
 # discount_dollars
     [Parameter(
@@ -304,12 +218,98 @@ Set-AtwsQuoteItem
     [double]
     $UnitDiscount,
 
-# unit_price
+# tax_category_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $TaxCategoryID,
+
+# tax_rate_applied
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $UnitPrice
+    $TotalEffectiveTax,
+
+# markup_rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $MarkupRate,
+
+# labor_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $LaborID,
+
+# discount_percent
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [double]
+    $PercentageDiscount,
+
+# internal_currency_discount_dollars
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyUnitDiscount,
+
+# taxable
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsTaxable,
+
+# period_type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity QuoteItem -FieldName PeriodType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PeriodType,
+
+# cost_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CostID,
+
+# quote_id
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Int]
+    $QuoteID,
+
+# sort_order
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $SortOrderID
   )
 
     begin {
@@ -331,6 +331,7 @@ Set-AtwsQuoteItem
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -341,34 +342,35 @@ Set-AtwsQuoteItem
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

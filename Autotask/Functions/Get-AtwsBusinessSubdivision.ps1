@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -96,13 +96,6 @@ Set-AtwsBusinessSubdivision
     [switch]
     $All,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Active,
-
 # Description
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -110,6 +103,13 @@ Set-AtwsBusinessSubdivision
     [ValidateLength(0,400)]
     [string[]]
     $Description,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Active,
 
 # Business Subdivision ID
     [Parameter(

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -99,22 +99,6 @@ Set-AtwsProductTier
     [switch]
     $All,
 
-# Product Tier ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ProductID,
-
 # Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -137,6 +121,22 @@ Set-AtwsProductTier
     )]
     [Nullable[decimal][]]
     $UpToUnitCount,
+
+# Product Tier ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ProductID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

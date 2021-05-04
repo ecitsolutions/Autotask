@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,28 +97,12 @@ Set-AtwsContractNote
     [switch]
     $All,
 
-# Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,25)]
-    [string[]]
-    $ContractID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# Creator Resource ID
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $CreatorResourceID,
+    $ImpersonatorCreatorResourceID,
 
 # Description
     [Parameter(
@@ -129,20 +113,12 @@ Set-AtwsContractNote
     [string[]]
     $Description,
 
-# id
+# Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $id,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    [Nullable[datetime][]]
+    $CreateDateTime,
 
 # Impersonator Updater Resource ID
     [Parameter(
@@ -150,13 +126,6 @@ Set-AtwsContractNote
     )]
     [Nullable[Int][]]
     $ImpersonatorUpdaterResourceID,
-
-# Last Activity Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivityDate,
 
 # Title
     [Parameter(
@@ -166,6 +135,37 @@ Set-AtwsContractNote
     [ValidateLength(0,250)]
     [string[]]
     $Title,
+
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,25)]
+    [string[]]
+    $ContractID,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
+
+# Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
+
+# Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastActivityDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'

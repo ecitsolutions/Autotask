@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -112,27 +112,13 @@ Set-AtwsContractMilestone
     [switch]
     $All,
 
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AllocationCodeID,
-
-# Amount
+# Is This Initial Payment
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $Amount,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
+    [Nullable[boolean][]]
+    $IsInitialPayment,
 
 # Contract ID
     [Parameter(
@@ -142,12 +128,43 @@ Set-AtwsContractMilestone
     [Nullable[Int][]]
     $ContractID,
 
-# Create Date
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $CreateDate,
+    [ValidateLength(0,250)]
+    [string[]]
+    $Description,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
+
+# Internal Currency Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyAmount,
+
+# Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AllocationCodeID,
+
+# Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Title,
 
 # Creator Resource ID
     [Parameter(
@@ -156,21 +173,12 @@ Set-AtwsContractMilestone
     [Nullable[Int][]]
     $CreatorResourceID,
 
-# Date Due
+# Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[datetime][]]
-    $DateDue,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,250)]
-    [string[]]
-    $Description,
+    $CreateDate,
 
 # id
     [Parameter(
@@ -180,20 +188,21 @@ Set-AtwsContractMilestone
     [Nullable[long][]]
     $id,
 
-# Internal Currency Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyAmount,
-
-# Is This Initial Payment
+# Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsInitialPayment,
+    [Nullable[double][]]
+    $Amount,
+
+# Date Due
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $DateDue,
 
 # Status
     [Parameter(
@@ -214,15 +223,6 @@ Set-AtwsContractMilestone
     })]
     [string[]]
     $Status,
-
-# Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $Title,
 
     [Parameter(
       ParametersetName = 'By_parameters'

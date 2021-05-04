@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,12 +97,12 @@ Set-AtwsPhase
     [switch]
     $All,
 
-# Phase Creation Date
+# Phase Estimated Hours
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $CreateDate,
+    [Nullable[double][]]
+    $EstimatedHours,
 
 # Phase Creator
     [Parameter(
@@ -111,35 +111,12 @@ Set-AtwsPhase
     [Nullable[Int][]]
     $CreatorResourceID,
 
-# Phase Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $Description,
-
-# Phase End Date
+# Phase Creation Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $DueDate,
-
-# Phase Estimated Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $EstimatedHours,
-
-# Phase External ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ExternalID,
+    $CreateDate,
 
 # Phase ID
     [Parameter(
@@ -156,12 +133,13 @@ Set-AtwsPhase
     [Nullable[datetime][]]
     $LastActivityDateTime,
 
-# Parent Phase
+# Phase External ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ParentPhaseID,
+    [ValidateLength(0,50)]
+    [string[]]
+    $ExternalID,
 
 # Phase Number
     [Parameter(
@@ -171,28 +149,6 @@ Set-AtwsPhase
     [string[]]
     $PhaseNumber,
 
-# Project
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ProjectID,
-
-# Is Scheduled
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Scheduled,
-
-# Phase Start Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $StartDate,
-
 # Phase Title
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -201,6 +157,50 @@ Set-AtwsPhase
     [ValidateLength(0,255)]
     [string[]]
     $Title,
+
+# Project
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ProjectID,
+
+# Parent Phase
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ParentPhaseID,
+
+# Phase Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $Description,
+
+# Is Scheduled
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Scheduled,
+
+# Phase End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $DueDate,
+
+# Phase Start Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $StartDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'

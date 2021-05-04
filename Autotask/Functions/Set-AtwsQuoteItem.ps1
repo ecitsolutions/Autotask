@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,47 +76,7 @@ Get-AtwsQuoteItem
     [switch]
     $PassThru,
 
-# cost_id
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $CostID,
-
-# quote_item_description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
-
-# expense_id
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $ExpenseID,
-
-# optional
+# discount_percent
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -128,8 +88,8 @@ Get-AtwsQuoteItem
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean]]
-    $IsOptional,
+    [Nullable[double]]
+    $PercentageDiscount,
 
 # taxable
     [Parameter(
@@ -144,7 +104,22 @@ Get-AtwsQuoteItem
     [Nullable[boolean]]
     $IsTaxable,
 
-# labor_id
+# discount_dollars
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double]]
+    $UnitDiscount,
+
+# unit_cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -154,8 +129,23 @@ Get-AtwsQuoteItem
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $LaborID,
+    [Nullable[double]]
+    $UnitCost,
+
+# quantity
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double]]
+    $Quantity,
 
 # line_discount_dollars
     [Parameter(
@@ -172,7 +162,7 @@ Get-AtwsQuoteItem
     [Nullable[double]]
     $LineDiscount,
 
-# quote_item_name
+# tax_category_id
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -182,11 +172,24 @@ Get-AtwsQuoteItem
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
+    [Nullable[Int]]
+    $TaxCategoryID,
 
-# discount_percent
+# quote_item_description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# optional
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -198,8 +201,8 @@ Get-AtwsQuoteItem
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[double]]
-    $PercentageDiscount,
+    [Nullable[boolean]]
+    $IsOptional,
 
 # period_type
     [Parameter(
@@ -226,7 +229,7 @@ Get-AtwsQuoteItem
     [string]
     $PeriodType,
 
-# product_id
+# labor_id
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -237,24 +240,9 @@ Get-AtwsQuoteItem
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $ProductID,
+    $LaborID,
 
-# quantity
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double]]
-    $Quantity,
-
-# service_bundle_id
+# expense_id
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -265,9 +253,9 @@ Get-AtwsQuoteItem
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $ServiceBundleID,
+    $ExpenseID,
 
-# service_id
+# cost_id
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -278,33 +266,7 @@ Get-AtwsQuoteItem
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $ServiceID,
-
-# shipping_id
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $ShippingID,
-
-# tax_category_id
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $TaxCategoryID,
+    $CostID,
 
 # parent_type
     [Parameter(
@@ -333,7 +295,7 @@ Get-AtwsQuoteItem
     [string]
     $Type,
 
-# unit_cost
+# product_id
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -343,23 +305,22 @@ Get-AtwsQuoteItem
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[double]]
-    $UnitCost,
+    [Nullable[Int]]
+    $ProductID,
 
-# discount_dollars
+# quote_item_name
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double]]
-    $UnitDiscount,
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
 
 # unit_price
     [Parameter(
@@ -372,7 +333,46 @@ Get-AtwsQuoteItem
       ParametersetName = 'By_Id'
     )]
     [Nullable[double]]
-    $UnitPrice
+    $UnitPrice,
+
+# service_bundle_id
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $ServiceBundleID,
+
+# shipping_id
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $ShippingID,
+
+# service_id
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $ServiceID
   )
 
     begin {

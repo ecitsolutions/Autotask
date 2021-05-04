@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -107,6 +107,31 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
     [switch]
     $All,
 
+# Batch ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $InvoiceBatchID,
+
+# Field Value
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $FieldValue,
+
+# Additional Invoice Field Value ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
 # Additional Invoice Field ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -126,31 +151,6 @@ An example of a more complex query. This command returns any AdditionalInvoiceFi
     })]
     [string[]]
     $AdditionalInvoiceFieldID,
-
-# Field Value
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $FieldValue,
-
-# Additional Invoice Field Value ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Batch ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $InvoiceBatchID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

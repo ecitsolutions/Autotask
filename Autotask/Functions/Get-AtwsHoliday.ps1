@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -107,16 +107,6 @@ Set-AtwsHoliday
     [Nullable[datetime][]]
     $HolidayDate,
 
-# Holiday Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('Name')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $HolidayName,
-
 # Holiday Set ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -132,6 +122,16 @@ Set-AtwsHoliday
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
+
+# Holiday Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('Name')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $HolidayName,
 
     [Parameter(
       ParametersetName = 'By_parameters'

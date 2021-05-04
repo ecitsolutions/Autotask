@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -95,6 +95,21 @@ Set-AtwsPriceListService
     [switch]
     $All,
 
+# Uses Internal Currency Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $UsesInternalCurrencyPrice,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $UnitPrice,
+
 # Currency Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -118,21 +133,6 @@ Set-AtwsPriceListService
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ServiceID,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $UnitPrice,
-
-# Uses Internal Currency Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $UsesInternalCurrencyPrice,
 
     [Parameter(
       ParametersetName = 'By_parameters'

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -109,21 +109,6 @@ Set-AtwsTicketCategory
     [switch]
     $All,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
-# API Only
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $ApiOnly,
-
 # Display Color RGB
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -150,6 +135,21 @@ Set-AtwsTicketCategory
     )]
     [Nullable[boolean][]]
     $GlobalDefault,
+
+# API Only
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $ApiOnly,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
 
 # Ticket Category ID
     [Parameter(

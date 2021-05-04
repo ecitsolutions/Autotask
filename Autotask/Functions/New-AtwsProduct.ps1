@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -63,14 +63,29 @@ Set-AtwsProduct
     [Autotask.Product[]]
     $InputObject,
 
-# Active
+# External ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $ExternalProductID,
+
+# Default Configuration Item Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $DefaultInstalledProductCategoryID,
+
+# Is Serialized
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [boolean]
-    $Active,
+    $Serialized,
 
 # Billing Type
     [Parameter(
@@ -91,79 +106,20 @@ Set-AtwsProduct
     [string]
     $BillingType,
 
+# Vendor Product Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $VendorProductNumber,
+
 # Cost Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $CostAllocationCodeID,
-
-# Default Configuration Item Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $DefaultInstalledProductCategoryID,
-
-# Vendor Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $DefaultVendorID,
-
-# Product Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
-
-# Does Not Require Procurement
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $DoesNotRequireProcurement,
-
-# Eligible For RMA
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $EligibleForRma,
-
-# External ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ExternalProductID,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Internal Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $InternalProductID,
-
-# Product Link
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string]
-    $Link,
 
 # Manufacturer Account Name
     [Parameter(
@@ -173,56 +129,20 @@ Set-AtwsProduct
     [string]
     $ManufacturerName,
 
-# Manufacturer Product Number
+# Eligible For RMA
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $EligibleForRma,
+
+# Internal Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string]
-    $ManufacturerProductName,
-
-# markup_rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $MarkupRate,
-
-# MSRP
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $MSRP,
-
-# Product Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# Period Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PeriodType,
+    $InternalProductID,
 
 # Price Cost Method
     [Parameter(
@@ -243,6 +163,31 @@ Set-AtwsProduct
     [string]
     $PriceCostMethod,
 
+# Product SKU
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $SKU,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorCreatorResourceID,
+
+# Product Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
+
 # Allocation Code ID
     [Parameter(
       Mandatory = $true,
@@ -251,6 +196,25 @@ Set-AtwsProduct
     [ValidateNotNullOrEmpty()]
     [Int]
     $ProductAllocationCodeID,
+
+# Period Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity Product -FieldName PeriodType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PeriodType,
 
 # Product Category
     [Parameter(
@@ -271,29 +235,42 @@ Set-AtwsProduct
     [string]
     $ProductCategory,
 
-# Is Serialized
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [boolean]
-    $Serialized,
-
-# Product SKU
+# Product Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,2000)]
     [string]
-    $SKU,
+    $Description,
 
-# Unit Cost
+# MSRP
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
-    $UnitCost,
+    $MSRP,
+
+# markup_rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $MarkupRate,
+
+# Does Not Require Procurement
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $DoesNotRequireProcurement,
+
+# Product Link
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $Link,
 
 # Unit Price
     [Parameter(
@@ -302,13 +279,36 @@ Set-AtwsProduct
     [double]
     $UnitPrice,
 
-# Vendor Product Number
+# Active
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [boolean]
+    $Active,
+
+# Vendor Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $DefaultVendorID,
+
+# Manufacturer Product Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateLength(0,50)]
     [string]
-    $VendorProductNumber
+    $ManufacturerProductName,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $UnitCost
   )
 
     begin {
@@ -330,6 +330,7 @@ Set-AtwsProduct
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -340,34 +341,35 @@ Set-AtwsProduct
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

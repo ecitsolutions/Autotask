@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -72,20 +72,6 @@ Get-AtwsInvoice
     [switch]
     $PassThru,
 
-# Invoice Number
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $InvoiceNumber,
-
 # Paid Date
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -110,7 +96,21 @@ Get-AtwsInvoice
       ParametersetName = 'By_Id'
     )]
     [Nullable[datetime]]
-    $WebServiceDate
+    $WebServiceDate,
+
+# Invoice Number
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $InvoiceNumber
   )
 
     begin {

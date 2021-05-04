@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -95,13 +95,13 @@ Set-AtwsPriceListRole
     [switch]
     $All,
 
-# Currency Id
+# Uses Internal Currency Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $CurrencyID,
+    [Nullable[boolean][]]
+    $UsesInternalCurrencyPrice,
 
 # Hourly Rate
     [Parameter(
@@ -109,6 +109,14 @@ Set-AtwsPriceListRole
     )]
     [Nullable[decimal][]]
     $HourlyRate,
+
+# Currency Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $CurrencyID,
 
 # ID
     [Parameter(
@@ -125,14 +133,6 @@ Set-AtwsPriceListRole
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $RoleID,
-
-# Uses Internal Currency Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $UsesInternalCurrencyPrice,
 
     [Parameter(
       ParametersetName = 'By_parameters'

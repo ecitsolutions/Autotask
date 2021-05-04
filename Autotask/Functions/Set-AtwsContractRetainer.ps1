@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,6 +74,20 @@ Get-AtwsContractRetainer
     [switch]
     $PassThru,
 
+# InvoiceNumber
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $InvoiceNumber,
+
 # Amount
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -88,50 +102,6 @@ Get-AtwsContractRetainer
     [ValidateNotNullOrEmpty()]
     [Nullable[double]]
     $Amount,
-
-# Date Purchased
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $DatePurchased,
-
-# EndDate
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $EndDate,
-
-# InvoiceNumber
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $InvoiceNumber,
 
 # Payment Type
     [Parameter(
@@ -172,7 +142,7 @@ Get-AtwsContractRetainer
     [string]
     $PaymentNumber,
 
-# StartDate
+# Date Purchased
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -185,7 +155,7 @@ Get-AtwsContractRetainer
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[datetime]]
-    $StartDate,
+    $DatePurchased,
 
 # Status
     [Parameter(
@@ -212,7 +182,37 @@ Get-AtwsContractRetainer
       }
     })]
     [string]
-    $Status
+    $Status,
+
+# EndDate
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $EndDate,
+
+# StartDate
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $StartDate
   )
 
     begin {

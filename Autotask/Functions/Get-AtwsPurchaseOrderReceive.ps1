@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -95,13 +95,34 @@ New-AtwsPurchaseOrderReceive
     [switch]
     $All,
 
-# Inventory Item ID
+# Quantity Back Ordered
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $QuantityBackOrdered,
+
+# Receive Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $ReceiveDate,
+
+# Serial Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $SerialNumber,
+
+# Transfer By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ReceivedByResourceID,
 
 # Purchase Order Item ID
     [Parameter(
@@ -111,12 +132,13 @@ New-AtwsPurchaseOrderReceive
     [Nullable[long][]]
     $PurchaseOrderItemID,
 
-# Quantity Back Ordered
+# Inventory Item ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $QuantityBackOrdered,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Quantity Now Receiving
     [Parameter(
@@ -132,28 +154,6 @@ New-AtwsPurchaseOrderReceive
     )]
     [Nullable[Int][]]
     $QuantityPreviouslyReceived,
-
-# Receive Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $ReceiveDate,
-
-# Transfer By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ReceivedByResourceID,
-
-# Serial Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $SerialNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'

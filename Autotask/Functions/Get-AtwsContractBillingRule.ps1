@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,13 +115,76 @@ Set-AtwsContractBillingRule
     [switch]
     $All,
 
-# Active
+# Create Charges As Billable
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
-    $Active,
+    $CreateChargesAsBillable,
+
+# Include Items In Charge Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $IncludeItemsInChargeDescription,
+
+# Minimum Units
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $MinimumUnits,
+
+# Maximum Units
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $MaximumUnits,
+
+# Daily Prorated Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $DailyProratedPrice,
+
+# Execution Method
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label) + (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ExecutionMethod,
+
+# Enable Daily Prorating
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $EnableDailyProrating,
+
+# Daily Prorated Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $DailyProratedCost,
 
 # Contract ID
     [Parameter(
@@ -131,27 +194,36 @@ Set-AtwsContractBillingRule
     [Nullable[Int][]]
     $ContractID,
 
-# Create Charges As Billable
+# Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $CreateChargesAsBillable,
+    [Nullable[Int][]]
+    $ProductID,
 
-# Daily Prorated Cost
+# Contract Billing Rule ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
-    $DailyProratedCost,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
-# Daily Prorated Price
+# Invoice Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[decimal][]]
-    $DailyProratedPrice,
+    [ValidateLength(0,500)]
+    [string[]]
+    $InvoiceDescription,
+
+# End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $EndDate,
 
 # Determine Units
     [Parameter(
@@ -173,85 +245,13 @@ Set-AtwsContractBillingRule
     [string[]]
     $DetermineUnits,
 
-# Enable Daily Prorating
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
-    $EnableDailyProrating,
-
-# End Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $EndDate,
-
-# Execution Method
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Label) + (Get-AtwsPicklistValue -Entity ContractBillingRule -FieldName ExecutionMethod -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ExecutionMethod,
-
-# Contract Billing Rule ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Include Items In Charge Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IncludeItemsInChargeDescription,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string[]]
-    $InvoiceDescription,
-
-# Maximum Units
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $MaximumUnits,
-
-# Minimum Units
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $MinimumUnits,
-
-# Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ProductID,
+    $Active,
 
 # Start Date
     [Parameter(

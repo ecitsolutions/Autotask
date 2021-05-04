@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,6 +74,33 @@ Get-AtwsExpenseReport
     [switch]
     $PassThru,
 
+# Cash Advance Amount
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $CashAdvanceAmount,
+
+# Quick Books Reference Number
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $QuickBooksReferenceNumber,
+
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -87,18 +114,20 @@ Get-AtwsExpenseReport
     [Nullable[Int]]
     $BusinessDivisionSubdivisionID,
 
-# Cash Advance Amount
+# Period Ending
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[double]]
-    $CashAdvanceAmount,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $WeekEnding,
 
 # Name
     [Parameter(
@@ -115,20 +144,6 @@ Get-AtwsExpenseReport
     [ValidateLength(0,100)]
     [string]
     $Name,
-
-# Quick Books Reference Number
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $QuickBooksReferenceNumber,
 
 # Submit
     [Parameter(
@@ -156,22 +171,7 @@ Get-AtwsExpenseReport
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[Int]]
-    $SubmitterID,
-
-# Period Ending
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $WeekEnding
+    $SubmitterID
   )
 
     begin {

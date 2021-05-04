@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -114,38 +114,6 @@ Set-AtwsChecklistLibraryChecklistItem
     [switch]
     $All,
 
-# Checklist Library ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ChecklistLibraryID,
-
-# Checklist Library Checklist Item ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Important
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Important,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,600)]
-    [string[]]
-    $ItemName,
-
 # Knowledgebase Article ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -171,6 +139,38 @@ Set-AtwsChecklistLibraryChecklistItem
     )]
     [Nullable[Int][]]
     $Position,
+
+# Checklist Library ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ChecklistLibraryID,
+
+# Checklist Library Checklist Item ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,600)]
+    [string[]]
+    $ItemName,
+
+# Important
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Important,
 
     [Parameter(
       ParametersetName = 'By_parameters'

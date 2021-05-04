@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -65,48 +65,6 @@ Set-AtwsChangeOrderCost
     [Autotask.ChangeOrderCost[]]
     $InputObject,
 
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AllocationCodeID,
-
-# Billable Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $BillableAmount,
-
-# Billable To Account
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $BillableToAccount,
-
-# Billed
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Billed,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BusinessDivisionSubdivisionID,
-
-# Change Order Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $ChangeOrderHours,
-
 # Contract Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -114,12 +72,12 @@ Set-AtwsChangeOrderCost
     [Int]
     $ContractServiceBundleID,
 
-# Contract Service ID
+# Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $ContractServiceID,
+    $CreatorResourceID,
 
 # Cost Type
     [Parameter(
@@ -142,43 +100,12 @@ Set-AtwsChangeOrderCost
     [string]
     $CostType,
 
-# Create Date
+# Billable To Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CreateDate,
-
-# Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorResourceID,
-
-# Date Purchased
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $DatePurchased,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
-
-# Extended Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $ExtendedCost,
+    [boolean]
+    $BillableToAccount,
 
 # Internal Currency Billable Amount
     [Parameter(
@@ -187,53 +114,12 @@ Set-AtwsChangeOrderCost
     [decimal]
     $InternalCurrencyBillableAmount,
 
-# Internal Currency Unit Price
+# Status Last Modified Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [decimal]
-    $InternalCurrencyUnitPrice,
-
-# Internal Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $InternalPurchaseOrderNumber,
-
-# Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Notes,
-
-# Product ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ProductID,
-
-# Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PurchaseOrderNumber,
+    [datetime]
+    $StatusLastModifiedDate,
 
 # Status
     [Parameter(
@@ -254,19 +140,66 @@ Set-AtwsChangeOrderCost
     [string]
     $Status,
 
-# Status Last Modified By
+# Notes
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Notes,
+
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
+
+# Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $StatusLastModifiedBy,
+    $ProductID,
 
-# Status Last Modified Date
+# Internal Currency Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $StatusLastModifiedDate,
+    [decimal]
+    $InternalCurrencyUnitPrice,
+
+# Billed
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Billed,
+
+# Change Order Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $ChangeOrderHours,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $UnitPrice,
+
+# Internal Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $InternalPurchaseOrderNumber,
 
 # Task ID
     [Parameter(
@@ -277,6 +210,80 @@ Set-AtwsChangeOrderCost
     [Int]
     $TaskID,
 
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
+# Billable Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $BillableAmount,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContractServiceID,
+
+# Date Purchased
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $DatePurchased,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
+
+# Extended Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $ExtendedCost,
+
+# Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
+
+# Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $AllocationCodeID,
+
+# Unit Quantity
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [decimal]
+    $UnitQuantity,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BusinessDivisionSubdivisionID,
+
 # Unit Cost
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -284,19 +291,12 @@ Set-AtwsChangeOrderCost
     [decimal]
     $UnitCost,
 
-# Unit Price
+# Status Last Modified By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [decimal]
-    $UnitPrice,
-
-# Unit Quantity
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [decimal]
-    $UnitQuantity
+    [Int]
+    $StatusLastModifiedBy
   )
 
     begin {
@@ -318,6 +318,7 @@ Set-AtwsChangeOrderCost
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -328,34 +329,35 @@ Set-AtwsChangeOrderCost
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -72,21 +72,38 @@ Set-AtwsBusinessLocation
     [string]
     $AdditionalAddressInfo,
 
-# Address1
+# Holiday Hours Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,100)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
-    $Address1,
+    $HolidayHoursType,
 
-# Address2
+# SundayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,100)]
-    [string]
-    $Address2,
+    [datetime]
+    $SundayBusinessHoursEndTime,
+
+# FridayExtendedHoursEndTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $FridayExtendedHoursEndTime,
 
 # City
     [Parameter(
@@ -96,40 +113,19 @@ Set-AtwsBusinessLocation
     [string]
     $City,
 
-# Country ID
+# MondayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $CountryID,
+    [datetime]
+    $MondayExtendedHoursStartTime,
 
-# Date Format
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $DateFormat,
-
-# Default
+# TuesdayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $Default,
+    [datetime]
+    $TuesdayBusinessHoursStartTime,
 
 # First Day Of Week
     [Parameter(
@@ -150,6 +146,21 @@ Set-AtwsBusinessLocation
     [string]
     $FirstDayOfWeek,
 
+# Address1
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $Address1,
+
+# SundayExtendedHoursStartTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $SundayExtendedHoursStartTime,
+
 # FridayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -157,108 +168,12 @@ Set-AtwsBusinessLocation
     [datetime]
     $FridayBusinessHoursEndTime,
 
-# FridayBusinessHoursStartTime
+# ThursdayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $FridayBusinessHoursStartTime,
-
-# FridayExtendedHoursEndTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $FridayExtendedHoursEndTime,
-
-# FridayExtendedHoursStartTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $FridayExtendedHoursStartTime,
-
-# Holiday Extended Hours End Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $HolidayExtendedHoursEndTime,
-
-# Holiday Extended Hours Start Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $HolidayExtendedHoursStartTime,
-
-# Holiday Hours End Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $HolidayHoursEndTime,
-
-# Holiday Hours Start Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $HolidayHoursStartTime,
-
-# Holiday Hours Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $HolidayHoursType,
-
-# Holiday Set ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $HolidaySetID,
-
-# MondayBusinessHoursEndTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $MondayBusinessHoursEndTime,
-
-# MondayBusinessHoursStartTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $MondayBusinessHoursStartTime,
-
-# MondayExtendedHoursEndTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $MondayExtendedHoursEndTime,
-
-# MondayExtendedHoursStartTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $MondayExtendedHoursStartTime,
+    $ThursdayBusinessHoursStartTime,
 
 # Name
     [Parameter(
@@ -270,33 +185,26 @@ Set-AtwsBusinessLocation
     [string]
     $Name,
 
-# No Hours On Holidays
+# Holiday Extended Hours Start Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $HolidayExtendedHoursStartTime,
+
+# Holiday Set ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $HolidaySetID,
+
+# Default
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $NoHoursOnHolidays,
-
-# Number Format
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $NumberFormat,
+    $Default,
 
 # Postal Code
     [Parameter(
@@ -306,55 +214,34 @@ Set-AtwsBusinessLocation
     [string]
     $PostalCode,
 
-# SaturdayBusinessHoursEndTime
+# Holiday Extended Hours End Time
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $SaturdayBusinessHoursEndTime,
+    $HolidayExtendedHoursEndTime,
 
-# SaturdayBusinessHoursStartTime
+# Address2
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $SaturdayBusinessHoursStartTime,
-
-# SaturdayExtendedHoursEndTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $SaturdayExtendedHoursEndTime,
-
-# SaturdayExtendedHoursStartTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $SaturdayExtendedHoursStartTime,
-
-# State
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,25)]
+    [ValidateLength(0,100)]
     [string]
-    $State,
+    $Address2,
 
-# SundayBusinessHoursEndTime
+# WednesdayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $SundayBusinessHoursEndTime,
+    $WednesdayBusinessHoursStartTime,
 
-# SundayBusinessHoursStartTime
+# WednesdayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $SundayBusinessHoursStartTime,
+    $WednesdayBusinessHoursEndTime,
 
 # SundayExtendedHoursEndTime
     [Parameter(
@@ -363,12 +250,33 @@ Set-AtwsBusinessLocation
     [datetime]
     $SundayExtendedHoursEndTime,
 
-# SundayExtendedHoursStartTime
+# MondayBusinessHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $SundayExtendedHoursStartTime,
+    $MondayBusinessHoursStartTime,
+
+# WednesdayExtendedHoursStartTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $WednesdayExtendedHoursStartTime,
+
+# TuesdayBusinessHoursEndTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $TuesdayBusinessHoursEndTime,
+
+# FridayBusinessHoursStartTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $FridayBusinessHoursStartTime,
 
 # ThursdayBusinessHoursEndTime
     [Parameter(
@@ -377,26 +285,26 @@ Set-AtwsBusinessLocation
     [datetime]
     $ThursdayBusinessHoursEndTime,
 
-# ThursdayBusinessHoursStartTime
+# MondayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $ThursdayBusinessHoursStartTime,
+    $MondayBusinessHoursEndTime,
 
-# ThursdayExtendedHoursEndTime
+# SaturdayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $ThursdayExtendedHoursEndTime,
+    $SaturdayExtendedHoursEndTime,
 
-# ThursdayExtendedHoursStartTime
+# MondayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $ThursdayExtendedHoursStartTime,
+    $MondayExtendedHoursEndTime,
 
 # Time Format
     [Parameter(
@@ -419,6 +327,20 @@ Set-AtwsBusinessLocation
     [string]
     $TimeFormat,
 
+# FridayExtendedHoursStartTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $FridayExtendedHoursStartTime,
+
+# No Hours On Holidays
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $NoHoursOnHolidays,
+
 # Time Zone ID
     [Parameter(
       Mandatory = $true,
@@ -440,19 +362,90 @@ Set-AtwsBusinessLocation
     [string]
     $TimeZoneID,
 
-# TuesdayBusinessHoursEndTime
+# WednesdayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $TuesdayBusinessHoursEndTime,
+    $WednesdayExtendedHoursEndTime,
 
-# TuesdayBusinessHoursStartTime
+# SaturdayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $TuesdayBusinessHoursStartTime,
+    $SaturdayExtendedHoursStartTime,
+
+# Holiday Hours Start Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $HolidayHoursStartTime,
+
+# SaturdayBusinessHoursStartTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $SaturdayBusinessHoursStartTime,
+
+# Country ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $CountryID,
+
+# State
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,25)]
+    [string]
+    $State,
+
+# SundayBusinessHoursStartTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $SundayBusinessHoursStartTime,
+
+# ThursdayExtendedHoursEndTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $ThursdayExtendedHoursEndTime,
+
+# Number Format
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName NumberFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $NumberFormat,
+
+# SaturdayBusinessHoursEndTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $SaturdayBusinessHoursEndTime,
 
 # TuesdayExtendedHoursEndTime
     [Parameter(
@@ -461,6 +454,34 @@ Set-AtwsBusinessLocation
     [datetime]
     $TuesdayExtendedHoursEndTime,
 
+# Date Format
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $DateFormat,
+
+# Holiday Hours End Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $HolidayHoursEndTime,
+
 # TuesdayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -468,33 +489,12 @@ Set-AtwsBusinessLocation
     [datetime]
     $TuesdayExtendedHoursStartTime,
 
-# WednesdayBusinessHoursEndTime
+# ThursdayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [datetime]
-    $WednesdayBusinessHoursEndTime,
-
-# WednesdayBusinessHoursStartTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $WednesdayBusinessHoursStartTime,
-
-# WednesdayExtendedHoursEndTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $WednesdayExtendedHoursEndTime,
-
-# WednesdayExtendedHoursStartTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $WednesdayExtendedHoursStartTime
+    $ThursdayExtendedHoursStartTime
   )
 
     begin {
@@ -516,6 +516,7 @@ Set-AtwsBusinessLocation
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -526,34 +527,35 @@ Set-AtwsBusinessLocation
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

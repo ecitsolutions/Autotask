@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,13 +115,12 @@ Set-AtwsServiceBundle
     [switch]
     $All,
 
-# allocation_code_id
+# update_by_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $AllocationCodeID,
+    $UpdateResourceID,
 
 # create_date
     [Parameter(
@@ -130,37 +129,6 @@ Set-AtwsServiceBundle
     [Nullable[datetime][]]
     $CreateDate,
 
-# create_by_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-# service_bundle_description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,200)]
-    [string[]]
-    $Description,
-
-# service_bundle_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1000)]
-    [string[]]
-    $InvoiceDescription,
-
 # active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -168,48 +136,12 @@ Set-AtwsServiceBundle
     [Nullable[boolean][]]
     $IsActive,
 
-# update_date
+# create_by_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $LastModifiedDate,
-
-# service_bundle_name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,150)]
-    [string[]]
-    $Name,
-
-# discount_percent
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $PercentageDiscount,
-
-# period_type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $PeriodType,
+    [Nullable[Int][]]
+    $CreatorResourceID,
 
 # Service Level Agreement Id
     [Parameter(
@@ -237,12 +169,28 @@ Set-AtwsServiceBundle
     [Nullable[double][]]
     $UnitCost,
 
-# discount_dollars
+# Invoice Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $UnitDiscount,
+    [ValidateLength(0,1000)]
+    [string[]]
+    $InvoiceDescription,
+
+# update_date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastModifiedDate,
+
+# service_bundle_description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,200)]
+    [string[]]
+    $Description,
 
 # unit_price
     [Parameter(
@@ -251,12 +199,64 @@ Set-AtwsServiceBundle
     [Nullable[double][]]
     $UnitPrice,
 
-# update_by_id
+# service_bundle_id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# service_bundle_name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,150)]
+    [string[]]
+    $Name,
+
+# period_type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity ServiceBundle -FieldName PeriodType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PeriodType,
+
+# allocation_code_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
-    $UpdateResourceID,
+    $AllocationCodeID,
+
+# discount_dollars
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $UnitDiscount,
+
+# discount_percent
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $PercentageDiscount,
 
     [Parameter(
       ParametersetName = 'By_parameters'

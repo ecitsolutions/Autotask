@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -111,20 +111,13 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [switch]
     $All,
 
-# Active
+# Unit Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
-# After Hours Work Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AfterHoursWorkType,
+    [Nullable[double][]]
+    $UnitPrice,
 
 # Allocation Code Type
     [Parameter(
@@ -145,6 +138,50 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [string[]]
     $AllocationCodeType,
 
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $Active,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $UnitCost,
+
+# Is Excluded From New Contracts
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsExcludedFromNewContracts,
+
+# After Hours Work Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AfterHoursWorkType,
+
+# Tax Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TaxCategoryID,
+
+# Markup Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $MarkupRate,
+
 # Department ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -152,21 +189,21 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [Nullable[Int][]]
     $Department,
 
-# Description
+# Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,500)]
+    [ValidateLength(0,200)]
     [string[]]
-    $Description,
+    $Name,
 
-# Number
+# Allocation Code ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ExternalNumber,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # General Ledger Code
     [Parameter(
@@ -187,42 +224,40 @@ An example of a more complex query. This command returns any AllocationCodes wit
     [string[]]
     $GeneralLedgerCode,
 
-# Allocation Code ID
+# Use Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Is Excluded From New Contracts
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsExcludedFromNewContracts,
-
-# Markup Rate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $MarkupRate,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,200)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label) + (Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
-    $Name,
+    $UseType,
 
-# Tax Category ID
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $TaxCategoryID,
+    [ValidateLength(0,500)]
+    [string[]]
+    $Description,
+
+# Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $ExternalNumber,
 
 # Type
     [Parameter(
@@ -242,41 +277,6 @@ An example of a more complex query. This command returns any AllocationCodes wit
     })]
     [string[]]
     $Type,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $UnitCost,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $UnitPrice,
-
-# Use Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Label) + (Get-AtwsPicklistValue -Entity AllocationCode -FieldName UseType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $UseType,
 
     [Parameter(
       ParametersetName = 'By_parameters'

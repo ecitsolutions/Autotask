@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,7 +74,7 @@ Get-AtwsContractServiceBundle
     [switch]
     $PassThru,
 
-# Adjusted Price
+# Invoice Description
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -84,8 +84,9 @@ Get-AtwsContractServiceBundle
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[double]]
-    $AdjustedPrice,
+    [ValidateLength(0,1000)]
+    [string]
+    $InvoiceDescription,
 
 # Internal Description
     [Parameter(
@@ -101,20 +102,6 @@ Get-AtwsContractServiceBundle
     [string]
     $InternalDescription,
 
-# Invoice Description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,1000)]
-    [string]
-    $InvoiceDescription,
-
 # Unit Price
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -126,7 +113,20 @@ Get-AtwsContractServiceBundle
       ParametersetName = 'By_Id'
     )]
     [Nullable[double]]
-    $UnitPrice
+    $UnitPrice,
+
+# Adjusted Price
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $AdjustedPrice
   )
 
     begin {

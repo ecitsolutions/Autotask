@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -108,28 +108,6 @@ An example of a more complex query. This command returns any ResourceRoles with 
     [switch]
     $All,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Active,
-
-# Department
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $DepartmentID,
-
-# ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Queue
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -149,6 +127,29 @@ An example of a more complex query. This command returns any ResourceRoles with 
     [string[]]
     $QueueID,
 
+# Role
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $RoleID,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Active,
+
+# ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
 # Resource
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -157,13 +158,12 @@ An example of a more complex query. This command returns any ResourceRoles with 
     [Nullable[long][]]
     $ResourceID,
 
-# Role
+# Department
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $RoleID,
+    $DepartmentID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

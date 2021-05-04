@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -99,6 +99,36 @@ Set-AtwsTag
     [switch]
     $All,
 
+# Label
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Label,
+
+# Is System
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsSystem,
+
+# Tag Group ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TagGroupID,
+
+# Last Modified Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastModifiedDateTime,
+
 # Create Date Time
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -114,13 +144,6 @@ Set-AtwsTag
     [Nullable[long][]]
     $id,
 
-# Is Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsActive,
-
 # Is Excluded From Automatic Tagging
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -128,35 +151,12 @@ Set-AtwsTag
     [Nullable[boolean][]]
     $IsExcludedFromAutomaticTagging,
 
-# Is System
+# Is Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $IsSystem,
-
-# Label
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $Label,
-
-# Last Modified Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastModifiedDateTime,
-
-# Tag Group ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TagGroupID,
+    $IsActive,
 
     [Parameter(
       ParametersetName = 'By_parameters'

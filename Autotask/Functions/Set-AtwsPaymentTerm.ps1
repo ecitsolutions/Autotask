@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -87,7 +87,7 @@ Get-AtwsPaymentTerm
     [Nullable[boolean]]
     $Active,
 
-# Description
+# Payment Due In Days
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -97,9 +97,8 @@ Get-AtwsPaymentTerm
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Description,
+    [Nullable[Int]]
+    $PaymentDueInDays,
 
 # Name
     [Parameter(
@@ -117,7 +116,7 @@ Get-AtwsPaymentTerm
     [string]
     $Name,
 
-# Payment Due In Days
+# Description
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -127,8 +126,9 @@ Get-AtwsPaymentTerm
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $PaymentDueInDays
+    [ValidateLength(0,2000)]
+    [string]
+    $Description
   )
 
     begin {

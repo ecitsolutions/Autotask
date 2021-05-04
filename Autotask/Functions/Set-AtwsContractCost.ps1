@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,7 +76,62 @@ Get-AtwsContractCost
     [switch]
     $PassThru,
 
-# Allocation Code
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $UnitCost,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $UnitPrice,
+
+# Internal Purchase Order Number
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $InternalPurchaseOrderNumber,
+
+# Unit Quantity
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double]]
+    $UnitQuantity,
+
+# Contract Service Bundle ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -87,7 +142,21 @@ Get-AtwsContractCost
       ParametersetName = 'By_Id'
     )]
     [Nullable[long]]
-    $AllocationCodeID,
+    $ContractServiceBundleID,
+
+# Notes
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Notes,
 
 # Billable To Client
     [Parameter(
@@ -101,6 +170,48 @@ Get-AtwsContractCost
     )]
     [Nullable[boolean]]
     $BillableToAccount,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[long]]
+    $ContractServiceID,
+
+# Allocation Code
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[long]]
+    $AllocationCodeID,
+
+# Name
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
 
 # Contract
     [Parameter(
@@ -117,7 +228,7 @@ Get-AtwsContractCost
     [Nullable[long]]
     $ContractID,
 
-# Contract Service Bundle ID
+# Product
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -128,20 +239,7 @@ Get-AtwsContractCost
       ParametersetName = 'By_Id'
     )]
     [Nullable[long]]
-    $ContractServiceBundleID,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[long]]
-    $ContractServiceID,
+    $ProductID,
 
 # Cost Type
     [Parameter(
@@ -170,20 +268,19 @@ Get-AtwsContractCost
     [string]
     $CostType,
 
-# Date Purchased
+# Purchase Order Number
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $DatePurchased,
+    [ValidateLength(0,50)]
+    [string]
+    $PurchaseOrderNumber,
 
 # Description
     [Parameter(
@@ -199,21 +296,7 @@ Get-AtwsContractCost
     [string]
     $Description,
 
-# Internal Purchase Order Number
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $InternalPurchaseOrderNumber,
-
-# Name
+# Date Purchased
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -225,91 +308,8 @@ Get-AtwsContractCost
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# Notes
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Notes,
-
-# Product
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[long]]
-    $ProductID,
-
-# Purchase Order Number
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PurchaseOrderNumber,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[double]]
-    $UnitCost,
-
-# Unit Price
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[double]]
-    $UnitPrice,
-
-# Unit Quantity
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double]]
-    $UnitQuantity
+    [Nullable[datetime]]
+    $DatePurchased
   )
 
     begin {

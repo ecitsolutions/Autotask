@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -66,40 +66,12 @@ Set-AtwsTicketCost
     [Autotask.TicketCost[]]
     $InputObject,
 
-# Allocation Code
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $AllocationCodeID,
-
-# Billable Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $BillableAmount,
-
 # Billable To Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
     $BillableToAccount,
-
-# Billed
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $Billed,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BusinessDivisionSubdivisionID,
 
 # Contract Service Bundle ID
     [Parameter(
@@ -108,12 +80,47 @@ Set-AtwsTicketCost
     [long]
     $ContractServiceBundleID,
 
-# Contract Service ID
+# Created By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [long]
-    $ContractServiceID,
+    $CreatorResourceID,
+
+# Ticket
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [long]
+    $TicketID,
+
+# Last Modified Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $StatusLastModifiedDate,
+
+# Status
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $Status,
 
 # Cost Type
     [Parameter(
@@ -136,65 +143,13 @@ Set-AtwsTicketCost
     [string]
     $CostType,
 
-# Create Date
+# Notes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CreateDate,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $CreatorResourceID,
-
-# Date Purchased
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [datetime]
-    $DatePurchased,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
+    [ValidateLength(0,2000)]
     [string]
-    $Description,
-
-# Extended Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $ExtendedCost,
-
-# Internal Currency Billable Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyBillableAmount,
-
-# Internal Currency Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $InternalCurrencyUnitPrice,
-
-# Internal Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $InternalPurchaseOrderNumber,
+    $Notes,
 
 # Name
     [Parameter(
@@ -206,20 +161,100 @@ Set-AtwsTicketCost
     [string]
     $Name,
 
-# Notes
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $Notes,
-
 # Product
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [long]
     $ProductID,
+
+# Billed
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $Billed,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $UnitPrice,
+
+# Internal Currency Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyUnitPrice,
+
+# Internal Currency Billable Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyBillableAmount,
+
+# Billable Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $BillableAmount,
+
+# Internal Purchase Order Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $InternalPurchaseOrderNumber,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string]
+    $Description,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $ContractServiceID,
+
+# Date Purchased
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [datetime]
+    $DatePurchased,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BusinessDivisionSubdivisionID,
+
+# Extended Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $ExtendedCost,
 
 # Purchase Order Number
     [Parameter(
@@ -229,47 +264,12 @@ Set-AtwsTicketCost
     [string]
     $PurchaseOrderNumber,
 
-# Status
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity TicketCost -FieldName Status -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $Status,
-
-# Last Modified By
+# Allocation Code
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [long]
-    $StatusLastModifiedBy,
-
-# Last Modified Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $StatusLastModifiedDate,
-
-# Ticket
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $TicketID,
+    $AllocationCodeID,
 
 # Unit Cost
     [Parameter(
@@ -278,12 +278,12 @@ Set-AtwsTicketCost
     [double]
     $UnitCost,
 
-# Unit Price
+# Last Modified By
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $UnitPrice,
+    [long]
+    $StatusLastModifiedBy,
 
 # Unit Quantity
     [Parameter(
@@ -314,6 +314,7 @@ Set-AtwsTicketCost
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -324,34 +325,35 @@ Set-AtwsTicketCost
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

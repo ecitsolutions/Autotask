@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -99,13 +99,13 @@ Set-AtwsTaskPredecessor
     [switch]
     $All,
 
-# Task Predecessor ID
+# Successor Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int][]]
+    $SuccessorTaskID,
 
 # Lag Days
     [Parameter(
@@ -114,6 +114,14 @@ Set-AtwsTaskPredecessor
     [Nullable[Int][]]
     $LagDays,
 
+# Task Predecessor ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
 # Predecessor Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -121,14 +129,6 @@ Set-AtwsTaskPredecessor
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $PredecessorTaskID,
-
-# Successor Task ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $SuccessorTaskID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

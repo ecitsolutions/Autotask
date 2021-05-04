@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -114,13 +114,13 @@ Set-AtwsAccountWebhookUdfField
     [switch]
     $All,
 
-# Account Webhook UDF Field ID
+# Is Subscribed Field
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[boolean][]]
+    $IsSubscribedField,
 
 # Is Display Always Field
     [Parameter(
@@ -129,14 +129,6 @@ Set-AtwsAccountWebhookUdfField
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $IsDisplayAlwaysField,
-
-# Is Subscribed Field
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $IsSubscribedField,
 
 # UDF Field ID
     [Parameter(
@@ -157,6 +149,14 @@ Set-AtwsAccountWebhookUdfField
     })]
     [string[]]
     $UdfFieldID,
+
+# Account Webhook UDF Field ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Webhook ID
     [Parameter(

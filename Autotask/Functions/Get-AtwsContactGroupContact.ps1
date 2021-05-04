@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,14 +97,6 @@ Remove-AtwsContactGroupContact
     [switch]
     $All,
 
-# Contact Group ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContactGroupID,
-
 # Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -112,6 +104,14 @@ Remove-AtwsContactGroupContact
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ContactID,
+
+# Contact Group ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ContactGroupID,
 
 # Contact Group ID
     [Parameter(

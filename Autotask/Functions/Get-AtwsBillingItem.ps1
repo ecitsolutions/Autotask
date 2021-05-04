@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -111,141 +111,19 @@ Set-AtwsBillingItem
     [switch]
     $All,
 
-# Client
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AccountID,
-
-# AccountManagerWhenApprovedID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AccountManagerWhenApprovedID,
-
-# AllocationCodeID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AllocationCodeID,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Contract Cost
+# Ticket Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
-    $ContractCostID,
+    $TicketCostID,
 
-# ContractID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContractID,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Description,
-
-# Expense Item
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ExpenseItemID,
-
-# ExtendedPrice
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ExtendedPrice,
-
-# BillingItemID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Installed Product Id
+# Project Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
-    $InstalledProductID,
-
-# InternalCurrencyExtendedPrice
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyExtendedPrice,
-
-# InternalCurrencyRate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyRate,
-
-# InternalCurrencyTaxDollars
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyTaxDollars,
-
-# InternalCurrencyTotalAmount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InternalCurrencyTotalAmount,
-
-# InvoiceID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $InvoiceID,
-
-# ItemApproverID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ItemApproverID,
-
-# ItemDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $ItemDate,
-
-# ItemName
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,255)]
-    [string[]]
-    $ItemName,
+    $ProjectCostID,
 
 # Invoice Line Item ID
     [Parameter(
@@ -254,6 +132,13 @@ Set-AtwsBillingItem
     [Nullable[long][]]
     $LineItemID,
 
+# Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ServiceID,
+
 # Milestone ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -261,20 +146,69 @@ Set-AtwsBillingItem
     [Nullable[long][]]
     $MilestoneID,
 
-# NonBillable
+# purchase_order_number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $NonBillable,
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
 
-# OurCost
+# TaxDollars
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $OurCost,
+    $TaxDollars,
+
+# ExtendedPrice
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ExtendedPrice,
+
+# Contract Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ContractCostID,
+
+# Expense Item
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ExpenseItemID,
+
+# Service Bundle ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ServiceBundleID,
+
+# AccountManagerWhenApprovedID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AccountManagerWhenApprovedID,
+
+# InternalCurrencyTotalAmount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyTotalAmount,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
 
 # Posted Date
     [Parameter(
@@ -290,34 +224,48 @@ Set-AtwsBillingItem
     [Nullable[datetime][]]
     $PostedOnTime,
 
-# Project Cost
+# Installed Product Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
-    $ProjectCostID,
+    $InstalledProductID,
 
-# ProjectID
+# Vendor ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $ProjectID,
+    [Nullable[long][]]
+    $VendorID,
 
-# purchase_order_number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
-
-# Quantity
+# InternalCurrencyExtendedPrice
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $Quantity,
+    $InternalCurrencyExtendedPrice,
+
+# InternalCurrencyTaxDollars
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyTaxDollars,
+
+# InternalCurrencyRate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyRate,
+
+# NonBillable
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $NonBillable,
 
 # Rate
     [Parameter(
@@ -326,81 +274,12 @@ Set-AtwsBillingItem
     [Nullable[double][]]
     $Rate,
 
-# RoleID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $RoleID,
-
-# Service Bundle ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ServiceBundleID,
-
-# Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $ServiceID,
-
-# Sub Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Label) + (Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $SubType,
-
-# TaskID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TaskID,
-
-# TaxDollars
+# Quantity
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
-    $TaxDollars,
-
-# Ticket Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $TicketCostID,
-
-# TicketID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TicketID,
-
-# TimeEntryID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $TimeEntryID,
+    $Quantity,
 
 # TotalAmount
     [Parameter(
@@ -408,6 +287,20 @@ Set-AtwsBillingItem
     )]
     [Nullable[double][]]
     $TotalAmount,
+
+# ItemDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $ItemDate,
+
+# OurCost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $OurCost,
 
 # Type
     [Parameter(
@@ -429,12 +322,77 @@ Set-AtwsBillingItem
     [string[]]
     $Type,
 
-# Vendor ID
+# BillingItemID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $VendorID,
+    $id,
+
+# Sub Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Label) + (Get-AtwsPicklistValue -Entity BillingItem -FieldName SubType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $SubType,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
+# ItemName
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,255)]
+    [string[]]
+    $ItemName,
+
+# InvoiceID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $InvoiceID,
+
+# RoleID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $RoleID,
+
+# AllocationCodeID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AllocationCodeID,
+
+# TimeEntryID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TimeEntryID,
 
 # WebServiceDate
     [Parameter(
@@ -442,6 +400,48 @@ Set-AtwsBillingItem
     )]
     [Nullable[datetime][]]
     $WebServiceDate,
+
+# ContractID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContractID,
+
+# Client
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AccountID,
+
+# ItemApproverID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ItemApproverID,
+
+# TicketID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TicketID,
+
+# ProjectID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ProjectID,
+
+# TaskID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TaskID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

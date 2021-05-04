@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,29 +97,6 @@ Set-AtwsTax
     [switch]
     $All,
 
-# Tax ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $id,
-
-# Compounded
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsCompounded,
-
-# Tax Category ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $TaxCategoryID,
-
 # Tax Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -138,6 +115,21 @@ Set-AtwsTax
     [Nullable[double][]]
     $TaxRate,
 
+# Compounded
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsCompounded,
+
+# Tax ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
+
 # Tax Region ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -145,6 +137,14 @@ Set-AtwsTax
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $TaxRegionID,
+
+# Tax Category ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $TaxCategoryID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

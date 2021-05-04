@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -118,14 +118,6 @@ Set-AtwsPriceListWorkTypeModifier
     [Nullable[Int][]]
     $CurrencyID,
 
-# ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Uses Internal Currency Price
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -133,6 +125,14 @@ Set-AtwsPriceListWorkTypeModifier
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $UsesInternalCurrencyPrice,
+
+# ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Work Type Modifier Id
     [Parameter(

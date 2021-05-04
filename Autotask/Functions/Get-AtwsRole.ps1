@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,29 +97,12 @@ Set-AtwsRole
     [switch]
     $All,
 
-# Active
+# Quote Item Default Tax Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $Active,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,200)]
-    [string[]]
-    $Description,
-
-# Hourly Factor
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[decimal][]]
-    $HourlyFactor,
+    [Nullable[Int][]]
+    $QuoteItemDefaultTaxCategoryId,
 
 # Hourly Rate
     [Parameter(
@@ -129,13 +112,20 @@ Set-AtwsRole
     [Nullable[decimal][]]
     $HourlyRate,
 
-# Role ID
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[boolean][]]
+    $Active,
+
+# Role Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $RoleType,
 
 # Is Excluded From New Contracts
     [Parameter(
@@ -153,19 +143,29 @@ Set-AtwsRole
     [string[]]
     $Name,
 
-# Quote Item Default Tax Category ID
+# Role ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $QuoteItemDefaultTaxCategoryId,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
-# Role Type
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $RoleType,
+    [ValidateLength(0,200)]
+    [string[]]
+    $Description,
+
+# Hourly Factor
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[decimal][]]
+    $HourlyFactor,
 
 # System Role
     [Parameter(

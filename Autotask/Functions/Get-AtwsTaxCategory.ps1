@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -96,13 +96,6 @@ Set-AtwsTaxCategory
     [switch]
     $All,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Active,
-
 # Tax Category Description
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -110,6 +103,13 @@ Set-AtwsTaxCategory
     [ValidateLength(0,200)]
     [string[]]
     $Description,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Active,
 
 # Tax Category ID
     [Parameter(

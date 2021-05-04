@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,6 +97,14 @@ Set-AtwsProductVendor
     [switch]
     $All,
 
+# Vendor Part Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $VendorPartNumber,
+
 # Is Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -104,14 +112,6 @@ Set-AtwsProductVendor
     [ValidateNotNullOrEmpty()]
     [Nullable[boolean][]]
     $Active,
-
-# id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
 
 # Is Default
     [Parameter(
@@ -121,6 +121,21 @@ Set-AtwsProductVendor
     [Nullable[boolean][]]
     $IsDefault,
 
+# Vendor Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $VendorCost,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
 # Product ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -129,13 +144,6 @@ Set-AtwsProductVendor
     [Nullable[Int][]]
     $ProductID,
 
-# Vendor Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $VendorCost,
-
 # Vendor Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -143,14 +151,6 @@ Set-AtwsProductVendor
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $VendorID,
-
-# Vendor Part Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $VendorPartNumber,
 
     [Parameter(
       ParametersetName = 'By_parameters'

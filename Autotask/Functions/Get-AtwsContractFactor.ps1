@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,14 +97,6 @@ Set-AtwsContractFactor
     [switch]
     $All,
 
-# Hourly Offset
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double][]]
-    $BlockHourFactor,
-
 # Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -112,6 +104,14 @@ Set-AtwsContractFactor
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ContractID,
+
+# Hourly Offset
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[double][]]
+    $BlockHourFactor,
 
 # id
     [Parameter(

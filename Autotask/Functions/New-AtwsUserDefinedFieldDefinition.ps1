@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -62,19 +62,47 @@ Set-AtwsUserDefinedFieldDefinition
     [Autotask.UserDefinedFieldDefinition[]]
     $InputObject,
 
-# Create Date
+# Encrypted
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [datetime]
-    $CreateDate,
+    [boolean]
+    $IsEncrypted,
 
-# Crm to Project Udf Id
+# Is Private
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [long]
-    $CrmToProjectUdfId,
+    [boolean]
+    $IsPrivate,
+
+# Sort Order
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $SortOrder,
+
+# Udf Type
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label) + (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $UdfType,
 
 # Data Type
     [Parameter(
@@ -105,13 +133,58 @@ Set-AtwsUserDefinedFieldDefinition
     [string]
     $DefaultValue,
 
-# Description
+# Protected
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,128)]
+    [boolean]
+    $IsProtected,
+
+# Merge Variable Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
     [string]
-    $Description,
+    $MergeVariableName,
+
+# Number of Decimal Places
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $NumberOfDecimalPlaces,
+
+# Name
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,45)]
+    [string]
+    $Name,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsActive,
+
+# Required
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $IsRequired,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDate,
 
 # Display Format
     [Parameter(
@@ -132,19 +205,20 @@ Set-AtwsUserDefinedFieldDefinition
     [string]
     $DisplayFormat,
 
-# Active
+# Visible to Client Portal
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [boolean]
-    $IsActive,
+    $IsVisibleToClientPortal,
 
-# Encrypted
+# Description
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $IsEncrypted,
+    [ValidateLength(0,128)]
+    [string]
+    $Description,
 
 # Field Mapping
     [Parameter(
@@ -153,86 +227,12 @@ Set-AtwsUserDefinedFieldDefinition
     [boolean]
     $IsFieldMapping,
 
-# Is Private
+# Crm to Project Udf Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [boolean]
-    $IsPrivate,
-
-# Protected
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsProtected,
-
-# Required
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsRequired,
-
-# Visible to Client Portal
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $IsVisibleToClientPortal,
-
-# Merge Variable Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $MergeVariableName,
-
-# Name
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,45)]
-    [string]
-    $Name,
-
-# Number of Decimal Places
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $NumberOfDecimalPlaces,
-
-# Sort Order
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $SortOrder,
-
-# Udf Type
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label) + (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $UdfType
+    [long]
+    $CrmToProjectUdfId
   )
 
     begin {
@@ -254,6 +254,7 @@ Set-AtwsUserDefinedFieldDefinition
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -264,34 +265,35 @@ Set-AtwsUserDefinedFieldDefinition
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

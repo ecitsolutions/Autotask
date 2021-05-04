@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -87,7 +87,7 @@ Get-AtwsContact
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Account Physical Location
+# Additional Address Information
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -97,8 +97,9 @@ Get-AtwsContact
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $AccountPhysicalLocationID,
+    [ValidateLength(0,100)]
+    [string]
+    $AdditionalAddressInformation,
 
 # Active
     [Parameter(
@@ -115,7 +116,7 @@ Get-AtwsContact
     [Nullable[Int]]
     $Active,
 
-# Additional Address Information
+# Contact Country ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -125,11 +126,10 @@ Get-AtwsContact
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,100)]
-    [string]
-    $AdditionalAddressInformation,
+    [Nullable[Int]]
+    $CountryID,
 
-# Contact Address 1
+# External ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -139,11 +139,11 @@ Get-AtwsContact
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,128)]
+    [ValidateLength(0,50)]
     [string]
-    $AddressLine,
+    $ExternalID,
 
-# Contact Address 2
+# Contact Fax
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -153,9 +153,182 @@ Get-AtwsContact
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,128)]
+    [ValidateLength(0,25)]
     [string]
-    $AddressLine1,
+    $FaxNumber,
+
+# Contact Mobile Phone
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,25)]
+    [string]
+    $MobilePhone,
+
+# Room Number
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $RoomNumber,
+
+# Note
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $Note,
+
+# LinkedIn URL
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,200)]
+    [string]
+    $LinkedInUrl,
+
+# Twitter URL
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,200)]
+    [string]
+    $TwitterUrl,
+
+# Account Physical Location
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $AccountPhysicalLocationID,
+
+# Primary Contact
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $PrimaryContact,
+
+# Name Prefix
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Label) + (Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $NamePrefix,
+
+# Bulk Email Opt Out
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $BulkEmailOptOut,
+
+# Facebook URL
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,200)]
+    [string]
+    $FacebookUrl,
+
+# Name Suffix
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label) + (Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $NameSuffix,
 
 # Contact Alternate Phone
     [Parameter(
@@ -171,7 +344,7 @@ Get-AtwsContact
     [string]
     $AlternatePhone,
 
-# Bulk Email Opt Out
+# Contact Address 2
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -181,8 +354,37 @@ Get-AtwsContact
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[boolean]]
-    $BulkEmailOptOut,
+    [ValidateLength(0,128)]
+    [string]
+    $AddressLine1,
+
+# Contact Address 1
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,128)]
+    [string]
+    $AddressLine,
+
+# Contact County
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,40)]
+    [string]
+    $State,
 
 # Contact City
     [Parameter(
@@ -198,48 +400,39 @@ Get-AtwsContact
     [string]
     $City,
 
-# Contact Country
+# Last Name
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,100)]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
     [string]
-    $Country,
+    $LastName,
 
-# Contact Country ID
+# First Name
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $CountryID,
-
-# Email
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,254)]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
     [string]
-    $EMailAddress,
+    $FirstName,
 
-# Email2
+# Title
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -249,9 +442,36 @@ Get-AtwsContact
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,254)]
+    [ValidateLength(0,50)]
     [string]
-    $EMailAddress2,
+    $Title,
+
+# Middle Initial
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $MiddleInitial,
+
+# Notification
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $Notification,
 
 # Email3
     [Parameter(
@@ -281,199 +501,6 @@ Get-AtwsContact
     [string]
     $Extension,
 
-# External ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ExternalID,
-
-# Facebook URL
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,200)]
-    [string]
-    $FacebookUrl,
-
-# Contact Fax
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $FaxNumber,
-
-# First Name
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string]
-    $FirstName,
-
-# Last Name
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string]
-    $LastName,
-
-# LinkedIn URL
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,200)]
-    [string]
-    $LinkedInUrl,
-
-# Middle Initial
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $MiddleInitial,
-
-# Contact Mobile Phone
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $MobilePhone,
-
-# Name Prefix
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Label) + (Get-AtwsPicklistValue -Entity Contact -FieldName NamePrefix -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $NamePrefix,
-
-# Name Suffix
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Label) + (Get-AtwsPicklistValue -Entity Contact -FieldName NameSuffix -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $NameSuffix,
-
-# Note
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $Note,
-
-# Notification
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[boolean]]
-    $Notification,
-
 # Contact Phone
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -488,7 +515,7 @@ Get-AtwsContact
     [string]
     $Phone,
 
-# Primary Contact
+# Contact Country
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -498,64 +525,9 @@ Get-AtwsContact
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[boolean]]
-    $PrimaryContact,
-
-# Room Number
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
+    [ValidateLength(0,100)]
     [string]
-    $RoomNumber,
-
-# Contact County
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,40)]
-    [string]
-    $State,
-
-# Title
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $Title,
-
-# Twitter URL
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,200)]
-    [string]
-    $TwitterUrl,
+    $Country,
 
 # Contact Postal Code
     [Parameter(
@@ -569,7 +541,35 @@ Get-AtwsContact
     )]
     [ValidateLength(0,16)]
     [string]
-    $ZipCode
+    $ZipCode,
+
+# Email2
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,254)]
+    [string]
+    $EMailAddress2,
+
+# Email
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,254)]
+    [string]
+    $EMailAddress
   )
 
     begin {

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -103,14 +103,6 @@ Set-AtwsTaxRegion
     [Nullable[boolean][]]
     $Active,
 
-# Tax Region ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $id,
-
 # Tax Region Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -119,6 +111,14 @@ Set-AtwsTaxRegion
     [ValidateLength(0,200)]
     [string[]]
     $Name,
+
+# Tax Region ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

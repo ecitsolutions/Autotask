@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,7 +76,7 @@ Get-AtwsSubscription
     [switch]
     $PassThru,
 
-# Description
+# Purchase Order Number
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -86,39 +86,9 @@ Get-AtwsSubscription
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,2000)]
+    [ValidateLength(0,50)]
     [string]
-    $Description,
-
-# Effective Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $EffectiveDate,
-
-# Expiration Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $ExpirationDate,
+    $PurchaseOrderNumber,
 
 # Material Code Id
     [Parameter(
@@ -148,49 +118,7 @@ Get-AtwsSubscription
     [Nullable[decimal]]
     $PeriodCost,
 
-# Period Price
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[decimal]]
-    $PeriodPrice,
-
-# Period Type
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Subscription -FieldName PeriodType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Subscription -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity Subscription -FieldName PeriodType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PeriodType,
-
-# Purchase Order Number
+# Vendor ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -200,9 +128,8 @@ Get-AtwsSubscription
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,50)]
-    [string]
-    $PurchaseOrderNumber,
+    [Nullable[Int]]
+    $VendorID,
 
 # Type
     [Parameter(
@@ -231,6 +158,35 @@ Get-AtwsSubscription
     [string]
     $Status,
 
+# Period Price
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[decimal]]
+    $PeriodPrice,
+
+# Description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $Description,
+
 # Subscription Name
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -248,18 +204,62 @@ Get-AtwsSubscription
     [string]
     $SubscriptionName,
 
-# Vendor ID
+# Period Type
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $VendorID
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Subscription -FieldName PeriodType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Subscription -FieldName PeriodType -Label) + (Get-AtwsPicklistValue -Entity Subscription -FieldName PeriodType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PeriodType,
+
+# Expiration Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $ExpirationDate,
+
+# Effective Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $EffectiveDate
   )
 
     begin {

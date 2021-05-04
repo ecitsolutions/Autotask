@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -114,29 +114,13 @@ Set-AtwsExpenseItem
     [switch]
     $All,
 
-# Account ID
+# Origin
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $AccountID,
-
-# Billable To Account
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $BillableToAccount,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,128)]
     [string[]]
-    $Description,
+    $Origin,
 
 # Destination
     [Parameter(
@@ -146,6 +130,21 @@ Set-AtwsExpenseItem
     [string[]]
     $Destination,
 
+# purchase_order_number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TicketID,
+
 # Entertainment Location
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -154,135 +153,12 @@ Set-AtwsExpenseItem
     [string[]]
     $EntertainmentLocation,
 
-# Expense Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ExpenseAmount,
-
-# Expense Category
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Label) + (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $ExpenseCategory,
-
-# Currency ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ExpenseCurrencyID,
-
-# Expense Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $ExpenseDate,
-
-# Expense Report ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ExpenseReportID,
-
-# Have Receipt
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $HaveReceipt,
-
-# Expense Item ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Miles
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $Miles,
-
-# Odometer End
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $OdometerEnd,
-
-# Odometer Start
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $OdometerStart,
-
-# Origin
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $Origin,
-
-# Payment Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Label) + (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $PaymentType,
-
-# Project ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ProjectID,
-
-# purchase_order_number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
 
 # Receipt Amount
     [Parameter(
@@ -305,6 +181,27 @@ Set-AtwsExpenseItem
     [Nullable[double][]]
     $ReimbursementCurrencyReimbursementAmount,
 
+# Odometer Start
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $OdometerStart,
+
+# Odometer End
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $OdometerEnd,
+
+# Currency ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ExpenseCurrencyID,
+
 # Task ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -312,12 +209,33 @@ Set-AtwsExpenseItem
     [Nullable[Int][]]
     $TaskID,
 
-# Ticket ID
+# Expense Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $TicketID,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $ExpenseDate,
+
+# Expense Category
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Label) + (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName ExpenseCategory -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $ExpenseCategory,
 
 # Work Type
     [Parameter(
@@ -337,6 +255,88 @@ Set-AtwsExpenseItem
     })]
     [string[]]
     $WorkType,
+
+# Expense Item ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Expense Report ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ExpenseReportID,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,128)]
+    [string[]]
+    $Description,
+
+# Billable To Account
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $BillableToAccount,
+
+# Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AccountID,
+
+# Project ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ProjectID,
+
+# Expense Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ExpenseAmount,
+
+# Payment Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Label) + (Get-AtwsPicklistValue -Entity ExpenseItem -FieldName PaymentType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PaymentType,
+
+# Have Receipt
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean][]]
+    $HaveReceipt,
 
     [Parameter(
       ParametersetName = 'By_parameters'

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,41 +115,19 @@ Set-AtwsProject
     [switch]
     $All,
 
-# Account ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $AccountID,
-
-# Actual Billed Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ActualBilledHours,
-
-# Actual Hours
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ActualHours,
-
-# Business Division Subdivision ID
+# Project Lead
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
+    $ProjectLeadResourceID,
 
-# Change Orders Revenue
+# Contract
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $ChangeOrdersRevenue,
+    [Nullable[Int][]]
+    $ContractID,
 
 # Account Owner
     [Parameter(
@@ -172,235 +150,6 @@ Set-AtwsProject
     [Nullable[Int][]]
     $CompletedPercentage,
 
-# Contract
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContractID,
-
-# Created DateTime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-# Department
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Project -FieldName Department -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Project -FieldName Department -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName Department -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Department,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Description,
-
-# Duration
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $Duration,
-
-# End Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDateTime,
-
-# Estimated Sales Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $EstimatedSalesCost,
-
-# Estimated Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $EstimatedTime,
-
-# Ext Project Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ExtPNumber,
-
-# id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
-
-# Labor Estimated Costs
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $LaborEstimatedCosts,
-
-# Labor Estimated Margin Percentage
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $LaborEstimatedMarginPercentage,
-
-# Labor Estimated Revenue
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $LaborEstimatedRevenue,
-
-# Last Activity Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivityDateTime,
-
-# Last Activity Person Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LastActivityPersonType,
-
-# Last Activity By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LastActivityResourceID,
-
-# Line Of Business
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $LineOfBusiness,
-
-# Opportunity ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $OpportunityID,
-
-# Original Estimated Revenue
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $OriginalEstimatedRevenue,
-
-# Project Cost Estimated Margin Percentage
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ProjectCostEstimatedMarginPercentage,
-
-# Project Estimated costs
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ProjectCostsBudget,
-
-# Project Cost Revenue
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $ProjectCostsRevenue,
-
-# Project Lead
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ProjectLeadResourceID,
-
-# Project Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('Name')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ProjectName,
-
-# Project Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $ProjectNumber,
-
-# purchase_order_number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
-
 # SG&A
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -408,13 +157,19 @@ Set-AtwsProject
     [Nullable[double][]]
     $SGDA,
 
-# Start Date
+# Change Orders Revenue
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDateTime,
+    [Nullable[double][]]
+    $ChangeOrdersRevenue,
+
+# Original Estimated Revenue
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $OriginalEstimatedRevenue,
 
 # Status
     [Parameter(
@@ -436,12 +191,12 @@ Set-AtwsProject
     [string[]]
     $Status,
 
-# Status Date
+# Estimated Sales Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $StatusDateTime,
+    [Nullable[double][]]
+    $EstimatedSalesCost,
 
 # Status Detail
     [Parameter(
@@ -450,6 +205,173 @@ Set-AtwsProject
     [ValidateLength(0,2000)]
     [string[]]
     $StatusDetail,
+
+# Last Activity Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastActivityDateTime,
+
+# Last Activity By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $LastActivityResourceID,
+
+# Last Activity Person Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $LastActivityPersonType,
+
+# Opportunity ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $OpportunityID,
+
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Department
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Project -FieldName Department -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Project -FieldName Department -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName Department -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Department,
+
+# Status Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $StatusDateTime,
+
+# Line Of Business
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Label) + (Get-AtwsPicklistValue -Entity Project -FieldName LineOfBusiness -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $LineOfBusiness,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
+
+# purchase_order_number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
+# Project Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ProjectNumber,
+
+# Created DateTime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Start Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDateTime,
+
+# Created By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
+
+# Project Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('Name')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $ProjectName,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $AccountID,
+
+# Ext Project Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $ExtPNumber,
 
 # Type
     [Parameter(
@@ -470,6 +392,84 @@ Set-AtwsProject
     })]
     [string[]]
     $Type,
+
+# End Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $EndDateTime,
+
+# Labor Estimated Margin Percentage
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $LaborEstimatedMarginPercentage,
+
+# Labor Estimated Costs
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $LaborEstimatedCosts,
+
+# Project Cost Revenue
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ProjectCostsRevenue,
+
+# Project Cost Estimated Margin Percentage
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ProjectCostEstimatedMarginPercentage,
+
+# Project Estimated costs
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ProjectCostsBudget,
+
+# Actual Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ActualHours,
+
+# Duration
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $Duration,
+
+# Actual Billed Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ActualBilledHours,
+
+# Labor Estimated Revenue
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $LaborEstimatedRevenue,
+
+# Estimated Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $EstimatedTime,
 
     [Parameter(
       ParametersetName = 'By_parameters'

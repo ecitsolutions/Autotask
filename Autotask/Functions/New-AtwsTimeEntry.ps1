@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -62,117 +62,12 @@ Set-AtwsTimeEntry
     [Autotask.TimeEntry[]]
     $InputObject,
 
-# Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $AllocationCodeID,
-
-# Billing Approval Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $BillingApprovalDateTime,
-
-# Billing Approval Level Most Recent
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BillingApprovalLevelMostRecent,
-
-# Billing Approval Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $BillingApprovalResourceID,
-
-# Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ContractID,
-
 # Contract Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [long]
     $ContractServiceBundleID,
-
-# Contract Service ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [long]
-    $ContractServiceID,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $CreateDateTime,
-
-# Created User ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $CreatorUserID,
-
-# Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $DateWorked,
-
-# End Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $EndDateTime,
-
-# Hours To Bill
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $HoursToBill,
-
-# Hours Worked
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [double]
-    $HoursWorked,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorCreatorResourceID,
-
-# Impersonator Updater Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ImpersonatorUpdaterResourceID,
-
-# Internal Allocation Code ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $InternalAllocationCodeID,
 
 # Internal Notes
     [Parameter(
@@ -182,20 +77,6 @@ Set-AtwsTimeEntry
     [string]
     $InternalNotes,
 
-# Last Modified Datetime
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $LastModifiedDateTime,
-
-# Last Modified By User ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $LastModifiedUserID,
-
 # Non-Billable
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -203,12 +84,26 @@ Set-AtwsTimeEntry
     [boolean]
     $NonBillable,
 
-# Offset Hours
+# Ticket ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [double]
-    $OffsetHours,
+    [Int]
+    $TicketID,
+
+# Role ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $RoleID,
+
+# Start Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $StartDateTime,
 
 # Resource ID
     [Parameter(
@@ -219,26 +114,12 @@ Set-AtwsTimeEntry
     [Int]
     $ResourceID,
 
-# Role ID
+# Created User ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $RoleID,
-
-# Show On Invoice
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [boolean]
-    $ShowOnInvoice,
-
-# Start Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $StartDateTime,
+    $CreatorUserID,
 
 # Summary Notes
     [Parameter(
@@ -248,19 +129,19 @@ Set-AtwsTimeEntry
     [string]
     $SummaryNotes,
 
-# Task ID
+# Impersonator Creator Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
-    $TaskID,
+    $ImpersonatorCreatorResourceID,
 
-# Ticket ID
+# Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $TicketID,
+    [datetime]
+    $DateWorked,
 
 # TaskTypeLink
     [Parameter(
@@ -279,7 +160,126 @@ Set-AtwsTimeEntry
       }
     })]
     [string]
-    $Type
+    $Type,
+
+# Billing Approval Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $BillingApprovalDateTime,
+
+# Billing Approval Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BillingApprovalResourceID,
+
+# Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $AllocationCodeID,
+
+# Task ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $TaskID,
+
+# Offset Hours
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $OffsetHours,
+
+# Last Modified By User ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $LastModifiedUserID,
+
+# Internal Allocation Code ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $InternalAllocationCodeID,
+
+# Show On Invoice
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [boolean]
+    $ShowOnInvoice,
+
+# Contract Service ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [long]
+    $ContractServiceID,
+
+# Hours Worked
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $HoursWorked,
+
+# End Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $EndDateTime,
+
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $CreateDateTime,
+
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ContractID,
+
+# Billing Approval Level Most Recent
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $BillingApprovalLevelMostRecent,
+
+# Hours To Bill
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $HoursToBill,
+
+# Impersonator Updater Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Int]
+    $ImpersonatorUpdaterResourceID,
+
+# Last Modified Datetime
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [datetime]
+    $LastModifiedDateTime
   )
 
     begin {
@@ -301,6 +301,7 @@ Set-AtwsTimeEntry
             $VerbosePreference = $Script:Atws.Configuration.VerbosePref
         }
 
+        $processObject = [collections.generic.list[psobject]]::new()
         $result = [collections.generic.list[psobject]]::new()
     }
 
@@ -311,34 +312,35 @@ Set-AtwsTimeEntry
 
             #Measure-Object should work here, but returns 0 as Count/Sum. 
             #Count throws error if we cast a null value to its method, but here we know that we dont have a null value.
-            $sum = ($InputObject | Measure-Object -Property Id -Sum).Sum
+            $sum = ($InputObject).Count
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
                 foreach ($object in $InputObject) {
                     $object.Id = $null
+                    $processObject.add($object)
                 }
             }
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
+            $processObject.add((New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
         $caption = $MyInvocation.MyCommand.Name
-        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $inputObject.Count, $entityName
-        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $inputObject.Count, $entityName
+        $verboseDescription = '{0}: About to create {1} {2}(s). This action cannot be undone.' -F $caption, $processObject.Count, $entityName
+        $verboseWarning = '{0}: About to create {1} {2}(s). This action may not be undoable. Do you want to continue?' -F $caption, $processObject.Count, $entityName
 
         # Lets don't and say we did!
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) {
 
             # Process parameters and update objects with their values
-            $inputObject = $inputObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
+            $processObject = $processObject | Update-AtwsObjectsWithParameters -BoundParameters $PSBoundParameters -EntityName $EntityName
 
             try {
                 # Force list even if result is only 1 object to be compatible with addrange()
-                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $inputObject -Create
+                [collections.generic.list[psobject]]$response = Set-AtwsData -Entity $processObject -Create
             }
             catch {
                 # Write a debug message with detailed information to developers

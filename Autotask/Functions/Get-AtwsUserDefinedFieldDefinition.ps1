@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -113,6 +113,32 @@ Set-AtwsUserDefinedFieldDefinition
     [switch]
     $All,
 
+# Crm to Project Udf Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $CrmToProjectUdfId,
+
+# Display Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label) + (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $DisplayFormat,
+
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -120,12 +146,100 @@ Set-AtwsUserDefinedFieldDefinition
     [Nullable[datetime][]]
     $CreateDate,
 
-# Crm to Project Udf Id
+# Merge Variable Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $MergeVariableName,
+
+# Sort Order
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $SortOrder,
+
+# Encrypted
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsEncrypted,
+
+# Is Private
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsPrivate,
+
+# Number of Decimal Places
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $NumberOfDecimalPlaces,
+
+# Visible to Client Portal
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsVisibleToClientPortal,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsActive,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,128)]
+    [string[]]
+    $Description,
+
+# Udf Type
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label) + (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $UdfType,
+
+# ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $CrmToProjectUdfId,
+    $id,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,45)]
+    [string[]]
+    $Name,
 
 # Data Type
     [Parameter(
@@ -147,77 +261,6 @@ Set-AtwsUserDefinedFieldDefinition
     [string[]]
     $DataType,
 
-# Default Value
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1024)]
-    [string[]]
-    $DefaultValue,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,128)]
-    [string[]]
-    $Description,
-
-# Display Format
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Label) + (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName DisplayFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $DisplayFormat,
-
-# ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsActive,
-
-# Encrypted
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsEncrypted,
-
-# Field Mapping
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsFieldMapping,
-
-# Is Private
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsPrivate,
-
 # Protected
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -232,63 +275,20 @@ Set-AtwsUserDefinedFieldDefinition
     [Nullable[boolean][]]
     $IsRequired,
 
-# Visible to Client Portal
+# Default Value
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,1024)]
+    [string[]]
+    $DefaultValue,
+
+# Field Mapping
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $IsVisibleToClientPortal,
-
-# Merge Variable Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $MergeVariableName,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,45)]
-    [string[]]
-    $Name,
-
-# Number of Decimal Places
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $NumberOfDecimalPlaces,
-
-# Sort Order
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $SortOrder,
-
-# Udf Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Label) + (Get-AtwsPicklistValue -Entity UserDefinedFieldDefinition -FieldName UdfType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $UdfType,
+    $IsFieldMapping,
 
     [Parameter(
       ParametersetName = 'By_parameters'

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,19 +74,6 @@ Get-AtwsContractService
     [switch]
     $PassThru,
 
-# Adjusted Price
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[double]]
-    $AdjustedPrice,
-
 # Internal Description
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -101,6 +88,32 @@ Get-AtwsContractService
     [string]
     $InternalDescription,
 
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $UnitCost,
+
+# Adjusted Price
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $AdjustedPrice,
+
 # Invoice Description
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -113,20 +126,7 @@ Get-AtwsContractService
     )]
     [ValidateLength(0,1000)]
     [string]
-    $InvoiceDescription,
-
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[double]]
-    $UnitCost
+    $InvoiceDescription
   )
 
     begin {

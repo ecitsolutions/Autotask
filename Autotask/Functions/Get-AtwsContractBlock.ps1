@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -114,30 +114,6 @@ Set-AtwsContractBlock
     [switch]
     $All,
 
-# Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContractID,
-
-# DatePurchased
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $DatePurchased,
-
-# EndDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDate,
-
 # Rate
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -154,48 +130,13 @@ Set-AtwsContractBlock
     [Nullable[double][]]
     $Hours,
 
-# id
+# EndDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# InvoiceNumber
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $InvoiceNumber,
-
-# Paid
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label) + (Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $IsPaid,
-
-# PaymentNumber
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PaymentNumber,
+    [Nullable[datetime][]]
+    $EndDate,
 
 # paymentID
     [Parameter(
@@ -216,13 +157,21 @@ Set-AtwsContractBlock
     [string[]]
     $PaymentType,
 
-# StartDate
+# PaymentNumber
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDate,
+    [ValidateLength(0,50)]
+    [string[]]
+    $PaymentNumber,
+
+# InvoiceNumber
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $InvoiceNumber,
 
 # Status
     [Parameter(
@@ -242,6 +191,57 @@ Set-AtwsContractBlock
     })]
     [string[]]
     $Status,
+
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ContractID,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# StartDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDate,
+
+# DatePurchased
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $DatePurchased,
+
+# Paid
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Label) + (Get-AtwsPicklistValue -Entity ContractBlock -FieldName IsPaid -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $IsPaid,
 
     [Parameter(
       ParametersetName = 'By_parameters'

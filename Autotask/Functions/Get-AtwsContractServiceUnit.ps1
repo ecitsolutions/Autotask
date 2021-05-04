@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -93,6 +93,20 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
     [switch]
     $All,
 
+# Vendor Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $VendorAccountID,
+
+# Period Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[float][]]
+    $Cost,
+
 # approve_and_post_date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -107,13 +121,12 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
     [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
-# ContractID
+# InternalCurrencyPrice
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContractID,
+    [Nullable[float][]]
+    $InternalCurrencyPrice,
 
 # Contract Service Id
     [Parameter(
@@ -121,36 +134,6 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
     )]
     [Nullable[Int][]]
     $ContractServiceID,
-
-# Period Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[float][]]
-    $Cost,
-
-# EndDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDate,
-
-# contract_service_unique_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# InternalCurrencyPrice
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[float][]]
-    $InternalCurrencyPrice,
 
 # Price
     [Parameter(
@@ -167,13 +150,21 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
     [Nullable[Int][]]
     $ServiceID,
 
-# StartDate
+# ContractID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDate,
+    [Nullable[Int][]]
+    $ContractID,
+
+# contract_service_unique_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Units
     [Parameter(
@@ -183,12 +174,21 @@ Returns any object with a ContractServiceUnitName that DOES NOT match the simple
     [Nullable[Int][]]
     $Units,
 
-# Vendor Account ID
+# EndDate
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $VendorAccountID,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $EndDate,
+
+# StartDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'

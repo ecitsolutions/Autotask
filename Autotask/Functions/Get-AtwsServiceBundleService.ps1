@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,13 +97,13 @@ Remove-AtwsServiceBundleService
     [switch]
     $All,
 
-# Service Bundle Service ID
+# Service ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $id,
+    $ServiceID,
 
 # Service Bundle ID
     [Parameter(
@@ -113,13 +113,13 @@ Remove-AtwsServiceBundleService
     [Nullable[long][]]
     $ServiceBundleID,
 
-# Service ID
+# Service Bundle Service ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $ServiceID,
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

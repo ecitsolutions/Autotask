@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -112,22 +112,6 @@ Set-AtwsAccountAlert
     [switch]
     $All,
 
-# Client ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $AccountID,
-
-# Alert Text
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,8000)]
-    [string[]]
-    $AlertText,
-
 # Alert Type ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -148,6 +132,14 @@ Set-AtwsAccountAlert
     [string[]]
     $AlertTypeID,
 
+# Alert Text
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string[]]
+    $AlertText,
+
 # Alert ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -155,6 +147,14 @@ Set-AtwsAccountAlert
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
+
+# Client ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $AccountID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

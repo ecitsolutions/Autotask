@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -72,63 +72,7 @@ Get-AtwsSalesOrder
     [switch]
     $PassThru,
 
-# Additional Bill To Address Information
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $AdditionalBillToAddressInformation,
-
-# Additional Ship To Address Information
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $AdditionalShipToAddressInformation,
-
-# Bill to Address1
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,150)]
-    [string]
-    $BillToAddress1,
-
-# Bill to Address2
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,150)]
-    [string]
-    $BillToAddress2,
-
-# Bill to City
+# Ship to County
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -140,36 +84,9 @@ Get-AtwsSalesOrder
     )]
     [ValidateLength(0,50)]
     [string]
-    $BillToCity,
+    $ShipToState,
 
-# Bill to Country
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $BillToCountry,
-
-# Bill To Country ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $BillToCountryID,
-
-# Bill to Postal Code
+# Ship to Postal Code
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -181,9 +98,9 @@ Get-AtwsSalesOrder
     )]
     [ValidateLength(0,50)]
     [string]
-    $BillToPostalCode,
+    $ShipToPostalCode,
 
-# Bill to County
+# Ship to City
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -195,78 +112,7 @@ Get-AtwsSalesOrder
     )]
     [ValidateLength(0,50)]
     [string]
-    $BillToState,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $BusinessDivisionSubdivisionID,
-
-# Contact ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $Contact,
-
-# Owner
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $OwnerResourceID,
-
-# Promised Due Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $PromisedDueDate,
-
-# Sales Order Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $SalesOrderDate,
+    $ShipToCity,
 
 # Ship to Address1
     [Parameter(
@@ -296,20 +142,6 @@ Get-AtwsSalesOrder
     [string]
     $ShipToAddress2,
 
-# Ship to City
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $ShipToCity,
-
 # Ship to Country
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -337,7 +169,7 @@ Get-AtwsSalesOrder
     [Nullable[Int]]
     $ShipToCountryID,
 
-# Ship to Postal Code
+# Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -347,11 +179,10 @@ Get-AtwsSalesOrder
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,50)]
-    [string]
-    $ShipToPostalCode,
+    [Nullable[Int]]
+    $BusinessDivisionSubdivisionID,
 
-# Ship to County
+# Bill To Country ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -361,9 +192,79 @@ Get-AtwsSalesOrder
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,50)]
+    [Nullable[Int]]
+    $BillToCountryID,
+
+# Additional Bill To Address Information
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,100)]
     [string]
-    $ShipToState,
+    $AdditionalBillToAddressInformation,
+
+# Additional Ship To Address Information
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $AdditionalShipToAddressInformation,
+
+# Sales Order Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $SalesOrderDate,
+
+# Promised Due Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $PromisedDueDate,
+
+# Owner
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int]]
+    $OwnerResourceID,
 
 # Status
     [Parameter(
@@ -390,7 +291,106 @@ Get-AtwsSalesOrder
       }
     })]
     [string]
-    $Status
+    $Status,
+
+# Contact ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int]]
+    $Contact,
+
+# Bill to Address1
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,150)]
+    [string]
+    $BillToAddress1,
+
+# Bill to Postal Code
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $BillToPostalCode,
+
+# Bill to Country
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $BillToCountry,
+
+# Bill to County
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $BillToState,
+
+# Bill to Address2
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,150)]
+    [string]
+    $BillToAddress2,
+
+# Bill to City
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $BillToCity
   )
 
     begin {

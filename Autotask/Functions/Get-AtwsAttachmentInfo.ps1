@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -111,19 +111,25 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [switch]
     $All,
 
-# Attach Date
+# Publish
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $AttachDate,
-
-# Attached By Contact
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[long][]]
-    $AttachedByContactID,
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Label) + (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $Publish,
 
 # Attached By Resource
     [Parameter(
@@ -132,30 +138,12 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [Nullable[long][]]
     $AttachedByResourceID,
 
-# Content Type
+# Attached By Contact
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $ContentType,
-
-# File Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $FullPath,
-
-# Attachment ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $id,
+    $AttachedByContactID,
 
 # Impersonator Creator Resource ID
     [Parameter(
@@ -171,12 +159,20 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [Nullable[long][]]
     $OpportunityID,
 
-# Parent ID
+# Content Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[long][]]
-    $ParentID,
+    [ValidateLength(0,100)]
+    [string[]]
+    $ContentType,
+
+# Attach Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $AttachDate,
 
 # Parent Type
     [Parameter(
@@ -198,25 +194,29 @@ An example of a more complex query. This command returns any AttachmentInfos wit
     [string[]]
     $ParentType,
 
-# Publish
+# Parent ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[long][]]
+    $ParentID,
+
+# Attachment ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Label) + (Get-AtwsPicklistValue -Entity AttachmentInfo -FieldName Publish -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [Nullable[long][]]
+    $id,
+
+# File Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
     [string[]]
-    $Publish,
+    $FullPath,
 
 # Title
     [Parameter(

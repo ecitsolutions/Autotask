@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -99,13 +99,6 @@ Set-AtwsAppointment
     [switch]
     $All,
 
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
 # Created By
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -121,6 +114,20 @@ Set-AtwsAppointment
     [string[]]
     $Description,
 
+# Update Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $UpdateDateTime,
+
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
 # End Date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -129,14 +136,6 @@ Set-AtwsAppointment
     [Nullable[datetime][]]
     $EndDateTime,
 
-# Appointment Id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Resource
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -144,6 +143,14 @@ Set-AtwsAppointment
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ResourceID,
+
+# Appointment Id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Start Date
     [Parameter(
@@ -161,13 +168,6 @@ Set-AtwsAppointment
     [ValidateLength(0,256)]
     [string[]]
     $Title,
-
-# Update Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $UpdateDateTime,
 
     [Parameter(
       ParametersetName = 'By_parameters'

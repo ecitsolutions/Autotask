@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -111,6 +111,14 @@ Set-AtwsResourceServiceDeskRole
     [Nullable[boolean][]]
     $Default,
 
+# Role ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $RoleID,
+
 # ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -126,14 +134,6 @@ Set-AtwsResourceServiceDeskRole
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ResourceID,
-
-# Role ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $RoleID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

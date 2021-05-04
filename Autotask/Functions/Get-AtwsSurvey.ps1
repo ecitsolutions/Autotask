@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -92,14 +92,6 @@ Returns any object with a SurveyName that DOES NOT match the simple pattern 'Som
     [switch]
     $All,
 
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,1000)]
-    [string[]]
-    $Description,
-
 # Display Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -107,6 +99,14 @@ Returns any object with a SurveyName that DOES NOT match the simple pattern 'Som
     [ValidateLength(0,100)]
     [string[]]
     $DisplayName,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,1000)]
+    [string[]]
+    $Description,
 
 # Survey ID
     [Parameter(

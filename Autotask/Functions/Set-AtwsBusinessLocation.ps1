@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,141 +74,7 @@ Get-AtwsBusinessLocation
     [switch]
     $PassThru,
 
-# Additional Address Info
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $AdditionalAddressInfo,
-
-# Address1
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $Address1,
-
-# Address2
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $Address2,
-
-# City
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $City,
-
-# Country ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $CountryID,
-
-# Date Format
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $DateFormat,
-
-# Default
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[boolean]]
-    $Default,
-
-# First Day Of Week
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $FirstDayOfWeek,
-
-# FridayBusinessHoursEndTime
+# ThursdayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -219,7 +85,33 @@ Get-AtwsBusinessLocation
       ParametersetName = 'By_Id'
     )]
     [Nullable[datetime]]
-    $FridayBusinessHoursEndTime,
+    $ThursdayBusinessHoursEndTime,
+
+# ThursdayBusinessHoursStartTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $ThursdayBusinessHoursStartTime,
+
+# WednesdayExtendedHoursEndTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $WednesdayExtendedHoursEndTime,
 
 # FridayBusinessHoursStartTime
     [Parameter(
@@ -234,7 +126,7 @@ Get-AtwsBusinessLocation
     [Nullable[datetime]]
     $FridayBusinessHoursStartTime,
 
-# FridayExtendedHoursEndTime
+# ThursdayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -245,9 +137,9 @@ Get-AtwsBusinessLocation
       ParametersetName = 'By_Id'
     )]
     [Nullable[datetime]]
-    $FridayExtendedHoursEndTime,
+    $ThursdayExtendedHoursEndTime,
 
-# FridayExtendedHoursStartTime
+# ThursdayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -258,7 +150,136 @@ Get-AtwsBusinessLocation
       ParametersetName = 'By_Id'
     )]
     [Nullable[datetime]]
-    $FridayExtendedHoursStartTime,
+    $ThursdayExtendedHoursStartTime,
+
+# TuesdayExtendedHoursEndTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $TuesdayExtendedHoursEndTime,
+
+# TuesdayExtendedHoursStartTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $TuesdayExtendedHoursStartTime,
+
+# TuesdayBusinessHoursEndTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $TuesdayBusinessHoursEndTime,
+
+# WednesdayExtendedHoursStartTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $WednesdayExtendedHoursStartTime,
+
+# WednesdayBusinessHoursEndTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $WednesdayBusinessHoursEndTime,
+
+# WednesdayBusinessHoursStartTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $WednesdayBusinessHoursStartTime,
+
+# Holiday Hours Start Time
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $HolidayHoursStartTime,
+
+# Holiday Hours Type
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $HolidayHoursType,
+
+# SaturdayExtendedHoursEndTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $SaturdayExtendedHoursEndTime,
 
 # Holiday Extended Hours End Time
     [Parameter(
@@ -299,7 +320,7 @@ Get-AtwsBusinessLocation
     [Nullable[datetime]]
     $HolidayHoursEndTime,
 
-# Holiday Hours Start Time
+# FridayExtendedHoursEndTime
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -310,9 +331,9 @@ Get-AtwsBusinessLocation
       ParametersetName = 'By_Id'
     )]
     [Nullable[datetime]]
-    $HolidayHoursStartTime,
+    $FridayExtendedHoursEndTime,
 
-# Holiday Hours Type
+# FridayExtendedHoursStartTime
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -322,20 +343,73 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName HolidayHoursType -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $HolidayHoursType,
+    [Nullable[datetime]]
+    $FridayExtendedHoursStartTime,
+
+# FridayBusinessHoursEndTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $FridayBusinessHoursEndTime,
+
+# SaturdayExtendedHoursStartTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $SaturdayExtendedHoursStartTime,
+
+# SaturdayBusinessHoursEndTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $SaturdayBusinessHoursEndTime,
+
+# SaturdayBusinessHoursStartTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $SaturdayBusinessHoursStartTime,
+
+# TuesdayBusinessHoursStartTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $TuesdayBusinessHoursStartTime,
 
 # Holiday Set ID
     [Parameter(
@@ -350,7 +424,7 @@ Get-AtwsBusinessLocation
     [Nullable[Int]]
     $HolidaySetID,
 
-# MondayBusinessHoursEndTime
+# Country ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -360,8 +434,159 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[datetime]]
-    $MondayBusinessHoursEndTime,
+    [Nullable[Int]]
+    $CountryID,
+
+# Additional Address Info
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $AdditionalAddressInfo,
+
+# First Day Of Week
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName FirstDayOfWeek -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $FirstDayOfWeek,
+
+# Default
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $Default,
+
+# No Hours On Holidays
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[boolean]]
+    $NoHoursOnHolidays,
+
+# Address2
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $Address2,
+
+# Address1
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $Address1,
+
+# Name
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string]
+    $Name,
+
+# Postal Code
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,20)]
+    [string]
+    $PostalCode,
+
+# State
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,25)]
+    [string]
+    $State,
+
+# City
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,50)]
+    [string]
+    $City,
 
 # MondayBusinessHoursStartTime
     [Parameter(
@@ -375,6 +600,32 @@ Get-AtwsBusinessLocation
     )]
     [Nullable[datetime]]
     $MondayBusinessHoursStartTime,
+
+# SundayExtendedHoursEndTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $SundayExtendedHoursEndTime,
+
+# SundayExtendedHoursStartTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $SundayExtendedHoursStartTime,
 
 # MondayExtendedHoursEndTime
     [Parameter(
@@ -402,23 +653,7 @@ Get-AtwsBusinessLocation
     [Nullable[datetime]]
     $MondayExtendedHoursStartTime,
 
-# Name
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string]
-    $Name,
-
-# No Hours On Holidays
+# MondayBusinessHoursEndTime
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -428,8 +663,8 @@ Get-AtwsBusinessLocation
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[boolean]]
-    $NoHoursOnHolidays,
+    [Nullable[datetime]]
+    $MondayBusinessHoursEndTime,
 
 # Number Format
     [Parameter(
@@ -458,190 +693,6 @@ Get-AtwsBusinessLocation
     [string]
     $NumberFormat,
 
-# Postal Code
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,20)]
-    [string]
-    $PostalCode,
-
-# SaturdayBusinessHoursEndTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $SaturdayBusinessHoursEndTime,
-
-# SaturdayBusinessHoursStartTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $SaturdayBusinessHoursStartTime,
-
-# SaturdayExtendedHoursEndTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $SaturdayExtendedHoursEndTime,
-
-# SaturdayExtendedHoursStartTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $SaturdayExtendedHoursStartTime,
-
-# State
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,25)]
-    [string]
-    $State,
-
-# SundayBusinessHoursEndTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $SundayBusinessHoursEndTime,
-
-# SundayBusinessHoursStartTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $SundayBusinessHoursStartTime,
-
-# SundayExtendedHoursEndTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $SundayExtendedHoursEndTime,
-
-# SundayExtendedHoursStartTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $SundayExtendedHoursStartTime,
-
-# ThursdayBusinessHoursEndTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $ThursdayBusinessHoursEndTime,
-
-# ThursdayBusinessHoursStartTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $ThursdayBusinessHoursStartTime,
-
-# ThursdayExtendedHoursEndTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $ThursdayExtendedHoursEndTime,
-
-# ThursdayExtendedHoursStartTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $ThursdayExtendedHoursStartTime,
-
 # Time Format
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -669,6 +720,59 @@ Get-AtwsBusinessLocation
     [string]
     $TimeFormat,
 
+# Date Format
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity BusinessLocation -FieldName DateFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $DateFormat,
+
+# SundayBusinessHoursEndTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $SundayBusinessHoursEndTime,
+
+# SundayBusinessHoursStartTime
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $SundayBusinessHoursStartTime,
+
 # Time Zone ID
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -694,111 +798,7 @@ Get-AtwsBusinessLocation
       }
     })]
     [string]
-    $TimeZoneID,
-
-# TuesdayBusinessHoursEndTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $TuesdayBusinessHoursEndTime,
-
-# TuesdayBusinessHoursStartTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $TuesdayBusinessHoursStartTime,
-
-# TuesdayExtendedHoursEndTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $TuesdayExtendedHoursEndTime,
-
-# TuesdayExtendedHoursStartTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $TuesdayExtendedHoursStartTime,
-
-# WednesdayBusinessHoursEndTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $WednesdayBusinessHoursEndTime,
-
-# WednesdayBusinessHoursStartTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $WednesdayBusinessHoursStartTime,
-
-# WednesdayExtendedHoursEndTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $WednesdayExtendedHoursEndTime,
-
-# WednesdayExtendedHoursStartTime
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $WednesdayExtendedHoursStartTime
+    $TimeZoneID
   )
 
     begin {

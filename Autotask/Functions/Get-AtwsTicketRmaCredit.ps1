@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -99,13 +99,12 @@ Set-AtwsTicketRmaCredit
     [switch]
     $All,
 
-# Credit Amount
+# Internal Currency Credit Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[decimal][]]
-    $CreditAmount,
+    $InternalCurrencyCreditAmount,
 
 # Credit Details
     [Parameter(
@@ -115,6 +114,14 @@ Set-AtwsTicketRmaCredit
     [string[]]
     $CreditDetails,
 
+# Credit Amount
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[decimal][]]
+    $CreditAmount,
+
 # Ticket RMA Credit ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -122,13 +129,6 @@ Set-AtwsTicketRmaCredit
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
-
-# Internal Currency Credit Amount
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $InternalCurrencyCreditAmount,
 
 # Ticket ID
     [Parameter(

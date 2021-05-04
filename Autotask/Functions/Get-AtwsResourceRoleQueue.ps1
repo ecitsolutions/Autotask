@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -112,14 +112,6 @@ Set-AtwsResourceRoleQueue
     [switch]
     $All,
 
-# ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Queue ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -147,6 +139,14 @@ Set-AtwsResourceRoleQueue
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ResourceID,
+
+# ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

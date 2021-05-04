@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -112,62 +112,16 @@ An example of a more complex query. This command returns any QuoteTemplates with
     [switch]
     $All,
 
-# Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $Active,
-
-# Calculate Tax Separately
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $CalculateTaxSeparately,
-
-# Create Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDate,
-
-# Created By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatedBy,
-
-# Currency Negative Pattern
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,10)]
-    [string[]]
-    $CurrencyNegativeFormat,
-
-# Currency Positive Pattern
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,10)]
-    [string[]]
-    $CurrencyPositiveFormat,
-
-# Date Format
+# Page Number Format
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label -Quoted
+      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label -Quoted
     })]
     [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Value)
+      $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -175,44 +129,33 @@ An example of a more complex query. This command returns any QuoteTemplates with
       }
     })]
     [string[]]
-    $DateFormat,
+    $PageNumberFormat,
 
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,200)]
-    [string[]]
-    $Description,
-
-# Display Tax Category Superscripts
+# Show Each Tax In Group
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $DisplayTaxCategorySuperscripts,
+    $ShowEachTaxInGroup,
 
-# ID
+# Page Layout
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Last Activity By
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $LastActivityBy,
-
-# Last Activity Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastActivityDate,
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $PageLayout,
 
 # Name
     [Parameter(
@@ -242,50 +185,30 @@ An example of a more complex query. This command returns any QuoteTemplates with
     [string[]]
     $NumberFormat,
 
-# Page Layout
+# Currency Positive Pattern
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageLayout -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,10)]
     [string[]]
-    $PageLayout,
+    $CurrencyPositiveFormat,
 
-# Page Number Format
+# Currency Negative Pattern
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName PageNumberFormat -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,10)]
     [string[]]
-    $PageNumberFormat,
+    $CurrencyNegativeFormat,
 
-# Show Each Tax In Group
+# Show Vertical Grid Lines
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $ShowEachTaxInGroup,
+    $ShowVerticalGridLines,
 
 # Show Grid Header
     [Parameter(
@@ -301,12 +224,89 @@ An example of a more complex query. This command returns any QuoteTemplates with
     [Nullable[boolean][]]
     $ShowTaxCategory,
 
-# Show Vertical Grid Lines
+# Create Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDate,
+
+# Created By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatedBy,
+
+# Calculate Tax Separately
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $ShowVerticalGridLines,
+    $CalculateTaxSeparately,
+
+# ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $Active,
+
+# Last Activity By
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $LastActivityBy,
+
+# Last Activity Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastActivityDate,
+
+# Display Tax Category Superscripts
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $DisplayTaxCategorySuperscripts,
+
+# Date Format
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Label) + (Get-AtwsPicklistValue -Entity QuoteTemplate -FieldName DateFormat -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $DateFormat,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,200)]
+    [string[]]
+    $Description,
 
     [Parameter(
       ParametersetName = 'By_parameters'

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -114,6 +114,14 @@ Set-AtwsContractRetainer
     [switch]
     $All,
 
+# InvoiceNumber
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,50)]
+    [string[]]
+    $InvoiceNumber,
+
 # Amount
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -121,22 +129,6 @@ Set-AtwsContractRetainer
     [ValidateNotNullOrEmpty()]
     [Nullable[double][]]
     $Amount,
-
-# Contract ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContractID,
-
-# Date Purchased
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $DatePurchased,
 
 # EndDate
     [Parameter(
@@ -146,47 +138,12 @@ Set-AtwsContractRetainer
     [Nullable[datetime][]]
     $EndDate,
 
-# id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $id,
-
 # Internal Currency Amount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[double][]]
     $InternalCurrencyAmount,
-
-# InvoiceNumber
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $InvoiceNumber,
-
-# Paid
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label) + (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $IsPaid,
 
 # Payment Type
     [Parameter(
@@ -215,14 +172,6 @@ Set-AtwsContractRetainer
     [string[]]
     $PaymentNumber,
 
-# StartDate
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $StartDate,
-
 # Status
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -242,6 +191,57 @@ Set-AtwsContractRetainer
     })]
     [string[]]
     $Status,
+
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ContractID,
+
+# id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
+
+# StartDate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $StartDate,
+
+# Date Purchased
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $DatePurchased,
+
+# Paid
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Label) + (Get-AtwsPicklistValue -Entity ContractRetainer -FieldName IsPaid -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string[]]
+    $IsPaid,
 
     [Parameter(
       ParametersetName = 'By_parameters'

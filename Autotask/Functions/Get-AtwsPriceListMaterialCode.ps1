@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -95,13 +95,20 @@ Set-AtwsPriceListMaterialCode
     [switch]
     $All,
 
-# Allocation Code Id
+# Uses Internal Currency Price
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $AllocationCodeID,
+    [Nullable[boolean][]]
+    $UsesInternalCurrencyPrice,
+
+# Unit Price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[decimal][]]
+    $UnitPrice,
 
 # Currency Id
     [Parameter(
@@ -119,20 +126,13 @@ Set-AtwsPriceListMaterialCode
     [Nullable[long][]]
     $id,
 
-# Unit Price
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $UnitPrice,
-
-# Uses Internal Currency Price
+# Allocation Code Id
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[boolean][]]
-    $UsesInternalCurrencyPrice,
+    [Nullable[Int][]]
+    $AllocationCodeID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -85,7 +85,7 @@ Get-AtwsInstalledProduct
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Account Physical Location
+# Configuration Item Type
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -95,23 +95,34 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $AccountPhysicalLocationID,
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $Type,
 
-# Product Active
+# Location
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[boolean]]
-    $Active,
+    [ValidateLength(0,100)]
+    [string]
+    $Location,
 
 # Contact Name
     [Parameter(
@@ -139,7 +150,7 @@ Get-AtwsInstalledProduct
     [Nullable[Int]]
     $ContractID,
 
-# Contract Service Bundle Id
+# Service ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -150,9 +161,9 @@ Get-AtwsInstalledProduct
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $ContractServiceBundleID,
+    $ServiceID,
 
-# Contract Service Id
+# Service Bundle ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -163,9 +174,9 @@ Get-AtwsInstalledProduct
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $ContractServiceID,
+    $ServiceBundleID,
 
-# Configuration Item Daily Cost
+# Vendor Name
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -175,10 +186,10 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[double]]
-    $DailyCost,
+    [Nullable[Int]]
+    $VendorID,
 
-# Configuration Item Hourly Cost
+# Service Level Agreement
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -188,10 +199,22 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[double]]
-    $HourlyCost,
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $ServiceLevelAgreementID,
 
-# Install Date
+# Account Physical Location
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -201,8 +224,8 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[datetime]]
-    $InstallDate,
+    [Nullable[Int]]
+    $AccountPhysicalLocationID,
 
 # Installed Product Category ID
     [Parameter(
@@ -217,7 +240,7 @@ Get-AtwsInstalledProduct
     [Nullable[Int]]
     $InstalledProductCategoryID,
 
-# Location
+# Parent Configuration Item
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -227,9 +250,60 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,100)]
-    [string]
-    $Location,
+    [Nullable[Int]]
+    $ParentInstalledProductID,
+
+# Contract Service Id
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $ContractServiceID,
+
+# Contract Service Bundle Id
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $ContractServiceBundleID,
+
+# Warranty Expiration Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $WarrantyExpirationDate,
+
+# Install Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $InstallDate,
 
 # Configuration Item Monthly Cost
     [Parameter(
@@ -258,6 +332,47 @@ Get-AtwsInstalledProduct
     [string]
     $Notes,
 
+# Product Active
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[boolean]]
+    $Active,
+
+# Configuration Item Daily Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $DailyCost,
+
+# Configuration Item Hourly Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $HourlyCost,
+
 # Configuration Item Number of Users
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -271,7 +386,7 @@ Get-AtwsInstalledProduct
     [Nullable[double]]
     $NumberOfUsers,
 
-# Parent Configuration Item
+# Reference Title
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -281,8 +396,36 @@ Get-AtwsInstalledProduct
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $ParentInstalledProductID,
+    [ValidateLength(0,200)]
+    [string]
+    $ReferenceTitle,
+
+# Serial Number
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,100)]
+    [string]
+    $SerialNumber,
+
+# Configuration Item Setup Fee
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[double]]
+    $SetupFee,
 
 # Configuration Item Per Use Cost
     [Parameter(
@@ -324,150 +467,7 @@ Get-AtwsInstalledProduct
     )]
     [ValidateLength(0,100)]
     [string]
-    $ReferenceNumber,
-
-# Reference Title
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,200)]
-    [string]
-    $ReferenceTitle,
-
-# Serial Number
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,100)]
-    [string]
-    $SerialNumber,
-
-# Service Bundle ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $ServiceBundleID,
-
-# Service ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $ServiceID,
-
-# Service Level Agreement
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Label) + (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName ServiceLevelAgreementID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $ServiceLevelAgreementID,
-
-# Configuration Item Setup Fee
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[double]]
-    $SetupFee,
-
-# Configuration Item Type
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Label) + (Get-AtwsPicklistValue -Entity InstalledProduct -FieldName Type -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $Type,
-
-# Vendor Name
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $VendorID,
-
-# Warranty Expiration Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $WarrantyExpirationDate
+    $ReferenceNumber
   )
 
     begin {

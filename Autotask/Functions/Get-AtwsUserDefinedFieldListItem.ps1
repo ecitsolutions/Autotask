@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,12 +97,28 @@ Set-AtwsUserDefinedFieldListItem
     [switch]
     $All,
 
+# Value For Display
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,128)]
+    [string[]]
+    $ValueForDisplay,
+
 # Create Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $CreateDate,
+
+# Is Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsActive,
 
 # ID
     [Parameter(
@@ -112,13 +128,6 @@ Set-AtwsUserDefinedFieldListItem
     [Nullable[long][]]
     $id,
 
-# Is Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsActive,
-
 # User Defined Field Definition
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -126,15 +135,6 @@ Set-AtwsUserDefinedFieldListItem
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $UdfFieldId,
-
-# Value For Display
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,128)]
-    [string[]]
-    $ValueForDisplay,
 
 # Value For Export
     [Parameter(

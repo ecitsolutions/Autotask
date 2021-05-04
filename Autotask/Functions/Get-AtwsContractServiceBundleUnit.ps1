@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -93,6 +93,21 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [switch]
     $All,
 
+# Contract Period Cost
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $Cost,
+
+# units
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $Units,
+
 # approve_and_post_date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -107,44 +122,6 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [Nullable[Int][]]
     $BusinessDivisionSubdivisionID,
 
-# contract_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ContractID,
-
-# Contract Service Bundle ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ContractServiceBundleID,
-
-# Contract Period Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $Cost,
-
-# contract_period_end_date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EndDate,
-
-# contract_service_period_id
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $id,
-
 # InternalCurrencyPrice
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -152,12 +129,12 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [Nullable[double][]]
     $InternalCurrencyPrice,
 
-# contract_period_price
+# Contract Service Bundle ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[double][]]
-    $Price,
+    [Nullable[Int][]]
+    $ContractServiceBundleID,
 
 # service_id
     [Parameter(
@@ -167,6 +144,37 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [Nullable[Int][]]
     $ServiceBundleID,
 
+# contract_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ContractID,
+
+# contract_service_period_id
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $id,
+
+# contract_period_price
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $Price,
+
+# contract_period_end_date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $EndDate,
+
 # contract_period_date
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -174,14 +182,6 @@ Returns any object with a ContractServiceBundleUnitName that DOES NOT match the 
     [ValidateNotNullOrEmpty()]
     [Nullable[datetime][]]
     $StartDate,
-
-# units
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $Units,
 
     [Parameter(
       ParametersetName = 'By_parameters'

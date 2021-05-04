@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,6 +97,14 @@ Remove-AtwsContractExclusionRole
     [switch]
     $All,
 
+# Role ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $RoleID,
+
 # Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -112,14 +120,6 @@ Remove-AtwsContractExclusionRole
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
     $id,
-
-# Role ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $RoleID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

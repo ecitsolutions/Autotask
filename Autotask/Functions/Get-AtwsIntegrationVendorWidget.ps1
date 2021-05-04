@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -113,42 +113,14 @@ Set-AtwsIntegrationVendorWidget
     [switch]
     $All,
 
-# Create Date/Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,500)]
-    [string[]]
-    $Description,
-
-# Integration Vendor Widget ID
+# Secret
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Is Active
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsActive,
-
-# Last Modified Date/Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $LastModifiedDateTime,
+    [ValidateLength(0,100)]
+    [string[]]
+    $Secret,
 
 # Reference URL
     [Parameter(
@@ -159,15 +131,6 @@ Set-AtwsIntegrationVendorWidget
     [string[]]
     $ReferenceUrl,
 
-# Secret
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $Secret,
-
 # Title
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -176,15 +139,6 @@ Set-AtwsIntegrationVendorWidget
     [ValidateLength(0,100)]
     [string[]]
     $Title,
-
-# Vendor Supplied ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $VendorSuppliedID,
 
 # Width
     [Parameter(
@@ -204,6 +158,52 @@ Set-AtwsIntegrationVendorWidget
     })]
     [string[]]
     $Width,
+
+# Vendor Supplied ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $VendorSuppliedID,
+
+# Create Date/Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Integration Vendor Widget ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,500)]
+    [string[]]
+    $Description,
+
+# Last Modified Date/Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $LastModifiedDateTime,
+
+# Is Active
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsActive,
 
     [Parameter(
       ParametersetName = 'By_parameters'

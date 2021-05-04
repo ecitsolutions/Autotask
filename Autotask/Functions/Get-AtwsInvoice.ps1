@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -111,93 +111,26 @@ Set-AtwsInvoice
     [switch]
     $All,
 
-# Client ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $AccountID,
-
-# Batch ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $BatchID,
-
-# Comments
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
-    [string[]]
-    $Comments,
-
-# Create Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $CreateDateTime,
-
-# Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatorResourceID,
-
-# From Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $FromDate,
-
-# Invoice ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Invoice Date Time
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $InvoiceDateTime,
-
-# Invoice Editor Template ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $InvoiceEditorTemplateID,
-
-# Invoice Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,100)]
-    [string[]]
-    $InvoiceNumber,
-
-# Invoice Total
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[double][]]
-    $InvoiceTotal,
-
 # Is Voided
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
     $IsVoided,
+
+# Voided Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $VoidedDate,
+
+# Web Service Use Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $WebServiceDate,
 
 # Order Number
     [Parameter(
@@ -206,13 +139,6 @@ Set-AtwsInvoice
     [ValidateLength(0,20)]
     [string[]]
     $OrderNumber,
-
-# Paid Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[datetime][]]
-    $PaidDate,
 
 # Payment Term ID
     [Parameter(
@@ -233,6 +159,20 @@ Set-AtwsInvoice
     [string[]]
     $PaymentTerm,
 
+# Batch ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BatchID,
+
+# Invoice Editor Template ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $InvoiceEditorTemplateID,
+
 # Tax Region Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -241,12 +181,63 @@ Set-AtwsInvoice
     [string[]]
     $TaxRegionName,
 
+# Voided By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $VoidedByResourceID,
+
+# Paid Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $PaidDate,
+
 # To Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
     $ToDate,
+
+# Invoice Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $InvoiceDateTime,
+
+# Create Date Time
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[datetime][]]
+    $CreateDateTime,
+
+# Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatorResourceID,
+
+# Invoice ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Client ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AccountID,
 
 # Total Tax Value
     [Parameter(
@@ -255,26 +246,35 @@ Set-AtwsInvoice
     [Nullable[double][]]
     $TotalTaxValue,
 
-# Voided By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $VoidedByResourceID,
-
-# Voided Date
+# From Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[datetime][]]
-    $VoidedDate,
+    $FromDate,
 
-# Web Service Use Date
+# Invoice Total
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[datetime][]]
-    $WebServiceDate,
+    [Nullable[double][]]
+    $InvoiceTotal,
+
+# Invoice Number
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,100)]
+    [string[]]
+    $InvoiceNumber,
+
+# Comments
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Comments,
 
     [Parameter(
       ParametersetName = 'By_parameters'

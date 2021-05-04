@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -93,6 +93,15 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
     [switch]
     $All,
 
+# Ticket Title
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,255)]
+    [string[]]
+    $TicketTitle,
+
 # Deleted By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -133,15 +142,6 @@ Returns any object with a DeletedTicketLogName that DOES NOT match the simple pa
     [ValidateLength(0,50)]
     [string[]]
     $TicketNumber,
-
-# Ticket Title
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
-    [string[]]
-    $TicketTitle,
 
     [Parameter(
       ParametersetName = 'By_parameters'

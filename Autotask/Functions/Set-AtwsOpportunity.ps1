@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -74,102 +74,7 @@ Get-AtwsOpportunity
     [switch]
     $PassThru,
 
-# AccountObjectID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $AccountID,
-
-# NumberOfUsers
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $AdvancedField1,
-
-# SetupFee
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $AdvancedField2,
-
-# HourlyCost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $AdvancedField3,
-
-# DailyCost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $AdvancedField4,
-
-# MonthlyCost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $AdvancedField5,
-
-# Amount
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[decimal]]
-    $Amount,
-
-# Barriers
+# Win Reason Detail
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -181,129 +86,7 @@ Get-AtwsOpportunity
     )]
     [ValidateLength(0,500)]
     [string]
-    $Barriers,
-
-# Business Division Subdivision ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $BusinessDivisionSubdivisionID,
-
-# Closed Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $ClosedDate,
-
-# ContactObjectID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $ContactID,
-
-# Cost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[decimal]]
-    $Cost,
-
-# CreateDate
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $CreateDate,
-
-# Description
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,8000)]
-    [string]
-    $Description,
-
-# HelpNeeded
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,500)]
-    [string]
-    $HelpNeeded,
-
-# LeadReferralObjectID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $LeadReferral,
+    $WinReasonDetail,
 
 # Loss Reason
     [Parameter(
@@ -330,7 +113,7 @@ Get-AtwsOpportunity
     [string]
     $LossReason,
 
-# Loss Reason Detail
+# Win Reason
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -340,89 +123,20 @@ Get-AtwsOpportunity
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,500)]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string]
-    $LossReasonDetail,
-
-# Lost Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $LostDate,
-
-# Market
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,500)]
-    [string]
-    $Market,
-
-# Monthly Cost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $MonthlyCost,
-
-# Monthly Revenue
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $MonthlyRevenue,
-
-# NextStep
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,500)]
-    [string]
-    $NextStep,
-
-# One-Time Cost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $OnetimeCost,
+    $WinReason,
 
 # One-Time Revenue
     [Parameter(
@@ -437,155 +151,7 @@ Get-AtwsOpportunity
     [Nullable[decimal]]
     $OnetimeRevenue,
 
-# Opportunity Category ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $OpportunityCategoryID,
-
-# CreatorObjectID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $OwnerResourceID,
-
-# Primary Competitor
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PrimaryCompetitor,
-
-# Probability
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $Probability,
-
-# ProductObjectID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $ProductID,
-
-# ProjClose
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime]]
-    $ProjectedCloseDate,
-
-# StartDate
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $ProjectedLiveDate,
-
-# Promised Fulfillment Date
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $PromisedFulfillmentDate,
-
-# promotion_name
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $PromotionName,
-
-# Quarterly Cost
+# One-Time Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -596,9 +162,23 @@ Get-AtwsOpportunity
       ParametersetName = 'By_Id'
     )]
     [Nullable[decimal]]
-    $QuarterlyCost,
+    $OnetimeCost,
 
-# Quarterly Revenue
+# Loss Reason Detail
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $LossReasonDetail,
+
+# SetupFee
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -609,7 +189,59 @@ Get-AtwsOpportunity
       ParametersetName = 'By_Id'
     )]
     [Nullable[decimal]]
-    $QuarterlyRevenue,
+    $AdvancedField2,
+
+# MonthlyCost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $AdvancedField5,
+
+# DailyCost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $AdvancedField4,
+
+# Closed Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $ClosedDate,
+
+# Total Amount Months
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $TotalAmountMonths,
 
 # opportunity_rating_id
     [Parameter(
@@ -636,7 +268,7 @@ Get-AtwsOpportunity
     [string]
     $Rating,
 
-# Revenue Spread
+# Monthly Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -646,10 +278,10 @@ Get-AtwsOpportunity
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $RevenueSpread,
+    [Nullable[decimal]]
+    $MonthlyCost,
 
-# spread_revenue_recognition_unit
+# Opportunity Category ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -661,10 +293,10 @@ Get-AtwsOpportunity
     )]
     [ArgumentCompleter({
       param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Label -Quoted
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label -Quoted
     })]
     [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Value)
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName OpportunityCategoryID -Value)
       if ($_ -in $set) { return $true}
       else {
         Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
@@ -672,9 +304,22 @@ Get-AtwsOpportunity
       }
     })]
     [string]
-    $RevenueSpreadUnit,
+    $OpportunityCategoryID,
 
-# Semi-Annual Cost
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $BusinessDivisionSubdivisionID,
+
+# Yearly Revenue
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -685,7 +330,99 @@ Get-AtwsOpportunity
       ParametersetName = 'By_Id'
     )]
     [Nullable[decimal]]
-    $SemiannualCost,
+    $YearlyRevenue,
+
+# Description
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,8000)]
+    [string]
+    $Description,
+
+# Promised Fulfillment Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $PromisedFulfillmentDate,
+
+# Lost Date
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $LostDate,
+
+# Quarterly Revenue
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $QuarterlyRevenue,
+
+# Quarterly Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $QuarterlyCost,
+
+# Monthly Revenue
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $MonthlyRevenue,
+
+# Yearly Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $YearlyCost,
 
 # Semi-Annual Revenue
     [Parameter(
@@ -700,32 +437,31 @@ Get-AtwsOpportunity
     [Nullable[decimal]]
     $SemiannualRevenue,
 
-# StageObjectID
+# Semi-Annual Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $Stage,
+    [Nullable[decimal]]
+    $SemiannualCost,
+
+# HourlyCost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $AdvancedField3,
 
 # Status
     [Parameter(
@@ -754,19 +490,6 @@ Get-AtwsOpportunity
     [string]
     $Status,
 
-# ThroughDate
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[datetime]]
-    $ThroughDate,
-
 # Name
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -783,7 +506,67 @@ Get-AtwsOpportunity
     [string]
     $Title,
 
-# Total Amount Months
+# CreatorObjectID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int]]
+    $OwnerResourceID,
+
+# Amount
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[decimal]]
+    $Amount,
+
+# Probability
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int]]
+    $Probability,
+
+# ProjClose
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $ProjectedCloseDate,
+
+# ProductObjectID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -794,7 +577,246 @@ Get-AtwsOpportunity
       ParametersetName = 'By_Id'
     )]
     [Nullable[Int]]
-    $TotalAmountMonths,
+    $ProductID,
+
+# ContactObjectID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $ContactID,
+
+# AccountObjectID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int]]
+    $AccountID,
+
+# LeadReferralObjectID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName LeadReferral -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $LeadReferral,
+
+# Primary Competitor
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName PrimaryCompetitor -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PrimaryCompetitor,
+
+# StageObjectID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName Stage -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $Stage,
+
+# Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[decimal]]
+    $Cost,
+
+# NextStep
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $NextStep,
+
+# HelpNeeded
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $HelpNeeded,
+
+# Barriers
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,500)]
+    [string]
+    $Barriers,
+
+# NumberOfUsers
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[decimal]]
+    $AdvancedField1,
+
+# ThroughDate
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $ThroughDate,
+
+# StartDate
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[datetime]]
+    $ProjectedLiveDate,
+
+# spread_revenue_recognition_unit
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName RevenueSpreadUnit -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $RevenueSpreadUnit,
+
+# Revenue Spread
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $RevenueSpread,
 
 # Use Quote Totals
     [Parameter(
@@ -811,32 +833,7 @@ Get-AtwsOpportunity
     [Nullable[boolean]]
     $UseQuoteTotals,
 
-# Win Reason
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Label) + (Get-AtwsPicklistValue -Entity Opportunity -FieldName WinReason -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $WinReason,
-
-# Win Reason Detail
+# Market
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -848,9 +845,24 @@ Get-AtwsOpportunity
     )]
     [ValidateLength(0,500)]
     [string]
-    $WinReasonDetail,
+    $Market,
 
-# Yearly Cost
+# CreateDate
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime]]
+    $CreateDate,
+
+# promotion_name
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -860,21 +872,9 @@ Get-AtwsOpportunity
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[decimal]]
-    $YearlyCost,
-
-# Yearly Revenue
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[decimal]]
-    $YearlyRevenue
+    [ValidateLength(0,50)]
+    [string]
+    $PromotionName
   )
 
     begin {

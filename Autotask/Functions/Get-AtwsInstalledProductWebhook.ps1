@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -99,12 +99,13 @@ Set-AtwsInstalledProductWebhook
     [switch]
     $All,
 
-# Active
+# Notification Email Address
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[boolean][]]
-    $Active,
+    [ValidateLength(0,150)]
+    [string[]]
+    $NotificationEmailAddress,
 
 # Deactivation URL
     [Parameter(
@@ -115,21 +116,6 @@ Set-AtwsInstalledProductWebhook
     [string[]]
     $DeactivationUrl,
 
-# Configuration Item Webhook Configuration ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Is Subscribed To Create Events
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[boolean][]]
-    $IsSubscribedToCreateEvents,
-
 # Is Subscribed To Delete Events
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -137,36 +123,12 @@ Set-AtwsInstalledProductWebhook
     [Nullable[boolean][]]
     $IsSubscribedToDeleteEvents,
 
-# Is Subscribed To Update Events
+# Send Threshold Exceeded Notification
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $IsSubscribedToUpdateEvents,
-
-# Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,50)]
-    [string[]]
-    $Name,
-
-# Notification Email Address
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,150)]
-    [string[]]
-    $NotificationEmailAddress,
-
-# Owner Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $OwnerResourceID,
+    $SendThresholdExceededNotification,
 
 # Ready
     [Parameter(
@@ -184,12 +146,19 @@ Set-AtwsInstalledProductWebhook
     [string[]]
     $SecretKey,
 
-# Send Threshold Exceeded Notification
+# Owner Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $OwnerResourceID,
+
+# Active
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[boolean][]]
-    $SendThresholdExceededNotification,
+    $Active,
 
 # Webhook GUID
     [Parameter(
@@ -198,6 +167,37 @@ Set-AtwsInstalledProductWebhook
     [ValidateLength(0,100)]
     [string[]]
     $WebhookGUID,
+
+# Configuration Item Webhook Configuration ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
+
+# Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,50)]
+    [string[]]
+    $Name,
+
+# Is Subscribed To Update Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsSubscribedToUpdateEvents,
+
+# Is Subscribed To Create Events
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[boolean][]]
+    $IsSubscribedToCreateEvents,
 
 # Webhook Url
     [Parameter(

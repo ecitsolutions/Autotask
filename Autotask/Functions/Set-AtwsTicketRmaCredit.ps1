@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,6 +76,20 @@ Get-AtwsTicketRmaCredit
     [switch]
     $PassThru,
 
+# Credit Details
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateLength(0,2000)]
+    [string]
+    $CreditDetails,
+
 # Credit Amount
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -89,21 +103,7 @@ Get-AtwsTicketRmaCredit
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[decimal]]
-    $CreditAmount,
-
-# Credit Details
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateLength(0,2000)]
-    [string]
-    $CreditDetails
+    $CreditAmount
   )
 
     begin {

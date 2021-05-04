@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -104,20 +104,6 @@ Remove-AtwsServiceCallTicketResource
     [Nullable[datetime][]]
     $CreateDateTime,
 
-# Created By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $CreatedByResourceID,
-
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
 # Last Modified By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -132,13 +118,19 @@ Remove-AtwsServiceCallTicketResource
     [Nullable[datetime][]]
     $LastModifiedDateTime,
 
-# Resource ID
+# Created By Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $CreatedByResourceID,
+
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $ResourceID,
+    [Nullable[long][]]
+    $id,
 
 # Service Call Ticket ID
     [Parameter(
@@ -147,6 +139,14 @@ Remove-AtwsServiceCallTicketResource
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $ServiceCallTicketID,
+
+# Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[Int][]]
+    $ResourceID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

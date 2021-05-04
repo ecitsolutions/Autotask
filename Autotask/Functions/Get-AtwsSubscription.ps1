@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -115,51 +115,40 @@ Set-AtwsSubscription
     [switch]
     $All,
 
-# Business Division Subdivision ID
+# Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $BusinessDivisionSubdivisionID,
-
-# Description
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,2000)]
+    [ValidateNotNullOrEmpty()]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
     [string[]]
-    $Description,
+    $Status,
 
-# Effective Date
+# Total Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $EffectiveDate,
+    [Nullable[decimal][]]
+    $TotalCost,
 
-# Expiration Date
+# Purchase Order Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[datetime][]]
-    $ExpirationDate,
-
-# Subscription ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
-
-# Impersonator Creator Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[Int][]]
-    $ImpersonatorCreatorResourceID,
+    [ValidateLength(0,50)]
+    [string[]]
+    $PurchaseOrderNumber,
 
 # Installed Product ID
     [Parameter(
@@ -169,6 +158,27 @@ Set-AtwsSubscription
     [Nullable[Int][]]
     $InstalledProductID,
 
+# Impersonator Creator Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ImpersonatorCreatorResourceID,
+
+# Business Division Subdivision ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $BusinessDivisionSubdivisionID,
+
+# Vendor ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $VendorID,
+
 # Material Code Id
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -176,6 +186,32 @@ Set-AtwsSubscription
     [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $MaterialCodeID,
+
+# Description
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,2000)]
+    [string[]]
+    $Description,
+
+# Subscription Name
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('Name')]
+    [ValidateNotNullOrEmpty()]
+    [ValidateLength(0,100)]
+    [string[]]
+    $SubscriptionName,
+
+# Subscription ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[long][]]
+    $id,
 
 # Period Type
     [Parameter(
@@ -197,51 +233,6 @@ Set-AtwsSubscription
     [string[]]
     $PeriodType,
 
-# Purchase Order Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string[]]
-    $PurchaseOrderNumber,
-
-# Type
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Label) + (Get-AtwsPicklistValue -Entity Subscription -FieldName Status -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string[]]
-    $Status,
-
-# Subscription Name
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Alias('Name')]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $SubscriptionName,
-
-# Total Cost
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Nullable[decimal][]]
-    $TotalCost,
-
 # Total Price
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -249,12 +240,21 @@ Set-AtwsSubscription
     [Nullable[decimal][]]
     $TotalPrice,
 
-# Vendor ID
+# Expiration Date
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Nullable[Int][]]
-    $VendorID,
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $ExpirationDate,
+
+# Effective Date
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[datetime][]]
+    $EffectiveDate,
 
     [Parameter(
       ParametersetName = 'By_parameters'

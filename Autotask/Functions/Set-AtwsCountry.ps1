@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -72,7 +72,7 @@ Get-AtwsCountry
     [switch]
     $PassThru,
 
-# Active
+# Quote Template ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -82,8 +82,46 @@ Get-AtwsCountry
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[boolean]]
-    $Active,
+    [Nullable[Int]]
+    $QuoteTemplateID,
+
+# Invoice Template ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [Nullable[Int]]
+    $InvoiceTemplateID,
+
+# Purchase Order Template ID
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ArgumentCompleter({
+      param($Cmd, $Param, $Word, $Ast, $FakeBound)
+      Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label -Quoted
+    })]
+    [ValidateScript({
+      $set = (Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label) + (Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Value)
+      if ($_ -in $set) { return $true}
+      else {
+        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
+        Return $false
+      }
+    })]
+    [string]
+    $PurchaseOrderTemplateID,
 
 # Address Format ID
     [Parameter(
@@ -128,7 +166,7 @@ Get-AtwsCountry
     [string]
     $DisplayName,
 
-# Invoice Template ID
+# Active
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -138,8 +176,8 @@ Get-AtwsCountry
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [Nullable[Int]]
-    $InvoiceTemplateID,
+    [Nullable[boolean]]
+    $Active,
 
 # Default Country
     [Parameter(
@@ -152,45 +190,7 @@ Get-AtwsCountry
       ParametersetName = 'By_Id'
     )]
     [Nullable[boolean]]
-    $IsDefaultCountry,
-
-# Purchase Order Template ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Label) + (Get-AtwsPicklistValue -Entity Country -FieldName PurchaseOrderTemplateID -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
-    [string]
-    $PurchaseOrderTemplateID,
-
-# Quote Template ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[Int]]
-    $QuoteTemplateID
+    $IsDefaultCountry
   )
 
     begin {

@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,13 +97,13 @@ Remove-AtwsAccountTeam
     [switch]
     $All,
 
-# Client
+# Resource
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $AccountID,
+    $ResourceID,
 
 # Associated As Comanaged
     [Parameter(
@@ -120,13 +120,13 @@ Remove-AtwsAccountTeam
     [Nullable[long][]]
     $id,
 
-# Resource
+# Client
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[long][]]
-    $ResourceID,
+    $AccountID,
 
     [Parameter(
       ParametersetName = 'By_parameters'

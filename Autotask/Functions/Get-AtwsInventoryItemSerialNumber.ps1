@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -97,13 +97,14 @@ Set-AtwsInventoryItemSerialNumber
     [switch]
     $All,
 
-# Inventory Item Serial Number ID
+# Serial Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [ValidateLength(0,100)]
+    [string[]]
+    $SerialNumber,
 
 # Inventory Item ID
     [Parameter(
@@ -113,14 +114,13 @@ Set-AtwsInventoryItemSerialNumber
     [Nullable[long][]]
     $InventoryItemID,
 
-# Serial Number
+# Inventory Item Serial Number ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $SerialNumber,
+    [Nullable[long][]]
+    $id,
 
     [Parameter(
       ParametersetName = 'By_parameters'

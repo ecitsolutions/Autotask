@@ -1,4 +1,4 @@
-#Requires -Version 5.0
+﻿#Requires -Version 5.0
 <#
     .COPYRIGHT
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -76,21 +76,6 @@ Get-AtwsProductTier
     [switch]
     $PassThru,
 
-# Unit Cost
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[decimal]]
-    $UnitCost,
-
 # Unit Price
     [Parameter(
       ParametersetName = 'Input_Object'
@@ -104,7 +89,22 @@ Get-AtwsProductTier
     )]
     [ValidateNotNullOrEmpty()]
     [Nullable[decimal]]
-    $UnitPrice
+    $UnitPrice,
+
+# Unit Cost
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      Mandatory = $true,
+      ParametersetName = 'By_parameters'
+    )]
+    [Parameter(
+      ParametersetName = 'By_Id'
+    )]
+    [ValidateNotNullOrEmpty()]
+    [Nullable[decimal]]
+    $UnitCost
   )
 
     begin {
