@@ -142,7 +142,7 @@ Set-AtwsInstalledProductTypeUdfAssociation
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject.add((New-Object -TypeName Autotask.$entityName))
+            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments

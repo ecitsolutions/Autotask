@@ -116,7 +116,7 @@ Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the W
         }
         else {
             Write-Debug -Message ('{0}: Creating empty [Autotask.{1}]' -F $MyInvocation.MyCommand.Name, $entityName)
-            $inputObject.add((New-Object -TypeName Autotask.$entityName))
+            $inputObject = @($(New-Object -TypeName Autotask.$entityName))
         }
 
         # Prepare shouldProcess comments
