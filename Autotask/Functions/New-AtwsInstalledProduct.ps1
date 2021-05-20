@@ -1063,8 +1063,15 @@ Set-AtwsInstalledProduct
             }
             catch {
                 # Write a debug message with detailed information to developers
-                $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
-                $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                $ex = $_
+                $message = ""
+                do { 
+                    $reason = ("{0}: {1}" -f $ex.CategoryInfo.Category, $ex.CategoryInfo.Reason)
+                    $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $ex.Exception.Message, $ex.InvocationInfo.Line, $reason, $ex.ScriptStackTrace
+                    $ex = $ex.InnerException
+                }
+                until (-not ($ex))
+
                 Write-Debug $message
 
                 # Pass on the error
