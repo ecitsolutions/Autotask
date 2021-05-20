@@ -62,14 +62,13 @@
             }
             catch {
                 # Write a debug message with detailed information to developers
-                $ex = $_
-                $message = ""
-                do { 
-                    $reason = ("{0}: {1}" -f $ex.CategoryInfo.Category, $ex.CategoryInfo.Reason)
-                    $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $ex.Exception.Message, $ex.InvocationInfo.Line, $reason, $ex.ScriptStackTrace
+                $ex = $_.Exception
+                $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
+                $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $ex.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                while ($ex.InnerException) { 
                     $ex = $ex.InnerException
+                    $message = "InnerException: {0}`n{1}" -F $ex.Message, $message
                 }
-                until (-not ($ex))
 
                 Write-Debug $message
 
