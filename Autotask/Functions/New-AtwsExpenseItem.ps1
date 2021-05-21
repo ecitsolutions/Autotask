@@ -375,8 +375,14 @@ Set-AtwsExpenseItem
             }
             catch {
                 # Write a debug message with detailed information to developers
+                $ex = $_.Exception
                 $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
-                $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $ex.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                while ($ex.InnerException) { 
+                    $ex = $ex.InnerException
+                    $message = "InnerException: {0}`n{1}" -F $ex.Message, $message
+                }
+
                 Write-Debug $message
 
                 # Pass on the error
