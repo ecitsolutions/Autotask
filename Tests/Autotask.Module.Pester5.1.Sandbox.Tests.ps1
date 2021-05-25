@@ -672,7 +672,7 @@ Describe "New- Entities tests." {
         }
 
         $NewTypedVariant = [System.Collections.Generic.List[Autotask.InstalledProduct]]::new()
-        0..1 | ForEach-Object {
+        0..0 | ForEach-Object {
             $Item = [Autotask.InstalledProduct]@{
                 AccountID         = 0;
                 Active            = $true
