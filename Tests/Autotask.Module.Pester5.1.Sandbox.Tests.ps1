@@ -672,7 +672,7 @@ Describe "New- Entities tests." {
         }
 
         $NewTypedVariant = [System.Collections.Generic.List[Autotask.InstalledProduct]]::new()
-        0..0 | ForEach-Object {
+        0..1| ForEach-Object {
             $Item = [Autotask.InstalledProduct]@{
                 AccountID         = 0;
                 Active            = $true
@@ -684,6 +684,10 @@ Describe "New- Entities tests." {
 
             $NewTypedVariant.add($Item)
         }
+
+        # Add last created item to a generic list with a single item
+        $CollectiontWithSingleNewItem = [System.Collections.Generic.List[Autotask.InstalledProduct]]::new()
+        $CollectiontWithSingleNewItem.add($Item)
 
         $Contacts = Get-AtwsContact -FirstName 'Bjørn' -Like FirstName -Active $true
         $ContactGroup = New-AtwsContactGroup -Active $true -Name ("All Bears in the hood {0}" -f (New-Guid).Guid.Substring(0, 7))
@@ -709,8 +713,14 @@ Describe "New- Entities tests." {
         It "Should not throw when creating one or more new installedProducts." {
             { New-AtwsInstalledProduct -InputObject $NewItems } | Should -Not -Throw
         }
-        It "Should not throw if the colletion is typed either." {
+        It "Should not throw with just 1 input object." {
+            { New-AtwsInstalledProduct -InputObject $NewItems[0] } | Should -Not -Throw
+        }
+        It "Should not throw if the collection is typed either." {
             { New-AtwsInstalledProduct -InputObject $NewTypedVariant } | Should -Not -Throw
+        }
+        It "Should not throw if the collection is typed and containing just a single item." {
+            { New-AtwsInstalledProduct -InputObject $CollectiontWithSingleNewItem } | Should -Not -Throw
         }
     }
 
