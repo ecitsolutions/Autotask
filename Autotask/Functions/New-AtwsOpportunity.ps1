@@ -70,6 +70,15 @@ Set-AtwsOpportunity
     [Autotask.Opportunity[]]
     $InputObject,
 
+# User defined fields already setup i Autotask
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [ValidateNotNullOrEmpty()]
+    [Autotask.UserDefinedField[]]
+    $UserDefinedFields,
+
 # AccountObjectID
     [Parameter(
       Mandatory = $true,

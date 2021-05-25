@@ -115,6 +115,15 @@ Set-AtwsProduct
     [switch]
     $All,
 
+# A single user defined field can be used pr query
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [ValidateNotNullOrEmpty()]
+    [Autotask.UserDefinedField]
+    $UserDefinedField,
+
 # Active
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -390,69 +399,70 @@ Set-AtwsProduct
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingType', 'CostAllocationCodeID', 'DefaultInstalledProductCategoryID', 'DefaultVendorID', 'Description', 'ExternalProductID', 'id', 'ImpersonatorCreatorResourceID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'MarkupRate', 'MSRP', 'Name', 'PeriodType', 'PriceCostMethod', 'ProductAllocationCodeID', 'ProductCategory', 'SKU', 'UnitCost', 'UnitPrice', 'VendorProductNumber')]
+    [ValidateSet('BillingType', 'CostAllocationCodeID', 'DefaultInstalledProductCategoryID', 'DefaultVendorID', 'Description', 'ExternalProductID', 'id', 'ImpersonatorCreatorResourceID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'MarkupRate', 'MSRP', 'Name', 'PeriodType', 'PriceCostMethod', 'ProductAllocationCodeID', 'ProductCategory', 'SKU', 'UnitCost', 'UnitPrice', 'UserDefinedField', 'VendorProductNumber')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingType', 'CostAllocationCodeID', 'DefaultInstalledProductCategoryID', 'DefaultVendorID', 'Description', 'ExternalProductID', 'id', 'ImpersonatorCreatorResourceID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'MarkupRate', 'MSRP', 'Name', 'PeriodType', 'PriceCostMethod', 'ProductAllocationCodeID', 'ProductCategory', 'SKU', 'UnitCost', 'UnitPrice', 'VendorProductNumber')]
+    [ValidateSet('BillingType', 'CostAllocationCodeID', 'DefaultInstalledProductCategoryID', 'DefaultVendorID', 'Description', 'ExternalProductID', 'id', 'ImpersonatorCreatorResourceID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'MarkupRate', 'MSRP', 'Name', 'PeriodType', 'PriceCostMethod', 'ProductAllocationCodeID', 'ProductCategory', 'SKU', 'UnitCost', 'UnitPrice', 'UserDefinedField', 'VendorProductNumber')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingType', 'CostAllocationCodeID', 'DefaultInstalledProductCategoryID', 'DefaultVendorID', 'Description', 'ExternalProductID', 'id', 'ImpersonatorCreatorResourceID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'MarkupRate', 'MSRP', 'Name', 'PeriodType', 'PriceCostMethod', 'ProductAllocationCodeID', 'ProductCategory', 'SKU', 'UnitCost', 'UnitPrice', 'VendorProductNumber')]
+    [ValidateSet('BillingType', 'CostAllocationCodeID', 'DefaultInstalledProductCategoryID', 'DefaultVendorID', 'Description', 'ExternalProductID', 'id', 'ImpersonatorCreatorResourceID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'MarkupRate', 'MSRP', 'Name', 'PeriodType', 'PriceCostMethod', 'ProductAllocationCodeID', 'ProductCategory', 'SKU', 'UnitCost', 'UnitPrice', 'UserDefinedField', 'VendorProductNumber')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BillingType', 'CostAllocationCodeID', 'DefaultInstalledProductCategoryID', 'DefaultVendorID', 'Description', 'ExternalProductID', 'id', 'ImpersonatorCreatorResourceID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'MarkupRate', 'MSRP', 'Name', 'PeriodType', 'PriceCostMethod', 'ProductAllocationCodeID', 'ProductCategory', 'SKU', 'UnitCost', 'UnitPrice', 'VendorProductNumber')]
+    [ValidateSet('BillingType', 'CostAllocationCodeID', 'DefaultInstalledProductCategoryID', 'DefaultVendorID', 'Description', 'ExternalProductID', 'id', 'ImpersonatorCreatorResourceID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'MarkupRate', 'MSRP', 'Name', 'PeriodType', 'PriceCostMethod', 'ProductAllocationCodeID', 'ProductCategory', 'SKU', 'UnitCost', 'UnitPrice', 'UserDefinedField', 'VendorProductNumber')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'ExternalProductID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'Name', 'PeriodType', 'SKU', 'VendorProductNumber')]
+    [ValidateSet('Description', 'ExternalProductID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'Name', 'PeriodType', 'SKU', 'UserDefinedField', 'VendorProductNumber')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'ExternalProductID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'Name', 'PeriodType', 'SKU', 'VendorProductNumber')]
+    [ValidateSet('Description', 'ExternalProductID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'Name', 'PeriodType', 'SKU', 'UserDefinedField', 'VendorProductNumber')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'ExternalProductID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'Name', 'PeriodType', 'SKU', 'VendorProductNumber')]
+    [ValidateSet('Description', 'ExternalProductID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'Name', 'PeriodType', 'SKU', 'UserDefinedField', 'VendorProductNumber')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'ExternalProductID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'Name', 'PeriodType', 'SKU', 'VendorProductNumber')]
+    [ValidateSet('Description', 'ExternalProductID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'Name', 'PeriodType', 'SKU', 'UserDefinedField', 'VendorProductNumber')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('Description', 'ExternalProductID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'Name', 'PeriodType', 'SKU', 'VendorProductNumber')]
+    [ValidateSet('Description', 'ExternalProductID', 'InternalProductID', 'Link', 'ManufacturerName', 'ManufacturerProductName', 'Name', 'PeriodType', 'SKU', 'UserDefinedField', 'VendorProductNumber')]
     [string[]]
     $Contains,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateSet('UserDefinedField')]
     [string[]]
     $IsThisDay
   )

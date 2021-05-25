@@ -74,6 +74,17 @@ Get-AtwsProject
     [switch]
     $PassThru,
 
+# User defined fields already setup i Autotask
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [Autotask.UserDefinedField[]]
+    $UserDefinedFields,
+
 # Business Division Subdivision ID
     [Parameter(
       ParametersetName = 'Input_Object'

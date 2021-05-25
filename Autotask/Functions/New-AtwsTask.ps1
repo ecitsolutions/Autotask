@@ -63,6 +63,15 @@ Set-AtwsTask
     [Autotask.Task[]]
     $InputObject,
 
+# User defined fields already setup i Autotask
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [ValidateNotNullOrEmpty()]
+    [Autotask.UserDefinedField[]]
+    $UserDefinedFields,
+
 # Account Physical Location ID
     [Parameter(
       ParametersetName = 'By_parameters'
