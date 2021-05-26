@@ -73,7 +73,7 @@ Function Update-AtwsObjectsWithParameters {
 
             # Limit processing to parameter that match an existing field
             if (($field) -or $parameter.Key -eq 'UserDefinedFields') {
-                if ($field.IsPickList) {
+                if ($field.IsPickList -and -not ($parameter.Value -as [int])) {
                     if ($field.PickListParentValueField) {
                         # There is a parent field. The selection of this field depends on parent
                         $parentField = $fields[$field.PickListParentValueField]
