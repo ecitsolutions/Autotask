@@ -166,7 +166,12 @@ Set-AtwsTicketChecklistItem
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)
 
             # Copy the input array to the processObject collection
-            [collections.generic.list[psobject]]$processObject = $InputObject
+            if ($InputObject.count -gt 1) { 
+                [collections.generic.list[psobject]]$processObject = $InputObject
+            }
+            else {
+                $processObject.add($InputObject[0])
+            }
 
             # If any objects has the ID property set to a value, the sum of all IDs will be larger than zero
             $sum = ($processObject | Measure-Object -Property Id -Sum).Sum
