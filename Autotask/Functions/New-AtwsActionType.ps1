@@ -140,15 +140,21 @@ Set-AtwsActionType
         if ($InputObject) {
             Write-Verbose -Message ('{0}: Copy Object mode: Setting ID property to zero' -F $MyInvocation.MyCommand.Name)
 
-            # Check if any objects already has value in its ID property. All IDs must be zero, or the API will update
-            # the existing object. Will only happen if you try to clone an existing object by passing it to New-*
-            $sum = ($InputObject | Measure-Object -Property id).sum
+            # Copy the input array to the processObject collection
+            if ($InputObject.count -gt 1) { 
+                [collections.generic.list[psobject]]$processObject = $InputObject
+            }
+            else {
+                $processObject.add($InputObject[0])
+            }
+
+            # If any objects has the ID property set to a value, the sum of all IDs will be larger than zero
+            $sum = ($processObject | Measure-Object -Property Id -Sum).Sum
 
             # If $sum has value we must reset object IDs or we will modify existing objects, not create new ones
             if ($sum -gt 0) {
-                foreach ($object in $InputObject) {
+                foreach ($object in $processObject) {
                     $object.Id = $null
-                    $processObject.add($object)
                 }
             }
         }
@@ -174,8 +180,14 @@ Set-AtwsActionType
             }
             catch {
                 # Write a debug message with detailed information to developers
+                $ex = $_.Exception
                 $reason = ("{0}: {1}" -f $_.CategoryInfo.Category, $_.CategoryInfo.Reason)
-                $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $_.Exception.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                $message = "{2}: {0}`r`n`r`nLine:{1}`r`n`r`nScript stacktrace:`r`n{3}" -f $ex.Message, $_.InvocationInfo.Line, $reason, $_.ScriptStackTrace
+                while ($ex.InnerException) { 
+                    $ex = $ex.InnerException
+                    $message = "InnerException: {0}`n{1}" -F $ex.Message, $message
+                }
+
                 Write-Debug $message
 
                 # Pass on the error

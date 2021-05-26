@@ -74,6 +74,17 @@ Get-AtwsTask
     [switch]
     $PassThru,
 
+# User defined fields already setup i Autotask
+    [Parameter(
+      ParametersetName = 'Input_Object'
+    )]
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Alias('UDF')]
+    [Autotask.UserDefinedField[]]
+    $UserDefinedFields,
+
 # Account Physical Location ID
     [Parameter(
       ParametersetName = 'Input_Object'

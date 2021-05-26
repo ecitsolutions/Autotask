@@ -107,7 +107,7 @@ Function Set-AtwsData {
                     $duplicates = $result.EntityReturnInfoResults | Where-Object { $_.DuplicateStatus.Found -and -not $_.DuplicateStauts.Ignored }
 
                     foreach ($duplicate in $duplicates) {
-                        Write-Warning ('{0}: Duplicate found for Object Id {1} on {2}' -F $MyInvocation.MyCommand.Name, $duplicate.EntityId, $duplicate.DuplicateStatus.MatchInfo)
+                        Write-Warning ('The API responded: Duplicate found for Object Id {0} on {1}' -F $duplicate.EntityId, $duplicate.DuplicateStatus.MatchInfo)
                     }
                 }
                 else {

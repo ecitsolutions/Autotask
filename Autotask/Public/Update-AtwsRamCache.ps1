@@ -46,6 +46,9 @@ Function Update-AtwsRamCache {
         # Load current API version from API
         $CurrentApiVersion = $Script:Atws.GetWsdlVersion($Script:Atws.IntegrationsValue)
         $CacheApiVersion = $Script:FieldInfoCache.ApiVersion.Tostring()
+
+        # Define all known entities that support UDFs (not available programatically from the API)
+        $supportsUdf = @('Account', 'AccountLocation', 'Contact', 'Contract', 'InstalledProduct', 'Opportunity', 'Product', 'Project', 'SalesOrder', 'Task', 'Ticket')
     }
 
     Process { 
@@ -93,6 +96,13 @@ Function Update-AtwsRamCache {
                     $entityinfo[$property.Name] = $property.Value
                     $baseentity[$property.Name] = $property.Value
                 }
+
+                # Extra check for fields that should support UDFs, but where there may no have been defined
+                # any yet. Any object that has UDFs defined will already have this property set to $true
+                if ($object.name -in $supportsUdf) {
+                    $entityinfo['HasUserDefinedFields'] = $true
+                }
+
                 $Script:FieldInfoCache[$object.Name] = $entityinfo
 
                 # Lookup FieldInfo from API
