@@ -38,7 +38,7 @@ Get-AtwsAccount -id 0
 # New options, can be changed at runtime with Set-AtwsModuleConfiguration
 New-AtwsModuleConfiguration -PickListExpansion <String> (Disabled|Inline|Labelfield)
 New-AtwsModuleConfiguration -UdfExpansion <String>      (Disabled|Inline|Hashtable)
-New-AtwsModuleConfiguration -DateConversion <String>    (Disabled|Local|speficic/timezone)
+New-AtwsModuleConfiguration -DateConversion <String>    (Disabled|Local|specific/timezone)
 
 Get-Help New-AtwsModuleConfiguration
 ```
