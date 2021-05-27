@@ -469,6 +469,47 @@ Describe "DateTime tests" {
         } 
         
     }
+
+    Context "Test dateconversion code on all options" {
+        
+        BeforeAll {
+            if ($IsWindows) {
+                $timezoneid = 'Turkey Standard Time'
+            }
+            else {
+                $timezoneid = 'Europe/Istanbul'
+            }
+        }
+
+        It "Dateconversion = disabled" {
+            Set-AtwsModuleConfiguration -DateConversion Disabled
+            $Products = Get-AtwsInstalledProduct -Type Server -Active $true -AccountID 0 | Select-Object -First 30
+            $Products.Count | Should -Be 30
+            { Set-AtwsInstalledProduct -InputObject $Products -Type Server } | Should -not -Throw
+        }
+
+        It "Dateconversion = local" {
+            Set-AtwsModuleConfiguration -DateConversion Local
+            $Products = Get-AtwsInstalledProduct -Type Server -Active $true -AccountID 0 | Select-Object -First 30
+            $Products.Count | Should -Be 30
+            { Set-AtwsInstalledProduct -InputObject $Products -Type Server } | Should -Not -Throw
+        }
+
+        It "Dateconversion = UTC" {
+            Set-AtwsModuleConfiguration -DateConversion UTC
+            $Products = Get-AtwsInstalledProduct -Type Server -Active $true -AccountID 0 | Select-Object -First 30
+            $Products.Count | Should -Be 30
+            { Set-AtwsInstalledProduct -InputObject $Products -Type Server } | Should -Not -Throw
+        }
+
+        It "Dateconversion = Europe/Istanbul" {
+            Set-AtwsModuleConfiguration -DateConversion $timezoneid
+            $Products = Get-AtwsInstalledProduct -Type Server -Active $true -AccountID 0 | Select-Object -First 30
+            $Products.Count | Should -Be 30
+            { Set-AtwsInstalledProduct -InputObject $Products } | Should -Not -Throw
+        }
+
+    }
     
 }
 
