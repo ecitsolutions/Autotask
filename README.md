@@ -8,6 +8,7 @@
 * [Disclaimer and Warning](#disclaimer-and-warning)
 * [Release Notes](#release-notes)
 * [How to connect][8]
+* [How to connect on Azure][12]
 * [How to *Get* data from the API][4]
 * [How to create *New* entities through the API][5]
 * [How to *Update* (make changes) to entities][6]
@@ -371,3 +372,4 @@ We didn't pay enough attention to changes between releases before this.
 [9]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/Best%20Practices.md
 [10]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/Null%values.md
 [11]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/User%Defined%20Fields.md
+[12]: https://github.com/ecitsolutions/Autotask/blob/master/Docs/How%20to%20connect%20on%20Azure.md

@@ -335,6 +335,24 @@ Describe "Parameter value can be LabelID and LabelTekst" {
             { New-AtwsTicket -IssueType Network/Firewall/AP -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling' } | Should -Not -Throw
             { New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling' } | Should -Not -Throw
         }
+
+        It "Does not throw" {
+            $ticket_params = @{
+                QueueID          = 30273836 #'Operations - Alert Management'
+                AccountID        = 0
+                Title            = "Meraki enheter uten riktig produktkode $((Get-Date).tostring('dd.MM HH:mm'))"
+                Description      = ""
+                TicketCategory   = 3 #'Standard'
+                TicketType       = 5 #'Alert'
+                Status           = 1 #'New'
+                Priority         = 2 #'Medium'
+                ContractID       = '30390790'
+                AllocationCodeID = '29682801' #Samme som Work Type i GUI
+            }
+    
+            { $ticket = New-AtwsTicket @ticket_params } | Should -Not -Throw
+
+        }
     }
 }
 
