@@ -172,7 +172,7 @@ Function Set-AtwsModuleConfiguration {
         )]
         [ArgumentCompleter( {
                 param($Cmd, $Param, $Word, $Ast, $FakeBound)
-                $(Get-ChildItem -Path $(Split-Path -Parent $profile) -Filter "*.clixml").FullName
+                $(Get-ChildItem -Path $Global:AtwsModuleConfigurationPath -Filter "*.clixml").FullName
             })]
         [ValidateScript( { 
                 Test-Path $_
@@ -180,7 +180,7 @@ Function Set-AtwsModuleConfiguration {
         [IO.FileInfo]
         [alias('ProfilePath')]
         # Full path to an alternate configuration file you want the profile to be saved to. Optional.
-        $Path = $(Join-Path -Path $(Split-Path -Parent $profile) -ChildPath AtwsConfig.clixml),
+        $Path = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
         # Use this parameter to save to another configuration name.
         [Parameter(
