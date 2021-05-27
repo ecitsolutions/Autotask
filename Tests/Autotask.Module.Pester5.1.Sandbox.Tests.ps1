@@ -331,15 +331,15 @@ Describe "SQL Query nested too deep error" {
 Describe "Parameter value can be LabelID and LabelTekst" {
     Context "LabelID and LabelText can be sent to ticket" {
         
-        It "Does not throw" {
+        It "Creating 2 tickets by parameters, one with text label and one with integer id of picklist" {
             { New-AtwsTicket -IssueType Network/Firewall/AP -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling' } | Should -Not -Throw
             { New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling' } | Should -Not -Throw
         }
 
-        It "Does not throw" {
+        It "Creating a ticket only using picklist ids, no text labels" {
             $ticket_params = @{
                 QueueID          = 30273836 #'Operations - Alert Management'
-                AccountID        = 0
+                AccountID        = 29684055
                 Title            = "Meraki enheter uten riktig produktkode $((Get-Date).tostring('dd.MM HH:mm'))"
                 Description      = ""
                 TicketCategory   = 3 #'Standard'
