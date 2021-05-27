@@ -108,8 +108,8 @@ Function ConvertTo-LocalObject {
                     if (-not ($value)) {
                         Continue
                     }
-                    # Convert the datetime to LocalTime unless it is a date
-                    If ($object.$DateTimeParam -ne $object.$DateTimeParam.Date) {
+                    # Convert the datetime to LocalTime unless it is a date and isn't local time already
+                    If ($object.$DateTimeParam -ne $object.$DateTimeParam.Date -and $object.$DateTimeParam.Kind -notin 'Local', 'Utc') {
 
                         # Convert the datetime from EST back to local time
                         $object.$dateTimeParam = [TimeZoneInfo]::ConvertTime($value, $EST, $timezone)

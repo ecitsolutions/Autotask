@@ -473,7 +473,7 @@ Describe "DateTime tests" {
     Context "Test dateconversion code on all options" {
         
         BeforeAll {
-            if ($IsWindows) {
+            if ($IsWindows -or $PSVersionTable.PSVersion.Major -lt 6) {
                 $timezoneid = 'Turkey Standard Time'
             }
             else {
