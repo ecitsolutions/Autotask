@@ -16,18 +16,28 @@ Function Connect-AtwsWebAPI {
             WSDL definition file, creates all entity classes in PowerShell and exposes the basic methods
             (query(), create(), update(), remove(), GetEntityInfo(), GetFieldInfo() and a few more). 
         .INPUTS
-            A PSCredential object. Required. It will prompt for credentials if the object is not provided.
+            Nothing
         .OUTPUTS
-            A webserviceproxy object is created.
+            Nothing
         .EXAMPLE
             Connect-AtwsWebAPI
-            Prompts for a username and password and authenticates to Autotask
+            If there doesn't exist any saved Default connection profile it prompts for a username and password and authenticates to Autotask. Otherwise it loads the connection profile named "Default" and connects.
         .EXAMPLE
-            Connect-AtwsWebAPI
+            Connect-AtwsWebAPI -ProfileName Sandbox
+            Loads the connection profile named 'Sandbox' and connects. If there are no saved connection profile called 'Sandbox' it throws an exception and exits.
+        .EXAMPLE
+            Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiKey
+            Connects to Autotask using the credentials passed as parameters
+        .EXAMPLE
+            New-AtwsModuleConfiguration -Credential $Credential -ApiTrackingIdentifier $ApiKey -Dateconversion Disabled | Connect-AtwsWebAPI
+            Creates a new module configuration object with date conversion between EST (the Autotask API always uses EST no matter which data center you are connected to) and local time disabled.
         .NOTES
             NAME: Connect-AtwsWebAPI
         .LINK
-            Get-AtwsData
+            New-AtwsModuleConfiguration
+            Save-AtwsModuleConfiguration
+            Set-AtwsModuleConfiguration
+            Get-AtwsModuleConfiguration
   #>
 	
     [cmdletbinding(
@@ -43,6 +53,7 @@ Function Connect-AtwsWebAPI {
         )]
         [ValidateNotNullOrEmpty()]    
         [pscredential]
+        # The username and password for your Autotask API user
         $Credential,
     
         [Parameter(
@@ -50,6 +61,7 @@ Function Connect-AtwsWebAPI {
             ParameterSetName = 'Parameters'
         )]
         [string]
+        # The API tracking identifier from your Autotask API user
         $ApiTrackingIdentifier,
     
         [Parameter(
@@ -57,6 +69,7 @@ Function Connect-AtwsWebAPI {
         )]
         [Alias('Picklist', 'UsePickListLabels')]
         [switch]
+        # Have the module substitute all picklist ids for their textlabel at runtime
         $ConvertPicklistIdToLabel,
     
         [Parameter(
@@ -72,12 +85,14 @@ Function Connect-AtwsWebAPI {
                 }
             })]
         [string]
+        # Not used. Kept for backwards compatility. Will be removed soon.
         $Prefix,
 
         [Parameter(
             ParameterSetName = 'Parameters'
         )]
         [switch]
+        # Not used. Kept for backwards compatility. Will be removed soon.
         $RefreshCache,
 
     
@@ -85,6 +100,7 @@ Function Connect-AtwsWebAPI {
             ParameterSetName = 'Parameters'
         )]
         [switch]
+        # Not used. Kept for backwards compatility. Will be removed soon.
         $NoDiskCache,
     
         [Parameter(
@@ -106,6 +122,7 @@ Function Connect-AtwsWebAPI {
             })]
         [pscustomobject]
         [alias('Configuration', 'Profile')]
+        # A module configuration object created with New-AtwsModuleConfiguration
         $AtwsModuleConfiguration,
     
         [Parameter(
@@ -120,6 +137,7 @@ Function Connect-AtwsWebAPI {
             })]
         [Alias('Path')]
         [IO.FileInfo]
+        # The path to an alternate clixml file with connection profiles
         $ProfilePath = $(Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml),
 
         # Name of the Configuration inside the Config file.
@@ -142,6 +160,7 @@ Function Connect-AtwsWebAPI {
                 }
             })]
         [alias('Name')]
+        # The name for the connection profile you want to use. Default is "Default".
         [string]
         $ProfileName = 'Default'
     )
