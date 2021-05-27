@@ -6,13 +6,13 @@ To connect to the Autotask API on Azure you need the **username and password of 
 
 If you are using the module from an Azure PowerShell runbook you should add the following resources to your automation account:
 
-* AtwsDefaultCredential [credential] - Your Autotask API user stored as a credential object
-* AtwsDefaultSecureIdentifier [string] - The cleartext tracking identifier from your Autotask API user
+* `AtwsDefaultCredential [credential]` - Your Autotask API user stored as a credential object
+* `AtwsDefaultSecureIdentifier [string]` - The cleartext tracking identifier from your Autotask API user
 
 ## Azure Functions
 
 To connect automatically from an Azure Function you need to create 3 environment variables:
 
-* AtwsUsername [string] - the username for your Autotask API user
-* AtwsPassword [string] - the cleartext password for your Autotask API user
-* AtwsTrackingIdentifier [string] - the cleartext tracking identifier from your Autotask API user
+* `AtwsUsername [string]` - the username for your Autotask API user
+* `AtwsPassword [string]` - the cleartext password for your Autotask API user
+* `AtwsTrackingIdentifier [string]` - the cleartext tracking identifier from your Autotask API user
