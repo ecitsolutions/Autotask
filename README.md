@@ -50,6 +50,32 @@ Get-Help New-AtwsModuleConfiguration
 
 ## Release notes
 
+### Version 2.0.0 - ArgumentCompleter release - disk cache no longer needed
+
+* NEW: Module finally supports automatic loading - just install module and run a command to automatically connect (if you do not have a saved profile yet you will be prompted for credentials interactively)
+* NEW: Support automatic connection on Azure Automation (runbooks) and Azure Functions without separate connection code
+* NEW: A fix for the 'SQL too nested' error has been found that cover most use cases
+* NEW: Conversion of datetime to/from local time is now configurable `Set-AtwsModuleConfiguration -DateConversion (Disabled|Local|'specific/timezone')`
+* NEW: UserDefinedFields can now be added to return object as separate properties or a hashtable (object.UDF) `Set-AtwsModuleConfiguration -UdfExpansion (Disabled|Inline|Hashtable)`
+* NEW: Properties with picklists can now have index values replaced with text labels or have text labels added as extra property `Set-AtwsModuleConfiguration -PicklistExpansion (Disabled|Inline|LabelField)`
+* NEW: Support for named configurations. You can save different credentials to disk (NB! Credentials are only encrypted using SecureString!)
+* NEW: Connect-AtwsWebApi can now run without parameters, provided you have saved a Default connection profile
+* UPDATE: New parameters for Connect-AtwsWebApi are AtwsModuleConfiguration, AtwsModuleConfigurationName and AtwsModuleConfigurationPath (with short aliases)
+* NEW: New function New-AtwsModuleConfiguration, required parameters are Credential and SecureTrackingIdentifier, ProfileName is optional (see Get-Help New-AtwsModuleConfiguration)
+* NEW: New function Get-AtwsModuleConfiguration, required parameter is Name (ProfileName)
+* NEW: New function Save-AtwsModuleConfiguration, required parameters are none (will save current credentials and settings to disk as Default profile)
+* NEW: New function Set-AtwsModuleConfiguration, required parameters are at least one (no point in running it if you don't want to change anything)
+* NEW: New function Remove-AtwsModuleConfiguration, required parameter is Name (ProfileName)
+* NEW: Errorlimit for bulk updates (default 10) has been exposed
+* NEW: Added function Build-AtwsModule as wrapper for complete refresh of module from API. Can be used when your tenant has received an API upgrade before I have access to the same API version to build an upgrade
+* NEW: Added custom mime mapping function Get-AtwsMindMapping. No access to system.web.mimemapping from powershell 7
+* NEW: New function Get-AtwsPicklistValue -Entity $entityName -FieldName $fieldName for easy access to picklist values and labels
+* UPDATE: Replaced `[ValidateSet()]` with `[ArgumentCompleter()]` for picklist! No longer any need for a personal cache on disk! Just install the module, connect and go!
+* DEPRECATED: There is no longer any need to cache files to disk to support intellisense for picklists. Removed code for personal disk cache.
+* REQUIREMENT: Moved minimum PowerShell requirement up from 4 to 5.
+* BUGFIX: Set-ATWSTask -UDF in conjunction with -NoDiskCache (issue #103) fixed
+* BUGFIX: All bugs found in RC2 have been squashed
+
 ### Version 2.0.0-beta6 - Release candidate 2
 
 * UPDATE: Running Connect-AtwsWebApi without parameters or a saved profile will prompt for credentials and offer to save them
@@ -92,7 +118,7 @@ Get-Help New-AtwsModuleConfiguration
 * BUGFIX: Fixed issues where returned object was of wrong type, and of multiple arrays.
 * BUGFIX: Fixed issues where Set-Atws* did not work as the method .Update reference got an array of wrong type. ArrayLists works, but generic lists of correct type does not.
 
-### Version 2.0.0-beta2 - SPEED, SPEED, SPEED; Hashtables all the way down
+### Version 2.0.0-beta2 
 
 * NEW: Added function Build-AtwsModule as wrapper for complete refresh of module from API. Can be used when your tenant has received an API upgrade before I have access to the same API version to build an upgrade
 * NEW: Added custom mime mapping function Get-AtwsMindMapping. No access to system.web.mimemapping from powershell 7
