@@ -1,20 +1,21 @@
 {
   "providerId": "Microsoft.Tools.ServiceModel.Svcutil",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "options": {
     "inputs": [
-      "https://webservices.Autotask.net/atservices/1.6/atws.wsdl"
+      "https://webservices2.Autotask.net/atservices/1.6/atws.wsdl"
     ],
     "namespaceMappings": [
       "*, Autotask"
     ],
     "outputFile": "Reference.cs",
     "references": [
-      "System.Reflection.DispatchProxy, {System.Reflection.DispatchProxy, 4.5.0}",
-      "System.Security.AccessControl, {System.Security.AccessControl, 4.5.0}",
-      "System.Security.Cryptography.Xml, {System.Security.Cryptography.Xml, 4.5.0}",
-      "System.Security.Permissions, {System.Security.Permissions, 4.5.0}",
-      "System.Security.Principal.Windows, {System.Security.Principal.Windows, 4.5.0}"
+      "System.Reflection.DispatchProxy, {System.Reflection.DispatchProxy, 4.7.1}",
+      "System.Security.AccessControl, {System.Security.AccessControl, 4.7.0}",
+      "System.Security.Cryptography.Xml, {System.Security.Cryptography.Xml, 4.7.0}",
+      "System.Security.Permissions, {System.Security.Permissions, 4.7.0}",
+      "System.Security.Principal.Windows, {System.Security.Principal.Windows, 4.7.0}",
+      "System.Windows.Extensions, {System.Windows.Extensions, 4.7.0}"
     ],
     "sync": true,
     "targetFramework": "netcoreapp3.1",

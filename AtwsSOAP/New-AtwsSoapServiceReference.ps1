@@ -46,7 +46,7 @@ Function New-AtwsSoapServiceReference {
         $target = Join-Path $location '../Autotask/Private/Reference.cs'
         # no need for this patch any more
         #$patch = Join-Path $location 'Missing properties on EntityInfo.patch'
-        $uri = 'https://webservices.Autotask.net/atservices/1.6/atws.wsdl'
+        $uri = 'https://webservices2.Autotask.net/atservices/1.6/atws.wsdl'
 
         # Locate command. Should be in .dotnet/tools
         $dotnetsvcutil = Join-Path $HOME '.dotnet/tools/dotnet-svcutil'
