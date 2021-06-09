@@ -51,6 +51,10 @@ Get-Help New-AtwsModuleConfiguration
 
 ## Release notes
 
+### Version 2.0.1 - API version update to 1.6.9
+
+* NEW: Support for API version 1.6.9
+
 ### Version 2.0.0 - ArgumentCompleter release - disk cache no longer needed
 
 * NEW: Module finally supports automatic loading - just install module and run a command to automatically connect (if you do not have a saved profile yet you will be prompted for credentials interactively)
