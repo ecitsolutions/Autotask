@@ -130,7 +130,8 @@ Set-Alias -Scope Global -Name 'Connect-AutotaskWebAPI' -Value 'Connect-AtwsWebAP
 # This is now a REQUIREMENT to talk to the API endpoints
 $Protocol = [System.Net.ServicePointManager]::SecurityProtocol
 if ($Protocol.Tostring() -notlike '*Tls12*') {
-    [System.Net.ServicePointManager]::SecurityProtocol += 'tls12'
+    [System.Net.ServicePointManager]::SecurityProtocol += [System.Net.SecurityProtocolType]::Tls1
+    2
 }
 
 # Path to web service reference
