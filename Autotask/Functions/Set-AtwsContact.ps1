@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsContact -Id 0,4,8 | Set-AtwsContact -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContact
- .LINK
-Remove-AtwsContact
- .LINK
-Get-AtwsContact
+ Remove-AtwsContact
+ Get-AtwsContact
 
 #>
 

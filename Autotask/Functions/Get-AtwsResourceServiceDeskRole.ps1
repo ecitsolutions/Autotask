@@ -57,10 +57,10 @@ Returns any object with a ResourceServiceDeskRoleName that matches the simple pa
 Get-AtwsResourceServiceDeskRole -ResourceServiceDeskRoleName SomeName* -NotLike ResourceServiceDeskRoleName
 Returns any object with a ResourceServiceDeskRoleName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsResourceServiceDeskRole
- .LINK
-Set-AtwsResourceServiceDeskRole
+ Set-AtwsResourceServiceDeskRole
 
 #>
 

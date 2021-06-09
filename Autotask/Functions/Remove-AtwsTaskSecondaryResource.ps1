@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.TaskSecondaryResource that was p
 .EXAMPLE
 Remove-AtwsTaskSecondaryResource  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTaskSecondaryResource
- .LINK
-Get-AtwsTaskSecondaryResource
+ Get-AtwsTaskSecondaryResource
 
 #>
 

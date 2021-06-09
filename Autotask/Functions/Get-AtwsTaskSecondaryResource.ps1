@@ -57,10 +57,10 @@ Returns any object with a TaskSecondaryResourceName that matches the simple patt
 Get-AtwsTaskSecondaryResource -TaskSecondaryResourceName SomeName* -NotLike TaskSecondaryResourceName
 Returns any object with a TaskSecondaryResourceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTaskSecondaryResource
- .LINK
-Remove-AtwsTaskSecondaryResource
+ Remove-AtwsTaskSecondaryResource
 
 #>
 

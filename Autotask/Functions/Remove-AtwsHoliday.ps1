@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.Holiday that was passed to the f
 .EXAMPLE
 Remove-AtwsHoliday  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsHoliday
- .LINK
-Get-AtwsHoliday
- .LINK
-Set-AtwsHoliday
+ Get-AtwsHoliday
+ Set-AtwsHoliday
 
 #>
 

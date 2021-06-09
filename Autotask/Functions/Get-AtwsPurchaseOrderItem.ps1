@@ -57,10 +57,10 @@ Returns any object with a PurchaseOrderItemName that matches the simple pattern 
 Get-AtwsPurchaseOrderItem -PurchaseOrderItemName SomeName* -NotLike PurchaseOrderItemName
 Returns any object with a PurchaseOrderItemName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsPurchaseOrderItem
- .LINK
-Set-AtwsPurchaseOrderItem
+ Set-AtwsPurchaseOrderItem
 
 #>
 

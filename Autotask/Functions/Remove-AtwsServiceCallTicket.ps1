@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.ServiceCallTicket that was passe
 .EXAMPLE
 Remove-AtwsServiceCallTicket  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceCallTicket
- .LINK
-Get-AtwsServiceCallTicket
+ Get-AtwsServiceCallTicket
 
 #>
 

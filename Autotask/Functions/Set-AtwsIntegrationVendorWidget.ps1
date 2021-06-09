@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsIntegrationVendorWidget -Id 0,4,8 | Set-AtwsIntegrationVendorWidget -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsIntegrationVendorWidget
- .LINK
-Remove-AtwsIntegrationVendorWidget
- .LINK
-Get-AtwsIntegrationVendorWidget
+ Remove-AtwsIntegrationVendorWidget
+ Get-AtwsIntegrationVendorWidget
 
 #>
 

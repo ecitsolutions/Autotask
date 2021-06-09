@@ -47,10 +47,10 @@ Copies [Autotask.ContractTicketPurchase] by Id 124 to a new object through the W
 $result = Get-AtwsContractTicketPurchase -Id 124 | New-AtwsContractTicketPurchase | Set-AtwsContractTicketPurchase -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractTicketPurchase] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractTicketPurchase to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsContractTicketPurchase
- .LINK
-Set-AtwsContractTicketPurchase
+ Set-AtwsContractTicketPurchase
 
 #>
 

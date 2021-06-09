@@ -72,12 +72,11 @@ Returns any AccountWebhookUdfFields with property UdfFieldID NOT equal to NEITHE
 Get-AtwsAccountWebhookUdfField -Id 1234 -AccountWebhookUdfFieldName SomeName* -UdfFieldID <PickList Label1>, <PickList Label2> -Like AccountWebhookUdfFieldName -NotEquals UdfFieldID -GreaterThan Id
 An example of a more complex query. This command returns any AccountWebhookUdfFields with Id GREATER THAN 1234, a AccountWebhookUdfFieldName that matches the simple pattern SomeName* AND that has a UdfFieldID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountWebhookUdfField
- .LINK
-Remove-AtwsAccountWebhookUdfField
- .LINK
-Set-AtwsAccountWebhookUdfField
+ Remove-AtwsAccountWebhookUdfField
+ Set-AtwsAccountWebhookUdfField
 
 #>
 

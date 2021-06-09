@@ -57,7 +57,8 @@ Returns any object with a PurchaseOrderReceiveName that matches the simple patte
 Get-AtwsPurchaseOrderReceive -PurchaseOrderReceiveName SomeName* -NotLike PurchaseOrderReceiveName
 Returns any object with a PurchaseOrderReceiveName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsPurchaseOrderReceive
 
 #>

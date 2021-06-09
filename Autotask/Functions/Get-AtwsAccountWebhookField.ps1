@@ -72,12 +72,11 @@ Returns any AccountWebhookFields with property FieldID NOT equal to NEITHER <Pic
 Get-AtwsAccountWebhookField -Id 1234 -AccountWebhookFieldName SomeName* -FieldID <PickList Label1>, <PickList Label2> -Like AccountWebhookFieldName -NotEquals FieldID -GreaterThan Id
 An example of a more complex query. This command returns any AccountWebhookFields with Id GREATER THAN 1234, a AccountWebhookFieldName that matches the simple pattern SomeName* AND that has a FieldID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountWebhookField
- .LINK
-Remove-AtwsAccountWebhookField
- .LINK
-Set-AtwsAccountWebhookField
+ Remove-AtwsAccountWebhookField
+ Set-AtwsAccountWebhookField
 
 #>
 

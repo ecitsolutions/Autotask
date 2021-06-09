@@ -57,7 +57,8 @@ Returns any object with a PriceListServiceBundleName that matches the simple pat
 Get-AtwsPriceListServiceBundle -PriceListServiceBundleName SomeName* -NotLike PriceListServiceBundleName
 Returns any object with a PriceListServiceBundleName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsPriceListServiceBundle
 
 #>

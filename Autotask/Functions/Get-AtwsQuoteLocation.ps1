@@ -57,10 +57,10 @@ Returns any object with a QuoteLocationName that matches the simple pattern 'Som
 Get-AtwsQuoteLocation -QuoteLocationName SomeName* -NotLike QuoteLocationName
 Returns any object with a QuoteLocationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsQuoteLocation
- .LINK
-Set-AtwsQuoteLocation
+ Set-AtwsQuoteLocation
 
 #>
 

@@ -76,10 +76,10 @@ Returns any PurchaseOrders with property Status NOT equal to NEITHER <PickList L
 Get-AtwsPurchaseOrder -Id 1234 -PurchaseOrderName SomeName* -Status <PickList Label1>, <PickList Label2> -Like PurchaseOrderName -NotEquals Status -GreaterThan Id
 An example of a more complex query. This command returns any PurchaseOrders with Id GREATER THAN 1234, a PurchaseOrderName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsPurchaseOrder
- .LINK
-Set-AtwsPurchaseOrder
+ Set-AtwsPurchaseOrder
 
 #>
 

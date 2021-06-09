@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ContractExclusionSet that was pa
 .EXAMPLE
 Remove-AtwsContractExclusionSet  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractExclusionSet
- .LINK
-Get-AtwsContractExclusionSet
- .LINK
-Set-AtwsContractExclusionSet
+ Get-AtwsContractExclusionSet
+ Set-AtwsContractExclusionSet
 
 #>
 

@@ -42,12 +42,11 @@ Copies [Autotask.TaskPredecessor] by Id 124 to a new object through the Web Serv
 $result = Get-AtwsTaskPredecessor -Id 124 | New-AtwsTaskPredecessor | Set-AtwsTaskPredecessor -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TaskPredecessor] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaskPredecessor to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsTaskPredecessor
- .LINK
-Get-AtwsTaskPredecessor
- .LINK
-Set-AtwsTaskPredecessor
+ Get-AtwsTaskPredecessor
+ Set-AtwsTaskPredecessor
 
 #>
 

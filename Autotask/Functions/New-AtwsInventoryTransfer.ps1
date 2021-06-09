@@ -44,7 +44,8 @@ Copies [Autotask.InventoryTransfer] by Id 124 to a new object through the Web Se
 $result = Get-AtwsInventoryTransfer -Id 124 | New-AtwsInventoryTransfer | Set-AtwsInventoryTransfer -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.InventoryTransfer] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryTransfer to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsInventoryTransfer
 
 #>

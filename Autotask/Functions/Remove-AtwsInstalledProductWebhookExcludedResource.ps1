@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.InstalledProductWebhookExcludedR
 .EXAMPLE
 Remove-AtwsInstalledProductWebhookExcludedResource  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductWebhookExcludedResource
- .LINK
-Get-AtwsInstalledProductWebhookExcludedResource
+ Get-AtwsInstalledProductWebhookExcludedResource
 
 #>
 

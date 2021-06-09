@@ -24,7 +24,11 @@ Function Get-AtwsModuleConfiguration {
             .EXAMPLE
             Get-AtwsModuleConfiguration -Path AtwsConfig.clixml
             .NOTES
-            NAME: Save-AtwsModuleConfiguration
+            Related commands:
+            Save-AtwsModuleConfiguration
+            New-AtwsModuleConfiguration
+            Set-AtwsModuleConfiguration
+            Remove-AtwsModuleConfiguration
     #>
 	
     [Alias('Get-AtwsProfile')]

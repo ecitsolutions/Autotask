@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.TicketChecklistItem that was pas
 .EXAMPLE
 Remove-AtwsTicketChecklistItem  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketChecklistItem
- .LINK
-Get-AtwsTicketChecklistItem
- .LINK
-Set-AtwsTicketChecklistItem
+ Get-AtwsTicketChecklistItem
+ Set-AtwsTicketChecklistItem
 
 #>
 

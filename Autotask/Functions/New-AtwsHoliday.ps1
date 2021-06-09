@@ -43,12 +43,11 @@ Copies [Autotask.Holiday] by Id 124 to a new object through the Web Services API
 $result = Get-AtwsHoliday -Id 124 | New-AtwsHoliday | Set-AtwsHoliday -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.Holiday] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsHoliday to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsHoliday
- .LINK
-Get-AtwsHoliday
- .LINK
-Set-AtwsHoliday
+ Get-AtwsHoliday
+ Set-AtwsHoliday
 
 #>
 

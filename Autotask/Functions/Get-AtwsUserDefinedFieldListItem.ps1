@@ -57,10 +57,10 @@ Returns any object with a UserDefinedFieldListItemName that matches the simple p
 Get-AtwsUserDefinedFieldListItem -UserDefinedFieldListItemName SomeName* -NotLike UserDefinedFieldListItemName
 Returns any object with a UserDefinedFieldListItemName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsUserDefinedFieldListItem
- .LINK
-Set-AtwsUserDefinedFieldListItem
+ Set-AtwsUserDefinedFieldListItem
 
 #>
 

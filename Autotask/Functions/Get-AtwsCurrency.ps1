@@ -72,7 +72,8 @@ Returns any Currencys with property DisplaySymbol NOT equal to NEITHER <PickList
 Get-AtwsCurrency -Id 1234 -CurrencyName SomeName* -DisplaySymbol <PickList Label1>, <PickList Label2> -Like CurrencyName -NotEquals DisplaySymbol -GreaterThan Id
 An example of a more complex query. This command returns any Currencys with Id GREATER THAN 1234, a CurrencyName that matches the simple pattern SomeName* AND that has a DisplaySymbol that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsCurrency
 
 #>

@@ -45,10 +45,10 @@ Copies [Autotask.AccountNote] by Id 124 to a new object through the Web Services
 $result = Get-AtwsAccountNote -Id 124 | New-AtwsAccountNote | Set-AtwsAccountNote -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.AccountNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountNote to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsAccountNote
- .LINK
-Set-AtwsAccountNote
+ Set-AtwsAccountNote
 
 #>
 

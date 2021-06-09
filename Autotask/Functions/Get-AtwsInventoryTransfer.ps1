@@ -57,7 +57,8 @@ Returns any object with a InventoryTransferName that matches the simple pattern 
 Get-AtwsInventoryTransfer -InventoryTransferName SomeName* -NotLike InventoryTransferName
 Returns any object with a InventoryTransferName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInventoryTransfer
 
 #>

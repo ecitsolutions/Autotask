@@ -72,12 +72,11 @@ Returns any ContactWebhookFields with property FieldID NOT equal to NEITHER <Pic
 Get-AtwsContactWebhookField -Id 1234 -ContactWebhookFieldName SomeName* -FieldID <PickList Label1>, <PickList Label2> -Like ContactWebhookFieldName -NotEquals FieldID -GreaterThan Id
 An example of a more complex query. This command returns any ContactWebhookFields with Id GREATER THAN 1234, a ContactWebhookFieldName that matches the simple pattern SomeName* AND that has a FieldID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactWebhookField
- .LINK
-Remove-AtwsContactWebhookField
- .LINK
-Set-AtwsContactWebhookField
+ Remove-AtwsContactWebhookField
+ Set-AtwsContactWebhookField
 
 #>
 

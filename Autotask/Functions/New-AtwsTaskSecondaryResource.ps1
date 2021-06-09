@@ -43,10 +43,10 @@ Copies [Autotask.TaskSecondaryResource] by Id 124 to a new object through the We
 $result = Get-AtwsTaskSecondaryResource -Id 124 | New-AtwsTaskSecondaryResource | Set-AtwsTaskSecondaryResource -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TaskSecondaryResource] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaskSecondaryResource to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsTaskSecondaryResource
- .LINK
-Get-AtwsTaskSecondaryResource
+ Get-AtwsTaskSecondaryResource
 
 #>
 

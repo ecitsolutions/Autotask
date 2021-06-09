@@ -72,12 +72,11 @@ Returns any InstalledProductWebhookFields with property FieldID NOT equal to NEI
 Get-AtwsInstalledProductWebhookField -Id 1234 -InstalledProductWebhookFieldName SomeName* -FieldID <PickList Label1>, <PickList Label2> -Like InstalledProductWebhookFieldName -NotEquals FieldID -GreaterThan Id
 An example of a more complex query. This command returns any InstalledProductWebhookFields with Id GREATER THAN 1234, a InstalledProductWebhookFieldName that matches the simple pattern SomeName* AND that has a FieldID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductWebhookField
- .LINK
-Remove-AtwsInstalledProductWebhookField
- .LINK
-Set-AtwsInstalledProductWebhookField
+ Remove-AtwsInstalledProductWebhookField
+ Set-AtwsInstalledProductWebhookField
 
 #>
 

@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ServiceBundle that was passed to
 .EXAMPLE
 Remove-AtwsServiceBundle  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceBundle
- .LINK
-Get-AtwsServiceBundle
- .LINK
-Set-AtwsServiceBundle
+ Get-AtwsServiceBundle
+ Set-AtwsServiceBundle
 
 #>
 

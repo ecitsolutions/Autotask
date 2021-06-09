@@ -57,10 +57,10 @@ Returns any object with a ServiceCallTicketName that matches the simple pattern 
 Get-AtwsServiceCallTicket -ServiceCallTicketName SomeName* -NotLike ServiceCallTicketName
 Returns any object with a ServiceCallTicketName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceCallTicket
- .LINK
-Remove-AtwsServiceCallTicket
+ Remove-AtwsServiceCallTicket
 
 #>
 

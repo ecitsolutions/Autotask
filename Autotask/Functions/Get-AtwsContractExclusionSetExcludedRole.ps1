@@ -57,10 +57,10 @@ Returns any object with a ContractExclusionSetExcludedRoleName that matches the 
 Get-AtwsContractExclusionSetExcludedRole -ContractExclusionSetExcludedRoleName SomeName* -NotLike ContractExclusionSetExcludedRoleName
 Returns any object with a ContractExclusionSetExcludedRoleName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractExclusionSetExcludedRole
- .LINK
-Remove-AtwsContractExclusionSetExcludedRole
+ Remove-AtwsContractExclusionSetExcludedRole
 
 #>
 

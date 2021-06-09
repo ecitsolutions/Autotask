@@ -79,10 +79,10 @@ Returns any Tasks with property DepartmentID NOT equal to NEITHER <PickList Labe
 Get-AtwsTask -Id 1234 -TaskName SomeName* -DepartmentID <PickList Label1>, <PickList Label2> -Like TaskName -NotEquals DepartmentID -GreaterThan Id
 An example of a more complex query. This command returns any Tasks with Id GREATER THAN 1234, a TaskName that matches the simple pattern SomeName* AND that has a DepartmentID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTask
- .LINK
-Set-AtwsTask
+ Set-AtwsTask
 
 #>
 

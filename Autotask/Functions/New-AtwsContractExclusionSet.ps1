@@ -42,12 +42,11 @@ Copies [Autotask.ContractExclusionSet] by Id 124 to a new object through the Web
 $result = Get-AtwsContractExclusionSet -Id 124 | New-AtwsContractExclusionSet | Set-AtwsContractExclusionSet -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractExclusionSet] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractExclusionSet to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsContractExclusionSet
- .LINK
-Get-AtwsContractExclusionSet
- .LINK
-Set-AtwsContractExclusionSet
+ Get-AtwsContractExclusionSet
+ Set-AtwsContractExclusionSet
 
 #>
 

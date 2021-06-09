@@ -57,10 +57,10 @@ Returns any object with a TicketAdditionalInstalledProductName that matches the 
 Get-AtwsTicketAdditionalInstalledProduct -TicketAdditionalInstalledProductName SomeName* -NotLike TicketAdditionalInstalledProductName
 Returns any object with a TicketAdditionalInstalledProductName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketAdditionalInstalledProduct
- .LINK
-Remove-AtwsTicketAdditionalInstalledProduct
+ Remove-AtwsTicketAdditionalInstalledProduct
 
 #>
 

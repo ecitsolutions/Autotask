@@ -73,12 +73,11 @@ Returns any ContractCosts with property CostType NOT equal to NEITHER <PickList 
 Get-AtwsContractCost -Id 1234 -ContractCostName SomeName* -CostType <PickList Label1>, <PickList Label2> -Like ContractCostName -NotEquals CostType -GreaterThan Id
 An example of a more complex query. This command returns any ContractCosts with Id GREATER THAN 1234, a ContractCostName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractCost
- .LINK
-Remove-AtwsContractCost
- .LINK
-Set-AtwsContractCost
+ Remove-AtwsContractCost
+ Set-AtwsContractCost
 
 #>
 

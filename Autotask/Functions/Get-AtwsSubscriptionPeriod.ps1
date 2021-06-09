@@ -57,6 +57,8 @@ Returns any object with a SubscriptionPeriodName that matches the simple pattern
 Get-AtwsSubscriptionPeriod -SubscriptionPeriodName SomeName* -NotLike SubscriptionPeriodName
 Returns any object with a SubscriptionPeriodName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
+.NOTES
+Related commands:
 
 #>
 

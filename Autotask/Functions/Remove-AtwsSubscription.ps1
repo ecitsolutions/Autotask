@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.Subscription that was passed to 
 .EXAMPLE
 Remove-AtwsSubscription  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsSubscription
- .LINK
-Get-AtwsSubscription
- .LINK
-Set-AtwsSubscription
+ Get-AtwsSubscription
+ Set-AtwsSubscription
 
 #>
 

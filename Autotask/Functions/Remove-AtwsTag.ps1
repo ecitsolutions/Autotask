@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.Tag that was passed to the funct
 .EXAMPLE
 Remove-AtwsTag  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTag
- .LINK
-Get-AtwsTag
- .LINK
-Set-AtwsTag
+ Get-AtwsTag
+ Set-AtwsTag
 
 #>
 

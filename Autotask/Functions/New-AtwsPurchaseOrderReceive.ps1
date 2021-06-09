@@ -42,7 +42,8 @@ Copies [Autotask.PurchaseOrderReceive] by Id 124 to a new object through the Web
 $result = Get-AtwsPurchaseOrderReceive -Id 124 | New-AtwsPurchaseOrderReceive | Set-AtwsPurchaseOrderReceive -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.PurchaseOrderReceive] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsPurchaseOrderReceive to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsPurchaseOrderReceive
 
 #>

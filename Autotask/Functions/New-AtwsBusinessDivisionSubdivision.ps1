@@ -42,10 +42,10 @@ Copies [Autotask.BusinessDivisionSubdivision] by Id 124 to a new object through 
 $result = Get-AtwsBusinessDivisionSubdivision -Id 124 | New-AtwsBusinessDivisionSubdivision | Set-AtwsBusinessDivisionSubdivision -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.BusinessDivisionSubdivision] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsBusinessDivisionSubdivision to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsBusinessDivisionSubdivision
- .LINK
-Set-AtwsBusinessDivisionSubdivision
+ Set-AtwsBusinessDivisionSubdivision
 
 #>
 

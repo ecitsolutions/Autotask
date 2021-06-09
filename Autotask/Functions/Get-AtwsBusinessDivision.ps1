@@ -57,10 +57,10 @@ Returns any object with a BusinessDivisionName that matches the simple pattern '
 Get-AtwsBusinessDivision -BusinessDivisionName SomeName* -NotLike BusinessDivisionName
 Returns any object with a BusinessDivisionName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsBusinessDivision
- .LINK
-Set-AtwsBusinessDivision
+ Set-AtwsBusinessDivision
 
 #>
 

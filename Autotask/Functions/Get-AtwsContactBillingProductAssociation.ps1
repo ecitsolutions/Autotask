@@ -57,12 +57,11 @@ Returns any object with a ContactBillingProductAssociationName that matches the 
 Get-AtwsContactBillingProductAssociation -ContactBillingProductAssociationName SomeName* -NotLike ContactBillingProductAssociationName
 Returns any object with a ContactBillingProductAssociationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactBillingProductAssociation
- .LINK
-Remove-AtwsContactBillingProductAssociation
- .LINK
-Set-AtwsContactBillingProductAssociation
+ Remove-AtwsContactBillingProductAssociation
+ Set-AtwsContactBillingProductAssociation
 
 #>
 

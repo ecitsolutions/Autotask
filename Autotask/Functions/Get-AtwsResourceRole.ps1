@@ -72,6 +72,8 @@ Returns any ResourceRoles with property QueueID NOT equal to NEITHER <PickList L
 Get-AtwsResourceRole -Id 1234 -ResourceRoleName SomeName* -QueueID <PickList Label1>, <PickList Label2> -Like ResourceRoleName -NotEquals QueueID -GreaterThan Id
 An example of a more complex query. This command returns any ResourceRoles with Id GREATER THAN 1234, a ResourceRoleName that matches the simple pattern SomeName* AND that has a QueueID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
+.NOTES
+Related commands:
 
 #>
 

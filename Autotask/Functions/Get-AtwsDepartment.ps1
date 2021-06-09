@@ -57,10 +57,10 @@ Returns any object with a DepartmentName that matches the simple pattern 'SomeNa
 Get-AtwsDepartment -DepartmentName SomeName* -NotLike DepartmentName
 Returns any object with a DepartmentName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsDepartment
- .LINK
-Set-AtwsDepartment
+ Set-AtwsDepartment
 
 #>
 

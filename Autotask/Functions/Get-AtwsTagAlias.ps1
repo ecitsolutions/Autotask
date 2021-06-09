@@ -57,10 +57,10 @@ Returns any object with a TagAliasName that matches the simple pattern 'SomeName
 Get-AtwsTagAlias -TagAliasName SomeName* -NotLike TagAliasName
 Returns any object with a TagAliasName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTagAlias
- .LINK
-Remove-AtwsTagAlias
+ Remove-AtwsTagAlias
 
 #>
 

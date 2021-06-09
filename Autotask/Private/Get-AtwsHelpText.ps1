@@ -156,10 +156,11 @@ $Example`n
 "@
   }
 )
+.NOTES
+Related commands:
 $(
   foreach ($Link in $Links)
   { @"
-.LINK
 $Link`n
 "@
   }

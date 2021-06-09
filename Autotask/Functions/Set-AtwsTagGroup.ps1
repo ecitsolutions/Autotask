@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsTagGroup -Id 0,4,8 | Set-AtwsTagGroup -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTagGroup
- .LINK
-Remove-AtwsTagGroup
- .LINK
-Get-AtwsTagGroup
+ Remove-AtwsTagGroup
+ Get-AtwsTagGroup
 
 #>
 

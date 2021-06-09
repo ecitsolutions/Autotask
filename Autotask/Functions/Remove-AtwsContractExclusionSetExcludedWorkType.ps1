@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.ContractExclusionSetExcludedWork
 .EXAMPLE
 Remove-AtwsContractExclusionSetExcludedWorkType  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractExclusionSetExcludedWorkType
- .LINK
-Get-AtwsContractExclusionSetExcludedWorkType
+ Get-AtwsContractExclusionSetExcludedWorkType
 
 #>
 

@@ -42,10 +42,10 @@ Copies [Autotask.ContractExclusionSetExcludedRole] by Id 124 to a new object thr
 $result = Get-AtwsContractExclusionSetExcludedRole -Id 124 | New-AtwsContractExclusionSetExcludedRole | Set-AtwsContractExclusionSetExcludedRole -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractExclusionSetExcludedRole] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractExclusionSetExcludedRole to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsContractExclusionSetExcludedRole
- .LINK
-Get-AtwsContractExclusionSetExcludedRole
+ Get-AtwsContractExclusionSetExcludedRole
 
 #>
 

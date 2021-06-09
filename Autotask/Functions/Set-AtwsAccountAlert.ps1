@@ -37,10 +37,10 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsAccountAlert -Id 0,4,8 | Set-AtwsAccountAlert -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountAlert
- .LINK
-Get-AtwsAccountAlert
+ Get-AtwsAccountAlert
 
 #>
 

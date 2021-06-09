@@ -37,10 +37,10 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsPurchaseOrderItem -Id 0,4,8 | Set-AtwsPurchaseOrderItem -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsPurchaseOrderItem
- .LINK
-Get-AtwsPurchaseOrderItem
+ Get-AtwsPurchaseOrderItem
 
 #>
 

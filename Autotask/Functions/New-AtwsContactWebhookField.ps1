@@ -44,12 +44,11 @@ Copies [Autotask.ContactWebhookField] by Id 124 to a new object through the Web 
 $result = Get-AtwsContactWebhookField -Id 124 | New-AtwsContactWebhookField | Set-AtwsContactWebhookField -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContactWebhookField] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContactWebhookField to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsContactWebhookField
- .LINK
-Get-AtwsContactWebhookField
- .LINK
-Set-AtwsContactWebhookField
+ Get-AtwsContactWebhookField
+ Set-AtwsContactWebhookField
 
 #>
 

@@ -57,12 +57,11 @@ Returns any object with a InstalledProductTypeName that matches the simple patte
 Get-AtwsInstalledProductType -InstalledProductTypeName SomeName* -NotLike InstalledProductTypeName
 Returns any object with a InstalledProductTypeName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductType
- .LINK
-Remove-AtwsInstalledProductType
- .LINK
-Set-AtwsInstalledProductType
+ Remove-AtwsInstalledProductType
+ Set-AtwsInstalledProductType
 
 #>
 

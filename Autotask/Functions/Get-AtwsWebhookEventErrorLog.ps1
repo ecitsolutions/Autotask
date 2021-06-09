@@ -57,7 +57,8 @@ Returns any object with a WebhookEventErrorLogName that matches the simple patte
 Get-AtwsWebhookEventErrorLog -WebhookEventErrorLogName SomeName* -NotLike WebhookEventErrorLogName
 Returns any object with a WebhookEventErrorLogName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsWebhookEventErrorLog
 
 #>

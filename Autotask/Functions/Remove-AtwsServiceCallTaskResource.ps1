@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.ServiceCallTaskResource that was
 .EXAMPLE
 Remove-AtwsServiceCallTaskResource  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceCallTaskResource
- .LINK
-Get-AtwsServiceCallTaskResource
+ Get-AtwsServiceCallTaskResource
 
 #>
 

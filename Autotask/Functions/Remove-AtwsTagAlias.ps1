@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.TagAlias that was passed to the 
 .EXAMPLE
 Remove-AtwsTagAlias  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTagAlias
- .LINK
-Get-AtwsTagAlias
+ Get-AtwsTagAlias
 
 #>
 

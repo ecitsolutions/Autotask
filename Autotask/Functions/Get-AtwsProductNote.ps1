@@ -57,10 +57,10 @@ Returns any object with a ProductNoteName that matches the simple pattern 'SomeN
 Get-AtwsProductNote -ProductNoteName SomeName* -NotLike ProductNoteName
 Returns any object with a ProductNoteName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsProductNote
- .LINK
-Set-AtwsProductNote
+ Set-AtwsProductNote
 
 #>
 

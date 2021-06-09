@@ -44,10 +44,10 @@ Copies [Autotask.TicketNote] by Id 124 to a new object through the Web Services 
 $result = Get-AtwsTicketNote -Id 124 | New-AtwsTicketNote | Set-AtwsTicketNote -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TicketNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketNote to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsTicketNote
- .LINK
-Set-AtwsTicketNote
+ Set-AtwsTicketNote
 
 #>
 

@@ -42,10 +42,10 @@ Copies [Autotask.ComanagedAssociation] by Id 124 to a new object through the Web
 $result = Get-AtwsComanagedAssociation -Id 124 | New-AtwsComanagedAssociation | Set-AtwsComanagedAssociation -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ComanagedAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsComanagedAssociation to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsComanagedAssociation
- .LINK
-Get-AtwsComanagedAssociation
+ Get-AtwsComanagedAssociation
 
 #>
 

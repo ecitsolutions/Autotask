@@ -57,12 +57,11 @@ Returns any object with a HolidayName that matches the simple pattern 'SomeName*
 Get-AtwsHoliday -HolidayName SomeName* -NotLike HolidayName
 Returns any object with a HolidayName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsHoliday
- .LINK
-Remove-AtwsHoliday
- .LINK
-Set-AtwsHoliday
+ Remove-AtwsHoliday
+ Set-AtwsHoliday
 
 #>
 

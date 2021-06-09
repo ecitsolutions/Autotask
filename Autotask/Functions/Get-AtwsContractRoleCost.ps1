@@ -57,10 +57,10 @@ Returns any object with a ContractRoleCostName that matches the simple pattern '
 Get-AtwsContractRoleCost -ContractRoleCostName SomeName* -NotLike ContractRoleCostName
 Returns any object with a ContractRoleCostName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractRoleCost
- .LINK
-Set-AtwsContractRoleCost
+ Set-AtwsContractRoleCost
 
 #>
 

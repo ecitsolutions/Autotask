@@ -74,10 +74,10 @@ Returns any ContractRetainers with property Status NOT equal to NEITHER <PickLis
 Get-AtwsContractRetainer -Id 1234 -ContractRetainerName SomeName* -Status <PickList Label1>, <PickList Label2> -Like ContractRetainerName -NotEquals Status -GreaterThan Id
 An example of a more complex query. This command returns any ContractRetainers with Id GREATER THAN 1234, a ContractRetainerName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractRetainer
- .LINK
-Set-AtwsContractRetainer
+ Set-AtwsContractRetainer
 
 #>
 

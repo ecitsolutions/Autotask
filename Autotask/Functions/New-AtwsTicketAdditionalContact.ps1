@@ -42,10 +42,10 @@ Copies [Autotask.TicketAdditionalContact] by Id 124 to a new object through the 
 $result = Get-AtwsTicketAdditionalContact -Id 124 | New-AtwsTicketAdditionalContact | Set-AtwsTicketAdditionalContact -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TicketAdditionalContact] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketAdditionalContact to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsTicketAdditionalContact
- .LINK
-Get-AtwsTicketAdditionalContact
+ Get-AtwsTicketAdditionalContact
 
 #>
 

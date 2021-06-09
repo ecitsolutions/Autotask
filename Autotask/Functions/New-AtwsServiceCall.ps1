@@ -43,12 +43,11 @@ Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services
 $result = Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall | Set-AtwsServiceCall -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCall to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsServiceCall
- .LINK
-Get-AtwsServiceCall
- .LINK
-Set-AtwsServiceCall
+ Get-AtwsServiceCall
+ Set-AtwsServiceCall
 
 #>
 

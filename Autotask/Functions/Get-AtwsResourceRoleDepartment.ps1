@@ -57,10 +57,10 @@ Returns any object with a ResourceRoleDepartmentName that matches the simple pat
 Get-AtwsResourceRoleDepartment -ResourceRoleDepartmentName SomeName* -NotLike ResourceRoleDepartmentName
 Returns any object with a ResourceRoleDepartmentName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsResourceRoleDepartment
- .LINK
-Set-AtwsResourceRoleDepartment
+ Set-AtwsResourceRoleDepartment
 
 #>
 

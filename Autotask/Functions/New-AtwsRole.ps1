@@ -44,10 +44,10 @@ Copies [Autotask.Role] by Id 124 to a new object through the Web Services API, p
 $result = Get-AtwsRole -Id 124 | New-AtwsRole | Set-AtwsRole -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.Role] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsRole to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsRole
- .LINK
-Set-AtwsRole
+ Set-AtwsRole
 
 #>
 

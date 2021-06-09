@@ -41,10 +41,10 @@ Copies [Autotask.TaxCategory] by Id 124 to a new object through the Web Services
 $result = Get-AtwsTaxCategory -Id 124 | New-AtwsTaxCategory | Set-AtwsTaxCategory -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TaxCategory] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaxCategory to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsTaxCategory
- .LINK
-Set-AtwsTaxCategory
+ Set-AtwsTaxCategory
 
 #>
 

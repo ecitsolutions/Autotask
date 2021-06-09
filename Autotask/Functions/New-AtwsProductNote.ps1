@@ -43,10 +43,10 @@ Copies [Autotask.ProductNote] by Id 124 to a new object through the Web Services
 $result = Get-AtwsProductNote -Id 124 | New-AtwsProductNote | Set-AtwsProductNote -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ProductNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProductNote to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsProductNote
- .LINK
-Set-AtwsProductNote
+ Set-AtwsProductNote
 
 #>
 

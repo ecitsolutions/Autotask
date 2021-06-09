@@ -72,6 +72,8 @@ Returns any DeletedTicketActivityLogs with property TypeID NOT equal to NEITHER 
 Get-AtwsDeletedTicketActivityLog -Id 1234 -DeletedTicketActivityLogName SomeName* -TypeID <PickList Label1>, <PickList Label2> -Like DeletedTicketActivityLogName -NotEquals TypeID -GreaterThan Id
 An example of a more complex query. This command returns any DeletedTicketActivityLogs with Id GREATER THAN 1234, a DeletedTicketActivityLogName that matches the simple pattern SomeName* AND that has a TypeID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
+.NOTES
+Related commands:
 
 #>
 

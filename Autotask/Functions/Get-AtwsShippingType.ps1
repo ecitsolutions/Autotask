@@ -57,6 +57,8 @@ Returns any object with a ShippingTypeName that matches the simple pattern 'Some
 Get-AtwsShippingType -ShippingTypeName SomeName* -NotLike ShippingTypeName
 Returns any object with a ShippingTypeName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
+.NOTES
+Related commands:
 
 #>
 

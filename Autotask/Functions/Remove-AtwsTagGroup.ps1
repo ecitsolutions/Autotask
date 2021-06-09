@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.TagGroup that was passed to the 
 .EXAMPLE
 Remove-AtwsTagGroup  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTagGroup
- .LINK
-Get-AtwsTagGroup
- .LINK
-Set-AtwsTagGroup
+ Get-AtwsTagGroup
+ Set-AtwsTagGroup
 
 #>
 

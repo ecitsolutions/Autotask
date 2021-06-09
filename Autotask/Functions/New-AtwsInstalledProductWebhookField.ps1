@@ -44,12 +44,11 @@ Copies [Autotask.InstalledProductWebhookField] by Id 124 to a new object through
 $result = Get-AtwsInstalledProductWebhookField -Id 124 | New-AtwsInstalledProductWebhookField | Set-AtwsInstalledProductWebhookField -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.InstalledProductWebhookField] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductWebhookField to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsInstalledProductWebhookField
- .LINK
-Get-AtwsInstalledProductWebhookField
- .LINK
-Set-AtwsInstalledProductWebhookField
+ Get-AtwsInstalledProductWebhookField
+ Set-AtwsInstalledProductWebhookField
 
 #>
 

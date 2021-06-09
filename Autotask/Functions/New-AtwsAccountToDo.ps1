@@ -45,12 +45,11 @@ Copies [Autotask.AccountToDo] by Id 124 to a new object through the Web Services
 $result = Get-AtwsAccountToDo -Id 124 | New-AtwsAccountToDo | Set-AtwsAccountToDo -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.AccountToDo] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountToDo to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsAccountToDo
- .LINK
-Get-AtwsAccountToDo
- .LINK
-Set-AtwsAccountToDo
+ Get-AtwsAccountToDo
+ Set-AtwsAccountToDo
 
 #>
 

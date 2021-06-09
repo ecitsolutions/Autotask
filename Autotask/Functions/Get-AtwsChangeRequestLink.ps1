@@ -57,10 +57,10 @@ Returns any object with a ChangeRequestLinkName that matches the simple pattern 
 Get-AtwsChangeRequestLink -ChangeRequestLinkName SomeName* -NotLike ChangeRequestLinkName
 Returns any object with a ChangeRequestLinkName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsChangeRequestLink
- .LINK
-Remove-AtwsChangeRequestLink
+ Remove-AtwsChangeRequestLink
 
 #>
 

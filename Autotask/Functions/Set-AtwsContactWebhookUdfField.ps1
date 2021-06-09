@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsContactWebhookUdfField -Id 0,4,8 | Set-AtwsContactWebhookUdfField -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactWebhookUdfField
- .LINK
-Remove-AtwsContactWebhookUdfField
- .LINK
-Get-AtwsContactWebhookUdfField
+ Remove-AtwsContactWebhookUdfField
+ Get-AtwsContactWebhookUdfField
 
 #>
 

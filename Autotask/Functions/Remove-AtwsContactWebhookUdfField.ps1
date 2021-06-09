@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ContactWebhookUdfField that was 
 .EXAMPLE
 Remove-AtwsContactWebhookUdfField  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactWebhookUdfField
- .LINK
-Get-AtwsContactWebhookUdfField
- .LINK
-Set-AtwsContactWebhookUdfField
+ Get-AtwsContactWebhookUdfField
+ Set-AtwsContactWebhookUdfField
 
 #>
 

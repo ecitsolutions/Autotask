@@ -57,10 +57,10 @@ Returns any object with a TaxCategoryName that matches the simple pattern 'SomeN
 Get-AtwsTaxCategory -TaxCategoryName SomeName* -NotLike TaxCategoryName
 Returns any object with a TaxCategoryName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTaxCategory
- .LINK
-Set-AtwsTaxCategory
+ Set-AtwsTaxCategory
 
 #>
 

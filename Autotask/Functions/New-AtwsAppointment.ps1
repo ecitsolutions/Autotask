@@ -44,12 +44,11 @@ Copies [Autotask.Appointment] by Id 124 to a new object through the Web Services
 $result = Get-AtwsAppointment -Id 124 | New-AtwsAppointment | Set-AtwsAppointment -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.Appointment] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAppointment to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsAppointment
- .LINK
-Get-AtwsAppointment
- .LINK
-Set-AtwsAppointment
+ Get-AtwsAppointment
+ Set-AtwsAppointment
 
 #>
 

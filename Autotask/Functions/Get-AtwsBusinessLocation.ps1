@@ -77,10 +77,10 @@ Returns any BusinessLocations with property FirstDayOfWeek NOT equal to NEITHER 
 Get-AtwsBusinessLocation -Id 1234 -BusinessLocationName SomeName* -FirstDayOfWeek <PickList Label1>, <PickList Label2> -Like BusinessLocationName -NotEquals FirstDayOfWeek -GreaterThan Id
 An example of a more complex query. This command returns any BusinessLocations with Id GREATER THAN 1234, a BusinessLocationName that matches the simple pattern SomeName* AND that has a FirstDayOfWeek that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsBusinessLocation
- .LINK
-Set-AtwsBusinessLocation
+ Set-AtwsBusinessLocation
 
 #>
 

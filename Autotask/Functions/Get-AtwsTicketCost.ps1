@@ -73,12 +73,11 @@ Returns any TicketCosts with property CostType NOT equal to NEITHER <PickList La
 Get-AtwsTicketCost -Id 1234 -TicketCostName SomeName* -CostType <PickList Label1>, <PickList Label2> -Like TicketCostName -NotEquals CostType -GreaterThan Id
 An example of a more complex query. This command returns any TicketCosts with Id GREATER THAN 1234, a TicketCostName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketCost
- .LINK
-Remove-AtwsTicketCost
- .LINK
-Set-AtwsTicketCost
+ Remove-AtwsTicketCost
+ Set-AtwsTicketCost
 
 #>
 

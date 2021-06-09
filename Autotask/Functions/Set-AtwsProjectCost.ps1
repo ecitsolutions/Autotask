@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsProjectCost -Id 0,4,8 | Set-AtwsProjectCost -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsProjectCost
- .LINK
-Remove-AtwsProjectCost
- .LINK
-Get-AtwsProjectCost
+ Remove-AtwsProjectCost
+ Get-AtwsProjectCost
 
 #>
 

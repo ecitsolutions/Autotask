@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ProjectCost that was passed to t
 .EXAMPLE
 Remove-AtwsProjectCost  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsProjectCost
- .LINK
-Get-AtwsProjectCost
- .LINK
-Set-AtwsProjectCost
+ Get-AtwsProjectCost
+ Set-AtwsProjectCost
 
 #>
 

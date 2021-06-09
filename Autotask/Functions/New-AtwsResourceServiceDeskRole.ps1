@@ -42,10 +42,10 @@ Copies [Autotask.ResourceServiceDeskRole] by Id 124 to a new object through the 
 $result = Get-AtwsResourceServiceDeskRole -Id 124 | New-AtwsResourceServiceDeskRole | Set-AtwsResourceServiceDeskRole -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ResourceServiceDeskRole] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsResourceServiceDeskRole to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsResourceServiceDeskRole
- .LINK
-Set-AtwsResourceServiceDeskRole
+ Set-AtwsResourceServiceDeskRole
 
 #>
 

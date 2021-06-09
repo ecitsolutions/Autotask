@@ -72,6 +72,8 @@ Returns any InternalLocations with property HolidaySetId NOT equal to NEITHER <P
 Get-AtwsInternalLocation -Id 1234 -InternalLocationName SomeName* -HolidaySetId <PickList Label1>, <PickList Label2> -Like InternalLocationName -NotEquals HolidaySetId -GreaterThan Id
 An example of a more complex query. This command returns any InternalLocations with Id GREATER THAN 1234, a InternalLocationName that matches the simple pattern SomeName* AND that has a HolidaySetId that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
+.NOTES
+Related commands:
 
 #>
 

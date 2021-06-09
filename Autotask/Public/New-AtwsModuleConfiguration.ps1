@@ -26,7 +26,8 @@ Function New-AtwsModuleConfiguration {
             New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier $string -Name ProfileName
             .NOTES
             NAME: New-AtwsModuleConfiguration
-            .LINK
+            
+            Related commands:
             Get-AtwsModuleConfiguration
             Set-AtwsModuleConfiguration
             Remove-AtwsModuleConfiguration

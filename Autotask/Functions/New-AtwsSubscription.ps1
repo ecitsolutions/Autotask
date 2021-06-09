@@ -48,12 +48,11 @@ Copies [Autotask.Subscription] by Id 124 to a new object through the Web Service
 $result = Get-AtwsSubscription -Id 124 | New-AtwsSubscription | Set-AtwsSubscription -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.Subscription] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsSubscription to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsSubscription
- .LINK
-Get-AtwsSubscription
- .LINK
-Set-AtwsSubscription
+ Get-AtwsSubscription
+ Set-AtwsSubscription
 
 #>
 

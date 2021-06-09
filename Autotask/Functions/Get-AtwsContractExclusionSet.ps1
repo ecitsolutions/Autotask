@@ -57,12 +57,11 @@ Returns any object with a ContractExclusionSetName that matches the simple patte
 Get-AtwsContractExclusionSet -ContractExclusionSetName SomeName* -NotLike ContractExclusionSetName
 Returns any object with a ContractExclusionSetName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractExclusionSet
- .LINK
-Remove-AtwsContractExclusionSet
- .LINK
-Set-AtwsContractExclusionSet
+ Remove-AtwsContractExclusionSet
+ Set-AtwsContractExclusionSet
 
 #>
 

@@ -44,12 +44,11 @@ Copies [Autotask.InstalledProductTypeUdfAssociation] by Id 124 to a new object t
 $result = Get-AtwsInstalledProductTypeUdfAssociation -Id 124 | New-AtwsInstalledProductTypeUdfAssociation | Set-AtwsInstalledProductTypeUdfAssociation -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.InstalledProductTypeUdfAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductTypeUdfAssociation to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsInstalledProductTypeUdfAssociation
- .LINK
-Get-AtwsInstalledProductTypeUdfAssociation
- .LINK
-Set-AtwsInstalledProductTypeUdfAssociation
+ Get-AtwsInstalledProductTypeUdfAssociation
+ Set-AtwsInstalledProductTypeUdfAssociation
 
 #>
 

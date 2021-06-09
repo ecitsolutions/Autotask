@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.IntegrationVendorWidget that was
 .EXAMPLE
 Remove-AtwsIntegrationVendorWidget  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsIntegrationVendorWidget
- .LINK
-Get-AtwsIntegrationVendorWidget
- .LINK
-Set-AtwsIntegrationVendorWidget
+ Get-AtwsIntegrationVendorWidget
+ Set-AtwsIntegrationVendorWidget
 
 #>
 

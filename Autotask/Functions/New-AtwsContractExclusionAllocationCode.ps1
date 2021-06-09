@@ -42,10 +42,10 @@ Copies [Autotask.ContractExclusionAllocationCode] by Id 124 to a new object thro
 $result = Get-AtwsContractExclusionAllocationCode -Id 124 | New-AtwsContractExclusionAllocationCode | Set-AtwsContractExclusionAllocationCode -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractExclusionAllocationCode] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractExclusionAllocationCode to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsContractExclusionAllocationCode
- .LINK
-Get-AtwsContractExclusionAllocationCode
+ Get-AtwsContractExclusionAllocationCode
 
 #>
 

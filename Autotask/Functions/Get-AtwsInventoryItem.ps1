@@ -57,10 +57,10 @@ Returns any object with a InventoryItemName that matches the simple pattern 'Som
 Get-AtwsInventoryItem -InventoryItemName SomeName* -NotLike InventoryItemName
 Returns any object with a InventoryItemName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInventoryItem
- .LINK
-Set-AtwsInventoryItem
+ Set-AtwsInventoryItem
 
 #>
 

@@ -72,7 +72,8 @@ Returns any WorkTypeModifiers with property ModifierType NOT equal to NEITHER <P
 Get-AtwsWorkTypeModifier -Id 1234 -WorkTypeModifierName SomeName* -ModifierType <PickList Label1>, <PickList Label2> -Like WorkTypeModifierName -NotEquals ModifierType -GreaterThan Id
 An example of a more complex query. This command returns any WorkTypeModifiers with Id GREATER THAN 1234, a WorkTypeModifierName that matches the simple pattern SomeName* AND that has a ModifierType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsWorkTypeModifier
 
 #>

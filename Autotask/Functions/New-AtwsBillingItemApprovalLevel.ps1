@@ -44,7 +44,8 @@ Copies [Autotask.BillingItemApprovalLevel] by Id 124 to a new object through the
 $result = Get-AtwsBillingItemApprovalLevel -Id 124 | New-AtwsBillingItemApprovalLevel | Set-AtwsBillingItemApprovalLevel -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.BillingItemApprovalLevel] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsBillingItemApprovalLevel to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsBillingItemApprovalLevel
 
 #>

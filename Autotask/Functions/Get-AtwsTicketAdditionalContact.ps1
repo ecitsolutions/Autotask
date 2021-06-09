@@ -57,10 +57,10 @@ Returns any object with a TicketAdditionalContactName that matches the simple pa
 Get-AtwsTicketAdditionalContact -TicketAdditionalContactName SomeName* -NotLike TicketAdditionalContactName
 Returns any object with a TicketAdditionalContactName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketAdditionalContact
- .LINK
-Remove-AtwsTicketAdditionalContact
+ Remove-AtwsTicketAdditionalContact
 
 #>
 

@@ -57,6 +57,8 @@ Returns any object with a DeletedTicketLogName that matches the simple pattern '
 Get-AtwsDeletedTicketLog -DeletedTicketLogName SomeName* -NotLike DeletedTicketLogName
 Returns any object with a DeletedTicketLogName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
+.NOTES
+Related commands:
 
 #>
 

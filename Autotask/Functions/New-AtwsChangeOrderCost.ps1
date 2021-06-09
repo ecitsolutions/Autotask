@@ -44,12 +44,11 @@ Copies [Autotask.ChangeOrderCost] by Id 124 to a new object through the Web Serv
 $result = Get-AtwsChangeOrderCost -Id 124 | New-AtwsChangeOrderCost | Set-AtwsChangeOrderCost -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ChangeOrderCost] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsChangeOrderCost to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsChangeOrderCost
- .LINK
-Get-AtwsChangeOrderCost
- .LINK
-Set-AtwsChangeOrderCost
+ Get-AtwsChangeOrderCost
+ Set-AtwsChangeOrderCost
 
 #>
 

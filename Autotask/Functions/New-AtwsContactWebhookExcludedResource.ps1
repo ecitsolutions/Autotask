@@ -42,10 +42,10 @@ Copies [Autotask.ContactWebhookExcludedResource] by Id 124 to a new object throu
 $result = Get-AtwsContactWebhookExcludedResource -Id 124 | New-AtwsContactWebhookExcludedResource | Set-AtwsContactWebhookExcludedResource -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContactWebhookExcludedResource] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContactWebhookExcludedResource to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsContactWebhookExcludedResource
- .LINK
-Get-AtwsContactWebhookExcludedResource
+ Get-AtwsContactWebhookExcludedResource
 
 #>
 

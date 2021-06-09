@@ -57,10 +57,10 @@ Returns any object with a ContractFactorName that matches the simple pattern 'So
 Get-AtwsContractFactor -ContractFactorName SomeName* -NotLike ContractFactorName
 Returns any object with a ContractFactorName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractFactor
- .LINK
-Set-AtwsContractFactor
+ Set-AtwsContractFactor
 
 #>
 

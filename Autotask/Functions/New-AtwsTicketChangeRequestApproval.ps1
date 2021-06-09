@@ -41,10 +41,10 @@ Copies [Autotask.TicketChangeRequestApproval] by Id 124 to a new object through 
 $result = Get-AtwsTicketChangeRequestApproval -Id 124 | New-AtwsTicketChangeRequestApproval | Set-AtwsTicketChangeRequestApproval -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TicketChangeRequestApproval] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketChangeRequestApproval to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsTicketChangeRequestApproval
- .LINK
-Get-AtwsTicketChangeRequestApproval
+ Get-AtwsTicketChangeRequestApproval
 
 #>
 

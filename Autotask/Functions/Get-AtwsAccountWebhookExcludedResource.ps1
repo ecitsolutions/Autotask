@@ -57,10 +57,10 @@ Returns any object with a AccountWebhookExcludedResourceName that matches the si
 Get-AtwsAccountWebhookExcludedResource -AccountWebhookExcludedResourceName SomeName* -NotLike AccountWebhookExcludedResourceName
 Returns any object with a AccountWebhookExcludedResourceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountWebhookExcludedResource
- .LINK
-Remove-AtwsAccountWebhookExcludedResource
+ Remove-AtwsAccountWebhookExcludedResource
 
 #>
 

@@ -57,10 +57,10 @@ Returns any object with a InstalledProductWebhookExcludedResourceName that match
 Get-AtwsInstalledProductWebhookExcludedResource -InstalledProductWebhookExcludedResourceName SomeName* -NotLike InstalledProductWebhookExcludedResourceName
 Returns any object with a InstalledProductWebhookExcludedResourceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductWebhookExcludedResource
- .LINK
-Remove-AtwsInstalledProductWebhookExcludedResource
+ Remove-AtwsInstalledProductWebhookExcludedResource
 
 #>
 

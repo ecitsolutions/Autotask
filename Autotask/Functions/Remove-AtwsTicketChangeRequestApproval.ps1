@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.TicketChangeRequestApproval that
 .EXAMPLE
 Remove-AtwsTicketChangeRequestApproval  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketChangeRequestApproval
- .LINK
-Get-AtwsTicketChangeRequestApproval
+ Get-AtwsTicketChangeRequestApproval
 
 #>
 

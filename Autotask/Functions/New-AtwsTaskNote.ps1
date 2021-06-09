@@ -44,10 +44,10 @@ Copies [Autotask.TaskNote] by Id 124 to a new object through the Web Services AP
 $result = Get-AtwsTaskNote -Id 124 | New-AtwsTaskNote | Set-AtwsTaskNote -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TaskNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaskNote to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsTaskNote
- .LINK
-Set-AtwsTaskNote
+ Set-AtwsTaskNote
 
 #>
 

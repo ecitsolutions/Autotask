@@ -57,10 +57,10 @@ Returns any object with a TicketChangeRequestApprovalName that matches the simpl
 Get-AtwsTicketChangeRequestApproval -TicketChangeRequestApprovalName SomeName* -NotLike TicketChangeRequestApprovalName
 Returns any object with a TicketChangeRequestApprovalName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketChangeRequestApproval
- .LINK
-Remove-AtwsTicketChangeRequestApproval
+ Remove-AtwsTicketChangeRequestApproval
 
 #>
 

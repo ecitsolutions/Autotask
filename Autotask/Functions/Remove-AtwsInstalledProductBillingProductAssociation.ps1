@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.InstalledProductBillingProductAs
 .EXAMPLE
 Remove-AtwsInstalledProductBillingProductAssociation  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductBillingProductAssociation
- .LINK
-Get-AtwsInstalledProductBillingProductAssociation
- .LINK
-Set-AtwsInstalledProductBillingProductAssociation
+ Get-AtwsInstalledProductBillingProductAssociation
+ Set-AtwsInstalledProductBillingProductAssociation
 
 #>
 

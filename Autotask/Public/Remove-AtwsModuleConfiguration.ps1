@@ -23,7 +23,8 @@ Function Remove-AtwsModuleConfiguration {
             Remove-AtwsModuleConfiguration -Name Default -Path AtwsConfig.clixml
             .NOTES
             NAME: Remove-AtwsModuleConfiguration
-            .LINK
+            
+            Related commands:
             Get-AtwsModuleConfiguration
             Set-AtwsModuleConfiguration
             New-AtwsModuleConfiguration

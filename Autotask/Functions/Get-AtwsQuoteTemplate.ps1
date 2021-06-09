@@ -76,6 +76,8 @@ Returns any QuoteTemplates with property DateFormat NOT equal to NEITHER <PickLi
 Get-AtwsQuoteTemplate -Id 1234 -QuoteTemplateName SomeName* -DateFormat <PickList Label1>, <PickList Label2> -Like QuoteTemplateName -NotEquals DateFormat -GreaterThan Id
 An example of a more complex query. This command returns any QuoteTemplates with Id GREATER THAN 1234, a QuoteTemplateName that matches the simple pattern SomeName* AND that has a DateFormat that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
+.NOTES
+Related commands:
 
 #>
 

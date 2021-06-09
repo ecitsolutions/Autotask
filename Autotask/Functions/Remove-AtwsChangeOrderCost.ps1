@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ChangeOrderCost that was passed 
 .EXAMPLE
 Remove-AtwsChangeOrderCost  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsChangeOrderCost
- .LINK
-Get-AtwsChangeOrderCost
- .LINK
-Set-AtwsChangeOrderCost
+ Get-AtwsChangeOrderCost
+ Set-AtwsChangeOrderCost
 
 #>
 

@@ -72,12 +72,11 @@ Returns any ContactWebhookUdfFields with property UdfFieldID NOT equal to NEITHE
 Get-AtwsContactWebhookUdfField -Id 1234 -ContactWebhookUdfFieldName SomeName* -UdfFieldID <PickList Label1>, <PickList Label2> -Like ContactWebhookUdfFieldName -NotEquals UdfFieldID -GreaterThan Id
 An example of a more complex query. This command returns any ContactWebhookUdfFields with Id GREATER THAN 1234, a ContactWebhookUdfFieldName that matches the simple pattern SomeName* AND that has a UdfFieldID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactWebhookUdfField
- .LINK
-Remove-AtwsContactWebhookUdfField
- .LINK
-Set-AtwsContactWebhookUdfField
+ Remove-AtwsContactWebhookUdfField
+ Set-AtwsContactWebhookUdfField
 
 #>
 

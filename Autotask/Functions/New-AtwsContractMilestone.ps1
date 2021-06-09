@@ -46,10 +46,10 @@ Copies [Autotask.ContractMilestone] by Id 124 to a new object through the Web Se
 $result = Get-AtwsContractMilestone -Id 124 | New-AtwsContractMilestone | Set-AtwsContractMilestone -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractMilestone] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractMilestone to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsContractMilestone
- .LINK
-Set-AtwsContractMilestone
+ Set-AtwsContractMilestone
 
 #>
 

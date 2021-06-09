@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ContactGroup that was passed to 
 .EXAMPLE
 Remove-AtwsContactGroup  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactGroup
- .LINK
-Get-AtwsContactGroup
- .LINK
-Set-AtwsContactGroup
+ Get-AtwsContactGroup
+ Set-AtwsContactGroup
 
 #>
 

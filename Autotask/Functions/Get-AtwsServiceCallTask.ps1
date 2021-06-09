@@ -57,10 +57,10 @@ Returns any object with a ServiceCallTaskName that matches the simple pattern 'S
 Get-AtwsServiceCallTask -ServiceCallTaskName SomeName* -NotLike ServiceCallTaskName
 Returns any object with a ServiceCallTaskName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceCallTask
- .LINK
-Remove-AtwsServiceCallTask
+ Remove-AtwsServiceCallTask
 
 #>
 

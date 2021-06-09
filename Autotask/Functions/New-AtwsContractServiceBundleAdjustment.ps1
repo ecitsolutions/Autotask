@@ -41,6 +41,8 @@ Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object thro
 $result = Get-AtwsContractServiceBundleAdjustment -Id 124 | New-AtwsContractServiceBundleAdjustment | Set-AtwsContractServiceBundleAdjustment -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractServiceBundleAdjustment] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractServiceBundleAdjustment to modify the object and returns the new object.
 
+.NOTES
+Related commands:
 
 #>
 

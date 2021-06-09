@@ -46,10 +46,10 @@ Copies [Autotask.ContractBlock] by Id 124 to a new object through the Web Servic
 $result = Get-AtwsContractBlock -Id 124 | New-AtwsContractBlock | Set-AtwsContractBlock -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractBlock] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractBlock to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsContractBlock
- .LINK
-Set-AtwsContractBlock
+ Set-AtwsContractBlock
 
 #>
 

@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.AccountToDo that was passed to t
 .EXAMPLE
 Remove-AtwsAccountToDo  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountToDo
- .LINK
-Get-AtwsAccountToDo
- .LINK
-Set-AtwsAccountToDo
+ Get-AtwsAccountToDo
+ Set-AtwsAccountToDo
 
 #>
 

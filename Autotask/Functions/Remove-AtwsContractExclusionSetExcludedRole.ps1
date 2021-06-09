@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.ContractExclusionSetExcludedRole
 .EXAMPLE
 Remove-AtwsContractExclusionSetExcludedRole  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractExclusionSetExcludedRole
- .LINK
-Get-AtwsContractExclusionSetExcludedRole
+ Get-AtwsContractExclusionSetExcludedRole
 
 #>
 

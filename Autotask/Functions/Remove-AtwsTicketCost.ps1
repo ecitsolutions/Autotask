@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.TicketCost that was passed to th
 .EXAMPLE
 Remove-AtwsTicketCost  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketCost
- .LINK
-Get-AtwsTicketCost
- .LINK
-Set-AtwsTicketCost
+ Get-AtwsTicketCost
+ Set-AtwsTicketCost
 
 #>
 

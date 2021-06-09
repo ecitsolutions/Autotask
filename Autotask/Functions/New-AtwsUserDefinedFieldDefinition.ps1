@@ -43,10 +43,10 @@ Copies [Autotask.UserDefinedFieldDefinition] by Id 124 to a new object through t
 $result = Get-AtwsUserDefinedFieldDefinition -Id 124 | New-AtwsUserDefinedFieldDefinition | Set-AtwsUserDefinedFieldDefinition -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.UserDefinedFieldDefinition] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsUserDefinedFieldDefinition to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsUserDefinedFieldDefinition
- .LINK
-Set-AtwsUserDefinedFieldDefinition
+ Set-AtwsUserDefinedFieldDefinition
 
 #>
 

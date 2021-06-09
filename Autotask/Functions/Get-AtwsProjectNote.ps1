@@ -73,10 +73,10 @@ Returns any ProjectNotes with property NoteType NOT equal to NEITHER <PickList L
 Get-AtwsProjectNote -Id 1234 -ProjectNoteName SomeName* -NoteType <PickList Label1>, <PickList Label2> -Like ProjectNoteName -NotEquals NoteType -GreaterThan Id
 An example of a more complex query. This command returns any ProjectNotes with Id GREATER THAN 1234, a ProjectNoteName that matches the simple pattern SomeName* AND that has a NoteType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsProjectNote
- .LINK
-Set-AtwsProjectNote
+ Set-AtwsProjectNote
 
 #>
 

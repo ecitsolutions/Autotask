@@ -73,10 +73,10 @@ Returns any Services with property PeriodType NOT equal to NEITHER <PickList Lab
 Get-AtwsService -Id 1234 -ServiceName SomeName* -PeriodType <PickList Label1>, <PickList Label2> -Like ServiceName -NotEquals PeriodType -GreaterThan Id
 An example of a more complex query. This command returns any Services with Id GREATER THAN 1234, a ServiceName that matches the simple pattern SomeName* AND that has a PeriodType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsService
- .LINK
-Set-AtwsService
+ Set-AtwsService
 
 #>
 

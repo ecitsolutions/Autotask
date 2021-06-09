@@ -1,4 +1,3 @@
-#Requires -Version 4.0
 <#
 
     .COPYRIGHT
@@ -18,17 +17,11 @@ Function Get-AtwsThresholdAndUsageInfo {
       information may be collected. All information is collected and stored in a PSObject which is
       returned.
       .INPUTS
-      An Autotask invoice object or an invoice id
+      Nothing
       .OUTPUTS
-      A custom PSObject with detailed information about an invoice
+      [String]
       .EXAMPLE
-      $Invoice | Get-AtwsInvoiceInfo
-      Gets information about invoices passed through the pipeline
-      .EXAMPLE
-      Get-AtwsInvoiceInfo -InvoiceID $Invoice.id
-      Gets information about invoices based on the ids passed as a parameter
-      .NOTES
-      NAME: Get-AtwsInvoiceInfo
+      Get-AtwsThresholdAndUsageInfo
       
   #>
 	

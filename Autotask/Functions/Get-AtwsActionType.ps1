@@ -72,12 +72,11 @@ Returns any ActionTypes with property View NOT equal to NEITHER <PickList Label1
 Get-AtwsActionType -Id 1234 -ActionTypeName SomeName* -View <PickList Label1>, <PickList Label2> -Like ActionTypeName -NotEquals View -GreaterThan Id
 An example of a more complex query. This command returns any ActionTypes with Id GREATER THAN 1234, a ActionTypeName that matches the simple pattern SomeName* AND that has a View that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsActionType
- .LINK
-Remove-AtwsActionType
- .LINK
-Set-AtwsActionType
+ Remove-AtwsActionType
+ Set-AtwsActionType
 
 #>
 

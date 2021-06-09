@@ -42,10 +42,10 @@ Copies [Autotask.InstalledProductWebhookExcludedResource] by Id 124 to a new obj
 $result = Get-AtwsInstalledProductWebhookExcludedResource -Id 124 | New-AtwsInstalledProductWebhookExcludedResource | Set-AtwsInstalledProductWebhookExcludedResource -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.InstalledProductWebhookExcludedResource] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductWebhookExcludedResource to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsInstalledProductWebhookExcludedResource
- .LINK
-Get-AtwsInstalledProductWebhookExcludedResource
+ Get-AtwsInstalledProductWebhookExcludedResource
 
 #>
 

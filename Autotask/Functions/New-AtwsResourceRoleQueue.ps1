@@ -42,10 +42,10 @@ Copies [Autotask.ResourceRoleQueue] by Id 124 to a new object through the Web Se
 $result = Get-AtwsResourceRoleQueue -Id 124 | New-AtwsResourceRoleQueue | Set-AtwsResourceRoleQueue -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ResourceRoleQueue] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsResourceRoleQueue to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsResourceRoleQueue
- .LINK
-Set-AtwsResourceRoleQueue
+ Set-AtwsResourceRoleQueue
 
 #>
 

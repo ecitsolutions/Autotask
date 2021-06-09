@@ -72,12 +72,11 @@ Returns any ServiceCalls with property Status NOT equal to NEITHER <PickList Lab
 Get-AtwsServiceCall -Id 1234 -ServiceCallName SomeName* -Status <PickList Label1>, <PickList Label2> -Like ServiceCallName -NotEquals Status -GreaterThan Id
 An example of a more complex query. This command returns any ServiceCalls with Id GREATER THAN 1234, a ServiceCallName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceCall
- .LINK
-Remove-AtwsServiceCall
- .LINK
-Set-AtwsServiceCall
+ Remove-AtwsServiceCall
+ Set-AtwsServiceCall
 
 #>
 

@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.InstalledProductType that was pa
 .EXAMPLE
 Remove-AtwsInstalledProductType  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductType
- .LINK
-Get-AtwsInstalledProductType
- .LINK
-Set-AtwsInstalledProductType
+ Get-AtwsInstalledProductType
+ Set-AtwsInstalledProductType
 
 #>
 

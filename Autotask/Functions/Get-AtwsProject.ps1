@@ -75,10 +75,10 @@ Returns any Projects with property Type NOT equal to NEITHER <PickList Label1> N
 Get-AtwsProject -Id 1234 -ProjectName SomeName* -Type <PickList Label1>, <PickList Label2> -Like ProjectName -NotEquals Type -GreaterThan Id
 An example of a more complex query. This command returns any Projects with Id GREATER THAN 1234, a ProjectName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsProject
- .LINK
-Set-AtwsProject
+ Set-AtwsProject
 
 #>
 

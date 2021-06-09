@@ -78,10 +78,10 @@ Returns any Quotes with property TaxGroup NOT equal to NEITHER <PickList Label1>
 Get-AtwsQuote -Id 1234 -QuoteName SomeName* -TaxGroup <PickList Label1>, <PickList Label2> -Like QuoteName -NotEquals TaxGroup -GreaterThan Id
 An example of a more complex query. This command returns any Quotes with Id GREATER THAN 1234, a QuoteName that matches the simple pattern SomeName* AND that has a TaxGroup that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsQuote
- .LINK
-Set-AtwsQuote
+ Set-AtwsQuote
 
 #>
 

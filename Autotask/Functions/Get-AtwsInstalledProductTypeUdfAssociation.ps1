@@ -57,12 +57,11 @@ Returns any object with a InstalledProductTypeUdfAssociationName that matches th
 Get-AtwsInstalledProductTypeUdfAssociation -InstalledProductTypeUdfAssociationName SomeName* -NotLike InstalledProductTypeUdfAssociationName
 Returns any object with a InstalledProductTypeUdfAssociationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductTypeUdfAssociation
- .LINK
-Remove-AtwsInstalledProductTypeUdfAssociation
- .LINK
-Set-AtwsInstalledProductTypeUdfAssociation
+ Remove-AtwsInstalledProductTypeUdfAssociation
+ Set-AtwsInstalledProductTypeUdfAssociation
 
 #>
 

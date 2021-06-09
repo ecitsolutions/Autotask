@@ -74,10 +74,10 @@ Returns any ContractBlocks with property Status NOT equal to NEITHER <PickList L
 Get-AtwsContractBlock -Id 1234 -ContractBlockName SomeName* -Status <PickList Label1>, <PickList Label2> -Like ContractBlockName -NotEquals Status -GreaterThan Id
 An example of a more complex query. This command returns any ContractBlocks with Id GREATER THAN 1234, a ContractBlockName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractBlock
- .LINK
-Set-AtwsContractBlock
+ Set-AtwsContractBlock
 
 #>
 

@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ChecklistLibrary that was passed
 .EXAMPLE
 Remove-AtwsChecklistLibrary  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsChecklistLibrary
- .LINK
-Get-AtwsChecklistLibrary
- .LINK
-Set-AtwsChecklistLibrary
+ Get-AtwsChecklistLibrary
+ Set-AtwsChecklistLibrary
 
 #>
 

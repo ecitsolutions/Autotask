@@ -93,10 +93,10 @@ Returns any InstalledProducts with property Type NOT equal to NEITHER <PickList 
 Get-AtwsInstalledProduct -Id 1234 -InstalledProductName SomeName* -Type <PickList Label1>, <PickList Label2> -Like InstalledProductName -NotEquals Type -GreaterThan Id
 An example of a more complex query. This command returns any InstalledProducts with Id GREATER THAN 1234, a InstalledProductName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProduct
- .LINK
-Set-AtwsInstalledProduct
+ Set-AtwsInstalledProduct
 
 #>
 

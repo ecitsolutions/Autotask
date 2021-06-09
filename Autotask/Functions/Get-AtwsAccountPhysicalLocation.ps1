@@ -57,12 +57,11 @@ Returns any object with a AccountPhysicalLocationName that matches the simple pa
 Get-AtwsAccountPhysicalLocation -AccountPhysicalLocationName SomeName* -NotLike AccountPhysicalLocationName
 Returns any object with a AccountPhysicalLocationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountPhysicalLocation
- .LINK
-Remove-AtwsAccountPhysicalLocation
- .LINK
-Set-AtwsAccountPhysicalLocation
+ Remove-AtwsAccountPhysicalLocation
+ Set-AtwsAccountPhysicalLocation
 
 #>
 

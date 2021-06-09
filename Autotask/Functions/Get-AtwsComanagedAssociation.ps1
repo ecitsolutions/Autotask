@@ -57,10 +57,10 @@ Returns any object with a ComanagedAssociationName that matches the simple patte
 Get-AtwsComanagedAssociation -ComanagedAssociationName SomeName* -NotLike ComanagedAssociationName
 Returns any object with a ComanagedAssociationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsComanagedAssociation
- .LINK
-Remove-AtwsComanagedAssociation
+ Remove-AtwsComanagedAssociation
 
 #>
 

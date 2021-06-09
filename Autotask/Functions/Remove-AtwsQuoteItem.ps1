@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.QuoteItem that was passed to the
 .EXAMPLE
 Remove-AtwsQuoteItem  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsQuoteItem
- .LINK
-Get-AtwsQuoteItem
- .LINK
-Set-AtwsQuoteItem
+ Get-AtwsQuoteItem
+ Set-AtwsQuoteItem
 
 #>
 

@@ -57,7 +57,8 @@ Returns any object with a PriceListProductName that matches the simple pattern '
 Get-AtwsPriceListProduct -PriceListProductName SomeName* -NotLike PriceListProductName
 Returns any object with a PriceListProductName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsPriceListProduct
 
 #>

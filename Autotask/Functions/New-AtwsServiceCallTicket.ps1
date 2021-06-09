@@ -42,10 +42,10 @@ Copies [Autotask.ServiceCallTicket] by Id 124 to a new object through the Web Se
 $result = Get-AtwsServiceCallTicket -Id 124 | New-AtwsServiceCallTicket | Set-AtwsServiceCallTicket -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ServiceCallTicket] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCallTicket to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsServiceCallTicket
- .LINK
-Get-AtwsServiceCallTicket
+ Get-AtwsServiceCallTicket
 
 #>
 

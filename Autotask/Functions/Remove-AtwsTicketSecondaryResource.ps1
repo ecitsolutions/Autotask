@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.TicketSecondaryResource that was
 .EXAMPLE
 Remove-AtwsTicketSecondaryResource  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketSecondaryResource
- .LINK
-Get-AtwsTicketSecondaryResource
+ Get-AtwsTicketSecondaryResource
 
 #>
 

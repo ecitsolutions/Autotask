@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ServiceCall that was passed to t
 .EXAMPLE
 Remove-AtwsServiceCall  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceCall
- .LINK
-Get-AtwsServiceCall
- .LINK
-Set-AtwsServiceCall
+ Get-AtwsServiceCall
+ Set-AtwsServiceCall
 
 #>
 

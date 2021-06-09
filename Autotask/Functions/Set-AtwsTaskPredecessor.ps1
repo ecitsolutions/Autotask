@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsTaskPredecessor -Id 0,4,8 | Set-AtwsTaskPredecessor -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTaskPredecessor
- .LINK
-Remove-AtwsTaskPredecessor
- .LINK
-Get-AtwsTaskPredecessor
+ Remove-AtwsTaskPredecessor
+ Get-AtwsTaskPredecessor
 
 #>
 

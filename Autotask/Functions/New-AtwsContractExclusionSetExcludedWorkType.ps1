@@ -42,10 +42,10 @@ Copies [Autotask.ContractExclusionSetExcludedWorkType] by Id 124 to a new object
 $result = Get-AtwsContractExclusionSetExcludedWorkType -Id 124 | New-AtwsContractExclusionSetExcludedWorkType | Set-AtwsContractExclusionSetExcludedWorkType -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractExclusionSetExcludedWorkType] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractExclusionSetExcludedWorkType to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsContractExclusionSetExcludedWorkType
- .LINK
-Get-AtwsContractExclusionSetExcludedWorkType
+ Get-AtwsContractExclusionSetExcludedWorkType
 
 #>
 

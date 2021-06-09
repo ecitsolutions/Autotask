@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsAppointment -Id 0,4,8 | Set-AtwsAppointment -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAppointment
- .LINK
-Remove-AtwsAppointment
- .LINK
-Get-AtwsAppointment
+ Remove-AtwsAppointment
+ Get-AtwsAppointment
 
 #>
 

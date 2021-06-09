@@ -72,7 +72,8 @@ Returns any PurchaseApprovals with property CostType NOT equal to NEITHER <PickL
 Get-AtwsPurchaseApproval -Id 1234 -PurchaseApprovalName SomeName* -CostType <PickList Label1>, <PickList Label2> -Like PurchaseApprovalName -NotEquals CostType -GreaterThan Id
 An example of a more complex query. This command returns any PurchaseApprovals with Id GREATER THAN 1234, a PurchaseApprovalName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsPurchaseApproval
 
 #>

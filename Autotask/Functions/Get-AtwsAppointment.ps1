@@ -57,12 +57,11 @@ Returns any object with a AppointmentName that matches the simple pattern 'SomeN
 Get-AtwsAppointment -AppointmentName SomeName* -NotLike AppointmentName
 Returns any object with a AppointmentName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAppointment
- .LINK
-Remove-AtwsAppointment
- .LINK
-Set-AtwsAppointment
+ Remove-AtwsAppointment
+ Set-AtwsAppointment
 
 #>
 

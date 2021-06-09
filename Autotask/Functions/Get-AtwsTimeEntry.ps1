@@ -72,12 +72,11 @@ Returns any TimeEntrys with property Type NOT equal to NEITHER <PickList Label1>
 Get-AtwsTimeEntry -Id 1234 -TimeEntryName SomeName* -Type <PickList Label1>, <PickList Label2> -Like TimeEntryName -NotEquals Type -GreaterThan Id
 An example of a more complex query. This command returns any TimeEntrys with Id GREATER THAN 1234, a TimeEntryName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTimeEntry
- .LINK
-Remove-AtwsTimeEntry
- .LINK
-Set-AtwsTimeEntry
+ Remove-AtwsTimeEntry
+ Set-AtwsTimeEntry
 
 #>
 

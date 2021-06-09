@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.TicketAdditionalContact that was
 .EXAMPLE
 Remove-AtwsTicketAdditionalContact  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketAdditionalContact
- .LINK
-Get-AtwsTicketAdditionalContact
+ Get-AtwsTicketAdditionalContact
 
 #>
 

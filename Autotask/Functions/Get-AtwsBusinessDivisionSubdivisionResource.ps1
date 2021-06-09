@@ -57,6 +57,8 @@ Returns any object with a BusinessDivisionSubdivisionResourceName that matches t
 Get-AtwsBusinessDivisionSubdivisionResource -BusinessDivisionSubdivisionResourceName SomeName* -NotLike BusinessDivisionSubdivisionResourceName
 Returns any object with a BusinessDivisionSubdivisionResourceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
+.NOTES
+Related commands:
 
 #>
 

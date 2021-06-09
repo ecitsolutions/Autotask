@@ -45,12 +45,11 @@ Copies [Autotask.TicketCost] by Id 124 to a new object through the Web Services 
 $result = Get-AtwsTicketCost -Id 124 | New-AtwsTicketCost | Set-AtwsTicketCost -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TicketCost] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketCost to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsTicketCost
- .LINK
-Get-AtwsTicketCost
- .LINK
-Set-AtwsTicketCost
+ Get-AtwsTicketCost
+ Set-AtwsTicketCost
 
 #>
 

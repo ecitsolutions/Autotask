@@ -57,12 +57,11 @@ Returns any object with a InstalledProductWebhookName that matches the simple pa
 Get-AtwsInstalledProductWebhook -InstalledProductWebhookName SomeName* -NotLike InstalledProductWebhookName
 Returns any object with a InstalledProductWebhookName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductWebhook
- .LINK
-Remove-AtwsInstalledProductWebhook
- .LINK
-Set-AtwsInstalledProductWebhook
+ Remove-AtwsInstalledProductWebhook
+ Set-AtwsInstalledProductWebhook
 
 #>
 

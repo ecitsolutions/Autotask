@@ -40,7 +40,7 @@ Function Remove-AtwsAttachment {
       .EXAMPLE
       $Ticket | Remove-AtwsAttachment
       Deletes any attachments connected to the Ticket passed through the pipeline. Also works for Opportunities, Accounts and Projects.
-      .NOTE
+      .NOTES
       Strongly related to Get-AtwsAttachmentInfo
   #>
 

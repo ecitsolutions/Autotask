@@ -75,10 +75,10 @@ Returns any Products with property ProductCategory NOT equal to NEITHER <PickLis
 Get-AtwsProduct -Id 1234 -ProductName SomeName* -ProductCategory <PickList Label1>, <PickList Label2> -Like ProductName -NotEquals ProductCategory -GreaterThan Id
 An example of a more complex query. This command returns any Products with Id GREATER THAN 1234, a ProductName that matches the simple pattern SomeName* AND that has a ProductCategory that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsProduct
- .LINK
-Set-AtwsProduct
+ Set-AtwsProduct
 
 #>
 

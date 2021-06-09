@@ -57,10 +57,10 @@ Returns any object with a TicketSecondaryResourceName that matches the simple pa
 Get-AtwsTicketSecondaryResource -TicketSecondaryResourceName SomeName* -NotLike TicketSecondaryResourceName
 Returns any object with a TicketSecondaryResourceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketSecondaryResource
- .LINK
-Remove-AtwsTicketSecondaryResource
+ Remove-AtwsTicketSecondaryResource
 
 #>
 

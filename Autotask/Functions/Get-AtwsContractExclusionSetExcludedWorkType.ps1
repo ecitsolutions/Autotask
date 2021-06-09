@@ -57,10 +57,10 @@ Returns any object with a ContractExclusionSetExcludedWorkTypeName that matches 
 Get-AtwsContractExclusionSetExcludedWorkType -ContractExclusionSetExcludedWorkTypeName SomeName* -NotLike ContractExclusionSetExcludedWorkTypeName
 Returns any object with a ContractExclusionSetExcludedWorkTypeName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractExclusionSetExcludedWorkType
- .LINK
-Remove-AtwsContractExclusionSetExcludedWorkType
+ Remove-AtwsContractExclusionSetExcludedWorkType
 
 #>
 

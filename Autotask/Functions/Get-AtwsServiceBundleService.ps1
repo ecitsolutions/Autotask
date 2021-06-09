@@ -57,10 +57,10 @@ Returns any object with a ServiceBundleServiceName that matches the simple patte
 Get-AtwsServiceBundleService -ServiceBundleServiceName SomeName* -NotLike ServiceBundleServiceName
 Returns any object with a ServiceBundleServiceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceBundleService
- .LINK
-Remove-AtwsServiceBundleService
+ Remove-AtwsServiceBundleService
 
 #>
 

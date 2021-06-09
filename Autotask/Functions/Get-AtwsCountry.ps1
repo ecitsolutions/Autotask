@@ -73,7 +73,8 @@ Returns any Countrys with property AddressFormatID NOT equal to NEITHER <PickLis
 Get-AtwsCountry -Id 1234 -CountryName SomeName* -AddressFormatID <PickList Label1>, <PickList Label2> -Like CountryName -NotEquals AddressFormatID -GreaterThan Id
 An example of a more complex query. This command returns any Countrys with Id GREATER THAN 1234, a CountryName that matches the simple pattern SomeName* AND that has a AddressFormatID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsCountry
 
 #>

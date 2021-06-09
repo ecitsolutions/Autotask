@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ContractBillingRule that was pas
 .EXAMPLE
 Remove-AtwsContractBillingRule  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractBillingRule
- .LINK
-Get-AtwsContractBillingRule
- .LINK
-Set-AtwsContractBillingRule
+ Get-AtwsContractBillingRule
+ Set-AtwsContractBillingRule
 
 #>
 

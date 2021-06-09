@@ -42,6 +42,8 @@ Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the W
 $result = Get-AtwsTicketChecklistLibrary -Id 124 | New-AtwsTicketChecklistLibrary | Set-AtwsTicketChecklistLibrary -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketChecklistLibrary to modify the object and returns the new object.
 
+.NOTES
+Related commands:
 
 #>
 

@@ -72,10 +72,10 @@ Returns any ContractMilestones with property Status NOT equal to NEITHER <PickLi
 Get-AtwsContractMilestone -Id 1234 -ContractMilestoneName SomeName* -Status <PickList Label1>, <PickList Label2> -Like ContractMilestoneName -NotEquals Status -GreaterThan Id
 An example of a more complex query. This command returns any ContractMilestones with Id GREATER THAN 1234, a ContractMilestoneName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractMilestone
- .LINK
-Set-AtwsContractMilestone
+ Set-AtwsContractMilestone
 
 #>
 

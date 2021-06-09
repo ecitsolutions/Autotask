@@ -42,12 +42,11 @@ Copies [Autotask.AccountPhysicalLocation] by Id 124 to a new object through the 
 $result = Get-AtwsAccountPhysicalLocation -Id 124 | New-AtwsAccountPhysicalLocation | Set-AtwsAccountPhysicalLocation -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.AccountPhysicalLocation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountPhysicalLocation to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsAccountPhysicalLocation
- .LINK
-Get-AtwsAccountPhysicalLocation
- .LINK
-Set-AtwsAccountPhysicalLocation
+ Get-AtwsAccountPhysicalLocation
+ Set-AtwsAccountPhysicalLocation
 
 #>
 

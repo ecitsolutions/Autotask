@@ -32,8 +32,7 @@ Function Connect-AtwsWebAPI {
             New-AtwsModuleConfiguration -Credential $Credential -ApiTrackingIdentifier $ApiKey -Dateconversion Disabled | Connect-AtwsWebAPI
             Creates a new module configuration object with date conversion between EST (the Autotask API always uses EST no matter which data center you are connected to) and local time disabled.
         .NOTES
-            NAME: Connect-AtwsWebAPI
-        .LINK
+            Related commands:
             New-AtwsModuleConfiguration
             Save-AtwsModuleConfiguration
             Set-AtwsModuleConfiguration

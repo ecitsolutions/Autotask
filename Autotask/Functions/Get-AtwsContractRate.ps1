@@ -57,10 +57,10 @@ Returns any object with a ContractRateName that matches the simple pattern 'Some
 Get-AtwsContractRate -ContractRateName SomeName* -NotLike ContractRateName
 Returns any object with a ContractRateName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractRate
- .LINK
-Set-AtwsContractRate
+ Set-AtwsContractRate
 
 #>
 

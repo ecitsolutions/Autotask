@@ -57,10 +57,10 @@ Returns any object with a ContactGroupContactName that matches the simple patter
 Get-AtwsContactGroupContact -ContactGroupContactName SomeName* -NotLike ContactGroupContactName
 Returns any object with a ContactGroupContactName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactGroupContact
- .LINK
-Remove-AtwsContactGroupContact
+ Remove-AtwsContactGroupContact
 
 #>
 

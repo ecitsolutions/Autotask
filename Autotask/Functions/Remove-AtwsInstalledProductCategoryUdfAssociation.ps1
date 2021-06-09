@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.InstalledProductCategoryUdfAssoc
 .EXAMPLE
 Remove-AtwsInstalledProductCategoryUdfAssociation  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductCategoryUdfAssociation
- .LINK
-Get-AtwsInstalledProductCategoryUdfAssociation
- .LINK
-Set-AtwsInstalledProductCategoryUdfAssociation
+ Get-AtwsInstalledProductCategoryUdfAssociation
+ Set-AtwsInstalledProductCategoryUdfAssociation
 
 #>
 

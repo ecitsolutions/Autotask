@@ -57,10 +57,10 @@ Returns any object with a ContractServiceName that matches the simple pattern 'S
 Get-AtwsContractService -ContractServiceName SomeName* -NotLike ContractServiceName
 Returns any object with a ContractServiceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractService
- .LINK
-Set-AtwsContractService
+ Set-AtwsContractService
 
 #>
 

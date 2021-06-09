@@ -57,10 +57,10 @@ Returns any object with a ContractExclusionAllocationCodeName that matches the s
 Get-AtwsContractExclusionAllocationCode -ContractExclusionAllocationCodeName SomeName* -NotLike ContractExclusionAllocationCodeName
 Returns any object with a ContractExclusionAllocationCodeName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractExclusionAllocationCode
- .LINK
-Remove-AtwsContractExclusionAllocationCode
+ Remove-AtwsContractExclusionAllocationCode
 
 #>
 

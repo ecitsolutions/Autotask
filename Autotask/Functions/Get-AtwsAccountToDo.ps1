@@ -72,12 +72,11 @@ Returns any AccountToDos with property ActionType NOT equal to NEITHER <PickList
 Get-AtwsAccountToDo -Id 1234 -AccountToDoName SomeName* -ActionType <PickList Label1>, <PickList Label2> -Like AccountToDoName -NotEquals ActionType -GreaterThan Id
 An example of a more complex query. This command returns any AccountToDos with Id GREATER THAN 1234, a AccountToDoName that matches the simple pattern SomeName* AND that has a ActionType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountToDo
- .LINK
-Remove-AtwsAccountToDo
- .LINK
-Set-AtwsAccountToDo
+ Remove-AtwsAccountToDo
+ Set-AtwsAccountToDo
 
 #>
 

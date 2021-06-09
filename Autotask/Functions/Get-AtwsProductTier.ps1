@@ -57,12 +57,11 @@ Returns any object with a ProductTierName that matches the simple pattern 'SomeN
 Get-AtwsProductTier -ProductTierName SomeName* -NotLike ProductTierName
 Returns any object with a ProductTierName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsProductTier
- .LINK
-Remove-AtwsProductTier
- .LINK
-Set-AtwsProductTier
+ Remove-AtwsProductTier
+ Set-AtwsProductTier
 
 #>
 

@@ -43,12 +43,11 @@ Copies [Autotask.ProductTier] by Id 124 to a new object through the Web Services
 $result = Get-AtwsProductTier -Id 124 | New-AtwsProductTier | Set-AtwsProductTier -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ProductTier] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProductTier to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsProductTier
- .LINK
-Get-AtwsProductTier
- .LINK
-Set-AtwsProductTier
+ Get-AtwsProductTier
+ Set-AtwsProductTier
 
 #>
 

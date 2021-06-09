@@ -42,12 +42,11 @@ Copies [Autotask.TicketChecklistItem] by Id 124 to a new object through the Web 
 $result = Get-AtwsTicketChecklistItem -Id 124 | New-AtwsTicketChecklistItem | Set-AtwsTicketChecklistItem -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TicketChecklistItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketChecklistItem to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsTicketChecklistItem
- .LINK
-Get-AtwsTicketChecklistItem
- .LINK
-Set-AtwsTicketChecklistItem
+ Get-AtwsTicketChecklistItem
+ Set-AtwsTicketChecklistItem
 
 #>
 

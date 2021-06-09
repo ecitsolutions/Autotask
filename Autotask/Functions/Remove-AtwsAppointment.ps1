@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.Appointment that was passed to t
 .EXAMPLE
 Remove-AtwsAppointment  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAppointment
- .LINK
-Get-AtwsAppointment
- .LINK
-Set-AtwsAppointment
+ Get-AtwsAppointment
+ Set-AtwsAppointment
 
 #>
 

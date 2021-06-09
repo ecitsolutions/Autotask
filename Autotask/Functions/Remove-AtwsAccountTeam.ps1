@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.AccountTeam that was passed to t
 .EXAMPLE
 Remove-AtwsAccountTeam  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountTeam
- .LINK
-Get-AtwsAccountTeam
+ Get-AtwsAccountTeam
 
 #>
 

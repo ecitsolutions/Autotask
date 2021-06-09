@@ -57,6 +57,8 @@ Returns any object with a ContractServiceBundleUnitName that matches the simple 
 Get-AtwsContractServiceBundleUnit -ContractServiceBundleUnitName SomeName* -NotLike ContractServiceBundleUnitName
 Returns any object with a ContractServiceBundleUnitName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
+.NOTES
+Related commands:
 
 #>
 

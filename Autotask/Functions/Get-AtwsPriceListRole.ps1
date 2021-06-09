@@ -57,7 +57,8 @@ Returns any object with a PriceListRoleName that matches the simple pattern 'Som
 Get-AtwsPriceListRole -PriceListRoleName SomeName* -NotLike PriceListRoleName
 Returns any object with a PriceListRoleName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsPriceListRole
 
 #>

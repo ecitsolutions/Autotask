@@ -57,10 +57,10 @@ Returns any object with a ProductVendorName that matches the simple pattern 'Som
 Get-AtwsProductVendor -ProductVendorName SomeName* -NotLike ProductVendorName
 Returns any object with a ProductVendorName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsProductVendor
- .LINK
-Set-AtwsProductVendor
+ Set-AtwsProductVendor
 
 #>
 

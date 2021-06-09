@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.TicketTagAssociation that was pa
 .EXAMPLE
 Remove-AtwsTicketTagAssociation  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketTagAssociation
- .LINK
-Get-AtwsTicketTagAssociation
+ Get-AtwsTicketTagAssociation
 
 #>
 

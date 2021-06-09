@@ -47,10 +47,10 @@ Copies [Autotask.ExpenseItem] by Id 124 to a new object through the Web Services
 $result = Get-AtwsExpenseItem -Id 124 | New-AtwsExpenseItem | Set-AtwsExpenseItem -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ExpenseItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsExpenseItem to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsExpenseItem
- .LINK
-Set-AtwsExpenseItem
+ Set-AtwsExpenseItem
 
 #>
 

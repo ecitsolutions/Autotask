@@ -42,12 +42,11 @@ Copies [Autotask.InstalledProductType] by Id 124 to a new object through the Web
 $result = Get-AtwsInstalledProductType -Id 124 | New-AtwsInstalledProductType | Set-AtwsInstalledProductType -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.InstalledProductType] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductType to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsInstalledProductType
- .LINK
-Get-AtwsInstalledProductType
- .LINK
-Set-AtwsInstalledProductType
+ Get-AtwsInstalledProductType
+ Set-AtwsInstalledProductType
 
 #>
 

@@ -57,10 +57,10 @@ Returns any object with a TaxRegionName that matches the simple pattern 'SomeNam
 Get-AtwsTaxRegion -TaxRegionName SomeName* -NotLike TaxRegionName
 Returns any object with a TaxRegionName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTaxRegion
- .LINK
-Set-AtwsTaxRegion
+ Set-AtwsTaxRegion
 
 #>
 

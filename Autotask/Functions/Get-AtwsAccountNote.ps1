@@ -72,10 +72,10 @@ Returns any AccountNotes with property ActionType NOT equal to NEITHER <PickList
 Get-AtwsAccountNote -Id 1234 -AccountNoteName SomeName* -ActionType <PickList Label1>, <PickList Label2> -Like AccountNoteName -NotEquals ActionType -GreaterThan Id
 An example of a more complex query. This command returns any AccountNotes with Id GREATER THAN 1234, a AccountNoteName that matches the simple pattern SomeName* AND that has a ActionType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountNote
- .LINK
-Set-AtwsAccountNote
+ Set-AtwsAccountNote
 
 #>
 

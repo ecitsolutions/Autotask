@@ -72,12 +72,11 @@ Returns any IntegrationVendorWidgets with property Width NOT equal to NEITHER <P
 Get-AtwsIntegrationVendorWidget -Id 1234 -IntegrationVendorWidgetName SomeName* -Width <PickList Label1>, <PickList Label2> -Like IntegrationVendorWidgetName -NotEquals Width -GreaterThan Id
 An example of a more complex query. This command returns any IntegrationVendorWidgets with Id GREATER THAN 1234, a IntegrationVendorWidgetName that matches the simple pattern SomeName* AND that has a Width that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsIntegrationVendorWidget
- .LINK
-Remove-AtwsIntegrationVendorWidget
- .LINK
-Set-AtwsIntegrationVendorWidget
+ Remove-AtwsIntegrationVendorWidget
+ Set-AtwsIntegrationVendorWidget
 
 #>
 

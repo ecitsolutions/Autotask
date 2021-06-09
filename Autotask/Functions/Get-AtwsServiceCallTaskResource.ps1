@@ -57,10 +57,10 @@ Returns any object with a ServiceCallTaskResourceName that matches the simple pa
 Get-AtwsServiceCallTaskResource -ServiceCallTaskResourceName SomeName* -NotLike ServiceCallTaskResourceName
 Returns any object with a ServiceCallTaskResourceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceCallTaskResource
- .LINK
-Remove-AtwsServiceCallTaskResource
+ Remove-AtwsServiceCallTaskResource
 
 #>
 

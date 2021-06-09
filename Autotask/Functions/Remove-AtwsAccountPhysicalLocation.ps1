@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.AccountPhysicalLocation that was
 .EXAMPLE
 Remove-AtwsAccountPhysicalLocation  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountPhysicalLocation
- .LINK
-Get-AtwsAccountPhysicalLocation
- .LINK
-Set-AtwsAccountPhysicalLocation
+ Get-AtwsAccountPhysicalLocation
+ Set-AtwsAccountPhysicalLocation
 
 #>
 

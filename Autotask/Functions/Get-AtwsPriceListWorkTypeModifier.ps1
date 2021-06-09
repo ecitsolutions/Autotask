@@ -72,7 +72,8 @@ Returns any PriceListWorkTypeModifiers with property ModifierType NOT equal to N
 Get-AtwsPriceListWorkTypeModifier -Id 1234 -PriceListWorkTypeModifierName SomeName* -ModifierType <PickList Label1>, <PickList Label2> -Like PriceListWorkTypeModifierName -NotEquals ModifierType -GreaterThan Id
 An example of a more complex query. This command returns any PriceListWorkTypeModifiers with Id GREATER THAN 1234, a PriceListWorkTypeModifierName that matches the simple pattern SomeName* AND that has a ModifierType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsPriceListWorkTypeModifier
 
 #>

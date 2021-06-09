@@ -57,10 +57,10 @@ Returns any object with a ServiceCallTicketResourceName that matches the simple 
 Get-AtwsServiceCallTicketResource -ServiceCallTicketResourceName SomeName* -NotLike ServiceCallTicketResourceName
 Returns any object with a ServiceCallTicketResourceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceCallTicketResource
- .LINK
-Remove-AtwsServiceCallTicketResource
+ Remove-AtwsServiceCallTicketResource
 
 #>
 

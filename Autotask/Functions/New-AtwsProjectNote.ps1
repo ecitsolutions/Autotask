@@ -46,10 +46,10 @@ Copies [Autotask.ProjectNote] by Id 124 to a new object through the Web Services
 $result = Get-AtwsProjectNote -Id 124 | New-AtwsProjectNote | Set-AtwsProjectNote -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ProjectNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProjectNote to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsProjectNote
- .LINK
-Set-AtwsProjectNote
+ Set-AtwsProjectNote
 
 #>
 

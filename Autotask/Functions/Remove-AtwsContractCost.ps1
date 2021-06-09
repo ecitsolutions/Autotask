@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ContractCost that was passed to 
 .EXAMPLE
 Remove-AtwsContractCost  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractCost
- .LINK
-Get-AtwsContractCost
- .LINK
-Set-AtwsContractCost
+ Get-AtwsContractCost
+ Set-AtwsContractCost
 
 #>
 

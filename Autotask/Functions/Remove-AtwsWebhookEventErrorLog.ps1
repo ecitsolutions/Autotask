@@ -24,7 +24,8 @@ Nothing. This fuction just deletes the Autotask.WebhookEventErrorLog that was pa
 .EXAMPLE
 Remove-AtwsWebhookEventErrorLog  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsWebhookEventErrorLog
 
 #>

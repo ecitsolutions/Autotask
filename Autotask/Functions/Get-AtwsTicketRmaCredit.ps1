@@ -57,12 +57,11 @@ Returns any object with a TicketRmaCreditName that matches the simple pattern 'S
 Get-AtwsTicketRmaCredit -TicketRmaCreditName SomeName* -NotLike TicketRmaCreditName
 Returns any object with a TicketRmaCreditName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketRmaCredit
- .LINK
-Remove-AtwsTicketRmaCredit
- .LINK
-Set-AtwsTicketRmaCredit
+ Remove-AtwsTicketRmaCredit
+ Set-AtwsTicketRmaCredit
 
 #>
 

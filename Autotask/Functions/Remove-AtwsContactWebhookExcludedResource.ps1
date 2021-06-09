@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.ContactWebhookExcludedResource t
 .EXAMPLE
 Remove-AtwsContactWebhookExcludedResource  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactWebhookExcludedResource
- .LINK
-Get-AtwsContactWebhookExcludedResource
+ Get-AtwsContactWebhookExcludedResource
 
 #>
 

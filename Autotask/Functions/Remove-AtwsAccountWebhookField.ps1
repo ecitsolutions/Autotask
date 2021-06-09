@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.AccountWebhookField that was pas
 .EXAMPLE
 Remove-AtwsAccountWebhookField  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountWebhookField
- .LINK
-Get-AtwsAccountWebhookField
- .LINK
-Set-AtwsAccountWebhookField
+ Get-AtwsAccountWebhookField
+ Set-AtwsAccountWebhookField
 
 #>
 

@@ -37,10 +37,10 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsAccountNote -Id 0,4,8 | Set-AtwsAccountNote -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountNote
- .LINK
-Get-AtwsAccountNote
+ Get-AtwsAccountNote
 
 #>
 

@@ -72,10 +72,10 @@ Returns any InstalledProductNotes with property NoteType NOT equal to NEITHER <P
 Get-AtwsInstalledProductNote -Id 1234 -InstalledProductNoteName SomeName* -NoteType <PickList Label1>, <PickList Label2> -Like InstalledProductNoteName -NotEquals NoteType -GreaterThan Id
 An example of a more complex query. This command returns any InstalledProductNotes with Id GREATER THAN 1234, a InstalledProductNoteName that matches the simple pattern SomeName* AND that has a NoteType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductNote
- .LINK
-Set-AtwsInstalledProductNote
+ Set-AtwsInstalledProductNote
 
 #>
 

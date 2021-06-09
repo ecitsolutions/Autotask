@@ -41,12 +41,11 @@ Copies [Autotask.TagGroup] by Id 124 to a new object through the Web Services AP
 $result = Get-AtwsTagGroup -Id 124 | New-AtwsTagGroup | Set-AtwsTagGroup -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TagGroup] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTagGroup to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsTagGroup
- .LINK
-Get-AtwsTagGroup
- .LINK
-Set-AtwsTagGroup
+ Get-AtwsTagGroup
+ Set-AtwsTagGroup
 
 #>
 

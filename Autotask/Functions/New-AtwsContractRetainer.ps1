@@ -46,10 +46,10 @@ Copies [Autotask.ContractRetainer] by Id 124 to a new object through the Web Ser
 $result = Get-AtwsContractRetainer -Id 124 | New-AtwsContractRetainer | Set-AtwsContractRetainer -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractRetainer] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractRetainer to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsContractRetainer
- .LINK
-Set-AtwsContractRetainer
+ Set-AtwsContractRetainer
 
 #>
 

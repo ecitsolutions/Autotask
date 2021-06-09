@@ -43,12 +43,11 @@ Copies [Autotask.ContactBillingProductAssociation] by Id 124 to a new object thr
 $result = Get-AtwsContactBillingProductAssociation -Id 124 | New-AtwsContactBillingProductAssociation | Set-AtwsContactBillingProductAssociation -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContactBillingProductAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContactBillingProductAssociation to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsContactBillingProductAssociation
- .LINK
-Get-AtwsContactBillingProductAssociation
- .LINK
-Set-AtwsContactBillingProductAssociation
+ Get-AtwsContactBillingProductAssociation
+ Set-AtwsContactBillingProductAssociation
 
 #>
 

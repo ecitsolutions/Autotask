@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.TicketRmaCredit that was passed 
 .EXAMPLE
 Remove-AtwsTicketRmaCredit  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketRmaCredit
- .LINK
-Get-AtwsTicketRmaCredit
- .LINK
-Set-AtwsTicketRmaCredit
+ Get-AtwsTicketRmaCredit
+ Set-AtwsTicketRmaCredit
 
 #>
 

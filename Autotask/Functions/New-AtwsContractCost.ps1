@@ -45,12 +45,11 @@ Copies [Autotask.ContractCost] by Id 124 to a new object through the Web Service
 $result = Get-AtwsContractCost -Id 124 | New-AtwsContractCost | Set-AtwsContractCost -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractCost] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractCost to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsContractCost
- .LINK
-Get-AtwsContractCost
- .LINK
-Set-AtwsContractCost
+ Get-AtwsContractCost
+ Set-AtwsContractCost
 
 #>
 

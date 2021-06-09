@@ -74,10 +74,10 @@ Returns any ContractTicketPurchases with property IsPaid NOT equal to NEITHER <P
 Get-AtwsContractTicketPurchase -Id 1234 -ContractTicketPurchaseName SomeName* -IsPaid <PickList Label1>, <PickList Label2> -Like ContractTicketPurchaseName -NotEquals IsPaid -GreaterThan Id
 An example of a more complex query. This command returns any ContractTicketPurchases with Id GREATER THAN 1234, a ContractTicketPurchaseName that matches the simple pattern SomeName* AND that has a IsPaid that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractTicketPurchase
- .LINK
-Set-AtwsContractTicketPurchase
+ Set-AtwsContractTicketPurchase
 
 #>
 

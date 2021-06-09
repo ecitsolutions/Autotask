@@ -72,6 +72,8 @@ Returns any AdditionalInvoiceFieldValues with property AdditionalInvoiceFieldID 
 Get-AtwsAdditionalInvoiceFieldValue -Id 1234 -AdditionalInvoiceFieldValueName SomeName* -AdditionalInvoiceFieldID <PickList Label1>, <PickList Label2> -Like AdditionalInvoiceFieldValueName -NotEquals AdditionalInvoiceFieldID -GreaterThan Id
 An example of a more complex query. This command returns any AdditionalInvoiceFieldValues with Id GREATER THAN 1234, a AdditionalInvoiceFieldValueName that matches the simple pattern SomeName* AND that has a AdditionalInvoiceFieldID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
+.NOTES
+Related commands:
 
 #>
 

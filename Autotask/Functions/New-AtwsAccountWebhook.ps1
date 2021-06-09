@@ -46,12 +46,11 @@ Copies [Autotask.AccountWebhook] by Id 124 to a new object through the Web Servi
 $result = Get-AtwsAccountWebhook -Id 124 | New-AtwsAccountWebhook | Set-AtwsAccountWebhook -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.AccountWebhook] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountWebhook to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsAccountWebhook
- .LINK
-Get-AtwsAccountWebhook
- .LINK
-Set-AtwsAccountWebhook
+ Get-AtwsAccountWebhook
+ Set-AtwsAccountWebhook
 
 #>
 

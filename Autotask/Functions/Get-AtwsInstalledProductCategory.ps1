@@ -72,10 +72,10 @@ Returns any InstalledProductCategorys with property DisplayColorRGB NOT equal to
 Get-AtwsInstalledProductCategory -Id 1234 -InstalledProductCategoryName SomeName* -DisplayColorRGB <PickList Label1>, <PickList Label2> -Like InstalledProductCategoryName -NotEquals DisplayColorRGB -GreaterThan Id
 An example of a more complex query. This command returns any InstalledProductCategorys with Id GREATER THAN 1234, a InstalledProductCategoryName that matches the simple pattern SomeName* AND that has a DisplayColorRGB that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductCategory
- .LINK
-Set-AtwsInstalledProductCategory
+ Set-AtwsInstalledProductCategory
 
 #>
 

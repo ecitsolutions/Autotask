@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsTicketRmaCredit -Id 0,4,8 | Set-AtwsTicketRmaCredit -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketRmaCredit
- .LINK
-Remove-AtwsTicketRmaCredit
- .LINK
-Get-AtwsTicketRmaCredit
+ Remove-AtwsTicketRmaCredit
+ Get-AtwsTicketRmaCredit
 
 #>
 

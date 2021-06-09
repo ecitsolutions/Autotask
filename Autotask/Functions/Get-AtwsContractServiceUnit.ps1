@@ -57,6 +57,8 @@ Returns any object with a ContractServiceUnitName that matches the simple patter
 Get-AtwsContractServiceUnit -ContractServiceUnitName SomeName* -NotLike ContractServiceUnitName
 Returns any object with a ContractServiceUnitName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
+.NOTES
+Related commands:
 
 #>
 

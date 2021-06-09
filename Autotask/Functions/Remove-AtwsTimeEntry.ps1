@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.TimeEntry that was passed to the
 .EXAMPLE
 Remove-AtwsTimeEntry  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTimeEntry
- .LINK
-Get-AtwsTimeEntry
- .LINK
-Set-AtwsTimeEntry
+ Get-AtwsTimeEntry
+ Set-AtwsTimeEntry
 
 #>
 

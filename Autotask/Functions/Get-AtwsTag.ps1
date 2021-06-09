@@ -57,12 +57,11 @@ Returns any object with a TagName that matches the simple pattern 'SomeName*'. S
 Get-AtwsTag -TagName SomeName* -NotLike TagName
 Returns any object with a TagName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTag
- .LINK
-Remove-AtwsTag
- .LINK
-Set-AtwsTag
+ Remove-AtwsTag
+ Set-AtwsTag
 
 #>
 

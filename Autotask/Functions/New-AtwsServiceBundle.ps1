@@ -43,12 +43,11 @@ Copies [Autotask.ServiceBundle] by Id 124 to a new object through the Web Servic
 $result = Get-AtwsServiceBundle -Id 124 | New-AtwsServiceBundle | Set-AtwsServiceBundle -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ServiceBundle] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceBundle to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsServiceBundle
- .LINK
-Get-AtwsServiceBundle
- .LINK
-Set-AtwsServiceBundle
+ Get-AtwsServiceBundle
+ Set-AtwsServiceBundle
 
 #>
 

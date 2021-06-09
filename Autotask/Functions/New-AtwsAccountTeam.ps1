@@ -42,10 +42,10 @@ Copies [Autotask.AccountTeam] by Id 124 to a new object through the Web Services
 $result = Get-AtwsAccountTeam -Id 124 | New-AtwsAccountTeam | Set-AtwsAccountTeam -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.AccountTeam] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountTeam to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsAccountTeam
- .LINK
-Get-AtwsAccountTeam
+ Get-AtwsAccountTeam
 
 #>
 

@@ -1,6 +1,4 @@
-﻿#Requires -Version 4.0
-
-<#
+﻿<#
 
 .COPYRIGHT
 Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
@@ -34,7 +32,7 @@ Function New-AtwsAttachment {
       $Attachment = Get-AtwsAttachment -TicketID 0 | Select-Object -First 1
       New-AtwsAttachment -Data $Attachment.Data -TicketId 1 -Title $Attachment.Info.Title -Extension $([IO.Path]::GetExtension($Attachment.Info.FullPath))
       Gets the first attachment from Ticket with id 0 and attaches it to Ticket with id 1
-      .NOTE
+      .NOTES
       Strongly related to Get-AtwsAttachmentInfo
   #>
 

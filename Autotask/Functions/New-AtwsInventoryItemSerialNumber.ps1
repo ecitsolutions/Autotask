@@ -42,10 +42,10 @@ Copies [Autotask.InventoryItemSerialNumber] by Id 124 to a new object through th
 $result = Get-AtwsInventoryItemSerialNumber -Id 124 | New-AtwsInventoryItemSerialNumber | Set-AtwsInventoryItemSerialNumber -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.InventoryItemSerialNumber] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryItemSerialNumber to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsInventoryItemSerialNumber
- .LINK
-Set-AtwsInventoryItemSerialNumber
+ Set-AtwsInventoryItemSerialNumber
 
 #>
 

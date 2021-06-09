@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.TaskPredecessor that was passed 
 .EXAMPLE
 Remove-AtwsTaskPredecessor  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTaskPredecessor
- .LINK
-Get-AtwsTaskPredecessor
- .LINK
-Set-AtwsTaskPredecessor
+ Get-AtwsTaskPredecessor
+ Set-AtwsTaskPredecessor
 
 #>
 

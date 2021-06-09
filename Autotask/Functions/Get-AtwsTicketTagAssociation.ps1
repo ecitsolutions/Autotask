@@ -57,10 +57,10 @@ Returns any object with a TicketTagAssociationName that matches the simple patte
 Get-AtwsTicketTagAssociation -TicketTagAssociationName SomeName* -NotLike TicketTagAssociationName
 Returns any object with a TicketTagAssociationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketTagAssociation
- .LINK
-Remove-AtwsTicketTagAssociation
+ Remove-AtwsTicketTagAssociation
 
 #>
 

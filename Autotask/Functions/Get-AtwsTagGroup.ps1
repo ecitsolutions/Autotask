@@ -72,12 +72,11 @@ Returns any TagGroups with property DisplayColor NOT equal to NEITHER <PickList 
 Get-AtwsTagGroup -Id 1234 -TagGroupName SomeName* -DisplayColor <PickList Label1>, <PickList Label2> -Like TagGroupName -NotEquals DisplayColor -GreaterThan Id
 An example of a more complex query. This command returns any TagGroups with Id GREATER THAN 1234, a TagGroupName that matches the simple pattern SomeName* AND that has a DisplayColor that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTagGroup
- .LINK
-Remove-AtwsTagGroup
- .LINK
-Set-AtwsTagGroup
+ Remove-AtwsTagGroup
+ Set-AtwsTagGroup
 
 #>
 

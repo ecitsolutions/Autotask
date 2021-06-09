@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.ContractExclusionAllocationCode 
 .EXAMPLE
 Remove-AtwsContractExclusionAllocationCode  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractExclusionAllocationCode
- .LINK
-Get-AtwsContractExclusionAllocationCode
+ Get-AtwsContractExclusionAllocationCode
 
 #>
 

@@ -44,10 +44,10 @@ Copies [Autotask.ProductVendor] by Id 124 to a new object through the Web Servic
 $result = Get-AtwsProductVendor -Id 124 | New-AtwsProductVendor | Set-AtwsProductVendor -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ProductVendor] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProductVendor to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsProductVendor
- .LINK
-Set-AtwsProductVendor
+ Set-AtwsProductVendor
 
 #>
 

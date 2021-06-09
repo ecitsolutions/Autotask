@@ -57,6 +57,8 @@ Returns any object with a TicketHistoryName that matches the simple pattern 'Som
 Get-AtwsTicketHistory -TicketHistoryName SomeName* -NotLike TicketHistoryName
 Returns any object with a TicketHistoryName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
+.NOTES
+Related commands:
 
 #>
 

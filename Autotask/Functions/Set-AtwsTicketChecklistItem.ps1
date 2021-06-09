@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsTicketChecklistItem -Id 0,4,8 | Set-AtwsTicketChecklistItem -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketChecklistItem
- .LINK
-Remove-AtwsTicketChecklistItem
- .LINK
-Get-AtwsTicketChecklistItem
+ Remove-AtwsTicketChecklistItem
+ Get-AtwsTicketChecklistItem
 
 #>
 

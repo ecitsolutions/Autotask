@@ -57,12 +57,11 @@ Returns any object with a ContactWebhookName that matches the simple pattern 'So
 Get-AtwsContactWebhook -ContactWebhookName SomeName* -NotLike ContactWebhookName
 Returns any object with a ContactWebhookName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactWebhook
- .LINK
-Remove-AtwsContactWebhook
- .LINK
-Set-AtwsContactWebhook
+ Remove-AtwsContactWebhook
+ Set-AtwsContactWebhook
 
 #>
 

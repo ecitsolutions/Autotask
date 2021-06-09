@@ -57,6 +57,8 @@ Returns any object with a ClassificationIconName that matches the simple pattern
 Get-AtwsClassificationIcon -ClassificationIconName SomeName* -NotLike ClassificationIconName
 Returns any object with a ClassificationIconName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
+.NOTES
+Related commands:
 
 #>
 

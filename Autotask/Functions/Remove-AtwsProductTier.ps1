@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ProductTier that was passed to t
 .EXAMPLE
 Remove-AtwsProductTier  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsProductTier
- .LINK
-Get-AtwsProductTier
- .LINK
-Set-AtwsProductTier
+ Get-AtwsProductTier
+ Set-AtwsProductTier
 
 #>
 

@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ContactBillingProductAssociation
 .EXAMPLE
 Remove-AtwsContactBillingProductAssociation  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactBillingProductAssociation
- .LINK
-Get-AtwsContactBillingProductAssociation
- .LINK
-Set-AtwsContactBillingProductAssociation
+ Get-AtwsContactBillingProductAssociation
+ Set-AtwsContactBillingProductAssociation
 
 #>
 

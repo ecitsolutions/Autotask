@@ -57,12 +57,11 @@ Returns any object with a InstalledProductBillingProductAssociationName that mat
 Get-AtwsInstalledProductBillingProductAssociation -InstalledProductBillingProductAssociationName SomeName* -NotLike InstalledProductBillingProductAssociationName
 Returns any object with a InstalledProductBillingProductAssociationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductBillingProductAssociation
- .LINK
-Remove-AtwsInstalledProductBillingProductAssociation
- .LINK
-Set-AtwsInstalledProductBillingProductAssociation
+ Remove-AtwsInstalledProductBillingProductAssociation
+ Set-AtwsInstalledProductBillingProductAssociation
 
 #>
 

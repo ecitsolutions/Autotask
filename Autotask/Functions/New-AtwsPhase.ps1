@@ -42,10 +42,10 @@ Copies [Autotask.Phase] by Id 124 to a new object through the Web Services API, 
 $result = Get-AtwsPhase -Id 124 | New-AtwsPhase | Set-AtwsPhase -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.Phase] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsPhase to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsPhase
- .LINK
-Set-AtwsPhase
+ Set-AtwsPhase
 
 #>
 

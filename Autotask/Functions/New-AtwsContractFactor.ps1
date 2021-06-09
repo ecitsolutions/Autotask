@@ -43,10 +43,10 @@ Copies [Autotask.ContractFactor] by Id 124 to a new object through the Web Servi
 $result = Get-AtwsContractFactor -Id 124 | New-AtwsContractFactor | Set-AtwsContractFactor -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractFactor] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractFactor to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsContractFactor
- .LINK
-Set-AtwsContractFactor
+ Set-AtwsContractFactor
 
 #>
 

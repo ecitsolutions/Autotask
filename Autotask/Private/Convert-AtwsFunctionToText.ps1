@@ -8,19 +8,15 @@ See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license
 Function Convert-AtwsFunctionToText {
      <#
       .SYNOPSIS
-
+        This function generates a scriptblock as text from a custom, structured object created 
+        by other functions in this module
       .DESCRIPTION
-
+        This function assembles the various parts of a function into a single text scriptblock.
+        It is not generic. It is internal to this module.
       .INPUTS
-
+        [PSObject]
       .OUTPUTS
-
-      .EXAMPLE
-
-      .NOTES
-      NAME: 
-      .LINK
-
+        [String]
   #>
     [CmdLetBinding()]
     Param

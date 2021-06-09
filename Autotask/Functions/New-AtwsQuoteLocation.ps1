@@ -41,10 +41,10 @@ Copies [Autotask.QuoteLocation] by Id 124 to a new object through the Web Servic
 $result = Get-AtwsQuoteLocation -Id 124 | New-AtwsQuoteLocation | Set-AtwsQuoteLocation -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.QuoteLocation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsQuoteLocation to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsQuoteLocation
- .LINK
-Set-AtwsQuoteLocation
+ Set-AtwsQuoteLocation
 
 #>
 

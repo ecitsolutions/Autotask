@@ -43,12 +43,11 @@ Copies [Autotask.ChecklistLibrary] by Id 124 to a new object through the Web Ser
 $result = Get-AtwsChecklistLibrary -Id 124 | New-AtwsChecklistLibrary | Set-AtwsChecklistLibrary -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ChecklistLibrary] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsChecklistLibrary to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsChecklistLibrary
- .LINK
-Get-AtwsChecklistLibrary
- .LINK
-Set-AtwsChecklistLibrary
+ Get-AtwsChecklistLibrary
+ Set-AtwsChecklistLibrary
 
 #>
 

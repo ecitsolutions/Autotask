@@ -57,6 +57,8 @@ Returns any object with a SurveyResultsName that matches the simple pattern 'Som
 Get-AtwsSurveyResults -SurveyResultsName SomeName* -NotLike SurveyResultsName
 Returns any object with a SurveyResultsName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
+.NOTES
+Related commands:
 
 #>
 

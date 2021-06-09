@@ -57,10 +57,10 @@ Returns any object with a PaymentTermName that matches the simple pattern 'SomeN
 Get-AtwsPaymentTerm -PaymentTermName SomeName* -NotLike PaymentTermName
 Returns any object with a PaymentTermName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsPaymentTerm
- .LINK
-Set-AtwsPaymentTerm
+ Set-AtwsPaymentTerm
 
 #>
 

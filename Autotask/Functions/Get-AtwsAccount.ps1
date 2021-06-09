@@ -80,10 +80,10 @@ Returns any Accounts with property AccountType NOT equal to NEITHER <PickList La
 Get-AtwsAccount -Id 1234 -AccountName SomeName* -AccountType <PickList Label1>, <PickList Label2> -Like AccountName -NotEquals AccountType -GreaterThan Id
 An example of a more complex query. This command returns any Accounts with Id GREATER THAN 1234, a AccountName that matches the simple pattern SomeName* AND that has a AccountType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccount
- .LINK
-Set-AtwsAccount
+ Set-AtwsAccount
 
 #>
 

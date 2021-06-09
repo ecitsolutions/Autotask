@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.ChangeRequestLink that was passe
 .EXAMPLE
 Remove-AtwsChangeRequestLink  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsChangeRequestLink
- .LINK
-Get-AtwsChangeRequestLink
+ Get-AtwsChangeRequestLink
 
 #>
 

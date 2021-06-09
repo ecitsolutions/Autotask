@@ -42,12 +42,11 @@ Copies [Autotask.ContactGroup] by Id 124 to a new object through the Web Service
 $result = Get-AtwsContactGroup -Id 124 | New-AtwsContactGroup | Set-AtwsContactGroup -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContactGroup] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContactGroup to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsContactGroup
- .LINK
-Get-AtwsContactGroup
- .LINK
-Set-AtwsContactGroup
+ Get-AtwsContactGroup
+ Set-AtwsContactGroup
 
 #>
 

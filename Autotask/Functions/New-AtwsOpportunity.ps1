@@ -51,10 +51,10 @@ Copies [Autotask.Opportunity] by Id 124 to a new object through the Web Services
 $result = Get-AtwsOpportunity -Id 124 | New-AtwsOpportunity | Set-AtwsOpportunity -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.Opportunity] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsOpportunity to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsOpportunity
- .LINK
-Set-AtwsOpportunity
+ Set-AtwsOpportunity
 
 #>
 

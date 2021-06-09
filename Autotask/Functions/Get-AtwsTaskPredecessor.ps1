@@ -57,12 +57,11 @@ Returns any object with a TaskPredecessorName that matches the simple pattern 'S
 Get-AtwsTaskPredecessor -TaskPredecessorName SomeName* -NotLike TaskPredecessorName
 Returns any object with a TaskPredecessorName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTaskPredecessor
- .LINK
-Remove-AtwsTaskPredecessor
- .LINK
-Set-AtwsTaskPredecessor
+ Remove-AtwsTaskPredecessor
+ Set-AtwsTaskPredecessor
 
 #>
 

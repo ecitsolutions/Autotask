@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.InstalledProductWebhook that was
 .EXAMPLE
 Remove-AtwsInstalledProductWebhook  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductWebhook
- .LINK
-Get-AtwsInstalledProductWebhook
- .LINK
-Set-AtwsInstalledProductWebhook
+ Get-AtwsInstalledProductWebhook
+ Set-AtwsInstalledProductWebhook
 
 #>
 

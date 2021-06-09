@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsHoliday -Id 0,4,8 | Set-AtwsHoliday -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsHoliday
- .LINK
-Remove-AtwsHoliday
- .LINK
-Get-AtwsHoliday
+ Remove-AtwsHoliday
+ Get-AtwsHoliday
 
 #>
 

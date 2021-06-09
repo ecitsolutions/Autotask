@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.Contact that was passed to the f
 .EXAMPLE
 Remove-AtwsContact  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContact
- .LINK
-Get-AtwsContact
- .LINK
-Set-AtwsContact
+ Get-AtwsContact
+ Set-AtwsContact
 
 #>
 

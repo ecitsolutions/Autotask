@@ -57,6 +57,8 @@ Returns any object with a ServiceLevelAgreementResultsName that matches the simp
 Get-AtwsServiceLevelAgreementResults -ServiceLevelAgreementResultsName SomeName* -NotLike ServiceLevelAgreementResultsName
 Returns any object with a ServiceLevelAgreementResultsName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
+.NOTES
+Related commands:
 
 #>
 

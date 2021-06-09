@@ -72,7 +72,8 @@ Returns any TicketCategorys with property DisplayColorRGB NOT equal to NEITHER <
 Get-AtwsTicketCategory -Id 1234 -TicketCategoryName SomeName* -DisplayColorRGB <PickList Label1>, <PickList Label2> -Like TicketCategoryName -NotEquals DisplayColorRGB -GreaterThan Id
 An example of a more complex query. This command returns any TicketCategorys with Id GREATER THAN 1234, a TicketCategoryName that matches the simple pattern SomeName* AND that has a DisplayColorRGB that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsTicketCategory
 
 #>

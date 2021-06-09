@@ -74,12 +74,11 @@ Returns any Contacts with property NamePrefix NOT equal to NEITHER <PickList Lab
 Get-AtwsContact -Id 1234 -ContactName SomeName* -NamePrefix <PickList Label1>, <PickList Label2> -Like ContactName -NotEquals NamePrefix -GreaterThan Id
 An example of a more complex query. This command returns any Contacts with Id GREATER THAN 1234, a ContactName that matches the simple pattern SomeName* AND that has a NamePrefix that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContact
- .LINK
-Remove-AtwsContact
- .LINK
-Set-AtwsContact
+ Remove-AtwsContact
+ Set-AtwsContact
 
 #>
 

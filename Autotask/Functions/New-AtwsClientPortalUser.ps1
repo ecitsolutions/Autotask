@@ -47,10 +47,10 @@ Copies [Autotask.ClientPortalUser] by Id 124 to a new object through the Web Ser
 $result = Get-AtwsClientPortalUser -Id 124 | New-AtwsClientPortalUser | Set-AtwsClientPortalUser -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ClientPortalUser] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsClientPortalUser to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsClientPortalUser
- .LINK
-Set-AtwsClientPortalUser
+ Set-AtwsClientPortalUser
 
 #>
 

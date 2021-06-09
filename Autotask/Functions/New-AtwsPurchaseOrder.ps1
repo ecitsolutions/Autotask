@@ -44,10 +44,10 @@ Copies [Autotask.PurchaseOrder] by Id 124 to a new object through the Web Servic
 $result = Get-AtwsPurchaseOrder -Id 124 | New-AtwsPurchaseOrder | Set-AtwsPurchaseOrder -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.PurchaseOrder] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsPurchaseOrder to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsPurchaseOrder
- .LINK
-Set-AtwsPurchaseOrder
+ Set-AtwsPurchaseOrder
 
 #>
 

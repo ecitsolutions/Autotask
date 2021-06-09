@@ -57,10 +57,10 @@ Returns any object with a ContractServiceBundleName that matches the simple patt
 Get-AtwsContractServiceBundle -ContractServiceBundleName SomeName* -NotLike ContractServiceBundleName
 Returns any object with a ContractServiceBundleName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractServiceBundle
- .LINK
-Set-AtwsContractServiceBundle
+ Set-AtwsContractServiceBundle
 
 #>
 

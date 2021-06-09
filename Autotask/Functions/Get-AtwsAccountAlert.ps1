@@ -72,10 +72,10 @@ Returns any AccountAlerts with property AlertTypeID NOT equal to NEITHER <PickLi
 Get-AtwsAccountAlert -Id 1234 -AccountAlertName SomeName* -AlertTypeID <PickList Label1>, <PickList Label2> -Like AccountAlertName -NotEquals AlertTypeID -GreaterThan Id
 An example of a more complex query. This command returns any AccountAlerts with Id GREATER THAN 1234, a AccountAlertName that matches the simple pattern SomeName* AND that has a AlertTypeID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountAlert
- .LINK
-Set-AtwsAccountAlert
+ Set-AtwsAccountAlert
 
 #>
 

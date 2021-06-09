@@ -41,10 +41,10 @@ Copies [Autotask.TaxRegion] by Id 124 to a new object through the Web Services A
 $result = Get-AtwsTaxRegion -Id 124 | New-AtwsTaxRegion | Set-AtwsTaxRegion -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.TaxRegion] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaxRegion to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsTaxRegion
- .LINK
-Set-AtwsTaxRegion
+ Set-AtwsTaxRegion
 
 #>
 

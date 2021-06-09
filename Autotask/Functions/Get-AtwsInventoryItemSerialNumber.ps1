@@ -57,10 +57,10 @@ Returns any object with a InventoryItemSerialNumberName that matches the simple 
 Get-AtwsInventoryItemSerialNumber -InventoryItemSerialNumberName SomeName* -NotLike InventoryItemSerialNumberName
 Returns any object with a InventoryItemSerialNumberName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInventoryItemSerialNumber
- .LINK
-Set-AtwsInventoryItemSerialNumber
+ Set-AtwsInventoryItemSerialNumber
 
 #>
 

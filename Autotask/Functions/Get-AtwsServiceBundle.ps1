@@ -73,12 +73,11 @@ Returns any ServiceBundles with property PeriodType NOT equal to NEITHER <PickLi
 Get-AtwsServiceBundle -Id 1234 -ServiceBundleName SomeName* -PeriodType <PickList Label1>, <PickList Label2> -Like ServiceBundleName -NotEquals PeriodType -GreaterThan Id
 An example of a more complex query. This command returns any ServiceBundles with Id GREATER THAN 1234, a ServiceBundleName that matches the simple pattern SomeName* AND that has a PeriodType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsServiceBundle
- .LINK
-Remove-AtwsServiceBundle
- .LINK
-Set-AtwsServiceBundle
+ Remove-AtwsServiceBundle
+ Set-AtwsServiceBundle
 
 #>
 

@@ -80,10 +80,10 @@ Returns any Opportunitys with property Stage NOT equal to NEITHER <PickList Labe
 Get-AtwsOpportunity -Id 1234 -OpportunityName SomeName* -Stage <PickList Label1>, <PickList Label2> -Like OpportunityName -NotEquals Stage -GreaterThan Id
 An example of a more complex query. This command returns any Opportunitys with Id GREATER THAN 1234, a OpportunityName that matches the simple pattern SomeName* AND that has a Stage that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsOpportunity
- .LINK
-Set-AtwsOpportunity
+ Set-AtwsOpportunity
 
 #>
 

@@ -46,10 +46,10 @@ Copies [Autotask.ResourceRoleDepartment] by Id 124 to a new object through the W
 $result = Get-AtwsResourceRoleDepartment -Id 124 | New-AtwsResourceRoleDepartment | Set-AtwsResourceRoleDepartment -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ResourceRoleDepartment] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsResourceRoleDepartment to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsResourceRoleDepartment
- .LINK
-Set-AtwsResourceRoleDepartment
+ Set-AtwsResourceRoleDepartment
 
 #>
 

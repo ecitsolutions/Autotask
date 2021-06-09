@@ -44,10 +44,10 @@ Copies [Autotask.Service] by Id 124 to a new object through the Web Services API
 $result = Get-AtwsService -Id 124 | New-AtwsService | Set-AtwsService -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.Service] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsService to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsService
- .LINK
-Set-AtwsService
+ Set-AtwsService
 
 #>
 

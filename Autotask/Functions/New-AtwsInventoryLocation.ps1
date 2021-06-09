@@ -42,10 +42,10 @@ Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Se
 $result = Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation | Set-AtwsInventoryLocation -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryLocation to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsInventoryLocation
- .LINK
-Set-AtwsInventoryLocation
+ Set-AtwsInventoryLocation
 
 #>
 

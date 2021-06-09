@@ -75,10 +75,10 @@ Returns any ClientPortalUsers with property SecurityLevel NOT equal to NEITHER <
 Get-AtwsClientPortalUser -Id 1234 -ClientPortalUserName SomeName* -SecurityLevel <PickList Label1>, <PickList Label2> -Like ClientPortalUserName -NotEquals SecurityLevel -GreaterThan Id
 An example of a more complex query. This command returns any ClientPortalUsers with Id GREATER THAN 1234, a ClientPortalUserName that matches the simple pattern SomeName* AND that has a SecurityLevel that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsClientPortalUser
- .LINK
-Set-AtwsClientPortalUser
+ Set-AtwsClientPortalUser
 
 #>
 

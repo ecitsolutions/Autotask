@@ -72,12 +72,11 @@ Returns any ChecklistLibraryChecklistItems with property KnowledgebaseArticleID 
 Get-AtwsChecklistLibraryChecklistItem -Id 1234 -ChecklistLibraryChecklistItemName SomeName* -KnowledgebaseArticleID <PickList Label1>, <PickList Label2> -Like ChecklistLibraryChecklistItemName -NotEquals KnowledgebaseArticleID -GreaterThan Id
 An example of a more complex query. This command returns any ChecklistLibraryChecklistItems with Id GREATER THAN 1234, a ChecklistLibraryChecklistItemName that matches the simple pattern SomeName* AND that has a KnowledgebaseArticleID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsChecklistLibraryChecklistItem
- .LINK
-Remove-AtwsChecklistLibraryChecklistItem
- .LINK
-Set-AtwsChecklistLibraryChecklistItem
+ Remove-AtwsChecklistLibraryChecklistItem
+ Set-AtwsChecklistLibraryChecklistItem
 
 #>
 

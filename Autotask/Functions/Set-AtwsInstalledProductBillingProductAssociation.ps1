@@ -37,12 +37,11 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsInstalledProductBillingProductAssociation -Id 0,4,8 | Set-AtwsInstalledProductBillingProductAssociation -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInstalledProductBillingProductAssociation
- .LINK
-Remove-AtwsInstalledProductBillingProductAssociation
- .LINK
-Get-AtwsInstalledProductBillingProductAssociation
+ Remove-AtwsInstalledProductBillingProductAssociation
+ Get-AtwsInstalledProductBillingProductAssociation
 
 #>
 

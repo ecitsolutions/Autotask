@@ -74,10 +74,10 @@ Returns any UserDefinedFieldDefinitions with property UdfType NOT equal to NEITH
 Get-AtwsUserDefinedFieldDefinition -Id 1234 -UserDefinedFieldDefinitionName SomeName* -UdfType <PickList Label1>, <PickList Label2> -Like UserDefinedFieldDefinitionName -NotEquals UdfType -GreaterThan Id
 An example of a more complex query. This command returns any UserDefinedFieldDefinitions with Id GREATER THAN 1234, a UserDefinedFieldDefinitionName that matches the simple pattern SomeName* AND that has a UdfType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsUserDefinedFieldDefinition
- .LINK
-Set-AtwsUserDefinedFieldDefinition
+ Set-AtwsUserDefinedFieldDefinition
 
 #>
 

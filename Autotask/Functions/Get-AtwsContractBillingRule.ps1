@@ -73,12 +73,11 @@ Returns any ContractBillingRules with property DetermineUnits NOT equal to NEITH
 Get-AtwsContractBillingRule -Id 1234 -ContractBillingRuleName SomeName* -DetermineUnits <PickList Label1>, <PickList Label2> -Like ContractBillingRuleName -NotEquals DetermineUnits -GreaterThan Id
 An example of a more complex query. This command returns any ContractBillingRules with Id GREATER THAN 1234, a ContractBillingRuleName that matches the simple pattern SomeName* AND that has a DetermineUnits that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractBillingRule
- .LINK
-Remove-AtwsContractBillingRule
- .LINK
-Set-AtwsContractBillingRule
+ Remove-AtwsContractBillingRule
+ Set-AtwsContractBillingRule
 
 #>
 

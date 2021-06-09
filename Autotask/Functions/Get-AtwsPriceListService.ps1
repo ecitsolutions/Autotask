@@ -57,7 +57,8 @@ Returns any object with a PriceListServiceName that matches the simple pattern '
 Get-AtwsPriceListService -PriceListServiceName SomeName* -NotLike PriceListServiceName
 Returns any object with a PriceListServiceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsPriceListService
 
 #>

@@ -37,10 +37,10 @@ Gets multiple instances by Id, modifies them all and updates Autotask.
 $result = Get-AtwsContractRoleCost -Id 0,4,8 | Set-AtwsContractRoleCost -ParameterName <Parameter value> -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractRoleCost
- .LINK
-Get-AtwsContractRoleCost
+ Get-AtwsContractRoleCost
 
 #>
 

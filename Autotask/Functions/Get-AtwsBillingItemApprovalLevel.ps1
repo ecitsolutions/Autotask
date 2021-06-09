@@ -57,7 +57,8 @@ Returns any object with a BillingItemApprovalLevelName that matches the simple p
 Get-AtwsBillingItemApprovalLevel -BillingItemApprovalLevelName SomeName* -NotLike BillingItemApprovalLevelName
 Returns any object with a BillingItemApprovalLevelName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsBillingItemApprovalLevel
 
 #>

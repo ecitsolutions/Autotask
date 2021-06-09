@@ -48,12 +48,11 @@ Copies [Autotask.ContractBillingRule] by Id 124 to a new object through the Web 
 $result = Get-AtwsContractBillingRule -Id 124 | New-AtwsContractBillingRule | Set-AtwsContractBillingRule -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ContractBillingRule] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractBillingRule to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsContractBillingRule
- .LINK
-Get-AtwsContractBillingRule
- .LINK
-Set-AtwsContractBillingRule
+ Get-AtwsContractBillingRule
+ Set-AtwsContractBillingRule
 
 #>
 

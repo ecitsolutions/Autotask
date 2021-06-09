@@ -74,6 +74,8 @@ Returns any NotificationHistorys with property NotificationHistoryTypeID NOT equ
 Get-AtwsNotificationHistory -Id 1234 -NotificationHistoryName SomeName* -NotificationHistoryTypeID <PickList Label1>, <PickList Label2> -Like NotificationHistoryName -NotEquals NotificationHistoryTypeID -GreaterThan Id
 An example of a more complex query. This command returns any NotificationHistorys with Id GREATER THAN 1234, a NotificationHistoryName that matches the simple pattern SomeName* AND that has a NotificationHistoryTypeID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
+.NOTES
+Related commands:
 
 #>
 

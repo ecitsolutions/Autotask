@@ -57,10 +57,10 @@ Returns any object with a InventoryLocationName that matches the simple pattern 
 Get-AtwsInventoryLocation -InventoryLocationName SomeName* -NotLike InventoryLocationName
 Returns any object with a InventoryLocationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsInventoryLocation
- .LINK
-Set-AtwsInventoryLocation
+ Set-AtwsInventoryLocation
 
 #>
 

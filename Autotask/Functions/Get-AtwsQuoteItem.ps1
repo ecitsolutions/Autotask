@@ -73,12 +73,11 @@ Returns any QuoteItems with property Type NOT equal to NEITHER <PickList Label1>
 Get-AtwsQuoteItem -Id 1234 -QuoteItemName SomeName* -Type <PickList Label1>, <PickList Label2> -Like QuoteItemName -NotEquals Type -GreaterThan Id
 An example of a more complex query. This command returns any QuoteItems with Id GREATER THAN 1234, a QuoteItemName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsQuoteItem
- .LINK
-Remove-AtwsQuoteItem
- .LINK
-Set-AtwsQuoteItem
+ Remove-AtwsQuoteItem
+ Set-AtwsQuoteItem
 
 #>
 

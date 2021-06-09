@@ -57,10 +57,10 @@ Returns any object with a ContractNoteName that matches the simple pattern 'Some
 Get-AtwsContractNote -ContractNoteName SomeName* -NotLike ContractNoteName
 Returns any object with a ContractNoteName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContractNote
- .LINK
-Set-AtwsContractNote
+ Set-AtwsContractNote
 
 #>
 

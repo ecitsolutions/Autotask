@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.TicketAdditionalInstalledProduct
 .EXAMPLE
 Remove-AtwsTicketAdditionalInstalledProduct  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsTicketAdditionalInstalledProduct
- .LINK
-Get-AtwsTicketAdditionalInstalledProduct
+ Get-AtwsTicketAdditionalInstalledProduct
 
 #>
 

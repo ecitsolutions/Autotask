@@ -57,7 +57,8 @@ Returns any object with a PriceListMaterialCodeName that matches the simple patt
 Get-AtwsPriceListMaterialCode -PriceListMaterialCodeName SomeName* -NotLike PriceListMaterialCodeName
 Returns any object with a PriceListMaterialCodeName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 Set-AtwsPriceListMaterialCode
 
 #>

@@ -72,6 +72,8 @@ Returns any Skills with property CategoryID NOT equal to NEITHER <PickList Label
 Get-AtwsSkill -Id 1234 -SkillName SomeName* -CategoryID <PickList Label1>, <PickList Label2> -Like SkillName -NotEquals CategoryID -GreaterThan Id
 An example of a more complex query. This command returns any Skills with Id GREATER THAN 1234, a SkillName that matches the simple pattern SomeName* AND that has a CategoryID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
+.NOTES
+Related commands:
 
 #>
 

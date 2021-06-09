@@ -41,10 +41,10 @@ Copies [Autotask.PaymentTerm] by Id 124 to a new object through the Web Services
 $result = Get-AtwsPaymentTerm -Id 124 | New-AtwsPaymentTerm | Set-AtwsPaymentTerm -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.PaymentTerm] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsPaymentTerm to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Get-AtwsPaymentTerm
- .LINK
-Set-AtwsPaymentTerm
+ Set-AtwsPaymentTerm
 
 #>
 

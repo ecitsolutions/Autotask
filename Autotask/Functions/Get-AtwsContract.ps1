@@ -78,10 +78,10 @@ Returns any Contracts with property BillingPreference NOT equal to NEITHER <Pick
 Get-AtwsContract -Id 1234 -ContractName SomeName* -BillingPreference <PickList Label1>, <PickList Label2> -Like ContractName -NotEquals BillingPreference -GreaterThan Id
 An example of a more complex query. This command returns any Contracts with Id GREATER THAN 1234, a ContractName that matches the simple pattern SomeName* AND that has a BillingPreference that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContract
- .LINK
-Set-AtwsContract
+ Set-AtwsContract
 
 #>
 

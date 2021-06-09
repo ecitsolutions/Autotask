@@ -47,12 +47,11 @@ Copies [Autotask.QuoteItem] by Id 124 to a new object through the Web Services A
 $result = Get-AtwsQuoteItem -Id 124 | New-AtwsQuoteItem | Set-AtwsQuoteItem -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.QuoteItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsQuoteItem to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsQuoteItem
- .LINK
-Get-AtwsQuoteItem
- .LINK
-Set-AtwsQuoteItem
+ Get-AtwsQuoteItem
+ Set-AtwsQuoteItem
 
 #>
 

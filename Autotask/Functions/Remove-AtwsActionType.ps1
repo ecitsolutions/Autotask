@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ActionType that was passed to th
 .EXAMPLE
 Remove-AtwsActionType  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsActionType
- .LINK
-Get-AtwsActionType
- .LINK
-Set-AtwsActionType
+ Get-AtwsActionType
+ Set-AtwsActionType
 
 #>
 

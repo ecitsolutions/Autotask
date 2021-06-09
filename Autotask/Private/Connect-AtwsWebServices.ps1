@@ -37,8 +37,7 @@ Function Connect-AtwsWebServices {
             Connect-AtwsWebAPI
         .NOTES
             NAME: Connect-AtwsWebAPI
-        .LINK
-            Get-AtwsData
+
   #>
 
     [cmdletbinding()]

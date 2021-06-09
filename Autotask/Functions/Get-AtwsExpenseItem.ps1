@@ -74,10 +74,10 @@ Returns any ExpenseItems with property ExpenseCategory NOT equal to NEITHER <Pic
 Get-AtwsExpenseItem -Id 1234 -ExpenseItemName SomeName* -ExpenseCategory <PickList Label1>, <PickList Label2> -Like ExpenseItemName -NotEquals ExpenseCategory -GreaterThan Id
 An example of a more complex query. This command returns any ExpenseItems with Id GREATER THAN 1234, a ExpenseItemName that matches the simple pattern SomeName* AND that has a ExpenseCategory that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsExpenseItem
- .LINK
-Set-AtwsExpenseItem
+ Set-AtwsExpenseItem
 
 #>
 

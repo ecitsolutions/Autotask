@@ -24,12 +24,11 @@ Nothing. This fuction just deletes the Autotask.ContactWebhook that was passed t
 .EXAMPLE
 Remove-AtwsContactWebhook  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsContactWebhook
- .LINK
-Get-AtwsContactWebhook
- .LINK
-Set-AtwsContactWebhook
+ Get-AtwsContactWebhook
+ Set-AtwsContactWebhook
 
 #>
 

@@ -43,12 +43,11 @@ Copies [Autotask.ActionType] by Id 124 to a new object through the Web Services 
 $result = Get-AtwsActionType -Id 124 | New-AtwsActionType | Set-AtwsActionType -ParameterName <Parameter Value> -Passthru
 Copies [Autotask.ActionType] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsActionType to modify the object and returns the new object.
 
-.LINK
+.NOTES
+Related commands:
 Remove-AtwsActionType
- .LINK
-Get-AtwsActionType
- .LINK
-Set-AtwsActionType
+ Get-AtwsActionType
+ Set-AtwsActionType
 
 #>
 

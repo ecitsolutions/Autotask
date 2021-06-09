@@ -57,10 +57,10 @@ Returns any object with a AccountTeamName that matches the simple pattern 'SomeN
 Get-AtwsAccountTeam -AccountTeamName SomeName* -NotLike AccountTeamName
 Returns any object with a AccountTeamName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsAccountTeam
- .LINK
-Remove-AtwsAccountTeam
+ Remove-AtwsAccountTeam
 
 #>
 

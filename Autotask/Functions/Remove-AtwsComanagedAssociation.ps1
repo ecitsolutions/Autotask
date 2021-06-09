@@ -24,10 +24,10 @@ Nothing. This fuction just deletes the Autotask.ComanagedAssociation that was pa
 .EXAMPLE
 Remove-AtwsComanagedAssociation  [-ParameterName] [Parameter value]
 
-.LINK
+.NOTES
+Related commands:
 New-AtwsComanagedAssociation
- .LINK
-Get-AtwsComanagedAssociation
+ Get-AtwsComanagedAssociation
 
 #>
 
