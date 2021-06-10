@@ -31,7 +31,8 @@ New-AtwsContactWebhookExcludedResource
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Input_Object', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Input_Object', ConfirmImpact='Low',
+  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/Remove-AtwsContactWebhookExcludedResource.md')]
   Param
   (
 # Any objects that should be deleted

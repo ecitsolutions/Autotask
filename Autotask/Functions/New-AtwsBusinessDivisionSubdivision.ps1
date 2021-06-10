@@ -49,7 +49,8 @@ Get-AtwsBusinessDivisionSubdivision
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='By_parameters', ConfirmImpact='Low',
+  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/New-AtwsBusinessDivisionSubdivision.md')]
   Param
   (
 # An array of objects to create

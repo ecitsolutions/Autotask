@@ -49,7 +49,8 @@ Get-AtwsAccountAlert
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='By_parameters', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='By_parameters', ConfirmImpact='Low',
+  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/New-AtwsAccountAlert.md')]
   Param
   (
 # An array of objects to create

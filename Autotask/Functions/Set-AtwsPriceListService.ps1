@@ -43,7 +43,8 @@ Get-AtwsPriceListService
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='InputObject', ConfirmImpact='Low')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='InputObject', ConfirmImpact='Low',
+  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/Set-AtwsPriceListService.md')]
   Param
   (
 # An object that will be modified by any parameters and updated in Autotask

@@ -65,7 +65,8 @@ New-AtwsContactWebhook
 
 #>
 
-  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Filter', ConfirmImpact='None')]
+  [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Filter', ConfirmImpact='None',
+  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/Get-AtwsContactWebhook.md')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API

@@ -77,8 +77,8 @@ Function Get-AtwsHelpText {
                 $Outputs = '[Autotask.{0}]. This function outputs the Autotask.{0} that was created by the API.' -F $Entity.Name
                 $Examples += "`$result = {0} -{1} [Value]`nCreates a new [Autotask.{2}] through the Web Services API and returns the new object." -F $FunctionName, $($RequiredParameters -join ' [Value] -'), $Entity.Name
                 $Examples += "`$result = {0} -Id 124 | {1} `nCopies [Autotask.{2}] by Id 124 to a new object through the Web Services API and returns the new object." -F $($FunctionName -replace '^New', 'Get'), $FunctionName, $Entity.Name
-                $Examples += "{0} -Id 124 | {1} | {3} -ParameterName <Parameter Value>`nCopies [Autotask.{2}] by Id 124 to a new object through the Web Services API, passes the new object to the {3} to modify the object." -F $($FunctionName -replace '^New', 'Get'), $FunctionName, $Entity.Name, $($FunctionName -replace '^New', 'Set')
-                $Examples += "`$result = {0} -Id 124 | {1} | {3} -ParameterName <Parameter Value> -Passthru`nCopies [Autotask.{2}] by Id 124 to a new object through the Web Services API, passes the new object to the {3} to modify the object and returns the new object." -F $($FunctionName -replace '^New', 'Get'), $FunctionName, $Entity.Name, $($FunctionName -replace '^New', 'Set')
+                $Examples += "{0} -Id 124 | {1} | {3} -ParameterName 'Parameter Value'`nCopies [Autotask.{2}] by Id 124 to a new object through the Web Services API, passes the new object to the {3} to modify the object." -F $($FunctionName -replace '^New', 'Get'), $FunctionName, $Entity.Name, $($FunctionName -replace '^New', 'Set')
+                $Examples += "`$result = {0} -Id 124 | {1} | {3} -ParameterName 'Parameter Value' -Passthru`nCopies [Autotask.{2}] by Id 124 to a new object through the Web Services API, passes the new object to the {3} to modify the object and returns the new object." -F $($FunctionName -replace '^New', 'Get'), $FunctionName, $Entity.Name, $($FunctionName -replace '^New', 'Set')
 
             }
             'Remove' {
@@ -101,11 +101,11 @@ Function Get-AtwsHelpText {
                 $Examples += "{0} -{1}Name SomeName* -Like {1}Name`nReturns any object with a {1}Name that matches the simple pattern 'SomeName*'. Supported wildcards are * and %." -F $FunctionName, $Entity.Name        
                 $Examples += "{0} -{1}Name SomeName* -NotLike {1}Name`nReturns any object with a {1}Name that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %." -F $FunctionName, $Entity.Name  
                 if ($PickListParameters.Count -gt 0) {         
-                    $Examples += "{0} -{1} <PickList Label>`nReturns any {2}s with property {1} equal to the <PickList Label>. '-PickList' is any parameter on ." -F $FunctionName, $PickListParameters[0], $Entity.Name
-                    $Examples += "{0} -{1} <PickList Label> -NotEquals {1} `nReturns any {2}s with property {1} NOT equal to the <PickList Label>." -F $FunctionName, $PickListParameters[0], $Entity.Name
-                    $Examples += "{0} -{1} <PickList Label1>, <PickList Label2>`nReturns any {2}s with property {1} equal to EITHER <PickList Label1> OR <PickList Label2>." -F $FunctionName, $PickListParameters[0], $Entity.Name
-                    $Examples += "{0} -{1} <PickList Label1>, <PickList Label2> -NotEquals {1}`nReturns any {2}s with property {1} NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>." -F $FunctionName, $PickListParameters[0], $Entity.Name
-                    $Examples += "{0} -Id 1234 -{2}Name SomeName* -{1} <PickList Label1>, <PickList Label2> -Like {2}Name -NotEquals {1} -GreaterThan Id`nAn example of a more complex query. This command returns any {2}s with Id GREATER THAN 1234, a {2}Name that matches the simple pattern SomeName* AND that has a {1} that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>." -F $FunctionName, $PickListParameters[0], $Entity.Name
+                    $Examples += "{0} -{1} 'PickList Label'`nReturns any {2}s with property {1} equal to the 'PickList Label'. '-PickList' is any parameter on ." -F $FunctionName, $PickListParameters[0], $Entity.Name
+                    $Examples += "{0} -{1} 'PickList Label' -NotEquals {1} `nReturns any {2}s with property {1} NOT equal to the 'PickList Label'." -F $FunctionName, $PickListParameters[0], $Entity.Name
+                    $Examples += "{0} -{1} 'PickList Label1', 'PickList Label2'`nReturns any {2}s with property {1} equal to EITHER 'PickList Label1' OR 'PickList Label2'." -F $FunctionName, $PickListParameters[0], $Entity.Name
+                    $Examples += "{0} -{1} 'PickList Label1', 'PickList Label2' -NotEquals {1}`nReturns any {2}s with property {1} NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'." -F $FunctionName, $PickListParameters[0], $Entity.Name
+                    $Examples += "{0} -Id 1234 -{2}Name SomeName* -{1} 'PickList Label1', 'PickList Label2' -Like {2}Name -NotEquals {1} -GreaterThan Id`nAn example of a more complex query. This command returns any {2}s with Id GREATER THAN 1234, a {2}Name that matches the simple pattern SomeName* AND that has a {1} that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'." -F $FunctionName, $PickListParameters[0], $Entity.Name
                 }
         
             }
@@ -115,10 +115,10 @@ Function Get-AtwsHelpText {
                 $Inputs = '[Autotask.{0}[]]. This function takes one or more objects as input. Pipeline is supported.' -F $Entity.Name
                 $Outputs = 'Nothing or [Autotask.{0}]. This function optionally returns the updated objects if you use the -PassThru parameter.' -F $Entity.Name
                 $Examples += "{0} -InputObject `${1} [-ParameterName] [Parameter value]`nPasses one or more [Autotask.{1}] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated." -F $FunctionName, $Entity.Name      
-                $Examples += "`${1} | {0} -ParameterName <Parameter value>`nSame as the first example, but now the objects are passed to the funtion through the pipeline, not passed as a parameter. The end result is identical." -F $FunctionName, $Entity.Name              
-                $Examples += "{1} -Id 0 | {0} -ParameterName <Parameter value>`nGets the instance with Id 0 directly from the Web Services API, modifies a parameter and updates Autotask. This approach works with all valid parameters for the Get function." -F $FunctionName, $($FunctionName -replace '^S', 'G')
-                $Examples += "{1} -Id 0,4,8 | {0} -ParameterName <Parameter value>`nGets multiple instances by Id, modifies them all and updates Autotask." -F $FunctionName, $($FunctionName -replace '^S', 'G') 
-                $Examples += "`$result = {1} -Id 0,4,8 | {0} -ParameterName <Parameter value> -PassThru`nGets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects." -F $FunctionName, $($FunctionName -replace '^S', 'G')   
+                $Examples += "`${1} | {0} -ParameterName 'Parameter value'`nSame as the first example, but now the objects are passed to the funtion through the pipeline, not passed as a parameter. The end result is identical." -F $FunctionName, $Entity.Name              
+                $Examples += "{1} -Id 0 | {0} -ParameterName 'Parameter value'`nGets the instance with Id 0 directly from the Web Services API, modifies a parameter and updates Autotask. This approach works with all valid parameters for the Get function." -F $FunctionName, $($FunctionName -replace '^S', 'G')
+                $Examples += "{1} -Id 0,4,8 | {0} -ParameterName 'Parameter value'`nGets multiple instances by Id, modifies them all and updates Autotask." -F $FunctionName, $($FunctionName -replace '^S', 'G') 
+                $Examples += "`$result = {1} -Id 0,4,8 | {0} -ParameterName 'Parameter value' -PassThru`nGets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects." -F $FunctionName, $($FunctionName -replace '^S', 'G')   
             }
         }
         # Add links to related functions

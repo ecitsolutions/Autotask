@@ -8,7 +8,7 @@
 
 $modulePath = join-path -Path $PSScriptRoot -ChildPath '..' -AdditionalChildPath 'Autotask'
 $docPath = Join-Path -Path $PSScriptRoot -ChildPath '..' -AdditionalChildPath 'docs'
-$extHelpPath = Join-Path -Path $docPath -ChildPath 'en-US'
+$extHelpPath = Join-Path -Path $modulePath -ChildPath 'en-US'
 
 import-module $modulePath -force
 
