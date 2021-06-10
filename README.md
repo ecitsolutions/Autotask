@@ -32,7 +32,7 @@ $ApiKey = "<the API identifier from your resource in Autotask>"
 Connect-AtwsWebAPI -Credential $Credential -ApiTrackingIdentifier $ApiKey
 
 # Save your credentials locally (NB! Will be exported as SecureString in CliXML)
-New-AtwsModuleConfiguration -Credential $Credential -ApiTrackingIdentifier $ApiKey -ProfileName Default
+New-AtwsModuleConfiguration -Credential $Credential -SecureTrackingIdentifier ($ApiKey | ConvertTo-SecureString -AsPlainText -Force) -ProfileName Default
 
 # Module can now load and connect automatically, so you can run any command directly
 Get-AtwsAccount -id 0
