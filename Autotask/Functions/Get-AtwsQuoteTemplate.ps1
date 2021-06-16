@@ -61,20 +61,20 @@ Returns any object with a QuoteTemplateName that matches the simple pattern 'Som
 Get-AtwsQuoteTemplate -QuoteTemplateName SomeName* -NotLike QuoteTemplateName
 Returns any object with a QuoteTemplateName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsQuoteTemplate -DateFormat <PickList Label>
-Returns any QuoteTemplates with property DateFormat equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsQuoteTemplate -DateFormat 'PickList Label'
+Returns any QuoteTemplates with property DateFormat equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsQuoteTemplate -DateFormat <PickList Label> -NotEquals DateFormat 
-Returns any QuoteTemplates with property DateFormat NOT equal to the <PickList Label>.
+Get-AtwsQuoteTemplate -DateFormat 'PickList Label' -NotEquals DateFormat 
+Returns any QuoteTemplates with property DateFormat NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsQuoteTemplate -DateFormat <PickList Label1>, <PickList Label2>
-Returns any QuoteTemplates with property DateFormat equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsQuoteTemplate -DateFormat 'PickList Label1', 'PickList Label2'
+Returns any QuoteTemplates with property DateFormat equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsQuoteTemplate -DateFormat <PickList Label1>, <PickList Label2> -NotEquals DateFormat
-Returns any QuoteTemplates with property DateFormat NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsQuoteTemplate -DateFormat 'PickList Label1', 'PickList Label2' -NotEquals DateFormat
+Returns any QuoteTemplates with property DateFormat NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsQuoteTemplate -Id 1234 -QuoteTemplateName SomeName* -DateFormat <PickList Label1>, <PickList Label2> -Like QuoteTemplateName -NotEquals DateFormat -GreaterThan Id
-An example of a more complex query. This command returns any QuoteTemplates with Id GREATER THAN 1234, a QuoteTemplateName that matches the simple pattern SomeName* AND that has a DateFormat that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsQuoteTemplate -Id 1234 -QuoteTemplateName SomeName* -DateFormat 'PickList Label1', 'PickList Label2' -Like QuoteTemplateName -NotEquals DateFormat -GreaterThan Id
+An example of a more complex query. This command returns any QuoteTemplates with Id GREATER THAN 1234, a QuoteTemplateName that matches the simple pattern SomeName* AND that has a DateFormat that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

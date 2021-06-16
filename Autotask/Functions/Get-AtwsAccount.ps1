@@ -65,20 +65,20 @@ Returns any object with a AccountName that matches the simple pattern 'SomeName*
 Get-AtwsAccount -AccountName SomeName* -NotLike AccountName
 Returns any object with a AccountName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsAccount -AccountType <PickList Label>
-Returns any Accounts with property AccountType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsAccount -AccountType 'PickList Label'
+Returns any Accounts with property AccountType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsAccount -AccountType <PickList Label> -NotEquals AccountType 
-Returns any Accounts with property AccountType NOT equal to the <PickList Label>.
+Get-AtwsAccount -AccountType 'PickList Label' -NotEquals AccountType 
+Returns any Accounts with property AccountType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsAccount -AccountType <PickList Label1>, <PickList Label2>
-Returns any Accounts with property AccountType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsAccount -AccountType 'PickList Label1', 'PickList Label2'
+Returns any Accounts with property AccountType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAccount -AccountType <PickList Label1>, <PickList Label2> -NotEquals AccountType
-Returns any Accounts with property AccountType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAccount -AccountType 'PickList Label1', 'PickList Label2' -NotEquals AccountType
+Returns any Accounts with property AccountType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAccount -Id 1234 -AccountName SomeName* -AccountType <PickList Label1>, <PickList Label2> -Like AccountName -NotEquals AccountType -GreaterThan Id
-An example of a more complex query. This command returns any Accounts with Id GREATER THAN 1234, a AccountName that matches the simple pattern SomeName* AND that has a AccountType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAccount -Id 1234 -AccountName SomeName* -AccountType 'PickList Label1', 'PickList Label2' -Like AccountName -NotEquals AccountType -GreaterThan Id
+An example of a more complex query. This command returns any Accounts with Id GREATER THAN 1234, a AccountName that matches the simple pattern SomeName* AND that has a AccountType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

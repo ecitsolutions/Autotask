@@ -35,10 +35,10 @@ Creates a new [Autotask.TaxCategory] through the Web Services API and returns th
 $result = Get-AtwsTaxCategory -Id 124 | New-AtwsTaxCategory 
 Copies [Autotask.TaxCategory] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTaxCategory -Id 124 | New-AtwsTaxCategory | Set-AtwsTaxCategory -ParameterName <Parameter Value>
+Get-AtwsTaxCategory -Id 124 | New-AtwsTaxCategory | Set-AtwsTaxCategory -ParameterName 'Parameter Value'
 Copies [Autotask.TaxCategory] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaxCategory to modify the object.
  .EXAMPLE
-$result = Get-AtwsTaxCategory -Id 124 | New-AtwsTaxCategory | Set-AtwsTaxCategory -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTaxCategory -Id 124 | New-AtwsTaxCategory | Set-AtwsTaxCategory -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TaxCategory] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaxCategory to modify the object and returns the new object.
 
 .NOTES

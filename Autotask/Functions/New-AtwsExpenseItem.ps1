@@ -41,10 +41,10 @@ Creates a new [Autotask.ExpenseItem] through the Web Services API and returns th
 $result = Get-AtwsExpenseItem -Id 124 | New-AtwsExpenseItem 
 Copies [Autotask.ExpenseItem] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsExpenseItem -Id 124 | New-AtwsExpenseItem | Set-AtwsExpenseItem -ParameterName <Parameter Value>
+Get-AtwsExpenseItem -Id 124 | New-AtwsExpenseItem | Set-AtwsExpenseItem -ParameterName 'Parameter Value'
 Copies [Autotask.ExpenseItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsExpenseItem to modify the object.
  .EXAMPLE
-$result = Get-AtwsExpenseItem -Id 124 | New-AtwsExpenseItem | Set-AtwsExpenseItem -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsExpenseItem -Id 124 | New-AtwsExpenseItem | Set-AtwsExpenseItem -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ExpenseItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsExpenseItem to modify the object and returns the new object.
 
 .NOTES

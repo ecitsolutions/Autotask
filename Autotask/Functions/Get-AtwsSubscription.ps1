@@ -58,20 +58,20 @@ Returns any object with a SubscriptionName that matches the simple pattern 'Some
 Get-AtwsSubscription -SubscriptionName SomeName* -NotLike SubscriptionName
 Returns any object with a SubscriptionName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsSubscription -PeriodType <PickList Label>
-Returns any Subscriptions with property PeriodType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsSubscription -PeriodType 'PickList Label'
+Returns any Subscriptions with property PeriodType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsSubscription -PeriodType <PickList Label> -NotEquals PeriodType 
-Returns any Subscriptions with property PeriodType NOT equal to the <PickList Label>.
+Get-AtwsSubscription -PeriodType 'PickList Label' -NotEquals PeriodType 
+Returns any Subscriptions with property PeriodType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsSubscription -PeriodType <PickList Label1>, <PickList Label2>
-Returns any Subscriptions with property PeriodType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsSubscription -PeriodType 'PickList Label1', 'PickList Label2'
+Returns any Subscriptions with property PeriodType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsSubscription -PeriodType <PickList Label1>, <PickList Label2> -NotEquals PeriodType
-Returns any Subscriptions with property PeriodType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsSubscription -PeriodType 'PickList Label1', 'PickList Label2' -NotEquals PeriodType
+Returns any Subscriptions with property PeriodType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsSubscription -Id 1234 -SubscriptionName SomeName* -PeriodType <PickList Label1>, <PickList Label2> -Like SubscriptionName -NotEquals PeriodType -GreaterThan Id
-An example of a more complex query. This command returns any Subscriptions with Id GREATER THAN 1234, a SubscriptionName that matches the simple pattern SomeName* AND that has a PeriodType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsSubscription -Id 1234 -SubscriptionName SomeName* -PeriodType 'PickList Label1', 'PickList Label2' -Like SubscriptionName -NotEquals PeriodType -GreaterThan Id
+An example of a more complex query. This command returns any Subscriptions with Id GREATER THAN 1234, a SubscriptionName that matches the simple pattern SomeName* AND that has a PeriodType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

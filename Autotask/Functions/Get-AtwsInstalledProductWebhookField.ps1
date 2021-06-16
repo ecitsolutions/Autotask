@@ -57,20 +57,20 @@ Returns any object with a InstalledProductWebhookFieldName that matches the simp
 Get-AtwsInstalledProductWebhookField -InstalledProductWebhookFieldName SomeName* -NotLike InstalledProductWebhookFieldName
 Returns any object with a InstalledProductWebhookFieldName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInstalledProductWebhookField -FieldID <PickList Label>
-Returns any InstalledProductWebhookFields with property FieldID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsInstalledProductWebhookField -FieldID 'PickList Label'
+Returns any InstalledProductWebhookFields with property FieldID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsInstalledProductWebhookField -FieldID <PickList Label> -NotEquals FieldID 
-Returns any InstalledProductWebhookFields with property FieldID NOT equal to the <PickList Label>.
+Get-AtwsInstalledProductWebhookField -FieldID 'PickList Label' -NotEquals FieldID 
+Returns any InstalledProductWebhookFields with property FieldID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsInstalledProductWebhookField -FieldID <PickList Label1>, <PickList Label2>
-Returns any InstalledProductWebhookFields with property FieldID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsInstalledProductWebhookField -FieldID 'PickList Label1', 'PickList Label2'
+Returns any InstalledProductWebhookFields with property FieldID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInstalledProductWebhookField -FieldID <PickList Label1>, <PickList Label2> -NotEquals FieldID
-Returns any InstalledProductWebhookFields with property FieldID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInstalledProductWebhookField -FieldID 'PickList Label1', 'PickList Label2' -NotEquals FieldID
+Returns any InstalledProductWebhookFields with property FieldID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInstalledProductWebhookField -Id 1234 -InstalledProductWebhookFieldName SomeName* -FieldID <PickList Label1>, <PickList Label2> -Like InstalledProductWebhookFieldName -NotEquals FieldID -GreaterThan Id
-An example of a more complex query. This command returns any InstalledProductWebhookFields with Id GREATER THAN 1234, a InstalledProductWebhookFieldName that matches the simple pattern SomeName* AND that has a FieldID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInstalledProductWebhookField -Id 1234 -InstalledProductWebhookFieldName SomeName* -FieldID 'PickList Label1', 'PickList Label2' -Like InstalledProductWebhookFieldName -NotEquals FieldID -GreaterThan Id
+An example of a more complex query. This command returns any InstalledProductWebhookFields with Id GREATER THAN 1234, a InstalledProductWebhookFieldName that matches the simple pattern SomeName* AND that has a FieldID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

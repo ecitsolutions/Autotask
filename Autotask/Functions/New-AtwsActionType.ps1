@@ -37,10 +37,10 @@ Creates a new [Autotask.ActionType] through the Web Services API and returns the
 $result = Get-AtwsActionType -Id 124 | New-AtwsActionType 
 Copies [Autotask.ActionType] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsActionType -Id 124 | New-AtwsActionType | Set-AtwsActionType -ParameterName <Parameter Value>
+Get-AtwsActionType -Id 124 | New-AtwsActionType | Set-AtwsActionType -ParameterName 'Parameter Value'
 Copies [Autotask.ActionType] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsActionType to modify the object.
  .EXAMPLE
-$result = Get-AtwsActionType -Id 124 | New-AtwsActionType | Set-AtwsActionType -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsActionType -Id 124 | New-AtwsActionType | Set-AtwsActionType -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ActionType] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsActionType to modify the object and returns the new object.
 
 .NOTES

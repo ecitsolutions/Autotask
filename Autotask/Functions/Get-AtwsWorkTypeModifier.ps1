@@ -57,20 +57,20 @@ Returns any object with a WorkTypeModifierName that matches the simple pattern '
 Get-AtwsWorkTypeModifier -WorkTypeModifierName SomeName* -NotLike WorkTypeModifierName
 Returns any object with a WorkTypeModifierName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsWorkTypeModifier -ModifierType <PickList Label>
-Returns any WorkTypeModifiers with property ModifierType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsWorkTypeModifier -ModifierType 'PickList Label'
+Returns any WorkTypeModifiers with property ModifierType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsWorkTypeModifier -ModifierType <PickList Label> -NotEquals ModifierType 
-Returns any WorkTypeModifiers with property ModifierType NOT equal to the <PickList Label>.
+Get-AtwsWorkTypeModifier -ModifierType 'PickList Label' -NotEquals ModifierType 
+Returns any WorkTypeModifiers with property ModifierType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsWorkTypeModifier -ModifierType <PickList Label1>, <PickList Label2>
-Returns any WorkTypeModifiers with property ModifierType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsWorkTypeModifier -ModifierType 'PickList Label1', 'PickList Label2'
+Returns any WorkTypeModifiers with property ModifierType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsWorkTypeModifier -ModifierType <PickList Label1>, <PickList Label2> -NotEquals ModifierType
-Returns any WorkTypeModifiers with property ModifierType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsWorkTypeModifier -ModifierType 'PickList Label1', 'PickList Label2' -NotEquals ModifierType
+Returns any WorkTypeModifiers with property ModifierType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsWorkTypeModifier -Id 1234 -WorkTypeModifierName SomeName* -ModifierType <PickList Label1>, <PickList Label2> -Like WorkTypeModifierName -NotEquals ModifierType -GreaterThan Id
-An example of a more complex query. This command returns any WorkTypeModifiers with Id GREATER THAN 1234, a WorkTypeModifierName that matches the simple pattern SomeName* AND that has a ModifierType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsWorkTypeModifier -Id 1234 -WorkTypeModifierName SomeName* -ModifierType 'PickList Label1', 'PickList Label2' -Like WorkTypeModifierName -NotEquals ModifierType -GreaterThan Id
+An example of a more complex query. This command returns any WorkTypeModifiers with Id GREATER THAN 1234, a WorkTypeModifierName that matches the simple pattern SomeName* AND that has a ModifierType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

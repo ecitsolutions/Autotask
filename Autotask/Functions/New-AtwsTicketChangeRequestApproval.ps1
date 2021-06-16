@@ -35,10 +35,10 @@ Creates a new [Autotask.TicketChangeRequestApproval] through the Web Services AP
 $result = Get-AtwsTicketChangeRequestApproval -Id 124 | New-AtwsTicketChangeRequestApproval 
 Copies [Autotask.TicketChangeRequestApproval] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTicketChangeRequestApproval -Id 124 | New-AtwsTicketChangeRequestApproval | Set-AtwsTicketChangeRequestApproval -ParameterName <Parameter Value>
+Get-AtwsTicketChangeRequestApproval -Id 124 | New-AtwsTicketChangeRequestApproval | Set-AtwsTicketChangeRequestApproval -ParameterName 'Parameter Value'
 Copies [Autotask.TicketChangeRequestApproval] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketChangeRequestApproval to modify the object.
  .EXAMPLE
-$result = Get-AtwsTicketChangeRequestApproval -Id 124 | New-AtwsTicketChangeRequestApproval | Set-AtwsTicketChangeRequestApproval -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTicketChangeRequestApproval -Id 124 | New-AtwsTicketChangeRequestApproval | Set-AtwsTicketChangeRequestApproval -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TicketChangeRequestApproval] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketChangeRequestApproval to modify the object and returns the new object.
 
 .NOTES

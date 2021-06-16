@@ -36,10 +36,10 @@ Creates a new [Autotask.ChecklistLibraryChecklistItem] through the Web Services 
 $result = Get-AtwsChecklistLibraryChecklistItem -Id 124 | New-AtwsChecklistLibraryChecklistItem 
 Copies [Autotask.ChecklistLibraryChecklistItem] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsChecklistLibraryChecklistItem -Id 124 | New-AtwsChecklistLibraryChecklistItem | Set-AtwsChecklistLibraryChecklistItem -ParameterName <Parameter Value>
+Get-AtwsChecklistLibraryChecklistItem -Id 124 | New-AtwsChecklistLibraryChecklistItem | Set-AtwsChecklistLibraryChecklistItem -ParameterName 'Parameter Value'
 Copies [Autotask.ChecklistLibraryChecklistItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsChecklistLibraryChecklistItem to modify the object.
  .EXAMPLE
-$result = Get-AtwsChecklistLibraryChecklistItem -Id 124 | New-AtwsChecklistLibraryChecklistItem | Set-AtwsChecklistLibraryChecklistItem -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsChecklistLibraryChecklistItem -Id 124 | New-AtwsChecklistLibraryChecklistItem | Set-AtwsChecklistLibraryChecklistItem -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ChecklistLibraryChecklistItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsChecklistLibraryChecklistItem to modify the object and returns the new object.
 
 .NOTES

@@ -65,20 +65,20 @@ Returns any object with a OpportunityName that matches the simple pattern 'SomeN
 Get-AtwsOpportunity -OpportunityName SomeName* -NotLike OpportunityName
 Returns any object with a OpportunityName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsOpportunity -Stage <PickList Label>
-Returns any Opportunitys with property Stage equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsOpportunity -Stage 'PickList Label'
+Returns any Opportunitys with property Stage equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsOpportunity -Stage <PickList Label> -NotEquals Stage 
-Returns any Opportunitys with property Stage NOT equal to the <PickList Label>.
+Get-AtwsOpportunity -Stage 'PickList Label' -NotEquals Stage 
+Returns any Opportunitys with property Stage NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsOpportunity -Stage <PickList Label1>, <PickList Label2>
-Returns any Opportunitys with property Stage equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsOpportunity -Stage 'PickList Label1', 'PickList Label2'
+Returns any Opportunitys with property Stage equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsOpportunity -Stage <PickList Label1>, <PickList Label2> -NotEquals Stage
-Returns any Opportunitys with property Stage NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsOpportunity -Stage 'PickList Label1', 'PickList Label2' -NotEquals Stage
+Returns any Opportunitys with property Stage NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsOpportunity -Id 1234 -OpportunityName SomeName* -Stage <PickList Label1>, <PickList Label2> -Like OpportunityName -NotEquals Stage -GreaterThan Id
-An example of a more complex query. This command returns any Opportunitys with Id GREATER THAN 1234, a OpportunityName that matches the simple pattern SomeName* AND that has a Stage that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsOpportunity -Id 1234 -OpportunityName SomeName* -Stage 'PickList Label1', 'PickList Label2' -Like OpportunityName -NotEquals Stage -GreaterThan Id
+An example of a more complex query. This command returns any Opportunitys with Id GREATER THAN 1234, a OpportunityName that matches the simple pattern SomeName* AND that has a Stage that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

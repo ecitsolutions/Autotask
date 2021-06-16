@@ -35,10 +35,10 @@ Creates a new [Autotask.TaxRegion] through the Web Services API and returns the 
 $result = Get-AtwsTaxRegion -Id 124 | New-AtwsTaxRegion 
 Copies [Autotask.TaxRegion] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTaxRegion -Id 124 | New-AtwsTaxRegion | Set-AtwsTaxRegion -ParameterName <Parameter Value>
+Get-AtwsTaxRegion -Id 124 | New-AtwsTaxRegion | Set-AtwsTaxRegion -ParameterName 'Parameter Value'
 Copies [Autotask.TaxRegion] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaxRegion to modify the object.
  .EXAMPLE
-$result = Get-AtwsTaxRegion -Id 124 | New-AtwsTaxRegion | Set-AtwsTaxRegion -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTaxRegion -Id 124 | New-AtwsTaxRegion | Set-AtwsTaxRegion -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TaxRegion] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaxRegion to modify the object and returns the new object.
 
 .NOTES

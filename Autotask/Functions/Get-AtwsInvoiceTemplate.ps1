@@ -64,20 +64,20 @@ Returns any object with a InvoiceTemplateName that matches the simple pattern 'S
 Get-AtwsInvoiceTemplate -InvoiceTemplateName SomeName* -NotLike InvoiceTemplateName
 Returns any object with a InvoiceTemplateName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInvoiceTemplate -GroupBy <PickList Label>
-Returns any InvoiceTemplates with property GroupBy equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsInvoiceTemplate -GroupBy 'PickList Label'
+Returns any InvoiceTemplates with property GroupBy equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsInvoiceTemplate -GroupBy <PickList Label> -NotEquals GroupBy 
-Returns any InvoiceTemplates with property GroupBy NOT equal to the <PickList Label>.
+Get-AtwsInvoiceTemplate -GroupBy 'PickList Label' -NotEquals GroupBy 
+Returns any InvoiceTemplates with property GroupBy NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsInvoiceTemplate -GroupBy <PickList Label1>, <PickList Label2>
-Returns any InvoiceTemplates with property GroupBy equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsInvoiceTemplate -GroupBy 'PickList Label1', 'PickList Label2'
+Returns any InvoiceTemplates with property GroupBy equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInvoiceTemplate -GroupBy <PickList Label1>, <PickList Label2> -NotEquals GroupBy
-Returns any InvoiceTemplates with property GroupBy NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInvoiceTemplate -GroupBy 'PickList Label1', 'PickList Label2' -NotEquals GroupBy
+Returns any InvoiceTemplates with property GroupBy NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInvoiceTemplate -Id 1234 -InvoiceTemplateName SomeName* -GroupBy <PickList Label1>, <PickList Label2> -Like InvoiceTemplateName -NotEquals GroupBy -GreaterThan Id
-An example of a more complex query. This command returns any InvoiceTemplates with Id GREATER THAN 1234, a InvoiceTemplateName that matches the simple pattern SomeName* AND that has a GroupBy that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInvoiceTemplate -Id 1234 -InvoiceTemplateName SomeName* -GroupBy 'PickList Label1', 'PickList Label2' -Like InvoiceTemplateName -NotEquals GroupBy -GreaterThan Id
+An example of a more complex query. This command returns any InvoiceTemplates with Id GREATER THAN 1234, a InvoiceTemplateName that matches the simple pattern SomeName* AND that has a GroupBy that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:
@@ -357,7 +357,6 @@ Related commands:
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $PaymentTerms,
 

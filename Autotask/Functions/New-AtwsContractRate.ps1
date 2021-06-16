@@ -37,10 +37,10 @@ Creates a new [Autotask.ContractRate] through the Web Services API and returns t
 $result = Get-AtwsContractRate -Id 124 | New-AtwsContractRate 
 Copies [Autotask.ContractRate] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsContractRate -Id 124 | New-AtwsContractRate | Set-AtwsContractRate -ParameterName <Parameter Value>
+Get-AtwsContractRate -Id 124 | New-AtwsContractRate | Set-AtwsContractRate -ParameterName 'Parameter Value'
 Copies [Autotask.ContractRate] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractRate to modify the object.
  .EXAMPLE
-$result = Get-AtwsContractRate -Id 124 | New-AtwsContractRate | Set-AtwsContractRate -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsContractRate -Id 124 | New-AtwsContractRate | Set-AtwsContractRate -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ContractRate] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractRate to modify the object and returns the new object.
 
 .NOTES

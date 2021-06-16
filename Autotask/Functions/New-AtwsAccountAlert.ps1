@@ -36,10 +36,10 @@ Creates a new [Autotask.AccountAlert] through the Web Services API and returns t
 $result = Get-AtwsAccountAlert -Id 124 | New-AtwsAccountAlert 
 Copies [Autotask.AccountAlert] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsAccountAlert -Id 124 | New-AtwsAccountAlert | Set-AtwsAccountAlert -ParameterName <Parameter Value>
+Get-AtwsAccountAlert -Id 124 | New-AtwsAccountAlert | Set-AtwsAccountAlert -ParameterName 'Parameter Value'
 Copies [Autotask.AccountAlert] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountAlert to modify the object.
  .EXAMPLE
-$result = Get-AtwsAccountAlert -Id 124 | New-AtwsAccountAlert | Set-AtwsAccountAlert -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsAccountAlert -Id 124 | New-AtwsAccountAlert | Set-AtwsAccountAlert -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.AccountAlert] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountAlert to modify the object and returns the new object.
 
 .NOTES

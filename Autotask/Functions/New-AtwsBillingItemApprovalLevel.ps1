@@ -38,10 +38,10 @@ Creates a new [Autotask.BillingItemApprovalLevel] through the Web Services API a
 $result = Get-AtwsBillingItemApprovalLevel -Id 124 | New-AtwsBillingItemApprovalLevel 
 Copies [Autotask.BillingItemApprovalLevel] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsBillingItemApprovalLevel -Id 124 | New-AtwsBillingItemApprovalLevel | Set-AtwsBillingItemApprovalLevel -ParameterName <Parameter Value>
+Get-AtwsBillingItemApprovalLevel -Id 124 | New-AtwsBillingItemApprovalLevel | Set-AtwsBillingItemApprovalLevel -ParameterName 'Parameter Value'
 Copies [Autotask.BillingItemApprovalLevel] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsBillingItemApprovalLevel to modify the object.
  .EXAMPLE
-$result = Get-AtwsBillingItemApprovalLevel -Id 124 | New-AtwsBillingItemApprovalLevel | Set-AtwsBillingItemApprovalLevel -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsBillingItemApprovalLevel -Id 124 | New-AtwsBillingItemApprovalLevel | Set-AtwsBillingItemApprovalLevel -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.BillingItemApprovalLevel] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsBillingItemApprovalLevel to modify the object and returns the new object.
 
 .NOTES

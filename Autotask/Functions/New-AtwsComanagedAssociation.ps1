@@ -36,10 +36,10 @@ Creates a new [Autotask.ComanagedAssociation] through the Web Services API and r
 $result = Get-AtwsComanagedAssociation -Id 124 | New-AtwsComanagedAssociation 
 Copies [Autotask.ComanagedAssociation] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsComanagedAssociation -Id 124 | New-AtwsComanagedAssociation | Set-AtwsComanagedAssociation -ParameterName <Parameter Value>
+Get-AtwsComanagedAssociation -Id 124 | New-AtwsComanagedAssociation | Set-AtwsComanagedAssociation -ParameterName 'Parameter Value'
 Copies [Autotask.ComanagedAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsComanagedAssociation to modify the object.
  .EXAMPLE
-$result = Get-AtwsComanagedAssociation -Id 124 | New-AtwsComanagedAssociation | Set-AtwsComanagedAssociation -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsComanagedAssociation -Id 124 | New-AtwsComanagedAssociation | Set-AtwsComanagedAssociation -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ComanagedAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsComanagedAssociation to modify the object and returns the new object.
 
 .NOTES

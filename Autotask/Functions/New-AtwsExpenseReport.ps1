@@ -37,10 +37,10 @@ Creates a new [Autotask.ExpenseReport] through the Web Services API and returns 
 $result = Get-AtwsExpenseReport -Id 124 | New-AtwsExpenseReport 
 Copies [Autotask.ExpenseReport] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsExpenseReport -Id 124 | New-AtwsExpenseReport | Set-AtwsExpenseReport -ParameterName <Parameter Value>
+Get-AtwsExpenseReport -Id 124 | New-AtwsExpenseReport | Set-AtwsExpenseReport -ParameterName 'Parameter Value'
 Copies [Autotask.ExpenseReport] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsExpenseReport to modify the object.
  .EXAMPLE
-$result = Get-AtwsExpenseReport -Id 124 | New-AtwsExpenseReport | Set-AtwsExpenseReport -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsExpenseReport -Id 124 | New-AtwsExpenseReport | Set-AtwsExpenseReport -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ExpenseReport] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsExpenseReport to modify the object and returns the new object.
 
 .NOTES

@@ -57,20 +57,20 @@ Returns any object with a ChecklistLibraryName that matches the simple pattern '
 Get-AtwsChecklistLibrary -ChecklistLibraryName SomeName* -NotLike ChecklistLibraryName
 Returns any object with a ChecklistLibraryName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsChecklistLibrary -EntityType <PickList Label>
-Returns any ChecklistLibrarys with property EntityType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsChecklistLibrary -EntityType 'PickList Label'
+Returns any ChecklistLibrarys with property EntityType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsChecklistLibrary -EntityType <PickList Label> -NotEquals EntityType 
-Returns any ChecklistLibrarys with property EntityType NOT equal to the <PickList Label>.
+Get-AtwsChecklistLibrary -EntityType 'PickList Label' -NotEquals EntityType 
+Returns any ChecklistLibrarys with property EntityType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsChecklistLibrary -EntityType <PickList Label1>, <PickList Label2>
-Returns any ChecklistLibrarys with property EntityType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsChecklistLibrary -EntityType 'PickList Label1', 'PickList Label2'
+Returns any ChecklistLibrarys with property EntityType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsChecklistLibrary -EntityType <PickList Label1>, <PickList Label2> -NotEquals EntityType
-Returns any ChecklistLibrarys with property EntityType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsChecklistLibrary -EntityType 'PickList Label1', 'PickList Label2' -NotEquals EntityType
+Returns any ChecklistLibrarys with property EntityType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsChecklistLibrary -Id 1234 -ChecklistLibraryName SomeName* -EntityType <PickList Label1>, <PickList Label2> -Like ChecklistLibraryName -NotEquals EntityType -GreaterThan Id
-An example of a more complex query. This command returns any ChecklistLibrarys with Id GREATER THAN 1234, a ChecklistLibraryName that matches the simple pattern SomeName* AND that has a EntityType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsChecklistLibrary -Id 1234 -ChecklistLibraryName SomeName* -EntityType 'PickList Label1', 'PickList Label2' -Like ChecklistLibraryName -NotEquals EntityType -GreaterThan Id
+An example of a more complex query. This command returns any ChecklistLibrarys with Id GREATER THAN 1234, a ChecklistLibraryName that matches the simple pattern SomeName* AND that has a EntityType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

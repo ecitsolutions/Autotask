@@ -58,20 +58,20 @@ Returns any object with a InvoiceName that matches the simple pattern 'SomeName*
 Get-AtwsInvoice -InvoiceName SomeName* -NotLike InvoiceName
 Returns any object with a InvoiceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInvoice -TaxGroup <PickList Label>
-Returns any Invoices with property TaxGroup equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsInvoice -TaxGroup 'PickList Label'
+Returns any Invoices with property TaxGroup equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsInvoice -TaxGroup <PickList Label> -NotEquals TaxGroup 
-Returns any Invoices with property TaxGroup NOT equal to the <PickList Label>.
+Get-AtwsInvoice -TaxGroup 'PickList Label' -NotEquals TaxGroup 
+Returns any Invoices with property TaxGroup NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsInvoice -TaxGroup <PickList Label1>, <PickList Label2>
-Returns any Invoices with property TaxGroup equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsInvoice -TaxGroup 'PickList Label1', 'PickList Label2'
+Returns any Invoices with property TaxGroup equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInvoice -TaxGroup <PickList Label1>, <PickList Label2> -NotEquals TaxGroup
-Returns any Invoices with property TaxGroup NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInvoice -TaxGroup 'PickList Label1', 'PickList Label2' -NotEquals TaxGroup
+Returns any Invoices with property TaxGroup NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInvoice -Id 1234 -InvoiceName SomeName* -TaxGroup <PickList Label1>, <PickList Label2> -Like InvoiceName -NotEquals TaxGroup -GreaterThan Id
-An example of a more complex query. This command returns any Invoices with Id GREATER THAN 1234, a InvoiceName that matches the simple pattern SomeName* AND that has a TaxGroup that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInvoice -Id 1234 -InvoiceName SomeName* -TaxGroup 'PickList Label1', 'PickList Label2' -Like InvoiceName -NotEquals TaxGroup -GreaterThan Id
+An example of a more complex query. This command returns any Invoices with Id GREATER THAN 1234, a InvoiceName that matches the simple pattern SomeName* AND that has a TaxGroup that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

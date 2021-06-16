@@ -60,20 +60,20 @@ Returns any object with a AllocationCodeName that matches the simple pattern 'So
 Get-AtwsAllocationCode -AllocationCodeName SomeName* -NotLike AllocationCodeName
 Returns any object with a AllocationCodeName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsAllocationCode -GeneralLedgerCode <PickList Label>
-Returns any AllocationCodes with property GeneralLedgerCode equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsAllocationCode -GeneralLedgerCode 'PickList Label'
+Returns any AllocationCodes with property GeneralLedgerCode equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsAllocationCode -GeneralLedgerCode <PickList Label> -NotEquals GeneralLedgerCode 
-Returns any AllocationCodes with property GeneralLedgerCode NOT equal to the <PickList Label>.
+Get-AtwsAllocationCode -GeneralLedgerCode 'PickList Label' -NotEquals GeneralLedgerCode 
+Returns any AllocationCodes with property GeneralLedgerCode NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsAllocationCode -GeneralLedgerCode <PickList Label1>, <PickList Label2>
-Returns any AllocationCodes with property GeneralLedgerCode equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsAllocationCode -GeneralLedgerCode 'PickList Label1', 'PickList Label2'
+Returns any AllocationCodes with property GeneralLedgerCode equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAllocationCode -GeneralLedgerCode <PickList Label1>, <PickList Label2> -NotEquals GeneralLedgerCode
-Returns any AllocationCodes with property GeneralLedgerCode NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAllocationCode -GeneralLedgerCode 'PickList Label1', 'PickList Label2' -NotEquals GeneralLedgerCode
+Returns any AllocationCodes with property GeneralLedgerCode NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAllocationCode -Id 1234 -AllocationCodeName SomeName* -GeneralLedgerCode <PickList Label1>, <PickList Label2> -Like AllocationCodeName -NotEquals GeneralLedgerCode -GreaterThan Id
-An example of a more complex query. This command returns any AllocationCodes with Id GREATER THAN 1234, a AllocationCodeName that matches the simple pattern SomeName* AND that has a GeneralLedgerCode that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAllocationCode -Id 1234 -AllocationCodeName SomeName* -GeneralLedgerCode 'PickList Label1', 'PickList Label2' -Like AllocationCodeName -NotEquals GeneralLedgerCode -GreaterThan Id
+An example of a more complex query. This command returns any AllocationCodes with Id GREATER THAN 1234, a AllocationCodeName that matches the simple pattern SomeName* AND that has a GeneralLedgerCode that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

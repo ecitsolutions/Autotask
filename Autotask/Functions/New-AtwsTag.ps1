@@ -35,10 +35,10 @@ Creates a new [Autotask.Tag] through the Web Services API and returns the new ob
 $result = Get-AtwsTag -Id 124 | New-AtwsTag 
 Copies [Autotask.Tag] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTag -Id 124 | New-AtwsTag | Set-AtwsTag -ParameterName <Parameter Value>
+Get-AtwsTag -Id 124 | New-AtwsTag | Set-AtwsTag -ParameterName 'Parameter Value'
 Copies [Autotask.Tag] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTag to modify the object.
  .EXAMPLE
-$result = Get-AtwsTag -Id 124 | New-AtwsTag | Set-AtwsTag -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTag -Id 124 | New-AtwsTag | Set-AtwsTag -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.Tag] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTag to modify the object and returns the new object.
 
 .NOTES

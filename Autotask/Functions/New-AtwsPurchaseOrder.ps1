@@ -38,10 +38,10 @@ Creates a new [Autotask.PurchaseOrder] through the Web Services API and returns 
 $result = Get-AtwsPurchaseOrder -Id 124 | New-AtwsPurchaseOrder 
 Copies [Autotask.PurchaseOrder] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsPurchaseOrder -Id 124 | New-AtwsPurchaseOrder | Set-AtwsPurchaseOrder -ParameterName <Parameter Value>
+Get-AtwsPurchaseOrder -Id 124 | New-AtwsPurchaseOrder | Set-AtwsPurchaseOrder -ParameterName 'Parameter Value'
 Copies [Autotask.PurchaseOrder] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsPurchaseOrder to modify the object.
  .EXAMPLE
-$result = Get-AtwsPurchaseOrder -Id 124 | New-AtwsPurchaseOrder | Set-AtwsPurchaseOrder -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsPurchaseOrder -Id 124 | New-AtwsPurchaseOrder | Set-AtwsPurchaseOrder -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.PurchaseOrder] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsPurchaseOrder to modify the object and returns the new object.
 
 .NOTES

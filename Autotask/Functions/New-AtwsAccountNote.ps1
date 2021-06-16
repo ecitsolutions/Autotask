@@ -39,10 +39,10 @@ Creates a new [Autotask.AccountNote] through the Web Services API and returns th
 $result = Get-AtwsAccountNote -Id 124 | New-AtwsAccountNote 
 Copies [Autotask.AccountNote] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsAccountNote -Id 124 | New-AtwsAccountNote | Set-AtwsAccountNote -ParameterName <Parameter Value>
+Get-AtwsAccountNote -Id 124 | New-AtwsAccountNote | Set-AtwsAccountNote -ParameterName 'Parameter Value'
 Copies [Autotask.AccountNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountNote to modify the object.
  .EXAMPLE
-$result = Get-AtwsAccountNote -Id 124 | New-AtwsAccountNote | Set-AtwsAccountNote -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsAccountNote -Id 124 | New-AtwsAccountNote | Set-AtwsAccountNote -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.AccountNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountNote to modify the object and returns the new object.
 
 .NOTES

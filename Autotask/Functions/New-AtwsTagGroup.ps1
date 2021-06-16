@@ -35,10 +35,10 @@ Creates a new [Autotask.TagGroup] through the Web Services API and returns the n
 $result = Get-AtwsTagGroup -Id 124 | New-AtwsTagGroup 
 Copies [Autotask.TagGroup] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTagGroup -Id 124 | New-AtwsTagGroup | Set-AtwsTagGroup -ParameterName <Parameter Value>
+Get-AtwsTagGroup -Id 124 | New-AtwsTagGroup | Set-AtwsTagGroup -ParameterName 'Parameter Value'
 Copies [Autotask.TagGroup] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTagGroup to modify the object.
  .EXAMPLE
-$result = Get-AtwsTagGroup -Id 124 | New-AtwsTagGroup | Set-AtwsTagGroup -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTagGroup -Id 124 | New-AtwsTagGroup | Set-AtwsTagGroup -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TagGroup] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTagGroup to modify the object and returns the new object.
 
 .NOTES

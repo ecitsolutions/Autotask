@@ -36,10 +36,10 @@ Creates a new [Autotask.TaskPredecessor] through the Web Services API and return
 $result = Get-AtwsTaskPredecessor -Id 124 | New-AtwsTaskPredecessor 
 Copies [Autotask.TaskPredecessor] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTaskPredecessor -Id 124 | New-AtwsTaskPredecessor | Set-AtwsTaskPredecessor -ParameterName <Parameter Value>
+Get-AtwsTaskPredecessor -Id 124 | New-AtwsTaskPredecessor | Set-AtwsTaskPredecessor -ParameterName 'Parameter Value'
 Copies [Autotask.TaskPredecessor] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaskPredecessor to modify the object.
  .EXAMPLE
-$result = Get-AtwsTaskPredecessor -Id 124 | New-AtwsTaskPredecessor | Set-AtwsTaskPredecessor -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTaskPredecessor -Id 124 | New-AtwsTaskPredecessor | Set-AtwsTaskPredecessor -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TaskPredecessor] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaskPredecessor to modify the object and returns the new object.
 
 .NOTES

@@ -37,10 +37,10 @@ Creates a new [Autotask.TicketSecondaryResource] through the Web Services API an
 $result = Get-AtwsTicketSecondaryResource -Id 124 | New-AtwsTicketSecondaryResource 
 Copies [Autotask.TicketSecondaryResource] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTicketSecondaryResource -Id 124 | New-AtwsTicketSecondaryResource | Set-AtwsTicketSecondaryResource -ParameterName <Parameter Value>
+Get-AtwsTicketSecondaryResource -Id 124 | New-AtwsTicketSecondaryResource | Set-AtwsTicketSecondaryResource -ParameterName 'Parameter Value'
 Copies [Autotask.TicketSecondaryResource] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketSecondaryResource to modify the object.
  .EXAMPLE
-$result = Get-AtwsTicketSecondaryResource -Id 124 | New-AtwsTicketSecondaryResource | Set-AtwsTicketSecondaryResource -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTicketSecondaryResource -Id 124 | New-AtwsTicketSecondaryResource | Set-AtwsTicketSecondaryResource -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TicketSecondaryResource] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketSecondaryResource to modify the object and returns the new object.
 
 .NOTES

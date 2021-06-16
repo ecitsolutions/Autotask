@@ -57,20 +57,20 @@ Returns any object with a TicketChecklistItemName that matches the simple patter
 Get-AtwsTicketChecklistItem -TicketChecklistItemName SomeName* -NotLike TicketChecklistItemName
 Returns any object with a TicketChecklistItemName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsTicketChecklistItem -KnowledgebaseArticleID <PickList Label>
-Returns any TicketChecklistItems with property KnowledgebaseArticleID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsTicketChecklistItem -KnowledgebaseArticleID 'PickList Label'
+Returns any TicketChecklistItems with property KnowledgebaseArticleID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsTicketChecklistItem -KnowledgebaseArticleID <PickList Label> -NotEquals KnowledgebaseArticleID 
-Returns any TicketChecklistItems with property KnowledgebaseArticleID NOT equal to the <PickList Label>.
+Get-AtwsTicketChecklistItem -KnowledgebaseArticleID 'PickList Label' -NotEquals KnowledgebaseArticleID 
+Returns any TicketChecklistItems with property KnowledgebaseArticleID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsTicketChecklistItem -KnowledgebaseArticleID <PickList Label1>, <PickList Label2>
-Returns any TicketChecklistItems with property KnowledgebaseArticleID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsTicketChecklistItem -KnowledgebaseArticleID 'PickList Label1', 'PickList Label2'
+Returns any TicketChecklistItems with property KnowledgebaseArticleID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTicketChecklistItem -KnowledgebaseArticleID <PickList Label1>, <PickList Label2> -NotEquals KnowledgebaseArticleID
-Returns any TicketChecklistItems with property KnowledgebaseArticleID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTicketChecklistItem -KnowledgebaseArticleID 'PickList Label1', 'PickList Label2' -NotEquals KnowledgebaseArticleID
+Returns any TicketChecklistItems with property KnowledgebaseArticleID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTicketChecklistItem -Id 1234 -TicketChecklistItemName SomeName* -KnowledgebaseArticleID <PickList Label1>, <PickList Label2> -Like TicketChecklistItemName -NotEquals KnowledgebaseArticleID -GreaterThan Id
-An example of a more complex query. This command returns any TicketChecklistItems with Id GREATER THAN 1234, a TicketChecklistItemName that matches the simple pattern SomeName* AND that has a KnowledgebaseArticleID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTicketChecklistItem -Id 1234 -TicketChecklistItemName SomeName* -KnowledgebaseArticleID 'PickList Label1', 'PickList Label2' -Like TicketChecklistItemName -NotEquals KnowledgebaseArticleID -GreaterThan Id
+An example of a more complex query. This command returns any TicketChecklistItems with Id GREATER THAN 1234, a TicketChecklistItemName that matches the simple pattern SomeName* AND that has a KnowledgebaseArticleID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:
@@ -155,7 +155,7 @@ New-AtwsTicketChecklistItem
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
+    [ValidateLength(0,600)]
     [string[]]
     $ItemName,
 

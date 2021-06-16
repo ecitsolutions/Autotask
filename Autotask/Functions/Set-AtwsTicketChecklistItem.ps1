@@ -25,16 +25,16 @@ Nothing or [Autotask.TicketChecklistItem]. This function optionally returns the 
 Set-AtwsTicketChecklistItem -InputObject $TicketChecklistItem [-ParameterName] [Parameter value]
 Passes one or more [Autotask.TicketChecklistItem] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
  .EXAMPLE
-$TicketChecklistItem | Set-AtwsTicketChecklistItem -ParameterName <Parameter value>
+$TicketChecklistItem | Set-AtwsTicketChecklistItem -ParameterName 'Parameter value'
 Same as the first example, but now the objects are passed to the funtion through the pipeline, not passed as a parameter. The end result is identical.
  .EXAMPLE
-Get-AtwsTicketChecklistItem -Id 0 | Set-AtwsTicketChecklistItem -ParameterName <Parameter value>
+Get-AtwsTicketChecklistItem -Id 0 | Set-AtwsTicketChecklistItem -ParameterName 'Parameter value'
 Gets the instance with Id 0 directly from the Web Services API, modifies a parameter and updates Autotask. This approach works with all valid parameters for the Get function.
  .EXAMPLE
-Get-AtwsTicketChecklistItem -Id 0,4,8 | Set-AtwsTicketChecklistItem -ParameterName <Parameter value>
+Get-AtwsTicketChecklistItem -Id 0,4,8 | Set-AtwsTicketChecklistItem -ParameterName 'Parameter value'
 Gets multiple instances by Id, modifies them all and updates Autotask.
  .EXAMPLE
-$result = Get-AtwsTicketChecklistItem -Id 0,4,8 | Set-AtwsTicketChecklistItem -ParameterName <Parameter value> -PassThru
+$result = Get-AtwsTicketChecklistItem -Id 0,4,8 | Set-AtwsTicketChecklistItem -ParameterName 'Parameter value' -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
 .NOTES
@@ -114,7 +114,7 @@ New-AtwsTicketChecklistItem
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
+    [ValidateLength(0,600)]
     [string]
     $ItemName,
 

@@ -39,10 +39,10 @@ Creates a new [Autotask.ContractCost] through the Web Services API and returns t
 $result = Get-AtwsContractCost -Id 124 | New-AtwsContractCost 
 Copies [Autotask.ContractCost] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsContractCost -Id 124 | New-AtwsContractCost | Set-AtwsContractCost -ParameterName <Parameter Value>
+Get-AtwsContractCost -Id 124 | New-AtwsContractCost | Set-AtwsContractCost -ParameterName 'Parameter Value'
 Copies [Autotask.ContractCost] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractCost to modify the object.
  .EXAMPLE
-$result = Get-AtwsContractCost -Id 124 | New-AtwsContractCost | Set-AtwsContractCost -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsContractCost -Id 124 | New-AtwsContractCost | Set-AtwsContractCost -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ContractCost] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractCost to modify the object and returns the new object.
 
 .NOTES

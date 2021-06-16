@@ -35,10 +35,10 @@ Creates a new [Autotask.TimeEntry] through the Web Services API and returns the 
 $result = Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry 
 Copies [Autotask.TimeEntry] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry | Set-AtwsTimeEntry -ParameterName <Parameter Value>
+Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry | Set-AtwsTimeEntry -ParameterName 'Parameter Value'
 Copies [Autotask.TimeEntry] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTimeEntry to modify the object.
  .EXAMPLE
-$result = Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry | Set-AtwsTimeEntry -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTimeEntry -Id 124 | New-AtwsTimeEntry | Set-AtwsTimeEntry -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TimeEntry] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTimeEntry to modify the object and returns the new object.
 
 .NOTES

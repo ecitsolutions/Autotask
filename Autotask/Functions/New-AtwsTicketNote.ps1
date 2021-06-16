@@ -38,10 +38,10 @@ Creates a new [Autotask.TicketNote] through the Web Services API and returns the
 $result = Get-AtwsTicketNote -Id 124 | New-AtwsTicketNote 
 Copies [Autotask.TicketNote] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTicketNote -Id 124 | New-AtwsTicketNote | Set-AtwsTicketNote -ParameterName <Parameter Value>
+Get-AtwsTicketNote -Id 124 | New-AtwsTicketNote | Set-AtwsTicketNote -ParameterName 'Parameter Value'
 Copies [Autotask.TicketNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketNote to modify the object.
  .EXAMPLE
-$result = Get-AtwsTicketNote -Id 124 | New-AtwsTicketNote | Set-AtwsTicketNote -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTicketNote -Id 124 | New-AtwsTicketNote | Set-AtwsTicketNote -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TicketNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketNote to modify the object and returns the new object.
 
 .NOTES

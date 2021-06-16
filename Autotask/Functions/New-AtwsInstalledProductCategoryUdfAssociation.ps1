@@ -37,10 +37,10 @@ Creates a new [Autotask.InstalledProductCategoryUdfAssociation] through the Web 
 $result = Get-AtwsInstalledProductCategoryUdfAssociation -Id 124 | New-AtwsInstalledProductCategoryUdfAssociation 
 Copies [Autotask.InstalledProductCategoryUdfAssociation] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsInstalledProductCategoryUdfAssociation -Id 124 | New-AtwsInstalledProductCategoryUdfAssociation | Set-AtwsInstalledProductCategoryUdfAssociation -ParameterName <Parameter Value>
+Get-AtwsInstalledProductCategoryUdfAssociation -Id 124 | New-AtwsInstalledProductCategoryUdfAssociation | Set-AtwsInstalledProductCategoryUdfAssociation -ParameterName 'Parameter Value'
 Copies [Autotask.InstalledProductCategoryUdfAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductCategoryUdfAssociation to modify the object.
  .EXAMPLE
-$result = Get-AtwsInstalledProductCategoryUdfAssociation -Id 124 | New-AtwsInstalledProductCategoryUdfAssociation | Set-AtwsInstalledProductCategoryUdfAssociation -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsInstalledProductCategoryUdfAssociation -Id 124 | New-AtwsInstalledProductCategoryUdfAssociation | Set-AtwsInstalledProductCategoryUdfAssociation -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.InstalledProductCategoryUdfAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductCategoryUdfAssociation to modify the object and returns the new object.
 
 .NOTES

@@ -57,20 +57,20 @@ Returns any object with a ExpenseReportName that matches the simple pattern 'Som
 Get-AtwsExpenseReport -ExpenseReportName SomeName* -NotLike ExpenseReportName
 Returns any object with a ExpenseReportName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsExpenseReport -Status <PickList Label>
-Returns any ExpenseReports with property Status equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsExpenseReport -Status 'PickList Label'
+Returns any ExpenseReports with property Status equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsExpenseReport -Status <PickList Label> -NotEquals Status 
-Returns any ExpenseReports with property Status NOT equal to the <PickList Label>.
+Get-AtwsExpenseReport -Status 'PickList Label' -NotEquals Status 
+Returns any ExpenseReports with property Status NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsExpenseReport -Status <PickList Label1>, <PickList Label2>
-Returns any ExpenseReports with property Status equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsExpenseReport -Status 'PickList Label1', 'PickList Label2'
+Returns any ExpenseReports with property Status equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsExpenseReport -Status <PickList Label1>, <PickList Label2> -NotEquals Status
-Returns any ExpenseReports with property Status NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsExpenseReport -Status 'PickList Label1', 'PickList Label2' -NotEquals Status
+Returns any ExpenseReports with property Status NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsExpenseReport -Id 1234 -ExpenseReportName SomeName* -Status <PickList Label1>, <PickList Label2> -Like ExpenseReportName -NotEquals Status -GreaterThan Id
-An example of a more complex query. This command returns any ExpenseReports with Id GREATER THAN 1234, a ExpenseReportName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsExpenseReport -Id 1234 -ExpenseReportName SomeName* -Status 'PickList Label1', 'PickList Label2' -Like ExpenseReportName -NotEquals Status -GreaterThan Id
+An example of a more complex query. This command returns any ExpenseReports with Id GREATER THAN 1234, a ExpenseReportName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

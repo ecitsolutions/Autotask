@@ -57,20 +57,20 @@ Returns any object with a TagGroupName that matches the simple pattern 'SomeName
 Get-AtwsTagGroup -TagGroupName SomeName* -NotLike TagGroupName
 Returns any object with a TagGroupName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsTagGroup -DisplayColor <PickList Label>
-Returns any TagGroups with property DisplayColor equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsTagGroup -DisplayColor 'PickList Label'
+Returns any TagGroups with property DisplayColor equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsTagGroup -DisplayColor <PickList Label> -NotEquals DisplayColor 
-Returns any TagGroups with property DisplayColor NOT equal to the <PickList Label>.
+Get-AtwsTagGroup -DisplayColor 'PickList Label' -NotEquals DisplayColor 
+Returns any TagGroups with property DisplayColor NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsTagGroup -DisplayColor <PickList Label1>, <PickList Label2>
-Returns any TagGroups with property DisplayColor equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsTagGroup -DisplayColor 'PickList Label1', 'PickList Label2'
+Returns any TagGroups with property DisplayColor equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTagGroup -DisplayColor <PickList Label1>, <PickList Label2> -NotEquals DisplayColor
-Returns any TagGroups with property DisplayColor NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTagGroup -DisplayColor 'PickList Label1', 'PickList Label2' -NotEquals DisplayColor
+Returns any TagGroups with property DisplayColor NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTagGroup -Id 1234 -TagGroupName SomeName* -DisplayColor <PickList Label1>, <PickList Label2> -Like TagGroupName -NotEquals DisplayColor -GreaterThan Id
-An example of a more complex query. This command returns any TagGroups with Id GREATER THAN 1234, a TagGroupName that matches the simple pattern SomeName* AND that has a DisplayColor that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTagGroup -Id 1234 -TagGroupName SomeName* -DisplayColor 'PickList Label1', 'PickList Label2' -Like TagGroupName -NotEquals DisplayColor -GreaterThan Id
+An example of a more complex query. This command returns any TagGroups with Id GREATER THAN 1234, a TagGroupName that matches the simple pattern SomeName* AND that has a DisplayColor that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

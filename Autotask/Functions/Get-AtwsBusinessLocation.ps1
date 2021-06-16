@@ -62,20 +62,20 @@ Returns any object with a BusinessLocationName that matches the simple pattern '
 Get-AtwsBusinessLocation -BusinessLocationName SomeName* -NotLike BusinessLocationName
 Returns any object with a BusinessLocationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsBusinessLocation -FirstDayOfWeek <PickList Label>
-Returns any BusinessLocations with property FirstDayOfWeek equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsBusinessLocation -FirstDayOfWeek 'PickList Label'
+Returns any BusinessLocations with property FirstDayOfWeek equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsBusinessLocation -FirstDayOfWeek <PickList Label> -NotEquals FirstDayOfWeek 
-Returns any BusinessLocations with property FirstDayOfWeek NOT equal to the <PickList Label>.
+Get-AtwsBusinessLocation -FirstDayOfWeek 'PickList Label' -NotEquals FirstDayOfWeek 
+Returns any BusinessLocations with property FirstDayOfWeek NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsBusinessLocation -FirstDayOfWeek <PickList Label1>, <PickList Label2>
-Returns any BusinessLocations with property FirstDayOfWeek equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsBusinessLocation -FirstDayOfWeek 'PickList Label1', 'PickList Label2'
+Returns any BusinessLocations with property FirstDayOfWeek equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsBusinessLocation -FirstDayOfWeek <PickList Label1>, <PickList Label2> -NotEquals FirstDayOfWeek
-Returns any BusinessLocations with property FirstDayOfWeek NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsBusinessLocation -FirstDayOfWeek 'PickList Label1', 'PickList Label2' -NotEquals FirstDayOfWeek
+Returns any BusinessLocations with property FirstDayOfWeek NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsBusinessLocation -Id 1234 -BusinessLocationName SomeName* -FirstDayOfWeek <PickList Label1>, <PickList Label2> -Like BusinessLocationName -NotEquals FirstDayOfWeek -GreaterThan Id
-An example of a more complex query. This command returns any BusinessLocations with Id GREATER THAN 1234, a BusinessLocationName that matches the simple pattern SomeName* AND that has a FirstDayOfWeek that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsBusinessLocation -Id 1234 -BusinessLocationName SomeName* -FirstDayOfWeek 'PickList Label1', 'PickList Label2' -Like BusinessLocationName -NotEquals FirstDayOfWeek -GreaterThan Id
+An example of a more complex query. This command returns any BusinessLocations with Id GREATER THAN 1234, a BusinessLocationName that matches the simple pattern SomeName* AND that has a FirstDayOfWeek that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

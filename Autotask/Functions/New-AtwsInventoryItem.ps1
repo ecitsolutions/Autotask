@@ -39,10 +39,10 @@ Creates a new [Autotask.InventoryItem] through the Web Services API and returns 
 $result = Get-AtwsInventoryItem -Id 124 | New-AtwsInventoryItem 
 Copies [Autotask.InventoryItem] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsInventoryItem -Id 124 | New-AtwsInventoryItem | Set-AtwsInventoryItem -ParameterName <Parameter Value>
+Get-AtwsInventoryItem -Id 124 | New-AtwsInventoryItem | Set-AtwsInventoryItem -ParameterName 'Parameter Value'
 Copies [Autotask.InventoryItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryItem to modify the object.
  .EXAMPLE
-$result = Get-AtwsInventoryItem -Id 124 | New-AtwsInventoryItem | Set-AtwsInventoryItem -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsInventoryItem -Id 124 | New-AtwsInventoryItem | Set-AtwsInventoryItem -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.InventoryItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryItem to modify the object and returns the new object.
 
 .NOTES

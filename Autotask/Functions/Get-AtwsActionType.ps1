@@ -57,20 +57,20 @@ Returns any object with a ActionTypeName that matches the simple pattern 'SomeNa
 Get-AtwsActionType -ActionTypeName SomeName* -NotLike ActionTypeName
 Returns any object with a ActionTypeName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsActionType -View <PickList Label>
-Returns any ActionTypes with property View equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsActionType -View 'PickList Label'
+Returns any ActionTypes with property View equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsActionType -View <PickList Label> -NotEquals View 
-Returns any ActionTypes with property View NOT equal to the <PickList Label>.
+Get-AtwsActionType -View 'PickList Label' -NotEquals View 
+Returns any ActionTypes with property View NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsActionType -View <PickList Label1>, <PickList Label2>
-Returns any ActionTypes with property View equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsActionType -View 'PickList Label1', 'PickList Label2'
+Returns any ActionTypes with property View equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsActionType -View <PickList Label1>, <PickList Label2> -NotEquals View
-Returns any ActionTypes with property View NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsActionType -View 'PickList Label1', 'PickList Label2' -NotEquals View
+Returns any ActionTypes with property View NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsActionType -Id 1234 -ActionTypeName SomeName* -View <PickList Label1>, <PickList Label2> -Like ActionTypeName -NotEquals View -GreaterThan Id
-An example of a more complex query. This command returns any ActionTypes with Id GREATER THAN 1234, a ActionTypeName that matches the simple pattern SomeName* AND that has a View that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsActionType -Id 1234 -ActionTypeName SomeName* -View 'PickList Label1', 'PickList Label2' -Like ActionTypeName -NotEquals View -GreaterThan Id
+An example of a more complex query. This command returns any ActionTypes with Id GREATER THAN 1234, a ActionTypeName that matches the simple pattern SomeName* AND that has a View that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

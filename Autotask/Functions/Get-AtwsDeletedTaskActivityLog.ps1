@@ -57,20 +57,20 @@ Returns any object with a DeletedTaskActivityLogName that matches the simple pat
 Get-AtwsDeletedTaskActivityLog -DeletedTaskActivityLogName SomeName* -NotLike DeletedTaskActivityLogName
 Returns any object with a DeletedTaskActivityLogName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsDeletedTaskActivityLog -TypeID <PickList Label>
-Returns any DeletedTaskActivityLogs with property TypeID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsDeletedTaskActivityLog -TypeID 'PickList Label'
+Returns any DeletedTaskActivityLogs with property TypeID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsDeletedTaskActivityLog -TypeID <PickList Label> -NotEquals TypeID 
-Returns any DeletedTaskActivityLogs with property TypeID NOT equal to the <PickList Label>.
+Get-AtwsDeletedTaskActivityLog -TypeID 'PickList Label' -NotEquals TypeID 
+Returns any DeletedTaskActivityLogs with property TypeID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsDeletedTaskActivityLog -TypeID <PickList Label1>, <PickList Label2>
-Returns any DeletedTaskActivityLogs with property TypeID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsDeletedTaskActivityLog -TypeID 'PickList Label1', 'PickList Label2'
+Returns any DeletedTaskActivityLogs with property TypeID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsDeletedTaskActivityLog -TypeID <PickList Label1>, <PickList Label2> -NotEquals TypeID
-Returns any DeletedTaskActivityLogs with property TypeID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsDeletedTaskActivityLog -TypeID 'PickList Label1', 'PickList Label2' -NotEquals TypeID
+Returns any DeletedTaskActivityLogs with property TypeID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsDeletedTaskActivityLog -Id 1234 -DeletedTaskActivityLogName SomeName* -TypeID <PickList Label1>, <PickList Label2> -Like DeletedTaskActivityLogName -NotEquals TypeID -GreaterThan Id
-An example of a more complex query. This command returns any DeletedTaskActivityLogs with Id GREATER THAN 1234, a DeletedTaskActivityLogName that matches the simple pattern SomeName* AND that has a TypeID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsDeletedTaskActivityLog -Id 1234 -DeletedTaskActivityLogName SomeName* -TypeID 'PickList Label1', 'PickList Label2' -Like DeletedTaskActivityLogName -NotEquals TypeID -GreaterThan Id
+An example of a more complex query. This command returns any DeletedTaskActivityLogs with Id GREATER THAN 1234, a DeletedTaskActivityLogName that matches the simple pattern SomeName* AND that has a TypeID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

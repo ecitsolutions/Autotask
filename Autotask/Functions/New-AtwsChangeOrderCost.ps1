@@ -38,10 +38,10 @@ Creates a new [Autotask.ChangeOrderCost] through the Web Services API and return
 $result = Get-AtwsChangeOrderCost -Id 124 | New-AtwsChangeOrderCost 
 Copies [Autotask.ChangeOrderCost] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsChangeOrderCost -Id 124 | New-AtwsChangeOrderCost | Set-AtwsChangeOrderCost -ParameterName <Parameter Value>
+Get-AtwsChangeOrderCost -Id 124 | New-AtwsChangeOrderCost | Set-AtwsChangeOrderCost -ParameterName 'Parameter Value'
 Copies [Autotask.ChangeOrderCost] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsChangeOrderCost to modify the object.
  .EXAMPLE
-$result = Get-AtwsChangeOrderCost -Id 124 | New-AtwsChangeOrderCost | Set-AtwsChangeOrderCost -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsChangeOrderCost -Id 124 | New-AtwsChangeOrderCost | Set-AtwsChangeOrderCost -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ChangeOrderCost] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsChangeOrderCost to modify the object and returns the new object.
 
 .NOTES

@@ -36,10 +36,10 @@ Creates a new [Autotask.TicketTagAssociation] through the Web Services API and r
 $result = Get-AtwsTicketTagAssociation -Id 124 | New-AtwsTicketTagAssociation 
 Copies [Autotask.TicketTagAssociation] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTicketTagAssociation -Id 124 | New-AtwsTicketTagAssociation | Set-AtwsTicketTagAssociation -ParameterName <Parameter Value>
+Get-AtwsTicketTagAssociation -Id 124 | New-AtwsTicketTagAssociation | Set-AtwsTicketTagAssociation -ParameterName 'Parameter Value'
 Copies [Autotask.TicketTagAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketTagAssociation to modify the object.
  .EXAMPLE
-$result = Get-AtwsTicketTagAssociation -Id 124 | New-AtwsTicketTagAssociation | Set-AtwsTicketTagAssociation -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTicketTagAssociation -Id 124 | New-AtwsTicketTagAssociation | Set-AtwsTicketTagAssociation -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TicketTagAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketTagAssociation to modify the object and returns the new object.
 
 .NOTES

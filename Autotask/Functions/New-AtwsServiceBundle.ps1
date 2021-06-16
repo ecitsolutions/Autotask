@@ -37,10 +37,10 @@ Creates a new [Autotask.ServiceBundle] through the Web Services API and returns 
 $result = Get-AtwsServiceBundle -Id 124 | New-AtwsServiceBundle 
 Copies [Autotask.ServiceBundle] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsServiceBundle -Id 124 | New-AtwsServiceBundle | Set-AtwsServiceBundle -ParameterName <Parameter Value>
+Get-AtwsServiceBundle -Id 124 | New-AtwsServiceBundle | Set-AtwsServiceBundle -ParameterName 'Parameter Value'
 Copies [Autotask.ServiceBundle] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceBundle to modify the object.
  .EXAMPLE
-$result = Get-AtwsServiceBundle -Id 124 | New-AtwsServiceBundle | Set-AtwsServiceBundle -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsServiceBundle -Id 124 | New-AtwsServiceBundle | Set-AtwsServiceBundle -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ServiceBundle] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceBundle to modify the object and returns the new object.
 
 .NOTES

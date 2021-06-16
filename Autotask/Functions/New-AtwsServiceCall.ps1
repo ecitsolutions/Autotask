@@ -37,10 +37,10 @@ Creates a new [Autotask.ServiceCall] through the Web Services API and returns th
 $result = Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall 
 Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall | Set-AtwsServiceCall -ParameterName <Parameter Value>
+Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall | Set-AtwsServiceCall -ParameterName 'Parameter Value'
 Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCall to modify the object.
  .EXAMPLE
-$result = Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall | Set-AtwsServiceCall -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsServiceCall -Id 124 | New-AtwsServiceCall | Set-AtwsServiceCall -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ServiceCall] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCall to modify the object and returns the new object.
 
 .NOTES

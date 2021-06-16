@@ -57,20 +57,20 @@ Returns any object with a SkillName that matches the simple pattern 'SomeName*'.
 Get-AtwsSkill -SkillName SomeName* -NotLike SkillName
 Returns any object with a SkillName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsSkill -CategoryID <PickList Label>
-Returns any Skills with property CategoryID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsSkill -CategoryID 'PickList Label'
+Returns any Skills with property CategoryID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsSkill -CategoryID <PickList Label> -NotEquals CategoryID 
-Returns any Skills with property CategoryID NOT equal to the <PickList Label>.
+Get-AtwsSkill -CategoryID 'PickList Label' -NotEquals CategoryID 
+Returns any Skills with property CategoryID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsSkill -CategoryID <PickList Label1>, <PickList Label2>
-Returns any Skills with property CategoryID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsSkill -CategoryID 'PickList Label1', 'PickList Label2'
+Returns any Skills with property CategoryID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsSkill -CategoryID <PickList Label1>, <PickList Label2> -NotEquals CategoryID
-Returns any Skills with property CategoryID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsSkill -CategoryID 'PickList Label1', 'PickList Label2' -NotEquals CategoryID
+Returns any Skills with property CategoryID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsSkill -Id 1234 -SkillName SomeName* -CategoryID <PickList Label1>, <PickList Label2> -Like SkillName -NotEquals CategoryID -GreaterThan Id
-An example of a more complex query. This command returns any Skills with Id GREATER THAN 1234, a SkillName that matches the simple pattern SomeName* AND that has a CategoryID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsSkill -Id 1234 -SkillName SomeName* -CategoryID 'PickList Label1', 'PickList Label2' -Like SkillName -NotEquals CategoryID -GreaterThan Id
+An example of a more complex query. This command returns any Skills with Id GREATER THAN 1234, a SkillName that matches the simple pattern SomeName* AND that has a CategoryID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

@@ -59,20 +59,20 @@ Returns any object with a ContractTicketPurchaseName that matches the simple pat
 Get-AtwsContractTicketPurchase -ContractTicketPurchaseName SomeName* -NotLike ContractTicketPurchaseName
 Returns any object with a ContractTicketPurchaseName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsContractTicketPurchase -IsPaid <PickList Label>
-Returns any ContractTicketPurchases with property IsPaid equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsContractTicketPurchase -IsPaid 'PickList Label'
+Returns any ContractTicketPurchases with property IsPaid equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsContractTicketPurchase -IsPaid <PickList Label> -NotEquals IsPaid 
-Returns any ContractTicketPurchases with property IsPaid NOT equal to the <PickList Label>.
+Get-AtwsContractTicketPurchase -IsPaid 'PickList Label' -NotEquals IsPaid 
+Returns any ContractTicketPurchases with property IsPaid NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsContractTicketPurchase -IsPaid <PickList Label1>, <PickList Label2>
-Returns any ContractTicketPurchases with property IsPaid equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsContractTicketPurchase -IsPaid 'PickList Label1', 'PickList Label2'
+Returns any ContractTicketPurchases with property IsPaid equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsContractTicketPurchase -IsPaid <PickList Label1>, <PickList Label2> -NotEquals IsPaid
-Returns any ContractTicketPurchases with property IsPaid NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContractTicketPurchase -IsPaid 'PickList Label1', 'PickList Label2' -NotEquals IsPaid
+Returns any ContractTicketPurchases with property IsPaid NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsContractTicketPurchase -Id 1234 -ContractTicketPurchaseName SomeName* -IsPaid <PickList Label1>, <PickList Label2> -Like ContractTicketPurchaseName -NotEquals IsPaid -GreaterThan Id
-An example of a more complex query. This command returns any ContractTicketPurchases with Id GREATER THAN 1234, a ContractTicketPurchaseName that matches the simple pattern SomeName* AND that has a IsPaid that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContractTicketPurchase -Id 1234 -ContractTicketPurchaseName SomeName* -IsPaid 'PickList Label1', 'PickList Label2' -Like ContractTicketPurchaseName -NotEquals IsPaid -GreaterThan Id
+An example of a more complex query. This command returns any ContractTicketPurchases with Id GREATER THAN 1234, a ContractTicketPurchaseName that matches the simple pattern SomeName* AND that has a IsPaid that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

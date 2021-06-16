@@ -36,10 +36,10 @@ Creates a new [Autotask.TicketChecklistLibrary] through the Web Services API and
 $result = Get-AtwsTicketChecklistLibrary -Id 124 | New-AtwsTicketChecklistLibrary 
 Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTicketChecklistLibrary -Id 124 | New-AtwsTicketChecklistLibrary | Set-AtwsTicketChecklistLibrary -ParameterName <Parameter Value>
+Get-AtwsTicketChecklistLibrary -Id 124 | New-AtwsTicketChecklistLibrary | Set-AtwsTicketChecklistLibrary -ParameterName 'Parameter Value'
 Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketChecklistLibrary to modify the object.
  .EXAMPLE
-$result = Get-AtwsTicketChecklistLibrary -Id 124 | New-AtwsTicketChecklistLibrary | Set-AtwsTicketChecklistLibrary -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTicketChecklistLibrary -Id 124 | New-AtwsTicketChecklistLibrary | Set-AtwsTicketChecklistLibrary -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TicketChecklistLibrary] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketChecklistLibrary to modify the object and returns the new object.
 
 .NOTES

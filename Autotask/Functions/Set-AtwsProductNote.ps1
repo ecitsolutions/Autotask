@@ -25,16 +25,16 @@ Nothing or [Autotask.ProductNote]. This function optionally returns the updated 
 Set-AtwsProductNote -InputObject $ProductNote [-ParameterName] [Parameter value]
 Passes one or more [Autotask.ProductNote] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
  .EXAMPLE
-$ProductNote | Set-AtwsProductNote -ParameterName <Parameter value>
+$ProductNote | Set-AtwsProductNote -ParameterName 'Parameter value'
 Same as the first example, but now the objects are passed to the funtion through the pipeline, not passed as a parameter. The end result is identical.
  .EXAMPLE
-Get-AtwsProductNote -Id 0 | Set-AtwsProductNote -ParameterName <Parameter value>
+Get-AtwsProductNote -Id 0 | Set-AtwsProductNote -ParameterName 'Parameter value'
 Gets the instance with Id 0 directly from the Web Services API, modifies a parameter and updates Autotask. This approach works with all valid parameters for the Get function.
  .EXAMPLE
-Get-AtwsProductNote -Id 0,4,8 | Set-AtwsProductNote -ParameterName <Parameter value>
+Get-AtwsProductNote -Id 0,4,8 | Set-AtwsProductNote -ParameterName 'Parameter value'
 Gets multiple instances by Id, modifies them all and updates Autotask.
  .EXAMPLE
-$result = Get-AtwsProductNote -Id 0,4,8 | Set-AtwsProductNote -ParameterName <Parameter value> -PassThru
+$result = Get-AtwsProductNote -Id 0,4,8 | Set-AtwsProductNote -ParameterName 'Parameter value' -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
 .NOTES

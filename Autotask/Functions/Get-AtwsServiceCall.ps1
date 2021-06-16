@@ -57,20 +57,20 @@ Returns any object with a ServiceCallName that matches the simple pattern 'SomeN
 Get-AtwsServiceCall -ServiceCallName SomeName* -NotLike ServiceCallName
 Returns any object with a ServiceCallName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsServiceCall -Status <PickList Label>
-Returns any ServiceCalls with property Status equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsServiceCall -Status 'PickList Label'
+Returns any ServiceCalls with property Status equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsServiceCall -Status <PickList Label> -NotEquals Status 
-Returns any ServiceCalls with property Status NOT equal to the <PickList Label>.
+Get-AtwsServiceCall -Status 'PickList Label' -NotEquals Status 
+Returns any ServiceCalls with property Status NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsServiceCall -Status <PickList Label1>, <PickList Label2>
-Returns any ServiceCalls with property Status equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsServiceCall -Status 'PickList Label1', 'PickList Label2'
+Returns any ServiceCalls with property Status equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsServiceCall -Status <PickList Label1>, <PickList Label2> -NotEquals Status
-Returns any ServiceCalls with property Status NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsServiceCall -Status 'PickList Label1', 'PickList Label2' -NotEquals Status
+Returns any ServiceCalls with property Status NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsServiceCall -Id 1234 -ServiceCallName SomeName* -Status <PickList Label1>, <PickList Label2> -Like ServiceCallName -NotEquals Status -GreaterThan Id
-An example of a more complex query. This command returns any ServiceCalls with Id GREATER THAN 1234, a ServiceCallName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsServiceCall -Id 1234 -ServiceCallName SomeName* -Status 'PickList Label1', 'PickList Label2' -Like ServiceCallName -NotEquals Status -GreaterThan Id
+An example of a more complex query. This command returns any ServiceCalls with Id GREATER THAN 1234, a ServiceCallName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

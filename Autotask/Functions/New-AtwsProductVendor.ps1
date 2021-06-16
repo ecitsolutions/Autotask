@@ -38,10 +38,10 @@ Creates a new [Autotask.ProductVendor] through the Web Services API and returns 
 $result = Get-AtwsProductVendor -Id 124 | New-AtwsProductVendor 
 Copies [Autotask.ProductVendor] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsProductVendor -Id 124 | New-AtwsProductVendor | Set-AtwsProductVendor -ParameterName <Parameter Value>
+Get-AtwsProductVendor -Id 124 | New-AtwsProductVendor | Set-AtwsProductVendor -ParameterName 'Parameter Value'
 Copies [Autotask.ProductVendor] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProductVendor to modify the object.
  .EXAMPLE
-$result = Get-AtwsProductVendor -Id 124 | New-AtwsProductVendor | Set-AtwsProductVendor -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsProductVendor -Id 124 | New-AtwsProductVendor | Set-AtwsProductVendor -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ProductVendor] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProductVendor to modify the object and returns the new object.
 
 .NOTES

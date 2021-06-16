@@ -57,20 +57,20 @@ Returns any object with a CurrencyName that matches the simple pattern 'SomeName
 Get-AtwsCurrency -CurrencyName SomeName* -NotLike CurrencyName
 Returns any object with a CurrencyName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsCurrency -DisplaySymbol <PickList Label>
-Returns any Currencys with property DisplaySymbol equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsCurrency -DisplaySymbol 'PickList Label'
+Returns any Currencys with property DisplaySymbol equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsCurrency -DisplaySymbol <PickList Label> -NotEquals DisplaySymbol 
-Returns any Currencys with property DisplaySymbol NOT equal to the <PickList Label>.
+Get-AtwsCurrency -DisplaySymbol 'PickList Label' -NotEquals DisplaySymbol 
+Returns any Currencys with property DisplaySymbol NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsCurrency -DisplaySymbol <PickList Label1>, <PickList Label2>
-Returns any Currencys with property DisplaySymbol equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsCurrency -DisplaySymbol 'PickList Label1', 'PickList Label2'
+Returns any Currencys with property DisplaySymbol equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsCurrency -DisplaySymbol <PickList Label1>, <PickList Label2> -NotEquals DisplaySymbol
-Returns any Currencys with property DisplaySymbol NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsCurrency -DisplaySymbol 'PickList Label1', 'PickList Label2' -NotEquals DisplaySymbol
+Returns any Currencys with property DisplaySymbol NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsCurrency -Id 1234 -CurrencyName SomeName* -DisplaySymbol <PickList Label1>, <PickList Label2> -Like CurrencyName -NotEquals DisplaySymbol -GreaterThan Id
-An example of a more complex query. This command returns any Currencys with Id GREATER THAN 1234, a CurrencyName that matches the simple pattern SomeName* AND that has a DisplaySymbol that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsCurrency -Id 1234 -CurrencyName SomeName* -DisplaySymbol 'PickList Label1', 'PickList Label2' -Like CurrencyName -NotEquals DisplaySymbol -GreaterThan Id
+An example of a more complex query. This command returns any Currencys with Id GREATER THAN 1234, a CurrencyName that matches the simple pattern SomeName* AND that has a DisplaySymbol that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

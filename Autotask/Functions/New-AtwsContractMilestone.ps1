@@ -40,10 +40,10 @@ Creates a new [Autotask.ContractMilestone] through the Web Services API and retu
 $result = Get-AtwsContractMilestone -Id 124 | New-AtwsContractMilestone 
 Copies [Autotask.ContractMilestone] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsContractMilestone -Id 124 | New-AtwsContractMilestone | Set-AtwsContractMilestone -ParameterName <Parameter Value>
+Get-AtwsContractMilestone -Id 124 | New-AtwsContractMilestone | Set-AtwsContractMilestone -ParameterName 'Parameter Value'
 Copies [Autotask.ContractMilestone] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractMilestone to modify the object.
  .EXAMPLE
-$result = Get-AtwsContractMilestone -Id 124 | New-AtwsContractMilestone | Set-AtwsContractMilestone -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsContractMilestone -Id 124 | New-AtwsContractMilestone | Set-AtwsContractMilestone -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ContractMilestone] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractMilestone to modify the object and returns the new object.
 
 .NOTES

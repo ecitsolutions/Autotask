@@ -36,10 +36,10 @@ Creates a new [Autotask.AccountTeam] through the Web Services API and returns th
 $result = Get-AtwsAccountTeam -Id 124 | New-AtwsAccountTeam 
 Copies [Autotask.AccountTeam] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsAccountTeam -Id 124 | New-AtwsAccountTeam | Set-AtwsAccountTeam -ParameterName <Parameter Value>
+Get-AtwsAccountTeam -Id 124 | New-AtwsAccountTeam | Set-AtwsAccountTeam -ParameterName 'Parameter Value'
 Copies [Autotask.AccountTeam] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountTeam to modify the object.
  .EXAMPLE
-$result = Get-AtwsAccountTeam -Id 124 | New-AtwsAccountTeam | Set-AtwsAccountTeam -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsAccountTeam -Id 124 | New-AtwsAccountTeam | Set-AtwsAccountTeam -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.AccountTeam] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountTeam to modify the object and returns the new object.
 
 .NOTES

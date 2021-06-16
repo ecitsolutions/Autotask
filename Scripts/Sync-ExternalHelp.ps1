@@ -12,6 +12,6 @@ $extHelpPath = Join-Path -Path $modulePath -ChildPath 'en-US'
 
 import-module $modulePath -force
 
-New-MarkdownHelp -Module Autotask -OutputFolder $docPath -Force
-New-ExternalHelp -Path $docPath -OutputPath $extHelpPath -Force
+Update-MarkdownHelpModule -Path $docPath
+#Update-ExternalHelp -Path $docPath -OutputPath $extHelpPath 
 

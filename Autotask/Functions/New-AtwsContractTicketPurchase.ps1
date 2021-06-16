@@ -41,10 +41,10 @@ Creates a new [Autotask.ContractTicketPurchase] through the Web Services API and
 $result = Get-AtwsContractTicketPurchase -Id 124 | New-AtwsContractTicketPurchase 
 Copies [Autotask.ContractTicketPurchase] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsContractTicketPurchase -Id 124 | New-AtwsContractTicketPurchase | Set-AtwsContractTicketPurchase -ParameterName <Parameter Value>
+Get-AtwsContractTicketPurchase -Id 124 | New-AtwsContractTicketPurchase | Set-AtwsContractTicketPurchase -ParameterName 'Parameter Value'
 Copies [Autotask.ContractTicketPurchase] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractTicketPurchase to modify the object.
  .EXAMPLE
-$result = Get-AtwsContractTicketPurchase -Id 124 | New-AtwsContractTicketPurchase | Set-AtwsContractTicketPurchase -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsContractTicketPurchase -Id 124 | New-AtwsContractTicketPurchase | Set-AtwsContractTicketPurchase -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ContractTicketPurchase] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractTicketPurchase to modify the object and returns the new object.
 
 .NOTES

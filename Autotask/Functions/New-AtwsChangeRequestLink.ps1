@@ -36,10 +36,10 @@ Creates a new [Autotask.ChangeRequestLink] through the Web Services API and retu
 $result = Get-AtwsChangeRequestLink -Id 124 | New-AtwsChangeRequestLink 
 Copies [Autotask.ChangeRequestLink] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsChangeRequestLink -Id 124 | New-AtwsChangeRequestLink | Set-AtwsChangeRequestLink -ParameterName <Parameter Value>
+Get-AtwsChangeRequestLink -Id 124 | New-AtwsChangeRequestLink | Set-AtwsChangeRequestLink -ParameterName 'Parameter Value'
 Copies [Autotask.ChangeRequestLink] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsChangeRequestLink to modify the object.
  .EXAMPLE
-$result = Get-AtwsChangeRequestLink -Id 124 | New-AtwsChangeRequestLink | Set-AtwsChangeRequestLink -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsChangeRequestLink -Id 124 | New-AtwsChangeRequestLink | Set-AtwsChangeRequestLink -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ChangeRequestLink] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsChangeRequestLink to modify the object and returns the new object.
 
 .NOTES

@@ -57,20 +57,20 @@ Returns any object with a AccountWebhookFieldName that matches the simple patter
 Get-AtwsAccountWebhookField -AccountWebhookFieldName SomeName* -NotLike AccountWebhookFieldName
 Returns any object with a AccountWebhookFieldName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsAccountWebhookField -FieldID <PickList Label>
-Returns any AccountWebhookFields with property FieldID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsAccountWebhookField -FieldID 'PickList Label'
+Returns any AccountWebhookFields with property FieldID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsAccountWebhookField -FieldID <PickList Label> -NotEquals FieldID 
-Returns any AccountWebhookFields with property FieldID NOT equal to the <PickList Label>.
+Get-AtwsAccountWebhookField -FieldID 'PickList Label' -NotEquals FieldID 
+Returns any AccountWebhookFields with property FieldID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsAccountWebhookField -FieldID <PickList Label1>, <PickList Label2>
-Returns any AccountWebhookFields with property FieldID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsAccountWebhookField -FieldID 'PickList Label1', 'PickList Label2'
+Returns any AccountWebhookFields with property FieldID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAccountWebhookField -FieldID <PickList Label1>, <PickList Label2> -NotEquals FieldID
-Returns any AccountWebhookFields with property FieldID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAccountWebhookField -FieldID 'PickList Label1', 'PickList Label2' -NotEquals FieldID
+Returns any AccountWebhookFields with property FieldID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAccountWebhookField -Id 1234 -AccountWebhookFieldName SomeName* -FieldID <PickList Label1>, <PickList Label2> -Like AccountWebhookFieldName -NotEquals FieldID -GreaterThan Id
-An example of a more complex query. This command returns any AccountWebhookFields with Id GREATER THAN 1234, a AccountWebhookFieldName that matches the simple pattern SomeName* AND that has a FieldID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAccountWebhookField -Id 1234 -AccountWebhookFieldName SomeName* -FieldID 'PickList Label1', 'PickList Label2' -Like AccountWebhookFieldName -NotEquals FieldID -GreaterThan Id
+An example of a more complex query. This command returns any AccountWebhookFields with Id GREATER THAN 1234, a AccountWebhookFieldName that matches the simple pattern SomeName* AND that has a FieldID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

@@ -59,20 +59,20 @@ Returns any object with a UserDefinedFieldDefinitionName that matches the simple
 Get-AtwsUserDefinedFieldDefinition -UserDefinedFieldDefinitionName SomeName* -NotLike UserDefinedFieldDefinitionName
 Returns any object with a UserDefinedFieldDefinitionName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsUserDefinedFieldDefinition -UdfType <PickList Label>
-Returns any UserDefinedFieldDefinitions with property UdfType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsUserDefinedFieldDefinition -UdfType 'PickList Label'
+Returns any UserDefinedFieldDefinitions with property UdfType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsUserDefinedFieldDefinition -UdfType <PickList Label> -NotEquals UdfType 
-Returns any UserDefinedFieldDefinitions with property UdfType NOT equal to the <PickList Label>.
+Get-AtwsUserDefinedFieldDefinition -UdfType 'PickList Label' -NotEquals UdfType 
+Returns any UserDefinedFieldDefinitions with property UdfType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsUserDefinedFieldDefinition -UdfType <PickList Label1>, <PickList Label2>
-Returns any UserDefinedFieldDefinitions with property UdfType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsUserDefinedFieldDefinition -UdfType 'PickList Label1', 'PickList Label2'
+Returns any UserDefinedFieldDefinitions with property UdfType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsUserDefinedFieldDefinition -UdfType <PickList Label1>, <PickList Label2> -NotEquals UdfType
-Returns any UserDefinedFieldDefinitions with property UdfType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsUserDefinedFieldDefinition -UdfType 'PickList Label1', 'PickList Label2' -NotEquals UdfType
+Returns any UserDefinedFieldDefinitions with property UdfType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsUserDefinedFieldDefinition -Id 1234 -UserDefinedFieldDefinitionName SomeName* -UdfType <PickList Label1>, <PickList Label2> -Like UserDefinedFieldDefinitionName -NotEquals UdfType -GreaterThan Id
-An example of a more complex query. This command returns any UserDefinedFieldDefinitions with Id GREATER THAN 1234, a UserDefinedFieldDefinitionName that matches the simple pattern SomeName* AND that has a UdfType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsUserDefinedFieldDefinition -Id 1234 -UserDefinedFieldDefinitionName SomeName* -UdfType 'PickList Label1', 'PickList Label2' -Like UserDefinedFieldDefinitionName -NotEquals UdfType -GreaterThan Id
+An example of a more complex query. This command returns any UserDefinedFieldDefinitions with Id GREATER THAN 1234, a UserDefinedFieldDefinitionName that matches the simple pattern SomeName* AND that has a UdfType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

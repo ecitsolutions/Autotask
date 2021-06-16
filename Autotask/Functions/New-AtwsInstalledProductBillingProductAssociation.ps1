@@ -37,10 +37,10 @@ Creates a new [Autotask.InstalledProductBillingProductAssociation] through the W
 $result = Get-AtwsInstalledProductBillingProductAssociation -Id 124 | New-AtwsInstalledProductBillingProductAssociation 
 Copies [Autotask.InstalledProductBillingProductAssociation] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsInstalledProductBillingProductAssociation -Id 124 | New-AtwsInstalledProductBillingProductAssociation | Set-AtwsInstalledProductBillingProductAssociation -ParameterName <Parameter Value>
+Get-AtwsInstalledProductBillingProductAssociation -Id 124 | New-AtwsInstalledProductBillingProductAssociation | Set-AtwsInstalledProductBillingProductAssociation -ParameterName 'Parameter Value'
 Copies [Autotask.InstalledProductBillingProductAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductBillingProductAssociation to modify the object.
  .EXAMPLE
-$result = Get-AtwsInstalledProductBillingProductAssociation -Id 124 | New-AtwsInstalledProductBillingProductAssociation | Set-AtwsInstalledProductBillingProductAssociation -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsInstalledProductBillingProductAssociation -Id 124 | New-AtwsInstalledProductBillingProductAssociation | Set-AtwsInstalledProductBillingProductAssociation -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.InstalledProductBillingProductAssociation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductBillingProductAssociation to modify the object and returns the new object.
 
 .NOTES

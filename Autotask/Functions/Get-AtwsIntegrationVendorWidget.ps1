@@ -57,20 +57,20 @@ Returns any object with a IntegrationVendorWidgetName that matches the simple pa
 Get-AtwsIntegrationVendorWidget -IntegrationVendorWidgetName SomeName* -NotLike IntegrationVendorWidgetName
 Returns any object with a IntegrationVendorWidgetName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsIntegrationVendorWidget -Width <PickList Label>
-Returns any IntegrationVendorWidgets with property Width equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsIntegrationVendorWidget -Width 'PickList Label'
+Returns any IntegrationVendorWidgets with property Width equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsIntegrationVendorWidget -Width <PickList Label> -NotEquals Width 
-Returns any IntegrationVendorWidgets with property Width NOT equal to the <PickList Label>.
+Get-AtwsIntegrationVendorWidget -Width 'PickList Label' -NotEquals Width 
+Returns any IntegrationVendorWidgets with property Width NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsIntegrationVendorWidget -Width <PickList Label1>, <PickList Label2>
-Returns any IntegrationVendorWidgets with property Width equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsIntegrationVendorWidget -Width 'PickList Label1', 'PickList Label2'
+Returns any IntegrationVendorWidgets with property Width equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsIntegrationVendorWidget -Width <PickList Label1>, <PickList Label2> -NotEquals Width
-Returns any IntegrationVendorWidgets with property Width NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsIntegrationVendorWidget -Width 'PickList Label1', 'PickList Label2' -NotEquals Width
+Returns any IntegrationVendorWidgets with property Width NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsIntegrationVendorWidget -Id 1234 -IntegrationVendorWidgetName SomeName* -Width <PickList Label1>, <PickList Label2> -Like IntegrationVendorWidgetName -NotEquals Width -GreaterThan Id
-An example of a more complex query. This command returns any IntegrationVendorWidgets with Id GREATER THAN 1234, a IntegrationVendorWidgetName that matches the simple pattern SomeName* AND that has a Width that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsIntegrationVendorWidget -Id 1234 -IntegrationVendorWidgetName SomeName* -Width 'PickList Label1', 'PickList Label2' -Like IntegrationVendorWidgetName -NotEquals Width -GreaterThan Id
+An example of a more complex query. This command returns any IntegrationVendorWidgets with Id GREATER THAN 1234, a IntegrationVendorWidgetName that matches the simple pattern SomeName* AND that has a Width that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

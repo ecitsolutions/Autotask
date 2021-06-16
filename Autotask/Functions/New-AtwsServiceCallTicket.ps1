@@ -36,10 +36,10 @@ Creates a new [Autotask.ServiceCallTicket] through the Web Services API and retu
 $result = Get-AtwsServiceCallTicket -Id 124 | New-AtwsServiceCallTicket 
 Copies [Autotask.ServiceCallTicket] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsServiceCallTicket -Id 124 | New-AtwsServiceCallTicket | Set-AtwsServiceCallTicket -ParameterName <Parameter Value>
+Get-AtwsServiceCallTicket -Id 124 | New-AtwsServiceCallTicket | Set-AtwsServiceCallTicket -ParameterName 'Parameter Value'
 Copies [Autotask.ServiceCallTicket] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCallTicket to modify the object.
  .EXAMPLE
-$result = Get-AtwsServiceCallTicket -Id 124 | New-AtwsServiceCallTicket | Set-AtwsServiceCallTicket -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsServiceCallTicket -Id 124 | New-AtwsServiceCallTicket | Set-AtwsServiceCallTicket -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ServiceCallTicket] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCallTicket to modify the object and returns the new object.
 
 .NOTES

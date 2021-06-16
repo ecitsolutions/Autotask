@@ -36,10 +36,10 @@ Creates a new [Autotask.TagAlias] through the Web Services API and returns the n
 $result = Get-AtwsTagAlias -Id 124 | New-AtwsTagAlias 
 Copies [Autotask.TagAlias] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTagAlias -Id 124 | New-AtwsTagAlias | Set-AtwsTagAlias -ParameterName <Parameter Value>
+Get-AtwsTagAlias -Id 124 | New-AtwsTagAlias | Set-AtwsTagAlias -ParameterName 'Parameter Value'
 Copies [Autotask.TagAlias] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTagAlias to modify the object.
  .EXAMPLE
-$result = Get-AtwsTagAlias -Id 124 | New-AtwsTagAlias | Set-AtwsTagAlias -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTagAlias -Id 124 | New-AtwsTagAlias | Set-AtwsTagAlias -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TagAlias] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTagAlias to modify the object and returns the new object.
 
 .NOTES

@@ -57,20 +57,20 @@ Returns any object with a AccountWebhookUdfFieldName that matches the simple pat
 Get-AtwsAccountWebhookUdfField -AccountWebhookUdfFieldName SomeName* -NotLike AccountWebhookUdfFieldName
 Returns any object with a AccountWebhookUdfFieldName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsAccountWebhookUdfField -UdfFieldID <PickList Label>
-Returns any AccountWebhookUdfFields with property UdfFieldID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsAccountWebhookUdfField -UdfFieldID 'PickList Label'
+Returns any AccountWebhookUdfFields with property UdfFieldID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsAccountWebhookUdfField -UdfFieldID <PickList Label> -NotEquals UdfFieldID 
-Returns any AccountWebhookUdfFields with property UdfFieldID NOT equal to the <PickList Label>.
+Get-AtwsAccountWebhookUdfField -UdfFieldID 'PickList Label' -NotEquals UdfFieldID 
+Returns any AccountWebhookUdfFields with property UdfFieldID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsAccountWebhookUdfField -UdfFieldID <PickList Label1>, <PickList Label2>
-Returns any AccountWebhookUdfFields with property UdfFieldID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsAccountWebhookUdfField -UdfFieldID 'PickList Label1', 'PickList Label2'
+Returns any AccountWebhookUdfFields with property UdfFieldID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAccountWebhookUdfField -UdfFieldID <PickList Label1>, <PickList Label2> -NotEquals UdfFieldID
-Returns any AccountWebhookUdfFields with property UdfFieldID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAccountWebhookUdfField -UdfFieldID 'PickList Label1', 'PickList Label2' -NotEquals UdfFieldID
+Returns any AccountWebhookUdfFields with property UdfFieldID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAccountWebhookUdfField -Id 1234 -AccountWebhookUdfFieldName SomeName* -UdfFieldID <PickList Label1>, <PickList Label2> -Like AccountWebhookUdfFieldName -NotEquals UdfFieldID -GreaterThan Id
-An example of a more complex query. This command returns any AccountWebhookUdfFields with Id GREATER THAN 1234, a AccountWebhookUdfFieldName that matches the simple pattern SomeName* AND that has a UdfFieldID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAccountWebhookUdfField -Id 1234 -AccountWebhookUdfFieldName SomeName* -UdfFieldID 'PickList Label1', 'PickList Label2' -Like AccountWebhookUdfFieldName -NotEquals UdfFieldID -GreaterThan Id
+An example of a more complex query. This command returns any AccountWebhookUdfFields with Id GREATER THAN 1234, a AccountWebhookUdfFieldName that matches the simple pattern SomeName* AND that has a UdfFieldID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

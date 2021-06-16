@@ -40,10 +40,10 @@ Creates a new [Autotask.ProjectNote] through the Web Services API and returns th
 $result = Get-AtwsProjectNote -Id 124 | New-AtwsProjectNote 
 Copies [Autotask.ProjectNote] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsProjectNote -Id 124 | New-AtwsProjectNote | Set-AtwsProjectNote -ParameterName <Parameter Value>
+Get-AtwsProjectNote -Id 124 | New-AtwsProjectNote | Set-AtwsProjectNote -ParameterName 'Parameter Value'
 Copies [Autotask.ProjectNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProjectNote to modify the object.
  .EXAMPLE
-$result = Get-AtwsProjectNote -Id 124 | New-AtwsProjectNote | Set-AtwsProjectNote -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsProjectNote -Id 124 | New-AtwsProjectNote | Set-AtwsProjectNote -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ProjectNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProjectNote to modify the object and returns the new object.
 
 .NOTES

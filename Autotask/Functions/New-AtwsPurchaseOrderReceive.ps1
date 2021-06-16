@@ -36,10 +36,10 @@ Creates a new [Autotask.PurchaseOrderReceive] through the Web Services API and r
 $result = Get-AtwsPurchaseOrderReceive -Id 124 | New-AtwsPurchaseOrderReceive 
 Copies [Autotask.PurchaseOrderReceive] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsPurchaseOrderReceive -Id 124 | New-AtwsPurchaseOrderReceive | Set-AtwsPurchaseOrderReceive -ParameterName <Parameter Value>
+Get-AtwsPurchaseOrderReceive -Id 124 | New-AtwsPurchaseOrderReceive | Set-AtwsPurchaseOrderReceive -ParameterName 'Parameter Value'
 Copies [Autotask.PurchaseOrderReceive] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsPurchaseOrderReceive to modify the object.
  .EXAMPLE
-$result = Get-AtwsPurchaseOrderReceive -Id 124 | New-AtwsPurchaseOrderReceive | Set-AtwsPurchaseOrderReceive -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsPurchaseOrderReceive -Id 124 | New-AtwsPurchaseOrderReceive | Set-AtwsPurchaseOrderReceive -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.PurchaseOrderReceive] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsPurchaseOrderReceive to modify the object and returns the new object.
 
 .NOTES

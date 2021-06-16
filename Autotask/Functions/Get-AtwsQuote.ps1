@@ -63,20 +63,20 @@ Returns any object with a QuoteName that matches the simple pattern 'SomeName*'.
 Get-AtwsQuote -QuoteName SomeName* -NotLike QuoteName
 Returns any object with a QuoteName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsQuote -TaxGroup <PickList Label>
-Returns any Quotes with property TaxGroup equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsQuote -TaxGroup 'PickList Label'
+Returns any Quotes with property TaxGroup equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsQuote -TaxGroup <PickList Label> -NotEquals TaxGroup 
-Returns any Quotes with property TaxGroup NOT equal to the <PickList Label>.
+Get-AtwsQuote -TaxGroup 'PickList Label' -NotEquals TaxGroup 
+Returns any Quotes with property TaxGroup NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsQuote -TaxGroup <PickList Label1>, <PickList Label2>
-Returns any Quotes with property TaxGroup equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsQuote -TaxGroup 'PickList Label1', 'PickList Label2'
+Returns any Quotes with property TaxGroup equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsQuote -TaxGroup <PickList Label1>, <PickList Label2> -NotEquals TaxGroup
-Returns any Quotes with property TaxGroup NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsQuote -TaxGroup 'PickList Label1', 'PickList Label2' -NotEquals TaxGroup
+Returns any Quotes with property TaxGroup NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsQuote -Id 1234 -QuoteName SomeName* -TaxGroup <PickList Label1>, <PickList Label2> -Like QuoteName -NotEquals TaxGroup -GreaterThan Id
-An example of a more complex query. This command returns any Quotes with Id GREATER THAN 1234, a QuoteName that matches the simple pattern SomeName* AND that has a TaxGroup that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsQuote -Id 1234 -QuoteName SomeName* -TaxGroup 'PickList Label1', 'PickList Label2' -Like QuoteName -NotEquals TaxGroup -GreaterThan Id
+An example of a more complex query. This command returns any Quotes with Id GREATER THAN 1234, a QuoteName that matches the simple pattern SomeName* AND that has a TaxGroup that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

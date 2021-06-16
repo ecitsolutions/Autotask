@@ -58,20 +58,20 @@ Returns any object with a ProjectCostName that matches the simple pattern 'SomeN
 Get-AtwsProjectCost -ProjectCostName SomeName* -NotLike ProjectCostName
 Returns any object with a ProjectCostName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsProjectCost -CostType <PickList Label>
-Returns any ProjectCosts with property CostType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsProjectCost -CostType 'PickList Label'
+Returns any ProjectCosts with property CostType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsProjectCost -CostType <PickList Label> -NotEquals CostType 
-Returns any ProjectCosts with property CostType NOT equal to the <PickList Label>.
+Get-AtwsProjectCost -CostType 'PickList Label' -NotEquals CostType 
+Returns any ProjectCosts with property CostType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsProjectCost -CostType <PickList Label1>, <PickList Label2>
-Returns any ProjectCosts with property CostType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsProjectCost -CostType 'PickList Label1', 'PickList Label2'
+Returns any ProjectCosts with property CostType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsProjectCost -CostType <PickList Label1>, <PickList Label2> -NotEquals CostType
-Returns any ProjectCosts with property CostType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsProjectCost -CostType 'PickList Label1', 'PickList Label2' -NotEquals CostType
+Returns any ProjectCosts with property CostType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsProjectCost -Id 1234 -ProjectCostName SomeName* -CostType <PickList Label1>, <PickList Label2> -Like ProjectCostName -NotEquals CostType -GreaterThan Id
-An example of a more complex query. This command returns any ProjectCosts with Id GREATER THAN 1234, a ProjectCostName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsProjectCost -Id 1234 -ProjectCostName SomeName* -CostType 'PickList Label1', 'PickList Label2' -Like ProjectCostName -NotEquals CostType -GreaterThan Id
+An example of a more complex query. This command returns any ProjectCosts with Id GREATER THAN 1234, a ProjectCostName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

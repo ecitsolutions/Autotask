@@ -57,20 +57,20 @@ Returns any object with a InternalLocationName that matches the simple pattern '
 Get-AtwsInternalLocation -InternalLocationName SomeName* -NotLike InternalLocationName
 Returns any object with a InternalLocationName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInternalLocation -HolidaySetId <PickList Label>
-Returns any InternalLocations with property HolidaySetId equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsInternalLocation -HolidaySetId 'PickList Label'
+Returns any InternalLocations with property HolidaySetId equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsInternalLocation -HolidaySetId <PickList Label> -NotEquals HolidaySetId 
-Returns any InternalLocations with property HolidaySetId NOT equal to the <PickList Label>.
+Get-AtwsInternalLocation -HolidaySetId 'PickList Label' -NotEquals HolidaySetId 
+Returns any InternalLocations with property HolidaySetId NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsInternalLocation -HolidaySetId <PickList Label1>, <PickList Label2>
-Returns any InternalLocations with property HolidaySetId equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsInternalLocation -HolidaySetId 'PickList Label1', 'PickList Label2'
+Returns any InternalLocations with property HolidaySetId equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInternalLocation -HolidaySetId <PickList Label1>, <PickList Label2> -NotEquals HolidaySetId
-Returns any InternalLocations with property HolidaySetId NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInternalLocation -HolidaySetId 'PickList Label1', 'PickList Label2' -NotEquals HolidaySetId
+Returns any InternalLocations with property HolidaySetId NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInternalLocation -Id 1234 -InternalLocationName SomeName* -HolidaySetId <PickList Label1>, <PickList Label2> -Like InternalLocationName -NotEquals HolidaySetId -GreaterThan Id
-An example of a more complex query. This command returns any InternalLocations with Id GREATER THAN 1234, a InternalLocationName that matches the simple pattern SomeName* AND that has a HolidaySetId that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInternalLocation -Id 1234 -InternalLocationName SomeName* -HolidaySetId 'PickList Label1', 'PickList Label2' -Like InternalLocationName -NotEquals HolidaySetId -GreaterThan Id
+An example of a more complex query. This command returns any InternalLocations with Id GREATER THAN 1234, a InternalLocationName that matches the simple pattern SomeName* AND that has a HolidaySetId that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

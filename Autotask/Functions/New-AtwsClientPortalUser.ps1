@@ -41,10 +41,10 @@ Creates a new [Autotask.ClientPortalUser] through the Web Services API and retur
 $result = Get-AtwsClientPortalUser -Id 124 | New-AtwsClientPortalUser 
 Copies [Autotask.ClientPortalUser] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsClientPortalUser -Id 124 | New-AtwsClientPortalUser | Set-AtwsClientPortalUser -ParameterName <Parameter Value>
+Get-AtwsClientPortalUser -Id 124 | New-AtwsClientPortalUser | Set-AtwsClientPortalUser -ParameterName 'Parameter Value'
 Copies [Autotask.ClientPortalUser] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsClientPortalUser to modify the object.
  .EXAMPLE
-$result = Get-AtwsClientPortalUser -Id 124 | New-AtwsClientPortalUser | Set-AtwsClientPortalUser -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsClientPortalUser -Id 124 | New-AtwsClientPortalUser | Set-AtwsClientPortalUser -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ClientPortalUser] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsClientPortalUser to modify the object and returns the new object.
 
 .NOTES

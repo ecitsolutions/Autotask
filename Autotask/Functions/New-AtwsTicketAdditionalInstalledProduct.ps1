@@ -36,10 +36,10 @@ Creates a new [Autotask.TicketAdditionalInstalledProduct] through the Web Servic
 $result = Get-AtwsTicketAdditionalInstalledProduct -Id 124 | New-AtwsTicketAdditionalInstalledProduct 
 Copies [Autotask.TicketAdditionalInstalledProduct] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTicketAdditionalInstalledProduct -Id 124 | New-AtwsTicketAdditionalInstalledProduct | Set-AtwsTicketAdditionalInstalledProduct -ParameterName <Parameter Value>
+Get-AtwsTicketAdditionalInstalledProduct -Id 124 | New-AtwsTicketAdditionalInstalledProduct | Set-AtwsTicketAdditionalInstalledProduct -ParameterName 'Parameter Value'
 Copies [Autotask.TicketAdditionalInstalledProduct] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketAdditionalInstalledProduct to modify the object.
  .EXAMPLE
-$result = Get-AtwsTicketAdditionalInstalledProduct -Id 124 | New-AtwsTicketAdditionalInstalledProduct | Set-AtwsTicketAdditionalInstalledProduct -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTicketAdditionalInstalledProduct -Id 124 | New-AtwsTicketAdditionalInstalledProduct | Set-AtwsTicketAdditionalInstalledProduct -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TicketAdditionalInstalledProduct] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketAdditionalInstalledProduct to modify the object and returns the new object.
 
 .NOTES

@@ -60,20 +60,20 @@ Returns any object with a AttachmentInfoName that matches the simple pattern 'So
 Get-AtwsAttachmentInfo -AttachmentInfoName SomeName* -NotLike AttachmentInfoName
 Returns any object with a AttachmentInfoName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label>
-Returns any AttachmentInfos with property ParentType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsAttachmentInfo -ParentType 'PickList Label'
+Returns any AttachmentInfos with property ParentType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label> -NotEquals ParentType 
-Returns any AttachmentInfos with property ParentType NOT equal to the <PickList Label>.
+Get-AtwsAttachmentInfo -ParentType 'PickList Label' -NotEquals ParentType 
+Returns any AttachmentInfos with property ParentType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label1>, <PickList Label2>
-Returns any AttachmentInfos with property ParentType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsAttachmentInfo -ParentType 'PickList Label1', 'PickList Label2'
+Returns any AttachmentInfos with property ParentType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label1>, <PickList Label2> -NotEquals ParentType
-Returns any AttachmentInfos with property ParentType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAttachmentInfo -ParentType 'PickList Label1', 'PickList Label2' -NotEquals ParentType
+Returns any AttachmentInfos with property ParentType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAttachmentInfo -Id 1234 -AttachmentInfoName SomeName* -ParentType <PickList Label1>, <PickList Label2> -Like AttachmentInfoName -NotEquals ParentType -GreaterThan Id
-An example of a more complex query. This command returns any AttachmentInfos with Id GREATER THAN 1234, a AttachmentInfoName that matches the simple pattern SomeName* AND that has a ParentType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAttachmentInfo -Id 1234 -AttachmentInfoName SomeName* -ParentType 'PickList Label1', 'PickList Label2' -Like AttachmentInfoName -NotEquals ParentType -GreaterThan Id
+An example of a more complex query. This command returns any AttachmentInfos with Id GREATER THAN 1234, a AttachmentInfoName that matches the simple pattern SomeName* AND that has a ParentType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:
@@ -103,7 +103,7 @@ Related commands:
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('AttachedByContactID', 'AttachedByResourceID', 'ImpersonatorCreatorResourceID', 'OpportunityID')]
+    [ValidateSet('AccountID', 'AccountNoteID', 'ArticleID', 'AttachedByContactID', 'AttachedByResourceID', 'ContractID', 'ContractNoteID', 'DocumentID', 'ExpenseReportID', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'InstalledProductNoteID', 'OpportunityID', 'ParentAttachmentID', 'ProjectID', 'ProjectNoteID', 'ResourceID', 'SalesOrderID', 'TaskID', 'TaskNoteID', 'TicketID', 'TicketNoteID', 'TimeEntryID')]
     [string]
     $GetReferenceEntityById,
 
@@ -113,6 +113,27 @@ Related commands:
     )]
     [switch]
     $All,
+
+# Account ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AccountID,
+
+# Account Note ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $AccountNoteID,
+
+# Article ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ArticleID,
 
 # Attach Date
     [Parameter(
@@ -143,6 +164,34 @@ Related commands:
     [string[]]
     $ContentType,
 
+# Contract ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContractID,
+
+# Contract Note ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ContractNoteID,
+
+# Document ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $DocumentID,
+
+# Expense Report ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ExpenseReportID,
+
 # File Name
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -167,12 +216,33 @@ Related commands:
     [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
+# Installed Product ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $InstalledProductID,
+
+# Installed Product Note ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $InstalledProductNoteID,
+
 # Opportunity ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Nullable[long][]]
     $OpportunityID,
+
+# Parent Attachment ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ParentAttachmentID,
 
 # Parent ID
     [Parameter(
@@ -201,6 +271,20 @@ Related commands:
     [string[]]
     $ParentType,
 
+# Project ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ProjectID,
+
+# Project Note ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ProjectNoteID,
+
 # Publish
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -220,6 +304,55 @@ Related commands:
     })]
     [string[]]
     $Publish,
+
+# Resource ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $ResourceID,
+
+# Sales Order ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $SalesOrderID,
+
+# Task ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TaskID,
+
+# Task Note ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TaskNoteID,
+
+# Ticket ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TicketID,
+
+# Ticket Note ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TicketNoteID,
+
+# Time Entry ID
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[Int][]]
+    $TimeEntryID,
 
 # Title
     [Parameter(
@@ -253,49 +386,49 @@ Related commands:
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'CreatorType', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'ParentID', 'ParentType', 'Publish', 'Title', 'Type')]
+    [ValidateSet('AccountID', 'AccountNoteID', 'ArticleID', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'ContractID', 'ContractNoteID', 'CreatorType', 'DocumentID', 'ExpenseReportID', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'InstalledProductNoteID', 'OpportunityID', 'ParentAttachmentID', 'ParentID', 'ParentType', 'ProjectID', 'ProjectNoteID', 'Publish', 'ResourceID', 'SalesOrderID', 'TaskID', 'TaskNoteID', 'TicketID', 'TicketNoteID', 'TimeEntryID', 'Title', 'Type')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'CreatorType', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'ParentID', 'ParentType', 'Publish', 'Title', 'Type')]
+    [ValidateSet('AccountID', 'AccountNoteID', 'ArticleID', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'ContractID', 'ContractNoteID', 'CreatorType', 'DocumentID', 'ExpenseReportID', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'InstalledProductNoteID', 'OpportunityID', 'ParentAttachmentID', 'ParentID', 'ParentType', 'ProjectID', 'ProjectNoteID', 'Publish', 'ResourceID', 'SalesOrderID', 'TaskID', 'TaskNoteID', 'TicketID', 'TicketNoteID', 'TimeEntryID', 'Title', 'Type')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'CreatorType', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'ParentID', 'ParentType', 'Publish', 'Title', 'Type')]
+    [ValidateSet('AccountID', 'AccountNoteID', 'ArticleID', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'ContractID', 'ContractNoteID', 'CreatorType', 'DocumentID', 'ExpenseReportID', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'InstalledProductNoteID', 'OpportunityID', 'ParentAttachmentID', 'ParentID', 'ParentType', 'ProjectID', 'ProjectNoteID', 'Publish', 'ResourceID', 'SalesOrderID', 'TaskID', 'TaskNoteID', 'TicketID', 'TicketNoteID', 'TimeEntryID', 'Title', 'Type')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'CreatorType', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'ParentID', 'ParentType', 'Publish', 'Title', 'Type')]
+    [ValidateSet('AccountID', 'AccountNoteID', 'ArticleID', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'ContractID', 'ContractNoteID', 'CreatorType', 'DocumentID', 'ExpenseReportID', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'InstalledProductNoteID', 'OpportunityID', 'ParentAttachmentID', 'ParentID', 'ParentType', 'ProjectID', 'ProjectNoteID', 'Publish', 'ResourceID', 'SalesOrderID', 'TaskID', 'TaskNoteID', 'TicketID', 'TicketNoteID', 'TimeEntryID', 'Title', 'Type')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'CreatorType', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'ParentID', 'ParentType', 'Publish', 'Title', 'Type')]
+    [ValidateSet('AccountID', 'AccountNoteID', 'ArticleID', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'ContractID', 'ContractNoteID', 'CreatorType', 'DocumentID', 'ExpenseReportID', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'InstalledProductNoteID', 'OpportunityID', 'ParentAttachmentID', 'ParentID', 'ParentType', 'ProjectID', 'ProjectNoteID', 'Publish', 'ResourceID', 'SalesOrderID', 'TaskID', 'TaskNoteID', 'TicketID', 'TicketNoteID', 'TimeEntryID', 'Title', 'Type')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'CreatorType', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'ParentID', 'ParentType', 'Publish', 'Title', 'Type')]
+    [ValidateSet('AccountID', 'AccountNoteID', 'ArticleID', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'ContractID', 'ContractNoteID', 'CreatorType', 'DocumentID', 'ExpenseReportID', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'InstalledProductNoteID', 'OpportunityID', 'ParentAttachmentID', 'ParentID', 'ParentType', 'ProjectID', 'ProjectNoteID', 'Publish', 'ResourceID', 'SalesOrderID', 'TaskID', 'TaskNoteID', 'TicketID', 'TicketNoteID', 'TimeEntryID', 'Title', 'Type')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'CreatorType', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'OpportunityID', 'ParentID', 'ParentType', 'Publish', 'Title', 'Type')]
+    [ValidateSet('AccountID', 'AccountNoteID', 'ArticleID', 'AttachDate', 'AttachedByContactID', 'AttachedByResourceID', 'ContentType', 'ContractID', 'ContractNoteID', 'CreatorType', 'DocumentID', 'ExpenseReportID', 'FileSize', 'FullPath', 'id', 'ImpersonatorCreatorResourceID', 'InstalledProductID', 'InstalledProductNoteID', 'OpportunityID', 'ParentAttachmentID', 'ParentID', 'ParentType', 'ProjectID', 'ProjectNoteID', 'Publish', 'ResourceID', 'SalesOrderID', 'TaskID', 'TaskNoteID', 'TicketID', 'TicketNoteID', 'TimeEntryID', 'Title', 'Type')]
     [string[]]
     $LessThanOrEquals,
 

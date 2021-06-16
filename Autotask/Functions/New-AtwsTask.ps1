@@ -38,10 +38,10 @@ Creates a new [Autotask.Task] through the Web Services API and returns the new o
 $result = Get-AtwsTask -Id 124 | New-AtwsTask 
 Copies [Autotask.Task] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTask -Id 124 | New-AtwsTask | Set-AtwsTask -ParameterName <Parameter Value>
+Get-AtwsTask -Id 124 | New-AtwsTask | Set-AtwsTask -ParameterName 'Parameter Value'
 Copies [Autotask.Task] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTask to modify the object.
  .EXAMPLE
-$result = Get-AtwsTask -Id 124 | New-AtwsTask | Set-AtwsTask -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTask -Id 124 | New-AtwsTask | Set-AtwsTask -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.Task] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTask to modify the object and returns the new object.
 
 .NOTES

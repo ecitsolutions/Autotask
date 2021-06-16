@@ -38,10 +38,10 @@ Creates a new [Autotask.Role] through the Web Services API and returns the new o
 $result = Get-AtwsRole -Id 124 | New-AtwsRole 
 Copies [Autotask.Role] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsRole -Id 124 | New-AtwsRole | Set-AtwsRole -ParameterName <Parameter Value>
+Get-AtwsRole -Id 124 | New-AtwsRole | Set-AtwsRole -ParameterName 'Parameter Value'
 Copies [Autotask.Role] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsRole to modify the object.
  .EXAMPLE
-$result = Get-AtwsRole -Id 124 | New-AtwsRole | Set-AtwsRole -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsRole -Id 124 | New-AtwsRole | Set-AtwsRole -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.Role] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsRole to modify the object and returns the new object.
 
 .NOTES

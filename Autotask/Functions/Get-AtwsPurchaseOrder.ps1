@@ -61,20 +61,20 @@ Returns any object with a PurchaseOrderName that matches the simple pattern 'Som
 Get-AtwsPurchaseOrder -PurchaseOrderName SomeName* -NotLike PurchaseOrderName
 Returns any object with a PurchaseOrderName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsPurchaseOrder -Status <PickList Label>
-Returns any PurchaseOrders with property Status equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsPurchaseOrder -Status 'PickList Label'
+Returns any PurchaseOrders with property Status equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsPurchaseOrder -Status <PickList Label> -NotEquals Status 
-Returns any PurchaseOrders with property Status NOT equal to the <PickList Label>.
+Get-AtwsPurchaseOrder -Status 'PickList Label' -NotEquals Status 
+Returns any PurchaseOrders with property Status NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsPurchaseOrder -Status <PickList Label1>, <PickList Label2>
-Returns any PurchaseOrders with property Status equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsPurchaseOrder -Status 'PickList Label1', 'PickList Label2'
+Returns any PurchaseOrders with property Status equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsPurchaseOrder -Status <PickList Label1>, <PickList Label2> -NotEquals Status
-Returns any PurchaseOrders with property Status NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsPurchaseOrder -Status 'PickList Label1', 'PickList Label2' -NotEquals Status
+Returns any PurchaseOrders with property Status NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsPurchaseOrder -Id 1234 -PurchaseOrderName SomeName* -Status <PickList Label1>, <PickList Label2> -Like PurchaseOrderName -NotEquals Status -GreaterThan Id
-An example of a more complex query. This command returns any PurchaseOrders with Id GREATER THAN 1234, a PurchaseOrderName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsPurchaseOrder -Id 1234 -PurchaseOrderName SomeName* -Status 'PickList Label1', 'PickList Label2' -Like PurchaseOrderName -NotEquals Status -GreaterThan Id
+An example of a more complex query. This command returns any PurchaseOrders with Id GREATER THAN 1234, a PurchaseOrderName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

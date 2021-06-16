@@ -25,16 +25,16 @@ Nothing or [Autotask.Tax]. This function optionally returns the updated objects 
 Set-AtwsTax -InputObject $Tax [-ParameterName] [Parameter value]
 Passes one or more [Autotask.Tax] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
  .EXAMPLE
-$Tax | Set-AtwsTax -ParameterName <Parameter value>
+$Tax | Set-AtwsTax -ParameterName 'Parameter value'
 Same as the first example, but now the objects are passed to the funtion through the pipeline, not passed as a parameter. The end result is identical.
  .EXAMPLE
-Get-AtwsTax -Id 0 | Set-AtwsTax -ParameterName <Parameter value>
+Get-AtwsTax -Id 0 | Set-AtwsTax -ParameterName 'Parameter value'
 Gets the instance with Id 0 directly from the Web Services API, modifies a parameter and updates Autotask. This approach works with all valid parameters for the Get function.
  .EXAMPLE
-Get-AtwsTax -Id 0,4,8 | Set-AtwsTax -ParameterName <Parameter value>
+Get-AtwsTax -Id 0,4,8 | Set-AtwsTax -ParameterName 'Parameter value'
 Gets multiple instances by Id, modifies them all and updates Autotask.
  .EXAMPLE
-$result = Get-AtwsTax -Id 0,4,8 | Set-AtwsTax -ParameterName <Parameter value> -PassThru
+$result = Get-AtwsTax -Id 0,4,8 | Set-AtwsTax -ParameterName 'Parameter value' -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
 .NOTES
