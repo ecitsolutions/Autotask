@@ -103,8 +103,7 @@ New-AtwsContractNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,25)]
-    [string[]]
+    [Nullable[Int][]]
     $ContractID,
 
 # Create Date Time
@@ -220,35 +219,35 @@ New-AtwsContractNote
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'Description', 'Title')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'Description', 'Title')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'Description', 'Title')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'Description', 'Title')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('ContractID', 'Description', 'Title')]
+    [ValidateSet('Description', 'Title')]
     [string[]]
     $Contains,
 

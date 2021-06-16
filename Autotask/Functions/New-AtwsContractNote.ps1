@@ -69,8 +69,7 @@ Get-AtwsContractNote
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,25)]
-    [string]
+    [Int]
     $ContractID,
 
 # Create Date Time

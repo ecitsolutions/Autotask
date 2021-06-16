@@ -114,7 +114,7 @@ New-AtwsTicketChecklistItem
       ParametersetName = 'By_Id'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,255)]
+    [ValidateLength(0,600)]
     [string]
     $ItemName,
 

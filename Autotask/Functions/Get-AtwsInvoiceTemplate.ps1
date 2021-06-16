@@ -357,7 +357,6 @@ Related commands:
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
     [Nullable[Int][]]
     $PaymentTerms,
 
