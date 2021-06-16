@@ -36,10 +36,10 @@ Creates a new [Autotask.ResourceRoleQueue] through the Web Services API and retu
 $result = Get-AtwsResourceRoleQueue -Id 124 | New-AtwsResourceRoleQueue 
 Copies [Autotask.ResourceRoleQueue] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsResourceRoleQueue -Id 124 | New-AtwsResourceRoleQueue | Set-AtwsResourceRoleQueue -ParameterName <Parameter Value>
+Get-AtwsResourceRoleQueue -Id 124 | New-AtwsResourceRoleQueue | Set-AtwsResourceRoleQueue -ParameterName 'Parameter Value'
 Copies [Autotask.ResourceRoleQueue] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsResourceRoleQueue to modify the object.
  .EXAMPLE
-$result = Get-AtwsResourceRoleQueue -Id 124 | New-AtwsResourceRoleQueue | Set-AtwsResourceRoleQueue -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsResourceRoleQueue -Id 124 | New-AtwsResourceRoleQueue | Set-AtwsResourceRoleQueue -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ResourceRoleQueue] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsResourceRoleQueue to modify the object and returns the new object.
 
 .NOTES

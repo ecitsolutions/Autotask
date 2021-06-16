@@ -38,10 +38,10 @@ Creates a new [Autotask.InstalledProductWebhook] through the Web Services API an
 $result = Get-AtwsInstalledProductWebhook -Id 124 | New-AtwsInstalledProductWebhook 
 Copies [Autotask.InstalledProductWebhook] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsInstalledProductWebhook -Id 124 | New-AtwsInstalledProductWebhook | Set-AtwsInstalledProductWebhook -ParameterName <Parameter Value>
+Get-AtwsInstalledProductWebhook -Id 124 | New-AtwsInstalledProductWebhook | Set-AtwsInstalledProductWebhook -ParameterName 'Parameter Value'
 Copies [Autotask.InstalledProductWebhook] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductWebhook to modify the object.
  .EXAMPLE
-$result = Get-AtwsInstalledProductWebhook -Id 124 | New-AtwsInstalledProductWebhook | Set-AtwsInstalledProductWebhook -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsInstalledProductWebhook -Id 124 | New-AtwsInstalledProductWebhook | Set-AtwsInstalledProductWebhook -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.InstalledProductWebhook] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductWebhook to modify the object and returns the new object.
 
 .NOTES

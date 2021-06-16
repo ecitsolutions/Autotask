@@ -37,10 +37,10 @@ Creates a new [Autotask.UserDefinedFieldListItem] through the Web Services API a
 $result = Get-AtwsUserDefinedFieldListItem -Id 124 | New-AtwsUserDefinedFieldListItem 
 Copies [Autotask.UserDefinedFieldListItem] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsUserDefinedFieldListItem -Id 124 | New-AtwsUserDefinedFieldListItem | Set-AtwsUserDefinedFieldListItem -ParameterName <Parameter Value>
+Get-AtwsUserDefinedFieldListItem -Id 124 | New-AtwsUserDefinedFieldListItem | Set-AtwsUserDefinedFieldListItem -ParameterName 'Parameter Value'
 Copies [Autotask.UserDefinedFieldListItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsUserDefinedFieldListItem to modify the object.
  .EXAMPLE
-$result = Get-AtwsUserDefinedFieldListItem -Id 124 | New-AtwsUserDefinedFieldListItem | Set-AtwsUserDefinedFieldListItem -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsUserDefinedFieldListItem -Id 124 | New-AtwsUserDefinedFieldListItem | Set-AtwsUserDefinedFieldListItem -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.UserDefinedFieldListItem] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsUserDefinedFieldListItem to modify the object and returns the new object.
 
 .NOTES

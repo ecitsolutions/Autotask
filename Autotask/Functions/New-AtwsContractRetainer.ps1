@@ -40,10 +40,10 @@ Creates a new [Autotask.ContractRetainer] through the Web Services API and retur
 $result = Get-AtwsContractRetainer -Id 124 | New-AtwsContractRetainer 
 Copies [Autotask.ContractRetainer] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsContractRetainer -Id 124 | New-AtwsContractRetainer | Set-AtwsContractRetainer -ParameterName <Parameter Value>
+Get-AtwsContractRetainer -Id 124 | New-AtwsContractRetainer | Set-AtwsContractRetainer -ParameterName 'Parameter Value'
 Copies [Autotask.ContractRetainer] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractRetainer to modify the object.
  .EXAMPLE
-$result = Get-AtwsContractRetainer -Id 124 | New-AtwsContractRetainer | Set-AtwsContractRetainer -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsContractRetainer -Id 124 | New-AtwsContractRetainer | Set-AtwsContractRetainer -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ContractRetainer] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractRetainer to modify the object and returns the new object.
 
 .NOTES

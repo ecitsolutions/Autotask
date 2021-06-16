@@ -58,20 +58,20 @@ Returns any object with a TicketCostName that matches the simple pattern 'SomeNa
 Get-AtwsTicketCost -TicketCostName SomeName* -NotLike TicketCostName
 Returns any object with a TicketCostName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsTicketCost -CostType <PickList Label>
-Returns any TicketCosts with property CostType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsTicketCost -CostType 'PickList Label'
+Returns any TicketCosts with property CostType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsTicketCost -CostType <PickList Label> -NotEquals CostType 
-Returns any TicketCosts with property CostType NOT equal to the <PickList Label>.
+Get-AtwsTicketCost -CostType 'PickList Label' -NotEquals CostType 
+Returns any TicketCosts with property CostType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsTicketCost -CostType <PickList Label1>, <PickList Label2>
-Returns any TicketCosts with property CostType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsTicketCost -CostType 'PickList Label1', 'PickList Label2'
+Returns any TicketCosts with property CostType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTicketCost -CostType <PickList Label1>, <PickList Label2> -NotEquals CostType
-Returns any TicketCosts with property CostType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTicketCost -CostType 'PickList Label1', 'PickList Label2' -NotEquals CostType
+Returns any TicketCosts with property CostType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTicketCost -Id 1234 -TicketCostName SomeName* -CostType <PickList Label1>, <PickList Label2> -Like TicketCostName -NotEquals CostType -GreaterThan Id
-An example of a more complex query. This command returns any TicketCosts with Id GREATER THAN 1234, a TicketCostName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTicketCost -Id 1234 -TicketCostName SomeName* -CostType 'PickList Label1', 'PickList Label2' -Like TicketCostName -NotEquals CostType -GreaterThan Id
+An example of a more complex query. This command returns any TicketCosts with Id GREATER THAN 1234, a TicketCostName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

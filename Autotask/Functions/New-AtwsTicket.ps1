@@ -38,10 +38,10 @@ Creates a new [Autotask.Ticket] through the Web Services API and returns the new
 $result = Get-AtwsTicket -Id 124 | New-AtwsTicket 
 Copies [Autotask.Ticket] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTicket -Id 124 | New-AtwsTicket | Set-AtwsTicket -ParameterName <Parameter Value>
+Get-AtwsTicket -Id 124 | New-AtwsTicket | Set-AtwsTicket -ParameterName 'Parameter Value'
 Copies [Autotask.Ticket] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicket to modify the object.
  .EXAMPLE
-$result = Get-AtwsTicket -Id 124 | New-AtwsTicket | Set-AtwsTicket -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTicket -Id 124 | New-AtwsTicket | Set-AtwsTicket -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.Ticket] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicket to modify the object and returns the new object.
 
 .NOTES

@@ -60,20 +60,20 @@ Returns any object with a ProjectName that matches the simple pattern 'SomeName*
 Get-AtwsProject -ProjectName SomeName* -NotLike ProjectName
 Returns any object with a ProjectName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsProject -Type <PickList Label>
-Returns any Projects with property Type equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsProject -Type 'PickList Label'
+Returns any Projects with property Type equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsProject -Type <PickList Label> -NotEquals Type 
-Returns any Projects with property Type NOT equal to the <PickList Label>.
+Get-AtwsProject -Type 'PickList Label' -NotEquals Type 
+Returns any Projects with property Type NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsProject -Type <PickList Label1>, <PickList Label2>
-Returns any Projects with property Type equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsProject -Type 'PickList Label1', 'PickList Label2'
+Returns any Projects with property Type equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsProject -Type <PickList Label1>, <PickList Label2> -NotEquals Type
-Returns any Projects with property Type NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsProject -Type 'PickList Label1', 'PickList Label2' -NotEquals Type
+Returns any Projects with property Type NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsProject -Id 1234 -ProjectName SomeName* -Type <PickList Label1>, <PickList Label2> -Like ProjectName -NotEquals Type -GreaterThan Id
-An example of a more complex query. This command returns any Projects with Id GREATER THAN 1234, a ProjectName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsProject -Id 1234 -ProjectName SomeName* -Type 'PickList Label1', 'PickList Label2' -Like ProjectName -NotEquals Type -GreaterThan Id
+An example of a more complex query. This command returns any Projects with Id GREATER THAN 1234, a ProjectName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

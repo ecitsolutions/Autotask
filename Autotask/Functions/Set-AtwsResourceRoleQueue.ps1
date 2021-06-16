@@ -25,16 +25,16 @@ Nothing or [Autotask.ResourceRoleQueue]. This function optionally returns the up
 Set-AtwsResourceRoleQueue -InputObject $ResourceRoleQueue [-ParameterName] [Parameter value]
 Passes one or more [Autotask.ResourceRoleQueue] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
  .EXAMPLE
-$ResourceRoleQueue | Set-AtwsResourceRoleQueue -ParameterName <Parameter value>
+$ResourceRoleQueue | Set-AtwsResourceRoleQueue -ParameterName 'Parameter value'
 Same as the first example, but now the objects are passed to the funtion through the pipeline, not passed as a parameter. The end result is identical.
  .EXAMPLE
-Get-AtwsResourceRoleQueue -Id 0 | Set-AtwsResourceRoleQueue -ParameterName <Parameter value>
+Get-AtwsResourceRoleQueue -Id 0 | Set-AtwsResourceRoleQueue -ParameterName 'Parameter value'
 Gets the instance with Id 0 directly from the Web Services API, modifies a parameter and updates Autotask. This approach works with all valid parameters for the Get function.
  .EXAMPLE
-Get-AtwsResourceRoleQueue -Id 0,4,8 | Set-AtwsResourceRoleQueue -ParameterName <Parameter value>
+Get-AtwsResourceRoleQueue -Id 0,4,8 | Set-AtwsResourceRoleQueue -ParameterName 'Parameter value'
 Gets multiple instances by Id, modifies them all and updates Autotask.
  .EXAMPLE
-$result = Get-AtwsResourceRoleQueue -Id 0,4,8 | Set-AtwsResourceRoleQueue -ParameterName <Parameter value> -PassThru
+$result = Get-AtwsResourceRoleQueue -Id 0,4,8 | Set-AtwsResourceRoleQueue -ParameterName 'Parameter value' -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
 .NOTES

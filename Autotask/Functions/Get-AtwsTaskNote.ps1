@@ -58,20 +58,20 @@ Returns any object with a TaskNoteName that matches the simple pattern 'SomeName
 Get-AtwsTaskNote -TaskNoteName SomeName* -NotLike TaskNoteName
 Returns any object with a TaskNoteName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsTaskNote -NoteType <PickList Label>
-Returns any TaskNotes with property NoteType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsTaskNote -NoteType 'PickList Label'
+Returns any TaskNotes with property NoteType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsTaskNote -NoteType <PickList Label> -NotEquals NoteType 
-Returns any TaskNotes with property NoteType NOT equal to the <PickList Label>.
+Get-AtwsTaskNote -NoteType 'PickList Label' -NotEquals NoteType 
+Returns any TaskNotes with property NoteType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsTaskNote -NoteType <PickList Label1>, <PickList Label2>
-Returns any TaskNotes with property NoteType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsTaskNote -NoteType 'PickList Label1', 'PickList Label2'
+Returns any TaskNotes with property NoteType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTaskNote -NoteType <PickList Label1>, <PickList Label2> -NotEquals NoteType
-Returns any TaskNotes with property NoteType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTaskNote -NoteType 'PickList Label1', 'PickList Label2' -NotEquals NoteType
+Returns any TaskNotes with property NoteType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTaskNote -Id 1234 -TaskNoteName SomeName* -NoteType <PickList Label1>, <PickList Label2> -Like TaskNoteName -NotEquals NoteType -GreaterThan Id
-An example of a more complex query. This command returns any TaskNotes with Id GREATER THAN 1234, a TaskNoteName that matches the simple pattern SomeName* AND that has a NoteType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTaskNote -Id 1234 -TaskNoteName SomeName* -NoteType 'PickList Label1', 'PickList Label2' -Like TaskNoteName -NotEquals NoteType -GreaterThan Id
+An example of a more complex query. This command returns any TaskNotes with Id GREATER THAN 1234, a TaskNoteName that matches the simple pattern SomeName* AND that has a NoteType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

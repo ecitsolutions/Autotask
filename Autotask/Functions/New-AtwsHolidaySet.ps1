@@ -35,10 +35,10 @@ Creates a new [Autotask.HolidaySet] through the Web Services API and returns the
 $result = Get-AtwsHolidaySet -Id 124 | New-AtwsHolidaySet 
 Copies [Autotask.HolidaySet] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsHolidaySet -Id 124 | New-AtwsHolidaySet | Set-AtwsHolidaySet -ParameterName <Parameter Value>
+Get-AtwsHolidaySet -Id 124 | New-AtwsHolidaySet | Set-AtwsHolidaySet -ParameterName 'Parameter Value'
 Copies [Autotask.HolidaySet] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsHolidaySet to modify the object.
  .EXAMPLE
-$result = Get-AtwsHolidaySet -Id 124 | New-AtwsHolidaySet | Set-AtwsHolidaySet -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsHolidaySet -Id 124 | New-AtwsHolidaySet | Set-AtwsHolidaySet -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.HolidaySet] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsHolidaySet to modify the object and returns the new object.
 
 .NOTES

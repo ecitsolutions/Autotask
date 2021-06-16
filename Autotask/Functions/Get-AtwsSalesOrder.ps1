@@ -57,20 +57,20 @@ Returns any object with a SalesOrderName that matches the simple pattern 'SomeNa
 Get-AtwsSalesOrder -SalesOrderName SomeName* -NotLike SalesOrderName
 Returns any object with a SalesOrderName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsSalesOrder -Status <PickList Label>
-Returns any SalesOrders with property Status equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsSalesOrder -Status 'PickList Label'
+Returns any SalesOrders with property Status equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsSalesOrder -Status <PickList Label> -NotEquals Status 
-Returns any SalesOrders with property Status NOT equal to the <PickList Label>.
+Get-AtwsSalesOrder -Status 'PickList Label' -NotEquals Status 
+Returns any SalesOrders with property Status NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsSalesOrder -Status <PickList Label1>, <PickList Label2>
-Returns any SalesOrders with property Status equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsSalesOrder -Status 'PickList Label1', 'PickList Label2'
+Returns any SalesOrders with property Status equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsSalesOrder -Status <PickList Label1>, <PickList Label2> -NotEquals Status
-Returns any SalesOrders with property Status NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsSalesOrder -Status 'PickList Label1', 'PickList Label2' -NotEquals Status
+Returns any SalesOrders with property Status NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsSalesOrder -Id 1234 -SalesOrderName SomeName* -Status <PickList Label1>, <PickList Label2> -Like SalesOrderName -NotEquals Status -GreaterThan Id
-An example of a more complex query. This command returns any SalesOrders with Id GREATER THAN 1234, a SalesOrderName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsSalesOrder -Id 1234 -SalesOrderName SomeName* -Status 'PickList Label1', 'PickList Label2' -Like SalesOrderName -NotEquals Status -GreaterThan Id
+An example of a more complex query. This command returns any SalesOrders with Id GREATER THAN 1234, a SalesOrderName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

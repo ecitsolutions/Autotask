@@ -63,20 +63,20 @@ Returns any object with a ContractName that matches the simple pattern 'SomeName
 Get-AtwsContract -ContractName SomeName* -NotLike ContractName
 Returns any object with a ContractName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsContract -BillingPreference <PickList Label>
-Returns any Contracts with property BillingPreference equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsContract -BillingPreference 'PickList Label'
+Returns any Contracts with property BillingPreference equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsContract -BillingPreference <PickList Label> -NotEquals BillingPreference 
-Returns any Contracts with property BillingPreference NOT equal to the <PickList Label>.
+Get-AtwsContract -BillingPreference 'PickList Label' -NotEquals BillingPreference 
+Returns any Contracts with property BillingPreference NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsContract -BillingPreference <PickList Label1>, <PickList Label2>
-Returns any Contracts with property BillingPreference equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsContract -BillingPreference 'PickList Label1', 'PickList Label2'
+Returns any Contracts with property BillingPreference equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsContract -BillingPreference <PickList Label1>, <PickList Label2> -NotEquals BillingPreference
-Returns any Contracts with property BillingPreference NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContract -BillingPreference 'PickList Label1', 'PickList Label2' -NotEquals BillingPreference
+Returns any Contracts with property BillingPreference NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsContract -Id 1234 -ContractName SomeName* -BillingPreference <PickList Label1>, <PickList Label2> -Like ContractName -NotEquals BillingPreference -GreaterThan Id
-An example of a more complex query. This command returns any Contracts with Id GREATER THAN 1234, a ContractName that matches the simple pattern SomeName* AND that has a BillingPreference that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContract -Id 1234 -ContractName SomeName* -BillingPreference 'PickList Label1', 'PickList Label2' -Like ContractName -NotEquals BillingPreference -GreaterThan Id
+An example of a more complex query. This command returns any Contracts with Id GREATER THAN 1234, a ContractName that matches the simple pattern SomeName* AND that has a BillingPreference that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

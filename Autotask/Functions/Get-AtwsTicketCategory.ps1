@@ -57,20 +57,20 @@ Returns any object with a TicketCategoryName that matches the simple pattern 'So
 Get-AtwsTicketCategory -TicketCategoryName SomeName* -NotLike TicketCategoryName
 Returns any object with a TicketCategoryName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsTicketCategory -DisplayColorRGB <PickList Label>
-Returns any TicketCategorys with property DisplayColorRGB equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsTicketCategory -DisplayColorRGB 'PickList Label'
+Returns any TicketCategorys with property DisplayColorRGB equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsTicketCategory -DisplayColorRGB <PickList Label> -NotEquals DisplayColorRGB 
-Returns any TicketCategorys with property DisplayColorRGB NOT equal to the <PickList Label>.
+Get-AtwsTicketCategory -DisplayColorRGB 'PickList Label' -NotEquals DisplayColorRGB 
+Returns any TicketCategorys with property DisplayColorRGB NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsTicketCategory -DisplayColorRGB <PickList Label1>, <PickList Label2>
-Returns any TicketCategorys with property DisplayColorRGB equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsTicketCategory -DisplayColorRGB 'PickList Label1', 'PickList Label2'
+Returns any TicketCategorys with property DisplayColorRGB equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTicketCategory -DisplayColorRGB <PickList Label1>, <PickList Label2> -NotEquals DisplayColorRGB
-Returns any TicketCategorys with property DisplayColorRGB NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTicketCategory -DisplayColorRGB 'PickList Label1', 'PickList Label2' -NotEquals DisplayColorRGB
+Returns any TicketCategorys with property DisplayColorRGB NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTicketCategory -Id 1234 -TicketCategoryName SomeName* -DisplayColorRGB <PickList Label1>, <PickList Label2> -Like TicketCategoryName -NotEquals DisplayColorRGB -GreaterThan Id
-An example of a more complex query. This command returns any TicketCategorys with Id GREATER THAN 1234, a TicketCategoryName that matches the simple pattern SomeName* AND that has a DisplayColorRGB that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTicketCategory -Id 1234 -TicketCategoryName SomeName* -DisplayColorRGB 'PickList Label1', 'PickList Label2' -Like TicketCategoryName -NotEquals DisplayColorRGB -GreaterThan Id
+An example of a more complex query. This command returns any TicketCategorys with Id GREATER THAN 1234, a TicketCategoryName that matches the simple pattern SomeName* AND that has a DisplayColorRGB that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

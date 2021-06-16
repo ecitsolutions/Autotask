@@ -37,10 +37,10 @@ Creates a new [Autotask.ContractNote] through the Web Services API and returns t
 $result = Get-AtwsContractNote -Id 124 | New-AtwsContractNote 
 Copies [Autotask.ContractNote] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsContractNote -Id 124 | New-AtwsContractNote | Set-AtwsContractNote -ParameterName <Parameter Value>
+Get-AtwsContractNote -Id 124 | New-AtwsContractNote | Set-AtwsContractNote -ParameterName 'Parameter Value'
 Copies [Autotask.ContractNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractNote to modify the object.
  .EXAMPLE
-$result = Get-AtwsContractNote -Id 124 | New-AtwsContractNote | Set-AtwsContractNote -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsContractNote -Id 124 | New-AtwsContractNote | Set-AtwsContractNote -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ContractNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractNote to modify the object and returns the new object.
 
 .NOTES

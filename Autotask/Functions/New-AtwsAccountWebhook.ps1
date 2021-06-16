@@ -40,10 +40,10 @@ Creates a new [Autotask.AccountWebhook] through the Web Services API and returns
 $result = Get-AtwsAccountWebhook -Id 124 | New-AtwsAccountWebhook 
 Copies [Autotask.AccountWebhook] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsAccountWebhook -Id 124 | New-AtwsAccountWebhook | Set-AtwsAccountWebhook -ParameterName <Parameter Value>
+Get-AtwsAccountWebhook -Id 124 | New-AtwsAccountWebhook | Set-AtwsAccountWebhook -ParameterName 'Parameter Value'
 Copies [Autotask.AccountWebhook] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountWebhook to modify the object.
  .EXAMPLE
-$result = Get-AtwsAccountWebhook -Id 124 | New-AtwsAccountWebhook | Set-AtwsAccountWebhook -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsAccountWebhook -Id 124 | New-AtwsAccountWebhook | Set-AtwsAccountWebhook -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.AccountWebhook] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountWebhook to modify the object and returns the new object.
 
 .NOTES

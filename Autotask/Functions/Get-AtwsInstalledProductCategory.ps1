@@ -57,20 +57,20 @@ Returns any object with a InstalledProductCategoryName that matches the simple p
 Get-AtwsInstalledProductCategory -InstalledProductCategoryName SomeName* -NotLike InstalledProductCategoryName
 Returns any object with a InstalledProductCategoryName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInstalledProductCategory -DisplayColorRGB <PickList Label>
-Returns any InstalledProductCategorys with property DisplayColorRGB equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsInstalledProductCategory -DisplayColorRGB 'PickList Label'
+Returns any InstalledProductCategorys with property DisplayColorRGB equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsInstalledProductCategory -DisplayColorRGB <PickList Label> -NotEquals DisplayColorRGB 
-Returns any InstalledProductCategorys with property DisplayColorRGB NOT equal to the <PickList Label>.
+Get-AtwsInstalledProductCategory -DisplayColorRGB 'PickList Label' -NotEquals DisplayColorRGB 
+Returns any InstalledProductCategorys with property DisplayColorRGB NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsInstalledProductCategory -DisplayColorRGB <PickList Label1>, <PickList Label2>
-Returns any InstalledProductCategorys with property DisplayColorRGB equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsInstalledProductCategory -DisplayColorRGB 'PickList Label1', 'PickList Label2'
+Returns any InstalledProductCategorys with property DisplayColorRGB equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInstalledProductCategory -DisplayColorRGB <PickList Label1>, <PickList Label2> -NotEquals DisplayColorRGB
-Returns any InstalledProductCategorys with property DisplayColorRGB NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInstalledProductCategory -DisplayColorRGB 'PickList Label1', 'PickList Label2' -NotEquals DisplayColorRGB
+Returns any InstalledProductCategorys with property DisplayColorRGB NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInstalledProductCategory -Id 1234 -InstalledProductCategoryName SomeName* -DisplayColorRGB <PickList Label1>, <PickList Label2> -Like InstalledProductCategoryName -NotEquals DisplayColorRGB -GreaterThan Id
-An example of a more complex query. This command returns any InstalledProductCategorys with Id GREATER THAN 1234, a InstalledProductCategoryName that matches the simple pattern SomeName* AND that has a DisplayColorRGB that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInstalledProductCategory -Id 1234 -InstalledProductCategoryName SomeName* -DisplayColorRGB 'PickList Label1', 'PickList Label2' -Like InstalledProductCategoryName -NotEquals DisplayColorRGB -GreaterThan Id
+An example of a more complex query. This command returns any InstalledProductCategorys with Id GREATER THAN 1234, a InstalledProductCategoryName that matches the simple pattern SomeName* AND that has a DisplayColorRGB that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

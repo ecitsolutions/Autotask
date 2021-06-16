@@ -39,10 +39,10 @@ Creates a new [Autotask.TicketCost] through the Web Services API and returns the
 $result = Get-AtwsTicketCost -Id 124 | New-AtwsTicketCost 
 Copies [Autotask.TicketCost] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTicketCost -Id 124 | New-AtwsTicketCost | Set-AtwsTicketCost -ParameterName <Parameter Value>
+Get-AtwsTicketCost -Id 124 | New-AtwsTicketCost | Set-AtwsTicketCost -ParameterName 'Parameter Value'
 Copies [Autotask.TicketCost] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketCost to modify the object.
  .EXAMPLE
-$result = Get-AtwsTicketCost -Id 124 | New-AtwsTicketCost | Set-AtwsTicketCost -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTicketCost -Id 124 | New-AtwsTicketCost | Set-AtwsTicketCost -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TicketCost] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketCost to modify the object and returns the new object.
 
 .NOTES

@@ -38,10 +38,10 @@ Creates a new [Autotask.TaskNote] through the Web Services API and returns the n
 $result = Get-AtwsTaskNote -Id 124 | New-AtwsTaskNote 
 Copies [Autotask.TaskNote] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTaskNote -Id 124 | New-AtwsTaskNote | Set-AtwsTaskNote -ParameterName <Parameter Value>
+Get-AtwsTaskNote -Id 124 | New-AtwsTaskNote | Set-AtwsTaskNote -ParameterName 'Parameter Value'
 Copies [Autotask.TaskNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaskNote to modify the object.
  .EXAMPLE
-$result = Get-AtwsTaskNote -Id 124 | New-AtwsTaskNote | Set-AtwsTaskNote -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTaskNote -Id 124 | New-AtwsTaskNote | Set-AtwsTaskNote -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TaskNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTaskNote to modify the object and returns the new object.
 
 .NOTES

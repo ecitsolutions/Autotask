@@ -58,20 +58,20 @@ Returns any object with a QuoteItemName that matches the simple pattern 'SomeNam
 Get-AtwsQuoteItem -QuoteItemName SomeName* -NotLike QuoteItemName
 Returns any object with a QuoteItemName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsQuoteItem -Type <PickList Label>
-Returns any QuoteItems with property Type equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsQuoteItem -Type 'PickList Label'
+Returns any QuoteItems with property Type equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsQuoteItem -Type <PickList Label> -NotEquals Type 
-Returns any QuoteItems with property Type NOT equal to the <PickList Label>.
+Get-AtwsQuoteItem -Type 'PickList Label' -NotEquals Type 
+Returns any QuoteItems with property Type NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsQuoteItem -Type <PickList Label1>, <PickList Label2>
-Returns any QuoteItems with property Type equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsQuoteItem -Type 'PickList Label1', 'PickList Label2'
+Returns any QuoteItems with property Type equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsQuoteItem -Type <PickList Label1>, <PickList Label2> -NotEquals Type
-Returns any QuoteItems with property Type NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsQuoteItem -Type 'PickList Label1', 'PickList Label2' -NotEquals Type
+Returns any QuoteItems with property Type NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsQuoteItem -Id 1234 -QuoteItemName SomeName* -Type <PickList Label1>, <PickList Label2> -Like QuoteItemName -NotEquals Type -GreaterThan Id
-An example of a more complex query. This command returns any QuoteItems with Id GREATER THAN 1234, a QuoteItemName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsQuoteItem -Id 1234 -QuoteItemName SomeName* -Type 'PickList Label1', 'PickList Label2' -Like QuoteItemName -NotEquals Type -GreaterThan Id
+An example of a more complex query. This command returns any QuoteItems with Id GREATER THAN 1234, a QuoteItemName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

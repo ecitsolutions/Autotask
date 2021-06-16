@@ -57,20 +57,20 @@ Returns any object with a ChecklistLibraryChecklistItemName that matches the sim
 Get-AtwsChecklistLibraryChecklistItem -ChecklistLibraryChecklistItemName SomeName* -NotLike ChecklistLibraryChecklistItemName
 Returns any object with a ChecklistLibraryChecklistItemName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsChecklistLibraryChecklistItem -KnowledgebaseArticleID <PickList Label>
-Returns any ChecklistLibraryChecklistItems with property KnowledgebaseArticleID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsChecklistLibraryChecklistItem -KnowledgebaseArticleID 'PickList Label'
+Returns any ChecklistLibraryChecklistItems with property KnowledgebaseArticleID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsChecklistLibraryChecklistItem -KnowledgebaseArticleID <PickList Label> -NotEquals KnowledgebaseArticleID 
-Returns any ChecklistLibraryChecklistItems with property KnowledgebaseArticleID NOT equal to the <PickList Label>.
+Get-AtwsChecklistLibraryChecklistItem -KnowledgebaseArticleID 'PickList Label' -NotEquals KnowledgebaseArticleID 
+Returns any ChecklistLibraryChecklistItems with property KnowledgebaseArticleID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsChecklistLibraryChecklistItem -KnowledgebaseArticleID <PickList Label1>, <PickList Label2>
-Returns any ChecklistLibraryChecklistItems with property KnowledgebaseArticleID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsChecklistLibraryChecklistItem -KnowledgebaseArticleID 'PickList Label1', 'PickList Label2'
+Returns any ChecklistLibraryChecklistItems with property KnowledgebaseArticleID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsChecklistLibraryChecklistItem -KnowledgebaseArticleID <PickList Label1>, <PickList Label2> -NotEquals KnowledgebaseArticleID
-Returns any ChecklistLibraryChecklistItems with property KnowledgebaseArticleID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsChecklistLibraryChecklistItem -KnowledgebaseArticleID 'PickList Label1', 'PickList Label2' -NotEquals KnowledgebaseArticleID
+Returns any ChecklistLibraryChecklistItems with property KnowledgebaseArticleID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsChecklistLibraryChecklistItem -Id 1234 -ChecklistLibraryChecklistItemName SomeName* -KnowledgebaseArticleID <PickList Label1>, <PickList Label2> -Like ChecklistLibraryChecklistItemName -NotEquals KnowledgebaseArticleID -GreaterThan Id
-An example of a more complex query. This command returns any ChecklistLibraryChecklistItems with Id GREATER THAN 1234, a ChecklistLibraryChecklistItemName that matches the simple pattern SomeName* AND that has a KnowledgebaseArticleID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsChecklistLibraryChecklistItem -Id 1234 -ChecklistLibraryChecklistItemName SomeName* -KnowledgebaseArticleID 'PickList Label1', 'PickList Label2' -Like ChecklistLibraryChecklistItemName -NotEquals KnowledgebaseArticleID -GreaterThan Id
+An example of a more complex query. This command returns any ChecklistLibraryChecklistItems with Id GREATER THAN 1234, a ChecklistLibraryChecklistItemName that matches the simple pattern SomeName* AND that has a KnowledgebaseArticleID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

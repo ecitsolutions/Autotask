@@ -78,20 +78,20 @@ Returns any object with a InstalledProductName that matches the simple pattern '
 Get-AtwsInstalledProduct -InstalledProductName SomeName* -NotLike InstalledProductName
 Returns any object with a InstalledProductName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInstalledProduct -Type <PickList Label>
-Returns any InstalledProducts with property Type equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsInstalledProduct -Type 'PickList Label'
+Returns any InstalledProducts with property Type equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsInstalledProduct -Type <PickList Label> -NotEquals Type 
-Returns any InstalledProducts with property Type NOT equal to the <PickList Label>.
+Get-AtwsInstalledProduct -Type 'PickList Label' -NotEquals Type 
+Returns any InstalledProducts with property Type NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsInstalledProduct -Type <PickList Label1>, <PickList Label2>
-Returns any InstalledProducts with property Type equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsInstalledProduct -Type 'PickList Label1', 'PickList Label2'
+Returns any InstalledProducts with property Type equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInstalledProduct -Type <PickList Label1>, <PickList Label2> -NotEquals Type
-Returns any InstalledProducts with property Type NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInstalledProduct -Type 'PickList Label1', 'PickList Label2' -NotEquals Type
+Returns any InstalledProducts with property Type NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInstalledProduct -Id 1234 -InstalledProductName SomeName* -Type <PickList Label1>, <PickList Label2> -Like InstalledProductName -NotEquals Type -GreaterThan Id
-An example of a more complex query. This command returns any InstalledProducts with Id GREATER THAN 1234, a InstalledProductName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInstalledProduct -Id 1234 -InstalledProductName SomeName* -Type 'PickList Label1', 'PickList Label2' -Like InstalledProductName -NotEquals Type -GreaterThan Id
+An example of a more complex query. This command returns any InstalledProducts with Id GREATER THAN 1234, a InstalledProductName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

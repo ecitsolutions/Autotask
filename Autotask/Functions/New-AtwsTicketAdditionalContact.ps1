@@ -36,10 +36,10 @@ Creates a new [Autotask.TicketAdditionalContact] through the Web Services API an
 $result = Get-AtwsTicketAdditionalContact -Id 124 | New-AtwsTicketAdditionalContact 
 Copies [Autotask.TicketAdditionalContact] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTicketAdditionalContact -Id 124 | New-AtwsTicketAdditionalContact | Set-AtwsTicketAdditionalContact -ParameterName <Parameter Value>
+Get-AtwsTicketAdditionalContact -Id 124 | New-AtwsTicketAdditionalContact | Set-AtwsTicketAdditionalContact -ParameterName 'Parameter Value'
 Copies [Autotask.TicketAdditionalContact] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketAdditionalContact to modify the object.
  .EXAMPLE
-$result = Get-AtwsTicketAdditionalContact -Id 124 | New-AtwsTicketAdditionalContact | Set-AtwsTicketAdditionalContact -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTicketAdditionalContact -Id 124 | New-AtwsTicketAdditionalContact | Set-AtwsTicketAdditionalContact -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TicketAdditionalContact] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketAdditionalContact to modify the object and returns the new object.
 
 .NOTES

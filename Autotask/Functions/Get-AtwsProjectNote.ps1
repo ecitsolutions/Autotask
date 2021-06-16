@@ -58,20 +58,20 @@ Returns any object with a ProjectNoteName that matches the simple pattern 'SomeN
 Get-AtwsProjectNote -ProjectNoteName SomeName* -NotLike ProjectNoteName
 Returns any object with a ProjectNoteName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsProjectNote -NoteType <PickList Label>
-Returns any ProjectNotes with property NoteType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsProjectNote -NoteType 'PickList Label'
+Returns any ProjectNotes with property NoteType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsProjectNote -NoteType <PickList Label> -NotEquals NoteType 
-Returns any ProjectNotes with property NoteType NOT equal to the <PickList Label>.
+Get-AtwsProjectNote -NoteType 'PickList Label' -NotEquals NoteType 
+Returns any ProjectNotes with property NoteType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsProjectNote -NoteType <PickList Label1>, <PickList Label2>
-Returns any ProjectNotes with property NoteType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsProjectNote -NoteType 'PickList Label1', 'PickList Label2'
+Returns any ProjectNotes with property NoteType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsProjectNote -NoteType <PickList Label1>, <PickList Label2> -NotEquals NoteType
-Returns any ProjectNotes with property NoteType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsProjectNote -NoteType 'PickList Label1', 'PickList Label2' -NotEquals NoteType
+Returns any ProjectNotes with property NoteType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsProjectNote -Id 1234 -ProjectNoteName SomeName* -NoteType <PickList Label1>, <PickList Label2> -Like ProjectNoteName -NotEquals NoteType -GreaterThan Id
-An example of a more complex query. This command returns any ProjectNotes with Id GREATER THAN 1234, a ProjectNoteName that matches the simple pattern SomeName* AND that has a NoteType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsProjectNote -Id 1234 -ProjectNoteName SomeName* -NoteType 'PickList Label1', 'PickList Label2' -Like ProjectNoteName -NotEquals NoteType -GreaterThan Id
+An example of a more complex query. This command returns any ProjectNotes with Id GREATER THAN 1234, a ProjectNoteName that matches the simple pattern SomeName* AND that has a NoteType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

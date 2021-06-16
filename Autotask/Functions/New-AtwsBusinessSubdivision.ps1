@@ -35,10 +35,10 @@ Creates a new [Autotask.BusinessSubdivision] through the Web Services API and re
 $result = Get-AtwsBusinessSubdivision -Id 124 | New-AtwsBusinessSubdivision 
 Copies [Autotask.BusinessSubdivision] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsBusinessSubdivision -Id 124 | New-AtwsBusinessSubdivision | Set-AtwsBusinessSubdivision -ParameterName <Parameter Value>
+Get-AtwsBusinessSubdivision -Id 124 | New-AtwsBusinessSubdivision | Set-AtwsBusinessSubdivision -ParameterName 'Parameter Value'
 Copies [Autotask.BusinessSubdivision] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsBusinessSubdivision to modify the object.
  .EXAMPLE
-$result = Get-AtwsBusinessSubdivision -Id 124 | New-AtwsBusinessSubdivision | Set-AtwsBusinessSubdivision -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsBusinessSubdivision -Id 124 | New-AtwsBusinessSubdivision | Set-AtwsBusinessSubdivision -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.BusinessSubdivision] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsBusinessSubdivision to modify the object and returns the new object.
 
 .NOTES

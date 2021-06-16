@@ -38,10 +38,10 @@ Creates a new [Autotask.Appointment] through the Web Services API and returns th
 $result = Get-AtwsAppointment -Id 124 | New-AtwsAppointment 
 Copies [Autotask.Appointment] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsAppointment -Id 124 | New-AtwsAppointment | Set-AtwsAppointment -ParameterName <Parameter Value>
+Get-AtwsAppointment -Id 124 | New-AtwsAppointment | Set-AtwsAppointment -ParameterName 'Parameter Value'
 Copies [Autotask.Appointment] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAppointment to modify the object.
  .EXAMPLE
-$result = Get-AtwsAppointment -Id 124 | New-AtwsAppointment | Set-AtwsAppointment -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsAppointment -Id 124 | New-AtwsAppointment | Set-AtwsAppointment -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.Appointment] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAppointment to modify the object and returns the new object.
 
 .NOTES

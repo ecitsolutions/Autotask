@@ -58,20 +58,20 @@ Returns any object with a ServiceName that matches the simple pattern 'SomeName*
 Get-AtwsService -ServiceName SomeName* -NotLike ServiceName
 Returns any object with a ServiceName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsService -PeriodType <PickList Label>
-Returns any Services with property PeriodType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsService -PeriodType 'PickList Label'
+Returns any Services with property PeriodType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsService -PeriodType <PickList Label> -NotEquals PeriodType 
-Returns any Services with property PeriodType NOT equal to the <PickList Label>.
+Get-AtwsService -PeriodType 'PickList Label' -NotEquals PeriodType 
+Returns any Services with property PeriodType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsService -PeriodType <PickList Label1>, <PickList Label2>
-Returns any Services with property PeriodType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsService -PeriodType 'PickList Label1', 'PickList Label2'
+Returns any Services with property PeriodType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsService -PeriodType <PickList Label1>, <PickList Label2> -NotEquals PeriodType
-Returns any Services with property PeriodType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsService -PeriodType 'PickList Label1', 'PickList Label2' -NotEquals PeriodType
+Returns any Services with property PeriodType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsService -Id 1234 -ServiceName SomeName* -PeriodType <PickList Label1>, <PickList Label2> -Like ServiceName -NotEquals PeriodType -GreaterThan Id
-An example of a more complex query. This command returns any Services with Id GREATER THAN 1234, a ServiceName that matches the simple pattern SomeName* AND that has a PeriodType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsService -Id 1234 -ServiceName SomeName* -PeriodType 'PickList Label1', 'PickList Label2' -Like ServiceName -NotEquals PeriodType -GreaterThan Id
+An example of a more complex query. This command returns any Services with Id GREATER THAN 1234, a ServiceName that matches the simple pattern SomeName* AND that has a PeriodType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

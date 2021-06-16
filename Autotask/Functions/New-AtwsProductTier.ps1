@@ -37,10 +37,10 @@ Creates a new [Autotask.ProductTier] through the Web Services API and returns th
 $result = Get-AtwsProductTier -Id 124 | New-AtwsProductTier 
 Copies [Autotask.ProductTier] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsProductTier -Id 124 | New-AtwsProductTier | Set-AtwsProductTier -ParameterName <Parameter Value>
+Get-AtwsProductTier -Id 124 | New-AtwsProductTier | Set-AtwsProductTier -ParameterName 'Parameter Value'
 Copies [Autotask.ProductTier] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProductTier to modify the object.
  .EXAMPLE
-$result = Get-AtwsProductTier -Id 124 | New-AtwsProductTier | Set-AtwsProductTier -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsProductTier -Id 124 | New-AtwsProductTier | Set-AtwsProductTier -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ProductTier] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProductTier to modify the object and returns the new object.
 
 .NOTES

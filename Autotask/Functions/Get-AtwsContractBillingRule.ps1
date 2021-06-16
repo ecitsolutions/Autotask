@@ -58,20 +58,20 @@ Returns any object with a ContractBillingRuleName that matches the simple patter
 Get-AtwsContractBillingRule -ContractBillingRuleName SomeName* -NotLike ContractBillingRuleName
 Returns any object with a ContractBillingRuleName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsContractBillingRule -DetermineUnits <PickList Label>
-Returns any ContractBillingRules with property DetermineUnits equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsContractBillingRule -DetermineUnits 'PickList Label'
+Returns any ContractBillingRules with property DetermineUnits equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsContractBillingRule -DetermineUnits <PickList Label> -NotEquals DetermineUnits 
-Returns any ContractBillingRules with property DetermineUnits NOT equal to the <PickList Label>.
+Get-AtwsContractBillingRule -DetermineUnits 'PickList Label' -NotEquals DetermineUnits 
+Returns any ContractBillingRules with property DetermineUnits NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsContractBillingRule -DetermineUnits <PickList Label1>, <PickList Label2>
-Returns any ContractBillingRules with property DetermineUnits equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsContractBillingRule -DetermineUnits 'PickList Label1', 'PickList Label2'
+Returns any ContractBillingRules with property DetermineUnits equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsContractBillingRule -DetermineUnits <PickList Label1>, <PickList Label2> -NotEquals DetermineUnits
-Returns any ContractBillingRules with property DetermineUnits NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContractBillingRule -DetermineUnits 'PickList Label1', 'PickList Label2' -NotEquals DetermineUnits
+Returns any ContractBillingRules with property DetermineUnits NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsContractBillingRule -Id 1234 -ContractBillingRuleName SomeName* -DetermineUnits <PickList Label1>, <PickList Label2> -Like ContractBillingRuleName -NotEquals DetermineUnits -GreaterThan Id
-An example of a more complex query. This command returns any ContractBillingRules with Id GREATER THAN 1234, a ContractBillingRuleName that matches the simple pattern SomeName* AND that has a DetermineUnits that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContractBillingRule -Id 1234 -ContractBillingRuleName SomeName* -DetermineUnits 'PickList Label1', 'PickList Label2' -Like ContractBillingRuleName -NotEquals DetermineUnits -GreaterThan Id
+An example of a more complex query. This command returns any ContractBillingRules with Id GREATER THAN 1234, a ContractBillingRuleName that matches the simple pattern SomeName* AND that has a DetermineUnits that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

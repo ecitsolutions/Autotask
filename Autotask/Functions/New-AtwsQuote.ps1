@@ -41,10 +41,10 @@ Creates a new [Autotask.Quote] through the Web Services API and returns the new 
 $result = Get-AtwsQuote -Id 124 | New-AtwsQuote 
 Copies [Autotask.Quote] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsQuote -Id 124 | New-AtwsQuote | Set-AtwsQuote -ParameterName <Parameter Value>
+Get-AtwsQuote -Id 124 | New-AtwsQuote | Set-AtwsQuote -ParameterName 'Parameter Value'
 Copies [Autotask.Quote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsQuote to modify the object.
  .EXAMPLE
-$result = Get-AtwsQuote -Id 124 | New-AtwsQuote | Set-AtwsQuote -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsQuote -Id 124 | New-AtwsQuote | Set-AtwsQuote -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.Quote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsQuote to modify the object and returns the new object.
 
 .NOTES

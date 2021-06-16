@@ -42,10 +42,10 @@ Creates a new [Autotask.ContractBillingRule] through the Web Services API and re
 $result = Get-AtwsContractBillingRule -Id 124 | New-AtwsContractBillingRule 
 Copies [Autotask.ContractBillingRule] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsContractBillingRule -Id 124 | New-AtwsContractBillingRule | Set-AtwsContractBillingRule -ParameterName <Parameter Value>
+Get-AtwsContractBillingRule -Id 124 | New-AtwsContractBillingRule | Set-AtwsContractBillingRule -ParameterName 'Parameter Value'
 Copies [Autotask.ContractBillingRule] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractBillingRule to modify the object.
  .EXAMPLE
-$result = Get-AtwsContractBillingRule -Id 124 | New-AtwsContractBillingRule | Set-AtwsContractBillingRule -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsContractBillingRule -Id 124 | New-AtwsContractBillingRule | Set-AtwsContractBillingRule -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ContractBillingRule] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractBillingRule to modify the object and returns the new object.
 
 .NOTES

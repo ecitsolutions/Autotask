@@ -58,20 +58,20 @@ Returns any object with a BillingItemName that matches the simple pattern 'SomeN
 Get-AtwsBillingItem -BillingItemName SomeName* -NotLike BillingItemName
 Returns any object with a BillingItemName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsBillingItem -Type <PickList Label>
-Returns any BillingItems with property Type equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsBillingItem -Type 'PickList Label'
+Returns any BillingItems with property Type equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsBillingItem -Type <PickList Label> -NotEquals Type 
-Returns any BillingItems with property Type NOT equal to the <PickList Label>.
+Get-AtwsBillingItem -Type 'PickList Label' -NotEquals Type 
+Returns any BillingItems with property Type NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsBillingItem -Type <PickList Label1>, <PickList Label2>
-Returns any BillingItems with property Type equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsBillingItem -Type 'PickList Label1', 'PickList Label2'
+Returns any BillingItems with property Type equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsBillingItem -Type <PickList Label1>, <PickList Label2> -NotEquals Type
-Returns any BillingItems with property Type NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsBillingItem -Type 'PickList Label1', 'PickList Label2' -NotEquals Type
+Returns any BillingItems with property Type NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsBillingItem -Id 1234 -BillingItemName SomeName* -Type <PickList Label1>, <PickList Label2> -Like BillingItemName -NotEquals Type -GreaterThan Id
-An example of a more complex query. This command returns any BillingItems with Id GREATER THAN 1234, a BillingItemName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsBillingItem -Id 1234 -BillingItemName SomeName* -Type 'PickList Label1', 'PickList Label2' -Like BillingItemName -NotEquals Type -GreaterThan Id
+An example of a more complex query. This command returns any BillingItems with Id GREATER THAN 1234, a BillingItemName that matches the simple pattern SomeName* AND that has a Type that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

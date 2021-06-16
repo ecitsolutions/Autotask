@@ -57,20 +57,20 @@ Returns any object with a ResourceSkillName that matches the simple pattern 'Som
 Get-AtwsResourceSkill -ResourceSkillName SomeName* -NotLike ResourceSkillName
 Returns any object with a ResourceSkillName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsResourceSkill -SkillLevel <PickList Label>
-Returns any ResourceSkills with property SkillLevel equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsResourceSkill -SkillLevel 'PickList Label'
+Returns any ResourceSkills with property SkillLevel equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsResourceSkill -SkillLevel <PickList Label> -NotEquals SkillLevel 
-Returns any ResourceSkills with property SkillLevel NOT equal to the <PickList Label>.
+Get-AtwsResourceSkill -SkillLevel 'PickList Label' -NotEquals SkillLevel 
+Returns any ResourceSkills with property SkillLevel NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsResourceSkill -SkillLevel <PickList Label1>, <PickList Label2>
-Returns any ResourceSkills with property SkillLevel equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsResourceSkill -SkillLevel 'PickList Label1', 'PickList Label2'
+Returns any ResourceSkills with property SkillLevel equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsResourceSkill -SkillLevel <PickList Label1>, <PickList Label2> -NotEquals SkillLevel
-Returns any ResourceSkills with property SkillLevel NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsResourceSkill -SkillLevel 'PickList Label1', 'PickList Label2' -NotEquals SkillLevel
+Returns any ResourceSkills with property SkillLevel NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsResourceSkill -Id 1234 -ResourceSkillName SomeName* -SkillLevel <PickList Label1>, <PickList Label2> -Like ResourceSkillName -NotEquals SkillLevel -GreaterThan Id
-An example of a more complex query. This command returns any ResourceSkills with Id GREATER THAN 1234, a ResourceSkillName that matches the simple pattern SomeName* AND that has a SkillLevel that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsResourceSkill -Id 1234 -ResourceSkillName SomeName* -SkillLevel 'PickList Label1', 'PickList Label2' -Like ResourceSkillName -NotEquals SkillLevel -GreaterThan Id
+An example of a more complex query. This command returns any ResourceSkills with Id GREATER THAN 1234, a ResourceSkillName that matches the simple pattern SomeName* AND that has a SkillLevel that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

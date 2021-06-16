@@ -58,20 +58,20 @@ Returns any object with a ChangeOrderCostName that matches the simple pattern 'S
 Get-AtwsChangeOrderCost -ChangeOrderCostName SomeName* -NotLike ChangeOrderCostName
 Returns any object with a ChangeOrderCostName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsChangeOrderCost -CostType <PickList Label>
-Returns any ChangeOrderCosts with property CostType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsChangeOrderCost -CostType 'PickList Label'
+Returns any ChangeOrderCosts with property CostType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsChangeOrderCost -CostType <PickList Label> -NotEquals CostType 
-Returns any ChangeOrderCosts with property CostType NOT equal to the <PickList Label>.
+Get-AtwsChangeOrderCost -CostType 'PickList Label' -NotEquals CostType 
+Returns any ChangeOrderCosts with property CostType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsChangeOrderCost -CostType <PickList Label1>, <PickList Label2>
-Returns any ChangeOrderCosts with property CostType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsChangeOrderCost -CostType 'PickList Label1', 'PickList Label2'
+Returns any ChangeOrderCosts with property CostType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsChangeOrderCost -CostType <PickList Label1>, <PickList Label2> -NotEquals CostType
-Returns any ChangeOrderCosts with property CostType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsChangeOrderCost -CostType 'PickList Label1', 'PickList Label2' -NotEquals CostType
+Returns any ChangeOrderCosts with property CostType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsChangeOrderCost -Id 1234 -ChangeOrderCostName SomeName* -CostType <PickList Label1>, <PickList Label2> -Like ChangeOrderCostName -NotEquals CostType -GreaterThan Id
-An example of a more complex query. This command returns any ChangeOrderCosts with Id GREATER THAN 1234, a ChangeOrderCostName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsChangeOrderCost -Id 1234 -ChangeOrderCostName SomeName* -CostType 'PickList Label1', 'PickList Label2' -Like ChangeOrderCostName -NotEquals CostType -GreaterThan Id
+An example of a more complex query. This command returns any ChangeOrderCosts with Id GREATER THAN 1234, a ChangeOrderCostName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

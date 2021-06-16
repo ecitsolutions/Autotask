@@ -36,10 +36,10 @@ Creates a new [Autotask.AccountWebhookExcludedResource] through the Web Services
 $result = Get-AtwsAccountWebhookExcludedResource -Id 124 | New-AtwsAccountWebhookExcludedResource 
 Copies [Autotask.AccountWebhookExcludedResource] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsAccountWebhookExcludedResource -Id 124 | New-AtwsAccountWebhookExcludedResource | Set-AtwsAccountWebhookExcludedResource -ParameterName <Parameter Value>
+Get-AtwsAccountWebhookExcludedResource -Id 124 | New-AtwsAccountWebhookExcludedResource | Set-AtwsAccountWebhookExcludedResource -ParameterName 'Parameter Value'
 Copies [Autotask.AccountWebhookExcludedResource] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountWebhookExcludedResource to modify the object.
  .EXAMPLE
-$result = Get-AtwsAccountWebhookExcludedResource -Id 124 | New-AtwsAccountWebhookExcludedResource | Set-AtwsAccountWebhookExcludedResource -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsAccountWebhookExcludedResource -Id 124 | New-AtwsAccountWebhookExcludedResource | Set-AtwsAccountWebhookExcludedResource -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.AccountWebhookExcludedResource] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccountWebhookExcludedResource to modify the object and returns the new object.
 
 .NOTES

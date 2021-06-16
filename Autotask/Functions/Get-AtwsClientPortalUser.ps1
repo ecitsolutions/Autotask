@@ -60,20 +60,20 @@ Returns any object with a ClientPortalUserName that matches the simple pattern '
 Get-AtwsClientPortalUser -ClientPortalUserName SomeName* -NotLike ClientPortalUserName
 Returns any object with a ClientPortalUserName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsClientPortalUser -SecurityLevel <PickList Label>
-Returns any ClientPortalUsers with property SecurityLevel equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsClientPortalUser -SecurityLevel 'PickList Label'
+Returns any ClientPortalUsers with property SecurityLevel equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsClientPortalUser -SecurityLevel <PickList Label> -NotEquals SecurityLevel 
-Returns any ClientPortalUsers with property SecurityLevel NOT equal to the <PickList Label>.
+Get-AtwsClientPortalUser -SecurityLevel 'PickList Label' -NotEquals SecurityLevel 
+Returns any ClientPortalUsers with property SecurityLevel NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsClientPortalUser -SecurityLevel <PickList Label1>, <PickList Label2>
-Returns any ClientPortalUsers with property SecurityLevel equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsClientPortalUser -SecurityLevel 'PickList Label1', 'PickList Label2'
+Returns any ClientPortalUsers with property SecurityLevel equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsClientPortalUser -SecurityLevel <PickList Label1>, <PickList Label2> -NotEquals SecurityLevel
-Returns any ClientPortalUsers with property SecurityLevel NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsClientPortalUser -SecurityLevel 'PickList Label1', 'PickList Label2' -NotEquals SecurityLevel
+Returns any ClientPortalUsers with property SecurityLevel NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsClientPortalUser -Id 1234 -ClientPortalUserName SomeName* -SecurityLevel <PickList Label1>, <PickList Label2> -Like ClientPortalUserName -NotEquals SecurityLevel -GreaterThan Id
-An example of a more complex query. This command returns any ClientPortalUsers with Id GREATER THAN 1234, a ClientPortalUserName that matches the simple pattern SomeName* AND that has a SecurityLevel that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsClientPortalUser -Id 1234 -ClientPortalUserName SomeName* -SecurityLevel 'PickList Label1', 'PickList Label2' -Like ClientPortalUserName -NotEquals SecurityLevel -GreaterThan Id
+An example of a more complex query. This command returns any ClientPortalUsers with Id GREATER THAN 1234, a ClientPortalUserName that matches the simple pattern SomeName* AND that has a SecurityLevel that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

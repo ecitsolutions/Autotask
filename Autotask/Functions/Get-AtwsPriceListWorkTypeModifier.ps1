@@ -57,20 +57,20 @@ Returns any object with a PriceListWorkTypeModifierName that matches the simple 
 Get-AtwsPriceListWorkTypeModifier -PriceListWorkTypeModifierName SomeName* -NotLike PriceListWorkTypeModifierName
 Returns any object with a PriceListWorkTypeModifierName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsPriceListWorkTypeModifier -ModifierType <PickList Label>
-Returns any PriceListWorkTypeModifiers with property ModifierType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsPriceListWorkTypeModifier -ModifierType 'PickList Label'
+Returns any PriceListWorkTypeModifiers with property ModifierType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsPriceListWorkTypeModifier -ModifierType <PickList Label> -NotEquals ModifierType 
-Returns any PriceListWorkTypeModifiers with property ModifierType NOT equal to the <PickList Label>.
+Get-AtwsPriceListWorkTypeModifier -ModifierType 'PickList Label' -NotEquals ModifierType 
+Returns any PriceListWorkTypeModifiers with property ModifierType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsPriceListWorkTypeModifier -ModifierType <PickList Label1>, <PickList Label2>
-Returns any PriceListWorkTypeModifiers with property ModifierType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsPriceListWorkTypeModifier -ModifierType 'PickList Label1', 'PickList Label2'
+Returns any PriceListWorkTypeModifiers with property ModifierType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsPriceListWorkTypeModifier -ModifierType <PickList Label1>, <PickList Label2> -NotEquals ModifierType
-Returns any PriceListWorkTypeModifiers with property ModifierType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsPriceListWorkTypeModifier -ModifierType 'PickList Label1', 'PickList Label2' -NotEquals ModifierType
+Returns any PriceListWorkTypeModifiers with property ModifierType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsPriceListWorkTypeModifier -Id 1234 -PriceListWorkTypeModifierName SomeName* -ModifierType <PickList Label1>, <PickList Label2> -Like PriceListWorkTypeModifierName -NotEquals ModifierType -GreaterThan Id
-An example of a more complex query. This command returns any PriceListWorkTypeModifiers with Id GREATER THAN 1234, a PriceListWorkTypeModifierName that matches the simple pattern SomeName* AND that has a ModifierType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsPriceListWorkTypeModifier -Id 1234 -PriceListWorkTypeModifierName SomeName* -ModifierType 'PickList Label1', 'PickList Label2' -Like PriceListWorkTypeModifierName -NotEquals ModifierType -GreaterThan Id
+An example of a more complex query. This command returns any PriceListWorkTypeModifiers with Id GREATER THAN 1234, a PriceListWorkTypeModifierName that matches the simple pattern SomeName* AND that has a ModifierType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

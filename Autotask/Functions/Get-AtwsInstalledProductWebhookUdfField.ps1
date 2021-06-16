@@ -57,20 +57,20 @@ Returns any object with a InstalledProductWebhookUdfFieldName that matches the s
 Get-AtwsInstalledProductWebhookUdfField -InstalledProductWebhookUdfFieldName SomeName* -NotLike InstalledProductWebhookUdfFieldName
 Returns any object with a InstalledProductWebhookUdfFieldName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInstalledProductWebhookUdfField -UdfFieldID <PickList Label>
-Returns any InstalledProductWebhookUdfFields with property UdfFieldID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsInstalledProductWebhookUdfField -UdfFieldID 'PickList Label'
+Returns any InstalledProductWebhookUdfFields with property UdfFieldID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsInstalledProductWebhookUdfField -UdfFieldID <PickList Label> -NotEquals UdfFieldID 
-Returns any InstalledProductWebhookUdfFields with property UdfFieldID NOT equal to the <PickList Label>.
+Get-AtwsInstalledProductWebhookUdfField -UdfFieldID 'PickList Label' -NotEquals UdfFieldID 
+Returns any InstalledProductWebhookUdfFields with property UdfFieldID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsInstalledProductWebhookUdfField -UdfFieldID <PickList Label1>, <PickList Label2>
-Returns any InstalledProductWebhookUdfFields with property UdfFieldID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsInstalledProductWebhookUdfField -UdfFieldID 'PickList Label1', 'PickList Label2'
+Returns any InstalledProductWebhookUdfFields with property UdfFieldID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInstalledProductWebhookUdfField -UdfFieldID <PickList Label1>, <PickList Label2> -NotEquals UdfFieldID
-Returns any InstalledProductWebhookUdfFields with property UdfFieldID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInstalledProductWebhookUdfField -UdfFieldID 'PickList Label1', 'PickList Label2' -NotEquals UdfFieldID
+Returns any InstalledProductWebhookUdfFields with property UdfFieldID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsInstalledProductWebhookUdfField -Id 1234 -InstalledProductWebhookUdfFieldName SomeName* -UdfFieldID <PickList Label1>, <PickList Label2> -Like InstalledProductWebhookUdfFieldName -NotEquals UdfFieldID -GreaterThan Id
-An example of a more complex query. This command returns any InstalledProductWebhookUdfFields with Id GREATER THAN 1234, a InstalledProductWebhookUdfFieldName that matches the simple pattern SomeName* AND that has a UdfFieldID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsInstalledProductWebhookUdfField -Id 1234 -InstalledProductWebhookUdfFieldName SomeName* -UdfFieldID 'PickList Label1', 'PickList Label2' -Like InstalledProductWebhookUdfFieldName -NotEquals UdfFieldID -GreaterThan Id
+An example of a more complex query. This command returns any InstalledProductWebhookUdfFields with Id GREATER THAN 1234, a InstalledProductWebhookUdfFieldName that matches the simple pattern SomeName* AND that has a UdfFieldID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

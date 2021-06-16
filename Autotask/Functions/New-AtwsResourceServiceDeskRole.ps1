@@ -36,10 +36,10 @@ Creates a new [Autotask.ResourceServiceDeskRole] through the Web Services API an
 $result = Get-AtwsResourceServiceDeskRole -Id 124 | New-AtwsResourceServiceDeskRole 
 Copies [Autotask.ResourceServiceDeskRole] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsResourceServiceDeskRole -Id 124 | New-AtwsResourceServiceDeskRole | Set-AtwsResourceServiceDeskRole -ParameterName <Parameter Value>
+Get-AtwsResourceServiceDeskRole -Id 124 | New-AtwsResourceServiceDeskRole | Set-AtwsResourceServiceDeskRole -ParameterName 'Parameter Value'
 Copies [Autotask.ResourceServiceDeskRole] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsResourceServiceDeskRole to modify the object.
  .EXAMPLE
-$result = Get-AtwsResourceServiceDeskRole -Id 124 | New-AtwsResourceServiceDeskRole | Set-AtwsResourceServiceDeskRole -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsResourceServiceDeskRole -Id 124 | New-AtwsResourceServiceDeskRole | Set-AtwsResourceServiceDeskRole -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ResourceServiceDeskRole] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsResourceServiceDeskRole to modify the object and returns the new object.
 
 .NOTES

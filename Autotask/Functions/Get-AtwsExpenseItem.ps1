@@ -59,20 +59,20 @@ Returns any object with a ExpenseItemName that matches the simple pattern 'SomeN
 Get-AtwsExpenseItem -ExpenseItemName SomeName* -NotLike ExpenseItemName
 Returns any object with a ExpenseItemName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsExpenseItem -ExpenseCategory <PickList Label>
-Returns any ExpenseItems with property ExpenseCategory equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsExpenseItem -ExpenseCategory 'PickList Label'
+Returns any ExpenseItems with property ExpenseCategory equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsExpenseItem -ExpenseCategory <PickList Label> -NotEquals ExpenseCategory 
-Returns any ExpenseItems with property ExpenseCategory NOT equal to the <PickList Label>.
+Get-AtwsExpenseItem -ExpenseCategory 'PickList Label' -NotEquals ExpenseCategory 
+Returns any ExpenseItems with property ExpenseCategory NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsExpenseItem -ExpenseCategory <PickList Label1>, <PickList Label2>
-Returns any ExpenseItems with property ExpenseCategory equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsExpenseItem -ExpenseCategory 'PickList Label1', 'PickList Label2'
+Returns any ExpenseItems with property ExpenseCategory equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsExpenseItem -ExpenseCategory <PickList Label1>, <PickList Label2> -NotEquals ExpenseCategory
-Returns any ExpenseItems with property ExpenseCategory NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsExpenseItem -ExpenseCategory 'PickList Label1', 'PickList Label2' -NotEquals ExpenseCategory
+Returns any ExpenseItems with property ExpenseCategory NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsExpenseItem -Id 1234 -ExpenseItemName SomeName* -ExpenseCategory <PickList Label1>, <PickList Label2> -Like ExpenseItemName -NotEquals ExpenseCategory -GreaterThan Id
-An example of a more complex query. This command returns any ExpenseItems with Id GREATER THAN 1234, a ExpenseItemName that matches the simple pattern SomeName* AND that has a ExpenseCategory that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsExpenseItem -Id 1234 -ExpenseItemName SomeName* -ExpenseCategory 'PickList Label1', 'PickList Label2' -Like ExpenseItemName -NotEquals ExpenseCategory -GreaterThan Id
+An example of a more complex query. This command returns any ExpenseItems with Id GREATER THAN 1234, a ExpenseItemName that matches the simple pattern SomeName* AND that has a ExpenseCategory that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

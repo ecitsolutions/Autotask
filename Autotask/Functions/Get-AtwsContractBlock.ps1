@@ -59,20 +59,20 @@ Returns any object with a ContractBlockName that matches the simple pattern 'Som
 Get-AtwsContractBlock -ContractBlockName SomeName* -NotLike ContractBlockName
 Returns any object with a ContractBlockName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsContractBlock -Status <PickList Label>
-Returns any ContractBlocks with property Status equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsContractBlock -Status 'PickList Label'
+Returns any ContractBlocks with property Status equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsContractBlock -Status <PickList Label> -NotEquals Status 
-Returns any ContractBlocks with property Status NOT equal to the <PickList Label>.
+Get-AtwsContractBlock -Status 'PickList Label' -NotEquals Status 
+Returns any ContractBlocks with property Status NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsContractBlock -Status <PickList Label1>, <PickList Label2>
-Returns any ContractBlocks with property Status equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsContractBlock -Status 'PickList Label1', 'PickList Label2'
+Returns any ContractBlocks with property Status equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsContractBlock -Status <PickList Label1>, <PickList Label2> -NotEquals Status
-Returns any ContractBlocks with property Status NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContractBlock -Status 'PickList Label1', 'PickList Label2' -NotEquals Status
+Returns any ContractBlocks with property Status NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsContractBlock -Id 1234 -ContractBlockName SomeName* -Status <PickList Label1>, <PickList Label2> -Like ContractBlockName -NotEquals Status -GreaterThan Id
-An example of a more complex query. This command returns any ContractBlocks with Id GREATER THAN 1234, a ContractBlockName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContractBlock -Id 1234 -ContractBlockName SomeName* -Status 'PickList Label1', 'PickList Label2' -Like ContractBlockName -NotEquals Status -GreaterThan Id
+An example of a more complex query. This command returns any ContractBlocks with Id GREATER THAN 1234, a ContractBlockName that matches the simple pattern SomeName* AND that has a Status that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

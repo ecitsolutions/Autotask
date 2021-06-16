@@ -40,10 +40,10 @@ Creates a new [Autotask.ContractBlock] through the Web Services API and returns 
 $result = Get-AtwsContractBlock -Id 124 | New-AtwsContractBlock 
 Copies [Autotask.ContractBlock] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsContractBlock -Id 124 | New-AtwsContractBlock | Set-AtwsContractBlock -ParameterName <Parameter Value>
+Get-AtwsContractBlock -Id 124 | New-AtwsContractBlock | Set-AtwsContractBlock -ParameterName 'Parameter Value'
 Copies [Autotask.ContractBlock] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractBlock to modify the object.
  .EXAMPLE
-$result = Get-AtwsContractBlock -Id 124 | New-AtwsContractBlock | Set-AtwsContractBlock -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsContractBlock -Id 124 | New-AtwsContractBlock | Set-AtwsContractBlock -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ContractBlock] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContractBlock to modify the object and returns the new object.
 
 .NOTES

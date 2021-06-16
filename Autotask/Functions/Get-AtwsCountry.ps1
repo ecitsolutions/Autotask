@@ -58,20 +58,20 @@ Returns any object with a CountryName that matches the simple pattern 'SomeName*
 Get-AtwsCountry -CountryName SomeName* -NotLike CountryName
 Returns any object with a CountryName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsCountry -AddressFormatID <PickList Label>
-Returns any Countrys with property AddressFormatID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsCountry -AddressFormatID 'PickList Label'
+Returns any Countrys with property AddressFormatID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsCountry -AddressFormatID <PickList Label> -NotEquals AddressFormatID 
-Returns any Countrys with property AddressFormatID NOT equal to the <PickList Label>.
+Get-AtwsCountry -AddressFormatID 'PickList Label' -NotEquals AddressFormatID 
+Returns any Countrys with property AddressFormatID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsCountry -AddressFormatID <PickList Label1>, <PickList Label2>
-Returns any Countrys with property AddressFormatID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsCountry -AddressFormatID 'PickList Label1', 'PickList Label2'
+Returns any Countrys with property AddressFormatID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsCountry -AddressFormatID <PickList Label1>, <PickList Label2> -NotEquals AddressFormatID
-Returns any Countrys with property AddressFormatID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsCountry -AddressFormatID 'PickList Label1', 'PickList Label2' -NotEquals AddressFormatID
+Returns any Countrys with property AddressFormatID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsCountry -Id 1234 -CountryName SomeName* -AddressFormatID <PickList Label1>, <PickList Label2> -Like CountryName -NotEquals AddressFormatID -GreaterThan Id
-An example of a more complex query. This command returns any Countrys with Id GREATER THAN 1234, a CountryName that matches the simple pattern SomeName* AND that has a AddressFormatID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsCountry -Id 1234 -CountryName SomeName* -AddressFormatID 'PickList Label1', 'PickList Label2' -Like CountryName -NotEquals AddressFormatID -GreaterThan Id
+An example of a more complex query. This command returns any Countrys with Id GREATER THAN 1234, a CountryName that matches the simple pattern SomeName* AND that has a AddressFormatID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

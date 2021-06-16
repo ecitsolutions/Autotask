@@ -59,20 +59,20 @@ Returns any object with a NotificationHistoryName that matches the simple patter
 Get-AtwsNotificationHistory -NotificationHistoryName SomeName* -NotLike NotificationHistoryName
 Returns any object with a NotificationHistoryName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsNotificationHistory -NotificationHistoryTypeID <PickList Label>
-Returns any NotificationHistorys with property NotificationHistoryTypeID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsNotificationHistory -NotificationHistoryTypeID 'PickList Label'
+Returns any NotificationHistorys with property NotificationHistoryTypeID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsNotificationHistory -NotificationHistoryTypeID <PickList Label> -NotEquals NotificationHistoryTypeID 
-Returns any NotificationHistorys with property NotificationHistoryTypeID NOT equal to the <PickList Label>.
+Get-AtwsNotificationHistory -NotificationHistoryTypeID 'PickList Label' -NotEquals NotificationHistoryTypeID 
+Returns any NotificationHistorys with property NotificationHistoryTypeID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsNotificationHistory -NotificationHistoryTypeID <PickList Label1>, <PickList Label2>
-Returns any NotificationHistorys with property NotificationHistoryTypeID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsNotificationHistory -NotificationHistoryTypeID 'PickList Label1', 'PickList Label2'
+Returns any NotificationHistorys with property NotificationHistoryTypeID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsNotificationHistory -NotificationHistoryTypeID <PickList Label1>, <PickList Label2> -NotEquals NotificationHistoryTypeID
-Returns any NotificationHistorys with property NotificationHistoryTypeID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsNotificationHistory -NotificationHistoryTypeID 'PickList Label1', 'PickList Label2' -NotEquals NotificationHistoryTypeID
+Returns any NotificationHistorys with property NotificationHistoryTypeID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsNotificationHistory -Id 1234 -NotificationHistoryName SomeName* -NotificationHistoryTypeID <PickList Label1>, <PickList Label2> -Like NotificationHistoryName -NotEquals NotificationHistoryTypeID -GreaterThan Id
-An example of a more complex query. This command returns any NotificationHistorys with Id GREATER THAN 1234, a NotificationHistoryName that matches the simple pattern SomeName* AND that has a NotificationHistoryTypeID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsNotificationHistory -Id 1234 -NotificationHistoryName SomeName* -NotificationHistoryTypeID 'PickList Label1', 'PickList Label2' -Like NotificationHistoryName -NotEquals NotificationHistoryTypeID -GreaterThan Id
+An example of a more complex query. This command returns any NotificationHistorys with Id GREATER THAN 1234, a NotificationHistoryName that matches the simple pattern SomeName* AND that has a NotificationHistoryTypeID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

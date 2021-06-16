@@ -64,20 +64,20 @@ Returns any object with a TaskName that matches the simple pattern 'SomeName*'. 
 Get-AtwsTask -TaskName SomeName* -NotLike TaskName
 Returns any object with a TaskName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsTask -DepartmentID <PickList Label>
-Returns any Tasks with property DepartmentID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsTask -DepartmentID 'PickList Label'
+Returns any Tasks with property DepartmentID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsTask -DepartmentID <PickList Label> -NotEquals DepartmentID 
-Returns any Tasks with property DepartmentID NOT equal to the <PickList Label>.
+Get-AtwsTask -DepartmentID 'PickList Label' -NotEquals DepartmentID 
+Returns any Tasks with property DepartmentID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsTask -DepartmentID <PickList Label1>, <PickList Label2>
-Returns any Tasks with property DepartmentID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsTask -DepartmentID 'PickList Label1', 'PickList Label2'
+Returns any Tasks with property DepartmentID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTask -DepartmentID <PickList Label1>, <PickList Label2> -NotEquals DepartmentID
-Returns any Tasks with property DepartmentID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTask -DepartmentID 'PickList Label1', 'PickList Label2' -NotEquals DepartmentID
+Returns any Tasks with property DepartmentID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTask -Id 1234 -TaskName SomeName* -DepartmentID <PickList Label1>, <PickList Label2> -Like TaskName -NotEquals DepartmentID -GreaterThan Id
-An example of a more complex query. This command returns any Tasks with Id GREATER THAN 1234, a TaskName that matches the simple pattern SomeName* AND that has a DepartmentID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTask -Id 1234 -TaskName SomeName* -DepartmentID 'PickList Label1', 'PickList Label2' -Like TaskName -NotEquals DepartmentID -GreaterThan Id
+An example of a more complex query. This command returns any Tasks with Id GREATER THAN 1234, a TaskName that matches the simple pattern SomeName* AND that has a DepartmentID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

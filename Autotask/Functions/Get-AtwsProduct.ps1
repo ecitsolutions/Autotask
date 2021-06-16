@@ -60,20 +60,20 @@ Returns any object with a ProductName that matches the simple pattern 'SomeName*
 Get-AtwsProduct -ProductName SomeName* -NotLike ProductName
 Returns any object with a ProductName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsProduct -ProductCategory <PickList Label>
-Returns any Products with property ProductCategory equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsProduct -ProductCategory 'PickList Label'
+Returns any Products with property ProductCategory equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsProduct -ProductCategory <PickList Label> -NotEquals ProductCategory 
-Returns any Products with property ProductCategory NOT equal to the <PickList Label>.
+Get-AtwsProduct -ProductCategory 'PickList Label' -NotEquals ProductCategory 
+Returns any Products with property ProductCategory NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsProduct -ProductCategory <PickList Label1>, <PickList Label2>
-Returns any Products with property ProductCategory equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsProduct -ProductCategory 'PickList Label1', 'PickList Label2'
+Returns any Products with property ProductCategory equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsProduct -ProductCategory <PickList Label1>, <PickList Label2> -NotEquals ProductCategory
-Returns any Products with property ProductCategory NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsProduct -ProductCategory 'PickList Label1', 'PickList Label2' -NotEquals ProductCategory
+Returns any Products with property ProductCategory NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsProduct -Id 1234 -ProductName SomeName* -ProductCategory <PickList Label1>, <PickList Label2> -Like ProductName -NotEquals ProductCategory -GreaterThan Id
-An example of a more complex query. This command returns any Products with Id GREATER THAN 1234, a ProductName that matches the simple pattern SomeName* AND that has a ProductCategory that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsProduct -Id 1234 -ProductName SomeName* -ProductCategory 'PickList Label1', 'PickList Label2' -Like ProductName -NotEquals ProductCategory -GreaterThan Id
+An example of a more complex query. This command returns any Products with Id GREATER THAN 1234, a ProductName that matches the simple pattern SomeName* AND that has a ProductCategory that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

@@ -25,16 +25,16 @@ Nothing or [Autotask.IntegrationVendorWidget]. This function optionally returns 
 Set-AtwsIntegrationVendorWidget -InputObject $IntegrationVendorWidget [-ParameterName] [Parameter value]
 Passes one or more [Autotask.IntegrationVendorWidget] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
  .EXAMPLE
-$IntegrationVendorWidget | Set-AtwsIntegrationVendorWidget -ParameterName <Parameter value>
+$IntegrationVendorWidget | Set-AtwsIntegrationVendorWidget -ParameterName 'Parameter value'
 Same as the first example, but now the objects are passed to the funtion through the pipeline, not passed as a parameter. The end result is identical.
  .EXAMPLE
-Get-AtwsIntegrationVendorWidget -Id 0 | Set-AtwsIntegrationVendorWidget -ParameterName <Parameter value>
+Get-AtwsIntegrationVendorWidget -Id 0 | Set-AtwsIntegrationVendorWidget -ParameterName 'Parameter value'
 Gets the instance with Id 0 directly from the Web Services API, modifies a parameter and updates Autotask. This approach works with all valid parameters for the Get function.
  .EXAMPLE
-Get-AtwsIntegrationVendorWidget -Id 0,4,8 | Set-AtwsIntegrationVendorWidget -ParameterName <Parameter value>
+Get-AtwsIntegrationVendorWidget -Id 0,4,8 | Set-AtwsIntegrationVendorWidget -ParameterName 'Parameter value'
 Gets multiple instances by Id, modifies them all and updates Autotask.
  .EXAMPLE
-$result = Get-AtwsIntegrationVendorWidget -Id 0,4,8 | Set-AtwsIntegrationVendorWidget -ParameterName <Parameter value> -PassThru
+$result = Get-AtwsIntegrationVendorWidget -Id 0,4,8 | Set-AtwsIntegrationVendorWidget -ParameterName 'Parameter value' -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
 .NOTES

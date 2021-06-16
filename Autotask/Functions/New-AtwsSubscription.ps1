@@ -42,10 +42,10 @@ Creates a new [Autotask.Subscription] through the Web Services API and returns t
 $result = Get-AtwsSubscription -Id 124 | New-AtwsSubscription 
 Copies [Autotask.Subscription] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsSubscription -Id 124 | New-AtwsSubscription | Set-AtwsSubscription -ParameterName <Parameter Value>
+Get-AtwsSubscription -Id 124 | New-AtwsSubscription | Set-AtwsSubscription -ParameterName 'Parameter Value'
 Copies [Autotask.Subscription] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsSubscription to modify the object.
  .EXAMPLE
-$result = Get-AtwsSubscription -Id 124 | New-AtwsSubscription | Set-AtwsSubscription -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsSubscription -Id 124 | New-AtwsSubscription | Set-AtwsSubscription -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.Subscription] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsSubscription to modify the object and returns the new object.
 
 .NOTES

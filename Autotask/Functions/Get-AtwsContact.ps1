@@ -59,20 +59,20 @@ Returns any object with a ContactName that matches the simple pattern 'SomeName*
 Get-AtwsContact -ContactName SomeName* -NotLike ContactName
 Returns any object with a ContactName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsContact -NamePrefix <PickList Label>
-Returns any Contacts with property NamePrefix equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsContact -NamePrefix 'PickList Label'
+Returns any Contacts with property NamePrefix equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsContact -NamePrefix <PickList Label> -NotEquals NamePrefix 
-Returns any Contacts with property NamePrefix NOT equal to the <PickList Label>.
+Get-AtwsContact -NamePrefix 'PickList Label' -NotEquals NamePrefix 
+Returns any Contacts with property NamePrefix NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsContact -NamePrefix <PickList Label1>, <PickList Label2>
-Returns any Contacts with property NamePrefix equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsContact -NamePrefix 'PickList Label1', 'PickList Label2'
+Returns any Contacts with property NamePrefix equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsContact -NamePrefix <PickList Label1>, <PickList Label2> -NotEquals NamePrefix
-Returns any Contacts with property NamePrefix NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContact -NamePrefix 'PickList Label1', 'PickList Label2' -NotEquals NamePrefix
+Returns any Contacts with property NamePrefix NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsContact -Id 1234 -ContactName SomeName* -NamePrefix <PickList Label1>, <PickList Label2> -Like ContactName -NotEquals NamePrefix -GreaterThan Id
-An example of a more complex query. This command returns any Contacts with Id GREATER THAN 1234, a ContactName that matches the simple pattern SomeName* AND that has a NamePrefix that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsContact -Id 1234 -ContactName SomeName* -NamePrefix 'PickList Label1', 'PickList Label2' -Like ContactName -NotEquals NamePrefix -GreaterThan Id
+An example of a more complex query. This command returns any Contacts with Id GREATER THAN 1234, a ContactName that matches the simple pattern SomeName* AND that has a NamePrefix that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

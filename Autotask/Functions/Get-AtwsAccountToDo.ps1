@@ -57,20 +57,20 @@ Returns any object with a AccountToDoName that matches the simple pattern 'SomeN
 Get-AtwsAccountToDo -AccountToDoName SomeName* -NotLike AccountToDoName
 Returns any object with a AccountToDoName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsAccountToDo -ActionType <PickList Label>
-Returns any AccountToDos with property ActionType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsAccountToDo -ActionType 'PickList Label'
+Returns any AccountToDos with property ActionType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsAccountToDo -ActionType <PickList Label> -NotEquals ActionType 
-Returns any AccountToDos with property ActionType NOT equal to the <PickList Label>.
+Get-AtwsAccountToDo -ActionType 'PickList Label' -NotEquals ActionType 
+Returns any AccountToDos with property ActionType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsAccountToDo -ActionType <PickList Label1>, <PickList Label2>
-Returns any AccountToDos with property ActionType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsAccountToDo -ActionType 'PickList Label1', 'PickList Label2'
+Returns any AccountToDos with property ActionType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAccountToDo -ActionType <PickList Label1>, <PickList Label2> -NotEquals ActionType
-Returns any AccountToDos with property ActionType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAccountToDo -ActionType 'PickList Label1', 'PickList Label2' -NotEquals ActionType
+Returns any AccountToDos with property ActionType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAccountToDo -Id 1234 -AccountToDoName SomeName* -ActionType <PickList Label1>, <PickList Label2> -Like AccountToDoName -NotEquals ActionType -GreaterThan Id
-An example of a more complex query. This command returns any AccountToDos with Id GREATER THAN 1234, a AccountToDoName that matches the simple pattern SomeName* AND that has a ActionType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAccountToDo -Id 1234 -AccountToDoName SomeName* -ActionType 'PickList Label1', 'PickList Label2' -Like AccountToDoName -NotEquals ActionType -GreaterThan Id
+An example of a more complex query. This command returns any AccountToDos with Id GREATER THAN 1234, a AccountToDoName that matches the simple pattern SomeName* AND that has a ActionType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

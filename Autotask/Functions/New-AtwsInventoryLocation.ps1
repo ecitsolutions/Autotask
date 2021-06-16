@@ -36,10 +36,10 @@ Creates a new [Autotask.InventoryLocation] through the Web Services API and retu
 $result = Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation 
 Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation | Set-AtwsInventoryLocation -ParameterName <Parameter Value>
+Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation | Set-AtwsInventoryLocation -ParameterName 'Parameter Value'
 Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryLocation to modify the object.
  .EXAMPLE
-$result = Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation | Set-AtwsInventoryLocation -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsInventoryLocation -Id 124 | New-AtwsInventoryLocation | Set-AtwsInventoryLocation -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.InventoryLocation] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryLocation to modify the object and returns the new object.
 
 .NOTES

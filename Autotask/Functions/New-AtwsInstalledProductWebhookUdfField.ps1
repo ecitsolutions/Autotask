@@ -38,10 +38,10 @@ Creates a new [Autotask.InstalledProductWebhookUdfField] through the Web Service
 $result = Get-AtwsInstalledProductWebhookUdfField -Id 124 | New-AtwsInstalledProductWebhookUdfField 
 Copies [Autotask.InstalledProductWebhookUdfField] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsInstalledProductWebhookUdfField -Id 124 | New-AtwsInstalledProductWebhookUdfField | Set-AtwsInstalledProductWebhookUdfField -ParameterName <Parameter Value>
+Get-AtwsInstalledProductWebhookUdfField -Id 124 | New-AtwsInstalledProductWebhookUdfField | Set-AtwsInstalledProductWebhookUdfField -ParameterName 'Parameter Value'
 Copies [Autotask.InstalledProductWebhookUdfField] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductWebhookUdfField to modify the object.
  .EXAMPLE
-$result = Get-AtwsInstalledProductWebhookUdfField -Id 124 | New-AtwsInstalledProductWebhookUdfField | Set-AtwsInstalledProductWebhookUdfField -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsInstalledProductWebhookUdfField -Id 124 | New-AtwsInstalledProductWebhookUdfField | Set-AtwsInstalledProductWebhookUdfField -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.InstalledProductWebhookUdfField] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductWebhookUdfField to modify the object and returns the new object.
 
 .NOTES

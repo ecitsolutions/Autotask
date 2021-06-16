@@ -39,10 +39,10 @@ Creates a new [Autotask.IntegrationVendorWidget] through the Web Services API an
 $result = Get-AtwsIntegrationVendorWidget -Id 124 | New-AtwsIntegrationVendorWidget 
 Copies [Autotask.IntegrationVendorWidget] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsIntegrationVendorWidget -Id 124 | New-AtwsIntegrationVendorWidget | Set-AtwsIntegrationVendorWidget -ParameterName <Parameter Value>
+Get-AtwsIntegrationVendorWidget -Id 124 | New-AtwsIntegrationVendorWidget | Set-AtwsIntegrationVendorWidget -ParameterName 'Parameter Value'
 Copies [Autotask.IntegrationVendorWidget] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsIntegrationVendorWidget to modify the object.
  .EXAMPLE
-$result = Get-AtwsIntegrationVendorWidget -Id 124 | New-AtwsIntegrationVendorWidget | Set-AtwsIntegrationVendorWidget -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsIntegrationVendorWidget -Id 124 | New-AtwsIntegrationVendorWidget | Set-AtwsIntegrationVendorWidget -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.IntegrationVendorWidget] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsIntegrationVendorWidget to modify the object and returns the new object.
 
 .NOTES

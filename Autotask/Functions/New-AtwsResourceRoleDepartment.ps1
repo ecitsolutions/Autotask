@@ -40,10 +40,10 @@ Creates a new [Autotask.ResourceRoleDepartment] through the Web Services API and
 $result = Get-AtwsResourceRoleDepartment -Id 124 | New-AtwsResourceRoleDepartment 
 Copies [Autotask.ResourceRoleDepartment] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsResourceRoleDepartment -Id 124 | New-AtwsResourceRoleDepartment | Set-AtwsResourceRoleDepartment -ParameterName <Parameter Value>
+Get-AtwsResourceRoleDepartment -Id 124 | New-AtwsResourceRoleDepartment | Set-AtwsResourceRoleDepartment -ParameterName 'Parameter Value'
 Copies [Autotask.ResourceRoleDepartment] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsResourceRoleDepartment to modify the object.
  .EXAMPLE
-$result = Get-AtwsResourceRoleDepartment -Id 124 | New-AtwsResourceRoleDepartment | Set-AtwsResourceRoleDepartment -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsResourceRoleDepartment -Id 124 | New-AtwsResourceRoleDepartment | Set-AtwsResourceRoleDepartment -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ResourceRoleDepartment] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsResourceRoleDepartment to modify the object and returns the new object.
 
 .NOTES

@@ -60,20 +60,20 @@ Returns any object with a AttachmentInfoName that matches the simple pattern 'So
 Get-AtwsAttachmentInfo -AttachmentInfoName SomeName* -NotLike AttachmentInfoName
 Returns any object with a AttachmentInfoName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label>
-Returns any AttachmentInfos with property ParentType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsAttachmentInfo -ParentType 'PickList Label'
+Returns any AttachmentInfos with property ParentType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label> -NotEquals ParentType 
-Returns any AttachmentInfos with property ParentType NOT equal to the <PickList Label>.
+Get-AtwsAttachmentInfo -ParentType 'PickList Label' -NotEquals ParentType 
+Returns any AttachmentInfos with property ParentType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label1>, <PickList Label2>
-Returns any AttachmentInfos with property ParentType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsAttachmentInfo -ParentType 'PickList Label1', 'PickList Label2'
+Returns any AttachmentInfos with property ParentType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAttachmentInfo -ParentType <PickList Label1>, <PickList Label2> -NotEquals ParentType
-Returns any AttachmentInfos with property ParentType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAttachmentInfo -ParentType 'PickList Label1', 'PickList Label2' -NotEquals ParentType
+Returns any AttachmentInfos with property ParentType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAttachmentInfo -Id 1234 -AttachmentInfoName SomeName* -ParentType <PickList Label1>, <PickList Label2> -Like AttachmentInfoName -NotEquals ParentType -GreaterThan Id
-An example of a more complex query. This command returns any AttachmentInfos with Id GREATER THAN 1234, a AttachmentInfoName that matches the simple pattern SomeName* AND that has a ParentType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAttachmentInfo -Id 1234 -AttachmentInfoName SomeName* -ParentType 'PickList Label1', 'PickList Label2' -Like AttachmentInfoName -NotEquals ParentType -GreaterThan Id
+An example of a more complex query. This command returns any AttachmentInfos with Id GREATER THAN 1234, a AttachmentInfoName that matches the simple pattern SomeName* AND that has a ParentType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

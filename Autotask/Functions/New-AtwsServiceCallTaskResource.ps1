@@ -36,10 +36,10 @@ Creates a new [Autotask.ServiceCallTaskResource] through the Web Services API an
 $result = Get-AtwsServiceCallTaskResource -Id 124 | New-AtwsServiceCallTaskResource 
 Copies [Autotask.ServiceCallTaskResource] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsServiceCallTaskResource -Id 124 | New-AtwsServiceCallTaskResource | Set-AtwsServiceCallTaskResource -ParameterName <Parameter Value>
+Get-AtwsServiceCallTaskResource -Id 124 | New-AtwsServiceCallTaskResource | Set-AtwsServiceCallTaskResource -ParameterName 'Parameter Value'
 Copies [Autotask.ServiceCallTaskResource] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCallTaskResource to modify the object.
  .EXAMPLE
-$result = Get-AtwsServiceCallTaskResource -Id 124 | New-AtwsServiceCallTaskResource | Set-AtwsServiceCallTaskResource -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsServiceCallTaskResource -Id 124 | New-AtwsServiceCallTaskResource | Set-AtwsServiceCallTaskResource -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ServiceCallTaskResource] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsServiceCallTaskResource to modify the object and returns the new object.
 
 .NOTES

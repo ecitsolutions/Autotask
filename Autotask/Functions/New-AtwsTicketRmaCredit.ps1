@@ -36,10 +36,10 @@ Creates a new [Autotask.TicketRmaCredit] through the Web Services API and return
 $result = Get-AtwsTicketRmaCredit -Id 124 | New-AtwsTicketRmaCredit 
 Copies [Autotask.TicketRmaCredit] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsTicketRmaCredit -Id 124 | New-AtwsTicketRmaCredit | Set-AtwsTicketRmaCredit -ParameterName <Parameter Value>
+Get-AtwsTicketRmaCredit -Id 124 | New-AtwsTicketRmaCredit | Set-AtwsTicketRmaCredit -ParameterName 'Parameter Value'
 Copies [Autotask.TicketRmaCredit] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketRmaCredit to modify the object.
  .EXAMPLE
-$result = Get-AtwsTicketRmaCredit -Id 124 | New-AtwsTicketRmaCredit | Set-AtwsTicketRmaCredit -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsTicketRmaCredit -Id 124 | New-AtwsTicketRmaCredit | Set-AtwsTicketRmaCredit -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.TicketRmaCredit] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsTicketRmaCredit to modify the object and returns the new object.
 
 .NOTES

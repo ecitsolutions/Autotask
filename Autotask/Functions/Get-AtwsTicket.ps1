@@ -76,20 +76,20 @@ Returns any object with a TicketName that matches the simple pattern 'SomeName*'
 Get-AtwsTicket -TicketName SomeName* -NotLike TicketName
 Returns any object with a TicketName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsTicket -IssueType <PickList Label>
-Returns any Tickets with property IssueType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsTicket -IssueType 'PickList Label'
+Returns any Tickets with property IssueType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsTicket -IssueType <PickList Label> -NotEquals IssueType 
-Returns any Tickets with property IssueType NOT equal to the <PickList Label>.
+Get-AtwsTicket -IssueType 'PickList Label' -NotEquals IssueType 
+Returns any Tickets with property IssueType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsTicket -IssueType <PickList Label1>, <PickList Label2>
-Returns any Tickets with property IssueType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsTicket -IssueType 'PickList Label1', 'PickList Label2'
+Returns any Tickets with property IssueType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTicket -IssueType <PickList Label1>, <PickList Label2> -NotEquals IssueType
-Returns any Tickets with property IssueType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTicket -IssueType 'PickList Label1', 'PickList Label2' -NotEquals IssueType
+Returns any Tickets with property IssueType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTicket -Id 1234 -TicketName SomeName* -IssueType <PickList Label1>, <PickList Label2> -Like TicketName -NotEquals IssueType -GreaterThan Id
-An example of a more complex query. This command returns any Tickets with Id GREATER THAN 1234, a TicketName that matches the simple pattern SomeName* AND that has a IssueType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTicket -Id 1234 -TicketName SomeName* -IssueType 'PickList Label1', 'PickList Label2' -Like TicketName -NotEquals IssueType -GreaterThan Id
+An example of a more complex query. This command returns any Tickets with Id GREATER THAN 1234, a TicketName that matches the simple pattern SomeName* AND that has a IssueType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

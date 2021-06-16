@@ -64,20 +64,20 @@ Returns any object with a TicketCategoryFieldDefaultsName that matches the simpl
 Get-AtwsTicketCategoryFieldDefaults -TicketCategoryFieldDefaultsName SomeName* -NotLike TicketCategoryFieldDefaultsName
 Returns any object with a TicketCategoryFieldDefaultsName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsTicketCategoryFieldDefaults -IssueTypeID <PickList Label>
-Returns any TicketCategoryFieldDefaultss with property IssueTypeID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsTicketCategoryFieldDefaults -IssueTypeID 'PickList Label'
+Returns any TicketCategoryFieldDefaultss with property IssueTypeID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsTicketCategoryFieldDefaults -IssueTypeID <PickList Label> -NotEquals IssueTypeID 
-Returns any TicketCategoryFieldDefaultss with property IssueTypeID NOT equal to the <PickList Label>.
+Get-AtwsTicketCategoryFieldDefaults -IssueTypeID 'PickList Label' -NotEquals IssueTypeID 
+Returns any TicketCategoryFieldDefaultss with property IssueTypeID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsTicketCategoryFieldDefaults -IssueTypeID <PickList Label1>, <PickList Label2>
-Returns any TicketCategoryFieldDefaultss with property IssueTypeID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsTicketCategoryFieldDefaults -IssueTypeID 'PickList Label1', 'PickList Label2'
+Returns any TicketCategoryFieldDefaultss with property IssueTypeID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTicketCategoryFieldDefaults -IssueTypeID <PickList Label1>, <PickList Label2> -NotEquals IssueTypeID
-Returns any TicketCategoryFieldDefaultss with property IssueTypeID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTicketCategoryFieldDefaults -IssueTypeID 'PickList Label1', 'PickList Label2' -NotEquals IssueTypeID
+Returns any TicketCategoryFieldDefaultss with property IssueTypeID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsTicketCategoryFieldDefaults -Id 1234 -TicketCategoryFieldDefaultsName SomeName* -IssueTypeID <PickList Label1>, <PickList Label2> -Like TicketCategoryFieldDefaultsName -NotEquals IssueTypeID -GreaterThan Id
-An example of a more complex query. This command returns any TicketCategoryFieldDefaultss with Id GREATER THAN 1234, a TicketCategoryFieldDefaultsName that matches the simple pattern SomeName* AND that has a IssueTypeID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsTicketCategoryFieldDefaults -Id 1234 -TicketCategoryFieldDefaultsName SomeName* -IssueTypeID 'PickList Label1', 'PickList Label2' -Like TicketCategoryFieldDefaultsName -NotEquals IssueTypeID -GreaterThan Id
+An example of a more complex query. This command returns any TicketCategoryFieldDefaultss with Id GREATER THAN 1234, a TicketCategoryFieldDefaultsName that matches the simple pattern SomeName* AND that has a IssueTypeID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

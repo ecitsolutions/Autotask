@@ -38,10 +38,10 @@ Creates a new [Autotask.Account] through the Web Services API and returns the ne
 $result = Get-AtwsAccount -Id 124 | New-AtwsAccount 
 Copies [Autotask.Account] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsAccount -Id 124 | New-AtwsAccount | Set-AtwsAccount -ParameterName <Parameter Value>
+Get-AtwsAccount -Id 124 | New-AtwsAccount | Set-AtwsAccount -ParameterName 'Parameter Value'
 Copies [Autotask.Account] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccount to modify the object.
  .EXAMPLE
-$result = Get-AtwsAccount -Id 124 | New-AtwsAccount | Set-AtwsAccount -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsAccount -Id 124 | New-AtwsAccount | Set-AtwsAccount -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.Account] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsAccount to modify the object and returns the new object.
 
 .NOTES

@@ -45,10 +45,10 @@ Creates a new [Autotask.Opportunity] through the Web Services API and returns th
 $result = Get-AtwsOpportunity -Id 124 | New-AtwsOpportunity 
 Copies [Autotask.Opportunity] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsOpportunity -Id 124 | New-AtwsOpportunity | Set-AtwsOpportunity -ParameterName <Parameter Value>
+Get-AtwsOpportunity -Id 124 | New-AtwsOpportunity | Set-AtwsOpportunity -ParameterName 'Parameter Value'
 Copies [Autotask.Opportunity] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsOpportunity to modify the object.
  .EXAMPLE
-$result = Get-AtwsOpportunity -Id 124 | New-AtwsOpportunity | Set-AtwsOpportunity -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsOpportunity -Id 124 | New-AtwsOpportunity | Set-AtwsOpportunity -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.Opportunity] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsOpportunity to modify the object and returns the new object.
 
 .NOTES

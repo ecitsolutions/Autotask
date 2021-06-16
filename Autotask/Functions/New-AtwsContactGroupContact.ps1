@@ -36,10 +36,10 @@ Creates a new [Autotask.ContactGroupContact] through the Web Services API and re
 $result = Get-AtwsContactGroupContact -Id 124 | New-AtwsContactGroupContact 
 Copies [Autotask.ContactGroupContact] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsContactGroupContact -Id 124 | New-AtwsContactGroupContact | Set-AtwsContactGroupContact -ParameterName <Parameter Value>
+Get-AtwsContactGroupContact -Id 124 | New-AtwsContactGroupContact | Set-AtwsContactGroupContact -ParameterName 'Parameter Value'
 Copies [Autotask.ContactGroupContact] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContactGroupContact to modify the object.
  .EXAMPLE
-$result = Get-AtwsContactGroupContact -Id 124 | New-AtwsContactGroupContact | Set-AtwsContactGroupContact -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsContactGroupContact -Id 124 | New-AtwsContactGroupContact | Set-AtwsContactGroupContact -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ContactGroupContact] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsContactGroupContact to modify the object and returns the new object.
 
 .NOTES

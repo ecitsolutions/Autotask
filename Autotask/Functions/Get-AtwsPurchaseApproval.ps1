@@ -57,20 +57,20 @@ Returns any object with a PurchaseApprovalName that matches the simple pattern '
 Get-AtwsPurchaseApproval -PurchaseApprovalName SomeName* -NotLike PurchaseApprovalName
 Returns any object with a PurchaseApprovalName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsPurchaseApproval -CostType <PickList Label>
-Returns any PurchaseApprovals with property CostType equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsPurchaseApproval -CostType 'PickList Label'
+Returns any PurchaseApprovals with property CostType equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsPurchaseApproval -CostType <PickList Label> -NotEquals CostType 
-Returns any PurchaseApprovals with property CostType NOT equal to the <PickList Label>.
+Get-AtwsPurchaseApproval -CostType 'PickList Label' -NotEquals CostType 
+Returns any PurchaseApprovals with property CostType NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsPurchaseApproval -CostType <PickList Label1>, <PickList Label2>
-Returns any PurchaseApprovals with property CostType equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsPurchaseApproval -CostType 'PickList Label1', 'PickList Label2'
+Returns any PurchaseApprovals with property CostType equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsPurchaseApproval -CostType <PickList Label1>, <PickList Label2> -NotEquals CostType
-Returns any PurchaseApprovals with property CostType NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsPurchaseApproval -CostType 'PickList Label1', 'PickList Label2' -NotEquals CostType
+Returns any PurchaseApprovals with property CostType NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsPurchaseApproval -Id 1234 -PurchaseApprovalName SomeName* -CostType <PickList Label1>, <PickList Label2> -Like PurchaseApprovalName -NotEquals CostType -GreaterThan Id
-An example of a more complex query. This command returns any PurchaseApprovals with Id GREATER THAN 1234, a PurchaseApprovalName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsPurchaseApproval -Id 1234 -PurchaseApprovalName SomeName* -CostType 'PickList Label1', 'PickList Label2' -Like PurchaseApprovalName -NotEquals CostType -GreaterThan Id
+An example of a more complex query. This command returns any PurchaseApprovals with Id GREATER THAN 1234, a PurchaseApprovalName that matches the simple pattern SomeName* AND that has a CostType that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

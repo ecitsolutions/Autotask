@@ -57,20 +57,20 @@ Returns any object with a AccountAlertName that matches the simple pattern 'Some
 Get-AtwsAccountAlert -AccountAlertName SomeName* -NotLike AccountAlertName
 Returns any object with a AccountAlertName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsAccountAlert -AlertTypeID <PickList Label>
-Returns any AccountAlerts with property AlertTypeID equal to the <PickList Label>. '-PickList' is any parameter on .
+Get-AtwsAccountAlert -AlertTypeID 'PickList Label'
+Returns any AccountAlerts with property AlertTypeID equal to the 'PickList Label'. '-PickList' is any parameter on .
  .EXAMPLE
-Get-AtwsAccountAlert -AlertTypeID <PickList Label> -NotEquals AlertTypeID 
-Returns any AccountAlerts with property AlertTypeID NOT equal to the <PickList Label>.
+Get-AtwsAccountAlert -AlertTypeID 'PickList Label' -NotEquals AlertTypeID 
+Returns any AccountAlerts with property AlertTypeID NOT equal to the 'PickList Label'.
  .EXAMPLE
-Get-AtwsAccountAlert -AlertTypeID <PickList Label1>, <PickList Label2>
-Returns any AccountAlerts with property AlertTypeID equal to EITHER <PickList Label1> OR <PickList Label2>.
+Get-AtwsAccountAlert -AlertTypeID 'PickList Label1', 'PickList Label2'
+Returns any AccountAlerts with property AlertTypeID equal to EITHER 'PickList Label1' OR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAccountAlert -AlertTypeID <PickList Label1>, <PickList Label2> -NotEquals AlertTypeID
-Returns any AccountAlerts with property AlertTypeID NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAccountAlert -AlertTypeID 'PickList Label1', 'PickList Label2' -NotEquals AlertTypeID
+Returns any AccountAlerts with property AlertTypeID NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
  .EXAMPLE
-Get-AtwsAccountAlert -Id 1234 -AccountAlertName SomeName* -AlertTypeID <PickList Label1>, <PickList Label2> -Like AccountAlertName -NotEquals AlertTypeID -GreaterThan Id
-An example of a more complex query. This command returns any AccountAlerts with Id GREATER THAN 1234, a AccountAlertName that matches the simple pattern SomeName* AND that has a AlertTypeID that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
+Get-AtwsAccountAlert -Id 1234 -AccountAlertName SomeName* -AlertTypeID 'PickList Label1', 'PickList Label2' -Like AccountAlertName -NotEquals AlertTypeID -GreaterThan Id
+An example of a more complex query. This command returns any AccountAlerts with Id GREATER THAN 1234, a AccountAlertName that matches the simple pattern SomeName* AND that has a AlertTypeID that is NOT equal to NEITHER 'PickList Label1' NOR 'PickList Label2'.
 
 .NOTES
 Related commands:

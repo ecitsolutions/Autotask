@@ -36,10 +36,10 @@ Creates a new [Autotask.InstalledProductType] through the Web Services API and r
 $result = Get-AtwsInstalledProductType -Id 124 | New-AtwsInstalledProductType 
 Copies [Autotask.InstalledProductType] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsInstalledProductType -Id 124 | New-AtwsInstalledProductType | Set-AtwsInstalledProductType -ParameterName <Parameter Value>
+Get-AtwsInstalledProductType -Id 124 | New-AtwsInstalledProductType | Set-AtwsInstalledProductType -ParameterName 'Parameter Value'
 Copies [Autotask.InstalledProductType] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductType to modify the object.
  .EXAMPLE
-$result = Get-AtwsInstalledProductType -Id 124 | New-AtwsInstalledProductType | Set-AtwsInstalledProductType -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsInstalledProductType -Id 124 | New-AtwsInstalledProductType | Set-AtwsInstalledProductType -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.InstalledProductType] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInstalledProductType to modify the object and returns the new object.
 
 .NOTES

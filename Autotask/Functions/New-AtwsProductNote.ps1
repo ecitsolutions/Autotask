@@ -37,10 +37,10 @@ Creates a new [Autotask.ProductNote] through the Web Services API and returns th
 $result = Get-AtwsProductNote -Id 124 | New-AtwsProductNote 
 Copies [Autotask.ProductNote] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsProductNote -Id 124 | New-AtwsProductNote | Set-AtwsProductNote -ParameterName <Parameter Value>
+Get-AtwsProductNote -Id 124 | New-AtwsProductNote | Set-AtwsProductNote -ParameterName 'Parameter Value'
 Copies [Autotask.ProductNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProductNote to modify the object.
  .EXAMPLE
-$result = Get-AtwsProductNote -Id 124 | New-AtwsProductNote | Set-AtwsProductNote -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsProductNote -Id 124 | New-AtwsProductNote | Set-AtwsProductNote -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.ProductNote] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsProductNote to modify the object and returns the new object.
 
 .NOTES

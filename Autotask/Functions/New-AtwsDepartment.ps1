@@ -36,10 +36,10 @@ Creates a new [Autotask.Department] through the Web Services API and returns the
 $result = Get-AtwsDepartment -Id 124 | New-AtwsDepartment 
 Copies [Autotask.Department] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsDepartment -Id 124 | New-AtwsDepartment | Set-AtwsDepartment -ParameterName <Parameter Value>
+Get-AtwsDepartment -Id 124 | New-AtwsDepartment | Set-AtwsDepartment -ParameterName 'Parameter Value'
 Copies [Autotask.Department] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsDepartment to modify the object.
  .EXAMPLE
-$result = Get-AtwsDepartment -Id 124 | New-AtwsDepartment | Set-AtwsDepartment -ParameterName <Parameter Value> -Passthru
+$result = Get-AtwsDepartment -Id 124 | New-AtwsDepartment | Set-AtwsDepartment -ParameterName 'Parameter Value' -Passthru
 Copies [Autotask.Department] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsDepartment to modify the object and returns the new object.
 
 .NOTES
