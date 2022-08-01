@@ -77,31 +77,31 @@ Returns the object with Id 0, if any.
 
 ### EXAMPLE 2
 ```
-Get-AtwsProduct -ProductName SomeName
+Get-AtwsProduct -Name SomeName
 Returns the object with ProductName 'SomeName', if any.
 ```
 
 ### EXAMPLE 3
 ```
-Get-AtwsProduct -ProductName 'Some Name'
+Get-AtwsProduct -Name 'Some Name'
 Returns the object with ProductName 'Some Name', if any.
 ```
 
 ### EXAMPLE 4
 ```
-Get-AtwsProduct -ProductName 'Some Name' -NotEquals ProductName
+Get-AtwsProduct -Name 'Some Name' -NotEquals Name
 Returns any objects with a ProductName that is NOT equal to 'Some Name', if any.
 ```
 
 ### EXAMPLE 5
 ```
-Get-AtwsProduct -ProductName SomeName* -Like ProductName
+Get-AtwsProduct -Name SomeName* -Like Name
 Returns any object with a ProductName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
 ```
 
 ### EXAMPLE 6
 ```
-Get-AtwsProduct -ProductName SomeName* -NotLike ProductName
+Get-AtwsProduct -Name SomeName* -NotLike Name
 Returns any object with a ProductName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 ```
 
@@ -130,7 +130,7 @@ Returns any Products with property ProductCategory NOT equal to NEITHER <PickLis
 
 ### EXAMPLE 11
 ```
-, <PickList Label2> -Like ProductName -NotEquals ProductCategory -GreaterThan Id
+, <PickList Label2> -Like Name -NotEquals ProductCategory -GreaterThan Id
 An example of a more complex query. This command returns any Products with Id GREATER THAN 1234, a ProductName that matches the simple pattern SomeName* AND that has a ProductCategory that is NOT equal to NEITHER <PickList Label1> NOR <PickList Label2>.
 ```
 
