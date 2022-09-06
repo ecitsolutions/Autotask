@@ -69,10 +69,9 @@ foreach ($model in $swagger.definitions.PSObject.Properties) {
 $code = ($fileWrapper -F $classes)
 
 Add-Type -TypeDefinition $code
+#$code | Set-Content -path 'Reference.cs' -Encoding utf8
 
-$test = new-object Autotask.Company
-
-$swagger.paths.
+$swagger.paths
 
 $test = 'https://webservices19.autotask.net/V1.0/Ticket/EntityInformation'
 $response = Invoke-RestMethod -uri $test

@@ -1996,6 +1996,7 @@ namespace Autotask {
 
         private object idField;
         private object companyIDField;
+        private object isPrimaryComanagedResourceField;
         private object resourceIDField;
         private object userDefinedFieldsField;
   
@@ -2014,6 +2015,14 @@ namespace Autotask {
             }
             set {
                 this.companyIDField = value;
+            }
+        }
+        public object isPrimaryComanagedResource {
+            get {
+                return this.isPrimaryComanagedResourceField;
+            }
+            set {
+                this.isPrimaryComanagedResourceField = value;
             }
         }
         public object resourceID {
@@ -2075,6 +2084,7 @@ namespace Autotask {
         private object isActiveField;
         private object isClientPortalActiveField;
         private object isEnabledForComanagedField;
+        private object isSampleField;
         private object isTaskFireActiveField;
         private object isTaxExemptField;
         private object lastActivityDateField;
@@ -2401,6 +2411,14 @@ namespace Autotask {
             }
             set {
                 this.isEnabledForComanagedField = value;
+            }
+        }
+        public object isSample {
+            get {
+                return this.isSampleField;
+            }
+            set {
+                this.isSampleField = value;
             }
         }
         public object isTaskFireActive {
@@ -10908,6 +10926,945 @@ namespace Autotask {
 
     }
 
+    public class ProcessDattoAlert {
+
+        private object ticketEntityField;
+        private object endDeviceScreenshotAttachmentField;
+        private object deviceSnapshotNoteTextField;
+        private object endDeviceSnapshotNoteTextField;
+  
+
+        public object ticketEntity {
+            get {
+                return this.ticketEntityField;
+            }
+            set {
+                this.ticketEntityField = value;
+            }
+        }
+        public object endDeviceScreenshotAttachment {
+            get {
+                return this.endDeviceScreenshotAttachmentField;
+            }
+            set {
+                this.endDeviceScreenshotAttachmentField = value;
+            }
+        }
+        public object deviceSnapshotNoteText {
+            get {
+                return this.deviceSnapshotNoteTextField;
+            }
+            set {
+                this.deviceSnapshotNoteTextField = value;
+            }
+        }
+        public object endDeviceSnapshotNoteText {
+            get {
+                return this.endDeviceSnapshotNoteTextField;
+            }
+            set {
+                this.endDeviceSnapshotNoteTextField = value;
+            }
+        }
+
+    }
+
+    public class Ticket {
+
+        private object idField;
+        private object apiVendorIDField;
+        private object assignedResourceIDField;
+        private object assignedResourceRoleIDField;
+        private object billingCodeIDField;
+        private object changeApprovalBoardField;
+        private object changeApprovalStatusField;
+        private object changeApprovalTypeField;
+        private object changeInfoField1Field;
+        private object changeInfoField2Field;
+        private object changeInfoField3Field;
+        private object changeInfoField4Field;
+        private object changeInfoField5Field;
+        private object companyIDField;
+        private object companyLocationIDField;
+        private object completedByResourceIDField;
+        private object completedDateField;
+        private object configurationItemIDField;
+        private object contactIDField;
+        private object contractIDField;
+        private object contractServiceBundleIDField;
+        private object contractServiceIDField;
+        private object createDateField;
+        private object createdByContactIDField;
+        private object creatorResourceIDField;
+        private object creatorTypeField;
+        private object currentServiceThermometerRatingField;
+        private object descriptionField;
+        private object dueDateTimeField;
+        private object estimatedHoursField;
+        private object externalIDField;
+        private object firstResponseAssignedResourceIDField;
+        private object firstResponseDateTimeField;
+        private object firstResponseDueDateTimeField;
+        private object firstResponseInitiatingResourceIDField;
+        private object hoursToBeScheduledField;
+        private object impersonatorCreatorResourceIDField;
+        private object isAssignedToComanagedField;
+        private object issueTypeField;
+        private object isVisibleToComanagedField;
+        private object lastActivityDateField;
+        private object lastActivityPersonTypeField;
+        private object lastActivityResourceIDField;
+        private object lastCustomerNotificationDateTimeField;
+        private object lastCustomerVisibleActivityDateTimeField;
+        private object lastTrackedModificationDateTimeField;
+        private object monitorIDField;
+        private object monitorTypeIDField;
+        private object opportunityIDField;
+        private object organizationalLevelAssociationIDField;
+        private object previousServiceThermometerRatingField;
+        private object priorityField;
+        private object problemTicketIdField;
+        private object projectIDField;
+        private object purchaseOrderNumberField;
+        private object queueIDField;
+        private object resolutionField;
+        private object resolutionPlanDateTimeField;
+        private object resolutionPlanDueDateTimeField;
+        private object resolvedDateTimeField;
+        private object resolvedDueDateTimeField;
+        private object rmaStatusField;
+        private object rmaTypeField;
+        private object rmmAlertIDField;
+        private object serviceLevelAgreementHasBeenMetField;
+        private object serviceLevelAgreementIDField;
+        private object serviceLevelAgreementPausedNextEventHoursField;
+        private object serviceThermometerTemperatureField;
+        private object sourceField;
+        private object statusField;
+        private object subIssueTypeField;
+        private object ticketCategoryField;
+        private object ticketNumberField;
+        private object ticketTypeField;
+        private object titleField;
+        private object userDefinedFieldsField;
+  
+
+        public object id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        public object apiVendorID {
+            get {
+                return this.apiVendorIDField;
+            }
+            set {
+                this.apiVendorIDField = value;
+            }
+        }
+        public object assignedResourceID {
+            get {
+                return this.assignedResourceIDField;
+            }
+            set {
+                this.assignedResourceIDField = value;
+            }
+        }
+        public object assignedResourceRoleID {
+            get {
+                return this.assignedResourceRoleIDField;
+            }
+            set {
+                this.assignedResourceRoleIDField = value;
+            }
+        }
+        public object billingCodeID {
+            get {
+                return this.billingCodeIDField;
+            }
+            set {
+                this.billingCodeIDField = value;
+            }
+        }
+        public object changeApprovalBoard {
+            get {
+                return this.changeApprovalBoardField;
+            }
+            set {
+                this.changeApprovalBoardField = value;
+            }
+        }
+        public object changeApprovalStatus {
+            get {
+                return this.changeApprovalStatusField;
+            }
+            set {
+                this.changeApprovalStatusField = value;
+            }
+        }
+        public object changeApprovalType {
+            get {
+                return this.changeApprovalTypeField;
+            }
+            set {
+                this.changeApprovalTypeField = value;
+            }
+        }
+        public object changeInfoField1 {
+            get {
+                return this.changeInfoField1Field;
+            }
+            set {
+                this.changeInfoField1Field = value;
+            }
+        }
+        public object changeInfoField2 {
+            get {
+                return this.changeInfoField2Field;
+            }
+            set {
+                this.changeInfoField2Field = value;
+            }
+        }
+        public object changeInfoField3 {
+            get {
+                return this.changeInfoField3Field;
+            }
+            set {
+                this.changeInfoField3Field = value;
+            }
+        }
+        public object changeInfoField4 {
+            get {
+                return this.changeInfoField4Field;
+            }
+            set {
+                this.changeInfoField4Field = value;
+            }
+        }
+        public object changeInfoField5 {
+            get {
+                return this.changeInfoField5Field;
+            }
+            set {
+                this.changeInfoField5Field = value;
+            }
+        }
+        public object companyID {
+            get {
+                return this.companyIDField;
+            }
+            set {
+                this.companyIDField = value;
+            }
+        }
+        public object companyLocationID {
+            get {
+                return this.companyLocationIDField;
+            }
+            set {
+                this.companyLocationIDField = value;
+            }
+        }
+        public object completedByResourceID {
+            get {
+                return this.completedByResourceIDField;
+            }
+            set {
+                this.completedByResourceIDField = value;
+            }
+        }
+        public object completedDate {
+            get {
+                return this.completedDateField;
+            }
+            set {
+                this.completedDateField = value;
+            }
+        }
+        public object configurationItemID {
+            get {
+                return this.configurationItemIDField;
+            }
+            set {
+                this.configurationItemIDField = value;
+            }
+        }
+        public object contactID {
+            get {
+                return this.contactIDField;
+            }
+            set {
+                this.contactIDField = value;
+            }
+        }
+        public object contractID {
+            get {
+                return this.contractIDField;
+            }
+            set {
+                this.contractIDField = value;
+            }
+        }
+        public object contractServiceBundleID {
+            get {
+                return this.contractServiceBundleIDField;
+            }
+            set {
+                this.contractServiceBundleIDField = value;
+            }
+        }
+        public object contractServiceID {
+            get {
+                return this.contractServiceIDField;
+            }
+            set {
+                this.contractServiceIDField = value;
+            }
+        }
+        public object createDate {
+            get {
+                return this.createDateField;
+            }
+            set {
+                this.createDateField = value;
+            }
+        }
+        public object createdByContactID {
+            get {
+                return this.createdByContactIDField;
+            }
+            set {
+                this.createdByContactIDField = value;
+            }
+        }
+        public object creatorResourceID {
+            get {
+                return this.creatorResourceIDField;
+            }
+            set {
+                this.creatorResourceIDField = value;
+            }
+        }
+        public object creatorType {
+            get {
+                return this.creatorTypeField;
+            }
+            set {
+                this.creatorTypeField = value;
+            }
+        }
+        public object currentServiceThermometerRating {
+            get {
+                return this.currentServiceThermometerRatingField;
+            }
+            set {
+                this.currentServiceThermometerRatingField = value;
+            }
+        }
+        public object description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        public object dueDateTime {
+            get {
+                return this.dueDateTimeField;
+            }
+            set {
+                this.dueDateTimeField = value;
+            }
+        }
+        public object estimatedHours {
+            get {
+                return this.estimatedHoursField;
+            }
+            set {
+                this.estimatedHoursField = value;
+            }
+        }
+        public object externalID {
+            get {
+                return this.externalIDField;
+            }
+            set {
+                this.externalIDField = value;
+            }
+        }
+        public object firstResponseAssignedResourceID {
+            get {
+                return this.firstResponseAssignedResourceIDField;
+            }
+            set {
+                this.firstResponseAssignedResourceIDField = value;
+            }
+        }
+        public object firstResponseDateTime {
+            get {
+                return this.firstResponseDateTimeField;
+            }
+            set {
+                this.firstResponseDateTimeField = value;
+            }
+        }
+        public object firstResponseDueDateTime {
+            get {
+                return this.firstResponseDueDateTimeField;
+            }
+            set {
+                this.firstResponseDueDateTimeField = value;
+            }
+        }
+        public object firstResponseInitiatingResourceID {
+            get {
+                return this.firstResponseInitiatingResourceIDField;
+            }
+            set {
+                this.firstResponseInitiatingResourceIDField = value;
+            }
+        }
+        public object hoursToBeScheduled {
+            get {
+                return this.hoursToBeScheduledField;
+            }
+            set {
+                this.hoursToBeScheduledField = value;
+            }
+        }
+        public object impersonatorCreatorResourceID {
+            get {
+                return this.impersonatorCreatorResourceIDField;
+            }
+            set {
+                this.impersonatorCreatorResourceIDField = value;
+            }
+        }
+        public object isAssignedToComanaged {
+            get {
+                return this.isAssignedToComanagedField;
+            }
+            set {
+                this.isAssignedToComanagedField = value;
+            }
+        }
+        public object issueType {
+            get {
+                return this.issueTypeField;
+            }
+            set {
+                this.issueTypeField = value;
+            }
+        }
+        public object isVisibleToComanaged {
+            get {
+                return this.isVisibleToComanagedField;
+            }
+            set {
+                this.isVisibleToComanagedField = value;
+            }
+        }
+        public object lastActivityDate {
+            get {
+                return this.lastActivityDateField;
+            }
+            set {
+                this.lastActivityDateField = value;
+            }
+        }
+        public object lastActivityPersonType {
+            get {
+                return this.lastActivityPersonTypeField;
+            }
+            set {
+                this.lastActivityPersonTypeField = value;
+            }
+        }
+        public object lastActivityResourceID {
+            get {
+                return this.lastActivityResourceIDField;
+            }
+            set {
+                this.lastActivityResourceIDField = value;
+            }
+        }
+        public object lastCustomerNotificationDateTime {
+            get {
+                return this.lastCustomerNotificationDateTimeField;
+            }
+            set {
+                this.lastCustomerNotificationDateTimeField = value;
+            }
+        }
+        public object lastCustomerVisibleActivityDateTime {
+            get {
+                return this.lastCustomerVisibleActivityDateTimeField;
+            }
+            set {
+                this.lastCustomerVisibleActivityDateTimeField = value;
+            }
+        }
+        public object lastTrackedModificationDateTime {
+            get {
+                return this.lastTrackedModificationDateTimeField;
+            }
+            set {
+                this.lastTrackedModificationDateTimeField = value;
+            }
+        }
+        public object monitorID {
+            get {
+                return this.monitorIDField;
+            }
+            set {
+                this.monitorIDField = value;
+            }
+        }
+        public object monitorTypeID {
+            get {
+                return this.monitorTypeIDField;
+            }
+            set {
+                this.monitorTypeIDField = value;
+            }
+        }
+        public object opportunityID {
+            get {
+                return this.opportunityIDField;
+            }
+            set {
+                this.opportunityIDField = value;
+            }
+        }
+        public object organizationalLevelAssociationID {
+            get {
+                return this.organizationalLevelAssociationIDField;
+            }
+            set {
+                this.organizationalLevelAssociationIDField = value;
+            }
+        }
+        public object previousServiceThermometerRating {
+            get {
+                return this.previousServiceThermometerRatingField;
+            }
+            set {
+                this.previousServiceThermometerRatingField = value;
+            }
+        }
+        public object priority {
+            get {
+                return this.priorityField;
+            }
+            set {
+                this.priorityField = value;
+            }
+        }
+        public object problemTicketId {
+            get {
+                return this.problemTicketIdField;
+            }
+            set {
+                this.problemTicketIdField = value;
+            }
+        }
+        public object projectID {
+            get {
+                return this.projectIDField;
+            }
+            set {
+                this.projectIDField = value;
+            }
+        }
+        public object purchaseOrderNumber {
+            get {
+                return this.purchaseOrderNumberField;
+            }
+            set {
+                this.purchaseOrderNumberField = value;
+            }
+        }
+        public object queueID {
+            get {
+                return this.queueIDField;
+            }
+            set {
+                this.queueIDField = value;
+            }
+        }
+        public object resolution {
+            get {
+                return this.resolutionField;
+            }
+            set {
+                this.resolutionField = value;
+            }
+        }
+        public object resolutionPlanDateTime {
+            get {
+                return this.resolutionPlanDateTimeField;
+            }
+            set {
+                this.resolutionPlanDateTimeField = value;
+            }
+        }
+        public object resolutionPlanDueDateTime {
+            get {
+                return this.resolutionPlanDueDateTimeField;
+            }
+            set {
+                this.resolutionPlanDueDateTimeField = value;
+            }
+        }
+        public object resolvedDateTime {
+            get {
+                return this.resolvedDateTimeField;
+            }
+            set {
+                this.resolvedDateTimeField = value;
+            }
+        }
+        public object resolvedDueDateTime {
+            get {
+                return this.resolvedDueDateTimeField;
+            }
+            set {
+                this.resolvedDueDateTimeField = value;
+            }
+        }
+        public object rmaStatus {
+            get {
+                return this.rmaStatusField;
+            }
+            set {
+                this.rmaStatusField = value;
+            }
+        }
+        public object rmaType {
+            get {
+                return this.rmaTypeField;
+            }
+            set {
+                this.rmaTypeField = value;
+            }
+        }
+        public object rmmAlertID {
+            get {
+                return this.rmmAlertIDField;
+            }
+            set {
+                this.rmmAlertIDField = value;
+            }
+        }
+        public object serviceLevelAgreementHasBeenMet {
+            get {
+                return this.serviceLevelAgreementHasBeenMetField;
+            }
+            set {
+                this.serviceLevelAgreementHasBeenMetField = value;
+            }
+        }
+        public object serviceLevelAgreementID {
+            get {
+                return this.serviceLevelAgreementIDField;
+            }
+            set {
+                this.serviceLevelAgreementIDField = value;
+            }
+        }
+        public object serviceLevelAgreementPausedNextEventHours {
+            get {
+                return this.serviceLevelAgreementPausedNextEventHoursField;
+            }
+            set {
+                this.serviceLevelAgreementPausedNextEventHoursField = value;
+            }
+        }
+        public object serviceThermometerTemperature {
+            get {
+                return this.serviceThermometerTemperatureField;
+            }
+            set {
+                this.serviceThermometerTemperatureField = value;
+            }
+        }
+        public object source {
+            get {
+                return this.sourceField;
+            }
+            set {
+                this.sourceField = value;
+            }
+        }
+        public object status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+        public object subIssueType {
+            get {
+                return this.subIssueTypeField;
+            }
+            set {
+                this.subIssueTypeField = value;
+            }
+        }
+        public object ticketCategory {
+            get {
+                return this.ticketCategoryField;
+            }
+            set {
+                this.ticketCategoryField = value;
+            }
+        }
+        public object ticketNumber {
+            get {
+                return this.ticketNumberField;
+            }
+            set {
+                this.ticketNumberField = value;
+            }
+        }
+        public object ticketType {
+            get {
+                return this.ticketTypeField;
+            }
+            set {
+                this.ticketTypeField = value;
+            }
+        }
+        public object title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        public object userDefinedFields {
+            get {
+                return this.userDefinedFieldsField;
+            }
+            set {
+                this.userDefinedFieldsField = value;
+            }
+        }
+
+    }
+
+    public class TicketAttachment {
+
+        private object idField;
+        private object attachDateField;
+        private object attachedByContactIDField;
+        private object attachedByResourceIDField;
+        private object attachmentTypeField;
+        private object contentTypeField;
+        private object creatorTypeField;
+        private object fileSizeField;
+        private object fullPathField;
+        private object impersonatorCreatorResourceIDField;
+        private object opportunityIDField;
+        private object parentAttachmentIDField;
+        private object parentIDField;
+        private object publishField;
+        private object ticketIDField;
+        private object ticketNoteIDField;
+        private object timeEntryIDField;
+        private object titleField;
+        private object dataField;
+        private object parentTypeField;
+        private object soapParentPropertyIdField;
+        private object isTaskAttachmentField;
+  
+
+        public object id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        public object attachDate {
+            get {
+                return this.attachDateField;
+            }
+            set {
+                this.attachDateField = value;
+            }
+        }
+        public object attachedByContactID {
+            get {
+                return this.attachedByContactIDField;
+            }
+            set {
+                this.attachedByContactIDField = value;
+            }
+        }
+        public object attachedByResourceID {
+            get {
+                return this.attachedByResourceIDField;
+            }
+            set {
+                this.attachedByResourceIDField = value;
+            }
+        }
+        public object attachmentType {
+            get {
+                return this.attachmentTypeField;
+            }
+            set {
+                this.attachmentTypeField = value;
+            }
+        }
+        public object contentType {
+            get {
+                return this.contentTypeField;
+            }
+            set {
+                this.contentTypeField = value;
+            }
+        }
+        public object creatorType {
+            get {
+                return this.creatorTypeField;
+            }
+            set {
+                this.creatorTypeField = value;
+            }
+        }
+        public object fileSize {
+            get {
+                return this.fileSizeField;
+            }
+            set {
+                this.fileSizeField = value;
+            }
+        }
+        public object fullPath {
+            get {
+                return this.fullPathField;
+            }
+            set {
+                this.fullPathField = value;
+            }
+        }
+        public object impersonatorCreatorResourceID {
+            get {
+                return this.impersonatorCreatorResourceIDField;
+            }
+            set {
+                this.impersonatorCreatorResourceIDField = value;
+            }
+        }
+        public object opportunityID {
+            get {
+                return this.opportunityIDField;
+            }
+            set {
+                this.opportunityIDField = value;
+            }
+        }
+        public object parentAttachmentID {
+            get {
+                return this.parentAttachmentIDField;
+            }
+            set {
+                this.parentAttachmentIDField = value;
+            }
+        }
+        public object parentID {
+            get {
+                return this.parentIDField;
+            }
+            set {
+                this.parentIDField = value;
+            }
+        }
+        public object publish {
+            get {
+                return this.publishField;
+            }
+            set {
+                this.publishField = value;
+            }
+        }
+        public object ticketID {
+            get {
+                return this.ticketIDField;
+            }
+            set {
+                this.ticketIDField = value;
+            }
+        }
+        public object ticketNoteID {
+            get {
+                return this.ticketNoteIDField;
+            }
+            set {
+                this.ticketNoteIDField = value;
+            }
+        }
+        public object timeEntryID {
+            get {
+                return this.timeEntryIDField;
+            }
+            set {
+                this.timeEntryIDField = value;
+            }
+        }
+        public object title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        public object data {
+            get {
+                return this.dataField;
+            }
+            set {
+                this.dataField = value;
+            }
+        }
+        public object parentType {
+            get {
+                return this.parentTypeField;
+            }
+            set {
+                this.parentTypeField = value;
+            }
+        }
+        public object soapParentPropertyId {
+            get {
+                return this.soapParentPropertyIdField;
+            }
+            set {
+                this.soapParentPropertyIdField = value;
+            }
+        }
+        public object isTaskAttachment {
+            get {
+                return this.isTaskAttachmentField;
+            }
+            set {
+                this.isTaskAttachmentField = value;
+            }
+        }
+
+    }
+
     public class Department {
 
         private object idField;
@@ -11976,6 +12933,193 @@ namespace Autotask {
 
     }
 
+    public class ExpenseItemAttachment {
+
+        private object idField;
+        private object attachDateField;
+        private object attachedByContactIDField;
+        private object attachedByResourceIDField;
+        private object attachmentTypeField;
+        private object contentTypeField;
+        private object creatorTypeField;
+        private object expenseItemIDField;
+        private object expenseReportIDField;
+        private object fileSizeField;
+        private object fullPathField;
+        private object impersonatorCreatorResourceIDField;
+        private object opportunityIDField;
+        private object parentIDField;
+        private object publishField;
+        private object titleField;
+        private object dataField;
+        private object parentTypeField;
+        private object soapParentPropertyIdField;
+        private object isTaskAttachmentField;
+  
+
+        public object id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        public object attachDate {
+            get {
+                return this.attachDateField;
+            }
+            set {
+                this.attachDateField = value;
+            }
+        }
+        public object attachedByContactID {
+            get {
+                return this.attachedByContactIDField;
+            }
+            set {
+                this.attachedByContactIDField = value;
+            }
+        }
+        public object attachedByResourceID {
+            get {
+                return this.attachedByResourceIDField;
+            }
+            set {
+                this.attachedByResourceIDField = value;
+            }
+        }
+        public object attachmentType {
+            get {
+                return this.attachmentTypeField;
+            }
+            set {
+                this.attachmentTypeField = value;
+            }
+        }
+        public object contentType {
+            get {
+                return this.contentTypeField;
+            }
+            set {
+                this.contentTypeField = value;
+            }
+        }
+        public object creatorType {
+            get {
+                return this.creatorTypeField;
+            }
+            set {
+                this.creatorTypeField = value;
+            }
+        }
+        public object expenseItemID {
+            get {
+                return this.expenseItemIDField;
+            }
+            set {
+                this.expenseItemIDField = value;
+            }
+        }
+        public object expenseReportID {
+            get {
+                return this.expenseReportIDField;
+            }
+            set {
+                this.expenseReportIDField = value;
+            }
+        }
+        public object fileSize {
+            get {
+                return this.fileSizeField;
+            }
+            set {
+                this.fileSizeField = value;
+            }
+        }
+        public object fullPath {
+            get {
+                return this.fullPathField;
+            }
+            set {
+                this.fullPathField = value;
+            }
+        }
+        public object impersonatorCreatorResourceID {
+            get {
+                return this.impersonatorCreatorResourceIDField;
+            }
+            set {
+                this.impersonatorCreatorResourceIDField = value;
+            }
+        }
+        public object opportunityID {
+            get {
+                return this.opportunityIDField;
+            }
+            set {
+                this.opportunityIDField = value;
+            }
+        }
+        public object parentID {
+            get {
+                return this.parentIDField;
+            }
+            set {
+                this.parentIDField = value;
+            }
+        }
+        public object publish {
+            get {
+                return this.publishField;
+            }
+            set {
+                this.publishField = value;
+            }
+        }
+        public object title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        public object data {
+            get {
+                return this.dataField;
+            }
+            set {
+                this.dataField = value;
+            }
+        }
+        public object parentType {
+            get {
+                return this.parentTypeField;
+            }
+            set {
+                this.parentTypeField = value;
+            }
+        }
+        public object soapParentPropertyId {
+            get {
+                return this.soapParentPropertyIdField;
+            }
+            set {
+                this.soapParentPropertyIdField = value;
+            }
+        }
+        public object isTaskAttachment {
+            get {
+                return this.isTaskAttachmentField;
+            }
+            set {
+                this.isTaskAttachmentField = value;
+            }
+        }
+
+    }
+
     public class ExpenseItem {
 
         private object idField;
@@ -12262,6 +13406,7 @@ namespace Autotask {
         private object attachmentTypeField;
         private object contentTypeField;
         private object creatorTypeField;
+        private object expenseItemIDField;
         private object expenseReportIDField;
         private object fileSizeField;
         private object fullPathField;
@@ -12330,6 +13475,14 @@ namespace Autotask {
             }
             set {
                 this.creatorTypeField = value;
+            }
+        }
+        public object expenseItemID {
+            get {
+                return this.expenseItemIDField;
+            }
+            set {
+                this.expenseItemIDField = value;
             }
         }
         public object expenseReportID {
@@ -18465,6 +19618,8 @@ namespace Autotask {
         private object isActiveField;
         private object lastActivityDateField;
         private object lastModifiedByField;
+        private object lastPublishedByResourceIDField;
+        private object lastPublishedDateTimeField;
         private object nameField;
         private object opportunityIDField;
         private object paymentTermField;
@@ -18665,6 +19820,22 @@ namespace Autotask {
             }
             set {
                 this.lastModifiedByField = value;
+            }
+        }
+        public object lastPublishedByResourceID {
+            get {
+                return this.lastPublishedByResourceIDField;
+            }
+            set {
+                this.lastPublishedByResourceIDField = value;
+            }
+        }
+        public object lastPublishedDateTime {
+            get {
+                return this.lastPublishedDateTimeField;
+            }
+            set {
+                this.lastPublishedDateTimeField = value;
             }
         }
         public object name {
@@ -22487,211 +23658,6 @@ namespace Autotask {
 
     }
 
-    public class TicketAttachment {
-
-        private object idField;
-        private object attachDateField;
-        private object attachedByContactIDField;
-        private object attachedByResourceIDField;
-        private object attachmentTypeField;
-        private object contentTypeField;
-        private object creatorTypeField;
-        private object fileSizeField;
-        private object fullPathField;
-        private object impersonatorCreatorResourceIDField;
-        private object opportunityIDField;
-        private object parentAttachmentIDField;
-        private object parentIDField;
-        private object publishField;
-        private object ticketIDField;
-        private object ticketNoteIDField;
-        private object timeEntryIDField;
-        private object titleField;
-        private object dataField;
-        private object parentTypeField;
-        private object soapParentPropertyIdField;
-        private object isTaskAttachmentField;
-  
-
-        public object id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        public object attachDate {
-            get {
-                return this.attachDateField;
-            }
-            set {
-                this.attachDateField = value;
-            }
-        }
-        public object attachedByContactID {
-            get {
-                return this.attachedByContactIDField;
-            }
-            set {
-                this.attachedByContactIDField = value;
-            }
-        }
-        public object attachedByResourceID {
-            get {
-                return this.attachedByResourceIDField;
-            }
-            set {
-                this.attachedByResourceIDField = value;
-            }
-        }
-        public object attachmentType {
-            get {
-                return this.attachmentTypeField;
-            }
-            set {
-                this.attachmentTypeField = value;
-            }
-        }
-        public object contentType {
-            get {
-                return this.contentTypeField;
-            }
-            set {
-                this.contentTypeField = value;
-            }
-        }
-        public object creatorType {
-            get {
-                return this.creatorTypeField;
-            }
-            set {
-                this.creatorTypeField = value;
-            }
-        }
-        public object fileSize {
-            get {
-                return this.fileSizeField;
-            }
-            set {
-                this.fileSizeField = value;
-            }
-        }
-        public object fullPath {
-            get {
-                return this.fullPathField;
-            }
-            set {
-                this.fullPathField = value;
-            }
-        }
-        public object impersonatorCreatorResourceID {
-            get {
-                return this.impersonatorCreatorResourceIDField;
-            }
-            set {
-                this.impersonatorCreatorResourceIDField = value;
-            }
-        }
-        public object opportunityID {
-            get {
-                return this.opportunityIDField;
-            }
-            set {
-                this.opportunityIDField = value;
-            }
-        }
-        public object parentAttachmentID {
-            get {
-                return this.parentAttachmentIDField;
-            }
-            set {
-                this.parentAttachmentIDField = value;
-            }
-        }
-        public object parentID {
-            get {
-                return this.parentIDField;
-            }
-            set {
-                this.parentIDField = value;
-            }
-        }
-        public object publish {
-            get {
-                return this.publishField;
-            }
-            set {
-                this.publishField = value;
-            }
-        }
-        public object ticketID {
-            get {
-                return this.ticketIDField;
-            }
-            set {
-                this.ticketIDField = value;
-            }
-        }
-        public object ticketNoteID {
-            get {
-                return this.ticketNoteIDField;
-            }
-            set {
-                this.ticketNoteIDField = value;
-            }
-        }
-        public object timeEntryID {
-            get {
-                return this.timeEntryIDField;
-            }
-            set {
-                this.timeEntryIDField = value;
-            }
-        }
-        public object title {
-            get {
-                return this.titleField;
-            }
-            set {
-                this.titleField = value;
-            }
-        }
-        public object data {
-            get {
-                return this.dataField;
-            }
-            set {
-                this.dataField = value;
-            }
-        }
-        public object parentType {
-            get {
-                return this.parentTypeField;
-            }
-            set {
-                this.parentTypeField = value;
-            }
-        }
-        public object soapParentPropertyId {
-            get {
-                return this.soapParentPropertyIdField;
-            }
-            set {
-                this.soapParentPropertyIdField = value;
-            }
-        }
-        public object isTaskAttachment {
-            get {
-                return this.isTaskAttachmentField;
-            }
-            set {
-                this.isTaskAttachmentField = value;
-            }
-        }
-
-    }
-
     public class TicketCategory {
 
         private object idField;
@@ -23684,679 +24650,6 @@ namespace Autotask {
 
     }
 
-    public class Ticket {
-
-        private object idField;
-        private object apiVendorIDField;
-        private object assignedResourceIDField;
-        private object assignedResourceRoleIDField;
-        private object billingCodeIDField;
-        private object changeApprovalBoardField;
-        private object changeApprovalStatusField;
-        private object changeApprovalTypeField;
-        private object changeInfoField1Field;
-        private object changeInfoField2Field;
-        private object changeInfoField3Field;
-        private object changeInfoField4Field;
-        private object changeInfoField5Field;
-        private object companyIDField;
-        private object companyLocationIDField;
-        private object completedByResourceIDField;
-        private object completedDateField;
-        private object configurationItemIDField;
-        private object contactIDField;
-        private object contractIDField;
-        private object contractServiceBundleIDField;
-        private object contractServiceIDField;
-        private object createDateField;
-        private object createdByContactIDField;
-        private object creatorResourceIDField;
-        private object creatorTypeField;
-        private object currentServiceThermometerRatingField;
-        private object descriptionField;
-        private object dueDateTimeField;
-        private object estimatedHoursField;
-        private object externalIDField;
-        private object firstResponseAssignedResourceIDField;
-        private object firstResponseDateTimeField;
-        private object firstResponseDueDateTimeField;
-        private object firstResponseInitiatingResourceIDField;
-        private object hoursToBeScheduledField;
-        private object impersonatorCreatorResourceIDField;
-        private object issueTypeField;
-        private object lastActivityDateField;
-        private object lastActivityPersonTypeField;
-        private object lastActivityResourceIDField;
-        private object lastCustomerNotificationDateTimeField;
-        private object lastCustomerVisibleActivityDateTimeField;
-        private object lastTrackedModificationDateTimeField;
-        private object monitorIDField;
-        private object monitorTypeIDField;
-        private object opportunityIDField;
-        private object organizationalLevelAssociationIDField;
-        private object previousServiceThermometerRatingField;
-        private object priorityField;
-        private object problemTicketIdField;
-        private object projectIDField;
-        private object purchaseOrderNumberField;
-        private object queueIDField;
-        private object resolutionField;
-        private object resolutionPlanDateTimeField;
-        private object resolutionPlanDueDateTimeField;
-        private object resolvedDateTimeField;
-        private object resolvedDueDateTimeField;
-        private object rmaStatusField;
-        private object rmaTypeField;
-        private object rmmAlertIDField;
-        private object serviceLevelAgreementHasBeenMetField;
-        private object serviceLevelAgreementIDField;
-        private object serviceLevelAgreementPausedNextEventHoursField;
-        private object serviceThermometerTemperatureField;
-        private object sourceField;
-        private object statusField;
-        private object subIssueTypeField;
-        private object ticketCategoryField;
-        private object ticketNumberField;
-        private object ticketTypeField;
-        private object titleField;
-        private object userDefinedFieldsField;
-  
-
-        public object id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        public object apiVendorID {
-            get {
-                return this.apiVendorIDField;
-            }
-            set {
-                this.apiVendorIDField = value;
-            }
-        }
-        public object assignedResourceID {
-            get {
-                return this.assignedResourceIDField;
-            }
-            set {
-                this.assignedResourceIDField = value;
-            }
-        }
-        public object assignedResourceRoleID {
-            get {
-                return this.assignedResourceRoleIDField;
-            }
-            set {
-                this.assignedResourceRoleIDField = value;
-            }
-        }
-        public object billingCodeID {
-            get {
-                return this.billingCodeIDField;
-            }
-            set {
-                this.billingCodeIDField = value;
-            }
-        }
-        public object changeApprovalBoard {
-            get {
-                return this.changeApprovalBoardField;
-            }
-            set {
-                this.changeApprovalBoardField = value;
-            }
-        }
-        public object changeApprovalStatus {
-            get {
-                return this.changeApprovalStatusField;
-            }
-            set {
-                this.changeApprovalStatusField = value;
-            }
-        }
-        public object changeApprovalType {
-            get {
-                return this.changeApprovalTypeField;
-            }
-            set {
-                this.changeApprovalTypeField = value;
-            }
-        }
-        public object changeInfoField1 {
-            get {
-                return this.changeInfoField1Field;
-            }
-            set {
-                this.changeInfoField1Field = value;
-            }
-        }
-        public object changeInfoField2 {
-            get {
-                return this.changeInfoField2Field;
-            }
-            set {
-                this.changeInfoField2Field = value;
-            }
-        }
-        public object changeInfoField3 {
-            get {
-                return this.changeInfoField3Field;
-            }
-            set {
-                this.changeInfoField3Field = value;
-            }
-        }
-        public object changeInfoField4 {
-            get {
-                return this.changeInfoField4Field;
-            }
-            set {
-                this.changeInfoField4Field = value;
-            }
-        }
-        public object changeInfoField5 {
-            get {
-                return this.changeInfoField5Field;
-            }
-            set {
-                this.changeInfoField5Field = value;
-            }
-        }
-        public object companyID {
-            get {
-                return this.companyIDField;
-            }
-            set {
-                this.companyIDField = value;
-            }
-        }
-        public object companyLocationID {
-            get {
-                return this.companyLocationIDField;
-            }
-            set {
-                this.companyLocationIDField = value;
-            }
-        }
-        public object completedByResourceID {
-            get {
-                return this.completedByResourceIDField;
-            }
-            set {
-                this.completedByResourceIDField = value;
-            }
-        }
-        public object completedDate {
-            get {
-                return this.completedDateField;
-            }
-            set {
-                this.completedDateField = value;
-            }
-        }
-        public object configurationItemID {
-            get {
-                return this.configurationItemIDField;
-            }
-            set {
-                this.configurationItemIDField = value;
-            }
-        }
-        public object contactID {
-            get {
-                return this.contactIDField;
-            }
-            set {
-                this.contactIDField = value;
-            }
-        }
-        public object contractID {
-            get {
-                return this.contractIDField;
-            }
-            set {
-                this.contractIDField = value;
-            }
-        }
-        public object contractServiceBundleID {
-            get {
-                return this.contractServiceBundleIDField;
-            }
-            set {
-                this.contractServiceBundleIDField = value;
-            }
-        }
-        public object contractServiceID {
-            get {
-                return this.contractServiceIDField;
-            }
-            set {
-                this.contractServiceIDField = value;
-            }
-        }
-        public object createDate {
-            get {
-                return this.createDateField;
-            }
-            set {
-                this.createDateField = value;
-            }
-        }
-        public object createdByContactID {
-            get {
-                return this.createdByContactIDField;
-            }
-            set {
-                this.createdByContactIDField = value;
-            }
-        }
-        public object creatorResourceID {
-            get {
-                return this.creatorResourceIDField;
-            }
-            set {
-                this.creatorResourceIDField = value;
-            }
-        }
-        public object creatorType {
-            get {
-                return this.creatorTypeField;
-            }
-            set {
-                this.creatorTypeField = value;
-            }
-        }
-        public object currentServiceThermometerRating {
-            get {
-                return this.currentServiceThermometerRatingField;
-            }
-            set {
-                this.currentServiceThermometerRatingField = value;
-            }
-        }
-        public object description {
-            get {
-                return this.descriptionField;
-            }
-            set {
-                this.descriptionField = value;
-            }
-        }
-        public object dueDateTime {
-            get {
-                return this.dueDateTimeField;
-            }
-            set {
-                this.dueDateTimeField = value;
-            }
-        }
-        public object estimatedHours {
-            get {
-                return this.estimatedHoursField;
-            }
-            set {
-                this.estimatedHoursField = value;
-            }
-        }
-        public object externalID {
-            get {
-                return this.externalIDField;
-            }
-            set {
-                this.externalIDField = value;
-            }
-        }
-        public object firstResponseAssignedResourceID {
-            get {
-                return this.firstResponseAssignedResourceIDField;
-            }
-            set {
-                this.firstResponseAssignedResourceIDField = value;
-            }
-        }
-        public object firstResponseDateTime {
-            get {
-                return this.firstResponseDateTimeField;
-            }
-            set {
-                this.firstResponseDateTimeField = value;
-            }
-        }
-        public object firstResponseDueDateTime {
-            get {
-                return this.firstResponseDueDateTimeField;
-            }
-            set {
-                this.firstResponseDueDateTimeField = value;
-            }
-        }
-        public object firstResponseInitiatingResourceID {
-            get {
-                return this.firstResponseInitiatingResourceIDField;
-            }
-            set {
-                this.firstResponseInitiatingResourceIDField = value;
-            }
-        }
-        public object hoursToBeScheduled {
-            get {
-                return this.hoursToBeScheduledField;
-            }
-            set {
-                this.hoursToBeScheduledField = value;
-            }
-        }
-        public object impersonatorCreatorResourceID {
-            get {
-                return this.impersonatorCreatorResourceIDField;
-            }
-            set {
-                this.impersonatorCreatorResourceIDField = value;
-            }
-        }
-        public object issueType {
-            get {
-                return this.issueTypeField;
-            }
-            set {
-                this.issueTypeField = value;
-            }
-        }
-        public object lastActivityDate {
-            get {
-                return this.lastActivityDateField;
-            }
-            set {
-                this.lastActivityDateField = value;
-            }
-        }
-        public object lastActivityPersonType {
-            get {
-                return this.lastActivityPersonTypeField;
-            }
-            set {
-                this.lastActivityPersonTypeField = value;
-            }
-        }
-        public object lastActivityResourceID {
-            get {
-                return this.lastActivityResourceIDField;
-            }
-            set {
-                this.lastActivityResourceIDField = value;
-            }
-        }
-        public object lastCustomerNotificationDateTime {
-            get {
-                return this.lastCustomerNotificationDateTimeField;
-            }
-            set {
-                this.lastCustomerNotificationDateTimeField = value;
-            }
-        }
-        public object lastCustomerVisibleActivityDateTime {
-            get {
-                return this.lastCustomerVisibleActivityDateTimeField;
-            }
-            set {
-                this.lastCustomerVisibleActivityDateTimeField = value;
-            }
-        }
-        public object lastTrackedModificationDateTime {
-            get {
-                return this.lastTrackedModificationDateTimeField;
-            }
-            set {
-                this.lastTrackedModificationDateTimeField = value;
-            }
-        }
-        public object monitorID {
-            get {
-                return this.monitorIDField;
-            }
-            set {
-                this.monitorIDField = value;
-            }
-        }
-        public object monitorTypeID {
-            get {
-                return this.monitorTypeIDField;
-            }
-            set {
-                this.monitorTypeIDField = value;
-            }
-        }
-        public object opportunityID {
-            get {
-                return this.opportunityIDField;
-            }
-            set {
-                this.opportunityIDField = value;
-            }
-        }
-        public object organizationalLevelAssociationID {
-            get {
-                return this.organizationalLevelAssociationIDField;
-            }
-            set {
-                this.organizationalLevelAssociationIDField = value;
-            }
-        }
-        public object previousServiceThermometerRating {
-            get {
-                return this.previousServiceThermometerRatingField;
-            }
-            set {
-                this.previousServiceThermometerRatingField = value;
-            }
-        }
-        public object priority {
-            get {
-                return this.priorityField;
-            }
-            set {
-                this.priorityField = value;
-            }
-        }
-        public object problemTicketId {
-            get {
-                return this.problemTicketIdField;
-            }
-            set {
-                this.problemTicketIdField = value;
-            }
-        }
-        public object projectID {
-            get {
-                return this.projectIDField;
-            }
-            set {
-                this.projectIDField = value;
-            }
-        }
-        public object purchaseOrderNumber {
-            get {
-                return this.purchaseOrderNumberField;
-            }
-            set {
-                this.purchaseOrderNumberField = value;
-            }
-        }
-        public object queueID {
-            get {
-                return this.queueIDField;
-            }
-            set {
-                this.queueIDField = value;
-            }
-        }
-        public object resolution {
-            get {
-                return this.resolutionField;
-            }
-            set {
-                this.resolutionField = value;
-            }
-        }
-        public object resolutionPlanDateTime {
-            get {
-                return this.resolutionPlanDateTimeField;
-            }
-            set {
-                this.resolutionPlanDateTimeField = value;
-            }
-        }
-        public object resolutionPlanDueDateTime {
-            get {
-                return this.resolutionPlanDueDateTimeField;
-            }
-            set {
-                this.resolutionPlanDueDateTimeField = value;
-            }
-        }
-        public object resolvedDateTime {
-            get {
-                return this.resolvedDateTimeField;
-            }
-            set {
-                this.resolvedDateTimeField = value;
-            }
-        }
-        public object resolvedDueDateTime {
-            get {
-                return this.resolvedDueDateTimeField;
-            }
-            set {
-                this.resolvedDueDateTimeField = value;
-            }
-        }
-        public object rmaStatus {
-            get {
-                return this.rmaStatusField;
-            }
-            set {
-                this.rmaStatusField = value;
-            }
-        }
-        public object rmaType {
-            get {
-                return this.rmaTypeField;
-            }
-            set {
-                this.rmaTypeField = value;
-            }
-        }
-        public object rmmAlertID {
-            get {
-                return this.rmmAlertIDField;
-            }
-            set {
-                this.rmmAlertIDField = value;
-            }
-        }
-        public object serviceLevelAgreementHasBeenMet {
-            get {
-                return this.serviceLevelAgreementHasBeenMetField;
-            }
-            set {
-                this.serviceLevelAgreementHasBeenMetField = value;
-            }
-        }
-        public object serviceLevelAgreementID {
-            get {
-                return this.serviceLevelAgreementIDField;
-            }
-            set {
-                this.serviceLevelAgreementIDField = value;
-            }
-        }
-        public object serviceLevelAgreementPausedNextEventHours {
-            get {
-                return this.serviceLevelAgreementPausedNextEventHoursField;
-            }
-            set {
-                this.serviceLevelAgreementPausedNextEventHoursField = value;
-            }
-        }
-        public object serviceThermometerTemperature {
-            get {
-                return this.serviceThermometerTemperatureField;
-            }
-            set {
-                this.serviceThermometerTemperatureField = value;
-            }
-        }
-        public object source {
-            get {
-                return this.sourceField;
-            }
-            set {
-                this.sourceField = value;
-            }
-        }
-        public object status {
-            get {
-                return this.statusField;
-            }
-            set {
-                this.statusField = value;
-            }
-        }
-        public object subIssueType {
-            get {
-                return this.subIssueTypeField;
-            }
-            set {
-                this.subIssueTypeField = value;
-            }
-        }
-        public object ticketCategory {
-            get {
-                return this.ticketCategoryField;
-            }
-            set {
-                this.ticketCategoryField = value;
-            }
-        }
-        public object ticketNumber {
-            get {
-                return this.ticketNumberField;
-            }
-            set {
-                this.ticketNumberField = value;
-            }
-        }
-        public object ticketType {
-            get {
-                return this.ticketTypeField;
-            }
-            set {
-                this.ticketTypeField = value;
-            }
-        }
-        public object title {
-            get {
-                return this.titleField;
-            }
-            set {
-                this.titleField = value;
-            }
-        }
-        public object userDefinedFields {
-            get {
-                return this.userDefinedFieldsField;
-            }
-            set {
-                this.userDefinedFieldsField = value;
-            }
-        }
-
-    }
-
     public class TicketSecondaryResource {
 
         private object idField;
@@ -24490,6 +24783,7 @@ namespace Autotask {
         private object impersonatorUpdaterResourceIDField;
         private object internalBillingCodeIDField;
         private object internalNotesField;
+        private object isInternalNotesVisibleToComanagedField;
         private object isNonBillableField;
         private object lastModifiedDateTimeField;
         private object lastModifiedUserIDField;
@@ -24647,6 +24941,14 @@ namespace Autotask {
             }
             set {
                 this.internalNotesField = value;
+            }
+        }
+        public object isInternalNotesVisibleToComanaged {
+            get {
+                return this.isInternalNotesVisibleToComanagedField;
+            }
+            set {
+                this.isInternalNotesVisibleToComanagedField = value;
             }
         }
         public object isNonBillable {
@@ -24947,6 +25249,175 @@ namespace Autotask {
             }
             set {
                 this.isTaskAttachmentField = value;
+            }
+        }
+
+    }
+
+    public class TimeOffRequest {
+
+        private object idField;
+        private object approvedDateTimeField;
+        private object approveRejectResourceIDField;
+        private object createdByResourceIDField;
+        private object createDateTimeField;
+        private object endTimeField;
+        private object hoursField;
+        private object lastModifiedByResourceIDField;
+        private object lastModifiedDateTimeField;
+        private object reasonField;
+        private object rejectReasonField;
+        private object requestDateField;
+        private object resourceIDField;
+        private object startTimeField;
+        private object statusField;
+        private object timeOffRequestTypeField;
+        private object soapParentPropertyIdField;
+        private object userDefinedFieldsField;
+  
+
+        public object id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        public object approvedDateTime {
+            get {
+                return this.approvedDateTimeField;
+            }
+            set {
+                this.approvedDateTimeField = value;
+            }
+        }
+        public object approveRejectResourceID {
+            get {
+                return this.approveRejectResourceIDField;
+            }
+            set {
+                this.approveRejectResourceIDField = value;
+            }
+        }
+        public object createdByResourceID {
+            get {
+                return this.createdByResourceIDField;
+            }
+            set {
+                this.createdByResourceIDField = value;
+            }
+        }
+        public object createDateTime {
+            get {
+                return this.createDateTimeField;
+            }
+            set {
+                this.createDateTimeField = value;
+            }
+        }
+        public object endTime {
+            get {
+                return this.endTimeField;
+            }
+            set {
+                this.endTimeField = value;
+            }
+        }
+        public object hours {
+            get {
+                return this.hoursField;
+            }
+            set {
+                this.hoursField = value;
+            }
+        }
+        public object lastModifiedByResourceID {
+            get {
+                return this.lastModifiedByResourceIDField;
+            }
+            set {
+                this.lastModifiedByResourceIDField = value;
+            }
+        }
+        public object lastModifiedDateTime {
+            get {
+                return this.lastModifiedDateTimeField;
+            }
+            set {
+                this.lastModifiedDateTimeField = value;
+            }
+        }
+        public object reason {
+            get {
+                return this.reasonField;
+            }
+            set {
+                this.reasonField = value;
+            }
+        }
+        public object rejectReason {
+            get {
+                return this.rejectReasonField;
+            }
+            set {
+                this.rejectReasonField = value;
+            }
+        }
+        public object requestDate {
+            get {
+                return this.requestDateField;
+            }
+            set {
+                this.requestDateField = value;
+            }
+        }
+        public object resourceID {
+            get {
+                return this.resourceIDField;
+            }
+            set {
+                this.resourceIDField = value;
+            }
+        }
+        public object startTime {
+            get {
+                return this.startTimeField;
+            }
+            set {
+                this.startTimeField = value;
+            }
+        }
+        public object status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+        public object timeOffRequestType {
+            get {
+                return this.timeOffRequestTypeField;
+            }
+            set {
+                this.timeOffRequestTypeField = value;
+            }
+        }
+        public object soapParentPropertyId {
+            get {
+                return this.soapParentPropertyIdField;
+            }
+            set {
+                this.soapParentPropertyIdField = value;
+            }
+        }
+        public object userDefinedFields {
+            get {
+                return this.userDefinedFieldsField;
+            }
+            set {
+                this.userDefinedFieldsField = value;
             }
         }
 
@@ -25493,6 +25964,7 @@ namespace Autotask {
         private object contractNoteIDField;
         private object creatorTypeField;
         private object documentIDField;
+        private object expenseItemIDField;
         private object expenseReportIDField;
         private object fileSizeField;
         private object fullPathField;
@@ -25634,6 +26106,14 @@ namespace Autotask {
             }
             set {
                 this.documentIDField = value;
+            }
+        }
+        public object expenseItemID {
+            get {
+                return this.expenseItemIDField;
+            }
+            set {
+                this.expenseItemIDField = value;
             }
         }
         public object expenseReportID {
@@ -29062,6 +29542,22 @@ namespace Autotask {
             }
             set {
                 this.buildField = value;
+            }
+        }
+
+    }
+
+    public class InvoiceMarkupResult {
+
+        private object invoiceMarkupField;
+  
+
+        public object invoiceMarkup {
+            get {
+                return this.invoiceMarkupField;
+            }
+            set {
+                this.invoiceMarkupField = value;
             }
         }
 
