@@ -67,7 +67,7 @@ Function Update-AtwsRamCache {
           
         if ($PSCmdlet.ShouldProcess($verboseDescription, $verboseWarning, $caption)) { 
             
-            # Prepare two hashtables, 1 for RAM, 1 for disk
+            # Prepare a hashtable
             $script:FieldInfoCache = @{
                 ApiVersion = $CurrentApiVersion
             }
