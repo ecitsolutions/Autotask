@@ -91,13 +91,16 @@ $publicFunction = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction
 Write-Debug ('{0}: Found {1} script files in {2}\Public' -F $MyInvocation.MyCommand.Name, $publicFunction.Count, $PSScriptRoot)
 
 # Entity functions will be exported with Prefix prepended to the Noun of the function name
-$entityFunction = @( Get-ChildItem -Path $PSScriptRoot\Functions\*.ps1 -ErrorAction SilentlyContinue )
+$entityFunction = @{
+    'soap' = @( Get-ChildItem -Path $PSScriptRoot\SoapFunctions\*.ps1 -ErrorAction SilentlyContinue )
+    'rest' = @( Get-ChildItem -Path $PSScriptRoot\RestFunctions\*.ps1 -ErrorAction SilentlyContinue )
+}
 Write-Debug ('{0}: Found {1} script files in {2}\Functions' -F $MyInvocation.MyCommand.Name, $entityFunction.Count, $PSScriptRoot)
 
 Write-Verbose ('{0}: Importing {1} Private, {2} Public functions and {3} entity functions.' -F $MyInvocation.MyCommand.Name, $privateFunction.Count, $publicFunction.Count, $entityFunction.count)
 
 # Loop through all supporting script files and source them
-foreach ($import in @($privateFunction + $publicFunction + $entityFunction)) {
+foreach ($import in @($privateFunction + $publicFunction)) {
     Write-Debug ('{0}: Importing {1}' -F $MyInvocation.MyCommand.Name, $import)
     try {
         . $import.fullname
@@ -213,15 +216,7 @@ else {
     Write-Verbose 'No Credentials were passed with -ArgumentList. Loading module without any connection to Autotask Web Services. Use Connect-AtwsWebAPI to connect.'
 }
 
-# Clean out old cache data
-# On Windows we store the cache in the WindowsPowerhell folder in My documents
-# On macOS and Linux we use a dot-folder in the users $HOME folder as is customary
-# if ([Runtime.InteropServices.RuntimeInformation]::IsOSPlatform([Runtime.InteropServices.OSPlatform]::Windows)) {
-#     $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) 'WindowsPowershell\Cache'
-# }
-# else {
-#     $PersonalCacheDir = Join-Path $([environment]::GetFolderPath('MyDocuments')) '.config\powershell\atwsCache'
-# }
+
 
 # Restore Previous preference
 if ($oldVerbosePreference -ne $VerbosePreference) {
