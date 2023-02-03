@@ -161,6 +161,14 @@ if ($PSVersionTable.PSVersion.Major -ge 6) {
     )
 }
 
+# For Powershell versions 7.3.1 and higher, add this assembly
+$threshold = New-Object System.Version("7.3.0")
+if ($PSVersionTable.PSVersion -gt $threshold) {
+    $assemblies += @(
+        'Microsoft.Bcl.AsyncInterfaces'
+    )
+}
+
 # Compile webserviceinfo (Reference.cs) and instantiate a SOAP client
 if ([appdomain]::CurrentDomain.GetAssemblies().exportedtypes.name -notcontains "ATWSSoap") {
     Add-Type -TypeDefinition (Get-Content -raw $code) -ReferencedAssemblies $assemblies
