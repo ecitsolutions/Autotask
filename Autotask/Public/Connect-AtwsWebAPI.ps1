@@ -241,8 +241,10 @@ Function Connect-AtwsWebAPI {
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
                 Write-Verbose ('{0}: Calling Get-AtwsModuleConfiguration with profilename {1} and path {2}.' -F $MyInvocation.MyCommand.Name, $ProfileName, $ProfilePath)
-            
-                if (-not (Test-Path $ProfilePath)) {
+                           
+                $ConfigurationData = Get-AtwsModuleConfiguration -Name $ProfileName -Path $ProfilePath
+               
+                if ($null -eq $ConfigurationData) {
                     # Create a new configuration. Prompt for credentials
                     $ConfigurationData = New-AtwsModuleConfiguration 
 
@@ -256,9 +258,6 @@ Function Connect-AtwsWebAPI {
                     if ($PSCmdlet.ShouldContinue($question, $caption)) {
                         Save-AtwsModuleConfiguration -Configuration $ConfigurationData
                     }
-                }
-                else { 
-                    $ConfigurationData = Get-AtwsModuleConfiguration -Name $ProfileName -Path $ProfilePath
                 }
             }
             elseif (Test-AtwsModuleConfiguration -Configuration $AtwsModuleConfiguration) {
