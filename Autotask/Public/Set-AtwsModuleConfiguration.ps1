@@ -82,7 +82,19 @@ Function Set-AtwsModuleConfiguration {
         [ValidateNotNullOrEmpty()]
         [securestring]
         # The API identifier from your resource in Autotask. Must be encrypted as SecureString. Optional.
-        $SecureTrackingIdentifier,
+        $SecureTrackingIdentifier, 
+        
+        [Parameter(
+            ValueFromPipelineByPropertyName = $false,
+            ParameterSetName = 'Username_and_password'
+        )]
+        [Parameter(
+            ParameterSetName = 'Credentials'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [string]
+        # The API identifier from your resource in Autotask. Must be encrypted as SecureString. Optional.
+        $TrackingIdentifier,
     
         [Parameter(
             ValueFromPipelineByPropertyName = $true,
@@ -354,8 +366,11 @@ Function Set-AtwsModuleConfiguration {
                     'SecurePassword' {
                         $configuration.SecurePassword = $SecurePassword
                     }
-                    'ApiTrackingIdentifier' { 
+                    'SecureTrackingIdentifier' { 
                         $configuration.SecureTrackingIdentifier = $SecureTrackingIdentifier
+                    }
+                    'TrackingIdentifier' { 
+                        $configuration.SecureTrackingIdentifier = ConvertTo-SecureString $TrackingIdentifier -AsPlainText -Force
                     }
                     'ConvertPicklistIdToLabel' {
                         $configuration.ConvertPicklistIdToLabel = $ConvertPicklistIdToLabel.IsPresent
