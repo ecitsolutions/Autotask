@@ -66,7 +66,7 @@ Remove-AtwsAccountToDo
     [Autotask.AccountToDo[]]
     $InputObject,
 
-# Client
+# Account
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'

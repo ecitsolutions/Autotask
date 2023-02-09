@@ -64,7 +64,7 @@ Remove-AtwsServiceCall
     [Autotask.ServiceCall[]]
     $InputObject,
 
-# Client ID
+# Account ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'

@@ -129,7 +129,7 @@ New-AtwsProjectCost
     [Nullable[double][]]
     $BillableAmount,
 
-# Billable To Client
+# Billable To Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

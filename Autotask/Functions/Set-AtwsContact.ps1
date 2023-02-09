@@ -515,7 +515,7 @@ New-AtwsContact
     [string]
     $RoomNumber,
 
-# Contact County
+# Contact State
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

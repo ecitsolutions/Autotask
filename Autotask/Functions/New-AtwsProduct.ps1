@@ -108,7 +108,7 @@ Get-AtwsProduct
     [Int]
     $CostAllocationCodeID,
 
-# Default Configuration Item Category ID
+# Default Installed Asset Category ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -211,7 +211,7 @@ Get-AtwsProduct
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
+    [ValidateLength(0,1000)]
     [string]
     $Name,
 

@@ -62,7 +62,7 @@ Remove-AtwsAccountTeam
     [Autotask.AccountTeam[]]
     $InputObject,
 
-# Client
+# Account
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'

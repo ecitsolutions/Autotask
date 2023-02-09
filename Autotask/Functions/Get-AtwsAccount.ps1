@@ -130,7 +130,7 @@ New-AtwsAccount
     [Autotask.UserDefinedField]
     $UserDefinedField,
 
-# Client Name
+# Account Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -140,7 +140,7 @@ New-AtwsAccount
     [string[]]
     $AccountName,
 
-# Client Number
+# Account Number
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -148,7 +148,7 @@ New-AtwsAccount
     [string[]]
     $AccountNumber,
 
-# Client Type
+# Account Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -307,7 +307,7 @@ New-AtwsAccount
     [Nullable[Int][]]
     $BillToCountryID,
 
-# Bill To County
+# Bill To State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -408,7 +408,7 @@ New-AtwsAccount
     [string[]]
     $Fax,
 
-# Client ID
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -449,7 +449,7 @@ New-AtwsAccount
     [string[]]
     $InvoiceMethod,
 
-# Invoice non contract items to Parent Client
+# Invoice non contract items to Parent Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -515,7 +515,7 @@ New-AtwsAccount
     [string[]]
     $MarketSegmentID,
 
-# Client Owner
+# Account Owner
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -523,7 +523,7 @@ New-AtwsAccount
     [Nullable[Int][]]
     $OwnerResourceID,
 
-# Parent Client
+# Parent Company
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -580,7 +580,7 @@ New-AtwsAccount
     [Nullable[Int][]]
     $QuoteTemplateID,
 
-# County
+# State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

@@ -74,7 +74,7 @@ Remove-AtwsContact
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Client
+# Account
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -405,7 +405,7 @@ Remove-AtwsContact
     [datetime]
     $SolicitationOptOutTime,
 
-# Contact County
+# Contact State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

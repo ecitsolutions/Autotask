@@ -86,7 +86,7 @@ New-AtwsTicket
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Client
+# Account
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -430,7 +430,7 @@ New-AtwsTicket
     [string]
     $ExternalID,
 
-# Configuration Item
+# Installed Asset
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

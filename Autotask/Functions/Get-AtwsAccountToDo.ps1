@@ -114,7 +114,7 @@ New-AtwsAccountToDo
     [switch]
     $All,
 
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -201,7 +201,7 @@ New-AtwsAccountToDo
     [Nullable[datetime][]]
     $EndDateTime,
 
-# Client To Do ID
+# Account To Do ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

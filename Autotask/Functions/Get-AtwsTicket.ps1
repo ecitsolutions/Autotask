@@ -141,7 +141,7 @@ New-AtwsTicket
     [Autotask.UserDefinedField]
     $UserDefinedField,
 
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -470,7 +470,7 @@ New-AtwsTicket
     [Nullable[Int][]]
     $ImpersonatorCreatorResourceID,
 
-# Configuration Item
+# Installed Asset
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

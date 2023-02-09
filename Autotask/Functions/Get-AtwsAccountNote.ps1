@@ -113,7 +113,7 @@ New-AtwsAccountNote
     [switch]
     $All,
 
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -178,7 +178,7 @@ New-AtwsAccountNote
     [Nullable[datetime][]]
     $EndDateTime,
 
-# Client Note ID
+# Account Note ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

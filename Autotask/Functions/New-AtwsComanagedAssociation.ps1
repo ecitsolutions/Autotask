@@ -46,6 +46,7 @@ Copies [Autotask.ComanagedAssociation] by Id 124 to a new object through the Web
 Related commands:
 Remove-AtwsComanagedAssociation
  Get-AtwsComanagedAssociation
+ Set-AtwsComanagedAssociation
 
 #>
 

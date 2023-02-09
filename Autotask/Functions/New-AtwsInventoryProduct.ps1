@@ -4,23 +4,22 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function New-AtwsPurchaseOrderReceive
+Function New-AtwsInventoryProduct
 {
 
 
 <#
 .SYNOPSIS
-This function creates a new PurchaseOrderReceive through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.
+This function creates a new InventoryProduct through the Autotask Web Services API. All required properties are marked as required parameters to assist you on the command line.
 .DESCRIPTION
-The function supports all properties of an [Autotask.PurchaseOrderReceive] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.
+The function supports all properties of an [Autotask.InventoryProduct] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values. Any required paramterer is marked as Mandatory in the PowerShell function to assist you on the command line.
 
-If you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the PurchaseOrderReceive with Id number 0 you could write 'New-AtwsPurchaseOrderReceive -Id 0' or you could write 'New-AtwsPurchaseOrderReceive -Filter {Id -eq 0}.
+If you need very complicated queries you can write a filter directly and pass it using the -Filter parameter. To get the InventoryProduct with Id number 0 you could write 'New-AtwsInventoryProduct -Id 0' or you could write 'New-AtwsInventoryProduct -Filter {Id -eq 0}.
 
-'New-AtwsPurchaseOrderReceive -Id 0,4' could be written as 'New-AtwsPurchaseOrderReceive -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
+'New-AtwsInventoryProduct -Id 0,4' could be written as 'New-AtwsInventoryProduct -Filter {id -eq 0 -or id -eq 4}'. For simple queries you can see that using parameters is much easier than the -Filter option. But the -Filter option supports an arbitrary sequence of most operators (-eq, -ne, -gt, -ge, -lt, -le, -and, -or, -beginswith, -endswith, -contains, -like, -notlike, -soundslike, -isnotnull, -isnull, -isthisday). As you can group them using parenthesis '()' you can write arbitrarily complex queries with -Filter. 
 
-To create a new PurchaseOrderReceive you need the following required fields:
- -PurchaseOrderItemID
- -QuantityNowReceiving
+To create a new InventoryProduct you need the following required fields:
+ -
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -28,28 +27,30 @@ Entities that have fields that refer to the base entity of this CmdLet:
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.PurchaseOrderReceive]. This function outputs the Autotask.PurchaseOrderReceive that was created by the API.
+[Autotask.InventoryProduct]. This function outputs the Autotask.InventoryProduct that was created by the API.
 .EXAMPLE
-$result = New-AtwsPurchaseOrderReceive -PurchaseOrderItemID [Value] -QuantityNowReceiving [Value]
-Creates a new [Autotask.PurchaseOrderReceive] through the Web Services API and returns the new object.
+$result = New-AtwsInventoryProduct - [Value]
+Creates a new [Autotask.InventoryProduct] through the Web Services API and returns the new object.
  .EXAMPLE
-$result = Get-AtwsPurchaseOrderReceive -Id 124 | New-AtwsPurchaseOrderReceive 
-Copies [Autotask.PurchaseOrderReceive] by Id 124 to a new object through the Web Services API and returns the new object.
+$result = Get-AtwsInventoryProduct -Id 124 | New-AtwsInventoryProduct 
+Copies [Autotask.InventoryProduct] by Id 124 to a new object through the Web Services API and returns the new object.
  .EXAMPLE
-Get-AtwsPurchaseOrderReceive -Id 124 | New-AtwsPurchaseOrderReceive | Set-AtwsPurchaseOrderReceive -ParameterName 'Parameter Value'
-Copies [Autotask.PurchaseOrderReceive] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsPurchaseOrderReceive to modify the object.
+Get-AtwsInventoryProduct -Id 124 | New-AtwsInventoryProduct | Set-AtwsInventoryProduct -ParameterName 'Parameter Value'
+Copies [Autotask.InventoryProduct] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryProduct to modify the object.
  .EXAMPLE
-$result = Get-AtwsPurchaseOrderReceive -Id 124 | New-AtwsPurchaseOrderReceive | Set-AtwsPurchaseOrderReceive -ParameterName 'Parameter Value' -Passthru
-Copies [Autotask.PurchaseOrderReceive] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsPurchaseOrderReceive to modify the object and returns the new object.
+$result = Get-AtwsInventoryProduct -Id 124 | New-AtwsInventoryProduct | Set-AtwsInventoryProduct -ParameterName 'Parameter Value' -Passthru
+Copies [Autotask.InventoryProduct] by Id 124 to a new object through the Web Services API, passes the new object to the Set-AtwsInventoryProduct to modify the object and returns the new object.
 
 .NOTES
 Related commands:
-Get-AtwsPurchaseOrderReceive
+Remove-AtwsInventoryProduct
+ Get-AtwsInventoryProduct
+ Set-AtwsInventoryProduct
 
 #>
 
   [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='By_parameters', ConfirmImpact='Low',
-  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/New-AtwsPurchaseOrderReceive.md')]
+  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/New-AtwsInventoryProduct.md')]
   Param
   (
 # An array of objects to create
@@ -58,66 +59,26 @@ Get-AtwsPurchaseOrderReceive
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.PurchaseOrderReceive[]]
+    [Autotask.InventoryProduct[]]
     $InputObject,
 
-# Purchase Order Item ID
+# Picked Units
     [Parameter(
-      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [long]
-    $PurchaseOrderItemID,
+    [Int32]
+    $PickedUnits,
 
-# Quantity Back Ordered
+# Reserved Units
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [Int]
-    $QuantityBackOrdered,
-
-# Quantity Now Receiving
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Int]
-    $QuantityNowReceiving,
-
-# Quantity Previously Received
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $QuantityPreviouslyReceived,
-
-# Receive Date
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [datetime]
-    $ReceiveDate,
-
-# Received By Resource ID
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Int]
-    $ReceivedByResourceID,
-
-# Serial Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateLength(0,50)]
-    [string]
-    $SerialNumber
+    [Int32]
+    $ReservedUnits
   )
 
     begin {
-        $entityName = 'PurchaseOrderReceive'
+        $entityName = 'InventoryProduct'
 
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

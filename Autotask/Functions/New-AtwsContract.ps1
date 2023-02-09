@@ -76,7 +76,7 @@ Get-AtwsContract
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Client
+# Account
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -104,14 +104,14 @@ Get-AtwsContract
     [string]
     $BillingPreference,
 
-# Bill To Client Contact ID
+# Bill To Account Contact ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $BillToAccountContactID,
 
-# Bill To Client ID
+# Bill To Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

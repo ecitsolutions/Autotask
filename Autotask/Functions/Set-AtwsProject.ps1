@@ -160,7 +160,7 @@ New-AtwsProject
     [Parameter(
       ParametersetName = 'By_Id'
     )]
-    [ValidateLength(0,2000)]
+    [ValidateLength(0,8000)]
     [string]
     $Description,
 

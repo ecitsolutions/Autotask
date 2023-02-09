@@ -75,6 +75,7 @@ An example of a more complex query. This command returns any AccountAlerts with 
 .NOTES
 Related commands:
 New-AtwsAccountAlert
+ Remove-AtwsAccountAlert
  Set-AtwsAccountAlert
 
 #>
@@ -113,7 +114,7 @@ New-AtwsAccountAlert
     [switch]
     $All,
 
-# Client ID
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -125,6 +126,7 @@ New-AtwsAccountAlert
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,8000)]
     [string[]]
     $AlertText,

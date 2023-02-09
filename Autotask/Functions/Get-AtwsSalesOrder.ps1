@@ -121,7 +121,7 @@ Set-AtwsSalesOrder
     [Autotask.UserDefinedField]
     $UserDefinedField,
 
-# Client ID
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -192,7 +192,7 @@ Set-AtwsSalesOrder
     [string[]]
     $BillToPostalCode,
 
-# Bill to County
+# Bill to State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -308,7 +308,7 @@ Set-AtwsSalesOrder
     [string[]]
     $ShipToPostalCode,
 
-# Ship to County
+# Ship to State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

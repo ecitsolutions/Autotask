@@ -4,48 +4,49 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function Set-AtwsContractFactor
+Function Set-AtwsComanagedAssociation
 {
 
 
 <#
 .SYNOPSIS
-This function sets parameters on the ContractFactor specified by the -InputObject parameter or pipeline through the use of the Autotask Web Services API. Any property of the ContractFactor that is not marked as READ ONLY by Autotask can be speficied with a parameter. You can specify multiple paramters.
+This function sets parameters on the ComanagedAssociation specified by the -InputObject parameter or pipeline through the use of the Autotask Web Services API. Any property of the ComanagedAssociation that is not marked as READ ONLY by Autotask can be speficied with a parameter. You can specify multiple paramters.
 .DESCRIPTION
-This function one or more objects of type [Autotask.ContractFactor] as input. You can pipe the objects to the function or pass them using the -InputObject parameter. You specify the property you want to set and the value you want to set it to using parameters. The function modifies all objects and updates the online data through the Autotask Web Services API. The function supports all properties of an [Autotask.ContractFactor] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values.
+This function one or more objects of type [Autotask.ComanagedAssociation] as input. You can pipe the objects to the function or pass them using the -InputObject parameter. You specify the property you want to set and the value you want to set it to using parameters. The function modifies all objects and updates the online data through the Autotask Web Services API. The function supports all properties of an [Autotask.ComanagedAssociation] that can be updated through the Web Services API. The function uses PowerShell parameter validation  and supports IntelliSense for selecting picklist values.
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
 
 .INPUTS
-[Autotask.ContractFactor[]]. This function takes one or more objects as input. Pipeline is supported.
+[Autotask.ComanagedAssociation[]]. This function takes one or more objects as input. Pipeline is supported.
 .OUTPUTS
-Nothing or [Autotask.ContractFactor]. This function optionally returns the updated objects if you use the -PassThru parameter.
+Nothing or [Autotask.ComanagedAssociation]. This function optionally returns the updated objects if you use the -PassThru parameter.
 .EXAMPLE
-Set-AtwsContractFactor -InputObject $ContractFactor [-ParameterName] [Parameter value]
-Passes one or more [Autotask.ContractFactor] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
+Set-AtwsComanagedAssociation -InputObject $ComanagedAssociation [-ParameterName] [Parameter value]
+Passes one or more [Autotask.ComanagedAssociation] object(s) as a variable to the function and sets the property by name 'ParameterName' on ALL the objects before they are passed to the Autotask Web Service API and updated.
  .EXAMPLE
-$ContractFactor | Set-AtwsContractFactor -ParameterName 'Parameter value'
+$ComanagedAssociation | Set-AtwsComanagedAssociation -ParameterName 'Parameter value'
 Same as the first example, but now the objects are passed to the funtion through the pipeline, not passed as a parameter. The end result is identical.
  .EXAMPLE
-Get-AtwsContractFactor -Id 0 | Set-AtwsContractFactor -ParameterName 'Parameter value'
+Get-AtwsComanagedAssociation -Id 0 | Set-AtwsComanagedAssociation -ParameterName 'Parameter value'
 Gets the instance with Id 0 directly from the Web Services API, modifies a parameter and updates Autotask. This approach works with all valid parameters for the Get function.
  .EXAMPLE
-Get-AtwsContractFactor -Id 0,4,8 | Set-AtwsContractFactor -ParameterName 'Parameter value'
+Get-AtwsComanagedAssociation -Id 0,4,8 | Set-AtwsComanagedAssociation -ParameterName 'Parameter value'
 Gets multiple instances by Id, modifies them all and updates Autotask.
  .EXAMPLE
-$result = Get-AtwsContractFactor -Id 0,4,8 | Set-AtwsContractFactor -ParameterName 'Parameter value' -PassThru
+$result = Get-AtwsComanagedAssociation -Id 0,4,8 | Set-AtwsComanagedAssociation -ParameterName 'Parameter value' -PassThru
 Gets multiple instances by Id, modifies them all, updates Autotask and returns the updated objects.
 
 .NOTES
 Related commands:
-New-AtwsContractFactor
- Get-AtwsContractFactor
+New-AtwsComanagedAssociation
+ Remove-AtwsComanagedAssociation
+ Get-AtwsComanagedAssociation
 
 #>
 
   [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='InputObject', ConfirmImpact='Low',
-  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/Set-AtwsContractFactor.md')]
+  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/Set-AtwsComanagedAssociation.md')]
   Param
   (
 # An object that will be modified by any parameters and updated in Autotask
@@ -54,7 +55,7 @@ New-AtwsContractFactor
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ContractFactor[]]
+    [Autotask.ComanagedAssociation[]]
     $InputObject,
 
 # The object.ids of objects that should be modified by any parameters and updated in Autotask
@@ -73,54 +74,11 @@ New-AtwsContractFactor
       ParametersetName = 'By_parameters'
     )]
     [switch]
-    $PassThru,
-
-# Hourly Offset
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[double]]
-    $BlockHourFactor,
-
-# Contract Hourly Rate
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [Nullable[double]]
-    $ContractHourlyRate,
-
-# Role ID
-    [Parameter(
-      ParametersetName = 'Input_Object'
-    )]
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [Parameter(
-      ParametersetName = 'By_Id'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int]]
-    $RoleID
+    $PassThru
   )
 
     begin {
-        $entityName = 'ContractFactor'
+        $entityName = 'ComanagedAssociation'
 
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

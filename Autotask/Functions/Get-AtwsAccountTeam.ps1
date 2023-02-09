@@ -98,7 +98,7 @@ New-AtwsAccountTeam
     [switch]
     $All,
 
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -113,7 +113,7 @@ New-AtwsAccountTeam
     [Nullable[boolean][]]
     $AssociatedAsComanaged,
 
-# Client Team ID
+# Account Team ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

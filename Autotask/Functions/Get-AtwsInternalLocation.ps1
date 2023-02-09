@@ -201,7 +201,7 @@ Related commands:
     [string[]]
     $PostalCode,
 
-# County
+# State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

@@ -72,7 +72,7 @@ Get-AtwsInstalledProduct
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Client
+# Account
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -157,7 +157,7 @@ Get-AtwsInstalledProduct
     [Int]
     $CreatedByPersonID,
 
-# Configuration Item Daily Cost
+# Installed Asset Daily Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -352,7 +352,7 @@ Get-AtwsInstalledProduct
     [string]
     $DeviceNetworkingID,
 
-# Configuration Item Hourly Cost
+# Installed Asset Hourly Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -435,14 +435,14 @@ Get-AtwsInstalledProduct
     [string]
     $Location,
 
-# Configuration Item Monthly Cost
+# Installed Asset Monthly Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
     $MonthlyCost,
 
-# Configuration Item Notes
+# Installed Asset Notes
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -450,21 +450,21 @@ Get-AtwsInstalledProduct
     [string]
     $Notes,
 
-# Configuration Item Number of Users
+# Installed Asset Number of Users
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [double]
     $NumberOfUsers,
 
-# Parent Configuration Item
+# Parent Installed Asset
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
     [Int]
     $ParentInstalledProductID,
 
-# Configuration Item Per Use Cost
+# Installed Asset Per Use Cost
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -934,7 +934,7 @@ Get-AtwsInstalledProduct
     [string]
     $ServiceLevelAgreementID,
 
-# Configuration Item Setup Fee
+# Installed Asset Setup Fee
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -967,7 +967,7 @@ Get-AtwsInstalledProduct
     [string]
     $SourceCostType,
 
-# Configuration Item Type
+# Installed Asset Type
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

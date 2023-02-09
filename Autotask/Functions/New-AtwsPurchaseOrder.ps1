@@ -64,6 +64,14 @@ Get-AtwsPurchaseOrder
     [Autotask.PurchaseOrder[]]
     $InputObject,
 
+# AdditionalVendorInvoiceNumber
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [ValidateLength(0,8000)]
+    [string]
+    $AdditionalVendorInvoiceNumbers,
+
 # Cancel Date
     [Parameter(
       ParametersetName = 'By_parameters'

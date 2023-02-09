@@ -4,36 +4,36 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function Remove-AtwsComanagedAssociation
+Function Remove-AtwsInventoryProduct
 {
 
 
 <#
 .SYNOPSIS
-This function deletes a ComanagedAssociation through the Autotask Web Services API.
+This function deletes a InventoryProduct through the Autotask Web Services API.
 .DESCRIPTION
-This function deletes a ComanagedAssociation through the Autotask Web Services API.
+This function deletes a InventoryProduct through the Autotask Web Services API.
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
 
 .INPUTS
-[Autotask.ComanagedAssociation[]]. This function takes objects as input. Pipeline is supported.
+[Autotask.InventoryProduct[]]. This function takes objects as input. Pipeline is supported.
 .OUTPUTS
-Nothing. This fuction just deletes the Autotask.ComanagedAssociation that was passed to the function.
+Nothing. This fuction just deletes the Autotask.InventoryProduct that was passed to the function.
 .EXAMPLE
-Remove-AtwsComanagedAssociation  [-ParameterName] [Parameter value]
+Remove-AtwsInventoryProduct  [-ParameterName] [Parameter value]
 
 .NOTES
 Related commands:
-New-AtwsComanagedAssociation
- Get-AtwsComanagedAssociation
- Set-AtwsComanagedAssociation
+New-AtwsInventoryProduct
+ Get-AtwsInventoryProduct
+ Set-AtwsInventoryProduct
 
 #>
 
   [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Input_Object', ConfirmImpact='Low',
-  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/Remove-AtwsComanagedAssociation.md')]
+  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/Remove-AtwsInventoryProduct.md')]
   Param
   (
 # Any objects that should be deleted
@@ -42,21 +42,12 @@ New-AtwsComanagedAssociation
       ValueFromPipeline = $true
     )]
     [ValidateNotNullOrEmpty()]
-    [Autotask.ComanagedAssociation[]]
-    $InputObject,
-
-# The unique id of an object to delete
-    [Parameter(
-      Mandatory = $true,
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [long[]]
-    $Id
+    [Autotask.InventoryProduct[]]
+    $InputObject
   )
  
     begin { 
-        $entityName = 'ComanagedAssociation'
+        $entityName = 'InventoryProduct'
     
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

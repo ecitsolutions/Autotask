@@ -21,6 +21,7 @@ If you need very complicated queries you can write a filter directly and pass it
 To create a new AccountAlert you need the following required fields:
  -AccountID
  -AlertTypeID
+ -AlertText
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -30,7 +31,7 @@ Nothing. This function only takes parameters.
 .OUTPUTS
 [Autotask.AccountAlert]. This function outputs the Autotask.AccountAlert that was created by the API.
 .EXAMPLE
-$result = New-AtwsAccountAlert -AccountID [Value] -AlertTypeID [Value]
+$result = New-AtwsAccountAlert -AccountID [Value] -AlertTypeID [Value] -AlertText [Value]
 Creates a new [Autotask.AccountAlert] through the Web Services API and returns the new object.
  .EXAMPLE
 $result = Get-AtwsAccountAlert -Id 124 | New-AtwsAccountAlert 
@@ -44,7 +45,8 @@ Copies [Autotask.AccountAlert] by Id 124 to a new object through the Web Service
 
 .NOTES
 Related commands:
-Get-AtwsAccountAlert
+Remove-AtwsAccountAlert
+ Get-AtwsAccountAlert
  Set-AtwsAccountAlert
 
 #>
@@ -62,7 +64,7 @@ Get-AtwsAccountAlert
     [Autotask.AccountAlert[]]
     $InputObject,
 
-# Client ID
+# Account ID
     [Parameter(
       Mandatory = $true,
       ParametersetName = 'By_parameters'
@@ -73,8 +75,10 @@ Get-AtwsAccountAlert
 
 # Alert Text
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
+    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,8000)]
     [string]
     $AlertText,

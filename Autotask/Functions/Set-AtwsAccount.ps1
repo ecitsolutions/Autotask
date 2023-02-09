@@ -86,7 +86,7 @@ New-AtwsAccount
     [Autotask.UserDefinedField[]]
     $UserDefinedFields,
 
-# Client Name
+# Account Name
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -103,7 +103,7 @@ New-AtwsAccount
     [string]
     $AccountName,
 
-# Client Number
+# Account Number
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -117,7 +117,7 @@ New-AtwsAccount
     [string]
     $AccountNumber,
 
-# Client Type
+# Account Type
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -411,7 +411,7 @@ New-AtwsAccount
     [string]
     $InvoiceMethod,
 
-# Invoice non contract items to Parent Client
+# Invoice non contract items to Parent Account
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -487,7 +487,7 @@ New-AtwsAccount
     [string]
     $MarketSegmentID,
 
-# Client Owner
+# Account Owner
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -502,7 +502,7 @@ New-AtwsAccount
     [Nullable[Int]]
     $OwnerResourceID,
 
-# Parent Client
+# Parent Company
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -610,7 +610,7 @@ New-AtwsAccount
     [string]
     $SICCode,
 
-# County
+# State
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

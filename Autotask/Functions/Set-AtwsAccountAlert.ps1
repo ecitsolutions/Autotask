@@ -40,6 +40,7 @@ Gets multiple instances by Id, modifies them all, updates Autotask and returns t
 .NOTES
 Related commands:
 New-AtwsAccountAlert
+ Remove-AtwsAccountAlert
  Get-AtwsAccountAlert
 
 #>
@@ -80,11 +81,13 @@ New-AtwsAccountAlert
       ParametersetName = 'Input_Object'
     )]
     [Parameter(
+      Mandatory = $true,
       ParametersetName = 'By_parameters'
     )]
     [Parameter(
       ParametersetName = 'By_Id'
     )]
+    [ValidateNotNullOrEmpty()]
     [ValidateLength(0,8000)]
     [string]
     $AlertText

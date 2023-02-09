@@ -97,7 +97,7 @@ New-AtwsPurchaseOrderReceive
     [switch]
     $All,
 
-# Inventory Item ID
+# Purchase Order Receive ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -142,7 +142,7 @@ New-AtwsPurchaseOrderReceive
     [Nullable[datetime][]]
     $ReceiveDate,
 
-# Transfer By Resource ID
+# Received By Resource ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

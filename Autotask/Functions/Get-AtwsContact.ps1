@@ -125,7 +125,7 @@ New-AtwsContact
     [Autotask.UserDefinedField]
     $UserDefinedField,
 
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -446,7 +446,7 @@ New-AtwsContact
     [Nullable[datetime][]]
     $SolicitationOptOutTime,
 
-# Contact County
+# Contact State
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

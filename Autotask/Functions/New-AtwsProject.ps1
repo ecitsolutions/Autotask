@@ -184,7 +184,7 @@ Get-AtwsProject
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,2000)]
+    [ValidateLength(0,8000)]
     [string]
     $Description,
 

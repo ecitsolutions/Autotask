@@ -113,7 +113,7 @@ Set-AtwsBillingItem
     [switch]
     $All,
 
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

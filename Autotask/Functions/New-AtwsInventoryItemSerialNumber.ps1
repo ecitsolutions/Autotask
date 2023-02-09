@@ -68,7 +68,7 @@ Get-AtwsInventoryItemSerialNumber
       ParametersetName = 'By_parameters'
     )]
     [ValidateNotNullOrEmpty()]
-    [long]
+    [Int]
     $InventoryItemID,
 
 # Serial Number

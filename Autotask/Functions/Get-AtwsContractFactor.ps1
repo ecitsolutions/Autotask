@@ -106,6 +106,13 @@ New-AtwsContractFactor
     [Nullable[double][]]
     $BlockHourFactor,
 
+# Contract Hourly Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $ContractHourlyRate,
+
 # Contract ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -122,6 +129,13 @@ New-AtwsContractFactor
     [Nullable[long][]]
     $id,
 
+# Internal Currency Contract Hourly Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [Nullable[double][]]
+    $InternalCurrencyContractHourlyRate,
+
 # Role ID
     [Parameter(
       ParametersetName = 'By_parameters'
@@ -133,49 +147,49 @@ New-AtwsContractFactor
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BlockHourFactor', 'ContractID', 'id', 'RoleID')]
+    [ValidateSet('BlockHourFactor', 'ContractHourlyRate', 'ContractID', 'id', 'InternalCurrencyContractHourlyRate', 'RoleID')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BlockHourFactor', 'ContractID', 'id', 'RoleID')]
+    [ValidateSet('BlockHourFactor', 'ContractHourlyRate', 'ContractID', 'id', 'InternalCurrencyContractHourlyRate', 'RoleID')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BlockHourFactor', 'ContractID', 'id', 'RoleID')]
+    [ValidateSet('BlockHourFactor', 'ContractHourlyRate', 'ContractID', 'id', 'InternalCurrencyContractHourlyRate', 'RoleID')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BlockHourFactor', 'ContractID', 'id', 'RoleID')]
+    [ValidateSet('BlockHourFactor', 'ContractHourlyRate', 'ContractID', 'id', 'InternalCurrencyContractHourlyRate', 'RoleID')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BlockHourFactor', 'ContractID', 'id', 'RoleID')]
+    [ValidateSet('BlockHourFactor', 'ContractHourlyRate', 'ContractID', 'id', 'InternalCurrencyContractHourlyRate', 'RoleID')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BlockHourFactor', 'ContractID', 'id', 'RoleID')]
+    [ValidateSet('BlockHourFactor', 'ContractHourlyRate', 'ContractID', 'id', 'InternalCurrencyContractHourlyRate', 'RoleID')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('BlockHourFactor', 'ContractID', 'id', 'RoleID')]
+    [ValidateSet('BlockHourFactor', 'ContractHourlyRate', 'ContractID', 'id', 'InternalCurrencyContractHourlyRate', 'RoleID')]
     [string[]]
     $LessThanOrEquals,
 

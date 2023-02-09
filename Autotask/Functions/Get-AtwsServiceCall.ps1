@@ -114,7 +114,7 @@ New-AtwsServiceCall
     [switch]
     $All,
 
-# Client ID
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

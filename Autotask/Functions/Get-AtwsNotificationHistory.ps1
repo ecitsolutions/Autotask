@@ -30,8 +30,6 @@ Additional operators for [string] parameters are:
 
 Properties with picklists are:
 NotificationHistoryTypeID
-EntityTitle
-EntityNumber
 
 Entities that have fields that refer to the base entity of this CmdLet:
 
@@ -113,7 +111,7 @@ Related commands:
     [switch]
     $All,
 
-# Client
+# Account
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -124,18 +122,7 @@ Related commands:
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityNumber -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,50)]
     [string[]]
     $EntityNumber,
 
@@ -143,18 +130,7 @@ Related commands:
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ArgumentCompleter({
-      param($Cmd, $Param, $Word, $Ast, $FakeBound)
-      Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label -Quoted
-    })]
-    [ValidateScript({
-      $set = (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Label) + (Get-AtwsPicklistValue -Entity NotificationHistory -FieldName EntityTitle -Value)
-      if ($_ -in $set) { return $true}
-      else {
-        Write-Warning ('{0} is not one of {1}' -f $_, ($set -join ', '))
-        Return $false
-      }
-    })]
+    [ValidateLength(0,2000)]
     [string[]]
     $EntityTitle,
 

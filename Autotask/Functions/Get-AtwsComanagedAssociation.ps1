@@ -61,6 +61,7 @@ Returns any object with a ComanagedAssociationName that DOES NOT match the simpl
 Related commands:
 New-AtwsComanagedAssociation
  Remove-AtwsComanagedAssociation
+ Set-AtwsComanagedAssociation
 
 #>
 

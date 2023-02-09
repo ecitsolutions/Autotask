@@ -114,7 +114,7 @@ Set-AtwsAccountLocation
     [Nullable[Int][]]
     $AccountID,
 
-# Client ID
+# Account ID
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
@@ -122,7 +122,7 @@ Set-AtwsAccountLocation
     [Nullable[long][]]
     $id,
 
-# Client Name
+# Account Name
     [Parameter(
       ParametersetName = 'By_parameters'
     )]

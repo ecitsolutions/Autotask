@@ -72,6 +72,13 @@ Get-AtwsContractFactor
     [double]
     $BlockHourFactor,
 
+# Contract Hourly Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $ContractHourlyRate,
+
 # Contract ID
     [Parameter(
       Mandatory = $true,
@@ -80,6 +87,13 @@ Get-AtwsContractFactor
     [ValidateNotNullOrEmpty()]
     [Int]
     $ContractID,
+
+# Internal Currency Contract Hourly Rate
+    [Parameter(
+      ParametersetName = 'By_parameters'
+    )]
+    [double]
+    $InternalCurrencyContractHourlyRate,
 
 # Role ID
     [Parameter(

@@ -78,9 +78,11 @@ Function Get-AtwsParameterDefinition {
             $Comment = 'An object that will be modified by any parameters and updated in Autotask'
             Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
             # -Id
-            $field = $Entity['FieldInfo']['Id']
-            $Comment = 'The object.ids of objects that should be modified by any parameters and updated in Autotask'
-            Get-AtwsPSParameter -Name 'Id' -SetName 'By_Id' -Type $field.Type -Mandatory -NotNull -Array -Comment $Comment
+            if ($Entity['FieldInfo'].ContainsKey('id')) {
+                $field = $Entity['FieldInfo']['Id']
+                $Comment = 'The object.ids of objects that should be modified by any parameters and updated in Autotask'
+                Get-AtwsPSParameter -Name 'Id' -SetName 'By_Id' -Type $field.Type -Mandatory -NotNull -Array -Comment $Comment
+            }
             # -PassThru
             $Comment = 'Return any updated objects through the pipeline'
             Get-AtwsPSParameter -Name 'PassThru' -SetName 'Input_Object', 'By_parameters' -Type 'switch' -Comment $Comment
@@ -105,9 +107,11 @@ Function Get-AtwsParameterDefinition {
             $Comment = 'Any objects that should be deleted'          
             Get-AtwsPSParameter -Name 'InputObject' -SetName 'Input_Object' -Type $TypeName -Mandatory -Pipeline -NotNull -Array -Comment $Comment
             # -Id
-            $field = $Entity['FieldInfo']['Id']
-            $Comment = 'The unique id of an object to delete'
-            Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $field.Type -Mandatory  -NotNull -Array -Comment $Comment
+            if ($Entity['FieldInfo'].ContainsKey('id')) {
+                $field = $Entity['FieldInfo']['Id']
+                $Comment = 'The unique id of an object to delete'
+                Get-AtwsPSParameter -Name 'Id' -SetName 'By_parameters' -Type $field.Type -Mandatory  -NotNull -Array -Comment $Comment
+            }
         }
     
 
@@ -139,7 +143,7 @@ Function Get-AtwsParameterDefinition {
     
         # Add Name alias for EntityName parameters
         $entityNameParameter = '{0}Name' -f $Entity.Name
-        foreach ($field in $fields | sort-object -property name) {
+        foreach ($field in $fields | Sort-Object -Property name) {
             # Start with native field type
             $Type = $field.Type
 
@@ -159,20 +163,20 @@ Function Get-AtwsParameterDefinition {
             }
 
             $parameterOptions = @{
-                Mandatory              = $Mandatory[$field.Name]
-                ParameterSetName       = $parameterSet[$field.Name]
-                ValidateNotNullOrEmpty = $field.IsRequired
-                ValidateLength         = $ValidateLength
-                ValidateSet            = @()
-                isPicklist             = $field.IsPickList
+                Mandatory                = $Mandatory[$field.Name]
+                ParameterSetName         = $parameterSet[$field.Name]
+                ValidateNotNullOrEmpty   = $field.IsRequired
+                ValidateLength           = $ValidateLength
+                ValidateSet              = @()
+                isPicklist               = $field.IsPickList
                 PickListParentValueField = $field.PickListParentValueField
-                Array                  = $(($Verb -eq 'Get'))
-                Name                   = $field.Name
-                EntityName             = $Entity.Name
-                Alias                  = $Alias
-                Type                   = $Type
-                Comment                = $field.Label
-                Nullable               = $Verb -ne 'New' -and $Type -ne 'string'
+                Array                    = $(($Verb -eq 'Get'))
+                Name                     = $field.Name
+                EntityName               = $Entity.Name
+                Alias                    = $Alias
+                Type                     = $Type
+                Comment                  = $field.Label
+                Nullable                 = $Verb -ne 'New' -and $Type -ne 'string'
             }
 
             Get-AtwsPSParameter @ParameterOptions

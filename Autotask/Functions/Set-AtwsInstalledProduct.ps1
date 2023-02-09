@@ -166,7 +166,7 @@ New-AtwsInstalledProduct
     [Nullable[Int]]
     $ContractServiceID,
 
-# Configuration Item Daily Cost
+# Installed Asset Daily Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -179,7 +179,7 @@ New-AtwsInstalledProduct
     [Nullable[double]]
     $DailyCost,
 
-# Configuration Item Hourly Cost
+# Installed Asset Hourly Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -232,7 +232,7 @@ New-AtwsInstalledProduct
     [string]
     $Location,
 
-# Configuration Item Monthly Cost
+# Installed Asset Monthly Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -245,7 +245,7 @@ New-AtwsInstalledProduct
     [Nullable[double]]
     $MonthlyCost,
 
-# Configuration Item Notes
+# Installed Asset Notes
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -259,7 +259,7 @@ New-AtwsInstalledProduct
     [string]
     $Notes,
 
-# Configuration Item Number of Users
+# Installed Asset Number of Users
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -272,7 +272,7 @@ New-AtwsInstalledProduct
     [Nullable[double]]
     $NumberOfUsers,
 
-# Parent Configuration Item
+# Parent Installed Asset
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -285,7 +285,7 @@ New-AtwsInstalledProduct
     [Nullable[Int]]
     $ParentInstalledProductID,
 
-# Configuration Item Per Use Cost
+# Installed Asset Per Use Cost
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -406,7 +406,7 @@ New-AtwsInstalledProduct
     [string]
     $ServiceLevelAgreementID,
 
-# Configuration Item Setup Fee
+# Installed Asset Setup Fee
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -419,7 +419,7 @@ New-AtwsInstalledProduct
     [Nullable[double]]
     $SetupFee,
 
-# Configuration Item Type
+# Installed Asset Type
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

@@ -76,7 +76,7 @@ New-AtwsServiceCall
     [switch]
     $PassThru,
 
-# Client ID
+# Account ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

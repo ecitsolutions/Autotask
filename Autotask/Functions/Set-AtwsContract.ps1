@@ -111,7 +111,7 @@ New-AtwsContract
     [string]
     $BillingPreference,
 
-# Bill To Client Contact ID
+# Bill To Account Contact ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
@@ -124,7 +124,7 @@ New-AtwsContract
     [Nullable[Int]]
     $BillToAccountContactID,
 
-# Bill To Client ID
+# Bill To Account ID
     [Parameter(
       ParametersetName = 'Input_Object'
     )]

@@ -4,13 +4,13 @@
     Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md for license information.
 #>
-Function Get-AtwsInventoryItemSerialNumber
+Function Get-AtwsInventoryProduct
 {
 
 
 <#
 .SYNOPSIS
-This function get one or more InventoryItemSerialNumber through the Autotask Web Services API.
+This function get one or more InventoryProduct through the Autotask Web Services API.
 .DESCRIPTION
 This function creates a query based on any parameters you give and returns any resulting objects from the Autotask Web Services Api. By default the function returns any objects with properties that are Equal (-eq) to the value of the parameter. To give you more flexibility you can modify the operator by using -NotEquals [ParameterName[]], -LessThan [ParameterName[]] and so on.
 
@@ -37,35 +37,36 @@ Entities that have fields that refer to the base entity of this CmdLet:
 .INPUTS
 Nothing. This function only takes parameters.
 .OUTPUTS
-[Autotask.InventoryItemSerialNumber[]]. This function outputs the Autotask.InventoryItemSerialNumber that was returned by the API.
+[Autotask.InventoryProduct[]]. This function outputs the Autotask.InventoryProduct that was returned by the API.
 .EXAMPLE
-Get-AtwsInventoryItemSerialNumber -Id 0
+Get-AtwsInventoryProduct -Id 0
 Returns the object with Id 0, if any.
  .EXAMPLE
-Get-AtwsInventoryItemSerialNumber -InventoryItemSerialNumberName SomeName
-Returns the object with InventoryItemSerialNumberName 'SomeName', if any.
+Get-AtwsInventoryProduct -InventoryProductName SomeName
+Returns the object with InventoryProductName 'SomeName', if any.
  .EXAMPLE
-Get-AtwsInventoryItemSerialNumber -InventoryItemSerialNumberName 'Some Name'
-Returns the object with InventoryItemSerialNumberName 'Some Name', if any.
+Get-AtwsInventoryProduct -InventoryProductName 'Some Name'
+Returns the object with InventoryProductName 'Some Name', if any.
  .EXAMPLE
-Get-AtwsInventoryItemSerialNumber -InventoryItemSerialNumberName 'Some Name' -NotEquals InventoryItemSerialNumberName
-Returns any objects with a InventoryItemSerialNumberName that is NOT equal to 'Some Name', if any.
+Get-AtwsInventoryProduct -InventoryProductName 'Some Name' -NotEquals InventoryProductName
+Returns any objects with a InventoryProductName that is NOT equal to 'Some Name', if any.
  .EXAMPLE
-Get-AtwsInventoryItemSerialNumber -InventoryItemSerialNumberName SomeName* -Like InventoryItemSerialNumberName
-Returns any object with a InventoryItemSerialNumberName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsInventoryProduct -InventoryProductName SomeName* -Like InventoryProductName
+Returns any object with a InventoryProductName that matches the simple pattern 'SomeName*'. Supported wildcards are * and %.
  .EXAMPLE
-Get-AtwsInventoryItemSerialNumber -InventoryItemSerialNumberName SomeName* -NotLike InventoryItemSerialNumberName
-Returns any object with a InventoryItemSerialNumberName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
+Get-AtwsInventoryProduct -InventoryProductName SomeName* -NotLike InventoryProductName
+Returns any object with a InventoryProductName that DOES NOT match the simple pattern 'SomeName*'. Supported wildcards are * and %.
 
 .NOTES
 Related commands:
-New-AtwsInventoryItemSerialNumber
- Set-AtwsInventoryItemSerialNumber
+New-AtwsInventoryProduct
+ Remove-AtwsInventoryProduct
+ Set-AtwsInventoryProduct
 
 #>
 
   [CmdLetBinding(SupportsShouldProcess = $true, DefaultParameterSetName='Filter', ConfirmImpact='None',
-  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/Get-AtwsInventoryItemSerialNumber.md')]
+  HelpURI='https://github.com/ecitsolutions/Autotask/blob/master/Docs/Get-AtwsInventoryProduct.md')]
   Param
   (
 # A filter that limits the number of objects that is returned from the API
@@ -87,7 +88,6 @@ New-AtwsInventoryItemSerialNumber
     )]
     [Alias('GetRef')]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet('InventoryItemID')]
     [string]
     $GetReferenceEntityById,
 
@@ -98,112 +98,96 @@ New-AtwsInventoryItemSerialNumber
     [switch]
     $All,
 
-# Inventory Item Serial Number ID
+# Picked Units
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[long][]]
-    $id,
+    [Nullable[Int32][]]
+    $PickedUnits,
 
-# Inventory Item ID
+# Reserved Units
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateNotNullOrEmpty()]
-    [Nullable[Int][]]
-    $InventoryItemID,
-
-# Serial Number
-    [Parameter(
-      ParametersetName = 'By_parameters'
-    )]
-    [ValidateNotNullOrEmpty()]
-    [ValidateLength(0,100)]
-    [string[]]
-    $SerialNumber,
+    [Nullable[Int32][]]
+    $ReservedUnits,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InventoryItemID', 'SerialNumber')]
+    [ValidateSet('PickedUnits', 'ReservedUnits')]
     [string[]]
     $NotEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InventoryItemID', 'SerialNumber')]
+    [ValidateSet('PickedUnits', 'ReservedUnits')]
     [string[]]
     $IsNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InventoryItemID', 'SerialNumber')]
+    [ValidateSet('PickedUnits', 'ReservedUnits')]
     [string[]]
     $IsNotNull,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InventoryItemID', 'SerialNumber')]
+    [ValidateSet('PickedUnits', 'ReservedUnits')]
     [string[]]
     $GreaterThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InventoryItemID', 'SerialNumber')]
+    [ValidateSet('PickedUnits', 'ReservedUnits')]
     [string[]]
     $GreaterThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InventoryItemID', 'SerialNumber')]
+    [ValidateSet('PickedUnits', 'ReservedUnits')]
     [string[]]
     $LessThan,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('id', 'InventoryItemID', 'SerialNumber')]
+    [ValidateSet('PickedUnits', 'ReservedUnits')]
     [string[]]
     $LessThanOrEquals,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SerialNumber')]
     [string[]]
     $Like,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SerialNumber')]
     [string[]]
     $NotLike,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SerialNumber')]
     [string[]]
     $BeginsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SerialNumber')]
     [string[]]
     $EndsWith,
 
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateSet('SerialNumber')]
     [string[]]
     $Contains,
 
@@ -215,7 +199,7 @@ New-AtwsInventoryItemSerialNumber
   )
 
     begin {
-        $entityName = 'InventoryItemSerialNumber'
+        $entityName = 'InventoryProduct'
 
         # Enable modern -Debug behavior
         if ($PSCmdlet.MyInvocation.BoundParameters['Debug'].IsPresent) {

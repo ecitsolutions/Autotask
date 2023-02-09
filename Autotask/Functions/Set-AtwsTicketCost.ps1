@@ -89,7 +89,7 @@ New-AtwsTicketCost
     [Nullable[long]]
     $AllocationCodeID,
 
-# Billable To Client
+# Billable To Account
     [Parameter(
       ParametersetName = 'Input_Object'
     )]
