@@ -284,20 +284,20 @@ Describe "UserDefinedField tests" {
         It "Should get a big number of devices" {
             $Devices.Count | Should -BeGreaterThan 900
 
-            { Set-AtwsInstalledProduct -InputObject $Devices -UserDefinedFields @{Name = 'Description'; Value = $RunGUID } } | Should -Not -Throw
+            { Set-AtwsInstalledProduct -InputObject $Devices -UserDefinedFields @{Name = 'Kommentar'; Value = $RunGUID } } | Should -Not -Throw
         }
 
         It "Values are updated and returnable with correct new values" {
             # Enable UDF expansion, need it for group-object
             Set-AtwsModuleConfiguration -UdfExpansion Inline
             $Req = Get-AtwsInstalledProduct -Type Computer -Active $true
-            $NewValues = $Req | Group-Object '#Description' | Select-Object -ExpandProperty Name
+            $NewValues = $Req | Group-Object '#Kommentar' | Select-Object -ExpandProperty Name
             $NewValues | Should -HaveCount 1
             $NewValues | Should -BeExactly $RunGUID
         }
 
-        It "Reverts back to previous values" -ForEach ($Devices | Group-Object '#Description') {
-            { Set-AtwsInstalledProduct -InputObject $_.Group -UserDefinedFields @{Name = 'Description' ; Value = $_.Name } } | Should -Not -Throw
+        It "Reverts back to previous values" -ForEach ($Devices | Group-Object '#Kommentar') {
+            { Set-AtwsInstalledProduct -InputObject $_.Group -UserDefinedFields @{Name = 'Kommentar' ; Value = $_.Name } } | Should -Not -Throw
         }
     }
 }
@@ -346,7 +346,7 @@ Describe "Parameter value can be LabelID and LabelTekst" {
 
         It "Creating a ticket only using picklist ids, no text labels" {
             $ticket_params = @{
-                QueueID          = 29684177 #'Operations - Alert Management'
+                QueueID          = 29684177 # 19: Waiting for future Handling
                 AccountID        = 0
                 Title            = "Meraki enheter uten riktig produktkode $((Get-Date).tostring('dd.MM HH:mm'))"
                 Description      = ""
@@ -367,7 +367,7 @@ Describe "Parameter value can be LabelID and LabelTekst" {
 Describe "Static Function tests" {
     Context "New-AtwsAttachment" {
         BeforeAll {
-            $Ticket = New-AtwsTicket -IssueType 22 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID  '19: Waiting for future Handling'
+            $Ticket = New-AtwsTicket -IssueType 22 -AccountID 0 -Priority 'Normal' -Status New -Title 'Pester Test Slett meg' -QueueID  '19: Waiting for future Handling'
             $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.xlsx")
         }
         AfterAll {
@@ -708,8 +708,8 @@ Describe "GitHub issues regression tests" {
     Context 'Issue #94: TimeZone issues' {
         # Get entityinfo for Account and force a lookup through the API
         It 'There should be more than 0 ContractServiceUnits' {
-            $Now = (Get-Date -Day 1).Date
-            $contractId = 30390716 # Internal service contract
+            $Now = (Get-Date -Day 1).Date.AddYears(-1) # one year back, the sandbox can be old
+            $contractId = 29745735 # Internal service contract
             $result = Get-AtwsContractServiceUnit -ContractID $contractId -StartDate $Now -LessThanOrEquals StartDate -EndDate $Now -GreaterThanOrEquals EndDate
 
             $result.count  | Should -BeGreaterThan 0
@@ -728,12 +728,12 @@ Describe "New- Entities tests." {
             $Item = [Autotask.InstalledProduct]@{
                 AccountID      = 0;
                 Active         = $true
-                ProductID      = 29682875
+                ProductID      = 29683735
                 ReferenceTitle = $_
                 NumberOfUsers  = 1337
             }
 
-            $Item.UserDefinedFields = @{ Name = 'Maskin navn'; Value = $_ }
+            #$Item.UserDefinedFields = @{ Name = 'Maskin navn'; Value = $_ }
 
             $NewItems += $Item
         }
@@ -743,10 +743,10 @@ Describe "New- Entities tests." {
             $Item = [Autotask.InstalledProduct]@{
                 AccountID         = 0;
                 Active            = $true
-                ProductID         = 29682875
+                ProductID         = 29683735
                 ReferenceTitle    = $_
                 NumberOfUsers     = 1337
-                UserDefinedFields = [Autotask.UserDefinedField]@{ Name = 'Maskin navn'; Value = $_ }, [Autotask.UserDefinedField]@{ Name = 'Sist logget inn'; Value = (Get-Date -Format 'dd-MM-yyyy') }
+                #UserDefinedFields = [Autotask.UserDefinedField]@{ Name = 'Maskin navn'; Value = $_ }, [Autotask.UserDefinedField]@{ Name = 'Sist logget inn'; Value = (Get-Date -Format 'dd-MM-yyyy') }
             }
 
             $NewTypedVariant.add($Item)
