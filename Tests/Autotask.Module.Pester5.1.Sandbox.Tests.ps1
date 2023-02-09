@@ -180,7 +180,7 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
             Connect-AtwsWebAPI -ProfilePath $PesterConfigPath -ProfileName 'PesterTempConfig'
             $Acc = Get-AtwsAccount -id 0
             $Acc | Should -BeOfType [Autotask.Account]
-            $Acc.AccountName | Should -BeExactly 'ECIT Solutions AS Sandbox'
+            $Acc.AccountName | Should -BeExactly 'ECIT Solutions SANDBOX'
         }
 
         It "Set-AtwsModuleConfiguration changes connectionObject" {
@@ -211,7 +211,7 @@ Describe "Get-, Set-, New-, Save-, and Remove-AtwsModuleConfiguration Tests" {
     Context "Default profile" {
         It "Retrieves our accountName with default profile" {
             { $Null = Get-AtwsAccount -id 0 } | Should -Not -Throw
-            # Get-AtwsAccount -id 0 | Select-Object -ExpandProperty AccountName | Should -BeExactly 'ECIT Solutions AS Sandbox'
+            # Get-AtwsAccount -id 0 | Select-Object -ExpandProperty AccountName | Should -BeExactly 'ECIT Solutions SANDBOX'
         }
     }
 }
@@ -223,7 +223,7 @@ Describe "Connect using connection object" {
         { Connect-AtwsWebAPI -AtwsModuleConfiguration $Config } | Should -Not -Throw
         $Acc = Get-AtwsAccount -id 0
         $Acc | Should -BeOfType [Autotask.Account]
-        $Acc.AccountName | Should -BeExactly 'ECIT Solutions AS Sandbox'
+        $Acc.AccountName | Should -BeExactly 'ECIT Solutions SANDBOX'
     }
 }
 
@@ -251,10 +251,19 @@ Describe "Returned Autotask error messages are exceptions" {
 
 Describe "UserDefinedField tests" {
     Context "UDF Properties are expanded from its array." {
+        BeforeAll {
+            # Enable UDF expansion 
+            $CurrentConfig = Get-AtwsModuleConfiguration
+            Set-AtwsModuleConfiguration -UdfExpansion Inline
+        }
+        AfterAll {
+            # Restore configuration
+            $CurrentConfig | Set-AtwsModuleConfiguration
+        }
         It "Has properties with name like '#'" {
             
-            $Products = Get-AtwsInstalledProduct -Type Firewall
-            $Products[0].psobject.Properties.where{ $_.Name -match '#' }.Count | Should -BeGreaterThan 40
+            $Account = Get-AtwsAccount -id 0 
+            $Account[0].psobject.Properties.where{ $_.Name -match '#' }.Count | Should -BeGreaterThan 4
         }
     }
 
@@ -267,7 +276,7 @@ Describe "UserDefinedField tests" {
             $CurrentConfig = Get-AtwsModuleConfiguration
             Set-AtwsModuleConfiguration -PickListExpansion Disabled -UdfExpansion Disabled
 
-            $Devices = Get-AtwsInstalledProduct -Type Server -Active $true
+            $Devices = Get-AtwsInstalledProduct -Type Computer -Active $true
         }
         AfterAll {
             $CurrentConfig | Set-AtwsModuleConfiguration
@@ -275,21 +284,20 @@ Describe "UserDefinedField tests" {
         It "Should get a big number of devices" {
             $Devices.Count | Should -BeGreaterThan 900
 
-            { Set-AtwsInstalledProduct -InputObject $Devices -UserDefinedFields @{Name = 'Sist logget inn'; Value = $RunGUID } } | Should -Not -Throw
-            # TODO: UseCase: now restore old data. Should be able to run Set-AtwsInstalledProduct -InputObject $Devices right? Maybe Not. Group updating on old values are needed.
+            { Set-AtwsInstalledProduct -InputObject $Devices -UserDefinedFields @{Name = 'Description'; Value = $RunGUID } } | Should -Not -Throw
         }
 
         It "Values are updated and returnable with correct new values" {
             # Enable UDF expansion, need it for group-object
             Set-AtwsModuleConfiguration -UdfExpansion Inline
-            $Req = Get-AtwsInstalledProduct -Type Server -Active $true
-            $NewValues = $Req | Group-Object '#Sist logget inn' | Select-Object -ExpandProperty Name
+            $Req = Get-AtwsInstalledProduct -Type Computer -Active $true
+            $NewValues = $Req | Group-Object '#Description' | Select-Object -ExpandProperty Name
             $NewValues | Should -HaveCount 1
             $NewValues | Should -BeExactly $RunGUID
         }
 
-        It "Reverts back to previous values" -ForEach ($Devices | Group-Object '#Sist logget inn') {
-            { Set-AtwsInstalledProduct -InputObject $_.Group -UserDefinedFields @{Name = 'Sist logget inn' ; Value = $_.Name } } | Should -Not -Throw
+        It "Reverts back to previous values" -ForEach ($Devices | Group-Object '#Description') {
+            { Set-AtwsInstalledProduct -InputObject $_.Group -UserDefinedFields @{Name = 'Description' ; Value = $_.Name } } | Should -Not -Throw
         }
     }
 }
@@ -313,7 +321,7 @@ Describe "SQL Query nested too deep error" {
     Context "Does not throw when inputting 1000 ids to cmdlets" {
         
         BeforeAll {
-            $Products = Get-AtwsInstalledProduct -Type Server -Active $true
+            $Products = Get-AtwsInstalledProduct -Type 'Computer' -Active $true
         }
 
         It "Should get 800+ objects" {
@@ -322,7 +330,7 @@ Describe "SQL Query nested too deep error" {
 
         It "Should accept 800+ Ids as input and return the correct number of objects" { 
             # This should work even if there are multiple parameters and the ID parameter is not the first or last
-            $Req = Get-AtwsInstalledProduct -Type Server -id $Products.id -Active $true
+            $Req = Get-AtwsInstalledProduct -Type 'Computer' -id $Products.id -Active $true
             $Req.count | Should -Be $Products.count
         }
     }
@@ -332,22 +340,22 @@ Describe "Parameter value can be LabelID and LabelTekst" {
     Context "LabelID and LabelText can be sent to ticket" {
         
         It "Creating 2 tickets by parameters, one with text label and one with integer id of picklist" {
-            { New-AtwsTicket -IssueType Network/Firewall/AP -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling' } | Should -Not -Throw
-            { New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling' } | Should -Not -Throw
+            { New-AtwsTicket -IssueType  'Administration' -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID  '19: Waiting for future Handling' } | Should -Not -Throw
+            { New-AtwsTicket -IssueType 22 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID '19: Waiting for future Handling' } | Should -Not -Throw
         }
 
         It "Creating a ticket only using picklist ids, no text labels" {
             $ticket_params = @{
-                QueueID          = 30273836 #'Operations - Alert Management'
-                AccountID        = 29684055
+                QueueID          = 29684177 #'Operations - Alert Management'
+                AccountID        = 0
                 Title            = "Meraki enheter uten riktig produktkode $((Get-Date).tostring('dd.MM HH:mm'))"
                 Description      = ""
                 TicketCategory   = 3 #'Standard'
                 TicketType       = 5 #'Alert'
                 Status           = 1 #'New'
-                Priority         = 2 #'Medium'
-                ContractID       = '30390790'
-                AllocationCodeID = '29682801' #Samme som Work Type i GUI
+                Priority         = 2 #'Critical'
+                ContractID       = '29745319' # Intern Afregning 2016
+                AllocationCodeID = '29743356' # Samme som Work Type i GUI
             }
     
             { $ticket = New-AtwsTicket @ticket_params } | Should -Not -Throw
@@ -359,7 +367,7 @@ Describe "Parameter value can be LabelID and LabelTekst" {
 Describe "Static Function tests" {
     Context "New-AtwsAttachment" {
         BeforeAll {
-            $Ticket = New-AtwsTicket -IssueType 24 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID 'DevOps | Development | Utvikling'
+            $Ticket = New-AtwsTicket -IssueType 22 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID  '19: Waiting for future Handling'
             $p = (Join-Path (Split-Path $AtwsModuleConfigurationPath -Parent) -ChildPath "$RunGUID`_tempdata.xlsx")
         }
         AfterAll {
