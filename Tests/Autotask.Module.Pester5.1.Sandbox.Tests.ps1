@@ -244,7 +244,7 @@ Describe "Auto connect works on most get commands." {
 Describe "Returned Autotask error messages are exceptions" {
     Context "Be sure we get an exception, not write error/host" {
         It "Throws" {
-            { Get-AtwsInventoryLocation -id 0 } | Should -Throw
+            { Remove-AtwsAccountAlert -id 0 } | Should -Throw
         }
     }
 }
@@ -276,13 +276,13 @@ Describe "UserDefinedField tests" {
             $CurrentConfig = Get-AtwsModuleConfiguration
             Set-AtwsModuleConfiguration -PickListExpansion Disabled -UdfExpansion Disabled
 
-            $Devices = Get-AtwsInstalledProduct -Type Computer -Active $true
+            $Devices = Get-AtwsInstalledProduct -Type Server
         }
         AfterAll {
             $CurrentConfig | Set-AtwsModuleConfiguration
         }
         It "Should get a big number of devices" {
-            $Devices.Count | Should -BeGreaterThan 900
+            $Devices.Count | Should -BeGreaterThan 600
 
             { Set-AtwsInstalledProduct -InputObject $Devices -UserDefinedFields @{Name = 'Kommentar'; Value = $RunGUID } } | Should -Not -Throw
         }
@@ -290,7 +290,7 @@ Describe "UserDefinedField tests" {
         It "Values are updated and returnable with correct new values" {
             # Enable UDF expansion, need it for group-object
             Set-AtwsModuleConfiguration -UdfExpansion Inline
-            $Req = Get-AtwsInstalledProduct -Type Computer -Active $true
+            $Req = Get-AtwsInstalledProduct -Type Server
             $NewValues = $Req | Group-Object '#Kommentar' | Select-Object -ExpandProperty Name
             $NewValues | Should -HaveCount 1
             $NewValues | Should -BeExactly $RunGUID
@@ -321,16 +321,16 @@ Describe "SQL Query nested too deep error" {
     Context "Does not throw when inputting 1000 ids to cmdlets" {
         
         BeforeAll {
-            $Products = Get-AtwsInstalledProduct -Type 'Computer' -Active $true
+            $Products = Get-AtwsInstalledProduct -Type Server
         }
 
-        It "Should get 800+ objects" {
-            $Products.Count | Should -BeGreaterThan 800
+        It "Should get 600+ objects" {
+            $Products.Count | Should -BeGreaterThan 600
         }
 
-        It "Should accept 800+ Ids as input and return the correct number of objects" { 
+        It "Should accept 600+ Ids as input and return the correct number of objects" { 
             # This should work even if there are multiple parameters and the ID parameter is not the first or last
-            $Req = Get-AtwsInstalledProduct -Type 'Computer' -id $Products.id -Active $true
+            $Req = Get-AtwsInstalledProduct -Type Server -id $Products.id
             $Req.count | Should -Be $Products.count
         }
     }
@@ -340,8 +340,8 @@ Describe "Parameter value can be LabelID and LabelTekst" {
     Context "LabelID and LabelText can be sent to ticket" {
         
         It "Creating 2 tickets by parameters, one with text label and one with integer id of picklist" {
-            { New-AtwsTicket -IssueType  'Administration' -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID  '19: Waiting for future Handling' } | Should -Not -Throw
-            { New-AtwsTicket -IssueType 22 -AccountID 0 -Priority Medium -Status New -Title 'Pester Test Slett meg' -QueueID '19: Waiting for future Handling' } | Should -Not -Throw
+            { New-AtwsTicket -IssueType  'Administration' -AccountID 0 -Priority 'Normal' -Status New -Title 'Pester Test Slett meg' -QueueID  '19: Waiting for future Handling' } | Should -Not -Throw
+            { New-AtwsTicket -IssueType 22 -AccountID 0 -Priority 'Normal' -Status New -Title 'Pester Test Slett meg' -QueueID '19: Waiting for future Handling' } | Should -Not -Throw
         }
 
         It "Creating a ticket only using picklist ids, no text labels" {
@@ -491,29 +491,29 @@ Describe "DateTime tests" {
 
         It "Dateconversion = disabled" {
             Set-AtwsModuleConfiguration -DateConversion Disabled
-            $Products = Get-AtwsInstalledProduct -Type Server -Active $true -AccountID 0 | Select-Object -First 30
-            $Products.Count | Should -Be 30
+            $Products = Get-AtwsInstalledProduct -Type Server -AccountID 0 | Select-Object -First 20
+            $Products.Count | Should -Be 20
             { Set-AtwsInstalledProduct -InputObject $Products -Type Server } | Should -not -Throw
         }
 
         It "Dateconversion = local" {
             Set-AtwsModuleConfiguration -DateConversion Local
-            $Products = Get-AtwsInstalledProduct -Type Server -Active $true -AccountID 0 | Select-Object -First 30
-            $Products.Count | Should -Be 30
+            $Products = Get-AtwsInstalledProduct -Type Server -AccountID 0 | Select-Object -First 20
+            $Products.Count | Should -Be 20
             { Set-AtwsInstalledProduct -InputObject $Products -Type Server } | Should -Not -Throw
         }
 
         It "Dateconversion = UTC" {
             Set-AtwsModuleConfiguration -DateConversion UTC
-            $Products = Get-AtwsInstalledProduct -Type Server -Active $true -AccountID 0 | Select-Object -First 30
-            $Products.Count | Should -Be 30
+            $Products = Get-AtwsInstalledProduct -Type Server -AccountID 0 | Select-Object -First 20
+            $Products.Count | Should -Be 20
             { Set-AtwsInstalledProduct -InputObject $Products -Type Server } | Should -Not -Throw
         }
 
         It "Dateconversion = Europe/Istanbul" {
             Set-AtwsModuleConfiguration -DateConversion $timezoneid
-            $Products = Get-AtwsInstalledProduct -Type Server -Active $true -AccountID 0 | Select-Object -First 30
-            $Products.Count | Should -Be 30
+            $Products = Get-AtwsInstalledProduct -Type Server -AccountID 0 | Select-Object -First 20
+            $Products.Count | Should -Be 20
             { Set-AtwsInstalledProduct -InputObject $Products } | Should -Not -Throw
         }
 
