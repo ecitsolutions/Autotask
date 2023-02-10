@@ -51,6 +51,8 @@ Get-Help New-AtwsModuleConfiguration
 
 ## Release notes
 
+### Version 2.0.2 - 
+
 ### Version 2.0.1 - API version update to 1.6.9
 
 * NEW: Support for API version 1.6.9. Affected commands: Get-AtwsAttachmentInfo, Get-AtwsBillingItem, Get-AtwsContractNote, Get-AtwsInvoiceTemplate, Get-AtwsTicketChecklistItem, New-AtwsContractNote, New-AtwsTicketChecklistItem, and Set-AtwsTicketChecklistItem.ps1

@@ -1,6 +1,6 @@
 ﻿<#
     .COPYRIGHT
-    Copyright (c) ECIT Solutions AS. All rights reserved. Licensed under the MIT license.
+    Copyright (c) Hugo Klemmestad. All rights reserved. Licensed under the MIT license.
     See https://github.com/ecitsolutions/Autotask/blob/master/LICENSE.md  for license information.
 #>
 
