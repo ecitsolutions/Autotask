@@ -51,7 +51,11 @@ Get-Help New-AtwsModuleConfiguration
 
 ## Release notes
 
-### Version 2.0.2 - 
+### Version 2.0.2 - API version update to 1.6.11 and support for Powershell 7.3.1+
+
+* NEW: Support for API version 1.6.11. New commands: Get-AtwsInventoryProduct, New-AtwsInventoryProduct, Remove-AtwsAccountAlert, Remove-AtwsInventoryProduct, Set-AtwsComanagedAssociation, Set-AtwsInventoryProduct (issue [#120](https://github.com/ecitsolutions/Autotask/issues/120))
+* BUGFIX: Support for Powershell 7.3.1+. Big thank you to @TwiggyDev! (issue [#119](https://github.com/ecitsolutions/Autotask/issues/119))
+* BUGFIX: Connect-AtwsWebAPI should work without parameters in Azure Funtions (issue [#118](https://github.com/ecitsolutions/Autotask/issues/118))
 
 ### Version 2.0.1 - API version update to 1.6.9
 
