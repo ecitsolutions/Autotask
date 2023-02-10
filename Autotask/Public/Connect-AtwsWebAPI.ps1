@@ -137,7 +137,13 @@ Function Connect-AtwsWebAPI {
         [Alias('Path')]
         [IO.FileInfo]
         # The path to an alternate clixml file with connection profiles
-        $ProfilePath,
+        $ProfilePath = $( 
+            if ($null -eq $Global:AtwsModuleConfigurationPath ) { 
+                Join-Path -Path '\' -ChildPath AtwsConfig.clixml
+            }
+            else {
+                Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml
+            }),
 
         # Name of the Configuration inside the Config file.
         [Parameter(
@@ -241,7 +247,10 @@ Function Connect-AtwsWebAPI {
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'ConfigurationFile') {
                 # If we arrive here and $ProfilePath has no value, then use default value
-                if ($null -eq $ProfilePath) { 
+                if ($null -eq $Global:AtwsModuleConfigurationPath ) { 
+                    Join-Path -Path '\' -ChildPath AtwsConfig.clixml
+                }
+                else {
                     Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml
                 }
                 Write-Verbose ('{0}: Calling Get-AtwsModuleConfiguration with profilename {1} and path {2}.' -F $MyInvocation.MyCommand.Name, $ProfileName, $ProfilePath)
