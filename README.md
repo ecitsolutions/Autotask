@@ -1,7 +1,4 @@
-# Important upgrade
-
-> * From version 2 the module no longer needs to maintain a per tenant disk cache. Any picklists are resolved dynamically using [ArgumentCompleter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-argumentcompleter?view=powershell-7).
-> * From version 2 the module supports [saved credentials][8] and connecting automatically both [locally][8] and on [Azure][12].
+# ReadMe
 
 ## Content
 
