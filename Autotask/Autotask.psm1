@@ -82,7 +82,7 @@ else {
 # Make sure default profile path exists
 $ProfilePath = Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml
 if (-not (Test-Path $ProfilePath)) {
-    New-Item -Path $ProfilePath -ItemType File -Force
+    Export-Clixml -InputObject @{} -Path $ProfilePath
 }
 
 # Get all function files as file objects
