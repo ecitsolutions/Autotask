@@ -48,6 +48,10 @@ Get-Help New-AtwsModuleConfiguration
 
 ## Release notes
 
+### Version 2.0.3 - Bugfix
+
+* BUGFIX: Reference.cs assembly must only use keyword "new" if Microsoft.Bcl.AsyncInterfaces has been loaded. Which is kind of obvious in hindsight (issue [#121](https://github.com/ecitsolutions/Autotask/issues/121))
+
 ### Version 2.0.2 - API version update to 1.6.11 and support for Powershell 7.3.1+
 
 * NEW: Support for API version 1.6.11. New commands: Get-AtwsInventoryProduct, New-AtwsInventoryProduct, Remove-AtwsAccountAlert, Remove-AtwsInventoryProduct, Set-AtwsComanagedAssociation, Set-AtwsInventoryProduct (issue [#120](https://github.com/ecitsolutions/Autotask/issues/120))
