@@ -135,7 +135,7 @@ if ($Protocol.Tostring() -notlike '*Tls12*') {
 }
 
 # Path to web service reference
-$code = '{0}\Private\Reference.cs' -f $My['ModuleBase']
+$code = '{0}\Private\Reference.old.cs' -f $My['ModuleBase']
 
 # List of needed assemblies for Powershell 5.1
 $assemblies = @(
@@ -164,6 +164,7 @@ if ($PSVersionTable.PSVersion.Major -ge 6) {
 # For Powershell versions 7.3.1 and higher, add this assembly
 $threshold = New-Object System.Version("7.3.0")
 if ($PSVersionTable.PSVersion -gt $threshold) {
+    $code = '{0}\Private\Reference.cs' -f $My['ModuleBase']
     $assemblies += @(
         'Microsoft.Bcl.AsyncInterfaces'
     )
