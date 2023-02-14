@@ -79,6 +79,12 @@ else {
     $Global:AtwsModuleConfigurationPath = $env:PWD
 }
 
+# Make sure default profile path exists
+$ProfilePath = Join-Path -Path $Global:AtwsModuleConfigurationPath -ChildPath AtwsConfig.clixml
+if (-not (Test-Path $ProfilePath)) {
+    New-Item -Path $ProfilePath -ItemType File -Force
+}
+
 # Get all function files as file objects
 # Private functions can only be called internally in other functions in the module
 
