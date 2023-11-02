@@ -187,7 +187,7 @@ New-AtwsAccount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,128)]
+    [ValidateLength(0,150)]
     [string[]]
     $Address1,
 
@@ -195,7 +195,7 @@ New-AtwsAccount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,128)]
+    [ValidateLength(0,150)]
     [string[]]
     $Address2,
 
@@ -327,7 +327,7 @@ New-AtwsAccount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,30)]
+    [ValidateLength(0,50)]
     [string[]]
     $City,
 
@@ -543,7 +543,7 @@ New-AtwsAccount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,10)]
+    [ValidateLength(0,30)]
     [string[]]
     $PostalCode,
 
@@ -584,7 +584,7 @@ New-AtwsAccount
     [Parameter(
       ParametersetName = 'By_parameters'
     )]
-    [ValidateLength(0,40)]
+    [ValidateLength(0,50)]
     [string[]]
     $State,
 
